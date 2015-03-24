@@ -1,0 +1,15 @@
+.DS_Store
+.vagrant/
+.buildpath
+.project
+.idea
+npm-debug.log
+
+# jekyll
+Gemfile.lock
+dist
+\.gh-pages
+
+# gh-pages
+node_modules/
+bower_components/

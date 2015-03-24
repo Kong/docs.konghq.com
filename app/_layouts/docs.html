@@ -1,0 +1,85 @@
+---
+layout: default
+sitemap: true
+header_title: Documentation
+header_icon: /assets/images/icons/icn-documentation.svg
+header_caption: Learn Kong in five minutes
+---
+
+{% capture version %}/docs/{% if page.latest != true %}{{page.version}}/{% endif %}{% endcapture %}
+
+{% include header.html %}
+
+<div class="container">
+  <aside class="page-navigation">
+    <nav>
+      <h5><a href="{{version}}"{% if page.url == "/docs/" %} class="active"{% endif %}>
+        About
+      </a></h5>
+    </nav>
+
+    <nav>
+      <h5><a href="{{version}}getting-started/"{% if page.url contains "/getting-started/" %} class="active"{% endif %}>
+        Getting Started
+      </a></h5>
+    </nav>
+
+    <nav>
+      <h5>Articles</h5>
+      <ul>
+        <li><a href="{{version}}articles/plugins">Plugins</a></li>
+        <li><a href="{{version}}articles/datastores">Datastores</a></li>
+        <li><a href="{{version}}articles/scalability">Scalability</a></li>
+      </ul>
+    </nav>
+
+    <nav>
+      <h5><a href="{{version}}api/"{% if page.url contains "/api/" %} class="active"{% endif %}>Internal API endpoints</a></h5>
+      <ul>
+        <li>
+          <a href="{{version}}api/#api-object">API Object</a>
+          <ul>
+            <li><a href="{{version}}api/#create-api">Create API</a></li>
+            <li><a href="{{version}}api/#retrieve-api">Retrieve API</a></li>
+            <li><a href="{{version}}api/#list-apis">List APIs</a></li>
+            <li><a href="{{version}}api/#delete-api">Delete API</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{version}}api/#plugin-object">Plugin Object</a>
+          <ul>
+            <li><a href="{{version}}api/#create-plugin">Create Plugin</a></li>
+            <li><a href="{{version}}api/#retrieve-plugin">Retrieve Plugin</a></li>
+            <li><a href="{{version}}api/#list-plugins">List Plugins</a></li>
+            <li><a href="{{version}}api/#delete-plugin">Delete Plugin</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{version}}api/#account-object">Account Object</a>
+          <ul>
+            <li><a href="{{version}}api/#create-account">Create Account</a></li>
+            <li><a href="{{version}}api/#list-accounts">List Accounts</a></li>
+            <li><a href="{{version}}api/#delete-account">Delete Account</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{version}}api/#application-object">Application Object</a>
+          <ul>
+            <li><a href="{{version}}api/#create-application">Create Application</a></li>
+            <li><a href="{{version}}api/#retrieve-application">Retrieve Application</a></li>
+            <li><a href="{{version}}api/#list-applications">List Applications</a></li>
+            <li><a href="{{version}}api/#delete-application">Delete Application</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="page-content-container">
+    <div class="page-content">
+      <div class="content">
+      {{ content }}
+      </div>
+    </div>
+  </div>
+</div>
