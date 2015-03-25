@@ -38,7 +38,7 @@ plugins_available:
 Using the plugin is straightforward, you can add it on top of an API by executing the following request on your Kong server:
 
 ```bash
-curl -d "name=file-log&api_id=API_ID" http://kong:8001/plugins/
+curl -d "name=filelog&api_id=API_ID" http://kong:8001/plugins/
 ```
 
 | parameter                    | description                                                |
