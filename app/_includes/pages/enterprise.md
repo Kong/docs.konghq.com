@@ -1,4 +1,4 @@
-Kong works best in Enterprise on-prem installations, for both public and internal APIs. It's pluggable core makes it the best option for integrating with any possible scenario or requirement.
+Kong works best in Enterprise on-prem installations, for both public and internal APIs. Its pluggable core makes it the best option for integrating with any possible scenario or requirement.
 
 We can help with:
 
