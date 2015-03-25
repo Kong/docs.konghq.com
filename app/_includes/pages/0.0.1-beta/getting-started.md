@@ -21,9 +21,16 @@ A typical `kong.yml` file looks like:
 ```yaml
 # Available plugins on this server
 plugins_available:
-  - authentication
+  - queryauth
+  - headerauth
+  - basicauth
   - ratelimiting
-  - networklog
+  - tcplog
+  - udplog
+  - filelog
+
+# Nginx prefix path directory
+nginx_working_dir: /usr/local/kong/
 
 # Specify the DAO to use
 database: cassandra
@@ -43,69 +50,74 @@ send_anonymous_reports: true
 
 # Cache configuration
 cache:
-  expiration: 5 # In seconds
+  expiration: 5 # in seconds
 
 nginx: |
   worker_processes auto;
   error_log logs/error.log info;
-  worker_rlimit_nofile 84280;
   daemon on;
-  pid nginx.pid;
+
+  # Set "worker_rlimit_nofile" to a high value
+  # worker_rlimit_nofile 65536;
 
   env KONG_CONF;
-  env KONG_HOME;
 
   events {
-    worker_connections 20480;
+    # Set "worker_connections" to a high value
+    worker_connections 1024;
   }
 
   http {
-    lua_package_path ";;";
-    lua_code_cache on;
 
+    # Generic Settings
+    resolver 8.8.8.8;
+    charset UTF-8;
+
+    # Logs
     access_log logs/access.log;
-
-    underscores_in_headers on;
     access_log on;
-    tcp_nopush on;
 
     # Timeouts
     keepalive_timeout 60s;
     client_header_timeout 60s;
     client_body_timeout 60s;
     send_timeout 60s;
-    reset_timedout_connection on;
 
-    # Max Client request size
-    client_max_body_size 50m;
-
-    # Proxy buffers
+    # Proxy Settings
     proxy_buffer_size 128k;
     proxy_buffers 4 256k;
     proxy_busy_buffers_size 256k;
-
-    # Proxy SSL
     proxy_ssl_server_name on;
 
-    # Timer properties
+    # Other Settings
+    client_max_body_size 128m;
+    underscores_in_headers on;
+    reset_timedout_connection on;
+    tcp_nopush on;
+
+    ################################################
+    #  The following code is required to run Kong  #
+    # Please be careful if you'd like to change it #
+    ################################################
+
+    # Lua Settings
+    lua_package_path ';;';
+    lua_code_cache on;
     lua_max_running_timers 4096;
     lua_max_pending_timers 16384;
-
-    # Cache
     lua_shared_dict cache 512m;
 
-    # Generic Settings
-    resolver 8.8.8.8;
-    charset UTF-8;
-
-    init_by_lua "kong = require 'kong'; kong.init()";
+    init_by_lua '
+      kong = require "kong"
+      local status, err = pcall(kong.init)
+      if not status then
+        ngx.log(ngx.ERR, "Startup error: "..err)
+        os.exit(1)
+      end
+    ';
 
     server {
       listen 8000;
-
-      location /robots.txt {
-        return 200 "User-agent: *\nDisallow: /";
-      }
 
       location / {
         # Assigns the default MIME-type to be used for files where the
@@ -117,7 +129,7 @@ nginx: |
         set $querystring nil;
 
         # Authenticate the user and load the API info
-        access_by_lua "kong.access()";
+        access_by_lua 'kong.exec_plugins_access()';
 
         # Proxy the request
         proxy_set_header X-Real-IP $remote_addr;
@@ -125,13 +137,17 @@ nginx: |
         proxy_pass $backend_url;
 
         # Add additional response headers
-        header_filter_by_lua "kong.header_filter()";
+        header_filter_by_lua 'kong.exec_plugins_header_filter()';
 
         # Change the response body
-        body_filter_by_lua "kong.body_filter()";
+        body_filter_by_lua 'kong.exec_plugins_body_filter()';
 
         # Log the request
-        log_by_lua "kong.log()";
+        log_by_lua 'kong.exec_plugins_log()';
+      }
+
+      location /robots.txt {
+        return 200 'User-agent: *\nDisallow: /';
       }
 
       error_page 500 /500.html;
@@ -139,7 +155,8 @@ nginx: |
         internal;
         content_by_lua '
           local utils = require "kong.tools.utils"
-          utils.show_error(ngx.status, "Ops, an unexpected error occurred!")';
+          utils.show_error(ngx.status, "Oops, an unexpected error occurred!")
+        ';
       }
     }
 
@@ -164,6 +181,10 @@ nginx: |
       location /favicon.ico {
         alias static/favicon.ico;
       }
+
+      location /robots.txt {
+        return 200 'User-agent: *\nDisallow: /';
+      }
     }
   }
 ```
@@ -171,7 +192,7 @@ nginx: |
 Here is a detailed description for each entry:
 
 * `plugins_available` describes an array of plugins that are available and can be used by the server. You can use only the plugins that are being specified here.
-* `output` optionally sets the output directory of the Kong working directory and its logs. If not set the Kong installation directory will be used instead.
+* `nginx_working_dir` sets the nginx working directory and its logs.
 * `database` is the database Kong is going to use. It's `cassandra` by default and it's the only one supported at the moment.
 * `databases_available` describes the configuration to use when connecting to the database.
 * `send_anonymous_reports` tells if the system is allowed to send anonymous error logs to a remote logging server in order to allow the maintainers of Kong to fix potential bugs and errors.

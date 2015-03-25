@@ -14,7 +14,7 @@ breadcrumbs:
 
 ---
 
-#### Log request and response data to the Kong log file
+#### Log request and response data to the Kong Log File
 
 ---
 
