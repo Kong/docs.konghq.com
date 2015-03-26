@@ -1,24 +1,4 @@
-# Welcome to Kong
-
-Kong is a scalable, lightweight open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](#plugins), which provide [extra functionalities and services](/plugins/) beyond the core platform.
-
-* **Scalable**: Kong easily scales horizontally by simply adding more machines, meaning your platform can handle virtually any load while keeping latency low.
-
-* **Modular**: Kong can be extended by adding new plugins, which are easily configured through an internal RESTful API.
-
-* **Runs on any infrastructure**: Kong runs anywhere. You can deploy Kong in the cloud or on-premise environments, including single or multi-datacenter setups and for public, private or invite-only APIs.
-
-Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](#internal-api-endpoints) to operate and configure the system.
-
-### Request Workflow
-
-To better understand the system, this is a typical request workflow of an API that uses Kong:
-
-![](/assets/images/docs/kong-simple.png)
-
-Once Kong is running, every request being made to the API will hit Kong first, and then it will be proxied to the final API. In between requests and responses Kong will execute any plugin that you decided to install, empowering your APIs. Kong is effectively going to be the entry point for every API request.
-
-## How does it work?
+# How does it work?
 
 Kong is made of two different components, that are easy to set up and to scale independently:
 
@@ -31,7 +11,7 @@ Kong needs to have both these components set up and operational. A typical Kong 
 
 Don't worry if you are not experienced with these technologies, Kong works out of the box and you or your engineering team will be able to set it up quickly without issues. Feel free to contact us for any technical question.
 
-### Kong Server
+## Kong Server
 
 The Kong Server, built on top of **NGINX**, is the server that will actually process the API requests and execute the configured plugins to provide additional functionalities to the underlying APIs before proxying the request to the final destination.
 

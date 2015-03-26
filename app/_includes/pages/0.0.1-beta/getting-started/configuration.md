@@ -1,8 +1,4 @@
-# Getting Started
-
-Kong is an **API Layer** that exposes additional functionality through plugins. Before getting started, ensure you have Kong [installed and running](/download) before proceeding.
-
-## Configuration
+# Configuration
 
 Kong comes with an easy to use configuration file called `kong.yml` in YAML format. You can use this file to configure the Kong Server.
 
@@ -14,7 +10,7 @@ By default Kong will look for this file in the Kong directory, but you can also 
 bin/kong -c /path/to/conf.yml start
 ```
 
-### kong.yml
+## kong.yml
 
 A typical `kong.yml` file looks like:
 

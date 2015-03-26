@@ -16,26 +16,33 @@ header_caption: Learn Kong in five minutes
       <h5><a href="{{version}}"{% if page.url == "/docs/" %} class="active"{% endif %}>
         About
       </a></h5>
+      <ul>
+        <li><a href="{{version}}about/what"{% if page.url contains "/what/" %} class="active"{% endif %}>What is Kong?</a></li>
+        <li><a href="{{version}}about/how"{% if page.url contains "/how/" %} class="active"{% endif %}>How does it work?</a></li>
+      </ul>
     </nav>
 
     <nav>
-      <h5><a href="{{version}}getting-started/"{% if page.url contains "/getting-started/" %} class="active"{% endif %}>
-        Getting Started
-      </a></h5>
+      <h5>Getting Started</h5>
+      <ul>
+        <li><a href="{{version}}getting-started/installation"{% if page.url contains "/installation/" %} class="active"{% endif %}>Installation</a></li>
+        <li><a href="{{version}}getting-started/configuration"{% if page.url contains "/configuration/" %} class="active"{% endif %}>Configuration</a></li>
+      </ul>
     </nav>
 
     <nav>
       <h5>Articles</h5>
       <ul>
-        <li><a href="{{version}}articles/plugins">Plugins</a></li>
-        <li><a href="{{version}}articles/datastores">Datastores</a></li>
-        <li><a href="{{version}}articles/scalability">Scalability</a></li>
+        <li><a href="{{version}}articles/plugins"{% if page.url contains "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
+        <li><a href="{{version}}articles/datastores"{% if page.url contains "/datastores/" %} class="active"{% endif %}>Datastores</a></li>
+        <li><a href="{{version}}articles/scalability"{% if page.url contains "/scalability/" %} class="active"{% endif %}>Scalability</a></li>
       </ul>
     </nav>
 
     <nav>
-      <h5><a href="{{version}}api/"{% if page.url contains "/api/" %} class="active"{% endif %}>Internal API endpoints</a></h5>
+      <h5>Internal API endpoints</h5>
       <ul>
+        <li><a href="{{version}}api/">Introduction</a>
         <li>
           <a href="{{version}}api/#api-object">API Object</a>
           <ul>
