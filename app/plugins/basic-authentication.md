@@ -20,13 +20,15 @@ breadcrumbs:
 
 ## Installation
 
+<!---
 Make sure every Kong server in your cluster has the required dependency by executing:
 
 ```bash
 $ kong install basicauth
 ```
+-->
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the “kong.yml” configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml](http://localhost:9000/docs/getting-started/#configuration) configuration file
 
 ```yaml
 plugins_available:
