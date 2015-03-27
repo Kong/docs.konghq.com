@@ -25,3 +25,4 @@ name: Kong by Mashape
 domain: localhost:3000
 url: http://localhost:9000
 repo: https://github.com/Mashape/kong
+latest: 0.1.0beta-3
