@@ -6,7 +6,7 @@ header_icon: /assets/images/icons/icn-documentation.svg
 header_caption: Learn Kong in five minutes
 ---
 
-{% capture version %}/docs/{% if page.latest != true %}{{page.version}}/{% endif %}{% endcapture %}
+{% capture version %}/docs/{% if page.version != site.latest %}{{page.version}}/{% endif %}{% endcapture %}
 
 {% include header.html %}
 
@@ -14,8 +14,8 @@ header_caption: Learn Kong in five minutes
   <aside class="page-navigation">
     <nav>
       <h5><a href="{{version}}"{% if page.url == "/docs/" %} class="active"{% endif %}>
-        About
-      </a></h5>
+        About</a>
+      </h5>
       <ul>
         <li><a href="{{version}}about/what"{% if page.url contains "/what/" %} class="active"{% endif %}>What is Kong?</a></li>
         <li><a href="{{version}}about/how"{% if page.url contains "/how/" %} class="active"{% endif %}>How does it work?</a></li>

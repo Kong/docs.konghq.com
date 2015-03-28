@@ -26,3 +26,4 @@ domain: getkong.org
 url: http://getkong.org
 repo: https://github.com/Mashape/kong
 docrepo: https://github.com/Mashape/getkong.org
+latest: 0.1.0beta-3
