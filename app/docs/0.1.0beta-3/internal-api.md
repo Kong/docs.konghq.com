@@ -1,3 +1,10 @@
+---
+layout: docs
+title: Internal API
+version: 0.0.1-beta
+permalink: /docs/api/
+---
+
 # Kong Internal API
 
 Kong comes with an **internal** RESTful API for administration purposes. API commands can be run on any node in the cluster, and Kong will keep the configuration consistent across all nodes.

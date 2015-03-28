@@ -16,4 +16,4 @@ We can help with:
 * Professional Services and Integrations
 * API training, best practices and technical mentorship
 
-We would love to hear your requirements, please send us an email to <a href="mailto: sales@mashape.com">sales@mashape.com</a>
+We would love to hear your requirements, please send us an email to <a href="mailto: sales@mashape.com">sales@mashape.com</a>.
