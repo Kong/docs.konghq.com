@@ -1,3 +1,11 @@
+---
+title: Terms
+layout: page
+sitemap: true
+header_title: Terms of service
+header_caption: "Last Revised: March 2, 2015"
+---
+
 # Welcome to Kong.
 
 **Please Read Carefully Before Using The Website**
