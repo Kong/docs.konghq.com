@@ -1,3 +1,10 @@
+---
+layout: docs
+title: Datastores
+version: 0.0.1-beta
+permalink: /docs/articles/datastores/
+---
+
 # Datastores
 
 Technically Kong can be expanded to support many different datastores. Although this is a possiblity, for the time being we'll provide support for Apache Cassandra, which is also the best option for starting small and scaling big.

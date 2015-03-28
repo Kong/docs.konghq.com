@@ -1,3 +1,10 @@
+---
+layout: docs
+title: Scalability
+version: 0.0.1-beta
+permalink: /docs/articles/scalability/
+---
+
 # Scalability
 
 When it comes down to scaling Kong, you need to keep in mind that you will need to scale both the API server and the underlying datastore.

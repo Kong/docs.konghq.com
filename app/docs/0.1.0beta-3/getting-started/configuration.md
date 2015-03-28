@@ -1,3 +1,10 @@
+---
+layout: docs
+title: Configuration
+version: 0.0.1-beta
+permalink: /docs/getting-started/configuration/
+---
+
 # Configuration
 
 Kong comes with an easy to use configuration file called `kong.yml` in YAML format. You can use this file to configure the Kong Server.

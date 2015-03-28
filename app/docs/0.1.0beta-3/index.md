@@ -5,4 +5,4 @@ version: 0.0.1-beta
 permalink: /docs/
 ---
 
-{% markdown pages/0.0.1-beta/index.md %}
+Welcome to the Kong documentation.

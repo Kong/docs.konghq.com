@@ -1,3 +1,10 @@
+---
+layout: docs
+title: How does it work?
+version: 0.0.1-beta
+permalink: /docs/about/how/
+---
+
 # How does it work?
 
 Kong is made of two different components, that are easy to set up and to scale independently:

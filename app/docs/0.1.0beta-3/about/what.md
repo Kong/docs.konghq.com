@@ -1,3 +1,10 @@
+---
+layout: docs
+title: What is Kong?
+version: 0.0.1-beta
+permalink: /docs/about/what/
+---
+
 # What is Kong?
 
 Kong is a scalable, lightweight open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](#plugins), which provide [extra functionalities and services](/plugins/) beyond the core platform.
