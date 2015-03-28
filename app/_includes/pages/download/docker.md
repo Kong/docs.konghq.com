@@ -1,22 +1,19 @@
 ### Docker
 
-1. Get the files: ( [Zip](#) | [Tar.gz](#) )
+1. Start Cassandra:
 
     ```bash
-    wget http://getkong.org/releases/kong-0.0.1-beta.tar.gz
-    tar xvzf kong-0.0.1-beta.tar.gz
+    docker run -p 9042:9042 -d --name cassandra mashape/docker-cassandra
     ```
 
-2. Install dependencies:
+2. Start Kong:
 
     ```bash
-    wget http://luarocks.com
-    ./configure && make && make install
+    docker run -p 8000:8000 -p 8001:8001 -d --name kong --link cassandra:cassandra mashape/docker-kong:0.1.0beta-3
     ```
 
-2. Run:
+3. Kong is running:
 
     ```bash
-    bin/kong migrate # Only the first time
-    bin/kong start
+    curl http://127.0.0.1:8001
     ```
