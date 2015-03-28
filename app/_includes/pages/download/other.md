@@ -1,22 +1,20 @@
-### Debian 7 Wheezy
+### Other
 
-1. Installation:
+1. Install dependencies:
 
-    Add the right source to APT:
+    * Install [OpenResty v1.7.10.1](http://openresty.com/)
+
+    * Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
+
+    * Install [Luarocks v2.2.1](http://luarocks.org)
+
+2. Install Kong:
 
     ```bash
-    echo "deb http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/debian/wheezy/ kong main" >> /etc/apt/sources.list
+    luarocks install kong {{site.latest}}
     ```
 
-    Then execute:
-
-    ```bash
-    apt-get update
-    apt-get install kong
-    ```
-
-
-2. Start Kong:
+3. Start Kong:
 
     Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/getting-started/configuration/) points to the right Cassandra server. Then execute:
 
@@ -24,7 +22,7 @@
     kong start
     ```
 
-3. Kong is running:
+4. Kong is running:
 
     ```bash
     curl http://127.0.0.1:8001

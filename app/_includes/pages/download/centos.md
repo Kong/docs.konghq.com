@@ -1,22 +1,33 @@
-### CentOS
+### CentOS 6/7
 
-1. Get the files: ( [Zip](#) | [Tar.gz](#) )
+1. Installation:
 
-    ```bash
-    wget http://getkong.org/releases/kong-0.0.1-beta.tar.gz
-    tar xvzf kong-0.0.1-beta.tar.gz
+    Add the following in your `/etc/yum.repos.d/` directory in a file named (for example) `kong.repo`
+
+    ```
+    [kong]
+    name = Kong
+    baseurl = http://mashape-kong-yum-repo.s3-website-us-east-1.amazonaws.com/$releasever/$basearch
+    enabled = 1
+    gpgcheck = 0
     ```
 
-2. Install dependencies:
+    Then execute:
 
     ```bash
-    wget http://luarocks.com
-    ./configure && make && make install
+    yum install kong
     ```
 
-2. Run:
+2. Start Kong:
+
+    Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/getting-started/configuration/) points to the right Cassandra server. Then execute:
 
     ```bash
-    bin/kong migrate # Only the first time
-    bin/kong start
+    kong start
+    ```
+
+3. Kong is running:
+
+    ```bash
+    curl http://127.0.0.1:8001
     ```

@@ -1,11 +1,17 @@
-### Debian 7 Wheezy
+### Ubuntu 12.04/14.04
 
 1. Installation:
 
-    Add the right source to APT:
+    Add the right source to APT for Ubuntu 12.04:
 
     ```bash
-    echo "deb http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/debian/wheezy/ kong main" >> /etc/apt/sources.list
+    echo "deb [arch=amd64] http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/ubuntu/12_04/ kong main" >> /etc/apt/sources.list
+    ```
+
+    Add the right source to APT for Ubuntu 14.04:
+
+    ```bash
+    echo "deb [arch=amd64] http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/ubuntu/14_04/ kong main" >> /etc/apt/sources.list
     ```
 
     Then execute:
@@ -14,7 +20,6 @@
     apt-get update
     apt-get install kong
     ```
-
 
 2. Start Kong:
 
