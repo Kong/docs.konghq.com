@@ -49,4 +49,4 @@ curl -d "name=filelog&api_id=API_ID" http://kong:8001/plugins_configurations/
 |------------------------------|------------------------------------------------------------|
 | name                         | The name of the plugin to use, in this case: `tcplog`   |
 | api_id                       | The API ID that this plugin configuration will target             |
-| *consumer_id*             | Optionally the APPLICATION ID that this plugin configuration will target |
+| *consumer_id*             | Optionally the CONSUMER ID that this plugin configuration will target |

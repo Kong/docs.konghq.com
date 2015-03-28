@@ -2,11 +2,13 @@
 
 1. Install dependencies:
 
-    * Install [OpenResty v1.7.10.1](http://openresty.com/)
+    Install [OpenResty v1.7.10.1](http://openresty.com/)
 
-    * Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
+    Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
 
-    * Install [Luarocks v2.2.1](http://luarocks.org)
+    Install [Luarocks v2.2.1](http://luarocks.org)
+
+    Some of the dependencies may be available in your favorite package manager.
 
 2. Install Kong:
 
