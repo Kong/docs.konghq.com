@@ -23,12 +23,20 @@
   $tabs.on('click', function (e) {
     e.preventDefault();
 
+    var tabId = $(this).find('a').attr('href');
+
     $tabs.removeClass('active').filter(this).addClass('active');
-    $tabPanes.removeClass('active').filter($(this).find('a').attr('href')).addClass('active');
+    $tabPanes.removeClass('active').filter(tabId).addClass('active');
+
+    if (history.pushState) {
+      history.pushState(null, null, tabId);
+    } else {
+      location.hash = tabId;
+    }
   });
 
-  if (window.location.hash) {
-    $tabs.find('a[href="' + window.location.hash + '"]').trigger('click');
+  if (location.hash) {
+    $tabs.find('a[href="' + location.hash + '"]').trigger('click');
   }
 
   // Form on downloads page
