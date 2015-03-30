@@ -1,7 +1,8 @@
 ---
 layout: docs
 title: How does it work?
-version: 0.1.0beta-3
+version: 0.1.1beta-1
+permalink: /docs/about/how/
 ---
 
 # How does it work?

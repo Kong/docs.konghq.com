@@ -1,7 +1,8 @@
 ---
 layout: docs
 title: What is Kong?
-version: 0.1.0beta-3
+version: 0.1.1beta-1
+permalink: /docs/about/what/
 ---
 
 # What is Kong?
