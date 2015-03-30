@@ -226,7 +226,7 @@ HTTP 200 OK
 }
 ```
 
-### List Consumer
+### List Consumers
 
 **Endpoint**
 
