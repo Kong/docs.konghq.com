@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: What is Kong?
-version: 0.1.1beta-1
+version: 0.1.1beta-2
 permalink: /docs/about/what/
 ---
 
