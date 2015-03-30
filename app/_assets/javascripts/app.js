@@ -27,6 +27,10 @@
     $tabPanes.removeClass('active').filter($(this).find('a').attr('href')).addClass('active');
   });
 
+  if (window.location.hash) {
+    $tabs.find('a[href="' + window.location.hash + '"]').trigger('click');
+  }
+
   // Form on downloads page
 
   Parse.initialize("ZFqEMoCQSm0K4piYYdstraJDOl0a80tJB7R0tR49", "SdqL88SikiiftwBjEGfRb4SmbghTIycZ2kfy7Jb0");
