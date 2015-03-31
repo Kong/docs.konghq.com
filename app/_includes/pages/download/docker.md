@@ -2,9 +2,9 @@
 
 1. Start Cassandra:
 
-    ```bash
-    docker run -p 9042:9042 -d --name cassandra mashape/docker-cassandra
-    ```
+	```bash
+	docker run -p 9042:9042 -d --name cassandra mashape/docker-cassandra
+	```
 
 2. Start Kong:
 

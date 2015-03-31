@@ -1,22 +1,52 @@
-### Mac OS X
+### OS X
 
-1. Get the files: ( [Zip](#) | [Tar.gz](#) )
+1. Install dependencies:
 
-    ```bash
-    wget http://getkong.org/releases/kong-0.0.1-beta.tar.gz
-    tar xvzf kong-0.0.1-beta.tar.gz
+    Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
+
+    ```
+    brew install lua51
+    ln /usr/local/bin/lua5.1 /usr/local/bin/lua # alias lua5.1 to lua (required for kong scripts)
     ```
 
-2. Install dependencies:
+    Install [Luarocks v2.2.1](http://luarocks.org)
 
-    ```bash
-    wget http://luarocks.com
-    ./configure && make && make install
+   ```
+    brew tap naartjie/luajit
+    brew install naartjie/luajit/luarocks-luajit --with-lua51
+   ```
+
+    Install [OpenResty v1.7.10.1](http://openresty.com/)
+
+    ```
+    brew tap killercup/openresty
+    brew install ngx_openresty
+    ln /usr/local/bin/openresty /usr/local/bin/nginx # alias openresty to nginx (required for kong scripts)
     ```
 
-2. Run:
+2. Install Kong:
 
     ```bash
-    bin/kong migrate # Only the first time
-    bin/kong start
+    luarocks install kong {{site.latest}}
+    ```
+
+3. Start Kong:
+
+    Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/getting-started/configuration/) points to the right Cassandra server. Then execute:
+
+    ```bash
+    kong start
+    ```
+
+    You can install Cassandra with:
+
+    ```
+    brew install cassandra
+    # to start cassandra, just run `cassandra`
+    ```
+
+4. Kong is running:
+
+    ```bash
+    curl http://127.0.0.1:8001
     ```
