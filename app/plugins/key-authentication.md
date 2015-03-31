@@ -28,7 +28,7 @@ $ kong install keyauth
 ```
 -->
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml](http://localhost:9000/docs/getting-started/#configuration) configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.latest}}/getting-started/configuration) configuration file
 
 ```yaml
 plugins_available:
@@ -39,7 +39,7 @@ Every node in the Kong cluster should have the same `plugins_available` property
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API](/docs/api/#api-object) (or [Consumer](/docs/api/#consumer-object)) by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of an [API](/docs/{{site.latest}}/api/#api-object) (or [Consumer](/docs/{{site.latest}}/api/#consumer-object)) by executing the following request on your Kong server:
 
 ```bash
 curl -d "name=keyauth&api_id=API_ID&value.key_names=key_name1,key_name2" http://kong:8001/plugins_configurations/
@@ -64,9 +64,9 @@ curl -d "key=some_key&consumer_id=CONSUMER_ID" http://kong:8001/keyauth_credenti
 | parameter                    | description                                                |
 |------------------------------|------------------------------------------------------------|
 | key                         | The key to use to authenticate the consumer.   |
-| consumer_id             | The [Consumer](/docs/api/#consumer-object) entity to associate the credentials to |
+| consumer_id             | The [Consumer](/docs/{{site.latest}}/api/#consumer-object) entity to associate the credentials to |
 
-To create a [Consumer](/docs/api/#consumer-object) you can execute the following request:
+To create a [Consumer](/docs/{{site.latest}}/api/#consumer-object) you can execute the following request:
 
 ```bash
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/basicauth_credentials/
@@ -77,4 +77,4 @@ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/basicauth_c
 | username                         | The username of the consumer   |
 | custom_id                       | A custom ID that you can use to map the consumer to another database |
 
-A [Consumer](/docs/api/#consumer-object) can have many credentials.
+A [Consumer](/docs/{{site.latest}}/api/#consumer-object) can have many credentials.

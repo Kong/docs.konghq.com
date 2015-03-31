@@ -3,7 +3,7 @@ layout: default
 sitemap: true
 header_title: Documentation
 header_icon: /assets/images/icons/icn-documentation.svg
-header_caption: Learn Kong in five minutes
+header_caption: Learn how Kong empowers your APIs
 ---
 
 {% capture version %}/docs/{% if page.version == site.latest %}{{page.version}}/{% endif %}{% endcapture %}
@@ -36,6 +36,15 @@ header_caption: Learn Kong in five minutes
         <li><a href="{{version}}articles/plugins"{% if page.url contains "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
         <li><a href="{{version}}articles/datastores"{% if page.url contains "/datastores/" %} class="active"{% endif %}>Datastores</a></li>
         <li><a href="{{version}}articles/scalability"{% if page.url contains "/scalability/" %} class="active"{% endif %}>Scalability</a></li>
+      </ul>
+    </nav>
+
+    <nav>
+      <h5>Tutorials</h5>
+      <ul>
+        <li><a href="{{version}}tutorials/introduction"{% if page.url contains "/tutorials/introduction" %} class="active"{% endif %}>Introduction</a></li>
+        <li><a href="{{version}}tutorials/hello-world"{% if page.url contains "/tutorials/hello-world" %} class="active"{% endif %}>Hello World</a></li>
+        <li><a href="{{version}}tutorials/installing-plugin"{% if page.url contains "/tutorials/installing-plugin" %} class="active"{% endif %}>Installing a Plugin</a></li>
       </ul>
     </nav>
 

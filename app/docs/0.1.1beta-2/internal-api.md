@@ -364,7 +364,7 @@ HTTP 201 Created
 }
 ```
 
-### Retrieve Plugin
+### Retrieve Plugin Configuration
 
 **Endpoint**
 
