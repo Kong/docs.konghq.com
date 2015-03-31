@@ -8,8 +8,6 @@ This folder is the source code for Kong's website. It is a [Jekyll](http://jekyl
 - [Bundler](http://bundler.io/)
 - [Bower](http://bower.io/)
 
-All specified commands must be executed in the current `./site` directory.
-
 ## Install
 
 >```bash
