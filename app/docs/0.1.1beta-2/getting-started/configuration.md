@@ -2,7 +2,7 @@
 layout: docs
 title: Configuration
 version: 0.1.1beta-2
-permalink: /docs/getting-started/configuration/
+permalink: /docs/0.1.1beta-2/getting-started/configuration/
 ---
 
 # Configuration

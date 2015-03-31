@@ -2,7 +2,7 @@
 layout: docs
 title: How does it work?
 version: 0.1.1beta-2
-permalink: /docs/about/how/
+permalink: /docs/0.1.1beta-2/about/how/
 ---
 
 # How does it work?

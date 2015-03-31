@@ -2,7 +2,7 @@
 layout: docs
 title: Datastores
 version: 0.1.1beta-2
-permalink: /docs/articles/datastores/
+permalink: /docs/0.1.1beta-2/articles/datastores/
 ---
 
 # Datastores
