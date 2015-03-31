@@ -16,18 +16,18 @@ sitemap: true
 
       <div class="tab-list-wrap">
         <ul class="tab-list row">
-          <li class="active"><a href="#other">Other</a></li>
+          <li class="active"><a href="#docker">Docker</a></li>
           <li><a href="#centos">CentOS</a></li>
           <li><a href="#debian">Debian</a></li>
           <li><a href="#ubuntu">Ubuntu</a></li>
-          <li><a href="#docker">Docker</a></li>
+          <li><a href="#other">Other</a></li>
         </ul>
       </div>
 
       <div class="content">
         <div class="tab-content">
-          <div class="tab-pane active" id="other">
-            {% markdown pages/download/other.md %}
+          <div class="tab-pane active" id="docker">
+            {% markdown pages/download/docker.md %}
           </div>
           <div class="tab-pane" id="centos">
             {% markdown pages/download/centos.md %}
@@ -38,8 +38,8 @@ sitemap: true
           <div class="tab-pane" id="ubuntu">
             {% markdown pages/download/ubuntu.md %}
           </div>
-          <div class="tab-pane" id="docker">
-            {% markdown pages/download/docker.md %}
+          <div class="tab-pane" id="other">
+            {% markdown pages/download/other.md %}
           </div>
           Something went wrong? <a href="/docs">Check out the Docs</a>
         </div>
