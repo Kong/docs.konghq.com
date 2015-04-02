@@ -6,7 +6,7 @@ module Jekyll
       site.pages.each do |page|
         parts = Pathname(page.path).each_filename.to_a
         if site.config["documentation"] == parts[0]
-          puts(parts[1])
+          puts(page.name)
           page.data["kong_version"] = parts[1]
         end
       end

@@ -1,8 +1,6 @@
 ---
 layout: docs
 title: Tutorials - Hello World
-version: 0.1.1beta-2
-permalink: /docs/0.1.1beta-2/tutorials/hello-world/
 ---
 
 # Hello World: Proxying your first API

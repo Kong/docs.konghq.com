@@ -1,0 +1,18 @@
+---
+layout: default
+sitemap: true
+header_title: Test
+---
+
+{% assign pathParts = page.path | split: "/" %}
+{% assign version = pathParts[1] %}
+
+<div class="container">
+  <div class="page-content-container">
+    <div class="page-content">
+      <div class="content">
+      {{ content }}
+      </div>
+    </div>
+  </div>
+</div>

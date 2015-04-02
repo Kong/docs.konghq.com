@@ -6,7 +6,7 @@ header_icon: /assets/images/icons/icn-documentation.svg
 header_caption: Learn how Kong empowers your APIs
 ---
 
-{% capture version %}/docs/{% if page.version == site.latest %}{{page.version}}/{% endif %}{% endcapture %}
+{% capture version %}/docs/{% if page.kong_version == site.latest %}{{page.kong_version}}/{% endif %}{% endcapture %}
 
 {% include header.html %}
 
