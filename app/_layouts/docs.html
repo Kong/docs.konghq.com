@@ -6,77 +6,75 @@ header_icon: /assets/images/icons/icn-documentation.svg
 header_caption: Learn how Kong empowers your APIs
 ---
 
-{% capture version %}/docs/{% if page.kong_version == site.latest %}{{page.kong_version}}/{% endif %}{% endcapture %}
-
 {% include header.html %}
 
 <div class="container">
   <aside class="page-navigation">
     <nav>
-      <h5><a href="{{version}}"{% if page.url == "/docs/" %} class="active"{% endif %}>
+      <h5><a href="{{page.kong_version}}"{% if page.url == "/docs/" %} class="active"{% endif %}>
         About</a>
       </h5>
       <ul>
-        <li><a href="{{version}}about/what"{% if page.url contains "/what/" %} class="active"{% endif %}>What is Kong?</a></li>
-        <li><a href="{{version}}about/how"{% if page.url contains "/how/" %} class="active"{% endif %}>How does it work?</a></li>
+        <li><a href="{{page.kong_version}}about/what"{% if page.url contains "/what/" %} class="active"{% endif %}>What is Kong?</a></li>
+        <li><a href="{{page.kong_version}}about/how"{% if page.url contains "/how/" %} class="active"{% endif %}>How does it work?</a></li>
       </ul>
     </nav>
 
     <nav>
       <h5>Getting Started</h5>
       <ul>
-        <li><a href="{{version}}getting-started/installation"{% if page.url contains "/installation/" %} class="active"{% endif %}>Installation</a></li>
-        <li><a href="{{version}}getting-started/configuration"{% if page.url contains "/configuration/" %} class="active"{% endif %}>Configuration</a></li>
+        <li><a href="{{page.kong_version}}getting-started/installation"{% if page.url contains "/installation/" %} class="active"{% endif %}>Installation</a></li>
+        <li><a href="{{page.kong_version}}getting-started/configuration"{% if page.url contains "/configuration/" %} class="active"{% endif %}>Configuration</a></li>
       </ul>
     </nav>
 
     <nav>
       <h5>Articles</h5>
       <ul>
-        <li><a href="{{version}}articles/plugins"{% if page.url contains "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
-        <li><a href="{{version}}articles/datastores"{% if page.url contains "/datastores/" %} class="active"{% endif %}>Datastores</a></li>
-        <li><a href="{{version}}articles/scalability"{% if page.url contains "/scalability/" %} class="active"{% endif %}>Scalability</a></li>
+        <li><a href="{{page.kong_version}}articles/plugins"{% if page.url contains "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
+        <li><a href="{{page.kong_version}}articles/datastores"{% if page.url contains "/datastores/" %} class="active"{% endif %}>Datastores</a></li>
+        <li><a href="{{page.kong_version}}articles/scalability"{% if page.url contains "/scalability/" %} class="active"{% endif %}>Scalability</a></li>
       </ul>
     </nav>
 
     <nav>
       <h5>Tutorials</h5>
       <ul>
-        <li><a href="{{version}}tutorials/introduction"{% if page.url contains "/tutorials/introduction" %} class="active"{% endif %}>Introduction</a></li>
-        <li><a href="{{version}}tutorials/hello-world"{% if page.url contains "/tutorials/hello-world" %} class="active"{% endif %}>Hello World</a></li>
-        <li><a href="{{version}}tutorials/installing-plugin"{% if page.url contains "/tutorials/installing-plugin" %} class="active"{% endif %}>Installing a Plugin</a></li>
+        <li><a href="{{page.kong_version}}tutorials/introduction"{% if page.url contains "/tutorials/introduction" %} class="active"{% endif %}>Introduction</a></li>
+        <li><a href="{{page.kong_version}}tutorials/hello-world"{% if page.url contains "/tutorials/hello-world" %} class="active"{% endif %}>Hello World</a></li>
+        <li><a href="{{page.kong_version}}tutorials/installing-plugin"{% if page.url contains "/tutorials/installing-plugin" %} class="active"{% endif %}>Installing a Plugin</a></li>
       </ul>
     </nav>
 
     <nav>
       <h5>Internal API endpoints</h5>
       <ul>
-        <li><a href="{{version}}api/">Introduction</a>
+        <li><a href="{{page.kong_version}}api/">Introduction</a>
         <li>
-          <a href="{{version}}api/#api-object">API Object</a>
+          <a href="{{page.kong_version}}api/#api-object">API Object</a>
           <ul>
-            <li><a href="{{version}}api/#create-api">Create API</a></li>
-            <li><a href="{{version}}api/#retrieve-api">Retrieve API</a></li>
-            <li><a href="{{version}}api/#list-apis">List APIs</a></li>
-            <li><a href="{{version}}api/#delete-api">Delete API</a></li>
+            <li><a href="{{page.kong_version}}api/#create-api">Create API</a></li>
+            <li><a href="{{page.kong_version}}api/#retrieve-api">Retrieve API</a></li>
+            <li><a href="{{page.kong_version}}api/#list-apis">List APIs</a></li>
+            <li><a href="{{page.kong_version}}api/#delete-api">Delete API</a></li>
           </ul>
         </li>
         <li>
-          <a href="{{version}}api/#consumer-object">Consumer Object</a>
+          <a href="{{page.kong_version}}api/#consumer-object">Consumer Object</a>
           <ul>
-            <li><a href="{{version}}api/#create-consumer">Create Consumer</a></li>
-            <li><a href="{{version}}api/#retrieve-consumer">Retrieve Consumer</a></li>
-            <li><a href="{{version}}api/#list-consumers">List Consumers</a></li>
-            <li><a href="{{version}}api/#delete-consumer">Delete Consumer</a></li>
+            <li><a href="{{page.kong_version}}api/#create-consumer">Create Consumer</a></li>
+            <li><a href="{{page.kong_version}}api/#retrieve-consumer">Retrieve Consumer</a></li>
+            <li><a href="{{page.kong_version}}api/#list-consumers">List Consumers</a></li>
+            <li><a href="{{page.kong_version}}api/#delete-consumer">Delete Consumer</a></li>
           </ul>
         </li>
         <li>
-          <a href="{{version}}api/#plugin-object">Plugin Configuration Object</a>
+          <a href="{{page.kong_version}}api/#plugin-object">Plugin Configuration Object</a>
           <ul>
-            <li><a href="{{version}}api/#create-plugin-configuration">Create Plugin Configuration</a></li>
-            <li><a href="{{version}}api/#retrieve-plugin-configuration">Retrieve Plugin Configuration</a></li>
-            <li><a href="{{version}}api/#list-plugins-configurations">List Plugins Configurations</a></li>
-            <li><a href="{{version}}api/#delete-plugin-configuration">Delete Plugin Configuration</a></li>
+            <li><a href="{{page.kong_version}}api/#create-plugin-configuration">Create Plugin Configuration</a></li>
+            <li><a href="{{page.kong_version}}api/#retrieve-plugin-configuration">Retrieve Plugin Configuration</a></li>
+            <li><a href="{{page.kong_version}}api/#list-plugins-configurations">List Plugins Configurations</a></li>
+            <li><a href="{{page.kong_version}}api/#delete-plugin-configuration">Delete Plugin Configuration</a></li>
           </ul>
         </li>
       </ul>
