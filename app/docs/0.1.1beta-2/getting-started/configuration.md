@@ -9,7 +9,7 @@ permalink: /docs/0.1.1beta-2/getting-started/configuration/
 
 Kong comes with an easy to use configuration file called `kong.yml` in YAML format. You can use this file to configure the Kong Server.
 
-**Note**: To avoid runtime errors, we highly reccomend that every node in the cluster shares the same configuration.
+**Note**: To avoid runtime errors, we highly recommend that every node in the cluster shares the same configuration.
 
 By default Kong will look for this file in the Kong directory, but you can also specify your own configuration file at startup time by specifing the `-c` option like:
 
