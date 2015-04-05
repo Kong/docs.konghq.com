@@ -47,7 +47,7 @@ curl -d "name=ratelimiting&api_id=API_ID&value.limit=1000&value.period=hour" htt
 
 | parameter                    | description                                                |
 |------------------------------|------------------------------------------------------------|
-| name                         | The name of the plugin to use, in this case: `tcplog`   |
+| name                         | The name of the plugin to use, in this case: `ratelimiting`   |
 | api_id                       | The API ID that this plugin configuration will target             |
 | *consumer_id*             | Optionally the CONSUMER ID that this plugin configuration will target |
 | `value.limit`           | The amount of HTTP requests the developer can make in the given period of time |
