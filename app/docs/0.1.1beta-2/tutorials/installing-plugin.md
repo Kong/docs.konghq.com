@@ -1,8 +1,6 @@
 ---
 layout: docs
 title: Tutorials - Installing a Plugin
-version: 0.1.1beta-2
-permalink: /docs/0.1.1beta-2/tutorials/installing-plugin/
 ---
 
 # Installing a Plugin
@@ -59,7 +57,7 @@ HTTP/1.1 201 Created
 }
 ```
 
-Here we go, the Plugin has been successfully configured and enabled. 
+Here we go, the Plugin has been successfully configured and enabled.
 
 If we now try to make an HTTP request to the same API, Kong will tell us that we are not authenticated to make the request.
 
@@ -77,7 +75,7 @@ That happened because the request we made didn't provide a key named `apikey` (a
 To authenticate against the API, we need to pass a credential along with the request. As documented in the [Plugin's Usage](/plugins/key-authentication/), we need to create a [Consumer](/docs/{{site.latest}}/api/#consumer-object) and a credential key:
 
 ```bash
-$ curl -i -X POST \ 
+$ curl -i -X POST \
   --url http://127.0.0.1:8001/consumers/
   --data 'username=tutorial_user'
 HTTP/1.1 201 Created

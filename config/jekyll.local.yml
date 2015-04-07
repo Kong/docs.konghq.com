@@ -26,4 +26,4 @@ domain: localhost:3000
 url: http://localhost:9000
 repo: https://github.com/Mashape/kong
 docrepo: https://github.com/Mashape/getkong.org
-latest: 0.1.1beta-2
+documentation: docs

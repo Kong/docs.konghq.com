@@ -1,8 +1,6 @@
 ---
 layout: docs
 title: Installation
-version: 0.1.1beta-2
-permalink: /docs/0.1.1beta-2/getting-started/installation/
 ---
 
 # Installation

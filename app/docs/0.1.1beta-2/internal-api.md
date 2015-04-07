@@ -1,8 +1,6 @@
 ---
 layout: docs
 title: Internal API
-version: 0.1.1beta-2
-permalink: /docs/0.1.1beta-2/api/
 ---
 
 # Kong Internal API

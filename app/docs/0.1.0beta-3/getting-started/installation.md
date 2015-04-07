@@ -1,7 +1,6 @@
 ---
 layout: docs
 title: Installation
-version: 0.1.0beta-3
 ---
 
 # Installation
