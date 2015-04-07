@@ -121,7 +121,7 @@ gulp.task('connect', function () {
     port: 9000,
     root: 'dist',
     livereload: true,
-    fallback: 'dist/404/index.html'
+    fallback: 'dist/404.html'
   });
 });
 
