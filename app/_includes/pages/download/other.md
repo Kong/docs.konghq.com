@@ -1,20 +1,6 @@
 ### Other
 
 1. Install dependencies:
-# Start kong
-$ kong start
-
-# Add an API
-$ curl localhost:8001/apis/ \
-       -d "name=HttpBin" \
-       -d "public_dns=api.httpbin.org" \
-       -d "target_url=http://httpbin.org"
-
-# Success!
-$ curl localhost:8000/get \
-       -H "Host: api.httpbin.org"
-
-
 
     Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
 
