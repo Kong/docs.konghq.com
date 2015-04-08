@@ -1,7 +1,5 @@
 ---
-layout: docs
 title: How does it work?
-version: 0.1.0beta-3
 ---
 
 # How does it work?

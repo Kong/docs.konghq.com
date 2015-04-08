@@ -1,9 +1,7 @@
 ---
 title: Plugins - Key Authentication
-sitemap: true
-show_faq: true
-layout: page
 id: page-plugin
+show_faq: true
 header_title: Key Authentication
 header_icon: /assets/images/icons/plugins/key-authentication.png
 header_caption: authentication

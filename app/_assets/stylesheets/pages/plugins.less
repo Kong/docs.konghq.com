@@ -8,7 +8,6 @@
   }
 
   .page-plugins-title {
-
     h2 {
       font-family: @family-whitney;
       font-size: 28px;
@@ -37,16 +36,14 @@
   }
 
   .plugins-container {
-    overflow: hidden;
-    margin: 35px 0 0 -40px;
-    position: relative;
-    left: 40px;
+    &:extend(.u-cf);
+    width: 100%;
+    margin-top: 35px;
   }
 
   .plugin-plate {
-    float: left;
-    margin: 0 40px 40px 0;
-    width: 311px;
+    &:extend(.columns all, .four.columns);
+    margin-bottom: 40px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
   }
@@ -72,6 +69,10 @@
   .plugin-plate-content {
     font-size: 13px;
     padding: 16px 16px 16px 95px;
+
+    @media (max-width: 900px) {
+      padding: 50px 16px 16px;
+    }
 
     p {
       margin: 0;

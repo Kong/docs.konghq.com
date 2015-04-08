@@ -1,8 +1,5 @@
 ---
-layout: docs
 title: How does it work?
-version: 0.1.1beta-2
-permalink: /docs/0.1.1beta-2/about/how/
 ---
 
 # How does it work?

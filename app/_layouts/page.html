@@ -5,7 +5,7 @@ layout: default
 <div class="page {{ page.id }}">
   {% if page.breadcrumbs %}
     <div class="container">
-      <ul class="bredcrumbs">
+      <ul class="breadcrumbs">
         {% for breadcrumb in page.breadcrumbs %}
           <li class="breadcrumb-item{% if page.url == breadcrumb[1] %} active{% endif %}"><a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a></li>
         {% endfor %}

@@ -1,8 +1,5 @@
 ---
-layout: docs
 title: Scalability
-version: 0.1.1beta-2
-permalink: /docs/0.1.1beta-2/articles/scalability/
 ---
 
 # Scalability

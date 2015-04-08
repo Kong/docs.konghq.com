@@ -1,12 +1,10 @@
 ---
-layout: docs
 title: What is Kong?
-version: 0.1.0beta-3
 ---
 
 # What is Kong?
 
-Kong is a scalable, lightweight open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](/docs/{{page.version}}/articles/plugins), which provide [extra functionalities and services](/plugins) beyond the core platform.
+Kong is a scalable, lightweight open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](/docs/{{page.kong_version}}/articles/plugins), which provide [extra functionalities and services](/plugins) beyond the core platform.
 
 * **Scalable**: Kong easily scales horizontally by simply adding more machines, meaning your platform can handle virtually any load while keeping latency low.
 
@@ -14,7 +12,7 @@ Kong is a scalable, lightweight open source **API Layer** *(also known as a API 
 
 * **Runs on any infrastructure**: Kong runs anywhere. You can deploy Kong in the cloud or on-premise environments, including single or multi-datacenter setups and for public, private or invite-only APIs.
 
-Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](/docs/{{page.version}}/api) to operate and configure the system.
+Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](/docs/{{page.kong_version}}/api) to operate and configure the system.
 
 ## Request Workflow
 

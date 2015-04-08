@@ -1,7 +1,5 @@
 ---
-layout: docs
 title: Internal API
-version: 0.1.0beta-3
 ---
 
 # Kong Internal API

@@ -1,7 +1,5 @@
 ---
 title: License
-layout: page
-sitemap: true
 header_title: License
 ---
 

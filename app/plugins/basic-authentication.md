@@ -1,8 +1,6 @@
 ---
 title: Plugins - Basic Authentication
-sitemap: true
 show_faq: true
-layout: page
 id: page-plugin
 header_title: Basic Authentication
 header_icon: /assets/images/icons/plugins/basic-authentication.png

@@ -1,8 +1,6 @@
 ---
 title: Plugins - File Log
-sitemap: true
 show_faq: true
-layout: page
 id: page-plugin
 header_title: File Log
 header_icon: /assets/images/icons/plugins/file-log.png

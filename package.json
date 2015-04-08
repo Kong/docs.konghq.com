@@ -10,7 +10,8 @@
   "scripts": {
     "preinstall": "bundle install",
     "postinstall": "bower install",
-    "start": "gulp"
+    "start": "gulp",
+    "test": "standard"
   },
   "devDependencies": {
     "del": "^1.1.1",
@@ -32,6 +33,7 @@
     "gulp-uglify": "^1.1.0",
     "gulp-uncss": "^1.0.0",
     "jshint-stylish": "^1.0.1",
-    "run-sequence": "^1.0.2"
+    "run-sequence": "^1.0.2",
+    "standard": "^3.3.2"
   }
 }

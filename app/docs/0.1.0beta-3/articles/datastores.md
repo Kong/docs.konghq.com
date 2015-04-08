@@ -1,7 +1,5 @@
 ---
-layout: docs
 title: Datastores
-version: 0.1.0beta-3
 ---
 
 # Datastores

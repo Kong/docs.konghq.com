@@ -1,8 +1,6 @@
 ---
 title: Plugins - TCP Log
-sitemap: true
 show_faq: true
-layout: page
 id: page-plugin
 header_title: TCP Log
 header_icon: /assets/images/icons/plugins/tcp-log.png

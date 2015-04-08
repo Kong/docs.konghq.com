@@ -1,11 +1,9 @@
 ---
-layout: docs
 title: Documentation
-version: 0.1.1beta-2
 permalink: /docs/
 ---
 
-Welcome to the Kong **{{page.version}}** documentation. Here you will find all the resources to learn how to install, setup and operate Kong.
+Welcome to the Kong **{{page.kong_version}}** documentation. Here you will find all the resources to learn how to install, setup and operate Kong.
 
 If you need more help, you can talk to the core maintainers of Kong at:
 
