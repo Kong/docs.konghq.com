@@ -1,12 +1,30 @@
 ### Other
 
 1. Install dependencies:
+# Start kong
+$ kong start
+
+# Add an API
+$ curl localhost:8001/apis/ \
+       -d "name=HttpBin" \
+       -d "public_dns=api.httpbin.org" \
+       -d "target_url=http://httpbin.org"
+
+# Success!
+$ curl localhost:8000/get \
+       -H "Host: api.httpbin.org"
+
+
 
     Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
 
     Install [Luarocks v2.2.1](http://luarocks.org)
 
-    Install [OpenResty v1.7.10.1](http://openresty.com/)
+    Install [OpenResty v1.7.10.1](http://openresty.com/), with the following `configure` options: 
+
+    ```
+    ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
+    ```
 
     Some of the dependencies may be available in your favorite package manager.
 
