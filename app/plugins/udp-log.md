@@ -1,8 +1,6 @@
 ---
 title: Plugins - UDP Log
-sitemap: true
 show_faq: true
-layout: page
 id: page-plugin
 header_title: UDP Log
 header_icon: /assets/images/icons/plugins/udp-log.png

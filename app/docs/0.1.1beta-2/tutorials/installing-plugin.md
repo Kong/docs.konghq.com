@@ -1,5 +1,4 @@
 ---
-layout: docs
 title: Tutorials - Installing a Plugin
 ---
 

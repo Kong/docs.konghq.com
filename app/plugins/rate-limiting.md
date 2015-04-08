@@ -1,8 +1,6 @@
 ---
 title: Plugins - Rate Limiting
-sitemap: true
 show_faq: true
-layout: page
 id: page-plugin
 header_title: Rate Limiting
 header_icon: /assets/images/icons/plugins/rate-limiting.png

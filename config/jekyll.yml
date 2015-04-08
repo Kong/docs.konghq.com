@@ -21,7 +21,7 @@ defaults:
     scope:
       path: ''
     values:
-      layout: 'default'
+      layout: 'page'
   -
     scope:
       path: 'docs'

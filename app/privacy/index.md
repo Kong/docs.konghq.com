@@ -1,7 +1,5 @@
 ---
 title: Privacy
-layout: page
-sitemap: true
 header_title: Privacy
 header_caption: Privacy and cookie policy
 ---

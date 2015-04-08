@@ -1,5 +1,4 @@
 ---
-layout: docs
 title: Internal API
 ---
 
