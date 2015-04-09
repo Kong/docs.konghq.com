@@ -52,6 +52,23 @@ curl -d "name=basicauth&api_id=API_ID&value.hide_credentials=true" http://kong:8
 
 ## Usage
 
+### Create a Consumer
+
+You need to associate a credential to an existing [Consumer](/docs/{{site.latest}}/api/#consumer-object) object, that represents a user consuming the API. To create a [Consumer](/docs/{{site.latest}}/api/#consumer-object) you can execute the following request:
+
+```bash
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+```
+
+| parameter                    | description                                                |
+|------------------------------|------------------------------------------------------------|
+| username                         | The username of the consumer   |
+| custom_id                       | A custom ID that you can use to map the consumer to another database |
+
+A [Consumer](/docs/{{site.latest}}/api/#consumer-object) can have many credentials.
+
+### Create a Basic Authentication credential
+
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
@@ -63,16 +80,3 @@ curl -d "username=user123&password=secret&consumer_id=CONSUMER_ID" http://kong:8
 | username                         | The username to use in the Basic Authentication   |
 | password                       | The password to use in the Basic Authentication             |
 | consumer_id             | The [Consumer](/docs/{{site.latest}}/api/#consumer-object) entity to associate the credentials to |
-
-To create a [Consumer](/docs/{{site.latest}}/api/#consumer-object) you can execute the following request:
-
-```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/basicauth_credentials/
-```
-
-| parameter                    | description                                                |
-|------------------------------|------------------------------------------------------------|
-| username                         | The username of the consumer   |
-| custom_id                       | A custom ID that you can use to map the consumer to another database |
-
-A [Consumer](/docs/{{site.latest}}/api/#consumer-object) can have many credentials.
