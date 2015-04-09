@@ -1,4 +1,4 @@
-(function ($) {
+$(function () {
   $('.navbar-toggle').on('click', function () {
     var $navbar = $($(this).data('target'));
     $navbar.slideToggle(150);
@@ -20,7 +20,7 @@
   var $tabs = $('.tab-list li');
   var $tabPanes = $('.tab-pane');
 
-  $tabs.on('click', function (e) {
+  $tabs.on('click', function (e, disableTracking) {
     e.preventDefault();
 
     var tabId = $(this).find('a').attr('href');
@@ -33,10 +33,16 @@
     } else {
       location.hash = tabId;
     }
+
+    if (!disableTracking) {
+      analytics.track('Choose installation method', {
+        installationMethod: tabId.substr(1)
+      });
+    }
   });
 
   if (location.hash) {
-    $tabs.find('a[href="' + location.hash + '"]').trigger('click');
+    $tabs.find('a[href="' + location.hash + '"]').trigger('click', true);
   }
 
   // Form on downloads page
@@ -50,12 +56,15 @@
     var data = $form.serializeArray();
     var Subscription = Parse.Object.extend('Subscription');
     var subscription = new Subscription();
+    var payload = {};
 
     for (var i = 0; i < data.length; i++) {
-      subscription.set(data[i].name, data[i].value);
+      payload[data[i].name] = data[i].value;
     }
 
-    subscription.save(null, {
+    analytics.identify(payload);
+
+    subscription.save(payload, {
       success: function () {
         $form.fadeOut(300, function () {
           $('.success-message').fadeIn(300);
@@ -68,4 +77,15 @@
       }
     });
   });
-}(jQuery));
+
+  // Analytics
+  $('[href^="/download"]').each(function () {
+    var $link = $(this);
+
+    analytics.trackLink(this, 'Clicked download', {
+      section: $link.closest('.navbar').length ? 'header' : 'page',
+      pathname: location.pathname,
+      type: $link.hasClass('button') ? 'button' : 'link'
+    });
+  });
+});
