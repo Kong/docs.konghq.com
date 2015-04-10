@@ -62,7 +62,9 @@ $(function () {
       payload[data[i].name] = data[i].value;
     }
 
-    analytics.identify(payload);
+    analytics.identify($.extend({
+      environment: 'kong'
+    }, payload));
 
     subscription.save(payload, {
       success: function () {
