@@ -11,9 +11,7 @@ header_caption: Learn how Kong empowers your APIs
 <div class="container">
   <aside class="page-navigation">
     <nav>
-      <h5><a href="/docs/{{page.kong_version}}/"{% if page.url == "/docs/" %} class="active"{% endif %}>
-        About</a>
-      </h5>
+      <h5>About Kong</h5>
       <ul>
         <li><a href="/docs/{{page.kong_version}}/about/what"{% if page.url contains "/what/" %} class="active"{% endif %}>What is Kong?</a></li>
         <li><a href="/docs/{{page.kong_version}}/about/how"{% if page.url contains "/how/" %} class="active"{% endif %}>How does it work?</a></li>
@@ -23,8 +21,11 @@ header_caption: Learn how Kong empowers your APIs
     <nav>
       <h5>Getting Started</h5>
       <ul>
-        <li><a href="/docs/{{page.kong_version}}/getting-started/installation"{% if page.url contains "/installation/" %} class="active"{% endif %}>Installation</a></li>
-        <li><a href="/docs/{{page.kong_version}}/getting-started/configuration"{% if page.url contains "/configuration/" %} class="active"{% endif %}>Configuration</a></li>
+        <li><a href="/docs/{{page.kong_version}}/getting-started/introduction"{% if page.url contains "/introduction/" %} class="active"{% endif %}>Introduction</a></li>
+        <li><a href="/docs/{{page.kong_version}}/getting-started/quickstart"{% if page.url contains "/quickstart/" %} class="active"{% endif %}>Thirty-second quickstart</a></li>
+        <li><a href="/docs/{{page.kong_version}}/getting-started/adding-your-api"{% if page.url contains "/adding-your-api/" %} class="active"{% endif %}>Adding your API</a></li>
+        <li><a href="/docs/{{page.kong_version}}/getting-started/enabling-plugins"{% if page.url contains "/enabling-plugins/" %} class="active"{% endif %}>Enabling Plugins</a></li>
+        <li><a href="/docs/{{page.kong_version}}/getting-started/adding-consumers"{% if page.url contains "/adding-consumers/" %} class="active"{% endif %}>Adding Consumers</a></li>
       </ul>
     </nav>
 
@@ -38,22 +39,13 @@ header_caption: Learn how Kong empowers your APIs
     </nav>
 
     <nav>
-      <h5>Tutorials</h5>
-      <ul>
-        <li><a href="/docs/{{page.kong_version}}/tutorials/introduction"{% if page.url contains "/tutorials/introduction" %} class="active"{% endif %}>Introduction</a></li>
-        <li><a href="/docs/{{page.kong_version}}/tutorials/hello-world"{% if page.url contains "/tutorials/hello-world" %} class="active"{% endif %}>Hello World</a></li>
-        <li><a href="/docs/{{page.kong_version}}/tutorials/installing-plugin"{% if page.url contains "/tutorials/installing-plugin" %} class="active"{% endif %}>Installing a Plugin</a></li>
-      </ul>
-    </nav>
-
-    <nav>
       <h5>Internal API endpoints</h5>
       <ul>
         <li><a href="/docs/{{page.kong_version}}/internal-api/">Introduction</a>
         <li>
           <a href="/docs/{{page.kong_version}}/internal-api/#api-object">API Object</a>
           <ul>
-            <li><a href="/docs/{{page.kong_version}}/internal-api/#create-api">Create API</a></li>
+            <li><a href="/docs/{{page.kong_version}}/internal-api/#create-api">Add API</a></li>
             <li><a href="/docs/{{page.kong_version}}/internal-api/#retrieve-api">Retrieve API</a></li>
             <li><a href="/docs/{{page.kong_version}}/internal-api/#list-apis">List APIs</a></li>
             <li><a href="/docs/{{page.kong_version}}/internal-api/#delete-api">Delete API</a></li>
