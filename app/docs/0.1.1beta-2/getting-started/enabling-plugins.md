@@ -7,9 +7,9 @@ title: Enabling Plugins
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
-    <li>Make sure you've <a href="/install">installed Kong</a> - It should only take a minute!</li>
-    <li>Make sure you've <a href="/docs/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/docs/getting-started/added-your-api">added your API to Kong</a>.</li>
+    <li>Make sure you've <a href="/download">installed Kong</a> - It should only take a minute!</li>
+    <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
+    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
   </ol>
 </div>
 
