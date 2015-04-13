@@ -80,13 +80,13 @@ Now that you've enabled the [keyauth][keyauth] plugin lets learn how to add cons
 Go to [Adding Consumers][adding-consumers]
 
 [mockbin]: https://mockbin.com
-[CLI]: /docs/cli
-[API]: /docs/api
+[CLI]: /docs/{{page.kong_version}}/cli
+[API]: /docs/{{page.kong_version}}/api
 [keyauth]: /plugins/keyauth
 [install]: /download
 [plugins]: /plugins
 [configuration]: /download
-[migrations]: /docs/migrations
-[quickstart]: /docs/getting-started/quickstart
-[enabling-plugins]: /docs/getting-started/enabling-plugins
-[adding-consumers]: /docs/getting-started/adding-consumers
+[migrations]: /docs/{{page.kong_version}}/migrations
+[quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
+[enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
+[adding-consumers]: /docs/{{page.kong_version}}/getting-started/adding-consumers
