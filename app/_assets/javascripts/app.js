@@ -63,7 +63,8 @@ $(function () {
     }
 
     analytics.identify($.extend({
-      environment: 'kong'
+      environment: 'kong',
+      userId: payload.email
     }, payload));
 
     subscription.save(payload, {
