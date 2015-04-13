@@ -5,7 +5,7 @@
     Add the right source to APT:
 
     ```bash
-    echo "deb http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/debian/wheezy/ kong main" >> /etc/apt/sources.list
+    echo "deb http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/debian/wheezy/ kong main" | sudo tee -a /etc/apt/sources.list
     ```
 
     Then execute:
