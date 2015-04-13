@@ -2,6 +2,7 @@
 .vagrant/
 .buildpath
 .project
+.bundle
 .idea
 npm-debug.log
 
