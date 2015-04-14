@@ -8,31 +8,37 @@ Kong comes with an **internal** RESTful API for administration purposes. API com
 
 - The Internal API listens on port `8001`
 
+---
+
 ## API Object
 
 The API object describes an API that's being exposed by Kong. In order to do that Kong needs to know what is going to be the DNS address that will be pointing to the API, and what is the final target URL of the API where the requests will be proxied. Kong can serve more than one API domain.
 
 ```json
 {
-    "name": "HttpBin",
-    "public_dns": "my.api.com",
-    "target_url": "http://httpbin.org"
+    "name": "Mockbin",
+    "public_dns": "mockbin.com",
+    "target_url": "https://mockbin.com"
 }
 ```
 
-### Create API
+---
 
-**Endpoint**
+### Add API
 
-`POST /apis/`
+#### Endpoint
 
-**Request Form Parameters**
+**POST** `/apis/`
 
-* `name` - The name of the API
-* `public_dns` - The public DNS address that will be pointing to the API. For example: *myapi.com*
-* `target_url` - The base target URL that points to the API server, that will be used for proxying the requests. For example: *http://httpbin.org*
+#### Request Form Parameters
 
-**Response**
+Attributes | Description
+ ---:| ---
+`name` | API name
+`public_dns` | The public DNS address that points to your API. For example, `mockbin.com`.
+`target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
+
+#### Response
 
 ```
 HTTP 201 Created
@@ -41,22 +47,26 @@ HTTP 201 Created
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin",
-    "public_dns": "my.api.com",
-    "target_url": "http://httpbin.org",
+    "name": "Mockbin",
+    "public_dns": "mockbin.com",
+    "target_url": "http://mockbin.com",
     "created_at": 1422386534
 }
 ```
 
+---
+
 ### Retrieve API
 
-**Endpoint**
+#### Endpoint
 
-`GET /apis/{id}`
+**GET** `/apis/{id}`
 
-* `id` - The ID of the API to retrieve
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifier of the API to be retrieved
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -65,27 +75,33 @@ HTTP 200 OK
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin",
-    "public_dns": "my.api.com",
-    "target_url": "http://httpbin.org",
+    "name": "Mockbin",
+    "public_dns": "mockbin.com",
+    "target_url": "https://mockbin.com",
     "created_at": 1422386534
 }
 ```
 
+---
+
 ### List APIs
 
-**Endpoint**
+#### Endpoint
 
-`GET /apis/`
+**GET** `/apis/`
 
-**Request Querystring Parameters**
+#### Request Querystring Parameters
 
-* `id` *optional* - The ID of the API
-* `name` *optional* - The name of the API
-* `public_dns` *optional* - The public DNS
-* `target_url` *optional* - The target URL
+Attributes | Description
+ ---:| ---
+`id`<br>*optional* | A filter on the list based on the apis `id` field.
+`name`<br>*optional* | A filter on the list based on the apis `name` field.
+`public_dns`<br>*optional* | A filter on the list based on the apis `public_dns` field.
+`target_url`<br>*optional* | A filter on the list based on the apis `target_url` field.
+`limit`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -97,9 +113,9 @@ HTTP 200 OK
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-            "name": "HttpBin",
-            "public_dns": "my.api.com",
-            "target_url": "http://httpbin.org",
+            "name": "Mockbin",
+            "public_dns": "mockbin.com",
+            "target_url": "https://mockbin.com",
             "created_at": 1422386534
         },
         {
@@ -115,27 +131,31 @@ HTTP 200 OK
 }
 ```
 
+---
+
 ### Update API
 
-**Endpoint**
+#### Endpoint
 
-`PUT /apis/{id}`
+**PUT** `/apis/{id}`
 
-* `id` - The ID of the API to update
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifier of the API to be updated
 
-**Request Body**
+#### Request Body
 
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin2",
+    "name": "Mockbin2",
     "public_dns": "my.api2.com",
     "target_url": "http://httpbin2.org",
     "created_at": 1422386534
 }
 ```
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -144,28 +164,32 @@ HTTP 200 OK
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin2",
+    "name": "Mockbin2",
     "public_dns": "my.api2.com",
     "target_url": "http://httpbin2.org",
     "created_at": 1422386534
 }
 ```
 
+---
 
 ### Delete API
 
-**Endpoint**
+#### Endpoint
 
-`DELETE /apis/{id}`
+**DELETE** `/apis/{id}`
 
-* `id` - The ID of the API to delete
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifer of the API to be deleted
 
-**Response**
+#### Response
 
 ```
 HTTP 204 NO CONTENT
 ```
 
+---
 
 ## Consumer Object
 
@@ -177,18 +201,22 @@ The Consumer object represents a consumer, or a user, of an API. You can either 
 }
 ```
 
+---
+
 ### Create Consumer
 
-**Endpoint**
+#### Endpoint
 
-`POST /consumers/`
+**POST** `/consumers/`
 
-**Request Form Parameters**
+#### Request Form Parameters
 
-* `username` *optional* - The username for the consumer. At least this field or `custom_id` must be sent.
-* `custom_id` *optional* - This is a field where you can store an existing ID for a Consumer, useful to map a Kong Consumer with a user in your existing database. At least this field or `username` must be sent.
+Attributes | Description
+ ---:| ---
+`username`<br>**Semi-optional** | The username of the consumer. You must send either this field or `custom_id` with the request.
+`custom_id`<br>**Semi-optional** | Field for storing an existing ID for the consumer, useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
 
-**Response**
+#### Response
 
 ```
 HTTP 201 Created
@@ -202,15 +230,19 @@ HTTP 201 Created
 }
 ```
 
+---
+
 ### Retrieve Consumer
 
-**Endpoint**
+#### Endpoint
 
-`GET /consumers/{id}`
+**GET** `/consumers/{id}`
 
-* `id` - The ID of the Consumer to retrieve
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifier of the consumer to be retrieved
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -224,18 +256,25 @@ HTTP 200 OK
 }
 ```
 
+---
+
 ### List Consumer
 
-**Endpoint**
+#### Endpoint
 
-`GET /consumers/`
+**GET** `/consumers/`
 
-**Request Querystring Parameters**
+#### Request Querystring Parameters
 
-* `id` *optional* - The ID of the Consumer
-* `custom_id` *optional* - The custom ID you set for the Consumer
+Attributes | Description
+ ---:| ---
+`id`<br>*optional* | A filter on the list based on the consumer `id` field.
+`custom_id`<br>*optional* | A filter on the list based on the consumer `custom_id` field.
+`username`<br>*optional* | A filter on the list based on the consumer `username` field.
+`limit`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -261,25 +300,27 @@ HTTP 200 OK
 }
 ```
 
+---
+
 ### Update Consumer
 
-**Endpoint**
+#### Endpoint
 
-`PUT /consumers/{id}`
+**PUT** `/consumers/{id}`
 
-* `id` - The ID of the Consumer to update
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifier of the consumer to be updated
 
-**Request Body**
+#### Request Body
 
 ```json
 {
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "custom_id": "updated_abc123",
-    "created_at": 1422386534
+    "custom_id": "updated_abc123"
 }
 ```
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -293,20 +334,25 @@ HTTP 200 OK
 }
 ```
 
+---
 
 ### Delete Consumer
 
-**Endpoint**
+#### Endpoint
 
-`DELETE /consumers/{id}`
+**DELETE** `/consumers/{id}`
 
-* `id` - The ID of the Consumer to delete
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifier of the consumer to be deleted
 
-**Response**
+#### Response
 
 ```
 HTTP 204 NO CONTENT
 ```
+
+---
 
 ## Plugin Configuration Object
 
@@ -328,20 +374,24 @@ When installing a Plugin Configuration on top of an API, every request made by a
 }
 ```
 
+---
+
 ### Create Plugin Configuration
 
-**Endpoint**
+#### Endpoint
 
-`POST /plugins_configurations/`
+**POST** `/plugins_configurations/`
 
-**Request Form Parameters**
+#### Request Form Parameters
 
-* `name` - The name of the Plugin that's going to be added. The Plugin should have already been installed in every Kong server separately.
-* `api_id` - The API ID that the Plugin will target
-* `consumer_id` *optional* - An optional Consumer ID to customize the Plugin behavior when an incoming request is being sent by the specified Consumer overriding any other setup.
-* `value.{property}` - The JSON configuration required for the Plugin. Each Plugin will have different configuration properties, so check the relative Plugin documentation to know which properties you can set.
+Attributes | Description
+ ---:| ---
+`name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance seperately.
+`api_id` | The unique identifier of the API the plugin will be enabled for.
+`consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
+`value.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
 
-**Response**:
+#### Response
 
 ```
 HTTP 201 Created
@@ -361,15 +411,19 @@ HTTP 201 Created
 }
 ```
 
+---
+
 ### Retrieve Plugin Configuration
 
-**Endpoint**
+#### Endpoint
 
-`GET /plugins_configurations/{id}`
+**GET** `/plugins_configurations/{id}`
 
-* `id` - The ID of the Plugin Configuration to retrieve
+Attributes | Description
+ ---:| ---
+`id`<br>*optional* | The unique identifier of the plugin configuration to be retrieved
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -389,20 +443,26 @@ HTTP 200 OK
 }
 ```
 
+---
+
 ### List Plugins Configurations
 
-**Endpoint**
+#### Endpoint
 
-`GET /plugins_configurations/`
+**GET** `/plugins_configurations/`
 
-**Request Querystring Parameters**
+#### Request Querystring Parameters
 
-* `id` *optional* - The ID of the Plugin
-* `name` *optional* - The name of the Plugin
-* `api_id` *optional* - The ID of the API
-* `consumer_id` *optional* - The ID of the Consumer
+Attributes | Description
+ ---:| ---
+`id`<br>*optional* | A filter on the list based on the `id` field.
+`name`<br>*optional* | A filter on the list based on the `name` field.
+`api_id`<br>*optional* | A filter on the list based on the `api_id` field.
+`consumer_id`<br>*optional* | A filter on the list based on the `consumer_id` field.
+`limit`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -439,15 +499,19 @@ HTTP 200 OK
 }
 ```
 
+---
+
 ### Update Plugin Configuration
 
-**Endpoint**
+#### Endpoint
 
-`PUT /plugins_configurations/{id}`
+**PUT** `/plugins_configurations/{id}`
 
-* `id` - The ID of the Plugin Configuration to update
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifier of the plugin configuration to be retrieved
 
-**Request Body**
+#### Request Body
 
 ```json
 {
@@ -463,7 +527,7 @@ HTTP 200 OK
 }
 ```
 
-**Response**
+#### Response
 
 ```
 HTTP 200 OK
@@ -483,16 +547,19 @@ HTTP 200 OK
 }
 ```
 
+---
 
 ### Delete Plugin Configurations
 
-**Endpoint**
+#### Endpoint
 
-`DELETE /plugins_configurations/{id}`
+**DELETE** `/plugins_configurations/{id}`
 
-* `id` - The ID of the Plugin Configuration to delete
+Attributes | Description
+ ---:| ---
+`id`<br>**required** | The unique identifier of the plugin configuration to be deleted
 
-**Response**
+#### Response
 
 ```
 HTTP 204 NO CONTENT
