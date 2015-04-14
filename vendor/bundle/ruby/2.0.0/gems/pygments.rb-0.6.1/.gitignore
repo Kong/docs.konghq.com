@@ -1,6 +1,0 @@
-Gemfile.lock
-ext/Makefile
-lib/pygments_ext.*
-tmp
-pkg
-*.pyc
