@@ -149,8 +149,8 @@ Attributes | Description
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin2",
-    "public_dns": "my.api2.com",
-    "target_url": "http://httpbin2.org",
+    "public_dns": "mockbin.com",
+    "target_url": "http://mockbin.com",
     "created_at": 1422386534
 }
 ```
@@ -165,8 +165,8 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin2",
-    "public_dns": "my.api2.com",
-    "target_url": "http://httpbin2.org",
+    "public_dns": "mockbin.com",
+    "target_url": "http://mockbin.com",
     "created_at": 1422386534
 }
 ```
