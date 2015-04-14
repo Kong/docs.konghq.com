@@ -14,7 +14,7 @@ permalink: /docs/
 
   <div class="docs-grid-block">
     <h2><a href="/download">Install Kong</a></h2>
-    <p>You can install Kong on most Linux distrobutions and OS X. We even provide the source so you can compile yourself.</p>
+    <p>You can install Kong on most Linux distributions and OS X. We even provide the source so you can compile yourself.</p>
     <a href="/download">Install the proxy &rarr;</a>
   </div>
 
