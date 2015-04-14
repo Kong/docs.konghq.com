@@ -7,7 +7,7 @@ permalink: /docs/
 
 <div class="docs-grid">
   <div class="docs-grid-block">
-    <h2><a href="/docs/{{page.kong_version}}/getting-started/quickstart">5-minute Quickstart</a></h2>
+    <h2><a href="/docs/{{page.kong_version}}/getting-started/quickstart">5-minute Quick Start</a></h2>
     <p>Learn how to start Kong, add your API, enable plugins, and add consumers in under thirty seconds.</p>
     <a href="/docs/{{page.kong_version}}/getting-started/quickstart">Start using Kong &rarr;</a>
   </div>
