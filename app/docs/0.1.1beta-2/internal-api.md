@@ -28,7 +28,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 
 #### Endpoint
 
-**POST** `/apis/`
+<div class="endpoint"><strong class="method POST">POST</strong><code class="path">/apis/</code></div>
 
 #### Request Form Parameters
 
@@ -60,7 +60,7 @@ HTTP 201 Created
 
 #### Endpoint
 
-**GET** `/apis/{id}`
+<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/apis/{id}</code></div>
 
 Attributes | Description
  ---:| ---
@@ -88,7 +88,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**GET** `/apis/`
+<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/apis/</code></div>
 
 #### Request Querystring Parameters
 
@@ -137,7 +137,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**PUT** `/apis/{id}`
+<div class="endpoint"><strong class="method PUT">PUT</strong><code class="path">/apis/{id}</code></div>
 
 Attributes | Description
  ---:| ---
@@ -177,7 +177,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**DELETE** `/apis/{id}`
+<div class="endpoint"><strong class="method DELETE">DELETE</strong><code class="path">/apis/{id}</code></div>
 
 Attributes | Description
  ---:| ---
@@ -207,14 +207,14 @@ The Consumer object represents a consumer, or a user, of an API. You can either 
 
 #### Endpoint
 
-**POST** `/consumers/`
+<div class="endpoint"><strong class="method POST">POST</strong><code class="path">/consumers/</code></div>
 
 #### Request Form Parameters
 
 Attributes | Description
  ---:| ---
-`username`<br>**Semi-optional** | The username of the consumer. You must send either this field or `custom_id` with the request.
-`custom_id`<br>**Semi-optional** | Field for storing an existing ID for the consumer, useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
+`username`<br>**semi-optional** | The username of the consumer. You must send either this field or `custom_id` with the request.
+`custom_id`<br>**semi-optional** | Field for storing an existing ID for the consumer, useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
 
 #### Response
 
@@ -236,7 +236,7 @@ HTTP 201 Created
 
 #### Endpoint
 
-**GET** `/consumers/{id}`
+<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/consumers/{id}</code></div>
 
 Attributes | Description
  ---:| ---
@@ -262,7 +262,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**GET** `/consumers/`
+<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/consumers/</code></div>
 
 #### Request Querystring Parameters
 
@@ -306,7 +306,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**PUT** `/consumers/{id}`
+<div class="endpoint"><strong class="method PUT">PUT</strong><code class="path">/consumers/{id}</code></div>
 
 Attributes | Description
  ---:| ---
@@ -340,7 +340,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**DELETE** `/consumers/{id}`
+<div class="endpoint"><strong class="method DELETE">DELETE</strong><code class="path">/consumers/{id}</code></div>
 
 Attributes | Description
  ---:| ---
@@ -380,7 +380,7 @@ When installing a Plugin Configuration on top of an API, every request made by a
 
 #### Endpoint
 
-**POST** `/plugins_configurations/`
+<div class="endpoint"><strong class="method POST">POST</strong><code class="path">/plugins_configurations/</code></div>
 
 #### Request Form Parameters
 
@@ -417,11 +417,11 @@ HTTP 201 Created
 
 #### Endpoint
 
-**GET** `/plugins_configurations/{id}`
+<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/plugins_configurations/{id}</code></div>
 
 Attributes | Description
  ---:| ---
-`id`<br>*optional* | The unique identifier of the plugin configuration to be retrieved
+`id`<br>**required** | The unique identifier of the plugin configuration to be retrieved
 
 #### Response
 
@@ -449,7 +449,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**GET** `/plugins_configurations/`
+<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/plugins_configurations/</code></div>
 
 #### Request Querystring Parameters
 
@@ -505,7 +505,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**PUT** `/plugins_configurations/{id}`
+<div class="endpoint"><strong class="method PUT">PUT</strong><code class="path">/plugins_configurations/{id}</code></div>
 
 Attributes | Description
  ---:| ---
@@ -553,7 +553,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-**DELETE** `/plugins_configurations/{id}`
+<div class="endpoint"><strong class="method DELETE">DELETE</strong><code class="path">/plugins_configurations/{id}</code></div>
 
 Attributes | Description
  ---:| ---

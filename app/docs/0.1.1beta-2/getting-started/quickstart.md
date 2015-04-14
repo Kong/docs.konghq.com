@@ -1,8 +1,8 @@
 ---
-title: 5-minute quickstart
+title: 5-minute Quickstart
 ---
 
-# 5-minute quickstart
+# 5-minute Quickstart
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> — It should only take a minute!
@@ -51,7 +51,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 ### Next Steps
 
-Now that you have Kong running you can interact with the [RESTful API][API].
+Now that you have Kong running you can interact with the RESTful API.
 
 To begin, go to [Adding your API][adding-your-api]
 

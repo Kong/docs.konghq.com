@@ -75,7 +75,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
 ### Next Steps
 
-Now that you've enabled the [keyauth][keyauth] plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
+Now that you've enabled the **keyauth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers][adding-consumers]
 
