@@ -181,7 +181,7 @@ HTTP 200 OK
 
 Attributes | Description
  ---:| ---
-`id`<br>**required** | The unique identifer of the API to be deleted
+`id`<br>**required** | The unique identifier of the API to be deleted
 
 #### Response
 
