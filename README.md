@@ -1,6 +1,6 @@
 # KONG Website
 
-This folder is the source code for Kong's website. It is a [Jekyll](http://jekyllrb.com/) website hosted on GitHub pages.
+This folder is the source code for [Kong](https://github.com/Mashape/kong)'s website. It is a [Jekyll](http://jekyllrb.com/) website hosted on GitHub pages.
 
 ## Requirements
 
