@@ -250,17 +250,22 @@
   }
 
   pre {
-    background-color: hsl(210, 8%, 97%);
-    border: 1px solid #eceeef;
-    color: #5a6166;
+    background-color: #fafafa;
+    border: 1px solid #ebebeb;
+    color: #000;
     line-height: 24px;
     margin: 1.3em 0;
-    padding: 8px 13px;
+    padding: 12px 17px;
     border-radius: 4px;
+    overflow: hidden;
+
+    &:hover {
+      overflow: auto;
+    }
 
     code {
       padding: 0;
-      color: @font-color;
+      color: #000;
       background: transparent;
     }
 
