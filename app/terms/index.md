@@ -12,9 +12,11 @@ header_caption: "Last Revised: March 2, 2015"
 The website getkong.org ("Website") and its contents are the property of and managed by Mashape, Inc, ("Mashape") based at 500 Montgomery St., San Francisco, CA 94111, USA. These terms and conditions of use ("Terms of Use") apply to your visit to and your use of this Website, as well as to all Website Content (as defined below).  By accessing and using the Website and/or Website Content, you irrevocably agree that such use is subject to these Terms of Use.
 
 Mashape expressly reserves the right to modify the Terms of Use at any time in its sole discretion, without notice to you.  Any continued use of the Website after the posting of such modified Terms of Use shall be deemed to indicate your irrevocable agreement to such modified Terms of Use.  You are therefore advised to regularly read these Terms of Use for possible changes.
-###Location of Website and Your Use
+
+### Location of Website and Your Use
 As indicated above, Mashape operates this Website from offices in San Francisco, CA, USA. Mashape makes no representation or warranty that all of the features of this Website will be available to you outside of the USA, or that they are permitted to be accessed outside of the USA.
-###Content
+
+### Content
 * Website Content: Except as may be otherwise noted, the information, materials (including, without limitation, HTML, text, audio, video, white papers, press releases, data sheets, product descriptions, software and FAQs and other content) available on or from the Website (collectively, "Mashape Content") are the copyrighted works of Mashape and its licensors, and Mashape and its licensors expressly retain all right, title and interest in and to the Mashape Content, including and without limitation, all intellectual property rights therein and thereto.  Except as expressly permitted in these Terms of Use, any use of the Mashape Content may violate copyright and/or other applicable laws.
 
 * Third Party Content: In addition to Mashape Content, the Website may contain information and materials provided to Mashape by third parties (collectively, "Third Party Content"). Third Party Content is the copyrighted work of its owner, which expressly retains all right title and interest in and to the Third Party Content, including, without limitation, all intellectual property rights therein and thereto.  In addition to being subject to these Terms of Use, Third Party Content may also be subject to different and/or additional terms of use and/or privacy policies of such third parties. Please contact the appropriate third party for further information regarding any such different and/or additional terms of use applicable to Third Party Content.
@@ -49,16 +51,19 @@ Mashape's obligations, if any, with regard to its products and services are gove
 
 Mashape may make changes to any products or services offered on the Website at any time, without notice.  The materials on the Website with respect to products and services may be out of date, and Mashape makes no commitment to update the materials on the Website with respect to such products and services.
 
-###Accounts, Security and Passwords
+### Accounts, Security and Passwords
 Certain features or services offered on or through the Website may require you to open an account.  You are entirely responsible for maintaining the confidentiality of your account information, including your password, and for any and all activity that occurs under your account.  You agree to notify Mashape immediately of any unauthorized use of your account or password, or any other breach of security.  However, you may be held liable for losses incurred by Mashape or any other user of or visitor to the Website due to someone else using your ID, password or account.
 
 You may not use anyone else's ID, password or account at any time without the express permission and consent of the holder of that ID, password or account. Mashape cannot and will not be liable for any loss or damage arising from your failure to comply with these obligations.
 
 Registration for an account is void where the user lacks the eligibility for registration or such registration is otherwise prohibited.  Registration for an account, any part of the Website or any service provided by Mashape is not permitted by minors.  Any registration by any user who is a minor is expressly prohibited.  By submitting registration information, you represent and warrant that you not a minor, that all registration information you submit is truthful and accurate, that you will maintain the accuracy of such information, that you agree to abide by the terms and conditions of these Terms of Use, and that your registration does not and will not violate any applicable law or regulation.  A person who is eligible and desires to create an account may, upon consenting to these Terms of Use, submit an application to register in accordance with the procedures set forth by Mashape.  Mashape reserves the right, in its sole discretion, to deny, restrict, suspend, discontinue, or terminate your account, with or without prior notice or explanation, for any or no reason, without any liability to you.
+
 ### Privacy
 Mashape's Privacy Policy applies to the use of this Website and its terms are incorporated into these Terms of Use by reference.
+
 ###Linked Website
 The Website may contain links to other websites that are not owned or operated by Mashape.   Mashape provides links to such websites solely as a convenience and has no responsibility for the content or availability of such websites.  Mashape does not endorse such websites or any products or services associated therewith.  Your use of such websites will be subject to the terms of use applicable to each such website.
+
 ###Disclaimer of Warranties and Limitation of Liability
 
 * Warranty Disclaimer: THE WEBSITE AND THE WEBSITE CONTENT ARE PROVIDED STRICTLY ON AN "AS IS" AND "AS AVAILABLE" BASIS, AND MASHAPE MAKES NO WARRANTY THAT THE WEBSITE OR THE WEBSITE CONTENT ARE COMPLETE, SUITABLE FOR YOUR PURPOSE, OR ACCURATE. ON BEHALF OF ITSELF AND ITS LICENSORS, MASHAPE HEREBY EXPRESSLY DISCLAIMS ANY AND ALL IMPLIED, STATUTORY OR OTHER WARRANTIES WITH RESPECT TO THE WEBSITE, AVAILABILITY OF THE WEBSITE AND THE WEBSITE CONTENT, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  THE ENTIRE RISK AS TO RESULTS OBTAINED THROUGH USE OF THE WEBSITE AND/OR THE WEBSITE CONTENT RESTS WITH YOU AND MASHAPE MAKES NO REPRESENTATION OR WARRANTY THAT THE AVAILABILITY OF THE WEBSITE WILL BE UNINTERRUPTED, OR THE WEBSITE AND/OR THE WEBSITE CONTENT WILL BE ERROR FREE.
