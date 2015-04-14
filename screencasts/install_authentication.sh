@@ -17,7 +17,7 @@ docker run -p 8000:8000 -p 8001:8001 -d --name kong --link cassandra:cassandra m
 
 sleep 5
 
-curl -d "name=HttpBin&public_dns=myapi.com&target_url=http://httpbin.org" 127.0.0.1:8001/apis/ > /dev/null 2>&1
+curl -d "name=mockbin&public_dns=myapi.com&target_url=http://mockbin.org" 127.0.0.1:8001/apis/ > /dev/null 2>&1
 
 # Actual screencast
 
@@ -38,7 +38,7 @@ api_id=$(extract_id $output "id")
 
 slow_echo "# Right now the API has no Plugins installed, so we can freely use it:"
 
-exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/get"
+exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/request"
 
 slow_echo "# In order to add an authentication plugin to this API"
 slow_echo "# we need to create a new Plugin object using the"
@@ -61,7 +61,7 @@ slow_echo "a configuration that sets the \"authentication_type\" to \"query\""
 slow_echo "and the parameter name \"authentication_key_names\" to \"apikey\""
 slow_echo "Let's try to consume the API again:"
 
-exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/get"
+exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/request"
 
 slow_echo "And as you can see Kong is now blocking the request"
 slow_echo "because we're not autheticated and we didn't send any credentials"
