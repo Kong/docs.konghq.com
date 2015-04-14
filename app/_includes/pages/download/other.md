@@ -6,7 +6,7 @@
 
     Install [Luarocks v2.2.1](http://luarocks.org)
 
-    Install [OpenResty v1.7.10.1](http://openresty.com/), with the following `configure` options: 
+    Install [OpenResty v1.7.10.1](http://openresty.com/), with the following `configure` options:
 
     ```
     ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
@@ -17,7 +17,7 @@
 2. Install Kong:
 
     ```bash
-    luarocks install kong {{site.latest}}
+    luarocks install kong {{site.data.kong_latest}}
     ```
 
 3. Start Kong:
