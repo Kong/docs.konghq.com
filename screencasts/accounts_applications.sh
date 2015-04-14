@@ -41,7 +41,7 @@ slow_echo "# consuming the API."
 slow_echo ""
 slow_echo "# So let's go ahead and create an Account:"
 
-exec_cmd "curl -XPOST 127.0.0.1:8001/accounts/"
+exec_cmd "curl -X POST 127.0.0.1:8001/accounts/"
 
 output=$(curl -s 127.0.0.1:8001/accounts/)
 account_id=$(extract_id $output "id")
@@ -51,7 +51,7 @@ slow_echo "# that you can provide to map it with your existing datastore"
 slow_echo ""
 slow_echo "# Now that we've created an Account, we can create an Application"
 
-exec_cmd "curl -d \"account_id=$account_id&public_key=apikey1234\" -XPOST 127.0.0.1:8001/applications/"
+exec_cmd "curl -d \"account_id=$account_id&public_key=apikey1234\" -X POST 127.0.0.1:8001/applications/"
 
 slow_echo "# We have created an Application whose \"public_key\" is set"
 slow_echo "# to \"apikey1234\", which is the api-key the client will need"

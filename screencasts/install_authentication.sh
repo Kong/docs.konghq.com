@@ -44,7 +44,7 @@ slow_echo "# In order to add an authentication plugin to this API"
 slow_echo "# we need to create a new Plugin object using the"
 slow_echo "# administration API at the following URL:"
 
-exec_cmd "curl -XPOST 127.0.0.1:8001/plugins/"
+exec_cmd "curl -X POST 127.0.0.1:8001/plugins/"
 
 slow_echo "# As you can see we need some required parameters:"
 slow_echo "# \"name\" is the name of the plugin to install, in our"
@@ -54,7 +54,7 @@ slow_echo ""
 slow_echo "# Each Plugin has it's own configuration."
 slow_echo "# So, let's add the authentication Plugin:"
 
-exec_cmd "curl -XPOST -d 'name=authentication&api_id=$api_id&value={\"authentication_type\":\"query\",\"authentication_key_names\":[\"apikey\"]}' 127.0.0.1:8001/plugins/"
+exec_cmd "curl -X POST -d 'name=authentication&api_id=$api_id&value={\"authentication_type\":\"query\",\"authentication_key_names\":[\"apikey\"]}' 127.0.0.1:8001/plugins/"
 
 slow_echo "The authentication Plugin has now been installed on the API with"
 slow_echo "a configuration that sets the \"authentication_type\" to \"query\""

@@ -33,7 +33,7 @@ slow_echo ""
 slow_echo "# In order to add a new API we will use Kong's admin API,"
 slow_echo "# that by default listens on port 8001."
 
-exec_cmd "curl -XPOST 127.0.0.1:8001/apis/"
+exec_cmd "curl -X POST 127.0.0.1:8001/apis/"
 
 slow_echo "# The API call to add a new API on Kong returned an error"
 slow_echo "# because we didn't send any required parameter"
@@ -45,7 +45,7 @@ slow_echo ""
 slow_echo "So for example let's add HttpBin on Kong and let's say that"
 slow_echo "we want to make it available at myapi.com"
 
-exec_cmd "curl -XPOST -d \"name=HttpBin&public_dns=myapi.com&target_url=http://httpbin.org\" 127.0.0.1:8001/apis/"
+exec_cmd "curl -X POST -d \"name=HttpBin&public_dns=myapi.com&target_url=http://httpbin.org\" 127.0.0.1:8001/apis/"
 
 slow_echo "The API has been now added on Kong."
 slow_echo "We can list all the APIs added by making the following request"
@@ -70,7 +70,7 @@ slow_echo "to the \"target_url\" property"
 slow_echo ""
 slow_echo "We can try to make a POST request too:"
 
-exec_cmd "curl -XPOST -d \"name=Mark\" -H \"Host: myapi.com:\" 127.0.0.1:8000/post"
+exec_cmd "curl -X POST -d \"name=Mark\" -H \"Host: myapi.com:\" 127.0.0.1:8000/post"
 
 slow_echo "We have added our first API to Kong :)"
 slow_echo ""
