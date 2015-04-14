@@ -10,7 +10,7 @@ Let's configure the [Key Authentication](/plugins/key-authentication/) plugin to
 
 ## 1. Enabling the Plugin
 
-We nedd to make sure that the plugin name is in the `plugins_available` property of your node's configuration:
+We need to make sure that the plugin name is in the `plugins_available` property of your node's configuration:
 
 ```yaml
 plugins_available:
