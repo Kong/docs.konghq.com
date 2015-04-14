@@ -1,8 +1,8 @@
 ---
-title: Thirty-second quickstart
+title: 5-minute quickstart
 ---
 
-# Thirty-second quickstart
+# 5-minute quickstart
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> — It should only take a minute!
