@@ -8,7 +8,7 @@ Kong comes with an easy to use configuration file called `kong.yml` in YAML form
 
 **Note**: To avoid runtime errors, we highly recommend that every node in the cluster shares the same configuration.
 
-By default Kong will look for this file in the Kong directory, but you can also specify your own configuration file at startup time by specifing the `-c` option like:
+By default Kong will look for this file in the Kong directory, but you can also specify your own configuration file at startup time by specifying the `-c` option like:
 
 ```bash
 kong start -c /path/to/conf.yml
