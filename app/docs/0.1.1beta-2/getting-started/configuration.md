@@ -195,6 +195,6 @@ Here is a detailed description for each entry:
 * `database` is the database Kong is going to use. It's `cassandra` by default and it's the only one supported at the moment.
 * `databases_available` describes the configuration to use when connecting to the database.
 * `send_anonymous_reports` tells if the system is allowed to send anonymous error logs to a remote logging server in order to allow the maintainers of Kong to fix potential bugs and errors.
-* `cache` describes the internal cache settings. The higher the `expiration` valuea and the less connections will be executed on the datastore (reducing latency), but the more time it will take to propagate any change inside the cluster.
+* `cache` describes the internal cache settings. The higher the `expiration` value and the less connections will be executed on the datastore (reducing latency), but the more time it will take to propagate any change inside the cluster.
 * `nginx` contains the Kong Server configuration, and it's the equivalent of `nginx.conf`. Kong Server is built on top of nginx, so you can tune the nginx values to change the Kong Server's settings.
 
