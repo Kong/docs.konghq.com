@@ -19,7 +19,7 @@ var jekyllConfig = jekyllConfigs.LOCAL
 // Sources
 var sources = {
   content: 'app/**/*.{markdown,md,html,txt}',
-  styles: 'app/_assets/stylesheets/*.{less,css}',
+  styles: 'app/_assets/stylesheets/**/*.{less,css}',
   js: 'app/_assets/javascripts/**/*.js',
   images: 'app/_assets/images/**/*'
 }
