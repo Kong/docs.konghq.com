@@ -6,10 +6,10 @@ It is very helpful if you can prepare a reproduction of the bug. In other words,
 
 ```bash
 # delete the API
-curl -XDELETE 127.0.0.1:8001/apis/a2e8fccf-96b2-46c0-c6dd-4d0e968660b7
+curl -X DELETE 127.0.0.1:8001/apis/a2e8fccf-96b2-46c0-c6dd-4d0e968660b7
 
 # insert a new API
-curl -XPOST 127.0.0.1:8001/apis/
+curl -X POST 127.0.0.1:8001/apis/
 -d 'name=Mockbin' \
 -d 'public_dns=api.mockbin.com' \
 -d 'target_url=http://mockbin.com'

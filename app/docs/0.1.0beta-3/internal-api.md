@@ -14,9 +14,9 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 
 ```json
 {
-    "name": "HttpBin",
+    "name": "mockbin",
     "public_dns": "my.api.com",
-    "target_url": "http://httpbin.org"
+    "target_url": "http://mockbin.org"
 }
 ```
 
@@ -30,7 +30,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 
 * `name` - The name of the API
 * `public_dns` - The public DNS address that will be pointing to the API. For example: *myapi.com*
-* `target_url` - The base target URL that points to the API server, that will be used for proxying the requests. For example: *http://httpbin.org*
+* `target_url` - The base target URL that points to the API server, that will be used for proxying the requests. For example: *http://mockbin.org*
 
 **Response**
 
@@ -41,9 +41,9 @@ HTTP 201 Created
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin",
+    "name": "mockbin",
     "public_dns": "my.api.com",
-    "target_url": "http://httpbin.org",
+    "target_url": "http://mockbin.org",
     "created_at": 1422386534
 }
 ```
@@ -65,9 +65,9 @@ HTTP 200 OK
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin",
+    "name": "mockbin",
     "public_dns": "my.api.com",
-    "target_url": "http://httpbin.org",
+    "target_url": "http://mockbin.org",
     "created_at": 1422386534
 }
 ```
@@ -97,9 +97,9 @@ HTTP 200 OK
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-            "name": "HttpBin",
+            "name": "mockbin",
             "public_dns": "my.api.com",
-            "target_url": "http://httpbin.org",
+            "target_url": "http://mockbin.org",
             "created_at": 1422386534
         },
         {
@@ -128,9 +128,9 @@ HTTP 200 OK
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin2",
+    "name": "mockbin2",
     "public_dns": "my.api2.com",
-    "target_url": "http://httpbin2.org",
+    "target_url": "http://mockbin.com",
     "created_at": 1422386534
 }
 ```
@@ -144,9 +144,9 @@ HTTP 200 OK
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "HttpBin2",
+    "name": "mockbin2",
     "public_dns": "my.api2.com",
-    "target_url": "http://httpbin2.org",
+    "target_url": "http://mockbin.com",
     "created_at": 1422386534
 }
 ```

@@ -5,7 +5,7 @@ title: Welcome to Kong
 # Welcome to Kong
 
 <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> — It should only take a minute!
+  <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
 

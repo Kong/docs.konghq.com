@@ -5,7 +5,7 @@ title: 5-minute Quickstart
 # 5-minute Quickstart
 
 <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> — It should only take a minute!
+  <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
 In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving you access to the RESTful interface to manage your APIs, consumers, and more. Data sent through the RESTful interface is stored in your Cassandra instance or cluster, meaning you **must** have Cassandra running **before** starting Kong.
