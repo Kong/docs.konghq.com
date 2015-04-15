@@ -1,44 +1,38 @@
 .page-plugins {
   p {
-    color: #737679;
+    //color: #737679;
   }
 
   hr {
     margin: 20px 0;
   }
 
+  .plugins-list {
+    margin: 60px 0;
+  }
+
   .page-plugins-title {
     h2 {
-      font-family: @family-whitney;
-      font-size: 28px;
-      font-weight: 500;
-      margin: 0 0 6px 0;
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0 0 20px 0;
+      padding-bottom: 20px;
+      border-bottom: 1px solid @gray;
     }
 
     p {
-      font-size: 15px;
       margin: 0;
-    }
-  }
-
-  .page-plugins-title:first-of-type {
-    margin-top: 35px;
-  }
-
-  .page-header {
-    background-color: #23ab5f;
-    color: #fff;
-
-    p {
-      opacity: .8;
-      color: #fff;
     }
   }
 
   .plugins-container {
     &:extend(.u-cf);
     width: 100%;
-    margin-top: 35px;
+    margin-top: 45px;
+  }
+
+  .plugins-container + .page-plugins-title {
+    margin-top: 15px;
   }
 
   .plugin-plate {
@@ -46,6 +40,12 @@
     margin-bottom: 40px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
+    position: relative;
+    transition: border-color .2s;
+    
+    &:hover {
+      border-color: #80caff;
+    }
   }
 
   .plugin-plate-header {
@@ -81,6 +81,14 @@
         margin-top: 10px;
       }
     }
+  }
+
+  .plugin-plate-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
   .faq-section {
