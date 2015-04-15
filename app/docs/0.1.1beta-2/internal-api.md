@@ -181,7 +181,7 @@ HTTP 200 OK
 
 Attributes | Description
  ---:| ---
-`id`<br>**required** | The unique identifer of the API to be deleted
+`id`<br>**required** | The unique identifier of the API to be deleted
 
 #### Response
 
@@ -386,7 +386,7 @@ When installing a Plugin Configuration on top of an API, every request made by a
 
 Attributes | Description
  ---:| ---
-`name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance seperately.
+`name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
 `api_id` | The unique identifier of the API the plugin will be enabled for.
 `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
 `value.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).

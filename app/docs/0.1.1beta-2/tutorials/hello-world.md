@@ -4,7 +4,7 @@ title: Tutorials - Hello World
 
 # Hello World: Proxying your first API
 
-Kong sits in front of any configured API, and it's the main entrypoint of any HTTP request. For example, let's configure Kong to support [mockbin](http://mockbin.com/) as an API:
+Kong sits in front of any configured API, and it's the main entry point of any HTTP request. For example, let's configure Kong to support [mockbin](http://mockbin.com/) as an API:
 
 ```
 $ curl -i -X POST \

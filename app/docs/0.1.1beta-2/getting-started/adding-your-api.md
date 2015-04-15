@@ -7,7 +7,7 @@ title: Adding your API
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
-    <li>Make sure you've <a href="/download">installed Kong</a> — It should only take a minute!</li>
+    <li>Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
   </ol>
 </div>
@@ -30,7 +30,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
 2. ### Verify that your API has been added
 
-    You should see a similiar response from the initial request:
+    You should see a similar response from the initial request:
 
     ```http
     HTTP/1.1 201 Created

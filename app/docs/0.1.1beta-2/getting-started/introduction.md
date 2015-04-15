@@ -5,7 +5,7 @@ title: Welcome to Kong
 # Welcome to Kong
 
 <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> — It should only take a minute!
+  <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
 
@@ -20,7 +20,7 @@ Now that you know what Kong is and how it works, this guide is going to take you
 
 Now, lets get familiar with learning how to "start" and "stop" Kong.
 
-Go to [5-minute quickstart with Kong][quickstart]
+Go to [5-minute quick start with Kong][quickstart]
 
 [install]: /download
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
