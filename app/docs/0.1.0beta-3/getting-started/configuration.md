@@ -11,7 +11,7 @@ Kong comes with an easy to use configuration file called `kong.yml` in YAML form
 By default Kong will look for this file in the Kong directory, but you can also specify your own configuration file at startup time by specifing the `-c` option like:
 
 ```bash
-kong start -c /path/to/conf.yml
+kong start -c /path/to/kong.yml
 ```
 
 ## kong.yml
