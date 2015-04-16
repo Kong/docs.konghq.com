@@ -71,7 +71,7 @@ HTTP/1.1 403 Forbidden
 
 That happened because the request we made didn't provide a key named `apikey` (as specified by our plugin configuration) and it has been blocked by Kong. The request never reached the final API.
 
-To authenticate against the API, we need to pass a credential along with the request. As documented in the [Plugin's Usage](/plugins/key-authentication/), we need to create a [Consumer](/docs/{{site.latest}}/api/#consumer-object) and a credential key:
+To authenticate against the API, we need to pass a credential along with the request. As documented in the [Plugin's Usage](/plugins/key-authentication/), we need to create a [Consumer](/docs/{{site.data.kong_latest}}/api/#consumer-object) and a credential key:
 
 ```bash
 $ curl -i -X POST \

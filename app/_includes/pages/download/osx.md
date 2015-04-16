@@ -27,7 +27,7 @@
 2. Install Kong:
 
     ```bash
-    luarocks install kong {{site.latest}}
+    luarocks install kong {{site.data.kong_latest}}
     ```
 
 3. Start Kong:

@@ -26,7 +26,7 @@ $ kong install ratelimiting
 ```
 -->
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.latest}}/getting-started/configuration) configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.data.kong_latest}}/getting-started/configuration) configuration file
 
 ```yaml
 plugins_available:
@@ -37,7 +37,7 @@ Every node in the Kong cluster should have the same `plugins_available` property
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API](/docs/{{site.latest}}/api/#api-object) (or [Consumer](/docs/{{site.latest}}/api/#consumer-object)) by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of an [API](/docs/{{site.data.kong_latest}}/api/#api-object) (or [Consumer](/docs/{{site.data.kong_latest}}/api/#consumer-object)) by executing the following request on your Kong server:
 
 ```bash
 curl -d "name=ratelimiting&api_id=API_ID&value.limit=1000&value.period=hour" http://kong:8001/plugins_configurations/
