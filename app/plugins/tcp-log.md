@@ -1,18 +1,11 @@
 ---
+layout: plugin
 title: Plugins - TCP Log
-show_faq: true
-id: page-plugin
 header_title: TCP Log
 header_icon: /assets/images/icons/plugins/tcp-log.png
-header_caption: logging
-breadcrumbs:
-  Plugins: /plugins
-  TCP Log: /plugins/tcp-log/
 ---
 
----
-
-#### Log request and response data to a TCP server
+Log request and response data to a TCP server
 
 ---
 

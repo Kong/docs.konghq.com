@@ -1,18 +1,11 @@
 ---
+layout: plugin
 title: Plugins - File Log
-show_faq: true
-id: page-plugin
 header_title: File Log
 header_icon: /assets/images/icons/plugins/file-log.png
-header_caption: logging
-breadcrumbs:
-  Plugins: /plugins
-  TCP Log: /plugins/file-log/
 ---
 
----
-
-#### Log request and response data to the Kong Log File
+Log request and response data to the Kong Log File
 
 ---
 

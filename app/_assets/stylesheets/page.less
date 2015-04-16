@@ -1,6 +1,6 @@
 .page-header {
   background-color: #fdfdfd;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid @gray;
   padding: 50px 0;
 
   @media (max-width: 800px) {
@@ -117,6 +117,10 @@
     &:hover {
       color: @green;
     }
+  }
+
+  .fa {
+    color: #acb7bf;
   }
 }
 
@@ -237,9 +241,9 @@
   }
 
   hr {
-    border-top: 2px solid hsl(0, 0%, 92%);
-    margin-top: 3em;
-    margin-bottom: 3em;
+    border-top: 2px solid @gray;
+    margin-top: 4em;
+    margin-bottom: 4em;
   }
 
   img {
@@ -260,18 +264,13 @@
   }
 
   pre {
-    background-color: #fafafa;
-    border: 1px solid #ebebeb;
+    background-color: @gray-light;
+    border: 1px solid @gray;
     color: #000;
     line-height: 24px;
     margin: 1.3em 0;
     padding: 12px 17px;
     border-radius: 4px;
-    overflow: hidden;
-
-    &:hover {
-      overflow: auto;
-    }
 
     code {
       padding: 0;
@@ -286,6 +285,7 @@
 
   table {
     width: 100%;
+    border: 1px solid @gray;
 
     th, td {
       font-family: @family-whitney-ss;
@@ -299,34 +299,17 @@
       font-size: 13px;
       font-weight: 600;
       text-align: left !important;
-      background: hsl(0, 0%, 98%);
-      border-top: 1px solid hsl(0, 0%, 92%);
-      color: #9fa1a3;
+      background: @gray-light;
+      border-bottom: 1px solid @gray;
+      color: lighten(@gray-dark, 30%);
+      padding: 10px;
+    }
 
+    td {
       padding: 10px;
 
       &:first-child {
-        border-left: 1px solid hsl(0, 0%, 92%);
-      }
-
-      &:last-child {
-        border-right: 1px solid hsl(0, 0%, 92%);
-      }
-    }
-
-    tr {
-      td {
-        padding: 10px;
-
-        &:first-child {
-          width: 30%;
-          text-align: right;
-          border-left: 1px solid hsl(0, 0%, 92%);
-        }
-
-        &:last-child {
-          border-right: 1px solid hsl(0, 0%, 92%);
-        }
+        text-align: right;
       }
     }
   }
@@ -384,7 +367,7 @@
 
   .endpoint {
     color: #45494c;
-    background: #fafafa;
+    background: @gray-light;
     border: 1px solid #eceeef;
     padding: 8px 13px;
     border-radius: 3px;
@@ -420,7 +403,7 @@
   .instructions-step-item {
     position: relative;
     padding: 10px 0 20px 44px;
-    border-left: 1px solid #ebebeb;
+    border-left: 1px solid @gray;
     margin: 0;
 
     *:last-child {
@@ -440,7 +423,7 @@
       line-height: 48px;
       text-align: center;
       border-radius: 50%;
-      border: 1px solid #ebebeb;
+      border: 1px solid @gray;
       background-color: #fff;
       font-weight: 600;
       color: #40805b;
@@ -460,7 +443,7 @@
 }
 
 .alert {
-  border: 1px solid #ebebeb;
+  border: 1px solid @gray;
   border-radius: 4px;
   font-family: @family-whitney;
   font-weight: 500;
@@ -530,7 +513,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 13px;
 
   .breadcrumb-item {
     display: inline-block;
@@ -538,10 +520,6 @@
 
     &:after {
       content: ' \203a';
-    }
-
-    &:last-child:after {
-      display: none;
     }
   }
 

@@ -1,18 +1,11 @@
 ---
+layout: plugin
 title: Plugins - Key Authentication
-id: page-plugin
-show_faq: true
 header_title: Key Authentication
 header_icon: /assets/images/icons/plugins/key-authentication.png
-header_caption: authentication
-breadcrumbs:
-  Plugins: /plugins
-  Key Authentication: /plugins/key-authentication/
 ---
 
----
-
-#### Add query authentication like API-Keys to your APIs, either in a header, in querystring parameter, or in a form parameter.
+Add query authentication like API-Keys to your APIs, either in a header, in querystring parameter, or in a form parameter.
 
 ---
 

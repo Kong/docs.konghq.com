@@ -1,18 +1,11 @@
 ---
+layout: plugin
 title: Plugins - UDP Log
-show_faq: true
-id: page-plugin
 header_title: UDP Log
 header_icon: /assets/images/icons/plugins/udp-log.png
-header_caption: logging
-breadcrumbs:
-  Plugins: /plugins
-  UDP Log: /plugins/udp-log/
 ---
 
----
-
-#### Log request and response data to an UDP server
+Log request and response data to an UDP server
 
 ---
 
