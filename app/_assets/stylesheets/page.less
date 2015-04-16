@@ -7,24 +7,19 @@
     padding: 25px 0;
   }
 
-  h2 {
-    font-size: 33px;
-    font-weight: 300;
-
-    @media (max-width: 800px) {
-      font-size: 25px;
-    }
+  h1, p {
+    margin: 0;
   }
 
-  h2, p {
-    margin: 0;
+  p {
+    margin-top: 5px;
   }
 
   .page-header-icon {
     width: 64px;
     vertical-align: middle;
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 15px;
 
     @media (max-width: 800px) {
       margin-right: 20px;
@@ -44,6 +39,21 @@
   .page-header-title {
     display: inline-block;
     vertical-align: middle;
+  }
+
+  .page-header-btn {
+    &:extend(.button all);
+    border-color: #d4d7d9;
+    background-image: linear-gradient(to top, #f7f9fa, #fcfcfc);
+    color: @gray-dark;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 39px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -20px;
   }
 }
 

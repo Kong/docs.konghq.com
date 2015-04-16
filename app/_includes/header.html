@@ -7,11 +7,15 @@
     </div>
     {% endif %}
     <div class="page-header-title">
-      <h2>{{ page.header_title }}</h2>
+      <h1>{{ page.header_title }}</h1>
       {% if page.header_caption %}
       <p>{{ page.header_caption }}</p>
       {% endif %}
     </div>
+
+    {% if page.header_btn_text %}
+    <a class="page-header-btn" href="{{ page.header_btn_href }}">{{ page.header_btn_text }}</a>
+    {% endif %}
   </div>
 </header>
 {% endif %}
