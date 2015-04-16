@@ -14,7 +14,7 @@ permalink: /docs/
 
   <div class="docs-grid-block">
     <h2><a href="/download">Install Kong</a></h2>
-    <p>You can install Kong on most Linux distrobutions and OS X. We even provide the source so you can compile yourself.</p>
+    <p>You can install Kong on most Linux distributions and OS X. We even provide the source so you can compile yourself.</p>
     <a href="/download">Install the proxy &rarr;</a>
   </div>
 
@@ -53,4 +53,4 @@ The gitter chatroom is a great place for developers interested in everyday discu
 
 #### Issues
 
-If you’ve come across what you think is a bug, or just want to make a feature request open a ticket in the [issue queue](https://github.com/Mashape/kong/issues).
+If you've come across what you think is a bug, or just want to make a feature request open a ticket in the [issue queue](https://github.com/Mashape/kong/issues).

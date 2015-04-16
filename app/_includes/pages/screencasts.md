@@ -6,7 +6,7 @@ This screencast shows how to run Kong for the first time using [Docker](https://
 
 # Adding an API
 
-In this screencast we'll learn how to add an API on Kong. Specifically we'll add the HttpBin API on Kong.
+In this screencast we'll learn how to add an API on Kong. Specifically we'll add the mockbin API on Kong.
 
 Adding an API on Kong is the first step in using Kong, after APIs have been added in the system we can add more functionalities by installing Kong Plugins.
 

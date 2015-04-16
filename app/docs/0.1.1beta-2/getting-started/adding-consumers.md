@@ -7,7 +7,7 @@ title: Adding Consumers
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
-    <li>Make sure you've <a href="/download">installed Kong</a> — It should only take a minute!</li>
+    <li>Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
     <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/added-your-api">added your API to Kong</a>.</li>
   </ol>
@@ -27,7 +27,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
        --data "username=Jason"
     ```
 
-    You should see a response similiar to the one below:
+    You should see a response similar to the one below:
 
     ```http
     HTTP/1.1 201 Created

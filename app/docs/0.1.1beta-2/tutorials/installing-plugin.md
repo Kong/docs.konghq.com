@@ -10,7 +10,7 @@ Let's configure the [Key Authentication](/plugins/key-authentication/) plugin to
 
 ## 1. Enabling the Plugin
 
-We nedd to make sure that the plugin name is in the `plugins_available` property of your node's configuration:
+We need to make sure that the plugin name is in the `plugins_available` property of your node's configuration:
 
 ```yaml
 plugins_available:
@@ -37,7 +37,7 @@ Once we have got the `id` of the API, we can configure the key authentication pl
 
 * **name**: name of the Plugin
 * **api_id**: `id` of the API the plugin will be added to
-* **value.key_names**: `value` is a property that is being shared by every plugin, and it is where their configuration is being set. As documented in the [Plugin's Profile](/plugins/key-authentication/#configuration), `key_names` is a comma-separated string array that represents the key names, header names or JSON property nams where Kong will look for a credential.
+* **value.key_names**: `value` is a property that is being shared by every plugin, and it is where their configuration is being set. As documented in the [Plugin's Profile](/plugins/key-authentication/#configuration), `key_names` is a comma-separated string array that represents the key names, header names or JSON property names where Kong will look for a credential.
 
 We would like every API consumer to send their credential in an `apikey` field, so we would configure the Plugin like this:
 

@@ -17,7 +17,7 @@ docker run -p 8000:8000 -p 8001:8001 -d --name kong --link cassandra:cassandra m
 
 sleep 5
 
-curl -d "name=HttpBin&public_dns=myapi.com&target_url=http://httpbin.org" 127.0.0.1:8001/apis/ > /dev/null 2>&1
+curl -d "name=mockbin&public_dns=myapi.com&target_url=http://mockbin.org" 127.0.0.1:8001/apis/ > /dev/null 2>&1
 output=$(curl -s 127.0.0.1:8001/apis/)
 api_id=$(extract_id $output "id")
 curl -d "name=authentication&api_id=$api_id&value={\"authentication_type\":\"query\",\"authentication_key_names\":[\"apikey\"]}" 127.0.0.1:8001/plugins/ > /dev/null 2>&1
@@ -30,7 +30,7 @@ slow_echo ""
 slow_echo "# If we try to make a request to the API, Kong tells us"
 slow_echo "# that we didn't provide the right credentials for consuming it."
 
-exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/get"
+exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/request"
 
 slow_echo "# To create the credentials we need to create both"
 slow_echo "# an Account and an Application. An Account on Kong"
@@ -41,7 +41,7 @@ slow_echo "# consuming the API."
 slow_echo ""
 slow_echo "# So let's go ahead and create an Account:"
 
-exec_cmd "curl -XPOST 127.0.0.1:8001/accounts/"
+exec_cmd "curl -X POST 127.0.0.1:8001/accounts/"
 
 output=$(curl -s 127.0.0.1:8001/accounts/)
 account_id=$(extract_id $output "id")
@@ -51,7 +51,7 @@ slow_echo "# that you can provide to map it with your existing datastore"
 slow_echo ""
 slow_echo "# Now that we've created an Account, we can create an Application"
 
-exec_cmd "curl -d \"account_id=$account_id&public_key=apikey1234\" -XPOST 127.0.0.1:8001/applications/"
+exec_cmd "curl -d \"account_id=$account_id&public_key=apikey1234\" -X POST 127.0.0.1:8001/applications/"
 
 slow_echo "# We have created an Application whose \"public_key\" is set"
 slow_echo "# to \"apikey1234\", which is the api-key the client will need"
@@ -59,7 +59,7 @@ slow_echo "# to use when consuming the API"
 slow_echo ""
 slow_echo "# So let's try to consume the API again, passing the api-key:"
 
-exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/get?apikey=apikey1234"
+exec_cmd "curl -H \"Host: myapi.com:\" 127.0.0.1:8000/request?apikey=apikey1234"
 
 slow_echo "# It worked! Kong successfully authenticated the request :)"
 
