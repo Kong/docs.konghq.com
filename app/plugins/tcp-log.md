@@ -1,18 +1,16 @@
 ---
-title: Plugins - TCP Log
-show_faq: true
+sitemap: true
 id: page-plugin
+title: Plugins - TCP Log
 header_title: TCP Log
 header_icon: /assets/images/icons/plugins/tcp-log.png
-header_caption: logging
+header_btn_text: Report Bug
+header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
-  TCP Log: /plugins/tcp-log/
 ---
 
----
-
-#### Log request and response data to a TCP server
+Log request and response data to a TCP server
 
 ---
 

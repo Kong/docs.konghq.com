@@ -1,18 +1,16 @@
 ---
-title: Plugins - Basic Authentication
-show_faq: true
+sitemap: true
 id: page-plugin
+title: Plugins - Basic Authentication
 header_title: Basic Authentication
 header_icon: /assets/images/icons/plugins/basic-authentication.png
-header_caption: authentication
+header_btn_text: Report Bug
+header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
-  Basic Authentication: /plugins/basic-authentication/
 ---
 
----
-
-#### Add Basic Authentication to your APIs, with username and password protection.
+Add Basic Authentication to your APIs, with username and password protection.
 
 ---
 
@@ -35,6 +33,8 @@ plugins_available:
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
 
+---
+
 ## Configuration
 
 Configuring the plugin is straightforward, you can add it on top of an [API](/docs/{{site.data.kong_latest}}/api/#api-object) (or [Consumer](/docs/{{site.data.kong_latest}}/api/#consumer-object)) by executing the following request on your Kong server:
@@ -49,6 +49,8 @@ curl -d "name=basicauth&api_id=API_ID&value.hide_credentials=true" http://kong:8
 | api_id                       | The API ID that this plugin configuration will target             |
 | *consumer_id*                | Optionally the CONSUMER ID that this plugin configuration will target |
 | `value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the final API server. It will be removed by Kong before proxying the request |
+
+---
 
 ## Usage
 

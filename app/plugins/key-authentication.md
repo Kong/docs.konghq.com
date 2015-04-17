@@ -1,18 +1,16 @@
 ---
-title: Plugins - Key Authentication
+sitemap: true
 id: page-plugin
-show_faq: true
+title: Plugins - Key Authentication
 header_title: Key Authentication
 header_icon: /assets/images/icons/plugins/key-authentication.png
-header_caption: authentication
+header_btn_text: Report Bug
+header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
-  Key Authentication: /plugins/key-authentication/
 ---
 
----
-
-#### Add query authentication like API-Keys to your APIs, either in a header, in querystring parameter, or in a form parameter.
+Add query authentication like API-Keys to your APIs, either in a header, in querystring parameter, or in a form parameter.
 
 ---
 

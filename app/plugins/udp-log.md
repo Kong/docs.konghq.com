@@ -1,18 +1,16 @@
 ---
-title: Plugins - UDP Log
-show_faq: true
+sitemap: true
 id: page-plugin
+title: Plugins - UDP Log
 header_title: UDP Log
 header_icon: /assets/images/icons/plugins/udp-log.png
-header_caption: logging
+header_btn_text: Report Bug
+header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
-  UDP Log: /plugins/udp-log/
 ---
 
----
-
-#### Log request and response data to an UDP server
+Log request and response data to an UDP server
 
 ---
 
