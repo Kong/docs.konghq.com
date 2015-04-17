@@ -1,8 +1,13 @@
 ---
-layout: plugin
+sitemap: true
+id: page-plugin
 title: Plugins - File Log
 header_title: File Log
 header_icon: /assets/images/icons/plugins/file-log.png
+header_btn_text: Report Bug
+header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
+breadcrumbs:
+  Plugins: /plugins
 ---
 
 Log request and response data to the Kong Log File

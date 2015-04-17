@@ -1,8 +1,13 @@
 ---
-layout: plugin
+sitemap: true
+id: page-plugin
 title: Plugins - Basic Authentication
 header_title: Basic Authentication
 header_icon: /assets/images/icons/plugins/basic-authentication.png
+header_btn_text: Report Bug
+header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
+breadcrumbs:
+  Plugins: /plugins
 ---
 
 Add Basic Authentication to your APIs, with username and password protection.
