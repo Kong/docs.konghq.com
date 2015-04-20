@@ -20,7 +20,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
     $ kong start
     ```
 
-    **Note:** The CLI also accepts a configuration (`-c <config location>`) option allowing you to point to different configurations.
+    **Note:** The CLI also accepts a configuration (`-c <path_to_config>`) option allowing you to point to different configurations.
 
 2. ### Verify that Kong has started successfully
 
