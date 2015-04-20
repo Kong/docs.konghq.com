@@ -59,9 +59,8 @@
 
 .page-navigation {
   float: right;
-  width: 230px;
-  padding: 60px 0 0 20px;
-  border-left: 1px solid #eee;
+  width: 215px;
+  padding: 50px 0 0 20px;
 
   @media (max-width: 800px) {
     float: none;
@@ -94,19 +93,18 @@
     line-height: 26px;
   }
 
-  li ul a {
-    padding-left: 30px;
-    color: #85898c;
+  li ul {
+    padding-left: 15px;
+
+    a {
+      color: #85898c;
+    }
   }
 
-  li a {
-    padding: 0 15px;
-
-    &.active {
-      font-weight: 500;
-      cursor: default;
-      color: hsl(146, 66%, 32%);
-    }
+  li a.active {
+    font-weight: 500;
+    cursor: default;
+    color: hsl(146, 66%, 32%);
   }
 
   a {
@@ -134,6 +132,8 @@
 
 .page-content {
   padding: 0 50px 0 0;
+  border-right: 1px solid @gray;
+  margin-right: 25px;
 
   @media (max-width: 800px) {
     padding: 0;
@@ -141,7 +141,7 @@
 }
 
 .content {
-  padding: 60px 0;
+  padding: 50px 0;
   font-size: 14px;
   font-family: @family-whitney-ss;
   font-weight: 500;
@@ -176,51 +176,42 @@
     font-size: 14px;
   }
 
-  h5 {
-    line-height: 20px;
-    font-size: 16px;
+  h1 {
+    font-size: 32px;
+    color: #262e33;
+    margin-top: 2em;
+    margin-bottom: .9em;
+  }
 
-    margin-top: 1.2em;
+  h2 {
+    font-size: 28px;
+    margin-top: 2em;
     margin-bottom: .8em;
   }
 
-  h4 {
-    line-height:24px;
-    font-size: 16px;
+  h3 {
+    font-size: 24px;
+    margin-top: 1.5em;
+    margin-bottom: .7em;
+    font-weight: 500;
+  }
 
+  h4 {
+    font-size: 18px;
     margin-top: 1.3em;
     margin-bottom: .7em;
   }
 
-  h3 {
-    line-height:28px;
-    font-size: 18px;
-
-    margin-top: 1.5em;
-    margin-bottom: .7em;
-  }
-
-  h2 {
-    line-height:32px;
-    font-size: 22px;
-
-    margin-top: 2em;
+  h5 {
+    font-size: 16px;
+    margin-top: 1.2em;
     margin-bottom: .8em;
-  }
-
-  h1 {
-    line-height:36px;
-    font-size: 26px;
-    color: #262e33;
-
-    margin-top: 2em;
-    margin-bottom: .9em;
   }
 
   > h1:first-child,
   > h2:first-child,
   > h3:first-child {
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   ol {
@@ -366,31 +357,70 @@
   }
 
   .endpoint {
-    color: #45494c;
-    background: @gray-light;
-    border: 1px solid #eceeef;
-    padding: 8px 13px;
-    border-radius: 3px;
-    box-sizing: border-box;
+    line-height: 41px;
     margin-bottom: 1em;
+    font-size: 14px;
+    border-radius: 3px;
+    display: block;
+    background-color: @gray-light;
+    border: 1px solid @gray;
 
-    .method {
-      color: #FFF;
-      margin: -9px 15px 0 -14px;
-      padding: 9px 14px;
-      display: inline-block;
+    &:before {
+      content: "METHOD";
+      background-color: gray;
+      display: block;
+      color: #fff;
       float: left;
+      padding: 1px 15px;
+      font-size: 13px;
+      font-weight: 600;
+      margin: -1px 16px 0 -1px;
       border-radius: 3px 0 0 3px;
-
-      &.GET { background: #479f4b; }
-      &.POST { background: #2391e3; }
-      &.PUT { background: #eab03a; }
-      &.PATCH { background: #673fb4; }
-      &.DELETE { background: #e23b3b; }
     }
 
-    .path {
-      font-size: 14px;
+    &.get {
+      border-color: #9ed99e;
+
+      &:before {
+        content: "GET";
+        background-color: #3eb33e;
+      }
+    }
+
+    &.post {
+      border-color: #8bc7f2;
+
+      &:before {
+        content: "POST";
+        background-color: #2391e3;
+      }
+    }
+
+    &.put {
+      border-color: #f2d9a5;
+
+      &:before {
+        content: "PUT";
+        background-color: #eab03a;
+      }
+    }
+
+    &.patch {
+      border-color: #b59fe0;
+
+      &:before {
+        content: "PATCH";
+        background-color: #673fb4;
+      }
+    }
+
+    &.delete {
+      border-color: #ec9c9c;
+
+      &:before {
+        content: "DELETE";
+        background-color: #e23b3b;
+      }
     }
   }
 }
