@@ -7,7 +7,7 @@ title: How does it work?
 Kong is made of two different components, that are easy to set up and to scale independently:
 
 * The **Kong Server**, based on a modified version of the widely adopted **NGINX** server, that processes the API requests.
-* An underlying **Datastore** for storing operational data, **Apache Cassandra**, which is being used by major companies like Netflix, Comcast or Facebook and it's known for being highly scalable.
+* An underlying **Datastore** for storing operational data, **Apache Cassandra**, which is being used by major companies like Netflix, Comcast or Facebook and is known for being highly scalable.
 
 Kong needs to have both these components set up and operational. A typical Kong installation can be summed up with the following picture:
 

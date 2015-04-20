@@ -258,7 +258,7 @@ HTTP 200 OK
 
 ---
 
-### List Consumer
+### List Consumers
 
 #### Endpoint
 
@@ -549,7 +549,7 @@ HTTP 200 OK
 
 ---
 
-### Delete Plugin Configurations
+### Delete Plugin Configuration
 
 #### Endpoint
 

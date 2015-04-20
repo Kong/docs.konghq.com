@@ -20,7 +20,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 }
 ```
 
-### Create API
+### Add API
 
 **Endpoint**
 
@@ -484,7 +484,7 @@ HTTP 200 OK
 ```
 
 
-### Delete Plugin Configurations
+### Delete Plugin Configuration
 
 **Endpoint**
 

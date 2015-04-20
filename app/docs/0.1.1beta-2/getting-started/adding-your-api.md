@@ -75,7 +75,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
 Now that you've got your API added to Kong lets learn how to enable plugins.
 
-Go to [Enabling Plugins][enabling-plugins]
+Go to [Enabling Plugins &raquo;][enabling-plugins]
 
 [mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli

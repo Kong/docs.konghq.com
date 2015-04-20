@@ -25,7 +25,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 2. ### Verify that Kong has started successfully
 
     The previous step runs migrations to prepare the Cassandra keyspace.
-    Once these have finished you should see a message (`[SUCCESS] Started`) informing you that Kong is running.
+    Once these have finished you should see a message (`[OK] Started`) informing you that Kong is running.
 
     By default Kong listens on the following ports:
 
@@ -41,19 +41,19 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
     $ kong stop
     ```
 
-4. ### Restart Kong.
+4. ### Reload Kong.
 
-    Issue the following command to restart [kong][CLI]:
+    Issue the following command to reload [kong][CLI] without downtime:
 
     ```bash
-    $ kong restart
+    $ kong reload
     ```
 
 ### Next Steps
 
 Now that you have Kong running you can interact with the RESTful API.
 
-To begin, go to [Adding your API][adding-your-api]
+To begin, go to [Adding your API &raquo;][adding-your-api]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/api
