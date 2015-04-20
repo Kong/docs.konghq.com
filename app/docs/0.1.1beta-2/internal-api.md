@@ -28,7 +28,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method POST">POST</strong><code class="path">/apis/</code></div>
+<div class="endpoint post">/apis/</div>
 
 #### Request Form Parameters
 
@@ -60,7 +60,7 @@ HTTP 201 Created
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/apis/{id}</code></div>
+<div class="endpoint get">/apis/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -88,7 +88,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/apis/</code></div>
+<div class="endpoint get">/apis/</div>
 
 #### Request Querystring Parameters
 
@@ -137,7 +137,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method PUT">PUT</strong><code class="path">/apis/{id}</code></div>
+<div class="endpoint put">/apis/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -177,7 +177,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method DELETE">DELETE</strong><code class="path">/apis/{id}</code></div>
+<div class="endpoint delete">/apis/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -207,7 +207,7 @@ The Consumer object represents a consumer, or a user, of an API. You can either 
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method POST">POST</strong><code class="path">/consumers/</code></div>
+<div class="endpoint post">/consumers/</div>
 
 #### Request Form Parameters
 
@@ -236,7 +236,7 @@ HTTP 201 Created
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/consumers/{id}</code></div>
+<div class="endpoint get">/consumers/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -262,7 +262,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/consumers/</code></div>
+<div class="endpoint get">/consumers/</div>
 
 #### Request Querystring Parameters
 
@@ -306,7 +306,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method PUT">PUT</strong><code class="path">/consumers/{id}</code></div>
+<div class="endpoint put">/consumers/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -340,7 +340,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method DELETE">DELETE</strong><code class="path">/consumers/{id}</code></div>
+<div class="endpoint delete">/consumers/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -380,7 +380,7 @@ When installing a Plugin Configuration on top of an API, every request made by a
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method POST">POST</strong><code class="path">/plugins_configurations/</code></div>
+<div class="endpoint post">/plugins_configurations/</div>
 
 #### Request Form Parameters
 
@@ -417,7 +417,7 @@ HTTP 201 Created
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/plugins_configurations/{id}</code></div>
+<div class="endpoint get">/plugins_configurations/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -449,7 +449,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method GET">GET</strong><code class="path">/plugins_configurations/</code></div>
+<div class="endpoint get">/plugins_configurations/</div>
 
 #### Request Querystring Parameters
 
@@ -505,7 +505,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method PUT">PUT</strong><code class="path">/plugins_configurations/{id}</code></div>
+<div class="endpoint put">/plugins_configurations/{id}</div>
 
 Attributes | Description
  ---:| ---
@@ -553,7 +553,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint"><strong class="method DELETE">DELETE</strong><code class="path">/plugins_configurations/{id}</code></div>
+<div class="endpoint delete">/plugins_configurations/{id}</div>
 
 Attributes | Description
  ---:| ---
