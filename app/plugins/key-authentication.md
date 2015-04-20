@@ -41,13 +41,13 @@ Configuring the plugin is straightforward, you can add it on top of an [API](/do
 curl -d "name=keyauth&api_id=API_ID&value.key_names=key_name1,key_name2" http://kong:8001/plugins_configurations/
 ```
 
-| parameter                    | description                                                |
-|------------------------------|------------------------------------------------------------|
-| name                         | The name of the plugin to use, in this case: `keyauth`   |
-| api_id                       | The API ID that this plugin configuration will target             |
-| *consumer_id*             | Optionally the CONSUMER ID that this plugin configuration will target |
-| `value.key_names`                  | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: *apikey*  |
-| `value.hide_credentials`           | Default `false`. An optional boolean value telling the plugin to hide the credential to the final API server. It will be removed by Kong before proxying the request |
+parameter                               | description
+ ---                                    | ---
+`name`                                  | The name of the plugin to use, in this case: `keyauth`
+`api_id`                                | The API ID that this plugin configuration will target
+`consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target
+`value.key_names`                       | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: `apikey`
+`value.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the final API server. It will be removed by Kong before proxying the request
 
 ## Usage
 
@@ -59,10 +59,10 @@ You need to associate a credential to an existing [Consumer](/docs/{{site.data.k
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
 
-| parameter                    | description                                                |
-|------------------------------|------------------------------------------------------------|
-| username                         | The username of the consumer   |
-| custom_id                       | A custom ID that you can use to map the consumer to another database |
+parameter                       | description
+ ---                            | ---
+`username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
+`custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
 A [Consumer](/docs/{{site.data.kong_latest}}/api/#consumer-object) can have many credentials.
 
@@ -74,7 +74,7 @@ Then you can finally provision new key credentials by making the following HTTP 
 curl -d "key=some_key&consumer_id=CONSUMER_ID" http://kong:8001/keyauth_credentials/
 ```
 
-| parameter                    | description                                                |
-|------------------------------|------------------------------------------------------------|
-| key                         | The key to use to authenticate the consumer.   |
-| consumer_id             | The [Consumer](/docs/{{site.data.kong_latest}}/api/#consumer-object) entity to associate the credentials to |
+parameter               | description
+ ---                    | ---
+`key`                   | The key to use to authenticate the consumer.
+`consumer_id`           | The [Consumer](/docs/{{site.data.kong_latest}}/api/#consumer-object) entity to associate the credentials to.

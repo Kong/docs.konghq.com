@@ -301,6 +301,16 @@
 
       &:first-child {
         text-align: right;
+        white-space: nowrap;
+
+        br {
+          & + em,
+          & + strong,
+          & + b {
+            display: inline-block;
+            margin-top: 3px;
+          }
+        }
       }
     }
   }

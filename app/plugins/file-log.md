@@ -41,8 +41,8 @@ Configuring the plugin is straightforward, you can add it on top of an [API](/do
 curl -d "name=filelog&api_id=API_ID" http://kong:8001/plugins_configurations/
 ```
 
-| parameter                    | description                                                |
-|------------------------------|------------------------------------------------------------|
-| name                         | The name of the plugin to use, in this case: `tcplog`   |
-| api_id                       | The API ID that this plugin configuration will target             |
-| *consumer_id*             | Optionally the CONSUMER ID that this plugin configuration will target |
+parameter                     | description
+ ---                          | ---
+`name`                        | The name of the plugin to use, in this case: `tcplog`
+`api_id`                      | The API ID that this plugin configuration will target
+`consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target
