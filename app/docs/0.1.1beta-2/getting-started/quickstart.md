@@ -53,7 +53,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 Now that you have Kong running you can interact with the RESTful API.
 
-To begin, go to [Adding your API &raquo;][adding-your-api]
+To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/api

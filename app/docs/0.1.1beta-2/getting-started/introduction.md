@@ -20,7 +20,7 @@ Now that you know what Kong is and how it works, this guide is going to take you
 
 Now, lets get familiar with learning how to "start" and "stop" Kong.
 
-Go to [5-minute quickstart with Kong &raquo;][quickstart]
+Go to [5-minute quickstart with Kong &rsaquo;][quickstart]
 
 [install]: /download
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart

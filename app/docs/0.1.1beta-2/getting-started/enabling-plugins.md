@@ -77,7 +77,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
 Now that you've enabled the **keyauth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
 
-Go to [Adding Consumers &raquo;][adding-consumers]
+Go to [Adding Consumers &rsaquo;][adding-consumers]
 
 [mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli
