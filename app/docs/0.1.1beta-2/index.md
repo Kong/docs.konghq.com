@@ -19,9 +19,9 @@ permalink: /docs/
   </div>
 
   <div class="docs-grid-block">
-    <h2>CLI reference</h2>
+    <h2><a href="/docs/{{page.kong_version}}/cli">CLI reference</a></h2>
     <p>Want a better understanding of the CLI tool? Browse the detailed command reference.</p>
-    <strong>Coming Soon...</strong>
+    <a href="/docs/{{page.kong_version}}/cli">Use the CLI &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
