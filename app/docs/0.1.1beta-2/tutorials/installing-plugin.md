@@ -75,7 +75,7 @@ To authenticate against the API, we need to pass a credential along with the req
 
 ```bash
 $ curl -i -X POST \
-  --url http://127.0.0.1:8001/consumers/
+  --url http://127.0.0.1:8001/consumers/ \
   --data 'username=tutorial_user'
 HTTP/1.1 201 Created
 
