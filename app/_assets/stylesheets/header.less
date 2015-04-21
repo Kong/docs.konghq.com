@@ -1,7 +1,9 @@
 .navbar {
   &:extend(.u-cf, .u-full-width);
-  background-color: #042d49;
+  background-color: @navy-darker;
   min-height: 70px;
+  z-index: 1;
+  position: relative;
   box-shadow: 0 1px rgba(255, 255, 255, 0.1);
 
   .navbar-toggle {
@@ -72,11 +74,8 @@
   }
 
   .button {
-    border: 0 none;
-    background-color: #2a4d66;
-    color: #fff;
     height: 30px;
-    line-height: 29px;
+    line-height: 26px;
   }
 
   @media (max-width: 800px) {
