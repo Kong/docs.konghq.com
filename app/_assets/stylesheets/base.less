@@ -8,6 +8,7 @@ html {
 
 body {
   font-family: @family-whitney-ss, @family-default;
+  font-size: 14px;
   color: @font-color;
   margin-bottom: 44px;
   -webkit-font-smoothing: antialiased;
@@ -100,10 +101,33 @@ select {
   }
 }
 
+.column,
+.columns {
+  margin-bottom: 3rem;
+
+  @media (min-width: 550px) {
+    margin-bottom: 0;
+  }
+}
+
 .button-large {
   font-size: 16px;
   line-height: 42px;
   height: 44px;
+}
+
+.button-dark {
+  background: @navy-dark;
+  border-color: @navy-dark;
+  color: #fff;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #fff;
+    border-color: lighten(@navy-dark, 5%);
+    background: lighten(@navy-dark, 5%);
+  }
 }
 
 strong {
@@ -143,7 +167,7 @@ h1 {
 
 h2 {
   font-size: 33px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 h3 {
