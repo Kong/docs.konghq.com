@@ -1,18 +1,16 @@
 <div class="navbar">
   <div class="container">
-    <a href="/" class="navbar-brand"><img src="/assets/images/branding.svg" alt="Kong" width="83" height="24"></a>
+    <a href="/" class="navbar-brand"><img src="/assets/images/branding.svg" alt="Kong" width="99" height="32"></a>
     <button data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" class="navbar-toggle">
       <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
     <nav id="navbar" class="navbar-nav">
       <ul>
-        <li><a href="/docs/">Documentation</a></li>
-        <li><a href="/plugins">Plugins</a></li>
-        <li><a href="/contribute">Contribute</a></li>
-        <li><a href="/support">Support</a></li>
+        <li><a href="/docs/" {% if page.url contains "/docs/" %} class="active"{% endif %}>Documentation</a></li>
+        <li><a href="/plugins" {% if page.url == "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
+        <li><a href="/enterprise" {% if page.url == "/enterprise/" %} class="active"{% endif %}>Enterprise</a></li>
+        <li><a href="https://github.com/Mashape/kong">GitHub Repo</a></li>
         <li>
-          <div class="navbar-form">
-            <a href="/download" class="button" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Download</a>
-          </div>
+          <a href="/download" class="button{% if page.url == "/download/" %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>download</a>
         </li>
       </ul>
     </nav>
