@@ -1,6 +1,6 @@
 ### Debian 7 Wheezy
 
-1. Installation:
+1. **Installation:**
 
     Add the right source to APT:
 
@@ -16,7 +16,7 @@
     ```
 
 
-2. Start Kong:
+2. **Start Kong:**
 
     Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/getting-started/configuration/) points to the right Cassandra server. Then execute:
 
@@ -24,7 +24,7 @@
     kong start
     ```
 
-3. Kong is running:
+3. **Kong is running:**
 
     ```bash
     curl http://127.0.0.1:8001

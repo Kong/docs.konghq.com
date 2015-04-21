@@ -1,6 +1,6 @@
 ### Other
 
-1. Install dependencies:
+1. **Install dependencies:**
 
     Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
 
@@ -14,13 +14,13 @@
 
     Some of the dependencies may be available in your favorite package manager.
 
-2. Install Kong:
+2. **Install Kong:**
 
     ```bash
     luarocks install kong {{site.data.kong_latest}}
     ```
 
-3. Start Kong:
+3. **Start Kong:**
 
     Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/getting-started/configuration/) points to the right Cassandra server. Then execute:
 
@@ -28,7 +28,7 @@
     kong start
     ```
 
-4. Kong is running:
+4. **Kong is running:**
 
     ```bash
     curl http://127.0.0.1:8001
