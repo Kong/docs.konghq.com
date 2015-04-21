@@ -37,7 +37,7 @@ $ kong <command> --help
 
 ## start
 
-The first command you are likely to execute will be `start`. As you would expect, it starts a Kong node on your current machine using a configuration file.
+Starts a Kong instance.
 
 ```bash
 $ kong start
@@ -74,13 +74,13 @@ Kong is now running and listening on two ports, which are by default:
 
 ## stop
 
-This command executes a fast shutdown of Kong. It is actually a wrapper aroung the NGINX `stop` signal:
+Terminates a Kong instance by firing the NGINX `stop` signal. This will execute a fast shutdown.
 
 ```bash
 $ kong stop
 ```
 
-In order to stop an instance, the CLI needs to know what is the working directory of your process. If you started Kong with a certain configuration file, you must stop it with the same one. Thus, the stop command also accepts a configuration option:
+To stop a specific instance, the CLI requires knowledge of the instances working directory. You can do this referencing the configuration file you used to start your Kong instance:
 
 ```bash
 $ kong stop -c <path_to_config>
@@ -94,13 +94,13 @@ If Kong stopped successfully, you should see a successful message (`[OK] Stopped
 
 ## quit
 
-`quit` performs a graceful shutdown of Kong. Like `stop`, it is a wrapper arround the NGINX `quit` signal:
+Gracefully stops a Kong instance by firing the NGINX `quit` signal.
 
 ```bash
 $ kong quit
 ```
 
-And for the same reasons as `stop`, it also accepts a configuration option:
+For the same reasons as `stop`, it also accepts a configuration option:
 
 ```bash
 $ kong quit -c <path_to_config>
