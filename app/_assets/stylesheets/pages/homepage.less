@@ -12,6 +12,7 @@
 
   h2 {
     margin: 0;
+    font-size: 30px;
     color: #45494d;
   }
 
@@ -37,13 +38,8 @@
     color: #fff;
     font-size: 34px;
     margin: 50px 0 12px 0;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
     padding-bottom: 17px;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
   }
 
   .button {
@@ -63,7 +59,7 @@
     width: 100%;
     height: auto;
   }
-  
+
   p {
     margin: 25px 0 0;
     line-height: 25px;
@@ -82,5 +78,151 @@
       height: 210px;
       background-color: #f2f2f2;
     }
+  }
+}
+
+.testimonials-section {
+  background-color: @gray-lighter;
+  border-top: 1px solid @gray;
+  position: relative;
+  padding: 50px 0 30px 0;
+
+  .testimonials-photo {
+    border-radius: 50% 50%;
+    border: 1px solid @gray;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -32px;
+    top: -32px;
+
+    img {
+      width: 64px;
+      height: 64px;
+      display: block;
+    }
+  }
+
+  .testimonials-quote {
+    text-align: center;
+    margin: 0;
+
+    p {
+      font-size: 18px;
+      line-height: 32px;
+      color: #333a40;
+      margin-bottom: 10px;
+
+      &:before,
+      &:after {
+        content: "\0022";
+      }
+    }
+
+    cite {
+      font-style: normal;
+
+      &:before {
+        content: "\2014";
+      }
+    }
+
+    .company {
+      font-family: @family-whitney-ss-sc;
+      text-transform: lowercase;
+      color: #879199;
+    }
+  }
+}
+
+.get-started-section {
+  background-color: @gray-darker;
+  color: #fff;
+  padding: 75px 0;
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    color: #fff;
+  }
+
+  h4 {
+    color: #73c5ff;
+    margin-bottom: 8px;
+  }
+
+  ol {
+    &:extend(.instructions-steps);
+
+    li {
+      &:extend(.instructions-steps .instructions-step-item all);
+      padding: 7px 0 30px 35px;
+      border-left: 2px solid #464d51;
+      line-height: 24px;
+
+      &:before {
+        color: #fff;
+        background-color: @gray-darker;
+        font-size: 13px;
+        width: 36px;
+        height: 36px;
+        border: 2px solid #206799;
+        line-height: 34px;
+        left: -19px;
+      }
+    }
+  }
+
+  .highlight {
+    margin: 10px 0 30px 0;
+  }
+
+  pre {
+    margin: 0;
+  }
+
+  code {
+    background-color: #1e262b;
+    color: #fff;
+    padding: 18px;
+
+    .nv {
+      color: #66bfff;
+    }
+
+    .se, .s1 {
+      color: @green;
+    }
+  }
+
+  .section-buttons {
+    margin-top: 10px;
+  }
+
+  .button {
+    border-color: #3c4348;
+    background: #3c4348;
+
+    &:hover {
+      border-color: lighten(#3c4348, 5%);
+      background: lighten(#3c4348, 5%);
+    }
+  }
+}
+
+.comparison-section {
+  .section-header {
+    margin-bottom: 60px;
+  }
+
+  h4 {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .column {
+    padding: 0 33px;
   }
 }
