@@ -15,7 +15,9 @@ layout: default
         </p>
       </div>
       <div class="one-half column">
-        <img src="/assets/images/homepage/intro-illustration-2x.png" width="480" height="355" alt=""/>
+        <figure>
+          <img src="/assets/images/homepage/intro-illustration.png" width="480" height="355" alt=""/>
+        </figure>
       </div>
     </div>
   </div>
@@ -38,6 +40,90 @@ layout: default
         <h3>Platform Agnostic</h3>
         <img src="/assets/images/homepage/platform-agnostic.png" alt=""/>
         <p>Kong can run anywhere, in the cloud or on-premise - in a single, hybrid or multi-datacenter setup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials-section">
+  <figure class="testimonials-photo">
+    <img src="/assets/images/homepage/img-profile.png" width="64" height="64" alt="Gus Robertson"/>
+  </figure>
+  <blockquote class="testimonials-quote">
+    <p>Nginx is excited to partner with Kong, which was built upon our core HTTP proxy. Kong provides developers, with a high performance, open-source, API management layer.</p>
+    <cite>Gus Robertson, <span class="company">NGINX CEO</span></cite>
+  </blockquote>
+</section>
+
+<section class="section get-started-section">
+  <header class="section-header">
+    <h2>Get Started in 2 Minutes</h2>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="one-half column">
+        <ol>
+          <li>
+            <h4>Start Kong</h4>
+            <p>After installing Kong, run 'kong start' to start the server.</p>
+          </li>
+          <li>
+            <h4>Add Your API to Kong</h4>
+            <p>Using Kong's RESTful interface on port 8001, you can add a new API to the system with one command. Kong will route every incoming request with the specified public DNS to the associated target URL.</p>
+          </li>
+          <li>
+            <h4>Make a Request</h4>
+            <p>...and then you can consume the API by requesting the public DNS specified. In production point the public DNS to Kong.
+            </p>
+          </li>
+        </ol>
+      </div>
+      <div class="one-half column">
+        <div class="highlight">
+          <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>kong start</code></pre>
+        </div>
+
+        <div class="highlight">
+          <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
+  --url http://localhost:8001/apis/ <span class="se">\</span>
+  --data <span class="s1">'name=mockbin'</span> <span class="se">\</span>
+  --data <span class="s1">'target_url=http://mockbin.com/'</span> <span class="se">\</span>
+  --data <span class="s1">'public_dns=mockbin.com'</span></code></pre>
+        </div>
+
+        <div class="highlight">
+          <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X GET <span class="se">\</span>
+  --url http://localhost:8000/ <span class="se">\</span>
+  --header <span class="s1">'Host: mockbin.com'</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-buttons">
+    <a href="/docs" class="button button-dark button-large">Continue to Documentation</a>
+  </div>
+</section>
+
+<section class="section comparison-section">
+  <header class="section-header">
+    <h2>A Better Way of Building Software</h2>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="one-half column">
+        <h4>Current Architecture</h4>
+        <figure>
+          <img src="/assets/images/homepage/diagram-left.png" alt=""/>
+        </figure>
+      </div>
+      <div class="one-half column">
+        <h4>Kong Achitecture</h4>
+        <figure>
+          <img src="/assets/images/homepage/diagram-right.png" alt=""/>
+        </figure>
       </div>
     </div>
   </div>
