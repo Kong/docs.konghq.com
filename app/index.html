@@ -49,10 +49,12 @@ layout: default
   <figure class="testimonials-photo">
     <img src="/assets/images/homepage/img-profile.png" width="64" height="64" alt="Gus Robertson"/>
   </figure>
-  <blockquote class="testimonials-quote">
-    <p>Nginx is excited to partner with Kong, which was built upon our core HTTP proxy. Kong provides developers, with a high performance, open-source, API management layer.</p>
-    <cite>Gus Robertson, <span class="company">NGINX CEO</span></cite>
-  </blockquote>
+  <div class="container">
+    <blockquote class="testimonials-quote">
+      <p>With the announcement of Kong, customers can reduce complexity and deployment times in implementing an API solution on the NGINX platform.</p>
+      <cite>Gus Robertson, <span class="company">NGINX CEO</span></cite>
+    </blockquote>
+  </div>
 </section>
 
 <section class="section get-started-section">
@@ -115,16 +117,71 @@ layout: default
     <div class="row">
       <div class="one-half column">
         <h4>Current Architecture</h4>
+
         <figure>
           <img src="/assets/images/homepage/diagram-left.png" alt=""/>
         </figure>
       </div>
       <div class="one-half column">
         <h4>Kong Achitecture</h4>
+
         <figure>
           <img src="/assets/images/homepage/diagram-right.png" alt=""/>
         </figure>
       </div>
     </div>
+    <div class="row">
+      <div class="one-half column">
+        <div class="alert alert-danger">
+          <span class="fa fa-close"></span>
+          Common functionality is duplicated across multiple services
+        </div>
+        <div class="alert alert-danger">
+          <span class="fa fa-close"></span>
+          Systems tend to be monolithic and hard to maintain
+        </div>
+        <div class="alert alert-danger">
+          <span class="fa fa-close"></span>
+          Difficult to expand without impacting other services
+        </div>
+        <div class="alert alert-danger">
+          <span class="fa fa-close"></span>
+          Team productivity is inefficient because of system constraints
+        </div>
+      </div>
+      <div class="one-half column">
+        <div class="alert alert-success">
+          <span class="fa fa-check"></span>
+          Kong centralizes and unifies functionality into one place
+        </div>
+        <div class="alert alert-success">
+          <span class="fa fa-check"></span>
+          Build efficient distributed architectures ready to scale
+        </div>
+        <div class="alert alert-success">
+          <span class="fa fa-check"></span>
+          Expand functionality from one place with a simple command
+        </div>
+        <div class="alert alert-success">
+          <span class="fa fa-check"></span>
+          Your team is focused on the core product, Kong does the REST
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section subscribe-section">
+  <div class="container">
+    <header class="section-header">
+      <h4>Keep Up with Kong New Features</h4>
+    </header>
+
+    <div class="form-message success-message">Thank you!</div>
+    <div class="form-message error-message">Oops, something went wrong. Please try again later.</div>
+    <form action="/" class="subscribe-form">
+      <input type="email" name="email" placeholder="youre@awesome.com" required/>
+      <button class="button button-primary" type="submit">Subscribe</button>
+    </form>
   </div>
 </section>

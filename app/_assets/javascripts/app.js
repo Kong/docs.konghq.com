@@ -45,7 +45,7 @@ $(function () {
     $tabs.find('a[href="' + location.hash + '"]').trigger('click', true);
   }
 
-  // Form on downloads page
+  // Subscribe form on homepage
 
   Parse.initialize("ZFqEMoCQSm0K4piYYdstraJDOl0a80tJB7R0tR49", "SdqL88SikiiftwBjEGfRb4SmbghTIycZ2kfy7Jb0");
 

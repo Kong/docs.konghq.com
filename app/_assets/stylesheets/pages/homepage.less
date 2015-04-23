@@ -213,6 +213,23 @@
 }
 
 .comparison-section {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    height: 82%;
+    width: 2px;
+    background-color: #f0f0f0;
+    top: 14%;
+    left: 50%;
+    margin-left: -1px;
+
+    @media (max-width: 550px) {
+      display: none;
+    }
+  }
+
   .section-header {
     margin-bottom: 60px;
   }
@@ -220,9 +237,100 @@
   h4 {
     text-align: center;
     margin-bottom: 35px;
+    color: @blue;
   }
 
   .column {
-    padding: 0 33px;
+    &:first-child {
+      padding-right: 10px;
+    }
+
+    &:last-child {
+      padding-left: 10px;
+    }
+  }
+
+  figure {
+    padding: 0 27px;
+  }
+
+  .row:first-child {
+    margin-bottom: 50px;
+  }
+
+  .alert {
+    font-family: @family-whitney-ss;
+    font-size: 14px;
+    color: @gray-dark;
+    margin-bottom: 4px;
+    border: 0 none;
+    padding: 9px 15px;
+    border-radius: 0;
+
+    .fa {
+      font-size: 11px;
+      margin-right: 4px;
+    }
+
+    .fa-close {
+      color: @red;
+    }
+
+    .fa-check {
+      color: @green;
+    }
+  }
+}
+
+.subscribe-section {
+  background-color: @gray-lighter;
+  border-top: 1px solid @gray;
+  text-align: center;
+  padding: 35px 0;
+
+  .section-header {
+    margin-bottom: 20px;
+  }
+
+  .form-message {
+    display: none;
+    font-size: 16px;
+    text-align: center;
+    line-height: 44px;
+  }
+
+  .success-message {
+    color: @green;
+  }
+
+  .error-message {
+    color: #bb2616;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .subscribe-form {
+    &:extend(.u-cf);
+    margin: 0;
+    display: inline-block;
+  }
+
+  input,
+  button {
+    margin: 0;
+    float: left;
+  }
+
+  input {
+    border-radius: 3px 0 0 3px;
+    width: 400px;
+  }
+
+  .button {
+    border-radius: 0 3px 3px 0;
   }
 }
