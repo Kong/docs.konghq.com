@@ -1,18 +1,16 @@
 ---
-title: Plugins - NGINX+ Activity Monitoring
-show_faq: true
+sitemap: true
 id: page-plugin
-header_title: NGINX+ Activity Monitoring
+title: Plugins - Nginx Plus Activity Monitoring
+header_title: Nginx Plus Activity Monitoring
 header_icon: /assets/images/icons/plugins/nginx-plus-monitoring.png
-header_caption: utilities
+header_btn_text: Report Bug
+header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
-  NGINX+ Activity Monitoring: /plugins/nginx-plus-monitoring/
 ---
 
----
-
-#### Live server activity monitoring of NGINX Plus that provides key load and performance server metrics
+Live server activity monitoring of NGINX Plus that provides key load and performance server metrics
 
 ---
 
