@@ -57,7 +57,7 @@ input[type="button"] {
   font-weight: 600;
   text-transform: none;
   font-size: 13px;
-  color: @green;
+  color: @blue;
   border-color: #bae2cc;
   height: 36px;
   line-height: 35px;
@@ -67,8 +67,8 @@ input[type="button"] {
   &:hover,
   &:active,
   &:focus {
-    color: @green;
-    border-color: #7bcd9f;
+    color: @blue;
+    border-color: lighten(@blue, 40%);
   }
 
   &:hover {
@@ -97,7 +97,7 @@ select {
   font-size: 13px;
 
   &:focus {
-    border: 1px solid @green;
+    border: 1px solid @blue;
     outline: 0;
   }
 }
@@ -147,11 +147,11 @@ code {
 }
 
 a {
-  color: @green;
+  color: @blue;
   text-decoration: none;
 
   &:hover {
-    color: @green - 30%;
+    color: @blue - 30%;
   }
 }
 
@@ -214,7 +214,7 @@ nav {
   }
 
   a {
-    color: @light-gray;
+    color: @gray-dark;
     text-decoration: none;
     display: block;
     font-weight: 500;
@@ -227,7 +227,7 @@ nav {
 
     &:active,
     &.active {
-      color: #0e9245;
+      color: @blue;
     }
   }
 }

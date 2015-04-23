@@ -78,7 +78,7 @@
   h5 {
     font-family: @family-whitney-ss-sc;
     font-size: 13px;
-    color: hsl(204, 8%, 23%);
+    color: @gray-darker;
     font-weight: 600;
     margin-bottom: 8px;
     line-height: 1.6;
@@ -104,17 +104,11 @@
   li a.active {
     font-weight: 500;
     cursor: default;
-    color: hsl(146, 66%, 32%);
+    color: @blue;
   }
 
   a {
-    color: hsl(204, 8%, 32%);
     font-size: 12px;
-
-    &.active,
-    &:hover {
-      color: @green;
-    }
   }
 
   .fa {
@@ -224,7 +218,6 @@
 
   a {
     text-decoration: none;
-    color: @green;
 
     &:hover {
       text-decoration: underline;
@@ -470,7 +463,6 @@
       border: 1px solid @gray;
       background-color: #fff;
       font-weight: 600;
-      color: #40805b;
       position: absolute;
       left: -26px;
       top: 0;
@@ -546,7 +538,7 @@
         content: "\203a";
         display: inline-block;
         width: 10px;
-        color: @green;
+        color: @blue;
       }
     }
   }
