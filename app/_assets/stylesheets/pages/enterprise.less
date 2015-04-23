@@ -1,0 +1,87 @@
+.enterprise-section {
+  background-color: @navy-darker;
+  color: rgba(255, 255, 255, .5);
+  font-size: 18px;
+  line-height: 32px;
+  padding: 0;
+
+  .column {
+    height: 350px;
+    position: relative;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 34px;
+    margin: 70px 0 0;
+    padding-bottom: 17px;
+  }
+
+  .button {
+    margin-right: 5px;
+  }
+
+  figure {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px;
+
+    img {
+      display: block;
+    }
+  }
+}
+
+.plans-section {
+  .column {
+    padding-right: 10px;
+
+    &:last-child {
+      padding: 0 0 0 10px;
+    }
+  }
+
+  .plan-box {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    text-align: center;
+  }
+
+  .plan-line {
+    border-top: 1px solid #ebebeb;
+    padding: 14px;
+    margin: 0;
+
+    &:first-child {
+      padding: 28px 0;
+    }
+
+    &.muted {
+      background-color: #f7f7f7;
+    }
+
+    &.success {
+      background-color: #f5fcf5;
+      border-top-color: #d6edda;
+      color: @green;
+    }
+
+    h4, h5 {
+      margin: 0;
+    }
+
+    h4 {
+      color: @blue;
+      margin-top: 5px;
+    }
+
+    h5 {
+      font-family: @family-whitney-ss-sc;
+      font-size: 14px;
+    }
+  }
+}
