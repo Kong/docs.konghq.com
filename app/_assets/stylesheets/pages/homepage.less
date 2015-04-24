@@ -16,6 +16,12 @@
   .button {
     margin-right: 5px;
   }
+
+  @media (max-width: 550px) {
+    .column:last-child {
+      display: none;
+    }
+  }
 }
 
 .features-section {
@@ -219,6 +225,13 @@
     &:last-child {
       padding-left: 10px;
     }
+
+    @media (max-width: 550px) {
+      &:first-child,
+      &:last-child {
+        padding: 0;
+      }
+    }
   }
 
   figure {
@@ -291,7 +304,7 @@
   }
 
   input,
-  button {
+  .button {
     margin: 0;
     float: left;
   }
@@ -303,5 +316,18 @@
 
   .button {
     border-radius: 0 3px 3px 0;
+  }
+
+  @media (max-width: 650px) {
+    .subscribe-form {
+      width: 80%;
+    }
+
+    input,
+    .button {
+      width: 100%;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
   }
 }
