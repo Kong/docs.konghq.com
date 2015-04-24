@@ -71,6 +71,30 @@ $(function () {
     });
   });
 
+  // Enterprise page demo request form
+
+  $('.demo-request-form').on('submit', function (e) {
+    e.preventDefault();
+
+    var $form = $(this);
+    var data = $form.serializeArray();
+
+    var payload = {};
+
+    for (var i = 0; i < data.length; i++) {
+      payload[data[i].name] = data[i].value;
+    }
+
+    analytics.identify(payload.email, $.extend({
+      environment: 'kong',
+      enterprise: true
+    }, payload), function () {
+      $form.fadeOut(300, function () {
+        $('.success-message').fadeIn(300);
+      });
+    });
+  });
+
   // Analytics
 
   $('[href^="/download"]').each(function () {

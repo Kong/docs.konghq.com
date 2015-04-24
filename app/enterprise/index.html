@@ -87,19 +87,20 @@ layout: default
       <p>Coming soon...</p>
     </header>
 
+    <div class="form-message success-message">Thank you!</div>
     <form class="demo-request-form">
       <label for="company-name">Company Name</label>
-      <input id="company-name" name="company_name" type="text" placeholder="Mashape Inc">
+      <input id="company-name" name="company" type="text" placeholder="Mashape Inc">
       <label for="full-name">Full Name</label>
-      <input id="full-name" name="full_name" type="text" placeholder="Jason Businessman">
+      <input id="full-name" name="name" type="text" placeholder="Jason Businessman">
       <label for="work-email">Work Email</label>
-      <input id="work-email" name="work_email" type="email" placeholder="jason@mashape.com" required>
+      <input id="work-email" name="email" type="email" placeholder="jason@mashape.com" required>
       <label for="phone">Phone</label>
       <input id="phone" name="phone" type="text" placeholder="415 000 0000">
       <div class="choose-deploy-type row">
         <label class="one-half column">
-          <input type="radio" name="deployment" value="on-pre"/>
-          On-Pre Deployment
+          <input type="radio" name="deployment" value="on-prem" checked/>
+          On-Prem Deployment
         </label>
         <label class="one-half column">
           <input type="radio" name="deployment" value="aws"/>
