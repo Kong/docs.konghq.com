@@ -55,41 +55,24 @@ $(function () {
 
   // Subscribe form
 
-  Parse.initialize("ZFqEMoCQSm0K4piYYdstraJDOl0a80tJB7R0tR49", "SdqL88SikiiftwBjEGfRb4SmbghTIycZ2kfy7Jb0");
-
   $('.subscribe-form').on('submit', function (e) {
     e.preventDefault();
 
     var $form = $(this);
-    var data = $form.serializeArray();
-    var Subscription = Parse.Object.extend('Subscription');
-    var subscription = new Subscription();
-    var payload = {};
+    var email = $form.find('[name="email"]').val();
 
-    for (var i = 0; i < data.length; i++) {
-      payload[data[i].name] = data[i].value;
-    }
-
-    analytics.identify($.extend({
-      environment: 'kong',
-      userId: payload.email
-    }, payload));
-
-    subscription.save(payload, {
-      success: function () {
-        $form.fadeOut(300, function () {
-          $('.success-message').fadeIn(300);
-        });
-      },
-      error: function () {
-        $form.fadeOut(300, function () {
-          $('.error-message').fadeIn(300);
-        });
-      }
+    analytics.identify(email, {
+      email: email,
+      environment: 'kong'
+    }, function () {
+      $form.fadeOut(300, function () {
+        $('.success-message').fadeIn(300);
+      });
     });
   });
 
   // Analytics
+
   $('[href^="/download"]').each(function () {
     var $link = $(this);
 
@@ -99,4 +82,8 @@ $(function () {
       type: $link.hasClass('button') ? 'button' : 'link'
     });
   });
+
+  analytics.track(
+      'Viewed ' + $.trim(document.title.split('|').shift()) + ' page'
+  );
 });
