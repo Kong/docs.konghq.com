@@ -22,7 +22,7 @@
     </div>
 
     {% if page.header_btn_text %}
-    <a class="page-header-btn" href="{{ page.header_btn_href | liquify }}">{{ page.header_btn_text | liquify }}</a>
+    <a class="page-header-btn" href="{{ page.header_btn_href | liquify }}" target="{{ page.header_btn_target }}">{{ page.header_btn_text | liquify }}</a>
     {% endif %}
   </div>
 </header>
