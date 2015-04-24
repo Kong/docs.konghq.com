@@ -21,8 +21,8 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
     ```bash
     $ curl -i -X POST \
      --url http://localhost:8001/apis/ \
-     --data 'name=mockbin'
-     --data 'target_url=http://mockbin.com/'
+     --data 'name=mockbin' \
+     --data 'target_url=http://mockbin.com/' \
      --data 'public_dns=mockbin.com'
     ```
 

@@ -11,14 +11,14 @@ body {
   color: @font-color;
   margin-bottom: 44px;
   -webkit-font-smoothing: antialiased;
-}
 
-strong {
-  font-weight: 600;
-}
+  @media (max-width: 800px) {
+    padding-top: 52px;
+  }
 
-.container {
-  max-width: 1020px;
+  .container {
+    max-width: 1020px;
+  }
 }
 
 .button.button-primary,
@@ -106,14 +106,19 @@ select {
   height: 44px;
 }
 
+strong {
+  font-weight: 600;
+}
+
 code {
-  padding: 7px 9px;
+  padding: 4px;
   color: @red;
   font-size: 100%;
   background-color: #fff2f2;
   border-radius: 3px;
   border: 0 none;
   margin: 0;
+  font-family: @family-code;
 }
 
 a {
@@ -128,18 +133,18 @@ a {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 2rem;
-  font-weight: 400;
   letter-spacing: 0;
   color: #262e33;
 }
 
 h1 {
   font-size: 36px;
+  font-weight: 400;
 }
 
 h2 {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 33px;
+  font-weight: 300;
 }
 
 h3 {
@@ -163,14 +168,6 @@ h6 {
   font-weight: 600;
 }
 
-// General styles
-
-body {
-  @media (max-width: 800px) {
-    padding-top: 52px;
-  }
-}
-
 figure {
   margin: 0;
 
@@ -178,11 +175,6 @@ figure {
     width: 100%;
     height: auto;
   }
-}
-
-h2 {
-  font-size: 33px;
-  font-weight: 300;
 }
 
 nav {

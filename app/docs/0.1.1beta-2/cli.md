@@ -4,34 +4,26 @@ title: CLI Reference
 
 # CLI Reference
 
-Kong comes with a ***Command Line Interface*** *(CLI)* which lets you perform operations such as starting and stopping Kong. Each command is run in the context of a single node, since Kong has no cluster awareness yet.
+Kong comes with a ***CLI*** *(Command Line Interface)* which provides you with an interface to manage your Kong nodes. Each command is run in the context of a single node, since Kong has no cluster awareness yet.
 
-Almost every CLI command requires access to your configuration file in order to be aware of where the NGINX working directory is located (known as the "prefix path" for those familiar with NGINX), and referenced as `nginx_working_dir` in the Kong configuration file.
+Almost every command requires access to your configuration file in order to be aware of where the NGINX working directory is located (known as the *prefix path* for those familiar with NGINX) referenced as `nginx_working_dir` in the Kong configuration file.
 
-**Note:** If you haven't already, we recommand you to read the [configuration guide][configuration-guide].
+**Note:** If you haven't already, we recommend you read the [configuration guide][configuration-guide].
 
 ---
 
 ## kong
 
-The CLI's entry point is the `kong` command. View the usage info by typing:
-
 ```bash
-
-$ kong --help
+$ kong [options] <command> [parameters]
 ```
 
-Like many other CLI tools, the second parameter will be the command you want to perform:
+**Note** For help information on a specific command use the `--help` parameter: `kong <command> --help`
 
-```bash
-$ kong <command>
-```
+### Options
 
-To print the usage info of any command, execute:
-
-```bash
-$ kong <command> --help
-```
+* `--help` - Outputs help information
+* `--version` - Outputs kong version
 
 ---
 
@@ -40,35 +32,19 @@ $ kong <command> --help
 Starts a Kong instance.
 
 ```bash
-$ kong start
+$ kong start [parameters]
 ```
 
-> **This command deserves a little more explanations about what happens when it's being run:**
->
-1. First, if no configuration was provided as an argument (as in our example above) it will simply try to load a configuration at `/etc/kong/kong.yml`.
->
-2. If you did not put a configuration at `/etc/kong/kong.yml`, you will be fine! Kong will load a default configuration.
->
-3. Kong will try to connect to your configured datastore (most likely your Cassandra instance). If the connection is successful, Kong will prepare your database and make itself at home.
->
-4. The NGINX configuration specified in Kong's configuration (`nginx` property) will be used to spawn NGINX workers, and those will use the working directory specified in your configuration (`nginx_working_directory`).
+### Parameters
 
-If everything went well, you should see a successful message (`[OK] Started`).
+#### -c \<configuration file path>
 
-##### Specifying a configuration
+Kong Configuration File
 
-To override the default configuration, either place one at `/etc/kong/kong.yml`, or specify a file as an argument, like this:
+When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
+Should no configuration file exist at that location Kong will load the default configuration stored internally.
 
-```bash
-$ kong start -c <path_to_config>
-```
-
-##### Congrats!
-
-Kong is now running and listening on two ports, which are by default:
-
-- `8000`, that will be used to process the API requests.
-- `8001`, called admin port which provides the Kong's internal RESTful API that you can use to operate Kong.
+This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
 
 ---
 
@@ -77,18 +53,19 @@ Kong is now running and listening on two ports, which are by default:
 Terminates a Kong instance by firing the NGINX `stop` signal. This will execute a fast shutdown.
 
 ```bash
-$ kong stop
+$ kong stop [parameters]
 ```
-
-To stop a specific instance, the CLI requires knowledge of the instances working directory. You can do this referencing the configuration file you used to start your Kong instance:
-
-```bash
-$ kong stop -c <path_to_config>
-```
-
-If Kong stopped successfully, you should see a successful message (`[OK] Stopped`).
 
 > For more informations regarding the NGINX signals, consult their [documentation][nginx-signals].
+
+### Parameters
+
+#### -c \<configuration file path>
+
+Kong Configuration File
+
+Passing the Kong configuration file path *allows the termination of specific instance*, should you not pass the configuration file location, the command will
+default to the configuration at `/etc/kong/kong.yml` or its internal default configuration.
 
 ---
 
@@ -97,26 +74,40 @@ If Kong stopped successfully, you should see a successful message (`[OK] Stopped
 Gracefully stops a Kong instance by firing the NGINX `quit` signal.
 
 ```bash
-$ kong quit
-```
-
-For the same reasons as `stop`, it also accepts a configuration option:
-
-```bash
-$ kong quit -c <path_to_config>
+$ kong quit [parameters]
 ```
 
 > For more informations regarding the NGINX signals, consult their [documentation][nginx-signals].
+
+### Parameters
+
+#### -c \<configuration file path>
+
+Kong Configuration File
+
+Passing the Kong configuration file path *allows the termination of specific instance*, should you not pass the configuration file location, the command will
+default to the configuration at `/etc/kong/kong.yml` or its internal default configuration.
 
 ---
 
 ## restart
 
-This command simply sends NGINX a `stop` signal, followed by a `start` signal. If Kong was not running prior to the command, it will simply start it:
+This command sends NGINX a `stop` signal, followed by a `start` signal. If Kong was not running prior to the command, it will attempt to start it:
 
 ```bash
-$ kong restart [-c path_to_config]
+$ kong restart [parameters]
 ```
+
+### Parameters
+
+#### -c \<configuration file path>
+
+Kong Configuration File
+
+When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
+Should no configuration file exist at that location Kong will load the default configuration stored internally.
+
+This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
 
 ---
 
@@ -125,8 +116,14 @@ $ kong restart [-c path_to_config]
 Reloads the NGINX configuration at runtime and avoids potential downtime by leveraging the NGINX [reload](http://wiki.nginx.org/CommandLine#Loading_a_New_Configuration_Using_Signals) signal.
 
 ```bash
-$ kong reload [-c path_to_config]
+$ kong reload [parameters]
 ```
+
+### Parameters
+
+#### -c \<configuration file path>
+
+Kong Configuration File
 
 [configuration-guide]: /docs/{{page.kong_version}}/configuration
 [nginx-signals]: http://nginx.org/en/docs/control.html

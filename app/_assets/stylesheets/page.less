@@ -161,19 +161,19 @@
     font-weight: 500;
   }
 
+  p {
+    line-height: 25px;
+    font-size: 14px;
+  }
+
   h1, h2, h3, h4 {
     margin-bottom: 1em;
     font-weight: 600;
   }
 
-  h3, h2 {
+  h2, h3 {
     font-weight: 600;
     color: #262e33;
-  }
-
-  p {
-    line-height: 25px;
-    font-size: 14px;
   }
 
   h1 {
@@ -307,6 +307,20 @@
 
       &:first-child {
         text-align: right;
+        white-space: nowrap;
+
+        code {
+          padding: 3px 9px;
+        }
+
+        br {
+          & + em,
+          & + strong,
+          & + b {
+            display: inline-block;
+            margin-top: 3px;
+          }
+        }
       }
     }
   }

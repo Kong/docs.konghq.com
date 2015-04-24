@@ -8,7 +8,7 @@ Kong is a scalable, open source **API Layer** *(also known as a API Gateway, or 
 
 * **Scalable**: Kong easily scales horizontally by simply adding more machines, meaning your platform can handle virtually any load while keeping latency low.
 
-* **Modular**: Kong can be extended by adding new plugins, which are easily configured through an internal RESTful API.
+* **Modular**: Kong can be extended by adding new plugins, which are easily configured through an admin RESTful API.
 
 * **Runs on any infrastructure**: Kong runs anywhere. You can deploy Kong in the cloud or on-premise environments, including single or multi-datacenter setups and for public, private or invite-only APIs.
 

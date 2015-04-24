@@ -1,36 +1,23 @@
-### OS X
+### Homebrew
 
-1. Install dependencies:
+Kong is available as a Homebrew recipe on GitHub: [Mashape/homebrew-kong](https://github.com/Mashape/homebrew-kong).
 
-    Install [Lua v5.1.5](http://www.lua.org/versions.html#5.1)
-
-    ```
-    brew install lua51
-    ln /usr/local/bin/lua5.1 /usr/local/bin/lua # alias lua5.1 to lua (required for kong scripts)
-    ```
-
-    Install [Luarocks v2.2.1](http://luarocks.org)
-
-   ```
-    brew tap naartjie/luajit
-    brew install naartjie/luajit/luarocks-luajit --with-lua51
-   ```
-
-    Install [OpenResty v1.7.10.1](http://openresty.com/)
-
-    ```
-    brew tap killercup/openresty
-    brew install ngx_openresty
-    ln /usr/local/bin/openresty /usr/local/bin/nginx # alias openresty to nginx (required for kong scripts)
-    ```
-
-2. Install Kong:
+1. **Installation**
 
     ```bash
-    luarocks install kong {{site.data.kong_latest}}
+    brew tap mashape/kong
+    brew install kong
     ```
 
-3. Start Kong:
+    **(Optional)** If you want to use a local Cassandra cluster, this tap can also install the homebrew/cassandra formula if you run it with:
+
+    ```bash
+    brew tap mashape/kong
+    brew update # for the cassandra formula
+    brew install kong --with-cassandra
+    ```
+
+2. **Start Kong:**
 
     Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/getting-started/configuration/) points to the right Cassandra server. Then execute:
 
@@ -45,7 +32,7 @@
     # to start cassandra, just run `cassandra`
     ```
 
-4. Kong is running:
+3. **Kong is running:**
 
     ```bash
     curl http://127.0.0.1:8001
