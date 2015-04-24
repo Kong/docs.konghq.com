@@ -63,7 +63,8 @@ $(function () {
 
     analytics.identify(email, {
       email: email,
-      environment: 'kong'
+      environment: 'kong',
+      newsletter_updates: true
     }, function () {
       $form.fadeOut(300, function () {
         $('.success-message').fadeIn(300);
