@@ -4,7 +4,7 @@ title: What are plugins?
 
 # What are plugins?
 
-Plugins are one of the most important features of Kong. All the functionalities provided by Kong are done so by easy to use **plugins**. Authentication, rate-limiting, logging and many more. Plugins can be installed and configured through Kong's REStful internal API.
+Plugins are one of the most important features of Kong. All the functionalities provided by Kong are done so by easy to use **plugins**. Authentication, rate-limiting, logging and many more. Plugins can be installed and configured through Kong's REStful admin API.
 
 Feel free to explore available plugins by browsing the [Plugin Gallery](/plugins).
 
