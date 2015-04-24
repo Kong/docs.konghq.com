@@ -10,7 +10,7 @@ layout: default
         <h2>Kong Enterprise</h2>
         <p>Multi-datacenter deployments, third-party<br>integrations, Professional Support and more.</p>
         <p>
-          <a href="/download" class="button button-primary button-large" >Contact Sales</a>
+          <a href="mailto:sales@mashape.com" class="button button-primary button-large" >Contact Sales</a>
         </p>
       </div>
       <div class="one-half column">
@@ -86,5 +86,32 @@ layout: default
       <h2>Request a Demo</h2>
       <p>Coming soon...</p>
     </header>
+
+    <form class="demo-request-form">
+      <label for="company-name">Company Name</label>
+      <input id="company-name" name="company_name" type="email" placeholder="Mashape Inc">
+      <label for="full-name">Full Name</label>
+      <input id="full-name" name="full_name" type="text" placeholder="Jason Businessman">
+      <label for="work-email">Work Email</label>
+      <input id="work-email" name="work_email" type="text" placeholder="jason@mashape.com" required>
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="text" placeholder="415 000 0000">
+      <div class="choose-deploy-type row">
+        <label class="one-half column">
+          <input type="radio" name="deployment" value="on-pre"/>
+          On-Pre Deployment
+        </label>
+        <label class="one-half column">
+          <input type="radio" name="deployment" value="aws"/>
+          AWS Deployment
+        </label>
+      </div>
+
+      <button type="submit" class="button button-primary button-large u-full-width">Send Request</button>
+
+      <figure>
+        <img src="/assets/images/enterprise/enterprise-footer.svg" width="440" height="81" alt="Enterprise"/>
+      </figure>
+    </form>
   </div>
 </section>
