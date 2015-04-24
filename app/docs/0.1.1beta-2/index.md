@@ -1,5 +1,5 @@
 ---
-title: Documentation
+title: Documentation for Kong
 permalink: /docs/
 ---
 

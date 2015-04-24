@@ -1,5 +1,5 @@
 # Site settings
-name: Kong by Mashape
+name: Kong - Open-Source API Management Layer
 domain: getkong.org
 url: http://getkong.org
 repo: https://github.com/Mashape/kong

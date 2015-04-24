@@ -1,6 +1,6 @@
 <head>
   <meta charset="utf-8"/>
-  <title>{{ page.title | escape }}{% if page.version %} | Documentation v{{ page.version | escape }}{% endif %} | {{ site.name }}</title>
+  <title>{{ page.title | escape }}{% if page.version %} | Documentation v{{ page.version | escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }}</title>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -10,10 +10,10 @@
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico"/>
   <meta property="fb:admins" content="227304446"/>
   <meta property="fb:admins" content="576641408" />
-  <meta property="og:title" content="Kong by Mashape" />
-  <meta property="og:site_name" content="Kong by Mashape"/>
+  <meta property="og:title" content="Kong - Open-Source API Management Layer" />
+  <meta property="og:site_name" content="Kong - Open-Source API Management Layer"/>
   <meta property="og:url" content="http://getkong.org" />
-  <meta property="og:description" content="Kong is the Next Generation RESTful API Management Platform to secure, manage & extend your APIs or Microservices. Made with Love by Mashape." />
+  <meta property="og:description" content="Secure, Manage & Extend your APIs or Microservices with plugins for authentication, logging, rate-limiting, transformations and more." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="http://getkong.org/share.png" />
