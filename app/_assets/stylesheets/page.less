@@ -131,6 +131,8 @@
 
   @media (max-width: 800px) {
     padding: 0;
+    border-right: none;
+    margin-right: 0;
   }
 }
 
@@ -140,10 +142,6 @@
   font-family: @family-whitney-ss;
   font-weight: 500;
   line-height: 1.5;
-
-  @media (max-width: 800px) {
-    padding: 0;
-  }
 
   .big {
     font-size: 23px;
@@ -427,6 +425,23 @@
       &:before {
         content: "DELETE";
         background-color: #e23b3b;
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    padding-top: 0;
+  }
+
+  @media (max-width: 1200px) {
+    .docs-grid {
+      .docs-grid-block {
+        width: initial;
+
+        &:nth-child(odd),
+        &:nth-child(even) {
+          padding: 0;
+        }
       }
     }
   }
