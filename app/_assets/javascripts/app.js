@@ -53,7 +53,7 @@ $(function () {
     $tabs.find('a[href="' + location.hash + '"]').trigger('click', true);
   }
 
-  // Subscribe form on homepage
+  // Subscribe form
 
   Parse.initialize("ZFqEMoCQSm0K4piYYdstraJDOl0a80tJB7R0tR49", "SdqL88SikiiftwBjEGfRb4SmbghTIycZ2kfy7Jb0");
 
