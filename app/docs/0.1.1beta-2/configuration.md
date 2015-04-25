@@ -16,6 +16,17 @@ Kong is extremely flexible and bends to your needs due to its pluggable architec
 
 This reference describes every property defined in a typical configuration file and their default values. They are all **required**.
 
+**Summary:**
+
+- [**plugins_available**](#plugins_available)
+- [**nginx_working_dir**](#nginx_working_dir)
+- [**proxy_port**](#proxy_port)
+- [**admin_api_port**](#admin_api_port)
+- [**databases_available**](#databases_available)
+- [**database**](#database)
+- [**send_anonymous_reports**](#send_anonymous_reports)
+- [**nginx**](#nginx)
+
 #### `plugins_available`
 
 A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during every request. That is to determine if the plugin needs to be executed for that particular request. Removing plugins you don't use from this list will lighten your Kong instance.
