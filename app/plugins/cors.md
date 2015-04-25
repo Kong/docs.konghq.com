@@ -3,7 +3,7 @@ sitemap: true
 id: page-plugin
 title: Plugins - Cross-origin resource sharing
 header_title: CORS
-header_icon: /assets/images/icons/plugins/key-authentication.png
+header_icon: /assets/images/icons/plugins/cors.png
 header_btn_text: Report Bug
 header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
