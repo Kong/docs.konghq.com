@@ -6,7 +6,7 @@ title: Configuration Reference
 
 Kong is extremely flexible and bends to your needs due to its pluggable architecture. It is also very customizable down to its configuration, allowing it to best fit your needs. From the ports it listens on, the database you want it to use, down to the underlying NGINX configuration, learn how to sharp your instance so it performs best.
 
-### 1. Where to put my configuration file?
+### 1. Where to put your configuration file?
 
 1. When using Kong, you can specify a configuration from any command with the `-c` argument. See the [CLI reference][cli-reference] for more informations.
 2. If no configuration file was manually given to Kong, it will always look for a configuration file located at `/etc/kong/kong.yml`.
