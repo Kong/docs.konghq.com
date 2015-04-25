@@ -9,12 +9,12 @@ Kong is extremely flexible and bends to your needs due to its pluggable architec
 ### 1. Where to put your configuration file?
 
 1. When using Kong, you can specify a configuration from any command with the `-c` argument. See the [CLI reference][cli-reference] for more informations.
-2. If no configuration file was manually given to Kong, it will always look for a configuration file located at `/etc/kong/kong.yml`.
-3. If no configuration file is present there, Kong will load a default configuration from its Luarocks install path.
+2. If no configuration file was manually given to Kong, it will always look for a configuration located at `/etc/kong/kong.yml`.
+3. If no file is present there, Kong will load a default configuration from its Luarocks install path.
 
 ### 2. Properties reference
 
-This reference describes every property defined in `kong.yml` and their default values.
+This reference describes every property defined in a typical configuration file and their default values. They are all **required**.
 
 #### `plugins_available`
 
