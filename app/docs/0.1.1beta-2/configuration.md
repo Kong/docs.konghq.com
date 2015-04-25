@@ -26,6 +26,7 @@ This reference describes every property defined in a typical configuration file 
 - [**databases_available**](#databases_available)
 - [**database**](#database)
 - [**nginx**](#nginx)
+- [**nginx_plus_status**](#nginx_plus_status)
 
 ---
 
@@ -274,5 +275,11 @@ nginx: |
     }
   }
 ```
+
+---
+
+#### `nginx_plus_status`
+
+TODO
 
 [cli-reference]: /docs/{{page.kong_version}}/cli
