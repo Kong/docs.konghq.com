@@ -18,43 +18,14 @@ This reference describes every property defined in a typical configuration file 
 
 **Summary:**
 
-- [**plugins_available**](#plugins_available)
-- [**nginx_working_dir**](#nginx_working_dir)
 - [**proxy_port**](#proxy_port)
 - [**admin_api_port**](#admin_api_port)
+- [**nginx_working_dir**](#nginx_working_dir)
+- [**plugins_available**](#plugins_available)
+- [**send_anonymous_reports**](#send_anonymous_reports)
 - [**databases_available**](#databases_available)
 - [**database**](#database)
-- [**send_anonymous_reports**](#send_anonymous_reports)
 - [**nginx**](#nginx)
-
-#### `plugins_available`
-
-A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during every request. That is to determine if the plugin needs to be executed for that particular request. Removing plugins you don't use from this list will lighten your Kong instance.
-
-**Default:**
-
-```yaml
-plugins_available:
-  - keyauth
-  - basicauth
-  - ratelimiting
-  - tcplog
-  - udplog
-  - filelog
-  - request_transformer
-```
-
----
-
-#### `nginx_working_dir`
-
-Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
-
-**Default:**
-
-```yaml
-nginx_working_dir: /usr/local/kong/
-```
 
 ---
 
@@ -80,6 +51,49 @@ Port on which the [admin RESTful API](/docs/{{page.kong_version}}/admin-api/) wi
 
 ```yaml
 admin_api_port: 8001
+```
+
+---
+
+#### `nginx_working_dir`
+
+Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
+
+**Default:**
+
+```yaml
+nginx_working_dir: /usr/local/kong/
+```
+
+---
+
+#### `plugins_available`
+
+A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during every request. That is to determine if the plugin needs to be executed for that particular request. Removing plugins you don't use from this list will lighten your Kong instance.
+
+**Default:**
+
+```yaml
+plugins_available:
+  - keyauth
+  - basicauth
+  - ratelimiting
+  - tcplog
+  - udplog
+  - filelog
+  - request_transformer
+```
+
+---
+
+#### `send_anonymous_reports`
+
+If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
+
+**Default:**
+
+```yaml
+send_anonymous_reports: true
 ```
 
 ---
@@ -122,18 +136,6 @@ The desired database to use for this Kong instance as a string, matching one of 
 
 ```yaml
 database: cassandra
-```
-
----
-
-#### `send_anonymous_reports`
-
-If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
-
-**Default:**
-
-```yaml
-send_anonymous_reports: true
 ```
 
 ---
