@@ -18,7 +18,7 @@
 
 2. **Start Kong:**
 
-    Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/getting-started/configuration/) points to the right Cassandra server. Then execute:
+    Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/{{site.data.kong_latest}}/configuration) points to the right Cassandra server. Then execute:
 
     ```bash
     kong start

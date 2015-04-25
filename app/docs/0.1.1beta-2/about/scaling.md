@@ -10,7 +10,7 @@ When it comes down to scaling Kong, you need to keep in mind that you will need 
 
 Scaling the Kong Server up or down is actually very easy. Each server is stateless meaning you can add or remove as many nodes under the load balancer as you want.
 
-Be aware that terminating a node might interrupt any ongoing HTTP requests on that server, so you want to make sure that before terminating the node all  HTTP requests have been processed.
+Be aware that terminating a node might interrupt any ongoing HTTP requests on that server, so you want to make sure that before terminating the node all HTTP requests have been processed.
 
 ## Cassandra
 
