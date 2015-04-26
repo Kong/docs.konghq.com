@@ -4,19 +4,22 @@ title: Configuration Reference
 
 # Configuration Reference
 
-Kong is extremely flexible and bends to your needs due to its pluggable architecture. It is also very customizable down to its configuration, allowing it to best fit your needs. From the ports it listens on, the database you want it to use, down to the underlying NGINX configuration, learn how to sharp your instance so it performs best.
+The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you
+to configure and customize Kong to your needs. From the ports it uses, the database it conncts to, and even the internal NGINX server itself.
 
-### 1. Where to put your configuration file?
+## Where should I place my configuration file?
 
-1. When using Kong, you can specify a configuration from any command with the `-c` argument. See the [CLI reference][cli-reference] for more informations.
-2. If no configuration file was manually given to Kong, it will always look for a configuration located at `/etc/kong/kong.yml`.
-3. If no file is present there, Kong will load a default configuration from its Luarocks install path.
+When using Kong, you can specify the location of your configuration file from any command using the `-c` argument. See the [CLI reference][cli-reference] for more information.
 
-### 2. Properties reference
+However, when no configuration file is passed to Kong, it will look under `/etc/kong/kong.yml` for a fallback configuration file. Should no file be present in this location, Kong will then load a default configuration from its Luarocks install path.
 
-This reference describes every property defined in a typical configuration file and their default values. They are all **required**.
+## Property Reference
 
-**Summary:**
+This reference describes every property defined in a typical configuration file and their default values.
+
+They are all **required**.
+
+### Summary
 
 - [**proxy_port**](#proxy_port)
 - [**admin_api_port**](#admin_api_port)
@@ -31,9 +34,9 @@ This reference describes every property defined in a typical configuration file 
 
 ---
 
-#### `proxy_port`
+### `proxy_port`
 
-Port on which Kong will proxy requests. This is the port you want your consumers to make requests on.
+Port which Kong proxies requests through, developers using your API will make requests against this port.
 
 **Default:**
 
@@ -43,11 +46,12 @@ proxy_port: 8000
 
 ---
 
-#### `admin_api_port`
+### `admin_api_port`
 
-Port on which the [admin RESTful API](/docs/{{page.kong_version}}/admin-api/) will listen.
+Port which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) is served through.
 
-**Note:** This port is used to operate Kong, you should keep it private and/or firewalled.
+**Note:** This port is used to manage your Kong instances, therefore it should be placed behind a firewall
+or closed off network to ensure security.
 
 **Default:**
 
@@ -57,7 +61,7 @@ admin_api_port: 8001
 
 ---
 
-#### `nginx_working_dir`
+### `nginx_working_dir`
 
 Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
 
@@ -69,7 +73,9 @@ nginx_working_dir: /usr/local/kong/
 
 ---
 
-#### `plugins_available`
+### `plugins_available`
+
+
 
 A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during every request. That is to determine if the plugin needs to be executed for that particular request. Removing plugins you don't use from this list will lighten your Kong instance.
 
@@ -84,11 +90,12 @@ plugins_available:
   - udplog
   - filelog
   - request_transformer
+  - cors
 ```
 
 ---
 
-#### `send_anonymous_reports`
+### `send_anonymous_reports`
 
 If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
 
@@ -100,15 +107,15 @@ send_anonymous_reports: true
 
 ---
 
-#### `databases_available`
+### `databases_available.*`
 
-A dictionary of databases Kong can connect to. The key is the name of the database, values will be the necessary properties for Kong to connect to it.
+A dictionary of databases Kong can connect to, and their respective properties.
+
+Currently, Kong only supports [Cassandra v2.1.3](http://cassandra.apache.org/) as a database.
 
   **`databases_available.*.properties`**
 
-  A dictionary of properties needed for Kong to connect to a given database.
-
-**Note:** Currently, Kong only supports [Cassandra v2.1.3](http://cassandra.apache.org/).
+  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
 
 **Default:**
 
@@ -125,9 +132,9 @@ databases_available:
 
 ---
 
-#### `database`
+### `database`
 
-The desired database to use for this Kong instance as a string, matching one of the databases listed in `databases_available`.
+The desired database to use for this Kong instance as a string, matching one of the databases defined under [`databases_available`](#databases_available).
 
 **Default:**
 
@@ -137,17 +144,17 @@ database: cassandra
 
 ---
 
-#### `database_cache_expiration`
+### `database_cache_expiration`
 
 A value specifying in seconds how much time Kong will keep a cache of the database entities into memory. For example, setting this to a high value will avoid Kong to make regular queries to the database in order to retrieve a given API's target URL.
 
 ---
 
-#### `nginx`
+### `nginx`
 
-The NGINX configuration (usually known as `nginx.conf`) that will be used for this instance.
+The NGINX configuration (or `nginx.conf`) that will be used for this instance.
 
-**Note:** While it is recommended not to drastically change this configuration to prevent Konf from malfunctioning, you can still edit this configuration to your needs, to a certain extent.
+**Warning:** Modifying the NGINX configuration can lead to unexpected results, edit the configuration only if you are confident about doing so.
 
 **Default:**
 
@@ -280,8 +287,17 @@ nginx: |
 
 ---
 
-#### `nginx_plus_status`
+### `nginx_plus_status`
 
-TODO
+Enables live server activity monitoring of NGINX Plus plugin that provides key load and performance server metrics.
+Please see the [NGINX Plus][nginx-plus] plugin page for more information.
 
+**Default**
+
+```yaml
+nginx_plus_status: false
+```
+
+[nginx-plus]: /plugins/nginx-plus-monitoring/
 [cli-reference]: /docs/{{page.kong_version}}/cli
+[yaml]: http://yaml.org
