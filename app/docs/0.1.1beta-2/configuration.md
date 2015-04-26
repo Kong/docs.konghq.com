@@ -25,6 +25,7 @@ This reference describes every property defined in a typical configuration file 
 - [**send_anonymous_reports**](#send_anonymous_reports)
 - [**databases_available**](#databases_available)
 - [**database**](#database)
+- [**database_cache_expiration**](#database_cache_expiration)
 - [**nginx**](#nginx)
 - [**nginx_plus_status**](#nginx_plus_status)
 
@@ -107,10 +108,6 @@ A dictionary of databases Kong can connect to. The key is the name of the databa
 
   A dictionary of properties needed for Kong to connect to a given database.
 
-  **`databases_available.*.cache_expiration`**
-
-  A value specifying in seconds how much time Kong will keep a cache of the database entities into memory. For example, setting this to a high value will avoid Kong to make regular queries to the database in order to retrieve a given API's target URL.
-
 **Note:** Currently, Kong only supports [Cassandra v2.1.3](http://cassandra.apache.org/).
 
 **Default:**
@@ -124,7 +121,6 @@ databases_available:
       timeout: 1000
       keyspace: kong
       keepalive: 60000
-    cache_expiration: 5
 ```
 
 ---
@@ -138,6 +134,12 @@ The desired database to use for this Kong instance as a string, matching one of 
 ```yaml
 database: cassandra
 ```
+
+---
+
+#### `database_cache_expiration`
+
+A value specifying in seconds how much time Kong will keep a cache of the database entities into memory. For example, setting this to a high value will avoid Kong to make regular queries to the database in order to retrieve a given API's target URL.
 
 ---
 
