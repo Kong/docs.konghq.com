@@ -28,7 +28,7 @@ They are all **required**.
 - [**send_anonymous_reports**](#send_anonymous_reports)
 - [**databases_available**](#databases_available)
 - [**database**](#database)
-- [**database_cache_expiration**](#database_cache_expiration)
+- [**cache.expiration**](#cache.expiration)
 - [**nginx**](#nginx)
 - [**nginx_plus_status**](#nginx_plus_status)
 
