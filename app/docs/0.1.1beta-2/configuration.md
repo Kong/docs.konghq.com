@@ -146,7 +146,8 @@ database: cassandra
 
 ### `cache.expiration`
 
-A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making regular queries to the database in order to retrieve an API's target URL.
+A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making multiple queries to the database in order to retrieve an API's target URL. However, this also means you may be required to wait a while before the
+cached value is flushed and reflects any potential changes made during that time.
 
 **Default:**
 
