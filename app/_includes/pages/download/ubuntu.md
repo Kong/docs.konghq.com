@@ -1,3 +1,5 @@
+{% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
+
 ### Ubuntu 12.04/14.04
 
 1. **Installation:**
@@ -23,7 +25,7 @@
 
 2. **Start Kong:**
 
-    Before starting Kong, make sure [Cassandra v2.1.3](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/{{site.data.kong_latest}}/configuration) points to the right Cassandra server. Then execute:
+    Before starting Kong, make sure [Cassandra v{{cassandra_version}}](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/{{site.data.kong_latest.version}}/configuration) points to the right Cassandra server. Then execute:
 
     ```bash
     kong start

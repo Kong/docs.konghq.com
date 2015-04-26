@@ -10,7 +10,7 @@ module Jekyll
         end
       end
 
-      # Retrieve the latest version and put it in `site.data.kong_latest`
+      # Retrieve the latest version and put it in `site.data.kong_latest.version`
       latest = site.data["kong_versions"].last
       site.data["kong_latest"] = latest
     end

@@ -3,6 +3,8 @@ title: Download
 layout: default
 ---
 
+{% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
+
 <div class="page page-download">
 
   {% include header.html %}
@@ -11,7 +13,7 @@ layout: default
     <div class="container">
       <div class="select-download-method">
         <h2>Select your installation method:</h2>
-        <p>Latest Kong version: {{site.data.kong_latest}} (<a href="{{site.repo}}/blob/{{site.data.kong_latest}}/CHANGELOG.md">see log history</a>). Requires <a href="http://www.apache.org/dyn/closer.cgi?path=/cassandra/2.1.3/apache-cassandra-2.1.3-bin.tar.gz">Apache Cassandra 2.1.3</a>.</p>
+        <p>Latest Kong version: {{site.data.kong_latest.version}} (<a href="{{site.repo}}/blob/{{site.data.kong_latest.version}}/CHANGELOG.md">see log history</a>). Requires <a href="http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz">Apache Cassandra {{cassandra_version}}</a>.</p>
       </div>
 
       <div class="tab-list-wrap">
