@@ -144,9 +144,16 @@ database: cassandra
 
 ---
 
-### `database_cache_expiration`
+### `cache.expiration`
 
-A value specifying in seconds how much time Kong will keep a cache of the database entities into memory. For example, setting this to a high value will avoid Kong to make regular queries to the database in order to retrieve a given API's target URL.
+A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making regular queries to the database in order to retrieve an API's target URL.
+
+**Default:**
+
+```yaml
+cache:
+  expiration: 5 # in seconds
+```
 
 ---
 
