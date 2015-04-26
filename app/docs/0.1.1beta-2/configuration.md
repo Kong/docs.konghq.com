@@ -77,7 +77,7 @@ nginx_working_dir: /usr/local/kong/
 
 
 
-A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during every request. That is to determine if the plugin needs to be executed for that particular request. Removing plugins you don't use from this list will lighten your Kong instance.
+A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
 
 **Default:**
 
