@@ -111,7 +111,7 @@ send_anonymous_reports: true
 
 A dictionary of databases Kong can connect to, and their respective properties.
 
-Currently, Kong only supports [Cassandra v2.1.3](http://cassandra.apache.org/) as a database.
+Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
 
   **`databases_available.*.properties`**
 
