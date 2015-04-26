@@ -28,7 +28,7 @@ They are all **required**.
 - [**send_anonymous_reports**](#send_anonymous_reports)
 - [**databases_available**](#databases_available)
 - [**database**](#database)
-- [**cache.expiration**](#cache.expiration)
+- [**database_cache_expiration**](#database_cache_expiration)
 - [**nginx**](#nginx)
 - [**nginx_plus_status**](#nginx_plus_status)
 
@@ -144,7 +144,7 @@ database: cassandra
 
 ---
 
-### `cache.expiration`
+### `database_cache_expiration`
 
 A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making multiple queries to the database in order to retrieve an API's target URL. However, this also means you may be required to wait a while before the
 cached value is flushed and reflects any potential changes made during that time.
@@ -152,8 +152,7 @@ cached value is flushed and reflects any potential changes made during that time
 **Default:**
 
 ```yaml
-cache:
-  expiration: 5 # in seconds
+database_cache_expiration: 5 # in seconds
 ```
 
 ---
