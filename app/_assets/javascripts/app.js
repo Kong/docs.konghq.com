@@ -60,12 +60,7 @@ $(function () {
 
     var $form = $(this);
     var email = $form.find('[name="email"]').val();
-    var submitTime = new Date().getTime();
-
-    analytics.track('request_newsletter_updates', {
-      email: email,
-      request_date: submitTime
-    });
+    var submitTime = new Date().toString();
 
     analytics.identify(email, {
       email: email,
@@ -75,6 +70,11 @@ $(function () {
     }, function () {
       $form.fadeOut(300, function () {
         $('.success-message').fadeIn(300);
+      });
+
+      analytics.track('request_newsletter_updates', {
+        email: email,
+        request_date: submitTime
       });
     });
   });
@@ -86,17 +86,13 @@ $(function () {
 
     var $form = $(this);
     var data = $form.serializeArray();
-    var submitTime = new Date().getTime();
+    var submitTime = new Date().toString();
 
     var payload = {};
 
     for (var i = 0; i < data.length; i++) {
       payload[data[i].name] = data[i].value;
     }
-
-    analytics.track('request_enterprise_demo', $.extend({
-      request_date: submitTime
-    }, payload));
 
     analytics.identify(payload.email, $.extend({
       environment: 'kong',
@@ -106,6 +102,10 @@ $(function () {
       $form.fadeOut(300, function () {
         $('.success-message').fadeIn(300);
       });
+
+      analytics.track('request_enterprise_demo', $.extend({
+        request_date: submitTime
+      }, payload));
     });
   });
 
