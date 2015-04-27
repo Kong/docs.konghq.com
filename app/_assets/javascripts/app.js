@@ -8,7 +8,7 @@ $(function () {
     e.preventDefault();
 
     $('html, body').animate({
-      scrollTop: $($(this).attr('href')).offset().top
+      scrollTop: $($(this).attr('href')).offset().top - 70 // Header height
     }, 700);
   });
 
