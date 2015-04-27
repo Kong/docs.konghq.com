@@ -35,7 +35,7 @@ header_caption: Learn how Kong empowers your APIs
     <nav>
       <h5>Configuration</h5>
       <ul>
-        <li><a href="/docs/{{page.kong_version}}/configuration">Configuration reference</a></li>
+        <li><a href="/docs/{{page.kong_version}}/configuration"{% if page.url contains "/configuration/" %} class="active"{% endif %}>Configuration reference</a></li>
       </ul>
     </nav>
 
@@ -43,7 +43,7 @@ header_caption: Learn how Kong empowers your APIs
       <h5>CLI Reference</h5>
       <ul>
         <li>
-          <a href="/docs/{{page.kong_version}}/cli">Commands</a>
+          <a href="/docs/{{page.kong_version}}/cli"{% if page.url contains "/cli/" %} class="active"{% endif %}>Commands</a>
           <ul>
             <li><a href="/docs/{{page.kong_version}}/cli#start">Start</a></li>
             <li><a href="/docs/{{page.kong_version}}/cli#stop">Stop</a></li>
