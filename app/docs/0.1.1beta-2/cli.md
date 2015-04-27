@@ -8,7 +8,7 @@ Kong comes with a ***CLI*** *(Command Line Interface)* which provides you with a
 
 Almost every command requires access to your configuration file in order to be aware of where the NGINX working directory is located (known as the *prefix path* for those familiar with NGINX) referenced as `nginx_working_dir` in the Kong configuration file.
 
-**Note:** If you haven't already, we recommend you read the [configuration guide][configuration-guide].
+**Note:** If you haven't already, we recommend you read the [configuration reference][configuration-reference].
 
 ---
 
@@ -125,5 +125,5 @@ $ kong reload [parameters]
 
 Kong Configuration File
 
-[configuration-guide]: /docs/{{page.kong_version}}/configuration
+[configuration-reference]: /docs/{{page.kong_version}}/configuration
 [nginx-signals]: http://nginx.org/en/docs/control.html
