@@ -9,7 +9,7 @@
 2. **Start Kong:**
 
     ```bash
-    docker run -p 8000:8000 -p 8001:8001 -d --name kong --link cassandra:cassandra mashape/docker-kong:{{site.data.kong_latest}}
+    docker run -p 8000:8000 -p 8001:8001 -d --name kong --link cassandra:cassandra mashape/docker-kong:{{site.data.kong_latest.version}}
     ```
 
 3. **Kong is running:**

@@ -1,1 +1,7 @@
-- 0.1.1beta-2
+-
+  version: 0.1.1beta-2
+  dependencies:
+    lua: 5.1.5
+    luarocks: 2.2.0
+    cassandra: 2.1.2
+    openresty: 1.7.10.2

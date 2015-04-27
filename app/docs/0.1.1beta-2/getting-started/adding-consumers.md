@@ -76,12 +76,12 @@ Now that we've covered the basics of creating consumers, enabling plugins, and a
 
 [mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli
-[API]: /docs/{{page.kong_version}}/internal-api
-[API-consumers]: /docs/{{page.kong_version}}/internal-api#create-consumer
+[API]: /docs/{{page.kong_version}}/admin-api
+[API-consumers]: /docs/{{page.kong_version}}/admin-api#create-consumer
 [keyauth]: /plugins/keyauth
 [install]: /download
 [plugins]: /plugins
-[configuration]: /download
+[configuration]: /docs/{{page.kong_version}}/configuration
 [migrations]: /docs/{{page.kong_version}}/migrations
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
