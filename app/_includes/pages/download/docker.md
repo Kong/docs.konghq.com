@@ -17,3 +17,7 @@
     ```bash
     curl http://127.0.0.1:8001
     ```
+
+4. **Getting Started**
+
+    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.version}}/quickstart).
