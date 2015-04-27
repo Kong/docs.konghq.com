@@ -7,15 +7,15 @@ permalink: /docs/
 
 <div class="docs-grid">
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-quickstart.svg" /><a href="/docs/{{page.kong_version}}/getting-started/quickstart">5-minute Quickstart</a></h3>
-    <p>Learn how to start Kong, add your API, enable plugins, and add consumers in under thirty seconds.</p>
-    <a href="/docs/{{page.kong_version}}/getting-started/quickstart">Start using Kong &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/download">Installation</a></h3>
     <p>You can install Kong on most Linux distributions and OS X. We even provide the source so you can compile yourself.</p>
     <a href="/download">Install Kong &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-quickstart.svg" /><a href="/docs/{{page.kong_version}}/getting-started/quickstart">5-minute Quickstart</a></h3>
+    <p>Learn how to start Kong, add your API, enable plugins, and add consumers in under thirty seconds.</p>
+    <a href="/docs/{{page.kong_version}}/getting-started/quickstart">Start using Kong &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
