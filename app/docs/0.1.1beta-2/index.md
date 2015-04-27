@@ -53,4 +53,4 @@ The gitter chatroom is a great place for developers interested in everyday discu
 
 #### GitHub Issues
 
-If you've come across what you think is a bug, or just want to make a feature request open a ticket in the [issue queue](https://github.com/Mashape/kong/issues).
+If you've come across what you think is a bug, or just want to make a feature request open a ticket in the [issue queue]({{site.repo}}/issues).
