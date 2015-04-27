@@ -11,7 +11,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Log request and response data to the Kong Log File
+Log request and response data to the Kong Log File, by default located at `KONG_WORK_DIR/logs/error.log` like (`/usr/local/kong/logs/error.log`).
 
 ---
 
