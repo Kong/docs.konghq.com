@@ -60,11 +60,18 @@ $(function () {
 
     var $form = $(this);
     var email = $form.find('[name="email"]').val();
+    var submitTime = new Date().getTime();
+
+    analytics.track('request_newsletter_updates', {
+      email: email,
+      request_date: submitTime
+    });
 
     analytics.identify(email, {
       email: email,
       environment: 'kong',
-      newsletter_updates: true
+      newsletter_updates: true,
+      created_at: submitTime
     }, function () {
       $form.fadeOut(300, function () {
         $('.success-message').fadeIn(300);
@@ -79,6 +86,7 @@ $(function () {
 
     var $form = $(this);
     var data = $form.serializeArray();
+    var submitTime = new Date().getTime();
 
     var payload = {};
 
@@ -86,9 +94,14 @@ $(function () {
       payload[data[i].name] = data[i].value;
     }
 
+    analytics.track('request_enterprise_demo', $.extend({
+      request_date: submitTime
+    }, payload));
+
     analytics.identify(payload.email, $.extend({
       environment: 'kong',
-      enterprise: true
+      enterprise: true,
+      created_at: submitTime
     }, payload), function () {
       $form.fadeOut(300, function () {
         $('.success-message').fadeIn(300);
