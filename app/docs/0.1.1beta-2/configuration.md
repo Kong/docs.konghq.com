@@ -292,19 +292,5 @@ nginx: |
   }
 ```
 
----
-
-### `nginx_plus_status`
-
-Enables live server activity monitoring of NGINX Plus plugin that provides key load and performance server metrics.
-Please see the [NGINX Plus][nginx-plus] plugin page for more information.
-
-**Default**
-
-```yaml
-nginx_plus_status: false
-```
-
-[nginx-plus]: /plugins/nginx-plus-monitoring/
 [cli-reference]: /docs/{{page.kong_version}}/cli
 [yaml]: http://yaml.org

@@ -1,18 +1,33 @@
-<footer class="mashape-footer mashape-footer-theme-light">
-  <div class="mashape-footer-bar">
-    <div class="container">
-      <ul class="mashape-footer-social">
-        <li><a href="https://plus.google.com/+Mashape" class="mf-ico-google">Google+</a></li>
-        <li><a href="https://www.facebook.com/Mashape" class="mf-ico-facebook">Facebook</a></li>
-        <li><a href="https://twitter.com/mashape" class="mf-ico-twitter">Twitter</a></li>
-        <li><a href="https://github.com/mashape" class="mf-ico-github">GitHub</a></li>
-      </ul>
+<footer class="footer">
+  {% if page.hide_subscribe == null %}
+    {% include subscribe.html %}
+  {% endif %}
 
-      <span>&copy; <strong>2015</strong>, <a href="https://mashape.com">Mashape</a></span>
-      <span class="mashape-footer-separator"></span>
-      <a href="/license">License</a>
-      <a href="/terms">Terms</a>
-      <a href="/privacy">Privacy</a>
+  <div class="footer-bar">
+    <div class="container">
+      <ul class="footer-social">
+        <li>
+          <a class="github-button" href="https://github.com/mashape/kong" data-icon="octicon-star" data-count-href="/mashape/kong/stargazers" data-count-api="/repos/mashape/kong#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mashape/kong on GitHub">Star</a>
+        </li>
+        <li>
+          <a class="github-button" href="https://github.com/mashape/kong/fork" data-icon="octicon-git-branch" data-count-href="/mashape/kong/network" data-count-api="/repos/mashape/kong#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork mashape/kong on GitHub">Fork</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        </li>
+      </ul>
+    <span>
+      <a href="https://mashape.com">
+        <img src="/assets/images/branding-footer.svg" alt="Mashape" width="22" height="26"/>
+        &copy; <strong>2015 Mashape Inc</strong>
+      </a>
+    </span>
+      <span class="footer-separator"></span>
+      <span class="footer-nav">
+        <a href="/license">License</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+      </span>
     </div>
   </div>
 </footer>

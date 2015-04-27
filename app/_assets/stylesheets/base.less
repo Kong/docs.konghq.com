@@ -8,17 +8,26 @@ html {
 
 body {
   font-family: @family-whitney-ss, @family-default;
+  font-size: 14px;
   color: @font-color;
-  margin-bottom: 44px;
+  margin-bottom: 208px;
   -webkit-font-smoothing: antialiased;
-
-  @media (max-width: 800px) {
-    padding-top: 52px;
-  }
 
   .container {
     max-width: 1020px;
   }
+
+  @media (min-width: 800px) {
+    padding-top: 69px;
+  }
+
+  @media (max-width: 650px) {
+    margin-bottom: 264px;
+  }
+}
+
+.no-subscribe-section {
+  margin-bottom: 51px;
 }
 
 .button.button-primary,
@@ -56,7 +65,7 @@ input[type="button"] {
   font-weight: 600;
   text-transform: none;
   font-size: 13px;
-  color: @green;
+  color: @blue;
   border-color: #bae2cc;
   height: 36px;
   line-height: 35px;
@@ -66,8 +75,8 @@ input[type="button"] {
   &:hover,
   &:active,
   &:focus {
-    color: @green;
-    border-color: #7bcd9f;
+    color: @blue;
+    border-color: lighten(@blue, 40%);
   }
 
   &:hover {
@@ -92,11 +101,21 @@ select {
   border-radius: 3px;
   border-color: #ced2d6;
   box-shadow: inset 1px 2px 0 0 rgba(242, 242, 242, .5);
-  height: 44px;
+  height: 36px;
+  font-size: 13px;
 
   &:focus {
-    border: 1px solid @green;
+    border: 1px solid lighten(@blue, 30%);
     outline: 0;
+  }
+}
+
+.column,
+.columns {
+  margin-bottom: 3rem;
+
+  @media (min-width: 550px) {
+    margin-bottom: 0;
   }
 }
 
@@ -104,6 +123,20 @@ select {
   font-size: 16px;
   line-height: 42px;
   height: 44px;
+}
+
+.button-dark {
+  background: @navy-dark;
+  border-color: @navy-dark;
+  color: #fff;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #fff;
+    border-color: lighten(@navy-dark, 5%);
+    background: lighten(@navy-dark, 5%);
+  }
 }
 
 strong {
@@ -122,11 +155,11 @@ code {
 }
 
 a {
-  color: @green;
+  color: @blue;
   text-decoration: none;
 
   &:hover {
-    color: @green - 30%;
+    color: @blue - 30%;
   }
 }
 
@@ -144,7 +177,7 @@ h1 {
 
 h2 {
   font-size: 33px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 h3 {
@@ -189,7 +222,7 @@ nav {
   }
 
   a {
-    color: @light-gray;
+    color: @gray-dark;
     text-decoration: none;
     display: block;
     font-weight: 500;
@@ -202,7 +235,7 @@ nav {
 
     &:active,
     &.active {
-      color: #0e9245;
+      color: @blue;
     }
   }
 }

@@ -1,11 +1,12 @@
 ---
-title: Plugins
+title: Plugins for Kong
 layout: default
 header_title: Plugins
 header_icon: /assets/images/icons/icn-plugins.svg
 header_caption: Add powerful functionalities to your APIs
 header_btn_text: Suggest Plugin
-header_btn_href: mailto:support@mashape.com?subject=Plugin Request
+header_btn_href: https://github.com/Mashape/kong/issues/new
+header_btn_target: _blank
 ---
 
 <div class="page page-plugins">
@@ -14,7 +15,7 @@ header_btn_href: mailto:support@mashape.com?subject=Plugin Request
   <div class="container">
     <div class="plugins-list">
       <div class="page-plugins-title">
-        <h2>Authentication</h2>
+        <h2>Security</h2>
 
         <p>Protect your APIs and authenticate developers with the following authentication schemes</p>
       </div>
@@ -146,21 +147,35 @@ header_btn_href: mailto:support@mashape.com?subject=Plugin Request
 
         <div class="plugin-plate">
           <div class="plugin-plate-header">
-            <h3>NGINX Plus Activity Monitoring</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/nginx-plus-monitoring.png" width="60" height="60" alt="NGINX Plus Monitoring"/>
+            <h3>CORS</h3>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/cors.png" width="60" height="60" alt="CORS"/>
           </div>
           <div class="plugin-plate-content">
-            <p>Live Activity Monitoring of NGINX Plus</p>
-            <a class="plugin-plate-link" href="/plugins/nginx-plus-monitoring"></a>
+            <p>Allow developers to make requests from the browser.</p>
+
+            <a class="plugin-plate-link" href="/plugins/cors"></a>
           </div>
         </div>
       </div>
 
+      <div class="page-plugins-title">
+        <h2>NGINX Inc.</h2>
+
+        <p>Third party plugins from NGINX, Inc.</p>
+      </div>
+
+      <div class="plugins-container">
+        <div class="plugin-plate">
+          <div class="plugin-plate-header">
+            <h3>NGINX Plus Live Monitoring</h3>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/nginx-plus-monitoring.png" width="60" height="60" alt="NGINX Plus Monitoring"/>
+          </div>
+          <div class="plugin-plate-content">
+            <p>Live Monitoring of NGINX Plus</p>
+            <a class="plugin-plate-link" href="/plugins/nginx-plus-monitoring"></a>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-
-  {% if show_faq %}
-    {% include faq.html %}
-  {% endif %}
 </div>

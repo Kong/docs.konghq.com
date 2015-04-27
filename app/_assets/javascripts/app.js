@@ -4,6 +4,14 @@ $(function () {
     $navbar.slideToggle(150);
   });
 
+  $('.scroll-to').on('click', function (e) {
+    e.preventDefault();
+
+    $('html, body').animate({
+      scrollTop: $($(this).attr('href')).offset().top
+    }, 700);
+  });
+
   // Page section on contribute page
 
   $('.toggle-page-section').on('click', function (e) {
@@ -45,43 +53,64 @@ $(function () {
     $tabs.find('a[href="' + location.hash + '"]').trigger('click', true);
   }
 
-  // Form on downloads page
-
-  Parse.initialize("ZFqEMoCQSm0K4piYYdstraJDOl0a80tJB7R0tR49", "SdqL88SikiiftwBjEGfRb4SmbghTIycZ2kfy7Jb0");
+  // Subscribe form
 
   $('.subscribe-form').on('submit', function (e) {
     e.preventDefault();
 
     var $form = $(this);
+    var email = $form.find('[name="email"]').val();
+    var submitTime = new Date().getTime();
+
+    analytics.track('request_newsletter_updates', {
+      email: email,
+      request_date: submitTime
+    });
+
+    analytics.identify(email, {
+      email: email,
+      environment: 'kong',
+      newsletter_updates: true,
+      created_at: submitTime
+    }, function () {
+      $form.fadeOut(300, function () {
+        $('.success-message').fadeIn(300);
+      });
+    });
+  });
+
+  // Enterprise page demo request form
+
+  $('.demo-request-form').on('submit', function (e) {
+    e.preventDefault();
+
+    var $form = $(this);
     var data = $form.serializeArray();
-    var Subscription = Parse.Object.extend('Subscription');
-    var subscription = new Subscription();
+    var submitTime = new Date().getTime();
+
     var payload = {};
 
     for (var i = 0; i < data.length; i++) {
       payload[data[i].name] = data[i].value;
     }
 
-    analytics.identify($.extend({
-      environment: 'kong',
-      userId: payload.email
+    analytics.track('request_enterprise_demo', $.extend({
+      request_date: submitTime
     }, payload));
 
-    subscription.save(payload, {
-      success: function () {
-        $form.fadeOut(300, function () {
-          $('.success-message').fadeIn(300);
-        });
-      },
-      error: function () {
-        $form.fadeOut(300, function () {
-          $('.error-message').fadeIn(300);
-        });
-      }
+    analytics.identify(payload.email, $.extend({
+      environment: 'kong',
+      enterprise: true,
+      created_at: submitTime
+    }, payload), function () {
+      $form.fadeOut(300, function () {
+        $('.success-message').fadeIn(300);
+      });
     });
   });
 
   // Analytics
+
   $('[href^="/download"]').each(function () {
     var $link = $(this);
 
@@ -91,4 +120,8 @@ $(function () {
       type: $link.hasClass('button') ? 'button' : 'link'
     });
   });
+
+  analytics.track(
+      'Viewed ' + $.trim(document.title.split('|').shift()) + ' page'
+  );
 });

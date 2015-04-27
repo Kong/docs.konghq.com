@@ -1,30 +1,34 @@
 .navbar {
   &:extend(.u-cf, .u-full-width);
-  background-color: #fff;
-  border-bottom: 1px solid #ebebeb;
-  min-height: 51px;
+  background-color: @navy-darker;
+  min-height: 70px;
+  z-index: 1;
+  position: relative;
+  box-shadow: 0 1px rgba(255, 255, 255, 0.1);
 
-  @media (max-width: 800px) {
-    position: fixed;
+  @media (min-width: 800px) {
     top: 0;
     left: 0;
-    width: 100%;
-    z-index: 99;
+    position: fixed;
   }
 
   .navbar-toggle {
     display: none;
     padding: 9px 10px;
     float: right;
-    margin-top: 7px;
-    cursor: pointer;
+    margin-top: 16px;
+    border: 0 none;
 
-    @media (max-width: 800px) {
+    &:active {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    @media (max-width: 970px) {
       display: block;
     }
 
     .icon-bar {
-      background-color: @green;
+      background-color: #446f83;
       display: block;
       width: 22px;
       height: 2px;
@@ -38,51 +42,61 @@
 }
 
 .navbar-nav {
-  margin: 0 -12px;
   float: right;
+
+  ul {
+    &:extend(.u-cf, .u-full-width);
+    margin: 0;
+  }
 
   li {
     margin: 0;
+    padding: 19px 14px;
     list-style: none;
     float: left;
+    line-height: 30px;
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 
   a {
-    padding: 15px 12px;
-    line-height: 22px;
+    font-family: @family-whitney-ss-sc;
+    text-transform: lowercase;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(255, 255, 255, .8);
+
+    &:hover {
+      color: #fff;
+    }
+
+    &:active,
+    &.active {
+      color: rgba(255, 255, 255, .4);
+      cursor: default;
+    }
   }
 
   .button {
-    &:extend(.button);
-    height: 32px;
-    line-height: 30px;
-    font-weight: 500;
+    height: 30px;
+    line-height: 26px;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 970px) {
     display: none;
     float: none;
     clear: both;
 
     li {
       float: none;
-
-      + li {
-        border-top: 1px solid #ebebeb;
-      }
-    }
-
-    a, .button {
-      font-size: 15px;
+      box-shadow: 0 1px rgba(255, 255, 255, 0.1);
     }
   }
 }
 
-.navbar-form {
-  margin: 10px 12px;
-}
-
 .navbar-brand {
-  padding-top: 14px;
+  padding-top: 19px;
   float: left;
 }

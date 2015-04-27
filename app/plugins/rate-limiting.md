@@ -5,7 +5,8 @@ title: Plugins - Rate Limiting
 header_title: Rate Limiting
 header_icon: /assets/images/icons/plugins/rate-limiting.png
 header_btn_text: Report Bug
-header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
+header_btn_href: https://github.com/Mashape/kong/issues/new
+header_btn_target: _blank
 breadcrumbs:
   Plugins: /plugins
 ---

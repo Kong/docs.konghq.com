@@ -6,7 +6,7 @@ title: Admin API
 
 Kong comes with an **internal** RESTful API for administration purposes. API commands can be run on any node in the cluster, and Kong will keep the configuration consistent across all nodes.
 
-- The admin API listens on port `8001`.
+- The RESTful Admin API listens on port `8001`.
 
 ---
 
@@ -356,9 +356,9 @@ HTTP 204 NO CONTENT
 
 ## Plugin Configuration Object
 
-The Plugin Configuration object represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to an API that runs behind Kong, like Authentication or Rate Limiting. You can learn how to install a plugin by visiting the [Plugin Gallery](/plugins)
+The Plugin Configuration object represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](/plugins).
 
-When installing a Plugin Configuration on top of an API, every request made by any application will be ruled by the plugin configuration you setup. Sometimes the Plugin Configuration needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
+When creating a Plugin Configuration on top of an API, every request made by a client will be evaluated by the plugin configuration you setup. Sometimes the Plugin Configuration needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
 
 ```json
 {
