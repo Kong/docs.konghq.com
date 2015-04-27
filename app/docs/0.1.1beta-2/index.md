@@ -29,10 +29,4 @@ permalink: /docs/
     <p>Ready to learn the underlying interface? Browse the API reference to learn how to start making requests.</p>
     <a href="/docs/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
   </div>
-
-  <div class="docs-grid-block">
-    <h2>Plugin reference</h2>
-    <p>Wonder what plugins are and how to make your own? Read the details and get started today.</p>
-    <strong>Coming Soon...</strong>
-  </div>
 </div>
