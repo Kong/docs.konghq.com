@@ -30,7 +30,6 @@ They are all **required**.
 - [**database**](#database)
 - [**database_cache_expiration**](#database_cache_expiration)
 - [**nginx**](#nginx)
-- [**nginx_plus_status**](#nginx_plus_status)
 
 ---
 
