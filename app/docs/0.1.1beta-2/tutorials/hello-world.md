@@ -13,7 +13,7 @@ $ curl -i -X POST \
 HTTP/1.1 201 Created
 ```
 
-We used the `8001` port, the administration API of Kong.
+We used the `8001` port, which the RESTful Admin API of Kong listens on.
 
 We can now make our first HTTP requests through Kong by using the `8000` port, which is the port that API consumers will use to consume any API behind Kong:
 

@@ -22,6 +22,6 @@ The Kong Server, built on top of **NGINX**, is the server that will actually pro
 The Proxy Server listens on two ports, that by default are:
 
 * Port `8000`, that will be used to process the API requests.
-* Port `8001`, called **admin API port**, provides the Kong's admin RESTful API that you can use to operate Kong, and should be private and firewalled.
+* Port `8001`, called **Admin API port**, provides the Kong's RESTful Admin API that you can use to operate Kong, and should be private and firewalled.
 
 You can use the **admin port** to configure Kong, create new users, installing or removing plugins, and a handful of other operations. Since you will be using a RESTful API to operate Kong, it is also extremely easy to integrate Kong with existing systems.

@@ -20,8 +20,14 @@ permalink: /docs/
 
   <div class="docs-grid-block">
     <h2><a href="/docs/{{page.kong_version}}/cli">CLI reference</a></h2>
-    <p>Want a better understanding of the CLI tool? Browse the detailed command reference.</p>
+    <p>Want a better understanding of the CLI tool and its options? Browse the detailed command reference.</p>
     <a href="/docs/{{page.kong_version}}/cli">Use the CLI &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
+    <h2><a href="/docs/{{page.kong_version}}/configuration">Configuration</a></h2>
+    <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
+    <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

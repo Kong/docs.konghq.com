@@ -6,7 +6,7 @@ title: Admin API
 
 Kong comes with an **internal** RESTful API for administration purposes. API commands can be run on any node in the cluster, and Kong will keep the configuration consistent across all nodes.
 
-- The admin API listens on port `8001`.
+- The RESTful Admin API listens on port `8001`.
 
 ---
 
