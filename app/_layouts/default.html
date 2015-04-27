@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Article">
   {% include head.html %}
-  <body id="{{ page.id }}">
+  <body id="{{ page.id }}" {% if page.hide_subscribe %} class="no-subscribe-section"{% endif %}>
     {% include nav.html %}
     {{ content }}
     {% include footer.html %}

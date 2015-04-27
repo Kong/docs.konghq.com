@@ -1,12 +1,15 @@
 .footer {
-  font-size: 13px;
-  line-height: 21px;
   position: absolute;
   bottom: 0;
   width: 100%;
-  border-top: 1px solid #e9ecee;
-  background-color: #f2f4f5;
-  padding: 12px 0;
+
+  .footer-bar {
+    font-size: 13px;
+    line-height: 21px;
+    border-top: 1px solid #e9ecee;
+    background-color: #f2f4f5;
+    padding: 12px 0;
+  }
 
   @media (max-width: 550px) {
     .footer-bar .footer-separator,
@@ -15,7 +18,7 @@
     }
   }
 
-  a {
+  .footer-bar a {
     text-decoration: none;
     transition: all .3s ease;
     margin-right: 2em;
