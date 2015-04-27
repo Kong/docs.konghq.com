@@ -56,6 +56,6 @@ parameter                                           | description
 `value.origin`<br>*optional*                        | Value for the `Access-Control-Allow-Origin` header, expects a `String`. Defaults to `*`
 `value.methods`<br>*optional*                       | Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`). Defaults to `GET,HEAD,PUT,PATCH,POST,DELETE`.
 `value.headers`<br>*optional*                       | Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). Defaults to the value of the `Access-Control-Request-Headers` header.
-`value.expose_headers`<br>*optional*                | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
+`value.exposed_headers`<br>*optional*               | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
 `value.credentials`<br>*optional*                   | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value. Defaults to `false`.
 `value.max_age`<br>*optional*                       | Indicated how long the results of the preflight request can be cached, in `seconds`.
