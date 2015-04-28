@@ -33,7 +33,7 @@ Make sure to execute the above commands on every server in your cluster.
 
 ## Installation
 
-To enable the plugin set the following configuration entry on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.latest}}/getting-started/configuration) configuration file
+To enable the plugin set the following configuration entry on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.data.kong_latest.version}}/configuration) configuration file
 
 ```yaml
 # Nginx Plus Status
