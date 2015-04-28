@@ -147,9 +147,8 @@ $(function () {
   $('.plugin-plate-link').each(function () {
     var $link = $(this);
 
-    analytics.trackLink(this,
-        'Click on ' +
-        $link.closest('.plugin-plate').find('h3').text() +
-        ' plugin');
+    analytics.trackLink(this, 'Click on plugin', {
+      plugin_type: $link.closest('.plugin-plate').find('h3').text()
+    });
   });
 });
