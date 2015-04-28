@@ -1,22 +1,20 @@
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### Debian 7 Wheezy
+### Debian 6/7
 
 1. **Installation:**
 
-    Add the right source to APT:
+    For Debian 6 Squeeze download this package: [kong-0.2.0-2.squeeze_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.squeeze_all.deb)
 
-    ```bash
-    echo "deb http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/debian/wheezy/ kong main" | sudo tee -a /etc/apt/sources.list
-    ```
+    For Debian 7 Wheezy download this package: [kong-0.2.0-2.wheezy_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.wheezy_all.deb)
 
     Then execute:
 
     ```bash
-    apt-get update
-    apt-get install kong
+    sudo apt-get update
+    sudo apt-get install kong-0.2.0_2.*.deb
+    sudo apt-get install -f
     ```
-
 
 2. **Start Kong:**
 

@@ -4,23 +4,16 @@
 
 1. **Installation:**
 
-    Add the right source to APT for Ubuntu 12.04:
+    For Ubuntu 12.04 Precise download this package: [kong-0.2.0-2.precise_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.precise_all.deb)
 
-    ```bash
-    echo "deb [arch=amd64] http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/ubuntu/12_04/ kong main" | sudo tee -a /etc/apt/sources.list
-    ```
-
-    Add the right source to APT for Ubuntu 14.04:
-
-    ```bash
-    echo "deb [arch=amd64] http://mashape-kong-apt-repo.s3-website-us-east-1.amazonaws.com/ubuntu/14_04/ kong main" | sudo tee -a /etc/apt/sources.list
-    ```
+    For Ubuntu 14.04 Trusty download this package: [kong-0.2.0-2.trusty_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.trusty_all.deb)
 
     Then execute:
 
     ```bash
-    apt-get update
-    apt-get install kong
+    sudo apt-get update
+    sudo apt-get install kong-0.2.0_2.*.deb
+    sudo apt-get install -f
     ```
 
 2. **Start Kong:**

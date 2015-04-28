@@ -1,23 +1,19 @@
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### CentOS 6/7
+### CentOS 5/6/7
 
 1. **Installation:**
 
-    Add the following in your `/etc/yum.repos.d/` directory in a file named (for example) `kong.repo`
+    For CentOS 5/RHEL5 download this package: [kong-0.2.0_2.el5.noarch.rpm](#)
 
-    ```
-    [kong]
-    name = Kong
-    baseurl = http://mashape-kong-yum-repo.s3-website-us-east-1.amazonaws.com/$releasever/$basearch
-    enabled = 1
-    gpgcheck = 0
-    ```
+    For CentOS 6/RHEL6 download this package: [kong-0.2.0_2.el6.noarch.rpm](#)
+
+    For CentOS 7/RHEL7 download this package: [kong-0.2.0_2.el7.noarch.rpm](#)
 
     Then execute:
 
     ```bash
-    yum install kong
+    sudo yum install kong-0.2.0_2.*.noarch.rpm --nogpgcheck
     ```
 
 2. **Start Kong:**

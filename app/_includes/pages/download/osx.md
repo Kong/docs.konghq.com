@@ -1,10 +1,12 @@
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### Homebrew
-
-Kong is available as a Homebrew recipe on GitHub: [Mashape/homebrew-kong](https://github.com/Mashape/homebrew-kong).
+### OS X
 
 1. **Installation**
+
+    You can download a `pkg` installer at: [kong-0.2.0_2.el5.noarch.rpm](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.pkg). After installing the package you can skip to step 2.
+
+    Optionally Kong is also available as a Homebrew recipe on GitHub: [Mashape/homebrew-kong](https://github.com/Mashape/homebrew-kong).
 
     ```bash
     brew tap mashape/kong
