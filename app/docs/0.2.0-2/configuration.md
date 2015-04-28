@@ -171,12 +171,12 @@ nginx: |
   error_log logs/error.log info;
   daemon on;
 
-  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
+  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{auto_worker_connections}};
+    worker_connections {{ "{{auto_worker_connections" }}}};
     multi_accept on;
   }
 
@@ -233,7 +233,7 @@ nginx: |
     ';
 
     server {
-      listen {{proxy_port}};
+      listen {{ "{{proxy_port" }}}};
 
       location / {
         default_type 'text/plain';
@@ -275,7 +275,7 @@ nginx: |
     }
 
     server {
-      listen {{admin_api_port}};
+      listen {{ "{{admin_api_port" }}}};
 
       location / {
         default_type application/json;
@@ -287,7 +287,7 @@ nginx: |
       }
 
       # Do not remove, additional configuration placeholder for some plugins
-      # {{additional_configuration}}
+      # {{ "{{additional_configuration" }}}}
     }
   }
 ```
