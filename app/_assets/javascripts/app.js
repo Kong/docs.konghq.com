@@ -1,4 +1,8 @@
 $(function () {
+  var $window = $(window);
+  var introSectionHeight = $('.section.intro-section').outerHeight();
+  var $downloadBtn = $('.navbar-nav').find('.button');
+
   $('.navbar-toggle').on('click', function () {
     var $navbar = $($(this).data('target'));
     $navbar.slideToggle(150);
@@ -11,6 +15,22 @@ $(function () {
       scrollTop: $($(this).attr('href')).offset().top - 70 // Header height
     }, 700);
   });
+
+  // Change header download button color
+
+  if (introSectionHeight) {
+    $window.on('scroll', function () {
+      var scrollTop = $(this).scrollTop();
+
+      if (scrollTop > introSectionHeight) {
+        $downloadBtn.removeClass('button-dark').addClass('button-primary');
+      } else {
+        $downloadBtn.removeClass('button-primary').addClass('button-dark');
+      }
+    });
+  } else {
+    $downloadBtn.removeClass('button-dark').addClass('button-primary');
+  }
 
   // Page section on contribute page
 
