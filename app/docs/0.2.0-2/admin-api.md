@@ -445,7 +445,7 @@ HTTP 200 OK
 
 ---
 
-### List Plugins Configurations
+### List Plugin Configurations
 
 #### Endpoint
 

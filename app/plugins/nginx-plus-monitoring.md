@@ -19,8 +19,8 @@ Live server activity monitoring of NGINX Plus that provides key load and perform
 
 This plugin requries some dependencies to work:
 
-* [NGINX Plus](http://nginx.com/products/) with the [nginx-plus-extras](http://nginx.com/products/technical-specs/#nginx-plus-extras) package installed.
-* [LuaJIT 2.x](http://luajit.org/) installed
+* [NGINX Plus][nginx-plus] with the [nginx-plus-extras][nginx-plus-extras] package installed.
+* [LuaJIT 2.x][luajit] installed
 * Enabling LuaJIT support by executing the following commands:
 
 ```bash
@@ -33,7 +33,7 @@ Make sure to execute the above commands on every server in your cluster.
 
 ## Installation
 
-To enable the plugin set the following configuration entry on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.data.kong_latest.version}}/configuration) configuration file
+To enable the plugin set the following configuration entry on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml
 # Nginx Plus Status
@@ -47,3 +47,8 @@ To retrieve the stats, you can navigate to:
 ```
 curl http://kong:8001/status/
 ```
+
+[luajit]: http://luajit.org/
+[nginx-plus]: http://nginx.com/products/
+[nginx-plus]: http://nginx.com/products/technical-specs/#nginx-plus-extras
+[configuration]: /docs/{{site.data.kong_latest.version}}/configuration

@@ -24,7 +24,7 @@ $ kong install cors
 ```
 -->
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.data.kong_latest}}/getting-started/configuration) configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml
 plugins_available:
@@ -35,7 +35,7 @@ Every node in your Kong cluster should have the same `plugins_available` propert
 
 ## Configuration
 
-Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API](/docs/{{site.data.kong_latest}}/api/#api-object) by executing the following request on your Kong server:
+Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
 
 ```bash
 $ curl -X POST http://kong:8001/plugins_configurations/ \
@@ -59,3 +59,6 @@ parameter                                           | description
 `value.exposed_headers`<br>*optional*               | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
 `value.credentials`<br>*optional*                   | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value. Defaults to `false`.
 `value.max_age`<br>*optional*                       | Indicated how long the results of the preflight request can be cached, in `seconds`.
+
+[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.version}}/configuration

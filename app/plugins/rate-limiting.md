@@ -25,7 +25,7 @@ $ kong install ratelimiting
 ```
 -->
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml](/docs/{{site.data.kong_latest.version}}/getting-started/configuration) configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml
 plugins_available:
@@ -36,7 +36,7 @@ Every node in the Kong cluster should have the same `plugins_available` property
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API](/docs/{{site.data.kong_latest.version}}/api/#api-object) (or [Consumer](/docs/{{site.data.kong_latest.version}}/api/#consumer-object)) by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
 curl -d "name=ratelimiting&api_id=API_ID&value.limit=1000&value.period=hour" http://kong:8001/plugins_configurations/
@@ -49,3 +49,7 @@ parameter                               | description
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target
 `value.limit`                           | The amount of HTTP requests the developer can make in the given period of time
 `value.period`                          | Can be one between: `second`, `minute`, `hour`, `day`, `month`, `year`
+
+[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
+[consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
