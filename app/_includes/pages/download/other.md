@@ -10,9 +10,9 @@
 
     Install [Lua v{{lua_version}}](http://www.lua.org/versions.html#5.1)
 
-    Install [Luarocks v{{luarocks_version}}](http://luarocks.org)
+    Install [Luarocks v{{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download)
 
-    Install [OpenResty v{{openresty_version}}](http://openresty.com/), with the following `configure` options:
+    Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation), with the following `configure` options:
 
     ```
     ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
@@ -28,7 +28,7 @@
 
 3. **Configure Cassandra**
 
-    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/{{site.data.kong_latest.version}}/configuration/#databases_available).
+    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/{{site.data.kong_latest.version}}/configuration/#databases_available.*).
 
 4. **Start Kong:**
 
