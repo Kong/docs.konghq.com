@@ -25,14 +25,14 @@ permalink: /docs/
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration</a></h3>
-    <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
-    <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/admin-api">API reference</a></h3>
     <p>Ready to learn the underlying interface? Browse the API reference to learn how to start making requests.</p>
     <a href="/docs/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration</a></h3>
+    <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
+    <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
   </div>
 </div>
