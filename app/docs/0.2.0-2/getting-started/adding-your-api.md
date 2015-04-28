@@ -79,7 +79,7 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
 [mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli
-[API]: /docs/{{page.kong_version}}/api
+[API]: /docs/{{page.kong_version}}/admin-api
 [install]: /download
 [configuration]: /download
 [migrations]: /docs/{{page.kong_version}}/migrations

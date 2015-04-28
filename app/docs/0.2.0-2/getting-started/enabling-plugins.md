@@ -82,7 +82,7 @@ Go to [Adding Consumers &rsaquo;][adding-consumers]
 [mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/api
-[keyauth]: /plugins/keyauth
+[keyauth]: /plugins/key-authentication
 [install]: /download
 [plugins]: /plugins
 [configuration]: /download

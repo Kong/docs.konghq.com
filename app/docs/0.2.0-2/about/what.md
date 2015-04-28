@@ -14,7 +14,7 @@ Mashape, the worlds largest API marketplace, over the past several years has bee
 
 * **Runs on any infrastructure**: Kong runs anywhere. You can deploy Kong in the cloud or on-premise environments, including single or multi-datacenter setups and for public, private or invite-only APIs.
 
-Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](/docs/{{page.kong_version}}/internal-api) to operate and configure the system.
+Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](/docs/{{page.kong_version}}/admin-api) to operate and configure the system.
 
 ## Request Workflow
 

@@ -56,7 +56,7 @@ Now that you have Kong running you can interact with the RESTful API.
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/{{page.kong_version}}/cli
-[API]: /docs/{{page.kong_version}}/api
+[API]: /docs/{{page.kong_version}}/admin-api
 [install]: /download
 [migrations]: /docs/{{page.kong_version}}/migrations
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart

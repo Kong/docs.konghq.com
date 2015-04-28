@@ -9,7 +9,7 @@ title: Adding Consumers
   <ol>
     <li>Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/added-your-api">added your API to Kong</a>.</li>
+    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
   </ol>
 </div>
 
@@ -78,7 +78,7 @@ Now that we've covered the basics of creating consumers, enabling plugins, and a
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
 [API-consumers]: /docs/{{page.kong_version}}/admin-api#create-consumer
-[keyauth]: /plugins/keyauth
+[keyauth]: /plugins/key-authentication
 [install]: /download
 [plugins]: /plugins
 [configuration]: /docs/{{page.kong_version}}/configuration
