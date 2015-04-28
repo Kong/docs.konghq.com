@@ -12,13 +12,13 @@
 
     ```bash
     sudo apt-get update
-    sudo apt-get install kong-0.2.0_2.*.deb
+    dpkg -i kong-0.2.0-2.*.deb
     sudo apt-get install -f
     ```
 
 2. **Start Kong:**
 
-    Before starting Kong, make sure [Cassandra v{{cassandra_version}}](http://cassandra.apache.org/) is running and [`kong.yml`](/docs/{{site.data.kong_latest.version}}/configuration) points to the right Cassandra server. Then execute:
+    Before starting Kong, make sure [Cassandra v{{cassandra_version}}](http://cassandra.apache.org/) is running and [`/etc/kong/kong.yml`](/docs/{{site.data.kong_latest.version}}/configuration) points to the right Cassandra server. Then execute:
 
     ```bash
     kong start
