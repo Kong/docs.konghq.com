@@ -1,7 +1,5 @@
 $(function () {
   var $window = $(window);
-  var introSectionHeight = $('.section.intro-section').outerHeight();
-  var $downloadBtn = $('.navbar-nav').find('.button');
 
   $('.navbar-toggle').on('click', function () {
     var $navbar = $($(this).data('target'));
@@ -18,7 +16,10 @@ $(function () {
 
   // Change header download button color
 
-  if (introSectionHeight) {
+  if (!$('body#enterprise').length) {
+    var introSectionHeight = $('.section.intro-section').outerHeight() || 50;
+    var $downloadBtn = $('.navbar-nav').find('.button');
+
     $window.on('scroll', function () {
       var scrollTop = $(this).scrollTop();
 
@@ -28,8 +29,6 @@ $(function () {
         $downloadBtn.removeClass('button-primary').addClass('button-dark');
       }
     });
-  } else {
-    $downloadBtn.removeClass('button-dark').addClass('button-primary');
   }
 
   // Page section on contribute page
@@ -121,7 +120,7 @@ $(function () {
     }, payload), function () {
       $form.fadeOut(300, function () {
         $('.success-message').fadeIn(300);
-      });
+      }).siblings('.section-header').fadeOut(300);
 
       analytics.track('request_enterprise_demo', $.extend({
         request_date: submitTime
