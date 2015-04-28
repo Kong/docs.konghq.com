@@ -1,5 +1,6 @@
 ---
 title: What is Kong?
+alias: /docs/latest/about/what
 ---
 
 # What is Kong?

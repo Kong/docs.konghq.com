@@ -1,5 +1,6 @@
 ---
 title: Configuration Reference
+alias: /docs/latest/configuration
 ---
 
 # Configuration Reference
