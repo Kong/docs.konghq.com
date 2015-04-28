@@ -26,20 +26,19 @@
     luarocks install kong {{site.data.kong_latest.version}}
     ```
 
-3. **Start Kong:**
+3. **Configure Cassandra**
 
-    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/{{site.data.kong_latest.version}}/configuration). Then execute:
+    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/{{site.data.kong_latest.version}}/configuration/#databases_available).
+
+4. **Start Kong:**
 
     ```bash
     kong start
+
+    # Kong is running
+    curl 127.0.0.1:8001
     ```
 
-4. **Kong is running:**
-
-    ```bash
-    curl http://127.0.0.1:8001
-    ```
-
-4. **Start using Kong:**
+4. **Use Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.version}}/getting-started/quickstart).
