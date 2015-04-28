@@ -1,5 +1,6 @@
 ---
 title: What datastore does it use?
+alias: /docs/latest/about/datastore
 ---
 
 # What datastore does it use?
