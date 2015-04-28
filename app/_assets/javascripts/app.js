@@ -143,4 +143,13 @@ $(function () {
   analytics.track(
       'Viewed ' + $.trim(document.title.split('|').shift()) + ' page'
   );
+
+  $('.plugin-plate-link').each(function () {
+    var $link = $(this);
+
+    analytics.trackLink(this,
+        'Click on ' +
+        $link.closest('.plugin-plate').find('h3').text() +
+        ' plugin');
+  });
 });
