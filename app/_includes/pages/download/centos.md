@@ -4,11 +4,11 @@
 
 1. **Installation:**
 
-    For CentOS 5/RHEL5 download this package: [kong-0.2.0_2.el5.noarch.rpm](#)
+    For CentOS 5/RHEL5 download this package: [kong-0.2.0_2.el5.noarch.rpm](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0_2.el5.noarch.rpm)
 
-    For CentOS 6/RHEL6 download this package: [kong-0.2.0_2.el6.noarch.rpm](#)
+    For CentOS 6/RHEL6 download this package: [kong-0.2.0_2.el6.noarch.rpm](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0_2.el6.noarch.rpm)
 
-    For CentOS 7/RHEL7 download this package: [kong-0.2.0_2.el7.noarch.rpm](#)
+    For CentOS 7/RHEL7 download this package: [kong-0.2.0_2.el7.noarch.rpm](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0_2.el7.noarch.rpm)
 
     Then execute:
 
