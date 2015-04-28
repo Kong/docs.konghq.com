@@ -4,7 +4,7 @@ title: How does it work?
 
 # How does it work?
 
-Kong is made up of two different components, that are easy to set up and to scale independently:
+Kong is made of two different components that are easy to set up and scale independently:
 
 * The **Kong Server**, based on a modified version of the widely adopted **NGINX** server, processes API requests.
 * **Apache Cassandra**, a highly scalable Datastore for storing operational data, which is being used by major companies like Netflix, Comcast or Facebook.
