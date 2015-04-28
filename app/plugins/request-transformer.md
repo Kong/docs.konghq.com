@@ -16,14 +16,6 @@ Transform the request sent by a client on the fly on Kong, before hitting the fi
 
 ## Installation
 
-<!---
-Make sure every Kong server in your cluster has the required dependency by executing:
-
-```bash
-$ kong install request_transformer
-```
--->
-
 Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml

@@ -4,9 +4,13 @@
 
 1. **Installation**
 
-    You can download a `pkg` installer at: [kong-0.2.0-2.pkg](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.pkg). After installing the package you can skip to step 2.
+    *Package*
 
-    Kong is also available as a Homebrew recipe (with Cassandra included) on GitHub: [Mashape/homebrew-kong](https://github.com/Mashape/homebrew-kong).
+    You can download a **.pkg** installer at: [kong-0.2.0-2.pkg](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.pkg). After installing the package you can skip to step 2.
+
+    *Homebrew*
+
+    Kong is also available as a **Homebrew formula** (with Cassandra included) on GitHub: [Mashape/homebrew-kong](https://github.com/Mashape/homebrew-kong).
 
 2. **Configure Cassandra**
 
@@ -15,10 +19,10 @@
 3. **Start Kong:**
 
     ```bash
-    kong start
+    $ kong start
 
     # Kong is running
-    curl 127.0.0.1:8001
+    $ curl 127.0.0.1:8001
     ```
 
 4. **Use Kong:**

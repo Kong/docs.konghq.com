@@ -24,9 +24,9 @@ This plugin requries some dependencies to work:
 * Enabling LuaJIT support by executing the following commands:
 
 ```bash
-sudo mkdir -p /etc/nginx/ld-overrides
-cp /usr/local/lib/libluajit-5.1.so /etc/nginx/ld-overrides/liblua5.1.so.0
-sed -i '1 aexport LD_LIBRARY_PATH="/etc/nginx/ld-overrides"' /usr/local/bin/kong
+$ sudo mkdir -p /etc/nginx/ld-overrides
+$ cp /usr/local/lib/libluajit-5.1.so /etc/nginx/ld-overrides/liblua5.1.so.0
+$ sed -i '1 aexport LD_LIBRARY_PATH="/etc/nginx/ld-overrides"' /usr/local/bin/kong
 ```
 
 Make sure to execute the above commands on every server in your cluster.
@@ -36,7 +36,6 @@ Make sure to execute the above commands on every server in your cluster.
 To enable the plugin set the following configuration entry on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml
-# Nginx Plus Status
 nginx_plus_status: true
 ```
 
@@ -44,8 +43,8 @@ nginx_plus_status: true
 
 To retrieve the stats, you can navigate to:
 
-```
-curl http://kong:8001/status/
+```bash
+$ curl http://kong:8001/status/
 ```
 
 [luajit]: http://luajit.org/

@@ -17,14 +17,6 @@ Add Basic Authentication to your APIs, with username and password protection.
 
 ## Installation
 
-<!---
-Make sure every Kong server in your cluster has the required dependency by executing:
-
-```bash
-$ kong install basicauth
-```
--->
-
 Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml
@@ -41,7 +33,10 @@ Every node in the Kong cluster must have the same `plugins_available` property v
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-curl -d "name=basicauth&api_id=API_ID&value.hide_credentials=true" http://kong:8001/plugins_configurations/
+$ curl -X POST http://kong:8001/plugins_configurations/ \
+    --data "name=basicauth" \
+    --data "api_id=API_ID" \
+    --data "value.hide_credentials=true"
 ```
 
 parameter                    | description

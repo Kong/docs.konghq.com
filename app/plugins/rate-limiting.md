@@ -17,14 +17,6 @@ Rate limit how many HTTP requests a developer can make in a given period of seco
 
 ## Installation
 
-<!---
-Make sure every Kong server in your cluster has the required dependency by executing:
-
-```bash
-$ kong install ratelimiting
-```
--->
-
 Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml
@@ -39,7 +31,11 @@ Every node in the Kong cluster should have the same `plugins_available` property
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-curl -d "name=ratelimiting&api_id=API_ID&value.limit=1000&value.period=hour" http://kong:8001/plugins_configurations/
+$ curl -X POST http://kong:8001/plugins_configurations/ \
+    --data "name=ratelimiting" \
+    --data "api_id=API_ID" \
+    --data "value.limit=1000" \
+    --data "value.period=hour"
 ```
 
 parameter                               | description

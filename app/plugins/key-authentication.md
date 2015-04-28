@@ -17,14 +17,6 @@ Add query authentication like API-Keys to your APIs, either in a header, in quer
 
 ## Installation
 
-<!---
-Make sure every Kong server in your cluster has the required dependency by executing:
-
-```bash
-$ kong install keyauth
-```
--->
-
 Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
 
 ```yaml
@@ -39,7 +31,10 @@ Every node in the Kong cluster should have the same `plugins_available` property
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-curl -d "name=keyauth&api_id=API_ID&value.key_names=key_name1,key_name2" http://kong:8001/plugins_configurations/
+$ curl -X POST http://kong:8001/plugins_configurations/ \
+    --data "name=keyauth" \
+    --data "api_id=API_ID" \
+    --data "value.key_names=key_name1,key_name2"
 ```
 
 parameter                               | description
@@ -57,7 +52,9 @@ parameter                               | description
 You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+$ curl -X POST http://kong:8001/consumers/ \
+    --data "username=user123" \
+    --data "custom_id=SOME_CUSTOM_ID"
 ```
 
 parameter                       | description
@@ -72,7 +69,9 @@ A [Consumer][consumer-object] can have many credentials.
 Then you can finally provision new key credentials by making the following HTTP request:
 
 ```bash
-curl -d "key=some_key&consumer_id=CONSUMER_ID" http://kong:8001/keyauth_credentials/
+$ curl -X POST http://kong:8001/keyauth_credentials/ \
+    --data "key=some_key" \
+    --data "consumer_id=CONSUMER_ID"
 ```
 
 parameter               | description
