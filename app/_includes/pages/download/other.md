@@ -14,8 +14,8 @@
 
     Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation), with the following `configure` options:
 
-    ```
-    ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
+    ```bash
+    $ ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
     ```
 
     Some of the dependencies may be available in your favorite package manager.
@@ -23,7 +23,7 @@
 2. **Install Kong:**
 
     ```bash
-    luarocks install kong {{site.data.kong_latest.version}}
+    $ luarocks install kong {{site.data.kong_latest.version}}
     ```
 
 3. **Configure Cassandra**
@@ -33,10 +33,10 @@
 4. **Start Kong:**
 
     ```bash
-    kong start
+    $ kong start
 
     # Kong is running
-    curl 127.0.0.1:8001
+    $ curl 127.0.0.1:8001
     ```
 
 4. **Use Kong:**

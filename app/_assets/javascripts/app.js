@@ -143,4 +143,22 @@ $(function () {
   analytics.track(
       'Viewed ' + $.trim(document.title.split('|').shift()) + ' page'
   );
+
+  $('.plugin-plate-link').each(function () {
+    analytics.trackLink(this, 'Click on plugin', {
+      plugin_type: $(this).closest('.plugin-plate').find('h3').text()
+    });
+  });
+
+  $('#documentation .page-navigation a').each(function () {
+    analytics.trackLink(this, 'Click documentation link', {
+      documentation_name: $(this).text()
+    });
+  });
+
+  $('.community-plate a').each(function () {
+    analytics.trackLink(this, 'Click community link', {
+      community_type: $.trim($(this).closest('.community-plate').find('h4').text())
+    });
+  });
 });

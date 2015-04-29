@@ -8,12 +8,14 @@
 
     For Ubuntu 14.04 Trusty download this package: [kong-0.2.0-2.trusty_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.trusty_all.deb)
 
+    For Ubuntu 15.04 Vivid Vervet download this package: [kong-0.2.0-2.vivid_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.vivid_all.deb)
+
     Then execute:
 
     ```bash
-    sudo apt-get update
-    dpkg -i kong-0.2.0-2.*.deb
-    sudo apt-get install -f
+    $ sudo apt-get update
+    $ dpkg -i kong-0.2.0-2.*.deb
+    $ sudo apt-get install -f
     ```
 
 2. **Configure Cassandra**
@@ -23,10 +25,10 @@
 3. **Start Kong:**
 
     ```bash
-    kong start
+    $ kong start
 
     # Kong is running
-    curl 127.0.0.1:8001
+    $ curl 127.0.0.1:8001
     ```
 
 4. **Use Kong:**

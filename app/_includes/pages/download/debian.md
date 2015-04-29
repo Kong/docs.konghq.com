@@ -11,9 +11,9 @@
     Then execute:
 
     ```bash
-    sudo apt-get update
-    dpkg -i kong-0.2.0-2.*.deb
-    sudo apt-get install -f
+    $ sudo apt-get update
+    $ dpkg -i kong-0.2.0-2.*.deb
+    $ sudo apt-get install -f
     ```
 
 2. **Configure Cassandra**
@@ -23,10 +23,10 @@
 3. **Start Kong:**
 
     ```bash
-    kong start
+    $ kong start
 
     # Kong is running
-    curl 127.0.0.1:8001
+    $ curl 127.0.0.1:8001
     ```
 
 4. **Use Kong:**

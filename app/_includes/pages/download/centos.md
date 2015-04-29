@@ -13,7 +13,7 @@
     Then execute:
 
     ```bash
-    sudo yum install kong-0.2.0_2.*.noarch.rpm --nogpgcheck
+    $ sudo yum install kong-0.2.0_2.*.noarch.rpm --nogpgcheck
     ```
 
 2. **Configure Cassandra**
@@ -23,10 +23,10 @@
 3. **Start Kong:**
 
     ```bash
-    kong start
+    $ kong start
 
     # Kong is running
-    curl 127.0.0.1:8001
+    $ curl 127.0.0.1:8001
     ```
 
 4. **Use Kong:**

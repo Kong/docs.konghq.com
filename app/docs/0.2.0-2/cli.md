@@ -9,7 +9,7 @@ Kong comes with a ***CLI*** *(Command Line Interface)* which provides you with a
 
 Almost every command requires access to your configuration file in order to be aware of where the NGINX working directory is located (known as the *prefix path* for those familiar with NGINX) referenced as `nginx_working_dir` in the Kong configuration file.
 
-**Note:** If you haven't already, we recommend you read the [configuration reference][configuration-reference].
+**Note:** If you haven't already, we recommend you read the [configuration reference][configuration-guide].
 
 ---
 
@@ -114,7 +114,7 @@ This file contains configuration for plugins, the datastore, and NGINX. You can 
 
 ## reload
 
-Reloads the NGINX configuration at runtime and avoids potential downtime by leveraging the NGINX [reload](http://wiki.nginx.org/CommandLine#Loading_a_New_Configuration_Using_Signals) signal.
+Reloads the NGINX configuration at runtime and avoids potential downtime by leveraging the NGINX [reload][nginx-reload] signal.
 
 ```bash
 $ kong reload [parameters]
@@ -126,5 +126,7 @@ $ kong reload [parameters]
 
 Kong Configuration File
 
-[configuration-reference]: /docs/{{page.kong_version}}/configuration
+
+[configuration-guide]: /docs/{{page.kong_version}}/configuration
 [nginx-signals]: http://nginx.org/en/docs/control.html
+[nginx-reload]: http://wiki.nginx.org/CommandLine#Loading_a_New_Configuration_Using_Signals
