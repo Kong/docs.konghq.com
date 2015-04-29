@@ -6,6 +6,10 @@
 
     You can download a `pkg` installer at: [kong-0.2.0-2.pkg](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.pkg). After installing the package you can skip to step 2.
 
+    If you see the following error dialog, manually right-click on the file and click "Open".
+
+    <img src="/assets/images/download/pkg-permissions.png" height="150px" />
+
     Kong is also available as a Homebrew recipe (with Cassandra included) on GitHub: [Mashape/homebrew-kong](https://github.com/Mashape/homebrew-kong).
 
 2. **Configure Cassandra**
