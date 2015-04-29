@@ -1,6 +1,6 @@
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### Debian 6/7
+### Debian 6/7/8
 
 1. **Installation:**
 
