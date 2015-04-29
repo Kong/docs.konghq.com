@@ -1,15 +1,16 @@
 <div class="navbar">
   <div class="container">
     <a href="/" class="navbar-brand"><img src="/assets/images/branding.svg" alt="Kong" width="99" height="32"></a>
+    <iframe class="header-star" src="https://ghbtns.com/github-btn.html?user=Mashape&repo=kong&type=star" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
     <button data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" class="navbar-toggle">
       <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
     <nav id="navbar" class="navbar-nav">
       <ul>
-        <li><a href="/docs/" {% if page.url contains "/docs/" %} class="active"{% endif %}>Documentation</a></li>
+        <li><a href="/docs/" {% if page.url contains "/docs/" %} class="active"{% endif %}>Docs</a></li>
         <li><a href="/plugins" {% if page.url == "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
-        <li><a href="/enterprise" {% if page.url == "/enterprise/" %} class="active"{% endif %}>Enterprise</a></li>
         <li><a href="/community" {% if page.url == "/community/" %} class="active"{% endif %}>Community</a></li>
-        <li><a href="https://github.com/Mashape/kong" target="_blank">GitHub Repo</a></li>
+        <li><a href="/enterprise" {% if page.url == "/enterprise/" %} class="active"{% endif %}>Enterprise</a></li>
+        <li><a href="https://github.com/Mashape/kong" target="_blank">GitHub</a></li>
         <li>
           <a href="/download" class="button button-dark{% if page.url == "/download/" %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>download</a>
         </li>
