@@ -8,6 +8,8 @@
 
     For Debian 7 Wheezy download this package: [kong-0.2.0-2.wheezy_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.wheezy_all.deb)
 
+    For Debian 8 Jessie download this package: [kong-0.2.0-2.jessie_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.jessie_all.deb)
+
     Then execute:
 
     ```bash
