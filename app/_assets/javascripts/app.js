@@ -125,6 +125,20 @@ $(function () {
       analytics.track('request_enterprise_demo', $.extend({
         request_date: submitTime
       }, payload));
+
+      /*$.ajax({
+        url: 'https://api.relateiq.com/v2/accounts',
+        method: 'POST',
+        dataType: 'jsonp',
+        crossDomain: true,
+        username: '5541eb66e4b069fbeaff0cc5',
+        password: 't1EeDyqqkO6XLQ71mC9NgDFj91F',
+        data: {
+          name: payload.email
+        }
+      }).done(function (response) {
+        console.log(response);
+      })*/
     });
   });
 
@@ -161,4 +175,6 @@ $(function () {
       community_type: $.trim($(this).closest('.community-plate').find('h4').text())
     });
   });
+
+  analytics.trackLink($('a[href="#comparison"]')[0], 'Clicked Why Kong');
 });
