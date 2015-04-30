@@ -38,12 +38,10 @@ gulp.task('styles', function () {
   // 4. uncss and gulpminify-css seem to behave fine and is not having an impact on sourcemaps
   return gulp.src('app/_assets/stylesheets/index.less')
     .pipe($.plumber())
-    .pipe($.sourcemaps.init())
     .pipe($.less())
     .pipe($.uncss({ html: glob.sync('dist/**/*.html') }))
     .pipe($.autoprefixer())
     .pipe($.minifyCss())
-    .pipe($.sourcemaps.write('maps'))
     .pipe($.rename('styles.css'))
     .pipe(gulp.dest('dist/assets/'))
     .pipe($.size())
