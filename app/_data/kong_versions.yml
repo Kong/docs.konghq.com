@@ -3,5 +3,5 @@
   dependencies:
     lua: 5.1.5
     luarocks: 2.2.2
-    cassandra: 2.1.2
+    cassandra: 2.1.5
     openresty: 1.7.10.2
