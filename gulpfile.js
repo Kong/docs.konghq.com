@@ -112,13 +112,13 @@ gulp.task('clean', function (cb) {
   require('del')(['dist', '.gh-pages'], cb)
 })
 
-gulp.task('build', ['javascripts', 'images', 'fonts'], function () {
-  sequence('html', 'styles')
+gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
+  sequence('html', 'styles', cb)
 })
 
-gulp.task('build:prod', function () {
+gulp.task('build:prod', function (cb) {
   jekyllConfig = jekyllConfigs.PROD
-  sequence('build')
+  sequence('build', cb)
 })
 
 gulp.task('connect', function () {
@@ -139,8 +139,8 @@ gulp.task('gh-pages', function (next) {
   ghPages.publish(path.join(__dirname, 'dist'), config, next)
 })
 
-gulp.task('deploy:prod', function () {
-  sequence('build:prod', 'gh-pages')
+gulp.task('deploy:prod', function (cb) {
+  sequence('build:prod', 'gh-pages', cb)
 })
 
 gulp.task('watch', function () {
@@ -150,6 +150,6 @@ gulp.task('watch', function () {
   gulp.watch(sources.js, ['javascripts'])
 })
 
-gulp.task('default', ['clean'], function () {
-  sequence('build', 'connect', 'watch')
+gulp.task('default', ['clean'], function (cb) {
+  sequence('build', 'connect', 'watch', cb)
 })
