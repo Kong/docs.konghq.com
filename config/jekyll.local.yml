@@ -1,5 +1,5 @@
 # Site settings
-name: Kong - Open-Source API Management Layer
+name: Kong - Open-Source API and Microservice Management Layer
 domain: localhost:3000
 url: http://localhost:9000
 repo: https://github.com/Mashape/kong
