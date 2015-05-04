@@ -13,6 +13,7 @@
     Then execute:
 
     ```bash
+    $ sudo yum install epel-release
     $ sudo yum install kong-0.2.0_2.*.noarch.rpm --nogpgcheck
     ```
 

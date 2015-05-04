@@ -14,7 +14,7 @@
 
     ```bash
     $ sudo apt-get update
-    $ dpkg -i kong-0.2.0-2.*.deb
+    $ sudo dpkg -i kong-0.2.0-2.*.deb
     $ sudo apt-get install -f
     ```
 
