@@ -6,7 +6,7 @@
 
     *Package*
 
-    You can download a **.pkg** installer at: [kong-0.2.0-2.pkg](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.pkg). After installing the package you can skip to step 2.
+    You can download a **.pkg** installer at: [kong-{{site.data.kong_latest.version}}.pkg](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.pkg). After installing the package you can skip to step 2.
 
     **Note:** This installer is not yet signed so you will have to **right click**, select "Open" and authorize it.
 
