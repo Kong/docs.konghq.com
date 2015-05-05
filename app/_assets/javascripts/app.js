@@ -106,8 +106,18 @@ $(function () {
     var $form = $(this);
     var data = $form.serializeArray();
     var submitTime = new Date().toString();
-
     var payload = {};
+    var analyticsDfd = $.Deferred();
+    var fieldValues = {};
+    var relateiqFieldIds = {
+      title: 7,
+      tell_us_more: 8,
+      email: 9,
+      phone: 10,
+      deployment: 11,
+      company: 12,
+      name: 14
+    };
 
     for (var i = 0; i < data.length; i++) {
       payload[data[i].name] = data[i].value;
@@ -118,27 +128,36 @@ $(function () {
       enterprise: true,
       created_at: submitTime
     }, payload), function () {
+      analytics.track('request_enterprise_demo', $.extend({
+        request_date: submitTime
+      }, payload), analyticsDfd.resolve);
+    });
+
+    for (var field in payload) {
+      if (payload[field]) {
+        fieldValues[relateiqFieldIds[field]] = [{
+          raw: payload[field]
+        }];
+      }
+    }
+
+    var relateiqDfd = $.ajax({
+      url: 'https://mashaper-relateiq-v1.p.mashape.com/accounts',
+      method: 'POST',
+      headers: {
+        'authorization': 'Basic NTU0MWViNjZlNGIwNjlmYmVhZmYwY2M1OkY3WW0xNDIwY041UUZSRDRZaUpnMjRxUTcxUQ==',
+        'x-mashape-key': 'mJUINHSWBYmshREqNlfTBKtbBHDZp1N7VKhjsnUIUo4f4r3pVj'
+      },
+      data: JSON.stringify({
+        name: payload.email,
+        fieldValues: fieldValues
+      })
+    });
+
+    $.when.apply($, [analyticsDfd, relateiqDfd]).then(function () {
       $form.fadeOut(300, function () {
         $('.success-message').fadeIn(300);
       }).siblings('.section-header').fadeOut(300);
-
-      analytics.track('request_enterprise_demo', $.extend({
-        request_date: submitTime
-      }, payload));
-
-      /*$.ajax({
-        url: 'https://api.relateiq.com/v2/accounts',
-        method: 'POST',
-        dataType: 'jsonp',
-        crossDomain: true,
-        username: '5541eb66e4b069fbeaff0cc5',
-        password: 't1EeDyqqkO6XLQ71mC9NgDFj91F',
-        data: {
-          name: payload.email
-        }
-      }).done(function (response) {
-        console.log(response);
-      })*/
     });
   });
 
