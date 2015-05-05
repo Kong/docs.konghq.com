@@ -113,10 +113,6 @@ A dictionary of databases Kong can connect to, and their respective properties.
 
 Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
 
-  **`databases_available.*.properties`**
-
-  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
-
 **Default:**
 
 ```yaml
@@ -128,6 +124,64 @@ databases_available:
       timeout: 1000
       keyspace: kong
       keepalive: 60000
+```
+
+  **`databases_available.*.properties`**
+
+  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
+
+  **`databases_available.*.properties.hosts`**
+
+  The hosts(s) on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list. If Kong must connect to another port than the one specified in `properties` for one of your nodes, you can override it for that particular node.
+
+  **Example:**
+
+```yaml
+properties:
+  port: 9042
+  hosts:
+    - "52.5.149.55"      # will connect on port 9042
+    - "52.5.149.56:9000" # will connect on port 9000
+```
+
+  **`databases_available.*.properties.port`**
+
+  The default port on which Kong should connect on your hosts.
+
+  **Default:**
+
+```yaml
+port: 9042
+```
+
+  **`databases_available.*.properties.timeout`**
+
+  Sets the timeout (in milliseconds) for sockets performing operations between Kong and Cassandra.
+
+  **Default:**
+
+```yaml
+timeout: 1000
+```
+
+  **`databases_available.*.properties.keyspace`**
+
+  The keyspace in which Kong operates on your cluster.
+
+  **Default:**
+
+```yaml
+keyspace: kong
+```
+
+  **`databases_available.*.properties.keepalive`**
+
+  The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
+
+  **Default:**
+
+```yaml
+keepalive: 60000
 ```
 
 ---
