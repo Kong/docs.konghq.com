@@ -4,17 +4,17 @@
 
 1. **Installation:**
 
-    For CentOS 5/RHEL5 download this package: [kong-0.2.0_2.el5.noarch.rpm](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0_2.el5.noarch.rpm) *- Recommended for Amazon Linux AMI*
+    For CentOS 5/RHEL5 download this package: [kong-{{site.data.kong_latest.version}}.el5.noarch.rpm](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el5.noarch.rpm) *- Recommended for Amazon Linux AMI*
 
-    For CentOS 6/RHEL6 download this package: [kong-0.2.0_2.el6.noarch.rpm](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0_2.el6.noarch.rpm)
+    For CentOS 6/RHEL6 download this package: [kong-{{site.data.kong_latest.version}}.el6.noarch.rpm](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el6.noarch.rpm)
 
-    For CentOS 7/RHEL7 download this package: [kong-0.2.0_2.el7.noarch.rpm](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0_2.el7.noarch.rpm)
+    For CentOS 7/RHEL7 download this package: [kong-{{site.data.kong_latest.version}}.el7.noarch.rpm](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el7.noarch.rpm)
 
     Then execute:
 
     ```bash
     $ sudo yum install epel-release
-    $ sudo yum install kong-0.2.0_2.*.noarch.rpm --nogpgcheck
+    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
     ```
 
 2. **Configure Cassandra**

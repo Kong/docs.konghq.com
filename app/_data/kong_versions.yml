@@ -1,7 +1,14 @@
 -
-  version: 0.2.0-2
+  version: "0.2.0-2"
   dependencies:
-    lua: 5.1.5
-    luarocks: 2.2.2
-    cassandra: 2.1.5
-    openresty: 1.7.10.2
+    lua: "5.1.4"
+    luarocks: "2.2.0"
+    cassandra: "2.1.5"
+    openresty: "1.7.10.2"
+  version: "0.2.1"
+  dependencies:
+    lua: "5.1.4"
+    luarocks: "2.2.2"
+    dnsmasq: "2.72"
+    cassandra: "2.1.5"
+    openresty: "1.7.10.2"
