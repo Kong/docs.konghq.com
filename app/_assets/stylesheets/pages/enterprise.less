@@ -73,17 +73,21 @@
     border: 1px solid #dbdbdb;
     border-radius: 3px;
     text-align: center;
+
+    li {
+      margin: 0;
+
+      &:first-child {
+        padding: 28px 0;
+      }
+    }
   }
 
   .plan-line {
     border-top: 1px solid #ebebeb;
     padding: 14px;
-    margin: 0;
     font-weight: 500;
-
-    &:first-child {
-      padding: 28px 0;
-    }
+    display: block;
 
     &.muted {
       background-color: #f7f7f7;
