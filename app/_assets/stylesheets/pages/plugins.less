@@ -42,7 +42,7 @@
     border-radius: 5px;
     position: relative;
     transition: border-color .2s;
-    
+
     &:hover {
       border-color: #80caff;
     }
@@ -58,12 +58,20 @@
       margin: 0;
       font-weight: 600;
     }
+
+    @media (max-width: 900px) {
+      padding: 95px 16px 16px;
+    }
   }
 
   .plugin-icon {
     position: absolute;
     left: 20px;
     top: 20px;
+
+    @media (max-width: 900px) {
+      left: 16px;
+    }
   }
 
   .plugin-plate-content {
@@ -71,7 +79,7 @@
     padding: 16px 16px 16px 95px;
 
     @media (max-width: 900px) {
-      padding: 50px 16px 16px;
+      padding: 16px;
     }
 
     p {

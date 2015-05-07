@@ -39,6 +39,7 @@
   .page-header-title {
     display: inline-block;
     vertical-align: middle;
+    margin-right: 20px;
   }
 
   .page-header-btn {
@@ -54,6 +55,13 @@
     right: 0;
     top: 50%;
     margin-top: -20px;
+
+    @media (max-width: 800px) {
+      position: static;
+      margin-top: 20px;
+      display: inline-block;
+      vertical-align: bottom;
+    }
   }
 }
 
@@ -85,7 +93,7 @@
     text-transform: lowercase;
   }
 
-  nav > ul {
+  nav {
     margin-bottom: 1.5em;
   }
 
@@ -348,13 +356,16 @@
       float: left;
       height: 250px;
       width: 50%;
-
       border-bottom: 1px solid #eee;
       box-sizing: border-box;
 
-      h3 img {
-        float: left;
-        margin-right: 15px;
+      h3 {
+        margin-top: 0;
+
+        img {
+          float: left;
+          margin-right: 15px;
+        }
       }
 
       &:nth-child(odd) {
@@ -448,10 +459,11 @@
     .docs-grid {
       .docs-grid-block {
         width: initial;
+        height: auto;
 
         &:nth-child(odd),
         &:nth-child(even) {
-          padding: 0;
+          padding: 1.5em 0;
         }
       }
     }
