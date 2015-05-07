@@ -35,7 +35,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 
 Attributes | Description
  ---:| ---
-`name` | API name
+`name`<br>*optional* | API name. If none is specified, will default to the `public_dns`.
 `public_dns` | The public DNS address that points to your API. For example, `mockbin.com`.
 `target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
