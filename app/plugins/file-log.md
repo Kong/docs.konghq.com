@@ -38,7 +38,7 @@ $ curl -X POST http://kong:8001/plugins_configurations/ \
 
 parameter                     | description
  ---                          | ---
-`name`                        | The name of the plugin to use, in this case: `tcplog`
+`name`                        | The name of the plugin to use, in this case: `filelog`
 `api_id`                      | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target
 
