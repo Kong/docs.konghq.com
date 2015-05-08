@@ -2,12 +2,39 @@
 layout: default
 sitemap: true
 id: documentation
-header_title: Documentation
-header_icon: /assets/images/icons/icn-documentation.svg
-header_caption: Learn how Kong empowers your APIs
 ---
 
-{% include header.html %}
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-icon">
+      <img src="/assets/images/icons/icn-documentation.svg" alt="Documentation" />
+    </div>
+    <div class="page-header-title">
+      <h1>Documentation</h1>
+      <p>Learn how Kong empowers your APIs</p>
+    </div>
+
+    <div class="dropdown">
+      <button id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{page.kong_version}}
+        {% if page.kong_version == site.data.kong_latest.version %}(latest){% endif %}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="version-dropdown">
+        {% for ver in site.data.kong_versions %}
+          {% unless page.kong_version == ver.version %}
+            <li>
+              <a href="/docs/{{ver.version}}"{% if ver.version == page.kong_version %} class="active"{% endif %}>
+                {{ver.version}}
+                {% if ver.version == site.data.kong_latest.version %}(latest){% endif %}
+              </a>
+            </li>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</header>
 
 <div class="container">
   <aside class="page-navigation">

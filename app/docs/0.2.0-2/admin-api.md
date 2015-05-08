@@ -1,6 +1,5 @@
 ---
 title: Admin API
-alias: /docs/latest/admin-api
 ---
 
 # Kong Admin API

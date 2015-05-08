@@ -1,6 +1,5 @@
 ---
 title: What are plugins?
-alias: /docs/latest/about/plugins
 ---
 
 # What are plugins?
