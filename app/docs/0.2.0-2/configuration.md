@@ -24,6 +24,7 @@ They are all **required**.
 
 - [**proxy_port**](#proxy_port)
 - [**admin_api_port**](#admin_api_port)
+- [**dnsmasq_port**](#dnsmasq_port)
 - [**nginx_working_dir**](#nginx_working_dir)
 - [**plugins_available**](#plugins_available)
 - [**send_anonymous_reports**](#send_anonymous_reports)
@@ -57,6 +58,20 @@ or closed off network to ensure security.
 
 ```yaml
 admin_api_port: 8001
+```
+
+---
+
+### `dnsmasq_port`
+
+Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen to.
+
+**Note:** This port is used to manage properly resolve DNS addresses by the Kong instances, therefore it should be placed behind a firewall or closed off network to ensure security.
+
+**Default:**
+
+```yaml
+dnsmasq_port: 8053
 ```
 
 ---
