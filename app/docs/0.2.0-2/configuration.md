@@ -31,6 +31,7 @@ They are all **required**.
 - [**databases_available**](#databases_available.*)
 - [**database**](#database)
 - [**database_cache_expiration**](#database_cache_expiration)
+- [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
 
 ---
@@ -222,6 +223,18 @@ cached value is flushed and reflects any potential changes made during that time
 
 ```yaml
 database_cache_expiration: 5 # in seconds
+```
+
+---
+
+### `memory_cache_size`
+
+A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore.
+
+**Default:**
+
+```yaml
+memory_cache_size: 128 # in megabytes
 ```
 
 ---
