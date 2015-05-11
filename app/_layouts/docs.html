@@ -14,13 +14,13 @@ id: documentation
       <p>Learn how Kong empowers your APIs</p>
     </div>
 
-    <div class="dropdown">
-      <button id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{page.kong_version}}
-        {% if page.kong_version == site.data.kong_latest.version %}(latest){% endif %}
+    <div class="dropdown page-header-right">
+      <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Version {{page.kong_version}}
+        {% if page.kong_version == site.data.kong_latest.version %}<em>(latest)</em>{% endif %}
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="version-dropdown">
+      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
         {% for ver in site.data.kong_versions %}
           {% unless page.kong_version == ver.version %}
             <li>

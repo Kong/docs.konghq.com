@@ -48,9 +48,21 @@
     background-image: linear-gradient(to top, #f7f9fa, #fcfcfc);
     color: @gray-dark;
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 500;
     line-height: 39px;
     height: 40px;
+
+    &:active {
+      background: #f7f9fa;
+    }
+
+    em {
+      font-style: normal;
+      color: #aab0b2;
+    }
+  }
+
+  .page-header-right {
     position: absolute;
     right: 0;
     top: 50%;
@@ -61,6 +73,12 @@
       margin-top: 20px;
       display: inline-block;
       vertical-align: bottom;
+    }
+  }
+
+  .dropdown .dropdown-menu {
+    @media (max-width: 800px) {
+      right: auto;
     }
   }
 }
@@ -358,6 +376,7 @@
       width: 50%;
       border-bottom: 1px solid #eee;
       box-sizing: border-box;
+      padding-top: 40px;
 
       h3 {
         margin-top: 0;
@@ -369,14 +388,14 @@
       }
 
       &:nth-child(odd) {
-        padding: 0 25px 0 0;
+        padding-right: 25px;
       }
 
       &:nth-child(even) {
-        padding: 0 0 0 25px;
+        padding-left: 25px;
       }
 
-      &:last-of-type  {
+      &:last-of-type {
         height: 200px;
         border-bottom: none;
       }
