@@ -14,6 +14,7 @@ id: documentation
       <p>Learn how Kong empowers your APIs</p>
     </div>
 
+    {% if site.data.kong_versions.size > 1 %}
     <div class="dropdown page-header-right">
       <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Version {{page.kong_version}}
@@ -33,6 +34,7 @@ id: documentation
         {% endfor %}
       </ul>
     </div>
+    {% endif %}
   </div>
 </header>
 
