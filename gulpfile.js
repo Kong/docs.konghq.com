@@ -39,7 +39,7 @@ gulp.task('styles', function () {
   return gulp.src('app/_assets/stylesheets/index.less')
     .pipe($.plumber())
     .pipe($.less())
-    .pipe($.uncss({ html: glob.sync('dist/**/*.html') }))
+    //.pipe($.uncss({ html: glob.sync('dist/**/*.html') }))
     .pipe($.autoprefixer())
     .pipe($.minifyCss())
     .pipe($.rename('styles.css'))
