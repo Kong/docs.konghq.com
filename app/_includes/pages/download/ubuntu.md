@@ -4,18 +4,18 @@
 
 1. **Installation:**
 
-    For Ubuntu 12.04 Precise download this package: [kong-0.2.0-2.precise_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.precise_all.deb)
+    For Ubuntu 12.04 Precise download this package: [kong-{{site.data.kong_latest.version}}.precise_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
 
-    For Ubuntu 14.04 Trusty download this package: [kong-0.2.0-2.trusty_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.trusty_all.deb)
+    For Ubuntu 14.04 Trusty download this package: [kong-{{site.data.kong_latest.version}}.trusty_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
 
-    For Ubuntu 15.04 Vivid Vervet download this package: [kong-0.2.0-2.vivid_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.vivid_all.deb)
+    For Ubuntu 15.04 Vivid Vervet download this package: [kong-{{site.data.kong_latest.version}}.vivid_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
 
     Then execute:
 
     ```bash
     $ sudo apt-get update
-    $ sudo dpkg -i kong-0.2.0-2.*.deb
-    $ sudo apt-get install -f
+    $ sudo apt-get install sudo netcat lua5.1 openssl libpcre3 dnsmasq
+    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
     ```
 
 2. **Configure Cassandra**

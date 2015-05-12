@@ -1,5 +1,5 @@
 -
-  version: "0.2.0-2"
+  version: "0.2.1"
   dependencies:
     lua: "5.1.4"
     luarocks: "2.2.2"

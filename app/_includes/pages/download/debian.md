@@ -4,18 +4,18 @@
 
 1. **Installation:**
 
-    For Debian 6 Squeeze download this package: [kong-0.2.0-2.squeeze_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.squeeze_all.deb)
+    For Debian 6 Squeeze download this package: [kong-{{site.data.kong_latest.version}}.squeeze_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.squeeze_all.deb)
 
-    For Debian 7 Wheezy download this package: [kong-0.2.0-2.wheezy_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.wheezy_all.deb)
+    For Debian 7 Wheezy download this package: [kong-{{site.data.kong_latest.version}}.wheezy_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.wheezy_all.deb)
 
-    For Debian 8 Jessie download this package: [kong-0.2.0-2.jessie_all.deb](https://github.com/Mashape/kong/releases/download/0.2.0-2/kong-0.2.0-2.jessie_all.deb)
+    For Debian 8 Jessie download this package: [kong-{{site.data.kong_latest.version}}.jessie_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.jessie_all.deb)
 
     Then execute:
 
     ```bash
     $ sudo apt-get update
-    $ sudo dpkg -i kong-0.2.0-2.*.deb
-    $ sudo apt-get install -f
+    $ sudo apt-get install sudo netcat lua5.1 openssl libpcre3 dnsmasq
+    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
     ```
 
 2. **Configure Cassandra**
