@@ -144,16 +144,13 @@ Attributes | Description
  ---:| ---
 `id`<br>**required** | The unique identifier of the API to be updated
 
-**Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like below.
+**Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like the one below.
+
 #### Request Body
 
 ```json
 {
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "Mockbin2",
-    "public_dns": "mockbin.com",
-    "target_url": "http://mockbin.com",
-    "created_at": 1422386534
+    "name": "Mockbin2"
 }
 ```
 
@@ -313,6 +310,8 @@ HTTP 200 OK
 Attributes | Description
  ---:| ---
 `id`<br>**required** | The unique identifier of the consumer to be updated
+
+**Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like the one below.
 
 #### Request Body
 
@@ -513,19 +512,16 @@ Attributes | Description
  ---:| ---
 `id`<br>**required** | The unique identifier of the plugin configuration to be retrieved
 
+**Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like the one below.
+
 #### Request Body
 
 ```json
 {
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-    "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "ratelimiting",
     "value": {
         "limit": 50,
         "period": "second"
-    },
-    "created_at": 1422386534
+    }
 }
 ```
 
