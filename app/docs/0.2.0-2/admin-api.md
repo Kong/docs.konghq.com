@@ -144,6 +144,7 @@ Attributes | Description
  ---:| ---
 `id`<br>**required** | The unique identifier of the API to be updated
 
+**Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like below.
 #### Request Body
 
 ```json
