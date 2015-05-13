@@ -10,6 +10,6 @@
   luarocks_version: "0.2.1-1"
   dependencies:
     lua: "5.1.4"
-    luarocks: "2.2.0"
+    luarocks: "2.2.2"
     cassandra: "2.1.5"
     openresty: "1.7.10.2"

@@ -13,7 +13,7 @@
 
     Install [Luarocks v{{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download)
 
-    Install [Dnsmasq v{{dnsmasq_version}}](http://www.thekelleys.org.uk/dnsmasq/)
+    Install [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/)
 
     Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation), with the following `configure` options:
 
