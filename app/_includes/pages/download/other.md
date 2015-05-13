@@ -1,5 +1,6 @@
 {% capture lua_version %}{{site.data.kong_latest.dependencies.lua}}{% endcapture %}
 {% capture luarocks_version %}{{site.data.kong_latest.dependencies.luarocks}}{% endcapture %}
+{% capture dnsmasq_version %}{{site.data.kong_latest.dependencies.dnsmasq}}{% endcapture %}
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 {% capture openresty_version %}{{site.data.kong_latest.dependencies.openresty}}{% endcapture %}
 
@@ -11,6 +12,8 @@
     Install [Lua v{{lua_version}}](http://www.lua.org/versions.html#5.1)
 
     Install [Luarocks v{{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download)
+
+    Install [Dnsmasq v{{dnsmasq_version}}](http://www.thekelleys.org.uk/dnsmasq/)
 
     Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation), with the following `configure` options:
 
