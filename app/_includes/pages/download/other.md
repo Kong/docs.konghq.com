@@ -26,7 +26,7 @@
 2. **Install Kong:**
 
     ```bash
-    $ luarocks install kong {{site.data.kong_latest.version}}
+    $ luarocks install kong {{site.data.kong_latest.luarocks_version}}
     ```
 
 3. **Configure Cassandra**
