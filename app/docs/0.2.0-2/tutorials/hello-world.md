@@ -1,6 +1,5 @@
 ---
 title: Tutorials - Hello World
-alias: /docs/latest/tutorials/hello-world
 ---
 
 # Hello World: Proxying your first API

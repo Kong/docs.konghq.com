@@ -1,6 +1,5 @@
 ---
 title: Adding your API
-alias: /docs/latest/getting-started/adding-your-api
 ---
 
 # Adding your API
