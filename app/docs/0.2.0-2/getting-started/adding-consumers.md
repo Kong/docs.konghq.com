@@ -65,7 +65,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     ```bash
     $ curl -i -X GET \
-      --url http://localhost:8000 \
+      --url http://localhost:8000/request \
       --header "Host: mockbin.com" \
       --header "apikey: ENTER_KEY_HERE"
     ```
