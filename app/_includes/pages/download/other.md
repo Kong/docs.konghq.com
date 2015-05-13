@@ -15,11 +15,15 @@
 
     Install [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/)
 
-    Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation), with the following `configure` options:
+    Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation) (OpenResty has some dependencies of its own), with the following `configure` options:
 
     ```bash
     $ ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
     ```
+
+    Install [OpenSSL](https://www.openssl.org/)
+
+    Install [PCRE](http://www.pcre.org/)
 
     Some of the dependencies may be available in your favorite package manager.
 
