@@ -58,7 +58,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     ```bash
     $ curl -i -X GET \
-     --url http://localhost:8000/ \
+     --url http://localhost:8000/request \
      --header 'Host: mockbin.com'
     ```
 
