@@ -19,7 +19,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
 1. ### Add plugin to your Kong config
 
-    Add `keyauth` under the `plugins_available` property in your Kong instance configuration file:
+    Add `keyauth` under the `plugins_available` property in your Kong instance configuration file should it not already exist:
 
     ```yaml
     plugins_available:
