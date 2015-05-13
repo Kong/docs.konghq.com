@@ -50,6 +50,15 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
     ```
 
     Kong is now aware of your API and ready to proxy requests.
+    
+    Copy the `id` property value from the response and keep it handy, you will need it for making modifications to the API, following the steps in this guide.
+    
+    You can always retrieve the full list of APIs by calling the `/apis` endpoint:
+    
+    ```bash
+    $ curl -i -X GET \
+     --url http://localhost:8001/apis/
+    ```
 
 3. ### Forward your requests through Kong
 
