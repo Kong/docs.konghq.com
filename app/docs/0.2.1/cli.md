@@ -1,5 +1,6 @@
 ---
 title: CLI Reference
+alias: /docs/latest/cli
 ---
 
 # CLI Reference

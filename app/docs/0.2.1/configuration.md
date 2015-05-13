@@ -1,5 +1,6 @@
 ---
 title: Configuration Reference
+alias: /docs/latest/configuration
 ---
 
 # Configuration Reference
@@ -23,12 +24,14 @@ They are all **required**.
 
 - [**proxy_port**](#proxy_port)
 - [**admin_api_port**](#admin_api_port)
+- [**dnsmasq_port**](#dnsmasq_port)
 - [**nginx_working_dir**](#nginx_working_dir)
 - [**plugins_available**](#plugins_available)
 - [**send_anonymous_reports**](#send_anonymous_reports)
 - [**databases_available**](#databases_available.*)
 - [**database**](#database)
 - [**database_cache_expiration**](#database_cache_expiration)
+- [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
 
 ---
@@ -56,6 +59,20 @@ or closed off network to ensure security.
 
 ```yaml
 admin_api_port: 8001
+```
+
+---
+
+### `dnsmasq_port`
+
+Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen to.
+
+**Note:** This port is used to manage properly resolve DNS addresses by the Kong instances, therefore it should be placed behind a firewall or closed off network to ensure security.
+
+**Default:**
+
+```yaml
+dnsmasq_port: 8053
 ```
 
 ---
@@ -112,10 +129,6 @@ A dictionary of databases Kong can connect to, and their respective properties.
 
 Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
 
-  **`databases_available.*.properties`**
-
-  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
-
 **Default:**
 
 ```yaml
@@ -127,6 +140,64 @@ databases_available:
       timeout: 1000
       keyspace: kong
       keepalive: 60000
+```
+
+  **`databases_available.*.properties`**
+
+  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
+
+  **`databases_available.*.properties.hosts`**
+
+  The hosts(s) on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list. If Kong must connect to another port than the one specified in `properties` for one of your nodes, you can override it for that particular node.
+
+  **Example:**
+
+```yaml
+properties:
+  port: 9042
+  hosts:
+    - "52.5.149.55"      # will connect on port 9042
+    - "52.5.149.56:9000" # will connect on port 9000
+```
+
+  **`databases_available.*.properties.port`**
+
+  The default port on which Kong should connect on your hosts.
+
+  **Default:**
+
+```yaml
+port: 9042
+```
+
+  **`databases_available.*.properties.timeout`**
+
+  Sets the timeout (in milliseconds) for sockets performing operations between Kong and Cassandra.
+
+  **Default:**
+
+```yaml
+timeout: 1000
+```
+
+  **`databases_available.*.properties.keyspace`**
+
+  The keyspace in which Kong operates on your cluster.
+
+  **Default:**
+
+```yaml
+keyspace: kong
+```
+
+  **`databases_available.*.properties.keepalive`**
+
+  The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
+
+  **Default:**
+
+```yaml
+keepalive: 60000
 ```
 
 ---
@@ -152,6 +223,18 @@ cached value is flushed and reflects any potential changes made during that time
 
 ```yaml
 database_cache_expiration: 5 # in seconds
+```
+
+---
+
+### `memory_cache_size`
+
+A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore.
+
+**Default:**
+
+```yaml
+memory_cache_size: 128 # in megabytes
 ```
 
 ---

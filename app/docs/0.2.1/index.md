@@ -1,5 +1,7 @@
 ---
 title: Documentation for Kong
+permalink: /docs/
+alias: /docs/latest
 ---
 
 # Kong Documentation

@@ -1,5 +1,6 @@
 ---
 title: 5-minute Quickstart
+alias: /docs/latest/getting-started/quickstart
 ---
 
 # 5-minute Quickstart

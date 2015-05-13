@@ -1,5 +1,6 @@
 ---
 title: Adding your API
+alias: /docs/latest/getting-started/adding-your-api
 ---
 
 # Adding your API
@@ -57,7 +58,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     ```bash
     $ curl -i -X GET \
-     --url http://localhost:8000/request \
+     --url http://localhost:8000/ \
      --header 'Host: mockbin.com'
     ```
 
