@@ -1,7 +1,6 @@
 ---
 title: Documentation for Kong
-permalink: /docs/
-alias: /docs/latest
+alias: [/docs/, /docs/latest]
 ---
 
 # Kong Documentation
