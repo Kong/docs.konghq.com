@@ -1,6 +1,5 @@
 ---
 title: Welcome to Kong
-alias: /docs/latest/getting-started/introduction
 ---
 
 # Welcome to Kong
