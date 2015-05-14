@@ -1,6 +1,5 @@
 ---
 title: Adding Consumers
-alias: /docs/latest/getting-started/adding-consumers
 ---
 
 # Adding Consumers

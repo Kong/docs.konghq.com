@@ -1,6 +1,5 @@
 ---
 title: Enabling Plugins
-alias: /docs/latest/getting-started/enabling-plugins
 ---
 
 # Enabling Plugins

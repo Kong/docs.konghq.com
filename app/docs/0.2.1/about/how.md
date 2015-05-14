@@ -1,6 +1,5 @@
 ---
 title: How does it work?
-alias: /docs/latest/about/how
 ---
 
 # How does it work?
