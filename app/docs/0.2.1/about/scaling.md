@@ -1,5 +1,6 @@
 ---
 title: How does it scale?
+alias: /docs/latest/about/scaling
 ---
 
 # How does it scale?

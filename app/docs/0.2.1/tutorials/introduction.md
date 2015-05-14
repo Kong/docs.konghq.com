@@ -1,5 +1,6 @@
 ---
 title: Tutorials - Introduction
+alias: /docs/latest/tutorials/introduction
 ---
 
 # Introduction

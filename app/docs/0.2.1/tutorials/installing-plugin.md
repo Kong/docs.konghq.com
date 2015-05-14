@@ -1,5 +1,6 @@
 ---
 title: Tutorials - Installing a Plugin
+alias: /docs/latest/tutorials/installing-plugin
 ---
 
 # Installing a Plugin
