@@ -22,6 +22,7 @@ They are all **required**.
 ### Summary
 
 - [**proxy_port**](#proxy_port)
+- [**proxy_ssl_port**](#proxy_ssl_port)
 - [**admin_api_port**](#admin_api_port)
 - [**dnsmasq_port**](#dnsmasq_port)
 - [**nginx_working_dir**](#nginx_working_dir)
@@ -30,6 +31,8 @@ They are all **required**.
 - [**databases_available**](#databases_available.*)
 - [**database**](#database)
 - [**database_cache_expiration**](#database_cache_expiration)
+- [**ssl_cert_path**](#ssl_cert_path)
+- [**ssl_key_path**](#ssl_key_path)
 - [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
 
@@ -43,6 +46,18 @@ Port which Kong proxies requests through, developers using your API will make re
 
 ```yaml
 proxy_port: 8000
+```
+
+---
+
+### `proxy_ssl_port`
+
+Port which Kong proxies requests through under `https`, developers using your API will make requests against this port.
+
+**Default:**
+
+```yaml
+proxy_ssl_port: 8443
 ```
 
 ---
@@ -66,7 +81,7 @@ admin_api_port: 8001
 
 Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen to.
 
-**Note:** This port is used to manage properly resolve DNS addresses by the Kong instances, therefore it should be placed behind a firewall or closed off network to ensure security.
+**Note:** This port is used to properly resolve DNS addresses by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
 
 **Default:**
 
@@ -226,6 +241,34 @@ database_cache_expiration: 5 # in seconds
 
 ---
 
+### `ssl_cert_path`
+
+The path to the SSL certificate that Kong will use when listening on the `https` port.
+
+**Default:**
+
+By default this property is commented out, which will force Kong to use a bundled self-signed certificate.
+
+```yaml
+# ssl_cert_path: /path/to/certificate.pem
+```
+
+---
+
+### `ssl_key_path`
+
+The path to the SSL certificate key that Kong will use when listening on the `https` port.
+
+**Default:**
+
+By default this property is commented out, which will force Kong to use a bundled self-signed certificate.
+
+```yaml
+# ssl_key_path: /path/to/certificate.key
+```
+
+---
+
 ### `memory_cache_size`
 
 A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore.
@@ -249,24 +292,24 @@ The NGINX configuration (or `nginx.conf`) that will be used for this instance.
 ```yaml
 nginx: |
   worker_processes auto;
-  error_log logs/error.log info;
+  error_log logs/error.log error;
   daemon on;
 
-  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
+  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{ "{{auto_worker_connections" }}}};
+    worker_connections {{auto_worker_connections}};
     multi_accept on;
   }
 
   http {
-    resolver 8.8.8.8;
+    resolver {{dns_resolver}};
     charset UTF-8;
 
     access_log logs/access.log;
-    access_log on;
+    access_log off;
 
     # Timeouts
     keepalive_timeout 60s;
@@ -301,7 +344,7 @@ nginx: |
     lua_code_cache on;
     lua_max_running_timers 4096;
     lua_max_pending_timers 16384;
-    lua_shared_dict cache 512m;
+    lua_shared_dict cache {{memory_cache_size}}m;
     lua_socket_log_errors off;
 
     init_by_lua '
@@ -314,7 +357,14 @@ nginx: |
     ';
 
     server {
-      listen {{ "{{proxy_port" }}}};
+      server_name _;
+      listen {{proxy_port}};
+      listen {{proxy_ssl_port}} ssl;
+
+      ssl_certificate_by_lua 'kong.exec_plugins_certificate()';
+
+      ssl_certificate {{ssl_cert}};
+      ssl_certificate_key {{ssl_key}};
 
       location / {
         default_type 'text/plain';
@@ -328,6 +378,7 @@ nginx: |
         # Proxy the request
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_pass $backend_url;
         proxy_pass_header Server;
 
@@ -349,14 +400,14 @@ nginx: |
       location = /500.html {
         internal;
         content_by_lua '
-          local utils = require "kong.tools.utils"
-          utils.show_error(ngx.status, "Oops, an unexpected error occurred!")
+          local responses = require "kong.tools.responses"
+          responses.send_HTTP_INTERNAL_SERVER_ERROR("An unexpected error occurred")
         ';
       }
     }
 
     server {
-      listen {{ "{{admin_api_port" }}}};
+      listen {{admin_api_port}};
 
       location / {
         default_type application/json;
@@ -368,7 +419,7 @@ nginx: |
       }
 
       # Do not remove, additional configuration placeholder for some plugins
-      # {{ "{{additional_configuration" }}}}
+      # {{additional_configuration}}
     }
   }
 ```
