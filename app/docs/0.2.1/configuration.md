@@ -295,17 +295,17 @@ nginx: |
   error_log logs/error.log error;
   daemon on;
 
-  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
+  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{auto_worker_connections}};
+    worker_connections {{ "{{auto_worker_connections" }}}};
     multi_accept on;
   }
 
   http {
-    resolver {{dns_resolver}};
+    resolver {{ "{{dns_resolver" }}}};
     charset UTF-8;
 
     access_log logs/access.log;
@@ -344,7 +344,7 @@ nginx: |
     lua_code_cache on;
     lua_max_running_timers 4096;
     lua_max_pending_timers 16384;
-    lua_shared_dict cache {{memory_cache_size}}m;
+    lua_shared_dict cache {{ "{{memory_cache_size" }}}}m;
     lua_socket_log_errors off;
 
     init_by_lua '
@@ -358,13 +358,13 @@ nginx: |
 
     server {
       server_name _;
-      listen {{proxy_port}};
-      listen {{proxy_ssl_port}} ssl;
+      listen {{ "{{proxy_port" }}}};
+      listen {{ "{{proxy_ssl_port" }}}} ssl;
 
       ssl_certificate_by_lua 'kong.exec_plugins_certificate()';
 
-      ssl_certificate {{ssl_cert}};
-      ssl_certificate_key {{ssl_key}};
+      ssl_certificate {{ "{{ssl_cert" }}}};
+      ssl_certificate_key {{ "{{ssl_key" }}}};
 
       location / {
         default_type 'text/plain';
@@ -407,7 +407,7 @@ nginx: |
     }
 
     server {
-      listen {{admin_api_port}};
+      listen {{ "{{admin_api_port" }}}};
 
       location / {
         default_type application/json;
@@ -419,7 +419,7 @@ nginx: |
       }
 
       # Do not remove, additional configuration placeholder for some plugins
-      # {{additional_configuration}}
+      # {{ "{{additional_configuration" }}}};
     }
   }
 ```
