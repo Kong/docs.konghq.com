@@ -86,7 +86,6 @@ plugins_available:
   - basicauth
   - ratelimiting
   - tcplog
-  - httplog
   - udplog
   - filelog
   - request_transformer
