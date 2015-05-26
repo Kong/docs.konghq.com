@@ -11,6 +11,7 @@ This folder is the source code for [Kong](https://github.com/Mashape/kong)'s web
 ## Install
 
 >```bash
+gem install bundler
 npm install
 >```
 
