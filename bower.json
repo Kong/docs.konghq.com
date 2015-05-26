@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "skeleton-css": "~2.0.4",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "bootstrap": "~3.3.4"
   }
 }
