@@ -1,11 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - Request Transformer
 header_title: Request Transformer
 header_icon: /assets/images/icons/plugins/transformations.png
-header_btn_text: Report Bug
-header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
 ---

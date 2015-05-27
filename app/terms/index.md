@@ -1,6 +1,5 @@
 ---
 title: Terms
-layout: page
 header_title: Terms of service
 header_caption: "Last Revised: March 2, 2015"
 ---

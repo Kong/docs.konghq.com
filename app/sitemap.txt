@@ -1,0 +1,7 @@
+---
+layout: null
+sitemap: false
+---
+{% for page in site.pages %}{% if page.sitemap != false %}
+{{ site.url }}{{ page.url }}
+{% endif %}{% endfor %}
