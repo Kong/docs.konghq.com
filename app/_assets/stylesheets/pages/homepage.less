@@ -7,19 +7,33 @@
 
 .intro-section {
   background-color: @navy-darker;
-  color: rgba(255, 255, 255, .5);
   font-size: 18px;
   line-height: 32px;
   padding: 60px 0;
   font-weight: 500;
 
+  a {
+    color: rgba(255, 255, 255, .5);
+
+    &:hover {
+      color: rgba(255, 255, 255, .3);
+    }
+  }
+
   h2 {
-    color: #fff;
     font-size: 32px;
     margin: 50px 0 12px 0;
     padding-bottom: 17px;
     font-weight: 500;
     position: relative;
+
+    a {
+      color: #fff;
+
+      &:hover {
+        color: #adadad;
+      }
+    }
 
     &:after {
       content: "";
