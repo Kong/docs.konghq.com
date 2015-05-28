@@ -6,7 +6,7 @@
   position: relative;
   box-shadow: 0 1px rgba(255, 255, 255, 0.1);
 
-  @media (min-width: 800px) {
+  @media (min-width: @navbar-collapse-point) {
     top: 0;
     left: 0;
     position: fixed;
@@ -30,7 +30,7 @@
       background: rgba(255, 255, 255, 0.15);
     }
 
-    @media (max-width: 970px) {
+    @media (max-width: @navbar-collapse-point) {
       display: block;
     }
 
@@ -97,7 +97,7 @@
     }
   }
 
-  @media (max-width: 970px) {
+  @media (max-width: @navbar-collapse-point) {
     display: none;
     float: none;
     clear: both;
