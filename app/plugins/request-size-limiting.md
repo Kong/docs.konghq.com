@@ -37,7 +37,7 @@ parameter                               | description
  ---                                    | ---
 `name`                                  | The name of the plugin to use, in this case: `requestsizelimiting`
 `api_id`                                | The API ID that this plugin configuration will target
-`allowed_payload_size`<br>*optional*             | Allowed request payload size
+`allowed_payload_size`<br>*optional*             | Allowed request payload size in bytes, default is 128 bytes
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
