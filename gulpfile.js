@@ -1,12 +1,15 @@
 'use strict'
 
-var gulp = require('gulp')
+var del = require('del')
 var ghPages = require('gh-pages')
+var glob = require('glob')
+var gulp = require('gulp')
+var path = require('path')
+var process = require('child_process')
 var sequence = require('run-sequence')
 
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
-var connect = $.connect
 
 // Build variables (default to local config)
 var jekyllConfigs = {
@@ -20,13 +23,12 @@ var jekyllConfig = jekyllConfigs.LOCAL
 var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
   styles: 'app/_assets/stylesheets/**/*.{less,css}',
-  js: 'app/_assets/javascripts/**/*.js',
+  js: ['app/_assets/javascripts/**/*.js', 'bower_components/bootstrap/js/dropdown.js'],
   images: 'app/_assets/images/**/*',
   fonts: 'bower_components/font-awesome/fonts/**/*.*'
 }
 
 gulp.task('styles', function () {
-  var glob = require('glob')
   // TODO: add LESS linting
 
   // thibaultcha:
@@ -48,21 +50,19 @@ gulp.task('styles', function () {
     .pipe($.rename('styles.css'))
     .pipe(gulp.dest('dist/assets/'))
     .pipe($.size())
-    .pipe(connect.reload())
+    .pipe($.connect.reload())
 })
 
 gulp.task('javascripts', function () {
   return gulp.src(sources.js)
     .pipe($.plumber())
-    .pipe($.jshint())
-    .pipe($.jshint.reporter(require('jshint-stylish')))
     .pipe($.sourcemaps.init())
     .pipe($.concat('app.js'))
     .pipe($.uglify())
     .pipe($.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
-    .pipe(connect.reload())
+    .pipe($.connect.reload())
 })
 
 gulp.task('images', function () {
@@ -70,7 +70,7 @@ gulp.task('images', function () {
     .pipe($.plumber())
     .pipe(gulp.dest('dist/assets/images'))
     .pipe($.size())
-    .pipe(connect.reload())
+    .pipe($.connect.reload())
 })
 
 gulp.task('fonts', function () {
@@ -78,13 +78,13 @@ gulp.task('fonts', function () {
       .pipe($.plumber())
       .pipe(gulp.dest('dist/assets/fonts'))
       .pipe($.size())
-      .pipe(connect.reload())
+      .pipe($.connect.reload())
 })
 
 gulp.task('jekyll', function (next) {
   var command = 'bundle exec jekyll build --config ' + jekyllConfig + ' --destination dist'
 
-  require('child_process').exec(command, function (err, stdout, stderr) {
+  process.exec(command, function (err, stdout, stderr) {
     console.log(stdout)
     console.error(stderr)
     next(err)
@@ -107,12 +107,12 @@ gulp.task('html', ['jekyll'], function () {
     }))
     .pipe(gulp.dest('dist'))
     .pipe($.size())
-    .pipe(connect.reload())
+    .pipe($.connect.reload())
 })
 
 gulp.task('clean', function (cb) {
   ghPages.clean()
-  require('del')(['dist', '.gh-pages'], cb)
+  del(['dist', '.gh-pages'], cb)
 })
 
 gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
@@ -125,7 +125,7 @@ gulp.task('build:prod', function (cb) {
 })
 
 gulp.task('connect', function () {
-  connect.server({
+  $.connect.server({
     port: 9000,
     root: 'dist',
     livereload: true,
@@ -134,7 +134,6 @@ gulp.task('connect', function () {
 })
 
 gulp.task('gh-pages', function (next) {
-  var path = require('path')
   var config = {
     message: 'Update ' + new Date().toISOString()
   }

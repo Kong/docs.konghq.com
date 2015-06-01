@@ -1,6 +1,5 @@
 ---
 title: Enterprise Support
-layout: page
 header_title: Enterprise Support
 header_icon: /assets/images/icons/icn-enterprise.svg
 header_caption: The best way for your company to manage and empower APIs

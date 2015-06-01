@@ -1,17 +1,18 @@
 .DS_Store
-.vagrant/
+.vagrant
 .buildpath
 .project
 .bundle
-vendor
 .idea
 npm-debug.log
 
 # jekyll
 Gemfile.lock
 dist
-\.gh-pages
 
-# gh-pages
-node_modules/
-bower_components/
+# deploy
+.gh-pages
+
+# package managers
+node_modules
+bower_components
