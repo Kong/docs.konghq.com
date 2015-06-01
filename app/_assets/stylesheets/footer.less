@@ -11,17 +11,14 @@
     padding: 12px 0;
   }
 
-  @media (max-width: 550px) {
-    .footer-bar .footer-separator,
-    .footer-bar .container > a {
-      display: none;
-    }
+  .footer-bar span:first-of-type a {
+    margin: 0;
   }
 
   .footer-bar a {
     text-decoration: none;
     transition: all .3s ease;
-    margin-right: 2em;
+    margin-left: 2em;
     color: @gray-dark;
 
     &:hover {
@@ -39,7 +36,7 @@
     height: 21px;
     width: 2px;
     vertical-align: middle;
-    margin-right: 2em;
+    margin-left: 2em;
     background-color: #c8cacc;
   }
 
@@ -63,9 +60,18 @@
   }
 
   @media (max-width: 550px) {
+
+  }
+
+  @media (max-width: 850px) {
+    .footer-social {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1150px) {
     .footer-separator,
-    .footer-social,
-    .footer-nav {
+    .footer-bar span:first-of-type {
       display: none;
     }
   }
