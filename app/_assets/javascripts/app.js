@@ -110,13 +110,13 @@ $(function () {
     var analyticsDfd = $.Deferred();
     var fieldValues = {};
     var relateiqFieldIds = {
-      title: 7,
-      tell_us_more: 8,
-      email: 9,
-      phone: 10,
-      deployment: 11,
-      company: 12,
-      name: 14
+      title: 8,
+      tell_us_more: 6,
+      email: 7,
+      phone: 9,
+      deployment: 14,
+      company: 10,
+      name: 13
     };
 
     for (var i = 0; i < data.length; i++) {
@@ -145,7 +145,7 @@ $(function () {
       url: 'https://mashaper-relateiq-v1.p.mashape.com/accounts',
       method: 'POST',
       headers: {
-        'authorization': 'Basic NTU0MWViNjZlNGIwNjlmYmVhZmYwY2M1OkY3WW0xNDIwY041UUZSRDRZaUpnMjRxUTcxUQ==',
+        'authorization': 'Basic NTU2ZDcxYzdlNGIwMmM5ZTM3YjgxNzc1Ok9NbFNBVGM1QkFTOG1JbEtXZENMZFZ2Z3RqYQ==',
         'x-mashape-key': 'mJUINHSWBYmshREqNlfTBKtbBHDZp1N7VKhjsnUIUo4f4r3pVj'
       },
       data: JSON.stringify({
