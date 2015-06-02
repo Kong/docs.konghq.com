@@ -1,6 +1,8 @@
 module Jekyll
 
   class Versions < Jekyll::Generator
+    priority :highest
+
     def generate(site)
       # Retrieve the latest version and put it in `site.data.kong_latest.version`
       latest = site.data["kong_versions"].last
