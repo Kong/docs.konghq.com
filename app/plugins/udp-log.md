@@ -51,3 +51,46 @@ parameter                     | description
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
+
+## Log Format
+
+Every request will be logged separately in a JSON object, with the following format:
+
+```json
+{
+    "response": {
+        "status": 200,
+        "size": "434",
+        "headers": {
+            "Content-Length": "197",
+            "via": "kong/0.3.0",
+            "Connection": "close",
+            "access-control-allow-credentials": "true",
+            "Content-Type": "application/json",
+            "server": "nginx",
+            "access-control-allow-origin": "*"
+        }
+    },
+    "api": {
+        "public_dns": "test.com",
+        "target_url": "http://httpbin.org/",
+        "created_at": 1432855823000,
+        "name": "test.com",
+        "id": "fbaf95a1-cd04-4bf6-cb73-6cb3285fef58"
+    },
+    "request": {
+        "method": "GET",
+        "uri": "/get",
+        "size": "75",
+        "request_uri": "http://httpbin.org:8000/get",
+        "querystring": {},
+        "headers": {
+            "accept": "*/*",
+            "host": "httpbin.org",
+            "user-agent": "curl/7.37.1"
+        }
+    },
+    "started_at": 1433209822425,
+    "client_ip": "127.0.0.1"
+}
+```
