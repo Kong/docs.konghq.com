@@ -122,6 +122,7 @@ plugins_available:
   - filelog
   - request_transformer
   - cors
+  - requestsizelimiting
 ```
 
 ---

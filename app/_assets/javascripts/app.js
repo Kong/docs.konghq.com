@@ -1,85 +1,89 @@
+/* globals $, history, analytics */
+
+'use strict'
+
 $(function () {
-  var $window = $(window);
+  var $window = $(window)
 
   $('.navbar-toggle').on('click', function () {
-    var $navbar = $($(this).data('target'));
-    $navbar.slideToggle(150);
-  });
+    var $navbar = $($(this).data('target'))
+    $navbar.slideToggle(150)
+  })
 
   $('.scroll-to').on('click', function (e) {
-    e.preventDefault();
+    e.preventDefault()
 
     $('html, body').animate({
       scrollTop: $($(this).attr('href')).offset().top - 70 // Header height
-    }, 700);
-  });
+    }, 700)
+  })
 
   // Change header download button color
 
   if (!$('body#enterprise').length) {
-    var introSectionHeight = $('.section.intro-section').outerHeight() || 50;
-    var $downloadBtn = $('.navbar-nav').find('.button');
+    var introSectionHeight = $('.section.intro-section').outerHeight() || 50
+    var $downloadBtn = $('.navbar-nav').find('.button')
 
     $window.on('scroll', function () {
-      var scrollTop = $(this).scrollTop();
+      var scrollTop = $(this).scrollTop()
 
       if (scrollTop > introSectionHeight) {
-        $downloadBtn.removeClass('button-dark').addClass('button-primary');
+        $downloadBtn.removeClass('button-dark').addClass('button-primary')
       } else {
-        $downloadBtn.removeClass('button-primary').addClass('button-dark');
+        $downloadBtn.removeClass('button-primary').addClass('button-dark')
       }
-    });
+    })
   }
 
   // Page section on contribute page
 
   $('.toggle-page-section').on('click', function (e) {
-    e.preventDefault();
-    var $link = $(this);
+    e.preventDefault()
+    var $link = $(this)
 
     $link.parent().next('.page-section').stop().slideToggle(300, function () {
-      $link.toggleClass('active');
-    });
-  });
+      $link.toggleClass('active')
+    })
+  })
 
   // Tabs on download page
 
-  var $tabs = $('.tab-list li');
-  var $tabPanes = $('.tab-pane');
+  var $tabs = $('.tab-list li')
+  var $tabPanes = $('.tab-pane')
 
   $tabs.on('click', function (e, disableTracking) {
-    e.preventDefault();
+    e.preventDefault()
 
-    var tabId = $(this).find('a').attr('href');
+    var tabId = $(this).find('a').attr('href')
 
-    $tabs.removeClass('active').filter(this).addClass('active');
-    $tabPanes.removeClass('active').filter(tabId).addClass('active');
+    $tabs.removeClass('active').filter(this).addClass('active')
+    $tabPanes.removeClass('active').filter(tabId).addClass('active')
 
     if (history.pushState) {
-      history.pushState(null, null, tabId);
+      history.pushState(null, null, tabId)
     } else {
-      location.hash = tabId;
+      window.location.hash = tabId
     }
 
     if (!disableTracking) {
       analytics.track('Choose installation method', {
         installationMethod: tabId.substr(1)
-      });
+      })
     }
-  });
+  })
 
-  if (location.hash) {
-    $tabs.find('a[href="' + location.hash + '"]').trigger('click', true);
+  if (window.location.hash) {
+    $tabs.find('a[href="' + window.location.hash + '"]').trigger('click', true)
   }
 
   // Subscribe form
 
   $('.subscribe-form').on('submit', function (e) {
-    e.preventDefault();
+    e.preventDefault()
 
-    var $form = $(this);
-    var email = $form.find('[name="email"]').val();
-    var submitTime = new Date().toString();
+    var $form = $(this)
+    var email = $form.find('[name="email"]').val()
+    var submitTime = new Date().toString()
 
     analytics.identify(email, {
       email: email,
@@ -88,27 +92,27 @@ $(function () {
       created_at: submitTime
     }, function () {
       $form.fadeOut(300, function () {
-        $('.success-message').fadeIn(300);
-      });
+        $('.success-message').fadeIn(300)
+      })
 
       analytics.track('request_newsletter_updates', {
         email: email,
         request_date: submitTime
-      });
-    });
-  });
+      })
+    })
+  })
 
   // Enterprise page demo request form
 
   $('.demo-request-form').on('submit', function (e) {
-    e.preventDefault();
+    e.preventDefault()
 
-    var $form = $(this);
-    var data = $form.serializeArray();
-    var submitTime = new Date().toString();
-    var payload = {};
-    var analyticsDfd = $.Deferred();
-    var fieldValues = {};
+    var $form = $(this)
+    var data = $form.serializeArray()
+    var submitTime = new Date().toString()
+    var payload = {}
+    var analyticsDfd = $.Deferred()
+    var fieldValues = {}
     var relateiqFieldIds = {
       title: 7,
       tell_us_more: 8,
@@ -117,10 +121,10 @@ $(function () {
       deployment: 11,
       company: 12,
       name: 14
-    };
+    }
 
     for (var i = 0; i < data.length; i++) {
-      payload[data[i].name] = data[i].value;
+      payload[data[i].name] = data[i].value
     }
 
     analytics.identify(payload.email, $.extend({
@@ -130,14 +134,14 @@ $(function () {
     }, payload), function () {
       analytics.track('request_enterprise_demo', $.extend({
         request_date: submitTime
-      }, payload), analyticsDfd.resolve);
-    });
+      }, payload), analyticsDfd.resolve)
+    })
 
     for (var field in payload) {
       if (payload[field]) {
         fieldValues[relateiqFieldIds[field]] = [{
           raw: payload[field]
-        }];
+        }]
       }
     }
 
@@ -152,48 +156,48 @@ $(function () {
         name: payload.email,
         fieldValues: fieldValues
       })
-    });
+    })
 
     $.when.apply($, [analyticsDfd, relateiqDfd]).then(function () {
       $form.fadeOut(300, function () {
-        $('.success-message').fadeIn(300);
-      }).siblings('.section-header').fadeOut(300);
-    });
-  });
+        $('.success-message').fadeIn(300)
+      }).siblings('.section-header').fadeOut(300)
+    })
+  })
 
   // Analytics
 
   $('[href^="/download"]').each(function () {
-    var $link = $(this);
+    var $link = $(this)
 
     analytics.trackLink(this, 'Clicked download', {
       section: $link.closest('.navbar').length ? 'header' : 'page',
-      pathname: location.pathname,
+      pathname: window.location.pathname,
       type: $link.hasClass('button') ? 'button' : 'link'
-    });
-  });
+    })
+  })
 
   analytics.track(
       'Viewed ' + $.trim(document.title.split('|').shift()) + ' page'
-  );
+  )
 
   $('.plugin-plate-link').each(function () {
     analytics.trackLink(this, 'Click on plugin', {
       plugin_type: $(this).closest('.plugin-plate').find('h3').text()
-    });
-  });
+    })
+  })
 
   $('#documentation .page-navigation a').each(function () {
     analytics.trackLink(this, 'Click documentation link', {
       documentation_name: $(this).text()
-    });
-  });
+    })
+  })
 
   $('.community-plate a').each(function () {
     analytics.trackLink(this, 'Click community link', {
       community_type: $.trim($(this).closest('.community-plate').find('h4').text())
-    });
-  });
+    })
+  })
 
-  analytics.trackLink($('a[href="#comparison"]')[0], 'Clicked Why Kong');
-});
+  analytics.trackLink($('a[href="#comparison"]')[0], 'Clicked Why Kong')
+})

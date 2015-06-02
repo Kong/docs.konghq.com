@@ -1,12 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - Key Authentication
 header_title: Key Authentication
 header_icon: /assets/images/icons/plugins/key-authentication.png
-header_btn_text: Report Bug
-header_btn_href: https://github.com/Mashape/kong/issues/new
-header_btn_target: _blank
 breadcrumbs:
   Plugins: /plugins
 ---

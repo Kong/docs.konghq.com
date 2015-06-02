@@ -1,12 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - TCP Log
 header_title: TCP Log
 header_icon: /assets/images/icons/plugins/tcp-log.png
-header_btn_text: Report Bug
-header_btn_href: https://github.com/Mashape/kong/issues/new
-header_btn_target: _blank
 breadcrumbs:
   Plugins: /plugins
 ---

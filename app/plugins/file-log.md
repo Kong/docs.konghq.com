@@ -1,12 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - File Log
 header_title: File Log
 header_icon: /assets/images/icons/plugins/file-log.png
-header_btn_text: Report Bug
-header_btn_href: https://github.com/Mashape/kong/issues/new
-header_btn_target: _blank
 breadcrumbs:
   Plugins: /plugins
 ---
