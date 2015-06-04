@@ -17,7 +17,7 @@ breadcrumbs: null
       <div class="page-plugins-title">
         <h2>Security</h2>
 
-        <p>Protect your services with authentication and security layers.</p>
+        <p>Protect your services with authentication and security layers:</p>
       </div>
 
       <div class="plugins-container">
@@ -51,7 +51,7 @@ breadcrumbs: null
             <img class="plugin-icon" src="/assets/images/icons/plugins/cors.png" width="60" height="60" alt="CORS"/>
           </div>
           <div class="plugin-plate-content">
-            <p>Allow developers to make requests from the browser.</p>
+            <p>Allow developers to make requests from the browser</p>
 
             <a class="plugin-plate-link" href="/plugins/cors"></a>
           </div>
@@ -62,7 +62,7 @@ breadcrumbs: null
         <div class="plugin-plate">
           <div class="plugin-plate-header">
             <h3>SSL</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/cors.png" width="60" height="60" alt="CORS"/>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/ssl.png" width="60" height="60" alt="SSL"/>
           </div>
           <div class="plugin-plate-content">
             <p>Setup a specific SSL certificate for an underlying service</p>
@@ -73,9 +73,44 @@ breadcrumbs: null
       </div>
 
       <div class="page-plugins-title">
+        <h2>Transformations</h2>
+
+        <p>Transform request and responses on the fly on Kong:</p>
+      </div>
+
+      <div class="plugins-container">
+        
+        <div class="plugin-plate">
+          <div class="plugin-plate-header">
+            <h3>Request Transformer</h3>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/request-transformer.png" width="60" height="60" alt="Request Transformer"/>
+          </div>
+          <div class="plugin-plate-content">
+            <p>Modify the request before hitting the final server</p>
+
+            <a class="plugin-plate-link" href="/plugins/request-transformer"></a>
+          </div>
+        </div>
+
+        <div class="plugin-plate">
+          <div class="plugin-plate-header">
+            <h3>Response Transformer</h3>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/response-transformer.png" width="60" height="60" alt="Response Transformer"/>
+          </div>
+          <div class="plugin-plate-content">
+            <p>Modify the response before returning it to the client</p>
+
+            <a class="plugin-plate-link" href="/plugins/response-transformer"></a>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <div class="page-plugins-title">
         <h2>Utilities</h2>
 
-        <p>Find other plugins that can extend your services with useful features.</p>
+        <p>Other useful features to extend your services:</p>
       </div>
 
       <div class="plugins-container">
@@ -93,13 +128,13 @@ breadcrumbs: null
 
         <div class="plugin-plate">
           <div class="plugin-plate-header">
-            <h3>Request Transformer</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/transformations.png" width="60" height="60" alt="CORS"/>
+            <h3>Request Size Limiting</h3>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/request-size-limiting.png" width="60" height="60" alt="Request Size Limiting"/>
           </div>
           <div class="plugin-plate-content">
-            <p>Modify the request before hitting the final server.</p>
+            <p>Block requests whose body is greater than a specific size</p>
 
-            <a class="plugin-plate-link" href="/plugins/request-transformer"></a>
+            <a class="plugin-plate-link" href="/plugins/request-size-limiting"></a>
           </div>
         </div>
       </div>
@@ -107,7 +142,7 @@ breadcrumbs: null
       <div class="page-plugins-title">
         <h2>Logging</h2>
 
-        <p>Log requests and response data using the best transport for your infrastructure.</p>
+        <p>Log requests and response data using the best transport for your infrastructure:</p>
       </div>
 
       <div class="plugins-container">
@@ -138,56 +173,45 @@ breadcrumbs: null
 
         <div class="plugin-plate">
           <div class="plugin-plate-header">
+            <h3>HTTP</h3>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/http-log.png" width="60" height="60" alt="HTTP"/>
+          </div>
+          <div class="plugin-plate-content">
+            <p>Send request and response logs to an HTTP server</p>
+
+            <a class="plugin-plate-link" href="/plugins/http-log"></a>
+          </div>
+        </div>
+
+        <div class="plugin-plate">
+          <div class="plugin-plate-header">
             <h3>File</h3>
             <img class="plugin-icon" src="/assets/images/icons/plugins/file-log.png" width="60" height="60" alt="UDP"/>
           </div>
           <div class="plugin-plate-content">
-            <p>Append request and response data to a log file on disk.</p>
+            <p>Append request and response data to a log file on disk</p>
 
             <a class="plugin-plate-link" href="/plugins/file-log"></a>
           </div>
         </div>
 
-        <!--
         <div class="plugin-plate">
           <div class="plugin-plate-header">
-            <h3>API Analytics</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/api-analytics.png" width="60" height="60" alt="API Analytics"/>
+            <h3>Analytics</h3>
+            <img class="plugin-icon" src="/assets/images/icons/plugins/analytics.png" width="60" height="60" alt="Analytics"/>
           </div>
           <div class="plugin-plate-content">
-            <p>Send request and response logs to API Analytics</p>
-            <a class="plugin-plate-link" href="/plugins/apianalytics-log"></a>
-          </div>
-        </div>
+            <p>Visualize API metrics on beautiful real-time dashboards</p>
 
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Datadog</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/datadog.png" width="60" height="60" alt="Datadog"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Push and analyze request and response logs into Datadog</p>
-            <a class="plugin-plate-link" href="/plugins/datadog-log"></a>
+            <a class="plugin-plate-link" href="/plugins/analytics"></a>
           </div>
         </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Splunk</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/splunk.png" width="60" height="60" alt="Splunk"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Push and analyze request and response logs into Splunk</p>
-            <a class="plugin-plate-link" href="/plugins/splunk-log"></a>
-          </div>
-        </div>
-        -->
       </div>
 
       <div class="page-plugins-title">
         <h2>NGINX Inc.</h2>
 
-        <p>Third party plugins from NGINX, Inc.</p>
+        <p>Third party plugins from NGINX, Inc:</p>
       </div>
 
       <div class="plugins-container">

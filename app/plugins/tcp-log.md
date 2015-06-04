@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Log request and response data to a TCP server
+Log request and response data to a TCP server.
 
 ---
 

@@ -75,6 +75,16 @@ parameter                  | description
 `password`                 | The password to use in the Basic Authentication
 `consumer_id`              | The [Consumer][consumer-object] entity to associate the credentials to
 
+## Headers sent to the final server
+
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the final API/Microservice, so that you can identify the consumer in your code:
+
+* `X-Consumer-ID`, the ID of the Consumer on Kong
+* `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)
+* `X-Consumer-Username`, the `username` of to the Consumer (if set)
+
+You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object

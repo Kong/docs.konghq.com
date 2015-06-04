@@ -11,7 +11,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Log request and response data to a HTTP server
+Send request and response logs to an HTTP server.
 
 ---
 
