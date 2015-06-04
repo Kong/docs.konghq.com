@@ -12,7 +12,7 @@ title: Adding your API
   </ol>
 </div>
 
-In this section, you'll be adding your API to the Kong layer. This is the first step to having Kong manage your API. Kong exposes a [RESTful API][API] for managing the details of your Kong instances.
+In this section, you'll be adding your API to the Kong layer. This is the first step to having Kong manage your API. Kong exposes a [RESTful Admin API][API] for managing the details of your Kong instances.
 
 1. ### Add your API using the RESTful API
 
@@ -78,10 +78,5 @@ Now that you've got your API added to Kong lets learn how to enable plugins.
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
 [mockbin]: https://mockbin.com
-[CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[install]: /download
-[configuration]: /download
-[migrations]: /docs/{{page.kong_version}}/migrations
-[quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins

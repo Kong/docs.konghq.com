@@ -7,13 +7,13 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Transform the request sent by a client on the fly on Kong, before hitting the final server.
+Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
 
 ---
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:

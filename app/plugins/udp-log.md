@@ -13,7 +13,7 @@ Log request and response data to an UDP server.
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:
@@ -41,8 +41,8 @@ parameter                     | description
 `api_id`                      | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target
 `value.host`                  | The IP address or host name to send data to
-`value.port`                  | The port to send data to on the final server
-`value.timeout`               | Default `10000`. An optional timeout in milliseconds when sending data to the final server
+`value.port`                  | The port to send data to on the upstream server
+`value.timeout`               | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration

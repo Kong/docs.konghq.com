@@ -17,7 +17,7 @@ Send request and response logs to an HTTP server.
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:
@@ -47,7 +47,7 @@ parameter                               | description
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target
 `value.host`                            | The host name of the http server to send data to
 `value.method`                            | Default `POST`. An optional method used to send data to the http server, other supported values are PUT, PATCH
-`value.timeout`                         | Default `10000`. An optional timeout in milliseconds when sending data to the final server
+`value.timeout`                         | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
 `value.keepalive`                       | Default `60000`. An optional value in milliseconds that defines for how long an idle connection will live before being closed
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object

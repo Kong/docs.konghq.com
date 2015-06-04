@@ -11,6 +11,8 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         if parts[0] == site.config["documentation"]
           page.data["kong_version"] = parts[1]
+          # Put navigation items for current version in page.nav_items
+          page.data["nav_items"] = site.data['docs_nav_' + parts[1].gsub(/\./, '')]
 
           # Alias latest docs folder /docs/x.x.x to /docs/latest
           if parts[1] == latest["version"]
