@@ -42,6 +42,7 @@ parameter                                           | description
  ---:                                               | ---
 `name`                                              | Name of the plugin to use, in this case: `request_transformer`
 `api_id`                                            | API identifier of the API this plugin should be enabled on.
+`consumer_id`<br>*optional*                         | The CONSUMER ID that this plugin configuration will target
 `value.add.headers`<br>*optional*                   | Comma separated list of `headername:value` to add to the request headers.
 `value.add.querystring`<br>*optional*               | Comma separated list of `paramname:value` to add to the request querystring.
 `value.add.form`<br>*optional*                      | Comma separated list of `paramname:value` to add to the request body in urlencoded format.

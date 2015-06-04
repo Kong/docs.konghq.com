@@ -46,7 +46,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     Congratulations! You've just added your first consumer to Kong.
 
-    **Note:** Kong also accepts a `consumer_id` parameter when [creating consumers][API-consumers] to associate a consumer with your existing user database.
+    **Note:** Kong also accepts a `custom_id` parameter when [creating consumers][API-consumers] to associate a consumer with your existing user database.
 
 2. ### Provision key credentials for your Consumer
 
