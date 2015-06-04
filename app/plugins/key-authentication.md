@@ -13,7 +13,7 @@ Add query authentication like API-Keys to your APIs, either in a header, in quer
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:

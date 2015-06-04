@@ -13,7 +13,7 @@ Transform the request sent by a client on the fly on Kong, before hitting the fi
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:

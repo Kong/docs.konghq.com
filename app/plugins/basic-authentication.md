@@ -13,7 +13,7 @@ Add Basic Authentication to your APIs, with username and password protection.
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:
