@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Block incoming requests whose body is greater than a specific size in bytes.
+Block incoming requests whose body is greater than a specific size in mega bytes.
 
 ---
 
