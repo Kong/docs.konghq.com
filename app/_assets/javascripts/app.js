@@ -4,6 +4,7 @@
 
 $(function () {
   var $window = $(window)
+  var $docs = $('#documentation')
 
   $('.navbar-toggle').on('click', function () {
     var $navbar = $($(this).data('target'))
@@ -164,6 +165,26 @@ $(function () {
       }).siblings('.section-header').fadeOut(300)
     })
   })
+
+  // Docs page navigation
+  if ($docs.length) {
+    var $navItems = $docs.find('.page-navigation').find('a')
+    var hash = window.location.hash
+
+    var setNavItemActive = function () {
+      $navItems.removeClass('active').filter(this).addClass('active')
+    }
+
+    if (hash) {
+      $navItems.each(function () {
+        if ($(this).attr('href').indexOf(hash) !== -1) {
+          setNavItemActive.call(this)
+        }
+      })
+    }
+
+    $navItems.on('click', setNavItemActive)
+  }
 
   // Analytics
 
