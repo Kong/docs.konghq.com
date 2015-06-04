@@ -1,11 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - Cross-origin resource sharing
 header_title: CORS
 header_icon: /assets/images/icons/plugins/cors.png
-header_btn_text: Report Bug
-header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
 ---
@@ -16,15 +13,7 @@ Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling th
 
 ## Installation
 
-<!---
-Make sure every Kong server in your cluster has the required dependency by executing:
-
-```bash
-$ kong install cors
-```
--->
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:

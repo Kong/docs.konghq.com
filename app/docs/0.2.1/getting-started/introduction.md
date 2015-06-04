@@ -22,5 +22,4 @@ Now, lets get familiar with learning how to "start" and "stop" Kong.
 
 Go to [5-minute quickstart with Kong &rsaquo;][quickstart]
 
-[install]: /download
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart

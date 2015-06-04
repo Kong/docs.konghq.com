@@ -1,22 +1,19 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - Request Transformer
 header_title: Request Transformer
-header_icon: /assets/images/icons/plugins/transformations.png
-header_btn_text: Report Bug
-header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
+header_icon: /assets/images/icons/plugins/request-transformer.png
 breadcrumbs:
   Plugins: /plugins
 ---
 
-Transform the request sent by a client on the fly on Kong, before hitting the final server.
+Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
 
 ---
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:
@@ -45,6 +42,7 @@ parameter                                           | description
  ---:                                               | ---
 `name`                                              | Name of the plugin to use, in this case: `request_transformer`
 `api_id`                                            | API identifier of the API this plugin should be enabled on.
+`consumer_id`<br>*optional*                         | The CONSUMER ID that this plugin configuration will target
 `value.add.headers`<br>*optional*                   | Comma separated list of `headername:value` to add to the request headers.
 `value.add.querystring`<br>*optional*               | Comma separated list of `paramname:value` to add to the request querystring.
 `value.add.form`<br>*optional*                      | Comma separated list of `paramname:value` to add to the request body in urlencoded format.

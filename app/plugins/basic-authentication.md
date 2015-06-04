@@ -1,12 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - Basic Authentication
 header_title: Basic Authentication
 header_icon: /assets/images/icons/plugins/basic-authentication.png
-header_btn_text: Report Bug
-header_btn_href: https://github.com/Mashape/kong/issues/new
-header_btn_target: _blank
 breadcrumbs:
   Plugins: /plugins
 ---
@@ -17,7 +13,7 @@ Add Basic Authentication to your APIs, with username and password protection.
 
 ## Installation
 
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file
+Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml
 plugins_available:
@@ -44,7 +40,7 @@ parameter                    | description
 `name`                       | The name of the plugin to use, in this case: `basicauth`
 `api_id`                     | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*  | The CONSUMER ID that this plugin configuration will target
-`value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the final API server. It will be removed by Kong before proxying the request
+`value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ---
 
@@ -78,6 +74,16 @@ parameter                  | description
 `username`                 | The username to use in the Basic Authentication
 `password`                 | The password to use in the Basic Authentication
 `consumer_id`              | The [Consumer][consumer-object] entity to associate the credentials to
+
+## Headers sent to the upstream server
+
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
+
+* `X-Consumer-ID`, the ID of the Consumer on Kong
+* `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)
+* `X-Consumer-Username`, the `username` of to the Consumer (if set)
+
+You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration

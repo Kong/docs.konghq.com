@@ -31,8 +31,14 @@
     margin-top: 45px;
   }
 
-  .plugins-container + .page-plugins-title {
-    margin-top: 15px;
+  .plugins-container {
+    + .page-plugins-title {
+      margin-top: 15px;
+    }
+
+    + .plugins-container {
+      margin-top: 0;
+    }
   }
 
   .plugin-plate {
@@ -97,9 +103,5 @@
     left: 0;
     right: 0;
     bottom: 0;
-  }
-
-  .faq-section {
-    margin-top: 60px;
   }
 }

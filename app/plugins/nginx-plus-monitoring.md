@@ -1,17 +1,13 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - Nginx Plus Live Monitoring
 header_title: Nginx Plus Live Monitoring
 header_icon: /assets/images/icons/plugins/nginx-plus-monitoring.png
-header_btn_text: Report Bug
-header_btn_href: https://github.com/Mashape/kong/issues/new
-header_btn_target: _blank
 breadcrumbs:
   Plugins: /plugins
 ---
 
-Live server activity monitoring of NGINX Plus that provides key load and performance server metrics
+Live server activity monitoring of NGINX Plus that provides key load and performance server metrics.
 
 ---
 

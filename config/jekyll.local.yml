@@ -7,7 +7,6 @@ docrepo: https://github.com/Mashape/getkong.org
 documentation: docs
 
 # Build settings
-
 source: app
 destination: dist
 permalink: pretty
@@ -28,3 +27,13 @@ defaults:
       path: 'docs'
     values:
       layout: 'docs'
+  -
+    scope:
+      path: 'plugins'
+    values:
+      header_btn_text: Report Bug
+      header_btn_href: https://github.com/Mashape/kong/issues/new
+      header_btn_target: _blank
+      id: page-plugin
+      breadcrumbs:
+        Plugins: /plugins
