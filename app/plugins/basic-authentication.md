@@ -40,7 +40,7 @@ parameter                    | description
 `name`                       | The name of the plugin to use, in this case: `basicauth`
 `api_id`                     | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*  | The CONSUMER ID that this plugin configuration will target
-`value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the final API server. It will be removed by Kong before proxying the request
+`value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ---
 
@@ -75,9 +75,9 @@ parameter                  | description
 `password`                 | The password to use in the Basic Authentication
 `consumer_id`              | The [Consumer][consumer-object] entity to associate the credentials to
 
-## Headers sent to the final server
+## Headers sent to the upstream server
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the final API/Microservice, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)

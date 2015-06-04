@@ -39,7 +39,7 @@ parameter                               | description
 `api_id`                                | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target
 `value.key_names`                       | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: `apikey`
-`value.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the final API server. It will be removed by Kong before proxying the request
+`value.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
 
@@ -75,9 +75,9 @@ parameter               | description
 `key`                   | The key to use to authenticate the consumer.
 `consumer_id`           | The [Consumer][consumer] entity to associate the credentials to.
 
-## Headers sent to the final server
+## Headers sent to the upstream server
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the final API/Microservice, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)

@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Transform the request sent by a client on the fly on Kong, before hitting the final server.
+Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
 
 ---
 
