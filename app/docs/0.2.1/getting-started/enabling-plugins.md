@@ -40,17 +40,15 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
     Now that Kong has loaded the plugin, we should configure it to be enabled on your API.
 
-    Issue the following cURL request with your API `id` you created previously:
+    Issue the following cURL request on the previously created API named `mockbin`:
 
     ```bash
     $ curl -i -X POST \
-       --url http://localhost:8001/plugins_configurations/ \
-       --data 'name=keyauth' \
-       --data 'api_id=YOUR_API_ID' \
-       --data 'value.key_names=apikey'
+       --url http://localhost:8001/apis/mockbin/plugins/ \
+       --data 'name=keyauth'
     ```
 
-    **Note:** `value.key_names` is the authentication header name each request will require.
+    **Note:** This plugin also accepts a `value.key_names` parameter, which defaults to `[apikey]`. It is a list of headers and parameters names (both are supported) that are supposed to contain the API key during a request.
 
 4. ### Verify that the plugin is enabled for your API
 
@@ -62,7 +60,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
      --header 'Host: mockbin.com'
     ```
 
-    Since you did not specify the required `apikey` header the response should be `403 Forbidden`:
+    Since you did not specify the required `apikey` header or parameter, the response should be `403 Forbidden`:
 
     ```http
     HTTP/1.1 403 Forbidden

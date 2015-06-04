@@ -50,18 +50,17 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
 2. ### Provision key credentials for your Consumer
 
-    Now, we can create a key for our recently created consumer `Jason` by issuing the following request with the Consumer `id` from our previous request:
+    Now, we can create a key for our recently created consumer `Jason` by issuing the following request:
 
     ```bash
     $ curl -i -X POST \
-     --url http://localhost:8001/keyauth_credentials/ \
-     --data 'key=ENTER_KEY_HERE' \
-     --data 'consumer_id=bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9'
+     --url http://localhost:8001/consumers/Jason/keyauth/ \
+     --data 'key=ENTER_KEY_HERE'
     ```
 
 3. ### Verify that your Consumer credentials are valid
 
-    Using the `id` of the Consumer we just created we can issue the following request to verify that the credentials of our Consumer is valid:
+    We can now issue the following request to verify that the credentials of our `Jason` Consumer is valid:
 
     ```bash
     $ curl -i -X GET \
