@@ -31,7 +31,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
     `:8000` - Proxy layer for API requests
 
-    `:8001` - [RESTful API][API] for configuration
+    `:8001` - [RESTful Admin API][API] for configuration
 
 3. ### Stop Kong.
 
@@ -57,8 +57,5 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[install]: /download
-[migrations]: /docs/{{page.kong_version}}/migrations
-[quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
 [configuration]: /docs/{{page.kong_version}}/configuration
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api

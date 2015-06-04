@@ -13,14 +13,6 @@ Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling th
 
 ## Installation
 
-<!---
-Make sure every Kong server in your cluster has the required dependency by executing:
-
-```bash
-$ kong install cors
-```
--->
-
 Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
 ```yaml

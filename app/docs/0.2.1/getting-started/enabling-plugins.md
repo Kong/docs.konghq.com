@@ -19,7 +19,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
 1. ### Add plugin to your Kong config
 
-    Add `keyauth` under the `plugins_available` property in your Kong instance configuration file should it not already exist:
+    Add `keyauth` under the `plugins_available` property in your Kong instance [configuration file][configuration] should it not already exist:
 
     ```yaml
     plugins_available:
@@ -77,14 +77,9 @@ Now that you've enabled the **keyauth** plugin lets learn how to add consumers t
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
-[mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
 [keyauth]: /plugins/key-authentication
-[install]: /download
 [plugins]: /plugins
-[configuration]: /download
-[migrations]: /docs/{{page.kong_version}}/migrations
-[quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
-[enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
+[configuration]: /docs/{{page.kong_version}}/configuration
 [adding-consumers]: /docs/{{page.kong_version}}/getting-started/adding-consumers

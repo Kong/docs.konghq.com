@@ -73,15 +73,6 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
 Now that we've covered the basics of creating consumers, enabling plugins, and adding apis you can start giving out access and sharing your API.
 
-[mockbin]: https://mockbin.com
-[CLI]: /docs/{{page.kong_version}}/cli
-[API]: /docs/{{page.kong_version}}/admin-api
-[API-consumers]: /docs/{{page.kong_version}}/admin-api#create-consumer
 [keyauth]: /plugins/key-authentication
-[install]: /download
-[plugins]: /plugins
-[configuration]: /docs/{{page.kong_version}}/configuration
-[migrations]: /docs/{{page.kong_version}}/migrations
-[quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
+[API-consumers]: /docs/{{page.kong_version}}/admin-api#create-consumer
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
-[adding-consumers]: /docs/{{page.kong_version}}/getting-started/adding-consumers
