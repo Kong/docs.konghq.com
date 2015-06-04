@@ -40,86 +40,31 @@ id: documentation
 
 <div class="container">
   <aside class="page-navigation">
-    <nav>
-      <h5>About Kong</h5>
-      <ul>
-        <li><a href="/docs/{{page.kong_version}}/about/what"{% if page.url contains "/what/" %} class="active"{% endif %}>What is Kong?</a></li>
-        <li><a href="/docs/{{page.kong_version}}/about/how"{% if page.url contains "/how/" %} class="active"{% endif %}>How does it work?</a></li>
-        <li><a href="/docs/{{page.kong_version}}/about/scaling"{% if page.url contains "/scaling/" %} class="active"{% endif %}>How does it scale?</a></li>
-        <li><a href="/docs/{{page.kong_version}}/about/plugins"{% if page.url contains "/plugins/" %} class="active"{% endif %}>What are plugins?</a></li>
-      </ul>
-    </nav>
+    {% assign docs_url = '/docs/' | append: page.kong_version %}
 
+    {% for nav in page.nav_items %}
     <nav>
-      <h5>Getting Started</h5>
+      <h5>{{nav.title}}</h5>
       <ul>
-        <li><a href="/docs/{{page.kong_version}}/getting-started/introduction"{% if page.url contains "/introduction/" %} class="active"{% endif %}>Introduction</a></li>
-        <li><a href="/docs/{{page.kong_version}}/getting-started/quickstart"{% if page.url contains "/quickstart/" %} class="active"{% endif %}>Five-minute quickstart</a></li>
-        <li><a href="/docs/{{page.kong_version}}/getting-started/adding-your-api"{% if page.url contains "/adding-your-api/" %} class="active"{% endif %}>Adding your API</a></li>
-        <li><a href="/docs/{{page.kong_version}}/getting-started/enabling-plugins"{% if page.url contains "/enabling-plugins/" %} class="active"{% endif %}>Enabling Plugins</a></li>
-        <li><a href="/docs/{{page.kong_version}}/getting-started/adding-consumers"{% if page.url contains "/adding-consumers/" %} class="active"{% endif %}>Adding Consumers</a></li>
-      </ul>
-    </nav>
+        {% for item in nav.items %}
+          <li>
+            <a href="{{docs_url | append: item.url}}"
+               {% if page.url contains item.url %}class="active"{% endif %}>{{item.text}}</a>
 
-    <nav>
-      <h5>Configuration</h5>
-      <ul>
-        <li><a href="/docs/{{page.kong_version}}/configuration"{% if page.url contains "/configuration/" %} class="active"{% endif %}>Configuration reference</a></li>
+            {% if item.items %}
+              <ul>
+                {% for subitem in item.items %}
+                  <li>
+                    <a href="{{docs_url | append: subitem.url}}">{{subitem.text}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
       </ul>
     </nav>
-
-    <nav>
-      <h5>CLI Reference</h5>
-      <ul>
-        <li>
-          <a href="/docs/{{page.kong_version}}/cli"{% if page.url contains "/cli/" %} class="active"{% endif %}>Commands</a>
-          <ul>
-            <li><a href="/docs/{{page.kong_version}}/cli#start">Start</a></li>
-            <li><a href="/docs/{{page.kong_version}}/cli#stop">Stop</a></li>
-            <li><a href="/docs/{{page.kong_version}}/cli#quit">Quit</a></li>
-            <li><a href="/docs/{{page.kong_version}}/cli#restart">Restart</a></li>
-            <li><a href="/docs/{{page.kong_version}}/cli#reload">Reload</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-
-    <nav>
-      <h5>Admin API endpoints</h5>
-      <ul>
-        <li><a href="/docs/{{page.kong_version}}/admin-api/">Introduction</a>
-        <li>
-          <a href="/docs/{{page.kong_version}}/admin-api/#api-object">API Object</a>
-          <ul>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#add-api">Add API</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#retrieve-api">Retrieve API</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#list-apis">List APIs</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#update-api">Update API</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#delete-api">Delete API</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="/docs/{{page.kong_version}}/admin-api/#consumer-object">Consumer Object</a>
-          <ul>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#create-consumer">Create Consumer</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#retrieve-consumer">Retrieve Consumer</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#list-consumers">List Consumers</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#update-consumer">Update Consumer</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#delete-consumer">Delete Consumer</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="/docs/{{page.kong_version}}/admin-api/#plugin-configuration-object">Plugin Configuration Object</a>
-          <ul>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#create-plugin-configuration">Create Plugin Configuration</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#retrieve-plugin-configuration">Retrieve Plugin Configuration</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#list-plugin-configurations">List Plugin Configurations</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#update-plugin-configuration">Update Plugin Configuration</a></li>
-            <li><a href="/docs/{{page.kong_version}}/admin-api/#delete-plugin-configuration">Delete Plugin Configuration</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+    {% endfor %}
   </aside>
 
   <div class="page-content-container">
