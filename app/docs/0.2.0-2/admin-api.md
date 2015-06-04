@@ -30,7 +30,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 
 <div class="endpoint post">/apis/</div>
 
-#### Request Form Parameters
+#### Request Body
 
 Attributes | Description
  ---:| ---
@@ -147,26 +147,16 @@ Attributes | Description
 
 #### Request Body
 
-```json
-{
-    "name": "Mockbin2"
-}
-```
+Attributes   | Description
+---:         | ---
+`name`       | The API name.
+`public_dns` | The public DNS address that points to your API. For example, `mockbin.com`.
+`target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
 #### Response
 
 ```
 HTTP 200 OK
-```
-
-```json
-{
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "Mockbin2",
-    "public_dns": "mockbin.com",
-    "target_url": "http://mockbin.com",
-    "created_at": 1422386534
-}
 ```
 
 ---
@@ -207,7 +197,7 @@ The Consumer object represents a consumer, or a user, of an API. You can either 
 
 <div class="endpoint post">/consumers/</div>
 
-#### Request Form Parameters
+#### Request Body
 
 Attributes | Description
  ---:| ---

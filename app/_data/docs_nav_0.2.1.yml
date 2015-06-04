@@ -66,6 +66,9 @@
       text: Introduction
       url: /admin-api/
     -
+      text: Supported Content Types
+      url: /admin-api/#supported-content-types
+    -
       text: API Object
       url: /admin-api/#api-object
       items:
@@ -81,6 +84,9 @@
         -
           text: Update API
           url: /admin-api/#update-api
+        -
+          text: Update Or Create API
+          url: /admin-api/#update-or-create-api
         -
           text: Delete API
           url: /admin-api/#delete-api
@@ -101,6 +107,9 @@
           text: Update Consumer
           url: /admin-api/#update-consumer
         -
+          text: Update Or Create Consumer
+          url: /admin-api/#update-or-create-consumer
+        -
           text: Delete Consumer
           url: /admin-api/#delete-consumer
     -
@@ -111,14 +120,17 @@
           text: Create Plugin Configuration
           url: /admin-api/#create-plugin-configuration
         -
-          text: Retrieve Plugin Configuration
-          url: /admin-api/#retrieve-plugin-configuration
+          text: List Per-API Plugin Configurations
+          url: /admin-api/#list-per-api-plugin-configurations
         -
-          text: List Plugin Configuration
-          url: /admin-api/#list-plugin-configurations
+          text: List All Plugin Configurations
+          url: /admin-api/#list-all-plugin-configurations
         -
           text: Update Plugin Configuration
           url: /admin-api/#update-plugin-configuration
+        -
+          text: Update Or Create Plugin Configuration
+          url: /admin-api/#update-or-create-plugin-configuration
         -
           text: Delete Plugin Configuration
           url: /admin-api/#delete-plugin-configuration
