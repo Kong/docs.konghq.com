@@ -29,16 +29,16 @@ Every node in the Kong cluster must have the same `plugins_available` property v
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/plugins_configurations/ \
+$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "name=basicauth" \
-    --data "api_id=API_ID" \
     --data "value.hide_credentials=true"
 ```
 
-parameter                    | description
+`api_id`: The API ID that this plugin configuration will target
+
+form parameter                    | description
  ---                         | ---
 `name`                       | The name of the plugin to use, in this case: `basicauth`
-`api_id`                     | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*  | The CONSUMER ID that this plugin configuration will target
 `value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
@@ -66,14 +66,17 @@ A [Consumer][consumer-object] can have many credentials.
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
-curl -d "username=user123&password=secret&consumer_id=CONSUMER_ID" http://kong:8001/basicauth_credentials/
+$ curl -X POST http://kong:8001/consumers/{consumer_id}/basicauth \
+    --data "username=user123" \
+    --data "password=secret"
 ```
 
-parameter                  | description
+`consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
+
+form parameter                  | description
  ---                       | ---
 `username`                 | The username to use in the Basic Authentication
 `password`                 | The password to use in the Basic Authentication
-`consumer_id`              | The [Consumer][consumer-object] entity to associate the credentials to
 
 ## Headers sent to the upstream server
 

@@ -27,9 +27,8 @@ Every node in your Kong cluster should have the same `plugins_available` propert
 Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/plugins_configurations/ \
+$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "name=request_transformer" \
-    --data "api_id=API_ID" \
     --data "value.add.headers=x-new-header:some_value, x-another-header:some_value" \
     --data "value.add.querystring=new-param:some_value, another-param:some_value" \
     --data "value.add.form=new-form-param:some_value, another-form-param:some_value" \
@@ -38,10 +37,11 @@ $ curl -X POST http://kong:8001/plugins_configurations/ \
     --data "value.remove.form=formparam-toremove, formparam-another-one"
 ```
 
-parameter                                           | description
+`api_id`: The API ID that this plugin configuration will target
+
+form parameter                                           | description
  ---:                                               | ---
 `name`                                              | Name of the plugin to use, in this case: `request_transformer`
-`api_id`                                            | API identifier of the API this plugin should be enabled on.
 `consumer_id`<br>*optional*                         | The CONSUMER ID that this plugin configuration will target
 `value.add.headers`<br>*optional*                   | Comma separated list of `headername:value` to add to the request headers.
 `value.add.querystring`<br>*optional*               | Comma separated list of `paramname:value` to add to the request querystring.

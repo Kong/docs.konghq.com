@@ -27,16 +27,16 @@ Every node in the Kong cluster must have the same `plugins_available` property v
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/plugins_configurations/ \
+$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "name=filelog" \
-    --data "api_id=API_ID" \
     --data "path=/tmp/file.log"
 ```
 
-parameter                     | description
+`api_id`: The API ID that this plugin configuration will target
+
+form parameter                     | description
  ---                          | ---
 `name`                        | The name of the plugin to use, in this case: `filelog`
-`api_id`                      | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target
 `path`                        | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
 

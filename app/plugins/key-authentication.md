@@ -27,16 +27,16 @@ Every node in the Kong cluster should have the same `plugins_available` property
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/plugins_configurations/ \
+$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "name=keyauth" \
-    --data "api_id=API_ID" \
     --data "value.key_names=key_name1,key_name2"
 ```
 
-parameter                               | description
+`api_id`: The API ID that this plugin configuration will target
+
+form parameter                               | description
  ---                                    | ---
 `name`                                  | The name of the plugin to use, in this case: `keyauth`
-`api_id`                                | The API ID that this plugin configuration will target
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target
 `value.key_names`                       | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: `apikey`
 `value.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
@@ -65,15 +65,15 @@ A [Consumer][consumer-object] can have many credentials.
 Then you can finally provision new key credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/keyauth_credentials/ \
-    --data "key=some_key" \
-    --data "consumer_id=CONSUMER_ID"
+$ curl -X POST http://kong:8001/consumers/{consumer_id}/keyauth \
+    --data "key=some_key"
 ```
 
-parameter               | description
+`consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
+
+form parameter               | description
  ---                    | ---
 `key`                   | The key to use to authenticate the consumer.
-`consumer_id`           | The [Consumer][consumer] entity to associate the credentials to.
 
 ## Headers sent to the upstream server
 
