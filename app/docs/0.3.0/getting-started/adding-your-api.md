@@ -30,6 +30,10 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
 2. ### Verify that your API has been added
 
+    <div class="alert alert-warning">
+      For security reasons we suggest <a href="/docs/{{page.kong_version}}/getting-started/enabling-plugins">enabling</a> the <a href="/plugins/request-size-limiting/">Request Size Limiting</a> plugin for any API you add to Kong to prevent a DOS (Denial of Service) attack.
+    </div>
+
     You should see a similar response from the initial request:
 
     ```http

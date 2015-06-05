@@ -7,7 +7,11 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Block incoming requests whose body is greater than a specific size in mega bytes.
+<div class="alert alert-warning">
+  For security reasons we suggest enabling this plugin for any API you add to Kong to prevent a DOS (Denial of Service) attack.
+</div>
+
+Block incoming requests whose body is greater than a specific size in megabytes.
 
 ---
 

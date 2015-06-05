@@ -10,7 +10,11 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Bounds a specific SSL certificate to the `public_dns` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options](#). **Note**: this plugin requires Kong >= 0.3.0
+<div class="alert alert-warning">
+  <strong>Note:</strong> This plugin requires Kong >= 0.3.0
+</div>
+
+Binds a specific SSL certificate to the `public_dns` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
 ---
 
@@ -70,4 +74,4 @@ If you followed the steps above the certificate will be stored in a file named `
 
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
+[configuration]: /docs/{{site.data.kong_latest.version}}/configuration#ssl_cert_path
