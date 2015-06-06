@@ -33,7 +33,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "name=requestsizelimiting" \
-    --data "allowed_payload_size=128" \
+    --data "value.allowed_payload_size=128"
 ```
 
 `api_id`: The API ID that this plugin configuration will target
