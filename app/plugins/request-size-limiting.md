@@ -42,7 +42,7 @@ form parameter                               | description
  ---                                    | ---
 `name`                                  | The name of the plugin to use, in this case: `requestsizelimiting`
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target
-`allowed_payload_size`<br>*optional*    | Allowed request payload size in mega bytes, default is `128` (128000000 Bytes)
+`value.allowed_payload_size`<br>*optional*    | Allowed request payload size in mega bytes, default is `128` (128000000 Bytes)
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
