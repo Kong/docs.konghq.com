@@ -6,6 +6,8 @@ api_body: |
     ---:| ---
     `name`<br>*optional* | The API name. If none is specified, will default to the `public_dns`.
     `public_dns` | The public DNS address that points to your API. For example, `mockbin.com`.
+    `path` | The public path that points to your API. For example, `/someservice`.
+    `strip_path` | Strip the `path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `target_url/hello`
     `target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
 consumer_body: |
@@ -63,6 +65,8 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 {
     "name": "Mockbin",
     "public_dns": "mockbin.com",
+    "path": "/someservice",
+    "strip_path": true,
     "target_url": "https://mockbin.com"
 }
 ```
