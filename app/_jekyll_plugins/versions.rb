@@ -20,6 +20,7 @@ module Jekyll
           if parts[1] == latest["version"]
             page.data["alias"] = "/" + page.path.sub(parts[1], "latest").sub(/\..*$/, "")
             if parts[2] == "index.md"
+              page.data["permalink"] = "/docs/"
               page.data["alias"] = ["/#{site.config["documentation"]}/latest", "/#{site.config["documentation"]}/#{latest["version"]}/index.html", ]
             end
           end

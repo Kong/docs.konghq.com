@@ -1,6 +1,5 @@
 ---
 title: Documentation for Kong
-permalink: /docs/
 ---
 
 # Kong Documentation
