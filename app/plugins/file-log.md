@@ -29,7 +29,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "name=filelog" \
-    --data "path=/tmp/file.log"
+    --data "value.path=/tmp/file.log"
 ```
 
 `api_id`: The API ID that this plugin configuration will target
@@ -38,7 +38,7 @@ form parameter                     | description
  ---                          | ---
 `name`                        | The name of the plugin to use, in this case: `filelog`
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target
-`path`                        | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
+`value.path`                        | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
