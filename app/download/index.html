@@ -14,6 +14,7 @@ layout: default
       <div class="select-download-method">
         <h2>Select your installation method:</h2>
         <p>Latest Kong version: {{site.data.kong_latest.version}} (<a href="{{site.repo}}/releases/tag/{{site.data.kong_latest.version}}">see latest release</a>)</p>
+        <p>Updating from an older version? Check our <a href="https://github.com/Mashape/kong/blob/master/UPDATE.md">updating guide</a>.</p>
       </div>
 
       <div class="tab-list-wrap">
@@ -71,7 +72,7 @@ layout: default
           <div class="tab-pane" id="other">
             {% markdown pages/download/other.md %}
           </div>
-          
+
           <h4>Having trouble? <a href="/community">We're here to help!</a></h4>
 
         </div>
