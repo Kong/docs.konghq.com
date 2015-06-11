@@ -86,6 +86,10 @@ $(function () {
     var email = $form.find('[name="email"]').val()
     var submitTime = new Date().toString()
 
+    $form.fadeOut(300, function () {
+      $('.loader').fadeIn(300)
+    })
+
     analytics.identify(email, {
       email: email,
       environment: 'kong',
@@ -93,7 +97,9 @@ $(function () {
       created_at: submitTime
     }, function () {
       $form.fadeOut(300, function () {
-        $('.success-message').fadeIn(300)
+        $('.loader').fadeOut(300, function () {
+          $('.success-message').fadeIn(300)
+        })
       })
 
       analytics.track('request_newsletter_updates', {
@@ -123,6 +129,10 @@ $(function () {
       company: 10,
       name: 13
     }
+
+    $form.fadeOut(300, function () {
+      $('.loader').fadeIn(300)
+    }).siblings('.section-header').fadeOut(300)
 
     for (var i = 0; i < data.length; i++) {
       payload[data[i].name] = data[i].value
@@ -160,9 +170,9 @@ $(function () {
     })
 
     $.when.apply($, [analyticsDfd, relateiqDfd]).then(function () {
-      $form.fadeOut(300, function () {
+      $('.loader').fadeOut(300, function () {
         $('.success-message').fadeIn(300)
-      }).siblings('.section-header').fadeOut(300)
+      })
     })
   })
 
