@@ -98,7 +98,7 @@ Attributes | Description
 `name`<br>*optional* | A filter on the list based on the apis `name` field.
 `public_dns`<br>*optional* | A filter on the list based on the apis `public_dns` field.
 `target_url`<br>*optional* | A filter on the list based on the apis `target_url` field.
-`limit`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
+`size`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
 #### Response
@@ -126,8 +126,8 @@ HTTP 200 OK
             "created_at": 1422386585
         }
     ],
-    "next": "http://localhost:8001/apis/?limit=10&offset=4d924084-1adb-40a5-c042-63b19db421d1",
-    "previous": "http://localhost:8001/apis/?limit=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/apis/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1",
+    "previous": "http://localhost:8001/apis/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -259,7 +259,7 @@ Attributes | Description
 `id`<br>*optional* | A filter on the list based on the consumer `id` field.
 `custom_id`<br>*optional* | A filter on the list based on the consumer `custom_id` field.
 `username`<br>*optional* | A filter on the list based on the consumer `username` field.
-`limit`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
+`size`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
 #### Response
@@ -283,8 +283,8 @@ HTTP 200 OK
             "created_at": 1422386585
         }
     ],
-    "next": "http://localhost:8001/consumers/?limit=10&offset=4d924084-1adb-40a5-c042-63b19db421d1",
-    "previous": "http://localhost:8001/consumers/?limit=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/consumers/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1",
+    "previous": "http://localhost:8001/consumers/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -449,7 +449,7 @@ Attributes | Description
 `name`<br>*optional* | A filter on the list based on the `name` field.
 `api_id`<br>*optional* | A filter on the list based on the `api_id` field.
 `consumer_id`<br>*optional* | A filter on the list based on the `consumer_id` field.
-`limit`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
+`size`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
 #### Response
@@ -484,8 +484,8 @@ HTTP 200 OK
           "created_at": 1422386585
       }
     ],
-    "next": "http://localhost:8001/plugins_configurations/?limit=10&offset=4d924084-1adb-40a5-c042-63b19db421d1",
-    "previous": "http://localhost:8001/plugins_configurations/?limit=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/plugins_configurations/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1",
+    "previous": "http://localhost:8001/plugins_configurations/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
