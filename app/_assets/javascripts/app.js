@@ -127,7 +127,8 @@ $(function () {
       phone: 9,
       deployment: 14,
       company: 10,
-      name: 13
+      name: 13,
+      environment: 16
     }
 
     $form.fadeOut(300, function () {
@@ -138,8 +139,9 @@ $(function () {
       payload[data[i].name] = data[i].value
     }
 
+    payload.environment = 'kong';
+
     analytics.identify(payload.email, $.extend({
-      environment: 'kong',
       enterprise: true,
       created_at: submitTime
     }, payload), function () {
