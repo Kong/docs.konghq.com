@@ -88,6 +88,19 @@
   width: 215px;
   padding: 50px 0 0 20px;
 
+  .back-to-top {
+    background-color: #fff;
+    opacity: 0;
+    transition: opacity .3s ease-in;
+    
+    &.affix {
+      opacity: 1;
+      position: fixed;
+      z-index: 999;
+      top: 100px;
+    }
+  }
+
   @media (max-width: 800px) {
     float: none;
     padding: 25px 0;

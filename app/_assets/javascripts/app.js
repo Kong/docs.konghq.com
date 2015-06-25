@@ -180,7 +180,8 @@ $(function () {
 
   // Docs page navigation
   if ($docs.length) {
-    var $navItems = $docs.find('.page-navigation').find('a')
+    var $nav = $docs.find('.page-navigation');
+    var $navItems = $nav.find('a')
     var hash = window.location.hash
 
     var setNavItemActive = function () {
@@ -196,6 +197,15 @@ $(function () {
     }
 
     $navItems.on('click', setNavItemActive)
+
+    $('.back-to-top').affix({
+      offset: {
+        top: function () {
+          this.top = $nav.outerHeight(true) + $nav.offset().top
+          return this.top
+        }
+      }
+    })
   }
 
   // Analytics
