@@ -42,7 +42,7 @@ $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
 form parameter                                           | description
  ---:                                               | ---
 `name`                                              | Name of the plugin to use, in this case: `request_transformer`
-`consumer_id`<br>*optional*                         | The CONSUMER ID that this plugin configuration will target
+`consumer_id`<br>*optional*                         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.add.headers`<br>*optional*                   | Comma separated list of `headername:value` to add to the request headers.
 `value.add.querystring`<br>*optional*               | Comma separated list of `paramname:value` to add to the request querystring.
 `value.add.form`<br>*optional*                      | Comma separated list of `paramname:value` to add to the request body in urlencoded format.
@@ -52,3 +52,4 @@ form parameter                                           | description
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
+[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
