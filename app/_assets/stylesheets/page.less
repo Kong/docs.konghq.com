@@ -88,14 +88,11 @@
   width: 215px;
   padding: 50px 0 0 20px;
 
-  .page-nav-container {
+  .affix {
+    position: fixed !important;
+    z-index: 999;
+    top: 70px;
     width: 215px;
-
-    &.affix {
-      position: fixed !important;
-      z-index: 999;
-      bottom: 0;
-    }
   }
 
   @media (max-width: 800px) {

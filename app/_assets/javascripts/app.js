@@ -181,9 +181,9 @@ $(function () {
   // Docs page navigation
   if ($docs.length) {
     var $nav = $docs.find('.page-navigation')
-    var $navContainer = $nav.find('.page-nav-container')
     var $pageContent = $docs.find('.page-content')
     var $navItems = $nav.find('a')
+    var $fixedNav = $nav.find('nav:last')
     var hash = window.location.hash
 
     var setNavItemActive = function () {
@@ -201,10 +201,10 @@ $(function () {
     $navItems.on('click', setNavItemActive)
 
     if ($pageContent.height() > $nav.height()) {
-      $navContainer.affix({
+      $fixedNav.affix({
         offset: {
           top: function () {
-            this.top = $nav.offset().top + $nav.outerHeight(true) - $window.height()
+            this.top = $fixedNav.offset().top - 70
             return this.top
           },
           bottom: function () {

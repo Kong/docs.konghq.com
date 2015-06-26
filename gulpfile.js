@@ -47,7 +47,7 @@ gulp.task('styles', function () {
     .pipe($.less())
     .pipe($.uncss({
       html: glob.sync('dist/**/*.html'),
-      ignore: ['.open > .dropdown-menu', '.open > a', '.page-navigation .page-nav-container.affix']
+      ignore: ['.open > .dropdown-menu', '.open > a', '.page-navigation .affix']
     }))
     .pipe($.autoprefixer())
     .pipe($.minifyCss())
