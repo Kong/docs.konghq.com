@@ -40,32 +40,33 @@ id: documentation
 
 <div class="container">
   <aside class="page-navigation">
-    {% assign docs_url = '/docs/' | append: page.kong_version %}
+    <div class="page-nav-container">
+      {% assign docs_url = '/docs/' | append: page.kong_version %}
 
-    {% for nav in page.nav_items %}
-    <nav>
-      <h5>{{nav.title}}</h5>
-      <ul>
-        {% for item in nav.items %}
-          <li>
-            <a href="{{docs_url | append: item.url}}"
-               {% if page.url contains item.url %}class="active"{% endif %}>{{item.text}}</a>
+      {% for nav in page.nav_items %}
+      <nav>
+        <h5>{{nav.title}}</h5>
+        <ul>
+          {% for item in nav.items %}
+            <li>
+              <a href="{{docs_url | append: item.url}}"
+                 {% if page.url contains item.url %}class="active"{% endif %}>{{item.text}}</a>
 
-            {% if item.items %}
-              <ul>
-                {% for subitem in item.items %}
-                  <li>
-                    <a href="{{docs_url | append: subitem.url}}">{{subitem.text}}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-    {% endfor %}
-    <a href="#documentation" class="back-to-top scroll-to">Back to top &uarr;</a>
+              {% if item.items %}
+                <ul>
+                  {% for subitem in item.items %}
+                    <li>
+                      <a href="{{docs_url | append: subitem.url}}">{{subitem.text}}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      {% endfor %}
+    </div>
   </aside>
 
   <div class="page-content-container">

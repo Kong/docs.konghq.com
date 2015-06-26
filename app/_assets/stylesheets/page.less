@@ -88,16 +88,13 @@
   width: 215px;
   padding: 50px 0 0 20px;
 
-  .back-to-top {
-    background-color: #fff;
-    opacity: 0;
-    transition: opacity .3s ease-in;
-    
+  .page-nav-container {
+    width: 215px;
+
     &.affix {
-      opacity: 1;
-      position: fixed;
+      position: fixed !important;
       z-index: 999;
-      top: 100px;
+      bottom: 0;
     }
   }
 
