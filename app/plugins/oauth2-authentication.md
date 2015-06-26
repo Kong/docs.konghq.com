@@ -1,13 +1,13 @@
 ---
 id: page-plugin
-title: Plugins - Key Authentication
-header_title: Key Authentication
+title: Plugins - OAuth 2.0 Authentication
+header_title: OAuth 2.0 Authentication
 header_icon: /assets/images/icons/plugins/key-authentication.png
 breadcrumbs:
   Plugins: /plugins
 ---
 
-Add a Key Authentication (like an apikey) to your APIs, either in a header, in querystring parameter, or in a form parameter.
+Add an OAuth 2.0 authentication layer.
 
 ---
 
@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - keyauth
+  - oauth2
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -28,18 +28,22 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
-    --data "name=keyauth" \
-    --data "value.key_names=key_name1,key_name2"
+    --data "name=oauth2" \
+    --data "value.scopes=email,phone,address" \
+    --data "value.mandatory_scope=true"
 ```
 
 `api_id`: The API ID that this plugin configuration will target
 
-form parameter                               | description
+form parameter                          | description
  ---                                    | ---
-`name`                                  | The name of the plugin to use, in this case: `keyauth`
+`name`                                  | The name of the plugin to use, in this case: `oauth2`
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.key_names`                       | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: `apikey`
-`value.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`value.scopes`                          | Describes an array of comma separated scope names that will be available to the end user
+`value.mandatory_scope`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
+`value.token_expiration`<br>*optional*   | Default `7200`. An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
+`value.enable_implicit_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the implicit grant flow which allows to provision a token as a result of the authorization process [RFC 6742 Section 4.2][implicit-grant]
+`value.hide_credentials`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
 
@@ -89,3 +93,4 @@ You can use this information on your side to implement additional logic. You can
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
 [faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2
