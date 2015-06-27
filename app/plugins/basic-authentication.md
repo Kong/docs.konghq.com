@@ -46,6 +46,8 @@ form parameter                    | description
 
 ## Usage
 
+In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
+
 ### Create a Consumer
 
 You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
@@ -76,7 +78,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer_id}/basicauth \
 form parameter                  | description
  ---                       | ---
 `username`                 | The username to use in the Basic Authentication
-`password`                 | The password to use in the Basic Authentication
+`password`<br>*optional*   | The password to use in the Basic Authentication
 
 ## Headers sent to the upstream server
 

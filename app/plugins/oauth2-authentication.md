@@ -2,12 +2,12 @@
 id: page-plugin
 title: Plugins - OAuth 2.0 Authentication
 header_title: OAuth 2.0 Authentication
-header_icon: /assets/images/icons/plugins/key-authentication.png
+header_icon: /assets/images/icons/plugins/oauth2-authentication.png
 breadcrumbs:
   Plugins: /plugins
 ---
 
-Add an OAuth 2.0 authentication layer.
+Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant] or [Implicit Grant][implicit-grant] flow.
 
 ---
 
@@ -42,10 +42,12 @@ form parameter                          | description
 `value.scopes`                          | Describes an array of comma separated scope names that will be available to the end user
 `value.mandatory_scope`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
 `value.token_expiration`<br>*optional*   | Default `7200`. An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
-`value.enable_implicit_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the implicit grant flow which allows to provision a token as a result of the authorization process [RFC 6742 Section 4.2][implicit-grant]
+`value.enable_implicit_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the implicit grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
 `value.hide_credentials`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
+
+In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
 
 ### Create a Consumer
 
@@ -64,20 +66,35 @@ parameter                       | description
 
 A [Consumer][consumer-object] can have many credentials.
 
-### Create a Key Authentication credential
+### Create an OAuth 2.0 Authentication credential/application
 
-Then you can finally provision new key credentials by making the following HTTP request:
+Then you can finally provision new OAuth 2.0 credentials (also called "OAuth applications") by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer_id}/keyauth \
-    --data "key=some_key"
+$ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
+    --data "name=Test%20Application" \
+    --data "client_id=SOME-CLIENT-ID" \
+    --data "client_secret=SOME-CLIENT-SECRET" \
+    --data "redirect_uri=http://some-domain/endpoint/"
 ```
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
 
 form parameter               | description
- ---                    | ---
-`key`                   | The key to use to authenticate the consumer.
+ ---                         | ---
+`name`                       | The name to associate to the credential. In OAuth 2.0 this would be the application name.
+`client_id`<br>*optional*    | You can optionally set your own unique `client_id`. If missing, the plugin will generate one.
+`client_secret`<br>*optional*| You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
+`redirect_uri`               | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
+
+### Implement and document the authorization flow
+
+After provisioning Consumers and associating OAuth 2.0 credentials to them, it is important to understand how the OAuth 2.0 authorization flow works. As opposed to most of the Kong plugins, the OAuth 2.0 plugin requires some little additional work on your side in order to make everything work well:
+
+* You **must** implement an authorization page on your service, that will talk with the plugin server-side.
+* *Optionally* you need to explain on your website/documentation how to consume your OAuth 2.0 protected services, so that developers accessing your service know how to build their client implementations
+
+
 
 ## Headers sent to the upstream server
 
@@ -93,4 +110,6 @@ You can use this information on your side to implement additional logic. You can
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
 [faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[authorization-code-grant]: https://tools.ietf.org/html/rfc6749#section-4.1
 [implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2
+[redirect-uri]: https://tools.ietf.org/html/rfc6749#section-3.1.2
