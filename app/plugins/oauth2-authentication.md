@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant] or [Implicit Grant][implicit-grant] flow.
+Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant] or [Implicit Grant][implicit-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
 
 ---
 
@@ -94,6 +94,53 @@ After provisioning Consumers and associating OAuth 2.0 credentials to them, it i
 * You **must** implement an authorization page on your service, that will talk with the plugin server-side.
 * *Optionally* you need to explain on your website/documentation how to consume your OAuth 2.0 protected services, so that developers accessing your service know how to build their client implementations
 
+This is going to be the flow for a client application making a request through the OAuth 2.0 plugin:
+
+![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow.png)
+
+1 - The client application redirects the final user to the OAuth authorization page of your web application, appending the `client_id`, `response_type` and `scope` parameters in the querystring. The `scope` parameter could be optional, and could be a comma-separated list of scopes.
+
+2 - The application makes sure the user is logged in.
+
+3 - If the user has been properly logged in, he will now see an authorization web page to authorize the scopes requested by the client application, something like this:
+
+![OAuth 2.0 Prompt](/assets/images/docs/oauth2/oauth2-prompt.png)
+
+4 - If the user authorizes the client application, your authorization page will submit the form to your backend with a `POST` request, including the `client_id`, `response_type` and `scope` parameters that the client application has previously sent in the querystring.
+
+5 - Your backend will now combine the `client_id`, `response_type` and `scope` parameters with the secret `provision_key` that has been created when adding this plugin, and it will execute a `POST` request to your API on Kong, at the following endpoint: `/oauth2/authorize`
+
+6 - Kong will respond with a JSON response like:
+
+```
+{
+    "redirect_uri": "http://some/url"
+}
+```
+
+With either a `200 OK` or `400 Bad Request` response code depending if the request was successful or not.
+
+7 - In **both** cases, ignore the response status code and just redirect the user to whatever URI is being returned in the `redirect_uri` property.
+
+8 - The client appication will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchaging the authorization code for an access token if it's an Authorization Code Grant flow.
+
+9 - Once the Access Token has been retrieved, the client application will make requests on behalf of the user to your final API.
+
+10 - Access Tokens can expire, and when that happens the client application needs to renew the Access Token with Kong and retreive a new one.
+
+In this flow, the steps that you need to implement are:
+
+* The login page, you probably already have it (step 2)
+* The Authorization page, with its backend that will simply collect the values, make a POST request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
+
+#### Implementing the Authorization Page
+
+Building the authorization page is going to be the primary task that the plugin itself cannot do out of the box, because it requires to check that the user is properly logged in, and this operation is strongly tied with your authentication implementation.
+
+The authorization page is made of two parts:
+
+* The frontend page that the user will see, and that will allow him to authorize the client application to access his data
+* The backend that will process the HTML form displayed in the frontend, that will talk with Kong and that will ultimately redirect the user to a third party URI.
 
 
 ## Headers sent to the upstream server
@@ -106,6 +153,7 @@ When a client has been authenticated, the plugin will append some headers to the
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
+[ssl-plugin]: /plugins/ssl/
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
