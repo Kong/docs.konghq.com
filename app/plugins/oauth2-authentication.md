@@ -87,28 +87,57 @@ form parameter               | description
 `client_secret`<br>*optional*| You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
 `redirect_uri`               | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
 
-### Implement and document the authorization flow
+### Implementing the authorization page
 
-After provisioning Consumers and associating OAuth 2.0 credentials to them, it is important to understand how the OAuth 2.0 authorization flow works. As opposed to most of the Kong plugins, the OAuth 2.0 plugin requires some little additional work on your side in order to make everything work well:
+After provisioning Consumers and associating OAuth 2.0 credentials to them, it is important to understand how the OAuth 2.0 authorization flow works. As opposed to most of the Kong plugins, the OAuth 2.0 plugin requires some little additional work on your side to make everything work well:
 
-* You **must** implement an authorization page on your service, that will talk with the plugin server-side.
+* You **must** implement an authorization page on your web application, that will talk with the plugin server-side.
 * *Optionally* you need to explain on your website/documentation how to consume your OAuth 2.0 protected services, so that developers accessing your service know how to build their client implementations
 
-This is going to be the flow for a client application making a request through the OAuth 2.0 plugin:
+# The flow explained
+
+Building the authorization page is going to be the primary task that the plugin itself cannot do out of the box, because it requires to check that the user is properly logged in, and this operation is strongly tied with your authentication implementation.
+
+The authorization page is made of two parts:
+
+* The frontend page that the user will see, and that will allow him to authorize the client application to access his data
+* The backend that will process the HTML form displayed in the frontend, that will talk with the OAuth 2.0 plugin on Kong, and that will ultimately redirect the user to a third party URL.
+
+<div class="alert alert-warning">
+  <div class="container" style="text-align: center;">
+    <a href="https://github.com/Mashape/kong-oauth2-hello-world">You can see a sample implementation in node.js + express.js on GitHub</a>
+  </div>
+</div>
+
+Here is the flow:
 
 ![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow.png)
 
-1 - The client application redirects the final user to the OAuth authorization page of your web application, appending the `client_id`, `response_type` and `scope` parameters in the querystring. The `scope` parameter could be optional, and could be a comma-separated list of scopes.
-
-2 - The application makes sure the user is logged in.
-
-3 - If the user has been properly logged in, he will now see an authorization web page to authorize the scopes requested by the client application, something like this:
+1 - The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as querystring parameters. This is a sample authorization page:
 
 ![OAuth 2.0 Prompt](/assets/images/docs/oauth2/oauth2-prompt.png)
 
-4 - If the user authorizes the client application, your authorization page will submit the form to your backend with a `POST` request, including the `client_id`, `response_type` and `scope` parameters that the client application has previously sent in the querystring.
+2 - Before showing the actual authorization page, the web application will make sure that the user is logged in.
 
-5 - Your backend will now combine the `client_id`, `response_type` and `scope` parameters with the secret `provision_key` that has been created when adding this plugin, and it will execute a `POST` request to your API on Kong, at the following endpoint: `/oauth2/authorize`
+3 - The client application will send the `client_id` in the querystring, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
+
+```
+curl kong:8001/oauth2?client_id=XXX
+```
+
+4 - If the end user authorized the application, the form will submit the data to your backend with a POST request, sending the `client_id`, `response_type` and `scope` parameters that were placed in `<input type="hidden" .. />` fields.
+
+5 - The backend must add the `provision_key` parameter to the `client_id`, `response_type` and `scope` parameters and it will make a POST request to Kong at your API address, on the `/oauth2/authorize` endpoint. It is highly reccomended to also add the `authenticated_username` and/or `authenticated_userid` parameters that will contain the end-user's username or ID in order to identify the user who has granted the permissions later. The equivalent of:
+
+```
+curl https://your.api.com/oauth2/authorize
+--data "client_id=XXX" \
+--data "response_type=XXX" \
+--data "scope=XXX" \
+--data "provision_key=XXX" \
+--data "authenticated_username=XXX" \
+--data "authenticated_userid=XXX"
+```
 
 6 - Kong will respond with a JSON response like:
 
@@ -133,23 +162,16 @@ In this flow, the steps that you need to implement are:
 * The login page, you probably already have it (step 2)
 * The Authorization page, with its backend that will simply collect the values, make a POST request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
 
-#### Implementing the Authorization Page
-
-Building the authorization page is going to be the primary task that the plugin itself cannot do out of the box, because it requires to check that the user is properly logged in, and this operation is strongly tied with your authentication implementation.
-
-The authorization page is made of two parts:
-
-* The frontend page that the user will see, and that will allow him to authorize the client application to access his data
-* The backend that will process the HTML form displayed in the frontend, that will talk with Kong and that will ultimately redirect the user to a third party URI.
-
-
 ## Headers sent to the upstream server
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
+When a client has been authenticated and authorized, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer and the end-user in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)
 * `X-Consumer-Username`, the `username` of to the Consumer (if set)
+* `X-Authenticated-Scope`, the comma-separated list of scopes that the end user has authenticated (if available)
+* `X-Authenticated-Username`, the logged-in user's username who has granted permission to the client (if set)
+* `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client (if set)
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
