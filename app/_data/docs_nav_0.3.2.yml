@@ -113,6 +113,16 @@
           text: Delete Consumer
           url: /admin-api/#delete-consumer
     -
+      text: Plugin Object
+      url: /admin-api/#plugin-object
+      items:
+        -
+          text: Retrieve Installed Plugins
+          url: /admin-api/#retrieve-installed-plugins
+        -
+          text: Retrieve Plugin Schema
+          url: /admin-api/#retrieve-plugin-schema
+    -
       text: Plugin Configuration Object
       url: /admin-api/#plugin-configuration-object
       items:

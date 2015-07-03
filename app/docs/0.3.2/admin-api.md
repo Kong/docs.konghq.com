@@ -426,6 +426,79 @@ HTTP 204 NO CONTENT
 
 ---
 
+## Plugin Object
+
+Retrieve the installed plugins on your node and their configuration schema.
+
+**Reminder:** Installed plugins does not mean a plugin is enabled. To enabled a plugin, you have to configure it for a given API. See [Plugin Configuration Object](#plugin-configuration-object).
+
+---
+
+### Retrieve Installed Plugins
+
+Retrieve a list of all installed plugins on the node.
+
+#### Endpoint
+
+<div class="endpoint get">/plugins/</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "enabled_plugins": [
+        "ssl",
+        "keyauth",
+        "basicauth",
+        "oauth2",
+        "ratelimiting",
+        "tcplog",
+        "udplog",
+        "filelog",
+        "httplog",
+        "cors",
+        "request_transformer",
+        "response_transformer",
+        "requestsizelimiting",
+        "analytics"
+    ]
+}
+```
+
+### Retrieve Plugin Schema
+
+Retrieve the schema of a plugin's configuration.
+
+<div class="endpoint get">/plugins/{plugin name}/schema</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "fields": {
+        "hide_credentials": {
+            "default": false,
+            "type": "boolean"
+        },
+        "key_names": {
+            "default": "function",
+            "required": true,
+            "type": "array"
+        }
+    }
+}
+```
+
+---
+
 ## Plugin Configuration Object
 
 The Plugin Configuration object represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](/plugins).
