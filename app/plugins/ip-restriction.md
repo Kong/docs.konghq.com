@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - ip-restriction
+  - ip_restriction
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -28,7 +28,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
-    --data "name=ip-restriction" \
+    --data "name=ip_restriction" \
     --data "value.whitelist=54.13.21.1, 143.1.0.0/24" \
     --data "value.blacklist=184.31.52.75"
 ```
@@ -37,7 +37,7 @@ $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
 
 form parameter                               | description
  ---                                    | ---
-`name`                                  | The name of the plugin to use, in this case: `ip-restriction`
+`name`                                  | The name of the plugin to use, in this case: `ip_restriction`
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.whitelist`<br>*optional*         | Comma separated list of IPs or CIDR ranges to whitelist.
 `value.blacklist`<br>*optional*         | Comma separated list of IPs or CIDR ranges to blacklist.
