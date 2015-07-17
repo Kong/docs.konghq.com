@@ -27,13 +27,13 @@ Every node in the Kong cluster should have the same `plugins_available` property
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=ip_restriction" \
     --data "value.whitelist=54.13.21.1, 143.1.0.0/24" \
     --data "value.blacklist=184.31.52.75"
 ```
 
-`api_id`: The API ID that this plugin configuration will target
+`api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter                               | description
  ---                                    | ---

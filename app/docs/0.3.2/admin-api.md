@@ -57,9 +57,85 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 ---
 
+## Informations routes
+
+### Retrieve node informations
+
+Retrieve installation details about a node.
+
+#### Endpoint
+
+<div class="endpoint get">/</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "hostname": "",
+    "lua_version": "LuaJIT 2.1.0-alpha",
+    "plugins": {
+        "available_on_server": [
+            "ssl",
+            "keyauth",
+            "basicauth",
+            "oauth2",
+            "ratelimiting",
+            "tcplog",
+            "udplog",
+            "filelog",
+            "httplog",
+            "cors",
+            "request_transformer",
+            "response_transformer",
+            "requestsizelimiting",
+            "ip_restriction",
+            "mashape-analytics"
+        ],
+        "enabled_in_cluster": {}
+    },
+    "tagline": "Welcome to Kong",
+    "version": "0.4.0"
+}
+
+```
+
+---
+
+### Retrieve node status
+
+Retrieve usage informations about a node.
+
+#### Endpoint
+
+<div class="endpoint get">/status</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "connections_accepted": 2,
+    "connections_active": 1,
+    "connections_handled": 2,
+    "connections_reading": 0,
+    "connections_waiting": 0,
+    "connections_writing": 1,
+    "total_requests": 2
+}
+```
+
+---
+
 ## API Object
 
-The API object describes an API that's being exposed by Kong. In order to do that Kong needs to know what is going to be the DNS address that will be pointing to the API, and what is the final target URL of the API where the requests will be proxied. Kong can serve more than one API domain.
+The API object describes an API that's being exposed by Kong. In order to do that Kong needs to know how to retrieve the API when a consumer is calling it from the Proxy port. This can be achieved either by specifying a custom DNS address or a specific URL path. Finally, Kong needs to know what is the final target URL of the API where the requests will be proxied.
 
 ```json
 {

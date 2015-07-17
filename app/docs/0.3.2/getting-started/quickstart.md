@@ -8,7 +8,7 @@ title: 5-minute Quickstart
   <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving you access to the RESTful interface to manage your APIs, consumers, and more. Data sent through the RESTful interface is stored in your Cassandra instance or cluster, meaning you **must** have Cassandra running **before** starting Kong.
+In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving you access to the RESTful Admin interface to manage your APIs, consumers, and more. Data sent through the Admin API is stored in your Cassandra instance or cluster, meaning you **must** have Cassandra running **before** starting Kong.
 
 **Note:** If you haven't already, go ahead and make sure that you have a Kong configuration file located under `/etc/kong/kong.yml` and points to your Cassandra instance or cluster. If you haven't, consult the [configuration reference][configuration] before starting.
 
@@ -51,7 +51,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 ### Next Steps
 
-Now that you have Kong running you can interact with the RESTful API.
+Now that you have Kong running you can interact with the Admin API.
 
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 

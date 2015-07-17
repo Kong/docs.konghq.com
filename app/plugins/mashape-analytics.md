@@ -27,10 +27,12 @@ Every node in the Kong cluster must have the same `plugins_available` property v
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_name_or_id}/plugins/ \
+$ curl -X POST http://kong:8001/apis/{api}/plugins/ \
     --data "name=mashape-analytics" \
     --data "service_token=YOUR_SERVICE_TOKEN"
 ```
+
+`api`: The `id` or `name` of the API that this plugin configuration will target
 
 parameter                        | description
  ---                             | ---

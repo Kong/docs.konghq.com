@@ -27,7 +27,7 @@ Every node in your Kong cluster should have the same `plugins_available` propert
 Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=response_transformer" \
     --data "value.add.headers=x-new-header:some_value, x-another-header:some_value" \
     --data "value.add.json=new-json-key:some_value, another-json-key:some_value" \
@@ -35,9 +35,9 @@ $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "value.remove.json=json-key-toremove, another-json-key"
 ```
 
-`api_id`: The API ID that this plugin configuration will target
+`api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                                           | description
+form parameter                                      | description
  ---:                                               | ---
 `name`                                              | Name of the plugin to use, in this case: `response_transformer`
 `consumer_id`<br>*optional*                         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
