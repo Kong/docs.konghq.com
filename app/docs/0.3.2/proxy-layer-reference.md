@@ -4,11 +4,11 @@ title: Proxy Layer Reference
 
 # Proxy Layer Reference
 
-As you might already know, Kong uses two ports to communicate. By default, they are:
+As you might already know, Kong uses two ports to communicate. By default they are:
 
 `:8001` - The one on which the [Admin API][API] listens.
 
-`:8000` - Where Kong listens for incoming requests to proxy to your upstream services. This is the port that interests us here. Here is a typical request workflow on this port:
+`:8000` - Where Kong listens for incoming requests to proxy to your upstream services. This is the port that interests us; here is a typical request workflow on this port:
 
 <br />
 
@@ -16,7 +16,7 @@ As you might already know, Kong uses two ports to communicate. By default, they 
 
 <br />
 
-This guide will cover all proxying capabilities of Kong by explaining in details how the proxying (`8000`) port works under the hood.
+This guide will cover all proxying capabilities of Kong by explaining in detail how the proxying (`8000`) port works under the hood.
 
 ## Summary
 
@@ -50,14 +50,14 @@ When receiving a request, Kong will inspect it and try to route it to the correc
 - The path (**URI**) of the request.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> For performance reasons, Kong keeps a cache of the APIs from your Cassandra cluster in memory for up to 60 seconds. Cache invalidation not being implemented yet, Kong might take up to <strong>60 seconds</strong> to notice a new API and proxy incoming requests to it.
+  <strong>Note:</strong> For performance reasons, Kong keeps a cache of the APIs from your Cassandra cluster in memory for up to 60 seconds. As cache invalidation has not been implemented yet, Kong might take up to <strong>60 seconds</strong> to notice a new API and proxy incoming requests to it.
 </div>
 
 ---
 
 ## 2. Reminder: how to add an API to Kong
 
-Before going any further, let's take a few moments to make sure you know how to add an API to Kong. This also help clarifying the difference between the two ports.
+Before going any further, let's take a few moments to make sure you know how to add an API to Kong. This will also help clarify the difference between the two ports.
 
 As explained in the [Adding your API][adding-your-api] quickstart guide, Kong is configured via its internal [Admin API][API] running by default on port `8001`. Adding an API to Kong is as easy as an HTTP request:
 
@@ -70,7 +70,7 @@ $ curl -i -X POST \
  -d 'path=/status'
 ```
 
-This request tells Kong to add an API named "**mockbin**", with its upstream ressource being located at "**http://mockbin.com**". The `public_dns` and `path` properties are the ones used by Kong to route a request to that API. They are not both required but at least one of them must be specified.
+This request tells Kong to add an API named "**mockbin**", with its upstream resource being located at "**http://mockbin.com**". The `public_dns` and `path` properties are the ones used by Kong to route a request to that API. Both properties are not required but at least one must be specified.
 
 Once this request is processed by Kong, the API is stored in your Cassandra cluster and a request to the **Proxy port** will trigger a query to Cassandra and put your API in Kong's proxying cache.
 
@@ -91,7 +91,7 @@ $ curl -i -X GET \
 By doing so, Kong recognizes the `Host` value as being the `public_dns` of the "mockbin" API. The request will be routed to the upstream API and Kong will execute any configured [plugin][plugins] for that API.
 
 <div class="alert alert-warning">
-  <strong>Going to production:</strong> If you're planning on going to production with your setup, you most likely don't want your consumers to manually set the "**Host**" header on each request. You can let Kong and DNS take care of it by simply setting an A record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
+  <strong>Going to production:</strong> If you're planning to go into production with your setup, you'll most likely not want your consumers to manually set the "**Host**" header on each request. You can let Kong and DNS take care of it by simply setting an A record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
 </div>
 
 #### Using the "**X-Host-Override**" header
@@ -118,7 +118,7 @@ A "**public_dns**" of form `example.*` will route requests with "**Host**" value
 
 ## 4. Proxy an API by its path value
 
-If you'd rather configure your APIs so that Kong routes incoming request according to the request's URI, Kong can also do that. This allows for example your consumers to seamlessly consume APIs without making them specify a Host header.
+If you'd rather configure your APIs so that Kong routes incoming requests according to the request's URI, Kong can also perform this funtion. This allows your consumers to seamlessly consume APIs without making them specify a Host header.
 
 Because the API we previously configured has a `path` property, the following request will **also** be proxied to the upstream "mockbin" API:
 
@@ -171,7 +171,7 @@ Once Kong has recognized which API an incoming request should be proxied to, it 
   - b. If the user is not the one configured, ratelimiting is not applied
 - 6. Request is proxied
 
-**Note**: The proxying of the request might happen before or after plugins execution, since each plugin can hook itself anywhere in the lifecycle of a request. In this case (authentication + ratelimiting), it is of course mandatory that those plugins be executed **before** proxying happens.
+**Note**: The proxying of a request might happen before or after plugins execution, since each plugin can hook itself anywhere in the lifecycle of a request. In this case (authentication + ratelimiting) it is of course mandatory those plugins be executed **before** proxying happens.
 
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
 [API]: /docs/{{page.kong_version}}/admin-api
