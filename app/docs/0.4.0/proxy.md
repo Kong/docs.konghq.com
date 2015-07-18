@@ -1,8 +1,8 @@
 ---
-title: Proxy Layer Reference
+title: Proxy Reference
 ---
 
-# Proxy Layer Reference
+# Proxy Reference
 
 As you might already know, Kong uses two ports to communicate. By default they are:
 

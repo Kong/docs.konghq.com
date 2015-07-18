@@ -32,11 +32,8 @@
       text: Adding Consumers
       url: /getting-started/adding-consumers
 -
-  title: Guides
+  title: Configuration
   items:
-    -
-      text: Proxy layer reference
-      url: /proxy-layer-reference
     -
       text: Configuration reference
       url: /configuration
@@ -72,17 +69,7 @@
       text: Supported Content Types
       url: /admin-api/#supported-content-types
     -
-      text: Informations routes
-      url: /admin-api/#informations-routes
-      items:
-        -
-          text: Retrieve node informations
-          url: /admin-api/#retrieve-node-informations
-        -
-          text: Retrieve node status
-          url: /admin-api/#retrieve-node-status
-    -
-      text: API Object routes
+      text: API Object
       url: /admin-api/#api-object
       items:
         -
@@ -98,13 +85,13 @@
           text: Update API
           url: /admin-api/#update-api
         -
-          text: Update or create API
+          text: Update Or Create API
           url: /admin-api/#update-or-create-api
         -
           text: Delete API
           url: /admin-api/#delete-api
     -
-      text: Consumer Object routes
+      text: Consumer Object
       url: /admin-api/#consumer-object
       items:
         -
@@ -120,39 +107,29 @@
           text: Update Consumer
           url: /admin-api/#update-consumer
         -
-          text: Update or create Consumer
+          text: Update Or Create Consumer
           url: /admin-api/#update-or-create-consumer
         -
           text: Delete Consumer
           url: /admin-api/#delete-consumer
     -
-      text: Plugin Object routes
-      url: /admin-api/#plugin-object
-      items:
-        -
-          text: Retrieve Installed Plugins
-          url: /admin-api/#retrieve-installed-plugins
-        -
-          text: Retrieve Plugin Schema
-          url: /admin-api/#retrieve-plugin-schema
-    -
-      text: Plugin Configuration Object routes
+      text: Plugin Configuration Object
       url: /admin-api/#plugin-configuration-object
       items:
         -
           text: Create Plugin Configuration
           url: /admin-api/#create-plugin-configuration
         -
-          text: List per-API Plugin Configurations
+          text: List Per-API Plugin Configurations
           url: /admin-api/#list-per-api-plugin-configurations
         -
-          text: List all Plugin Configurations
+          text: List All Plugin Configurations
           url: /admin-api/#list-all-plugin-configurations
         -
           text: Update Plugin Configuration
           url: /admin-api/#update-plugin-configuration
         -
-          text: Update or create Plugin Configuration
+          text: Update Or Create Plugin Configuration
           url: /admin-api/#update-or-create-plugin-configuration
         -
           text: Delete Plugin Configuration

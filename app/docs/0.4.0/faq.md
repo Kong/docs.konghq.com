@@ -29,7 +29,7 @@ You can scale Kong horizontally if you are processing lots of requests, just by 
 
 #### How can I add an authentication layer on a microservice/API?
 
-To add an authentication layer on top of a service you can choose between the authentication plugins currently available in the [Plugins Gallery](/plugins/#security), like the [Basic Authentication](/plugins/basic-authentication/) or [Key Authentication](/plugins/key-authentication/) plugins.
+To add an authentication layer on top of a service you can choose between the authentication plugins currently available in the [Plugins Gallery](/plugins/#security), like the [Basic Authentication](/plugins/basic-authentication/), [Key Authentication](/plugins/key-authentication/) and [OAuth 2.0](/plugins/oauth2-authentication/) plugins.
 
 <hr>
 

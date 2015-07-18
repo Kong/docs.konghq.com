@@ -13,6 +13,9 @@
     -
       text: What are plugins?
       url: /about/plugins
+    -
+      text: FAQ
+      url: /faq/
 -
   title: Getting Started
   items:
@@ -32,8 +35,11 @@
       text: Adding Consumers
       url: /getting-started/adding-consumers
 -
-  title: Configuration
+  title: Guides
   items:
+    -
+      text: Proxy reference
+      url: /proxy
     -
       text: Configuration reference
       url: /configuration
@@ -69,10 +75,17 @@
       text: Supported Content Types
       url: /admin-api/#supported-content-types
     -
-      text: Monitoring
-      url: /admin-api/#monitoring
+      text: Informations routes
+      url: /admin-api/#informations-routes
+      items:
+        -
+          text: Retrieve node informations
+          url: /admin-api/#retrieve-node-informations
+        -
+          text: Retrieve node status
+          url: /admin-api/#retrieve-node-status
     -
-      text: API Object
+      text: API Object routes
       url: /admin-api/#api-object
       items:
         -
@@ -88,13 +101,13 @@
           text: Update API
           url: /admin-api/#update-api
         -
-          text: Update Or Create API
+          text: Update or create API
           url: /admin-api/#update-or-create-api
         -
           text: Delete API
           url: /admin-api/#delete-api
     -
-      text: Consumer Object
+      text: Consumer Object routes
       url: /admin-api/#consumer-object
       items:
         -
@@ -110,13 +123,13 @@
           text: Update Consumer
           url: /admin-api/#update-consumer
         -
-          text: Update Or Create Consumer
+          text: Update or create Consumer
           url: /admin-api/#update-or-create-consumer
         -
           text: Delete Consumer
           url: /admin-api/#delete-consumer
     -
-      text: Plugin Object
+      text: Plugin Object routes
       url: /admin-api/#plugin-object
       items:
         -
@@ -126,23 +139,23 @@
           text: Retrieve Plugin Schema
           url: /admin-api/#retrieve-plugin-schema
     -
-      text: Plugin Configuration Object
+      text: Plugin Configuration Object routes
       url: /admin-api/#plugin-configuration-object
       items:
         -
           text: Create Plugin Configuration
           url: /admin-api/#create-plugin-configuration
         -
-          text: List Per-API Plugin Configurations
+          text: List per-API Plugin Configurations
           url: /admin-api/#list-per-api-plugin-configurations
         -
-          text: List All Plugin Configurations
+          text: List all Plugin Configurations
           url: /admin-api/#list-all-plugin-configurations
         -
           text: Update Plugin Configuration
           url: /admin-api/#update-plugin-configuration
         -
-          text: Update Or Create Plugin Configuration
+          text: Update or create Plugin Configuration
           url: /admin-api/#update-or-create-plugin-configuration
         -
           text: Delete Plugin Configuration
