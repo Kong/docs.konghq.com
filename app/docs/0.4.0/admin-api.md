@@ -57,9 +57,93 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 ---
 
+## Informations routes
+
+### Retrieve node informations
+
+Retrieve installation details about a node.
+
+#### Endpoint
+
+<div class="endpoint get">/</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "hostname": "",
+    "lua_version": "LuaJIT 2.1.0-alpha",
+    "plugins": {
+        "available_on_server": [
+            "ssl",
+            "keyauth",
+            "basicauth",
+            "oauth2",
+            "ratelimiting",
+            "tcplog",
+            "udplog",
+            "filelog",
+            "httplog",
+            "cors",
+            "request_transformer",
+            "response_transformer",
+            "requestsizelimiting",
+            "ip_restriction",
+            "mashape-analytics"
+        ],
+        "enabled_in_cluster": {}
+    },
+    "tagline": "Welcome to Kong",
+    "version": "0.4.0"
+}
+
+```
+
+---
+
+### Retrieve node status
+
+Retrieve usage informations about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
+
+#### Endpoint
+
+<div class="endpoint get">/status</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total_requests": 3,
+    "connections_active": 1,
+    "connections_accepted": 1,
+    "connections_handled": 1,
+    "connections_reading": 0,
+    "connections_writing": 1,
+    "connections_waiting": 0
+}
+```
+
+* `total_requests`: The total number of client requests.
+* `connections_active`: The current number of active client connections including Waiting connections.
+* `connections_accepted`: The total number of accepted client connections.
+* `connections_handled`: The total number of handled connections. Generally, the parameter value is the same as accepts unless some resource limits have been reached.
+* `connections_reading`: The current number of connections where Kong is reading the request header.
+* `connections_writing`: The current number of connections where nginx is writing the response back to the client.
+* `connections_waiting`: The current number of idle client connections waiting for a request.
+
+---
+
 ## API Object
 
-The API object describes an API that's being exposed by Kong. In order to do that Kong needs to know what is going to be the DNS address that will be pointing to the API, and what is the final target URL of the API where the requests will be proxied. Kong can serve more than one API domain.
+The API object describes an API that's being exposed by Kong. In order to do that Kong needs to know how to retrieve the API when a consumer is calling it from the Proxy port. This can be achieved either by specifying a custom DNS address or a specific URL path. Finally, Kong needs to know what is the final target URL of the API where the requests will be proxied.
 
 ```json
 {
@@ -422,6 +506,79 @@ Attributes | Description
 
 ```
 HTTP 204 NO CONTENT
+```
+
+---
+
+## Plugin Object
+
+Retrieve the installed plugins on your node and their configuration schema.
+
+**Reminder:** Installed plugins does not mean a plugin is enabled. To enabled a plugin, you have to configure it for a given API. See [Plugin Configuration Object](#plugin-configuration-object).
+
+---
+
+### Retrieve Installed Plugins
+
+Retrieve a list of all installed plugins on the node.
+
+#### Endpoint
+
+<div class="endpoint get">/plugins/</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "enabled_plugins": [
+        "ssl",
+        "keyauth",
+        "basicauth",
+        "oauth2",
+        "ratelimiting",
+        "tcplog",
+        "udplog",
+        "filelog",
+        "httplog",
+        "cors",
+        "request_transformer",
+        "response_transformer",
+        "requestsizelimiting",
+        "analytics"
+    ]
+}
+```
+
+### Retrieve Plugin Schema
+
+Retrieve the schema of a plugin's configuration.
+
+<div class="endpoint get">/plugins/{plugin name}/schema</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "fields": {
+        "hide_credentials": {
+            "default": false,
+            "type": "boolean"
+        },
+        "key_names": {
+            "default": "function",
+            "required": true,
+            "type": "array"
+        }
+    }
+}
 ```
 
 ---

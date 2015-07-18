@@ -18,7 +18,7 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/faq">FAQ</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-quickstart.svg" /><a href="/docs/{{page.kong_version}}/faq">FAQ</a></h3>
     <p>Learn the answers to some of the most asked questions about Kong</p>
     <a href="/docs/{{page.kong_version}}/faq">Read the FAQ &rarr;</a>
   </div>
