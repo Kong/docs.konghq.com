@@ -46,7 +46,7 @@ This guide will cover all proxying capabilities of Kong by explaining in detail 
 
 When receiving a request, Kong will inspect it and try to route it to the correct API. In order to do so, it supports different routing mechanisms depending on your needs. A request can be routed by:
 
-- A **DNS** value contained in a header of the request.
+- A **DNS** value contained in the **Host** header of the request.
 - The path (**URI**) of the request.
 
 <div class="alert alert-warning">
@@ -91,12 +91,12 @@ $ curl -i -X GET \
 By doing so, Kong recognizes the `Host` value as being the `public_dns` of the "mockbin" API. The request will be routed to the upstream API and Kong will execute any configured [plugin][plugins] for that API.
 
 <div class="alert alert-warning">
-  <strong>Going to production:</strong> If you're planning to go into production with your setup, you'll most likely not want your consumers to manually set the "**Host**" header on each request. You can let Kong and DNS take care of it by simply setting an A record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
+  <strong>Going to production:</strong> If you're planning to go into production with your setup, you'll most likely not want your consumers to manually set the "<strong>Host</strong>" header on each request. You can let Kong and DNS take care of it by simply setting an A or CNAME record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
 </div>
 
 #### Using the "**X-Host-Override**" header
 
-When performing a request from a browser, you might not be able to set the `Host` header. Thus, Kong also checks a request for header named `X-Host-Override` and treats it exactly like the `Host` header:
+When performing a request from a browser, you might not be able to set the `Host` header. Thus, Kong also checks a request for a header named `X-Host-Override` and treats it exactly like the `Host` header:
 
 ```bash
 $ curl -i -X GET \
@@ -108,7 +108,7 @@ This request will be proxied just as well by Kong.
 
 #### Using a wildcard DNS
 
-Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. A "**public_dns**"" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
+Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. A "**public_dns**" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
 
 A "**public_dns**" of form `*.example.org` will route requests with "**Host**" values such as `a.example.org` or `x.y.example.org`.
 
@@ -118,7 +118,7 @@ A "**public_dns**" of form `example.*` will route requests with "**Host**" value
 
 ## 4. Proxy an API by its path value
 
-If you'd rather configure your APIs so that Kong routes incoming requests according to the request's URI, Kong can also perform this funtion. This allows your consumers to seamlessly consume APIs without making them specify a Host header.
+If you'd rather configure your APIs so that Kong routes incoming requests according to the request's URI, Kong can also perform this function. This allows your consumers to seamlessly consume APIs sparing the headache of setting DNS records for your domains.
 
 Because the API we previously configured has a `path` property, the following request will **also** be proxied to the upstream "mockbin" API:
 
@@ -161,12 +161,12 @@ Once Kong has recognized which API an incoming request should be proxied to, it 
 
 - 1. Kong recognized the API (according to one of the previously explained methods)
 - 2. It looks into the datastore for Plugin Configurations for that API
-- 3. Some Plugin Configurations were found
+- 3. Some Plugin Configurations were found, for example:
   - a. A key authentication Plugin Configuration
   - b. A ratelimiting Plugin Configuration (that also has a `consumer_id` property)
 - 4. Kong executes the highest priority plugin (key authentication in this case)
   - a. User is now authenticated
-- 5. Kong tries executes the ratelimiting plugin
+- 5. Kong tries to execute the ratelimiting plugin
   - a. If the user is the one in the `consumer_id`, ratelimiting is applied
   - b. If the user is not the one configured, ratelimiting is not applied
 - 6. Request is proxied
