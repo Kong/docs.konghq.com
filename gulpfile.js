@@ -146,12 +146,12 @@ gulp.task('deploy:prod', function (cb) {
 })
 
 gulp.task('watch', function () {
-  gulp.watch(sources.content, ['build'])
+  gulp.watch(sources.content, ['html'])
   gulp.watch(sources.styles, ['styles'])
   gulp.watch(sources.images, ['images'])
   gulp.watch(sources.js, ['javascripts'])
 })
 
 gulp.task('default', ['clean'], function (cb) {
-  sequence('build', 'connect', 'watch', cb)
+  sequence('build', 'watch', 'connect', cb)
 })

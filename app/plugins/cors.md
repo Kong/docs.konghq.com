@@ -27,7 +27,7 @@ Every node in your Kong cluster should have the same `plugins_available` propert
 Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=cors" \
     --data "value.origin=mockbin.com" \
     --data "value.methods=GET, POST" \
@@ -37,7 +37,7 @@ $ curl -X POST http://kong:8001/apis/{api_id}/plugins \
     --data "value.max_age=3600"
 ```
 
-`api_id`: The API ID that this plugin configuration will target
+`api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter                                           | description
  ---:                                               | ---

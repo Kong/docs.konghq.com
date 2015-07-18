@@ -1,8 +1,8 @@
 ---
 id: page-plugin
-title: Plugins - Analytics
-header_title: Analytics
-header_icon: /assets/images/icons/plugins/analytics.png
+title: Plugins - Mashape Analytics
+header_title: Mashape Analytics
+header_icon: /assets/images/icons/plugins/mashape-analytics.png
 breadcrumbs:
   Plugins: /plugins
 ---
@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - analytics
+  - mashape-analytics
 ```
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
@@ -27,14 +27,16 @@ Every node in the Kong cluster must have the same `plugins_available` property v
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_name_or_id}/plugins/ \
-    --data "name=analytics" \
+$ curl -X POST http://kong:8001/apis/{api}/plugins/ \
+    --data "name=mashape-analytics" \
     --data "service_token=YOUR_SERVICE_TOKEN"
 ```
 
+`api`: The `id` or `name` of the API that this plugin configuration will target
+
 parameter                        | description
  ---                             | ---
-`name`                           | The name of the plugin to use, in this case: `analytics`
+`name`                           | The name of the plugin to use, in this case: `mashape-analytics`
 `consumer_id`<br>*optional*      | The CONSUMER ID that this plugin configuration will target
 `value.service_token`            | The service token provided to you by [Mashape Analytics][analytics]
 `batch_size`                     | Default: `100`. The size at which the buffer gets emptied and sent to Mashape Analytics

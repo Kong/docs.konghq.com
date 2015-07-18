@@ -31,12 +31,12 @@ Every node in the Kong cluster should have the same `plugins_available` property
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=requestsizelimiting" \
     --data "value.allowed_payload_size=128"
 ```
 
-`api_id`: The API ID that this plugin configuration will target
+`api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter                               | description
  ---                                    | ---

@@ -27,14 +27,14 @@ Every node in the Kong cluster should have the same `plugins_available` property
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=keyauth" \
     --data "value.key_names=key_name1,key_name2"
 ```
 
-`api_id`: The API ID that this plugin configuration will target
+`api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                               | description
+form parameter                          | description
  ---                                    | ---
 `name`                                  | The name of the plugin to use, in this case: `keyauth`
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
@@ -67,11 +67,11 @@ A [Consumer][consumer-object] can have many credentials.
 Then you can finally provision new key credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer_id}/keyauth \
+$ curl -X POST http://kong:8001/consumers/{consumer}/keyauth \
     --data "key=some_key"
 ```
 
-`consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
+`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
 form parameter          | description
  ---                    | ---
