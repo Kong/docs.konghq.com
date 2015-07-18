@@ -19,7 +19,11 @@
 
     Install [PCRE](http://www.pcre.org/)
 
-    Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation) (OpenResty has some dependencies of its own), with the following `configure` options:
+    Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation) (OpenResty has some dependencies of its own).
+
+    You need to apply a patch to enable the unmerged "ssl_certificate_by_lua" feature. You can follow the instructions [here](https://github.com/openresty/lua-nginx-module/issues/331#issuecomment-77279170)
+
+    When installing it use the following `configure` options:
 
     ```bash
     $ ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module

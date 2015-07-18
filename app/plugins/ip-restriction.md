@@ -1,17 +1,13 @@
 ---
 id: page-plugin
-title: Plugins - Request Size Limiting
-header_title: Request Size Limiting
-header_icon: /assets/images/icons/plugins/request-size-limiting.png
+title: Plugins - IP Restriction
+header_title: IP Restriction
+header_icon: /assets/images/icons/plugins/ip-restriction.png
 breadcrumbs:
   Plugins: /plugins
 ---
 
-<div class="alert alert-warning">
-  For security reasons we suggest enabling this plugin for any API you add to Kong to prevent a DOS (Denial of Service) attack.
-</div>
-
-Block incoming requests whose body is greater than a specific size in megabytes.
+Restrict access to an API by either whitelisting or blacklisting IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation][cidr] like `10.10.10.0/24` can be used.
 
 ---
 
@@ -21,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - requestsizelimiting
+  - ip_restriction
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -32,18 +28,21 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=requestsizelimiting" \
-    --data "value.allowed_payload_size=128"
+    --data "name=ip_restriction" \
+    --data "value.whitelist=54.13.21.1, 143.1.0.0/24" \
+    --data "value.blacklist=184.31.52.75"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter                               | description
  ---                                    | ---
-`name`                                  | The name of the plugin to use, in this case: `requestsizelimiting`
+`name`                                  | The name of the plugin to use, in this case: `ip_restriction`
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.allowed_payload_size`<br>*optional*    | Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
+`value.whitelist`<br>*optional*         | Comma separated list of IPs or CIDR ranges to whitelist.
+`value.blacklist`<br>*optional*         | Comma separated list of IPs or CIDR ranges to blacklist.
 
+[cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object

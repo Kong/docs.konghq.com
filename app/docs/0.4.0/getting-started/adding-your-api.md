@@ -73,11 +73,6 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     **Note:** Kong handles proxy requests on port `:8000`
 
-    <div class="alert alert-warning">
-      <strong>Going further:</strong>
-      For a full understanding of how to proxy requests through Kong, check out the <a href="/docs/{{page.kong_version}}/proxy-layer-reference">Proxy Layer reference</a>.
-    </div>
-
 <hr>
 
 ## Next Steps

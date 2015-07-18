@@ -6,7 +6,7 @@ title: What is Kong?
 
 Kong is a scalable, open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](/docs/{{page.kong_version}}/about/plugins), which provide [extra functionalities and services](/plugins) beyond the core platform.
 
-Mashape, the world's largest API marketplace, over the past several years has been powered by Kong. Delivering reliable and secure service to the 140,000 active developers in the Mashape community.
+Mashape, the worlds largest API marketplace, over the past several years has been powered by Kong. Delivering reliable and secure service to the 140,000 active developers in the Mashape community.
 
 * **Scalable**: Kong easily scales horizontally by simply adding more machines, meaning your platform can handle virtually any load while keeping latency low.
 

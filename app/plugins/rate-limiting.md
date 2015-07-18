@@ -27,20 +27,24 @@ Every node in the Kong cluster should have the same `plugins_available` property
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api_id}/plugins \
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=ratelimiting" \
-    --data "value.limit=1000" \
-    --data "value.period=hour"
+    --data "value.second=5" \
+    --data "value.hour=10000"
 ```
 
-`api_id`: The API ID that this plugin configuration will target
+`api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter                               | description
  ---                                    | ---
 `name`                                  | The name of the plugin to use, in this case: `ratelimiting`
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.limit`                           | The amount of HTTP requests the developer can make in the given period of time
-`value.period`                          | Can be one between: `second`, `minute`, `hour`, `day`, `month`, `year`
+`value.second`<br>*semi-optional*       | The amount of HTTP requests the developer can make per second. At least one limit must exist.
+`value.minute`<br>*semi-optional*       | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
+`value.hour`<br>*semi-optional*         | The amount of HTTP requests the developer can make per hour. At least one limit must exist.
+`value.day`<br>*semi-optional*          | The amount of HTTP requests the developer can make per day. At least one limit must exist.
+`value.month`<br>*semi-optional*        | The amount of HTTP requests the developer can make per month. At least one limit must exist.
+`value.year`<br>*semi-optional*         | The amount of HTTP requests the developer can make per year. At least one limit must exist.
 
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
