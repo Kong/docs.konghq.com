@@ -180,7 +180,10 @@ $(function () {
 
   // Docs page navigation
   if ($docs.length) {
-    var $navItems = $docs.find('.page-navigation').find('a')
+    var $nav = $docs.find('.page-navigation')
+    var $pageContent = $docs.find('.page-content')
+    var $navItems = $nav.find('a')
+    var $fixedNav = $nav.find('nav:last')
     var hash = window.location.hash
 
     var setNavItemActive = function () {
@@ -196,6 +199,21 @@ $(function () {
     }
 
     $navItems.on('click', setNavItemActive)
+
+    if ($pageContent.height() > $nav.height()) {
+      $fixedNav.affix({
+        offset: {
+          top: function () {
+            this.top = $fixedNav.offset().top - 70
+            return this.top
+          },
+          bottom: function () {
+            this.bottom = $('.footer').outerHeight(true) + 50
+            return this.bottom
+          }
+        }
+      })
+    }
   }
 
   // Analytics

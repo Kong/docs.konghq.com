@@ -23,7 +23,11 @@ var jekyllConfig = jekyllConfigs.LOCAL
 var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
   styles: 'app/_assets/stylesheets/**/*.{less,css}',
-  js: ['app/_assets/javascripts/**/*.js', 'bower_components/bootstrap/js/dropdown.js'],
+  js: [
+    'app/_assets/javascripts/**/*.js',
+    'bower_components/bootstrap/js/dropdown.js',
+    'bower_components/bootstrap/js/affix.js'
+  ],
   images: 'app/_assets/images/**/*',
   fonts: 'bower_components/font-awesome/fonts/**/*.*'
 }
@@ -43,7 +47,7 @@ gulp.task('styles', function () {
     .pipe($.less())
     .pipe($.uncss({
       html: glob.sync('dist/**/*.html'),
-      ignore: ['.open > .dropdown-menu', '.open > a']
+      ignore: ['.open > .dropdown-menu', '.open > a', '.page-navigation .affix']
     }))
     .pipe($.autoprefixer())
     .pipe($.minifyCss())
