@@ -69,8 +69,8 @@
       text: Supported Content Types
       url: /admin-api/#supported-content-types
     -
-      text: Monitoring Endpoint
-      url: /admin-api/#monitoring-endpoint
+      text: Monitoring
+      url: /admin-api/#monitoring
     -
       text: API Object
       url: /admin-api/#api-object

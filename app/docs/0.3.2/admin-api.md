@@ -57,6 +57,42 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 ---
 
+## Monitoring Endpoint
+
+Kong exposes a simple monitoring endpoint that provides some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
+
+#### Endpoint
+
+<div class="endpoint get">/status</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total_requests": 3,
+    "connections_active": 1,
+    "connections_accepted": 1,
+    "connections_handled": 1,
+    "connections_reading": 0,
+    "connections_writing": 1,
+    "connections_waiting": 0
+}
+```
+
+* `total_requests`: The total number of client requests.
+* `connections_active`: The current number of active client connections including Waiting connections.
+* `connections_accepted`: The total number of accepted client connections.
+* `connections_handled`: The total number of handled connections. Generally, the parameter value is the same as accepts unless some resource limits have been reached.
+* `connections_reading`: The current number of connections where Kong is reading the request header.
+* `connections_writing`: The current number of connections where nginx is writing the response back to the client.
+* `connections_waiting`: The current number of idle client connections waiting for a request.
+
+---
+
 ## API Object
 
 The API object describes an API that's being exposed by Kong. In order to do that Kong needs to know what is going to be the DNS address that will be pointing to the API, and what is the final target URL of the API where the requests will be proxied. Kong can serve more than one API domain.
