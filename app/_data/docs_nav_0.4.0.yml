@@ -38,35 +38,16 @@
   title: Guides
   items:
     -
-      text: Proxy reference
-      url: /proxy
-    -
       text: Configuration reference
       url: /configuration
--
-  title: CLI Reference
-  items:
     -
-      text: Commands
+      text: CLI reference
       url: /cli
-      items:
-        -
-          text: Start
-          url: /cli/#start
-        -
-          text: Stop
-          url: /cli/#stop
-        -
-          text: Quit
-          url: /cli/#quit
-        -
-          text: Restart
-          url: /cli/#restart
-        -
-          text: Reload
-          url: /cli/#reload
+    -
+      text: Proxy reference
+      url: /proxy
 -
-  title: Admin API endpoints
+  title: Admin API
   items:
     -
       text: Introduction
