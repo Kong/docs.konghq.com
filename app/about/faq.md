@@ -13,17 +13,17 @@ title: FAQ
 
 #### Where can I get general information about Kong?
 
-You can read the [official documentation](/docs) starting from [here](/docs/{{page.kong_version}}/about/what/), you can also ask any question to the community and the core mantainers on our [official chat on Gitter](https://gitter.im/Mashape/kong).
+You can read the [official documentation](/docs) or ask any question to the community and the core mantainers on our [official chat on Gitter](https://gitter.im/Mashape/kong).
 
 You can also have a face-to-face talk with us at one of our [meetups](http://www.meetup.com/The-Mashape-API-Developer-Community).
 
-#### Why does kong need Cassandra?
+#### Why does Kong need Cassandra?
 
-Kong uses Cassandra for storing all the data and to keep functioning properly. Plugins also use Cassandra to store data. Read [how Kong works](/docs/{{page.kong_version}}/about/how/).
+Kong uses Cassandra for storing all the data and to keep functioning properly. Plugins also use Cassandra to store data. Read [how Kong works](/about).
 
 #### How many microservices/APIs can I add on Kong?
 
-You can add as many microservices or APIs as you like, and use Kong to process all of them. Kong currently supports RESTful services that run over HTTP or HTTPs. Learn how to [add a new service](/docs/{{page.kong_version}}/getting-started/adding-your-api/) on Kong.
+You can add as many microservices or APIs as you like, and use Kong to process all of them. Kong currently supports RESTful services that run over HTTP or HTTPs. Learn how to [add a new service](/docs/latest/getting-started/adding-your-api/) on Kong.
 
 You can scale Kong horizontally if you are processing lots of requests, just by adding more Kong servers to your cluster.
 

@@ -24,6 +24,11 @@ defaults:
       layout: 'page'
   -
     scope:
+      path: 'about'
+    values:
+      layout: 'about'
+  -
+    scope:
       path: 'docs'
     values:
       layout: 'docs'

@@ -1,0 +1,40 @@
+---
+layout: default
+sitemap: true
+id: about
+---
+
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-icon">
+      <img src="/assets/images/icons/icn-documentation.svg" alt="About" />
+    </div>
+    <div class="page-header-title">
+      <h1>About</h1>
+      <p>What makes Kong so efficient and easy to use</p>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <aside class="page-navigation">
+    <nav>
+      <h5>About Kong</h5>
+      <ul>
+        <li><a href="/about" {% if page.url == "/about/" %}class="active"{% endif %}>What is Kong?</a></li>
+        <li><a href="/about/how" {% if page.url contains "/about/how" %}class="active"{% endif %}>How does it work?</a></li>
+        <li><a href="/about/scaling" {% if page.url contains "/about/scaling" %}class="active"{% endif %}>How does it scale?</a></li>
+        <li><a href="/about/plugins" {% if page.url contains "/about/plugins" %}class="active"{% endif %}>What are plugins?</a></li>
+        <li><a href="/about/faq" {% if page.url contains "/about/faq" %}class="active"{% endif %}>FAQ</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="page-content-container">
+    <div class="page-content">
+      <div class="content">
+      {{ content }}
+      </div>
+    </div>
+  </div>
+</div>
