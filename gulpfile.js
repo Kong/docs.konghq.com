@@ -45,10 +45,10 @@ gulp.task('styles', function () {
   return gulp.src('app/_assets/stylesheets/index.less')
     .pipe($.plumber())
     .pipe($.less())
-    .pipe($.uncss({
+    .pipe($.if(jekyllConfig === jekyllConfigs.PROD, $.uncss({
       html: glob.sync('dist/**/*.html'),
       ignore: ['.open > .dropdown-menu', '.open > a', '.page-navigation .affix']
-    }))
+    })))
     .pipe($.autoprefixer())
     .pipe($.minifyCss())
     .pipe($.rename('styles.css'))
@@ -79,10 +79,10 @@ gulp.task('images', function () {
 
 gulp.task('fonts', function () {
   return gulp.src(sources.fonts)
-      .pipe($.plumber())
-      .pipe(gulp.dest('dist/assets/fonts'))
-      .pipe($.size())
-      .pipe($.connect.reload())
+    .pipe($.plumber())
+    .pipe(gulp.dest('dist/assets/fonts'))
+    .pipe($.size())
+    .pipe($.connect.reload())
 })
 
 gulp.task('jekyll', function (next) {
