@@ -1,19 +1,4 @@
 -
-  title: About Kong
-  items:
-    -
-      text: What is Kong?
-      url: /about/what
-    -
-      text: How does it work?
-      url: /about/how
-    -
-      text: How does it scale?
-      url: /about/scaling
-    -
-      text: What are plugins?
-      url: /about/plugins
--
   title: Getting Started
   items:
     -

@@ -4,7 +4,7 @@ title: What is Kong?
 
 # What is Kong?
 
-Kong is a scalable, open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](/docs/{{page.kong_version}}/about/plugins), which provide [extra functionalities and services](/plugins) beyond the core platform.
+Kong is a scalable, open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](/about/plugins), which provide [extra functionalities and services](/plugins) beyond the core platform.
 
 Mashape, the worlds largest API marketplace, over the past several years has been powered by Kong. Delivering reliable and secure service to the 140,000 active developers in the Mashape community.
 
@@ -14,7 +14,7 @@ Mashape, the worlds largest API marketplace, over the past several years has bee
 
 * **Runs on any infrastructure**: Kong runs anywhere. You can deploy Kong in the cloud or on-premise environments, including single or multi-datacenter setups and for public, private or invite-only APIs.
 
-Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](/docs/{{page.kong_version}}/admin-api) to operate and configure the system.
+Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](/docs/latest/admin-api) to operate and configure the system.
 
 ## Request Workflow
 

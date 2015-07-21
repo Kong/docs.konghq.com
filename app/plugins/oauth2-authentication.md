@@ -121,29 +121,29 @@ Here is the flow:
 
 3 - The client application will send the `client_id` in the querystring, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
 
-```
-curl kong:8001/oauth2?client_id=XXX
+```bash
+$ curl kong:8001/oauth2?client_id=XXX
 ```
 
 4 - If the end user authorized the application, the form will submit the data to your backend with a POST request, sending the `client_id`, `response_type` and `scope` parameters that were placed in `<input type="hidden" .. />` fields.
 
 5 - The backend must add the `provision_key` and `authenticated_userid` parameters to the `client_id`, `response_type` and `scope` parameters and it will make a POST request to Kong at your API address, on the `/oauth2/authorize` endpoint. The equivalent of:
 
-```
-curl https://your.api.com/oauth2/authorize
---data "client_id=XXX" \
---data "response_type=XXX" \
---data "scope=XXX" \
---data "provision_key=XXX" \
---data "authenticated_username=XXX" \
---data "authenticated_userid=XXX"
+```bash
+$ curl https://your.api.com/oauth2/authorize
+    --data "client_id=XXX" \
+    --data "response_type=XXX" \
+    --data "scope=XXX" \
+    --data "provision_key=XXX" \
+    --data "authenticated_username=XXX" \
+    --data "authenticated_userid=XXX"
 ```
 
 The `provision_key` is the key the plugin has generated when it has been added to the API, while `authenticated_userid` is the ID of the logged-in end user who has granted the permission.
 
 6 - Kong will respond with a JSON response like:
 
-```
+```json
 {
     "redirect_uri": "http://some/url"
 }

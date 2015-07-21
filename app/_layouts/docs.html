@@ -44,7 +44,11 @@ id: documentation
 
     {% for nav in page.nav_items %}
     <nav>
+      {% if nav.url %}
+      <a href="{{docs_url | append: nav.url}}"><h5>{{nav.title}}</h5></a>
+      {% else %}
       <h5>{{nav.title}}</h5>
+      {% endif %}
       <ul>
         {% for item in nav.items %}
         <li>
@@ -70,6 +74,12 @@ id: documentation
   <div class="page-content-container">
     <div class="page-content">
       <div class="content">
+        {% if page.kong_version != site.data.kong_latest.version %}
+        <div class="alert alert-warning">
+          <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
+        </div>
+        {% endif %}
+
       {{ content }}
       </div>
     </div>

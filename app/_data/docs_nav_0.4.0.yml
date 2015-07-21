@@ -1,22 +1,4 @@
 -
-  title: About Kong
-  items:
-    -
-      text: What is Kong?
-      url: /about/what
-    -
-      text: How does it work?
-      url: /about/how
-    -
-      text: How does it scale?
-      url: /about/scaling
-    -
-      text: What are plugins?
-      url: /about/plugins
-    -
-      text: FAQ
-      url: /faq/
--
   title: Getting Started
   items:
     -
@@ -38,39 +20,18 @@
   title: Guides
   items:
     -
-      text: Proxy reference
-      url: /proxy
-    -
       text: Configuration reference
       url: /configuration
--
-  title: CLI Reference
-  items:
     -
-      text: Commands
+      text: CLI reference
       url: /cli
-      items:
-        -
-          text: Start
-          url: /cli/#start
-        -
-          text: Stop
-          url: /cli/#stop
-        -
-          text: Quit
-          url: /cli/#quit
-        -
-          text: Restart
-          url: /cli/#restart
-        -
-          text: Reload
-          url: /cli/#reload
--
-  title: Admin API endpoints
-  items:
     -
-      text: Introduction
-      url: /admin-api/
+      text: Proxy reference
+      url: /proxy
+-
+  title: Admin API
+  url: /admin-api/
+  items:
     -
       text: Supported Content Types
       url: /admin-api/#supported-content-types
