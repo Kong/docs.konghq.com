@@ -18,15 +18,15 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration file</a></h3>
     <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
     <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/proxy">Proxy Reference</a></h3>
-    <p>Learn how to proxy your APIs through Kong.</p>
-    <a href="/docs/{{page.kong_version}}/faq">Read the Proxy Reference &rarr;</a>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/proxy">Proxy reference</a></h3>
+    <p>Learn every way to configure Kong to proxy your APIs and discover tips for your production setup.</p>
+    <a href="/docs/{{page.kong_version}}/proxy">Read the Proxy Reference &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
