@@ -167,24 +167,24 @@ The NGINX configuration (or `nginx.conf`) that will be used for this instance.
 ```yaml
 nginx: |
   worker_processes auto;
-  error_log logs/error.log info;
+  error_log logs/error.log error;
   daemon on;
 
-  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
+  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{ "{{auto_worker_connections" }}}};
+    worker_connections {{auto_worker_connections}};
     multi_accept on;
   }
 
   http {
-    resolver 8.8.8.8;
+    resolver {{dns_resolver}} ipv6=off;
     charset UTF-8;
 
     access_log logs/access.log;
-    access_log on;
+    access_log off;
 
     # Timeouts
     keepalive_timeout 60s;
@@ -204,7 +204,7 @@ nginx: |
     real_ip_recursive on;
 
     # Other Settings
-    client_max_body_size 128m;
+    client_max_body_size 0;
     underscores_in_headers on;
     reset_timedout_connection on;
     tcp_nopush on;
@@ -219,7 +219,8 @@ nginx: |
     lua_code_cache on;
     lua_max_running_timers 4096;
     lua_max_pending_timers 16384;
-    lua_shared_dict cache 512m;
+    lua_shared_dict locks 100k;
+    lua_shared_dict cache {{memory_cache_size}}m;
     lua_socket_log_errors off;
 
     init_by_lua '
@@ -231,8 +232,17 @@ nginx: |
       end
     ';
 
+    init_worker_by_lua 'kong.exec_plugins_init_worker()';
+
     server {
-      listen {{ "{{proxy_port" }}}};
+      server_name _;
+      listen {{proxy_port}};
+      listen {{proxy_ssl_port}} ssl;
+
+      ssl_certificate_by_lua 'kong.exec_plugins_certificate()';
+
+      ssl_certificate {{ssl_cert}};
+      ssl_certificate_key {{ssl_key}};
 
       location / {
         default_type 'text/plain';
@@ -246,6 +256,7 @@ nginx: |
         # Proxy the request
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_pass $backend_url;
         proxy_pass_header Server;
 
@@ -267,18 +278,31 @@ nginx: |
       location = /500.html {
         internal;
         content_by_lua '
-          local utils = require "kong.tools.utils"
-          utils.show_error(ngx.status, "Oops, an unexpected error occurred!")
+          local responses = require "kong.tools.responses"
+          responses.send_HTTP_INTERNAL_SERVER_ERROR("An unexpected error occurred")
         ';
       }
     }
 
     server {
-      listen {{ "{{admin_api_port" }}}};
+      listen {{admin_api_port}};
 
       location / {
         default_type application/json;
-        content_by_lua 'require("lapis").serve("kong.api.app")';
+        content_by_lua '
+          ngx.header["Access-Control-Allow-Origin"] = "*"
+          if ngx.req.get_method() == "OPTIONS" then
+            ngx.header["Access-Control-Allow-Methods"] = "GET,HEAD,PUT,PATCH,POST,DELETE"
+            ngx.exit(204)
+          end
+          local lapis = require "lapis"
+          lapis.serve("kong.api.app")
+        ';
+      }
+
+      location /nginx_status {
+        internal;
+        stub_status;
       }
 
       location /robots.txt {
@@ -286,7 +310,7 @@ nginx: |
       }
 
       # Do not remove, additional configuration placeholder for some plugins
-      # {{ "{{additional_configuration" }}}}
+      # {{additional_configuration}}
     }
   }
 ```
