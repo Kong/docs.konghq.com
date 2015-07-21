@@ -44,7 +44,11 @@ id: documentation
 
     {% for nav in page.nav_items %}
     <nav>
+      {% if nav.url %}
+      <a href="{{docs_url | append: nav.url}}"><h5>{{nav.title}}</h5></a>
+      {% else %}
       <h5>{{nav.title}}</h5>
+      {% endif %}
       <ul>
         {% for item in nav.items %}
         <li>

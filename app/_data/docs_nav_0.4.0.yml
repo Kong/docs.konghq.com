@@ -30,10 +30,8 @@
       url: /proxy
 -
   title: Admin API
+  url: /admin-api/
   items:
-    -
-      text: Introduction
-      url: /admin-api/
     -
       text: Supported Content Types
       url: /admin-api/#supported-content-types
