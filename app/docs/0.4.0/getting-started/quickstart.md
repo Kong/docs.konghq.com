@@ -14,7 +14,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 1. ### Start Kong.
 
-    Issue the following command to start [kong][CLI]:
+    Issue the following command to [start][CLI] Kong:
 
     ```bash
     $ kong start
@@ -35,7 +35,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 3. ### Stop Kong.
 
-    As needed you can stop the [kong][CLI] process by issuing the following command:
+    As needed you can stop the Kong process by issuing the following [command][CLI]:
 
     ```bash
     $ kong stop
@@ -43,7 +43,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 4. ### Reload Kong.
 
-    Issue the following command to reload [kong][CLI] without downtime:
+    Issue the following command to [reload][CLI] Kong without downtime:
 
     ```bash
     $ kong reload
