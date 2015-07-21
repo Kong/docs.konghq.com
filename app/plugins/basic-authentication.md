@@ -39,7 +39,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter               | description
  ---                         | ---
 `name`                       | The name of the plugin to use, in this case: `basicauth`
-`consumer_id`<br>*optional*  | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ---

@@ -38,7 +38,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter                          | description
  ---                                    | ---
 `name`                                  | The name of the plugin to use, in this case: `oauth2`
-`consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.scopes`                          | Describes an array of comma separated scope names that will be available to the end user
 `value.mandatory_scope`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
 `value.token_expiration`<br>*optional*   | Default `7200`. An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
