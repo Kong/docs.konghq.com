@@ -2,7 +2,7 @@
 title: Documentation for Kong
 ---
 
-# Kong Documentation
+# Kong Documentation ({{page.kong_version}})
 
 <div class="docs-grid">
   <div class="docs-grid-block">
