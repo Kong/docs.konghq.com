@@ -37,7 +37,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins/ \
 parameter                        | description
  ---                             | ---
 `name`                           | The name of the plugin to use, in this case: `mashape-analytics`
-`consumer_id`<br>*optional*      | The CONSUMER ID that this plugin configuration will target
+`consumer_id`<br>*optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.service_token`            | The service token provided to you by [Mashape Analytics][analytics]
 `value.batch_size`               | Default: `100`. The size at which the buffer gets emptied and sent to Mashape Analytics
 `value.log_body`                 | Default: `false`. Wether or not the request and response bodies should be sent to Mashape Analytics
@@ -45,8 +45,7 @@ parameter                        | description
 `value.environment`<br>*optional*| A string describing your application environment
 
 [analytics]: https://analytics.mashape.com
-
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
-
+[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
