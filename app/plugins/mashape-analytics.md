@@ -41,8 +41,10 @@ parameter                        | description
 `value.service_token`            | The service token provided to you by [Mashape Analytics][analytics]
 `value.batch_size`               | Default: `100`. The size at which the buffer gets emptied and sent to Mashape Analytics
 `value.log_body`                 | Default: `false`. Wether or not the request and response bodies should be sent to Mashape Analytics
-`value.delay`                    | Default: `10`. The maximum time (in seconds) before the buffer gets sent if no calls are received during that period
+`value.delay`                    | Default: `2`. The maximum time (in seconds) before the buffer gets sent if no calls are received during that period
 `value.environment`<br>*optional*| A string describing your application environment
+
+**Note**: If you are enabling the `log_body` option, make sure the buffer size never exceeds 1Mb, or the Mashape Analytics server will refuse the batch. You can ensure this by setting a lower `batch_size` value.`
 
 [analytics]: https://analytics.mashape.com
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
