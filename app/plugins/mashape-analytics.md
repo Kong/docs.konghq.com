@@ -44,7 +44,7 @@ parameter                        | description
 `value.delay`                    | Default: `10`. The maximum time (in seconds) before the buffer gets sent if no calls are received during that period
 `value.environment`<br>*optional*| A string describing your application environment
 
-[analytics]: https://analytics.mashape.com
+[analytics]: https://apianalytics.com
 [api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.version}}/configuration
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
