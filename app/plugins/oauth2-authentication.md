@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant] or [Implicit Grant][implicit-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
+Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials] or [Implicit Grant][implicit-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
 
 ---
 
@@ -41,7 +41,9 @@ form parameter                          | description
 `value.scopes`                          | Describes an array of comma separated scope names that will be available to the end user
 `value.mandatory_scope`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
 `value.token_expiration`<br>*optional*   | Default `7200`. An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
-`value.enable_implicit_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the implicit grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
+`value.enable_authorization_code`<br>*optional*   | Default `true`. An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
+`value.enable_client_credentials`<br>*optional*   | Default `false`. An optional boolean value to enable the Client Credentials grant flow ([RFC 6742 Section 4.4][client-credentials])
+`value.enable_implicit_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
 `value.hide_credentials`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
@@ -86,7 +88,7 @@ form parameter               | description
 `client_secret`<br>*optional*| You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
 `redirect_uri`               | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
 
-### Implementing the authorization page
+### Implementing the Authorization Code flow
 
 After provisioning Consumers and associating OAuth 2.0 credentials to them, it is important to understand how the OAuth 2.0 authorization flow works. As opposed to most of the Kong plugins, the OAuth 2.0 plugin requires some little additional work on your side to make everything work well:
 
@@ -181,5 +183,6 @@ You can use this information on your side to implement additional logic. You can
 [consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
 [faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 [authorization-code-grant]: https://tools.ietf.org/html/rfc6749#section-4.1
+[client-credentials]: https://tools.ietf.org/html/rfc6749#section-4.4
 [implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2
 [redirect-uri]: https://tools.ietf.org/html/rfc6749#section-3.1.2
