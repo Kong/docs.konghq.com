@@ -84,7 +84,7 @@ Every request will be logged separately in a JSON object separated by a new line
     },
     "api": {
         "public_dns": "test.com",
-        "target_url": "http://httpbin.org/",
+        "target_url": "http://mockbin.org/",
         "created_at": 1432855823000,
         "name": "test.com",
         "id": "fbaf95a1-cd04-4bf6-cb73-6cb3285fef58"

@@ -80,6 +80,12 @@ Every request will be logged separately in a JSON object, with the following for
             "access-control-allow-origin": "*"
         }
     },
+    "authenticated_entity": {
+        "consumer_id": "80f74eef-31b8-45d5-c525-ae532297ea8e",
+        "created_at":	1437643103000,
+        "id": "eaa330c0-4cff-47f5-c79e-b2e4f355207e",
+        "key": "2b64e2f0193851d4135a2e885cd08a65"
+    },
     "api": {
         "public_dns": "test.com",
         "target_url": "http://httpbin.org/",
@@ -102,6 +108,7 @@ A few considerations on the above JSON object:
 * `request` contains properties about the request sent by the client
 * `response` contains properties about the response sent to the client
 * `api` contains Kong properties about the specific API requested
+* `authenticated_entity` contains Kong properties about the consumer who has been authenticated to access the API
 * `latencies` contains some data about the latencies involved:
    * `proxy` is the time it took for the final service to process the request
    * `kong` is the internal Kong latency that it took to run all the plugins
