@@ -108,7 +108,7 @@ A few considerations on the above JSON object:
 * `request` contains properties about the request sent by the client
 * `response` contains properties about the response sent to the client
 * `api` contains Kong properties about the specific API requested
-* `authenticated_entity` contains Kong properties about the consumer who has been authenticated to access the API
+* `authenticated_entity` contains Kong properties about the authenticated consumer (if an authentication plugin has been enabled)
 * `latencies` contains some data about the latencies involved:
    * `proxy` is the time it took for the final service to process the request
    * `kong` is the internal Kong latency that it took to run all the plugins
