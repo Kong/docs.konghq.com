@@ -88,6 +88,17 @@ form parameter               | description
 `client_secret`<br>*optional*| You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
 `redirect_uri`               | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
 
+### OAuth 2.0 Endpoints
+
+By default the OAuth 2.0 plugin listens on the following endpoints:
+
+Endpoint                     | description
+ ---                         | ---
+`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes (for the [Authorization Code Flow][authorization-code-grant])
+`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens
+
+The clients trying to authorize and request access tokens must use these endpoints.
+
 ### Implementing the Authorization Code flow
 
 After provisioning Consumers and associating OAuth 2.0 credentials to them, it is important to understand how the OAuth 2.0 authorization flow works. As opposed to most of the Kong plugins, the OAuth 2.0 plugin requires some little additional work on your side to make everything work well:
