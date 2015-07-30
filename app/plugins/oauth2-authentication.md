@@ -94,8 +94,8 @@ By default the OAuth 2.0 plugin listens on the following endpoints:
 
 Endpoint                     | description
  ---                         | ---
-`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes (for the [Authorization Code Flow][authorization-code-grant])
-`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens
+`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled.
+`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens.
 
 The clients trying to authorize and request access tokens must use these endpoints.
 

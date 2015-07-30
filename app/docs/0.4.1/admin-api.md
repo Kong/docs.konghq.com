@@ -520,7 +520,7 @@ Retrieve the installed plugins on your node and their configuration schema.
 
 ### Retrieve Installed Plugins
 
-Retrieve a list of all installed plugins on the node.
+Retrieve a list of all installed plugins on the Kong node.
 
 #### Endpoint
 
@@ -555,7 +555,7 @@ HTTP 200 OK
 
 ### Retrieve Plugin Schema
 
-Retrieve the schema of a plugin's configuration.
+Retrieve the schema of a plugin's configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong's plugin system.
 
 <div class="endpoint get">/plugins/{plugin name}/schema</div>
 
@@ -596,9 +596,10 @@ When creating a Plugin Configuration on top of an API, every request made by a c
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
     "name": "ratelimiting",
     "value": {
-        "limit": 20,
-        "period": "minute"
+        "minute": 20,
+        "hour": 500
     },
+    "enabled": true,
     "created_at": 1422386534
 }
 ```
@@ -632,9 +633,10 @@ HTTP 201 Created
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
     "name": "ratelimiting",
     "value": {
-        "limit": 20,
-        "period": "minute"
+        "minute": 20,
+        "hour": 500
     },
+    "enabled": true,
     "created_at": 1422386534
 }
 ```
@@ -673,9 +675,10 @@ HTTP 200 OK
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
           "name": "ratelimiting",
           "value": {
-              "limit": 20,
-              "period": "minute"
+              "minute": 20,
+              "hour": 500
           },
+          "enabled": true,
           "created_at": 1422386534
       },
       {
@@ -684,9 +687,10 @@ HTTP 200 OK
           "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
           "name": "ratelimiting",
           "value": {
-              "limit": 300,
-              "period": "hour"
+              "minute": 300,
+              "hour": 20000
           },
+          "enabled": true,
           "created_at": 1422386585
       }
     ],
@@ -730,9 +734,10 @@ HTTP 200 OK
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
           "name": "ratelimiting",
           "value": {
-              "limit": 20,
-              "period": "minute"
+              "minute": 20,
+              "hour": 500
           },
+          "enabled": true,
           "created_at": 1422386534
       },
       {
@@ -741,9 +746,10 @@ HTTP 200 OK
           "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
           "name": "ratelimiting",
           "value": {
-              "limit": 300,
-              "period": "hour"
+              "minute": 300,
+              "hour": 20000
           },
+          "enabled": true,
           "created_at": 1422386585
       }
     ],
@@ -757,12 +763,12 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint patch">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint patch">/apis/{api name or id}/plugins/{id}</div>
 
 Attributes | Description
  ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update the plugin configuration
-`plugin configuration name or id`<br>**required** | The unique identifier **or** the name of the plugin for which to update the configuration on this API
+`id`<br>**required** | The unique identifier of the plugin configuration to update on this API
 
 #### Request Body
 
@@ -781,9 +787,10 @@ HTTP 200 OK
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
     "name": "ratelimiting",
     "value": {
-        "limit": 50,
-        "period": "second"
+        "minute": 20,
+        "hour": 500
     },
+    "enabled": true,
     "created_at": 1422386534
 }
 ```
@@ -820,12 +827,12 @@ See POST and PATCH responses.
 
 #### Endpoint
 
-<div class="endpoint delete">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint delete">/apis/{api name or id}/plugins/{id}</div>
 
 Attributes | Description
  ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
-`plugin configuration name or id`<br>**required** | The unique identifier **or** the name of the plugin for which to delete the configuration on this API
+`id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
 
 #### Response
 
