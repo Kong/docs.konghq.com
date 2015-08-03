@@ -151,8 +151,8 @@ Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.c
 databases_available:
   cassandra:
     properties:
-      hosts: "localhost"
-      port: 9042
+      hosts:
+        - "localhost:9042"
       timeout: 1000
       keyspace: kong
       keepalive: 60000
@@ -164,26 +164,15 @@ databases_available:
 
   **`databases_available.*.properties.hosts`**
 
-  The hosts(s) on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list. If Kong must connect to another port than the one specified in `properties` for one of your nodes, you can override it for that particular node.
+  The hosts(s) on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list of strings containing the host and the port of your node(s).
 
   **Example:**
 
 ```yaml
 properties:
-  port: 9042
   hosts:
-    - "52.5.149.55"      # will connect on port 9042
+    - "52.5.149.55"      # will connect on port 9042 (default)
     - "52.5.149.56:9000" # will connect on port 9000
-```
-
-  **`databases_available.*.properties.port`**
-
-  The default port on which Kong should connect on your hosts.
-
-  **Default:**
-
-```yaml
-port: 9042
 ```
 
   **`databases_available.*.properties.timeout`**
@@ -204,6 +193,56 @@ timeout: 1000
 
 ```yaml
 keyspace: kong
+```
+
+  **`databases_available.*.properties.user`**
+
+  User to authenticate with if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+user: cassandra
+```
+
+  **`databases_available.*.properties.password`**
+
+  The password to use if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+password: cassandra
+```
+
+  **`databases_available.*.properties.ssl`**
+
+  Enable client-to-node encryption with your Cassandra cluster.
+
+  **Default:**
+
+```yaml
+ssl: false
+```
+
+  **`databases_available.*.properties.ssl_verify`**
+
+  Enable SSL certificate verification. If true, an `ssl_certificate` must also be provided.
+
+  **Default:**
+
+```yaml
+ssl_verify: false
+```
+
+  **`databases_available.*.properties.ssl_certificate`**
+
+  Absolute path to the certificate authority file.
+
+  **Example:**
+
+```yaml
+ssl_certificate: "/path/to/cluster-ca-certificate.pem"
 ```
 
   **`databases_available.*.properties.keepalive`**
@@ -249,7 +288,7 @@ The path to the SSL certificate that Kong will use when listening on the `https`
 
 **Default:**
 
-By default this property is commented out, which will force Kong to use a bundled self-signed certificate.
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
 
 ```yaml
 # ssl_cert_path: /path/to/certificate.pem
@@ -263,7 +302,7 @@ The path to the SSL certificate key that Kong will use when listening on the `ht
 
 **Default:**
 
-By default this property is commented out, which will force Kong to use a bundled self-signed certificate.
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate key stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
 
 ```yaml
 # ssl_key_path: /path/to/certificate.key
@@ -348,6 +387,7 @@ nginx: |
     lua_max_pending_timers 16384;
     lua_shared_dict cache {{ "{{memory_cache_size" }}}}m;
     lua_socket_log_errors off;
+    {{lua_ssl_trusted_certificate}}
 
     init_by_lua '
       kong = require "kong"

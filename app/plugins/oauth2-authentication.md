@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials] or [Implicit Grant][implicit-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
+Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
 
 ---
 
@@ -42,8 +42,9 @@ form parameter                          | description
 `value.mandatory_scope`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
 `value.token_expiration`<br>*optional*   | Default `7200`. An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
 `value.enable_authorization_code`<br>*optional*   | Default `true`. An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
-`value.enable_client_credentials`<br>*optional*   | Default `false`. An optional boolean value to enable the Client Credentials grant flow ([RFC 6742 Section 4.4][client-credentials])
+`value.enable_client_credentials`<br>*optional*   | Default `false`. An optional boolean value to enable the Client Credentials Grant flow ([RFC 6742 Section 4.4][client-credentials])
 `value.enable_implicit_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
+`value.enable_password_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
 `value.hide_credentials`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
@@ -95,7 +96,7 @@ By default the OAuth 2.0 plugin listens on the following endpoints:
 Endpoint                     | description
  ---                         | ---
 `/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled.
-`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens.
+`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows.
 
 The clients trying to authorize and request access tokens must use these endpoints.
 
@@ -139,15 +140,15 @@ $ curl kong:8001/oauth2?client_id=XXX
 
 4 - If the end user authorized the application, the form will submit the data to your backend with a POST request, sending the `client_id`, `response_type` and `scope` parameters that were placed in `<input type="hidden" .. />` fields.
 
-5 - The backend must add the `provision_key` and `authenticated_userid` parameters to the `client_id`, `response_type` and `scope` parameters and it will make a POST request to Kong at your API address, on the `/oauth2/authorize` endpoint. The equivalent of:
+5 - The backend must add the `provision_key` and `authenticated_userid` parameters to the `client_id`, `response_type` and `scope` parameters and it will make a POST request to Kong at your API address, on the `/oauth2/authorize` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
 ```bash
-$ curl https://your.api.com/oauth2/authorize
+$ curl https://your.api.com/oauth2/authorize \
+    --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
     --data "client_id=XXX" \
     --data "response_type=XXX" \
     --data "scope=XXX" \
     --data "provision_key=XXX" \
-    --data "authenticated_username=XXX" \
     --data "authenticated_userid=XXX"
 ```
 
@@ -176,6 +177,42 @@ In this flow, the steps that you need to implement are:
 * The login page, you probably already have it (step 2)
 * The Authorization page, with its backend that will simply collect the values, make a POST request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
 
+## Client Credentials Flow
+
+The [Client Credentials][client-credentials] flow will work out of the box, without building any authorization page. The clients will need to use the `/oauth2/token` endpoint to request an access token.
+
+## Resource Owner Password Credentials Flow
+
+The [Resource Owner Password Credentials Grant][password-grant] is a much simpler version of the Authorization Code flow, but it still requires to build an authorization backend (without the frontend) in order to make it work properly.
+
+![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow2.png)
+
+1 - The client application make a request including some OAuth2 parameters, including `username` and `password` parameters.
+
+2 - The backend will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a POST request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
+
+```bash
+$ curl https://your.api.com/oauth2/token \
+    --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
+    --data "client_id=XXX" \
+    --data "client_secret=XXX" \
+    --data "scope=XXX" \
+    --data "provision_key=XXX" \
+    --data "authenticated_userid=XXX" \
+    --data "username=XXX" \
+    --data "password=XXX"
+```
+
+The `provision_key` is the key the plugin has generated when it has been added to the API, while `authenticated_userid` is the ID of the end user whose `username` and `password` belong to.
+
+3 - Kong will respond with a JSON response
+
+4 - The JSON response sent by Kong must be sent back to the original client as it is. If the operation is successful, this response will include an access token, otherwise it will include an error.
+
+In this flow, the steps that you need to implement are:
+
+* The backend endpoint that will process the original request and will authenticate the `username` and `password` values sent by the client, and if the authentication is successful, make the request to Kong and return back to the client whatever response Kong has sent back.
+
 ## Headers sent to the upstream server
 
 When a client has been authenticated and authorized, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer and the end-user in your code:
@@ -196,4 +233,5 @@ You can use this information on your side to implement additional logic. You can
 [authorization-code-grant]: https://tools.ietf.org/html/rfc6749#section-4.1
 [client-credentials]: https://tools.ietf.org/html/rfc6749#section-4.4
 [implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2
+[password-grant]: https://tools.ietf.org/html/rfc6749#section-4.3
 [redirect-uri]: https://tools.ietf.org/html/rfc6749#section-3.1.2

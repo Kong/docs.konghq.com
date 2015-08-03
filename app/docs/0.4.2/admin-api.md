@@ -8,6 +8,7 @@ api_body: |
     `public_dns`<br>*semi-optional* | The public DNS address that points to your API. For example, `mockbin.com`. At least `public_dns` or `path` or both should be specified.
     `path`<br>*semi-optional* | The public path that points to your API. For example, `/someservice`. At least `public_dns` or `path` or both should be specified.
     `strip_path`<br>*optional* | Strip the `path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `target_url/hello`. By default is `false`.
+    `preserve_host`<br>*optional* | Preserves the original `Host` header sent by the client, instead of replacing it with the hostname of the `target_url`. By default is `false`.
     `target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
 consumer_body: |
@@ -151,6 +152,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
     "public_dns": "mockbin.com",
     "path": "/someservice",
     "strip_path": false,
+    "preserve_host": false,
     "target_url": "https://mockbin.com"
 }
 ```
@@ -179,6 +181,7 @@ HTTP 201 Created
     "name": "Mockbin",
     "public_dns": "mockbin.com",
     "target_url": "http://mockbin.com",
+    "preserve_host": false,
     "created_at": 1422386534
 }
 ```
@@ -207,6 +210,7 @@ HTTP 200 OK
     "name": "Mockbin",
     "public_dns": "mockbin.com",
     "target_url": "https://mockbin.com",
+    "preserve_host": false,
     "created_at": 1422386534
 }
 ```
@@ -245,6 +249,7 @@ HTTP 200 OK
             "name": "Mockbin",
             "public_dns": "mockbin.com",
             "target_url": "https://mockbin.com",
+            "preserve_host": false,
             "created_at": 1422386534
         },
         {
@@ -252,6 +257,7 @@ HTTP 200 OK
             "name": "PrivateAPI",
             "public_dns": "internal.api.com",
             "target_url": "http://private.api.com",
+            "preserve_host": false,
             "created_at": 1422386585
         }
     ],
@@ -287,6 +293,7 @@ HTTP 200 OK
     "name": "Mockbin2",
     "public_dns": "mockbin.com",
     "target_url": "http://mockbin.com",
+    "preserve_host": false,
     "created_at": 1422386534
 }
 ```
