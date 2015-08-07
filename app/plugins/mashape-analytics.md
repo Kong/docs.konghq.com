@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Logs your traffic to [Mashape Analytics][analytics].
+Logs your traffic to [Mashape Analytics][analytics]. (There is a FREE plan with 24h data retention)
 
 ---
 
