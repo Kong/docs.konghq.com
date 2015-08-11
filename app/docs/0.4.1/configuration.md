@@ -195,6 +195,56 @@ timeout: 1000
 keyspace: kong
 ```
 
+  **`databases_available.*.properties.user`**
+
+  User to authenticate with if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+user: cassandra
+```
+
+  **`databases_available.*.properties.password`**
+
+  The password to use if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+password: cassandra
+```
+
+  **`databases_available.*.properties.ssl`**
+
+  Enable client-to-node encryption with your Cassandra cluster.
+
+  **Default:**
+
+```yaml
+ssl: false
+```
+
+  **`databases_available.*.properties.ssl_verify`**
+
+  Enable SSL certificate verification. If true, an `ssl_certificate` must also be provided.
+
+  **Default:**
+
+```yaml
+ssl_verify: false
+```
+
+  **`databases_available.*.properties.ssl_certificate`**
+
+  Absolute path to the certificate authority file.
+
+  **Example:**
+
+```yaml
+ssl_certificate: "/path/to/cluster-ca-certificate.pem"
+```
+
   **`databases_available.*.properties.keepalive`**
 
   The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
@@ -337,6 +387,7 @@ nginx: |
     lua_max_pending_timers 16384;
     lua_shared_dict cache {{ "{{memory_cache_size" }}}}m;
     lua_socket_log_errors off;
+    {{lua_ssl_trusted_certificate}}
 
     init_by_lua '
       kong = require "kong"
