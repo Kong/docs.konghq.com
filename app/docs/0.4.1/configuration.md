@@ -288,7 +288,7 @@ The path to the SSL certificate that Kong will use when listening on the `https`
 
 **Default:**
 
-By default this property is commented out, which will force Kong to use a bundled self-signed certificate.
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
 
 ```yaml
 # ssl_cert_path: /path/to/certificate.pem
@@ -302,7 +302,7 @@ The path to the SSL certificate key that Kong will use when listening on the `ht
 
 **Default:**
 
-By default this property is commented out, which will force Kong to use a bundled self-signed certificate.
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate key stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
 
 ```yaml
 # ssl_key_path: /path/to/certificate.key
