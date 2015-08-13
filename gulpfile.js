@@ -25,11 +25,11 @@ var sources = {
   styles: 'app/_assets/stylesheets/**/*.{less,css}',
   js: [
     'app/_assets/javascripts/**/*.js',
-    'bower_components/bootstrap/js/dropdown.js',
-    'bower_components/bootstrap/js/affix.js'
+    'node_modules/bootstrap/js/dropdown.js',
+    'node_modules/bootstrap/js/affix.js'
   ],
   images: 'app/_assets/images/**/*',
-  fonts: 'bower_components/font-awesome/fonts/**/*.*'
+  fonts: 'node_modules/font-awesome/fonts/**/*.*'
 }
 
 gulp.task('styles', function () {
@@ -50,7 +50,6 @@ gulp.task('styles', function () {
       ignore: ['.open > .dropdown-menu', '.open > a', '.page-navigation .affix']
     })))
     .pipe($.autoprefixer())
-    .pipe($.minifyCss())
     .pipe($.rename('styles.css'))
     .pipe(gulp.dest('dist/assets/'))
     .pipe($.size())
@@ -62,7 +61,6 @@ gulp.task('javascripts', function () {
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.concat('app.js'))
-    .pipe($.uglify())
     .pipe($.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
@@ -98,17 +96,6 @@ gulp.task('jekyll', function (next) {
 gulp.task('html', ['jekyll'], function () {
   return gulp.src('dist/**/*.html')
     .pipe($.plumber())
-    .pipe($.htmlmin({
-      minifyJS: true,
-      minifyCSS: true,
-      removeComments: true,
-      collapseWhitespace: true,
-      conservativeCollapse: true,
-      removeEmptyAttributes: true,
-      collapseBooleanAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true
-    }))
     .pipe(gulp.dest('dist'))
     .pipe($.size())
     .pipe($.connect.reload())

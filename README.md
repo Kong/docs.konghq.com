@@ -6,7 +6,6 @@ This folder is the source code for [Kong](https://github.com/Mashape/kong)'s web
 
 - [npm](https://www.npmjs.com/)
 - [Bundler](http://bundler.io/)
-- [Bower](http://bower.io/)
 
 ## Install
 
