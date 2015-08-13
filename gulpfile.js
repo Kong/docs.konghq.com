@@ -7,6 +7,7 @@ var gulp = require('gulp')
 var path = require('path')
 var process = require('child_process')
 var sequence = require('run-sequence')
+var browserSync = require('browser-sync').create()
 
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
@@ -53,7 +54,7 @@ gulp.task('styles', function () {
     .pipe($.rename('styles.css'))
     .pipe(gulp.dest('dist/assets/'))
     .pipe($.size())
-    .pipe($.connect.reload())
+    .pipe(browserSync.stream())
 })
 
 gulp.task('javascripts', function () {
@@ -64,7 +65,7 @@ gulp.task('javascripts', function () {
     .pipe($.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
-    .pipe($.connect.reload())
+    .pipe(browserSync.stream())
 })
 
 gulp.task('images', function () {
@@ -72,7 +73,7 @@ gulp.task('images', function () {
     .pipe($.plumber())
     .pipe(gulp.dest('dist/assets/images'))
     .pipe($.size())
-    .pipe($.connect.reload())
+    .pipe(browserSync.stream())
 })
 
 gulp.task('fonts', function () {
@@ -80,7 +81,7 @@ gulp.task('fonts', function () {
     .pipe($.plumber())
     .pipe(gulp.dest('dist/assets/fonts'))
     .pipe($.size())
-    .pipe($.connect.reload())
+    .pipe(browserSync.stream())
 })
 
 gulp.task('jekyll', function (next) {
@@ -98,7 +99,7 @@ gulp.task('html', ['jekyll'], function () {
     .pipe($.plumber())
     .pipe(gulp.dest('dist'))
     .pipe($.size())
-    .pipe($.connect.reload())
+    .pipe(browserSync.stream())
 })
 
 gulp.task('clean', function (cb) {
@@ -115,12 +116,12 @@ gulp.task('build:prod', function (cb) {
   sequence('build', cb)
 })
 
-gulp.task('connect', function () {
-  $.connect.server({
-    port: 9000,
-    root: 'dist',
-    livereload: true,
-    fallback: 'dist/404.html'
+gulp.task('browser-sync', function () {
+  browserSync.init({
+    logPrefix: ' ▶ ',
+    minify: false,
+    notify: false,
+    server: 'dist'
   })
 })
 
@@ -144,5 +145,5 @@ gulp.task('watch', function () {
 })
 
 gulp.task('default', ['clean'], function (cb) {
-  sequence('build', 'watch', 'connect', cb)
+  sequence('build', 'browser-sync', 'watch', cb)
 })
