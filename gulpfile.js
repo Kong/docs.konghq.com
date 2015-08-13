@@ -12,12 +12,6 @@ var sequence = require('run-sequence')
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
 
-// configure cloudflare
-var cloudflare = require('cloudflare').createClient({
-  email: process.env.MASHAPE_CLOUDFLARE_EMAIL,
-  token: process.env.MASHAPE_CLOUDFLARE_TOKEN
-})
-
 // Sources
 var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
@@ -118,6 +112,12 @@ gulp.task('gh-pages', function (cb) {
 })
 
 gulp.task('cloudflare', function (cb) {
+  // configure cloudflare
+  var cloudflare = require('cloudflare').createClient({
+    email: process.env.MASHAPE_CLOUDFLARE_EMAIL,
+    token: process.env.MASHAPE_CLOUDFLARE_TOKEN
+  })
+
   cloudflare.clearCache('getkong.org', function (err) {
     if (err) {
       gutil.log(err.message)
