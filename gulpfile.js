@@ -2,6 +2,7 @@
 
 var browserSync = require('browser-sync').create()
 var child_process = require('child_process')
+var gutil = require('gulp-util')
 var del = require('del')
 var ghPages = require('gh-pages')
 var gulp = require('gulp')
@@ -117,7 +118,13 @@ gulp.task('gh-pages', function (cb) {
 })
 
 gulp.task('cloudflare', function (cb) {
-  cloudflare.clearCache('getkong.org', cb)
+  cloudflare.clearCache('getkong.org', function (err) {
+    if (err) {
+      gutil.log(err.message)
+    }
+
+    cb()
+  })
 })
 
 gulp.task('deploy', function (cb) {
