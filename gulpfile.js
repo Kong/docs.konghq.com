@@ -1,16 +1,21 @@
 'use strict'
 
+var browserSync = require('browser-sync').create()
+var child_process = require('child_process')
 var del = require('del')
 var ghPages = require('gh-pages')
-var glob = require('glob')
 var gulp = require('gulp')
 var path = require('path')
-var process = require('child_process')
 var sequence = require('run-sequence')
-var browserSync = require('browser-sync').create()
 
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
+
+// configure cloudflare
+var cloudflare = require('cloudflare').createClient({
+  email: process.env.MASHAPE_CLOUDFLARE_EMAIL,
+  token: process.env.MASHAPE_CLOUDFLARE_TOKEN
+})
 
 // Sources
 var sources = {
@@ -26,8 +31,6 @@ var sources = {
 }
 
 gulp.task('styles', function () {
-  // TODO: add LESS linting
-
   // thibaultcha:
   // 1. gulp-less has plugins (minifier and prefixer) we can run in $.less(plugins: [clean, prefix])
   // but they throw errors if we use them. Let's use gulp-autoprefixer and gulp-minify-css.
@@ -69,13 +72,13 @@ gulp.task('fonts', function () {
     .pipe(browserSync.stream())
 })
 
-gulp.task('jekyll', function (next) {
+gulp.task('jekyll', function (cb) {
   var command = 'bundle exec jekyll build --config jekyll.yml --destination dist'
 
-  process.exec(command, function (err, stdout, stderr) {
+  child_process.exec(command, function (err, stdout, stderr) {
     console.log(stdout)
     console.error(stderr)
-    next(err)
+    cb(err)
   })
 })
 
@@ -105,16 +108,20 @@ gulp.task('browser-sync', function () {
   })
 })
 
-gulp.task('gh-pages', function (next) {
+gulp.task('gh-pages', function (cb) {
   var config = {
     message: 'Update ' + new Date().toISOString()
   }
 
-  ghPages.publish(path.join(__dirname, 'dist'), config, next)
+  ghPages.publish(path.join(__dirname, 'dist'), config, cb)
+})
+
+gulp.task('cloudflare', function (cb) {
+  cloudflare.clearCache('getkong.org', cb)
 })
 
 gulp.task('deploy', function (cb) {
-  sequence('build', 'gh-pages', cb)
+  sequence('build', 'gh-pages', 'cloudflare', cb)
 })
 
 gulp.task('watch', function () {
