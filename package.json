@@ -5,6 +5,7 @@
   "name": "getkong.org",
   "repository": "Mashape/getkong.org",
   "scripts": {
+    "deploy": "gulp deploy:prod",
     "preinstall": "bundle install",
     "start": "npm test && gulp",
     "test": "standard"
