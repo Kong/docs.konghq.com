@@ -33,7 +33,6 @@
     "gulp-rename": "^1.2.2",
     "gulp-size": "^1.2.1",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-uncss": "^1.0.1",
     "run-sequence": "^1.1.0",
     "skeleton-css": "^2.0.4",
     "standard": "^3.11.1"

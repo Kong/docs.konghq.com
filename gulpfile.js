@@ -12,14 +12,6 @@ var browserSync = require('browser-sync').create()
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
 
-// Build variables (default to local config)
-var jekyllConfigs = {
-  PROD: 'config/jekyll.yml',
-  LOCAL: 'config/jekyll.local.yml'
-}
-
-var jekyllConfig = jekyllConfigs.LOCAL
-
 // Sources
 var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
@@ -39,17 +31,10 @@ gulp.task('styles', function () {
   // thibaultcha:
   // 1. gulp-less has plugins (minifier and prefixer) we can run in $.less(plugins: [clean, prefix])
   // but they throw errors if we use them. Let's use gulp-autoprefixer and gulp-minify-css.
-  // 2. If we want to use uncss, we need to minify after it runs, otherwise it unminifies the css
-  // another reason not to use gulp-less plugins.
-  // 3. the source maps still don't work if used along with gulp-autoprefixer
-  // 4. uncss and gulpminify-css seem to behave fine and is not having an impact on sourcemaps
+  // 2. the source maps still don't work if used along with gulp-autoprefixer
   return gulp.src('app/_assets/stylesheets/index.less')
     .pipe($.plumber())
     .pipe($.less())
-    .pipe($.if(jekyllConfig === jekyllConfigs.PROD, $.uncss({
-      html: glob.sync('dist/**/*.html'),
-      ignore: ['.open > .dropdown-menu', '.open > a', '.page-navigation .affix']
-    })))
     .pipe($.autoprefixer())
     .pipe($.rename('styles.css'))
     .pipe(gulp.dest('dist/assets/'))
@@ -85,7 +70,7 @@ gulp.task('fonts', function () {
 })
 
 gulp.task('jekyll', function (next) {
-  var command = 'bundle exec jekyll build --config ' + jekyllConfig + ' --destination dist'
+  var command = 'bundle exec jekyll build --config jekyll.yml --destination dist'
 
   process.exec(command, function (err, stdout, stderr) {
     console.log(stdout)
@@ -111,11 +96,6 @@ gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
   sequence('html', 'styles', cb)
 })
 
-gulp.task('build:prod', function (cb) {
-  jekyllConfig = jekyllConfigs.PROD
-  sequence('build', cb)
-})
-
 gulp.task('browser-sync', function () {
   browserSync.init({
     logPrefix: ' ▶ ',
@@ -133,8 +113,8 @@ gulp.task('gh-pages', function (next) {
   ghPages.publish(path.join(__dirname, 'dist'), config, next)
 })
 
-gulp.task('deploy:prod', function (cb) {
-  sequence('build:prod', 'gh-pages', cb)
+gulp.task('deploy', function (cb) {
+  sequence('build', 'gh-pages', cb)
 })
 
 gulp.task('watch', function () {
