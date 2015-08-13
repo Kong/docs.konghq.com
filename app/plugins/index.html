@@ -14,270 +14,28 @@ breadcrumbs: null
 
   <div class="container">
     <div class="plugins-list">
-      <div class="page-plugins-title">
-        <h2 id="security">Security</h2>
-
-        <p>Protect your services with authentication and security layers:</p>
-      </div>
-
-      <div class="plugins-container">
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Basic Authentication</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/basic-authentication.png" width="60" height="60" alt="Basic Authentication"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Add Basic Authentication to your APIs</p>
-
-            <a class="plugin-plate-link" href="/plugins/basic-authentication"></a>
-          </div>
+      {% for group in site.data.plugins %}
+        <div class="page-plugins-title">
+          <h2 id="{{ group.name | slugify }}">{{ group.name }}</h2>
+          <p>{{ group.info }}:</p>
         </div>
 
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Key Authentication</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/key-authentication.png" width="60" height="60" alt="Key Authentication"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Add a key authentication to your APIs</p>
-
-            <a class="plugin-plate-link" href="/plugins/key-authentication"></a>
-          </div>
+        <div class="plugins-container">
+          {% for plugin in group.plugins %}
+            {% capture id %}{% if plugin.id %}{{ plugin.id }}{% else %}{{ plugin.name | slugify }}{% endif %}{% endcapture %}
+            <div class="plugin-plate">
+              <div class="plugin-plate-header">
+                <h3>{{ plugin.name }}</h3>
+                <img class="plugin-icon" src="/assets/images/icons/plugins/{{ id }}.png" width="60" height="60" alt="{{ plugin.name }}"/>
+              </div>
+              <div class="plugin-plate-content">
+                <p>{{ plugin.info }}</p>
+                <a class="plugin-plate-link" href="/plugins/{{ id }}"></a>
+              </div>
+            </div>
+          {% endfor %}
         </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>OAuth 2.0 Authentication</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/oauth2-authentication.png" width="60" height="60" alt="OAuth 2.0 Authentication"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Add an OAuth 2.0 authentication to your APIs</p>
-
-            <a class="plugin-plate-link" href="/plugins/oauth2-authentication"></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="plugins-container">
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>CORS</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/cors.png" width="60" height="60" alt="CORS"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Allow developers to make requests from the browser</p>
-
-            <a class="plugin-plate-link" href="/plugins/cors"></a>
-          </div>
-        </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>SSL</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/ssl.png" width="60" height="60" alt="SSL"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Add a SSL certificate for an underlying service</p>
-
-            <a class="plugin-plate-link" href="/plugins/ssl"></a>
-          </div>
-        </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>IP Restriction</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/ip-restriction.png" width="60" height="60" alt="IP Restriction"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Whitelist or blacklist IPs that can make requests</p>
-
-            <a class="plugin-plate-link" href="/plugins/ip-restriction"></a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="page-plugins-title">
-        <h2 id="traffic-control">Traffic Control</h2>
-
-        <p>Control API performance with powerful tools:</p>
-      </div>
-
-      <div class="plugins-container">
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Rate Limiting</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/rate-limiting.png" width="60" height="60" alt="Rate Limiting"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Rate-limit how many HTTP requests a developer can make</p>
-
-            <a class="plugin-plate-link" href="/plugins/rate-limiting"></a>
-          </div>
-        </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Request Size Limiting</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/request-size-limiting.png" width="60" height="60" alt="Request Size Limiting"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Block requests with bodies greater than a specific size</p>
-
-            <a class="plugin-plate-link" href="/plugins/request-size-limiting"></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="page-plugins-title">
-        <h2>Analytics &amp; Monitoring</h2>
-
-        <p>Visualize, inspect and monitor APIs and microservices traffic:</p>
-      </div>
-
-      <div class="plugins-container">
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Mashape Analytics</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/mashape-analytics.png" width="60" height="60" alt="Mashape Analytics"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Visualize, replay and inspect APIs logs</p>
-
-            <a class="plugin-plate-link" href="/plugins/mashape-analytics"></a>
-          </div>
-        </div>
-      </div>
-
-
- <div class="page-plugins-title">
-        <h2 id="transformations">Transformations</h2>
-
-        <p>Transform request and responses on the fly on Kong:</p>
-      </div>
-
-
-      <div class="plugins-container">
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Request Transformer</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/request-transformer.png" width="60" height="60" alt="Request Transformer"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Modify the request before hitting the upstream server</p>
-
-            <a class="plugin-plate-link" href="/plugins/request-transformer"></a>
-          </div>
-        </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Response Transformer</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/response-transformer.png" width="60" height="60" alt="Response Transformer"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Modify the upstream response before returning it to the client</p>
-
-            <a class="plugin-plate-link" href="/plugins/response-transformer"></a>
-          </div>
-        </div>
-
-
-      </div>
-
-
-      <div class="page-plugins-title">
-        <h2>Logging</h2>
-
-        <p>Log requests and response data using the best transport for your infrastructure:</p>
-      </div>
-
-      <div class="plugins-container">
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>TCP</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/tcp-log.png" width="60" height="60" alt="TCP"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Send request and response logs to a TCP server</p>
-
-            <a class="plugin-plate-link" href="/plugins/tcp-log"></a>
-          </div>
-        </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>UDP</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/udp-log.png" width="60" height="60" alt="UDP"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Send request and response logs to an UDP server</p>
-
-            <a class="plugin-plate-link" href="/plugins/udp-log"></a>
-          </div>
-        </div>
-
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>HTTP</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/http-log.png" width="60" height="60" alt="HTTP"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Send request and response logs to an HTTP server</p>
-
-            <a class="plugin-plate-link" href="/plugins/http-log"></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="plugins-container">
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>File</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/file-log.png" width="60" height="60" alt="UDP"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Append request and response data to a log file on disk</p>
-
-            <a class="plugin-plate-link" href="/plugins/file-log"></a>
-          </div>
-        </div>
-
-        <!--
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>Analytics</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/analytics.png" width="60" height="60" alt="Analytics"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Visualize API metrics on beautiful real-time dashboards</p>
-
-            <a class="plugin-plate-link" href="/plugins/analytics"></a>
-          </div>
-        </div>
-      -->
-      </div>
-
-      <div class="page-plugins-title">
-        <h2>NGINX Inc.</h2>
-
-        <p>Third party plugins from NGINX, Inc:</p>
-      </div>
-
-      <div class="plugins-container">
-        <div class="plugin-plate">
-          <div class="plugin-plate-header">
-            <h3>NGINX Plus Live Monitoring</h3>
-            <img class="plugin-icon" src="/assets/images/icons/plugins/nginx-plus-monitoring.png" width="60" height="60" alt="NGINX Plus Monitoring"/>
-          </div>
-          <div class="plugin-plate-content">
-            <p>Live Monitoring of NGINX Plus</p>
-            <a class="plugin-plate-link" href="/plugins/nginx-plus-monitoring"></a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>

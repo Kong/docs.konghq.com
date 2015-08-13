@@ -1,0 +1,71 @@
+- name: Security
+  info: Protect your services with authentication and security layers
+  plugins:
+    - name: Basic Authentication
+      info: Add Basic Authentication to your APIs
+
+    - name: Key Authentication
+      info: Add a key authentication to your APIs
+
+    - name: OAuth 2.0 Authentication
+      id: oauth2-authentication
+      info: Add an OAuth 2.0 authentication to your APIs
+
+    - name: CORS
+      info: Allow developers to make requests from the browser
+
+    - name: SSL
+      info: Add a SSL certificate for an underlying service
+
+    - name: IP Restriction
+      info: Whitelist or blacklist IPs that can make requests
+
+- name: Traffic Control
+  info: Control API performance with powerful tools
+  plugins:
+    - name: Rate Limiting
+      info: Rate-limit how many HTTP requests a developer can make
+
+    - name: Request Size Limiting
+      info: Block requests with bodies greater than a specific size
+
+- name: Analytics & Monitoring
+  info: Visualize, inspect and monitor APIs and microservices traffic
+  plugins:
+    - name: Mashape Analytics
+      info: Visualize, replay and inspect APIs logs
+
+- name: Transformations
+  info: Transform request and responses on the fly on Kong
+  plugins:
+    - name: Request Transformer
+      info: Modify the request before hitting the upstream server
+
+    - name: Response Transformer
+      info: Modify the upstream response before returning it to the client
+
+- name: Logging
+  info: Log requests and response data using the best transport for your infrastructure
+  plugins:
+    - name: TCP
+      id: tcp-log
+      info: Send request and response logs to a TCP server
+
+    - name: UDP
+      id: udp-log
+      info: Send request and response logs to an UDP server
+
+    - name: HTTP
+      id: http-log
+      info: Send request and response logs to an HTTP server
+
+    - name: File
+      id: file-log
+      info: Append request and response data to a log file on disk
+
+- name: NGINX Inc.
+  info: Third party plugins from NGINX, Inc
+  plugins:
+    - name: NGINX Plus Live Monitoring
+      id: nginx-plus-monitoring
+      info: Live Monitoring of NGINX Plus
