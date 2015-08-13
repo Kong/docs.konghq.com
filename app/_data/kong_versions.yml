@@ -7,7 +7,7 @@
     cassandra: "2.1"
     openresty: "1.7.10.2"
 -
-  version: "0.2.1"
+  version: "0.2.x"
   luarocks_version: "0.2.1-1"
   dependencies:
     lua: "5.1.4"
@@ -15,7 +15,7 @@
     cassandra: "2.1"
     openresty: "1.7.10.2"
 -
-  version: "0.3.2"
+  version: "0.3.x"
   luarocks_version: "0.3.2-1"
   dependencies:
     lua: "5.1.4"
@@ -23,7 +23,7 @@
     cassandra: "2.1"
     openresty: "1.7.10.2"
 -
-  version: "0.4.2"
+  version: "0.4.x"
   luarocks_version: "0.4.2-1"
   dependencies:
     lua: "5.1.4"
