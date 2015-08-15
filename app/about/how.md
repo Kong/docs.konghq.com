@@ -38,4 +38,4 @@ Depending on your use case, for production usage we reccomend having at least a 
 
 While Cassandra supports every integration scenario, from the simplest to the more complex ones, in the future we plan to support an SQL datastore like PostgreSQL in order to keep Kong close to well known technologies that are already being used in your technology stack.
 
-If you like the idea, +1 [the related issue](https://github.com/Mashape/kong/issues/331) on Github.
+If you like the idea, +1 [the related issue]({{ site.repos.kong }}/issues/331) on Github.

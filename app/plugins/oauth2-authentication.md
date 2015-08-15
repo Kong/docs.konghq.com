@@ -118,7 +118,7 @@ The authorization page is made of two parts:
 
 <div class="alert alert-warning">
   <div class="container" style="text-align: center;">
-    <a href="https://github.com/Mashape/kong-oauth2-hello-world">You can see a sample implementation in node.js + express.js on GitHub</a>
+    <a href="{{ site.repos.oauth2_hello_world }}">You can see a sample implementation in node.js + express.js on GitHub</a>
   </div>
 </div>
 

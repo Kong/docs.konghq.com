@@ -11,7 +11,7 @@ module Jekyll
       # Add a `version` property to every versioned page
       site.pages.each do |page|
         parts = Pathname(page.path).each_filename.to_a
-        if parts[0] == "docs"
+        if parts[0] == site.config["documentation"]
           page.data["kong_version"] = parts[1]
           # Put navigation items for current version in page.nav_items
           page.data["nav_items"] = site.data['docs_nav_' + parts[1].gsub(/\./, '')]
@@ -21,7 +21,7 @@ module Jekyll
             page.data["alias"] = "/" + page.path.sub(parts[1], "latest").sub(/\..*$/, "")
             if parts[2] == "index.md"
               page.data["permalink"] = "/docs/"
-              page.data["alias"] = ["/docs/latest", "/docs/#{latest["version"]}/index.html", ]
+              page.data["alias"] = ["/#{site.config["documentation"]}/latest", "/#{site.config["documentation"]}/#{latest["version"]}/index.html", ]
             end
           end
         end
