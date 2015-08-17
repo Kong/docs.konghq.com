@@ -12,30 +12,32 @@ var sequence = require('run-sequence')
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
 
+var paths = {
+  assets: './app/_assets/',
+  modules: './node_modules/',
+  dist: './dist/'
+}
+
 // Sources
 var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
-  styles: 'app/_assets/stylesheets/**/*.{less,css}',
+  styles: paths.assets + 'stylesheets/**/*.{less,css}',
   js: [
-    'app/_assets/javascripts/**/*.js',
-    'node_modules/bootstrap/js/dropdown.js',
-    'node_modules/bootstrap/js/affix.js'
+    paths.assets + 'javascripts/**/*.js',
+    paths.modules + 'bootstrap/js/dropdown.js',
+    paths.modules + 'bootstrap/js/affix.js'
   ],
-  images: 'app/_assets/images/**/*',
-  fonts: 'node_modules/font-awesome/fonts/**/*.*'
+  images: paths.assets + 'images/**/*',
+  fonts: paths.modules + 'font-awesome/fonts/**/*.*'
 }
 
 gulp.task('styles', function () {
-  // thibaultcha:
-  // 1. gulp-less has plugins (minifier and prefixer) we can run in $.less(plugins: [clean, prefix])
-  // but they throw errors if we use them. Let's use gulp-autoprefixer and gulp-minify-css.
-  // 2. the source maps still don't work if used along with gulp-autoprefixer
-  return gulp.src('app/_assets/stylesheets/index.less')
+  return gulp.src(paths.assets + 'stylesheets/index.less')
     .pipe($.plumber())
     .pipe($.less())
     .pipe($.autoprefixer())
     .pipe($.rename('styles.css'))
-    .pipe(gulp.dest('dist/assets/'))
+    .pipe(gulp.dest(paths.dist + 'assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
 })
@@ -54,7 +56,7 @@ gulp.task('javascripts', function () {
 gulp.task('images', function () {
   return gulp.src(sources.images)
     .pipe($.plumber())
-    .pipe(gulp.dest('dist/assets/images'))
+    .pipe(gulp.dest(paths.dist + 'assets/images'))
     .pipe($.size())
     .pipe(browserSync.stream())
 })
@@ -62,25 +64,25 @@ gulp.task('images', function () {
 gulp.task('fonts', function () {
   return gulp.src(sources.fonts)
     .pipe($.plumber())
-    .pipe(gulp.dest('dist/assets/fonts'))
+    .pipe(gulp.dest(paths.dist + '/assets/fonts'))
     .pipe($.size())
     .pipe(browserSync.stream())
 })
 
 gulp.task('jekyll', function (cb) {
-  var command = 'bundle exec jekyll build --config jekyll.yml --destination dist'
+  var command = 'bundle exec jekyll build --config jekyll.yml --destination ' + paths.dist
 
   child_process.exec(command, function (err, stdout, stderr) {
-    console.log(stdout)
-    console.error(stderr)
+    gutil.log(stdout)
+    gutil.log(stderr)
     cb(err)
   })
 })
 
 gulp.task('html', ['jekyll'], function () {
-  return gulp.src('dist/**/*.html')
+  return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(paths.dist))
     .pipe($.size())
     .pipe(browserSync.stream())
 })
@@ -108,7 +110,7 @@ gulp.task('gh-pages', function (cb) {
     message: 'Update ' + new Date().toISOString()
   }
 
-  ghPages.publish(path.join(__dirname, 'dist'), config, cb)
+  ghPages.publish(path.join(__dirname, paths.dist), config, cb)
 })
 
 gulp.task('cloudflare', function (cb) {
