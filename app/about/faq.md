@@ -33,4 +33,4 @@ To add an authentication layer on top of a service you can choose between the au
 
 <hr>
 
-Were you looking for a question that you did't find? [Open an issue!](https://github.com/Mashape/getkong.org)
+Were you looking for a question that you did't find? [Open an issue!]({{ site.repos.kong }})

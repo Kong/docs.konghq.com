@@ -50,7 +50,7 @@ While we have taken efforts to protect and secure your information, no data tran
 
 # Children Policy
 
-This Site is not directed to children under 18. We do not knowingly collect personally identifiable information from children under 13. If a parent or guardian becomes aware that his or her child has provided us with Personal Information without their consent, he or she should contact us at [privacy@mashape.com](mailto:&#39;privacy@mashape.com&#39;). If we become aware that a child under 13 has provided us with Personal Information, we will delete such information from our files.
+This Site is not directed to children under 18. We do not knowingly collect personally identifiable information from children under 13. If a parent or guardian becomes aware that his or her child has provided us with Personal Information without their consent, he or she should contact us at [privacy@mashape.com](mailto:privacy@mashape.com). If we become aware that a child under 13 has provided us with Personal Information, we will delete such information from our files.
 
 # Users around the Globe
 
@@ -62,4 +62,4 @@ Please check this Privacy Policy periodically to inform yourself of any changes.
 
 # Any Questions?
 
-If you have any questions about this Privacy Policy, please contact us at [privacy@mashape.com](mailto:&#39;privacy@mashape.com&#39;)
+If you have any questions about this Privacy Policy, please contact us at [privacy@mashape.com](mailto:privacy@mashape.com)
