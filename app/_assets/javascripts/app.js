@@ -171,7 +171,7 @@ $(function () {
       })
     })
 
-    $.when.apply($, [analyticsDfd, relateiqDfd]).then(function () {
+    $.when(analyticsDfd, relateiqDfd).then(function () {
       $('.loader').fadeOut(300, function () {
         $('.success-message').fadeIn(300)
       })
