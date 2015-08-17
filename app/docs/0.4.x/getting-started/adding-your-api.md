@@ -20,10 +20,10 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     ```bash
     $ curl -i -X POST \
-     --url http://localhost:8001/apis/ \
-     --data 'name=mockbin' \
-     --data 'target_url=http://mockbin.com/' \
-     --data 'public_dns=mockbin.com'
+      --url http://localhost:8001/apis/ \
+      --data 'name=mockbin' \
+      --data 'target_url=http://mockbin.com/' \
+      --data 'public_dns=mockbin.com'
     ```
 
     **Note:** Kong handles API configuration requests on port `:8001`
@@ -61,8 +61,8 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     ```bash
     $ curl -i -X GET \
-     --url http://localhost:8000/ \
-     --header 'Host: mockbin.com'
+      --url http://localhost:8000/ \
+      --header 'Host: mockbin.com'
     ```
 
     A successful response means Kong is now forwarding requests to the `target_url` we passed in the first step and giving us the response back. Kong knows to do this through the header defined in the above cURL request:

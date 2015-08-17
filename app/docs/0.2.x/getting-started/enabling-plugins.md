@@ -23,7 +23,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
     ```yaml
     plugins_available:
-     - keyauth
+      - keyauth
     ```
 
 2. ### Restart Kong
@@ -44,10 +44,10 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
     ```bash
     $ curl -i -X POST \
-       --url http://localhost:8001/plugins_configurations/ \
-       --data 'name=keyauth' \
-       --data 'api_id=YOUR_API_ID' \
-       --data 'value.key_names=apikey'
+      --url http://localhost:8001/plugins_configurations/ \
+      --data 'name=keyauth' \
+      --data 'api_id=YOUR_API_ID' \
+      --data 'value.key_names=apikey'
     ```
 
     **Note:** `value.key_names` is the authentication header name each request will require.
@@ -58,8 +58,8 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
     ```bash
     $ curl -i -X GET \
-     --url http://localhost:8000/ \
-     --header 'Host: mockbin.com'
+      --url http://localhost:8000/ \
+      --header 'Host: mockbin.com'
     ```
 
     Since you did not specify the required `apikey` header the response should be `403 Forbidden`:
@@ -69,7 +69,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
     ...
 
     {
-     "message": "Your authentication credentials are invalid"
+      "message": "Your authentication credentials are invalid"
     }
     ```
 

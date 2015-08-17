@@ -13,13 +13,13 @@ api_body: |
 
 consumer_body: |
     Attributes | Description
-     ---:| ---
+    ---:| ---
     `username`<br>**semi-optional** | The username of the consumer. You must send either this field or `custom_id` with the request.
     `custom_id`<br>**semi-optional** | Field for storing an existing ID for the consumer, useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
 
 plugin_configuration_body: |
     Attributes | Description
-     ---:| ---
+    ---:| ---
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
     `value.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
@@ -195,7 +195,7 @@ HTTP 201 Created
 <div class="endpoint get">/apis/{name or id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to retrieve
 
 #### Response
@@ -226,7 +226,7 @@ HTTP 200 OK
 #### Request Querystring Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>*optional* | A filter on the list based on the apis `id` field.
 `name`<br>*optional* | A filter on the list based on the apis `name` field.
 `public_dns`<br>*optional* | A filter on the list based on the apis `public_dns` field.
@@ -274,7 +274,7 @@ HTTP 200 OK
 <div class="endpoint patch">/apis/{name or id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to update
 
 #### Request Body
@@ -329,7 +329,7 @@ See POST and PATCH responses.
 <div class="endpoint delete">/apis/{name or id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to delete
 
 #### Response
@@ -385,7 +385,7 @@ HTTP 201 Created
 <div class="endpoint get">/consumers/{username or id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `username or id`<br>**required** | The unique identifier **or** the username of the consumer to retrieve
 
 #### Response
@@ -413,7 +413,7 @@ HTTP 200 OK
 #### Request Querystring Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>*optional* | A filter on the list based on the consumer `id` field.
 `custom_id`<br>*optional* | A filter on the list based on the consumer `custom_id` field.
 `username`<br>*optional* | A filter on the list based on the consumer `username` field.
@@ -454,7 +454,7 @@ HTTP 200 OK
 <div class="endpoint patch">/consumers/{username or id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `username or id`<br>**required** | The unique identifier **or** the username of the consumer to update
 
 #### Request Body
@@ -506,7 +506,7 @@ See POST and PATCH responses.
 <div class="endpoint delete">/consumers/{username or id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `username or id`<br>**required** | The unique identifier **or** the name of the consumer to delete
 
 #### Response
@@ -620,7 +620,7 @@ When creating a Plugin Configuration on top of an API, every request made by a c
 <div class="endpoint post">/apis/{name or id}/plugins/</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API on which to add a plugin configuration
 
 #### Request Body
@@ -659,7 +659,7 @@ HTTP 201 Created
 #### Request Querystring Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>*optional* | A filter on the list based on the `id` field.
 `name`<br>*optional* | A filter on the list based on the `name` field.
 `api_id`<br>*optional* | A filter on the list based on the `api_id` field.
@@ -718,7 +718,7 @@ You can use the `/plugins_configuration` endpoint to acces a global list of all 
 #### Request Querystring Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>*optional* | A filter on the list based on the `id` field.
 `name`<br>*optional* | A filter on the list based on the `name` field.
 `api_id`<br>*optional* | A filter on the list based on the `api_id` field.
@@ -773,7 +773,7 @@ HTTP 200 OK
 <div class="endpoint patch">/apis/{api name or id}/plugins/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update the plugin configuration
 `id`<br>**required** | The unique identifier of the plugin configuration to update on this API
 
@@ -811,7 +811,7 @@ HTTP 200 OK
 <div class="endpoint put">/apis/{api name or id}/plugins/</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update or create the plugin configuration
 
 #### Request Body
@@ -837,7 +837,7 @@ See POST and PATCH responses.
 <div class="endpoint delete">/apis/{api name or id}/plugins/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
 `id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
 

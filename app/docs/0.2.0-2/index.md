@@ -18,10 +18,10 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration</a></h3>
-     <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
-     <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
-   </div>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration</a></h3>
+    <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
+    <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
+  </div>
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/admin-api">API reference</a></h3>
@@ -29,9 +29,9 @@ title: Documentation for Kong
     <a href="/docs/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
   </div>
 
-   <div class="docs-grid-block">
-      <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/cli">CLI reference</a></h3>
-      <p>Want a better understanding of the CLI tool and its options? Browse the detailed command reference.</p>
-      <a href="/docs/{{page.kong_version}}/cli">Use the CLI &rarr;</a>
-    </div>
+  <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/cli">CLI reference</a></h3>
+    <p>Want a better understanding of the CLI tool and its options? Browse the detailed command reference.</p>
+    <a href="/docs/{{page.kong_version}}/cli">Use the CLI &rarr;</a>
+  </div>
 </div>

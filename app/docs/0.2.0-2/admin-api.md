@@ -33,7 +33,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 #### Request Body
 
 Attributes | Description
- ---:| ---
+---:| ---
 `name` | API name
 `public_dns` | The public DNS address that points to your API. For example, `mockbin.com`.
 `target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
@@ -63,7 +63,7 @@ HTTP 201 Created
 <div class="endpoint get">/apis/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the API to be retrieved
 
 #### Response
@@ -93,7 +93,7 @@ HTTP 200 OK
 #### Request Querystring Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>*optional* | A filter on the list based on the apis `id` field.
 `name`<br>*optional* | A filter on the list based on the apis `name` field.
 `public_dns`<br>*optional* | A filter on the list based on the apis `public_dns` field.
@@ -139,7 +139,7 @@ HTTP 200 OK
 <div class="endpoint put">/apis/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the API to be updated
 
 **Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like the one below.
@@ -167,7 +167,7 @@ HTTP 200 OK
 <div class="endpoint delete">/apis/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the API to be deleted
 
 #### Response
@@ -199,7 +199,7 @@ The Consumer object represents a consumer, or a user, of an API. You can either 
 #### Request Body
 
 Attributes | Description
- ---:| ---
+---:| ---
 `username`<br>**semi-optional** | The username of the consumer. You must send either this field or `custom_id` with the request.
 `custom_id`<br>**semi-optional** | Field for storing an existing ID for the consumer, useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
 
@@ -226,7 +226,7 @@ HTTP 201 Created
 <div class="endpoint get">/consumers/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the consumer to be retrieved
 
 #### Response
@@ -254,7 +254,7 @@ HTTP 200 OK
 #### Request Querystring Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>*optional* | A filter on the list based on the consumer `id` field.
 `custom_id`<br>*optional* | A filter on the list based on the consumer `custom_id` field.
 `username`<br>*optional* | A filter on the list based on the consumer `username` field.
@@ -295,7 +295,7 @@ HTTP 200 OK
 <div class="endpoint put">/consumers/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the consumer to be updated
 
 **Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like the one below.
@@ -331,7 +331,7 @@ HTTP 200 OK
 <div class="endpoint delete">/consumers/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the consumer to be deleted
 
 #### Response
@@ -373,7 +373,7 @@ When creating a Plugin Configuration on top of an API, every request made by a c
 #### Request Form Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
 `api_id` | The unique identifier of the API the plugin will be enabled for.
 `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
@@ -408,7 +408,7 @@ HTTP 201 Created
 <div class="endpoint get">/plugins_configurations/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the plugin configuration to be retrieved
 
 #### Response
@@ -442,7 +442,7 @@ HTTP 200 OK
 #### Request Querystring Parameters
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>*optional* | A filter on the list based on the `id` field.
 `name`<br>*optional* | A filter on the list based on the `name` field.
 `api_id`<br>*optional* | A filter on the list based on the `api_id` field.
@@ -495,7 +495,7 @@ HTTP 200 OK
 <div class="endpoint put">/plugins_configurations/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the plugin configuration to be retrieved
 
 **Note:** When sending the request to this endpoint you need to pass a `Content-Type: application/json` header along with a JSON request body, like the one below.
@@ -540,7 +540,7 @@ HTTP 200 OK
 <div class="endpoint delete">/plugins_configurations/{id}</div>
 
 Attributes | Description
- ---:| ---
+---:| ---
 `id`<br>**required** | The unique identifier of the plugin configuration to be deleted
 
 #### Response

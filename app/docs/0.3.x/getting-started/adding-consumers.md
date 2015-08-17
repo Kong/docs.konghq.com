@@ -23,8 +23,8 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     ```bash
     $ curl -i -X POST \
-       --url http://localhost:8001/consumers/ \
-       --data "username=Jason"
+      --url http://localhost:8001/consumers/ \
+      --data "username=Jason"
     ```
 
     You should see a response similar to the one below:
@@ -38,9 +38,9 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
     Server: kong/0.1.1beta-2
 
     {
-     "username": "Jason",
-     "created_at": 1428555626000,
-     "id": "bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
+      "username": "Jason",
+      "created_at": 1428555626000,
+      "id": "bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
     }
     ```
 
@@ -54,8 +54,8 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     ```bash
     $ curl -i -X POST \
-     --url http://localhost:8001/consumers/Jason/keyauth/ \
-     --data 'key=ENTER_KEY_HERE'
+      --url http://localhost:8001/consumers/Jason/keyauth/ \
+      --data 'key=ENTER_KEY_HERE'
     ```
 
 3. ### Verify that your Consumer credentials are valid

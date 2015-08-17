@@ -63,11 +63,11 @@ As explained in the [Adding your API][adding-your-api] quickstart guide, Kong is
 
 ```bash
 $ curl -i -X POST \
- --url http://localhost:8001/apis/ \
- -d 'name=mockbin' \
- -d 'target_url=http://mockbin.com/' \
- -d 'public_dns=mockbin.com' \
- -d 'path=/status'
+  --url http://localhost:8001/apis/ \
+  -d 'name=mockbin' \
+  -d 'target_url=http://mockbin.com/' \
+  -d 'public_dns=mockbin.com' \
+  -d 'path=/status'
 ```
 
 This request tells Kong to add an API named "**mockbin**", with its upstream resource being located at "**http://mockbin.com**". The `public_dns` and `path` properties are the ones used by Kong to route a request to that API. Both properties are not required but at least one must be specified.
@@ -84,8 +84,8 @@ Now that we added an API to Kong (via the Admin API), Kong can proxy it via the 
 
 ```bash
 $ curl -i -X GET \
- --url http://localhost:8000/ \
- --header 'Host: mockbin.com'
+  --url http://localhost:8000/ \
+  --header 'Host: mockbin.com'
 ```
 
 By doing so, Kong recognizes the `Host` value as being the `public_dns` of the "mockbin" API. The request will be routed to the upstream API and Kong will execute any configured [plugin][plugins] for that API.
@@ -100,8 +100,8 @@ When performing a request from a browser, you might not be able to set the `Host
 
 ```bash
 $ curl -i -X GET \
- --url http://localhost:8000/ \
- --header 'X-Host-Override: mockbin.com'
+  --url http://localhost:8000/ \
+  --header 'X-Host-Override: mockbin.com'
 ```
 
 This request will be proxied just as well by Kong.
@@ -124,7 +124,7 @@ Because the API we previously configured has a `path` property, the following re
 
 ```bash
 $ curl -i -X GET \
- --url http://localhost:8000/status/200
+  --url http://localhost:8000/status/200
 ```
 
 You will notice this command makes a request to `KONG_URL:PROXY_PORT/status/200`. Since the configured `target_url` is `http://mockbin.com/`, the request will hit the upstream service at `http://mockbin.com/status/200`.
@@ -135,9 +135,9 @@ By enabling the `strip_path` property on an API, the requests will be proxied wi
 
 ```bash
 $ curl -i -X PATCH \
- --url http://localhost:8001/apis/mockbin \
- -d 'strip_path=true' \
- -d 'path=/mockbin'
+  --url http://localhost:8001/apis/mockbin \
+  -d 'strip_path=true' \
+  -d 'path=/mockbin'
 ```
 
 Now that we slightly updated our API (you might have to wait a few seconds for Kong's proxying cache to be updated), Kong will proxy requests made to `KONG_URL:PROXY_PORT/mockbin` but will not include the `/mockbin` part when performing the upstream request.
@@ -145,7 +145,7 @@ Now that we slightly updated our API (you might have to wait a few seconds for K
 Here is a table documenting the behaviour of the path routing depending on your API's configuration:
 
 `path`      | `strip_path`   | incoming request       | upstream request
- ---        | ---            | ---                    | ---
+---         | ---            | ---                    | ---
 `/mockbin`  | **false**      | `/some_path`           | **not proxied**
 `/mockbin`  | **false**      | `/mockbin`             | `/mockbin`
 `/mockbin`  | **false**      | `/mockbin/some_path`   | `/mockbin/some_path`
