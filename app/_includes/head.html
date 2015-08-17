@@ -1,33 +1,35 @@
+{% capture page_title %}{{ page.title | escape }}{% if page.kong_version %} - v{{ page.kong_version | escape }}{% endif %}{% if page.title %} | {% endif %}{% endcapture %}
 <head>
   <meta charset="utf-8"/>
-  <title>{{ page.title | escape }}{% if page.version %} | Documentation v{{ page.version | escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }}</title>
-  <meta name="description" content="Secure, Manage &amp; Extend your APIs or Microservices with plugins for authentication, logging, rate-limiting, transformations and more."/>
-  <meta name="author" content="Mashape"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="google-site-verification" content="7me2nZm-wWgDM4uoD1sJ18amVbNSpsbLR0ll8OG6b_A"/>
-  <link rel="stylesheet" href="//cloud.typography.com/7506032/804186/css/fonts.css"/>
-  <link rel="stylesheet" href="/assets/styles.css?v={{ site.time | date: '%F-%T' | replace: ':', '-' }}"/>
-  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico"/>
-  <meta property="fb:admins" content="227304446"/>
-  <meta property="fb:admins" content="576641408"/>
-  <meta property="og:title" content="Kong - Open-Source API Management Layer"/>
-  <meta property="og:site_name" content="Kong - Open-Source API Management Layer"/>
-  <meta property="og:url" content="http://getkong.org"/>
-  <meta property="og:description" content="Open Source API Management and Microservice Management Platform with plugins for API authentication, logging, rate-limiting, transformations and more."/>
+
+  <title>{{ page_title }}{{ site.name }} - {{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <meta name="author" content="Mashape"/>
+  <meta property="og:title" content="{{ site.title }}"/>
+  <meta property="og:site_name" content="{{ site.name }}"/>
+  <meta property="og:url" content="{{ site.links.web }}"/>
+  <meta property="og:description" content="{{ site.description }}"/>
   <meta property="og:type" content="website"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:image" content="http://getkong.org/assets/images/share.png"/>
+  <meta property="og:image" content="{{ site.links.web }}/assets/images/share.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@mashape"/>
   <meta name="twitter:creator" content="@mashape"/>
-  <meta name="twitter:url" content="http://getkong.org"/>
+  <meta name="twitter:url" content="{{ site.links.web }}"/>
+  <meta name="twitter:description" content="{{ site.description }}">
+  <meta name="twitter:image" content="{{ site.links.web }}/assets/images/share.png">
+  <meta property="fb:admins" content="227304446"/>
+  <meta property="fb:admins" content="576641408"/>
+  <meta name="google-site-verification" content="7me2nZm-wWgDM4uoD1sJ18amVbNSpsbLR0ll8OG6b_A"/>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "Organization",
       "name": "Mashape",
-      "url": "http://getkong.org/",
-      "logo": "http://getkong.org/assets/images/logo.png",
+      "url": "{{site.links.web}}",
+      "logo": "{{site.links.web}}/assets/images/logo.png",
       "sameAs": [
         "https://www.facebook.com/Mashape",
         "https://twitter.com/mashape",
@@ -35,4 +37,7 @@
       ]
     }
   </script>
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico"/>
+  <link rel="stylesheet" href="//cloud.typography.com/7506032/804186/css/fonts.css"/>
+  <link rel="stylesheet" href="/assets/styles.css?v={{ site.time | date: '%s' }}"/>
 </head>

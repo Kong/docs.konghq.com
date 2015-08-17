@@ -1,8 +1,11 @@
 # Site settings
-name: Kong - Open-Source API and Microservice Management Layer
-url: https://getkong.org
-share_url: http://getkong.org
+name: Kong
+title: Open-Source API and Microservice Management Layer
+description: "Secure, Manage & Extend your APIs or Microservices with plugins for authentication, logging, rate-limiting, transformations and more."
 documentation: docs
+links:
+  web: https://getkong.org
+  share: http://getkong.org # legacy link, must maintain for social sharing counters
 repos:
   kong: https://github.com/Mashape/kong
   docs: https://github.com/Mashape/getkong.org
