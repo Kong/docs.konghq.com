@@ -17,15 +17,7 @@ npm install
 ## Running locally
 
 >```bash
-gulp
->```
-
-## Building
-
-For production:
-
->```bash
-gulp build:prod
+npm start
 >```
 
 ## Deploying
@@ -33,5 +25,5 @@ gulp build:prod
 This will deploy to GitHub pages:
 
 >```bash
-gulp deploy:prod
+npm run deploy
 >```
