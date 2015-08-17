@@ -38,13 +38,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                               | description
- ---                                    | ---
-`name`                                  | The name of the plugin to use, in this case: `requestsizelimiting`
-`consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.allowed_payload_size`<br>*optional*    | Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
+form parameter                | required    | description
+---                           | ---         | ---
+`name`                        | *required*  | The name of the plugin to use, in this case: `requestsizelimiting`
+`consumer_id`                 | *optional*  | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`value.allowed_payload_size`  | *optional*  | Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
 
-[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
-[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

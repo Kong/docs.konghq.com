@@ -17,11 +17,11 @@ module Jekyll
           page.data["nav_items"] = site.data['docs_nav_' + parts[1].gsub(/\./, '')]
 
           # Alias latest docs folder /docs/x.x.x to /docs/latest
-          if parts[1] == latest["version"]
+          if parts[1] == latest["release"]
             page.data["alias"] = "/" + page.path.sub(parts[1], "latest").sub(/\..*$/, "")
             if parts[2] == "index.md"
               page.data["permalink"] = "/docs/"
-              page.data["alias"] = ["/#{site.config["documentation"]}/latest", "/#{site.config["documentation"]}/#{latest["version"]}/index.html", ]
+              page.data["alias"] = ["/#{site.config["documentation"]}/latest", "/#{site.config["documentation"]}/#{latest["release"]}/index.html", ]
             end
           end
         end

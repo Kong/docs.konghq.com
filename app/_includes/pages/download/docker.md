@@ -1,14 +1,14 @@
 ### Docker
 
-Details about how to use Kong in Docker can be found on the Dockerhub repo hosting the image: [mashape/kong](https://registry.hub.docker.com/u/mashape/kong/).
+Details about how to use Kong in Docker can be found on the Dockerhub repo hosting the image: [mashape/kong](https://hub.docker.com/r/mashape/kong/).
 
 Here is a quick setup linking Kong to a Cassandra container:
 
 1. **Start Cassandra:**
 
-	```bash
-	$ docker run -p 9042:9042 -d --name cassandra mashape/cassandra
-	```
+    ```bash
+    $ docker run -p 9042:9042 -d --name cassandra mashape/cassandra
+    ```
 
 2. **Start Kong:**
 
@@ -24,4 +24,4 @@ Here is a quick setup linking Kong to a Cassandra container:
 
 4. **Start using Kong:**
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.version}}/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.release}}/getting-started/quickstart).

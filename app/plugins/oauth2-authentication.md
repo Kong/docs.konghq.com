@@ -35,17 +35,17 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                          | description
- ---                                    | ---
-`name`                                  | The name of the plugin to use, in this case: `oauth2`
-`value.scopes`                          | Describes an array of comma separated scope names that will be available to the end user
-`value.mandatory_scope`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
-`value.token_expiration`<br>*optional*   | Default `7200`. An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
-`value.enable_authorization_code`<br>*optional*   | Default `true`. An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
-`value.enable_client_credentials`<br>*optional*   | Default `false`. An optional boolean value to enable the Client Credentials Grant flow ([RFC 6742 Section 4.4][client-credentials])
-`value.enable_implicit_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
-`value.enable_password_grant`<br>*optional*   | Default `false`. An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
-`value.hide_credentials`<br>*optional*   | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+form parameter                                    | default | description
+---                                               | ---     | ---
+`name`                                            | `-`     | The name of the plugin to use, in this case: `oauth2`
+`value.scopes`                                    | `-`     | Describes an array of comma separated scope names that will be available to the end user
+`value.mandatory_scope`<br>*optional*             | `false` | An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
+`value.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
+`value.enable_authorization_code`<br>*optional*   | `true`  | An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
+`value.enable_client_credentials`<br>*optional*   | `false` | An optional boolean value to enable the Client Credentials Grant flow ([RFC 6742 Section 4.4][client-credentials])
+`value.enable_implicit_grant`<br>*optional*       | `false` | An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
+`value.enable_password_grant`<br>*optional*       | `false` | An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
+`value.hide_credentials`<br>*optional*            | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
 
@@ -61,10 +61,10 @@ $ curl -X POST http://kong:8001/consumers/ \
     --data "custom_id=SOME_CUSTOM_ID"
 ```
 
-parameter                       | description
- ---                            | ---
-`username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
-`custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
+parameter                       | required                                            | description
+---                             | ---                                                 | ---
+`username`<br>*semi-optional*   | Either this field or `custom_id` must be specified. | The username of the consumer.
+`custom_id`<br>*semi-optional*  | Either this field or `username` must be specified.  | A custom identifier used to map the consumer to another database. 
 
 A [Consumer][consumer-object] can have many credentials.
 
@@ -82,19 +82,19 @@ $ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
 
-form parameter               | description
- ---                         | ---
-`name`                       | The name to associate to the credential. In OAuth 2.0 this would be the application name.
-`client_id`<br>*optional*    | You can optionally set your own unique `client_id`. If missing, the plugin will generate one.
-`client_secret`<br>*optional*| You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
-`redirect_uri`               | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
+form parameter                | description
+---                           | ---
+`name`                        | The name to associate to the credential. In OAuth 2.0 this would be the application name.
+`client_id`<br>*optional*     | You can optionally set your own unique `client_id`. If missing, the plugin will generate one.
+`client_secret`<br>*optional* | You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
+`redirect_uri`                | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
 
 ### OAuth 2.0 Endpoints
 
 By default the OAuth 2.0 plugin listens on the following endpoints:
 
 Endpoint                     | description
- ---                         | ---
+---                         | ---
 `/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled.
 `/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows.
 
@@ -226,10 +226,10 @@ When a client has been authenticated and authorized, the plugin will append some
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
 [ssl-plugin]: /plugins/ssl/
-[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
-[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 [authorization-code-grant]: https://tools.ietf.org/html/rfc6749#section-4.1
 [client-credentials]: https://tools.ietf.org/html/rfc6749#section-4.4
 [implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2

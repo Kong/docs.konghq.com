@@ -9,7 +9,7 @@ breadcrumbs:
 
 Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
 
----
+----
 
 ## Installation
 
@@ -39,17 +39,17 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                                      | description
- ---:                                               | ---
-`name`                                              | Name of the plugin to use, in this case: `request_transformer`
-`consumer_id`<br>*optional*                         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.add.headers`<br>*optional*                   | Comma separated list of `headername:value` to add to the request headers.
-`value.add.querystring`<br>*optional*               | Comma separated list of `paramname:value` to add to the request querystring.
-`value.add.form`<br>*optional*                      | Comma separated list of `paramname:value` to add to the request body in urlencoded format.
-`value.remove.headers`<br>*optional*                | Comma separated list of header names to remove from the request.
-`value.remove.querystring`<br>*optional*            | Comma separated list of parameter names to remove from the request querystring.
-`value.remove.form`<br>*optional*                   | Comma separated list of parameter names to remove from the request body.
+form parameter                            | description
+---:                                      | ---
+`name`                                    | Name of the plugin to use, in this case: `request_transformer`
+`consumer_id`<br>*optional*               | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`value.add.headers`<br>*optional*         | Comma separated list of `headername:value` to add to the request headers.
+`value.add.querystring`<br>*optional*     | Comma separated list of `paramname:value` to add to the request querystring.
+`value.add.form`<br>*optional*            | Comma separated list of `paramname:value` to add to the request body in urlencoded format.
+`value.remove.headers`<br>*optional*      | Comma separated list of header names to remove from the request.
+`value.remove.querystring`<br>*optional*  | Comma separated list of parameter names to remove from the request querystring.
+`value.remove.form`<br>*optional*         | Comma separated list of parameter names to remove from the request body.
 
-[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
-[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

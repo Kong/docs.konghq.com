@@ -37,17 +37,17 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
 parameter                     | description
- ---                          | ---
+---                           | ---
 `name`                        | The name of the plugin to use, in this case: `udplog`
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.host`                  | The IP address or host name to send data to
 `value.port`                  | The port to send data to on the upstream server
 `value.timeout`               | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
 
-[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
-[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 ## Log Format
 
@@ -110,6 +110,6 @@ A few considerations on the above JSON object:
 * `api` contains Kong properties about the specific API requested
 * `authenticated_entity` contains Kong properties about the authenticated consumer (if an authentication plugin has been enabled)
 * `latencies` contains some data about the latencies involved:
-   * `proxy` is the time it took for the final service to process the request
-   * `kong` is the internal Kong latency that it took to run all the plugins
-   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
+  * `proxy` is the time it took for the final service to process the request
+  * `kong` is the internal Kong latency that it took to run all the plugins
+  * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.

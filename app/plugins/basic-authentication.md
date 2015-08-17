@@ -9,7 +9,7 @@ breadcrumbs:
 
 Add Basic Authentication to your APIs, with username and password protection.
 
----
+----
 
 ## Installation
 
@@ -22,7 +22,7 @@ plugins_available:
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
 
----
+----
 
 ## Configuration
 
@@ -37,11 +37,11 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter               | description
- ---                         | ---
+---                          | ---
 `name`                       | The name of the plugin to use, in this case: `basicauth`
 `value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
----
+----
 
 ## Usage
 
@@ -56,7 +56,7 @@ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
 
 parameter                       | description
- ---                            | ---
+---                             | ---
 `username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
@@ -75,7 +75,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/basicauth \
 `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
 form parameter             | description
- ---                       | ---
+---                        | ---
 `username`                 | The username to use in the Basic Authentication
 `password`<br>*optional*   | The password to use in the Basic Authentication
 
@@ -89,7 +89,7 @@ When a client has been authenticated, the plugin will append some headers to the
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
-[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
-[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

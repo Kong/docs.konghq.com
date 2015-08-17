@@ -9,7 +9,7 @@ breadcrumbs:
 
 Logs your traffic to [Mashape Analytics][analytics]. (There is a FREE plan with 24h data retention)
 
----
+----
 
 ## Installation
 
@@ -35,7 +35,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins/ \
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
 parameter                        | description
- ---                             | ---
+---                              | ---
 `name`                           | The name of the plugin to use, in this case: `mashape-analytics`
 `consumer_id`<br>*optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.service_token`            | The service token provided to you by [Mashape Analytics][analytics]
@@ -47,7 +47,7 @@ parameter                        | description
 **Note**: If you are enabling the `log_body` option, make sure the buffer size never exceeds 1Mb, or the Mashape Analytics server will refuse the batch. You can ensure this by setting a lower `batch_size` value.`
 
 [analytics]: https://apianalytics.com
-[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#consumer-object
-[faq-authentication]: /docs/{{site.data.kong_latest.version}}/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

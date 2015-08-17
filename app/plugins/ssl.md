@@ -13,7 +13,7 @@ breadcrumbs:
 
 Binds a specific SSL certificate to the `public_dns` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
----
+----
 
 ## Installation
 
@@ -40,12 +40,12 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                                           | description
- ---:                                               | ---
-`name`                                              | Name of the plugin to use, in this case: `ssl`
-`value.cert`                                        | Specify the path of the certificate file to upload.
-`value.key`                                         | Specify the path of the certificate key file to upload
-`value.only_https`<br>*optional*                    | Specify if the service should only be available through an `https` protocol. Defaults to `false`.
+form parameter                    | description
+---:                              | ---
+`name`                            | Name of the plugin to use, in this case: `ssl`
+`value.cert`                      | Specify the path of the certificate file to upload.
+`value.key`                       | Specify the path of the certificate key file to upload
+`value.only_https`<br>*optional*  | Specify if the service should only be available through an `https` protocol. Defaults to `false`.
 
 ## Creating an SSL certificate
 
@@ -68,7 +68,5 @@ openssl x509 -req -in server.csr -signkey server.key -out server.crt
 
 If you followed the steps above the certificate will be stored in a file named `server.crt`, while the key is at `server.key`.
 
-
-
-[api-object]: /docs/{{site.data.kong_latest.version}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.version}}/configuration#ssl_cert_path
+[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
+[configuration]: /docs/{{site.data.kong_latest.release}}/configuration#ssl_cert_path

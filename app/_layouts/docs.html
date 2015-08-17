@@ -18,16 +18,16 @@ id: documentation
     <div class="dropdown page-header-right">
       <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Version {{page.kong_version}}
-        {% if page.kong_version == site.data.kong_latest.version %}<em>(latest)</em>{% endif %}
+        {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
         {% for ver in site.data.kong_versions %}
-          {% unless page.kong_version == ver.version %}
+          {% unless page.kong_version == ver.release %}
             <li>
-              <a href="/docs/{{ver.version}}"{% if ver.version == page.kong_version %} class="active"{% endif %}>
-                {{ver.version}}
-                {% if ver.version == site.data.kong_latest.version %}(latest){% endif %}
+              <a href="/docs/{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                {{ver.release}}
+                {% if ver.release == site.data.kong_latest.release %}(latest){% endif %}
               </a>
             </li>
           {% endunless %}
@@ -52,9 +52,7 @@ id: documentation
       <ul>
         {% for item in nav.items %}
         <li>
-          <a href="{{docs_url | append: item.url}}"
-             {% if page.url contains item.url %}class="active"{% endif %}>{{item.text}}</a>
-
+          <a href="{{docs_url | append: item.url}}" {% if page.url contains item.url %}class="active"{% endif %}>{{item.text}}</a>
           {% if item.items %}
           <ul>
             {% for subitem in item.items %}
@@ -74,7 +72,7 @@ id: documentation
   <div class="page-content-container">
     <div class="page-content">
       <div class="content">
-        {% if page.kong_version != site.data.kong_latest.version %}
+        {% if page.kong_version != site.data.kong_latest.release %}
         <div class="alert alert-warning">
           <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
         </div>
