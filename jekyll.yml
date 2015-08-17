@@ -2,9 +2,11 @@
 name: Kong - Open-Source API and Microservice Management Layer
 url: https://getkong.org
 share_url: http://getkong.org
-repo: https://github.com/Mashape/kong
-docrepo: https://github.com/Mashape/getkong.org
 documentation: docs
+repos:
+  kong: https://github.com/Mashape/kong
+  docs: https://github.com/Mashape/getkong.org
+  oauth2_hello_world: https://github.com/Mashape/kong-oauth2-hello-world
 
 # Build settings
 source: app

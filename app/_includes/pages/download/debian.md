@@ -4,11 +4,11 @@
 
 1. **Installation:**
 
-    For Debian 6 Squeeze download this package: [kong-{{site.data.kong_latest.version}}.squeeze_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.squeeze_all.deb)
+    For Debian 6 Squeeze download this package: [kong-{{site.data.kong_latest.version}}.squeeze_all.deb]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.squeeze_all.deb)
 
-    For Debian 7 Wheezy download this package: [kong-{{site.data.kong_latest.version}}.wheezy_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.wheezy_all.deb)
+    For Debian 7 Wheezy download this package: [kong-{{site.data.kong_latest.version}}.wheezy_all.deb]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.wheezy_all.deb)
 
-    For Debian 8 Jessie download this package: [kong-{{site.data.kong_latest.version}}.jessie_all.deb](https://github.com/Mashape/kong/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.jessie_all.deb)
+    For Debian 8 Jessie download this package: [kong-{{site.data.kong_latest.version}}.jessie_all.deb]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.jessie_all.deb)
 
     Then execute:
 

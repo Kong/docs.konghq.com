@@ -1,12 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - HTTP Log
 header_title: HTTP Log
 header_icon: /assets/images/icons/plugins/http-log.png
-header_btn_text: Report Bug
-header_btn_href: https://github.com/Mashape/kong/issues/new
-header_btn_target: _blank
 breadcrumbs:
   Plugins: /plugins
 ---

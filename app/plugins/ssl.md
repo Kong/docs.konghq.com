@@ -1,11 +1,8 @@
 ---
-sitemap: true
 id: page-plugin
 title: Plugins - SSL Certificate
 header_title: SSL Certificate
 header_icon: /assets/images/icons/plugins/ssl.png
-header_btn_text: Report Bug
-header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
 ---

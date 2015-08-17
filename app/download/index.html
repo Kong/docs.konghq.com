@@ -3,8 +3,6 @@ title: Kong Download and Installation
 layout: default
 ---
 
-{% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
-
 <div class="page page-download">
 
   {% include header.html %}
@@ -13,8 +11,8 @@ layout: default
     <div class="container">
       <div class="select-download-method">
         <h2>Select your installation method:</h2>
-        <p>Latest Kong version: {{site.data.kong_latest.version}} (<a href="{{site.repo}}/releases/tag/{{site.data.kong_latest.version}}">see latest release</a>)</p>
-        <p>Updating from an older version? Check the <a href="https://github.com/Mashape/kong/blob/master/UPDATE.md">update guide</a>.</p>
+        <p>Latest Kong version: {{site.data.kong_latest.version}} (<a href="{{ site.repos.kong }}/releases/latest">see latest release</a>)</p>
+        <p>Updating from an older version? Check the <a href="{{ site.repos.kong }}/blob/master/UPDATE.md">update guide</a>.</p>
       </div>
 
       <div class="tab-list-wrap">
