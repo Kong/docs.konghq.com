@@ -109,3 +109,7 @@ A few considerations on the above JSON object:
   * `proxy` is the time it took for the final service to process the request
   * `kong` is the internal Kong latency that it took to run all the plugins
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
+
+# Note
+
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[nginx_working_dir](/docs/{{site.data.kong_latest.version}}/configuration/#nginx_working_dir)}/logs/error.log
