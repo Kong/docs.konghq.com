@@ -4,7 +4,7 @@
 .project
 .bundle
 .idea
-npm-debug.log
+*.log
 
 # jekyll
 Gemfile.lock

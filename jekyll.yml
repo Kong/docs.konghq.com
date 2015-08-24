@@ -1,3 +1,23 @@
+# Build settings
+source: app
+destination: dist
+permalink: pretty
+timezone: America/San_Francisco
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - fenced_code_blocks
+    - no_intra_emphasis
+    - autolink
+    - with_toc_data
+    - strikethrough
+    - lax_html_blocks
+    - superscript
+    - tables
+
+keep_files:
+  - assets
+
 # Site settings
 name: Kong
 title: Open-Source API and Microservice Management Layer
@@ -11,16 +31,6 @@ repos:
   docs: https://github.com/Mashape/getkong.org
   oauth2_hello_world: https://github.com/Mashape/kong-oauth2-hello-world
 
-# Build settings
-source: app
-destination: dist
-permalink: pretty
-plugins: ./app/_jekyll_plugins
-keep_files: ['assets']
-timezone: America/San_Francisco
-markdown: redcarpet
-redcarpet:
-  extensions: ["fenced_code_blocks", "no_intra_emphasis", "autolink", "with_toc_data", "strikethrough"," lax_html_blocks", "superscript", "tables"]
 defaults:
   -
     scope:
@@ -29,14 +39,14 @@ defaults:
       layout: 'page'
   -
     scope:
-      path: 'about'
-    values:
-      layout: 'about'
-  -
-    scope:
       path: 'docs'
     values:
       layout: 'docs'
+  -
+    scope:
+      path: 'about'
+    values:
+      layout: 'about'
   -
     scope:
       path: 'plugins'
