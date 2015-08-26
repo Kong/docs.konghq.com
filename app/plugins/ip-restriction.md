@@ -39,7 +39,7 @@ form parameter                  | description
 ---                             | ---
 `name`                          | The name of the plugin to use, in this case: `ip_restriction`
 `consumer_id`<br>*optional*     | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.whitelist`<br>*optional* | Comma separated list of IPs or CIDR ranges to whitelist.
+`value.whitelist`<br>*optional* | Comma separated list of IPs or CIDR ranges to whitelist. Whitelist always takes the precedence over blackist.
 `value.blacklist`<br>*optional* | Comma separated list of IPs or CIDR ranges to blacklist.
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
