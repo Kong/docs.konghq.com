@@ -15,7 +15,7 @@ title: Adding Consumers
 
 In the last section, we learned how to add plugins to Kong, in this section we're going to learn how to add consumers to your Kong instances. Consumers are associated to individuals using your API, and can be used for tracking, access management, and more.
 
-**Note:** This section assumes you have [enabled][enabling-plugins] the [keyauth][keyauth] plugin. If you haven't, you can either [enable the plugin][enabling-plugins] or skip steps two and three.
+**Note:** This section assumes you have [enabled][enabling-plugins] the [key-auth][key-auth] plugin. If you haven't, you can either [enable the plugin][enabling-plugins] or skip steps two and three.
 
 1. ### Create a Consumer through the RESTful API
 
@@ -54,7 +54,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     ```bash
     $ curl -i -X POST \
-      --url http://localhost:8001/consumers/Jason/keyauth/ \
+      --url http://localhost:8001/consumers/Jason/key-auth/ \
       --data 'key=ENTER_KEY_HERE'
     ```
 
@@ -73,6 +73,6 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
 Now that we've covered the basics of creating consumers, enabling plugins, and adding apis you can start giving out access and sharing your API.
 
-[keyauth]: /plugins/key-authentication
+[key-auth]: /plugins/key-authentication
 [API-consumers]: /docs/{{page.kong_version}}/admin-api#create-consumer
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins

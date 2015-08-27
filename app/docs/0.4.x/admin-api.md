@@ -81,19 +81,19 @@ HTTP 200 OK
     "plugins": {
         "available_on_server": [
             "ssl",
-            "keyauth",
-            "basicauth",
+            "key-auth",
+            "basic-auth",
             "oauth2",
-            "ratelimiting",
-            "tcplog",
-            "udplog",
-            "filelog",
-            "httplog",
+            "rate-limiting",
+            "tcp-log",
+            "udp-log",
+            "file-log",
+            "http-log",
             "cors",
-            "request_transformer",
-            "response_transformer",
-            "requestsizelimiting",
-            "ip_restriction",
+            "request-transformer",
+            "response-transformer",
+            "request-size-limiting",
+            "ip-restriction",
             "mashape-analytics"
         ],
         "enabled_in_cluster": {}
@@ -543,19 +543,19 @@ HTTP 200 OK
 {
     "enabled_plugins": [
         "ssl",
-        "keyauth",
-        "basicauth",
+        "key-auth",
+        "basic-auth",
         "oauth2",
-        "ratelimiting",
-        "tcplog",
-        "udplog",
-        "filelog",
-        "httplog",
+        "rate-limiting",
+        "tcp-log",
+        "udp-log",
+        "file-log",
+        "http-log",
         "cors",
-        "request_transformer",
-        "response_transformer",
-        "requestsizelimiting",
-        "analytics"
+        "request-transformer",
+        "response-transformer",
+        "request-size-limiting",
+        "mashape-analytics"
     ]
 }
 ```
@@ -601,7 +601,7 @@ When creating a Plugin Configuration on top of an API, every request made by a c
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "ratelimiting",
+    "name": "rate-limiting",
     "value": {
         "minute": 20,
         "hour": 500
@@ -638,7 +638,7 @@ HTTP 201 Created
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "ratelimiting",
+    "name": "rate-limiting",
     "value": {
         "minute": 20,
         "hour": 500
@@ -680,7 +680,7 @@ HTTP 200 OK
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-          "name": "ratelimiting",
+          "name": "rate-limiting",
           "value": {
               "minute": 20,
               "hour": 500
@@ -692,7 +692,7 @@ HTTP 200 OK
           "id": "3f924084-1adb-40a5-c042-63b19db421a2",
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
           "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-          "name": "ratelimiting",
+          "name": "rate-limiting",
           "value": {
               "minute": 300,
               "hour": 20000
@@ -739,7 +739,7 @@ HTTP 200 OK
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-          "name": "ratelimiting",
+          "name": "rate-limiting",
           "value": {
               "minute": 20,
               "hour": 500
@@ -751,7 +751,7 @@ HTTP 200 OK
           "id": "3f924084-1adb-40a5-c042-63b19db421a2",
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
           "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-          "name": "ratelimiting",
+          "name": "rate-limiting",
           "value": {
               "minute": 300,
               "hour": 20000
@@ -792,7 +792,7 @@ HTTP 200 OK
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "ratelimiting",
+    "name": "rate-limiting",
     "value": {
         "minute": 20,
         "hour": 500

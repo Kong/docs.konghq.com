@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - keyauth
+  - key-auth
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -28,7 +28,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=keyauth" \
+    --data "name=key-auth" \
     --data "value.key_names=key_name1,key_name2"
 ```
 
@@ -36,7 +36,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter                          | description
 ---                                     | ---
-`name`                                  | The name of the plugin to use, in this case: `keyauth`
+`name`                                  | The name of the plugin to use, in this case: `key-auth`
 `value.key_names`                       | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: `apikey`
 `value.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
@@ -66,7 +66,7 @@ A [Consumer][consumer-object] can have many credentials.
 Then you can finally provision new key credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/keyauth \
+$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth \
     --data "key=some_key"
 ```
 

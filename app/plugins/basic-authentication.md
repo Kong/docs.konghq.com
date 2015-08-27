@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - basicauth
+  - basic-auth
 ```
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
@@ -30,7 +30,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=basicauth" \
+    --data "name=basic-auth" \
     --data "value.hide_credentials=true"
 ```
 
@@ -38,7 +38,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter               | description
 ---                          | ---
-`name`                       | The name of the plugin to use, in this case: `basicauth`
+`name`                       | The name of the plugin to use, in this case: `basic-auth`
 `value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ----
@@ -67,7 +67,7 @@ A [Consumer][consumer-object] can have many credentials.
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/basicauth \
+$ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
     --data "username=user123" \
     --data "password=secret"
 ```

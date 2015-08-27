@@ -21,7 +21,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - requestsizelimiting
+  - request-size-limiting
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -32,7 +32,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=requestsizelimiting" \
+    --data "name=request-size-limiting" \
     --data "value.allowed_payload_size=128"
 ```
 
@@ -40,7 +40,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter                | required    | description
 ---                           | ---         | ---
-`name`                        | *required*  | The name of the plugin to use, in this case: `requestsizelimiting`
+`name`                        | *required*  | The name of the plugin to use, in this case: `request-size-limiting`
 `consumer_id`                 | *optional*  | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.allowed_payload_size`  | *optional*  | Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
 

@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - tcplog
+  - tcp-log
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -28,7 +28,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=tcplog" \
+    --data "name=tcp-log" \
     --data "value.host=127.0.0.1" \
     --data "value.port=9999" \
     --data "value.timeout=1000" \
@@ -39,7 +39,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter                               | description
 ---                                    | ---
-`name`                                  | The name of the plugin to use, in this case: `tcplog`
+`name`                                  | The name of the plugin to use, in this case: `tcp-log`
 `consumer_id`<br>*optional*             | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.host`                            | The IP address or host name to send data to
 `value.port`                            | The port to send data to on the upstream server
