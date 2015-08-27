@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - request_transformer
+  - request-transformer
 ```
 
 Every node in your Kong cluster should have the same `plugins_available` property value.
@@ -28,7 +28,7 @@ Configuring the plugin is as simple as a single API call, you can configure and 
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=request_transformer" \
+    --data "name=request-transformer" \
     --data "value.add.headers=x-new-header:some_value, x-another-header:some_value" \
     --data "value.add.querystring=new-param:some_value, another-param:some_value" \
     --data "value.add.form=new-form-param:some_value, another-form-param:some_value" \
@@ -41,7 +41,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter                            | description
 ---:                                      | ---
-`name`                                    | Name of the plugin to use, in this case: `request_transformer`
+`name`                                    | Name of the plugin to use, in this case: `request-transformer`
 `consumer_id`<br>*optional*               | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.add.headers`<br>*optional*         | Comma separated list of `headername:value` to add to the request headers.
 `value.add.querystring`<br>*optional*     | Comma separated list of `paramname:value` to add to the request querystring.

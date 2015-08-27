@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - httplog
+  - http-log
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -28,7 +28,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=httplog" \
+    --data "name=http-log" \
     --data "value.http_endpoint=http://mockbin.org/bin/:id/" \
     --data "value.method=POST" \
     --data "value.timeout=1000" \
@@ -39,7 +39,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter              | description
 ---                         | ---
-`name`                      | The name of the plugin to use, in this case: `httplog`
+`name`                      | The name of the plugin to use, in this case: `http-log`
 `consumer_id`<br>*optional* | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.http_endpoint`       | The HTTP endpoint (including the protocol to use) where to send the data to
 `value.method`              | Default `POST`. An optional method used to send data to the http server, other supported values are PUT, PATCH

@@ -15,15 +15,15 @@ title: Enabling Plugins
 
 In this section, you'll learn how to enable plugins. One of the core principals of Kong is its extensibility through [plugins][plugins]. Plugins allow you to easily add new features to your API or make your API easier to manage.
 
-First, we'll have you configure and enable the [keyauth][keyauth] plugin to add authentication to your API.
+First, we'll have you configure and enable the [key-auth][key-auth] plugin to add authentication to your API.
 
 1. ### Add plugin to your Kong config
 
-    Add `keyauth` under the `plugins_available` property in your Kong instance [configuration file][configuration] should it not already exist:
+    Add `key-auth` under the `plugins_available` property in your Kong instance [configuration file][configuration] should it not already exist:
 
     ```yaml
     plugins_available:
-      - keyauth
+      - key-auth
     ```
 
 2. ### Restart Kong
@@ -45,14 +45,14 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
     ```bash
     $ curl -i -X POST \
       --url http://localhost:8001/apis/mockbin/plugins/ \
-      --data 'name=keyauth'
+      --data 'name=key-auth'
     ```
 
     **Note:** This plugin also accepts a `value.key_names` parameter, which defaults to `[apikey]`. It is a list of headers and parameters names (both are supported) that are supposed to contain the API key during a request.
 
 4. ### Verify that the plugin is enabled for your API
 
-    Issue the following cURL request to verify that the [keyauth][keyauth] plugin was enabled for your API:
+    Issue the following cURL request to verify that the [key-auth][key-auth] plugin was enabled for your API:
 
     ```bash
     $ curl -i -X GET \
@@ -73,13 +73,13 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
 ### Next Steps
 
-Now that you've enabled the **keyauth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
+Now that you've enabled the **key-auth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[keyauth]: /plugins/key-authentication
+[key-auth]: /plugins/key-authentication
 [plugins]: /plugins
 [configuration]: /docs/{{page.kong_version}}/configuration
 [adding-consumers]: /docs/{{page.kong_version}}/getting-started/adding-consumers

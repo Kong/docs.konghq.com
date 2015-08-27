@@ -163,15 +163,15 @@ Once Kong has recognized which API an incoming request should be proxied to, it 
 - 2. It looks into the datastore for Plugin Configurations for that API
 - 3. Some Plugin Configurations were found, for example:
   - a. A key authentication Plugin Configuration
-  - b. A ratelimiting Plugin Configuration (that also has a `consumer_id` property)
+  - b. A rate-limiting Plugin Configuration (that also has a `consumer_id` property)
 - 4. Kong executes the highest priority plugin (key authentication in this case)
   - a. User is now authenticated
-- 5. Kong tries to execute the ratelimiting plugin
-  - a. If the user is the one in the `consumer_id`, ratelimiting is applied
-  - b. If the user is not the one configured, ratelimiting is not applied
+- 5. Kong tries to execute the rate-limiting plugin
+  - a. If the user is the one in the `consumer_id`, rate-limiting is applied
+  - b. If the user is not the one configured, rate-limiting is not applied
 - 6. Request is proxied
 
-**Note**: The proxying of a request might happen before or after plugins execution, since each plugin can hook itself anywhere in the lifecycle of a request. In this case (authentication + ratelimiting) it is of course mandatory those plugins be executed **before** proxying happens.
+**Note**: The proxying of a request might happen before or after plugins execution, since each plugin can hook itself anywhere in the lifecycle of a request. In this case (authentication + rate-limiting) it is of course mandatory those plugins be executed **before** proxying happens.
 
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
 [API]: /docs/{{page.kong_version}}/admin-api

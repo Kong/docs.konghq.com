@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - filelog
+  - file-log
 ```
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
@@ -28,7 +28,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=filelog" \
+    --data "name=file-log" \
     --data "value.path=/tmp/file.log"
 ```
 
@@ -36,7 +36,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter                | description
 ---                           | ---
-`name`                        | The name of the plugin to use, in this case: `filelog`
+`name`                        | The name of the plugin to use, in this case: `file-log`
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `value.path`                  | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
 
