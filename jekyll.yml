@@ -31,6 +31,9 @@ repos:
   docs: https://github.com/Mashape/getkong.org
   oauth2_hello_world: https://github.com/Mashape/kong-oauth2-hello-world
 
+gems:
+  - jekyll-redirect-from
+
 defaults:
   -
     scope:
