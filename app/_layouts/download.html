@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="page {{ page.id }}">
+  {% include header.html %}
+
+  <div class="container">
+    <aside class="page-navigation">
+      <nav>
+        <h5>Packages</h5>
+
+        <ul class="packages">
+          {% for method in site.data.distributions %}
+            {% if method.soon != true and method.type == 'package' %}
+              <li {% if page.url contains method.id %}class="active"{% endif %}>
+                <a href="/download/{{ method.id}}/">{{ method.name }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+
+        <br/>
+<!--
+        <h5>Cloud</h5>
+
+        <ul class="cloud">
+          {% for method in site.data.distributions %}
+            {% if method.type == 'cloud' %}
+              <li {% if page.url contains method.id %}class="active"{% endif %}>
+                <a href="/download/{{ method.id}}/">{{ method.name }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+-->
+      </nav>
+    </aside>
+
+    <div class="page-content-container">
+      <div class="page-content">
+        <div class="content">
+          {{ content }}
+
+          <hr/>
+
+          <div class="help">
+            <img align="middle" src="/assets/images/icons/icn-lifesaver.svg"/> Having Trouble? <a href="/community/">We're Here to Help!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

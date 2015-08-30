@@ -1,11 +1,17 @@
+---
+id: page-download
+title: Downloads - Other
+header_title: Other
+header_icon: /assets/images/icons/icn-installation.svg
+breadcrumbs:
+  Downloads: /downloads
+---
+
 {% capture lua_version %}{{site.data.kong_latest.dependencies.lua}}{% endcapture %}
 {% capture luarocks_version %}{{site.data.kong_latest.dependencies.luarocks}}{% endcapture %}
 {% capture dnsmasq_version %}{{site.data.kong_latest.dependencies.dnsmasq}}{% endcapture %}
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 {% capture openresty_version %}{{site.data.kong_latest.dependencies.openresty}}{% endcapture %}
-
-
-### Other
 
 1. **Install dependencies:**
 

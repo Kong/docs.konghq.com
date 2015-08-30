@@ -1,16 +1,29 @@
+---
+id: page-download
+title: Downloads - CentOS
+header_title: CentOS Installation
+header_icon: /assets/images/icons/icn-installation.svg
+breadcrumbs:
+  Downloads: /downloads
+---
+
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### CentOS 5/6/7
+### Packages:
 
-1. **Installation:**
+Start by downloading the corresponding package for your configuration:
 
-    For CentOS 5/RHEL5 download this package: [kong-{{site.data.kong_latest.version}}.el5.noarch.rpm]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el5.noarch.rpm) *- Recommended for Amazon Linux AMI*
+- [CentOS 5/RHEL5]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el5.noarch.rpm)
+- [CentOS 6/RHEL6]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el6.noarch.rpm)
+- [CentOS 7/RHEL7]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el7.noarch.rpm)
 
-    For CentOS 6/RHEL6 download this package: [kong-{{site.data.kong_latest.version}}.el6.noarch.rpm]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el6.noarch.rpm)
+----
 
-    For CentOS 7/RHEL7 download this package: [kong-{{site.data.kong_latest.version}}.el7.noarch.rpm]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el7.noarch.rpm)
+### Installation:
 
-    Then execute:
+1. **Install the Package:**
+
+    After downloading the [package](#packages), execute:
 
     ```bash
     $ sudo yum install epel-release

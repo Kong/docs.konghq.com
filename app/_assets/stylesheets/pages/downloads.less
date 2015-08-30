@@ -1,0 +1,60 @@
+.page-downloads {
+  text-align: center;
+
+  h6 {
+    margin: 30px 0;
+  }
+
+  .box {
+    height: 70px;
+
+    border: 1px solid rgba(0, 0, 0, 10%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+
+    p {
+      margin: 0;
+      text-align: center;
+    }
+
+    .icon {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+
+  .distributions {
+    .row {
+      margin-bottom: 30px;
+    }
+
+    .box {
+      height: 100px;
+
+      &:hover {
+        background-color: #FAFAFA;
+      }
+
+      &.soon {
+        position: relative;
+
+        &:after {
+          content: url('/assets/images/ribbon-soon.svg');
+          width: 49px;
+          height: 49px;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  section {
+    padding: 80px 0;
+  }
+}

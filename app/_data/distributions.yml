@@ -1,0 +1,53 @@
+- id: docker
+  name: Docker
+  type: package
+
+- id: centos
+  name: CentOS
+  type: package
+
+- id: debian
+  name: Debian
+  type: package
+
+- id: ubuntu
+  name: Ubuntu
+  type: package
+
+- id: osx
+  name: OS X
+  type: package
+
+- id: aws
+  name: Amazon AWS
+  soon: true
+  type: cloud
+
+- id: azure
+  name: Windows Azure
+  soon: true
+  type: cloud
+
+- id: digital-ocean
+  name: Digital Ocean
+  soon: true
+  type: cloud
+
+- id: freebsd
+  name: FreeBSD
+  soon: true
+  type: package
+
+- id: google-cloud
+  name: Google Cloud Platform
+  soon: true
+  type: cloud
+
+- id: heroku
+  name: Heroku
+  soon: true
+  type: cloud
+
+- id: other
+  name: Other
+  type: package

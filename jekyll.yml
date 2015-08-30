@@ -35,23 +35,27 @@ gems:
   - jekyll-redirect-from
 
 defaults:
-  -
-    scope:
+  - scope:
       path: ''
     values:
       layout: 'page'
-  -
-    scope:
+
+  - scope:
+      path: 'download'
+    values:
+      layout: 'download'
+
+  - scope:
       path: 'docs'
     values:
       layout: 'docs'
-  -
-    scope:
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
-  -
-    scope:
+
+  - scope:
       path: 'plugins'
     values:
       header_btn_text: Report Bug

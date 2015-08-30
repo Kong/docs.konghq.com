@@ -1,16 +1,29 @@
+---
+id: page-download
+title: Downloads - Ubuntu
+header_title: Ubuntu Installation
+header_icon: /assets/images/icons/icn-installation.svg
+breadcrumbs:
+  Downloads: /downloads
+---
+
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### Ubuntu 12.04/14.04/15.04
+### Packages:
 
-1. **Installation:**
+Start by downloading the corresponding package for your configuration:
 
-    For Ubuntu 12.04 Precise download this package: [kong-{{site.data.kong_latest.version}}.precise_all.deb]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
+- [Ubuntu 12.04 Precise]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
+- [Ubuntu 14.04 Trusty]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
+- [Ubuntu 15.04 Vivid]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
 
-    For Ubuntu 14.04 Trusty download this package: [kong-{{site.data.kong_latest.version}}.trusty_all.deb]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
+----
 
-    For Ubuntu 15.04 Vivid Vervet download this package: [kong-{{site.data.kong_latest.version}}.vivid_all.deb]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
+### Installation:
 
-    Then execute:
+1. **Install the Package:**
+
+    After downloading the [package](#packages), execute:
 
     ```bash
     $ sudo apt-get update

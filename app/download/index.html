@@ -3,78 +3,45 @@ title: Kong Download and Installation
 layout: default
 ---
 
-<div class="page page-download">
+<div class="page page-downloads">
 
   {% include header.html %}
 
   <section class="content-section">
     <div class="container">
-      <div class="select-download-method">
-        <h2>Select your installation method:</h2>
-        <p>Latest Kong version: {{site.data.kong_latest.release}} (<a href="{{ site.repos.kong }}/releases/latest">see latest release</a>)</p>
-        <p>Updating from an older version? Check the <a href="{{ site.repos.kong }}/blob/master/UPDATE.md">update guide</a>.</p>
+      <h2>Install Kong {{ site.data.kong_latest.release }}</h2>
+      <p>See <a href="">Changelog</a></p>
+
+      <!-- <div class="box">
+        <p>
+          <img class="icon" src="/assets/images/icons/icn-script.svg"/>
+          <strong>Kong Installation Script:</strong> Run this script in your server and automatically download the package you need.
+        </p>
+      </div> -->
+
+      <h6>installation methods</h6>
+
+      <div class="distributions">
+        {% for method in site.data.distributions %}
+          {% capture mod %}{{ forloop.index0 | modulo:4 }}{% endcapture %}
+
+          {% if mod == '0' or forloop.first %}
+            <div class="row">
+          {% endif %}
+
+          <a href="{% if method.soon %}#{% else %}/download/{{ method.id }}/{% endif %}" class="box three columns {% if method.soon %}soon{% endif %}" title="{{ method.name }}">
+            <img src="/assets/images/logos/logo-{{ method.id }}.svg" alt="{{ method.name }}"/>
+          </a>
+
+          {% if mod == '3' or forloop.last %}
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
 
-      <div class="tab-list-wrap">
-        <ul class="tab-list row">
-          <li class="active">
-            <a href="#docker">
-              <span><img src="/assets/images/logos/logo-docker.svg" width="120" height="28" alt="Docker"/></span>
-            </a>
-          </li>
-          <li>
-            <a href="#centos">
-              <span><img src="/assets/images/logos/logo-centos.svg" width="130" height="32" alt="CentOS"/></span>
-            </a>
-          </li>
-          <li>
-            <a href="#debian">
-              <span><img src="/assets/images/logos/logo-debian.svg" width="92" height="32" alt="Debian"/></span>
-            </a>
-          </li>
-          <li>
-            <a href="#ubuntu">
-              <span><img src="/assets/images/logos/logo-ubuntu.svg" width="98" height="22" alt="Ubuntu"/></span>
-            </a>
-          </li>
-          <li>
-            <a href="#osx">
-              <span><img src="/assets/images/logos/logo-osx.svg" width="82" height="24" alt="OS X"/></span>
-            </a>
-          </li>
-          <li>
-            <a href="#other">
-              <span><img src="/assets/images/logos/other.svg" width="82" height="24" alt="Other"/></span>
-            </a>
-          </li>
-        </ul>
-      </div>
 
-      <div class="content">
-        <div class="tab-content">
-          <div class="tab-pane active" id="docker">
-            {% markdown pages/download/docker.md %}
-          </div>
-          <div class="tab-pane" id="centos">
-            {% markdown pages/download/centos.md %}
-          </div>
-          <div class="tab-pane" id="debian">
-            {% markdown pages/download/debian.md %}
-          </div>
-          <div class="tab-pane" id="ubuntu">
-            {% markdown pages/download/ubuntu.md %}
-          </div>
-          <div class="tab-pane" id="osx">
-            {% markdown pages/download/osx.md %}
-          </div>
-          <div class="tab-pane" id="other">
-            {% markdown pages/download/other.md %}
-          </div>
+      <p>Updating from an older version? Check the <a href="{{ site.repos.kong }}/blob/master/UPDATE.md">update guide</a>.</p>
 
-          <h4>Having trouble? <a href="/community">We're here to help!</a></h4>
-
-        </div>
-      </div>
     </div>
   </section>
 </div>

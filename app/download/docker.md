@@ -1,4 +1,11 @@
-### Docker
+---
+id: page-download
+title: Downloads - Docker
+header_title: Docker Installation
+header_icon: /assets/images/icons/icn-installation.svg
+breadcrumbs:
+  Downloads: /downloads
+---
 
 Details about how to use Kong in Docker can be found on the Dockerhub repo hosting the image: [mashape/kong](https://hub.docker.com/r/mashape/kong/).
 
