@@ -1,10 +1,10 @@
 ---
-id: page-download
+id: page-install-method
 title: Downloads - Other
-header_title: Other
+header_title: Compile Source
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
-  Downloads: /download
+  Installation: /install
 ---
 
 {% capture lua_version %}{{site.data.kong_latest.dependencies.lua}}{% endcapture %}

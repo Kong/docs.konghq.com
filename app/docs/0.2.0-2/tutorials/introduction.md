@@ -4,7 +4,7 @@ title: Tutorials - Introduction
 
 # Introduction
 
-The following tutorials assume that Kong has been properly installed using one of the [available installation methods](/download).
+The following tutorials assume that Kong has been properly installed using one of the [available installation methods](/install/).
 
 Kong will look by default for a configuration file at `/etc/kong/kong.yml`. If you installed Kong from luarocks, you can copy the default configuration from the luarocks tree (luarocks --help to print it). Usually:
 

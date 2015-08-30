@@ -7,7 +7,7 @@ title: Enabling Plugins
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
-    <li>Make sure you've <a href="/download">installed Kong</a> - It should only take a minute!</li>
+    <li>Make sure you've <a href="/install/">installed Kong</a> - It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
     <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
   </ol>
@@ -83,9 +83,7 @@ Go to [Adding Consumers &rsaquo;][adding-consumers]
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
 [keyauth]: /plugins/key-authentication
-[install]: /download
-[plugins]: /plugins
-[configuration]: /download
+[plugins]: /plugins/
 [migrations]: /docs/{{page.kong_version}}/migrations
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins

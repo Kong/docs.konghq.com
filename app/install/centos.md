@@ -1,10 +1,10 @@
 ---
-id: page-download
-title: Downloads - Ubuntu
-header_title: Ubuntu Installation
+id: page-install-method
+title: Downloads - CentOS
+header_title: CentOS Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
-  Downloads: /download
+  Installation: /install
 ---
 
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
@@ -13,9 +13,9 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [Ubuntu 12.04 Precise]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
-- [Ubuntu 14.04 Trusty]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
-- [Ubuntu 15.04 Vivid]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
+- [CentOS 5/RHEL5]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el5.noarch.rpm)
+- [CentOS 6/RHEL6]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el6.noarch.rpm)
+- [CentOS 7/RHEL7]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el7.noarch.rpm)
 
 ----
 
@@ -26,9 +26,8 @@ Start by downloading the corresponding package for your configuration:
     After downloading the [package](#packages), execute:
 
     ```bash
-    $ sudo apt-get update
-    $ sudo apt-get install netcat lua5.1 openssl libpcre3 dnsmasq
-    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
+    $ sudo yum install epel-release
+    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
     ```
 
 2. **Configure Cassandra**

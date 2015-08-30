@@ -41,9 +41,9 @@ defaults:
       layout: 'page'
 
   - scope:
-      path: 'download'
+      path: 'install'
     values:
-      layout: 'download'
+      layout: 'install'
 
   - scope:
       path: 'docs'

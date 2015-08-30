@@ -201,7 +201,7 @@ $(function () {
 
   // Analytics
 
-  $('[href^="/download"]').each(function () {
+  $('[href^="/install"]').each(function () {
     var $link = $(this)
 
     analytics.trackLink(this, 'Clicked download', {

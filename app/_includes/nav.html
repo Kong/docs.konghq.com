@@ -9,12 +9,12 @@
       <ul>
         <li><a href="/about/" {% if page.url contains "/about/" %} class="active"{% endif %}>About</a></li>
         <li><a href="/docs/" {% if page.url contains "/docs/" %} class="active"{% endif %}>Docs</a></li>
-        <li><a href="/plugins" {% if page.url == "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
-        <li><a href="/community" {% if page.url == "/community/" %} class="active"{% endif %}>Community</a></li>
-        <li><a href="/enterprise" {% if page.url == "/enterprise/" %} class="active"{% endif %}>Enterprise Demo</a></li>
+        <li><a href="/plugins/" {% if page.url == "/plugins/" %} class="active"{% endif %}>Plugins</a></li>
+        <li><a href="/community/" {% if page.url == "/community/" %} class="active"{% endif %}>Community</a></li>
+        <li><a href="/enterprise/" {% if page.url == "/enterprise/" %} class="active"{% endif %}>Enterprise Demo</a></li>
         <li><a href="{{ site.repos.kong }}" target="_blank">GitHub</a></li>
         <li>
-          <a href="/download" class="button button-dark{% if page.url == "/download/" %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Installation</a>
+          <a href="/install/" class="button button-dark{% if page.url == "/install/" %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Installation</a>
         </li>
       </ul>
     </nav>

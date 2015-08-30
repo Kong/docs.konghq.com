@@ -48,6 +48,6 @@
   soon: true
   type: cloud
 
-- id: other
-  name: Other
-  type: package
+- id: compile
+  name: Source
+  type: compile

@@ -1,10 +1,10 @@
 ---
-id: page-download
+id: page-install-method
 title: Downloads - Debian
 header_title: Debian Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
-  Downloads: /download
+  Installation: /install
 ---
 
 {% capture cassandra_version %}{{ site.data.kong_latest.dependencies.cassandra }}{% endcapture %}

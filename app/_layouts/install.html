@@ -8,13 +8,23 @@ layout: default
   <div class="container">
     <aside class="page-navigation">
       <nav>
+        <h5>Source</h5>
+
+        <ul class="packages">
+          <li {% if page.url contains 'compile' %}class="active"{% endif %}>
+            <a href="/install/compile/">Compile</a>
+          </li>
+        </ul>
+
+        <br/>
+
         <h5>Packages</h5>
 
         <ul class="packages">
           {% for method in site.data.distributions %}
             {% if method.soon != true and method.type == 'package' %}
               <li {% if page.url contains method.id %}class="active"{% endif %}>
-                <a href="/download/{{ method.id}}/">{{ method.name }}</a>
+                <a href="/install/{{ method.id}}/">{{ method.name }}</a>
               </li>
             {% endif %}
           {% endfor %}
@@ -28,7 +38,7 @@ layout: default
           {% for method in site.data.distributions %}
             {% if method.type == 'cloud' %}
               <li {% if page.url contains method.id %}class="active"{% endif %}>
-                <a href="/download/{{ method.id}}/">{{ method.name }}</a>
+                <a href="/install/{{ method.id}}/">{{ method.name }}</a>
               </li>
             {% endif %}
           {% endfor %}

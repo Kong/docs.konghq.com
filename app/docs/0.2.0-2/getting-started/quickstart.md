@@ -5,7 +5,7 @@ title: 5-minute Quickstart
 # 5-minute Quickstart
 
 <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!
+  <strong>Before you start:</strong> Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
 In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving you access to the RESTful admin interface to manage your APIs, consumers, and more. Data sent through the admin API is stored in your Cassandra instance or cluster, meaning you **must** have Cassandra running **before** starting Kong.
@@ -57,7 +57,6 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[install]: /download
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
 [configuration]: /docs/{{page.kong_version}}/configuration
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api

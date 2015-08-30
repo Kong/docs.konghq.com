@@ -7,7 +7,7 @@ title: Adding your API
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
-    <li>Make sure you've <a href="/download">installed Kong</a> &mdash; It should only take a minute!</li>
+    <li>Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
   </ol>
 </div>
@@ -80,8 +80,6 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[install]: /download
-[configuration]: /download
 [migrations]: /docs/{{page.kong_version}}/migrations
 [quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins

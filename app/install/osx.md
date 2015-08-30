@@ -1,21 +1,18 @@
 ---
-id: page-download
-title: Downloads - CentOS
-header_title: CentOS Installation
+id: page-install-method
+title: Downloads - OS X
+header_title: OS X Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
-  Downloads: /download
+  Installation: /install
 ---
 
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
 ### Packages:
 
-Start by downloading the corresponding package for your configuration:
-
-- [CentOS 5/RHEL5]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el5.noarch.rpm)
-- [CentOS 6/RHEL6]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el6.noarch.rpm)
-- [CentOS 7/RHEL7]({{ site.repos.kong }}/releases/download/{{ site.data.kong_latest.version }}/kong-{{ site.data.kong_latest.version }}.el7.noarch.rpm)
+- [.pkg Installer]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.osx.pkg)
+- [Homebrew Formula](https://github.com/Mashape/homebrew-kong)
 
 ----
 
@@ -23,12 +20,7 @@ Start by downloading the corresponding package for your configuration:
 
 1. **Install the Package:**
 
-    After downloading the [package](#packages), execute:
-
-    ```bash
-    $ sudo yum install epel-release
-    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
-    ```
+    **Note**: After downloading the [Installer](#packages), you will have to **right click**, select "Open" and authorize it.
 
 2. **Configure Cassandra**
 

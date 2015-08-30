@@ -1,18 +1,21 @@
 ---
-id: page-download
-title: Downloads - OS X
-header_title: OS X Installation
+id: page-install-method
+title: Downloads - Ubuntu
+header_title: Ubuntu Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
-  Downloads: /download
+  Installation: /install
 ---
 
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
 ### Packages:
 
-- [.pkg Installer]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.osx.pkg)
-- [Homebrew Formula](https://github.com/Mashape/homebrew-kong)
+Start by downloading the corresponding package for your configuration:
+
+- [Ubuntu 12.04 Precise]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
+- [Ubuntu 14.04 Trusty]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
+- [Ubuntu 15.04 Vivid]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
 
 ----
 
@@ -20,7 +23,13 @@ breadcrumbs:
 
 1. **Install the Package:**
 
-    **Note**: After downloading the [Installer](#packages), you will have to **right click**, select "Open" and authorize it.
+    After downloading the [package](#packages), execute:
+
+    ```bash
+    $ sudo apt-get update
+    $ sudo apt-get install netcat lua5.1 openssl libpcre3 dnsmasq
+    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
+    ```
 
 2. **Configure Cassandra**
 
