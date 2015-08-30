@@ -4,7 +4,7 @@ title: Downloads - Other
 header_title: Other
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
-  Downloads: /downloads
+  Downloads: /download
 ---
 
 {% capture lua_version %}{{site.data.kong_latest.dependencies.lua}}{% endcapture %}

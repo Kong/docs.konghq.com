@@ -4,7 +4,7 @@ title: Downloads - Debian
 header_title: Debian Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
-  Downloads: /downloads
+  Downloads: /download
 ---
 
 {% capture cassandra_version %}{{ site.data.kong_latest.dependencies.cassandra }}{% endcapture %}
