@@ -29,6 +29,7 @@ links:
 repos:
   kong: https://github.com/Mashape/kong
   docs: https://github.com/Mashape/getkong.org
+  homebrew: https://github.com/Mashape/homebrew-kong
   oauth2_hello_world: https://github.com/Mashape/kong-oauth2-hello-world
 
 gems:

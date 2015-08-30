@@ -12,7 +12,7 @@ breadcrumbs:
 ### Packages:
 
 - [.pkg Installer]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.osx.pkg)
-- [Homebrew Formula](https://github.com/Mashape/homebrew-kong)
+- [Homebrew Formula]({{ site.repos.homebrew }})
 
 ----
 
