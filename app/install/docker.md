@@ -1,6 +1,6 @@
 ---
 id: page-install-method
-title: Downloads - Docker
+title: Install - Docker
 header_title: Docker Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:

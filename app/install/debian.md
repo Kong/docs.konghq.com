@@ -1,6 +1,6 @@
 ---
 id: page-install-method
-title: Downloads - Debian
+title: Install - Debian
 header_title: Debian Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:

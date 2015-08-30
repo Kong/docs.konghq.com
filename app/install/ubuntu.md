@@ -1,6 +1,6 @@
 ---
 id: page-install-method
-title: Downloads - Ubuntu
+title: Install - Ubuntu
 header_title: Ubuntu Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:

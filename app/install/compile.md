@@ -1,6 +1,6 @@
 ---
 id: page-install-method
-title: Downloads - Other
+title: Install - Compile From Source
 header_title: Compile Source
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:

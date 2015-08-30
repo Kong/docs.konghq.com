@@ -1,6 +1,6 @@
 ---
 id: page-install-method
-title: Downloads - CentOS
+title: Install - CentOS
 header_title: CentOS Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
