@@ -20,7 +20,6 @@
 
 - id: aws
   name: Amazon AWS
-  soon: true
   type: cloud
 
 - id: azure

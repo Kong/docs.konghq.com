@@ -31,19 +31,19 @@ layout: default
         </ul>
 
         <br/>
-<!--
+
         <h5>Cloud</h5>
 
         <ul class="cloud">
           {% for method in site.data.distributions %}
-            {% if method.type == 'cloud' %}
+            {% if method.soon != true and method.type == 'cloud' %}
               <li {% if page.url contains method.id %}class="active"{% endif %}>
                 <a href="/install/{{ method.id}}/">{{ method.name }}</a>
               </li>
             {% endif %}
           {% endfor %}
         </ul>
--->
+
       </nav>
     </aside>
 

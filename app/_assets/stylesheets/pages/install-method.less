@@ -9,15 +9,23 @@
 
   nav {
     ul {
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: left;
+      li {
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: left;
 
-        &:before {
-          width: 16px;
-          height: 16px;
-          margin-right: 10px;
+          &:before {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+          }
+        }
+
+        &.active {
+          a {
+            color: @blue;
+          }
         }
       }
 
@@ -83,6 +91,12 @@
           line-height: 39px;
           height: 40px;
 
+          em {
+            margin-left: 5px;
+            font-style: normal;
+            color: #aab0b2;
+          }
+
           &:active {
             background: #f7f9fa;
           }
@@ -130,6 +144,22 @@
           height: 36px;
           line-height: 36px;
           left: -19px;
+        }
+      }
+    }
+  }
+}
+
+.page-install-method.aws {
+  .content {
+    ul {
+      li {
+        a {
+          min-width: 154px;
+        }
+
+        &:nth-of-type(4):after {
+          display: none;
         }
       }
     }
