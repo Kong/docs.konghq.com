@@ -70,7 +70,7 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 
 ----
 
-### Steps to Launch a Kong Stack on AWS:
+### Instructions:
 
 1. **Key Pairs**:
 
@@ -86,18 +86,24 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 
     Fill in all the parameters details. If you chose to launch Kong with Cassandra you would be asked to fill in extra parameters to create a Cassandra cluster. check the description of each field and provide appropriate values.
 
+    **Note**: *consult the [templates documentation on Github]({{ site.repos.cloudformation }}) for detailed description of parameters*
+
 5. **Option page**:
 
     Add Tags and other fields according to your requirements.  
 
     **Note:** *The template is configured to add a "Name" tag to each relevant resource*
 
+5. **Template Documentation**:
+
+    For more details on parameters and futher configuration options, please consult the [templates documentation on Github]({{ site.repos.cloudformation }})
+
 6. **Grab a Coffee!**:
 
     It will take several minutes *(~20 minutes)* to create the stack. Once the stack has a status of `CREATE_COMPLETE`, click on *"Output"* tab to get the proxy and Admin URL, it may take *60 seconds* more for links to become active.
 
     **Note**: *To monitor the progress go to AWS CloudFormation console, select the stack in the list. In the stack details pane, click the "Events" tab to see the progress.*
-   
+
 7. **Use Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.release}}/getting-started/quickstart).
