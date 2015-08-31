@@ -160,7 +160,7 @@ Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.c
 databases_available:
   cassandra:
     properties:
-      hosts:
+      contact_points:
         - "localhost:9042"
       timeout: 1000
       keyspace: kong
@@ -171,15 +171,15 @@ databases_available:
 
   A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
 
-  **`databases_available.*.properties.hosts`**
+  **`databases_available.*.properties.contact_points`**
 
-  The hosts(s) on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list of strings containing the host and the port of your node(s).
+  The contact points on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list of strings containing the host and the port of your node(s).
 
   **Example:**
 
 ```yaml
 properties:
-  hosts:
+  contact_points:
     - "52.5.149.55"      # will connect on port 9042 (default)
     - "52.5.149.56:9000" # will connect on port 9000
 ```
