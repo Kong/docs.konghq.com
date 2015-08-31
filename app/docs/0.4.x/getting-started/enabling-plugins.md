@@ -48,7 +48,7 @@ First, we'll have you configure and enable the [key-auth][key-auth] plugin to ad
       --data 'name=key-auth'
     ```
 
-    **Note:** This plugin also accepts a `value.key_names` parameter, which defaults to `[apikey]`. It is a list of headers and parameters names (both are supported) that are supposed to contain the API key during a request.
+    **Note:** This plugin also accepts a `config.key_names` parameter, which defaults to `[apikey]`. It is a list of headers and parameters names (both are supported) that are supposed to contain the API key during a request.
 
 4. ### Verify that the plugin is enabled for your API
 

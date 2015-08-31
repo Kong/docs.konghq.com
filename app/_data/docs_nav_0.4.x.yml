@@ -94,30 +94,29 @@
       url: /admin-api/#plugin-object
       items:
         -
-          text: Retrieve Installed Plugins
-          url: /admin-api/#retrieve-installed-plugins
+          text: Add Plugin
+          url: /admin-api/#add-plugin
+        -
+          text: List all Plugins
+          url: /admin-api/#list-all-plugins
+        -
+          text: List Plugins per API
+          url: /admin-api/#list-plugins-per-api
+        -
+          text: Retrieve Plugin
+          url: /admin-api/#retrieve-plugin
+        -
+          text: Update Plugin
+          url: /admin-api/#update-plugin
+        -
+          text: Update or Add Plugin
+          url: /admin-api/#update-or-add-plugin
+        -
+          text: Delete Plugin
+          url: /admin-api/#delete-plugin
+        -
+          text: Retrieve Enabled Plugins
+          url: /admin-api/#retrieve-enabled-plugins
         -
           text: Retrieve Plugin Schema
           url: /admin-api/#retrieve-plugin-schema
-    -
-      text: Plugin Configuration Object routes
-      url: /admin-api/#plugin-configuration-object
-      items:
-        -
-          text: Create Plugin Configuration
-          url: /admin-api/#create-plugin-configuration
-        -
-          text: List per-API Plugin Configurations
-          url: /admin-api/#list-per-api-plugin-configurations
-        -
-          text: List all Plugin Configurations
-          url: /admin-api/#list-all-plugin-configurations
-        -
-          text: Update Plugin Configuration
-          url: /admin-api/#update-plugin-configuration
-        -
-          text: Update or create Plugin Configuration
-          url: /admin-api/#update-or-create-plugin-configuration
-        -
-          text: Delete Plugin Configuration
-          url: /admin-api/#delete-plugin-configuration

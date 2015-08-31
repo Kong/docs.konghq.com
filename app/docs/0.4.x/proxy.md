@@ -65,12 +65,12 @@ As explained in the [Adding your API][adding-your-api] quickstart guide, Kong is
 $ curl -i -X POST \
   --url http://localhost:8001/apis/ \
   -d 'name=mockbin' \
-  -d 'target_url=http://mockbin.com/' \
-  -d 'public_dns=mockbin.com' \
+  -d 'upstream_url=http://mockbin.com/' \
+  -d 'inbound_dns=mockbin.com' \
   -d 'path=/status'
 ```
 
-This request tells Kong to add an API named "**mockbin**", with its upstream resource being located at "**http://mockbin.com**". The `public_dns` and `path` properties are the ones used by Kong to route a request to that API. Both properties are not required but at least one must be specified.
+This request tells Kong to add an API named "**mockbin**", with its upstream resource being located at "**http://mockbin.com**". The `inbound_dns` and `path` properties are the ones used by Kong to route a request to that API. Both properties are not required but at least one must be specified.
 
 Once this request is processed by Kong, the API is stored in your Cassandra cluster and a request to the **Proxy port** will trigger a query to Cassandra and put your API in Kong's proxying cache.
 
@@ -80,7 +80,7 @@ Once this request is processed by Kong, the API is stored in your Cassandra clus
 
 #### Using the "**Host**" header
 
-Now that we added an API to Kong (via the Admin API), Kong can proxy it via the `8000` port. One way to do so is to specify the API's `public_dns` value in the `Host` header of your request:
+Now that we added an API to Kong (via the Admin API), Kong can proxy it via the `8000` port. One way to do so is to specify the API's `inbound_dns` value in the `Host` header of your request:
 
 ```bash
 $ curl -i -X GET \
@@ -88,7 +88,7 @@ $ curl -i -X GET \
   --header 'Host: mockbin.com'
 ```
 
-By doing so, Kong recognizes the `Host` value as being the `public_dns` of the "mockbin" API. The request will be routed to the upstream API and Kong will execute any configured [plugin][plugins] for that API.
+By doing so, Kong recognizes the `Host` value as being the `inbound_dns` of the "mockbin" API. The request will be routed to the upstream API and Kong will execute any configured [plugin][plugins] for that API.
 
 <div class="alert alert-warning">
   <strong>Going to production:</strong> If you're planning to go into production with your setup, you'll most likely not want your consumers to manually set the "<strong>Host</strong>" header on each request. You can let Kong and DNS take care of it by simply setting an A or CNAME record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
@@ -108,11 +108,11 @@ This request will be proxied just as well by Kong.
 
 #### Using a wildcard DNS
 
-Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. A "**public_dns**" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
+Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. An "**inbound_dns**" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
 
-A "**public_dns**" of form `*.example.org` will route requests with "**Host**" values such as `a.example.org` or `x.y.example.org`.
+An "**inbound_dns**" of form `*.example.org` will route requests with "**Host**" values such as `a.example.org` or `x.y.example.org`.
 
-A "**public_dns**" of form `example.*` will route requests with "**Host**" values such as `example.com` or `example.org`.
+An "**inbound_dns**" of form `example.*` will route requests with "**Host**" values such as `example.com` or `example.org`.
 
 ---
 
@@ -127,7 +127,7 @@ $ curl -i -X GET \
   --url http://localhost:8000/status/200
 ```
 
-You will notice this command makes a request to `KONG_URL:PROXY_PORT/status/200`. Since the configured `target_url` is `http://mockbin.com/`, the request will hit the upstream service at `http://mockbin.com/status/200`.
+You will notice this command makes a request to `KONG_URL:PROXY_PORT/status/200`. Since the configured `upstream_url` is `http://mockbin.com/`, the request will hit the upstream service at `http://mockbin.com/status/200`.
 
 #### Using the "**strip_path**" property
 
