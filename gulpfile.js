@@ -106,11 +106,17 @@ gulp.task('browser-sync', function () {
 })
 
 gulp.task('gh-pages', function (cb) {
-  var config = {
-    message: 'Update ' + new Date().toISOString()
-  }
+  var cmd = 'git rev-parse --short HEAD'
 
-  ghPages.publish(path.join(__dirname, paths.dist), config, cb)
+  child_process.exec(cmd, function (err, stdout, stderr) {
+    if (err) {
+      cb(err)
+    }
+
+    ghPages.publish(path.join(__dirname, paths.dist), {
+      message: 'Deploying ' + stdout + '(' + new Date().toISOString() + ')'
+    }, cb)
+  })
 })
 
 gulp.task('cloudflare', function (cb) {
