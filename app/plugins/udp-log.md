@@ -29,9 +29,9 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=udp-log" \
-    --data "value.host=127.0.0.1" \
-    --data "value.port=9999" \
-    --data "value.timeout=1000"
+    --data "config.host=127.0.0.1" \
+    --data "config.port=9999" \
+    --data "config.timeout=1000"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -40,9 +40,9 @@ parameter                     | description
 ---                           | ---
 `name`                        | The name of the plugin to use, in this case: `udp-log`
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.host`                  | The IP address or host name to send data to
-`value.port`                  | The port to send data to on the upstream server
-`value.timeout`               | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
+`config.host`                  | The IP address or host name to send data to
+`config.port`                  | The port to send data to on the upstream server
+`config.timeout`               | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
 
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.release}}/configuration
@@ -87,8 +87,8 @@ Every request will be logged separately in a JSON object, with the following for
         "key": "2b64e2f0193851d4135a2e885cd08a65"
     },
     "api": {
-        "public_dns": "test.com",
-        "target_url": "http://httpbin.org/",
+        "inbound_dns": "test.com",
+        "upstream_url": "http://httpbin.org/",
         "created_at": 1432855823000,
         "name": "test.com",
         "id": "fbaf95a1-cd04-4bf6-cb73-6cb3285fef58"

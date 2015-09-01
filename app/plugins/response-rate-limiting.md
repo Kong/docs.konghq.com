@@ -29,7 +29,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=response-ratelimiting" \
-    --data "value.limits.{limit_name}.minute=10"
+    --data "config.limits.{limit_name}.minute=10"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -38,13 +38,13 @@ form parameter | required        | description
 ---            | ---             | ---
 `name`         | *required*      | The name of the plugin to use, in this case: `response-ratelimiting`
 `consumer_id`  | *optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.limits.{limit_name}` | *required*      |  This is a list of custom objects that you can set on the API, with arbitrary names set in the `{limit_name`} placeholder, like `value.limits.sms.minute=20` if your object is called "SMS".
-`value.limits.{limit_name}.second` | *semi-optional* | The amount of HTTP requests the developer can make per second. At least one limit must exist.
-`value.limits.{limit_name}.minute` | *semi-optional* | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
-`value.limits.{limit_name}.hour` | *semi-optional* | The amount of HTTP requests the developer can make per hour. At least one limit must exist.
-`value.limits.{limit_name}.day` | *semi-optional* | The amount of HTTP requests the developer can make per day. At least one limit must exist.
-`value.limits.{limit_name}.month` | *semi-optional* | The amount of HTTP requests the developer can make per month. At least one limit must exist.
-`value.limits.{limit_name}.year` | *semi-optional* | The amount of HTTP requests the developer can make per year. At least one limit must exist.
+`config.limits.{limit_name}` | *required*      |  This is a list of custom objects that you can set on the API, with arbitrary names set in the `{limit_name`} placeholder, like `config.limits.sms.minute=20` if your object is called "SMS".
+`config.limits.{limit_name}.second` | *semi-optional* | The amount of HTTP requests the developer can make per second. At least one limit must exist.
+`config.limits.{limit_name}.minute` | *semi-optional* | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
+`config.limits.{limit_name}.hour` | *semi-optional* | The amount of HTTP requests the developer can make per hour. At least one limit must exist.
+`config.limits.{limit_name}.day` | *semi-optional* | The amount of HTTP requests the developer can make per day. At least one limit must exist.
+`config.limits.{limit_name}.month` | *semi-optional* | The amount of HTTP requests the developer can make per month. At least one limit must exist.
+`config.limits.{limit_name}.year` | *semi-optional* | The amount of HTTP requests the developer can make per year. At least one limit must exist.
 
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.release}}/configuration

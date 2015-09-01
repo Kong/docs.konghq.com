@@ -29,10 +29,10 @@ Configuring the plugin is as simple as a single API call, you can configure and 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=response-transformer" \
-    --data "value.add.headers=x-new-header:some_value, x-another-header:some_value" \
-    --data "value.add.json=new-json-key:some_value, another-json-key:some_value" \
-    --data "value.remove.headers=x-toremove, x-another-one" \
-    --data "value.remove.json=json-key-toremove, another-json-key"
+    --data "config.add.headers=x-new-header:some_value, x-another-header:some_value" \
+    --data "config.add.json=new-json-key:some_value, another-json-key:some_value" \
+    --data "config.remove.headers=x-toremove, x-another-one" \
+    --data "config.remove.json=json-key-toremove, another-json-key"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -41,10 +41,10 @@ form parameter                        | description
 ---:                                  | ---
 `name`                                | Name of the plugin to use, in this case: `response-transformer`
 `consumer_id`<br>*optional*           | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.add.headers`<br>*optional*     | Comma separated list of `headername:value` to add to the response headers.
-`value.add.json`<br>*optional*        | Comma separated list of `jsonkey:value` to add to a JSON response body.
-`value.remove.headers`<br>*optional*  | Comma separated list of header names to remove from the response headers.
-`value.remove.json`<br>*optional*     | Comma separated list of JSON key names to remove from a JSON response body.
+`config.add.headers`<br>*optional*     | Comma separated list of `headername:value` to add to the response headers.
+`config.add.json`<br>*optional*        | Comma separated list of `jsonkey:value` to add to a JSON response body.
+`config.remove.headers`<br>*optional*  | Comma separated list of header names to remove from the response headers.
+`config.remove.json`<br>*optional*     | Comma separated list of JSON key names to remove from a JSON response body.
 
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.release}}/configuration

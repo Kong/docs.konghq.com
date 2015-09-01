@@ -31,7 +31,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=basic-auth" \
-    --data "value.hide_credentials=true"
+    --data "config.hide_credentials=true"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -39,7 +39,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter               | description
 ---                          | ---
 `name`                       | The name of the plugin to use, in this case: `basic-auth`
-`value.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ----
 

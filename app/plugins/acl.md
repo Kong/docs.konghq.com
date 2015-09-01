@@ -29,8 +29,8 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=acl" \
-    --data "value.whitelist=group1, group2" \
-    --data "value.blacklist=group3, group4"
+    --data "config.whitelist=group1, group2" \
+    --data "config.blacklist=group3, group4"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -38,8 +38,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter                  | description
 ---                             | ---
 `name`                          | The name of the plugin to use, in this case: `acl`
-`value.whitelist`<br>*optional* | Comma separated list of arbitrary group names that are allowed to consume the API. Whitelist always takes the precedence over blackist.
-`value.blacklist`<br>*optional* | Comma separated list of arbitrary group names that are not allowed to consume the API.
+`config.whitelist`<br>*optional* | Comma separated list of arbitrary group names that are allowed to consume the API. Whitelist always takes the precedence over blackist.
+`config.blacklist`<br>*optional* | Comma separated list of arbitrary group names that are not allowed to consume the API.
 
 ## Usage
 
