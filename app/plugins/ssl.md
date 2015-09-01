@@ -11,7 +11,7 @@ breadcrumbs:
   <strong>Note:</strong> This plugin requires Kong >= 0.3.0
 </div>
 
-Binds a specific SSL certificate to the `public_dns` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
+Binds a specific SSL certificate to the `inbound_dns` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
 ----
 
@@ -33,9 +33,9 @@ Configuring the plugin is as simple as a single API call, you can configure and 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --form "name=ssl" \
-    --form "value.cert=@/path/to/cert.pem" \
-    --form "value.key=@/path/to/cert.key" \
-    --form "value.only_https=true"
+    --form "config.cert=@/path/to/cert.pem" \
+    --form "config.key=@/path/to/cert.key" \
+    --form "config.only_https=true"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -43,9 +43,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter                    | description
 ---:                              | ---
 `name`                            | Name of the plugin to use, in this case: `ssl`
-`value.cert`                      | Specify the path of the certificate file to upload.
-`value.key`                       | Specify the path of the certificate key file to upload
-`value.only_https`<br>*optional*  | Specify if the service should only be available through an `https` protocol. Defaults to `false`.
+`config.cert`                      | Specify the path of the certificate file to upload.
+`config.key`                       | Specify the path of the certificate key file to upload
+`config.only_https`<br>*optional*  | Specify if the service should only be available through an `https` protocol. Defaults to `false`.
 
 ## Creating an SSL certificate
 

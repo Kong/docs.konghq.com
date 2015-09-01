@@ -29,8 +29,8 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=oauth2" \
-    --data "value.scopes=email,phone,address" \
-    --data "value.mandatory_scope=true"
+    --data "config.scopes=email,phone,address" \
+    --data "config.mandatory_scope=true"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -38,14 +38,14 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter                                    | default | description
 ---                                               | ---     | ---
 `name`                                            | `-`     | The name of the plugin to use, in this case: `oauth2`
-`value.scopes`                                    | `-`     | Describes an array of comma separated scope names that will be available to the end user
-`value.mandatory_scope`<br>*optional*             | `false` | An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
-`value.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
-`value.enable_authorization_code`<br>*optional*   | `true`  | An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
-`value.enable_client_credentials`<br>*optional*   | `false` | An optional boolean value to enable the Client Credentials Grant flow ([RFC 6742 Section 4.4][client-credentials])
-`value.enable_implicit_grant`<br>*optional*       | `false` | An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
-`value.enable_password_grant`<br>*optional*       | `false` | An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
-`value.hide_credentials`<br>*optional*            | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.scopes`                                    | `-`     | Describes an array of comma separated scope names that will be available to the end user
+`config.mandatory_scope`<br>*optional*             | `false` | An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
+`config.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
+`config.enable_authorization_code`<br>*optional*   | `true`  | An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
+`config.enable_client_credentials`<br>*optional*   | `false` | An optional boolean value to enable the Client Credentials Grant flow ([RFC 6742 Section 4.4][client-credentials])
+`config.enable_implicit_grant`<br>*optional*       | `false` | An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
+`config.enable_password_grant`<br>*optional*       | `false` | An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
+`config.hide_credentials`<br>*optional*            | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
 
@@ -64,7 +64,7 @@ $ curl -X POST http://kong:8001/consumers/ \
 parameter                       | required                                            | description
 ---                             | ---                                                 | ---
 `username`<br>*semi-optional*   | Either this field or `custom_id` must be specified. | The username of the consumer.
-`custom_id`<br>*semi-optional*  | Either this field or `username` must be specified.  | A custom identifier used to map the consumer to another database. 
+`custom_id`<br>*semi-optional*  | Either this field or `username` must be specified.  | A custom identifier used to map the consumer to another database.
 
 A [Consumer][consumer-object] can have many credentials.
 

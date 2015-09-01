@@ -29,7 +29,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=key-auth" \
-    --data "value.key_names=key_name1,key_name2"
+    --data "config.key_names=key_name1,key_name2"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -37,8 +37,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter                          | description
 ---                                     | ---
 `name`                                  | The name of the plugin to use, in this case: `key-auth`
-`value.key_names`                       | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: `apikey`
-`value.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.key_names`                       | Describes an array of comma separated parameter names where the plugin will look for a valid credential. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header, the querystring, a form parameter (in this order). For example: `apikey`
+`config.hide_credentials`<br>*optional*  | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ## Usage
 
