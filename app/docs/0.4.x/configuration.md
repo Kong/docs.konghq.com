@@ -36,7 +36,7 @@ They are all **required**.
 - [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
 
----
+----
 
 ### **proxy_port**
 
@@ -48,7 +48,7 @@ Port which Kong proxies requests through, developers using your API will make re
 proxy_port: 8000
 ```
 
----
+----
 
 ### **proxy_ssl_port**
 
@@ -60,7 +60,7 @@ Port which Kong proxies requests through under `https`, developers using your AP
 proxy_ssl_port: 8443
 ```
 
----
+----
 
 ### **admin_api_port**
 
@@ -75,7 +75,7 @@ or closed off network to ensure security.
 admin_api_port: 8001
 ```
 
----
+----
 
 ### **dnsmasq_port**
 
@@ -89,7 +89,7 @@ Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen 
 dnsmasq_port: 8053
 ```
 
----
+----
 
 ### **nginx_working_dir**
 
@@ -101,10 +101,9 @@ Similar to the NGINX `--prefix` option, it defines a directory that will contain
 nginx_working_dir: /usr/local/kong/
 ```
 
----
+----
 
 ### **plugins_available**
-
 
 
 A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
@@ -125,7 +124,7 @@ plugins_available:
   - requestsizelimiting
 ```
 
----
+----
 
 ### **send_anonymous_reports**
 
@@ -137,13 +136,17 @@ If set to `true`, Kong will send anonymous error reports to Mashape. This helps 
 send_anonymous_reports: true
 ```
 
----
+----
 
 ### **databases_available**
 
 A dictionary of databases Kong can connect to, and their respective properties.
 
 Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="https://www.instaclustr.com/?utm_source=partnership&amp;utm_medium=link&amp;utm_campaign=mashape" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+</div>
 
 **Default:**
 
@@ -255,7 +258,7 @@ ssl_certificate: "/path/to/cluster-ca-certificate.pem"
 keepalive: 60000
 ```
 
----
+----
 
 ### **database**
 
@@ -267,7 +270,7 @@ The desired database to use for this Kong instance as a string, matching one of 
 database: cassandra
 ```
 
----
+----
 
 ### **database_cache_expiration**
 
@@ -280,7 +283,7 @@ cached value is flushed and reflects any potential changes made during that time
 database_cache_expiration: 5 # in seconds
 ```
 
----
+----
 
 ### **ssl_cert_path**
 
@@ -294,7 +297,7 @@ By default this property is commented out, which will force Kong to use an auto-
 # ssl_cert_path: /path/to/certificate.pem
 ```
 
----
+----
 
 ### **ssl_key_path**
 
@@ -308,7 +311,7 @@ By default this property is commented out, which will force Kong to use an auto-
 # ssl_key_path: /path/to/certificate.key
 ```
 
----
+----
 
 ### **memory_cache_size**
 
@@ -320,7 +323,7 @@ A value specifying (in MB) the size of the internal preallocated in-memory cache
 memory_cache_size: 128 # in megabytes
 ```
 
----
+----
 
 ### **nginx**
 

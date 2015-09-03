@@ -34,6 +34,10 @@ Kong uses Cassandra as its primary datastore to store any data including APIs, C
 
 Depending on your use case, for production usage we reccomend having at least a two-node Cassandra cluster configured with a replication factor of `2`. The beauty of Cassandra is that it can be easily scaled horizontally to accomodate more requests and more data. We reccomend putting Cassandra on performant machines with a generous amount of CPU and Memory, like AWS `m4.xlarge` instances.
 
+<div class="alert alert-warning">
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="https://www.instaclustr.com/?utm_source=partnership&amp;utm_medium=link&amp;utm_campaign=mashape" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+</div>
+
 # SQL support
 
 While Cassandra supports every integration scenario, from the simplest to the more complex ones, in the future we plan to support an SQL datastore like PostgreSQL in order to keep Kong close to well known technologies that are already being used in your technology stack.
