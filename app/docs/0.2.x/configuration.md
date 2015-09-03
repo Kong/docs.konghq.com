@@ -27,7 +27,7 @@ They are all **required**.
 - [**nginx_working_dir**](#nginx_working_dir)
 - [**plugins_available**](#plugins_available)
 - [**send_anonymous_reports**](#send_anonymous_reports)
-- [**databases_available**](#databases_available.*)
+- [**databases_available**](#databases_available)
 - [**database**](#database)
 - [**database_cache_expiration**](#database_cache_expiration)
 - [**memory_cache_size**](#memory_cache_size)
@@ -122,7 +122,7 @@ send_anonymous_reports: true
 
 ---
 
-### `databases_available.*`
+### `databases_available`
 
 A dictionary of databases Kong can connect to, and their respective properties.
 
