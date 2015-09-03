@@ -9,7 +9,7 @@ breadcrumbs:
 
 Live server activity monitoring of NGINX Plus that provides key load and performance server metrics.
 
----
+----
 
 ## Dependencies
 

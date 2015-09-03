@@ -2,16 +2,16 @@
 title: Kong Download and Installation
 layout: default
 redirect_from: /download/
+header_title: Kong Download and Installation
+header_icon: /assets/images/icons/icn-download.svg
 ---
 
 <div class="page page-install">
-
-  {% include header.html %}
+  {% capture header_caption %}Latest Release v{{ site.data.kong_latest.release }} &bull; See <a href="{{ site.repos.kong }}/blob/master/CHANGELOG.md">Changelog</a>{% endcapture %}
+  {% include header.html header_caption=header_caption %}
 
   <section class="content-section">
     <div class="container">
-      <h2>Install Kong {{ site.data.kong_latest.release }}</h2>
-      <p>See <a href="{{ site.repos.kong }}/blob/master/CHANGELOG.md">Changelog</a></p>
 
       <!-- <div class="box">
         <p>
@@ -20,7 +20,7 @@ redirect_from: /download/
         </p>
       </div> -->
 
-      <h6>installation methods</h6>
+      <!-- <h6>installation methods</h6> -->
 
       <div class="distributions">
         {% for method in site.data.distributions %}

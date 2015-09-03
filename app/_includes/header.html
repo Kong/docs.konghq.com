@@ -1,31 +1,33 @@
-{% if page.header_icon && page.header_title %}
-<header class="page-header">
-  <div class="container">
-    {% if page.header_icon %}
-    <div class="page-header-icon">
-      <img src="{{ page.header_icon }}" alt="" />
-    </div>
-    {% endif %}
-    <div class="page-header-title">
-      {% if page.breadcrumbs %}
-      <ul class="breadcrumbs">
-        {% for breadcrumb in page.breadcrumbs %}
-        <li class="breadcrumb-item{% if page.url == breadcrumb[1] %} active{% endif %}"><a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a></li>
-        {% endfor %}
-      </ul>
+{% if page.header_icon and page.header_title %}
+  <header class="page-header">
+    <div class="container">
+      {% if page.header_icon %}
+        <div class="page-header-icon">
+          <img src="{{ page.header_icon }}" alt="" />
+        </div>
       {% endif %}
 
-      <h1>{{ page.header_title }}</h1>
-      {% if page.header_caption %}
-      <p>{{ page.header_caption }}</p>
+      <div class="page-header-title">
+        {% if page.breadcrumbs %}
+          <ul class="breadcrumbs">
+            {% for breadcrumb in page.breadcrumbs %}
+              <li class="breadcrumb-item{% if page.url == breadcrumb[1] %} active{% endif %}"><a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        <h1>{{ page.header_title }}</h1>
+
+        {% if page.header_caption or include.header_caption%}
+          <p>{{ page.header_caption }}{{ include.header_caption }}</p>
+        {% endif %}
+      </div>
+
+      {% if page.header_btn_text %}
+        <div class="page-header-right">
+          <a class="page-header-btn" href="{{ page.header_btn_href | liquify }}" target="{{ page.header_btn_target }}">{{ page.header_btn_text | liquify }}</a>
+        </div>
       {% endif %}
     </div>
-
-    {% if page.header_btn_text %}
-    <div class="page-header-right">
-      <a class="page-header-btn" href="{{ page.header_btn_href | liquify }}" target="{{ page.header_btn_target }}">{{ page.header_btn_text | liquify }}</a>
-    </div>
-    {% endif %}
-  </div>
-</header>
+  </header>
 {% endif %}
