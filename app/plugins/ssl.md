@@ -35,7 +35,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --form "name=ssl" \
     --form "value.cert=@/path/to/cert.pem" \
     --form "value.key=@/path/to/cert.key" \
-    --form "value.only_ssl=true"
+    --form "value.only_https=true"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
