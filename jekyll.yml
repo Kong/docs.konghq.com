@@ -26,9 +26,11 @@ documentation: docs
 links:
   web: https://getkong.org
   share: http://getkong.org # legacy link, must maintain for social sharing counters
+  download: https://downloadkong.org
 repos:
   kong: https://github.com/Mashape/kong
   docs: https://github.com/Mashape/getkong.org
+  vagrant: https://github.com/Mashape/kong-vagrant
   homebrew: https://github.com/Mashape/homebrew-kong
   cloudformation: https://github.com/Mashape/kong-dist-cloudformation
   oauth2_hello_world: https://github.com/Mashape/kong-oauth2-hello-world

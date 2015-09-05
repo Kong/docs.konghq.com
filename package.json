@@ -27,16 +27,16 @@
   },
   "devDependencies": {
     "bootstrap": "^3.3.5",
-    "browser-sync": "^2.8.2",
+    "browser-sync": "^2.9.1",
     "cloudflare": "0.0.8",
-    "del": "^1.2.0",
+    "del": "^2.0.1",
     "echint": "^1.5.0",
     "font-awesome": "^4.4.0",
-    "gh-pages": "^0.3.0",
-    "glob": "^5.0.10",
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^2.3.0",
-    "gulp-concat": "^2.5.2",
+    "gh-pages": "^0.4.0",
+    "glob": "^5.0.14",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-concat": "^2.6.0",
     "gulp-less": "^3.0.3",
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-plumber": "^1.0.1",
@@ -44,8 +44,8 @@
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.6",
-    "run-sequence": "^1.1.0",
+    "run-sequence": "^1.1.2",
     "skeleton-css": "^2.0.4",
-    "standard": "^5.1.0"
+    "standard": "^5.2.1"
   }
 }

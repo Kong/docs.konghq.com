@@ -11,7 +11,7 @@ breadcrumbs:
 
 ### Packages:
 
-- [.pkg Installer]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.osx.pkg)
+- [.pkg Installer]({{ site.links.download }}/osx.pkg)
 - [Homebrew Formula]({{ site.repos.homebrew }})
 
 ----

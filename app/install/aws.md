@@ -104,6 +104,12 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 
     **Note**: *To monitor the progress go to AWS CloudFormation console, select the stack in the list. In the stack details pane, click the "Events" tab to see the progress.*
 
+    <div class="alert alert-warning">
+      <div class="text-center">
+        <strong>Note</strong>: Check out the <a href="{{ site.repos.cloudformation }}">kong-dist-cloudformation</a> repository for further details.
+      </div>
+    </div>
+
 7. **Use Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.release}}/getting-started/quickstart).

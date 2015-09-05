@@ -6,6 +6,10 @@
   name: CentOS
   type: package
 
+- id: redhat
+  name: Red Hat
+  type: package
+
 - id: debian
   name: Debian
   type: package
@@ -47,6 +51,11 @@
   soon: true
   type: cloud
 
-- id: compile
-  name: Source
+- id: vagrant
+  name: Vagrant
+  type: compile
+  png: true
+
+- id: source
+  name: Compile
   type: compile

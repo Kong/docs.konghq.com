@@ -13,9 +13,9 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [Ubuntu 12.04 Precise]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
-- [Ubuntu 14.04 Trusty]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
-- [Ubuntu 15.04 Vivid]({{ site.repos.kong }}/releases/download/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
+- [Ubuntu 12.04 Precise]({{ site.links.download }}/precise_all.deb)
+- [Ubuntu 14.04 Trusty]({{ site.links.download }}/trusty_all.deb)
+- [Ubuntu 15.04 Vivid]({{ site.links.download }}/vivid_all.deb)
 
 ----
 

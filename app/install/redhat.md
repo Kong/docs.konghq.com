@@ -1,21 +1,21 @@
 ---
 id: page-install-method
-title: Install - Debian
-header_title: Debian Installation
+title: Install - Red Hat
+header_title: Red Hat Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
 ---
 
-{% capture cassandra_version %}{{ site.data.kong_latest.dependencies.cassandra }}{% endcapture %}
+{% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
 ### Packages:
 
 Start by downloading the corresponding package for your configuration:
 
-- [Debian 6 Squeeze ]({{ site.links.download }}/squeeze_all.deb)
-- [Debian 7 Wheezy]({{ site.links.download }}/wheezy_all.deb)
-- [Debian 8 Jessie]({{ site.links.download }}/jessie_all.deb)
+- [RHEL 5]({{ site.links.download }}/el5.noarch.rpm)
+- [RHEL 6]({{ site.links.download }}/el6.noarch.rpm)
+- [RHEL 7]({{ site.links.download }}/el7.noarch.rpm)
 
 ----
 
@@ -26,9 +26,8 @@ Start by downloading the corresponding package for your configuration:
     After downloading the [package](#packages), execute:
 
     ```bash
-    $ sudo apt-get update
-    $ sudo apt-get install netcat lua5.1 openssl libpcre3 dnsmasq
-    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
+    $ sudo yum install epel-release
+    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
     ```
 
 2. **Configure Cassandra**

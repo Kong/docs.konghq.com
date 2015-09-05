@@ -31,7 +31,7 @@ header_icon: /assets/images/icons/icn-download.svg
           {% endif %}
 
           <a href="{% if method.soon %}#{% else %}/install/{{ method.id }}/{% endif %}" class="box three columns {% if method.soon %}soon{% endif %}" title="{{ method.name }}">
-            <img src="/assets/images/logos/logo-{{ method.id }}.svg" alt="{{ method.name }}"/>
+            <img src="/assets/images/distributions/{{ method.id }}.{% if method.png %}png{% else %}svg{% endif %}" alt="{{ method.name }}"/>
           </a>
 
           {% if mod == '3' or forloop.last %}
