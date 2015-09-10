@@ -1,6 +1,10 @@
 - id: docker
   name: Docker
   type: package
+  
+  - id: aws
+  name: Amazon AWS
+  type: cloud
 
 - id: centos
   name: CentOS
@@ -21,10 +25,15 @@
 - id: osx
   name: OS X
   type: package
+  
+  - id: vagrant
+  name: Vagrant
+  type: compile
+  png: true
 
-- id: aws
-  name: Amazon AWS
-  type: cloud
+- id: source
+  name: Compile
+  type: compile
 
 - id: azure
   name: Windows Azure
@@ -51,11 +60,3 @@
   soon: true
   type: cloud
 
-- id: vagrant
-  name: Vagrant
-  type: compile
-  png: true
-
-- id: source
-  name: Compile
-  type: compile
