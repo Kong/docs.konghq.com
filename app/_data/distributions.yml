@@ -2,7 +2,7 @@
   name: Docker
   type: package
 
-  - id: aws
+- id: aws
   name: Amazon AWS
   type: cloud
 
