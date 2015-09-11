@@ -1,7 +1,7 @@
 - id: docker
   name: Docker
   type: package
-  
+
   - id: aws
   name: Amazon AWS
   type: cloud
@@ -25,8 +25,8 @@
 - id: osx
   name: OS X
   type: package
-  
-  - id: vagrant
+
+- id: vagrant
   name: Vagrant
   type: compile
   png: true
