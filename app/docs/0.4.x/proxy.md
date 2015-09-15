@@ -30,15 +30,15 @@ This guide will cover all proxying capabilities of Kong by explaining in detail 
   - [Using the "strip_path" property][4a]
 - 5. [Plugins execution][5]
 
-[1]: #1.-how-does-kong-route-a-request-to-an-api
-[2]: #2.-reminder:-how-to-add-an-api-to-kong
-[3]: #3.-proxy-an-api-by-its-dns-value
-[3a]: #using-the-"host"-header
-[3b]: #using-the-"x-host-override"-header
+[1]: #1-how-does-kong-route-a-request-to-an-api
+[2]: #2-reminder-how-to-add-an-api-to-kong
+[3]: #3-proxy-an-api-by-its-dns-value
+[3a]: #using-the-quot-host-quot-header
+[3b]: #using-the-quot-x-host-override-quot-header
 [3c]: #using-a-wildcard-dns
-[4]: #4.-proxy-an-api-by-its-path-value
-[4a]: #using-the-"strip_path"-property
-[5]: #5.-plugins-execution
+[4]: #4-proxy-an-api-by-its-path-value
+[4a]: #using-the-quot-strip_path-quot-property
+[5]: #5-plugins-execution
 
 ---
 
