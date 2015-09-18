@@ -20,6 +20,12 @@
     - name: IP Restriction
       info: Whitelist or blacklist IPs that can make requests
 
+    - name: HMAC Authentication
+      info: Add HMAC Authentication to your APIs
+
+    - name: ACL
+      info: Control which consumers can access APIs
+
 - name: Traffic Control
   info: Manage, throttle and restrict inbound and outbound API traffic
   plugins:

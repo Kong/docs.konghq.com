@@ -29,8 +29,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=ip-restriction" \
-    --data "config.whitelist=54.13.21.1, 143.1.0.0/24" \
-    --data "config.blacklist=184.31.52.75"
+    --data "config.whitelist=54.13.21.1, 143.1.0.0/24"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -39,8 +38,8 @@ form parameter                  | description
 ---                             | ---
 `name`                          | The name of the plugin to use, in this case: `ip-restriction`
 `consumer_id`<br>*optional*     | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.whitelist`<br>*optional* | Comma separated list of IPs or CIDR ranges to whitelist. Whitelist always takes the precedence over blackist.
-`config.blacklist`<br>*optional* | Comma separated list of IPs or CIDR ranges to blacklist.
+`config.whitelist`<br>*semi-optional* | Comma separated list of IPs or CIDR ranges to whitelist. At least one between `config.whitelist` or `config.blacklist` must be specified.
+`config.blacklist`<br>*semi-optional* | Comma separated list of IPs or CIDR ranges to blacklist. At least one between `config.whitelist` or `config.blacklist` must be specified.
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
