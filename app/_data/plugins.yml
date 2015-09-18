@@ -17,9 +17,6 @@
     - name: SSL
       info: Add a SSL certificate for an underlying service
 
-    - name: IP Restriction
-      info: Whitelist or blacklist IPs that can make requests
-
 - name: Traffic Control
   info: Manage, throttle and restric inbound and outboud API traffic
   plugins:
@@ -28,6 +25,9 @@
 
     - name: Request Size Limiting
       info: Block requests with bodies greater than a specific size
+
+       - name: IP Restriction
+      info: Whitelist or blacklist IPs that can make requests
 
 - name: Analytics & Monitoring
   info: Visualize, inspect and monitor APIs and microservices traffic
