@@ -1,5 +1,5 @@
-- name: Security
-  info: Protect your services with authentication and security layers
+- name: Authentication
+  info: Protect your services with an authentication layer
   plugins:
     - name: Basic Authentication
       info: Add Basic Authentication to your APIs
@@ -11,6 +11,15 @@
       id: oauth2-authentication
       info: Add an OAuth 2.0 authentication to your APIs
 
+    - name: HMAC Authentication
+      info: Add HMAC Authentication to your APIs
+
+- name: Security
+  info: Protect your services additional security layers
+  plugins:
+    - name: ACL
+      info: Control which consumers can access APIs
+
     - name: CORS
       info: Allow developers to make requests from the browser
 
@@ -20,17 +29,14 @@
     - name: IP Restriction
       info: Whitelist or blacklist IPs that can make requests
 
-    - name: HMAC Authentication
-      info: Add HMAC Authentication to your APIs
-
-    - name: ACL
-      info: Control which consumers can access APIs
-
 - name: Traffic Control
   info: Manage, throttle and restric inbound and outboud API traffic
   plugins:
     - name: Rate Limiting
       info: Rate-limit how many HTTP requests a developer can make
+
+    - name: Response Rate Limiting
+      info: Rate-Limiting based on a custom response header value
 
     - name: Request Size Limiting
       info: Block requests with bodies greater than a specific size

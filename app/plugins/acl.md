@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - ACL
 header_title: ACL
-header_icon: /assets/images/icons/plugins/ip-restriction.png
+header_icon: /assets/images/icons/plugins/acl.png
 breadcrumbs:
   Plugins: /plugins
 ---
