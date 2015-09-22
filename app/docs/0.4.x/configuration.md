@@ -113,21 +113,24 @@ A list of plugins installed on this node that Kong will load and try to execute 
 ```yaml
 plugins_available:
   - ssl
+  - jwt
+  - acl
   - cors
+  - oauth2
   - tcp-log
   - udp-log
   - file-log
   - http-log
-  - mashape-analytics
-  - oauth2
   - key-auth
+  - hmac-auth
   - basic-auth
   - ip-restriction
-  - rate-limiting
-  - response-rate-limiting
+  - mashape-analytics
   - request-transformer
   - response-transformer
   - request-size-limiting
+  - rate-limiting
+  - response-ratelimiting
 ```
 
 ----

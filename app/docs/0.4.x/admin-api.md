@@ -4,10 +4,10 @@ title: Admin API
 api_body: |
     Attribute | Description
     ---:| ---
-    `name`<br>*optional* | The API name. If none is specified, will default to the `inbound_dns`.
-    `inbound_dns`<br>*semi-optional* | The public DNS address that points to your API. For example, `mockbin.com`. At least `inbound_dns` or `path` or both should be specified.
-    `path`<br>*semi-optional* | The public path that points to your API. For example, `/someservice`. At least `inbound_dns` or `path` or both should be specified.
-    `strip_path`<br>*optional* | Strip the `path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `upstream_url/hello`. By default is `false`.
+    `name`<br>*optional* | The API name. If none is specified, will default to the `request_host` or `request_path`.
+    `request_host`<br>*semi-optional* | The public DNS address that points to your API. For example, `mockbin.com`. At least `request_host` or `request_path` or both should be specified.
+    `request_path`<br>*semi-optional* | The public path that points to your API. For example, `/someservice`. At least `request_host` or `request_path` or both should be specified.
+    `strip_request_path`<br>*optional* | Strip the `request_path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `upstream_url/hello`. By default is `false`.
     `preserve_host`<br>*optional* | Preserves the original `Host` header sent by the client, instead of replacing it with the hostname of the `upstream_url`. By default is `false`.
     `upstream_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
@@ -149,9 +149,9 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 ```json
 {
     "name": "Mockbin",
-    "inbound_dns": "mockbin.com",
-    "path": "/someservice",
-    "strip_path": false,
+    "request_host": "mockbin.com",
+    "request_path": "/someservice",
+    "strip_request_path": false,
     "preserve_host": false,
     "upstream_url": "https://mockbin.com"
 }
@@ -179,7 +179,7 @@ HTTP 201 Created
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin",
-    "inbound_dns": "mockbin.com",
+    "request_host": "mockbin.com",
     "upstream_url": "http://mockbin.com",
     "preserve_host": false,
     "created_at": 1422386534
@@ -208,7 +208,7 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin",
-    "inbound_dns": "mockbin.com",
+    "request_host": "mockbin.com",
     "upstream_url": "https://mockbin.com",
     "preserve_host": false,
     "created_at": 1422386534
@@ -229,7 +229,8 @@ Attributes | Description
 ---:| ---
 `id`<br>*optional* | A filter on the list based on the apis `id` field.
 `name`<br>*optional* | A filter on the list based on the apis `name` field.
-`inbound_dns`<br>*optional* | A filter on the list based on the apis `inbound_dns` field.
+`request_host`<br>*optional* | A filter on the list based on the apis `request_host` field.
+`request_path`<br>*optional* | A filter on the list based on the apis `request_path` field.
 `upstream_url`<br>*optional* | A filter on the list based on the apis `upstream_url` field.
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
@@ -247,7 +248,7 @@ HTTP 200 OK
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
             "name": "Mockbin",
-            "inbound_dns": "mockbin.com",
+            "request_host": "mockbin.com",
             "upstream_url": "https://mockbin.com",
             "preserve_host": false,
             "created_at": 1422386534
@@ -255,7 +256,7 @@ HTTP 200 OK
         {
             "id": "3f924084-1adb-40a5-c042-63b19db421a2",
             "name": "PrivateAPI",
-            "inbound_dns": "internal.api.com",
+            "request_host": "internal.api.com",
             "upstream_url": "http://private.api.com",
             "preserve_host": false,
             "created_at": 1422386585
@@ -291,7 +292,7 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin2",
-    "inbound_dns": "mockbin.com",
+    "request_host": "mockbin.com",
     "upstream_url": "http://mockbin.com",
     "preserve_host": false,
     "created_at": 1422386534
@@ -827,19 +828,24 @@ HTTP 200 OK
 {
     "enabled_plugins": [
         "ssl",
-        "keyauth",
-        "basicauth",
-        "oauth2",
-        "ratelimiting",
-        "tcplog",
-        "udplog",
-        "filelog",
-        "httplog",
+        "jwt",
+        "acl",
         "cors",
-        "request_transformer",
-        "response_transformer",
-        "requestsizelimiting",
-        "analytics"
+        "oauth2",
+        "tcp-log",
+        "udp-log",
+        "file-log",
+        "http-log",
+        "key-auth",
+        "hmac-auth",
+        "basic-auth",
+        "ip-restriction",
+        "mashape-analytics",
+        "request-transformer",
+        "response-transformer",
+        "request-size-limiting",
+        "rate-limiting",
+        "response-ratelimiting"
     ]
 }
 ```
