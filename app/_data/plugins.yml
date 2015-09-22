@@ -14,6 +14,9 @@
     - name: HMAC Authentication
       info: Add HMAC Authentication to your APIs
 
+    - name: JWT
+      info: Verify and authenticate JWTs
+
 - name: Security
   info: Protect your services with additional security layers
   plugins:
