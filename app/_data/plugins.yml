@@ -15,7 +15,7 @@
       info: Add HMAC Authentication to your APIs
 
 - name: Security
-  info: Protect your services additional security layers
+  info: Protect your services with additional security layers
   plugins:
     - name: ACL
       info: Control which consumers can access APIs
