@@ -7,11 +7,11 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Add HMAC Signature Authentication to your APIs to establish the identity of consumer. 
+Add HMAC Signature Authentication to your APIs to establish the identity of consumer.
 
 ## HMAC Credentials
 
-The plugin will check for valid signature in the `Proxy-Authorization` and   `Authorization` header (in this order). Plugin follows little modified version of the Internet Draft  [draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) for signature creation. To generate the string that is signed with a secret shared between Consumer and Api Provider, the client must take the values of each HTTP header specified by `headers` in the order they appear.
+The plugin will check for valid signature in the `Proxy-Authorization` and `Authorization` header (in this order). Plugin follows little modified version of the Internet Draft  [draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) for signature creation. To generate the string that is signed with a secret shared between Consumer and Api Provider, the client must take the values of each HTTP header specified by `headers` in the order they appear.
 
 ```
 credentials := "hmac" params
@@ -30,7 +30,7 @@ plain-string   = DQUOTE *( %x20-21 / %x23-5B / %x5D-7E ) DQUOTE
 
 3. If value is not the last value then append an ASCII newline `\n`. The string MUST NOT include a trailing ASCII newline.
 
-ex. 
+ex.
 ```bash
 PUT /path/ HTTP/1.0
 Content-Type: text/html
@@ -70,7 +70,7 @@ form parameter               | description
 ---                          | ---
 `name`                       | The name of the plugin to use, in this case: `hmac-auth`
 `config.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.clock_skew`          | Default `300`. Clock Skew in second to prevent replay attack   
+`config.clock_skew`          | Default `300`. Clock Skew in second to prevent replay attack
 
 ----
 
