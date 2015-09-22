@@ -89,7 +89,7 @@ Every request will be logged separately in a JSON object separated by a new line
         "key": "2b64e2f0193851d4135a2e885cd08a65"
     },
     "api": {
-        "inbound_dns": "test.com",
+        "request_host": "test.com",
         "upstream_url": "http://mockbin.org/",
         "created_at": 1432855823000,
         "name": "test.com",

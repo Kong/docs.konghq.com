@@ -23,7 +23,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
       --url http://localhost:8001/apis/ \
       --data 'name=mockbin' \
       --data 'upstream_url=http://mockbin.com/' \
-      --data 'inbound_dns=mockbin.com'
+      --data 'request_host=mockbin.com'
     ```
 
     **Note:** Kong handles API configuration requests on port `:8001`
@@ -45,7 +45,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
     Server: kong/0.1.1beta-2
 
     {
-      "inbound_dns": "mockbin.com",
+      "request_host": "mockbin.com",
       "upstream_url": "http://mockbin.com/",
       "id": "2eec1cb2-7093-411a-c14e-42e67142d2c4",
       "created_at": 1428456369000,
@@ -68,7 +68,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
     A successful response means Kong is now forwarding requests to the `upstream_url` we passed in the first step and giving us the response back. Kong knows to do this through the header defined in the above cURL request:
 
     <ul>
-      <li><strong>Host: &lt;inbound_dns></strong></li>
+      <li><strong>Host: &lt;request_host></strong></li>
     </ul>
 
     **Note:** Kong handles proxy requests on port `:8000`

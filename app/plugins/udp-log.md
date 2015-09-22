@@ -87,7 +87,7 @@ Every request will be logged separately in a JSON object, with the following for
         "key": "2b64e2f0193851d4135a2e885cd08a65"
     },
     "api": {
-        "inbound_dns": "test.com",
+        "request_host": "test.com",
         "upstream_url": "http://httpbin.org/",
         "created_at": 1432855823000,
         "name": "test.com",

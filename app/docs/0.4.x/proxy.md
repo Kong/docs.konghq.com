@@ -26,8 +26,8 @@ This guide will cover all proxying capabilities of Kong by explaining in detail 
   - [Using the "Host" header][3a]
   - [Using the "X-Host-Override" header][3b]
   - [Using a wildcard DNS][3c]
-- 4. [Proxy an API by its path value][4]
-  - [Using the "strip_path" property][4a]
+- 4. [Proxy an API by its request_path value][4]
+  - [Using the "strip_request_path" property][4a]
 - 5. [Plugins execution][5]
 
 [1]: #1-how-does-kong-route-a-request-to-an-api
@@ -36,8 +36,8 @@ This guide will cover all proxying capabilities of Kong by explaining in detail 
 [3a]: #using-the-quot-host-quot-header
 [3b]: #using-the-quot-x-host-override-quot-header
 [3c]: #using-a-wildcard-dns
-[4]: #4-proxy-an-api-by-its-path-value
-[4a]: #using-the-quot-strip_path-quot-property
+[4]: #4-proxy-an-api-by-its-request_path-value
+[4a]: #using-the-quot-strip_request_path-quot-property
 [5]: #5-plugins-execution
 
 ---
@@ -66,11 +66,11 @@ $ curl -i -X POST \
   --url http://localhost:8001/apis/ \
   -d 'name=mockbin' \
   -d 'upstream_url=http://mockbin.com/' \
-  -d 'inbound_dns=mockbin.com' \
-  -d 'path=/status'
+  -d 'request_host=mockbin.com' \
+  -d 'request_path=/status'
 ```
 
-This request tells Kong to add an API named "**mockbin**", with its upstream resource being located at "**http://mockbin.com**". The `inbound_dns` and `path` properties are the ones used by Kong to route a request to that API. Both properties are not required but at least one must be specified.
+This request tells Kong to add an API named "**mockbin**", with its upstream resource being located at "**http://mockbin.com**". The `request_host` and `request_path` properties are the ones used by Kong to route a request to that API. Both properties are not required but at least one must be specified.
 
 Once this request is processed by Kong, the API is stored in your Cassandra cluster and a request to the **Proxy port** will trigger a query to Cassandra and put your API in Kong's proxying cache.
 
@@ -80,7 +80,7 @@ Once this request is processed by Kong, the API is stored in your Cassandra clus
 
 #### Using the "**Host**" header
 
-Now that we added an API to Kong (via the Admin API), Kong can proxy it via the `8000` port. One way to do so is to specify the API's `inbound_dns` value in the `Host` header of your request:
+Now that we added an API to Kong (via the Admin API), Kong can proxy it via the `8000` port. One way to do so is to specify the API's `request_host` value in the `Host` header of your request:
 
 ```bash
 $ curl -i -X GET \
@@ -88,7 +88,7 @@ $ curl -i -X GET \
   --header 'Host: mockbin.com'
 ```
 
-By doing so, Kong recognizes the `Host` value as being the `inbound_dns` of the "mockbin" API. The request will be routed to the upstream API and Kong will execute any configured [plugin][plugins] for that API.
+By doing so, Kong recognizes the `Host` value as being the `request_host` of the "mockbin" API. The request will be routed to the upstream API and Kong will execute any configured [plugin][plugins] for that API.
 
 <div class="alert alert-warning">
   <strong>Going to production:</strong> If you're planning to go into production with your setup, you'll most likely not want your consumers to manually set the "<strong>Host</strong>" header on each request. You can let Kong and DNS take care of it by simply setting an A or CNAME record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
@@ -108,19 +108,19 @@ This request will be proxied just as well by Kong.
 
 #### Using a wildcard DNS
 
-Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. An "**inbound_dns**" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
+Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. A "**request_host**" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
 
-An "**inbound_dns**" of form `*.example.org` will route requests with "**Host**" values such as `a.example.org` or `x.y.example.org`.
+A "**request_host**" of form `*.example.org` will route requests with "**Host**" values such as `a.example.org` or `x.y.example.org`.
 
-An "**inbound_dns**" of form `example.*` will route requests with "**Host**" values such as `example.com` or `example.org`.
+A "**request_host**" of form `example.*` will route requests with "**Host**" values such as `example.com` or `example.org`.
 
 ---
 
-## 4. Proxy an API by its path value
+## 4. Proxy an API by its request_path value
 
 If you'd rather configure your APIs so that Kong routes incoming requests according to the request's URI, Kong can also perform this function. This allows your consumers to seamlessly consume APIs sparing the headache of setting DNS records for your domains.
 
-Because the API we previously configured has a `path` property, the following request will **also** be proxied to the upstream "mockbin" API:
+Because the API we previously configured has a `request_path` property, the following request will **also** be proxied to the upstream "mockbin" API:
 
 ```bash
 $ curl -i -X GET \
@@ -129,22 +129,22 @@ $ curl -i -X GET \
 
 You will notice this command makes a request to `KONG_URL:PROXY_PORT/status/200`. Since the configured `upstream_url` is `http://mockbin.com/`, the request will hit the upstream service at `http://mockbin.com/status/200`.
 
-#### Using the "**strip_path**" property
+#### Using the "**strip_request_path**" property
 
-By enabling the `strip_path` property on an API, the requests will be proxied without the `path` property being included in the upstream request. Let's enable this option by making a request to the Admin API:
+By enabling the `strip_request_path` property on an API, the requests will be proxied without the `request_path` property being included in the upstream request. Let's enable this option by making a request to the Admin API:
 
 ```bash
 $ curl -i -X PATCH \
   --url http://localhost:8001/apis/mockbin \
-  -d 'strip_path=true' \
-  -d 'path=/mockbin'
+  -d 'strip_request_path=true' \
+  -d 'request_path=/mockbin'
 ```
 
 Now that we slightly updated our API (you might have to wait a few seconds for Kong's proxying cache to be updated), Kong will proxy requests made to `KONG_URL:PROXY_PORT/mockbin` but will not include the `/mockbin` part when performing the upstream request.
 
 Here is a table documenting the behaviour of the path routing depending on your API's configuration:
 
-`path`      | `strip_path`   | incoming request       | upstream request
+`request_path`      | `strip_request_path`   | incoming request       | upstream request
 ---         | ---            | ---                    | ---
 `/mockbin`  | **false**      | `/some_path`           | **not proxied**
 `/mockbin`  | **false**      | `/mockbin`             | `/mockbin`
