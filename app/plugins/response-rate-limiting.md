@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - Response Rate Limiting
 header_title: Response Rate Limiting
-header_icon: /assets/images/icons/plugins/rate-limiting.png
+header_icon: /assets/images/icons/plugins/response-rate-limiting.png
 breadcrumbs:
   Plugins: /plugins
 ---
