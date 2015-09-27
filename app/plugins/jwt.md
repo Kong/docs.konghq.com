@@ -42,7 +42,7 @@ Verify HMAC SHA-256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt])
 - `api`: your upstream service placed behind Kong, for which Kong proxies requests to.
 - `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
 - `consumer`: a developer or service using the api. When using Kong, a consumer only communicates with Kong which proxies every call to the said, upstream api.
-- `credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT.
+- `credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a consumer.
 
 ---
 
@@ -73,9 +73,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter               | description
 ---                          | ---
 `name`                       | The name of the plugin to use, in this case: `jwt`
-`config.uri_param_names`     | Default `jwt`. A list of querystring parameters that Kong will inspect to retrieve potential JWTs.
-`config.claims_to_verify`    | Default `none`. A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
-----
+`config.uri_param_names`<br>*optional*     | Default `jwt`. A list of querystring parameters that Kong will inspect to retrieve potential JWTs.
+`config.claims_to_verify`<br>*optional*    | Default `none`. A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
 
 ---
 
@@ -126,7 +125,7 @@ form parameter           | description
 `secret`<br>*optional*   | A unique string used to sign JWTs for this consumer. If left out, will be auto-generated.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> It is recommended to let Kong auto-generate thos values. Only specify them yourself if you are migrating an existing system to Kong, and must re-use your key/secret credentials to make it transparent to your consumers.
+  <strong>Note:</strong> It is recommended to let Kong auto-generate those values. Only specify them yourself if you are migrating an existing system to Kong, and must re-use your key/secret credentials to make the migration to Kong transparent to your consumers.
 </div>
 
 ### Craft a JWT
