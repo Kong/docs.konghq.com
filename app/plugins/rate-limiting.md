@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days months or years. If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
 ----
 
@@ -29,8 +29,8 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=ratelimiting" \
-    --data "value.second=5" \
-    --data "value.hour=10000"
+    --data "config.second=5" \
+    --data "config.hour=10000"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -39,12 +39,12 @@ form parameter | required        | description
 ---            | ---             | ---
 `name`         | *required*      | The name of the plugin to use, in this case: `ratelimiting`
 `consumer_id`  | *optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.second` | *semi-optional* |  The amount of HTTP requests the developer can make per second. At least one limit must exist.
-`value.minute` | *semi-optional* |  The amount of HTTP requests the developer can make per minute. At least one limit must exist.
-`value.hour`   | *semi-optional* |  The amount of HTTP requests the developer can make per hour. At least one limit must exist.
-`value.day`    | *semi-optional* |  The amount of HTTP requests the developer can make per day. At least one limit must exist.
-`value.month`  | *semi-optional* |  The amount of HTTP requests the developer can make per month. At least one limit must exist.
-`value.year`   | *semi-optional* |  The amount of HTTP requests the developer can make per year. At least one limit must exist.
+`config.second` | *semi-optional* |  The amount of HTTP requests the developer can make per second. At least one limit must exist.
+`config.minute` | *semi-optional* |  The amount of HTTP requests the developer can make per minute. At least one limit must exist.
+`config.hour`   | *semi-optional* |  The amount of HTTP requests the developer can make per hour. At least one limit must exist.
+`config.day`    | *semi-optional* |  The amount of HTTP requests the developer can make per day. At least one limit must exist.
+`config.month`  | *semi-optional* |  The amount of HTTP requests the developer can make per month. At least one limit must exist.
+`config.year`   | *semi-optional* |  The amount of HTTP requests the developer can make per year. At least one limit must exist.
 
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.release}}/configuration

@@ -8,13 +8,13 @@ title: 5-minute Quickstart
   <strong>Before you start:</strong> Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving you access to the RESTful admin interface to manage your APIs, consumers, and more. Data sent through the admin API is stored in your Cassandra instance or cluster, meaning you **must** have Cassandra running **before** starting Kong.
+In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving you access to the RESTful Admin interface to manage your APIs, consumers, and more. Data sent through the Admin API is stored in your Cassandra instance or cluster, meaning you **must** have Cassandra running **before** starting Kong.
 
 **Note:** If you haven't already, go ahead and make sure that you have a Kong configuration file located under `/etc/kong/kong.yml` and points to your Cassandra instance or cluster. If you haven't, consult the [configuration reference][configuration] before starting.
 
 1. ### Start Kong.
 
-    Issue the following command to start [kong][CLI]:
+    Issue the following command to [start][CLI] Kong:
 
     ```bash
     $ kong start
@@ -31,11 +31,11 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
     `:8000` - Proxy layer for API requests
 
-    `:8001` - [Admin API][API] for configuration
+    `:8001` - [RESTful Admin API][API] for configuration
 
 3. ### Stop Kong.
 
-    As needed you can stop the [kong][CLI] process by issuing the following command:
+    As needed you can stop the Kong process by issuing the following [command][CLI]:
 
     ```bash
     $ kong stop
@@ -43,7 +43,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 4. ### Reload Kong.
 
-    Issue the following command to reload [kong][CLI] without downtime:
+    Issue the following command to [reload][CLI] Kong without downtime:
 
     ```bash
     $ kong reload
@@ -57,6 +57,5 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
 [configuration]: /docs/{{page.kong_version}}/configuration
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api

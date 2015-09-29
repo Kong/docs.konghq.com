@@ -4,7 +4,7 @@ title: Configuration Reference
 
 # Configuration Reference
 
-Kong's configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you
+The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you
 to configure and customize Kong to your needs. From the ports it uses, the database it conncts to, and even the internal NGINX server itself.
 
 ## Where should I place my configuration file?
@@ -22,18 +22,23 @@ They are all **required**.
 ### Summary
 
 - [**proxy_port**](#proxy_port)
+- [**proxy_ssl_port**](#proxy_ssl_port)
 - [**admin_api_port**](#admin_api_port)
+- [**dnsmasq_port**](#dnsmasq_port)
 - [**nginx_working_dir**](#nginx_working_dir)
 - [**plugins_available**](#plugins_available)
 - [**send_anonymous_reports**](#send_anonymous_reports)
 - [**databases_available**](#databases_available)
 - [**database**](#database)
 - [**database_cache_expiration**](#database_cache_expiration)
+- [**ssl_cert_path**](#ssl_cert_path)
+- [**ssl_key_path**](#ssl_key_path)
+- [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
 
----
+----
 
-### `proxy_port`
+### **proxy_port**
 
 Port which Kong proxies requests through, developers using your API will make requests against this port.
 
@@ -43,9 +48,21 @@ Port which Kong proxies requests through, developers using your API will make re
 proxy_port: 8000
 ```
 
----
+----
 
-### `admin_api_port`
+### **proxy_ssl_port**
+
+Port which Kong proxies requests through under `https`, developers using your API will make requests against this port.
+
+**Default:**
+
+```yaml
+proxy_ssl_port: 8443
+```
+
+----
+
+### **admin_api_port**
 
 Port which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) is served through.
 
@@ -58,9 +75,23 @@ or closed off network to ensure security.
 admin_api_port: 8001
 ```
 
----
+----
 
-### `nginx_working_dir`
+### **dnsmasq_port**
+
+Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen to.
+
+**Note:** This port is used to properly resolve DNS addresses by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
+
+**Default:**
+
+```yaml
+dnsmasq_port: 8053
+```
+
+----
+
+### **nginx_working_dir**
 
 Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
 
@@ -70,10 +101,9 @@ Similar to the NGINX `--prefix` option, it defines a directory that will contain
 nginx_working_dir: /usr/local/kong/
 ```
 
----
+----
 
-### `plugins_available`
-
+### **plugins_available**
 
 
 A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
@@ -82,19 +112,30 @@ A list of plugins installed on this node that Kong will load and try to execute 
 
 ```yaml
 plugins_available:
-  - keyauth
-  - basicauth
-  - ratelimiting
-  - tcplog
-  - udplog
-  - filelog
-  - request_transformer
+  - ssl
+  - jwt
+  - acl
   - cors
+  - oauth2
+  - tcp-log
+  - udp-log
+  - file-log
+  - http-log
+  - key-auth
+  - hmac-auth
+  - basic-auth
+  - ip-restriction
+  - mashape-analytics
+  - request-transformer
+  - response-transformer
+  - request-size-limiting
+  - rate-limiting
+  - response-ratelimiting
 ```
 
----
+----
 
-### `send_anonymous_reports`
+### **send_anonymous_reports**
 
 If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
 
@@ -104,17 +145,17 @@ If set to `true`, Kong will send anonymous error reports to Mashape. This helps 
 send_anonymous_reports: true
 ```
 
----
+----
 
-### `databases_available`
+### **databases_available**
 
 A dictionary of databases Kong can connect to, and their respective properties.
 
 Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
 
-  **`databases_available.*.properties`**
-
-  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
+<div class="alert alert-warning">
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="https://www.instaclustr.com/?utm_source=partnership&amp;utm_medium=link&amp;utm_campaign=mashape" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+</div>
 
 **Default:**
 
@@ -122,16 +163,113 @@ Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.c
 databases_available:
   cassandra:
     properties:
-      hosts: "localhost"
-      port: 9042
+      contact_points:
+        - "localhost:9042"
       timeout: 1000
       keyspace: kong
       keepalive: 60000
 ```
 
----
+  **`databases_available.*.properties`**
 
-### `database`
+  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
+
+  **`databases_available.*.properties.contact_points`**
+
+  The contact points on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list of strings containing the host and the port of your node(s).
+
+  **Example:**
+
+```yaml
+properties:
+  contact_points:
+    - "52.5.149.55"      # will connect on port 9042 (default)
+    - "52.5.149.56:9000" # will connect on port 9000
+```
+
+  **`databases_available.*.properties.timeout`**
+
+  Sets the timeout (in milliseconds) for sockets performing operations between Kong and Cassandra.
+
+  **Default:**
+
+```yaml
+timeout: 1000
+```
+
+  **`databases_available.*.properties.keyspace`**
+
+  The keyspace in which Kong operates on your cluster.
+
+  **Default:**
+
+```yaml
+keyspace: kong
+```
+
+  **`databases_available.*.properties.user`**
+
+  User to authenticate with if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+user: cassandra
+```
+
+  **`databases_available.*.properties.password`**
+
+  The password to use if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+password: cassandra
+```
+
+  **`databases_available.*.properties.ssl`**
+
+  Enable client-to-node encryption with your Cassandra cluster.
+
+  **Default:**
+
+```yaml
+ssl: false
+```
+
+  **`databases_available.*.properties.ssl_verify`**
+
+  Enable SSL certificate verification. If true, an `ssl_certificate` must also be provided.
+
+  **Default:**
+
+```yaml
+ssl_verify: false
+```
+
+  **`databases_available.*.properties.ssl_certificate`**
+
+  Absolute path to the certificate authority file.
+
+  **Example:**
+
+```yaml
+ssl_certificate: "/path/to/cluster-ca-certificate.pem"
+```
+
+  **`databases_available.*.properties.keepalive`**
+
+  The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
+
+  **Default:**
+
+```yaml
+keepalive: 60000
+```
+
+----
+
+### **database**
 
 The desired database to use for this Kong instance as a string, matching one of the databases defined under [`databases_available`](#databases_available).
 
@@ -141,9 +279,9 @@ The desired database to use for this Kong instance as a string, matching one of 
 database: cassandra
 ```
 
----
+----
 
-### `database_cache_expiration`
+### **database_cache_expiration**
 
 A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making multiple queries to the database in order to retrieve an API's target URL. However, this also means you may be required to wait a while before the
 cached value is flushed and reflects any potential changes made during that time.
@@ -154,9 +292,49 @@ cached value is flushed and reflects any potential changes made during that time
 database_cache_expiration: 5 # in seconds
 ```
 
----
+----
 
-### `nginx`
+### **ssl_cert_path**
+
+The path to the SSL certificate that Kong will use when listening on the `https` port.
+
+**Default:**
+
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
+
+```yaml
+# ssl_cert_path: /path/to/certificate.pem
+```
+
+----
+
+### **ssl_key_path**
+
+The path to the SSL certificate key that Kong will use when listening on the `https` port.
+
+**Default:**
+
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate key stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
+
+```yaml
+# ssl_key_path: /path/to/certificate.key
+```
+
+----
+
+### **memory_cache_size**
+
+A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore.
+
+**Default:**
+
+```yaml
+memory_cache_size: 128 # in megabytes
+```
+
+----
+
+### **nginx**
 
 The NGINX configuration (or `nginx.conf`) that will be used for this instance.
 
@@ -170,17 +348,17 @@ nginx: |
   error_log logs/error.log error;
   daemon on;
 
-  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
+  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{auto_worker_connections}};
+    worker_connections {{ "{{auto_worker_connections" }}}};
     multi_accept on;
   }
 
   http {
-    resolver {{dns_resolver}} ipv6=off;
+    resolver {{ "{{dns_resolver" }}}};
     charset UTF-8;
 
     access_log logs/access.log;
@@ -204,7 +382,7 @@ nginx: |
     real_ip_recursive on;
 
     # Other Settings
-    client_max_body_size 0;
+    client_max_body_size 128m;
     underscores_in_headers on;
     reset_timedout_connection on;
     tcp_nopush on;
@@ -219,9 +397,9 @@ nginx: |
     lua_code_cache on;
     lua_max_running_timers 4096;
     lua_max_pending_timers 16384;
-    lua_shared_dict locks 100k;
-    lua_shared_dict cache {{memory_cache_size}}m;
+    lua_shared_dict cache {{ "{{memory_cache_size" }}}}m;
     lua_socket_log_errors off;
+    {{lua_ssl_trusted_certificate}}
 
     init_by_lua '
       kong = require "kong"
@@ -232,17 +410,15 @@ nginx: |
       end
     ';
 
-    init_worker_by_lua 'kong.exec_plugins_init_worker()';
-
     server {
       server_name _;
-      listen {{proxy_port}};
-      listen {{proxy_ssl_port}} ssl;
+      listen {{ "{{proxy_port" }}}};
+      listen {{ "{{proxy_ssl_port" }}}} ssl;
 
       ssl_certificate_by_lua 'kong.exec_plugins_certificate()';
 
-      ssl_certificate {{ssl_cert}};
-      ssl_certificate_key {{ssl_key}};
+      ssl_certificate {{ "{{ssl_cert" }}}};
+      ssl_certificate_key {{ "{{ssl_key" }}}};
 
       location / {
         default_type 'text/plain';
@@ -285,7 +461,7 @@ nginx: |
     }
 
     server {
-      listen {{admin_api_port}};
+      listen {{ "{{admin_api_port" }}}};
 
       location / {
         default_type application/json;
@@ -310,7 +486,7 @@ nginx: |
       }
 
       # Do not remove, additional configuration placeholder for some plugins
-      # {{additional_configuration}}
+      # {{ "{{additional_configuration" }}}};
     }
   }
 ```

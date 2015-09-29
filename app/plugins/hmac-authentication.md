@@ -1,13 +1,42 @@
 ---
 id: page-plugin
-title: Plugins - Basic Authentication
-header_title: Basic Authentication
-header_icon: /assets/images/icons/plugins/basic-authentication.png
+title: Plugins - HMAC Authentication
+header_title: HMAC Authentication
+header_icon: /assets/images/icons/plugins/hmac-authentication.png
 breadcrumbs:
   Plugins: /plugins
 ---
 
-Add Basic Authentication to your APIs, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+Add HMAC Signature Authentication to your APIs to establish the identity of consumer.
+
+## HMAC Credentials
+
+The plugin will check for valid signature in the `Proxy-Authorization` and `Authorization` header (in this order). Plugin follows little modified version of the Internet Draft  [draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) for signature creation. To generate the string that is signed with a secret shared between Consumer and Api Provider, the client must take the values of each HTTP header specified by `headers` in the order they appear.
+
+```
+credentials := "hmac" params
+params :=  username ","algorithm [", " headers]", " signature
+username := "username" "=" plain-string
+algorithm := "algorithm" "=" DQUOTE ( hmac-sha1 ) DQUOTE
+headers := "headers" "=" plain-string
+signature := "signature" "=" plain-string
+plain-string   = DQUOTE *( %x20-21 / %x23-5B / %x5D-7E ) DQUOTE
+```
+### HMAC Signature String Construction
+
+1.  If the header name is not `request-line` then append the lowercased header name followed with an ASCII colon `:` and an ASCII space ' '.
+
+2. If the header name is `request-line` then appened the HTTP request line, otherwise append the header value.
+
+3. If value is not the last value then append an ASCII newline `\n`. The string MUST NOT include a trailing ASCII newline.
+
+ex.
+```bash
+PUT /path/ HTTP/1.0
+Content-Type: text/html
+Date: Fri, 18 Sep 2015 21:10:11 GMT
+Authorization:hmac username="bob", algorithm="hmac-sha1", headers="date", signature="BxjR4DLoxQ/seZvPBwy8gso6U+o="
+```
 
 ----
 
@@ -17,7 +46,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - basic-auth
+  - hmac-auth
 ```
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
@@ -30,16 +59,18 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=basic-auth" \
+    --data "name=hmac-auth" \
     --data "config.hide_credentials=true"
+    --data "config.clock_skew=<in seconds>"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter               | description
 ---                          | ---
-`name`                       | The name of the plugin to use, in this case: `basic-auth`
+`name`                       | The name of the plugin to use, in this case: `hmac-auth`
 `config.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.clock_skew`          | Default `300`. Clock Skew in second to prevent replay attack
 
 ----
 
@@ -62,22 +93,22 @@ parameter                       | description
 
 A [Consumer][consumer-object] can have many credentials.
 
-### Create a Basic Authentication credential
+### Create a HMAC Authentication credential
 
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
+$ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
     --data "username=user123" \
-    --data "password=secret"
+    --data "secret=somethinglong"
 ```
 
 `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
 form parameter             | description
 ---                        | ---
-`username`                 | The username to use in the Basic Authentication
-`password`<br>*optional*   | The password to use in the Basic Authentication
+`username`                 | The username to use in the HMAC Signature verification
+`secret`<br>*optional*   | The secret to use in the HMAC Signature verification
 
 ## Headers sent to the upstream server
 

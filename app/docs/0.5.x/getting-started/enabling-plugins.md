@@ -15,15 +15,15 @@ title: Enabling Plugins
 
 In this section, you'll learn how to enable plugins. One of the core principals of Kong is its extensibility through [plugins][plugins]. Plugins allow you to easily add new features to your API or make your API easier to manage.
 
-First, we'll have you configure and enable the [keyauth][keyauth] plugin to add authentication to your API.
+First, we'll have you configure and enable the [key-auth][key-auth] plugin to add authentication to your API.
 
 1. ### Add plugin to your Kong config
 
-    Add `keyauth` under the `plugins_available` property in your Kong instance configuration file should it not already exist:
+    Add `key-auth` under the `plugins_available` property in your Kong instance [configuration file][configuration] should it not already exist:
 
     ```yaml
     plugins_available:
-      - keyauth
+      - key-auth
     ```
 
 2. ### Restart Kong
@@ -40,21 +40,19 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
     Now that Kong has loaded the plugin, we should configure it to be enabled on your API.
 
-    Issue the following cURL request with your API `id` you created previously:
+    Issue the following cURL request on the previously created API named `mockbin`:
 
     ```bash
     $ curl -i -X POST \
-      --url http://localhost:8001/plugins_configurations/ \
-      --data 'name=keyauth' \
-      --data 'api_id=YOUR_API_ID' \
-      --data 'value.key_names=apikey'
+      --url http://localhost:8001/apis/mockbin/plugins/ \
+      --data 'name=key-auth'
     ```
 
-    **Note:** `value.key_names` is the authentication header name each request will require.
+    **Note:** This plugin also accepts a `config.key_names` parameter, which defaults to `[apikey]`. It is a list of headers and parameters names (both are supported) that are supposed to contain the API key during a request.
 
 4. ### Verify that the plugin is enabled for your API
 
-    Issue the following cURL request to verify that the [keyauth][keyauth] plugin was enabled for your API:
+    Issue the following cURL request to verify that the [key-auth][key-auth] plugin was enabled for your API:
 
     ```bash
     $ curl -i -X GET \
@@ -62,7 +60,7 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
       --header 'Host: mockbin.com'
     ```
 
-    Since you did not specify the required `apikey` header the response should be `403 Forbidden`:
+    Since you did not specify the required `apikey` header or parameter, the response should be `403 Forbidden`:
 
     ```http
     HTTP/1.1 403 Forbidden
@@ -75,16 +73,13 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
 
 ### Next Steps
 
-Now that you've enabled the **keyauth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
+Now that you've enabled the **key-auth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
-[mockbin]: https://mockbin.com
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[keyauth]: /plugins/key-authentication
-[plugins]: /plugins/
-[migrations]: /docs/{{page.kong_version}}/migrations
-[quickstart]: /docs/{{page.kong_version}}/getting-started/quickstart
-[enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
+[key-auth]: /plugins/key-authentication
+[plugins]: /plugins
+[configuration]: /docs/{{page.kong_version}}/configuration
 [adding-consumers]: /docs/{{page.kong_version}}/getting-started/adding-consumers

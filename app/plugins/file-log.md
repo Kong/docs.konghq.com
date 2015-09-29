@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - filelog
+  - file-log
 ```
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
@@ -28,17 +28,17 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=filelog" \
-    --data "value.path=/tmp/file.log"
+    --data "name=file-log" \
+    --data "config.path=/tmp/file.log"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
 form parameter                | description
 ---                           | ---
-`name`                        | The name of the plugin to use, in this case: `filelog`
+`name`                        | The name of the plugin to use, in this case: `file-log`
 `consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`value.path`                  | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
+`config.path`                  | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
 
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.release}}/configuration
@@ -83,8 +83,8 @@ Every request will be logged separately in a JSON object separated by a new line
         "key": "2b64e2f0193851d4135a2e885cd08a65"
     },
     "api": {
-        "public_dns": "test.com",
-        "target_url": "http://mockbin.org/",
+        "request_host": "test.com",
+        "upstream_url": "http://mockbin.org/",
         "created_at": 1432855823000,
         "name": "test.com",
         "id": "fbaf95a1-cd04-4bf6-cb73-6cb3285fef58"
@@ -109,3 +109,7 @@ A few considerations on the above JSON object:
   * `proxy` is the time it took for the final service to process the request
   * `kong` is the internal Kong latency that it took to run all the plugins
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
+
+# Note
+
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[nginx_working_dir](/docs/{{site.data.kong_latest.version}}/configuration/#nginx_working_dir)}/logs/error.log
