@@ -33,7 +33,7 @@
       info: Whitelist or blacklist IPs that can make requests
 
 - name: Traffic Control
-  info: Manage, throttle and restric inbound and outboud API traffic
+  info: Manage, throttle and restrict inbound and outbound API traffic
   plugins:
     - name: Rate Limiting
       info: Rate-limit how many HTTP requests a developer can make

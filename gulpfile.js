@@ -89,9 +89,7 @@ gulp.task('html', ['jekyll'], function () {
 
 gulp.task('clean', function (cb) {
   ghPages.clean()
-  del(['dist', '.gh-pages']).then(function() {
-    cb()
-  })
+  return del(['dist', '.gh-pages'])
 })
 
 gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
