@@ -4,12 +4,12 @@ title: Admin API
 api_body: |
     Attribute | Description
     ---:| ---
-    `name`<br>*optional* | The API name. If none is specified, will default to the `public_dns`.
-    `public_dns`<br>*semi-optional* | The public DNS address that points to your API. For example, `mockbin.com`. At least `public_dns` or `path` or both should be specified.
-    `path`<br>*semi-optional* | The public path that points to your API. For example, `/someservice`. At least `public_dns` or `path` or both should be specified.
-    `strip_path`<br>*optional* | Strip the `path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `target_url/hello`. By default is `false`.
-    `preserve_host`<br>*optional* | Preserves the original `Host` header sent by the client, instead of replacing it with the hostname of the `target_url`. By default is `false`.
-    `target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
+    `name`<br>*optional* | The API name. If none is specified, will default to the `request_host` or `request_path`.
+    `request_host`<br>*semi-optional* | The public DNS address that points to your API. For example, `mockbin.com`. At least `request_host` or `request_path` or both should be specified.
+    `request_path`<br>*semi-optional* | The public path that points to your API. For example, `/someservice`. At least `request_host` or `request_path` or both should be specified.
+    `strip_request_path`<br>*optional* | Strip the `request_path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `upstream_url/hello`. By default is `false`.
+    `preserve_host`<br>*optional* | Preserves the original `Host` header sent by the client, instead of replacing it with the hostname of the `upstream_url`. By default is `false`.
+    `upstream_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
 consumer_body: |
     Attributes | Description
@@ -22,7 +22,7 @@ plugin_configuration_body: |
     ---:| ---
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
-    `value.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
 ---
 
 # Kong Admin API
@@ -40,7 +40,7 @@ The Admin API accepts 2 content types on every endpoint:
 Simple enough for basic request bodies, you will probably use it most of the time. Note that when sending nested values, Kong expects nested objects to be referenced with dotted keys. Example:
 
 ```
-value.limit=10&value.period=seconds
+config.limit=10&config.period=seconds
 ```
 
 - **application/json**
@@ -49,7 +49,7 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 ```json
 {
-    "value": {
+    "config": {
         "limit": 10,
         "period": "seconds"
     }
@@ -81,19 +81,19 @@ HTTP 200 OK
     "plugins": {
         "available_on_server": [
             "ssl",
-            "keyauth",
-            "basicauth",
+            "key-auth",
+            "basic-auth",
             "oauth2",
-            "ratelimiting",
-            "tcplog",
-            "udplog",
-            "filelog",
-            "httplog",
+            "rate-limiting",
+            "tcp-log",
+            "udp-log",
+            "file-log",
+            "http-log",
             "cors",
-            "request_transformer",
-            "response_transformer",
-            "requestsizelimiting",
-            "ip_restriction",
+            "request-transformer",
+            "response-transformer",
+            "request-size-limiting",
+            "ip-restriction",
             "mashape-analytics"
         ],
         "enabled_in_cluster": {}
@@ -149,11 +149,11 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 ```json
 {
     "name": "Mockbin",
-    "public_dns": "mockbin.com",
-    "path": "/someservice",
-    "strip_path": false,
+    "request_host": "mockbin.com",
+    "request_path": "/someservice",
+    "strip_request_path": false,
     "preserve_host": false,
-    "target_url": "https://mockbin.com"
+    "upstream_url": "https://mockbin.com"
 }
 ```
 
@@ -179,8 +179,8 @@ HTTP 201 Created
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin",
-    "public_dns": "mockbin.com",
-    "target_url": "http://mockbin.com",
+    "request_host": "mockbin.com",
+    "upstream_url": "http://mockbin.com",
     "preserve_host": false,
     "created_at": 1422386534
 }
@@ -208,8 +208,8 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin",
-    "public_dns": "mockbin.com",
-    "target_url": "https://mockbin.com",
+    "request_host": "mockbin.com",
+    "upstream_url": "https://mockbin.com",
     "preserve_host": false,
     "created_at": 1422386534
 }
@@ -229,8 +229,9 @@ Attributes | Description
 ---:| ---
 `id`<br>*optional* | A filter on the list based on the apis `id` field.
 `name`<br>*optional* | A filter on the list based on the apis `name` field.
-`public_dns`<br>*optional* | A filter on the list based on the apis `public_dns` field.
-`target_url`<br>*optional* | A filter on the list based on the apis `target_url` field.
+`request_host`<br>*optional* | A filter on the list based on the apis `request_host` field.
+`request_path`<br>*optional* | A filter on the list based on the apis `request_path` field.
+`upstream_url`<br>*optional* | A filter on the list based on the apis `upstream_url` field.
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
@@ -247,16 +248,16 @@ HTTP 200 OK
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
             "name": "Mockbin",
-            "public_dns": "mockbin.com",
-            "target_url": "https://mockbin.com",
+            "request_host": "mockbin.com",
+            "upstream_url": "https://mockbin.com",
             "preserve_host": false,
             "created_at": 1422386534
         },
         {
             "id": "3f924084-1adb-40a5-c042-63b19db421a2",
             "name": "PrivateAPI",
-            "public_dns": "internal.api.com",
-            "target_url": "http://private.api.com",
+            "request_host": "internal.api.com",
+            "upstream_url": "http://private.api.com",
             "preserve_host": false,
             "created_at": 1422386585
         }
@@ -291,8 +292,8 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "Mockbin2",
-    "public_dns": "mockbin.com",
-    "target_url": "http://mockbin.com",
+    "request_host": "mockbin.com",
+    "upstream_url": "http://mockbin.com",
     "preserve_host": false,
     "created_at": 1422386534
 }
@@ -519,90 +520,17 @@ HTTP 204 NO CONTENT
 
 ## Plugin Object
 
-Retrieve the installed plugins on your node and their configuration schema.
+A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](/plugins).
 
-**Reminder:** Installed plugins does not mean a plugin is enabled. To enabled a plugin, you have to configure it for a given API. See [Plugin Configuration Object](#plugin-configuration-object).
-
----
-
-### Retrieve Installed Plugins
-
-Retrieve a list of all installed plugins on the Kong node.
-
-#### Endpoint
-
-<div class="endpoint get">/plugins/</div>
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "enabled_plugins": [
-        "ssl",
-        "keyauth",
-        "basicauth",
-        "oauth2",
-        "ratelimiting",
-        "tcplog",
-        "udplog",
-        "filelog",
-        "httplog",
-        "cors",
-        "request_transformer",
-        "response_transformer",
-        "requestsizelimiting",
-        "analytics"
-    ]
-}
-```
-
-### Retrieve Plugin Schema
-
-Retrieve the schema of a plugin's configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong's plugin system.
-
-<div class="endpoint get">/plugins/{plugin name}/schema</div>
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "fields": {
-        "hide_credentials": {
-            "default": false,
-            "type": "boolean"
-        },
-        "key_names": {
-            "default": "function",
-            "required": true,
-            "type": "array"
-        }
-    }
-}
-```
-
----
-
-## Plugin Configuration Object
-
-The Plugin Configuration object represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](/plugins).
-
-When creating a Plugin Configuration on top of an API, every request made by a client will be evaluated by the plugin configuration you setup. Sometimes the Plugin Configuration needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
+When creating adding Plugin on top of an API, every request made by a client will be evaluated by the Plugin's configuration you setup. Sometimes the Plugin needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
 
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "ratelimiting",
-    "value": {
+    "name": "rate-limiting",
+    "config": {
         "minute": 20,
         "hour": 500
     },
@@ -613,7 +541,7 @@ When creating a Plugin Configuration on top of an API, every request made by a c
 
 ---
 
-### Create Plugin Configuration
+### Add Plugin
 
 #### Endpoint
 
@@ -638,8 +566,8 @@ HTTP 201 Created
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "ratelimiting",
-    "value": {
+    "name": "rate-limiting",
+    "config": {
         "minute": 20,
         "hour": 500
     },
@@ -650,7 +578,64 @@ HTTP 201 Created
 
 ---
 
-### List Per-API Plugin Configurations
+### List All Plugins
+
+#### Endpoint
+
+<div class="endpoint get">/plugins/</div>
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`id`<br>*optional* | A filter on the list based on the `id` field.
+`name`<br>*optional* | A filter on the list based on the `name` field.
+`api_id`<br>*optional* | A filter on the list based on the `api_id` field.
+`consumer_id`<br>*optional* | A filter on the list based on the `consumer_id` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 2,
+    "data": [
+      {
+          "id": "4d924084-1adb-40a5-c042-63b19db421d1",
+          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+          "name": "rate-limiting",
+          "config": {
+              "minute": 20,
+              "hour": 500
+          },
+          "enabled": true,
+          "created_at": 1422386534
+      },
+      {
+          "id": "3f924084-1adb-40a5-c042-63b19db421a2",
+          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+          "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
+          "name": "rate-limiting",
+          "config": {
+              "minute": 300,
+              "hour": 20000
+          },
+          "enabled": true,
+          "created_at": 1422386585
+      }
+    ],
+    "next": "http://localhost:8001/plugins?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+}
+```
+
+---
+
+### List Plugins per API
 
 #### Endpoint
 
@@ -680,8 +665,8 @@ HTTP 200 OK
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-          "name": "ratelimiting",
-          "value": {
+          "name": "rate-limiting",
+          "config": {
               "minute": 20,
               "hour": 500
           },
@@ -692,8 +677,8 @@ HTTP 200 OK
           "id": "3f924084-1adb-40a5-c042-63b19db421a2",
           "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
           "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-          "name": "ratelimiting",
-          "value": {
+          "name": "rate-limiting",
+          "config": {
               "minute": 300,
               "hour": 20000
           },
@@ -701,30 +686,23 @@ HTTP 200 OK
           "created_at": 1422386585
       }
     ],
-    "next": "http://localhost:8001/plugins_configurations/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/plugins?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
 ---
 
-### List All Plugin Configurations
+## Retrieve Plugin
 
-You can use the `/plugins_configuration` endpoint to acces a global list of all the configured plugins on your cluster.
-
-#### Endpoint
-
-<div class="endpoint get">/plugins_configurations/</div>
-
-#### Request Querystring Parameters
+<div class="endpoint post">/plugins/{id}</div>
 
 Attributes | Description
 ---:| ---
-`id`<br>*optional* | A filter on the list based on the `id` field.
-`name`<br>*optional* | A filter on the list based on the `name` field.
-`api_id`<br>*optional* | A filter on the list based on the `api_id` field.
-`consumer_id`<br>*optional* | A filter on the list based on the `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+`id`<br>**required** | The unique identifier of the plugin configuration to update on this API
+
+#### Request Body
+
+{{ page.plugin_configuration_body }}
 
 #### Response
 
@@ -734,39 +712,22 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
-    "data": [
-      {
-          "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-          "name": "ratelimiting",
-          "value": {
-              "minute": 20,
-              "hour": 500
-          },
-          "enabled": true,
-          "created_at": 1422386534
-      },
-      {
-          "id": "3f924084-1adb-40a5-c042-63b19db421a2",
-          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-          "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-          "name": "ratelimiting",
-          "value": {
-              "minute": 300,
-              "hour": 20000
-          },
-          "enabled": true,
-          "created_at": 1422386585
-      }
-    ],
-    "next": "http://localhost:8001/plugins_configurations/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
+    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+    "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
+    "name": "rate-limiting",
+    "config": {
+        "minute": 20,
+        "hour": 500
+    },
+    "enabled": true,
+    "created_at": 1422386534
 }
 ```
 
 ---
 
-### Update Plugin Configuration
+### Update Plugin
 
 #### Endpoint
 
@@ -792,8 +753,8 @@ HTTP 200 OK
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "ratelimiting",
-    "value": {
+    "name": "rate-limiting",
+    "config": {
         "minute": 20,
         "hour": 500
     },
@@ -804,7 +765,7 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Plugin Configuration
+### Update or Add Plugin
 
 #### Endpoint
 
@@ -830,7 +791,7 @@ See POST and PATCH responses.
 
 ---
 
-### Delete Plugin Configuration
+### Delete Plugin
 
 #### Endpoint
 
@@ -845,4 +806,76 @@ Attributes | Description
 
 ```
 HTTP 204 NO CONTENT
+```
+
+---
+
+### Retrieve Enabled Plugins
+
+Retrieve a list of all installed plugins on the Kong node.
+
+#### Endpoint
+
+<div class="endpoint get">/plugins/enabled</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "enabled_plugins": [
+        "ssl",
+        "jwt",
+        "acl",
+        "cors",
+        "oauth2",
+        "tcp-log",
+        "udp-log",
+        "file-log",
+        "http-log",
+        "key-auth",
+        "hmac-auth",
+        "basic-auth",
+        "ip-restriction",
+        "mashape-analytics",
+        "request-transformer",
+        "response-transformer",
+        "request-size-limiting",
+        "rate-limiting",
+        "response-ratelimiting"
+    ]
+}
+```
+
+---
+
+### Retrieve Plugin Schema
+
+Retrieve the schema of a plugin's configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong's plugin system.
+
+<div class="endpoint get">/plugins/schema/{plugin name}</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "fields": {
+        "hide_credentials": {
+            "default": false,
+            "type": "boolean"
+        },
+        "key_names": {
+            "default": "function",
+            "required": true,
+            "type": "array"
+        }
+    }
+}
 ```

@@ -34,3 +34,12 @@
     luarocks: "2.2.2"
     cassandra: "2.1"
     openresty: "1.7.10.2"
+-
+  release: "0.5.x"
+  version: "0.5.0"
+  luarocks_version: "0.5.0-1"
+  dependencies:
+    lua: "5.1.4"
+    luarocks: "2.2.2"
+    cassandra: "2.1"
+    openresty: "1.9.3.1"
