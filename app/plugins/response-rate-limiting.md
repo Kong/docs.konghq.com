@@ -5,6 +5,12 @@ header_title: Response Rate Limiting
 header_icon: /assets/images/icons/plugins/response-rate-limiting.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+      - label: Usage
 ---
 
 This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream API. You can arbitrary set as many rate-limiting objects as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
