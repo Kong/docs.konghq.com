@@ -145,7 +145,7 @@ A dictionary of databases Kong can connect to, and their respective properties.
 Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="https://www.instaclustr.com/?utm_source=partnership&amp;utm_medium=link&amp;utm_campaign=mashape" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
 </div>
 
 **Default:**

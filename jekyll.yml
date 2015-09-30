@@ -27,6 +27,7 @@ links:
   web: https://getkong.org
   share: http://getkong.org # legacy link, must maintain for social sharing counters
   download: https://downloadkong.org
+  instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
 repos:
   kong: https://github.com/Mashape/kong
   docs: https://github.com/Mashape/getkong.org

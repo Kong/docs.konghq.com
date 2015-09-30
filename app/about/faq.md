@@ -47,7 +47,7 @@ Kong uses Cassandra as its primary datastore to store any data including APIs, C
 Depending on your use case, for production usage we reccomend having at least a two-node Cassandra cluster configured with a replication factor of `2`. The beauty of Cassandra is that it can be easily scaled horizontally to accomodate more requests and more data. We reccomend putting Cassandra on performant machines with a generous amount of CPU and Memory, like AWS `m4.xlarge` instances.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="https://www.instaclustr.com/?utm_source=partnership&amp;utm_medium=link&amp;utm_campaign=mashape" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
 </div>
 
 #### SQL support
@@ -75,7 +75,7 @@ Scaling Cassandra shouldn't be required often, and usually a 2-node setup per da
 The easy part is that Cassandra can be scaled up and down just by adding or removing nodes on the cluster, and the system will take care of re-balancing the data in the cluster.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="https://www.instaclustr.com/?utm_source=partnership&amp;utm_medium=link&amp;utm_campaign=mashape" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
 </div>
 
 ----
