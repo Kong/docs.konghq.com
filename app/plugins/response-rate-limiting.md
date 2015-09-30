@@ -38,6 +38,7 @@ form parameter | required        | description
 ---            | ---             | ---
 `name`         | *required*      | The name of the plugin to use, in this case: `response-ratelimiting`
 `consumer_id`  | *optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.header_name`         | *optional*      | The name of the response header used to increment the counters. By default is `X-Kong-Limit`.
 `config.limits.{limit_name}` | *required*      |  This is a list of custom objects that you can set on the API, with arbitrary names set in the `{limit_name`} placeholder, like `config.limits.sms.minute=20` if your object is called "SMS".
 `config.limits.{limit_name}.second` | *semi-optional* | The amount of HTTP requests the developer can make per second. At least one limit must exist.
 `config.limits.{limit_name}.minute` | *semi-optional* | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
@@ -45,6 +46,24 @@ form parameter | required        | description
 `config.limits.{limit_name}.day` | *semi-optional* | The amount of HTTP requests the developer can make per day. At least one limit must exist.
 `config.limits.{limit_name}.month` | *semi-optional* | The amount of HTTP requests the developer can make per month. At least one limit must exist.
 `config.limits.{limit_name}.year` | *semi-optional* | The amount of HTTP requests the developer can make per year. At least one limit must exist.
+
+## Usage
+
+After adding the plugin, you can increment the configured limits by adding the following response header:
+
+```
+Header-Name: Limit=Value [,Limit=Value]
+```
+
+like:
+
+```
+X-Kong-Limit: limitname1=2, limitname2=4
+```
+
+That will increment the limit `limitname1` by 2 units, and `limitname2` by 4 units.
+
+You can optionally increment more than one limit by comma separating the entries. The header will be removed before returning the response to the original client.
 
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
 [configuration]: /docs/{{site.data.kong_latest.release}}/configuration
