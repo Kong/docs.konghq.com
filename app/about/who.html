@@ -37,7 +37,7 @@ companies:
 ---
 
 {% for company in page.companies %}
-  <a class="company" href="{{ company.website }}">
+  <a class="company" href="{{ company.website }}" target="_blank">
     <div class="company-logo">
       <img src="/assets/images/companies/{{ company.name | slugify }}.png" alt="{{ company.name }}"/>
     </div>
