@@ -1,8 +1,8 @@
 ---
 title: What is Kong?
+header_icon: /assets/images/icons/icn-documentation.svg
+header_title: What is Kong?
 ---
-
-# What is Kong?
 
 Kong is a scalable, open source **API Layer** *(also known as a API Gateway, or API Middleware)*. Kong runs in front of any RESTful API and is extended through [Plugins](/about/plugins), which provide [extra functionalities and services](/plugins) beyond the core platform.
 

@@ -18,8 +18,8 @@ nav:
       - label: Upstream Headers
   - label: oAuth 2.0 Flows
     items:
-      - label: Authorization Code
       - label: Client Credentials
+      - label: Authorization Code
       - label: Resource Owner Password Credentials
 ---
 
@@ -134,6 +134,10 @@ You can use this information on your side to implement additional logic. You can
 
 ## oAuth 2.0 Flows
 
+## Client Credentials
+
+The [Client Credentials][client-credentials] flow will work out of the box, without building any authorization page. The clients will need to use the `/oauth2/token` endpoint to request an access token.
+
 ### Authorization Code
 
 After provisioning Consumers and associating OAuth 2.0 credentials to them, it is important to understand how the OAuth 2.0 authorization flow works. As opposed to most of the Kong plugins, the OAuth 2.0 plugin requires some little additional work on your side to make everything work well:
@@ -212,10 +216,6 @@ In this flow, the steps that you need to implement are:
 
 * The login page, you probably already have it (step 2)
 * The Authorization page, with its backend that will simply collect the values, make a `POST` request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
-
-## Client Credentials
-
-The [Client Credentials][client-credentials] flow will work out of the box, without building any authorization page. The clients will need to use the `/oauth2/token` endpoint to request an access token.
 
 ## Resource Owner Password Credentials
 

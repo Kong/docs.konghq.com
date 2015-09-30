@@ -58,6 +58,9 @@ defaults:
       path: 'about'
     values:
       layout: 'about'
+      header_html: '<a class="github-button" href="https://github.com/Mashape/kong" data-style="mega" data-count-href="/Mashape/kong/stargazers" data-count-api="/repos/Mashape/kong#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star Mashape/kong on GitHub">Star</a>&nbsp;<a class="github-button" href="https://github.com/Mashape/kong/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/Mashape/kong/network" data-count-api="/repos/Mashape/kong#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork Mashape/kong on GitHub">Fork</a>'
+      breadcrumbs:
+        About: /about
 
   - scope:
       path: 'plugins'

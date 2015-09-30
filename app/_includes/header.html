@@ -28,6 +28,12 @@
           <a class="page-header-btn" href="{{ page.header_btn_href | liquify }}" target="{{ page.header_btn_target }}">{{ page.header_btn_text | liquify }}</a>
         </div>
       {% endif %}
+
+      {% if page.header_html %}
+        <div class="page-header-right">
+          {{ page.header_html }}
+        </div>
+      {% endif %}
     </div>
   </header>
 {% endif %}

@@ -1,0 +1,52 @@
+---
+title: What is Kong?
+header_icon: /assets/images/icons/icn-documentation.svg
+header_title: Who is Using Kong?
+companies:
+  - name: FLYR, Inc.
+    description: "FLYR, Inc. is a data science company first conceived to relieve a universal pain point among travelers - the guessing game of booking airfares."
+    website: https://www.getflyr.com/
+
+  - name: Indix
+    description: "Building the world’s largest product database and APIs to enable brands, retailers and developers to deliver the right product to the right customer."
+    website: http://www.indix.com/
+
+  - name: Gengo
+    description: "Gengo is a web-based human translation Platform. Gengo provides fast, affordable and quality translations by native speakers located worldwide."
+    website: http://gengo.com/
+
+  - name: Mavi
+    description: "Mavi designs a full collection of jeans-wear, for young women and men. Turkey’s first fashion brand to become global."
+    website: http://us.mavi.com/
+
+  - name: Springer
+    description: "A leading global scientific, technical and medical publisher, providing researchers in academia, scientific institutions and corporate R&D."
+    website: http://www.springer.com/
+
+  - name: Parlor Inc
+    description: "Parlor™ is the first application that connects two people who want to talk about the same thing at the same time."
+    website: http://parlor.me/
+
+  - name: Unified Compliance
+    description: "Since 1992, Unified Compliance has developed ground-breaking tools to support IT best practices, with a focus on the science of compliance."
+    website: https://www.unifiedcompliance.com/
+
+  - name: Grow Remote
+    description: "Grow Remote uses wireless sensors to help farmers remotely monitor, control, and understand their operation"
+    website: http://growremote.com/
+---
+
+{% for company in page.companies %}
+  <a class="company" href="{{ company.website }}">
+    <div class="company-logo">
+      <img src="/assets/images/companies/{{ company.name | slugify }}.png" alt="{{ company.name }}"/>
+    </div>
+
+    <h3>{{ company.name }}</h3>
+    <p>{{ company.description }}</p>
+  </a>
+{% endfor %}
+
+<hr/>
+
+<em>Are you using Kong? <a href="mailto:hey@mashape.com">Let us know</a> and we'll add you to the list.</em>

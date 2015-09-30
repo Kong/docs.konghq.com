@@ -21,7 +21,7 @@ var paths = {
 // Sources
 var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
-  styles: paths.assets + 'stylesheets/**/*.{less,css}',
+  styles: paths.assets + 'stylesheets/**/*',
   js: [
     paths.assets + 'javascripts/**/*.js',
     paths.modules + 'bootstrap/js/dropdown.js',
