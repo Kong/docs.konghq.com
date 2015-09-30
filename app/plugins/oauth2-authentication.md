@@ -5,11 +5,27 @@ header_title: OAuth 2.0 Authentication
 header_icon: /assets/images/icons/plugins/oauth2-authentication.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+      - label: Endpoints
+      - label: Create a Consumer
+      - label: Create an Application
+      - label: Upstream Headers
+  - label: oAuth 2.0 Flows
+    items:
+      - label: Authorization Code
+      - label: Client Credentials
+      - label: Resource Owner Password Credentials
 ---
 
 Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
 
----
+----
 
 ## Installation
 
@@ -47,9 +63,22 @@ form parameter                                    | default | description
 `config.enable_password_grant`<br>*optional*       | `false` | An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
 `config.hide_credentials`<br>*optional*            | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
+----
+
 ## Usage
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
+
+### Endpoints
+
+By default the OAuth 2.0 plugin listens on the following endpoints:
+
+Endpoint                     | description
+---                         | ---
+`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled.
+`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows.
+
+The clients trying to authorize and request access tokens must use these endpoints.
 
 ### Create a Consumer
 
@@ -68,7 +97,7 @@ parameter                       | required                                      
 
 A [Consumer][consumer-object] can have many credentials.
 
-### Create an OAuth 2.0 Authentication credential/application
+### Create an Application
 
 Then you can finally provision new OAuth 2.0 credentials (also called "OAuth applications") by making the following HTTP request:
 
@@ -89,25 +118,30 @@ form parameter                | description
 `client_secret`<br>*optional* | You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
 `redirect_uri`                | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
 
-### OAuth 2.0 Endpoints
+## Upstream Headers
 
-By default the OAuth 2.0 plugin listens on the following endpoints:
+When a client has been authenticated and authorized, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer and the end-user in your code:
 
-Endpoint                     | description
----                         | ---
-`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled.
-`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows.
+* `X-Consumer-ID`, the ID of the Consumer on Kong
+* `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)
+* `X-Consumer-Username`, the `username` of to the Consumer (if set)
+* `X-Authenticated-Scope`, the comma-separated list of scopes that the end user has authenticated (if available)
+* `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client
 
-The clients trying to authorize and request access tokens must use these endpoints.
+You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
-### Implementing the Authorization Code flow
+----
+
+## oAuth 2.0 Flows
+
+### Authorization Code
 
 After provisioning Consumers and associating OAuth 2.0 credentials to them, it is important to understand how the OAuth 2.0 authorization flow works. As opposed to most of the Kong plugins, the OAuth 2.0 plugin requires some little additional work on your side to make everything work well:
 
 * You **must** implement an authorization page on your web application, that will talk with the plugin server-side.
 * *Optionally* you need to explain on your website/documentation how to consume your OAuth 2.0 protected services, so that developers accessing your service know how to build their client implementations
 
-# The flow explained
+#### The flow explained
 
 Building the authorization page is going to be the primary task that the plugin itself cannot do out of the box, because it requires to check that the user is properly logged in, and this operation is strongly tied with your authentication implementation.
 
@@ -122,108 +156,98 @@ The authorization page is made of two parts:
   </div>
 </div>
 
-Here is the flow:
+A diagram repreenting this flow:
 
-![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow.png)
+<div class="alert alert-info">
+  <a title="OAuth 2.0 Flow" href="/assets/images/docs/oauth2/oauth2-flow.png" target="_blank"><img src="/assets/images/docs/oauth2/oauth2-flow.png"/></a>
+</div>
 
-1 - The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as querystring parameters. This is a sample authorization page:
+1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as querystring parameters. This is a sample authorization page:  
+    <div class="alert alert-info">
+      <center><img title="OAuth 2.0 Prompt" src="/assets/images/docs/oauth2/oauth2-prompt.png"/></center>
+    </div>
 
-![OAuth 2.0 Prompt](/assets/images/docs/oauth2/oauth2-prompt.png)
+2. Before showing the actual authorization page, the web application will make sure that the user is logged in.
 
-2 - Before showing the actual authorization page, the web application will make sure that the user is logged in.
+3. The client application will send the `client_id` in the querystring, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
 
-3 - The client application will send the `client_id` in the querystring, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
+    ```bash
+    $ curl kong:8001/oauth2?client_id=XXX
+    ```
 
-```bash
-$ curl kong:8001/oauth2?client_id=XXX
-```
+4. If the end user authorized the application, the form will submit the data to your backend with a `POST` request, sending the `client_id`, `response_type` and `scope` parameters that were placed in `<input type="hidden" .. />` fields.
 
-4 - If the end user authorized the application, the form will submit the data to your backend with a POST request, sending the `client_id`, `response_type` and `scope` parameters that were placed in `<input type="hidden" .. />` fields.
+5. The backend must add the `provision_key` and `authenticated_userid` parameters to the `client_id`, `response_type` and `scope` parameters and it will make a `POST` request to Kong at your API address, on the `/oauth2/authorize` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
-5 - The backend must add the `provision_key` and `authenticated_userid` parameters to the `client_id`, `response_type` and `scope` parameters and it will make a POST request to Kong at your API address, on the `/oauth2/authorize` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
+    ```bash
+    $ curl https://your.api.com/oauth2/authorize \
+        --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
+        --data "client_id=XXX" \
+        --data "response_type=XXX" \
+        --data "scope=XXX" \
+        --data "provision_key=XXX" \
+        --data "authenticated_userid=XXX"
+    ```
 
-```bash
-$ curl https://your.api.com/oauth2/authorize \
-    --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
-    --data "client_id=XXX" \
-    --data "response_type=XXX" \
-    --data "scope=XXX" \
-    --data "provision_key=XXX" \
-    --data "authenticated_userid=XXX"
-```
+    The `provision_key` is the key the plugin has generated when it has been added to the API, while `authenticated_userid` is the ID of the logged-in end user who has granted the permission.
 
-The `provision_key` is the key the plugin has generated when it has been added to the API, while `authenticated_userid` is the ID of the logged-in end user who has granted the permission.
+6. Kong will respond with a JSON response:
 
-6 - Kong will respond with a JSON response like:
+    ```json
+    {
+      "redirect_uri": "http://some/url"
+    }
+    ```
 
-```json
-{
-    "redirect_uri": "http://some/url"
-}
-```
+    With either a `200 OK` or `400 Bad Request` response code depending if the request was successful or not.
+7. In **both** cases, ignore the response status code and just redirect the user to whatever URI is being returned in the `redirect_uri` property.
 
-With either a `200 OK` or `400 Bad Request` response code depending if the request was successful or not.
+8. The client appication will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchaging the authorization code for an access token if it's an Authorization Code Grant flow.
 
-7 - In **both** cases, ignore the response status code and just redirect the user to whatever URI is being returned in the `redirect_uri` property.
+9. Once the Access Token has been retrieved, the client application will make requests on behalf of the user to your final API.
 
-8 - The client appication will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchaging the authorization code for an access token if it's an Authorization Code Grant flow.
-
-9 - Once the Access Token has been retrieved, the client application will make requests on behalf of the user to your final API.
-
-10 - Access Tokens can expire, and when that happens the client application needs to renew the Access Token with Kong and retreive a new one.
+10. Access Tokens can expire, and when that happens the client application needs to renew the Access Token with Kong and retreive a new one.
 
 In this flow, the steps that you need to implement are:
 
 * The login page, you probably already have it (step 2)
-* The Authorization page, with its backend that will simply collect the values, make a POST request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
+* The Authorization page, with its backend that will simply collect the values, make a `POST` request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
 
-## Client Credentials Flow
+## Client Credentials
 
 The [Client Credentials][client-credentials] flow will work out of the box, without building any authorization page. The clients will need to use the `/oauth2/token` endpoint to request an access token.
 
-## Resource Owner Password Credentials Flow
+## Resource Owner Password Credentials
 
 The [Resource Owner Password Credentials Grant][password-grant] is a much simpler version of the Authorization Code flow, but it still requires to build an authorization backend (without the frontend) in order to make it work properly.
 
 ![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow2.png)
 
-1 - The client application make a request including some OAuth2 parameters, including `username` and `password` parameters.
+1. The client application make a request including some OAuth2 parameters, including `username` and `password` parameters.
 
-2 - The backend will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a POST request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
+2. The backend will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
-```bash
-$ curl https://your.api.com/oauth2/token \
-    --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
-    --data "client_id=XXX" \
-    --data "client_secret=XXX" \
-    --data "scope=XXX" \
-    --data "provision_key=XXX" \
-    --data "authenticated_userid=XXX" \
-    --data "username=XXX" \
-    --data "password=XXX"
-```
+    ```bash
+    $ curl https://your.api.com/oauth2/token \
+        --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
+        --data "client_id=XXX" \
+        --data "client_secret=XXX" \
+        --data "scope=XXX" \
+        --data "provision_key=XXX" \
+        --data "authenticated_userid=XXX" \
+        --data "username=XXX" \
+        --data "password=XXX"
+    ```
 
-The `provision_key` is the key the plugin has generated when it has been added to the API, while `authenticated_userid` is the ID of the end user whose `username` and `password` belong to.
+    The `provision_key` is the key the plugin has generated when it has been added to the API, while `authenticated_userid` is the ID of the end user whose `username` and `password` belong to.
 
-3 - Kong will respond with a JSON response
+3. Kong will respond with a JSON response
 
-4 - The JSON response sent by Kong must be sent back to the original client as it is. If the operation is successful, this response will include an access token, otherwise it will include an error.
+4. The JSON response sent by Kong must be sent back to the original client as it is. If the operation is successful, this response will include an access token, otherwise it will include an error.
 
 In this flow, the steps that you need to implement are:
 
 * The backend endpoint that will process the original request and will authenticate the `username` and `password` values sent by the client, and if the authentication is successful, make the request to Kong and return back to the client whatever response Kong has sent back.
-
-## Headers sent to the upstream server
-
-When a client has been authenticated and authorized, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer and the end-user in your code:
-
-* `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)
-* `X-Consumer-Username`, the `username` of to the Consumer (if set)
-* `X-Authenticated-Scope`, the comma-separated list of scopes that the end user has authenticated (if available)
-* `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client
-
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
 [ssl-plugin]: /plugins/ssl/
 [api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object

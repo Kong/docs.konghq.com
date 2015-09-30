@@ -5,48 +5,34 @@ header_title: JWT
 header_icon: /assets/images/icons/plugins/jwt.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Terminology
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+      - label: Create a Consumer
+      - label: Create a JWT credential
+      - label: Craft a JWT
+      - label: Send the JWT
+      - label: Verified claims
+      - label: Upstream Headers
 ---
 
 Verify HMAC SHA-256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]) and proxy them to your upstream services if valid. Tokens can be passed through the `Authorization` header or in the request's URL. Each of your Consumers will have a unique `secret`, used to sign a JWT, and a unique `key`, used by Kong to try to verify a given JWT.
 
----
+----
 
-## Summary
-
-- 1. [Terminology][1]
-- 2. [Installation][2]
-- 3. [Configuration][3]
-- 4. [Usage][4]
-  - [Create a Consumer][4a]
-  - [Create a JWT credential][4b]
-  - [Craft a JWT][4c]
-  - [Send the JWT][4d]
-  - [Verified claims][4e]
-- 5. [Headers sent to the upstream service][5]
-
-[1]: #1.-terminology
-[2]: #2.-installation
-[3]: #3.-configuration
-[4]: #4.-usage
-[4a]: #create-a-consumer
-[4b]: #create-a-jwt-credential
-[4c]: #craft-a-jwt
-[4d]: #send-the-jwt
-[4e]: #(option)-verified-claims
-[5]: #5.-headers-sent-to-the-upstream-service
-
----
-
-## 1. Terminology
+## Terminology
 
 - `api`: your upstream service placed behind Kong, for which Kong proxies requests to.
 - `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
 - `consumer`: a developer or service using the api. When using Kong, a consumer only communicates with Kong which proxies every call to the said, upstream api.
 - `credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a consumer.
 
----
-
-## 2. Installation
+## Installation
 
 Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
@@ -57,9 +43,7 @@ plugins_available:
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
 
----
-
-## 3. Configuration
+## Configuration
 
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
@@ -76,9 +60,9 @@ form parameter               | description
 `config.uri_param_names`<br>*optional*     | Default `jwt`. A list of querystring parameters that Kong will inspect to retrieve potential JWTs.
 `config.claims_to_verify`<br>*optional*    | Default `none`. A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
 
----
+----
 
-## 4. Usage
+## Usage
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to it. The consumer represents a developer using the final service/API.
 
@@ -201,9 +185,7 @@ claim name | verification
 `exp`      | identifies the expiration time on or after which the JWT must not be accepted for processing.
 `nbf`      | identifies the time before which the JWT must not be accepted for processing.
 
----
-
-## 5. Headers sent to the upstream service
+### Upstream Headers
 
 When a JWT is valid, a consumer has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/service, so that you can identify the consumer in your code:
 

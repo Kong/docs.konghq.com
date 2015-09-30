@@ -5,6 +5,16 @@ header_title: HMAC Authentication
 header_icon: /assets/images/icons/plugins/hmac-authentication.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+      - label: Create a Consumer
+      - label: Create a Credential
+      - label: Upstream Headers
 ---
 
 Add HMAC Signature Authentication to your APIs to establish the identity of the consumer. The plugin will check for valid signature in the `Proxy-Authorization` and `Authorization` header (in this order), following the [draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) draft (without extensions support, and only support for HMAC-SHA1).
@@ -21,8 +31,6 @@ plugins_available:
 ```
 
 Every node in the Kong cluster must have the same `plugins_available` property value.
-
-----
 
 ## Configuration
 
@@ -62,7 +70,7 @@ parameter                       | description
 
 A [Consumer][consumer-object] can have many credentials.
 
-### Create a HMAC Authentication credential
+### Create a Credential
 
 You can provision new username/password credentials by making the following HTTP request:
 
@@ -79,7 +87,7 @@ form parameter             | description
 `username`                 | The username to use in the HMAC Signature verification
 `secret`<br>*optional*   | The secret to use in the HMAC Signature verification
 
-## Headers sent to the upstream server
+### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
 

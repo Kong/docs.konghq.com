@@ -5,6 +5,14 @@ header_title: ACL
 header_icon: /assets/images/icons/plugins/acl.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+      - label: Associating Consumers
 ---
 
 Restrict access to an API by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API.
@@ -40,11 +48,13 @@ form parameter                  | description
 `config.whitelist`<br>*semi-optional* | Comma separated list of arbitrary group names that are allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
 `config.blacklist`<br>*semi-optional* | Comma separated list of arbitrary group names that are not allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
 
+----
+
 ## Usage
 
 In order to use this plugin, you need to properly have configured your APIs with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
 
-### Associating a consumer with an ACL group
+### Associating Consumers
 
 Once you have added an authentication plugin to an API, and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
 

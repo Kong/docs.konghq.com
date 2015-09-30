@@ -5,6 +5,16 @@ header_title: Basic Authentication
 header_icon: /assets/images/icons/plugins/basic-authentication.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+      - label: Create a Consumer
+      - label: Create a Credential
+      - label: Upstream Headers
 ---
 
 Add Basic Authentication to your APIs, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
@@ -39,7 +49,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 form parameter               | description
 ---                          | ---
 `name`                       | The name of the plugin to use, in this case: `basic-auth`
-`config.hide_credentials`     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.hide_credentials`    | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ----
 
@@ -62,7 +72,7 @@ parameter                       | description
 
 A [Consumer][consumer-object] can have many credentials.
 
-### Create a Basic Authentication credential
+### Create a Credential
 
 You can provision new username/password credentials by making the following HTTP request:
 
@@ -79,7 +89,7 @@ form parameter             | description
 `username`                 | The username to use in the Basic Authentication
 `password`<br>*optional*   | The password to use in the Basic Authentication
 
-## Headers sent to the upstream server
+### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
 

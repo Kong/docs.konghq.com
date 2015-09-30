@@ -15,26 +15,26 @@ id: documentation
     </div>
 
     {% if site.data.kong_versions.size > 1 %}
-    <div class="dropdown page-header-right">
-      <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Version {{page.kong_version}}
-        {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
-        <span class="caret"></span>
-      </button>
+      <div class="dropdown page-header-right">
+        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Version {{page.kong_version}}
+          {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
+          <span class="caret"></span>
+        </button>
 
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-        {% for ver in site.data.kong_versions %}
-          {% unless page.kong_version == ver.release %}
-            <li>
-              <a href="/docs/{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                {{ver.release}}
-                {% if ver.release == site.data.kong_latest.release %}(latest){% endif %}
-              </a>
-            </li>
-          {% endunless %}
-        {% endfor %}
-      </ul>
-    </div>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+          {% for ver in site.data.kong_versions %}
+            {% unless page.kong_version == ver.release %}
+              <li>
+                <a href="/docs/{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                  {{ver.release}}
+                  {% if ver.release == site.data.kong_latest.release %}(latest){% endif %}
+                </a>
+              </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      </div>
     {% endif %}
   </div>
 </header>

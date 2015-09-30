@@ -22,6 +22,8 @@ plugins_available:
 
 Every node in your Kong cluster should have the same `plugins_available` property value.
 
+----
+
 ## Configuration
 
 Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
@@ -39,9 +41,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                            | description
----:                                      | ---
-`name`                                    | Name of the plugin to use, in this case: `cors`
+form parameter                             | description
+---:                                       | ---
+`name`                                     | Name of the plugin to use, in this case: `cors`
 `config.origin`<br>*optional*              | Value for the `Access-Control-Allow-Origin` header, expects a `String`. Defaults to `*`
 `config.methods`<br>*optional*             | Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`). Defaults to `GET,HEAD,PUT,PATCH,POST,DELETE`.
 `config.headers`<br>*optional*             | Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). Defaults to the value of the `Access-Control-Request-Headers` header.

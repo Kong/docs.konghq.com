@@ -5,44 +5,34 @@ header_title: Key Authentication
 header_icon: /assets/images/icons/plugins/key-authentication.png
 breadcrumbs:
   Plugins: /plugins
+nav: 
+  - label: Getting Started
+    items:
+      - label: Terminology
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+    - label: Create a Consumer
+    - label: Create an API Key
+    - label: Using the API Key
+    - label: Upstream Headers
 ---
 
 Add Key Authentication (also referred to as an API key) to your APIs. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
 
----
+----
 
-## Summary
-
-- 1. [Terminology][1]
-- 2. [Installation][2]
-- 3. [Configuration][3]
-- 4. [Usage][4]
-  - [Create a Consumer][4a]
-  - [Create an API key][4b]
-  - [Send the API key in a request][4c]
-- 5. [Headers sent to the upstream service][5]
-
-[1]: #1.-terminology
-[2]: #2.-installation
-[3]: #3.-configuration
-[4]: #4.-usage
-[4a]: #create-a-consumer
-[4b]: #create-an-api-key
-[4c]: #send-the-api-key-in-a-request
-[5]: #5.-headers-sent-to-the-upstream-service
-
----
-
-## 1. Terminology
+## Terminology
 
 - `api`: your upstream service placed behind Kong, for which Kong proxies requests to.
 - `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
 - `consumer`: a developer or service using the api. When using Kong, a Consumer only communicates with Kong which proxies every call to the said, upstream api.
 - `credential`: in the key-auth plugin context, a unique string associated with a consumer, also referred to as an API key.
 
----
+----
 
-## 2. Installation
+## Installation
 
 Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
 
@@ -53,9 +43,9 @@ plugins_available:
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
 
----
+----
 
-## 3. Configuration
+## Configuration
 
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
@@ -72,9 +62,9 @@ form parameter                          | description
 `config.key_names`<br>*optional*        | Default: `apikey`. Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.
 `config.hide_credentials`<br>*optional* | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
----
+----
 
-## 4. Usage
+## Usage
 
 In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
 
@@ -96,7 +86,7 @@ parameter                      | description
 
 A [Consumer][consumer-object] can have many credentials.
 
-### Create a Key Authentication credential
+### Create an API Key
 
 You can provision new credentials by making the following HTTP request:
 
@@ -122,7 +112,7 @@ form parameter      | description
   <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if you are migrating an existing system to Kong, and must re-use your keys to make the migration to Kong transparent to your consumers.
 </div>
 
-### Use the key in a request
+### Using the API Key
 
 Simply make a request with the key as a querystring parameter:
 
@@ -137,9 +127,7 @@ $ curl http://kong:8000/{api path} \
     -H 'apikey: <some_key>'
 ```
 
----
-
-## 5. Headers sent to the upstream server
+### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the Consumer in your code:
 

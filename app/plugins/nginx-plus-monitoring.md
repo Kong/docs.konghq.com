@@ -5,6 +5,12 @@ header_title: Nginx Plus Live Monitoring
 header_icon: /assets/images/icons/plugins/nginx-plus-monitoring.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Dependencies
+      - label: Installation
+      - label: Usage
 ---
 
 Live server activity monitoring of NGINX Plus that provides key load and performance server metrics.

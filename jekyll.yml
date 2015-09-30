@@ -62,9 +62,15 @@ defaults:
   - scope:
       path: 'plugins'
     values:
+      layout: 'plugin'
       header_btn_text: Report Bug
       header_btn_href: https://github.com/Mashape/kong/issues/new
       header_btn_target: _blank
       id: page-plugin
       breadcrumbs:
         Plugins: /plugins
+      nav:
+        - label: Getting Started
+          items:
+            - label: Installation
+            - label: Configuration
