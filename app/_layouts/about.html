@@ -2,6 +2,18 @@
 layout: default
 sitemap: true
 id: about
+nav:
+  - label: What is Kong?
+    link: /about/
+
+  - label: Who is Using Kong?
+    link: /about/who/
+
+  - label: PCI DSS Compliance
+    link: /about/pci-dss/
+
+  - label: Benchmark
+    link: /about/benchmark/
 ---
 
 <div class="page {{ page.id }}">
@@ -12,10 +24,10 @@ id: about
       <nav>
         <h5>About</h5>
         <ul>
-          <li><a href="/about" {% if page.url == "/about/" %}class="active"{% endif %}>What is Kong?</a></li>
-          <li><a href="/about/who" {% if page.url contains "/about/who" %}class="active"{% endif %}>Who is Using Kong?</a></li>
-          <li><a href="/about/pci-dss" {% if page.url contains "/about/pci-dss" %}class="active"{% endif %}>Is Kong PCI DSS Compliant?</a></li>
-          <li><a href="/about/benchmark" {% if page.url contains "/about/benchmark" %}class="active"{% endif %}>Benchmark</a></li>
+          {% for nav in page.nav %}
+            <li><a href="{{ nav.link }}" {% if page.url == nav.link %}class="active"{% endif %}>{{ nav.label }}</a></li>
+          {% endfor %}
+
           <li>
             <a href="/about/faq" {% if page.url contains "/about/faq" %}class="active"{% endif %}>FAQ</a>
             <ul>
