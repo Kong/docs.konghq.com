@@ -26,7 +26,7 @@ Every node in the Kong cluster must have the same `plugins_available` property v
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
