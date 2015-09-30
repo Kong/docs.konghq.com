@@ -17,7 +17,7 @@ With a payment processing API served through Kong, depending on your setup, you 
 - **Logging & Analytics:** A logging plugin might store credit card data on disk or a remote location *(given your API configuration)*, this would trigger the *"storage"* criterion.
 
 <div class="alert alert-warning">
-  <center>PCI DSS compliance is depndant on the configuration and usage of your Kong installation</center>
+  <center>PCI DSS compliance is dependant on the configuration and usage of your Kong installation</center>
 </div>
 
 You will still need to complete an annual [Self-Assessment Questionnaire (SAQ)](https://www.pcisecuritystandards.org/merchants/self_assessment_form.php) in order to be PCI compliant. There are several different types of SAQs, and a Qualified Security Assessor (QSA) can help you choose the right one for your business and achieve compliance. 
