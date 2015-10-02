@@ -52,4 +52,4 @@ $ curl http://kong:8001/status/
 [luajit]: http://luajit.org/
 [nginx-plus]: http://nginx.com/products/
 [nginx-plus-extras]: http://nginx.com/products/technical-specs/#nginx-plus-extras
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[configuration]: /docs/latest/configuration

@@ -1,8 +1,9 @@
 ---
-id: page-install-method aws
+id: page-install-method aws-cloudformation
 title: Install - AWS Cloud Formation
 header_title: AWS Cloud Formation
 header_icon: /assets/images/icons/icn-installation.svg
+redirect_from: /install/aws/
 breadcrumbs:
   Installation: /install
 links:
@@ -31,7 +32,7 @@ Provision Kong resources along with a new Cassandra cluster, using The Datastax 
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
 
-##### PV AMI 
+##### PV AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
@@ -57,7 +58,7 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
 
-##### PV AMI 
+##### PV AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
@@ -90,7 +91,7 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 
 5. **Option page**:
 
-    Add Tags and other fields according to your requirements.  
+    Add Tags and other fields according to your requirements.
 
     **Note:** *The template is configured to add a "Name" tag to each relevant resource*
 
@@ -112,4 +113,4 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 
 7. **Use Kong:**
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.release}}/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).

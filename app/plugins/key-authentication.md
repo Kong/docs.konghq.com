@@ -5,7 +5,7 @@ header_title: Key Authentication
 header_icon: /assets/images/icons/plugins/key-authentication.png
 breadcrumbs:
   Plugins: /plugins
-nav: 
+nav:
   - label: Getting Started
     items:
       - label: Terminology
@@ -137,7 +137,7 @@ When a client has been authenticated, the plugin will append some headers to the
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration
+[consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

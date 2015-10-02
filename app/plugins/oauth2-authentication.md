@@ -166,7 +166,7 @@ A diagram repreenting this flow:
   <a title="OAuth 2.0 Flow" href="/assets/images/docs/oauth2/oauth2-flow.png" target="_blank"><img src="/assets/images/docs/oauth2/oauth2-flow.png"/></a>
 </div>
 
-1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as querystring parameters. This is a sample authorization page:  
+1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as querystring parameters. This is a sample authorization page:
     <div class="alert alert-info">
       <center><img title="OAuth 2.0 Prompt" src="/assets/images/docs/oauth2/oauth2-prompt.png"/></center>
     </div>
@@ -250,9 +250,9 @@ In this flow, the steps that you need to implement are:
 * The backend endpoint that will process the original request and will authenticate the `username` and `password` values sent by the client, and if the authentication is successful, make the request to Kong and return back to the client whatever response Kong has sent back.
 
 [ssl-plugin]: /plugins/ssl/
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration
+[consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 [authorization-code-grant]: https://tools.ietf.org/html/rfc6749#section-4.1
 [client-credentials]: https://tools.ietf.org/html/rfc6749#section-4.4

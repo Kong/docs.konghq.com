@@ -50,7 +50,7 @@ form parameter                            | description
 `config.remove.querystring`<br>*optional*  | Comma separated list of parameter names to remove from the request querystring.
 `config.remove.form`<br>*optional*         | Comma separated list of parameter names to remove from the request body.
 
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[api-object]: /docs/latest/admin-api/#api-object
+[consumer-object]: /docs/latest/admin-api/#consumer-object
+[configuration]: /docs/latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

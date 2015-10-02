@@ -12,16 +12,6 @@ header_icon: /assets/images/icons/icn-download.svg
 
   <section class="content-section">
     <div class="container">
-
-      <!-- <div class="box">
-        <p>
-          <img class="icon" src="/assets/images/icons/icn-script.svg"/>
-          <strong>Kong Installation Script:</strong> Run this script in your server and automatically download the package you need.
-        </p>
-      </div> -->
-
-      <!-- <h6>installation methods</h6> -->
-
       <div class="distributions">
         {% for method in site.data.distributions %}
           {% capture mod %}{{ forloop.index0 | modulo:4 }}{% endcapture %}

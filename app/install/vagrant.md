@@ -25,7 +25,7 @@ breadcrumbs:
     ```
 
 3. **Start Vagrant:**
-    
+
     ```bash
     $ KONG_PATH=/path/to/kong/clone/ vagrant up
     ```
@@ -42,4 +42,4 @@ breadcrumbs:
 
 4. **Use Kong:**
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.release}}/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).

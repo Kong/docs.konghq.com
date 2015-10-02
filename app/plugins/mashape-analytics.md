@@ -47,7 +47,7 @@ parameter                        | description
 **Note**: If you are enabling the `log_body` option, make sure the buffer size never exceeds 1Mb, or the Mashape Analytics server will refuse the batch. You can ensure this by setting a lower `batch_size` value.`
 
 [analytics]: https://apianalytics.com
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration
+[consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

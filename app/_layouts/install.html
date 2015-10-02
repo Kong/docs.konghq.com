@@ -13,8 +13,9 @@ layout: default
         <ul class="packages">
           {% for method in site.data.distributions %}
             {% if method.soon != true and method.type == 'package' %}
-              <li {% if page.url contains method.id %}class="active"{% endif %}>
-                <a href="/install/{{ method.id}}/">{{ method.name }}</a>
+              {% assign url = '/install/' | append: method.id | append: '/' %}
+              <li {% if page.url == url %}class="active"{% endif %}>
+                <a href="{{ url }}">{{ method.name }}</a>
               </li>
             {% endif %}
           {% endfor %}
@@ -27,8 +28,9 @@ layout: default
         <ul class="cloud">
           {% for method in site.data.distributions %}
             {% if method.soon != true and method.type == 'cloud' %}
-              <li {% if page.url contains method.id %}class="active"{% endif %}>
-                <a href="/install/{{ method.id}}/">{{ method.name }}</a>
+              {% assign url = '/install/' | append: method.id | append: '/' %}
+              <li {% if page.url == url %}class="active"{% endif %}>
+                <a href="{{ url }}">{{ method.name }}</a>
               </li>
             {% endif %}
           {% endfor %}
@@ -41,8 +43,9 @@ layout: default
         <ul class="packages">
           {% for method in site.data.distributions %}
             {% if method.soon != true and method.type == 'compile' %}
-              <li {% if page.url contains method.id %}class="active"{% endif %}>
-                <a href="/install/{{ method.id}}/">{{ method.name }}</a>
+              {% assign url = '/install/' | append: method.id | append: '/' %}
+              <li {% if page.url == url %}class="active"{% endif %}>
+                <a href="{{ url }}">{{ method.name }}</a>
               </li>
             {% endif %}
           {% endfor %}

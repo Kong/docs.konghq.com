@@ -42,7 +42,7 @@ form parameter                  | description
 `config.blacklist`<br>*semi-optional* | Comma separated list of IPs or CIDR ranges to blacklist. At least one between `config.whitelist` or `config.blacklist` must be specified.
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration
+[consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

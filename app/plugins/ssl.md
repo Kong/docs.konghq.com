@@ -68,5 +68,5 @@ openssl x509 -req -in server.csr -signkey server.key -out server.crt
 
 If you followed the steps above the certificate will be stored in a file named `server.crt`, while the key is at `server.key`.
 
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration#ssl_cert_path
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration#ssl_cert_path

@@ -54,9 +54,9 @@ form parameter              | description
 `config.timeout`             | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
 `config.keepalive`           | Default `60000`. An optional value in milliseconds that defines for how long an idle connection will live before being closed
 
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration
+[consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 ## Log Format

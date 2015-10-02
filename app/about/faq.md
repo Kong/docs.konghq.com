@@ -103,7 +103,7 @@ You can also have a face-to-face talk with us at one of our [meetups](http://www
 
 ### Why does Kong need Cassandra?
 
-Kong uses Cassandra for storing all the data and to keep functioning properly. Plugins also use Cassandra to store data. Read [how Kong works](/about).
+Kong uses Cassandra for storing all the data and to keep functioning properly. Plugins also use Cassandra to store data. Read [how Kong works](/about/faq/#how-does-it-work).
 
 ----
 

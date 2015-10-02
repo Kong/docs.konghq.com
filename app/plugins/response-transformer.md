@@ -46,7 +46,7 @@ form parameter                        | description
 `config.remove.headers`<br>*optional*  | Comma separated list of header names to remove from the response headers.
 `config.remove.json`<br>*optional*     | Comma separated list of JSON key names to remove from a JSON response body.
 
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
+[api-object]: /docs/latest/admin-api/#api-object
+[consumer-object]: /docs/latest/admin-api/#consumer-object
+[configuration]: /docs/latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

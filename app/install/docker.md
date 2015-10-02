@@ -31,4 +31,4 @@ Here is a quick setup linking Kong to a Cassandra container:
 
 4. **Start using Kong:**
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/{{site.data.kong_latest.release}}/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).

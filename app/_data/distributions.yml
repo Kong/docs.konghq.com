@@ -2,9 +2,14 @@
   name: Docker
   type: package
 
-- id: aws
+- id: aws-cloudformation
   name: Amazon AWS
   type: cloud
+
+- id: aws-marketplace
+  name: AWS Mrketplace
+  type: cloud
+  png: true
 
 - id: centos
   name: CentOS

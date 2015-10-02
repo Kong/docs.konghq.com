@@ -46,7 +46,7 @@ form parameter | required        | description
 `config.month`  | *semi-optional* |  The amount of HTTP requests the developer can make per month. At least one limit must exist.
 `config.year`   | *semi-optional* |  The amount of HTTP requests the developer can make per year. At least one limit must exist.
 
-[api-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#api-object
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration
-[consumer-object]: /docs/{{site.data.kong_latest.release}}/admin-api/#consumer-object
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration
+[consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
