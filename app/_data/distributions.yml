@@ -23,7 +23,7 @@
   type: package
 
 - id: aws-marketplace
-  name: AWS Mrketplace
+  name: AWS Marketplace
   type: cloud
   png: true
 
