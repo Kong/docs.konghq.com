@@ -6,11 +6,6 @@
   name: Amazon AWS
   type: cloud
 
-- id: aws-marketplace
-  name: AWS Mrketplace
-  type: cloud
-  png: true
-
 - id: centos
   name: CentOS
   type: package
@@ -26,6 +21,11 @@
 - id: ubuntu
   name: Ubuntu
   type: package
+
+- id: aws-marketplace
+  name: AWS Mrketplace
+  type: cloud
+  png: true
 
 - id: osx
   name: OS X
