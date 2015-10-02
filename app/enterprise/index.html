@@ -95,44 +95,43 @@ redirect_from: /support/
       <p>Take 15 minutes to learn more about Kong.</p>
     </header>
 
-    <div class="loader">
-      <div class="loader-bounce1"></div>
-      <div class="loader-bounce2"></div>
-      <div class="loader-bounce3"></div>
-    </div>
-
-    <div class="form-message success-message">Thank you! We'll get back in touch soon.</div>
     <form class="demo-request-form">
-      <label for="company-name">Company Name</label>
-      <input id="company-name" name="company" type="text" placeholder="Mashape Inc">
+      <div class="spinner"></div>
 
-      <label for="full-name">Full Name</label>
-      <input id="full-name" name="name" type="text" placeholder="Jason Businessman">
+      <div class="alert alert-success" role="alert"><center>Thank you! We'll be in touch soon.</center></div>
 
-      <label for="title">Title</label>
-      <input id="title" name="title" type="text" placeholder="CEO">
+      <div class="input-group">
 
-      <label for="work-email">Work Email</label>
-      <input id="work-email" name="email" type="email" placeholder="jason@mashape.com" required>
+        <label for="company-name">Company Name</label>
+        <input id="company-name" name="company" type="text" placeholder="Mashape Inc" required>
 
-      <label for="phone">Phone</label>
-      <input id="phone" name="phone" type="text" placeholder="415 000 0000">
+        <label for="full-name">Full Name</label>
+        <input id="full-name" name="name" type="text" placeholder="Jason Businessman" required>
 
-      <label for="tell-us-more">Tell us more <small>(optional)</small></label>
-      <textarea name="tell_us_more" id="tell-us-more" cols="30" rows="5"></textarea>
+        <label for="title">Title <small>(optional)</small></label>
+        <input id="title" name="title" type="text" placeholder="CEO">
 
-      <div class="choose-deploy-type row">
-        <label class="one-half column">
-          <input type="radio" name="deployment" value="on-prem" checked/>
-          On-Prem Deployment
-        </label>
-        <label class="one-half column">
-          <input type="radio" name="deployment" value="cloud"/>
-          Cloud Deployment
-        </label>
+        <label for="work-email">Work Email</label>
+        <input id="work-email" name="email" type="email" placeholder="jason@mashape.com" required>
+
+        <label for="phone">Phone <small>(optional)</small></label>
+        <input id="phone" name="phone" type="text" placeholder="415 000 0000">
+
+        <label for="tell-us-more">Tell us more <small>(optional)</small></label>
+        <textarea name="tell_us_more" id="tell-us-more" cols="30" rows="5"></textarea>
+
+        <div class="choose-deploy-type row">
+          <label class="one-half column">
+            <input type="radio" name="deployment" value="on-prem" checked/> On-Prem Deployment
+          </label>
+
+          <label class="one-half column">
+            <input type="radio" name="deployment" value="cloud"/> Cloud Deployment
+          </label>
+        </div>
+
+        <button type="submit" class="button button-primary button-large u-full-width">Send Request</button>
       </div>
-
-      <button type="submit" class="button button-primary button-large u-full-width">Send Request</button>
 
       <figure>
         <img src="/assets/images/enterprise/enterprise-footer.svg" width="440" height="81" alt="Enterprise"/>

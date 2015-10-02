@@ -82,31 +82,29 @@ $(function () {
   $('.subscribe-form').on('submit', function (e) {
     e.preventDefault()
 
-    var $form = $(this)
-    var email = $form.find('[name="email"]').val()
-    var submitTime = new Date().toString()
+    var form = $(this)
+    var email = form.find('[name="email"]').val()
+    var time = new Date().toString()
 
-    $form.fadeOut(300, function () {
-      $('.loader').fadeIn(300)
-    })
-
-    analytics.identify(email, {
+    var traits = {
       email: email,
       environment: 'kong',
       newsletter_updates: true,
-      created_at: submitTime
-    }, function () {
-      $form.fadeOut(300, function () {
-        $('.loader').fadeOut(300, function () {
-          $('.success-message').fadeIn(300)
-        })
-      })
+      created_at: time
+    }
+
+    form.addClass('loading')
+
+    var track = function () {
+      form.addClass('complete')
 
       analytics.track('request_newsletter_updates', {
         email: email,
-        request_date: submitTime
+        request_date: time
       })
-    })
+    }
+
+    analytics.identify(email, traits, track)
   })
 
   // Enterprise page demo request form
@@ -114,11 +112,10 @@ $(function () {
   $('.demo-request-form').on('submit', function (e) {
     e.preventDefault()
 
-    var $form = $(this)
-    var data = $form.serializeArray()
+    var form = $(this)
+    var data = form.serializeArray()
     var submitTime = new Date().toString()
     var payload = {}
-    var analyticsDfd = $.Deferred()
     var fieldValues = {}
     var relateiqFieldIds = {
       title: 8,
@@ -131,9 +128,7 @@ $(function () {
       environment: 16
     }
 
-    $form.fadeOut(300, function () {
-      $('.loader').fadeIn(300)
-    }).siblings('.section-header').fadeOut(300)
+    form.addClass('loading')
 
     for (var i = 0; i < data.length; i++) {
       payload[data[i].name] = data[i].value
@@ -141,13 +136,15 @@ $(function () {
 
     payload.environment = 'kong'
 
-    analytics.identify(payload.email, $.extend({
+    var traits = $.extend({
       enterprise: true,
       created_at: submitTime
-    }, payload), function () {
+    }, payload)
+
+    analytics.identify(payload.email, traits, function () {
       analytics.track('request_enterprise_demo', $.extend({
         request_date: submitTime
-      }, payload), analyticsDfd.resolve)
+      }, payload))
     })
 
     for (var field in payload) {
@@ -158,7 +155,7 @@ $(function () {
       }
     }
 
-    var relateiqDfd = $.ajax({
+    $.ajax({
       url: 'https://mashaper-relateiq-v1.p.mashape.com/accounts',
       method: 'POST',
       headers: {
@@ -169,12 +166,8 @@ $(function () {
         name: payload.email,
         fieldValues: fieldValues
       })
-    })
-
-    $.when(analyticsDfd, relateiqDfd).then(function () {
-      $('.loader').fadeOut(300, function () {
-        $('.success-message').fadeIn(300)
-      })
+    }).always(function () {
+      form.addClass('complete')
     })
   })
 
