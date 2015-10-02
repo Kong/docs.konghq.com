@@ -21,7 +21,7 @@ Kong 64-bit Amazon Machine Image (AMI) is available on the AWS Marketplace, with
 
     The Kong AWS Marketplace AMI image is designed for simplicity and fast deployment, this means it comes bundled with [Cassandra](/about/faq/#how-does-it-work) on the same image. 
 
-    For optimal performance, we reccomend deploying a Cassandra cluster separately from the Kong Cluster.
+    For optimal performance, we recommend deploying a Cassandra cluster separately from the Kong Cluster.
 
     Please refer to the [AWS Cloud Formation Template](http://localhost:3000/install/aws/) for custom deployment of Cassandra and Kong Clusters on AWS.
 
