@@ -9,6 +9,7 @@ nav:
   - label: Getting Started
     items:
       - label: Terminology
+      - label: Use Case
       - label: Installation
       - label: Configuration
   - label: Usage
@@ -31,6 +32,10 @@ Verify HMAC SHA-256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt])
 - `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
 - `consumer`: a developer or service using the api. When using Kong, a consumer only communicates with Kong which proxies every call to the said, upstream api.
 - `credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a consumer.
+
+## Use Case
+
+A client would simply send a JWT signed with a secret retrieved by Kong, along with the username (eventually in the JWT claims) to Kong, and Kong would validate it. If it is valid, Kong forwards it to the upstream API, if not, Kong discards it
 
 ## Installation
 
