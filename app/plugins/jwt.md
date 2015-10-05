@@ -9,7 +9,6 @@ nav:
   - label: Getting Started
     items:
       - label: Terminology
-      - label: Use Case
       - label: Installation
       - label: Configuration
   - label: Usage
@@ -22,7 +21,7 @@ nav:
       - label: Upstream Headers
 ---
 
-Verify HMAC SHA-256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]) and proxy them to your upstream services if valid. Tokens can be passed through the `Authorization` header or in the request's URL. Each of your Consumers will have a unique `secret`, used to sign a JWT, and a unique `key`, used by Kong to try to verify a given JWT.
+Verify HMAC SHA-256 signed JSON Web Tokens (as specified in RFC 7519) and proxy them to your upstream services if they validate. Each of your Consumers will have a couple of public and secret keys provided by Kong and used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URL and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
 ----
 
@@ -32,10 +31,6 @@ Verify HMAC SHA-256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt])
 - `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
 - `consumer`: a developer or service using the api. When using Kong, a consumer only communicates with Kong which proxies every call to the said, upstream api.
 - `credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a consumer.
-
-## Use Case
-
-A client would simply send a JWT signed with a secret retrieved by Kong, along with the username (eventually in the JWT claims) to Kong, and Kong would validate it. If it is valid, Kong forwards it to the upstream API, if not, Kong discards it
 
 ## Installation
 
