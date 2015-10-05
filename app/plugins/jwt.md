@@ -21,7 +21,7 @@ nav:
       - label: Upstream Headers
 ---
 
-Verify HMAC SHA-256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]) and proxy them to your upstream services if valid. Tokens can be passed through the `Authorization` header or in the request's URL. Each of your Consumers will have a unique `secret`, used to sign a JWT, and a unique `key`, used by Kong to try to verify a given JWT.
+Verify HMAC SHA-256 signed JSON Web Tokens (as specified in RFC 7519) and proxy them to your upstream services if they validate. Each of your Consumers will have a couple of public and secret keys provided by Kong and used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URL and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
 ----
 

@@ -62,10 +62,10 @@ First, we'll have you configure and enable the [keyauth][keyauth] plugin to add 
       --header 'Host: mockbin.com'
     ```
 
-    Since you did not specify the required `apikey` header the response should be `403 Forbidden`:
+    Since you did not specify the required `apikey` header the response should be `401 Unauthorized`:
 
     ```http
-    HTTP/1.1 403 Forbidden
+    HTTP/1.1 401 Unauthorized
     ...
 
     {
