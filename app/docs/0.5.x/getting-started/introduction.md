@@ -8,7 +8,6 @@ title: Welcome to Kong
   <strong>Before you start:</strong> Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-
 Now that you know what Kong is and how it works, this guide is going to take you through a quick introduction to Kong. We'll teach you how to use Kong to:
 
 - Running your own Kong instance.

@@ -38,11 +38,8 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     ```http
     HTTP/1.1 201 Created
-    Date: Wed, 08 Apr 2015 01:26:09 GMT
     Content-Type: application/json
-    Transfer-Encoding: chunked
     Connection: keep-alive
-    Server: kong/0.1.1beta-2
 
     {
       "public_dns": "mockbin.com",

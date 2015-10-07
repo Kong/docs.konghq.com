@@ -31,11 +31,8 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     ```http
     HTTP/1.1 201 Created
-    Date: Thu, 09 Apr 2015 05:00:26 GMT
     Content-Type: application/json
-    Transfer-Encoding: chunked
     Connection: keep-alive
-    Server: kong/0.1.1beta-2
 
     {
       "username": "Jason",
