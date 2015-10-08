@@ -34,14 +34,14 @@ Provision Kong resources along with a new Cassandra cluster, using The Datastax 
 
 ##### PV AMI
 
-- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
 
 #### Kong without Cassandra DB
 
@@ -49,25 +49,25 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 
 ##### HVM AMI
 
-- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
+- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
+- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
+- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
+- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
+- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
+- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
+- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
+- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
 
 ##### PV AMI
 
-- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-pv }})
+- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
+- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
+- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
+- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
+- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
+- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
+- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
+- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
 
 ----
 
