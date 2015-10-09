@@ -17,7 +17,7 @@ nav:
       - label: Upstream Headers
 ---
 
-Add HMAC Signature Authentication to your APIs to establish the identity of the consumer. The plugin will check for valid signature in the `Proxy-Authorization` and `Authorization` header (in this order). This plugin implementation follows [the draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) draft with slightly changed signature scheme.
+Add HMAC Signature Authentication to your APIs to establish the identity of the consumer. The plugin will check for valid signature in the `Proxy-Authorization` and `Authorization` header (in this order). This plugin implementation follows the [draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) draft with slightly changed signature scheme.
 
 ----
 ## Signature Authentication Scheme
