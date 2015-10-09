@@ -59,8 +59,8 @@ plain-string   = DQUOTE *( %x20-21 / %x23-5B / %x5D-7E ) DQUOTE
 
 ### HMAC Example
 
-   For an HMAC-based signature with date and Conatent-md5 headers, the
-   authorization header and signature would be generated as:
+   For an HMAC signature with date and Conatent-md5 headers, the
+   `Proxy-Authorization` or `Authorization` header and signature would be generated as:
 
 Authorization: hmac username="bob", algorithm="hmac-sha1", headers="date content-5", signature="Base64(HMAC-SHA1(signing string))"
 
