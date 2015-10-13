@@ -25,7 +25,6 @@
 - id: aws-marketplace
   name: AWS Marketplace
   type: cloud
-  png: true
 
 - id: osx
   name: OS X
