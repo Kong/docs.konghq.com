@@ -17,7 +17,7 @@ Add the plugin to the list of available plugins on every Kong server in your clu
 
 ```yaml
 plugins_available:
-  - ratelimiting
+  - rate-limiting
 ```
 
 Every node in the Kong cluster should have the same `plugins_available` property value.
@@ -28,7 +28,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=ratelimiting" \
+    --data "name=rate-limiting" \
     --data "config.second=5" \
     --data "config.hour=10000"
 ```
@@ -37,7 +37,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter | required        | description
 ---            | ---             | ---
-`name`         | *required*      | The name of the plugin to use, in this case: `ratelimiting`
+`name`         | *required*      | The name of the plugin to use, in this case: `rate-limiting`
 `consumer_id`  | *optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `config.second` | *semi-optional* |  The amount of HTTP requests the developer can make per second. At least one limit must exist.
 `config.minute` | *semi-optional* |  The amount of HTTP requests the developer can make per minute. At least one limit must exist.
