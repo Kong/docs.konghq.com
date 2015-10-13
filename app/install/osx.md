@@ -20,7 +20,9 @@ breadcrumbs:
 
 1. **Install the Package:**
 
-    **Note**: After downloading the [Installer](#packages), you will have to **right click**, select "Open" and authorize it.
+    Use the `.pkg` installer or the Homebrew formula. For the Homebrew formula, follow the instructions described in the repository.
+
+    **Note**: After downloading the `.pkg` installer, you will have to **right click**, select "Open" and authorize it.
 
 2. **Configure Cassandra**
 
