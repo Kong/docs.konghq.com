@@ -123,8 +123,8 @@ form parameter                | description
 When a client has been authenticated and authorized, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer and the end-user in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
-* `X-Consumer-Custom-ID`, the `custom_id` of to the Consumer (if set)
-* `X-Consumer-Username`, the `username` of to the Consumer (if set)
+* `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
+* `X-Consumer-Username`, the `username` of the Consumer (if set)
 * `X-Authenticated-Scope`, the comma-separated list of scopes that the end user has authenticated (if available)
 * `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client
 

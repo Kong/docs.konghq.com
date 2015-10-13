@@ -7,7 +7,7 @@ header_icon: /assets/images/icons/icn-download.svg
 ---
 
 <div class="page page-install">
-  {% capture header_caption %}Latest Release v{{ site.data.kong_latest.release }} &bull; See <a href="{{ site.repos.kong }}/blob/master/CHANGELOG.md">Changelog</a> &bull; Read the <a href="https://github.com/Mashape/kong/blob/master/UPDATE.md#update-to-kong-050">migration instructions</a> for versions < 0.5.x{% endcapture %}
+  {% capture header_caption %}Latest Release v{{ site.data.kong_latest.version }} &bull; See <a href="{{ site.repos.kong }}/blob/master/CHANGELOG.md">Changelog</a> &bull; Read the <a href="https://github.com/Mashape/kong/blob/master/UPDATE.md#update-to-kong-050">migration instructions</a> for versions < 0.5.x{% endcapture %}
   {% include header.html header_caption=header_caption %}
 
   <section class="content-section">
