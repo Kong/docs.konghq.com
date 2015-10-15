@@ -24,7 +24,7 @@ They are all **required**.
 - [**proxy_port**](#proxy_port)
 - [**proxy_ssl_port**](#proxy_ssl_port)
 - [**admin_api_port**](#admin_api_port)
-- [**dnsmasq_port**](#dnsmasq_port)
+- [**dns_resolver**](#dns_resolver)
 - [**nginx_working_dir**](#nginx_working_dir)
 - [**plugins_available**](#plugins_available)
 - [**send_anonymous_reports**](#send_anonymous_reports)
@@ -77,17 +77,34 @@ admin_api_port: 8001
 
 ----
 
-### **dnsmasq_port**
+### **dns_resolver**
 
-Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen to.
-
-**Note:** This port is used to properly resolve DNS addresses by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
+DNS resolver settings that Kong will use when resolving DNS addresses. You can let the built-in [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) installation handle DNS resolutions (default setting), or specify a custom address to a DNS server. You cannot have both a custom `address` and Dnsmasq enabled at the same time.
 
 **Default:**
 
 ```yaml
-dnsmasq_port: 8053
+## DNS resolver configuration
+dns_resolver:
+  #address: "8.8.8.8:53"
+  dnsmasq:
+    enabled: true
+    port: 8053
 ```
+
+  **`address`**
+
+  The address to a custom DNS server, in the `address:port` format.
+
+  **`dnsmasq.enabled`**
+
+  Enables or disables the built-in Dnsmasq server that will resolve DNS addresses using the local system configuration, including properly resolving addresses from `/etc/hosts`.
+
+  **`dnsmasq.port`**
+
+  Port where Dnsmasq will listen to.
+
+  **Note:** This port is used to properly resolve DNS addresses by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
 
 ----
 
