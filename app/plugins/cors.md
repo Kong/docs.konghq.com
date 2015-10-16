@@ -5,6 +5,14 @@ header_title: CORS
 header_icon: /assets/images/icons/plugins/cors.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Known Issues
+    items:
+      - label: CORS Limitations
 ---
 
 Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling this plugin.
@@ -52,5 +60,18 @@ form parameter                             | description
 `config.max_age`<br>*optional*             | Indicated how long the results of the preflight request can be cached, in `seconds`.
 `config.preflight_continue`<br>*optional*  | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API. Defaults to `false`.
 
+## Known issues
+
+Below is a list of known issues or limitations for this plugin.
+
+### CORS Limitations
+
+If the client is a browser, there is a known issue with this plugin caused by a limitation of the CORS specification that doesn't allow to specify a custom `Host` header in a preflight `OPTIONS` request.
+
+Because of this limitation, this plugin will only work for APIs that have been configured with a `request_path` setting, and it will not work for APIs that are being resolved using a custom DNS (the `request_host` property).
+
+To learn how to add `request_path` to an API, please read the [Proxy Reference][proxy-reference].
+
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
+[proxy-reference]: /docs/latest/proxy
