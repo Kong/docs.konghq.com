@@ -5,6 +5,15 @@ header_title: SSL Certificate
 header_icon: /assets/images/icons/plugins/ssl.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+      - label: Creating an SSL certificate
+      - label: Propagation
 ---
 
 <div class="alert alert-warning">
@@ -67,6 +76,12 @@ openssl x509 -req -in server.csr -signkey server.key -out server.crt
 ```
 
 If you followed the steps above the certificate will be stored in a file named `server.crt`, while the key is at `server.key`.
+
+## Propagation
+
+When adding this plugin, the SSL certificate and its key will be uploaded and stored into the datastore, and they doesn't need to physically exist on the Kong servers. 
+
+For example, if you have two Kong servers called "Server_1" and "Server_2", this means that you can upload a certificate, let's say, on "Server_1" and it will be immediately available also on "Server_2" (and on any other server you decide to add to the cluster, as long as they point to the same datastore).
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration#ssl_cert_path
