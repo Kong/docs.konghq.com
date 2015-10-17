@@ -87,7 +87,22 @@ gulp.task('html', ['jekyll'], function () {
     .pipe(browserSync.stream())
 })
 
-gulp.task('clean', function (cb) {
+gulp.task('docs', function (cb) {
+  if (process.env.KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  var command = 'ldoc --quiet -c ./config.ld ' + process.env.KONG_PATH
+  command += ' && rm lua-reference/ldoc.css'
+
+  child_process.exec(command, function (err, stdout, stderr) {
+    gutil.log(stdout)
+    gutil.log(stderr)
+    cb(err)
+  })
+})
+
+gulp.task('clean', function () {
   ghPages.clean()
   return del(['dist', '.gh-pages'])
 })
@@ -101,7 +116,8 @@ gulp.task('browser-sync', function () {
     logPrefix: ' ▶ ',
     minify: false,
     notify: false,
-    server: 'dist'
+    server: 'dist',
+    open: false
   })
 })
 

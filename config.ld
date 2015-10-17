@@ -1,0 +1,9 @@
+project='Public Lua API Reference'
+title='For plugins developers and core contributors'
+format='markdown'
+template='.'
+dir='lua-reference'
+sort=true
+sort_modules=true
+not_luadoc=true
+all=false

@@ -26,6 +26,39 @@
     - text: Proxy reference
       url: /proxy
 
+    - text: Public Lua API reference
+      url: /lua-reference/
+
+    - text: Plugin Development Guide
+      url: /plugin-development
+      items:
+        - text: Introduction
+          url: /plugin-development
+
+        - text: File structure
+          url: /plugin-development/file-structure
+
+        - text: Implement custom logic
+          url: /plugin-development/custom-logic
+
+        - text: Plugin configuration
+          url: /plugin-development/plugin-configuration
+
+        - text: Access the datastore
+          url: /plugin-development/access-the-datastore
+
+        - text: Store custom entities
+          url: /plugin-development/custom-entities
+
+        - text: Extend the Admin API
+          url: /plugin-development/admin-api
+
+        - text: Writing tests
+          url: /plugin-development/tests
+
+        - text: Distribute your plugin
+          url: /plugin-development/distribution
+
 - title: Admin API
   url: /admin-api/
   items:
