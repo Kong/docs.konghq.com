@@ -130,6 +130,12 @@ the order they appear.
 3. If value is not the last value then append an ASCII newline `\n`.
   The string MUST NOT include a trailing ASCII newline.
 
+### Clock Skew
+
+The HMAC Authentication plugin also implements a clock skew check [as described in the specification](https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4) to prevent replay attacks. By default, a minimum lag of 300s in either direction (past/future) is allowed. Any request with a higher or lower date value will be rejected. The length of the clock skew can be edited through the plugin's configuration by setting `clock_skew` property (`config.clock_skew` POST parameters).
+
+The server and requesting client should be synchronized with NTP and a valid date (using GMT format) should be sent with either the `X-Date` or `Date` header.
+
 ### HMAC Example
 
 For an HMAC signature with `date` and `content-md5` headers, the `Proxy-Authorization` or `Authorization` header and signature would be generated as:
@@ -141,7 +147,7 @@ Authorization: hmac username="bob", algorithm="hmac-sha1", headers="date content
 The client would compose the signing string as:
 
 ```
-date: Fri, 09 Oct 2015 00:00:00 GMT\ncontent-md5: lCMsW4/JJy9vc6HjbraPzw==  
+date: Fri, 09 Oct 2015 00:00:00 GMT\ncontent-md5: lCMsW4/JJy9vc6HjbraPzw==
 ```
 
 ### Upstream Headers
