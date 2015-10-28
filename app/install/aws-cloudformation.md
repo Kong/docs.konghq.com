@@ -79,7 +79,7 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 
 3. **Choose a Region & VM Type**:
 
-    Choose the region closest to your API servers, and pick the virtualization type you'd like from the list of available [templates](#tempaltes) above.
+    Choose the region closest to your API servers, and pick the virtualization type you'd like from the list of available [templates](#templates) above.
 
     You should land on AWS Cloud Formation *"Select Template"* page
 
