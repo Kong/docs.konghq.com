@@ -7,7 +7,7 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-Logs your traffic to [Galileo][analytics]. (There is a FREE plan with 24h data retention)
+Logs request and response data to [Galileo][analytics]. Works with any Galileo subscription plan, including the FREE plan with 24h data retention.
 
 ----
 
