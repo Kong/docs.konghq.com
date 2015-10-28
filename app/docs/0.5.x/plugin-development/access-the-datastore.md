@@ -19,7 +19,7 @@ Kong interacts with the model layer through classes we refer to as "DAOs". This 
 All entities in Kong are represented by:
 
 - A schema that describes which table the entity relates to in the datastore, and constraints on its fields such as foreign keys, non-null constraints and the likes. This schema is a table such as described in the [plugin configuration]({{page.book.chapters.plugin-configuration}}) chapter.
-- A child implementation of the [kong.dao.cassandra.base_dao] module, which consumes the schema and exposes methods to insert, update, find and delete entities of that type.
+- A child implementation of the [kong.dao.cassandra.base_dao] module, which consumes the schema and exposes methods to insert, update, find and delete entities of that type. See the [children DAOs interface](http://localhost:3000/docs/0.5.x/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface).
 
 The core entities in Kong are: Apis, Consumers and Plugins. Each of those entities can be interacted with through their corresponding DAO instance, available on the **DAO Factory** instance. The DAO Factory is responsible for loading those core entities' DAOs as well as any additional entities, provided for example by plugins.
 
@@ -40,7 +40,7 @@ It is recommended to cache the global variable into a local one for performance 
 
 ### DAOs Lua API
 
-All methods available on DAOs are documented in the [kong.dao.cassandra.base_dao] module in Kong's Public Lua API Reference.
+All methods available on DAOs are documented in the [kong.dao.cassandra.base_dao] module in Kong's Public Lua API Reference. See the [public interface] and [children DAOs interface] sections of the base_dao module.
 
 By extending the base_dao module, all DAOs have access to an abstraction on top of Cassandra, providing methods for inserting, updating, finding and deleting rows, with validation and pagination features that Cassandra does not provide by itself.
 
@@ -67,3 +67,5 @@ Now, let's see how to create your own DAO for your plugin in the next chapter: [
 Next: [Custom Entities &rsaquo;]({{page.book.next}})
 
 [kong.dao.cassandra.base_dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao
+[children DAOs interface]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface
+[public interface]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao/#Public_interface

@@ -12,6 +12,7 @@ layout: default
 # local iter = ldoc.modules.iter
 # local display_name = ldoc.display_name
 # local function ref_to_module(mod) return ldoc.ref_to_module(mod):gsub("%.%./", "../../"):gsub(".html", "") end
+# local function href(see) return ldoc.href(see):gsub("%.%./", "../../"):gsub(".html", "") end
 # local function no_jumps(s) return s:gsub("\n", ""):gsub("[ ]+", " ") end
 # local function trim(s) return (s:gsub("^%s*(.-)%s*$", "%1")) end
 # local function M(txt, item) return trim(ldoc.markup(txt,item,ldoc.plain)) end
@@ -134,7 +135,8 @@ layout: default
 #   local kitem = module.kinds:get_item(kind)
 #   local has_description = kitem and ldoc.descript(kitem) ~= ""
 
-<h2 class="section-header $(has_description and 'has-description')">$(kind)</h2>
+<h2 class="section-header $(has_description and 'has-description')"><a name="$(no_spaces(kind))">$(kind)</a></h2>
+$(M(module.kinds:get_section_description(kind),nil))
 #   if kitem then
 #     if has_description then
 <div class="section-description">
@@ -260,7 +262,7 @@ $(M(ldoc.descript(kitem),kitem))
     <h5>See also:</h5>
     <ul>
 #   for see in iter(item.see) do
-      <li><a href="$(ldoc.href(see))">$(see.label)</a></li>
+      <li><a href="$(href(see))">$(see.label)</a></li>
 #   end
     </ul>
 # end -- if see

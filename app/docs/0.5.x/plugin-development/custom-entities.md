@@ -83,8 +83,7 @@ Cassandra does not support constraints such as "must be unique" or "is a foreign
 To make the DAO Factory load your custom DAO(s), you will need:
 
 - A schema (just like the schemas describing your [plugin configuration]({{page.book.chapters.plugin-configuration}})) that describes which table the entity relates to in the datastore, and constraints on its fields such as foreign keys, non-null constraints and the likes.
-- A schema (just like the schemas describing your [plugin configuration]({{page.book.chapters.plugin-configuration}})) that describes which table the entity relates to in the datastore, and constraints on its fields such as foreign keys, non-null constraints and the likes.
-- A child implementation of [kong.dao.cassandra.base_dao], which consumes the schema and exposes methods to create, update, find and delete entities of that type.
+- A child implementation of [kong.dao.cassandra.base_dao], which consumes the schema and exposes methods to create, update, find and delete entities of that type. See the [children DAOs interface].
 
 This DAO is to be implemented in a module named:
 
@@ -162,3 +161,4 @@ Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
 
 [kong.dao.cassandra.base_dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao
 [Admin API]: /docs/{{page.kong_version}}/admin-api/
+[children DAOs interface]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface

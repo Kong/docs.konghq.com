@@ -15,7 +15,7 @@ chapter: 3
 ---
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a> and the <a href="https://www.nginx.com/resources/wiki/modules/lua/">lua-nginx-module API</a>.
+  <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a> and the <a href="https://github.com/openresty/lua-nginx-module">lua-nginx-module API</a>.
 </div>
 
 Kong allows you to execute custom code at different times in the lifecycle of a request. To do so, you have to implement one or several of the methods of the `base_plugin.lua` interface. Those methods are to be implemented in a module at: `"kong.plugins.<plugin_name>.handler"`.
@@ -37,11 +37,11 @@ Kong allows you to write your code in all of the lua-nginx-module contexts. Eac
 
 All of those functions take one parameter given by Kong: the configuration of your plugin. This parameter is a simple Lua table, and will contain values defined by your users, according to the schema of your choice. More on that in the [next chapter][next].
 
-[init_worker_by_lua]: https://www.nginx.com/resources/wiki/modules/lua/#init-worker-by-lua
-[access_by_lua]: https://www.nginx.com/resources/wiki/modules/lua/#access-by-lua
-[header_filter_by_lua]: https://www.nginx.com/resources/wiki/modules/lua/#header-filter-by-lua
-[body_filter_by_lua]: https://www.nginx.com/resources/wiki/modules/lua/#body-filter-by-lua
-[log_by_lua]: https://www.nginx.com/resources/wiki/modules/lua/#log-by-lua
+[init_worker_by_lua]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua
+[access_by_lua]: https://github.com/openresty/lua-nginx-module#access_by_lua
+[header_filter_by_lua]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua
+[body_filter_by_lua]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua
+[log_by_lua]: https://github.com/openresty/lua-nginx-module#log_by_lua
 
 ---
 

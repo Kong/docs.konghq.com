@@ -20,7 +20,7 @@ Your plugin will consist of Lua modules which will be loaded and executed by Kon
 - **Kong's plugin environment**: allows interaction with the datastore holding your configurations (APIs, Consumers, Plugins...) and various helpers allowing the interaction of plugins between each other. This is the environment that will be described by this guide.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This guide assumes that you are familiar with <a href="http://www.lua.org/">Lua</a> and the <a href="https://www.nginx.com/resources/wiki/modules/lua/">lua-nginx-module API</a> and will only describe Kong's plugin environment.
+  <strong>Note:</strong> This guide assumes that you are familiar with <a href="http://www.lua.org/">Lua</a> and the <a href="https://github.com/openresty/lua-nginx-module">lua-nginx-module API</a> and will only describe Kong's plugin environment.
 </div>
 
 ---

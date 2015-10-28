@@ -113,7 +113,8 @@ layout: default
 </table>
 
 
-<h2 class="section-header ">Functions</h2>
+<h2 class="section-header "><a name="Functions">Functions</a></h2>
+
 
 <dl class="function">
   <hr />
@@ -125,7 +126,7 @@ layout: default
  Not all status codes are available as sugar methods, this function can be
  used to send any response.
  If the <code>status_code</code> parameter is in the 5xx range, it is expectde that the <code>content</code> parameter be the error encountered. It will be logged and the response body will be empty. The user will just receive a 500 status code.
- Will call <code>ngx.say</code> and <code>ngx.exit</code>, terminating the current context.
+ Will call <a href="https://github.com/openresty/lua-nginx-module#ngxsay">ngx.say</a> and <a href="https://github.com/openresty/lua-nginx-module#ngxexit">ngx.exit</a>, terminating the current context.
 
     <h5>Parameters:</h5>
     <ul>
@@ -160,6 +161,8 @@ layout: default
 
     <h5>See also:</h5>
     <ul>
+      <li><a href="https://github.com/openresty/lua-nginx-module#ngxsay">ngx.say</a></li>
+      <li><a href="https://github.com/openresty/lua-nginx-module#ngxexit">ngx.exit</a></li>
     </ul>
 
 
@@ -167,7 +170,8 @@ layout: default
   </dd>
 </dl>
 
-<h2 class="section-header ">Tables</h2>
+<h2 class="section-header "><a name="Tables">Tables</a></h2>
+
 
 <dl class="function">
   <hr />
