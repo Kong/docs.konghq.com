@@ -18,26 +18,32 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration file</a></h3>
-    <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
-    <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/proxy">Proxy reference</a></h3>
-    <p>Learn every way to configure Kong to proxy your APIs and discover tips for your production setup.</p>
-    <a href="/docs/{{page.kong_version}}/proxy">Read the Proxy Reference &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/admin-api">Admin API reference</a></h3>
     <p>Ready to learn the underlying interface? Browse the Admin API reference to learn how to start making requests.</p>
     <a href="/docs/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/{{page.kong_version}}/cli">Write your own plugins</a></h3>
+    <p>Looking for something Kong does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for Kong.</p>
+    <a href="/docs/{{page.kong_version}}/plugin-development">Read the plugin development guide &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/configuration">Configuration file</a></h3>
+    <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
+    <a href="/docs/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/cli">CLI reference</a></h3>
     <p>Want a better understanding of the CLI tool and its options? Browse the detailed command reference.</p>
     <a href="/docs/{{page.kong_version}}/cli">Use the CLI &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/proxy">Proxy reference</a></h3>
+    <p>Learn every way to configure Kong to proxy your APIs and discover tips for your production setup.</p>
+    <a href="/docs/{{page.kong_version}}/proxy">Read the Proxy Reference &rarr;</a>
   </div>
 </div>
