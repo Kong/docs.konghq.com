@@ -18,7 +18,7 @@ The preferred testing framework for Kong is [busted](http://olivinelabs.com/bust
 
 Kong provides you with a helper to start and stop it from Lua code in your test suite: `spec.spec_helpers`. This helper also provides you with ways to insert fixtures in your datastore before running your tests, as well as dropping it, and various other helpers.
 
-Assuming you have a configuration file obtained from running `make dev` in your Kong repository in your current folder, and that the `spec.spec_helpers` module is available in your LUA_PATH, you can use the following Lua code in busted to start and stop Kong:
+Assuming you have a configuration file obtained from running `make dev` in your Kong repository in your current folder, and that the `spec.spec_helpers` module is available in your `LUA_PATH`, you can use the following Lua code in busted to start and stop Kong:
 
 ```lua
 local spec_helper = require "spec.spec_helpers"

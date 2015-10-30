@@ -129,7 +129,9 @@ Kong Configuration File
 
 ## migrations
 
-Run the datastore migrations (incremental changes to the datastore's schema). It can either run Kong core's migrations, plugin by plugin, or all at the same time. Migrations can either run "up" or "down". Up means it will prepare the datastore (create necessary tables, etc...). Down means it will revert any previous "up" step.
+Run the datastore migrations (incremental changes to the datastore's schema).
+
+It can either run Kong core's migrations, plugin by plugin, or all at the same time. Migrations can either run "up" or "down". Up means it will prepare the datastore (create necessary tables, etc...). Down means it will revert any previous "up" step.
 
 ```bash
 $ kong migrations [parameters] [list|up|down|reset]

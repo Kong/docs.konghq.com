@@ -18,7 +18,7 @@ chapter: 3
   <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a> and the <a href="https://github.com/openresty/lua-nginx-module">lua-nginx-module API</a>.
 </div>
 
-Kong allows you to execute custom code at different times in the lifecycle of a request. To do so, you have to implement one or several of the methods of the `base_plugin.lua` interface. Those methods are to be implemented in a module at: `"kong.plugins.<plugin_name>.handler"`.
+Kong allows you to execute custom code at different times in the lifecycle of a request. To do so, you have to implement one or several of the methods of the `base_plugin.lua` interface. Those methods are to be implemented in a module at: `"kong.plugins.<plugin_name>.handler"`
 
 ---
 
@@ -47,7 +47,7 @@ All of those functions take one parameter given by Kong: the configuration of yo
 
 ### handler.lua specifications
 
-The `handler.lua` file must return a table implementing the functions you whish to be executed. In favor of brivety, here is a commented example module implementing all the available methods:
+The `handler.lua` file must return a table implementing the functions you whish to be executed. In favor of brevity, here is a commented example module implementing all the available methods:
 
 <div class="alert alert-warning">
   <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
@@ -176,3 +176,5 @@ The higher the priority, the sooner your plugin's phases will be executed in reg
 ---
 
 Next: [Store configuration &rsaquo;]({{page.book.next}})
+
+[lua-nginx-module]: https://github.com/openresty/lua-nginx-module

@@ -17,7 +17,7 @@ chapter: 6
 
 Your plugin might need to store more than its configuration in the database. In that case, Kong provides you with an abstraction on top of Cassandra (and future supported datastores) which allows you to store custom entities.
 
-As explained in the [previous]({{page.book.previous}}) chapter, Kong interacts with the model layer through classes we refer to as "DAOs", and available on a global variable called the "DAO Factory". This chapter will explain how to inherit from the Kong base_dao module to provide an abstraction for your own entities.
+As explained in the [previous chapter]({{page.book.previous}}), Kong interacts with the model layer through classes we refer to as "DAOs", and available on a global variable called the "DAO Factory". This chapter will explain how to inherit from the Kong [kong.dao.cassandra.base_dao] module to provide an abstraction for your own entities.
 
 <div class="alert alert-warning">
   <strong>Note:</strong> Currently, Kong only supports <a href="http://cassandra.apache.org/">Cassandra</a> as its datastore. This guide assumes that you are already familiar with it and sometimes describes concepts only related to Cassandra, such as indexes and clustering keys.
@@ -31,7 +31,7 @@ Once you have defined your model, you must create a migration file which will be
 
 Each migration has a unique name, and two strings consisting of [CQL](https://cassandra.apache.org/doc/cql/CQL.html) statements: `up` and `down`. All up queries are executed when Kong migrates your database (when starting or using the [kong migrations](/docs/{{page.kong_version}}/cli#migrations) command).
 
-One of the benefits of such an approach is that if you need to release a new version of your plugin and that version modifies your model, you can simply add a new migration to that array before releasing your plugin. The same way, it is possible to revert migrations.
+One of the main benefits of this approach is should you need to release a new version that modifies a model, you can simply add new migrations to the array before releasing your plugin. Another benefit is that it is also possible to revert such migrations.
 
 As described in the [file structure]({{page.book.chapters.file-structure}}) chapter, your file must be a module named:
 
@@ -39,7 +39,7 @@ As described in the [file structure]({{page.book.chapters.file-structure}}) chap
 "kong.plugins.<plugin_name>.migrations.cassandra"
 ```
 
-Here is how one would define a migration file for his or her plugin if their goal is to store API keys:
+Here is an example of how one would define a migration file to store API keys:
 
 ```lua
 local Migrations = {
@@ -70,19 +70,19 @@ local Migrations = {
 return Migrations
 ```
 
-- `name`: Must be a unique string. The format does not matter but can help you debug eventual issues when developing your plugin, so make sure to name it in a relevant way.
-- `up`: a function returning a string of semi-colon separated CQL statements. Used when Kong migrates **forward**. The first parameter, `options`, is a table containing the Cassandra properties defined in your configuration file.
-- `down`: a function returning a string of semi-colon separated CQL statements. Used when Kong migrates **backward**. The first parameter, `options`, is a table containing the Cassandra properties defined in your configuration file.
+- `name`: Must be a unique string. The format does not matter but can help you debug issues while developing your plugin, so make sure to name it in a relevant way.
+- `up`: Function returning a string of semi-colon separated CQL statements. Used when Kong migrates **forward**. The first parameter, `options`, is a table containing the Cassandra properties defined in your configuration file.
+- `down`: Function returning a string of semi-colon separated CQL statements. Used when Kong migrates **backward**. The first parameter, `options`, is a table containing the Cassandra properties defined in your configuration file.
 
 Cassandra does not support constraints such as "must be unique" or "is a foreign key to that table's primary key", but Kong provides you with such features when you extend the Base DAO and define your model's schema.
 
 ---
 
-### Extend the Base DAO
+### Extending the Base DAO
 
 To make the DAO Factory load your custom DAO(s), you will need:
 
-- A schema (just like the schemas describing your [plugin configuration]({{page.book.chapters.plugin-configuration}})) that describes which table the entity relates to in the datastore, and constraints on its fields such as foreign keys, non-null constraints and the likes.
+- A schema (just like the schemas describing your [plugin configuration]({{page.book.chapters.plugin-configuration}})) that describes which table the entity relates to in the datastore, constraints on its fields such as foreign keys, non-null constraints and such.
 - A child implementation of [kong.dao.cassandra.base_dao], which consumes the schema and exposes methods to create, update, find and delete entities of that type. See the [children DAOs interface].
 
 This DAO is to be implemented in a module named:
@@ -91,7 +91,7 @@ This DAO is to be implemented in a module named:
 "kong.plugins.<plugin_name>.daos.lua"
 ```
 
-Here is how one would define a schema and inherit from the base_dao module if he or she wanted to store API keys in a new table (column family in Cassandra):
+Here is an example of how one would define a schema to inherit from the base_dao module and store API keys in a new table ("column family" in Cassandra):
 
 <div class="alert alert-warning">
   <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
@@ -126,7 +126,7 @@ end
 return {keyauth_credentials = KeyAuth} -- this plugin only defines one custom DAO, named `keyauth_credentials`
 ```
 
-Once you have defined your schema, override the `:new()` method to provide the Base DAO with it as well as the name of the associated column family in your Cassandra instance (according to your own migration file).
+Once you have defined your schema, overriding the :new() method provides the Base DAO the schema and the name of the associated column family in your Cassandra instance (according to your own migration file).
 
 Since your plugin might have to deal with multiple custom DAOs (in the case when you want to store several entities), this module is bound to return a key/value table where keys are the name on which the custom DAO will be available in the DAO Factory.
 
@@ -153,7 +153,7 @@ The property name depends on the key with which you exported your DAO in the ret
 
 ### Extending the Admin API
 
-As you are probably aware, the [Admin API] is where Kong users communicate with Kong to setup their APIs and plugins. It is likely that they also need to be able to interact with those custom entities you implemented for your plugin (for example, creating and deleting API keys). The way you would do this is by extending the Admin API, which we will detail in the next chapter: [Extending the Admin API]({{page.book.next}}).
+As you are probably aware, the [Admin API] is where Kong users communicate with Kong to setup their APIs and plugins. It is likely that they also need to be able to interact with the custom entities you implemented for your plugin (for example, creating and deleting API keys). The way you would do this is by extending the Admin API, which we will detail in the next chapter: [Extending the Admin API]({{page.book.next}}).
 
 ---
 

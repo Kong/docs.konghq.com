@@ -16,7 +16,7 @@ Hence, Kong is a Lua application designed to load and execute Lua modules (which
 
 Your plugin will consist of Lua modules which will be loaded and executed by Kong, and it will benefit from two APIs:
 
-- [lua-nginx-module API][lua-nginx-module-docs]: allows interaction with Nginx itself, such as, for example, retrieving the request/response, or accessing Nginx's shared memory zone.
+- [lua-nginx-module API][lua-nginx-module]: allows interaction with Nginx itself, such as, for example, retrieving the request/response, or accessing Nginx's shared memory zone.
 - **Kong's plugin environment**: allows interaction with the datastore holding your configurations (APIs, Consumers, Plugins...) and various helpers allowing the interaction of plugins between each other. This is the environment that will be described by this guide.
 
 <div class="alert alert-warning">
@@ -28,4 +28,3 @@ Your plugin will consist of Lua modules which will be loaded and executed by Kon
 Next: [File structure of a plugin &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
-[lua-nginx-module-docs]: https://www.nginx.com/resources/wiki/modules/lua/

@@ -6,9 +6,9 @@ chapter: 9
 
 # {{page.title}}
 
-As mentioned many times in this guide, Kong heavily relies on your modules being available in your LUA_PATH under specific names.
+As mentioned many times in this guide, Kong heavily relies on your modules being available in your `LUA_PATH` under specific names.
 
-As already mentioned in the [file structure] chapter, make Kong aware that it has to look for your plugin's modules by adding it to the `plugins_available` property in your configuration file. Example:
+As already mentioned in the [file structure] chapter, we make Kong aware that it has to look for your plugin's modules by adding it to the `plugins_available` property in your configuration file. Example:
 
 ```yaml
 plugins_available:
@@ -17,17 +17,17 @@ plugins_available:
   - my-custom-plugin # your plugin name here
 ```
 
-Kong will then look for modules named:
+Kong will now look for modules named:
 
 ```
-"kong.plugins.<plugin_name>.api"
-"kong.plugins.<plugin_name>.daos"
-"kong.plugins.<plugin_name>.handler"
-"kong.plugins.<plugin_name>.migrations.cassandra"
-"kong.plugins.<plugin_name>.schema"
+"kong.plugins.my-custom-plugin.api"
+"kong.plugins.my-custom-plugin.daos"
+"kong.plugins.my-custom-plugin.handler"
+"kong.plugins.my-custom-plugin.migrations.cassandra"
+"kong.plugins.my-custom-plugin.schema"
 ```
 
-You need to make those modules available in your LUA_PATH.
+You need to make these modules available in your LUA_PATH.
 
 ---
 

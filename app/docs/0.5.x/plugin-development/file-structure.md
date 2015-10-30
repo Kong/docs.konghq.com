@@ -10,15 +10,15 @@ chapter: 2
   <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a>.
 </div>
 
-Consider your plugin as a set of [Lua modules](http://www.lua.org/manual/5.1/manual.html#6.3). Each file described in this chapter is to be considered as a separate module. Kong will detect and load your plugin's modules if their names follows this convention:
+Consider your plugin as a set of [Lua modules](http://www.lua.org/manual/5.1/manual.html#6.3). Each file described in this chapter is to be considered as a separate module. Kong will detect and load your plugin's modules if their names follow this convention:
 
 ```
 "kong.plugins.<plugin_name>.<module_name>"
 ```
 
-> Your modules of course need to be accessible through your [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path) variable, which can be tweaked to your needs by the [lua-package-path](https://www.nginx.com/resources/wiki/modules/lua/#lua-package-path) directive in your Nginx configuration. However, the prefered way of installing plugins is through [Luarocks](https://luarocks.org/). More on that later in this guide.
+> Your modules of course need to be accessible through your [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path) variable, which can be tweaked to your needs by the [lua-package-path](https://github.com/openresty/lua-nginx-module#lua_package_path) directive in your Nginx configuration. However, the prefered way of installing plugins is through [Luarocks](https://luarocks.org/). More on that later in this guide.
 
-To make Kong aware that it has to look for your plugin's modules, you'll have to add it to the `plugins_available` property in your configuration file. Example:
+To make Kong aware that it has to look for your plugin's modules, you'll have to add it to the `plugins_available` property in your configuration file. For example:
 
 ```yaml
 plugins_available:
@@ -43,7 +43,7 @@ simple-plugin
 └── schema.lua
 ```
 
-- [handler.lua]: this module is the core of your plugin. It is an interface to implement, in which each function will be run at the desired moment in the lifecycle of a request.
+- [handler.lua]: the core of your plugin. It is an interface to implement, in which each function will be run at the desired moment in the lifecycle of a request.
 - [schema.lua]: your plugin probably has to retain some configuration entered by the user. This module holds the *schema* of that configuration and defines rules on it, so that the user can only enter valid configuration values.
 
 ---

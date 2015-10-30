@@ -71,7 +71,7 @@ return {
 }
 ```
 
-### Describe your configuration schema
+### Describing your configuration schema
 
 The `fields` property of your `schema.lua` file described the schema of your plugin's configuration. It is a flexible key/value table where each key will be a valid configuration property for your plugin, and each value a table describing the rules for that property. For example:
 
