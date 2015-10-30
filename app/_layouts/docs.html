@@ -52,13 +52,15 @@ id: documentation
       {% endif %}
       <ul>
         {% for item in nav.items %}
+        {% capture url %}{{ docs_url | append: item.url }}/{% endcapture %}
         <li>
-          <a href="{{docs_url | append: item.url}}" {% if page.url contains item.url %}class="active"{% endif %}>{{item.text}}</a>
+          <a href="{{docs_url | append: item.url}}" {% if page.url == url %}class="active"{% endif %}>{{item.text}}</a>
           {% if item.items %}
           <ul>
             {% for subitem in item.items %}
+            {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
             <li>
-              <a href="{{docs_url | append: subitem.url}}">{{subitem.text}}</a>
+              <a href="{{docs_url | append: subitem.url}}" {% if page.url == sub_url %}class="active"{% endif %}>{{subitem.text}}</a>
             </li>
             {% endfor %}
           </ul>
