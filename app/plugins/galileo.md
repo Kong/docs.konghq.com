@@ -1,13 +1,14 @@
 ---
 id: page-plugin
-title: Plugins - Mashape Analytics (Galileo)
-header_title: Mashape Analytics (Galileo)
-header_icon: /assets/images/icons/plugins/mashape-analytics.png
+title: Plugins - Galileo
+header_title: Galileo
+header_icon: /assets/images/icons/plugins/galileo.png
+redirect_from: /plugins/mashape-analytics/
 breadcrumbs:
   Plugins: /plugins
 ---
 
-Logs your traffic to [Mashape Analytics][analytics]. (There is a FREE plan with 24h data retention)
+Logs request and response data to [Galileo][analytics]. Works with any Galileo subscription plan, including the FREE plan with 24h data retention.
 
 ----
 

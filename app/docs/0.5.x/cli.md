@@ -125,6 +125,41 @@ $ kong reload [parameters]
 
 Kong Configuration File
 
+---
+
+## migrations
+
+Run the datastore migrations (incremental changes to the datastore's schema).
+
+It can either run Kong core's migrations, plugin by plugin, or all at the same time. Migrations can either run "up" or "down". Up means it will prepare the datastore (create necessary tables, etc...). Down means it will revert any previous "up" step.
+
+```bash
+$ kong migrations [parameters] [list|up|down|reset]
+```
+
+### Parameters
+
+#### -c \<configuration file path>
+
+Kong Configuration File
+
+When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
+Should no configuration file exist at that location Kong will load the default configuration stored internally.
+
+This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
+
+#### -t \<type>
+
+Default: `all`
+
+When running the `up` or `down` commands, specify `core` or `plugin_name` to only run specific migrations.
+
+### Commands
+
+- **list**: list migrations already executed (for which the datastore has been prepared).
+- **up**: execute all migrations for the given type.
+- **down**: revert the latest executed migration for the given type. **This operation is desctructive**.
+- **reset**: reset your keyspace. **This operation is desctructive**.
 
 [configuration-guide]: /docs/{{page.kong_version}}/configuration
 [nginx-signals]: http://nginx.org/en/docs/control.html
