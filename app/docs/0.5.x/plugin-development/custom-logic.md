@@ -35,7 +35,7 @@ Kong allows you to write your code in all of the lua-nginx-module contexts. Eac
 | `:body_filter()`         | [body_filter_by_lua]               | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceeds the buffer size and be streamed chunk by chunk. hence this method can be called multiple times if the response is large. See the lua-nginx-module documentation for more details.
 | `:log()`                 | [log_by_lua]                       | Executed when the last response byte has been sent to the client.
 
-All of those functions take one parameter given by Kong: the configuration of your plugin. This parameter is a simple Lua table, and will contain values defined by your users, according to the schema of your choice. More on that in the [next chapter][next].
+All of those functions take one parameter given by Kong: the configuration of your plugin. This parameter is a simple Lua table, and will contain values defined by your users, according to the schema of your choice. More on that in the [next chapter]({{page.book.next}}).
 
 [init_worker_by_lua]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua
 [access_by_lua]: https://github.com/openresty/lua-nginx-module#access_by_lua
