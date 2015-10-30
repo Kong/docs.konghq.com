@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - Galileo
 header_title: Galileo
 header_icon: /assets/images/icons/plugins/galileo.png
+redirect_from: /plugins/mashape-analytics/
 breadcrumbs:
   Plugins: /plugins
 ---

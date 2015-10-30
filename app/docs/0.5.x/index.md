@@ -24,7 +24,7 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/{{page.kong_version}}/cli">Write your own plugins</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/{{page.kong_version}}/plugin-development">Write your own plugins</a></h3>
     <p>Looking for something Kong does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for Kong.</p>
     <a href="/docs/{{page.kong_version}}/plugin-development">Read the plugin development guide &rarr;</a>
   </div>
