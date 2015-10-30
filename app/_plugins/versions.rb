@@ -19,9 +19,14 @@ module Jekyll
           # Alias latest docs folder /docs/x.x.x to /docs/latest
           if parts[1] == latest["release"]
             page.data["alias"] = "/" + page.path.sub(parts[1], "latest").sub(/\..*$/, "")
+            # the /docs/ page
             if parts[2] == "index.md"
               page.data["permalink"] = "/docs/"
-              page.data["alias"] = ["/#{site.config["documentation"]}/latest", "/#{site.config["documentation"]}/#{latest["release"]}/index.html", ]
+              page.data["alias"] = ["/#{site.config["documentation"]}/latest", "/#{site.config["documentation"]}/#{latest["release"]}/index.html"]
+            # all other nested index.md pages
+            elsif parts.last == "index.md"
+              # /docs/latest/plugin-development/index/index.html -> /docs/latest/plugin-development/index.html
+              page.data["alias"] = page.data["alias"].sub(/index/, "")
             end
           end
         end
