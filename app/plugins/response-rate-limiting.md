@@ -10,7 +10,9 @@ nav:
     items:
       - label: Installation
       - label: Configuration
-      - label: Usage
+  - label: Usage
+    items:
+      - label: Configuring Quotas
 ---
 
 This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream API. You can arbitrary set as many rate-limiting objects as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
@@ -55,7 +57,7 @@ form parameter                      | required        | description
 
 ----
 
-## Usage
+## Configuring Quotas
 
 After adding the plugin, you can increment the configured limits by adding the following response header:
 

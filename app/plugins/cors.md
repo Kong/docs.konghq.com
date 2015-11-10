@@ -5,6 +5,14 @@ header_title: CORS
 header_icon: /assets/images/icons/plugins/cors.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Notes
+    items:
+      - label: Known Limitations
 ---
 
 Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling this plugin.
@@ -51,6 +59,16 @@ form parameter                             | description
 `config.credentials`<br>*optional*         | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value. Defaults to `false`.
 `config.max_age`<br>*optional*             | Indicated how long the results of the preflight request can be cached, in `seconds`.
 `config.preflight_continue`<br>*optional*  | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API. Defaults to `false`.
+
+## Known Issues
+
+This plugin has a known limitation when consuming an API by manually setting the `Host` header to a different hostname than the one specified in the request URI. For example, when executing:
+
+```bash
+curl -H "Host: myservice.com" http://127.0.0.1:8000/
+```
+
+Because setting the `Host` header to an arbitrary value is not allowed in a CORS preflight request. It will instead work properly when a `CNAME` record has been properly configured.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
