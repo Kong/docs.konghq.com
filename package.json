@@ -20,6 +20,7 @@
   "echint": {
     "ignore": [
       "dist/**",
+      "app/docs/*/lua-reference/**",
       "app/_assets/images/**",
       "app/license/index.md",
       "Gemfile.lock"
