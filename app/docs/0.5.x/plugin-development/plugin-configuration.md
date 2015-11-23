@@ -184,7 +184,7 @@ $ curl -X POST http://kong:8001/apis/<api name>/plugins \
     -d "config.server.host=http://localhost"
 ```
 
-And the following will be available in [handler.lua]({{page.book.chapters.custom-logic}}:
+And the following will be available in [handler.lua]({{page.book.chapters.custom-logic}}):
 
 ```lua
 -- handler.lua
