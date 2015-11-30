@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - Mashape Analytics (Galileo)
 header_title: Mashape Analytics (Galileo)
-header_icon: /assets/images/icons/plugins/mashape-analytics.png
+header_icon: /assets/images/icons/plugins/galileo.png
 breadcrumbs:
   Plugins: /plugins
 ---
