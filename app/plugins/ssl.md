@@ -55,6 +55,7 @@ form parameter                    | description
 `config.cert`                      | Specify the path of the certificate file to upload.
 `config.key`                       | Specify the path of the certificate key file to upload
 `config.only_https`<br>*optional*  | Specify if the service should only be available through an `https` protocol. Defaults to `false`.
+`config.accept_http_if_already_terminated`<br>*optional* | If `config.only_https` is `true`, accepts HTTPs requests that have already been terminated by a proxy or load balancer and the `x-forwarded-proto: https` header has been added to the request. Only enable this option if the Kong server cannot be publicly accessed and the only entry-point is such proxy or load balancer. Defaults to `false`.
 
 ## Creating an SSL certificate
 

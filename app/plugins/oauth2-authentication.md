@@ -53,8 +53,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter                                    | default | description
 ---                                               | ---     | ---
-`name`                                            | `-`     | The name of the plugin to use, in this case: `oauth2`
-`config.scopes`                                    | `-`     | Describes an array of comma separated scope names that will be available to the end user
+`name`                                            |      | The name of the plugin to use, in this case: `oauth2`
+`config.scopes`                                    |      | Describes an array of comma separated scope names that will be available to the end user
 `config.mandatory_scope`<br>*optional*             | `false` | An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
 `config.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
 `config.enable_authorization_code`<br>*optional*   | `true`  | An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
@@ -62,6 +62,7 @@ form parameter                                    | default | description
 `config.enable_implicit_grant`<br>*optional*       | `false` | An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
 `config.enable_password_grant`<br>*optional*       | `false` | An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
 `config.hide_credentials`<br>*optional*            | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.accept_http_if_already_terminated`<br>*optional* | `false` | Accepts HTTPs requests that have already been terminated by a proxy or load balancer and the `x-forwarded-proto: https` header has been added to the request. Only enable this option if the Kong server cannot be publicly accessed and the only entry-point is such proxy or load balancer.
 
 ----
 
