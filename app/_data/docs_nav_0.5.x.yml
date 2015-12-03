@@ -122,14 +122,14 @@
         - text: Add Plugin
           url: /admin-api/#add-plugin
 
+        - text: Retrieve Plugin
+          url: /admin-api/#retrieve-plugin
+
         - text: List all Plugins
           url: /admin-api/#list-all-plugins
 
         - text: List Plugins per API
           url: /admin-api/#list-plugins-per-api
-
-        - text: Retrieve Plugin
-          url: /admin-api/#retrieve-plugin
 
         - text: Update Plugin
           url: /admin-api/#update-plugin
