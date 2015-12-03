@@ -343,7 +343,7 @@ HTTP 204 NO CONTENT
 
 ## Consumer Object
 
-The Consumer object represents a consumer - or a user - of an API. You can either rely on Kong as the primary datastore, or you can be map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
+The Consumer object represents a consumer - or a user - of an API. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
 
 ```json
 {
@@ -578,6 +578,39 @@ HTTP 201 Created
 
 ---
 
+## Retrieve Plugin
+
+<div class="endpoint get">/plugins/{id}</div>
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`id`<br>**required** | The unique identifier of the plugin to retrieve
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
+    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+    "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
+    "name": "rate-limiting",
+    "config": {
+        "minute": 20,
+        "hour": 500
+    },
+    "enabled": true,
+    "created_at": 1422386534
+}
+```
+
+---
+
 ### List All Plugins
 
 #### Endpoint
@@ -687,41 +720,6 @@ HTTP 200 OK
       }
     ],
     "next": "http://localhost:8001/plugins?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
-}
-```
-
----
-
-## Retrieve Plugin
-
-<div class="endpoint post">/plugins/{id}</div>
-
-Attributes | Description
----:| ---
-`id`<br>**required** | The unique identifier of the plugin configuration to update on this API
-
-#### Request Body
-
-{{ page.plugin_configuration_body }}
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-    "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-    "name": "rate-limiting",
-    "config": {
-        "minute": 20,
-        "hour": 500
-    },
-    "enabled": true,
-    "created_at": 1422386534
 }
 ```
 
