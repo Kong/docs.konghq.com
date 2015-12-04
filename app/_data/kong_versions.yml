@@ -36,8 +36,8 @@
     openresty: "1.7.10.2"
 -
   release: "0.5.x"
-  version: "0.5.3"
-  luarocks_version: "0.5.3-1"
+  version: "0.5.4"
+  luarocks_version: "0.5.4-1"
   dependencies:
     lua: "5.1.4"
     luarocks: "2.2.2"
