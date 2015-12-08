@@ -5,7 +5,7 @@ title: Configuration Reference
 # Configuration Reference
 
 The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you
-to configure and customize Kong to your needs. From the ports it uses, the database it conncts to, and even the internal NGINX server itself.
+to configure and customize Kong to your needs. From the ports it uses, the database it connects to, and even the internal NGINX server itself.
 
 ## Where should I place my configuration file?
 
