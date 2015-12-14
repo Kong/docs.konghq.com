@@ -18,8 +18,6 @@ redirect_from: /install/compile/
 
     Install [Lua v{{lua_version}}](http://www.lua.org/versions.html#5.1)
 
-    Install [Luarocks v{{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download)
-
     Install [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/)
 
     Install [OpenSSL](https://www.openssl.org/)
@@ -35,6 +33,8 @@ redirect_from: /install/compile/
     ```bash
     $ ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
     ```
+
+    Install [Luarocks v{{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download) (note: configure to run with the Lua/LuaJit interpreter included with OpenResty/Nginx)
 
     Some of the dependencies may be available in your favorite package manager.
 

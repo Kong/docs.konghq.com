@@ -121,7 +121,7 @@ end
 return CustomHandler
 ```
 
-Of course, the logic of your plugin itself can be abstracted away in another module, and called from your `handler` module. Many existing plugins have already chosen this pattern when there logic is verbose, but it is purely optional:
+Of course, the logic of your plugin itself can be abstracted away in another module, and called from your `handler` module. Many existing plugins have already chosen this pattern when their logic is verbose, but it is purely optional:
 
 ```lua
 local BasePlugin = require "kong.plugins.base_plugin"
