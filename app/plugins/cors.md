@@ -10,9 +10,9 @@ nav:
     items:
       - label: Installation
       - label: Configuration
-  - label: Notes
+  - label: Known Issues
     items:
-      - label: Known Limitations
+      - label: CORS Limitations
 ---
 
 Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling this plugin.
@@ -60,15 +60,18 @@ form parameter                             | description
 `config.max_age`<br>*optional*             | Indicated how long the results of the preflight request can be cached, in `seconds`.
 `config.preflight_continue`<br>*optional*  | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API. Defaults to `false`.
 
-## Known Issues
+## Known issues
 
-This plugin has a known limitation when consuming an API by manually setting the `Host` header to a different hostname than the one specified in the request URI. For example, when executing:
+Below is a list of known issues or limitations for this plugin.
 
-```bash
-curl -H "Host: myservice.com" http://127.0.0.1:8000/
-```
+### CORS Limitations
 
-Because setting the `Host` header to an arbitrary value is not allowed in a CORS preflight request. It will instead work properly when a `CNAME` record has been properly configured.
+If the client is a browser, there is a known issue with this plugin caused by a limitation of the CORS specification that doesn't allow to specify a custom `Host` header in a preflight `OPTIONS` request.
+
+Because of this limitation, this plugin will only work for APIs that have been configured with a `request_path` setting, and it will not work for APIs that are being resolved using a custom DNS (the `request_host` property).
+
+To learn how to add `request_path` to an API, please read the [Proxy Reference][proxy-reference].
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
+[proxy-reference]: /docs/latest/proxy

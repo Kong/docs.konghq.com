@@ -5,6 +5,14 @@ header_title: Rate Limiting
 header_icon: /assets/images/icons/plugins/rate-limiting.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Installation
+      - label: Configuration
+  - label: Usage
+    items:
+      - label: Headers sent to the client
 ---
 
 Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
@@ -45,6 +53,30 @@ form parameter | required        | description
 `config.day`    | *semi-optional* |  The amount of HTTP requests the developer can make per day. At least one limit must exist.
 `config.month`  | *semi-optional* |  The amount of HTTP requests the developer can make per month. At least one limit must exist.
 `config.year`   | *semi-optional* |  The amount of HTTP requests the developer can make per year. At least one limit must exist.
+
+## Headers sent to the client
+
+When this plugin is enabled, Kong will send some additional headers back to the client telling how many requests are available and what are the limits allowed, for example:
+
+```
+X-RateLimit-Limit-Minute: 10
+X-RateLimit-Remaining-Minute: 9
+```
+
+or it will return a combination of more time limits, if more than one is being set:
+
+```
+X-RateLimit-Limit-Second: 5
+X-RateLimit-Remaining-Second: 4
+X-RateLimit-Limit-Minute: 10
+X-RateLimit-Remaining-Minute: 9
+```
+
+If any of the limits configured is being reached, the plugin will return a `HTTP/1.1 429` status code to the client with the following JSON body:
+
+```json
+{"message":"API rate limit exceeded"}
+```
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration

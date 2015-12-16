@@ -13,9 +13,12 @@ nav:
   - label: Usage
     items:
       - label: Configuring Quotas
+      - label: Headers sent to the client
 ---
 
-This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream API. You can arbitrary set as many rate-limiting objects as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
+This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream API. You can arbitrary set as many rate-limiting objects (or quotas) as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
+
+If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
 ----
 
@@ -65,7 +68,7 @@ After adding the plugin, you can increment the configured limits by adding the f
 Header-Name: Limit=Value [,Limit=Value]
 ```
 
-like:
+Since `X-Kong-Limit` is the default header name (you can optionally change it), it will look like:
 
 ```
 X-Kong-Limit: limitname1=2, limitname2=4
@@ -74,6 +77,26 @@ X-Kong-Limit: limitname1=2, limitname2=4
 That will increment the limit `limitname1` by 2 units, and `limitname2` by 4 units.
 
 You can optionally increment more than one limit by comma separating the entries. The header will be removed before returning the response to the original client.
+
+## Headers sent to the client
+
+When this plugin is enabled, Kong will send some additional headers back to the client telling how many units are available and how many are allowed. For example if you created a limit/quota called "Videos" with a per-minute limit:
+
+```
+X-RateLimit-Limit-Videos-Minute: 10
+X-RateLimit-Remaining-Videos-Minute: 9
+```
+
+or it will return a combination of more time limits, if more than one is being set:
+
+```
+X-RateLimit-Limit-Videos-Second: 5
+X-RateLimit-Remaining-Videos-Second: 5
+X-RateLimit-Limit-Videos-Minute: 10
+X-RateLimit-Remaining-Videos-Minute: 10
+```
+
+If any of the limits configured is being reached, the plugin will return a `HTTP/1.1 429` status code and an empty body.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
