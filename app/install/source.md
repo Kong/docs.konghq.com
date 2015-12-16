@@ -34,6 +34,8 @@ redirect_from: /install/compile/
     $ ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
     ```
 
+    [LuaJit](http://luajit.org/download.html) must be in your `$PATH`. It is strongly suggested to use the LuaJit version that's included with OpenResty to prevent subtle bugs from running code on multiple, slightly different Lua engines.
+
     Install [Luarocks v{{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download) (note: configure to run with the Lua/LuaJit interpreter included with OpenResty/Nginx)
 
     Some of the dependencies may be available in your favorite package manager.
