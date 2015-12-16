@@ -27,7 +27,7 @@ Start by downloading the corresponding package for your configuration:
 
     ```bash
     $ sudo apt-get update
-    $ sudo apt-get install netcat openssl libpcre3 dnsmasq
+    $ sudo apt-get install netcat openssl libpcre3 dnsmasq procps
     $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
     ```
 
