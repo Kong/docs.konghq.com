@@ -50,6 +50,10 @@ When receiving a request, Kong will inspect it and try to route it to the correc
 - The path (**URI**) of the request.
 
 <div class="alert alert-warning">
+  <strong>Note:</strong> Bear in mind that those two methods do not combine themselves together. It is currently <b>not</b> possible to define rules such as "with this hostname" <i>and</i> "with this URI prefix". Kong will first try to route a request by DNS and if unsuccessful, will try by URI.
+</div>
+
+<div class="alert alert-warning">
   <strong>Note:</strong> For performance reasons, Kong keeps a cache of the APIs from your Cassandra cluster in memory for up to 60 seconds. As cache invalidation has not been implemented yet, Kong might take up to <strong>60 seconds</strong> to notice a new API and proxy incoming requests to it.
 </div>
 
@@ -76,7 +80,7 @@ Once this request is processed by Kong, the API is stored in your Cassandra clus
 
 ---
 
-## 3. Proxy an API by its DNS value
+## 3. Proxy an API by its request_host value
 
 #### Using the "**Host**" header
 
@@ -152,6 +156,10 @@ Here is a table documenting the behaviour of the path routing depending on your 
 `/mockbin`  | **true**       | `/some_path`           | **not proxied**
 `/mockbin`  | **true**       | `/mockbin`             | `/`
 `/mockbin`  | **true**       | `/mockbin/some_path`   | `/some_path`
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> The use of <code>strip_request_path</code> is irrelevant if the request is being routed using the request_host method (which has priority over the request_path routing). The request's URI will be left untouched.
+</div>
 
 ---
 
