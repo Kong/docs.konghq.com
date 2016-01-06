@@ -15,6 +15,7 @@ nav:
       - label: Endpoints
       - label: Create a Consumer
       - label: Create an Application
+      - label: Migrating Access Tokens
       - label: Upstream Headers
   - label: oAuth 2.0 Flows
     items:
@@ -118,6 +119,32 @@ form parameter                | description
 `client_id`<br>*optional*     | You can optionally set your own unique `client_id`. If missing, the plugin will generate one.
 `client_secret`<br>*optional* | You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
 `redirect_uri`                | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
+
+## Migrating Access Tokens
+
+If you are migrating you existing OAuth 2.0 applications and access tokens over to Kong, then you can:
+
+* Migrate consumers and applications by creating OAuth 2.0 applications as explained above.
+* Migrate access tokens using the `/oauth2_tokens` endpoints in the Kong's Admin API. For example:
+
+```bash
+$ curl -X POST http://kong:8001/oauth2_tokens \
+    --data "credential_id=KONG-APPLICATION-ID" \
+    --data "token_type=bearer" \
+    --data "access_token=SOME-TOKEN" \
+    --data "refresh_token=SOME-TOKEN" \
+    --data "expires_in=3600"
+```
+
+form parameter                        | description
+---                                   | ---
+`credential_id`                       | The ID of the OAuth 2.0 application created on Kong.
+`token_type`                          | The [token type][token-types]. By default is `bearer`.
+`access_token`<br>*optional*          | You can optionally set your own access token value, otherwise a random string will be generated.
+`refresh_token`<br>*optional*         | You can optionally set your own refresh token value, otherwise a random string will be generated.
+`expires_in`                          | The expiration time (in seconds) of the access token.
+`scope`<br>*optional*                 | The authorized scope associated with the token.
+`authenticated_userid`<br>*optional*  | The custom ID of the user who authorized the application.
 
 ## Upstream Headers
 
@@ -260,3 +287,4 @@ In this flow, the steps that you need to implement are:
 [implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2
 [password-grant]: https://tools.ietf.org/html/rfc6749#section-4.3
 [redirect-uri]: https://tools.ietf.org/html/rfc6749#section-3.1.2
+[token-types]: https://tools.ietf.org/html/rfc6749#section-7.1

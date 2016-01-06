@@ -159,6 +159,62 @@ The API object describes an API that's being exposed by Kong. Kong needs to know
 
 ---
 
+### Retrieve cluster status
+
+Retrieve the cluster status, returning information for each node in the cluster.
+
+#### Endpoint
+
+<div class="endpoint get">/cluster</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 3,
+    "data": [
+        {
+            "address": "192.168.1.107:7946",
+            "name": "kong.prod1_7946",
+            "status": "alive"
+        }, 
+        {
+            "address": "192.168.2.127:7946",
+            "name": "kong.prod2_7946",
+            "status": "failed"
+        }, 
+        {
+            "address": "192.168.3.112:8484",
+            "name": "kong.prod3_8484",
+            "status": "left"
+        }
+    ]
+}
+```
+
+---
+
+## API Object
+
+The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the API when a consumer is calling it from the Proxy port. Each API object must specify a request host, a request path or both. Kong will proxy all requests to the API to the specified upstream URL.
+
+```json
+{
+    "name": "Mockbin",
+    "request_host": "mockbin.com",
+    "request_path": "/someservice",
+    "strip_request_path": false,
+    "preserve_host": false,
+    "upstream_url": "https://mockbin.com"
+}
+```
+
+---
+
 ### Add API
 
 #### Endpoint

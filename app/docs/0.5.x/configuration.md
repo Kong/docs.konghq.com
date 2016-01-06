@@ -21,20 +21,62 @@ They are all **required**.
 
 ### Summary
 
+- [**plugins_available**](#plugins_available)
+- [**nginx_working_dir**](#nginx_working_dir)
+- [**listen_address**](#listen_address)
 - [**proxy_port**](#proxy_port)
 - [**proxy_ssl_port**](#proxy_ssl_port)
 - [**admin_api_port**](#admin_api_port)
-- [**dns_resolver**](#dns_resolver)
-- [**nginx_working_dir**](#nginx_working_dir)
-- [**plugins_available**](#plugins_available)
-- [**send_anonymous_reports**](#send_anonymous_reports)
-- [**databases_available**](#databases_available)
-- [**database**](#database)
-- [**database_cache_expiration**](#database_cache_expiration)
+- [**cluster_listening_port**](#cluster_listening_port)
+- [**cluster_rpc_listening_port**](#cluster_rpc_listening_port)
 - [**ssl_cert_path**](#ssl_cert_path)
 - [**ssl_key_path**](#ssl_key_path)
+- [**dns_resolver**](#dns_resolver)
+- [**dns_resolvers_available**](#dns_resolvers_available)
+- [**cluster**](#cluster)
+- [**database**](#database)
+- [**databases_available**](#databases_available)
+- [**send_anonymous_reports**](#send_anonymous_reports)
 - [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
+
+----
+
+### **plugins_available**
+
+
+A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. By default all the plugins available in the [Plugins Gallery](/plugins/) are loaded, but you can optionally selectively enable them to reduce the execution time of Kong.
+
+**Default:**
+
+```yaml
+plugins_available:
+  # All the plugins are loaded
+```
+
+----
+
+### **nginx_working_dir**
+
+Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
+
+**Default:**
+
+```yaml
+nginx_working_dir: /usr/local/kong/
+```
+
+----
+
+### **listen_address**
+
+Listen Kong and all its related services on the given IP address.
+
+**Default:**
+
+```yaml
+listen_address: 0.0.0.0
+```
 
 ----
 
@@ -77,6 +119,62 @@ admin_api_port: 8001
 
 ----
 
+### **cluster_listening_port**
+
+Port used by the node to communicate with other Kong nodes in the cluster with both UDP and TCP messages. All the nodes in the cluster must be able to communicate with each other on this port.
+
+**Default:**
+
+```yaml
+cluster_listening_port: 7946
+```
+
+**Note:** This port should be usable by other Kong nodes, but not accessible externally. Therefore appropriate firewall settings are highly reccomended.
+
+----
+
+### **cluster_rpc_listening_port**
+
+Port used by the node to communicate with the local clustering agent (TCP only, and local only). Mainly for debugging purposes.
+
+**Default:**
+
+```yaml
+cluster_rpc_listening_port: 7373
+```
+
+**Note:** This port should be only used locally, therefore it should be placed behind a firewall or closed off network to ensure security.
+
+----
+
+### **ssl_cert_path**
+
+The path to the SSL certificate that Kong will use when listening on the `https` port.
+
+**Default:**
+
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
+
+```yaml
+# ssl_cert_path: /path/to/certificate.pem
+```
+
+----
+
+### **ssl_key_path**
+
+The path to the SSL certificate key that Kong will use when listening on the `https` port.
+
+**Default:**
+
+By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate key stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
+
+```yaml
+# ssl_key_path: /path/to/certificate.key
+```
+
+----
+
 ### **dns_resolver**
 
 DNS resolver settings that Kong will use when resolving DNS addresses. You can let the built-in [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) installation handle DNS resolutions (default setting), or specify a custom address to a DNS server. You cannot have both a custom `address` and Dnsmasq enabled at the same time.
@@ -104,62 +202,47 @@ dns_resolver:
 
   Port where Dnsmasq will listen to.
 
-  **Note:** This port is used to properly resolve DNS addresses by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
+  **Note:** This port is used to properly resolve DNS addresses locally by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
 
 ----
 
-### **nginx_working_dir**
+### **cluster**
 
-Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
+Cluster settings between Kong nodes. For more information we reccomend reading the [Clustering Reference][clustering-reference].
 
 **Default:**
 
 ```yaml
-nginx_working_dir: /usr/local/kong/
+## Cluster settings
+cluster:
+  auto-join: true
+  # advertise: ""
+  # encrypt: "foo"
 ```
 
+  **`auto-join`**
+
+  Instructs this node to auto-join the nodes that are sharing the same datastore on startup.
+
+  **`advertise`**
+
+  The advertise flag is used to change the address that we advertise to other nodes in the cluster. By default, the "[`listen_address`](#listen_address)*:*[`cluster_listening_address`](#cluster_listening_address)" value is advertised.
+  However, in some cases (specifically NAT traversal), there may be a routable address that cannot be bound to. This flag enables gossiping a different address to support this.
+
+  **`encrypt`**
+
+  Key for encrypting network traffic within Kong. Must be a base64-encoded 16-byte key.
+
 ----
 
-### **plugins_available**
+### **database**
 
-
-A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
+The desired database to use for this Kong instance as a string, matching one of the databases defined under [`databases_available`](#databases_available).
 
 **Default:**
 
 ```yaml
-plugins_available:
-  - ssl
-  - jwt
-  - acl
-  - cors
-  - oauth2
-  - tcp-log
-  - udp-log
-  - file-log
-  - http-log
-  - key-auth
-  - hmac-auth
-  - basic-auth
-  - ip-restriction
-  - mashape-analytics
-  - request-transformer
-  - response-transformer
-  - request-size-limiting
-  - rate-limiting
-  - response-ratelimiting
-```
-
-----
-
-### **send_anonymous_reports**
-
-If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
-
-**Default:**
-
-```yaml
-send_anonymous_reports: true
+database: cassandra
 ```
 
 ----
@@ -286,55 +369,14 @@ keepalive: 60000
 
 ----
 
-### **database**
+### **send_anonymous_reports**
 
-The desired database to use for this Kong instance as a string, matching one of the databases defined under [`databases_available`](#databases_available).
-
-**Default:**
-
-```yaml
-database: cassandra
-```
-
-----
-
-### **database_cache_expiration**
-
-A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making multiple queries to the database in order to retrieve an API's target URL. However, this also means you may be required to wait a while before the
-cached value is flushed and reflects any potential changes made during that time.
+If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
 
 **Default:**
 
 ```yaml
-database_cache_expiration: 5 # in seconds
-```
-
-----
-
-### **ssl_cert_path**
-
-The path to the SSL certificate that Kong will use when listening on the `https` port.
-
-**Default:**
-
-By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
-
-```yaml
-# ssl_cert_path: /path/to/certificate.pem
-```
-
-----
-
-### **ssl_key_path**
-
-The path to the SSL certificate key that Kong will use when listening on the `https` port.
-
-**Default:**
-
-By default this property is commented out, which will force Kong to use an auto-generated self-signed certificate key stored in the working directory ([`nginx_working_dir`](#nginx_working_dir)).
-
-```yaml
-# ssl_key_path: /path/to/certificate.key
+send_anonymous_reports: true
 ```
 
 ----
@@ -509,4 +551,5 @@ nginx: |
 ```
 
 [cli-reference]: /docs/{{page.kong_version}}/cli
+[clustering-reference]: /docs/{{page.kong_version}}/clustering
 [yaml]: http://yaml.org

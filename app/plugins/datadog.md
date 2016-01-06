@@ -68,5 +68,3 @@ Metric                     | description | namespace
 `request_size`               | logs the request's body size | kong.\<api_name>.request.size
 `latency`                   | logs the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
 `status_count`               | Increment the count of metric matching the status code by 1 | kong.\<api_name>.\<http_status_code>.count
-
-

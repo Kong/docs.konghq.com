@@ -23,6 +23,9 @@
     - text: CLI reference
       url: /cli
 
+    - text: Clustering reference
+      url: /clustering
+
     - text: Proxy reference
       url: /proxy
 
@@ -73,6 +76,9 @@
 
         - text: Retrieve node status
           url: /admin-api/#retrieve-node-status
+
+        - text: Retrieve cluster status
+          url: /admin-api/#retrieve-cluster-status
 
     - text: API Object routes
       url: /admin-api/#api-object

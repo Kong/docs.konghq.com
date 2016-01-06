@@ -127,6 +127,29 @@ Kong Configuration File
 
 ---
 
+## status
+
+When Kong is started, also third-party services required by Kong are started along with it (like dnsmasq). This command checks that all the services required by Kong are running.
+
+If one of these services fails, it will bring Kong to an unstable state and a [`kong restart`](#restart) is recommended to be executed.
+
+```bash
+$ kong status
+```
+
+### Parameters
+
+#### -c \<configuration file path>
+
+Kong Configuration File
+
+When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
+Should no configuration file exist at that location Kong will load the default configuration stored internally.
+
+This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
+
+---
+
 ## migrations
 
 Run the datastore migrations (incremental changes to the datastore's schema).
@@ -161,6 +184,39 @@ When running the `up` or `down` commands, specify `core` or `plugin_name` to onl
 - **down**: revert the latest executed migration for the given type. **This operation is desctructive**.
 - **reset**: reset your keyspace. **This operation is desctructive**.
 
+---
+
+## cluster
+
+Manage the Kong cluster.
+
+```bash
+$ kong cluster [parameters] [join|members|force-leave|reachability|keygen]
+```
+
+### Parameters
+
+#### -c \<configuration file path>
+
+Kong Configuration File
+
+When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
+Should no configuration file exist at that location Kong will load the default configuration stored internally.
+
+This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
+
+#### -t \<type>
+
+### Commands
+
+- **join [address]**: tells Kong to join an existing cluster located at `address`. The `address` is `host:port` of the other node, where `port` is the [cluster_listening_port][cluster_listening_port] value of that node. A new Kong process must join with at least one existing member of a cluster in order to join an existing cluster. After joining that one member, the gossip layer takes over, propagating the updated membership state across the cluster.
+- **members**: shows a list of members in the cluster and their state.
+- **force-leave [node_name]**: when a node is in a `failed` state, this operation forcebly removes the node from the cluster. Remembers to use the `node_name` and not its address.
+- **reachability**: performs a basic network reachability test. The local node will gossip out a "ping" message and request that all other nodes acknowledge delivery of the message.
+- **keygen**: generates an encryption key that can be used for Kong intracluster traffic encryption with other nodes (see `encrypt` property in the [cluster settings][cluster]). The keygen command uses a cryptographically strong pseudo-random number generator to generate the key.
+
 [configuration-guide]: /docs/{{page.kong_version}}/configuration
 [nginx-signals]: http://nginx.org/en/docs/control.html
 [nginx-reload]: http://wiki.nginx.org/CommandLine#Loading_a_New_Configuration_Using_Signals
+[cluster_listening_port]: /docs/{{page.kong_version}}/configuration/#cluster_listening_port
+[cluster]: /docs/{{page.kong_version}}/configuration/#cluster
