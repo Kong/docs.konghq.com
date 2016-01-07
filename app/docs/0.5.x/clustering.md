@@ -131,11 +131,11 @@ Another way to check the state of the cluster is by making a request to the Admi
 
 ## 6. Multi-datacenter clustering
 
-TODO
+When configuring a multi-datancer Kong cluster, you need to know that Kong works on the IP layer (hostnames are not supported) and it expects a flat network topology without any NAT between the two datacenters. A common setup is having a VPN between the two datacenters such that the "flat" network assumption of Kong is not violated. Or by advertising public addresses using the `advertise` property in the [cluster settings][cluster] without jumping through the NAT.
 
 ## 7. Failure scenarios
 
-TODO
+
 
 [cluster_listening_port]: /docs/{{page.kong_version}}/configuration/#cluster_listening_port
 [cluster_rpc_listening_port]: /docs/{{page.kong_version}}/configuration/#cluster_rpc_listening_port

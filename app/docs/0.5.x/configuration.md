@@ -23,12 +23,11 @@ They are all **required**.
 
 - [**plugins_available**](#plugins_available)
 - [**nginx_working_dir**](#nginx_working_dir)
-- [**listen_address**](#listen_address)
-- [**proxy_port**](#proxy_port)
-- [**proxy_ssl_port**](#proxy_ssl_port)
-- [**admin_api_port**](#admin_api_port)
-- [**cluster_listening_port**](#cluster_listening_port)
-- [**cluster_rpc_listening_port**](#cluster_rpc_listening_port)
+- [**proxy_listen**](#proxy_listen)
+- [**proxy_listen_ssl**](#proxy_listen_ssl)
+- [**admin_api_listen**](#admin_api_listen)
+- [**cluster_listen**](#cluster_listen)
+- [**cluster_listen_rpc**](#cluster_listen_rpc)
 - [**ssl_cert_path**](#ssl_cert_path)
 - [**ssl_key_path**](#ssl_key_path)
 - [**dns_resolver**](#dns_resolver)
@@ -68,45 +67,33 @@ nginx_working_dir: /usr/local/kong/
 
 ----
 
-### **listen_address**
+### **proxy_listen**
 
-Listen Kong and all its related services on the given IP address.
-
-**Default:**
-
-```yaml
-listen_address: 0.0.0.0
-```
-
-----
-
-### **proxy_port**
-
-Port which Kong proxies requests through, developers using your API will make requests against this port.
+Address and port on which the server will accept HTTP requests, consumers will make requests on this port.
 
 **Default:**
 
 ```yaml
-proxy_port: 8000
+proxy_listen: "0.0.0.0:8000"
 ```
 
 ----
 
-### **proxy_ssl_port**
+### **proxy_listen_ssl**
 
-Port which Kong proxies requests through under `https`, developers using your API will make requests against this port.
+Same as proxy_listen, but for HTTPS requests.
 
 **Default:**
 
 ```yaml
-proxy_ssl_port: 8443
+proxy_listen_ssl: "0.0.0.0:8443"
 ```
 
 ----
 
-### **admin_api_port**
+### **admin_api_listen**
 
-Port which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) is served through.
+Address and port on which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) will listen to. The admin API is a private API which lets you manage your Kong infrastructure. It needs to be secured appropriately.
 
 **Note:** This port is used to manage your Kong instances, therefore it should be placed behind a firewall
 or closed off network to ensure security.
@@ -114,33 +101,37 @@ or closed off network to ensure security.
 **Default:**
 
 ```yaml
-admin_api_port: 8001
+admin_api_listen: "0.0.0.0:8001"
 ```
 
 ----
 
-### **cluster_listening_port**
+### **cluster_listen**
 
-Port used by the node to communicate with other Kong nodes in the cluster with both UDP and TCP messages. All the nodes in the cluster must be able to communicate with each other on this port.
+Address and port used by the node to communicate with other Kong nodes in the cluster with both UDP and TCP messages. All the nodes in the cluster must be able to communicate with this node on this address. Only IPv4 addresses are allowed (no hostnames).
+
+For more information take a look at the [Clustering Reference][clustering-reference].
 
 **Default:**
 
 ```yaml
-cluster_listening_port: 7946
+cluster_listen: "0.0.0.0:7946"
 ```
 
 **Note:** This port should be usable by other Kong nodes, but not accessible externally. Therefore appropriate firewall settings are highly reccomended.
 
 ----
 
-### **cluster_rpc_listening_port**
+### **cluster_listen_rpc**
 
-Port used by the node to communicate with the local clustering agent (TCP only, and local only). Mainly for debugging purposes.
+Address and port used by the node to communicate with the local clustering agent (TCP only, and local only). Used internally by this Kong node. Only IPv4 addresses are allowed (no hostnames).
+
+For more information take a look at the [Clustering Reference][clustering-reference].
 
 **Default:**
 
 ```yaml
-cluster_rpc_listening_port: 7373
+cluster_listen_rpc: "127.0.0.1:7373"
 ```
 
 **Note:** This port should be only used locally, therefore it should be placed behind a firewall or closed off network to ensure security.
@@ -208,7 +199,7 @@ dns_resolver:
 
 ### **cluster**
 
-Cluster settings between Kong nodes. For more information we reccomend reading the [Clustering Reference][clustering-reference].
+Cluster settings between Kong nodes. For more information take a look at the [Clustering Reference][clustering-reference].
 
 **Default:**
 
@@ -226,8 +217,9 @@ cluster:
 
   **`advertise`**
 
-  The advertise flag is used to change the address that we advertise to other nodes in the cluster. By default, the "[`listen_address`](#listen_address)*:*[`cluster_listening_address`](#cluster_listening_address)" value is advertised.
-  However, in some cases (specifically NAT traversal), there may be a routable address that cannot be bound to. This flag enables gossiping a different address to support this.
+  Address and port used by the node to communicate with other Kong nodes in the cluster with both UDP and TCP messages. All the nodes in the cluster must be able to communicate with this node on this address. Only IPv4 addresses are allowed (no hostnames).
+
+  The advertise flag is used to change the address that we advertise to other nodes in the cluster. By default, the [`cluster_listen`](#cluster_listen) address is advertised. However, in some cases (specifically NAT traversal), there may be a routable address that cannot be bound to. This flag enables gossiping a different address to support this.
 
   **`encrypt`**
 
