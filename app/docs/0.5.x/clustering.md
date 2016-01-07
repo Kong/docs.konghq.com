@@ -71,8 +71,8 @@ Every time a new Kong node is added or removed, it also needs to be added and re
 
 Kong cluster settings are specified in the configuration file at the following entries:
 
-* [cluster_listening_port][cluster_listening_port]
-* [cluster_rpc_listening_port][cluster_rpc_listening_port]
+* [cluster_listen][cluster_listen]
+* [cluster_listen_rpc][cluster_listen_rpc]
 * [cluster][cluster]
 
 #### Why do we need Kong Clustering?
@@ -137,8 +137,8 @@ When configuring a multi-datancer Kong cluster, you need to know that Kong works
 
 
 
-[cluster_listening_port]: /docs/{{page.kong_version}}/configuration/#cluster_listening_port
-[cluster_rpc_listening_port]: /docs/{{page.kong_version}}/configuration/#cluster_rpc_listening_port
+[cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
+[cluster_listen_rpc]: /docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
 [cluster]: /docs/{{page.kong_version}}/configuration/#cluster
 [cli-cluster]: /docs/{{page.kong_version}}/cli/#cluster
 [cluster-endpoint]: /docs/{{page.kong_version}}/admin-api/#retrieve-cluster-status

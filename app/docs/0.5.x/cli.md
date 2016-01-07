@@ -209,7 +209,7 @@ This file contains configuration for plugins, the datastore, and NGINX. You can 
 
 ### Commands
 
-- **join [address]**: tells Kong to join an existing cluster located at `address`. The `address` is `host:port` of the other node, where `port` is the [cluster_listening_port][cluster_listening_port] value of that node. A new Kong process must join with at least one existing member of a cluster in order to join an existing cluster. After joining that one member, the gossip layer takes over, propagating the updated membership state across the cluster.
+- **join [address]**: tells Kong to join an existing cluster located at `address`. The `address` is `ip:port` of the other node as configured in its [cluster_listen][cluster_listen] property (or th value of `advertise` if set in the node's [cluster settings][cluster]). A new Kong process must join with at least one existing member of a cluster in order to join an existing cluster. After joining that one member, the gossip layer takes over, propagating the updated membership state across the cluster.
 - **members**: shows a list of members in the cluster and their state.
 - **force-leave [node_name]**: when a node is in a `failed` state, this operation forcebly removes the node from the cluster. Remembers to use the `node_name` and not its address.
 - **reachability**: performs a basic network reachability test. The local node will gossip out a "ping" message and request that all other nodes acknowledge delivery of the message.
@@ -218,5 +218,5 @@ This file contains configuration for plugins, the datastore, and NGINX. You can 
 [configuration-guide]: /docs/{{page.kong_version}}/configuration
 [nginx-signals]: http://nginx.org/en/docs/control.html
 [nginx-reload]: http://wiki.nginx.org/CommandLine#Loading_a_New_Configuration_Using_Signals
-[cluster_listening_port]: /docs/{{page.kong_version}}/configuration/#cluster_listening_port
+[cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
 [cluster]: /docs/{{page.kong_version}}/configuration/#cluster

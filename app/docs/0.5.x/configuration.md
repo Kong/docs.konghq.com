@@ -57,7 +57,7 @@ plugins_available:
 
 ### **nginx_working_dir**
 
-Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
+The Kong working directory. Equivalent to nginx's prefix path. This is where this running nginx instance will keep server files including logs. Make sure it has the appropriate permissions.
 
 **Default:**
 
@@ -168,30 +168,39 @@ By default this property is commented out, which will force Kong to use an auto-
 
 ### **dns_resolver**
 
-DNS resolver settings that Kong will use when resolving DNS addresses. You can let the built-in [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) installation handle DNS resolutions (default setting), or specify a custom address to a DNS server. You cannot have both a custom `address` and Dnsmasq enabled at the same time.
+The desired DNS resolver to use for this Kong instance as a string, matching one of the DNS resolvers defined under [`dns_resolvers_available`](#dns_resolvers_available).
 
 **Default:**
 
 ```yaml
-## DNS resolver configuration
-dns_resolver:
-  #address: "8.8.8.8:53"
+dns_resolver: dnsmasq
+```
+
+----
+
+### **dns_resolvers_available**
+
+A dictionary of DNS resolvers Kong can use, and their respective properties. Currently [`dnsmasq`](http://www.thekelleys.org.uk/dnsmasq/doc.html) (default) and `server` are supported.
+
+By choosing `dnsmasq`, Kong will resolve hostnames using the local `/etc/hosts` file and `resolv.conf` configuration. By choosing `server`, you can specify a custom DNS server.
+
+**Default:**
+
+```yaml
+dns_resolvers_available:
+  # server:
+    # address: "8.8.8.8:53"
   dnsmasq:
-    enabled: true
     port: 8053
 ```
 
-  **`address`**
+  **`dns_resolvers_available.server.address`**
 
   The address to a custom DNS server, in the `address:port` format.
 
-  **`dnsmasq.enabled`**
+  **`dns_resolvers_available.dnsmasq.port`**
 
-  Enables or disables the built-in Dnsmasq server that will resolve DNS addresses using the local system configuration, including properly resolving addresses from `/etc/hosts`.
-
-  **`dnsmasq.port`**
-
-  Port where Dnsmasq will listen to.
+  Port where Dnsmasq will listen to. Dnsmasq is only used locally, therefore will always listen on `127.0.0.1`.
 
   **Note:** This port is used to properly resolve DNS addresses locally by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
 
@@ -375,7 +384,7 @@ send_anonymous_reports: true
 
 ### **memory_cache_size**
 
-A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore.
+A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore. This value may not be smaller than 32MB.
 
 **Default:**
 
@@ -387,7 +396,7 @@ memory_cache_size: 128 # in megabytes
 
 ### **nginx**
 
-The NGINX configuration (or `nginx.conf`) that will be used for this instance.
+The NGINX configuration (or `nginx.conf`) that will be used for this instance. The placeholders will be computed and this property will be written as a file by Kong at `<nginx_working_dir>/nginx.conf` during startup.
 
 **Warning:** Modifying the NGINX configuration can lead to unexpected results, edit the configuration only if you are confident about doing so.
 
@@ -395,21 +404,21 @@ The NGINX configuration (or `nginx.conf`) that will be used for this instance.
 
 ```yaml
 nginx: |
-  worker_processes auto;
+worker_processes auto;
   error_log logs/error.log error;
   daemon on;
 
-  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
+  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{ "{{auto_worker_connections" }}}};
+    worker_connections {{auto_worker_connections}};
     multi_accept on;
   }
 
   http {
-    resolver {{ "{{dns_resolver" }}}};
+    resolver {{dns_resolver}} ipv6=off;
     charset UTF-8;
 
     access_log logs/access.log;
@@ -433,7 +442,7 @@ nginx: |
     real_ip_recursive on;
 
     # Other Settings
-    client_max_body_size 128m;
+    client_max_body_size 0;
     underscores_in_headers on;
     reset_timedout_connection on;
     tcp_nopush on;
@@ -448,7 +457,11 @@ nginx: |
     lua_code_cache on;
     lua_max_running_timers 4096;
     lua_max_pending_timers 16384;
-    lua_shared_dict cache {{ "{{memory_cache_size" }}}}m;
+    lua_shared_dict reports_locks 100k;
+    lua_shared_dict cluster_locks 100k;
+    lua_shared_dict cache {{memory_cache_size}}m;
+    lua_shared_dict cassandra 1m;
+    lua_shared_dict cassandra_prepared 5m;
     lua_socket_log_errors off;
     {{lua_ssl_trusted_certificate}}
 
@@ -461,30 +474,36 @@ nginx: |
       end
     ';
 
+    init_worker_by_lua 'kong.exec_plugins_init_worker()';
+
     server {
       server_name _;
-      listen {{ "{{proxy_port" }}}};
-      listen {{ "{{proxy_ssl_port" }}}} ssl;
+      listen {{proxy_listen}};
+      listen {{proxy_listen_ssl}} ssl;
 
       ssl_certificate_by_lua 'kong.exec_plugins_certificate()';
 
-      ssl_certificate {{ "{{ssl_cert" }}}};
-      ssl_certificate_key {{ "{{ssl_key" }}}};
+      ssl_certificate {{ssl_cert}};
+      ssl_certificate_key {{ssl_key}};
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;# omit SSLv3 because of POODLE (CVE-2014-3566)
 
       location / {
         default_type 'text/plain';
 
-        # This property will be used later by proxy_pass
-        set $backend_url nil;
+        # These properties will be used later by proxy_pass
+        set $upstream_host nil;
+        set $upstream_url nil;
 
         # Authenticate the user and load the API info
         access_by_lua 'kong.exec_plugins_access()';
 
         # Proxy the request
+        # Proxy the request
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_pass $backend_url;
+        proxy_set_header Host $upstream_host;
+        proxy_pass $upstream_url;
         proxy_pass_header Server;
 
         # Add additional response headers
@@ -512,7 +531,10 @@ nginx: |
     }
 
     server {
-      listen {{ "{{admin_api_port" }}}};
+      listen {{admin_api_listen}};
+
+      client_max_body_size 10m;
+      client_body_buffer_size 10m;
 
       location / {
         default_type application/json;
@@ -520,6 +542,7 @@ nginx: |
           ngx.header["Access-Control-Allow-Origin"] = "*"
           if ngx.req.get_method() == "OPTIONS" then
             ngx.header["Access-Control-Allow-Methods"] = "GET,HEAD,PUT,PATCH,POST,DELETE"
+            ngx.header["Access-Control-Allow-Headers"] = "Content-Type"
             ngx.exit(204)
           end
           local lapis = require "lapis"
@@ -529,15 +552,13 @@ nginx: |
 
       location /nginx_status {
         internal;
+        access_log off;
         stub_status;
       }
 
       location /robots.txt {
         return 200 'User-agent: *\nDisallow: /';
       }
-
-      # Do not remove, additional configuration placeholder for some plugins
-      # {{ "{{additional_configuration" }}}};
     }
   }
 ```
