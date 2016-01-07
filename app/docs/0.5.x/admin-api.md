@@ -80,27 +80,18 @@ HTTP 200 OK
     "lua_version": "LuaJIT 2.1.0-alpha",
     "plugins": {
         "available_on_server": [
-            "ssl",
-            "key-auth",
-            "basic-auth",
-            "oauth2",
-            "rate-limiting",
-            "tcp-log",
-            "udp-log",
-            "file-log",
-            "http-log",
-            "cors",
-            "request-transformer",
-            "response-transformer",
-            "request-size-limiting",
-            "ip-restriction",
-            "mashape-analytics"
+            ...
         ],
-        "enabled_in_cluster": {}
+        "enabled_in_cluster": [
+            ...
+        ]
     },
     "tagline": "Welcome to Kong",
-    "version": "0.4.0"
+    "version": "0.6.0"
 }
+
+* `available_on_server`: Names of plugins that are installed on the node.
+* `enabled_in_cluster`: Names of plugins that are enabled/configured. That is, the plugins configurations currently in the datastore shared by all Kong nodes.
 
 ```
 
@@ -181,12 +172,12 @@ HTTP 200 OK
             "address": "192.168.1.107:7946",
             "name": "kong.prod1_7946",
             "status": "alive"
-        }, 
+        },
         {
             "address": "192.168.2.127:7946",
             "name": "kong.prod2_7946",
             "status": "failed"
-        }, 
+        },
         {
             "address": "192.168.3.112:8484",
             "name": "kong.prod3_8484",
@@ -299,7 +290,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -318,7 +309,7 @@ HTTP 200 OK
             "created_at": 1422386585
         }
     ],
-    "next": "http://localhost:8001/apis/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/apis/?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -392,7 +383,7 @@ Attributes | Description
 #### Response
 
 ```
-HTTP 204 NO CONTENT
+HTTP 204 No Content
 ```
 
 ---
@@ -485,7 +476,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -498,7 +489,7 @@ HTTP 200 OK
             "created_at": 1422386585
         }
     ],
-    "next": "http://localhost:8001/consumers/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/consumers/?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -569,7 +560,7 @@ Attributes | Description
 #### Response
 
 ```
-HTTP 204 NO CONTENT
+HTTP 204 No Content
 ```
 
 ---
@@ -692,7 +683,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -718,7 +709,7 @@ HTTP 200 OK
           "created_at": 1422386585
       }
     ],
-    "next": "http://localhost:8001/plugins?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/plugins?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -749,7 +740,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -775,7 +766,7 @@ HTTP 200 OK
           "created_at": 1422386585
       }
     ],
-    "next": "http://localhost:8001/plugins?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/plugins?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -859,7 +850,7 @@ Attributes | Description
 #### Response
 
 ```
-HTTP 204 NO CONTENT
+HTTP 204 No Content
 ```
 
 ---
