@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -27,17 +26,6 @@ nav:
 Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - oauth2
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 
@@ -244,6 +232,8 @@ In this flow, the steps that you need to implement are:
 
 * The login page, you probably already have it (step 2)
 * The Authorization page, with its backend that will simply collect the values, make a `POST` request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
+
+----
 
 ## Resource Owner Password Credentials
 

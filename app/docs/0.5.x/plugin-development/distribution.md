@@ -8,12 +8,10 @@ chapter: 9
 
 As mentioned many times in this guide, Kong heavily relies on your modules being available in your `LUA_PATH` under specific names.
 
-As already mentioned in the [file structure] chapter, we make Kong aware that it has to look for your plugin's modules by adding it to the `plugins_available` property in your configuration file. Example:
+As already mentioned in the [file structure] chapter, we make Kong aware that it has to look for your plugin's modules by adding it to the `custom_plugins` property in your configuration file. Example:
 
 ```yaml
-plugins_available:
-  - key-auth
-  - rate-limiting
+custom_plugins:
   - my-custom-plugin # your plugin name here
 ```
 

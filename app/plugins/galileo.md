@@ -6,28 +6,24 @@ header_icon: /assets/images/icons/plugins/galileo.png
 redirect_from: /plugins/mashape-analytics/
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: How it works
+      - label: Configuration
 ---
 
 Logs request and response data to [Galileo][galileo]. Works with any Galileo subscription plan, including the FREE plan with 24h data retention.
 
 ----
 
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - mashape-analytics
-```
-
-Every node in the Kong cluster must have the same `plugins_available` property value.
-
 ## How it works
 
 This plugin creates a buffer for each of your APIs on which it is enabled. This buffer accumulates logs of your traffic, serialized as [API Log Format](https://github.com/Mashape/api-log-format) (refered to as *ALFs*) objects for Galileo. Those ALFs are to be send by **batches** to Galileo. When the buffer reaches its configured `batch_size`, or `delay` (see [configuration](#configuration)), the buffer gets emptied and the batch gets queued for sending (in what we refer to as the *sending queue*). This queue will keep sending the batches to Galileo while Kong is running.
 
 It is important to be aware of performance when configuring this plugin. For example, be aware that logging the bodies of your request might slow down your traffic if it is under heavy load. If you are expecting your API's ALFs to be heavy (that would be the case if you chose to log bodies, for example), consider incrementing your sending queue's maximum size (`max_sending_queue_size`), and tweaking your `batch_size` and `delay` configurations.
+
+----
 
 ## Configuration
 

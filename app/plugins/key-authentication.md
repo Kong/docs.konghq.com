@@ -9,7 +9,6 @@ nav:
   - label: Getting Started
     items:
       - label: Terminology
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -29,19 +28,6 @@ Add Key Authentication (also referred to as an API key) to your APIs. Consumers 
 - `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
 - `consumer`: a developer or service using the api. When using Kong, a Consumer only communicates with Kong which proxies every call to the said, upstream api.
 - `credential`: in the key-auth plugin context, a unique string associated with a consumer, also referred to as an API key.
-
-----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - key-auth
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ----
 

@@ -5,22 +5,15 @@ header_title: Request Transformer
 header_icon: /assets/images/icons/plugins/request-transformer.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Configuration
 ---
 
 Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - request-transformer
-```
-
-Every node in your Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 

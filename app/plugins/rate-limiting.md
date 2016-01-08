@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -18,17 +17,6 @@ nav:
 Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - rate-limiting
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 
@@ -53,6 +41,8 @@ form parameter | required        | description
 `config.day`    | *semi-optional* |  The amount of HTTP requests the developer can make per day. At least one limit must exist.
 `config.month`  | *semi-optional* |  The amount of HTTP requests the developer can make per month. At least one limit must exist.
 `config.year`   | *semi-optional* |  The amount of HTTP requests the developer can make per year. At least one limit must exist.
+
+----
 
 ## Headers sent to the client
 

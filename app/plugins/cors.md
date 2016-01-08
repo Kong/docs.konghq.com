@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Known Issues
     items:
@@ -16,19 +15,6 @@ nav:
 ---
 
 Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling this plugin.
-
-----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - cors
-```
-
-Every node in your Kong cluster should have the same `plugins_available` property value.
 
 ----
 
@@ -59,6 +45,8 @@ form parameter                             | description
 `config.credentials`<br>*optional*         | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value. Defaults to `false`.
 `config.max_age`<br>*optional*             | Indicated how long the results of the preflight request can be cached, in `seconds`.
 `config.preflight_continue`<br>*optional*  | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API. Defaults to `false`.
+
+----
 
 ## Known issues
 

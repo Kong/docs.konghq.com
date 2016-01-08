@@ -21,7 +21,7 @@ They are all **required**.
 
 ### Summary
 
-- [**plugins_available**](#plugins_available)
+- [**custom_plugins**](#custom_plugins)
 - [**nginx_working_dir**](#nginx_working_dir)
 - [**proxy_listen**](#proxy_listen)
 - [**proxy_listen_ssl**](#proxy_listen_ssl)
@@ -41,16 +41,18 @@ They are all **required**.
 
 ----
 
-### **plugins_available**
+### **custom_plugins**
 
 
-A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. By default all the plugins available in the [Plugins Gallery](/plugins/) are loaded, but you can optionally selectively enable them to reduce the execution time of Kong.
+Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace.
 
 **Default:**
 
 ```yaml
-plugins_available:
-  # All the plugins are loaded
+custom_plugins:
+  # - hello_world
+  # - custom_plugin2
+  # - ...
 ```
 
 ----
@@ -77,6 +79,10 @@ Address and port on which the server will accept HTTP requests, consumers will m
 proxy_listen: "0.0.0.0:8000"
 ```
 
+<div class="alert alert-warning">
+  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you dont't want to expose Kong externally.
+</div>
+
 ----
 
 ### **proxy_listen_ssl**
@@ -89,20 +95,26 @@ Same as proxy_listen, but for HTTPS requests.
 proxy_listen_ssl: "0.0.0.0:8443"
 ```
 
+<div class="alert alert-warning">
+  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you dont't want to expose Kong externally.
+</div>
+
 ----
 
 ### **admin_api_listen**
 
 Address and port on which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) will listen to. The admin API is a private API which lets you manage your Kong infrastructure. It needs to be secured appropriately.
 
-**Note:** This port is used to manage your Kong instances, therefore it should be placed behind a firewall
-or closed off network to ensure security.
-
 **Default:**
 
 ```yaml
 admin_api_listen: "0.0.0.0:8001"
 ```
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This port is used to manage your Kong instances, therefore it should be placed behind a firewall
+or closed off network to ensure security.
+</div>
 
 ----
 
@@ -118,7 +130,9 @@ For more information take a look at the [Clustering Reference][clustering-refere
 cluster_listen: "0.0.0.0:7946"
 ```
 
-**Note:** This port should be usable by other Kong nodes, but not accessible externally. Therefore appropriate firewall settings are highly reccomended.
+<div class="alert alert-warning">
+  <strong>Note:</strong> This port should be usable by other Kong nodes, but not accessible externally. Therefore appropriate firewall settings are highly reccomended.
+</div>
 
 ----
 
@@ -134,7 +148,9 @@ For more information take a look at the [Clustering Reference][clustering-refere
 cluster_listen_rpc: "127.0.0.1:7373"
 ```
 
-**Note:** This port should be only used locally, therefore it should be placed behind a firewall or closed off network to ensure security.
+<div class="alert alert-warning">
+  <strong>Note:</strong> This port should be only used locally, therefore it should be placed behind a firewall or closed off network to ensure security.
+</div>
 
 ----
 
@@ -202,7 +218,9 @@ dns_resolvers_available:
 
   Port where Dnsmasq will listen to. Dnsmasq is only used locally, therefore will always listen on `127.0.0.1`.
 
-  **Note:** This port is used to properly resolve DNS addresses locally by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
+<div class="alert alert-warning">
+  <strong>Note:</strong> This port is used to properly resolve DNS addresses locally by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
+</div>
 
 ----
 

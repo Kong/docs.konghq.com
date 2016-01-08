@@ -13,32 +13,11 @@ title: Enabling Plugins
   </ol>
 </div>
 
-In this section, you'll learn how to enable plugins. One of the core principals of Kong is its extensibility through [plugins][plugins]. Plugins allow you to easily add new features to your API or make your API easier to manage.
+In this section, you'll learn how to configure plugins. One of the core principals of Kong is its extensibility through [plugins][plugins]. Plugins allow you to easily add new features to your API or make your API easier to manage.
 
-First, we'll have you configure and enable the [key-auth][key-auth] plugin to add authentication to your API.
+As an example, we'll have you configure the [key-auth][key-auth] plugin to add authentication to your API.
 
-1. ### Add plugin to your Kong config
-
-    Add `key-auth` under the `plugins_available` property in your Kong instance [configuration file][configuration] should it not already exist:
-
-    ```yaml
-    plugins_available:
-      - key-auth
-    ```
-
-2. ### Restart Kong
-
-    Issue the following command to restart Kong. This allows Kong to load the plugin.
-
-    ```bash
-    $ kong restart
-    ```
-
-    **Note:** If you have a cluster of Kong instances that share the configuration, you should restart each node in the cluster.
-
-3. ### Configure the plugin for your API
-
-    Now that Kong has loaded the plugin, we should configure it to be enabled on your API.
+1. ### Configure the plugin for your API
 
     Issue the following cURL request on the previously created API named `mockbin`:
 
@@ -50,9 +29,9 @@ First, we'll have you configure and enable the [key-auth][key-auth] plugin to ad
 
     **Note:** This plugin also accepts a `config.key_names` parameter, which defaults to `[apikey]`. It is a list of headers and parameters names (both are supported) that are supposed to contain the API key during a request.
 
-4. ### Verify that the plugin is enabled for your API
+2. ### Verify that the plugin is properly configured
 
-    Issue the following cURL request to verify that the [key-auth][key-auth] plugin was enabled for your API:
+    Issue the following cURL request to verify that the [key-auth][key-auth] plugin was properly configured on the API:
 
     ```bash
     $ curl -i -X GET \
@@ -73,7 +52,7 @@ First, we'll have you configure and enable the [key-auth][key-auth] plugin to ad
 
 ### Next Steps
 
-Now that you've enabled the **key-auth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
+Now that you've configured the **key-auth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 

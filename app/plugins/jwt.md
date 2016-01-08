@@ -9,7 +9,6 @@ nav:
   - label: Getting Started
     items:
       - label: Terminology
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -32,16 +31,7 @@ Verify HMAC SHA-256 signed JSON Web Tokens (as specified in RFC 7519) and proxy 
 - `consumer`: a developer or service using the api. When using Kong, a consumer only communicates with Kong which proxies every call to the said, upstream api.
 - `credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a consumer.
 
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - jwt
-```
-
-Every node in the Kong cluster must have the same `plugins_available` property value.
+----
 
 ## Configuration
 

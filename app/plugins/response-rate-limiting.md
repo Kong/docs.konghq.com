@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -21,17 +20,6 @@ This plugin allows you to limit the number of requests a developer can make base
 If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - response-ratelimiting
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 
@@ -77,6 +65,8 @@ X-Kong-Limit: limitname1=2, limitname2=4
 That will increment the limit `limitname1` by 2 units, and `limitname2` by 4 units.
 
 You can optionally increment more than one limit by comma separating the entries. The header will be removed before returning the response to the original client.
+
+----
 
 ## Headers sent to the client
 

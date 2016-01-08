@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -23,17 +22,6 @@ nav:
 Binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - ssl
-```
-
-Every node in your Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 
@@ -57,6 +45,8 @@ form parameter                    | description
 `config.only_https`<br>*optional*  | Specify if the service should only be available through an `https` protocol. Defaults to `false`.
 `config.accept_http_if_already_terminated`<br>*optional* | If `config.only_https` is `true`, accepts HTTPs requests that have already been terminated by a proxy or load balancer and the `x-forwarded-proto: https` header has been added to the request. Only enable this option if the Kong server cannot be publicly accessed and the only entry-point is such proxy or load balancer. Defaults to `false`.
 
+----
+
 ## Creating an SSL certificate
 
 When creating an SSL certificate to use with this plugin, make sure you create one that is compatible with nginx. There are different ways of getting an SSL certificate, below you can find some easy steps to create a self-signed certificate to use with this plugin:
@@ -77,6 +67,8 @@ openssl x509 -req -in server.csr -signkey server.key -out server.crt
 ```
 
 If you followed the steps above the certificate will be stored in a file named `server.crt`, while the key is at `server.key`.
+
+----
 
 ## Propagation
 

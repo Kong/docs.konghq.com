@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -24,17 +23,6 @@ nav:
 Add HMAC Signature Authentication to your APIs to establish the identity of the consumer. The plugin will check for valid signature in the `Proxy-Authorization` and `Authorization` header (in this order). This plugin implementation follows the [draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) draft with slightly changed signature scheme.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - hmac-auth
-```
-
-Every node in the Kong cluster must have the same `plugins_available` property value.
 
 ## Configuration
 
