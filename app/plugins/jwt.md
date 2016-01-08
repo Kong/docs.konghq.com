@@ -16,7 +16,8 @@ nav:
       - label: Create a JWT credential
       - label: Craft a JWT
       - label: Send the JWT
-      - label: Verified claims
+      - label: (Optional) Verified claims
+      - label: (Optional) Base64 encoded secret
       - label: Upstream Headers
 ---
 
@@ -49,6 +50,8 @@ form parameter               | description
 `name`                       | The name of the plugin to use, in this case: `jwt`
 `config.uri_param_names`<br>*optional*     | Default `jwt`. A list of querystring parameters that Kong will inspect to retrieve potential JWTs.
 `config.claims_to_verify`<br>*optional*    | Default `none`. A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
+`config.key_claim_name`<br>*optional*    | Default `iss`. The name of the claim in which the `key` identifying the secret must be passed.
+`config.secret_is_base64`<br>*optional*    | Default `false`. If true, the plugin assumes the credential's secret to be base64 encoded. You will need to create a base64 encoded secret for your consumer, and sign your JWT with the original secret.
 
 ----
 
@@ -115,7 +118,7 @@ First, the header must be:
 }
 ```
 
-Secondly, the claims **must** contain the `iss` (issuer) field, set to the value of our previously created credential's `key`. The claims may contain any other values.
+Secondly, the claims **must** contain the secret's `key` in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
 
 ```json
 {
@@ -158,7 +161,7 @@ valid signature, invalid verified claim (**option**) | no                       
   <strong>Note:</strong> When the JWT is valid and proxied to the API, Kong makes no modification to the request other than adding headers identifying the consumer. It is the role of your service to now decode the JWT, since it is considered valid.
 </div>
 
-### (**Option**) Verified claims
+### (**Optional**) Verified claims
 
 Kong can also perform verification on registered claims, as defined in [RFC 7519][rfc-jwt]. To perform verification on a claim, add it to the `config.claims_to_verify` property:
 
@@ -174,6 +177,25 @@ claim name | verification
 -----------|-------------
 `exp`      | identifies the expiration time on or after which the JWT must not be accepted for processing.
 `nbf`      | identifies the time before which the JWT must not be accepted for processing.
+
+### (**Optional**) Base64 encoded secret
+
+If your secret contains binary data (such as secrets provided by services like Auth0), you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
+
+```bash
+$ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
+    --data "config.secret_is_base64=true"
+```
+
+Then, base64 encode your consumers' secrets:
+
+```bash
+# secret is: "blob data"
+$ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
+  --data "secret=YmxvYiBkYXRh"
+```
+
+And sign your JWT using the original secret ("blob data").
 
 ### Upstream Headers
 
