@@ -4,8 +4,7 @@ title: Configuration Reference
 
 # Configuration Reference
 
-The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you
-to configure and customize Kong to your needs. From the ports it uses, the database it connects to, and even the internal NGINX server itself.
+The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you to configure and customize Kong to your needs. From the ports it uses, the database it connects to, and even the internal NGINX server itself.
 
 ## Where should I place my configuration file?
 
@@ -13,13 +12,13 @@ When using Kong, you can specify the location of your configuration file from an
 
 However, when no configuration file is passed to Kong, it will look under `/etc/kong/kong.yml` for a fallback configuration file. Should no file be present in this location, Kong will then load a default configuration from its Luarocks install path.
 
-## Property Reference
+## How do I customize my configuration?
 
-This reference describes every property defined in a typical configuration file and their default values.
+If you browse the default configuration, you'll notice that all properties are commented out (to the exception of the Nginx configuration). Indeed, they are all set to their default value if non-specified. If you need to customize a property, uncomment and update it.
 
-They are all **required**.
+**However, beware of respecting the YAML formatting when doing so:** if you uncomment a nested property, be sure to uncomment its parents too!
 
-### Summary
+### Properties
 
 - [**custom_plugins**](#custom_plugins)
 - [**nginx_working_dir**](#nginx_working_dir)
@@ -34,7 +33,7 @@ They are all **required**.
 - [**dns_resolvers_available**](#dns_resolvers_available)
 - [**cluster**](#cluster)
 - [**database**](#database)
-- [**databases_available**](#databases_available)
+- [**cassandra**](#cassandra)
 - [**send_anonymous_reports**](#send_anonymous_reports)
 - [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
@@ -44,15 +43,16 @@ They are all **required**.
 ### **custom_plugins**
 
 
-Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace.
+Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/plugin-development) for how to build your own plugins.
 
-**Default:**
+**Default:** none.
+
+**Example:**
 
 ```yaml
 custom_plugins:
-  # - hello_world
-  # - custom_plugin2
-  # - ...
+  - custom-plugin
+  - custom-plugin-2
 ```
 
 ----
@@ -256,7 +256,7 @@ cluster:
 
 ### **database**
 
-The desired database to use for this Kong instance as a string, matching one of the databases defined under [`databases_available`](#databases_available).
+The name of the desired database to use. Currently, Kong only supports [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
 **Default:**
 
@@ -266,57 +266,36 @@ database: cassandra
 
 ----
 
-### **databases_available**
+### **cassandra**
 
-A dictionary of databases Kong can connect to, and their respective properties.
-
-Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
+A dictionary holding the properties for Kong to connect to your Cassandra cluster.
 
 <div class="alert alert-warning">
   <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
 </div>
 
-**Default:**
+**Example:**
 
 ```yaml
-databases_available:
-  cassandra:
-    properties:
-      contact_points:
-        - "localhost:9042"
-      timeout: 1000
-      keyspace: kong
-      keepalive: 60000
+cassandra:
+  contact_points:
+    - "localhost:9042"
+  keyspace: kong
 ```
 
-  **`databases_available.*.properties`**
-
-  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
-
-  **`databases_available.*.properties.contact_points`**
+  **`cassandra.contact_points`**
 
   The contact points on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list of strings containing the host and the port of your node(s).
 
   **Example:**
 
 ```yaml
-properties:
-  contact_points:
-    - "52.5.149.55"      # will connect on port 9042 (default)
-    - "52.5.149.56:9000" # will connect on port 9000
+contact_points:
+  - "52.5.149.55:9042"
+  - "52.5.149.56:9042"
 ```
 
-  **`databases_available.*.properties.timeout`**
-
-  Sets the timeout (in milliseconds) for sockets performing operations between Kong and Cassandra.
-
-  **Default:**
-
-```yaml
-timeout: 1000
-```
-
-  **`databases_available.*.properties.keyspace`**
+  **`cassandra.keyspace`**
 
   The keyspace in which Kong operates on your cluster.
 
@@ -326,9 +305,90 @@ timeout: 1000
 keyspace: kong
 ```
 
-  **`databases_available.*.properties.user`**
+#### Keyspace options
 
-  User to authenticate with if your cluster has authentication enabled.
+  Set those before running Kong or any migration. Those settings will be used to create a keyspace with the desired options when first running the migrations. If your keyspace already exists, you will have to manually update its options.
+
+  See the [CQL 3.1 documentation](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/create_keyspace_r.html) for a better understanding of those settings.
+
+  **`cassandra.replication_strategy`**
+
+  The name of the replica placement strategy class to use for the keyspace. Can be "SimpleStrategy" or "NetworkTopologyStrategy".
+
+  **Default:**
+
+```yaml
+replication_strategy: SimpleStrategy
+```
+
+  **`cassandra.replication_factor`**
+
+  For SimpleStrategy only. The number of replicas of data on multiple nodes.
+
+  **Default:**
+
+```yaml
+replication_factor: 1
+```
+
+  **`cassandra.data_centers`**
+
+  For NetworkTopologyStrategy only. The number of replicas of data on multiple nodes in each data center.
+
+  **Default:** none.
+
+  **Example:**
+
+```yaml
+data_centers:
+  - dc1
+  - dc2
+```
+
+#### SSL Options
+
+  **`cassandra.ssl.enabled`**
+
+  Enable client-to-node encryption with your Cassandra cluster.
+
+  **Default:**
+
+```yaml
+ssl:
+  enabled: false
+```
+
+  **`cassandra.ssl.verify`**
+
+  Enable SSL certificate verification. If true, a `certificate_authority` must also be provided.
+
+  **Default:**
+
+```yaml
+ssl:
+  verify: false
+```
+
+  **`cassandra.ssl.certificate_authority`**
+
+  Absolute path to the certificate authority file in PEM format. This property will set the certificate to the ngx_lua [`lua_ssl_trusted_certificate`](https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate) directive.
+
+  **Example:**
+
+```yaml
+ssl:
+  enabled: true
+  verify: true
+  certificate_authority: "/path/to/cluster-ca-certificate.pem"
+```
+
+#### Authentication options
+
+  **`cassandra.user`**
+
+  Provide a user here if your cluster uses the PasswordAuthenticator scheme.
+
+  **Default:** none.
 
   **Example:**
 
@@ -336,54 +396,16 @@ keyspace: kong
 user: cassandra
 ```
 
-  **`databases_available.*.properties.password`**
+  **`cassandra.password`**
 
-  The password to use if your cluster has authentication enabled.
+  Provide a password here if your cluster uses the PasswordAuthenticator scheme.
+
+  **Default:** none.
 
   **Example:**
 
 ```yaml
 password: cassandra
-```
-
-  **`databases_available.*.properties.ssl`**
-
-  Enable client-to-node encryption with your Cassandra cluster.
-
-  **Default:**
-
-```yaml
-ssl: false
-```
-
-  **`databases_available.*.properties.ssl_verify`**
-
-  Enable SSL certificate verification. If true, an `ssl_certificate` must also be provided.
-
-  **Default:**
-
-```yaml
-ssl_verify: false
-```
-
-  **`databases_available.*.properties.ssl_certificate`**
-
-  Absolute path to the certificate authority file.
-
-  **Example:**
-
-```yaml
-ssl_certificate: "/path/to/cluster-ca-certificate.pem"
-```
-
-  **`databases_available.*.properties.keepalive`**
-
-  The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
-
-  **Default:**
-
-```yaml
-keepalive: 60000
 ```
 
 ----
