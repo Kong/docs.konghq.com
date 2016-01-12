@@ -191,7 +191,7 @@ When running the `up` or `down` commands, specify `core` or `plugin_name` to onl
 Manage the Kong cluster.
 
 ```bash
-$ kong cluster [parameters] [join|members|force-leave|reachability|keygen]
+$ kong cluster [parameters] [members|force-leave|reachability|keygen]
 ```
 
 ### Parameters
@@ -209,7 +209,6 @@ This file contains configuration for plugins, the datastore, and NGINX. You can 
 
 ### Commands
 
-- **join [address]**: tells Kong to join an existing cluster located at `address`. The `address` is `ip:port` of the other node as configured in its [cluster_listen][cluster_listen] property (or th value of `advertise` if set in the node's [cluster settings][cluster]). A new Kong process must join with at least one existing member of a cluster in order to join an existing cluster. After joining that one member, the gossip layer takes over, propagating the updated membership state across the cluster.
 - **members**: shows a list of members in the cluster and their state.
 - **force-leave [node_name]**: when a node is in a `failed` state, this operation forcebly removes the node from the cluster. Remembers to use the `node_name` and not its address.
 - **reachability**: performs a basic network reachability test. The local node will gossip out a "ping" message and request that all other nodes acknowledge delivery of the message.

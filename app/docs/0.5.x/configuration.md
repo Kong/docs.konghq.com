@@ -233,14 +233,9 @@ Cluster settings between Kong nodes. For more information take a look at the [Cl
 ```yaml
 ## Cluster settings
 cluster:
-  auto-join: true
   # advertise: ""
   # encrypt: "foo"
 ```
-
-  **`auto-join`**
-
-  Instructs this node to auto-join the nodes that are sharing the same datastore on startup.
 
   **`advertise`**
 

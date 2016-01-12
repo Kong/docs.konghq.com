@@ -16,16 +16,16 @@ A Kong cluster can be created in one datacenter, or in multiple datacenters, in 
 - 2. [How does Kong clustering work?][2]
   - [Why do we need Kong Clustering?][2a]
 - 3. [Adding new nodes to a cluster][3]
-  - [Joining automatically][3a]
-  - [Joining manually][3b]
 - 4. [Removing nodes from a cluster][4]
-  - [Leaving automatically][4a]
-  - [Leaving manually][4b]
 - 5. [Checking the cluster state][5]
   - [Using the CLI][5a]
   - [Using the API][5b]
-- 6. [Multi-Datacenter clustering][6]
-- 7. [Failure scenarios][7]
+- 6. [Network Assumptions][6]
+- 7. [Edge-case scenarios][7]
+  - [Asynchronous join on concurrent node starts][7a]
+  - [Automatic cache purge on join][7b]
+  - [Node failures][7c]
+- 8. [Problems and bug reports][8]
 
 [1]: #1-introduction
 [2]: #2-how-does-kong-clustering-work
@@ -39,8 +39,12 @@ A Kong cluster can be created in one datacenter, or in multiple datacenters, in 
 [5]: #5-checking-the-cluster-state
 [5a]: #using-the-cli
 [5b]: #using-the-api
-[6]: #6-multi-datacenter-clustering
-[7]: #7-failure-scenarios
+[6]: #6-network-assumptions
+[7]: #7-edge-case-scenarios
+[7a]: #asynchronous-join-on-concurrent-node-starts
+[7b]: #automatic-cache-purge-on-join
+[7c]: #node-failures
+[8]: #8-problems-and-bug-reports
 
 ## 1. Introduction
 
@@ -67,7 +71,7 @@ Bear in mind that a Kong Cluster has nothing to do with any third-party datastor
   <a title="Kong Cluster" href="/assets/images/docs/cluster.png" target="_blank"><img src="/assets/images/docs/cluster.png"/></a>
 </div>
 
-Every time a new Kong node is added or removed, it also needs to be added and removed from the respective Kong Cluster. This can be done in two ways, automatically (with a few limitations) or manually.
+Every time a new Kong node is added or removed, it also needs to be added and removed from the respective Kong Cluster. This is done automatically given that the right configuration has been provided to Kong.
 
 Kong cluster settings are specified in the configuration file at the following entries:
 
@@ -91,31 +95,19 @@ This brings on the table very good performance, because Kong nodes will never ta
 
 ## 3. Adding new nodes to a cluster
 
-A Kong Cluster is made of at least two Kong nodes pointing to the same datastore. Everytime a new node is being started, we also need to join it with the other existing nodes and make sure it belongs to the same Kong Cluster. This can be done in two different ways, automatically or manually.
+Every Kong node that points to the same datastore needs to join in a cluster with the other nodes. A Kong Cluster is made of at least two Kong nodes pointing to the same datastore. 
 
-#### Joining automatically
-
-This is the default behavior, as specified by the `auto-join` property in the [cluster settings][cluster]. Every time a new Kong node is being started it will register its first local, non-loopback, IPv4 address to the datastore. When that happens, it will also try to join any other node that has previously registered its address as well.
+Every time a new Kong node is being started it will register its first local, non-loopback, IPv4 address to the datastore. When that happens, it will also try to join any other node that has previously registered its address as well.
 
 Sometimes the automatically determined address is not always the appropriate one. You can override the advertised address by specifiying your own custom address in the `advertise` property in the [cluster settings][cluster].
 
-#### Joining manually
-
-By setting to `false` the `auto-join` property in the [cluster settings][cluster], Kong will not try to auto-join a cluster on startup. Instead, you will need to use the [`kong cluster join [address]`][cli-cluster] CLI command to manually add the Kong node to a cluster. 
-
 ## 4. Removing nodes from a cluster
 
-Everytime a new Kong node is stopped, that node needs to be removed from the cluster or its state will be marked as `failed`. When a node has been successfully removed from a cluster, its state transitions to `left`. There are two ways to remove a node from the cluster, automatically or manually.
+Everytime a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions to `left`.
 
-#### Leaving automatically
+To gracefully stop and remove a node from the cluster just execute the `kong quit` or `kong stop` CLI commands.
 
-This is the default behavior, as specified by the `auto-join` property in the [cluster settings][cluster]. Everytime a node is being stopped by executing either `kong quit` or `kong stop` CLI commands, Kong will also try to remove the node from the cluster automatically, transitioning its state to `left`.
-
-#### Leaving manually
-
-By setting to `false` the `auto-join` property in the [cluster settings][cluster], Kong will not automatically remove the node from the cluster. Instead, you will need to use the [`kong cluster force-leave [node_name]`][cli-cluster] CLI command to remove the node from the cluster.
-
-Note that `force-leave` requires a node name, instead of the address of the node. You can find node names by running `kong cluster members`.
+You can `force-leave` a `failed` node from the cluster using the [`kong cluster force-leave`][cli-cluster] CLI command. Check the [Node Failures](#node-failures) paragraph for more info.
 
 ## 5. Checking the cluster state
 
@@ -129,16 +121,45 @@ By using the [`kong cluster members`][cli-cluster] CLI command. The output will 
 
 Another way to check the state of the cluster is by making a request to the Admin API at the [cluster status endpoint][cluster-endpoint].
 
-## 6. Multi-datacenter clustering
+## 6. Network Assumptions
 
-When configuring a multi-datancer Kong cluster, you need to know that Kong works on the IP layer (hostnames are not supported) and it expects a flat network topology without any NAT between the two datacenters. A common setup is having a VPN between the two datacenters such that the "flat" network assumption of Kong is not violated. Or by advertising public addresses using the `advertise` property in the [cluster settings][cluster] without jumping through the NAT.
+When configuring a cluster in either a single or multi-datancer setup, you need to know that Kong works on the IP layer (hostnames are not supported, only IPs are allowed) and it expects a flat network topology without any NAT between the two datacenters. A common setup is having a VPN between the two datacenters such that the "flat" network assumption of Kong is not violated. Or by advertising public addresses using the `advertise` property in the [cluster settings][cluster] without jumping through the NAT.
 
-## 7. Failure scenarios
+Kong will try to automatically determine the first non-loopback IPv4 address and share it with the other nodes, but you can override this address using the `advertise` property in the [cluster settings][cluster].
 
+## 7. Edge-case scenarios
 
+The implementation of the clustering feature of Kong is rather complex and may involve some edge case scenarios.
+
+#### Asynchronous join on concurrent node starts
+
+When multiple nodes are all being started simultaneously, a node may not be aware of the other nodes yet because the other nodes didn't have time to write their data to the datastore. To prevent this situation Kong implements by default a feature called "asynchronous auto-join".
+
+Asynchronous auto-join will check the datastore every 3 seconds for 60 seconds after a Kong node starts, and will join any node that may appear in those 60 seconds. This means that concurrent environments where multiple nodes are started simultaneously it could take up to 60 seconds for them to auto-join the cluster.
+
+On the other side if a node successfully joins the cluster on startup, then the asynchronous auto-join feature is never triggered.
+
+#### Automatic cache purge on join
+
+Every time a new node joins the cluster, the cache for every node is purged and all the data is forced to be reloaded. This is to avoid inconsistencies between the data that has already been invalidated in the cluster, and the data stored on the node.
+
+This also means that after joining the cluster the new node's performance will be slower until the data has been re-cached into its memory.
+
+#### Node failures
+
+A node in the cluster can fail more multiple reasons, including networking problems or crashes. A node failure will also occur if Kong is not properly terminated by running `kong stop` or `kong quit`.
+
+When a node fails, Kong will lose the ability to communicate with it and the cluster will try to reconnect to the node. Its status will show up as `failed` when looking up the cluster health with [`kong cluster members`][cli-cluster].
+
+To remove a `failed` node from the cluster, use the [`kong cluster force-leave`][cli-cluster] command, and its status will transition to `left`.
+
+## 8. Problems and bug reports
+
+Clustering is a new feature introduce with Kong >= 0.6.x - if you experience any problem please contact us through our [Community Channels][community-channels].
 
 [cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
 [cluster_listen_rpc]: /docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
 [cluster]: /docs/{{page.kong_version}}/configuration/#cluster
 [cli-cluster]: /docs/{{page.kong_version}}/cli/#cluster
 [cluster-endpoint]: /docs/{{page.kong_version}}/admin-api/#retrieve-cluster-status
+[community-channels]: /community
