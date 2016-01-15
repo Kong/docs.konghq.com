@@ -7,10 +7,6 @@ breadcrumbs:
   Plugins: /plugins
 ---
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This plugin requires Kong >= 0.3.0
-</div>
-
 Binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
 ----
