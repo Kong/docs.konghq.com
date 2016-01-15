@@ -111,7 +111,10 @@ local SCHEMA = {
     created_at = {type = "timestamp", dao_insert_value = true},
     consumer_id = {type = "id", required = true, queryable = true, foreign = "consumers:id"},
     key = {type = "string", required = false, unique = true, queryable = true}
-  }
+  },
+  marshall_event = function(self, t) -- This is related to the invalidation hook
+    return { id = t.id, consumer_id = t.consumer_id, key = t.key }
+  end
 }
 
 -- Inherit from the Base DAO
@@ -139,7 +142,8 @@ You will have noticed a few new properties in the schema definition (compared to
 | `clustering_key`      | Integer indexed table     | In the case when your primary key is composite, an array of each field determining your **clustering key**.
 | `fields.*.dao_insert_value` | Boolean              | If true, specifies that this field is to be automatically populated by the DAO (in the base_dao implementation) depending on it's type. A proeprty of type `id` will be a generated uuid, and `timestamp` a timestamp with second-precision.
 | `fields.*.queryable`  | Boolean                   | If true, specifies that Cassandra maintains an index on the specified column. This allows for querying the column family filtered by this column.
-| `fields.*.foreign`    | String                    | Specifies that this column is a foreign key to another entity's column. The format is: `dao_name:column_name`. This makes it up for Cassandra not supporting foreign keys. When the parent row will be deleted, Kong will also delete rows containing the parent's column value. This is a
+| `fields.*.foreign`    | String                    | Specifies that this column is a foreign key to another entity's column. The format is: `dao_name:column_name`. This makes it up for Cassandra not supporting foreign keys. When the parent row will be deleted, Kong will also delete rows containing the parent's column value.
+| `marshall_event`         | Function     | A function that returns a table representing the entity fields to be used by the invalidation hooks. Only the bare minimum fields required by the invalidation hook should be returned, and its JSON representation should not exceed the size of a UDP packet.
 
 Your DAO will now be loaded by the DAO Factory and available as one of its properties:
 
@@ -152,13 +156,17 @@ The property name (`keyauth_credentials`) depends on the key with which you expo
 
 ---
 
-### Extending the Admin API
+### Caching custom entities
 
-As you are probably aware, the [Admin API] is where Kong users communicate with Kong to setup their APIs and plugins. It is likely that they also need to be able to interact with the custom entities you implemented for your plugin (for example, creating and deleting API keys). The way you would do this is by extending the Admin API, which we will detail in the next chapter: [Extending the Admin API]({{page.book.next}}).
+Sometimes custom entities are required on every request/response, which in turn triggers a query on the datastore every time. This is very inefficient because querying the datastore adds latency and slows the request/response down, and the resulting increased load on the datastore could affect the datastore performance itself and, in turn, other Kong nodes.
+
+When a custom entity is required on every request/response it is good practice to cache it in-memory by leveraging the in-memory cache API that Kong provides.
+
+The next chapter will focus on caching custom entities, and invalidating them when they change in the datastore: [Caching custom entities]({{page.book.next}}).
 
 ---
 
-Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
+Next: [Caching custom entities &rsaquo;]({{page.book.next}})
 
 [kong.dao.cassandra.base_dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao
 [Admin API]: /docs/{{page.kong_version}}/admin-api/

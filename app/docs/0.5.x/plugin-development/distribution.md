@@ -1,7 +1,7 @@
 ---
 title: Plugin Development - Distribute your plugin
 book: plugin_dev
-chapter: 9
+chapter: 10
 ---
 
 # {{page.title}}
