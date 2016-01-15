@@ -17,15 +17,15 @@ chapter: 7
 
 Your plugin may need to frequently access custom entities (explained in the [previous chapter]({{page.book.previous}})) on every request and/or response. Usually loading them once, and caching them in-memory, dramatically improves the performance while making sure the datastore is not stressed with an increased load.
 
-Think of an api-key authentication plugin that needs to validate the credentials on every request, thus loading the custom credential object on every request. When the client provides an api-key along with the request, normally you would query the datastore to check if that key exists, and then either block the request or retrieve the Consumer ID to identify the user. This would happen on every request, and it would be very inefficient:
+Think of an api-key authentication plugin that needs to validate the api-key on every request, thus loading the custom credential object from the datastore on every request. When the client provides an api-key along with the request, normally you would query the datastore to check if that key exists, and then either block the request or retrieve the Consumer ID to identify the user. This would happen on every request, and it would be very inefficient:
 
 * Querying the datastore adds latency on every request, making the request processing slower.
 * The datastore would also be affected by an increase of load, potentially crashing or slowing down the datastore, which in turn would affect every Kong node.
 
-To avoid querying the datastore every time, we can cache custom entities in-memory on the node, so that frequent entities lookups don't trigger a datastore query every time (only the first time), but happen in-memory, which is much faster and reliable that querying it from the datastore (especially under heavy load).
+To avoid querying the datastore every time, we can cache custom entities in-memory on the node, so that frequent entity lookups don't trigger a datastore query every time (only the first time), but happen in-memory, which is much faster and reliable that querying it from the datastore (especially under heavy load).
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> When caching custom entities in-memory, then you also need to provide an invalidation mechanism, implemented in `hooks.lua`.
+  <strong>Note:</strong> When caching custom entities in-memory, then you also need to provide an invalidation mechanism, implemented in the "hooks.lua" file.
 </div>
 
 ---
@@ -78,7 +78,7 @@ if not credential then -- If the credential couldn't be found, show an error mes
 end
 ```
 
-By doing so it doesn't matter how many requests the client makes with that particular api-key, after the first request every lookup will be done in-memory without every querying the datastore.
+By doing so it doesn't matter how many requests the client makes with that particular api-key, after the first request every lookup will be done in-memory without querying the datastore.
 
 #### Updating or deleting a custom entity
 
@@ -88,9 +88,9 @@ Every time a cached custom entity is updated or deleted on the datastore, for ex
 
 ### Invalidating custom entities
 
-Every time an entity is being updated/created/deleted in the datastore, Kong notifies the action across all the nodes telling what operation has been executed and what entity has been affected by it. This happens for APIs, Plugins and Consumers, but also for custom entities.
+Every time an entity is being created/updated/deleted in the datastore, Kong notifies the datastore operation across all the nodes telling what command has been executed and what entity has been affected by it. This happens for APIs, Plugins and Consumers, but also for custom entities.
 
-Thanks to this behavior, we can listen to these events and response with the appropriate action, so that when an entity that is being cached is being modified in the datastore, we can explicitly remove it from the cache to avoid having an inconsistent state between the datastore and the cache itself.
+Thanks to this behavior, we can listen to these events and response with the appropriate action, so that when a cached entity is being modified in the datastore, we can explicitly remove it from the cache to avoid having an inconsistent state between the datastore and the cache itself. Removing it from the in-memory cache will trigger the system to query the datastore again, and re-cache the entity.
 
 The events that Kong propagates are:
 
@@ -139,7 +139,7 @@ In the example above the plugin is listening to the `ENTITY_UPDATED` and `ENTITY
 | `entity`                           | Table  | The most recent updated entity, or the entity deleted or created.
 | `old_entity`                       | Table  | Only for update events, the old version of the entity.
 
-The entities being transmitted in the `entity` and `old_entity` properties do not have all the fields defined in the schema, but only a subset. This is required because every event is sent in a UDP packet which has a size limit of 65kb. This subset is being implemented in the `marshall_event` function in the schema.
+The entities being transmitted in the `entity` and `old_entity` properties do not have all the fields defined in the schema, but only a subset. This is required because every event is sent in a UDP packet which has a size limit of 65kb. This subset is being returned by the `marshall_event` function in the schema, that you **must** implement.
 
 #### marshall_event
 
