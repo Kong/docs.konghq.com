@@ -1,7 +1,7 @@
 ---
 id: page-plugin
-title: Plugins - Datadog Metrics log
-header_title: Datadog Metrics log
+title: Plugins - Datadog
+header_title: Datadog
 header_icon: /assets/images/icons/plugins/datadog.png
 breadcrumbs:
   Plugins: /plugins
@@ -11,10 +11,10 @@ nav:
       - label: Configuration
   - label: Usage
     items:
-      - label: Log Format
+      - label: Metrics
 ---
 
-Log Api metrics like request count, request size, response status and latency to Statsd server over UDP.
+Log API metrics like request count, request size, response status and latency to the local [Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
 
 ----
 
@@ -50,7 +50,7 @@ parameter                     | description
 
 ## Metrics
 
-Plugin currently logs four metrics, request_count, request_size, status_count and latency, to the statsd server.
+Plugin currently logs four metrics to the statsd server: `request_count`, `request_size`, `status_count` and `latency`.
 
 Metric                     | description | namespace
 ---                        | ---         | -----

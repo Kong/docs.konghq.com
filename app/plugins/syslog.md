@@ -12,9 +12,10 @@ nav:
   - label: Usage
     items:
       - label: Log Format
+      - label: Notes
 ---
 
-Log request and response data to System log.
+Log request and response data to Syslog.
 
 ----
 
@@ -112,8 +113,8 @@ A few considerations on the above JSON object:
 
 ----
 
-## Note
+## Notes
 
 * Make sure Syslog daemon is running on the instance and it's configured with logging level severity same as or lower than the set `config.log_level`.   
 
-* This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[nginx_working_dir](/docs/{{site.data.kong_latest.version}}/configuration/#nginx_working_dir)}/logs/error.log
+* This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[nginx_working_dir](/docs/{{site.data.kong_latest.release}}/configuration/#nginx_working_dir)}/logs/error.log

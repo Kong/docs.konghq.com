@@ -119,4 +119,4 @@ A few considerations on the above JSON object:
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[nginx_working_dir](/docs/{{site.data.kong_latest.version}}/configuration/#nginx_working_dir)}/logs/error.log
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[nginx_working_dir](/docs/{{site.data.kong_latest.release}}/configuration/#nginx_working_dir)}/logs/error.log
