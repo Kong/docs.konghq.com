@@ -88,10 +88,3 @@
     - name: Loggly
       id: loggly
       info: Send request and response logs to Loggly
-
-- name: NGINX Inc.
-  info: Third party plugins from NGINX, Inc
-  plugins:
-    - name: NGINX Plus Live Monitoring
-      id: nginx-plus-monitoring
-      info: Live Monitoring of NGINX Plus
