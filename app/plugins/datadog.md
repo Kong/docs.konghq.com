@@ -38,7 +38,7 @@ parameter                     | description
 `consumer_id`<br>*optional* | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `config.host`<br>*optional* | Default `127.0.0.1`. The IP address or host name to send data to
 `config.port`<br>*optional* | Default `8125`. The port to send data to on the upstream server
-`config.metrics`<br>*optional* | The metrics to be logged, by default all are logged
+`config.metrics`<br>*optional* | The metrics to be logged, by default all are logged. Available values are described at [Metrics](#metrics).
 `config.timeout`<br>*optional* | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
 
 [api-object]: /docs/latest/admin-api/#api-object
@@ -50,11 +50,12 @@ parameter                     | description
 
 ## Metrics
 
-Plugin currently logs four metrics to the statsd server: `request_count`, `request_size`, `status_count` and `latency`.
+Plugin currently logs four metrics to the statsd server: `request_count`, `request_size`, `response_size`, `status_count` and `latency`.
 
 Metric                     | description | namespace
 ---                        | ---         | -----
-`request_count`              | Increment the count of request made to the Api by 1 | kong.\<api_name>.request.count
-`request_size`               | logs the request's body size | kong.\<api_name>.request.size
+`request_count`              | Increment the count of request made to the API by 1 | kong.\<api_name>.request.count
+`request_size`               | logs the request's body size in bytes | kong.\<api_name>.request.size
+`response_size`               | logs the response's body size in bytes | kong.\<api_name>.request.size
 `latency`                   | logs the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
-`status_count`               | Increment the count of metric matching the status code by 1 | kong.\<api_name>.\<http_status_code>.count
+`status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
