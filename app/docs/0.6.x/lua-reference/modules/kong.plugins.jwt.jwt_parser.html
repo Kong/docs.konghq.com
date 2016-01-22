@@ -1,5 +1,5 @@
 ---
-title: Lua Reference - kong.tools.io
+title: Lua Reference - kong.plugins.jwt.jwt_parser
 layout: default
 ---
 
@@ -56,10 +56,11 @@ layout: default
           <h5>Modules</h5>
           <ul>
             <li><a href="../../modules/kong.dao.cassandra.base_dao">kong.dao.cassandra.base_dao</a></li>
+            <li><a href="../../modules/kong.kong">kong.kong</a></li>
             <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
-            <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
+            <li>kong.plugins.jwt.jwt_parser</li>
             <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
-            <li>kong.tools.io</li>
+            <li><a href="../../modules/kong.tools.io">kong.tools.io</a></li>
             <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
             <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
             <li><a href="../../modules/kong.tools.utils">kong.tools.utils</a></li>
@@ -72,37 +73,29 @@ layout: default
   <div class="page-content-container">
   <div class="page-content">
     <div class="content">
-<h1><code>kong.tools.io</code></h1>
-<p>Checks existence of a file.</p>
-<p></p>
+<h1><code>kong.plugins.jwt.jwt_parser</code></h1>
+<p>Supported algorithms for signing tokens.</p>
+<p>Only support HS256 for our use case.</p>
 
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
   <tr>
-    <td class="name"><a href="#cmd_exists">cmd_exists (cmd)</a></td>
-    <td class="summary">Check existence of a command.</td>
+    <td class="name"><a href="#new">new (token)</a></td>
+    <td class="summary">Instanciate a JWT parser
+ Parse a JWT and instanciate a JWT parser for further operations
+ Return errors instead of an instance if any encountered</td>
   </tr>
   <tr>
-    <td class="name"><a href="#file_size">file_size (path)</a></td>
-    <td class="summary">Get the filesize.</td>
+    <td class="name"><a href="#verify_registered_claims">verify_registered_claims (claims_to_verify)</a></td>
+    <td class="summary">Verify registered claims (according to RFC 7519 Section 4.1)
+ Claims are verified by type and a check.</td>
   </tr>
   <tr>
-    <td class="name"><a href="#kill_process_by_pid_file">kill_process_by_pid_file (pid_file, signal)</a></td>
-    <td class="summary">Kill a process by PID.</td>
-  </tr>
-  <tr>
-    <td class="name"><a href="#os_execute">os_execute (command)</a></td>
-    <td class="summary">Execute an OS command and catch the output.</td>
-  </tr>
-  <tr>
-    <td class="name"><a href="#read_file">read_file (path)</a></td>
-    <td class="summary">Read file contents.</td>
-  </tr>
-  <tr>
-    <td class="name"><a href="#write_to_file">write_to_file (path)</a></td>
-    <td class="summary">Write file contents.</td>
+    <td class="name"><a href="#verify_signature">verify_signature (key)</a></td>
+    <td class="summary">Verify a JWT signature
+ Verify the current JWT signature against a given key</td>
   </tr>
 </table>
 
@@ -113,23 +106,28 @@ layout: default
 <dl class="function">
   <hr />
   <dt>
-    <h4><a name="cmd_exists">cmd_exists</a></h4>
+    <h4><a name="new">new</a></h4>
   </dt>
   <dd>
-    Check existence of a command.
+    Instanciate a JWT parser
+ Parse a JWT and instanciate a JWT parser for further operations
+ Return errors instead of an instance if any encountered
 
     <h5>Parameters:</h5>
     <ul>
         <li>
-          <code class="parameter">cmd</code>
-          command being searched for
+          <code class="parameter">token</code>
+          JWT to parse
         </li>
     </ul>
 
     <h5>Returns:</h5>
     <ul>
       <li>
-        <code>true</code> of found, <code>false</code> otherwise
+        JWT parser
+      </li>
+      <li>
+        error if any
       </li>
     </ul>
 
@@ -140,23 +138,27 @@ layout: default
   </dd>
   <hr />
   <dt>
-    <h4><a name="file_size">file_size</a></h4>
+    <h4><a name="verify_registered_claims">verify_registered_claims</a></h4>
   </dt>
   <dd>
-    Get the filesize.
+    Verify registered claims (according to RFC 7519 Section 4.1)
+ Claims are verified by type and a check.
 
     <h5>Parameters:</h5>
     <ul>
         <li>
-          <code class="parameter">path</code>
-          path to file to check
+          <code class="parameter">claims_to_verify</code>
+          A list of claims to verify.
         </li>
     </ul>
 
     <h5>Returns:</h5>
     <ul>
       <li>
-        size of file, or <code>nil</code> on failure
+        A boolean indicating true if no errors zere found
+      </li>
+      <li>
+        A list of errors
       </li>
     </ul>
 
@@ -167,112 +169,24 @@ layout: default
   </dd>
   <hr />
   <dt>
-    <h4><a name="kill_process_by_pid_file">kill_process_by_pid_file</a></h4>
+    <h4><a name="verify_signature">verify_signature</a></h4>
   </dt>
   <dd>
-    Kill a process by PID.
- Kills the process and waits until it's terminated
+    Verify a JWT signature
+ Verify the current JWT signature against a given key
 
     <h5>Parameters:</h5>
     <ul>
         <li>
-          <code class="parameter">pid_file</code>
-          the file containing the pid to kill
-        </li>
-        <li>
-          <code class="parameter">signal</code>
-          the signal to use
+          <code class="parameter">key</code>
+          Key against which to verify the signature
         </li>
     </ul>
 
     <h5>Returns:</h5>
     <ul>
       <li>
-        <a href="../modules/kong.tools.io.html#os_execute">os_execute</a> results, see os_execute.
-      </li>
-    </ul>
-
-
-
-
-
-  </dd>
-  <hr />
-  <dt>
-    <h4><a name="os_execute">os_execute</a></h4>
-  </dt>
-  <dd>
-    Execute an OS command and catch the output.
-
-    <h5>Parameters:</h5>
-    <ul>
-        <li>
-          <code class="parameter">command</code>
-          OS command to execute
-        </li>
-    </ul>
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        string containing command output (both stdout and stderr)
-      </li>
-      <li>
-        exitcode
-      </li>
-    </ul>
-
-
-
-
-
-  </dd>
-  <hr />
-  <dt>
-    <h4><a name="read_file">read_file</a></h4>
-  </dt>
-  <dd>
-    Read file contents.
-
-    <h5>Parameters:</h5>
-    <ul>
-        <li>
-          <code class="parameter">path</code>
-          filepath to read
-        </li>
-    </ul>
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        file contents as string, or <code>nil</code> if not succesful
-      </li>
-    </ul>
-
-
-
-
-
-  </dd>
-  <hr />
-  <dt>
-    <h4><a name="write_to_file">write_to_file</a></h4>
-  </dt>
-  <dd>
-    Write file contents.
-
-    <h5>Parameters:</h5>
-    <ul>
-        <li>
-          <code class="parameter">path</code>
-          filepath to write to
-        </li>
-    </ul>
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        <code>true</code> upon success, or <code>false</code> + error message on failure
+        A boolean indicating if the signature if verified or not
       </li>
     </ul>
 

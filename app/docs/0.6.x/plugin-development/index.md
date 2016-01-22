@@ -8,7 +8,7 @@ chapter: 1
 
 ### What are plugins and how do they integrate with Kong?
 
-Before going further, it is necessary to briefly explain how Kong is built, especially how it integrates with Nginx and what does Lua has to do with it.
+Before going further, it is necessary to briefly explain how Kong is built, especially how it integrates with Nginx and what Lua has to do with it.
 
 [lua-nginx-module] enables Lua scripting capabilities in Nginx. Instead of compiling Nginx with this module, Kong is distributed along with [OpenResty](https://openresty.org/), which already includes lua-nginx-module. OpenResty is *not* a fork of Nginx, but a bundle of modules extending its capabilities.
 

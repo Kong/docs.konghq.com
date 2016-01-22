@@ -4,7 +4,8 @@ title: Configuration Reference
 
 # Configuration Reference
 
-The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you to configure and customize Kong to your needs. From the ports it uses, the database it connects to, and even the internal NGINX server itself.
+The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you
+to configure and customize Kong to your needs. From the ports it uses, the database it connects to, and even the internal NGINX server itself.
 
 ## Where should I place my configuration file?
 
@@ -12,54 +13,87 @@ When using Kong, you can specify the location of your configuration file from an
 
 However, when no configuration file is passed to Kong, it will look under `/etc/kong/kong.yml` for a fallback configuration file. Should no file be present in this location, Kong will then load a default configuration from its Luarocks install path.
 
-## How do I customize my configuration?
+## Property Reference
 
-If you browse the default configuration, you'll notice that all properties are commented out (to the exception of the Nginx configuration). Indeed, they are all set to their default value if non-specified. If you need to customize a property, uncomment and update it.
+This reference describes every property defined in a typical configuration file and their default values.
 
-**However, beware of respecting the YAML formatting when doing so:** if you uncomment a nested property, be sure to uncomment its parents too!
+They are all **required**.
 
-### Properties
+### Summary
 
-- [**custom_plugins**](#custom_plugins)
+- [**proxy_port**](#proxy_port)
+- [**proxy_ssl_port**](#proxy_ssl_port)
+- [**admin_api_port**](#admin_api_port)
+- [**dnsmasq_port**](#dnsmasq_port)
 - [**nginx_working_dir**](#nginx_working_dir)
-- [**proxy_listen**](#proxy_listen)
-- [**proxy_listen_ssl**](#proxy_listen_ssl)
-- [**admin_api_listen**](#admin_api_listen)
-- [**cluster_listen**](#cluster_listen)
-- [**cluster_listen_rpc**](#cluster_listen_rpc)
+- [**plugins_available**](#plugins_available)
+- [**send_anonymous_reports**](#send_anonymous_reports)
+- [**databases_available**](#databases_available)
+- [**database**](#database)
+- [**database_cache_expiration**](#database_cache_expiration)
 - [**ssl_cert_path**](#ssl_cert_path)
 - [**ssl_key_path**](#ssl_key_path)
-- [**dns_resolver**](#dns_resolver)
-- [**dns_resolvers_available**](#dns_resolvers_available)
-- [**cluster**](#cluster)
-- [**database**](#database)
-- [**cassandra**](#cassandra)
-- [**send_anonymous_reports**](#send_anonymous_reports)
 - [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
 
 ----
 
-### **custom_plugins**
+### **proxy_port**
 
+Port which Kong proxies requests through, developers using your API will make requests against this port.
 
-Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/plugin-development) for how to build your own plugins.
-
-**Default:** none.
-
-**Example:**
+**Default:**
 
 ```yaml
-custom_plugins:
-  - custom-plugin
-  - custom-plugin-2
+proxy_port: 8000
+```
+
+----
+
+### **proxy_ssl_port**
+
+Port which Kong proxies requests through under `https`, developers using your API will make requests against this port.
+
+**Default:**
+
+```yaml
+proxy_ssl_port: 8443
+```
+
+----
+
+### **admin_api_port**
+
+Port which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) is served through.
+
+**Note:** This port is used to manage your Kong instances, therefore it should be placed behind a firewall
+or closed off network to ensure security.
+
+**Default:**
+
+```yaml
+admin_api_port: 8001
+```
+
+----
+
+### **dnsmasq_port**
+
+Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen to.
+
+**Note:** This port is used to properly resolve DNS addresses by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
+
+**Default:**
+
+```yaml
+dnsmasq_port: 8053
 ```
 
 ----
 
 ### **nginx_working_dir**
 
-The Kong working directory. Equivalent to nginx's prefix path. This is where this running nginx instance will keep server files including logs. Make sure it has the appropriate permissions.
+Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
 
 **Default:**
 
@@ -69,88 +103,194 @@ nginx_working_dir: /usr/local/kong/
 
 ----
 
-### **proxy_listen**
+### **plugins_available**
 
-Address and port on which the server will accept HTTP requests, consumers will make requests on this port.
+
+A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
 
 **Default:**
 
 ```yaml
-proxy_listen: "0.0.0.0:8000"
+plugins_available:
+  - ssl
+  - jwt
+  - acl
+  - cors
+  - oauth2
+  - tcp-log
+  - udp-log
+  - file-log
+  - http-log
+  - key-auth
+  - hmac-auth
+  - basic-auth
+  - ip-restriction
+  - mashape-analytics
+  - request-transformer
+  - response-transformer
+  - request-size-limiting
+  - rate-limiting
+  - response-ratelimiting
 ```
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you dont't want to expose Kong externally.
-</div>
 
 ----
 
-### **proxy_listen_ssl**
+### **send_anonymous_reports**
 
-Same as proxy_listen, but for HTTPS requests.
+If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
 
 **Default:**
 
 ```yaml
-proxy_listen_ssl: "0.0.0.0:8443"
+send_anonymous_reports: true
 ```
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you dont't want to expose Kong externally.
-</div>
 
 ----
 
-### **admin_api_listen**
+### **databases_available**
 
-Address and port on which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) will listen to. The admin API is a private API which lets you manage your Kong infrastructure. It needs to be secured appropriately.
+A dictionary of databases Kong can connect to, and their respective properties.
+
+Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as a database.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+</div>
 
 **Default:**
 
 ```yaml
-admin_api_listen: "0.0.0.0:8001"
+databases_available:
+  cassandra:
+    properties:
+      contact_points:
+        - "localhost:9042"
+      timeout: 1000
+      keyspace: kong
+      keepalive: 60000
 ```
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This port is used to manage your Kong instances, therefore it should be placed behind a firewall
-or closed off network to ensure security.
-</div>
+  **`databases_available.*.properties`**
+
+  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
+
+  **`databases_available.*.properties.contact_points`**
+
+  The contact points on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list of strings containing the host and the port of your node(s).
+
+  **Example:**
+
+```yaml
+properties:
+  contact_points:
+    - "52.5.149.55"      # will connect on port 9042 (default)
+    - "52.5.149.56:9000" # will connect on port 9000
+```
+
+  **`databases_available.*.properties.timeout`**
+
+  Sets the timeout (in milliseconds) for sockets performing operations between Kong and Cassandra.
+
+  **Default:**
+
+```yaml
+timeout: 1000
+```
+
+  **`databases_available.*.properties.keyspace`**
+
+  The keyspace in which Kong operates on your cluster.
+
+  **Default:**
+
+```yaml
+keyspace: kong
+```
+
+  **`databases_available.*.properties.user`**
+
+  User to authenticate with if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+user: cassandra
+```
+
+  **`databases_available.*.properties.password`**
+
+  The password to use if your cluster has authentication enabled.
+
+  **Example:**
+
+```yaml
+password: cassandra
+```
+
+  **`databases_available.*.properties.ssl`**
+
+  Enable client-to-node encryption with your Cassandra cluster.
+
+  **Default:**
+
+```yaml
+ssl: false
+```
+
+  **`databases_available.*.properties.ssl_verify`**
+
+  Enable SSL certificate verification. If true, an `ssl_certificate` must also be provided.
+
+  **Default:**
+
+```yaml
+ssl_verify: false
+```
+
+  **`databases_available.*.properties.ssl_certificate`**
+
+  Absolute path to the certificate authority file.
+
+  **Example:**
+
+```yaml
+ssl_certificate: "/path/to/cluster-ca-certificate.pem"
+```
+
+  **`databases_available.*.properties.keepalive`**
+
+  The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
+
+  **Default:**
+
+```yaml
+keepalive: 60000
+```
 
 ----
 
-### **cluster_listen**
+### **database**
 
-Address and port used by the node to communicate with other Kong nodes in the cluster with both UDP and TCP messages. All the nodes in the cluster must be able to communicate with this node on this address. Only IPv4 addresses are allowed (no hostnames).
-
-For more information take a look at the [Clustering Reference][clustering-reference].
+The desired database to use for this Kong instance as a string, matching one of the databases defined under [`databases_available`](#databases_available).
 
 **Default:**
 
 ```yaml
-cluster_listen: "0.0.0.0:7946"
+database: cassandra
 ```
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This port should be usable by other Kong nodes, but not accessible externally. Therefore appropriate firewall settings are highly reccomended.
-</div>
 
 ----
 
-### **cluster_listen_rpc**
+### **database_cache_expiration**
 
-Address and port used by the node to communicate with the local clustering agent (TCP only, and local only). Used internally by this Kong node. Only IPv4 addresses are allowed (no hostnames).
-
-For more information take a look at the [Clustering Reference][clustering-reference].
+A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making multiple queries to the database in order to retrieve an API's target URL. However, this also means you may be required to wait a while before the
+cached value is flushed and reflects any potential changes made during that time.
 
 **Default:**
 
 ```yaml
-cluster_listen_rpc: "127.0.0.1:7373"
+database_cache_expiration: 5 # in seconds
 ```
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This port should be only used locally, therefore it should be placed behind a firewall or closed off network to ensure security.
-</div>
 
 ----
 
@@ -182,244 +322,9 @@ By default this property is commented out, which will force Kong to use an auto-
 
 ----
 
-### **dns_resolver**
-
-The desired DNS resolver to use for this Kong instance as a string, matching one of the DNS resolvers defined under [`dns_resolvers_available`](#dns_resolvers_available).
-
-**Default:**
-
-```yaml
-dns_resolver: dnsmasq
-```
-
-----
-
-### **dns_resolvers_available**
-
-A dictionary of DNS resolvers Kong can use, and their respective properties. Currently [`dnsmasq`](http://www.thekelleys.org.uk/dnsmasq/doc.html) (default) and `server` are supported.
-
-By choosing `dnsmasq`, Kong will resolve hostnames using the local `/etc/hosts` file and `resolv.conf` configuration. By choosing `server`, you can specify a custom DNS server.
-
-**Default:**
-
-```yaml
-dns_resolvers_available:
-  # server:
-    # address: "8.8.8.8:53"
-  dnsmasq:
-    port: 8053
-```
-
-  **`dns_resolvers_available.server.address`**
-
-  The address to a custom DNS server, in the `address:port` format.
-
-  **`dns_resolvers_available.dnsmasq.port`**
-
-  Port where Dnsmasq will listen to. Dnsmasq is only used locally, therefore will always listen on `127.0.0.1`.
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This port is used to properly resolve DNS addresses locally by Kong, therefore it should be placed behind a firewall or closed off network to ensure security.
-</div>
-
-----
-
-### **cluster**
-
-Cluster settings between Kong nodes. For more information take a look at the [Clustering Reference][clustering-reference].
-
-**Default:**
-
-```yaml
-## Cluster settings
-cluster:
-  # advertise: ""
-  # encrypt: "foo"
-```
-
-  **`advertise`**
-
-  Address and port used by the node to communicate with other Kong nodes in the cluster with both UDP and TCP messages. All the nodes in the cluster must be able to communicate with this node on this address. Only IPv4 addresses are allowed (no hostnames).
-
-  The advertise flag is used to change the address that we advertise to other nodes in the cluster. By default, the [`cluster_listen`](#cluster_listen) address is advertised. However, in some cases (specifically NAT traversal), there may be a routable address that cannot be bound to. This flag enables gossiping a different address to support this.
-
-  **`encrypt`**
-
-  Key for encrypting network traffic within Kong. Must be a base64-encoded 16-byte key.
-
-----
-
-### **database**
-
-The name of the desired database to use. Currently, Kong only supports [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
-
-**Default:**
-
-```yaml
-database: cassandra
-```
-
-----
-
-### **cassandra**
-
-A dictionary holding the properties for Kong to connect to your Cassandra cluster.
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
-</div>
-
-**Example:**
-
-```yaml
-cassandra:
-  contact_points:
-    - "localhost:9042"
-  keyspace: kong
-```
-
-  **`cassandra.contact_points`**
-
-  The contact points on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list of strings containing the host and the port of your node(s).
-
-  **Example:**
-
-```yaml
-contact_points:
-  - "52.5.149.55:9042"
-  - "52.5.149.56:9042"
-```
-
-  **`cassandra.keyspace`**
-
-  The keyspace in which Kong operates on your cluster.
-
-  **Default:**
-
-```yaml
-keyspace: kong
-```
-
-#### Keyspace options
-
-  Set those before running Kong or any migration. Those settings will be used to create a keyspace with the desired options when first running the migrations. If your keyspace already exists, you will have to manually update its options.
-
-  See the [CQL 3.1 documentation](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/create_keyspace_r.html) for a better understanding of those settings.
-
-  **`cassandra.replication_strategy`**
-
-  The name of the replica placement strategy class to use for the keyspace. Can be "SimpleStrategy" or "NetworkTopologyStrategy".
-
-  **Default:**
-
-```yaml
-replication_strategy: SimpleStrategy
-```
-
-  **`cassandra.replication_factor`**
-
-  For SimpleStrategy only. The number of replicas of data on multiple nodes.
-
-  **Default:**
-
-```yaml
-replication_factor: 1
-```
-
-  **`cassandra.data_centers`**
-
-  For NetworkTopologyStrategy only. The number of replicas of data on multiple nodes in each data center.
-
-  **Default:** none.
-
-  **Example:**
-
-```yaml
-data_centers:
-  - dc1
-  - dc2
-```
-
-#### SSL Options
-
-  **`cassandra.ssl.enabled`**
-
-  Enable client-to-node encryption with your Cassandra cluster.
-
-  **Default:**
-
-```yaml
-ssl:
-  enabled: false
-```
-
-  **`cassandra.ssl.verify`**
-
-  Enable SSL certificate verification. If true, a `certificate_authority` must also be provided.
-
-  **Default:**
-
-```yaml
-ssl:
-  verify: false
-```
-
-  **`cassandra.ssl.certificate_authority`**
-
-  Absolute path to the certificate authority file in PEM format. This property will set the certificate to the ngx_lua [`lua_ssl_trusted_certificate`](https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate) directive.
-
-  **Example:**
-
-```yaml
-ssl:
-  enabled: true
-  verify: true
-  certificate_authority: "/path/to/cluster-ca-certificate.pem"
-```
-
-#### Authentication options
-
-  **`cassandra.user`**
-
-  Provide a user here if your cluster uses the PasswordAuthenticator scheme.
-
-  **Default:** none.
-
-  **Example:**
-
-```yaml
-user: cassandra
-```
-
-  **`cassandra.password`**
-
-  Provide a password here if your cluster uses the PasswordAuthenticator scheme.
-
-  **Default:** none.
-
-  **Example:**
-
-```yaml
-password: cassandra
-```
-
-----
-
-### **send_anonymous_reports**
-
-If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
-
-**Default:**
-
-```yaml
-send_anonymous_reports: true
-```
-
-----
-
 ### **memory_cache_size**
 
-A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore. This value may not be smaller than 32MB.
+A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore.
 
 **Default:**
 
@@ -431,7 +336,7 @@ memory_cache_size: 128 # in megabytes
 
 ### **nginx**
 
-The NGINX configuration (or `nginx.conf`) that will be used for this instance. The placeholders will be computed and this property will be written as a file by Kong at `<nginx_working_dir>/nginx.conf` during startup.
+The NGINX configuration (or `nginx.conf`) that will be used for this instance.
 
 **Warning:** Modifying the NGINX configuration can lead to unexpected results, edit the configuration only if you are confident about doing so.
 
@@ -439,21 +344,21 @@ The NGINX configuration (or `nginx.conf`) that will be used for this instance. T
 
 ```yaml
 nginx: |
-worker_processes auto;
+  worker_processes auto;
   error_log logs/error.log error;
   daemon on;
 
-  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
+  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{auto_worker_connections}};
+    worker_connections {{ "{{auto_worker_connections" }}}};
     multi_accept on;
   }
 
   http {
-    resolver {{dns_resolver}} ipv6=off;
+    resolver {{ "{{dns_resolver" }}}};
     charset UTF-8;
 
     access_log logs/access.log;
@@ -477,7 +382,7 @@ worker_processes auto;
     real_ip_recursive on;
 
     # Other Settings
-    client_max_body_size 0;
+    client_max_body_size 128m;
     underscores_in_headers on;
     reset_timedout_connection on;
     tcp_nopush on;
@@ -492,11 +397,7 @@ worker_processes auto;
     lua_code_cache on;
     lua_max_running_timers 4096;
     lua_max_pending_timers 16384;
-    lua_shared_dict reports_locks 100k;
-    lua_shared_dict cluster_locks 100k;
-    lua_shared_dict cache {{memory_cache_size}}m;
-    lua_shared_dict cassandra 1m;
-    lua_shared_dict cassandra_prepared 5m;
+    lua_shared_dict cache {{ "{{memory_cache_size" }}}}m;
     lua_socket_log_errors off;
     {{lua_ssl_trusted_certificate}}
 
@@ -509,36 +410,30 @@ worker_processes auto;
       end
     ';
 
-    init_worker_by_lua 'kong.exec_plugins_init_worker()';
-
     server {
       server_name _;
-      listen {{proxy_listen}};
-      listen {{proxy_listen_ssl}} ssl;
+      listen {{ "{{proxy_port" }}}};
+      listen {{ "{{proxy_ssl_port" }}}} ssl;
 
       ssl_certificate_by_lua 'kong.exec_plugins_certificate()';
 
-      ssl_certificate {{ssl_cert}};
-      ssl_certificate_key {{ssl_key}};
-      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;# omit SSLv3 because of POODLE (CVE-2014-3566)
+      ssl_certificate {{ "{{ssl_cert" }}}};
+      ssl_certificate_key {{ "{{ssl_key" }}}};
 
       location / {
         default_type 'text/plain';
 
-        # These properties will be used later by proxy_pass
-        set $upstream_host nil;
-        set $upstream_url nil;
+        # This property will be used later by proxy_pass
+        set $backend_url nil;
 
         # Authenticate the user and load the API info
         access_by_lua 'kong.exec_plugins_access()';
 
         # Proxy the request
-        # Proxy the request
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Host $upstream_host;
-        proxy_pass $upstream_url;
+        proxy_pass $backend_url;
         proxy_pass_header Server;
 
         # Add additional response headers
@@ -566,10 +461,7 @@ worker_processes auto;
     }
 
     server {
-      listen {{admin_api_listen}};
-
-      client_max_body_size 10m;
-      client_body_buffer_size 10m;
+      listen {{ "{{admin_api_port" }}}};
 
       location / {
         default_type application/json;
@@ -577,7 +469,6 @@ worker_processes auto;
           ngx.header["Access-Control-Allow-Origin"] = "*"
           if ngx.req.get_method() == "OPTIONS" then
             ngx.header["Access-Control-Allow-Methods"] = "GET,HEAD,PUT,PATCH,POST,DELETE"
-            ngx.header["Access-Control-Allow-Headers"] = "Content-Type"
             ngx.exit(204)
           end
           local lapis = require "lapis"
@@ -587,17 +478,18 @@ worker_processes auto;
 
       location /nginx_status {
         internal;
-        access_log off;
         stub_status;
       }
 
       location /robots.txt {
         return 200 'User-agent: *\nDisallow: /';
       }
+
+      # Do not remove, additional configuration placeholder for some plugins
+      # {{ "{{additional_configuration" }}}};
     }
   }
 ```
 
 [cli-reference]: /docs/{{page.kong_version}}/cli
-[clustering-reference]: /docs/{{page.kong_version}}/clustering
 [yaml]: http://yaml.org

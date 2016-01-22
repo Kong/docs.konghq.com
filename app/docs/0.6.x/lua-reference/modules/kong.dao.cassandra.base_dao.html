@@ -56,6 +56,7 @@ layout: default
           <h5>Modules</h5>
           <ul>
             <li>kong.dao.cassandra.base_dao</li>
+            <li><a href="../../modules/kong.kong">kong.kong</a></li>
             <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
             <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
             <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
@@ -83,9 +84,8 @@ layout: default
 <h2><a href="#Public_interface">Public interface </a></h2>
 <table class="function_list">
   <tr>
-    <td class="name"><a href="#BaseDao:execute">BaseDao:execute (query, args_to_bind, options)</a></td>
-    <td class="summary">Bind a table of arguments to a query depending on the entity's schema,
- and then execute the query via <strong>:_execute()</strong>.</td>
+    <td class="name"><a href="#BaseDao:execute">BaseDao:execute (query, args, query_options, keyspace)</a></td>
+    <td class="summary">Execute a query.</td>
   </tr>
 </table>
 <h2><a href="#Children_DAOs_interface">Children DAOs interface </a></h2>
@@ -95,7 +95,7 @@ layout: default
     <td class="summary">Retrieve the number of rows in the related column family matching a possible 'WHERE' clause.</td>
   </tr>
   <tr>
-    <td class="name"><a href="#BaseDao:delete">BaseDao:delete (where_t)</a></td>
+    <td class="name"><a href="#BaseDao:delete">BaseDao:delete (primary_key_t)</a></td>
     <td class="summary">Delete the row with PRIMARY KEY from the configured table (<strong>_table</strong> attribute).</td>
   </tr>
   <tr>
@@ -120,9 +120,8 @@ layout: default
     <td class="summary">Insert a row in the defined column family (defined by the <strong>_table</strong> attribute).</td>
   </tr>
   <tr>
-    <td class="name"><a href="#BaseDao:update">BaseDao:update (t, full)</a></td>
-    <td class="summary">Update an entity: find the row with the given PRIMARY KEY and update the other values
- Performs schema validation, 'UNIQUE' and 'FOREIGN' checks.</td>
+    <td class="name"><a href="#BaseDao:update">BaseDao:update (t, full, where_t)</a></td>
+    <td class="summary">Update an entity.</td>
   </tr>
 </table>
 <h2><a href="#Optional_overrides">Optional overrides </a></h2>
@@ -143,16 +142,9 @@ layout: default
 <h2><a href="#Private_methods">Private methods </a></h2>
 <table class="function_list">
   <tr>
-    <td class="name"><a href="#BaseDao:_close_session">BaseDao:_close_session (session)</a></td>
-    <td class="summary">Close the given opened session.</td>
-  </tr>
-  <tr>
-    <td class="name"><a href="#BaseDao:_execute">BaseDao:_execute (query, args, options, keyspace)</a></td>
-    <td class="summary">Execute a query (internally).</td>
-  </tr>
-  <tr>
-    <td class="name"><a href="#BaseDao:_open_session">BaseDao:_open_session (keyspace)</a></td>
-    <td class="summary">Open a session on the configured keyspace.</td>
+    <td class="name"><a href="#BaseDao:build_args_and_execute">BaseDao:build_args_and_execute (query, columns, args_to_bind, query_options)</a></td>
+    <td class="summary">Bind a table of arguments to a query depending on the entity's schema,
+ and then execute the query via <code>execute()</code>.</td>
   </tr>
   <tr>
     <td class="name"><a href="#BaseDao:check_foreign_fields">BaseDao:check_foreign_fields (t)</a></td>
@@ -161,10 +153,6 @@ layout: default
   <tr>
     <td class="name"><a href="#BaseDao:check_unique_fields">BaseDao:check_unique_fields (t, is_update)</a></td>
     <td class="summary">Perform "unique" check on a column.</td>
-  </tr>
-  <tr>
-    <td class="name"><a href="#BaseDao:get_or_prepare_stmt">BaseDao:get_or_prepare_stmt (query)</a></td>
-    <td class="summary">Get a prepared statement from the statements cache or prepare it (and thus insert it in the cache).</td>
   </tr>
 </table>
 
@@ -181,39 +169,49 @@ Public methods developers can use in Kong core or in any plugin.
     <h4><a name="BaseDao:execute">BaseDao:execute</a></h4>
   </dt>
   <dd>
-    Bind a table of arguments to a query depending on the entity's schema,
- and then execute the query via <strong>:_execute()</strong>.
+    Execute a query.
+ This method should be called with the proper <strong>args</strong> formatting (as an array).
+ See <code>execute()</code> for building this parameter.
 
     <h5>Parameters:</h5>
     <ul>
         <li>
           <code class="parameter">query</code>
-          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-          The query to execute
+          Plain string CQL query.
         </li>
         <li>
-          <code class="parameter">args_to_bind</code>
+          <code class="parameter">args</code>
           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-          Key/value table of arguments to bind
+          (Optional) Arguments to the query, as an array. Simply passed to lua-cassandra <code>execute()</code>.
         </li>
         <li>
-          <code class="parameter">options</code>
-          <span class="types"><span class="type">stable</span></span>
-          Options to pass to lua-cassandra's :execute()
+          <code class="parameter">query_options</code>
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          (Optional) Options to give to lua-cassandra <code>execute()</code> query_options.
+        </li>
+        <li>
+          <code class="parameter">keyspace</code>
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+          (Optional) Override the keyspace for this query if specified.
         </li>
     </ul>
 
     <h5>Returns:</h5>
     <ul>
       <li>
-        return values of _execute()
+        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        If the result consists of ROWS, a table with an array of unmarshalled rows and a <code>next_page</code> property if the results has a <code>paging_state</code>. If the result is of type "VOID", a boolean representing the success of the query. Otherwise, the raw result as given by lua-cassandra.
+      </li>
+      <li>
+        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        An error if any during the execution.
       </li>
     </ul>
 
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:_execute">_execute</a></li>
+      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:execute">execute</a></li>
     </ul>
 
 
@@ -246,7 +244,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
         <li>
           <code class="parameter">paging_state</code>
           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-          Start page from given offset. See lua-cassandra's related <strong>:execute()</strong> option.
+          Start page from given offset. It'll be passed along to lua-cassandra <code>execute()</code> query_options.
         </li>
     </ul>
 
@@ -254,15 +252,15 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <ul>
       <li>
         <span class="types"><span class="type">number</span></span>
-        The number of rows matching the specified criteria
+        The number of rows matching the specified criteria.
       </li>
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        An error if any
+        An error if any.
       </li>
       <li>
         <span class="types"><span class="type">boolean</span></span>
-        A boolean indicating if the 'ALLOW FILTERING' clause was needed by the query
+        A boolean indicating if the 'ALLOW FILTERING' clause was needed by the query.
       </li>
     </ul>
 
@@ -281,7 +279,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <h5>Parameters:</h5>
     <ul>
         <li>
-          <code class="parameter">where_t</code>
+          <code class="parameter">primary_key_t</code>
           A table containing the PRIMARY KEY (columns/values) of the row to delete
         </li>
     </ul>
@@ -290,11 +288,11 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <ul>
       <li>
         <span class="types"><span class="type">boolean</span></span>
-        True if deleted, false if otherwise or not found
+        True if deleted, false if otherwise or not found.
       </li>
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Error if any during the query execution or the cascade delete hook
+        Error if any during the query execution or the cascade delete hook.
       </li>
     </ul>
 
@@ -315,7 +313,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <h5>Returns:</h5>
     <ul>
       <li>
-        Return values of execute()
+        Return values of execute().
       </li>
     </ul>
 
@@ -345,7 +343,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
         <li>
           <code class="parameter">paging_state</code>
           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-          Start page from given offset. See lua-cassandra's related <strong>:execute()</strong> option.
+          Start page from given offset. It'll be passed along to lua-cassandra <code>execute()</code> query_options.
         </li>
     </ul>
 
@@ -388,7 +386,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
         <li>
           <code class="parameter">paging_state</code>
           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-          Start page from given offset. See lua-cassandra's related <strong>:execute()</strong> option.
+          Start page from given offset. See lua-cassandra's related <code>execute()</code> option.
         </li>
     </ul>
 
@@ -458,7 +456,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <ul>
         <li>
           <code class="parameter">t</code>
-          A table representing the entity to insert
+          A table representing the entity to insert.
         </li>
     </ul>
 
@@ -466,11 +464,11 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <ul>
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Inserted entity or nil
+        Inserted entity or nil.
       </li>
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Error if any during the execution
+        Error if any during the execution.
       </li>
     </ul>
 
@@ -489,7 +487,11 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <h4><a name="BaseDao:update">BaseDao:update</a></h4>
   </dt>
   <dd>
-    Update an entity: find the row with the given PRIMARY KEY and update the other values
+    Update an entity.
+ Find the row with the given PRIMARY KEY and update its colums with values
+ from the given table and return the complete entity, with updates taken into account.
+ If asked, the update can be "full", just like an HTTP PUT method would expect to work:
+ any schema field that is not included in the given argument will be set to CQL <code>null</code> (unset).
  Performs schema validation, 'UNIQUE' and 'FOREIGN' checks.
 
     <h5>Parameters:</h5>
@@ -497,12 +499,17 @@ Those methds are to be used in any child DAO and will perform the named operatio
         <li>
           <code class="parameter">t</code>
           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-          A table representing the entity to update. It <strong>must</strong> contain the entity's PRIMARY KEY (can be composite).
+          A table representing the entity to update. It should contain the entity's PRIMARY KEY fields (can be composite). If not, then a selector can be passed as argument #3.
         </li>
         <li>
           <code class="parameter">full</code>
           <span class="types"><span class="type">boolean</span></span>
-          If <strong>true</strong>, set to NULL any column not in the <code>t</code> parameter, such as a PUT query would do for example.
+          If true, set to CQL <code>null</code> any column not in the <code>t</code> argument, such as a PUT query would do for example.
+        </li>
+        <li>
+          <code class="parameter">where_t</code>
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          A table containing the PRIMARY KEY fields of the row to update.
         </li>
     </ul>
 
@@ -510,11 +517,11 @@ Those methds are to be used in any child DAO and will perform the named operatio
     <ul>
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Updated entity or nil
+        <code>result</code>: Updated entity or nil.
       </li>
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Error if any during the execution
+        <code>error</code>: Error if any during the execution.
       </li>
     </ul>
 
@@ -650,131 +657,47 @@ For internal use in the base_dao itself or advanced usage in a child DAO.
 <dl class="function">
   <hr />
   <dt>
-    <h4><a name="BaseDao:_close_session">BaseDao:_close_session</a></h4>
+    <h4><a name="BaseDao:build_args_and_execute">BaseDao:build_args_and_execute</a></h4>
   </dt>
   <dd>
-    Close the given opened session.
- Will try to put the session in the socket pool for re-use if supported
- by the current phase.
-
-    <h5>Parameters:</h5>
-    <ul>
-        <li>
-          <code class="parameter">session</code>
-          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-          Cassandra session to close
-        </li>
-    </ul>
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Error if any
-      </li>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        The prepared statement, ready to be used by lua-cassandra.
-      </li>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Error if any during the preparation of the statement
-      </li>
-    </ul>
-
-
-
-
-
-  </dd>
-  <hr />
-  <dt>
-    <h4><a name="BaseDao:_execute">BaseDao:_execute</a></h4>
-  </dt>
-  <dd>
-    Execute a query (internally).
- This method should be called with the proper <strong>args</strong> formatting (as an array). See
- <strong>:execute()</strong> for building this parameter.
- Make sure the query is either prepared and cached, or retrieved from the
- current cache.
- Opens a socket, execute the statement, puts the socket back into the
- socket pool and returns a parsed result.
+    Bind a table of arguments to a query depending on the entity's schema,
+ and then execute the query via <code>execute()</code>.
 
     <h5>Parameters:</h5>
     <ul>
         <li>
           <code class="parameter">query</code>
-          Plain string query or BatchStatement.
-        </li>
-        <li>
-          <code class="parameter">args</code>
-          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-          (Optional) Arguments to the query, as an array. Simply passed to lua-cassandra's :execute()
-        </li>
-        <li>
-          <code class="parameter">options</code>
-          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-          (Optional) Options to give to lua-resty-cassandra's :execute()
-        </li>
-        <li>
-          <code class="parameter">keyspace</code>
           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-          (Optional) Override the keyspace for this query if specified.
+          The query to execute.
+        </li>
+        <li>
+          <code class="parameter">columns</code>
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          A list of column names where each value indicates the column of the value at the same index in <code>args_to_bind</code>.
+        </li>
+        <li>
+          <code class="parameter">args_to_bind</code>
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          Key/value table of arguments to bind.
+        </li>
+        <li>
+          <code class="parameter">query_options</code>
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          Options to pass to lua-cassandra <code>execute()</code> query_options.
         </li>
     </ul>
 
     <h5>Returns:</h5>
     <ul>
       <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        If the result set consists of ROWS, a table with an array of unmarshalled rows and a <code>next_page</code> property if the results have a paging_state.
-      </li>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        An error if any during the whole execution (sockets/query execution)
+        return values of <code>execute()</code>.
       </li>
     </ul>
 
 
     <h5>See also:</h5>
     <ul>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:execute">execute</a></li>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:get_or_prepare_stmt">get_or_prepare_stmt</a></li>
-      <li><a href="../../modules/kong.dao.cassandra.base_dao#BaseDao:_close_session">_close_session</a></li>
     </ul>
-
-
-
-  </dd>
-  <hr />
-  <dt>
-    <h4><a name="BaseDao:_open_session">BaseDao:_open_session</a></h4>
-  </dt>
-  <dd>
-    Open a session on the configured keyspace.
-
-    <h5>Parameters:</h5>
-    <ul>
-        <li>
-          <code class="parameter">keyspace</code>
-          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-          (Optional) Override the keyspace for this session if specified.
-        </li>
-    </ul>
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Opened session
-      </li>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Error if any
-      </li>
-    </ul>
-
-
 
 
 
@@ -792,7 +715,7 @@ For internal use in the base_dao itself or advanced usage in a child DAO.
         <li>
           <code class="parameter">t</code>
           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-          Key/value representation of the entity
+          Key/value representation of the entity.
         </li>
     </ul>
 
@@ -832,7 +755,7 @@ For internal use in the base_dao itself or advanced usage in a child DAO.
         <li>
           <code class="parameter">is_update</code>
           <span class="types"><span class="type">boolean</span></span>
-          If true, we ignore an identical value if the row containing it is the one we are trying to update.
+          If true, ignore an identical value if the row containing it is the one we are trying to update.
         </li>
     </ul>
 
@@ -845,45 +768,6 @@ For internal use in the base_dao itself or advanced usage in a child DAO.
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         A key/value table of all columns (as keys) having values already in the database.
-      </li>
-    </ul>
-
-
-
-
-
-  </dd>
-  <hr />
-  <dt>
-    <h4><a name="BaseDao:get_or_prepare_stmt">BaseDao:get_or_prepare_stmt</a></h4>
-  </dt>
-  <dd>
-    Get a prepared statement from the statements cache or prepare it (and thus insert it in the cache).
- The cache is unique for each Cassandra contact_point (base on the host and port).
- The statement's cache key will be the plain string query representation.
-
-    <h5>Parameters:</h5>
-    <ul>
-        <li>
-          <code class="parameter">query</code>
-          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-          The query to prepare
-        </li>
-    </ul>
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        The prepared statement, ready to be used by lua-cassandra.
-      </li>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-        The cache key used to store it into the cache
-      </li>
-      <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Error if any during the query preparation
       </li>
     </ul>
 

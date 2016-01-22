@@ -1,5 +1,5 @@
 ---
-title: Lua Reference - kong.tools.timestamp
+title: Lua Reference - kong.plugins.log-serializers.alf
 layout: default
 ---
 
@@ -56,12 +56,13 @@ layout: default
           <h5>Modules</h5>
           <ul>
             <li><a href="../../modules/kong.dao.cassandra.base_dao">kong.dao.cassandra.base_dao</a></li>
+            <li><a href="../../modules/kong.kong">kong.kong</a></li>
             <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
             <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
-            <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
+            <li>kong.plugins.log-serializers.alf</li>
             <li><a href="../../modules/kong.tools.io">kong.tools.io</a></li>
             <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
-            <li>kong.tools.timestamp</li>
+            <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
             <li><a href="../../modules/kong.tools.utils">kong.tools.utils</a></li>
           </ul>
         </li>
@@ -72,53 +73,16 @@ layout: default
   <div class="page-content-container">
   <div class="page-content">
     <div class="content">
-<h1><code>kong.tools.timestamp</code></h1>
-<p>Current UTC time</p>
-<p></p>
-
-
-
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-  <tr>
-    <td class="name"><a href="#get_timestamps">get_timestamps (now)</a></td>
-    <td class="summary">Creates a timestamp</td>
-  </tr>
-</table>
-
-
-<h2 class="section-header "><a name="Functions">Functions</a></h2>
-
-
-<dl class="function">
-  <hr />
-  <dt>
-    <h4><a name="get_timestamps">get_timestamps</a></h4>
-  </dt>
-  <dd>
-    Creates a timestamp
-
-    <h5>Parameters:</h5>
-    <ul>
-        <li>
-          <code class="parameter">now</code>
-          (optional) Time to generate a timestamp from, if omitted current UTC time will be used
-        </li>
-    </ul>
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        Timestamp table containing fields; second, minute, hour, day, month, year
-      </li>
-    </ul>
+<h1><code>kong.plugins.log-serializers.alf</code></h1>
+<p>Get a header from nginx's headers
+ Make sure that is multiple headers of a same name are present,
+ we only want the last one.</p>
+<p>Also include a default value if
+ no header is present.</p>
 
 
 
 
-
-  </dd>
-</dl>
 
 
     </div>
