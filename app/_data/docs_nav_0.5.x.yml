@@ -71,11 +71,11 @@
     - text: Supported Content Types
       url: /admin-api/#supported-content-types
 
-    - text: Informations routes
-      url: /admin-api/#informations-routes
+    - text: Information routes
+      url: /admin-api/#information-routes
       items:
-        - text: Retrieve node informations
-          url: /admin-api/#retrieve-node-informations
+        - text: Retrieve node information
+          url: /admin-api/#retrieve-node-information
 
         - text: Retrieve node status
           url: /admin-api/#retrieve-node-status

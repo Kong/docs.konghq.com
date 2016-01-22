@@ -58,11 +58,11 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 ---
 
-## Informations routes
+## Information routes
 
-### Retrieve node informations
+### Retrieve node information
 
-Retrieve installation details about a node.
+Retrieve generic details about a node.
 
 #### Endpoint
 
@@ -86,6 +86,9 @@ HTTP 200 OK
             ...
         ]
     },
+    "configuration" : {
+        ...
+    },
     "tagline": "Welcome to Kong",
     "version": "0.6.0"
 }
@@ -99,7 +102,7 @@ HTTP 200 OK
 
 ### Retrieve node status
 
-Retrieve usage informations about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
+Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
 
 #### Endpoint
 
