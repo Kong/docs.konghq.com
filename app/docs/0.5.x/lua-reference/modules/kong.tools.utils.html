@@ -56,6 +56,7 @@ layout: default
           <h5>Modules</h5>
           <ul>
             <li><a href="../../modules/kong.dao.cassandra.base_dao">kong.dao.cassandra.base_dao</a></li>
+            <li><a href="../../modules/kong.kong">kong.kong</a></li>
             <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
             <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
             <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
@@ -73,8 +74,9 @@ layout: default
   <div class="page-content">
     <div class="content">
 <h1><code>kong.tools.utils</code></h1>
-<p>Module containing some general utility functions</p>
-<p></p>
+<p>Module containing some general utility functions used in many places in Kong.</p>
+<p>NOTE: Before implementing a function here, consider if it will be used in many places
+ across Kong. If not, a local function in the appropriate module is prefered.</p>
 
 
 
@@ -87,6 +89,15 @@ layout: default
   <tr>
     <td class="name"><a href="#deep_copy">deep_copy (orig)</a></td>
     <td class="summary">Deep copies a table into a new table.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#encode_args">encode_args (args, raw)</a></td>
+    <td class="summary">Encode a Lua table to a querystring
+ Tries to mimic ngx_lua's <code>ngx.encode_args</code>, but also percent-encode querystring values.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#get_hostname">get_hostname ()</a></td>
+    <td class="summary">Retrieves the hostname of the local machine</td>
   </tr>
   <tr>
     <td class="name"><a href="#is_array">is_array (t)</a></td>
@@ -175,6 +186,66 @@ layout: default
     <ul>
       <li>
         Returns a copy of the input table
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="encode_args">encode_args</a></h4>
+  </dt>
+  <dd>
+    Encode a Lua table to a querystring
+ Tries to mimic ngx_lua's <code>ngx.encode_args</code>, but also percent-encode querystring values.
+ Supports multi-value query args, boolean values.
+ It also supports encoding for bodies (only because it is used in http_client for specs.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">args</code>
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          A key/value table containing the query args to encode.
+        </li>
+        <li>
+          <code class="parameter">raw</code>
+          <span class="types"><span class="type">boolean</span></span>
+          If true, will not percent-encode any key/value and will ignore special boolean rules.
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        A valid querystring (without the prefixing '?')
+      </li>
+    </ul>
+
+
+    <h5>See also:</h5>
+    <ul>
+    </ul>
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="get_hostname">get_hostname</a></h4>
+  </dt>
+  <dd>
+    Retrieves the hostname of the local machine
+
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        string  The hostname
       </li>
     </ul>
 
