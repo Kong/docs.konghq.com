@@ -4,11 +4,9 @@ title: Clustering Reference
 
 # Clustering Reference
 
-Explicit Kong clustering has been introduced with Kong >= v0.6.0 to dramatically increase the performance of the system when multiple Kong nodes are being used to process incoming requests.
-
 Multiple Kong nodes pointing to the same datastore **must** belong to the same "Kong cluster". A Kong cluster allows you to scale the system horizontally by adding more machines to handle a bigger load of incoming requests, and they all share the same data since they point to the same datastore.
 
-A Kong cluster can be created in one datacenter, or in multiple datacenters, in both cloud or on-premise environments.
+A Kong cluster can be created in one datacenter, or in multiple datacenters, in both cloud or on-premise environments. Kong will take care of joining and leaving a node automatically in a cluster, as long as the node is configured properly.
 
 ## Summary
 
@@ -18,8 +16,6 @@ A Kong cluster can be created in one datacenter, or in multiple datacenters, in 
 - 3. [Adding new nodes to a cluster][3]
 - 4. [Removing nodes from a cluster][4]
 - 5. [Checking the cluster state][5]
-  - [Using the CLI][5a]
-  - [Using the API][5b]
 - 6. [Network Assumptions][6]
 - 7. [Edge-case scenarios][7]
   - [Asynchronous join on concurrent node starts][7a]
@@ -31,14 +27,8 @@ A Kong cluster can be created in one datacenter, or in multiple datacenters, in 
 [2]: #2-how-does-kong-clustering-work
 [2a]: #why-do-we-need-kong-clustering
 [3]: #3-adding-new-nodes-to-a-cluster
-[3a]: #joining-automatically
-[3b]: #joining-manually
 [4]: #4-removing-nodes-from-a-cluster
-[4a]: #leaving-automatically
-[4b]: #leaving-manually
 [5]: #5-checking-the-cluster-state
-[5a]: #using-the-cli
-[5b]: #using-the-api
 [6]: #6-network-assumptions
 [7]: #7-edge-case-scenarios
 [7a]: #asynchronous-join-on-concurrent-node-starts
@@ -48,11 +38,15 @@ A Kong cluster can be created in one datacenter, or in multiple datacenters, in 
 
 ## 1. Introduction
 
-Adding multiple Kong nodes is a good practice for a number of reasons, including:
+Generally speaking having multiple Kong nodes is a good practice for a number of reasons, including:
 
 * Scaling the system horizontally to process a greater number of incoming requests.
 * Scaling the system on multiple datacenter to provide a distributed low latency geolocalized service.
 * As a failure prevention response, so that even if a server crashes other Kong nodes can still process incoming requests without any downtime.
+
+<center>
+  <img src="/assets/images/docs/clustering.png" style="height: 400px"/>
+</center>
 
 To make sure every Kong node can process requests properly, each node must point to the same datastore so that they can share the same data. This means for example that APIs, Consumers and Plugins created by a Kong node will also be available to other Kong nodes that are pointing to the same datastore. 
 
@@ -60,18 +54,7 @@ By doing so it doesn't matter which Kong node is being requested, as long as the
 
 ## 2. How does Kong clustering work?
 
-Every time a new Kong node is being added, there are two requirements:
-
-* It must point to the same datastore.
-* It must join other existing Kong nodes and be part of the same Kong Cluster.
-
-Bear in mind that a Kong Cluster has nothing to do with any third-party datastore clustering which involves the datastore nodes instead:
-
-<div class="alert alert-info">
-  <a title="Kong Cluster" href="/assets/images/docs/cluster.png" target="_blank"><img src="/assets/images/docs/cluster.png"/></a>
-</div>
-
-Every time a new Kong node is added or removed, it also needs to be added and removed from the respective Kong Cluster. This is done automatically given that the right configuration has been provided to Kong.
+Every time a new Kong node is started, it must join other Kong nodes that are using the same datastore. This is done automatically given that the right configuration has been provided to Kong.
 
 Kong cluster settings are specified in the configuration file at the following entries:
 
@@ -95,31 +78,31 @@ This brings on the table very good performance, because Kong nodes will never ta
 
 ## 3. Adding new nodes to a cluster
 
-Every Kong node that points to the same datastore needs to join in a cluster with the other nodes. A Kong Cluster is made of at least two Kong nodes pointing to the same datastore. 
+Every Kong node that points to the same datastore needs to join in a cluster with the other nodes. A Kong Cluster is made of at least two Kong nodes pointing to the same datastore.
 
-Every time a new Kong node is being started it will register its first local, non-loopback, IPv4 address to the datastore. When that happens, it will also try to join any other node that has previously registered its address as well.
+Every time a new Kong node is being started it will register its first local, non-loopback, IPv4 address to the datastore. When another node is being started, it will query the datastore for nodes that have previously registered themselves, and join them using the IP address stored. If the auto-detected IP address is wrong, you can customize what address is being advertised to other nodes by using the `advertise` property in the [cluster settings][cluster].
 
-Sometimes the automatically determined address is not always the appropriate one. You can override the advertised address by specifiying your own custom address in the `advertise` property in the [cluster settings][cluster].
+A Kong node only needs to join one another node in a cluster, and it will automatically discover the entire cluster.
 
 ## 4. Removing nodes from a cluster
 
-Everytime a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions to `left`.
+Everytime a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions from `alive` to `left`.
 
 To gracefully stop and remove a node from the cluster just execute the `kong quit` or `kong stop` CLI commands.
 
-You can `force-leave` a `failed` node from the cluster using the [`kong cluster force-leave`][cli-cluster] CLI command. Check the [Node Failures](#node-failures) paragraph for more info.
+When a node is not reachable for whatever reason, its state transitions to `failed`. Kong will automatically try to re-join a failed node just in case it becomes available again. You can exclude a failed node from the cluster in two ways:
+
+* Using the [`kong cluster force-leave`][cli-cluster] CLI command
+* Using the [API][cluster-api-remove]. 
+
+Check the [Node Failures](#node-failures) paragraph for more info.
 
 ## 5. Checking the cluster state
 
 You can check the cluster state, its nodes and the state of each node in two ways.
 
-#### Using the CLI
-
-By using the [`kong cluster members`][cli-cluster] CLI command. The output will include each node name, address and status in the cluster. The state can be `active` if a node is reachable, `failed` if it's status is currently unreachable or `left` if the node has been removed from the cluster.
-
-#### Using the API
-
-Another way to check the state of the cluster is by making a request to the Admin API at the [cluster status endpoint][cluster-endpoint].
+* By using the [`kong cluster members`][cli-cluster] CLI command. The output will include each node name, address and status in the cluster. The state can be `active` if a node is reachable, `failed` if it's status is currently unreachable or `left` if the node has been removed from the cluster.
+* Another way to check the state of the cluster is by making a request to the Admin API at the [cluster status endpoint][cluster-api-status].
 
 ## 6. Network Assumptions
 
@@ -137,11 +120,9 @@ When multiple nodes are all being started simultaneously, a node may not be awar
 
 Asynchronous auto-join will check the datastore every 3 seconds for 60 seconds after a Kong node starts, and will join any node that may appear in those 60 seconds. This means that concurrent environments where multiple nodes are started simultaneously it could take up to 60 seconds for them to auto-join the cluster.
 
-On the other side if a node successfully joins the cluster on startup, then the asynchronous auto-join feature is never triggered.
-
 #### Automatic cache purge on join
 
-Every time a new node joins the cluster, the cache for every node is purged and all the data is forced to be reloaded. This is to avoid inconsistencies between the data that has already been invalidated in the cluster, and the data stored on the node.
+Every time a new node joins the cluster, or a failed node re-joins the cluster, the cache for every node is purged and all the data is forced to be reloaded. This is to avoid inconsistencies between the data that has already been invalidated in the cluster, and the data stored on the node.
 
 This also means that after joining the cluster the new node's performance will be slower until the data has been re-cached into its memory.
 
@@ -153,6 +134,8 @@ When a node fails, Kong will lose the ability to communicate with it and the clu
 
 To remove a `failed` node from the cluster, use the [`kong cluster force-leave`][cli-cluster] command, and its status will transition to `left`.
 
+The node data will persist for 1 hour in the datastore in case the node crashes, after which it will be removed from the datastore and new nodes will stop trying auto-joining it.
+
 ## 8. Problems and bug reports
 
 Clustering is a new feature introduce with Kong >= 0.6.x - if you experience any problem please contact us through our [Community Channels][community-channels].
@@ -161,5 +144,6 @@ Clustering is a new feature introduce with Kong >= 0.6.x - if you experience any
 [cluster_listen_rpc]: /docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
 [cluster]: /docs/{{page.kong_version}}/configuration/#cluster
 [cli-cluster]: /docs/{{page.kong_version}}/cli/#cluster
-[cluster-endpoint]: /docs/{{page.kong_version}}/admin-api/#retrieve-cluster-status
+[cluster-api-status]: /docs/{{page.kong_version}}/admin-api/#retrieve-cluster-status
+[cluster-api-remove]: /docs/{{page.kong_version}}/admin-api/#forcibly-remove-a-node
 [community-channels]: /community

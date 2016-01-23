@@ -153,6 +153,12 @@ The API object describes an API that's being exposed by Kong. Kong needs to know
 
 ---
 
+## Cluster
+
+You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute these operations using the [CLI][cli].
+
+---
+
 ### Retrieve cluster status
 
 Retrieve the cluster status, returning information for each node in the cluster.
@@ -188,6 +194,22 @@ HTTP 200 OK
         }
     ]
 }
+```
+
+---
+
+### Forcibly remove a node
+
+Forcibly remove a node from the cluster.
+
+#### Endpoint
+
+<div class="endpoint delete">/cluster</div>
+
+#### Response
+
+```
+HTTP 200 OK
 ```
 
 ---
@@ -927,3 +949,6 @@ HTTP 200 OK
     }
 }
 ```
+
+[clustering]: /docs/{{page.kong_version}}/clustering
+[cli]: /docs/{{page.kong_version}}/cli
