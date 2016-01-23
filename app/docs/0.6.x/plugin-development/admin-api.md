@@ -1,7 +1,7 @@
 ---
 title: Plugin Development - Extending the Admin API
 book: plugin_dev
-chapter: 7
+chapter: 8
 ---
 
 # {{page.title}}

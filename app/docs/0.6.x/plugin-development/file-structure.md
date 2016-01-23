@@ -18,12 +18,10 @@ Consider your plugin as a set of [Lua modules](http://www.lua.org/manual/5.1/man
 
 > Your modules of course need to be accessible through your [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path) variable, which can be tweaked to your needs by the [lua-package-path](https://github.com/openresty/lua-nginx-module#lua_package_path) directive in your Nginx configuration. However, the prefered way of installing plugins is through [Luarocks](https://luarocks.org/). More on that later in this guide.
 
-To make Kong aware that it has to look for your plugin's modules, you'll have to add it to the `plugins_available` property in your configuration file. For example:
+To make Kong aware that it has to look for your plugin's modules, you'll have to add it to the `custom_plugins` property in your configuration file. For example:
 
 ```yaml
-plugins_available:
-  - key-auth
-  - rate-limiting
+custom_plugins:
   - my-custom-plugin # your plugin name here
 ```
 
@@ -59,6 +57,7 @@ complete-plugin
 ├── handler.lua
 ├── migrations
 │   └── cassandra.lua
+├── hooks.lua
 └── schema.lua
 ```
 
@@ -69,7 +68,8 @@ Here is the complete list of possible modules to implement and a brief descripti
 | [api.lua]({{page.book.chapters.admin-api}})          | No         | Defines a list of endpoints to be available in the Admin API to interact with entities custom entities handled by your plugin.
 | [daos.lua]({{page.book.chapters.custom-entities}})         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the datastore.
 | [handler.lua]({{page.book.chapters.custom-logic}})      | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request.
-| [migrations/*.lua]({{page.book.chapters.custom-entities}}) | No         | Each file in this folder is the corresponding migration for a given datastore. Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
+| [schema/migrations.lua]({{page.book.chapters.custom-entities}}) | No         | The corresponding migrations for a given datastore. Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
+| [hooks.lua]({{page.book.chapters.plugin-configuration}})       | No        | Implements the invalidation event handlers for the datastore entities defined in `daos.lua`. Required if you are storing entities in the in-memory cache, in order to invalidate them when they are being updated/deleted on the datastore.
 | [schema.lua]({{page.book.chapters.plugin-configuration}})       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
 
 ---

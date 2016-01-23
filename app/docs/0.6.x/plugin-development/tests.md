@@ -1,7 +1,7 @@
 ---
 title: Plugin Development - Writing tests
 book: plugin_dev
-chapter: 8
+chapter: 9
 ---
 
 # {{page.title}}

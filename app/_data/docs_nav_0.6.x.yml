@@ -23,6 +23,9 @@
     - text: CLI reference
       url: /cli
 
+    - text: Clustering reference
+      url: /clustering
+
     - text: Proxy reference
       url: /proxy
 
@@ -50,6 +53,9 @@
         - text: Store custom entities
           url: /plugin-development/custom-entities
 
+        - text: Caching custom entities
+          url: /plugin-development/entities-cache
+
         - text: Extending the Admin API
           url: /plugin-development/admin-api
 
@@ -65,23 +71,17 @@
     - text: Supported Content Types
       url: /admin-api/#supported-content-types
 
-    - text: Informations routes
-      url: /admin-api/#informations-routes
+    - text: Information routes
+      url: /admin-api/#information-routes
       items:
-        - text: Retrieve node informations
-          url: /admin-api/#retrieve-node-informations
+        - text: Retrieve node information
+          url: /admin-api/#retrieve-node-information
 
         - text: Retrieve node status
           url: /admin-api/#retrieve-node-status
 
-    - text: Cluster
-      url: /admin-api/#cluster
-      items:
         - text: Retrieve cluster status
           url: /admin-api/#retrieve-cluster-status
-
-        - text: Forcibly remove a node
-          url: /admin-api/#forcibly-remove-a-node
 
     - text: API Object routes
       url: /admin-api/#api-object

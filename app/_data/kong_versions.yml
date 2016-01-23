@@ -45,9 +45,9 @@
     openresty: "1.9.3.1"
   lua_doc: true
 -
-  release: "0.5.x" # TODO bump to 0.6.x
-  version: "0.5.4" # bump to
-  luarocks_version: "0.5.4-1"
+  release: "0.6.x"
+  version: "0.6.0"
+  luarocks_version: "0.6.0-1"
   dependencies:
     luajit: "2.1.0-alpha"
     luarocks: "2.2.2"

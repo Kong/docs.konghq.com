@@ -30,15 +30,15 @@ This guide will cover all proxying capabilities of Kong by explaining in detail 
   - [Using the "strip_request_path" property][4a]
 - 5. [Plugins execution][5]
 
-[1]: #1.-how-does-kong-route-a-request-to-an-api
-[2]: #2.-reminder-how-to-add-an-api-to-kong
-[3]: #3.-proxy-an-api-by-its-dns-value
+[1]: #1-how-does-kong-route-a-request-to-an-api
+[2]: #2-reminder-how-to-add-an-api-to-kong
+[3]: #3-proxy-an-api-by-its-dns-value
 [3a]: #using-the-quot-host-quot-header
 [3b]: #using-the-quot-x-host-override-quot-header
 [3c]: #using-a-wildcard-dns
-[4]: #4.-proxy-an-api-by-its-request_path-value
+[4]: #4-proxy-an-api-by-its-request_path-value
 [4a]: #using-the-quot-strip_request_path-quot-property
-[5]: #5.-plugins-execution
+[5]: #5-plugins-execution
 
 ---
 
@@ -48,10 +48,6 @@ When receiving a request, Kong will inspect it and try to route it to the correc
 
 - A **DNS** value contained in the **Host** header of the request.
 - The path (**URI**) of the request.
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> Bear in mind that those two methods do not combine themselves together. It is currently <b>not</b> possible to define rules such as "with this hostname" <i>and</i> "with this URI prefix". Kong will first try to route a request by DNS and if unsuccessful, will try by URI.
-</div>
 
 <div class="alert alert-warning">
   <strong>Note:</strong> For performance reasons, Kong keeps a cache of the APIs from your Cassandra cluster in memory for up to 60 seconds. As cache invalidation has not been implemented yet, Kong might take up to <strong>60 seconds</strong> to notice a new API and proxy incoming requests to it.
@@ -80,7 +76,7 @@ Once this request is processed by Kong, the API is stored in your Cassandra clus
 
 ---
 
-## 3. Proxy an API by its request_host value
+## 3. Proxy an API by its DNS value
 
 #### Using the "**Host**" header
 
@@ -156,10 +152,6 @@ Here is a table documenting the behaviour of the path routing depending on your 
 `/mockbin`  | **true**       | `/some_path`           | **not proxied**
 `/mockbin`  | **true**       | `/mockbin`             | `/`
 `/mockbin`  | **true**       | `/mockbin/some_path`   | `/some_path`
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> The use of <code>strip_request_path</code> is irrelevant if the request is being routed using the request_host method (which has priority over the request_path routing). The request's URI will be left untouched.
-</div>
 
 ---
 

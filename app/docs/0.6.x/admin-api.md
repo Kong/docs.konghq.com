@@ -58,11 +58,11 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 ---
 
-## Informations routes
+## Information routes
 
-### Retrieve node informations
+### Retrieve node information
 
-Retrieve installation details about a node.
+Retrieve generic details about a node.
 
 #### Endpoint
 
@@ -80,27 +80,21 @@ HTTP 200 OK
     "lua_version": "LuaJIT 2.1.0-alpha",
     "plugins": {
         "available_on_server": [
-            "ssl",
-            "key-auth",
-            "basic-auth",
-            "oauth2",
-            "rate-limiting",
-            "tcp-log",
-            "udp-log",
-            "file-log",
-            "http-log",
-            "cors",
-            "request-transformer",
-            "response-transformer",
-            "request-size-limiting",
-            "ip-restriction",
-            "mashape-analytics"
+            ...
         ],
-        "enabled_in_cluster": {}
+        "enabled_in_cluster": [
+            ...
+        ]
+    },
+    "configuration" : {
+        ...
     },
     "tagline": "Welcome to Kong",
-    "version": "0.4.0"
+    "version": "0.6.0"
 }
+
+* `available_on_server`: Names of plugins that are installed on the node.
+* `enabled_in_cluster`: Names of plugins that are enabled/configured. That is, the plugins configurations currently in the datastore shared by all Kong nodes.
 
 ```
 
@@ -108,7 +102,7 @@ HTTP 200 OK
 
 ### Retrieve node status
 
-Retrieve usage informations about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
+Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
 
 #### Endpoint
 
@@ -159,12 +153,6 @@ The API object describes an API that's being exposed by Kong. Kong needs to know
 
 ---
 
-## Cluster
-
-You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute these operations using the [CLI][cli].
-
----
-
 ### Retrieve cluster status
 
 Retrieve the cluster status, returning information for each node in the cluster.
@@ -200,22 +188,6 @@ HTTP 200 OK
         }
     ]
 }
-```
-
----
-
-### Forcibly remove a node
-
-Forcibly remove a node from the cluster.
-
-#### Endpoint
-
-<div class="endpoint delete">/cluster</div>
-
-#### Response
-
-```
-HTTP 200 OK
 ```
 
 ---
@@ -321,7 +293,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -340,7 +312,7 @@ HTTP 200 OK
             "created_at": 1422386585
         }
     ],
-    "next": "http://localhost:8001/apis/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/apis/?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -414,7 +386,7 @@ Attributes | Description
 #### Response
 
 ```
-HTTP 204 NO CONTENT
+HTTP 204 No Content
 ```
 
 ---
@@ -507,7 +479,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -520,7 +492,7 @@ HTTP 200 OK
             "created_at": 1422386585
         }
     ],
-    "next": "http://localhost:8001/consumers/?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/consumers/?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -591,7 +563,7 @@ Attributes | Description
 #### Response
 
 ```
-HTTP 204 NO CONTENT
+HTTP 204 No Content
 ```
 
 ---
@@ -714,7 +686,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -740,7 +712,7 @@ HTTP 200 OK
           "created_at": 1422386585
       }
     ],
-    "next": "http://localhost:8001/plugins?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/plugins?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -771,7 +743,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 2,
+    "total": 10,
     "data": [
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -797,7 +769,7 @@ HTTP 200 OK
           "created_at": 1422386585
       }
     ],
-    "next": "http://localhost:8001/plugins?size=10&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/plugins?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
 
@@ -881,7 +853,7 @@ Attributes | Description
 #### Response
 
 ```
-HTTP 204 NO CONTENT
+HTTP 204 No Content
 ```
 
 ---
@@ -955,6 +927,3 @@ HTTP 200 OK
     }
 }
 ```
-
-[clustering]: /docs/{{page.kong_version}}/clustering
-[cli]: /docs/{{page.kong_version}}/cli
