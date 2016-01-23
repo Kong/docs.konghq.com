@@ -53,8 +53,8 @@ form parameter                        | description
 ## Order of execution
 
 Plugin performs the response transformation in following order
- 
- remove --> replace --> add --> append
+
+remove --> replace --> add --> append
 
 ## Examples
 

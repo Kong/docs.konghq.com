@@ -55,10 +55,10 @@ form parameter                            | description
 ## Order of execution
 
 Plugin performs the response transformation in following order
- 
- remove --> replace --> add --> append
 
- ## Examples
+remove --> replace --> add --> append
+
+## Examples
 
 - Add multiple headers by passing each header:value pair separately:
 
