@@ -24,12 +24,6 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/clustering">Clustering</a></h3>
-    <p>If you are starting more than one node, you must use clustering to make sure all the nodes belong to the same Kong cluster.</p>
-    <a href="/docs/{{page.kong_version}}/clustering">Read the clustering reference &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/{{page.kong_version}}/plugin-development">Write your own plugins</a></h3>
     <p>Looking for something Kong does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for Kong.</p>
     <a href="/docs/{{page.kong_version}}/plugin-development">Read the plugin development guide &rarr;</a>

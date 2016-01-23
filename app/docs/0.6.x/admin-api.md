@@ -136,20 +136,9 @@ HTTP 200 OK
 
 ---
 
-## API Object
+## Cluster
 
-The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the API when a consumer is calling it from the Proxy port. Each API object must specify a request host, a request path or both. Kong will proxy all requests to the API to the specified upstream URL.
-
-```json
-{
-    "name": "Mockbin",
-    "request_host": "mockbin.com",
-    "request_path": "/someservice",
-    "strip_request_path": false,
-    "preserve_host": false,
-    "upstream_url": "https://mockbin.com"
-}
-```
+You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute these operations using the [CLI][cli].
 
 ---
 
@@ -188,6 +177,22 @@ HTTP 200 OK
         }
     ]
 }
+```
+
+---
+
+### Forcibly remove a node
+
+Forcibly remove a node from the cluster.
+
+#### Endpoint
+
+<div class="endpoint delete">/cluster</div>
+
+#### Response
+
+```
+HTTP 200 OK
 ```
 
 ---
@@ -927,3 +932,6 @@ HTTP 200 OK
     }
 }
 ```
+
+[clustering]: /docs/{{page.kong_version}}/clustering
+[cli]: /docs/{{page.kong_version}}/cli

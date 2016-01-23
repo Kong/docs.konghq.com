@@ -7,7 +7,7 @@ title: Documentation for Kong
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/install/">Installation</a></h3>
-    <p>You can install Kong on most Linux distributions and OS X. We even provide the source so you can compile it yourself.</p>
+    <p>You can install Kong on most Linux distributions and OS X. We even provide the source so you can compile yourself.</p>
     <a href="/install/">Install Kong &rarr;</a>
   </div>
 
@@ -21,6 +21,12 @@ title: Documentation for Kong
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/admin-api">Admin API reference</a></h3>
     <p>Ready to learn the underlying interface? Browse the Admin API reference to learn how to start making requests.</p>
     <a href="/docs/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/clustering">Clustering</a></h3>
+    <p>If you are starting more than one node, you must use clustering to make sure all the nodes belong to the same Kong cluster.</p>
+    <a href="/docs/{{page.kong_version}}/clustering">Read the clustering reference &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
@@ -45,11 +51,5 @@ title: Documentation for Kong
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/proxy">Proxy reference</a></h3>
     <p>Learn every way to configure Kong to proxy your APIs and discover tips for your production setup.</p>
     <a href="/docs/{{page.kong_version}}/proxy">Read the Proxy Reference &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/clustering">Clustering reference</a></h3>
-    <p>Explore how to setup multiple nodes and how they will work together.</p>
-    <a href="/docs/{{page.kong_version}}/clustering">Read the Clustering Reference &rarr;</a>
   </div>
 </div>

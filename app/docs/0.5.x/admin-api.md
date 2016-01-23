@@ -58,9 +58,9 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 ---
 
-## Informations routes
+## Information routes
 
-### Retrieve node informations
+### Retrieve node information
 
 Retrieve installation details about a node.
 
@@ -108,7 +108,7 @@ HTTP 200 OK
 
 ### Retrieve node status
 
-Retrieve usage informations about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
+Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
 
 #### Endpoint
 
@@ -139,84 +139,6 @@ HTTP 200 OK
 * `connections_reading`: The current number of connections where Kong is reading the request header.
 * `connections_writing`: The current number of connections where nginx is writing the response back to the client.
 * `connections_waiting`: The current number of idle client connections waiting for a request.
-
----
-
-## API Object
-
-The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the API when a consumer is calling it from the Proxy port. Each API object must specify a request host, a request path or both. Kong will proxy all requests to the API to the specified upstream URL.
-
-```json
-{
-    "name": "Mockbin",
-    "request_host": "mockbin.com",
-    "request_path": "/someservice",
-    "strip_request_path": false,
-    "preserve_host": false,
-    "upstream_url": "https://mockbin.com"
-}
-```
-
----
-
-## Cluster
-
-You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute these operations using the [CLI][cli].
-
----
-
-### Retrieve cluster status
-
-Retrieve the cluster status, returning information for each node in the cluster.
-
-#### Endpoint
-
-<div class="endpoint get">/cluster</div>
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "total": 3,
-    "data": [
-        {
-            "address": "192.168.1.107:7946",
-            "name": "kong.prod1_7946",
-            "status": "alive"
-        },
-        {
-            "address": "192.168.2.127:7946",
-            "name": "kong.prod2_7946",
-            "status": "failed"
-        },
-        {
-            "address": "192.168.3.112:8484",
-            "name": "kong.prod3_8484",
-            "status": "left"
-        }
-    ]
-}
-```
-
----
-
-### Forcibly remove a node
-
-Forcibly remove a node from the cluster.
-
-#### Endpoint
-
-<div class="endpoint delete">/cluster</div>
-
-#### Response
-
-```
-HTTP 200 OK
-```
 
 ---
 
@@ -955,6 +877,3 @@ HTTP 200 OK
     }
 }
 ```
-
-[clustering]: /docs/{{page.kong_version}}/clustering
-[cli]: /docs/{{page.kong_version}}/cli

@@ -6,29 +6,9 @@ title: CLI Reference
 
 Kong comes with a ***CLI*** *(Command Line Interface)* which provides you with an interface to manage your Kong nodes. Each command is run in the context of a single node, since Kong has no cluster awareness yet.
 
-Almost every command requires access to your configuration file in order to be aware of where the NGINX working directory is located (known as the *prefix path* for those familiar with NGINX) referenced as `nginx_working_dir` in the Kong configuration file. If you haven't already, we recommend you read the [configuration reference][configuration-guide].
+Almost every command requires access to your configuration file in order to be aware of where the NGINX working directory is located (known as the *prefix path* for those familiar with NGINX) referenced as `nginx_working_dir` in the Kong configuration file.
 
-## Summary
-
-- 1. [kong][1]
-- 2. [start][2]
-- 3. [stop][3]
-- 4. [quit][4]
-- 5. [restart][5]
-- 6. [reload][6]
-- 7. [status][7]
-- 8. [migrations][8]
-- 9. [cluster][9]
-
-[1]: #kong
-[2]: #start
-[3]: #stop
-[4]: #quit
-[5]: #restart
-[6]: #reload
-[7]: #status
-[8]: #migrations
-[9]: #cluster
+**Note:** If you haven't already, we recommend you read the [configuration reference][configuration-guide].
 
 ---
 
@@ -76,7 +56,7 @@ Terminates a Kong instance by firing the NGINX `stop` signal. This will execute 
 $ kong stop [parameters]
 ```
 
-> For more informations regarding the NGINX signals, consult their [documentation][nginx-signals].
+> For more information regarding the NGINX signals, consult their [documentation][nginx-signals].
 
 ### Parameters
 
@@ -97,7 +77,7 @@ Gracefully stops a Kong instance by firing the NGINX `quit` signal.
 $ kong quit [parameters]
 ```
 
-> For more informations regarding the NGINX signals, consult their [documentation][nginx-signals].
+> For more information regarding the NGINX signals, consult their [documentation][nginx-signals].
 
 ### Parameters
 
