@@ -2,10 +2,6 @@
   name: Docker
   type: package
 
-- id: aws-cloudformation
-  name: Amazon AWS
-  type: cloud
-
 - id: centos
   name: CentOS
   type: package
@@ -22,8 +18,16 @@
   name: Ubuntu
   type: package
 
+- id: aws-linux
+  name: Amazon Linux
+  type: package
+
 - id: aws-marketplace
   name: AWS Marketplace
+  type: cloud
+
+- id: aws-cloudformation
+  name: AWS Cloud Formation
   type: cloud
 
 - id: osx

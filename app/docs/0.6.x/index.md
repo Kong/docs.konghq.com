@@ -2,8 +2,6 @@
 title: Documentation for Kong
 ---
 
-# Kong Documentation ({{page.kong_version}})
-
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/install/">Installation</a></h3>
@@ -18,15 +16,15 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/admin-api">Admin API reference</a></h3>
-    <p>Ready to learn the underlying interface? Browse the Admin API reference to learn how to start making requests.</p>
-    <a href="/docs/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
+    <h3><img src="/assets/images/icons/documentation/icn-clustering.svg" /><a href="/docs/{{page.kong_version}}/clustering">Clustering</a></h3>
+    <p>If you are starting more than one node, you must use clustering to make sure all the nodes belong to the same Kong cluster.</p>
+    <a href="/docs/{{page.kong_version}}/clustering">Read the clustering reference &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/clustering">Clustering</a></h3>
-    <p>If you are starting more than one node, you must use clustering to make sure all the nodes belong to the same Kong cluster.</p>
-    <a href="/docs/{{page.kong_version}}/clustering">Read the clustering reference &rarr;</a>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/admin-api">Admin API reference</a></h3>
+    <p>Ready to learn the underlying interface? Browse the Admin API reference to learn how to start making requests.</p>
+    <a href="/docs/{{page.kong_version}}/admin-api">Explore the interface &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
