@@ -14,20 +14,27 @@ Here is a quick setup linking Kong to a Cassandra container:
 1. **Pull the offical images from the registry:**
 
     ```bash
-    $ docker pull mashape/cassandra
+    $ docker pull cassandra:2.2.4
     $ docker pull mashape/kong
     ```
 
 2. **Start Cassandra:**
 
     ```bash
-    $ docker run -p 9042:9042 -d --name cassandra mashape/cassandra
+    $ docker run -p 9042:9042 -d --name cassandra cassandra:2.2.4
     ```
 
 3. **Start Kong:**
 
     ```bash
-    $ docker run -p 8000:8000 -p 8001:8001 -d --name kong --link cassandra:cassandra mashape/kong
+    $ docker run -d --name kong \
+                --link cassandra:cassandra \
+                -p 8000:8000 \
+                -p 8443:8443 \
+                -p 8001:8001 \
+                -p 7946:7946 \
+                -p 7946:7946/udp \
+                mashape/kong
     ```
 
 4. **Kong is running:**

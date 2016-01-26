@@ -50,6 +50,9 @@
     - name: Galileo
       info: Business Integellice Platform for APIs
 
+    - name: Datadog
+      info: Visualize API metrics on Datadog
+
 - name: Transformations
   info: Transform request and responses on the fly on Kong
   plugins:
@@ -78,9 +81,10 @@
       id: file-log
       info: Append request and response data to a log file on disk
 
-- name: NGINX Inc.
-  info: Third party plugins from NGINX, Inc
-  plugins:
-    - name: NGINX Plus Live Monitoring
-      id: nginx-plus-monitoring
-      info: Live Monitoring of NGINX Plus
+    - name: Syslog
+      id: syslog
+      info: Send request and response logs to Syslog
+
+    - name: Loggly
+      id: loggly
+      info: Send request and response logs to Loggly

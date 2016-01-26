@@ -8,27 +8,13 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
-  - label: Notes
+  - label: Known Issues
     items:
-      - label: Known Limitations
+      - label: CORS Limitations
 ---
 
 Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling this plugin.
-
-----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - cors
-```
-
-Every node in your Kong cluster should have the same `plugins_available` property value.
 
 ----
 
@@ -60,15 +46,20 @@ form parameter                             | description
 `config.max_age`<br>*optional*             | Indicated how long the results of the preflight request can be cached, in `seconds`.
 `config.preflight_continue`<br>*optional*  | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API. Defaults to `false`.
 
-## Known Issues
+----
 
-This plugin has a known limitation when consuming an API by manually setting the `Host` header to a different hostname than the one specified in the request URI. For example, when executing:
+## Known issues
 
-```bash
-curl -H "Host: myservice.com" http://127.0.0.1:8000/
-```
+Below is a list of known issues or limitations for this plugin.
 
-Because setting the `Host` header to an arbitrary value is not allowed in a CORS preflight request. It will instead work properly when a `CNAME` record has been properly configured.
+### CORS Limitations
+
+If the client is a browser, there is a known issue with this plugin caused by a limitation of the CORS specification that doesn't allow to specify a custom `Host` header in a preflight `OPTIONS` request.
+
+Because of this limitation, this plugin will only work for APIs that have been configured with a `request_path` setting, and it will not work for APIs that are being resolved using a custom DNS (the `request_host` property).
+
+To learn how to add `request_path` to an API, please read the [Proxy Reference][proxy-reference].
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
+[proxy-reference]: /docs/latest/proxy

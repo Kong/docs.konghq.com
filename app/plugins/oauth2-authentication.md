@@ -8,13 +8,13 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
       - label: Endpoints
       - label: Create a Consumer
       - label: Create an Application
+      - label: Migrating Access Tokens
       - label: Upstream Headers
   - label: oAuth 2.0 Flows
     items:
@@ -26,17 +26,6 @@ nav:
 Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - oauth2
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 
@@ -53,8 +42,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 form parameter                                    | default | description
 ---                                               | ---     | ---
-`name`                                            | `-`     | The name of the plugin to use, in this case: `oauth2`
-`config.scopes`                                    | `-`     | Describes an array of comma separated scope names that will be available to the end user
+`name`                                            |      | The name of the plugin to use, in this case: `oauth2`
+`config.scopes`                                    |      | Describes an array of comma separated scope names that will be available to the end user
 `config.mandatory_scope`<br>*optional*             | `false` | An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
 `config.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
 `config.enable_authorization_code`<br>*optional*   | `true`  | An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
@@ -62,6 +51,7 @@ form parameter                                    | default | description
 `config.enable_implicit_grant`<br>*optional*       | `false` | An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
 `config.enable_password_grant`<br>*optional*       | `false` | An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
 `config.hide_credentials`<br>*optional*            | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.accept_http_if_already_terminated`<br>*optional* | `false` | Accepts HTTPs requests that have already been terminated by a proxy or load balancer and the `x-forwarded-proto: https` header has been added to the request. Only enable this option if the Kong server cannot be publicly accessed and the only entry-point is such proxy or load balancer.
 
 ----
 
@@ -117,6 +107,32 @@ form parameter                | description
 `client_id`<br>*optional*     | You can optionally set your own unique `client_id`. If missing, the plugin will generate one.
 `client_secret`<br>*optional* | You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
 `redirect_uri`                | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2][redirect-uri])
+
+## Migrating Access Tokens
+
+If you are migrating you existing OAuth 2.0 applications and access tokens over to Kong, then you can:
+
+* Migrate consumers and applications by creating OAuth 2.0 applications as explained above.
+* Migrate access tokens using the `/oauth2_tokens` endpoints in the Kong's Admin API. For example:
+
+```bash
+$ curl -X POST http://kong:8001/oauth2_tokens \
+    --data "credential_id=KONG-APPLICATION-ID" \
+    --data "token_type=bearer" \
+    --data "access_token=SOME-TOKEN" \
+    --data "refresh_token=SOME-TOKEN" \
+    --data "expires_in=3600"
+```
+
+form parameter                        | description
+---                                   | ---
+`credential_id`                       | The ID of the OAuth 2.0 application created on Kong.
+`token_type`                          | The [token type][token-types]. By default is `bearer`.
+`access_token`<br>*optional*          | You can optionally set your own access token value, otherwise a random string will be generated.
+`refresh_token`<br>*optional*         | You can optionally set your own refresh token value, otherwise a random string will be generated.
+`expires_in`                          | The expiration time (in seconds) of the access token.
+`scope`<br>*optional*                 | The authorized scope associated with the token.
+`authenticated_userid`<br>*optional*  | The custom ID of the user who authorized the application.
 
 ## Upstream Headers
 
@@ -217,6 +233,8 @@ In this flow, the steps that you need to implement are:
 * The login page, you probably already have it (step 2)
 * The Authorization page, with its backend that will simply collect the values, make a `POST` request to Kong and redirect the user to whatever URL Kong has returned (steps 3 to 7).
 
+----
+
 ## Resource Owner Password Credentials
 
 The [Resource Owner Password Credentials Grant][password-grant] is a much simpler version of the Authorization Code flow, but it still requires to build an authorization backend (without the frontend) in order to make it work properly.
@@ -259,3 +277,4 @@ In this flow, the steps that you need to implement are:
 [implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2
 [password-grant]: https://tools.ietf.org/html/rfc6749#section-4.3
 [redirect-uri]: https://tools.ietf.org/html/rfc6749#section-3.1.2
+[token-types]: https://tools.ietf.org/html/rfc6749#section-7.1

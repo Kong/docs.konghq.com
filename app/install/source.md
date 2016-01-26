@@ -8,35 +8,39 @@ breadcrumbs:
 redirect_from: /install/compile/
 ---
 
-{% capture lua_version %}{{site.data.kong_latest.dependencies.lua}}{% endcapture %}
+{% capture luajit_version %}{{site.data.kong_latest.dependencies.luajit}}{% endcapture %}
 {% capture luarocks_version %}{{site.data.kong_latest.dependencies.luarocks}}{% endcapture %}
 {% capture dnsmasq_version %}{{site.data.kong_latest.dependencies.dnsmasq}}{% endcapture %}
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 {% capture openresty_version %}{{site.data.kong_latest.dependencies.openresty}}{% endcapture %}
 
-1. **Install dependencies:**
+1. **Install the dependencies:**
 
-    Install [Lua v{{lua_version}}](http://www.lua.org/versions.html#5.1)
+    (Optional) [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/).
 
-    Install [Luarocks v{{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download)
+    [LuaJIT {{luajit_version}}](http://luajit.org/download.html), which both Luarocks and OpenResty depend on. Also make sure to add it to your `$PATH` so the Kong CLI can find it.
 
-    Install [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/)
+    [Luarocks {{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download), compiled with the previously installed LuaJIT (See the `--with-lua` and `--with-lua-include` configure options).
 
-    Install [OpenSSL](https://www.openssl.org/)
+    To compile OpenResty: [OpenSSL](https://www.openssl.org/) and [PCRE](http://www.pcre.org/).
 
-    Install [PCRE](http://www.pcre.org/)
+    [OpenResty {{openresty_version}}](http://openresty.com/#Installation), compiled with the previously installed LuaJIT (See the `--with-luajit` configure option).
 
-    Install [OpenResty v{{openresty_version}}](http://openresty.com/#Installation) (OpenResty has some dependencies of its own).
+    You need to apply a patch to Nginx core in order to enable the `ssl_certificate_by_lua` feature. You can follow the instructions [here](https://github.com/openresty/lua-nginx-module/issues/331#issuecomment-77279170).
 
-    You need to apply a patch to enable the unmerged `ssl_certificate_by_lua` feature. You can follow the instructions [here](https://github.com/openresty/lua-nginx-module/issues/331#issuecomment-77279170).
-
-    When installing it use the following `configure` options:
+    Make sure to use the following `configure` options:
 
     ```bash
-    $ ./configure --with-pcre-jit --with-ipv6 --with-http_realip_module --with-http_ssl_module --with-http_stub_status_module
+    $ ./configure \
+      --with-pcre-jit \
+      --with-ipv6 \
+      --with-http_realip_module \
+      --with-http_ssl_module \
+      --with-http_stub_status_module \
+      --with-luajit=/path/to/luajit
     ```
 
-    Some of the dependencies may be available in your favorite package manager.
+    Some of the dependencies may be available in the package manager of your choice.
 
 2. **Install Kong:**
 
@@ -44,16 +48,16 @@ redirect_from: /install/compile/
     $ luarocks install kong {{site.data.kong_latest.luarocks_version}}
     ```
 
-    Or
+    **Or**:
 
     ```bash
     $ git clone git@github.com:Mashape/kong.git
-    $ [sudo] make install
+    $ [sudo] make install # this simply runs the `luarocks make kong-*.rockspec` command
     ```
 
 3. **Configure Cassandra**
 
-    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/latest/configuration/#databases_available).
+    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra {{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/latest/configuration/#databases_available).
 
 4. **Start Kong:**
 

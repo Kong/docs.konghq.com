@@ -5,6 +5,10 @@ header_title: Request Size Limiting
 header_icon: /assets/images/icons/plugins/request-size-limiting.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Configuration
 ---
 
 <div class="alert alert-warning">
@@ -14,17 +18,6 @@ breadcrumbs:
 Block incoming requests whose body is greater than a specific size in megabytes.
 
 ---
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - request-size-limiting
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 

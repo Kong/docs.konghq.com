@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -18,17 +17,6 @@ nav:
 Restrict access to an API by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - acl
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 

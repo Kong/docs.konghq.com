@@ -1,7 +1,7 @@
 ---
 id: page-install-method aws-marketplace
-title: Install - AWS Marketplace
-header_title: AWS Marketplace
+title: Install - AWS Marketplace AMI
+header_title: AWS Marketplace AMI
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
@@ -9,7 +9,7 @@ links:
   market: "https://aws.amazon.com/marketplace/pp/B014GHERVU"
 ---
 
-Kong 64-bit Amazon Machine Image (AMI) is available on the AWS Marketplace, with 1-Click Launch, or manually With EC2 Console, APIs or CLI
+Kong 64-bit Amazon Machine Image (AMI) is available on the AWS Marketplace, with 1-Click Launch, or manually With EC2 Console, APIs or CLI:
 
 - [Install Kong with from AWS Marketplace]({{ page.links.market }})
 

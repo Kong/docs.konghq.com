@@ -1,0 +1,291 @@
+---
+title: Lua Reference - kong.tools.io
+layout: default
+---
+
+
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-icon">
+      <img src="/assets/images/icons/icn-documentation.svg" alt="Documentation" />
+    </div>
+    <div class="page-header-title">
+      <h1>Public Lua API Reference</h1>
+      <p>For plugins developers and core contributors</p>
+    </div>
+    {% if site.data.kong_versions.size > 1 %}
+      <div class="dropdown page-header-right">
+        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Version {{page.kong_version}}
+          {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+          {% for ver in site.data.kong_versions %}
+            {% if page.kong_version != ver.release %}
+              <li>
+                {% if ver.lua_doc %}
+                  <a href="/docs/{{ver.release}}/lua-reference/"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                    {{ver.release}}
+                    {% if ver.release == site.data.kong_latest.release %}(latest){% endif %}
+                  </a>
+                {% else %}
+                  <span>Not available for {{ver.release}}</span>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</header>
+
+<div class="container">
+  <aside class="page-navigation">
+    <nav>
+      <ul>
+        <li>
+          <a href="/docs/{{page.kong_version}}"><h5>Back to docs</h5></a>
+        </li>
+        <li>
+          <a href="/docs/{{page.kong_version}}/lua-reference/"><h5>Index</h5></a>
+        </li>
+        <li>
+          <h5>Modules</h5>
+          <ul>
+            <li><a href="../../modules/kong.dao.cassandra.base_dao">kong.dao.cassandra.base_dao</a></li>
+            <li><a href="../../modules/kong.kong">kong.kong</a></li>
+            <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
+            <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
+            <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
+            <li>kong.tools.io</li>
+            <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
+            <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
+            <li><a href="../../modules/kong.tools.utils">kong.tools.utils</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="page-content-container">
+  <div class="page-content">
+    <div class="content">
+<h1><code>kong.tools.io</code></h1>
+<p>Checks existence of a file.</p>
+<p></p>
+
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+  <tr>
+    <td class="name"><a href="#cmd_exists">cmd_exists (cmd)</a></td>
+    <td class="summary">Check existence of a command.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#file_size">file_size (path)</a></td>
+    <td class="summary">Get the filesize.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#kill_process_by_pid_file">kill_process_by_pid_file (pid_file, signal)</a></td>
+    <td class="summary">Kill a process by PID.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#os_execute">os_execute (command)</a></td>
+    <td class="summary">Execute an OS command and catch the output.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#read_file">read_file (path)</a></td>
+    <td class="summary">Read file contents.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#write_to_file">write_to_file (path)</a></td>
+    <td class="summary">Write file contents.</td>
+  </tr>
+</table>
+
+
+<h2 class="section-header "><a name="Functions">Functions</a></h2>
+
+
+<dl class="function">
+  <hr />
+  <dt>
+    <h4><a name="cmd_exists">cmd_exists</a></h4>
+  </dt>
+  <dd>
+    Check existence of a command.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">cmd</code>
+          command being searched for
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        <code>true</code> of found, <code>false</code> otherwise
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="file_size">file_size</a></h4>
+  </dt>
+  <dd>
+    Get the filesize.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">path</code>
+          path to file to check
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        size of file, or <code>nil</code> on failure
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="kill_process_by_pid_file">kill_process_by_pid_file</a></h4>
+  </dt>
+  <dd>
+    Kill a process by PID.
+ Kills the process and waits until it's terminated
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">pid_file</code>
+          the file containing the pid to kill
+        </li>
+        <li>
+          <code class="parameter">signal</code>
+          the signal to use
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        <a href="../modules/kong.tools.io.html#os_execute">os_execute</a> results, see os_execute.
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="os_execute">os_execute</a></h4>
+  </dt>
+  <dd>
+    Execute an OS command and catch the output.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">command</code>
+          OS command to execute
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        string containing command output (both stdout and stderr)
+      </li>
+      <li>
+        exitcode
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="read_file">read_file</a></h4>
+  </dt>
+  <dd>
+    Read file contents.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">path</code>
+          filepath to read
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        file contents as string, or <code>nil</code> if not succesful
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="write_to_file">write_to_file</a></h4>
+  </dt>
+  <dd>
+    Write file contents.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">path</code>
+          filepath to write to
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        <code>true</code> upon success, or <code>false</code> + error message on failure
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+</dl>
+
+
+    </div>
+  </div>
+</div>
+</div>

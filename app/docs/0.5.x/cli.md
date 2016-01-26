@@ -56,7 +56,7 @@ Terminates a Kong instance by firing the NGINX `stop` signal. This will execute 
 $ kong stop [parameters]
 ```
 
-> For more informations regarding the NGINX signals, consult their [documentation][nginx-signals].
+> For more information regarding the NGINX signals, consult their [documentation][nginx-signals].
 
 ### Parameters
 
@@ -77,7 +77,7 @@ Gracefully stops a Kong instance by firing the NGINX `quit` signal.
 $ kong quit [parameters]
 ```
 
-> For more informations regarding the NGINX signals, consult their [documentation][nginx-signals].
+> For more information regarding the NGINX signals, consult their [documentation][nginx-signals].
 
 ### Parameters
 

@@ -8,7 +8,6 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
       - label: Configuration
   - label: Usage
     items:
@@ -18,19 +17,6 @@ nav:
 ---
 
 Add Basic Authentication to your APIs, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
-
-----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - basic-auth
-```
-
-Every node in the Kong cluster must have the same `plugins_available` property value.
 
 ----
 

@@ -5,22 +5,15 @@ header_title: IP Restriction
 header_icon: /assets/images/icons/plugins/ip-restriction.png
 breadcrumbs:
   Plugins: /plugins
+nav:
+  - label: Getting Started
+    items:
+      - label: Configuration
 ---
 
 Restrict access to an API by either whitelisting or blacklisting IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation][cidr] like `10.10.10.0/24` can be used.
 
 ----
-
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - ip-restriction
-```
-
-Every node in the Kong cluster should have the same `plugins_available` property value.
 
 ## Configuration
 
