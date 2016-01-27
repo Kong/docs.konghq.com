@@ -40,7 +40,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins/ \
     --data "name=runscope" \
-    --data "bucket_key=YOUR_BUCKET_KEY" \
+    --data "config.bucket_key=YOUR_BUCKET_KEY" \
     --data "config.access_token=YOUR_ACCESS_TOKEN"
 ```
 
@@ -50,7 +50,7 @@ parameter                          | description
 ---                                | ---
 `name`                             | The name of the plugin to use, in this case: `runscope`
 `config.access_token`              | The Runscope [access token][generate-access-token] (or personal access token) for the Runscope API.
-`config.bucket`                    | Your Runscope [bucket][runscope-buckets] ID where traffic data will be stored.
+`config.bucket_key                 | Your Runscope [bucket][runscope-buckets] ID where traffic data will be stored.
 `config.log_body`                  | Default: `false`. Whether or not the request and response bodies should be sent to Runscope.
 `config.api_endpoint`              | Default: `https://api.runscope.com`. URL for the Runscope API.
 `config.timeout`                   | Default: `10000`. An optional timeout in milliseconds when sending data to Runscope.
