@@ -102,7 +102,9 @@ HTTP 200 OK
 
 ### Retrieve node status
 
-Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process. Because Kong is built on top of nginx, every existing nginx monitoring tool or agent can also be used.
+Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, and the number of entities stored in the datastore collections (including plugin's collections). 
+
+If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
 
 #### Endpoint
 
@@ -116,23 +118,35 @@ HTTP 200 OK
 
 ```json
 {
-    "total_requests": 3,
-    "connections_active": 1,
-    "connections_accepted": 1,
-    "connections_handled": 1,
-    "connections_reading": 0,
-    "connections_writing": 1,
-    "connections_waiting": 0
+    "server": {
+        "total_requests": 3,
+        "connections_active": 1,
+        "connections_accepted": 1,
+        "connections_handled": 1,
+        "connections_reading": 0,
+        "connections_writing": 1,
+        "connections_waiting": 0
+    },
+    "database": {
+        "apis": 2,
+        "consumers": 0,
+        "plugins": 2,
+        "nodes": 1,
+        ...
+    }
 }
 ```
 
-* `total_requests`: The total number of client requests.
-* `connections_active`: The current number of active client connections including Waiting connections.
-* `connections_accepted`: The total number of accepted client connections.
-* `connections_handled`: The total number of handled connections. Generally, the parameter value is the same as accepts unless some resource limits have been reached.
-* `connections_reading`: The current number of connections where Kong is reading the request header.
-* `connections_writing`: The current number of connections where nginx is writing the response back to the client.
-* `connections_waiting`: The current number of idle client connections waiting for a request.
+* `server`: Metrics about the nginx HTTP/S server.
+    * `total_requests`: The total number of client requests.
+    * `connections_active`: The current number of active client connections including Waiting connections.
+    * `connections_accepted`: The total number of accepted client connections.
+    * `connections_handled`: The total number of handled connections. Generally, the parameter value is the same as accepts unless some resource limits have been reached.
+    * `connections_reading`: The current number of connections where Kong is reading the request header.
+    * `connections_writing`: The current number of connections where nginx is writing the response back to the client.
+    * `connections_waiting`: The current number of idle client connections waiting for a request.
+* `database`: Metrics about the database collections.
+    * `...`: For every database collection, shows the number of items stored in that collection.
 
 ---
 
