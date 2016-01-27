@@ -8,7 +8,7 @@ breadcrumbs:
 nav:
   - label: Getting Started
     items:
-      - label: Installation
+      - label: How it works
       - label: Configuration
 ---
 
@@ -16,22 +16,13 @@ Logs request and response data to [Runscope][runscope]. Using the Runscope Traff
 
 ----
 
-## Installation
-
-Add the plugin to the list of available plugins on every Kong server in your cluster by editing the [kong.yml][configuration] configuration file:
-
-```yaml
-plugins_available:
-  - runscope
-```
-
-Every node in the Kong cluster must have the same `plugins_available` property value.
-
 ## How it works
 
 This plugin sends API traffic data to your Runscope bucket using the [Runscope API][runscope-api]. 
 
 It is important to be aware of performance when configuring this plugin. For example, be aware that logging the request and response bodies might slow down your traffic if your API is under heavy load. If your API works with significantly large request or response bodies, consider turning off this feature by updating the `log_body` configuration.
+
+----
 
 ## Configuration
 
