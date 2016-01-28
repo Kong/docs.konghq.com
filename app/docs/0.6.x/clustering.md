@@ -138,7 +138,7 @@ The node data will persist for 1 hour in the datastore in case the node crashes,
 
 ## 8. Problems and bug reports
 
-Clustering is a new feature introduce with Kong >= 0.6.x - if you experience any problem please contact us through our [Community Channels][community-channels].
+Clustering is a new feature introduced with Kong >= 0.6.x - if you experience any problem please contact us through our [Community Channels][community-channels].
 
 [cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
 [cluster_listen_rpc]: /docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
