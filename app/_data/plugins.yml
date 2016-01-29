@@ -48,7 +48,10 @@
   info: Visualize, inspect and monitor APIs and microservices traffic
   plugins:
     - name: Galileo
-      info: Business Integellice Platform for APIs
+      info: Business Intelligence Platform for APIs
+
+    - name: Runscope
+      info: API Performance Testing and Monitoring
 
     - name: Datadog
       info: Visualize API metrics on Datadog
