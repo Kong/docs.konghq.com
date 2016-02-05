@@ -75,7 +75,7 @@ Example:
 ```lua
 local crud = require "kong.api.crud_helpers"
 
-return {
+return = {
   ["/consumers/:username_or_id/key-auth/"] = {
     before = function(self, dao_factory, helpers)
       crud.find_consumer_by_username_or_id(self, dao_factory, helpers)

@@ -26,8 +26,6 @@ redirect_from: /install/compile/
 
     [OpenResty {{openresty_version}}](http://openresty.com/#Installation), compiled with the previously installed LuaJIT (See the `--with-luajit` configure option).
 
-    You need to apply a patch to Nginx core in order to enable the `ssl_certificate_by_lua` feature. You can follow the instructions [here](https://github.com/openresty/lua-nginx-module/issues/331#issuecomment-77279170).
-
     Make sure to use the following `configure` options:
 
     ```bash
