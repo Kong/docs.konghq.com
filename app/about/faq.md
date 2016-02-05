@@ -44,7 +44,7 @@ Apache Cassandra ([http://cassandra.apache.org/](http://cassandra.apache.org/)) 
 
 Kong uses Cassandra as its primary datastore to store any data including APIs, Consumers and Plugins. Plugins themselves can use Cassandra to store every bit of information that needs to be persisted, for example rate-limiting data.
 
-Depending on your use case, for production usage we reccomend having at least a two-node Cassandra cluster configured with a replication factor of `2`. The beauty of Cassandra is that it can be easily scaled horizontally to accomodate more requests and more data. We reccomend putting Cassandra on performant machines with a generous amount of CPU and Memory, like AWS `m4.xlarge` instances.
+Depending on your use case, for production usage we recommend having at least a two-node Cassandra cluster configured with a replication factor of `2`. The beauty of Cassandra is that it can be easily scaled horizontally to accomodate more requests and more data. We recommend putting Cassandra on performant machines with a generous amount of CPU and Memory, like AWS `m4.xlarge` instances.
 
 <div class="alert alert-warning">
   <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.

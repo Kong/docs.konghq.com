@@ -131,7 +131,7 @@ cluster_listen: "0.0.0.0:7946"
 ```
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This port should be usable by other Kong nodes, but not accessible externally. Therefore appropriate firewall settings are highly reccomended.
+  <strong>Note:</strong> This port should be usable by other Kong nodes, but not accessible externally. Therefore appropriate firewall settings are highly recommended.
 </div>
 
 ----
