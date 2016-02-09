@@ -139,7 +139,7 @@ In the example above the plugin is listening to the `ENTITY_UPDATED` and `ENTITY
 | `entity`                           | Table  | The most recent updated entity, or the entity deleted or created.
 | `old_entity`                       | Table  | Only for update events, the old version of the entity.
 
-The entities being transmitted in the `entity` and `old_entity` properties do not have all the fields defined in the schema, but only a subset. This is required because every event is sent in a UDP packet which has a size limit of 512 bytes. This subset is being returned by the `marshall_event` function in the schema, that you **must** implement.
+The entities being transmitted in the `entity` and `old_entity` properties do not have all the fields defined in the schema, but only a subset. This is required because every event is sent in a UDP packet with a payload size limit of 512 bytes. This subset is being returned by the `marshall_event` function in the schema, that you **must** implement.
 
 #### marshall_event
 
