@@ -166,7 +166,7 @@ local SCHEMA = {
 In the example above the custom entity provides a `marshall_event` function that returns an object without its `creation_date`. In our hooks we don't need `creation_date` to invalidate the entity, so we don't care to propagate it in the event. The `t` table in the arguments is the original object with all its fields.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> The JSON serialization of the Lua table that's being returned must not exceed 60kb, in order to fit the entire event in one UDP packet (which allows 65kb, but that also includes the `collection` property). Failure to meet this contraints will prevent invalidation events from being propagated, thus creating inconsistencies.
+  <strong>Note:</strong> The JSON serialization of the Lua table that's being returned must not exceed 512 bytes, in order to fit the entire event in one UDP packet. Failure to meet this contraints will prevent invalidation events from being propagated, thus creating inconsistencies.
 </div>
 
 ---
