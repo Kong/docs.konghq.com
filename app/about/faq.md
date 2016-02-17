@@ -104,7 +104,7 @@ You can also have a face-to-face talk with us at one of our [meetups](http://www
 
 ## Why Lua?
 
-We wanted to develop directly on top of NGINX, since it's the most used and trusted HTTP proxy in the world. To do so, we had two options: A) write natively C code but it would not make Kong maintainable long term B) leverage a tool called OpenResty (used in production at Cloudflare) that allows Lua support on top of NGINX. Lua is a powerful, easy to learn, lightweight, embeddable scripting language. With LuaJIT (just-in-time compiler) it's also one of the fastest languages in the world. With Lua we can keep high performance while having a long term maintanble codebase.
+We wanted to develop directly on top of NGINX, since it's the most used and trusted HTTP proxy in the world. To do so, we had two options: A) write natively C code but it would not make Kong maintainable long term B) leverage a tool called OpenResty (used in production at Cloudflare) that allows Lua support on top of NGINX. Lua is a powerful, easy to learn, lightweight, embeddable scripting language. With LuaJIT (just-in-time compiler) it's also one of the fastest languages in the world. With Lua we can keep high performance while having a long term maintanable codebase.
 
 ----
 
