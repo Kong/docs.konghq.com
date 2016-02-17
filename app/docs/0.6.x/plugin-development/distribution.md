@@ -23,6 +23,7 @@ Kong will now look for modules named:
 "kong.plugins.my-custom-plugin.handler"
 "kong.plugins.my-custom-plugin.schema.migrations"
 "kong.plugins.my-custom-plugin.schema"
+"kong.plugins.my-custom-plugin.hooks"
 ```
 
 You need to make these modules available in your LUA_PATH.
@@ -58,7 +59,8 @@ build = {
     ["kong.plugins.my-kong-plugin.daos"] = "/path/to/daos.lua",
     ["kong.plugins.my-kong-plugin.handler"] = "/path/to/handler.lua",
     ["kong.plugins.my-kong-plugin.schema.migrations"] = "/path/to/schema/migrations.lua",
-    ["kong.plugins.my-kong-plugin.schema"] = "/path/to/schema.lua"
+    ["kong.plugins.my-kong-plugin.schema"] = "/path/to/schema.lua",
+    ["kong.plugins.my-kong-plugin.hooks"] = "/path/to/hooks.lua"
   }
 }
 ```
