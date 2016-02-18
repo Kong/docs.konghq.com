@@ -11,7 +11,7 @@ links:
   deploy: https://heroku.com/deploy?template=https://github.com/heroku/heroku-kong
 ---
 
-Uses the [Kong buildpack]({{ page.links.buildpack}}):
+Official [Heroku Kong]({{ page.links.app}}) app using the [Kong buildpack]({{ page.links.buildpack}}):
 
 - [Deploy to Heroku]({{ page.links.deploy }})
 
