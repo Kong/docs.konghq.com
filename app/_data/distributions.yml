@@ -30,6 +30,10 @@
   name: AWS Cloud Formation
   type: cloud
 
+- id: heroku
+  name: Heroku
+  type: cloud
+
 - id: osx
   name: OS X
   type: package
@@ -60,10 +64,5 @@
 
 - id: google-cloud
   name: Google Cloud Platform
-  soon: true
-  type: cloud
-
-- id: heroku
-  name: Heroku
   soon: true
   type: cloud
