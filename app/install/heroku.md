@@ -34,6 +34,9 @@ heroku create my-proxy-app --buildpack https://github.com/heroku/heroku-buildpac
 
 heroku config:set KONG_CLUSTER_SECRET=`serf keygen`
 
+# If you want to try Instaclustr Cassandra, a paid add-on
+heroku addons:create instaclustr:production-light
+
 git push heroku master
 # …the first build will take approximately ten minutes; subsequent builds approx two-minutes.
 ```
@@ -76,7 +79,9 @@ $ curl http://localhost:8001/status
 
     You may connect to any Cassandra datastore accessible to your Heroku app using the `CASSANDRA_URL` config var as [documented in the buildpack](https://github.com/heroku/heroku-buildpack-kong#usage).
 
-    For the [Instaclustr add-on](https://elements.heroku.com/addons/instaclustr), initial keyspace setup is required. To get started, use [`cqlsh`](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlsh.html) to run [CQL](https://cassandra.apache.org/doc/cql3/CQL-2.1.html) queries:
+    Once Cassandra is attached to the app, Kong will automatically create the keyspace and run migrations.
+
+    If you find that initial keyspace setup is required. Use [`cqlsh`](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlsh.html) to run [CQL](https://cassandra.apache.org/doc/cql3/CQL-2.1.html) queries:
 
     ```bash
     $ CQLSH_HOST={SINGLE_IC_CONTACT_POINT} cqlsh --cqlversion 3.2.1 -u {IC_USER} -p {IC_PASSWORD}
