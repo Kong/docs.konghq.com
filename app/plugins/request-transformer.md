@@ -27,10 +27,10 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=request-transformer" \
     --data "config.add.headers=x-new-header:some_value, x-another-header:some_value" \
     --data "config.add.querystring=new-param:some_value, another-param:some_value" \
-    --data "config.add.form=new-form-param:some_value, another-form-param:some_value" \
+    --data "config.add.body=new-form-param:some_value, another-form-param:some_value" \
     --data "config.remove.headers=x-toremove, x-another-one" \
     --data "config.remove.querystring=param-toremove, param-another-one" \
-    --data "config.remove.form=formparam-toremove, formparam-another-one"
+    --data "config.remove.body=formparam-toremove, formparam-another-one"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
