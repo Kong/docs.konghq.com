@@ -34,6 +34,7 @@ Here is a quick setup linking Kong to a Cassandra container:
                 -p 8001:8001 \
                 -p 7946:7946 \
                 -p 7946:7946/udp \
+                --security-opt seccomp:unconfined \
                 mashape/kong
     ```
 
