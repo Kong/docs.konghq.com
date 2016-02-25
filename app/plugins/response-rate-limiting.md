@@ -38,6 +38,7 @@ form parameter                      | required        | description
 `name`                              | *required*      | The name of the plugin to use, in this case: `response-ratelimiting`
 `consumer_id`                       | *optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `config.header_name`                | *optional*      | The name of the response header used to increment the counters. By default is `X-Kong-Limit`.
+`config.continue_on_error`  | *optional*      |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting to the datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors. By default is `false`.
 `config.limits.{limit_name}`        | *required*      |  This is a list of custom objects that you can set on the API, with arbitrary names set in the `{limit_name`} placeholder, like `config.limits.sms.minute=20` if your object is called "SMS".
 `config.limits.{limit_name}.second` | *semi-optional* | The amount of HTTP requests the developer can make per second. At least one limit must exist.
 `config.limits.{limit_name}.minute` | *semi-optional* | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
