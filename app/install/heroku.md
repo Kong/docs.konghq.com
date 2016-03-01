@@ -64,37 +64,15 @@ $ curl http://localhost:8001/status
 
 1. **Configuration**:
 
-    The Heroku app must have several [config vars, as defined in the buildpack](https://github.com/heroku/heroku-buildpack-kong#usage).
-
-    Kong is automatically configured at runtime with the `.profile.d/kong-12f.sh` script, which:
-      
-    1. renders the `config/kong.yml` file
-    2. exports environment variables (see: `.profile.d/kong-env` in a running dyno)
-
     Revise [`config/kong.yml.etlua`](config/kong.yml.etlua) to suite your application.
 
-    See: [Kong 0.6 Configuration Reference](https://getkong.org/docs/0.6.x/configuration/)
+    See: [Kong 0.7 Configuration Reference](https://getkong.org/docs/0.7.x/configuration/)
 
 2. **Cassandra**:
 
     You may connect to any Cassandra datastore accessible to your Heroku app using the `CASSANDRA_URL` config var as [documented in the buildpack](https://github.com/heroku/heroku-buildpack-kong#usage).
 
     Once Cassandra is attached to the app, Kong will automatically create the keyspace and run migrations.
-
-    If you find that initial keyspace setup is required. Use [`cqlsh`](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlsh.html) to run [CQL](https://cassandra.apache.org/doc/cql3/CQL-2.1.html) queries:
-
-    ```bash
-    $ CQLSH_HOST={SINGLE_IC_CONTACT_POINT} cqlsh --cqlversion 3.2.1 -u {IC_USER} -p {IC_PASSWORD}
-    > CREATE KEYSPACE IF NOT EXISTS kong WITH replication = {'class':'NetworkTopologyStrategy', 'US_EAST_1':3};
-    > GRANT ALL ON KEYSPACE kong TO iccassandra;
-    > exit
-    ```
-
-    Then, initialize DB schema [using a console](#commands):
-
-    ```bash
-    $ kong migrations reset -c $KONG_CONF
-    ```
 
 3. **Access via [console](#commands)**:
 
