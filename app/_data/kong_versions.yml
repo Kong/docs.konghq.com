@@ -62,5 +62,6 @@
     luajit: "2.1.0-alpha"
     luarocks: "2.3.0"
     cassandra: "2.2.x"
+    postgres: "9.4+"
     openresty: "1.9.7.3"
   lua_doc: true

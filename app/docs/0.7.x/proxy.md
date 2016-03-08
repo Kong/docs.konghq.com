@@ -49,10 +49,6 @@ When receiving a request, Kong will inspect it and try to route it to the correc
 - A **DNS** value contained in the **Host** header of the request.
 - The path (**URI**) of the request.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> For performance reasons, Kong keeps a cache of the APIs from your Cassandra cluster in memory for up to 60 seconds. As cache invalidation has not been implemented yet, Kong might take up to <strong>60 seconds</strong> to notice a new API and proxy incoming requests to it.
-</div>
-
 ---
 
 ## 2. Reminder: how to add an API to Kong
@@ -72,11 +68,11 @@ $ curl -i -X POST \
 
 This request tells Kong to add an API named "**mockbin**", with its upstream resource being located at "**http://mockbin.com**". The `request_host` and `request_path` properties are the ones used by Kong to route a request to that API. Both properties are not required but at least one must be specified.
 
-Once this request is processed by Kong, the API is stored in your Cassandra cluster and a request to the **Proxy port** will trigger a query to Cassandra and put your API in Kong's proxying cache.
+Once this request is processed by Kong, the API is stored in the database and a request to the **Proxy port** will trigger a query to it and put your API in Kong's cache. The cache will be invalidated through your Kong cluster upon further modification of this API.
 
 ---
 
-## 3. Proxy an API by its DNS value
+## 3. Proxy an API by its DNS values
 
 #### Using the "**Host**" header
 
@@ -157,10 +153,10 @@ Here is a table documenting the behaviour of the path routing depending on your 
 
 ## 5. Plugins execution
 
-Once Kong has recognized which API an incoming request should be proxied to, it will look into your Cassandra cluster for any record of a [Plugin Configuration][plugin-configuration-object] for that particular API. This is done according to the following steps:
+Once Kong has recognized which API an incoming request should be proxied to, it will search for a [Plugin Configuration][plugin-configuration-object] for that particular API in its cache or in the database. This is done according to the following steps:
 
 - 1. Kong recognized the API (according to one of the previously explained methods)
-- 2. It looks into the datastore for Plugin Configurations for that API
+- 2. It retrieves the Plugin Configurations for that API (from the cache or from the database)
 - 3. Some Plugin Configurations were found, for example:
   - a. A key authentication Plugin Configuration
   - b. A rate-limiting Plugin Configuration (that also has a `consumer_id` property)

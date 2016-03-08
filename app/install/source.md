@@ -10,8 +10,6 @@ redirect_from: /install/compile/
 
 {% capture luajit_version %}{{site.data.kong_latest.dependencies.luajit}}{% endcapture %}
 {% capture luarocks_version %}{{site.data.kong_latest.dependencies.luarocks}}{% endcapture %}
-{% capture dnsmasq_version %}{{site.data.kong_latest.dependencies.dnsmasq}}{% endcapture %}
-{% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 {% capture openresty_version %}{{site.data.kong_latest.dependencies.openresty}}{% endcapture %}
 
 1. **Install the dependencies:**
@@ -53,9 +51,9 @@ redirect_from: /install/compile/
     $ [sudo] make install # this simply runs the `luarocks make kong-*.rockspec` command
     ```
 
-3. **Configure Cassandra**
+2. **Configure your database**
 
-    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra {{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/latest/configuration/#databases_available).
+    [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
 4. **Start Kong:**
 
@@ -69,3 +67,5 @@ redirect_from: /install/compile/
 4. **Use Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+
+[configuration]: /docs/{{page.kong_version}}/configuration#database

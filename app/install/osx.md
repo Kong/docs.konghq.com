@@ -7,8 +7,6 @@ breadcrumbs:
   Installation: /install
 ---
 
-{% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
-
 ### Packages:
 
 - [.pkg Installer]({{ site.links.download }}/osx.pkg)
@@ -24,9 +22,9 @@ breadcrumbs:
 
     **Note**: After downloading the `.pkg` installer, you will have to **right click**, select "Open" and authorize it.
 
-2. **Configure Cassandra**
+2. **Configure your database**
 
-    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/latest/configuration/#databases_available).
+    [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
 3. **Start Kong:**
 
@@ -40,3 +38,5 @@ breadcrumbs:
 4. **Use Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+
+[configuration]: /docs/{{page.kong_version}}/configuration#database

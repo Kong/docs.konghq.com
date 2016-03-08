@@ -8,9 +8,7 @@ chapter: 5
 
 Kong interacts with the model layer through classes we refer to as "DAOs". This chapter will detail the available API to interact with the datastore.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> Currently, Kong only supports <a href="http://cassandra.apache.org/">Cassandra</a> as its datastore. This guide assumes that you are already familiar with it and sometimes describes concepts only related to Cassandra, such as indexes and clustering keys.
-</div>
+As of `0.8.0`, Kong supports two primary datastores: [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) and [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/).
 
 ---
 

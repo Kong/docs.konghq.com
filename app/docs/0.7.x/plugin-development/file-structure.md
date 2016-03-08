@@ -55,9 +55,10 @@ complete-plugin
 ├── api.lua
 ├── daos.lua
 ├── handler.lua
-├── migrations
-│   └── cassandra.lua
 ├── hooks.lua
+├── migrations
+│   ├── cassandra.lua
+│   └── postgres.lua
 └── schema.lua
 ```
 
@@ -68,7 +69,7 @@ Here is the complete list of possible modules to implement and a brief descripti
 | [api.lua]({{page.book.chapters.admin-api}})          | No         | Defines a list of endpoints to be available in the Admin API to interact with entities custom entities handled by your plugin.
 | [daos.lua]({{page.book.chapters.custom-entities}})         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the datastore.
 | [handler.lua]({{page.book.chapters.custom-logic}})      | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request.
-| [schema/migrations.lua]({{page.book.chapters.custom-entities}}) | No         | The corresponding migrations for a given datastore. Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
+| [migrations/*.lua]({{page.book.chapters.custom-entities}}) | No         | The corresponding migrations for a given datastore. Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
 | [hooks.lua]({{page.book.chapters.plugin-configuration}})       | No        | Implements the invalidation event handlers for the datastore entities defined in `daos.lua`. Required if you are storing entities in the in-memory cache, in order to invalidate them when they are being updated/deleted on the datastore.
 | [schema.lua]({{page.book.chapters.plugin-configuration}})       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
 

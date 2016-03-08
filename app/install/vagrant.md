@@ -7,8 +7,6 @@ breadcrumbs:
   Installation: /install
 ---
 
-{% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
-
 ### Starting the Environment:
 
 1. **Clone Kong:**
