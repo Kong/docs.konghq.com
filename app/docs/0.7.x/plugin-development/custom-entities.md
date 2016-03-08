@@ -15,13 +15,9 @@ chapter: 6
 
 ---
 
-Your plugin might need to store more than its configuration in the database. In that case, Kong provides you with an abstraction on top of Cassandra (and future supported datastores) which allows you to store custom entities.
+Your plugin might need to store more than its configuration in the database. In that case, Kong provides you with an abstraction on top of its primary datastores which allows you to store custom entities.
 
 As explained in the [previous chapter]({{page.book.previous}}), Kong interacts with the model layer through classes we refer to as "DAOs", and available on a global variable called the "DAO Factory". This chapter will explain how to inherit from the Kong [kong.dao.cassandra.base_dao] module to provide an abstraction for your own entities.
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> Currently, Kong only supports <a href="http://cassandra.apache.org/">Cassandra</a> as its datastore. This guide assumes that you are already familiar with it and sometimes describes concepts only related to Cassandra, such as indexes and clustering keys.
-</div>
 
 ---
 
@@ -71,7 +67,7 @@ return Migrations
 ```
 
 - `name`: Must be a unique string. The format does not matter but can help you debug issues while developing your plugin, so make sure to name it in a relevant way.
-- `up`: Executed when Kong migrates **forward**. The first parameter, `options`, is a table containing the Cassandra properties defined in your configuration file, the second, `dao_factory`, is the instanciated DAO factory.
+- `up`: Executed when Kong migrates **forward**. The first parameter, `options`, is a table containing the datastore properties defined in your configuration file, the second, `dao_factory`, is the instanciated DAO factory.
 - `down`: Executed when Kong migrates **backward**. Its parameters and return values are the same as `up`.
 - `dao_factory:execute_queries()`: Execute multiple CQL statements separated by a semicolon. It returns an error if any, which is why if you call it multiple times in the migration function, you must ensure to test its return value, and return it (interrupting the migration) if it is non-nil.
 

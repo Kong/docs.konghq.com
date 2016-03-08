@@ -30,9 +30,9 @@ Start by downloading the corresponding package for your configuration:
     $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
     ```
 
-2. **Configure Cassandra**
+2. **Configure your database**
 
-    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/latest/configuration/#databases_available).
+    [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
 3. **Start Kong:**
 
@@ -46,3 +46,5 @@ Start by downloading the corresponding package for your configuration:
 4. **Use Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+
+[configuration]: /docs/{{page.kong_version}}/configuration#database

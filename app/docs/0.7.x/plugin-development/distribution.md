@@ -21,7 +21,8 @@ Kong will now look for modules named:
 "kong.plugins.my-custom-plugin.api"
 "kong.plugins.my-custom-plugin.daos"
 "kong.plugins.my-custom-plugin.handler"
-"kong.plugins.my-custom-plugin.schema.migrations"
+"kong.plugins.my-custom-plugin.migrations.cassandra"
+"kong.plugins.my-custom-plugin.migrations.postgres"
 "kong.plugins.my-custom-plugin.schema"
 "kong.plugins.my-custom-plugin.hooks"
 ```
@@ -58,9 +59,10 @@ build = {
     ["kong.plugins.my-kong-plugin.api"] = "/path/to/api.lua",
     ["kong.plugins.my-kong-plugin.daos"] = "/path/to/daos.lua",
     ["kong.plugins.my-kong-plugin.handler"] = "/path/to/handler.lua",
-    ["kong.plugins.my-kong-plugin.schema.migrations"] = "/path/to/schema/migrations.lua",
     ["kong.plugins.my-kong-plugin.schema"] = "/path/to/schema.lua",
-    ["kong.plugins.my-kong-plugin.hooks"] = "/path/to/hooks.lua"
+    ["kong.plugins.my-kong-plugin.hooks"] = "/path/to/hooks.lua",
+    ["kong.plugins.my-kong-plugin.migrations.cassandra"] = "/path/to/schema/migrations/cassandra.lua",
+    ["kong.plugins.my-kong-plugin.migrations.postgres"] = "/path/to/schema/migrations/postgres.lua"
   }
 }
 ```

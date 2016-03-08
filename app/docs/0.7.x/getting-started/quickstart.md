@@ -8,9 +8,9 @@ title: 5-minute Quickstart
   <strong>Before you start:</strong> Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving you access to the RESTful Admin interface to manage your APIs, consumers, and more. Data sent through the Admin API is stored in your Cassandra instance or cluster, meaning you **must** have Cassandra running **before** starting Kong.
+In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving in order to give you access to the RESTful Admin interface to manage your APIs, consumers, and more. Data sent through the Admin API is stored in Kong's datastore (as of `0.8.0`, Kong supports PostgreSQL and Cassandra).
 
-**Note:** If you haven't already, go ahead and make sure that you have a Kong configuration file located under `/etc/kong/kong.yml` and points to your Cassandra instance or cluster. If you haven't, consult the [configuration reference][configuration] before starting.
+**Note:** make sure you have your database instance running and [configured][configuration] in Kong.
 
 1. ### Start Kong.
 
@@ -24,7 +24,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 2. ### Verify that Kong has started successfully
 
-    The previous step runs migrations to prepare the Cassandra keyspace.
+    The previous step runs migrations to prepare your database.
     Once these have finished you should see a message (`[OK] Started`) informing you that Kong is running.
 
     By default Kong listens on the following ports:
