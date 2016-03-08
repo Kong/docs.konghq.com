@@ -70,6 +70,10 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
 
 ----
+### Recommended usage:
+
+	<B>Use this cloud formation as a basis for your own, adjust the variables and template to better suite your needs.</B>
+----
 
 ### Instructions:
 
