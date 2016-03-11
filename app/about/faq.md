@@ -5,120 +5,232 @@ header_title: Frequently Asked Questions
 ---
 
 * [How does it work?](#how-does-it-work)
+  * [Kong server](#kong-server)
+  * [Kong datastore](#kong-datastore)
+* [Which datastores are supported?](#which-datastores-are-supported)
+  * [Apache Cassandra](#apache-cassandra)
+  * [PostgreSQL](#postgresql)
 * [How does it scale?](#how-does-it-scale)
 * [What are plugins?](#what-are-plugins)
-* [Where can I get general information about Kong?](#where-can-i-get-general-information-about-kong)
-* [Why does Kong need Cassandra?](#why-does-kong-need-cassandra)
 * [How many microservices/APIs can I add on Kong?](#how-many-microservices-apis-can-i-add-on-kong)
-* [How can I add an authentication layer on a microservice/API?](#how-can-i-add-an-authentication-layer-on-a-microservice-api)
+* [How can I add authentication to a microservice/API?](#how-can-i-add-authentication-to-a-microservice-api)
+* [Where can I get help?](#where-can-i-get-help)
 
 ----
 
 ## How does it work?
 
-Kong is made of two different components that are easy to set up and scale independently:
+A typical Kong setup is made of two main components:
 
-* The [**Kong Server**](#kong-server), based on a modified version of the widely adopted **NGINX** server, processes API requests.
-* [**Apache Cassandra**](#apache-cassandra), a highly scalable Datastore for storing operational data, is used by major companies like Netflix, Comcast and Facebook.
+* [Kong's server](#kong-server), based on the widely adopted **NGINX** HTTP
+  server, which is a reverse proxy processing your clients' requests to your
+  upstream services.
+* Kong's datastore, in which the configuration is stored
+  to allow you to horizontally scale Kong nodes.
+  [Apache Cassandra](#apache-cassandra) and [PostgreSQL](#postgresql) can be
+  used to fulfill this role.
 
-Kong needs to have both these components set up and operational. A typical Kong installation can be summed up with the following picture:
+Kong needs to have both these components set up and operational. A typical Kong
+installation can be summed up with the following picture:
 
 ![](/assets/images/docs/kong-detailed.png)
 
-Don't worry if you are not experienced with these technologies, Kong works out of the box and you or your engineering team will be able to set it up quickly without issues. Feel free to contact us for any technical question.
+### Kong server
 
-### Kong Server
+The Kong Server, built on top of **NGINX**, is the server that will actually
+process the API requests and execute the configured plugins to provide
+additional functionalities to the underlying APIs before proxying the request
+upstream.
 
-The Kong Server, built on top of **NGINX**, is the server that will actually process the API requests and execute the configured plugins to provide additional functionalities to the underlying APIs before proxying the request to the final destination.
+Kong listens on several ports that must allow external traffic and are by
+default:
 
-The Proxy Server listens on two ports, that by default are:
+* `8000` for proxying. This is where Kong listens for HTTP traffic. Be sure to
+* change it to `80` once you go to production. See [proxy_listen].
+* `8443` for proxying HTTPS traffic. Be sure to change it to `443` once you go
+  to production. See [proxy_listen_ssl].
+* `7946` which Kong uses for inter-nodes communication. Both UDP and TCP traffic
+  should be allowed on it. See [cluster_listen].
 
-* Port `8000`, that will be used to process the API requests.
-* Port `8001`, called **Admin API port**, provides the Kong's RESTful Admin API that you can use to operate Kong, and should be private and firewalled.
+Additionally, those ports are used internally and should be firewalled in
+production usage:
 
-You can use the **admin port** to configure Kong, create new users, installing or removing plugins, and a handful of other operations. Since you will be using a RESTful API to operate Kong, it is also extremely easy to integrate Kong with existing systems.
+* `8001` provides Kong's **Admin API** that you can use to operate Kong. See
+  [admin_api_listen].
+* `7373` used by Kong to communicate with the local clustering agent.
+  See [cluster_listen_rpc].
+
+You can use the **Admin API** to configure Kong, create new users, enable or
+disable plugins, and a handful of other operations. Since you will be using
+this RESTful API to operate Kong, it is also extremely easy to integrate Kong
+with existing systems.
+
+[proxy_listen]: /docs/{{page.kong_version}}/configuration/#proxy_listen
+[cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
+[cluster_listen_rpc]:
+/docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
+[proxy_listen_ssl]: /docs/{{page.kong_version}}/configuration/#proxy_listen_ssl
+[admin_api_listen]: /docs/{{page.kong_version}}/configuration/#admin_api_listen
+
+### Kong datastore
+
+Kong uses an external datastore to store its configuration such as registered
+APIs, Consumers and Plugins. Plugins themselves can store every bit of
+information they need to be persisted, for example rate-limiting data or
+Consumer credentials.
+
+**Kong maintains a cache** of this data so that there is no need for a database
+roundtrip while proxying requests, which would critically impact performance.
+This cache is invalidated by the inter-node communication when calls to the
+Admin API are made. As such, it is discouraged to manipulate Kong's datastore
+directly, since your nodes cache won't be properly invalidated.
+
+This architecture allows Kong to scale horizontally by simply adding new nodes
+that will connect to the same datastore and maintain their own cache.
+
+## Which datastores are supported?
 
 ### Apache Cassandra
 
-Apache Cassandra ([http://cassandra.apache.org/](http://cassandra.apache.org/)) is a popular, solid and reliable datastore used at major companies like Netflix and Facebook. It excels in securely storing data in both single-datacenter or multi-datacenter setups with a good performance and a fail-tolerant architecture.
+Apache Cassandra ([http://cassandra.apache.org/](http://cassandra.apache.org/))
+is a popular, solid and reliable datastore used at major companies like Netflix
+and Facebook. It excels in securely storing data in both single-datacenter or
+multi-datacenter setups with a good performance and a fail-tolerant
+architecture.
 
-Kong uses Cassandra as its primary datastore to store any data including APIs, Consumers and Plugins. Plugins themselves can use Cassandra to store every bit of information that needs to be persisted, for example rate-limiting data.
+Kong can use Cassandra as its primary datastore if you are aiming at a
+distributed, high-availability Kong setup. The two main reasons why one would
+chose Cassandra as Kong's datastore are:
+- An ease to create a distributed setup (ideal for multi-region).
+- Ease to scale. Since Kong maintains its own cache, only plugins such as
+  Rate-Limiting or Response-Rate-Limiting will require a highly responsive
+  datastore. Cassandra is a good fit for such setups.
 
-Depending on your use case, for production usage we recommend having at least a two-node Cassandra cluster configured with a replication factor of `2`. The beauty of Cassandra is that it can be easily scaled horizontally to accomodate more requests and more data. We recommend putting Cassandra on performant machines with a generous amount of CPU and Memory, like AWS `m4.xlarge` instances.
+We recommend putting Cassandra on performant machines with a generous amount of
+CPU and Memory, like AWS `m4.xlarge` instances. If you are aiming at Cassandra
+for your production infrastructure, make sure to go through a few important
+reads:
+
+- [Data Replication](https://docs.datastax.com/en/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html)
+  and [this neat Replication Calculator](http://www.ecyrd.com/cassandracalculator/).
+- [Reading/Writing data consistency](http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html)
+- [Recommended production settings](https://docs.datastax.com/en/cassandra/2.0/cassandra/install/installRecommendSettings.html)
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+  <strong>Note:</strong> If you don't want to
+  manage/scale your own Cassandra cluster, we suggest using <a href="{{
+  site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in
+  the cloud.
 </div>
 
-#### SQL support
+### PostgreSQL
 
-While Cassandra supports every integration scenario, from the simplest to the more complex ones, in the future we plan to support an SQL datastore like PostgreSQL in order to keep Kong close to well known technologies that are already being used in your technology stack.
+[PostgreSQL](http://www.postgresql.org/) is one of the most established SQL
+databases out there, meaning your team might already use it or have experience
+with it.
 
-If you like the idea, +1 [the related issue]({{ site.repos.kong }}/issues/331) on Github.
+It is a good candidate if the setup you are aiming at is not distributed, or if
+you feel comfortable scaling PostgreSQL yourself. It is also worth pointing out
+that many cloud providers can host and scale PostgreSQL instances for you, most
+notably [Amazon RDS](https://aws.amazon.com/rds/).
+
+Again, since Kong maintain its own cache, performance should be of concern for
+most use-cases, making PostgreSQL a good candidate for your Kong cluster too.
 
 ----
 
 ## How does it scale?
 
-When it comes down to scaling Kong, you need to keep in mind that you will need to scale both the API server and the underlying datastore (Apache Cassandra).
+When it comes to scaling Kong, you need to keep in mind that you will mostly
+need to scale Kong's server and eventually ensure its datastore is not a single
+point of failure in your infrastructure.
 
-### Kong Server
+### Kong server
 
-Scaling the Kong Server up or down is actually very easy. Each server is stateless meaning you can add or remove as many nodes under the load balancer as you want.
+Scaling the Kong Server up or down is fairly easy. Each server is stateless
+meaning you can add or remove as many nodes under the load balancer as you want
+as long as they point to the same datastore.
 
-Be aware that terminating a node might interrupt any ongoing HTTP requests on that server, so you want to make sure that before terminating the node all HTTP requests have been processed.
+Be aware that terminating a node might interrupt any ongoing HTTP requests on
+that server, so you want to make sure that before terminating the node, all
+HTTP requests have been processed.
 
-### Cassandra
+### Kong datastore
 
-Scaling Cassandra shouldn't be required often, and usually a 2-node setup per datacenter is going to be enough for most of your needs, but of course if your load is expected to be very high then you may want to consider configuring your nodes properly and prepare the cluster to be scaled to handle more requests.
+Scaling the datastore should not be your main concern, mostly because as
+mentioned before, Kong maintains its own cache, so expect your datastore's
+traffic to be relatively quiet.
 
-The easy part is that Cassandra can be scaled up and down just by adding or removing nodes on the cluster, and the system will take care of re-balancing the data in the cluster.
+However, keep it mind that it is always a good practise to ensure your
+infrastructure does not contain single points of failure (SPOF). As such,
+closely monitor your datastore, and ensure replication of your datastore.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
-</div>
+If you use Cassandra, one of its main advantages is its easy-to-use replication
+capabilities due to its distributed nature. Make sure to read the documentation
+pointed out by the [Cassandra section](#apache-cassandra) of this FAQ.
 
 ----
 
 ## What are plugins?
 
-Plugins are one of the most important features of Kong. All the functionalities provided by Kong are done so by easy to use **plugins**. Authentication, rate-limiting, logging and many more. Plugins can be installed and configured through Kong's REStful Admin API.
+Plugins are one of the most important features of Kong. All the functionalities
+provided by Kong actually are **plugins**. Authentication, rate-limiting,
+transformation, logging etc, are all implemented independantly. Plugins can be
+installed and configured via the Admin API running alongside Kong.
 
-Almost all plugins can be customized not only to target a specific API, but also to target a specific API and a **specific [Consumer](
+Almost all plugins can be customized not only to target a specific proxied
+service, but also to target **specific [Consumers](
 /docs/latest/admin-api/#consumer-object)**.
 
-From a technical perspective, a plugin is [Lua](http://www.lua.org/) code that's being executed during the life-cycle of an API request and response. Through plugins, Kong can be extended to fit any custom need or integration challenge. For example, if you need to integrate the API user authentication with a third-party enterprise security system, that would be implemented in a dedicated plugin that is run on every API request.
+From a technical perspective, a plugin is [Lua](http://www.lua.org/) code
+that's being executed during the life-cycle of a proxied request and response.
+Through plugins, Kong can be extended to fit any custom need or integration
+challenge. For example, if you need to integrate the you API's user
+authentication with a third-party enterprise security system, that would be
+implemented in a dedicated plugin that is run on every request targetting that
+given API.
 
-Feel free to explore the [available plugins](/plugins) or learn how to [enable plugins](/docs/latest/getting-started/enabling-plugins) with the [plugin configuration API](/docs/latest/admin-api/#plugin-configuration-object).
-
-----
-
-### Where can I get general information about Kong?
-
-You can read the [official documentation](/docs) or ask any question to the community and the core mantainers on our [official chat on Gitter](https://gitter.im/Mashape/kong).
-
-You can also have a face-to-face talk with us at one of our [meetups](http://www.meetup.com/The-Mashape-API-Developer-Community).
-
-----
-
-### Why does Kong need Cassandra?
-
-Kong uses Cassandra for storing all the data and to keep functioning properly. Plugins also use Cassandra to store data. Read [how Kong works](/about/faq/#how-does-it-work).
+Feel free to explore the [Plugins Gallery](/plugins) and the [Plugin
+development guide](/docs/{{page.kong_version}}/plugin-development). Learn how
+to [enable plugins](/docs/latest/getting-started/enabling-plugins) with the
+[plugin configuration
+API](/docs/latest/admin-api/#plugin-configuration-object).
 
 ----
 
-### How many microservices/APIs can I add on Kong?
+## How many microservices/APIs can I add on Kong?
 
-You can add as many microservices or APIs as you like, and use Kong to process all of them. Kong currently supports RESTful services that run over HTTP or HTTPs. Learn how to [add a new service](/docs/latest/getting-started/adding-your-api/) on Kong.
+You can add as many microservices or APIs as you like, and use Kong to process
+all of them. Kong currently supports RESTful services that run over HTTP or
+HTTPs. Learn how to [add a new
+service](/docs/latest/getting-started/adding-your-api/) on Kong.
 
-You can scale Kong horizontally if you are processing lots of requests, just by adding more Kong servers to your cluster.
+You can scale Kong horizontally if you are processing lots of requests, just by
+adding more Kong servers to your cluster.
 
 ----
 
-### How can I add an authentication layer on a microservice/API?
+## How can I add authentication to a microservice/API?
 
-To add an authentication layer on top of a service you can choose between the authentication plugins currently available in the [Plugins Gallery](/plugins/#authentication), like the [Basic Authentication](/plugins/basic-authentication/), [Key Authentication](/plugins/key-authentication/) and [OAuth 2.0](/plugins/oauth2-authentication/) plugins.
+To add an authentication layer on top of a service you can choose between the
+authentication plugins currently available in the [Plugins Gallery](/plugins),
+like the [Basic Authentication](/plugins/basic-authentication/), [Key
+Authentication](/plugins/key-authentication/) and [OAuth
+2.0](/plugins/oauth2-authentication/) plugins.
+
+----
+
+## Where can I get help?
+
+You can read the [official documentation](/docs) or ask any question to the
+community and the core mantainers on our [official chat on
+Gitter](https://gitter.im/Mashape/kong). We are also on Freenode at
+[#kong](http://webchat.freenode.net/?channels=kong).
+
+You can also have a face-to-face talk with us at one of our
+[meetups](http://www.meetup.com/The-Mashape-API-Developer-Community).
 
 <hr>
 
-Were you looking for a question that you did't find? [Open an issue!]({{ site.repos.kong }})
+Were you looking for a question that you did't find? [Open an issue!]({{
+site.repos.kong }})
