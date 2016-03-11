@@ -44,7 +44,7 @@ If you browse the default configuration, you'll notice that all properties are c
 ### **custom_plugins**
 
 
-Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/plugin-development) for how to build your own plugins.
+Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/docs/{{page.kong_version}}/plugin-development) for how to build your own plugins.
 
 **Default:** none.
 

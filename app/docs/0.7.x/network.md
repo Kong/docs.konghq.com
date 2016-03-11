@@ -8,12 +8,16 @@ In this section you will find a summary about the recommended network and firewa
 
 ## Ports
 
-These are the port settings in order for Kong to work:
+Kong listens on several ports that must allow external traffic and are by default:
 
-* Allow HTTP traffic to [proxy_listen][proxy_listen]. By default `8000`.
-* Allow HTTPs traffic to [proxy_listen_ssl][proxy_listen_ssl]. By default `8443`.
-* Allow HTTP traffic to [admin_api_listen][admin_api_listen]. By default `8001`.
-* Allow **both** TCP and UDP traffic to [cluster_listen][cluster_listen]. By default `7946`.
+* `8000` for proxying. This is where Kong listens for HTTP traffic. Be sure to change it to `80` once you go to production. See [proxy_listen].
+* `8443` for proxying HTTPS traffic. Be sure to change it to `443` once you go to production. See [proxy_ssl_listen].
+* `7946` which Kong uses for inter-nodes communication. Both UDP and TCP traffic should be allowed on it. See [cluster_listen].
+
+Additionally, those ports are used internally and should be firewalled in  production usage:
+
+* `8001` provides Kong's **Admin API** that you can use to operate Kong. See [admin_api_listen].
+* `7373` used by Kong to communicate with the local clustering agent. See [cluster_listen_rpc].
 
 ## Firewall
 
@@ -33,4 +37,5 @@ Kong will try to auto-detect the node's first, non-loopback, IPv4 address and ad
 [proxy_listen_ssl]: /docs/{{page.kong_version}}/configuration/#proxy_listen_ssl
 [admin_api_listen]: /docs/{{page.kong_version}}/configuration/#admin_api_listen
 [cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
+[cluster_listen_rpc]: /docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
 [cluster]: /docs/{{page.kong_version}}/configuration/#cluster
