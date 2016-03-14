@@ -55,8 +55,7 @@ layout: default
         <li>
           <h5>Modules</h5>
           <ul>
-            <li><a href="../../modules/kong.dao.cassandra.base_dao">kong.dao.cassandra.base_dao</a></li>
-            <li><a href="../../modules/kong.kong">kong.kong</a></li>
+            <li><a href="../../modules/kong.dao">kong.dao</a></li>
             <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
             <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
             <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
@@ -85,6 +84,10 @@ layout: default
   <tr>
     <td class="name"><a href="#add_error">add_error (errors, k, v)</a></td>
     <td class="summary">Add an error message to a key/value table.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#concat">concat (...)</a></td>
+    <td class="summary">Concatenates lists into a new table.</td>
   </tr>
   <tr>
     <td class="name"><a href="#deep_copy">deep_copy (orig)</a></td>
@@ -160,6 +163,27 @@ layout: default
         The <code>errors</code> table with the new error inserted.
       </li>
     </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="concat">concat</a></h4>
+  </dt>
+  <dd>
+    Concatenates lists into a new table.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">...</code>
+
+        </li>
+    </ul>
+
 
 
 

@@ -181,6 +181,4 @@ As you are probably aware, the [Admin API] is where Kong users communicate with 
 
 Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
 
-[kong.dao.cassandra.base_dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao
 [Admin API]: /docs/{{page.kong_version}}/admin-api/
-[children DAOs interface]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface
