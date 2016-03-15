@@ -72,7 +72,7 @@ Provisions Kong resources with user provided Cassandra seed nodes.
 ----
 ### Recommended usage:
 
-	<B>Use this cloud formation as a basis for your own, adjust the variables and template to better suite your needs.</B>
+  <B>Use this cloud formation as a basis for your own, adjust the variables and template to better suite your needs.</B>
 ----
 
 ### Instructions:

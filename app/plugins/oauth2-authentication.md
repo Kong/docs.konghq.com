@@ -61,7 +61,7 @@ In order to use the plugin, you first need to create a consumer to associate one
 
 ### Endpoints
 
-By default the OAuth 2.0 plugin listens on the following endpoints:
+By default the OAuth 2.0 plugin listens on the following endpoints when consuming the API on the [proxy port][proxy-port]:
 
 Endpoint                     | description
 ---                         | ---
@@ -272,6 +272,7 @@ In this flow, the steps that you need to implement are:
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[proxy-port]: https://getkong.org/docs/latest/configuration/#proxy_listen
 [authorization-code-grant]: https://tools.ietf.org/html/rfc6749#section-4.1
 [client-credentials]: https://tools.ietf.org/html/rfc6749#section-4.4
 [implicit-grant]: https://tools.ietf.org/html/rfc6749#section-4.2
