@@ -8,6 +8,7 @@ header_title: Frequently Asked Questions
 * [How does it scale?](#how-does-it-scale)
 * [What are plugins?](#what-are-plugins)
 * [Where can I get general information about Kong?](#where-can-i-get-general-information-about-kong)
+* [Why Lua?](#why-lua)
 * [Why does Kong need Cassandra?](#why-does-kong-need-cassandra)
 * [How many microservices/APIs can I add on Kong?](#how-many-microservices-apis-can-i-add-on-kong)
 * [How can I add an authentication layer on a microservice/API?](#how-can-i-add-an-authentication-layer-on-a-microservice-api)
@@ -47,7 +48,7 @@ Kong uses Cassandra as its primary datastore to store any data including APIs, C
 Depending on your use case, for production usage we recommend having at least a two-node Cassandra cluster configured with a replication factor of `2`. The beauty of Cassandra is that it can be easily scaled horizontally to accomodate more requests and more data. We recommend putting Cassandra on performant machines with a generous amount of CPU and Memory, like AWS `m4.xlarge` instances.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in the cloud.
+  <strong>Note:</strong> If you don't want to manage/scale your own Cassandra cluster, we suggest using <a href="{{ site.links.instaclustr }}" target="_blank"> Instaclustr</a> for Cassandra in the cloud.
 </div>
 
 #### SQL support
@@ -98,6 +99,12 @@ Feel free to explore the [available plugins](/plugins) or learn how to [enable p
 You can read the [official documentation](/docs) or ask any question to the community and the core mantainers on our [official chat on Gitter](https://gitter.im/Mashape/kong).
 
 You can also have a face-to-face talk with us at one of our [meetups](http://www.meetup.com/The-Mashape-API-Developer-Community).
+
+----
+
+## Why Lua?
+
+We wanted to develop directly on top of NGINX, since it's the most used and trusted HTTP proxy in the world. To do so, we had two options: A) write natively C code but it would not make Kong maintainable long term B) leverage a tool called OpenResty (used in production at Cloudflare) that allows Lua support on top of NGINX. Lua is a powerful, easy to learn, lightweight, embeddable scripting language. With LuaJIT (just-in-time compiler) it's also one of the fastest languages in the world. With Lua we can keep high performance while having a long term maintanable codebase.
 
 ----
 
