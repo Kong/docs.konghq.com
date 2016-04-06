@@ -91,3 +91,7 @@
     - name: Loggly
       id: loggly
       info: Send request and response logs to Loggly
+
+    - name: Correlation ID
+      id: correlation-id
+      info: Correlate requests and responses using a unique ID
