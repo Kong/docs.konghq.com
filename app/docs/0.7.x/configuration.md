@@ -248,6 +248,16 @@ cluster:
 
   Key for encrypting network traffic within Kong. Must be a base64-encoded 16-byte key.
 
+  **`ttl_on_failure`**
+
+  The TTL (time to live), in seconds, of a node in the cluster when it stops sending healthcheck pings, maybe because of a failure. If the node is not able to send a new healthcheck before the expiration, then new nodes in the cluster will stop attempting to connect to it on startup.
+
+**Default:**
+
+```yaml
+ttl_on_failure: 3600
+```
+
 ----
 
 ### **database**
