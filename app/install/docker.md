@@ -17,17 +17,17 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
 
     ```bash
     $ docker run -d --name kong-datastore \
-                 -p 9042:9042 \
-                 cassandra:2.2.5
+                  -p 9042:9042 \
+                  cassandra:2.2
     ```
 
     If you wish to use a PostgreSQL container:
 
     ```bash
     $ docker run -d --name kong-datastore \
-                 -p 5432:5432 \
-                 -e POSTGRES_USER=kong \
-                 postgres:9.4
+                  -p 5432:5432 \
+                  -e POSTGRES_USER=kong \
+                  postgres:9.4
     ```
 
 2. **Start Kong:**
@@ -36,15 +36,19 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
 
     ```bash
     $ docker run -d --name kong \
-                 --link kong-datastore:kong-datastore \
-                 -p 8000:8000 \
-                 -p 8443:8443 \
-                 -p 8001:8001 \
-                 -p 7946:7946 \
-                 -p 7946:7946/udp \
-                 --security-opt seccomp:unconfined \
-                 mashape/kong
+                  --link kong-datastore:kong-datastore \
+                  -p 8000:8000 \
+                  -p 8443:8443 \
+                  -p 8001:8001 \
+                  -p 7946:7946 \
+                  -p 7946:7946/udp \
+                  --security-opt seccomp:unconfined \
+                  mashape/kong
     ```
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> If Docker complains that <code>--security-opt</code> is an invalid option, just remove it and re-execute the command (it was introduced in Docker 1.3).
+</div>
 
 3. **Kong is running:**
 

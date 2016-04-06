@@ -343,6 +343,16 @@ data_centers:
   - dc2
 ```
 
+  **`cassandra.consistency`**
+
+  Consistency level to use. See [http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html](http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html)
+
+  **Default:** 
+
+```yaml
+consistency: ONE
+```
+
 #### SSL Options
 
   **`cassandra.ssl.enabled`**

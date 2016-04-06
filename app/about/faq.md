@@ -118,8 +118,7 @@ reads:
 
 <div class="alert alert-warning">
   <strong>Note:</strong> If you don't want to
-  manage/scale your own Cassandra cluster, we suggest using <a href="{{
-  site.links.instaclustr }}" target="_blank">Instaclustr</a> for Cassandra in
+  manage/scale your own Cassandra cluster, we suggest using <a href="{{site.links.instaclustr}}" target="_blank">Instaclustr</a> for Cassandra in
   the cloud.
 </div>
 
@@ -232,5 +231,4 @@ You can also have a face-to-face talk with us at one of our
 
 <hr>
 
-Were you looking for a question that you did't find? [Open an issue!]({{
-site.repos.kong }})
+Were you looking for a question that you did't find? [Open an issue!]({{site.repos.kong}})
