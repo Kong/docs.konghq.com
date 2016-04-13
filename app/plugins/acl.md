@@ -12,6 +12,7 @@ nav:
   - label: Usage
     items:
       - label: Associating Consumers
+      - label: Upstream Headers
 ---
 
 Restrict access to an API by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API.
@@ -58,6 +59,11 @@ form parameter      | description
 `group`             | The arbitrary group name to associate to the consumer.
 
 You can have more than one group associated to a consumer.
+
+### Upstream Headers
+
+When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream API/Microservice, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
+
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 [api-object]: /docs/latest/admin-api/#api-object
