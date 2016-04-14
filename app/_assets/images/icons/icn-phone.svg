@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+        opacity: 0.3;
+      }
+    </style>
+  </defs>
+  <path id="_12x12-phone.svg" data-name="12x12-phone.svg" class="cls-1" d="M1250.25,298c0.75,0.375,1.88,2.25,2.25,3,0,0.375-1.12,1.5-1.12,1.875a9.014,9.014,0,0,0,3.74,3.75c0.38,0,1.5-1.125,1.88-1.125a15.65,15.65,0,0,1,3,2.25,3.381,3.381,0,0,1-2.25,2.25c-3.75-.75-9-6-9.75-9.75A3.381,3.381,0,0,1,1250.25,298Z" transform="translate(-1248 -298)"/>
+</svg>
