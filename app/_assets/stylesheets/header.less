@@ -1,7 +1,5 @@
-.navbar {
+.site-header {
   &:extend(.u-cf, .u-full-width);
-  background-color: @navy-darker;
-  height: 70px;
   z-index: 1;
   position: relative;
   box-shadow: 0 1px rgba(255, 255, 255, 0.1);
@@ -12,6 +10,100 @@
     position: fixed;
     z-index: 1001;
   }
+
+  .enterprise {
+    position: relative;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    background-color: @navy-darkest;
+
+    @media (max-width: @navbar-collapse-point) {
+      display: none;
+    }
+
+    nav ul {
+      font-size: 1rem;
+      line-height: 1;
+      font-weight: 800;
+
+      li {
+        display: inline-block;
+        vertical-align: middle;
+
+        a {
+          position: relative;
+          padding: 1.1rem 0 1.2rem 0;
+          font-size: 1.2rem;
+          line-height: 1.2;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.55);
+
+          &:hover,
+          &:focus {
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+
+        &.active a {
+          &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 0.2rem;
+            position: absolute;
+            bottom: 1px;
+            background-color: rgba(255, 255, 255, 0.25);
+          }
+        }
+      }
+    }
+
+    .enterprise-sites {
+      li {
+        margin-right: 1.8rem;
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+    }
+
+    .enterprise-contact {
+      text-align: right;
+
+      li {
+        margin-left: 1.8rem;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          a {
+            display: inline-block;
+            vertical-align: middle;
+            padding-left: 0.4rem;
+          }
+
+          &:before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            width: 1.2rem;
+            height: 1.2rem;
+            background: transparent url("/assets/images/icons/icn-phone.svg") no-repeat center center;
+            background-size: cover;
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar {
+  &:extend(.u-cf, .u-full-width);
+  position: relative;
+  height: 70px;
+  background-color: @navy-darker;
 
   .header-star {
     position: relative;
