@@ -4,6 +4,8 @@
 .project
 .bundle
 .idea
+.ruby-version
+.ruby-gemset
 *.log
 
 # jekyll
