@@ -45,18 +45,16 @@ upstream.
 Kong listens on several ports that must allow external traffic and are by
 default:
 
-* `8000` for proxying. This is where Kong listens for HTTP traffic. Be sure to
-* change it to `80` once you go to production. See [proxy_listen].
-* `8443` for proxying HTTPS traffic. Be sure to change it to `443` once you go
-  to production. See [proxy_listen_ssl].
-* `7946` which Kong uses for inter-nodes communication. Both UDP and TCP traffic
-  should be allowed on it. See [cluster_listen].
+* `8000` for proxying. This is where Kong listens for HTTP traffic. See [proxy_listen].
+* `8443` for proxying HTTPS traffic. See [proxy_listen_ssl].
 
 Additionally, those ports are used internally and should be firewalled in
 production usage:
 
 * `8001` provides Kong's **Admin API** that you can use to operate Kong. See
   [admin_api_listen].
+* `7946` which Kong uses for inter-nodes communication with other Kong nodes. Both UDP and TCP traffic
+  must be allowed. See [cluster_listen].
 * `7373` used by Kong to communicate with the local clustering agent.
   See [cluster_listen_rpc].
 

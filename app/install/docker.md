@@ -25,10 +25,10 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
 
     ```bash
     $ docker run -d --name kong-database \
-                   -p 5432:5432 \
-                   -e "POSTGRES_USER=kong" \
-                   -e "POSTGRES_DB=kong" \
-                   postgres:9.4
+                  -p 5432:5432 \
+                  -e "POSTGRES_USER=kong" \
+                  -e "POSTGRES_DB=kong" \
+                  postgres:9.4
     ```
 
 2. **Start Kong:**
@@ -38,7 +38,7 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
     ```bash
     $ docker run -d --name kong \
                   --link kong-database:kong-database \
-                  -e "DATABASE=cassandra" \ # or: -e "DATABASE=postgres"
+                  -e "DATABASE=cassandra" \
                   -p 8000:8000 \
                   -p 8443:8443 \
                   -p 8001:8001 \
