@@ -64,3 +64,14 @@
     cassandra: "2.2.x"
     openresty: "1.9.7.3"
   lua_doc: true
+-
+  release: "0.8.x"
+  version: "0.8.0"
+  luarocks_version: "0.8.0-0"
+  dependencies:
+    luajit: "2.1.0-alpha"
+    luarocks: "2.3.0"
+    cassandra: "2.2.x"
+    postgres: "9.4+"
+    openresty: "1.9.7.3"
+  lua_doc: true

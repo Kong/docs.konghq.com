@@ -21,20 +21,28 @@ Start by downloading the corresponding package for your configuration:
 
 ### Installation:
 
-1. **Install the Package:**
+1. **Enable the EPEL repository:**
+
+    Before installing Kong, you need to install the `epel-release` package for right version of your operating system, so that Kong can fetch all the required dependencies:
+
+    ```bash
+    $ EL_VERSION=`cat /etc/redhat-release | grep -oE '[0-9]+\.[0-9]+'` && \
+      sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${EL_VERSION%.*}.noarch.rpm
+    ```
+
+2. **Install the Package:**
 
     After downloading the [package](#packages), execute:
 
     ```bash
-    $ sudo yum install epel-release
     $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
     ```
 
-2. **Configure Cassandra**
+3. **Configure your database**
 
-    Before starting Kong, make sure you have [installed](http://www.apache.org/dyn/closer.cgi?path=/cassandra/{{cassandra_version}}/apache-cassandra-{{cassandra_version}}-bin.tar.gz) or [provisioned](http://kongdb.org) Cassandra v{{cassandra_version}} and updated [`/etc/kong/kong.yml`](/docs/latest/configuration/#databases_available).
+    [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
-3. **Start Kong:**
+4. **Start Kong:**
 
     ```bash
     $ kong start
@@ -43,6 +51,8 @@ Start by downloading the corresponding package for your configuration:
     $ curl 127.0.0.1:8001
     ```
 
-4. **Use Kong:**
+5. **Use Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+
+[configuration]: /docs/{{page.kong_version}}/configuration#database

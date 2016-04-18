@@ -17,6 +17,9 @@
     - name: JWT
       info: Verify and authenticate JSON Web Tokens
 
+    - name: LDAP Authentication
+      info: Integrate Kong with a LDAP server
+
 - name: Security
   info: Protect your services with additional security layers
   plugins:
@@ -88,6 +91,14 @@
       id: syslog
       info: Send request and response logs to Syslog
 
+    - name: StatsD
+      id: statsd
+      info: Send request and response logs to StatsD
+
     - name: Loggly
       id: loggly
       info: Send request and response logs to Loggly
+
+    - name: Correlation ID
+      id: correlation-id
+      info: Correlate requests and responses using a unique ID
