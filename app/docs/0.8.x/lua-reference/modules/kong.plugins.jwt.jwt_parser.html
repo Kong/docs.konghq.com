@@ -1,5 +1,5 @@
 ---
-title: Lua Reference - kong.tools.timestamp
+title: Lua Reference - kong.plugins.jwt.jwt_parser
 layout: default
 ---
 
@@ -55,14 +55,13 @@ layout: default
         <li>
           <h5>Modules</h5>
           <ul>
-            <li><a href="../../modules/kong.dao.cassandra.base_dao">kong.dao.cassandra.base_dao</a></li>
-            <li><a href="../../modules/kong.kong">kong.kong</a></li>
+            <li><a href="../../modules/kong.dao">kong.dao</a></li>
             <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
-            <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
+            <li>kong.plugins.jwt.jwt_parser</li>
             <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
             <li><a href="../../modules/kong.tools.io">kong.tools.io</a></li>
             <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
-            <li>kong.tools.timestamp</li>
+            <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
             <li><a href="../../modules/kong.tools.utils">kong.tools.utils</a></li>
           </ul>
         </li>
@@ -73,17 +72,29 @@ layout: default
   <div class="page-content-container">
   <div class="page-content">
     <div class="content">
-<h1><code>kong.tools.timestamp</code></h1>
-<p>Current UTC time</p>
-<p></p>
+<h1><code>kong.plugins.jwt.jwt_parser</code></h1>
+<p>Supported algorithms for signing tokens.</p>
+<p>Only support HS256 for our use case.</p>
 
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
   <tr>
-    <td class="name"><a href="#get_timestamps">get_timestamps (now)</a></td>
-    <td class="summary">Creates a timestamp</td>
+    <td class="name"><a href="#new">new (token)</a></td>
+    <td class="summary">Instanciate a JWT parser
+ Parse a JWT and instanciate a JWT parser for further operations
+ Return errors instead of an instance if any encountered</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#verify_registered_claims">verify_registered_claims (claims_to_verify)</a></td>
+    <td class="summary">Verify registered claims (according to RFC 7519 Section 4.1)
+ Claims are verified by type and a check.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#verify_signature">verify_signature (key)</a></td>
+    <td class="summary">Verify a JWT signature
+ Verify the current JWT signature against a given key</td>
   </tr>
 </table>
 
@@ -94,23 +105,87 @@ layout: default
 <dl class="function">
   <hr />
   <dt>
-    <h4><a name="get_timestamps">get_timestamps</a></h4>
+    <h4><a name="new">new</a></h4>
   </dt>
   <dd>
-    Creates a timestamp
+    Instanciate a JWT parser
+ Parse a JWT and instanciate a JWT parser for further operations
+ Return errors instead of an instance if any encountered
 
     <h5>Parameters:</h5>
     <ul>
         <li>
-          <code class="parameter">now</code>
-          (optional) Time to generate a timestamp from, if omitted current UTC time will be used
+          <code class="parameter">token</code>
+          JWT to parse
         </li>
     </ul>
 
     <h5>Returns:</h5>
     <ul>
       <li>
-        Timestamp table containing fields; second, minute, hour, day, month, year
+        JWT parser
+      </li>
+      <li>
+        error if any
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="verify_registered_claims">verify_registered_claims</a></h4>
+  </dt>
+  <dd>
+    Verify registered claims (according to RFC 7519 Section 4.1)
+ Claims are verified by type and a check.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">claims_to_verify</code>
+          A list of claims to verify.
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        A boolean indicating true if no errors zere found
+      </li>
+      <li>
+        A list of errors
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="verify_signature">verify_signature</a></h4>
+  </dt>
+  <dd>
+    Verify a JWT signature
+ Verify the current JWT signature against a given key
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">key</code>
+          Key against which to verify the signature
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        A boolean indicating if the signature if verified or not
       </li>
     </ul>
 

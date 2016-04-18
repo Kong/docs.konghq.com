@@ -8,7 +8,9 @@ chapter: 5
 
 Kong interacts with the model layer through classes we refer to as "DAOs". This chapter will detail the available API to interact with the datastore.
 
-As of `0.8.0`, Kong supports two primary datastores: [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) and [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/).
+<div class="alert alert-warning">
+  <strong>Note:</strong> Currently, Kong only supports <a href="http://cassandra.apache.org/">Cassandra</a> as its datastore. This guide assumes that you are already familiar with it and sometimes describes concepts only related to Cassandra, such as indexes and clustering keys.
+</div>
 
 ---
 
@@ -17,35 +19,34 @@ As of `0.8.0`, Kong supports two primary datastores: [Cassandra {{site.data.kong
 All entities in Kong are represented by:
 
 - A schema that describes which table the entity relates to in the datastore, constraints on its fields such as foreign keys, non-null constraints etc... This schema is a table described in the [plugin configuration]({{page.book.chapters.plugin-configuration}}) chapter.
-- An instance of the `DAO` class mapping to the database currently in use (Cassandra or PostgreSQL). This class' methods consume the schema and expose methods to insert, update, find and delete entities of that type.
+- A child implementation of the [kong.dao.cassandra.base_dao] module, which consumes the schema exposing methods to insert, update, find and delete entities of that type. See the [children DAOs interface](http://localhost:3000/docs/0.5.x/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface).
 
 The core entities in Kong are: Apis, Consumers and Plugins. Each of these entities can be interacted with through their corresponding DAO instance, available through the **DAO Factory** instance. The DAO Factory is responsible for loading these core entities' DAOs as well as any additional entities, provided for example by plugins.
 
-The DAO Factory is a singleton instance in Kong and thus, is accessible through the `singletons` module:
+The DAO Factory is generally accessible from the `dao` global variable:
 
 ```lua
-local singletons = require "kong.singletons"
+local dao_factory = dao
 
 -- Core DAOs
-local apis_dao = singletons.dao.apis
-local consumers_dao = singletons.dao.consumers
-local plugins_dao = singletons.dao.plugins
+local apis_dao = dao_factory.apis
+local consumers_dao = dao_factory.consumers
+local plugins_dao = dao_factory.plugins
 ```
+
+For [performance](http://lua-users.org/wiki/OptimisingUsingLocalVariables) [reasons](https://github.com/openresty/lua-nginx-module#lua-variable-scope), it is recommended to cache the global variable. In some cases, the DAO Factory is given as a local variable, and should be used over the global variable for the same reasons.
 
 ---
 
-### The DAO Lua API
+### DAOs Lua API
 
-The DAO class is responsible for the operations executed on a given table in the datastore, generally mapping to an entity in Kong. All the underlying supported databases (currently Cassandra and PostgreSQL) comply to the same interface, thus making the DAO compatible with all of them.
+All methods available on DAOs are documented in the [kong.dao.cassandra.base_dao] module in Kong's Public Lua API Reference. See the [public interface] and [children DAOs interface] sections of the base_dao module.
 
-The DAO interface is documented in the [Public Lua API][public interface] as the [kong.dao] module.
+By extending the `base_dao` module, all DAOs have access to an abstraction on top of Cassandra, providing methods for inserting, updating, finding and deleting rows, with validation and pagination features that Cassandra does not provide by itself.
 
 For example, inserting an API is as easy as:
 
 ```lua
-local singletons = require "kong.singletons"
-local dao = singletons.dao
-
 local inserted_api, err = dao.apis:insert({
   name = "mockbin",
   upstream_url = "http://mockbin.com",
@@ -55,7 +56,16 @@ local inserted_api, err = dao.apis:insert({
 
 ---
 
+### Custom DAOs
+
+Because Kong needs to deal with more than the three core entities, the [kong.dao.cassandra.base_dao][kong.dao.cassandra.base_dao] can be inherited to support any entity. Plugins make heavy use of this feature, and every exising plugin implements their own DAO, loaded by the DAO Factory and made available everywhere the factory is, just like the core entities.
+
+Now, let's see how to create your own DAO for your plugin in the next chapter: [Custom Entities]({{page.book.next}}).
+
+---
+
 Next: [Custom Entities &rsaquo;]({{page.book.next}})
 
-[kong.dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao
+[kong.dao.cassandra.base_dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao
+[children DAOs interface]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface
 [public interface]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao/#Public_interface

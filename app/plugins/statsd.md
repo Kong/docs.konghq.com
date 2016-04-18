@@ -1,7 +1,7 @@
 ---
 id: page-plugin
-title: Plugins - Statsd
-header_title: Statsd
+title: Plugins - StatsD
+header_title: StatsD
 header_icon: /assets/images/icons/plugins/statsd.png
 breadcrumbs:
   Plugins: /plugins
@@ -14,7 +14,7 @@ nav:
       - label: Metrics
 ---
 
-Log API metrics like request count, request size, response status and latency to the Statsd server.
+Log API metrics like request count, request size, response status and latency to the StatsD server.
 
 ----
 
@@ -50,7 +50,7 @@ parameter                     | description
 
 ## Metrics
 
-Plugin currently logs four metrics to the statsd server: `request_count`, `request_size`, `response_size`, `status_count` and `latency`.
+Plugin currently logs four metrics to the StatsD server: `request_count`, `request_size`, `response_size`, `status_count` and `latency`.
 
 Metric                     | description | namespace
 ---                        | ---         | -----
@@ -61,4 +61,3 @@ Metric                     | description | namespace
 `status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
 `unique_users`               | count of users made a request to the api | kong.\<api_name>.user.uniques
 `request_per_user`               | For each request by the user, increment its counter by 1 | kong.\<api_name>.\<consumer_id>.count
-

@@ -56,7 +56,7 @@ In order to authenticate the user, client must set credentials in `Proxy-Authori
 
 credentials := [ldap | LDAP] base64(username:password)
 
-Plugin will validate the user against the LDAP server and cache the credential for future requests.
+The plugin will validate the user against the LDAP server and cache the credential for future requests for the duration specified in `config.cache_ttl`.
 
 ### Upstream Headers
 

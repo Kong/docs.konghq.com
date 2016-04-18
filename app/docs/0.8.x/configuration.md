@@ -10,7 +10,7 @@ The Kong configuration file is a [YAML][yaml] file that can be specified when us
 
 When using Kong, you can specify the location of your configuration file from any command using the `-c` argument. See the [CLI reference][cli-reference] for more information.
 
-However, when no configuration file is passed to Kong, it will look under `/etc/kong/kong.yml` for a fallback configuration file. Should no file be present in this location, Kong will then load a default configuration from its Luarocks install path.
+However, when no configuration file is passed to Kong, it will look under `/etc/kong/kong.yml` for a fallback configuration file. Should no file be present in this location, Kong will then simply use its default configuration.
 
 ## How do I customize my configuration?
 
@@ -34,6 +34,7 @@ If you browse the default configuration, you'll notice that all properties are c
 - [**cluster**](#cluster)
 - [**database**](#database)
 - [**cassandra**](#cassandra)
+- [**postgres**](#postgres)
 - [**send_anonymous_reports**](#send_anonymous_reports)
 - [**memory_cache_size**](#memory_cache_size)
 - [**nginx**](#nginx)
@@ -43,7 +44,7 @@ If you browse the default configuration, you'll notice that all properties are c
 ### **custom_plugins**
 
 
-Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/plugin-development) for how to build your own plugins.
+Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/docs/{{page.kong_version}}/plugin-development) for how to build your own plugins.
 
 **Default:** none.
 
@@ -247,17 +248,29 @@ cluster:
 
   Key for encrypting network traffic within Kong. Must be a base64-encoded 16-byte key.
 
+  **`ttl_on_failure`**
+
+  The TTL (time to live), in seconds, of a node in the cluster when it stops sending healthcheck pings, maybe because of a failure. If the node is not able to send a new healthcheck before the expiration, then new nodes in the cluster will stop attempting to connect to it on startup.
+
+**Default:**
+
+```yaml
+ttl_on_failure: 3600
+```
+
 ----
 
 ### **database**
 
-The name of the desired database to use. Currently, Kong only supports [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
+The name of the desired database to use. Currently, Kong supports [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/).
 
 **Default:**
 
 ```yaml
 database: cassandra
 ```
+
+**Supported:** `"cassandra"`, `"postgres"`
 
 ----
 
@@ -340,6 +353,16 @@ data_centers:
   - dc2
 ```
 
+  **`cassandra.consistency`**
+
+  Consistency level to use. See [http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html](http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html)
+
+  **Default:** 
+
+```yaml
+consistency: ONE
+```
+
 #### SSL Options
 
   **`cassandra.ssl.enabled`**
@@ -402,6 +425,43 @@ user: cassandra
 ```yaml
 password: cassandra
 ```
+
+----
+
+### **postgres**
+
+A dictionary holding the properties for Kong to connect to a PostgreSQL server.
+
+**Defaults:**
+
+```yaml
+postgres:
+  host: "127.0.0.1"
+  port: 5432
+  user: kong
+  password: kong
+  database: kong
+```
+
+  **`postgres.host`**
+
+  The host to connect to.
+
+  **`postgres.port`**
+
+  The port for this running host.
+
+  **`postgres.user`**
+
+  The username to authenticate with.
+
+  **`postgres.password`**
+
+  The password to authenticate with.
+
+  **`postgres.database`**
+
+  The database name to connect to.
 
 ----
 

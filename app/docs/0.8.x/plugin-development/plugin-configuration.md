@@ -18,10 +18,7 @@ Most of the time, it makes sense for your plugin to be configurable to answer al
 
 The configuration consists of a Lua table in Kong that we call a **schema**. It contains key/value properties that the user will set when enabling the plugin through the [Admin API]. Kong provides you with a way of validating the user's configuration for your plugin.
 
-Your plugin's configuration is being verified against your schema when:
-
-- A user makes a request to the [Admin API] to enable the plugin on one of his APIs (`POST` or `PUT`).
-- A user makes a request to the [Admin API] to update a plugin on one of his APIs or Consumers (`PATCH` or `PUT`).
+Your plugin's configuration is being verified against your schema when a user issues a request to the [Admin API] to enable or update a plugin on a given API and/or Consumer.
 
 For example, a user performs the following request:
 
