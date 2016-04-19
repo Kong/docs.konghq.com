@@ -15,7 +15,7 @@ $(function () {
     e.preventDefault()
 
     $('html, body').animate({
-      scrollTop: $($(this).attr('href')).offset().top - 70 // Header height
+      scrollTop: $($(this).attr('href')).offset().top - 107 // Header height
     }, 700)
   })
 
