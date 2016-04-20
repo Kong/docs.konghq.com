@@ -68,6 +68,10 @@
     - name: Response Transformer
       info: Modify the upstream response before returning it to the client
 
+    - name: Correlation ID
+      id: correlation-id
+      info: Correlate requests and responses using a unique ID
+
 - name: Logging
   info: Log requests and response data using the best transport for your infrastructure
   plugins:
@@ -98,7 +102,3 @@
     - name: Loggly
       id: loggly
       info: Send request and response logs to Loggly
-
-    - name: Correlation ID
-      id: correlation-id
-      info: Correlate requests and responses using a unique ID
