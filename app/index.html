@@ -82,37 +82,40 @@ layout: default
       <div class="one-half column">
         <ol>
           <li>
-            <h4>Start Kong</h4>
-            <p>After <a href="/install">installing</a> Kong, run 'kong start' to start the server.<br/><br/></p>
+            <h4>Add your API on Kong</h4>
+            <p>After <a href="/install">installing</a> and starting Kong, use the Admin API on port 8001 to add a new API. Kong will route every incoming request with the specified public DNS to the associated target URL.<br/><br/></p>
           </li>
           <li>
-            <h4>Add Your API to Kong</h4>
-            <p>Using Kong's RESTful interface on port 8001 you can add a new API. Kong will route every incoming request with the specified public DNS to the associated target URL.<br/><br/></p>
+            <h4>Add Plugins on the API</h4>
+            <p>Then add extra functionality by using <a href="/plugins">Kong Plugins</a>. You can also create your own plugins.</p>
           </li>
           <li>
             <h4>Make a Request</h4>
-            <p>...and then you can consume the API by requesting the public DNS specified. In production point the public DNS to Kong.</p>
+            <p>...and then you can consume the API on port 8000 by requesting the public DNS specified. In production point the public DNS to Kong. It also supports URL path routing.</p>
           </li>
         </ol>
       </div>
       <div class="one-half column">
         <div class="highlight">
-          <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>kong start</code></pre>
+          <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
+  --url http://localhost:8001/apis/ <span class="se">\</span>
+  --data <span class="s1">'request_host=test.com'</span> <span class="se">\</span>
+  --data <span class="s1">'request_host=mockbin.com'</span></code></pre>
         </div>
 
         <div class="highlight">
           <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
-  --url http://localhost:8001/apis/ <span class="se">\</span>
-  --data <span class="s1">'name=mockbin'</span> <span class="se">\</span>
-  --data <span class="s1">'upstream_url=http://mockbin.com/'</span> <span class="se">\</span>
-  --data <span class="s1">'request_host=mockbin.com'</span></code></pre>
+  --url http://localhost:8000/apis/test.com/plugins/ <span class="se">\</span>
+  --data <span class="s1">'name=rate-limiting'</span> <span class="se">\</span>
+  --data <span class="s1">'config.minute=100'</span></code></pre>
         </div>
 
         <div class="highlight">
           <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X GET <span class="se">\</span>
   --url http://localhost:8000/ <span class="se">\</span>
-  --header <span class="s1">'Host: mockbin.com'</span></code></pre>
+  --header <span class="s1">'Host: test.com'</span></code></pre>
         </div>
+
       </div>
     </div>
   </div>
