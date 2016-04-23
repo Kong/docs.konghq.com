@@ -27,7 +27,7 @@ Once you have defined your model, you must create your migration modules which w
 
 Since Kong `0.8.0`, both Cassandra and PostgreSQL are supported, which requires that your plugin implements its migrations for both databases.
 
-Each migration must bear a unique name, and `up` and `down` fields. Such fields can either be strings of SQL/CQL queries for simple migrations, or actual Lua code to execute for complex ones. The `up` field will be executed when Kong migrats **forward**. It must bring your database`s schema to the latest state required by your plugin. The `down` field must execute the necessary actions to revert your schema to its previous state, before `up` was ran.
+Each migration must bear a unique name, and `up` and `down` fields. Such fields can either be strings of SQL/CQL queries for simple migrations, or actual Lua code to execute for complex ones. The `up` field will be executed when Kong migrates **forward**. It must bring your database's schema to the latest state required by your plugin. The `down` field must execute the necessary actions to revert your schema to its previous state, before `up` was ran.
 
 One of the main benefits of this approach is should you need to release a new version of your plugin that modifies a model, you can simply add new migrations to the array before releasing your plugin. Another benefit is that it is also possible to revert such migrations.
 
