@@ -50,7 +50,7 @@ parameter                     | description
 
 ## Metrics
 
-Plugin currently logs four metrics to the statsd server: `request_count`, `request_size`, `response_size`, `status_count` and `latency`.
+Plugin currently logs following metrics to the Datadog server.
 
 Metric                     | description | namespace
 ---                        | ---         | -----
@@ -59,3 +59,5 @@ Metric                     | description | namespace
 `response_size`               | logs the response's body size in bytes | kong.\<api_name>.request.size
 `latency`                   | logs the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
 `status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
+`unique_users`               | count of users made a request to the api | kong.\<api_name>.user.uniques
+`request_per_user`            | For each request by the user, increment its counter by 1 | kong.\<api_name>.\<consumer_id>.count
