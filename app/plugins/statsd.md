@@ -14,7 +14,8 @@ nav:
       - label: Metrics
 ---
 
-Log API metrics like request count, request size, response status and latency to the StatsD server.
+Log API metrics like request count, request size, response status and latency to the StatsD daemon.
+It can also be used to log metrics on [Collectd](https://collectd.org/) daemon by enabling its [Statsd plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
 ----
 
