@@ -10,27 +10,27 @@ nav:
     items:
       - label: Terminology
       - label: Configuration
-  - label: Usage
+  - label: Documentation
     items:
       - label: Create a Consumer
       - label: Create a JWT credential
       - label: Craft a JWT
-      - label: Send the JWT
+      - label: Send a request with the JWT
       - label: (Optional) Verified claims
       - label: (Optional) Base64 encoded secret
       - label: Upstream Headers
 ---
 
-Verify HMAC SHA-256 signed JSON Web Tokens (as specified in RFC 7519) and proxy them to your upstream services if they validate. Each of your Consumers will have a couple of public and secret keys provided by Kong and used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URL and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
+Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URI and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
 ----
 
 ## Terminology
 
-- `api`: your upstream service placed behind Kong, for which Kong proxies requests to.
-- `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
-- `consumer`: a developer or service using the api. When using Kong, a consumer only communicates with Kong which proxies every call to the said, upstream api.
-- `credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a consumer.
+- `API`: your upstream service, for which Kong proxies requests to.
+- `Plugin`: a plugin executes actions inside Kong during the request/response lifecycle.
+- `Consumer`: a developer or service using the API. When using Kong, a Consumer authenticates itself with Kong which proxies every call to the upstream API.
+- `Credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a Consumer.
 
 ----
 
@@ -45,23 +45,23 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter               | description
----                          | ---
-`name`                       | The name of the plugin to use, in this case: `jwt`
-`config.uri_param_names`<br>*optional*     | Default `jwt`. A list of querystring parameters that Kong will inspect to retrieve potential JWTs.
-`config.claims_to_verify`<br>*optional*    | Default `none`. A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
-`config.key_claim_name`<br>*optional*    | Default `iss`. The name of the claim in which the `key` identifying the secret must be passed.
-`config.secret_is_base64`<br>*optional*    | Default `false`. If true, the plugin assumes the credential's secret to be base64 encoded. You will need to create a base64 encoded secret for your consumer, and sign your JWT with the original secret.
+form parameter            | required     | description
+---                       | ---          | ---
+`name`                    | *required*   | The name of the plugin to use, in this case: `jwt`
+`config.uri_param_names`  | *optional*   | A list of querystring parameters that Kong will inspect to retrieve JWTs. Defaults to `jwt`.
+`config.claims_to_verify` | *optional*   | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
+`config.key_claim_name`   | *optional*   | The name of the claim in which the `key` identifying the secret **must** be passed. Defaults to `iss`.
+`config.secret_is_base64` | *optional*   | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your consumer, and sign your JWT with the original secret. Defaults to `false`.
 
 ----
 
-## Usage
+## Documentation
 
-In order to use the plugin, you first need to create a consumer to associate one or more credentials to it. The consumer represents a developer using the final service/API.
+In order to use the plugin, you first need to create a Consumer and associate one or more credentials to it. The Consumer represents a developer using the final service/API, and a JWT credential holds the public and private keys used to verify a crafted token.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [consumer][consumer-object] object, that represents a user consuming the API. To create a [consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object. The Consumer is an entity consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
 $ curl http://kong:8001/consumers \
@@ -70,16 +70,16 @@ $ curl http://kong:8001/consumers \
 HTTP/1.1 201 Created
 ```
 
-parameter                       | description
----                             | ---
-`username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
-`custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
+form parameter | required        | description
+---            | ---             | ---
+`username`     | *semi-optional* | The username for this Consumer. Either this field or `custom_id` must be specified.
+`custom_id`    | *semi-optional* | A custom identifier used to map the Consumer to an external database. Either this field or `username` must be specified.
 
-A [consumer][consumer-object] can have many credentials.
+A [Consumer][consumer-object] can have many JWT credentials.
 
 ### Create a JWT credential
 
-You can provision a new credential by making the following HTTP request:
+You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/jwt
@@ -96,18 +96,16 @@ HTTP/1.1 201 Created
 
 `consumer`: The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
 
-form parameter           | description
----                      | ---
-`key`<br>*optional*      | A unique string identifying the credential. If left out, will be auto-generated.
-`secret`<br>*optional*   | A unique string used to sign JWTs for this consumer. If left out, will be auto-generated.
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> It is recommended to let Kong auto-generate those values. Only specify them yourself if you are migrating an existing system to Kong, and must re-use your key/secret credentials to make the migration to Kong transparent to your consumers.
-</div>
+form parameter   | required        | description
+---              | ---             | ---
+`key`            | *optional*      | A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is **mandatory** while crafting your token, as specified in the next section.
+`algorithm`      | *optional*      | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`. Defaults to `HS256`.
+`rsa_public_key` | *optional*      | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
+`secret`         | *optional*      | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
 ### Craft a JWT
 
-Now that your consumer has a credential, his or her JWT should be crafted as follows (according to [RFC 7519][rfc-jwt]):
+Now that your Consumer has a credential, and assuming we want to sign it using `HS256`, the JWT should be crafted as follows (according to [RFC 7519][rfc-jwt]):
 
 First, the header must be:
 
@@ -132,9 +130,9 @@ Since the `secret` associated with this `key` is `e71829c351aa4242c2719cbfbe671c
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
 ```
 
-### Send the JWT
+### Send a request with the JWT
 
-The JWT can be sent to Kong in the `Authorization` header:
+The JWT can now be included in a request to Kong by adding it to the `Authorization` header:
 
 ```bash
 $ curl http://kong:8000/{api path} \
@@ -147,7 +145,7 @@ Or as a querystring parameter, if configured in `config.uri_param_names` (which 
 $ curl http://kong:8000/{api path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
 ```
 
-The request will be inspected by Kong, which will take various actions depending on the validity of the JWT:
+The request will be inspected by Kong, whose behavior depends on the validity of the JWT:
 
 request                        | proxied to upstream API  | response status code
 --------                       |--------------------------|---------------------
@@ -158,7 +156,7 @@ valid signature                | yes                      | from the upstream se
 valid signature, invalid verified claim (**option**) | no                       | 403
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> When the JWT is valid and proxied to the API, Kong makes no modification to the request other than adding headers identifying the consumer. It is the role of your service to now decode the JWT, since it is considered valid.
+  <strong>Note:</strong> When the JWT is valid and proxied to the API, Kong makes no modification to the request other than adding headers identifying the Consumer. It is the role of your service to now base64 decode the JWT claims, since it is considered valid.
 </div>
 
 ### (**Optional**) Verified claims
