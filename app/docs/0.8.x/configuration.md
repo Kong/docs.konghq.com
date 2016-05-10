@@ -250,7 +250,7 @@ cluster:
 
   **`ttl_on_failure`**
 
-  The TTL (time to live), in seconds, of a node in the cluster when it stops sending healthcheck pings, maybe because of a failure. If the node is not able to send a new healthcheck before the expiration, then new nodes in the cluster will stop attempting to connect to it on startup.
+  The TTL (time to live), in seconds, of a node in the cluster when it stops sending healthcheck pings, maybe because of a failure. If the node is not able to send a new healthcheck before the expiration, then new nodes in the cluster will stop attempting to connect to it on startup. Should be at least `60`.
 
 **Default:**
 
