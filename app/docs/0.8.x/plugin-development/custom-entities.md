@@ -110,7 +110,7 @@ To make the DAO Factory load your custom DAO(s), you will simply need to define 
 This schema is to be defined in a module named:
 
 ```
-"kong.plugins.<plugin_name>.daos.lua"
+"kong.plugins.<plugin_name>.daos"
 ```
 
 Once that module returns your entity's schema, and assuming your plugin is loaded by Kong (see the `custom_plugins` property in `kong.yml`), the DAO Factory will use it to instanciate a DAO object (see [kong.dao]).
