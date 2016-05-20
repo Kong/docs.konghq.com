@@ -13,6 +13,7 @@ nav:
     items:
       - label: Configuring Quotas
       - label: Headers sent to the client
+      - label: Upstream Headers
 ---
 
 This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream API. You can arbitrary set as many rate-limiting objects (or quotas) as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
@@ -39,6 +40,7 @@ form parameter                      | required        | description
 `consumer_id`                       | *optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `config.header_name`                | *optional*      | The name of the response header used to increment the counters. By default is `X-Kong-Limit`.
 `config.continue_on_error`  | *optional*      |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting to the datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors. By default is `false`.
+`config.block_on_first_violation`  | *optional*      |  A boolean value that determines if the requests should be blocked as soon as one limit is being exceeded. This will block requests that are supposed to consume other limits too. By default is `false`.
 `config.limits.{limit_name}`        | *required*      |  This is a list of custom objects that you can set on the API, with arbitrary names set in the `{limit_name`} placeholder, like `config.limits.sms.minute=20` if your object is called "SMS".
 `config.limits.{limit_name}.second` | *semi-optional* | The amount of HTTP requests the developer can make per second. At least one limit must exist.
 `config.limits.{limit_name}.minute` | *semi-optional* | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
@@ -88,6 +90,15 @@ X-RateLimit-Remaining-Videos-Minute: 10
 ```
 
 If any of the limits configured is being reached, the plugin will return a `HTTP/1.1 429` status code and an empty body.
+
+### Upstream Headers
+
+The plugin will append the usage headers for each limit before proxying it to the upstream API/Microservice, so that you can properly refuse to process the request if there are no more limits remaining. The headers are in the form of `X-RateLimit-Remaining-{limit_name}`, like:
+
+```
+X-RateLimit-Remaining-Videos: 3
+X-RateLimit-Remaining-Images: 0
+```
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
