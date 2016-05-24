@@ -241,9 +241,9 @@ The [Resource Owner Password Credentials Grant][password-grant] is a much simple
 
 ![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow2.png)
 
-1. The client application make a request including some OAuth2 parameters, including `username` and `password` parameters.
+1. On the first request, the client application make a request including some OAuth2 parameters, including `username` and `password` parameters, to your web-application.
 
-2. The backend will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
+2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
     ```bash
     $ curl https://your.api.com/oauth2/token \
