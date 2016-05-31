@@ -47,7 +47,7 @@ form parameter      | required     | description
 
 ## How it works
 
-When enabled, this plugin will add a new header too all of the requests processed by Kong. This header bears the name configured in `config.header_name`, and a unique value generated according to `config.generator`.
+When enabled, this plugin will add a new header to all of the requests processed by Kong. This header bears the name configured in `config.header_name`, and a unique value generated according to `config.generator`.
 
 This header is always added to calls to your upstream services, and optionally echoed back to your clients according to the `config.echo_downstream` setting.
 
