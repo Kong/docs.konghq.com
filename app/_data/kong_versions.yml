@@ -66,12 +66,12 @@
   lua_doc: true
 -
   release: "0.8.x"
-  version: "0.8.2"
-  luarocks_version: "0.8.2-0"
+  version: "0.8.3"
+  luarocks_version: "0.8.3-0"
   dependencies:
     luajit: "2.1.0-alpha"
     luarocks: "2.3.0"
     cassandra: "2.2.x"
     postgres: "9.4+"
-    openresty: "1.9.7.3"
+    openresty: "1.9.7.5"
   lua_doc: true
