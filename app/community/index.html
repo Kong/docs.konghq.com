@@ -4,6 +4,89 @@ layout: default
 header_title: Community
 header_icon: /assets/images/icons/icn-community.svg
 header_caption: Be part part of the movement and join the growing Kong community
+community_tools:
+  - name: Ansible role for Kong on Ubuntu
+    website: https://github.com/Getsidecar/ansible-role-kong
+  
+  - name: Biplane
+    description: "declarative configuration in Crystal"
+    website: https://github.com/articulate/biplane
+    
+  - name: Bonobo
+    description: "key management (with Mashery migration scripts)"
+    website: https://github.com/guardian/bonobo
+    
+  - name: Chef Cookbook
+    website: https://github.com/zuazo/kong-cookbook
+    
+  - name: Django Kong Admin
+    description: "Admin UI in JavaScript"
+    website: https://github.com/vikingco/django-kong-admin
+    
+  - name: Jungle
+    description: "Admin UI in JavaScript"
+    website: https://github.com/rsdevigo/jungle
+    
+  - name: Kong Dashboard
+    description: "Admin UI in JavaScript"
+    website: https://github.com/PGBI/kong-dashboard
+    
+  - name: Kong for CanopyCloud
+    website: https://github.com/CanopyCloud/cip-kong
+    
+  - name: Kong image waiting for Cassandra
+    website: https://github.com/articulate/docker-kong-wait
+    
+  - name: Kong image for Tatum
+    website: https://github.com/Sillelien/docker-kong
+    
+  - name: Kong-UI
+    description: "Admin UI in JavaScript"
+    website: https://github.com/msaraf/kong-ui
+    
+  - name: Konga
+    description: "CLI Admin tool in JavaScript"
+    website: https://github.com/Floby/konga-cli
+    
+  - name: Kongfig
+    description: "Declarative configuration in JavaScript"
+    website: https://github.com/mybuilder/kongfig
+    
+  - name: Kongfig on Puppet Forge
+    website: https://forge.puppet.com/mybuilder/kongfig
+    
+  - name: Puppet receipe
+    website: https://github.com/scottefein/puppet-nyt-kong
+    
+  - name: Python-Kong
+    description: "Admin client library for Python"
+    website: https://pypi.python.org/pypi/python-kong/
+    
+  - name: .NET-Kong
+    description: "Admin client library for .NET"
+    website: https://www.nuget.org/packages/Kong/0.0.4
+    
+community_meetups:
+  - name: Kong San Francisco
+    website: http://www.meetup.com/Kong-SF/
+  
+  - name: Kong Boston
+    website: http://www.meetup.com/Kong-BOSTON/
+    
+  - name: Kong London
+    website: http://www.meetup.com/Kong-LONDON/
+    
+  - name: Kong Detroit
+    website: http://www.meetup.com/Kong-DETROIT/
+    
+  - name: Kong New York
+    website: http://www.meetup.com/Kong-NY/
+    
+  - name: Kong Amsterdam
+    website: http://www.meetup.com/Kong-AMSTERDAM/
+    
+  - name: Kong Tokyo
+    website: http://www.meetup.com/Kong-TOKYO
 ---
 
 <div class="page page-community">
@@ -78,20 +161,27 @@ header_caption: Be part part of the movement and join the growing Kong community
         </li>
       </ul>-->
 
+      <!-- Meetups -->
       <h3><img src="/assets/images/logos/logo-meetup.png" width="48" height="32" alt="Meetup"/>Kong Community Meetups</h3>
 
       <ul>
         <li>Be part of the Kong Community and <a href="http://kong.meetup.com/" target="_blank">start</a> yours or join one of these meetups below!</li>
-        <li><a href="http://www.meetup.com/Kong-SF/" target="_blank">Kong San Francisco</a></li>
-        <li><a href="http://www.meetup.com/Kong-BOSTON/" target="_blank">Kong Boston</a></li>
-        <li><a href="http://www.meetup.com/Kong-LONDON/" target="_blank">Kong London</a></li>
-        <li><a href="http://www.meetup.com/Kong-DETROIT/" target="_blank">Kong Detroit</a></li>
-        <li><a href="http://www.meetup.com/Kong-NY/" target="_blank">Kong New York</a></li>
-        <li><a href="http://www.meetup.com/Kong-AMSTERDAM/" target="_blank">Kong Amsterdam</a></li>
-        <li><a href="http://www.meetup.com/Kong-TOKYO" target="_blank">Kong Tokyo</a></li>
-
-
+      
+      {% for community in page.community_meetups %}
+        <li><a href="{{ community.website }}" target="_blank">{{ community.name }}</a>
+      {% endfor %}
       </ul>
+      
+      
+      <!-- Community Tools -->
+      <h3><img src="/assets/images/icons/icn-developers-blue.svg" width="48" height="32" alt="Meetup"/>Tools Maintained By The Community</h3>
+      
+      <ul>
+      {% for tool in page.community_tools %}
+        <li><a href="{{ tool.website }}" target="_blank">{{ tool.name }}</a>{% if tool.description %}: {{tool.description}}{% endif %}</li>
+      {% endfor %}
+      </ul>
+      
     </div>
   </div>
 </div>
