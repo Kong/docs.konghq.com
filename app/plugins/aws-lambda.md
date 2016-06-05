@@ -62,6 +62,7 @@ form parameter                        | description
 ### Working
 - Add plugin to api
 - Specify aws credentials (IAM access_key and secret_key) in config
+- Specify IAM credentials in Authorization Basic header of api to lambda
 - Specify region, function name, body in config
 - Return response value
 - Return appropriate error response on request if api.upstream_url is *not* aws-lambda://
@@ -70,7 +71,6 @@ form parameter                        | description
 - Error handling
 
 ### ToDo
-- Allow specifying IAM credentials in Authentication header of api to lambda
 - Allow sepecifying region, function name, qualifier, invocation type, log type and client context declaratively in aws-lambda schemed upstream_url of parent api
 - Add spport for IAM Instance Role authentication
 - Add support for logging?
