@@ -36,8 +36,6 @@ You can configure and enable the plugin for your [API][api-object] by executing 
 ```bash
 $ curl -X POST http://kong:8001/apis/aws-lambda-test/plugins \
     --data "name=aws-lambda" \
-    --data "config.aws_region=us-east-1" \
-    --data "config.function_name=kongLambdaTest" \
     --data "config.aws_access_key=AKIAIDPNYYGMJOXN26SQ" \
     --data "config.aws_secret_key=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" \
     --data 'config.body={"key1":"foo","key2":"bar","key3":"baz"}'
@@ -50,10 +48,8 @@ The parameters follow those outlined by AWS for Lamba's invoke-function as outli
 form parameter                        | description
 ---:                                  | ---
 `name`                                | Name of the plugin to use, in this case: `aws-lambda`
-`config.aws_region`                   | AWS Region of the Lambda function to be called, e.g. `us-east-1`.
-`config.function_name`                | Name of the Lambda function to be called, expects a string (e.g. `kongLambdaTest`).
-`config.aws_access_key`               | AWS Access Key authorized to call the Lambda function, expects a string (e.g. `AKIAIDPNYYGMJOXN26SQ`).
-`config.aws_secret_key`               | AWS Secret Key authorized to call the Lambda function, expects a string (e.g. `toq1QWn7b5aystpA/Ly48OkvX3N4pODRLEC9wINw`).
+`config.aws_access_key`<br>*optional* | AWS Access Key authorized to call the Lambda function, expects a string (e.g. `AKIAIDPNYYGMJOXN26SQ`).
+`config.aws_secret_key`<br>*optional* | AWS Secret Key authorized to call the Lambda function, expects a string (e.g. `toq1QWn7b5aystpA/Ly48OkvX3N4pODRLEC9wINw`).
 `config.body`<br>*optional*           | Payload as JSON string to be passed to the Lambda function. Defaults to `{}`. Any querystring and body parameters will be merged into this body.
 
 ----
@@ -61,17 +57,17 @@ form parameter                        | description
 ## Status
 ### Working
 - Add plugin to api
-- Specify aws credentials (IAM access_key and secret_key) in config
 - Specify IAM credentials in Authorization Basic header of api to lambda
-- Specify region, function name, body in config
+- Specify region, function name, in aws-lambda://\<region>/\<function_name> api upstream_url
+- Specify body in config
 - Return response value
-- Return appropriate error response on request if api.upstream_url is *not* aws-lambda://
-- Allow merging of query parameters from api to lambda payload
-- Allow merging of body from api to lambda
+- Return appropriate error response on request if api.upstream_url is *not* aws-lambda://region/func
+- Merging of query parameters from api to lambda payload
+- Merging of body from api to lambda
 - Error handling
 
 ### ToDo
-- Allow sepecifying region, function name, qualifier, invocation type, log type and client context declaratively in aws-lambda schemed upstream_url of parent api
+- Allow sepecifying qualifier, invocation type, log type and client context declaratively in aws-lambda schemed upstream_url of parent api
 - Add spport for IAM Instance Role authentication
 - Add support for logging?
 - Add support for client context?
