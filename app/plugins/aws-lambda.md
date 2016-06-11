@@ -9,6 +9,9 @@ nav:
   - label: Getting Started
     items:
       - label: Configuration
+  - label: Documentation
+    items:
+      - label: Authentication
   - label: Status
     items:
       - label: Working
@@ -54,6 +57,15 @@ form parameter                        | description
 
 ----
 
+## Authentication
+AWS IAM Credentials must be provided to this plugin one of the following three ways:
+1. *HTTP Basic Authentication* An AWS IAM Access Key and Secret Key can be used as the Basic base64(username:password) value in the Authorization header of the HTTP request to the API. This will be decoded by the plugin and used for invoking the Lambda.
+1. *Configuration* An AWS IAM Access Key and Secret Key can be provided in the plugin via config.aws_access_key and config.aws_secret_key. Eventually this should be possible to include in the api''s upstream_url, but this is a future enhancement.
+1. *IAM Role on EC2* If the Kong node processing this request is a member of an IAM role, the plugin will use this role for invoking the Lambda.
+These will be attempted in the priority order listed above and the first wins. E.g. if an api has IAM credentials in the aws-lambda plugin config, and the Kong node processing the request is a member of an IAM role, and the request headers contain an Authorization header, the Authorization header will be decoded for the IAM credential and the other two credentials will be ignored.
+
+----
+
 ## Status
 ### Working
 - Add plugin to api
@@ -65,10 +77,10 @@ form parameter                        | description
 - Merging of query parameters from api to lambda payload
 - Merging of body from api to lambda
 - Error handling
+- Supports for IAM Instance Role authentication
 
 ### ToDo
 - Allow sepecifying qualifier, invocation type, log type and client context declaratively in aws-lambda schemed upstream_url of parent api
-- Add spport for IAM Instance Role authentication
 - Add support for logging?
 - Add support for client context?
 - Add support for qualifier
