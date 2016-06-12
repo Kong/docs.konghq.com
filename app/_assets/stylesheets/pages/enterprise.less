@@ -4,7 +4,7 @@
   font-size: 18px;
   line-height: 32px;
   padding: 0;
-
+  
   .column {
     height: 350px;
     position: relative;
@@ -183,5 +183,44 @@
     text-align: center;
     font-weight: 500;
     margin-bottom: 80px;
+  }
+}
+
+/*
+** Request a Demo Page (Typeform embed)
+*/
+
+.typeform-body {
+  position: relative;
+  width: 100%;
+  height: ~"calc(100vh - 510px)";
+  min-height: 400px;
+  background-color: #002038;
+  transition: height 0.6s ease;
+
+  &.expand-typeform {
+    height: ~"calc(100vh - 160px)";
+  }
+
+  .typeform-form-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .clickzone {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+
+      &.clicked {
+        display: none;
+      }
+    }
+
+    iframe {
+      height: 100%;
+    }
   }
 }
