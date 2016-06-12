@@ -166,7 +166,6 @@ $(function () {
 
   var expandTypeform = function () {
     $('#enterprise').slideUp(600, function() {
-      // $('#typeform').addClass('expand-typeform')
       var subtractHeight = $('.site-header').height() + $('.footer').height()
       $('#typeform')
         .css('height', 'calc(100vh - ' + subtractHeight + 'px)')
