@@ -165,6 +165,7 @@ $(function () {
   // Cloud page demo request Typeform
 
   var expandTypeform = function () {
+    $('#typeform-clickzone').addClass('clicked')
     $('#enterprise').slideUp(600, function () {
       var subtractHeight = $('.site-header').height() + $('.footer').height()
       $('#typeform')
@@ -179,7 +180,6 @@ $(function () {
 
   $('#typeform-clickzone').one('click', function () {
     expandTypeform()
-    $(this).addClass('clicked')
   })
 
   // Enterprise page demo request form
