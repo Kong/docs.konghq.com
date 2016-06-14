@@ -23,7 +23,7 @@ Easily expose AWS Lambda functions as REST-ful API endpoints, without requiring 
 ----
 
 ## Configuration
-> NOTE: This plugin is designed only for APIs that have an `aws-lambda` `upstream_url` scheme `aws-lambda://\<aws_region\>/\<function_name\>`. This is intended to better reflect the dependency of this API on the aws-lambda plugin. In other words, without adding the plugin, this API will be non-functional, as the request will not be properly signed or otherwise formatted for AWS Lambda function invocation.
+> NOTE: This plugin is designed only for APIs that have an `aws-lambda` `upstream_url` scheme `aws-lambda://\<aws_region\>/\<function_name\>/[?qualifier=$LATEST]`. This is intended to better reflect the dependency of this API on the aws-lambda plugin. In other words, without adding the plugin, this API will be non-functional, as the request will not be properly signed or otherwise formatted for AWS Lambda function invocation.
 
 Add your API with a compatible `upstream_url`:
 
@@ -68,21 +68,17 @@ These will be attempted in the priority order listed above and the first wins. E
 
 ## Status
 ### Working
-- Add plugin to api
 - Specify IAM credentials in Authorization Basic header of api to lambda
-- Specify region, function name, in aws-lambda://\<region>/\<function_name> api upstream_url
+- Specify region, function name, and qualifier in aws-lambda://\<region>/\<function_name>[?qualifier=$LATEST] api upstream_url
 - Specify body in config
-- Return response value
 - Return appropriate error response on request if api.upstream_url is *not* aws-lambda://region/func
 - Merging of query parameters from api to lambda payload
 - Merging of body from api to lambda
 - Error handling
-- Supports for IAM Instance Role authentication
+- IAM Instance Role authentication
 
 ### ToDo
-- Allow sepecifying qualifier, invocation type, log type and client context declaratively in aws-lambda schemed upstream_url of parent api
+- Allow sepecifying invocation type, and log type declaratively in aws-lambda schemed upstream_url of parent api
 - Add support for logging?
-- Add support for client context?
-- Add support for qualifier
 - Rewrite as *pure* nginx request to aws-lambda (i.e. without capturing and/or making origin request via resty) -- is this possible?
 - Add support for other invocation types? (does this even make sense?)
