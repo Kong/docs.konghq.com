@@ -162,26 +162,6 @@ $(function () {
     analytics.identify(email, traits, track)
   })
 
-  // Cloud page demo request Typeform
-
-  var expandTypeform = function () {
-    $('#typeform-clickzone').addClass('clicked')
-    $('#enterprise').slideUp(600, function () {
-      var subtractHeight = $('.site-header').height() + $('.footer').height()
-      $('#typeform')
-        .css('height', 'calc(100vh - ' + subtractHeight + 'px)')
-    })
-  }
-
-  $('#start-typeform').one('click', function (e) {
-    e.preventDefault()
-    expandTypeform()
-  })
-
-  $('#typeform-clickzone').one('click', function () {
-    expandTypeform()
-  })
-
   // Enterprise page demo request form
 
   $('.demo-request-form').on('submit', function (e) {
