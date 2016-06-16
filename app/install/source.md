@@ -22,7 +22,7 @@ redirect_from: /install/compile/
 
     To compile OpenResty: [OpenSSL](https://www.openssl.org/) and [PCRE](http://www.pcre.org/).
 
-    [OpenResty {{openresty_version}}](http://openresty.com/#Installation), compiled with the previously installed LuaJIT (See the `--with-luajit` configure option).
+    [OpenResty {{openresty_version}}](https://openresty.org/en/installation.html), compiled with the previously installed LuaJIT (See the `--with-luajit` configure option).
 
     Make sure to use the following `configure` options:
 
