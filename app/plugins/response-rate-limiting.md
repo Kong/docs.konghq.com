@@ -27,7 +27,7 @@ If the API has no authentication layer, the **Client IP** address will be used, 
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=response-ratelimiting" \
     --data "config.limits.{limit_name}.minute=10"
 ```

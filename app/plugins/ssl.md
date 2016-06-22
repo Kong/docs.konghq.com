@@ -24,7 +24,7 @@ Binds a specific SSL certificate to the `request_host` value of a service. In ca
 Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --form "name=ssl" \
     --form "config.cert=@/path/to/cert.pem" \
     --form "config.key=@/path/to/cert.key" \

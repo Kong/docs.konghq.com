@@ -25,7 +25,7 @@ Add Basic Authentication to your APIs, with username and password protection. Th
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=basic-auth" \
     --data "config.hide_credentials=true"
 ```
@@ -63,7 +63,7 @@ A [Consumer][consumer-object] can have many credentials.
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
+$ curl -X POST --url http://kong:8001/consumers/{consumer}/basic-auth \
     --data "username=user123" \
     --data "password=secret"
 ```

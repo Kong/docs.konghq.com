@@ -24,7 +24,7 @@ It can also be used to log metrics on [Collectd](https://collectd.org/) daemon b
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=statsd" \
     --data "config.host=127.0.0.1" \
     --data "config.port=8125" \

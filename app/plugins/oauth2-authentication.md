@@ -32,7 +32,7 @@ Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][author
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=oauth2" \
     --data "config.scopes=email,phone,address" \
     --data "config.mandatory_scope=true"
@@ -75,7 +75,7 @@ The clients trying to authorize and request access tokens must use these endpoin
 You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/ \
+$ curl -X POST --url http://kong:8001/consumers/ \
     --data "username=user123" \
     --data "custom_id=SOME_CUSTOM_ID"
 ```
@@ -92,7 +92,7 @@ A [Consumer][consumer-object] can have many credentials.
 Then you can finally provision new OAuth 2.0 credentials (also called "OAuth applications") by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
+$ curl -X POST --url http://kong:8001/consumers/{consumer_id}/oauth2 \
     --data "name=Test%20Application" \
     --data "client_id=SOME-CLIENT-ID" \
     --data "client_secret=SOME-CLIENT-SECRET" \
@@ -116,7 +116,7 @@ If you are migrating you existing OAuth 2.0 applications and access tokens over 
 * Migrate access tokens using the `/oauth2_tokens` endpoints in the Kong's Admin API. For example:
 
 ```bash
-$ curl -X POST http://kong:8001/oauth2_tokens \
+$ curl -X POST --url http://kong:8001/oauth2_tokens \
     --data "credential_id=KONG-APPLICATION-ID" \
     --data "token_type=bearer" \
     --data "access_token=SOME-TOKEN" \
@@ -200,7 +200,7 @@ A diagram repreenting this flow:
 5. The backend must add the `provision_key` and `authenticated_userid` parameters to the `client_id`, `response_type` and `scope` parameters and it will make a `POST` request to Kong at your API address, on the `/oauth2/authorize` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
     ```bash
-    $ curl https://your.api.com/oauth2/authorize \
+    $ curl --url https://your.api.com/oauth2/authorize \
         --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
         --data "client_id=XXX" \
         --data "response_type=XXX" \
@@ -246,7 +246,7 @@ The [Resource Owner Password Credentials Grant][password-grant] is a much simple
 2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
     ```bash
-    $ curl https://your.api.com/oauth2/token \
+    $ curl --url https://your.api.com/oauth2/token \
         --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
         --data "client_id=XXX" \
         --data "client_secret=XXX" \

@@ -24,7 +24,7 @@ Log request and response data over UDP to [Loggly](https://www.loggly.com).
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=loggly" \
     --data "config.key=YOUR_LOGGLY_SERVICE_TOKEN"
 ```
