@@ -23,7 +23,7 @@ Add LDAP Bind Authentication to your APIs, with username and password protection
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=ldap-auth" \
     --data "config.hide_credentials=true" \
     --data "config.ldap_host=ldap.example.com" \

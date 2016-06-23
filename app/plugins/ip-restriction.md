@@ -20,7 +20,7 @@ Restrict access to an API by either whitelisting or blacklisting IP addresses. S
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=ip-restriction" \
     --data "config.whitelist=54.13.21.1, 143.1.0.0/24"
 ```

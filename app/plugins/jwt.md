@@ -39,7 +39,7 @@ Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified i
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=jwt"
 ```
 
@@ -64,7 +64,7 @@ In order to use the plugin, you first need to create a Consumer and associate on
 You need to associate a credential to an existing [Consumer][consumer-object] object. The Consumer is an entity consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
-$ curl http://kong:8001/consumers \
+$ curl --url http://kong:8001/consumers \
     --data "username=<USERNAME>" \
     --data "custom_id=<CUSTOM_ID>"
 HTTP/1.1 201 Created
@@ -135,7 +135,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWN
 The JWT can now be included in a request to Kong by adding it to the `Authorization` header:
 
 ```bash
-$ curl http://kong:8000/{api path} \
+$ curl --url http://kong:8000/{api path} \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4'
 ```
 
@@ -165,7 +165,7 @@ Kong can also perform verification on registered claims, as defined in [RFC 7519
 
 ```bash
 # This adds verification for both nbf and exp claims:
-$ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
+$ curl -X PATCH --url http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
     --data "config.claims_to_verify=exp,nbf"
 ```
 
@@ -181,7 +181,7 @@ claim name | verification
 If your secret contains binary data (such as secrets provided by services like Auth0), you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 
 ```bash
-$ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
+$ curl -X PATCH --url http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
     --data "config.secret_is_base64=true"
 ```
 
@@ -189,7 +189,7 @@ Then, base64 encode your consumers' secrets:
 
 ```bash
 # secret is: "blob data"
-$ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
+$ curl -X POST --url http://kong:8001/consumers/{consumer}/jwt \
   --data "secret=YmxvYiBkYXRh"
 ```
 

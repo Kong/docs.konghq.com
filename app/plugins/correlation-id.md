@@ -25,7 +25,7 @@ Correlate requests and responses using a unique ID transmitted over an HTTP head
 Configuring the plugin is straightforward. You can associate it with an [API][api-object] by executing the following request to your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=correlation-id" \
     --data "config.header_name=Kong-Request-ID" \
     --data "config.generator=uuid#counter" \

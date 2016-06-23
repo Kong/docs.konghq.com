@@ -23,7 +23,7 @@ Rate limit how many HTTP requests a developer can make in a given period of seco
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=rate-limiting" \
     --data "config.second=5" \
     --data "config.hour=10000"

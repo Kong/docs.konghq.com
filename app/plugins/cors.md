@@ -23,7 +23,7 @@ Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling th
 Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=cors" \
     --data "config.origin=mockbin.com" \
     --data "config.methods=GET, POST" \

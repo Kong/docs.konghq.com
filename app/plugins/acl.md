@@ -24,7 +24,7 @@ Restrict access to an API by whitelisting or blacklisting consumers using arbitr
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=acl" \
     --data "config.whitelist=group1, group2"
 ```
@@ -48,7 +48,7 @@ In order to use this plugin, you need to properly have configured your APIs with
 Once you have added an authentication plugin to an API, and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/acls \
+$ curl -X POST --url http://kong:8001/consumers/{consumer}/acls \
     --data "group=group1"
 ```
 

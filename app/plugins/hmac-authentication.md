@@ -29,7 +29,7 @@ Add HMAC Signature Authentication to your APIs to establish the identity of the 
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=hmac-auth"
 ```
 
@@ -67,7 +67,7 @@ A [Consumer][consumer-object] can have many credentials.
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
+$ curl -X POST --url http://kong:8001/consumers/{consumer}/hmac-auth \
     --data "username=bob" \
     --data "secret=secret456"
 ```

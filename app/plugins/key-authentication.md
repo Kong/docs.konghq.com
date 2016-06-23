@@ -36,7 +36,7 @@ Add Key Authentication (also referred to as an API key) to your APIs. Consumers 
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=key-auth"
 ```
 
@@ -59,7 +59,7 @@ In order to use the plugin, you first need to create a Consumer to associate one
 You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/ \
+$ curl -X POST --url http://kong:8001/consumers/ \
     --data "username=<USERNAME>" \
     --data "custom_id=<CUSTOM_ID>"
 HTTP/1.1 201 Created
@@ -109,7 +109,7 @@ $ curl http://kong:8000/{api path}?apikey=<some_key>
 Or in a header:
 
 ```bash
-$ curl http://kong:8000/{api path} \
+$ curl --url http://kong:8000/{api path} \
     -H 'apikey: <some_key>'
 ```
 

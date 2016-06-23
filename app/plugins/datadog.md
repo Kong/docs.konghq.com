@@ -23,7 +23,7 @@ Log API metrics like request count, request size, response status and latency to
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=datadog" \
     --data "config.host=127.0.0.1" \
     --data "config.port=8125" \

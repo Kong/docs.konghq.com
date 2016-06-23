@@ -26,7 +26,7 @@ Logs request and response data to [Galileo][galileo], the analytics platform for
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins/ \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins/ \
     --data "name=galileo" \
     --data "config.service_token=YOUR_SERVICE_TOKEN"
 ```

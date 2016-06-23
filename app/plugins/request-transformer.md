@@ -23,7 +23,7 @@ Transform the request sent by a client on the fly on Kong, before hitting the up
 Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST --url http://kong:8001/apis/{api}/plugins \
     --data "name=request-transformer" \
     --data "config.add.headers=x-new-header:some_value, x-another-header:some_value" \
     --data "config.add.querystring=new-param:some_value, another-param:some_value" \
@@ -63,7 +63,7 @@ remove --> replace --> add --> append
 - Add multiple headers by passing each header:value pair separately:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST --url http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -76,7 +76,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 - Add multiple headers by passing comma separated header:value pair:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST --url http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -88,7 +88,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 - Add multiple headers passing config as JSON body:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST --url http://localhost:8001/apis/mockbin/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -101,7 +101,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 - Add a querystring and a header:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST --url http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer" \
   --data "config.add.querystring=q1:v2,q2=v1" \
   --data "config.add.headers=h1:v1"
@@ -121,7 +121,7 @@ incoming request querystring | upstream proxied querystring
 - Append multiple headers and remove a body parameter:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST --url http://localhost:8001/apis/mockbin/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'
 ```
