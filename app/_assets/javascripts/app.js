@@ -2,6 +2,12 @@
 
 'use strict'
 
+// Gitter config
+;((window.gitter = {}).chat = {}).options = {
+  room: 'Mashape/kong',
+  activationElement: false
+}
+
 $(function () {
   var $window = $(window)
   var $docs = $('#documentation')
@@ -17,6 +23,24 @@ $(function () {
     $('html, body').animate({
       scrollTop: $($(this).attr('href')).offset().top - 107 // Header height
     }, 700)
+  })
+
+  // Gitter Sidecar
+
+  var $gitterBtn = $('#support-bubble')
+  var setupGitter = function () {
+    $(document).on('gitter-chat-toggle', '.gitter-chat-embed', function (data) {
+      console.log(data)
+    })
+  }
+
+  $gitterBtn.on('click', function () {
+    $gitterBtn.toggleClass('close-gitter')
+    setupGitter()
+  })
+
+  $(document).on('gitter-sidecar-ready', function (data) {
+    // setupGitter()
   })
 
   // Change header download button color
