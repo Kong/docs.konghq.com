@@ -720,11 +720,24 @@
   border-radius: 50%;
 
   transform: translateX(0);
-  transition: background-size 0.3s, transform 0.3s;
+  transition: background-size 0.3s, transform 0.3s, opacity 0.3s;
 
   &.close-gitter {
     background-size: 0 0;
-    transform: translateX(-510px);
+    transform: translateX(-40vw);
+
+    @media (max-width: 1150px) {
+      transform: translateX(-55vw);
+    }
+    @media (max-width: 944px) {
+      transform: translateX(-70vw);
+    }
+    @media (max-width: 600px) {
+      transform: translateX(-81vw);
+    }
+    @media (max-width: 500px) {
+      display: none;
+    }
   }
 
   &::before {
@@ -749,7 +762,7 @@
   }
 
   &.close-gitter::before {
-    content: 'Close chat';
+    opacity: 0;
   }
 
   &::after {
