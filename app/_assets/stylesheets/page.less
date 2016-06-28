@@ -697,3 +697,108 @@
     }
   }
 }
+
+// Gitter
+
+.js-gitter-toggle-chat-button {
+  z-index: 10000;
+  position: fixed;
+
+  bottom: 15px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+
+  background-color: @blue;
+  background-image: url("https://js.intercomcdn.com/images/acquire.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 26px 25px;
+  box-shadow: 0px 6px 13px 0px rgba(0, 0, 0, 0.23);
+
+  border: 1px solid @navy-dark;
+  border-radius: 50%;
+
+  transform: translateX(0vw) translateZ(0) scale(1.0, 1.0);
+  transition: background-size 0.3s, transform 0.3s cubic-bezier(.16,.22,.22,1.7), opacity 0.3s;
+
+  &.close-gitter {
+    background-size: 0 0;
+    transform: translateX(-40vw);
+
+    @media (max-width: 1150px) {
+      transform: translateX(-55vw);
+    }
+    @media (max-width: 944px) {
+      transform: translateX(-70vw);
+    }
+    @media (max-width: 600px) {
+      transform: translateX(-81vw);
+    }
+    @media (max-width: 500px) {
+      display: none;
+    }
+  }
+
+  &::before {
+    content: 'Chat with Kong community';
+    display: block;
+    position: relative;
+    width: 200px;
+    top: 9px;
+    right: 214px;
+    padding: 5px;
+    border-radius: 4px 14px 14px 4px;
+    background-color: @blue;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+
+    transition: opacity 0.3s;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &.close-gitter::before {
+    opacity: 0;
+  }
+
+  &::after {
+    content: '\f00d';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-family: 'FontAwesome';
+    font-size: 0;
+    text-align: center;
+    line-height: 46px;
+    color: #fff;
+
+    transition: font-size 0.3s;
+  }
+
+  &.close-gitter::after {
+    font-size: 40px;
+  }
+}
+
+// Gitter plugin styles
+.gitter-chat-embed {
+  z-index: 1002;
+}
+
+.gitter-chat-embed-action-bar-item-collapse-chat {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzEuNDI5IDE3MS40MjkiIGZpbGw9IiMzYTMxMzMiPjxwYXRoIGQ9Ik0xMjIuNDMzLDEwNi4xMzhsLTE2LjI5NSwxNi4yOTVjLTAuNzQ0LDAuNzQ0LTEuNiwxLjExNi0yLjU2NiwxLjExNmMtMC45NjgsMC0xLjgyMy0wLjM3Mi0yLjU2Ny0xLjExNmwtMTUuMjktMTUuMjkgbC0xNS4yOSwxNS4yOWMtMC43NDQsMC43NDQtMS42LDEuMTE2LTIuNTY3LDEuMTE2cy0xLjgyMy0wLjM3Mi0yLjU2Ny0xLjExNmwtMTYuMjk0LTE2LjI5NWMtMC43NDQtMC43NDQtMS4xMTYtMS42LTEuMTE2LTIuNTY2IGMwLTAuOTY4LDAuMzcyLTEuODIzLDEuMTE2LTIuNTY3bDE1LjI5LTE1LjI5bC0xNS4yOS0xNS4yOWMtMC43NDQtMC43NDQtMS4xMTYtMS42LTEuMTE2LTIuNTY3czAuMzcyLTEuODIzLDEuMTE2LTIuNTY3IEw2NS4yOSw0OC45OTZjMC43NDQtMC43NDQsMS42LTEuMTE2LDIuNTY3LTEuMTE2czEuODIzLDAuMzcyLDIuNTY3LDEuMTE2bDE1LjI5LDE1LjI5bDE1LjI5LTE1LjI5IGMwLjc0NC0wLjc0NCwxLjYtMS4xMTYsMi41NjctMS4xMTZjMC45NjcsMCwxLjgyMiwwLjM3MiwyLjU2NiwxLjExNmwxNi4yOTUsMTYuMjk0YzAuNzQ0LDAuNzQ0LDEuMTE2LDEuNiwxLjExNiwyLjU2NyBzLTAuMzcyLDEuODIzLTEuMTE2LDIuNTY3bC0xNS4yOSwxNS4yOWwxNS4yOSwxNS4yOWMwLjc0NCwwLjc0NCwxLjExNiwxLjYsMS4xMTYsMi41NjcgQzEyMy41NDksMTA0LjUzOSwxMjMuMTc3LDEwNS4zOTQsMTIyLjQzMywxMDYuMTM4eiBNMTQ2LjQyOSw4NS43MTRjMC0xMS4wMTItMi43MTctMjEuMTY4LTguMTQ4LTMwLjQ2OSBzLTEyLjc5Ny0xNi42NjctMjIuMDk4LTIyLjA5OFM5Ni43MjYsMjUsODUuNzE0LDI1cy0yMS4xNjgsMi43MTYtMzAuNDY5LDguMTQ3UzM4LjU3OSw0NS45NDUsMzMuMTQ3LDU1LjI0NlMyNSw3NC43MDMsMjUsODUuNzE0IHMyLjcxNiwyMS4xNjgsOC4xNDcsMzAuNDY5czEyLjc5NywxNi42NjYsMjIuMDk4LDIyLjA5OHMxOS40NTcsOC4xNDgsMzAuNDY5LDguMTQ4czIxLjE2OC0yLjcxNywzMC40NjktOC4xNDggczE2LjY2Ni0xMi43OTcsMjIuMDk4LTIyLjA5OFMxNDYuNDI5LDk2LjcyNiwxNDYuNDI5LDg1LjcxNHogTTE3MS40MjksODUuNzE0YzAsMTUuNTUxLTMuODMyLDI5Ljg5My0xMS40OTYsNDMuMDI0IGMtNy42NjQsMTMuMTMzLTE4LjA2MiwyMy41My0zMS4xOTQsMzEuMTk0Yy0xMy4xMzIsNy42NjQtMjcuNDc0LDExLjQ5Ni00My4wMjQsMTEuNDk2cy0yOS44OTItMy44MzItNDMuMDI0LTExLjQ5NiBjLTEzLjEzMy03LjY2NC0yMy41MzEtMTguMDYyLTMxLjE5NC0zMS4xOTRDMy44MzIsMTE1LjYwNywwLDEwMS4yNjUsMCw4NS43MTRTMy44MzIsNTUuODIyLDExLjQ5Niw0Mi42OSBjNy42NjQtMTMuMTMzLDE4LjA2Mi0yMy41MzEsMzEuMTk0LTMxLjE5NEM1NS44MjIsMy44MzIsNzAuMTY0LDAsODUuNzE0LDBzMjkuODkzLDMuODMyLDQzLjAyNCwxMS40OTYgYzEzLjEzMyw3LjY2NCwyMy41MywxOC4wNjIsMzEuMTk0LDMxLjE5NEMxNjcuNTk3LDU1LjgyMiwxNzEuNDI5LDcwLjE2NCwxNzEuNDI5LDg1LjcxNHoiLz48L3N2Zz4=) !important;
+}
+.gitter-chat-embed-action-bar-item:not(.gitter-chat-embed-action-bar-item-pop-out):active {
+  color: #555 !important;
+  background: none;
+  background-size: 57%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}

@@ -2,6 +2,12 @@
 
 'use strict'
 
+// Gitter config
+;((window.gitter = {}).chat = {}).options = {
+  room: 'Mashape/kong',
+  activationElement: false
+}
+
 $(function () {
   var $window = $(window)
   var $docs = $('#documentation')
@@ -17,6 +23,55 @@ $(function () {
     $('html, body').animate({
       scrollTop: $($(this).attr('href')).offset().top - 107 // Header height
     }, 700)
+  })
+
+  /*
+    Gitter Sidecar
+    1. Sets up click handler for gitter toggle button
+    2. When gitter is toggled for the first time,
+      set up gitter sidecar event handler
+  */
+
+  var $gitterBtn = $('#support-bubble')
+
+  var setupGitter = {
+    _ready: $.Deferred(),
+    ds: 'data-gitter-toggle-chat-state',
+
+    init: function () {
+      var chatElement = document.querySelector('.gitter-chat-embed')
+
+      chatElement.addEventListener('gitter-chat-toggle', function (e) {
+        if (e.detail.state) {
+          setupGitter.setClose()
+        } else {
+          setupGitter.setOpen()
+        }
+      })
+
+      this._ready.resolve()
+    },
+
+    // Set gitter button to close, 'X' appearance
+    setClose: function () {
+      $gitterBtn.attr(this.ds, 'false')
+        .addClass('close-gitter')
+    },
+
+    // Set gitter button to open, 'Chat' appearance
+    setOpen: function () {
+      $gitterBtn.attr(this.ds, 'true')
+        .removeClass('close-gitter')
+    },
+
+    // Getter for sidecar init state
+    ready: function () {
+      return this._ready.promise()
+    }
+  }
+
+  $gitterBtn.one('click', function () {
+    setupGitter.init()
   })
 
   // Change header download button color
