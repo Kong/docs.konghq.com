@@ -1,7 +1,7 @@
 ---
 id: page-plugin
-title: Plugins - SSL Certificate
-header_title: SSL Certificate
+title: Plugins - Dynamic SSL
+header_title: Dynamic SSL
 header_icon: /assets/images/icons/plugins/ssl.png
 breadcrumbs:
   Plugins: /plugins
@@ -15,7 +15,7 @@ nav:
       - label: Propagation
 ---
 
-Binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
+Dynamically binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
 ----
 
