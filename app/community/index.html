@@ -7,65 +7,65 @@ header_caption: Be part part of the movement and join the growing Kong community
 community_tools:
   - name: Ansible role for Kong on Ubuntu
     website: https://github.com/Getsidecar/ansible-role-kong
-  
+
   - name: Biplane
     description: "declarative configuration in Crystal"
     website: https://github.com/articulate/biplane
-    
+
   - name: Bonobo
     description: "key management (with Mashery migration scripts)"
     website: https://github.com/guardian/bonobo
-    
+
   - name: Chef Cookbook
     website: https://github.com/zuazo/kong-cookbook
-    
+
   - name: Django Kong Admin
     description: "Admin UI in JavaScript"
     website: https://github.com/vikingco/django-kong-admin
-    
+
   - name: Jungle
     description: "Admin UI in JavaScript"
     website: https://github.com/rsdevigo/jungle
-    
+
   - name: Kong Dashboard
     description: "Admin UI in JavaScript"
     website: https://github.com/PGBI/kong-dashboard
-    
+
   - name: Kong for CanopyCloud
     website: https://github.com/CanopyCloud/cip-kong
-    
+
   - name: Kong image waiting for Cassandra
     website: https://github.com/articulate/docker-kong-wait
-    
+
   - name: Kong image for Tatum
     website: https://github.com/Sillelien/docker-kong
-    
+
   - name: Kong-UI
     description: "Admin UI in JavaScript"
     website: https://github.com/msaraf/kong-ui
-    
+
   - name: Konga
     description: "CLI Admin tool in JavaScript"
     website: https://github.com/Floby/konga-cli
-    
+
   - name: Kongfig
     description: "Declarative configuration in JavaScript"
     website: https://github.com/mybuilder/kongfig
-    
+
   - name: Kongfig on Puppet Forge
     website: https://forge.puppet.com/mybuilder/kongfig
-    
+
   - name: Puppet receipe
     website: https://github.com/scottefein/puppet-nyt-kong
-    
+
   - name: Python-Kong
     description: "Admin client library for Python"
     website: https://pypi.python.org/pypi/python-kong/
-    
+
   - name: .NET-Kong
     description: "Admin client library for .NET"
     website: https://www.nuget.org/packages/Kong/0.0.4
-    
+
 community_meetups:
   - name: Kong Amsterdam
     website: http://www.meetup.com/Kong-AMSTERDAM/
@@ -217,22 +217,22 @@ community_meetups:
 
       <ul>
         <li>Be part of the Kong Community and <a href="http://kong.meetup.com/" target="_blank">start</a> yours or join one of these meetups below!</li>
-      
+
       {% for community in page.community_meetups %}
         <li><a href="{{ community.website }}" target="_blank">{{ community.name }}</a>
       {% endfor %}
       </ul>
-      
-      
+
+
       <!-- Community Tools -->
       <h3><img src="/assets/images/icons/icn-developers-blue.svg" width="48" height="32" alt="Meetup"/>Tools Maintained By The Community</h3>
-      
+
       <ul>
       {% for tool in page.community_tools %}
         <li><a href="{{ tool.website }}" target="_blank">{{ tool.name }}</a>{% if tool.description %}: {{tool.description}}{% endif %}</li>
       {% endfor %}
       </ul>
-      
+
     </div>
   </div>
 </div>
