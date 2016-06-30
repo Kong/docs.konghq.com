@@ -43,6 +43,10 @@
   type: compile
   png: true
 
+- id: google-cloud
+  name: Google Cloud Platform
+  type: cloud
+
 - id: source
   name: Compile
   type: compile
@@ -61,8 +65,3 @@
   name: FreeBSD
   soon: true
   type: package
-
-- id: google-cloud
-  name: Google Cloud Platform
-  soon: true
-  type: cloud
