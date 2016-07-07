@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - Dynamic SSL
 header_title: Dynamic SSL
-header_icon: /assets/images/icons/plugins/ssl.png
+header_icon: /assets/images/icons/plugins/dynamic-ssl.png
 breadcrumbs:
   Plugins: /plugins
 nav:
