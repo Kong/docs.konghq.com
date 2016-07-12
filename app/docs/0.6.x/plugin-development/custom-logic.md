@@ -47,7 +47,7 @@ All of those functions take one parameter given by Kong: the configuration of yo
 
 ### handler.lua specifications
 
-The `handler.lua` file must return a table implementing the functions you whish to be executed. In favor of brevity, here is a commented example module implementing all the available methods:
+The `handler.lua` file must return a table implementing the functions you wish to be executed. In favor of brevity, here is a commented example module implementing all the available methods:
 
 <div class="alert alert-warning">
   <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
