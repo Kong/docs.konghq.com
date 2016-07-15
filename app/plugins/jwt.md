@@ -64,7 +64,7 @@ In order to use the plugin, you first need to create a Consumer and associate on
 You need to associate a credential to an existing [Consumer][consumer-object] object. The Consumer is an entity consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
-$ curl http://kong:8001/consumers \
+$ curl -X POST http://kong:8001/consumers \
     --data "username=<USERNAME>" \
     --data "custom_id=<CUSTOM_ID>"
 HTTP/1.1 201 Created
