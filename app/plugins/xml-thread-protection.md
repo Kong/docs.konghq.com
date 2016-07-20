@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - XML Threat Protection
 header_title: XML Threat Protection
-header_icon: /assets/images/icons/plugins/xmlthreadprotection.png
+header_icon: /_assets/images/icons/plugins/xmlthreadprotection.png
 breadcrumbs:
   Plugins: /plugins
 nav:
