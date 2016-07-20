@@ -38,6 +38,9 @@
     - name: XML Threat Protection
       info: Address XML vulnerabilities and minimize attacks on your API
 
+    - name: JSON Threat Protection
+      info: Address JSON vulnerabilities and minimize attacks on your API
+
 - name: Traffic Control
   info: Manage, throttle and restrict inbound and outbound API traffic
   plugins:
