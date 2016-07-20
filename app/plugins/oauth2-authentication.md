@@ -267,7 +267,7 @@ In this flow, the steps that you need to implement are:
 
 * The backend endpoint that will process the original request and will authenticate the `username` and `password` values sent by the client, and if the authentication is successful, make the request to Kong and return back to the client whatever response Kong has sent back.
 
-[ssl-plugin]: /plugins/ssl/
+[ssl-plugin]: /plugins/dynamic-ssl/
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
