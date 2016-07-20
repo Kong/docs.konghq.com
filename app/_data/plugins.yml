@@ -35,6 +35,9 @@
     - name: IP Restriction
       info: Whitelist or blacklist IPs that can make requests
 
+    - name: XML Threat Protection
+      info: Address XML vulnerabilities and minimize attacks on your API
+
 - name: Traffic Control
   info: Manage, throttle and restrict inbound and outbound API traffic
   plugins:
