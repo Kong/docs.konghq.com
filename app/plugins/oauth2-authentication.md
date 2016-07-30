@@ -267,6 +267,20 @@ In this flow, the steps that you need to implement are:
 
 * The backend endpoint that will process the original request and will authenticate the `username` and `password` values sent by the client, and if the authentication is successful, make the request to Kong and return back to the client whatever response Kong has sent back.
 
+----
+
+## Refresh Token
+
+When your access token expires, you can generate a new access token using the refresh token you received in conjunction to your expired access token.
+
+    ```bash
+    $ curl -X POST https://your.api.com/oauth2/token \ 
+        --data "grant_type=refresh_token" \
+        --data "client_id=XXX" \
+        --data "client_secret=XXX" \
+        --data "refresh_token=XXX"
+    ```
+
 [ssl-plugin]: /plugins/dynamic-ssl/
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
