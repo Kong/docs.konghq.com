@@ -63,12 +63,12 @@ disable plugins, and a handful of other operations. Since you will be using
 this RESTful API to operate Kong, it is also extremely easy to integrate Kong
 with existing systems.
 
-[proxy_listen]: /docs/{{page.kong_version}}/configuration/#proxy_listen
-[cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
+[proxy_listen]: /docs/latest/configuration/#proxy_listen
+[cluster_listen]: /docs/latest/configuration/#cluster_listen
 [cluster_listen_rpc]:
-/docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
-[proxy_listen_ssl]: /docs/{{page.kong_version}}/configuration/#proxy_listen_ssl
-[admin_api_listen]: /docs/{{page.kong_version}}/configuration/#admin_api_listen
+/docs/latest/configuration/#cluster_listen_rpc
+[proxy_listen_ssl]: /docs/latest/configuration/#proxy_listen_ssl
+[admin_api_listen]: /docs/latest/configuration/#admin_api_listen
 
 ### Kong datastore
 
@@ -188,7 +188,7 @@ implemented in a dedicated plugin that is run on every request targetting that
 given API.
 
 Feel free to explore the [Plugins Gallery](/plugins) and the [Plugin
-development guide](/docs/{{page.kong_version}}/plugin-development). Learn how
+development guide](/docs/latest/plugin-development). Learn how
 to [enable plugins](/docs/latest/getting-started/enabling-plugins) with the
 [plugin configuration
 API](/docs/latest/admin-api/#plugin-configuration-object).
