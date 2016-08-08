@@ -27,7 +27,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=datadog" \
     --data "config.host=127.0.0.1" \
     --data "config.port=8125" \
-    --data "config.timeout=1000"
+    --data "config.timeout=1000" \
+    --data "config.tags.request_count=T1:V1,T2:V2"
+    --data "config.tags.request_size=T3,T4:V4"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -40,6 +42,7 @@ parameter                     | description
 `config.port`<br>*optional* | Default `8125`. The port to send data to on the upstream server
 `config.metrics`<br>*optional* | The metrics to be logged, by default all are logged. Available values are described at [Metrics](#metrics).
 `config.timeout`<br>*optional* | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
+`config.tags.$metric_name`<br>*optional* | List of tag or tag:value  pairs.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
@@ -61,3 +64,4 @@ Metric                     | description | namespace
 `status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
 `unique_users`               | count of users made a request to the api | kong.\<api_name>.user.uniques
 `request_per_user`            | For each request by the user, increment its counter by 1 | kong.\<api_name>.\<consumer_id>.count
+`upstream_latency`           | logs the time it took for the final service to process the request | kong.\<api_name>.upstream_latency

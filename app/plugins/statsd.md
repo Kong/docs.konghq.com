@@ -62,3 +62,4 @@ Metric                     | description | namespace
 `status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
 `unique_users`               | count of users made a request to the api | kong.\<api_name>.user.uniques
 `request_per_user`               | For each request by the user, increment its counter by 1 | kong.\<api_name>.\<consumer_id>.count
+`upstream_latency`           | logs the time it took for the final service to process the request | kong.\<api_name>.upstream_latency
