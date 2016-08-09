@@ -110,7 +110,7 @@ form parameter                | description
 
 ## Migrating Access Tokens
 
-If you are migrating you existing OAuth 2.0 applications and access tokens over to Kong, then you can:
+If you are migrating your existing OAuth 2.0 applications and access tokens over to Kong, then you can:
 
 * Migrate consumers and applications by creating OAuth 2.0 applications as explained above.
 * Migrate access tokens using the `/oauth2_tokens` endpoints in the Kong's Admin API. For example:
