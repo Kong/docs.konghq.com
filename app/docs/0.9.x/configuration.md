@@ -18,7 +18,7 @@ title: Configuration Reference
   - [Datastore section](#datastore-section)
   - [Clustering section](#clustering-section)
   - [DNS resolver section](#dns-resolver-section)
-  - [Development & miscallaneous section](#development-amp-miscallaneous-section)
+  - [Development & miscellaneous section](#development-amp-miscellaneous-section)
 
 ### Configuration loading
 
@@ -31,7 +31,7 @@ $ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 ```
 
 Kong will operate with default settings should all the values in your
-configuration be commented-out. Upon startin, Kong looks for several
+configuration be commented-out. Upon starting, Kong looks for several
 default locations that might contain a configuration file:
 
 ```
@@ -61,8 +61,8 @@ $ kong check <path/to/kong.conf>
 configuration at <path/to/kong.conf> is valid
 ```
 
-This command will take into accounts the environment variables you have
-currently set, and will error out in case your settings aren't valid.
+This command will take into account the environment variables you have
+currently set, and will error out in case your settings are invalid.
 
 Additionally, you can also use the CLI in debug mode to have more insight
 as to what properties Kong is being started with:
@@ -112,22 +112,22 @@ $ export KONG_LOG_LEVEL=error
 ### Custom Nginx configuration & embedding Kong
 
 Tweaking the Nginx configuration is an essential part of setting up your Kong
-instances, since it can allow you to optimize its performance for your
+instances since it allows you to optimize its performance for your
 infrastructure, or embed Kong in an already running OpenResty instance.
 
 #### Custom Nginx configuration
 
-Kong can be started, reloaded, restarted with a `--nginx-conf` argument, which
-must specify an Nginx configuration template. Such template uses the
+Kong can be started, reloaded and restarted with an `--nginx-conf` argument,
+which must specify an Nginx configuration template. Such a template uses the
 [Penlight][Penlight] [templating engine][pl.template], which is compiled using
-the given Kong configuration, before being dumped in your Kong prefix directory,
-moments before starting Nginx.
+the given Kong configuration, before being dumped in your Kong prefix
+directory, moments before starting Nginx.
 
-The default template can be found at: [https://github.com/Mashape/kong/tree/master/kong/templates].
-It is splitted in two Nginx configuration file: `nginx.lua` and `nginx_kong.lua`. The
-former is minimalistic and includes the later, which contains everything Kong requires
-to run. Moments before starting Nginx, those two files are copied into the prefix
-directory, which looks like so:
+The default template can be found at: https://github.com/Mashape/kong/tree/master/kong/templates.
+It is splitted in two Nginx configuration files: `nginx.lua` and
+`nginx_kong.lua`. The former is minimalistic and includes the later, which
+contains everything Kong requires to run. Moments before starting Nginx, those
+two files are copied into the prefix directory, which looks like so:
 
 ```
 /usr/local/kong
@@ -135,9 +135,9 @@ directory, which looks like so:
 ├── nginx.conf
 ```
 
-If you wish to include other `server` blocks in your Nginx configuration, or if you
-must tweak global settings not exposed by the Kong configuration, here is a
-suggestion:
+If you wish to include other `server` blocks in your Nginx configuration, or if
+you must tweak global settings that are not exposed by the Kong configuration,
+here is a suggestion:
 
 ```
 # ---------------------
@@ -151,7 +151,7 @@ pid pids/nginx.pid;                      # this setting is mandatory
 error_log logs/error.log ${{LOG_LEVEL}}; # can be set by kong.conf
 
 events {
-    use epoll;                           # custom setting
+    use epoll; # custom setting
     multi_accept on;
 }
 
@@ -211,7 +211,7 @@ If you are running your own OpenResty servers, you can also easily embed Kong
 by including the Kong Nginx sub-configuration using the `include` directive
 (similar to the examples of the previous section). However, you will need the
 final configuration and not the template. For this, use the `compile` command,
-which outputs to `stdout` a fully-compiled Nginx sub-configuration:
+which outputs a fully-compiled Nginx sub-configuration to `stdout`:
 
 ```
 $ bin/kong compile --conf kong.conf > /usr/local/openresty/conf/nginx-kong.conf
@@ -357,7 +357,7 @@ Default: `on`
 ##### **ssl_cert**
 
 If `ssl` is enabled, the absolute path to the SSL certificate for the
-`proxy_listen_ssl` address. If none is specified an `ssl` is enabled, Kong will
+`proxy_listen_ssl` address. If none is specified and `ssl` is enabled, Kong will
 generate a default certificate and key.
 
 Default: none
@@ -402,7 +402,7 @@ name                  |  description
 **pg_port**           | Port of the Postgres server
 **pg_user**           | Postgres user
 **pg_password**       | Postgres user's password
-**pg_database**       | Database to connect to. **must exists**
+**pg_database**       | Database to connect to. **must exist**
 **pg_ssl**            | Enable SSL connections to the server
 **pg_ssl_verify**     | If pg_ssl is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
 
@@ -413,7 +413,7 @@ name                  |  description
 name                            | description
 --------------------------------|------------------
 **cassandra_contact_points**    | Comma-separated list of contacts points to your cluster
-**cassandra_port**              | Port on which your nodes are listening to.
+**cassandra_port**              | Port on which your nodes are listening.
 **cassandra_keyspace**          | Keyspace to use in your cluster. Will be created if doesn't exist.
 **cassandra_consistency**       | Consistency setting to use when reading/writing
 **cassandra_timeout**           | Timeout (in ms) for reading/writing
@@ -471,7 +471,7 @@ By default, the `cluster_listen` address is advertised over the cluster.
 If the `cluster_listen` host is '0.0.0.0', then the first local, non-loopback
 IPv4 address will be advertised to other nodes.
 However, in some cases (specifically NAT traversal), there may be a routable
-address that cannot be bound to. This flag enables gossiping a different
+address that cannot be bound to. This flag enables advertising a different
 address to support this.
 
 Default: none
@@ -501,7 +501,7 @@ Default: `3600`
 
 ##### **cluster_profile**
 
-The timing profile for infracluster pings and timeouts. If a `lan` or `local`
+The timing profile for inter-cluster pings and timeouts. If a `lan` or `local`
 profile is used over the Internet, a high rate of failures is risked as the
 timing contraints would be too tight.
 
@@ -546,7 +546,7 @@ Default: `8.8.8.8`
 
 ---
 
-#### Development & miscallaneous section
+#### Development & miscellaneous section
 
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
@@ -586,6 +586,8 @@ Default: `1`
 When disabled, every request will run in a separate Lua VM instance: all Lua
 modules will be loaded from scratch. Useful for adopting an edit-and-refresh
 approach while developing a plugin.
+
+Turning this directive off has a severe impact on performance.
 
 See https://github.com/openresty/lua-nginx-module#lua_code_cache
 

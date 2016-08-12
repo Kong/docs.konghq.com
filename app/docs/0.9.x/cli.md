@@ -4,238 +4,263 @@ title: CLI Reference
 
 # CLI Reference
 
-Kong comes with a ***CLI*** *(Command Line Interface)* which provides you with an interface to manage your Kong nodes. Each command is run in the context of a single node, since Kong has no cluster awareness yet.
+The provided CLI (*Command Line Interface*) allows you to start, stop, and
+manage your Kong instances. The CLI manages your local node (as in, on the
+current machine).
 
-Almost every command requires access to your configuration file in order to be aware of where the NGINX working directory is located (known as the *prefix path* for those familiar with NGINX) referenced as `nginx_working_dir` in the Kong configuration file. If you haven't already, we recommend you read the [configuration reference][configuration-guide].
+If you haven't yet, we recommend you read the [configuration reference][configuration-reference].
 
-## Summary
+### Table of Contents
 
-- 1. [kong][1]
-- 2. [start][2]
-- 3. [stop][3]
-- 4. [quit][4]
-- 5. [restart][5]
-- 6. [reload][6]
-- 7. [status][7]
-- 8. [migrations][8]
-- 9. [cluster][9]
+- [Global flags](#global-flags)
+- [Available commands](#available-commands)
+  - [kong check](#kong-check)
+  - [kong cluster](#kong-cluster)
+  - [kong compile](#kong-compile)
+  - [kong health](#kong-health)
+  - [kong migrations](#kong-migrations)
+  - [kong quit](#kong-quit)
+  - [kong reload](#kong-reload)
+  - [kong restart](#kong-restart)
+  - [kong start](#kong-start)
+  - [kong stop](#kong-stop)
+  - [kong version](#kong-version)
 
-[1]: #kong
-[2]: #start
-[3]: #stop
-[4]: #quit
-[5]: #restart
-[6]: #reload
-[7]: #status
-[8]: #migrations
-[9]: #cluster
+### Global flags
+
+All commands take a set of special, optional flags as arguments:
+
+* `--help`: print the command's help message
+* `--v`: enable verbose mode
+* `--vv`: enable debug mode (noisy)
+* `--trace`: in case of error, print the stacktrace (useful for debugging
+  and reporting)
+
+[Back to TOC](#table-of-contents)
+
+### Available commands
+
+#### **kong check**
+
+```
+Usage: kong check <conf>
+
+Check the validity of a given Kong configuration file.
+
+<conf> (default /etc/kong.conf) configuration file
+```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
-## kong
+#### **kong cluster**
 
-```bash
-$ kong [options] <command> [parameters]
+```
+Usage: kong cluster COMMAND [OPTIONS]
+
+Manage Kong's clustering capabilities.
+
+The available commands are:
+ keygen -c                  Generate an encryption key for intracluster traffic.
+                            See 'cluster_encrypt_key' setting
+ members -p                 Show members of this cluster and their state.
+ reachability -p            Check if the cluster is reachable.
+ force-leave -p <node_name> Forcefully remove a node from the cluster (useful
+                            if the node is in a failed state).
+
+Options:
+ -c,--conf   (optional string) configuration file
+ -p,--prefix (optional string) prefix Kong is running at
 ```
 
-**Note** For help information on a specific command use the `--help` parameter: `kong <command> --help`
-
-### Options
-
-* `--help` - Outputs help information
-* `--version` - Outputs kong version
+[Back to TOC](#table-of-contents)
 
 ---
 
-## start
+#### **kong compile**
 
-Starts a Kong instance.
+For a detailed example of this command, see the
+[Embedding Kong](/docs/{{page.kong_version}}/configuration#embedding-kong)
+section of the configuratin reference.
 
-```bash
-$ kong start [parameters]
+```
+Usage: kong compile [OPTIONS]
+
+Compile the Nginx configuration file containing Kong's servers
+contexts from a given Kong configuration file.
+
+Example usage:
+ kong compile -c kong.conf > /usr/local/openresty/nginx-kong.conf
+
+ This file can then be included in an OpenResty configuration:
+
+ http {
+     # ...
+     include 'nginx-kong.conf';
+ }
+
+Note:
+ Third-party services such as Serf and dnsmasq need to be properly configured
+ and started for Kong to be fully compatible while embedded.
+
+Options:
+ -c,--conf (optional string) configuration file
 ```
 
-### Parameters
-
-#### -c \<configuration file path>
-
-Kong Configuration File
-
-When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
-Should no configuration file exist at that location Kong will load the default configuration stored internally.
-
-This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
+[Back to TOC](#table-of-contents)
 
 ---
 
-## stop
+#### **kong health**
 
-Terminates a Kong instance by firing the NGINX `stop` signal. This will execute a fast shutdown.
+```
+Usage: kong health [OPTIONS]
 
-```bash
-$ kong stop [parameters]
+Check if the necessary services are running for this node.
+
+Options:
+ -p,--prefix (optional string) prefix at which Kong should be running
 ```
 
-> For more information regarding the NGINX signals, consult their [documentation][nginx-signals].
-
-### Parameters
-
-#### -c \<configuration file path>
-
-Kong Configuration File
-
-Passing the Kong configuration file path *allows the termination of specific instance*, should you not pass the configuration file location, the command will
-default to the configuration at `/etc/kong/kong.yml` or its internal default configuration.
+[Back to TOC](#table-of-contents)
 
 ---
 
-## quit
+#### **kong migrations**
 
-Gracefully stops a Kong instance by firing the NGINX `quit` signal.
+```
+Usage: kong migrations COMMAND [OPTIONS]
 
-```bash
-$ kong quit [parameters]
+Manage Kong's database migrations.
+
+The available commands are:
+ list   List migrations currently executed.
+ up     Execute all missing migrations up to the latest available.
+ reset  Reset the configured database (irreversible).
+
+Options:
+ -c,--conf (optional string) configuration file
 ```
 
-> For more information regarding the NGINX signals, consult their [documentation][nginx-signals].
-
-### Parameters
-
-#### -c \<configuration file path>
-
-Kong Configuration File
-
-Passing the Kong configuration file path *allows the termination of specific instance*, should you not pass the configuration file location, the command will
-default to the configuration at `/etc/kong/kong.yml` or its internal default configuration.
+[Back to TOC](#table-of-contents)
 
 ---
 
-## restart
+#### **kong quit**
 
-This command sends NGINX a `stop` signal, followed by a `start` signal. If Kong was not running prior to the command, it will attempt to start it:
+```
+Usage: kong quit [OPTIONS]
 
-```bash
-$ kong restart [parameters]
+Gracefully quit a running Kong node (Nginx and other
+configured services) in given prefix directory.
+
+This command sends a SIGQUIT signal to Nginx, meaning all
+requests will finish processing before shutting down.
+If the timeout delay is reached, the node will be forcefully
+stopped (SIGTERM).
+
+Options:
+ -p,--prefix  (optional string) prefix Kong is running at
+ -t,--timeout (default 10) timeout before forced shutdown
 ```
 
-### Parameters
-
-#### -c \<configuration file path>
-
-Kong Configuration File
-
-When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
-Should no configuration file exist at that location Kong will load the default configuration stored internally.
-
-This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
+[Back to TOC](#table-of-contents)
 
 ---
 
-## reload
+#### **kong reload**
 
-Reloads the NGINX configuration at runtime and avoids potential downtime by leveraging the NGINX [reload][nginx-reload] signal.
+```
+Usage: kong reload [OPTIONS]
 
-```bash
-$ kong reload [parameters]
+Reload a Kong node (and start other configured services
+if necessary) in given prefix directory.
+
+This command sends a HUP signal to Nginx, which will spawn
+new workers (taking configuration changes into account),
+and stop the old ones when they have finished processing
+current requests.
+
+Options:
+ -c,--conf    (optional string) configuration file
+ -p,--prefix  (optional string) prefix Kong is running at
+ --nginx-conf (optional string) custom Nginx configuration template
 ```
 
-### Parameters
-
-#### -c \<configuration file path>
-
-Kong Configuration File
+[Back to TOC](#table-of-contents)
 
 ---
 
-## status
+#### **kong restart**
 
-When Kong is started, also third-party services required by Kong are started along with it (like dnsmasq). This command checks that all the services required by Kong are running.
+```
+Usage: kong restart [OPTIONS]
 
-If one of these services fails, it will bring Kong to an unstable state and a [`kong restart`](#restart) is recommended to be executed.
+Restart a Kong node (and other configured services like dnsmasq and Serf)
+in the given prefix directory.
 
-```bash
-$ kong status
+This command is equivalent to doing both 'kong stop' and
+'kong start'.
+
+Options:
+ -c,--conf    (optional string) configuration file
+ -p,--prefix  (optional string) prefix at which Kong should be running
+ --nginx-conf (optional string) custom Nginx configuration template
 ```
 
-### Parameters
-
-#### -c \<configuration file path>
-
-Kong Configuration File
-
-When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
-Should no configuration file exist at that location Kong will load the default configuration stored internally.
-
-This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
+[Back to TOC](#table-of-contents)
 
 ---
 
-## migrations
+#### **kong start**
 
-Run the datastore migrations (incremental changes to the datastore's schema).
+```
+Usage: kong start [OPTIONS]
 
-It can either run Kong core's migrations, plugin by plugin, or all at the same time. Migrations can either run "up" or "down". Up means it will prepare the datastore (create necessary tables, etc...). Down means it will revert any previous "up" step.
+Start Kong (Nginx and other configured services) in the configured
+prefix directory.
 
-```bash
-$ kong migrations [parameters] [list|up|down|reset]
+Options:
+ -c,--conf    (optional string) configuration file
+ -p,--prefix  (optional string) override prefix directory
+ --nginx-conf (optional string) custom Nginx configuration template
 ```
 
-### Parameters
-
-#### -c \<configuration file path>
-
-Kong Configuration File
-
-When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
-Should no configuration file exist at that location Kong will load the default configuration stored internally.
-
-This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
-
-#### -t \<type>
-
-Default: `all`
-
-When running the `up` or `down` commands, specify `core` or `plugin_name` to only run specific migrations.
-
-### Commands
-
-- **list**: list migrations already executed (for which the datastore has been prepared).
-- **up**: execute all migrations for the given type.
-- **down**: revert the latest executed migration for the given type. **This operation is desctructive**.
-- **reset**: reset your keyspace. **This operation is desctructive**.
+[Back to TOC](#table-of-contents)
 
 ---
 
-## cluster
+#### **kong stop**
 
-Manage the Kong cluster.
+```
+Usage: kong stop [OPTIONS]
 
-```bash
-$ kong cluster [parameters] [members|force-leave|reachability|keygen]
+Stop a running Kong node (Nginx and other configured services) in given
+prefix directory.
+
+This command sends a SIGTERM signal to Nginx.
+
+Options:
+ -p,--prefix (optional string) prefix Kong is running at
 ```
 
-### Parameters
+[Back to TOC](#table-of-contents)
 
-#### -c \<configuration file path>
+---
 
-Kong Configuration File
+#### **kong version**
 
-When no configuration file is provided as an argument, Kong by default will attempt to load the a configuration file at `/etc/kong/kong.yml`.
-Should no configuration file exist at that location Kong will load the default configuration stored internally.
+```
+Usage: kong version [OPTIONS]
 
-This file contains configuration for plugins, the datastore, and NGINX. You can read more about this file in the [configuration guide][configuration-guide].
+Print Kong's version. With the -a option, will print
+the version of all underlying dependencies.
 
-#### -t \<type>
+Options:
+ -a,--all    get version of all dependencies
+```
 
-### Commands
+[Back to TOC](#table-of-contents)
 
-- **members**: shows a list of members in the cluster and their state.
-- **force-leave [node_name]**: when a node is in a `failed` state, this operation forcebly removes the node from the cluster. Remembers to use the `node_name` and not its address.
-- **reachability**: performs a basic network reachability test. The local node will gossip out a "ping" message and request that all other nodes acknowledge delivery of the message.
-- **keygen**: generates an encryption key that can be used for Kong intracluster traffic encryption with other nodes (see `encrypt` property in the [cluster settings][cluster]). The keygen command uses a cryptographically strong pseudo-random number generator to generate the key.
-
-[configuration-guide]: /docs/{{page.kong_version}}/configuration
-[nginx-signals]: http://nginx.org/en/docs/control.html
-[nginx-reload]: http://wiki.nginx.org/CommandLine#Loading_a_New_Configuration_Using_Signals
-[cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
-[cluster]: /docs/{{page.kong_version}}/configuration/#cluster
+[configuration-reference]: /docs/{{page.kong_version}}/configuration
