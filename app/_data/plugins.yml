@@ -35,6 +35,9 @@
     - name: IP Restriction
       info: Whitelist or blacklist IPs that can make requests
 
+    - name: Bot Detection
+      info: Detects and blocks bots or custom clients
+
 - name: Traffic Control
   info: Manage, throttle and restrict inbound and outbound API traffic
   plugins:
