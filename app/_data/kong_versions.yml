@@ -85,4 +85,5 @@
     cassandra: "2.2.x"
     postgres: "9.4+"
     openresty: "1.9.15.1"
+    serf: "0.7"
   lua_doc: true
