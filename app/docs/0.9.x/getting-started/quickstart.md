@@ -25,7 +25,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 2. ### Verify that Kong has started successfully
 
     The previous step runs migrations to prepare your database.
-    Once these have finished you should see a message (`[OK] Started`) informing you that Kong is running.
+    Once these have finished you should see a message (`Kong started`) informing you that Kong is running.
 
     By default Kong listens on the following ports:
 

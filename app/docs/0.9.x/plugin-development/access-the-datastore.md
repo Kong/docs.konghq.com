@@ -38,8 +38,6 @@ local plugins_dao = singletons.dao.plugins
 
 The DAO class is responsible for the operations executed on a given table in the datastore, generally mapping to an entity in Kong. All the underlying supported databases (currently Cassandra and PostgreSQL) comply to the same interface, thus making the DAO compatible with all of them.
 
-The DAO interface is documented in the [Public Lua API][public interface] as the [kong.dao] module.
-
 For example, inserting an API is as easy as:
 
 ```lua
@@ -56,6 +54,3 @@ local inserted_api, err = dao.apis:insert({
 ---
 
 Next: [Custom Entities &rsaquo;]({{page.book.next}})
-
-[kong.dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao
-[public interface]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao.cassandra.base_dao/#Public_interface

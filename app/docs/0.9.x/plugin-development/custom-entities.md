@@ -113,7 +113,7 @@ This schema is to be defined in a module named:
 "kong.plugins.<plugin_name>.daos"
 ```
 
-Once that module returns your entity's schema, and assuming your plugin is loaded by Kong (see the `custom_plugins` property in `kong.yml`), the DAO Factory will use it to instanciate a DAO object (see [kong.dao]).
+Once that module returns your entity's schema, and assuming your plugin is loaded by Kong (see the `custom_plugins` property in `kong.yml`), the DAO Factory will use it to instanciate a DAO object.
 
 Here is an example of how one would define a schema to store API keys in a his or her database:
 
@@ -174,5 +174,4 @@ The next chapter will focus on caching custom entities, and invalidating them wh
 
 Next: [Caching custom entities &rsaquo;]({{page.book.next}})
 
-[kong.dao]: /docs/{{page.kong_version}}/lua-reference/modules/kong.dao
 [Admin API]: /docs/{{page.kong_version}}/admin-api/
