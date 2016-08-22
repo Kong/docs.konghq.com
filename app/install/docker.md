@@ -33,12 +33,12 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
 
 2. **Start Kong:**
 
-    Start a Kong container and link it to your database container, configuring the `DATABASE` environment variable with either `cassandra` or `postgres` depending on which database you decided to use:
+    Start a Kong container and link it to your database container, configuring the `KONG_DATABASE` environment variable with either `cassandra` or `postgres` depending on which database you decided to use:
 
     ```bash
     $ docker run -d --name kong \
                   --link kong-database:kong-database \
-                  -e "DATABASE=cassandra" \
+                  -e "KONG_DATABASE=cassandra" \
                   -p 8000:8000 \
                   -p 8443:8443 \
                   -p 8001:8001 \

@@ -41,8 +41,12 @@ form parameter | required        | description
 `config.day`    | *semi-optional* |  The amount of HTTP requests the developer can make per day. At least one limit must exist.
 `config.month`  | *semi-optional* |  The amount of HTTP requests the developer can make per month. At least one limit must exist.
 `config.year`   | *semi-optional* |  The amount of HTTP requests the developer can make per year. At least one limit must exist.
-`config.async`  | *optional*      |  A boolean value that determines if the usage should be incremented asynchronously or not. If set to `true` it has the advantage of speeding up the performance of the plugin, at the cost of its accuracy: the usage is not incremented immediately before proxying the request, but on a separate light thread right after the request has been already proxied. By default is `false`.
-`config.continue_on_error`  | *optional*      |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting to the datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors. By default is `false`.
+`config.limit_by`| *optional*  | The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. Default is `consumer`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
+`config.policy`| *optional* | The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes) and `redis` (counters are stored on a Redis server and will be shared across the nodes). Default is `cluster`.
+`config.fault_tolerant`  | *optional* |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors. By default is `true`.
+`config.redis_host` | *semi-optional* | When using the `redis` policy, this property specifies the address to the Redis server.
+`config.redis_port` | *optional* | When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
+`config.redis_timeout` | *optional* | When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server. By default is `2000`.
 
 ----
 

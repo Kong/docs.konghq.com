@@ -2,6 +2,18 @@
   name: Docker
   type: package
 
+- id: aws-marketplace
+  name: AWS Marketplace
+  type: cloud
+
+- id: aws-cloudformation
+  name: AWS Cloud Formation
+  type: cloud
+
+- id: aws-linux
+  name: Amazon Linux
+  type: package
+
 - id: centos
   name: CentOS
   type: package
@@ -17,18 +29,6 @@
 - id: ubuntu
   name: Ubuntu
   type: package
-
-- id: aws-linux
-  name: Amazon Linux
-  type: package
-
-- id: aws-marketplace
-  name: AWS Marketplace
-  type: cloud
-
-- id: aws-cloudformation
-  name: AWS Cloud Formation
-  type: cloud
 
 - id: heroku
   name: Heroku
@@ -46,23 +46,3 @@
 - id: source
   name: Compile
   type: compile
-
-- id: azure
-  name: Windows Azure
-  soon: true
-  type: cloud
-
-- id: digital-ocean
-  name: Digital Ocean
-  soon: true
-  type: cloud
-
-- id: freebsd
-  name: FreeBSD
-  soon: true
-  type: package
-
-- id: google-cloud
-  name: Google Cloud Platform
-  soon: true
-  type: cloud

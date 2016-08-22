@@ -11,20 +11,13 @@ redirect_from: /install/compile/
 {% capture luajit_version %}{{site.data.kong_latest.dependencies.luajit}}{% endcapture %}
 {% capture luarocks_version %}{{site.data.kong_latest.dependencies.luarocks}}{% endcapture %}
 {% capture openresty_version %}{{site.data.kong_latest.dependencies.openresty}}{% endcapture %}
+{% capture serf_version %}{{site.data.kong_latest.dependencies.serf}}{% endcapture %}
 
 1. **Install the dependencies:**
 
-    (Optional) [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/).
+    (Optional) [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/) if you wish to enable it for Kong's runtime DNS resolutions.
 
-    [LuaJIT {{luajit_version}}](http://luajit.org/download.html), which both Luarocks and OpenResty depend on. Also make sure to add it to your `$PATH` so the Kong CLI can find it.
-
-    [Luarocks {{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download), compiled with the previously installed LuaJIT (See the `--with-lua` and `--with-lua-include` configure options).
-
-    To compile OpenResty: [OpenSSL](https://www.openssl.org/) and [PCRE](http://www.pcre.org/).
-
-    [OpenResty {{openresty_version}}](https://openresty.org/en/installation.html), compiled with the previously installed LuaJIT (See the `--with-luajit` configure option).
-
-    Make sure to use the following `configure` options:
+    [OpenResty {{openresty_version}}](https://openresty.org/en/installation.html). Kong being an OpenResty application, you must follow the OpenResty [installation instructions](https://openresty.org/en/installation.html). You will need [OpenSSL](https://www.openssl.org/) and [PCRE](http://www.pcre.org/) to compile OpenResty, and to at least use the following compilation options:
 
     ```bash
     $ ./configure \
@@ -32,13 +25,33 @@ redirect_from: /install/compile/
       --with-ipv6 \
       --with-http_realip_module \
       --with-http_ssl_module \
-      --with-http_stub_status_module \
-      --with-luajit=/path/to/luajit
+      --with-http_stub_status_module
     ```
 
-    Some of the dependencies may be available in the package manager of your choice.
+    You might have to specify `--with-openssl` and you can add any other option you'd like, such as additional Nginx modules or a custom `--prefix` directory.
+
+    OpenResty conveniently bundles [LuaJIT](http://luajit.org/) and [resty-cli](https://github.com/openresty/resty-cli) which are essential to Kong. Add the `nginx` and `resty` executables to your $PATH:
+
+    ```bash
+    $ export PATH="$PATH:/usr/local/openresty/bin"
+    ```
+
+    [Luarocks {{luarocks_version}}](https://github.com/keplerproject/luarocks/wiki/Download), compiled with the LuaJIT version bundled with OpenResty (See the `--with-lua` and `--with-lua-include` configure options). Example:
+
+    ```bash
+    ./configure \
+      --lua-suffix=jit \
+      --with-lua=/usr/local/openresty/luajit \
+      --with-lua-include=/usr/loca/openresty/luajit/include/luajit-2.1
+    ```
+
+    Finally, the [Serf v{{serf_version}}](https://www.serf.io/) executable should be available in one of `/usr/local/bin` or `/usr/bin`. You can use it from a custom location assuming you configure the Kong's `serf_path` property accordingly.
+
+    Consulting the [setup_env.sh](https://github.com/Mashape/kong/blob/next/.ci/setup_env.sh) CI script is a good resource for a concrete example of those instructions. Notice how Serf is used from a custom location which is specified using an environment variable in [run_tests.sh](https://github.com/Mashape/kong/blob/next/.ci/run_tests.sh).
 
 2. **Install Kong:**
+
+    Now that OpenResty and other third-party dependencies are installed, we can use Luarocks to install Kong's Lua sources:
 
     ```bash
     $ luarocks install kong {{site.data.kong_latest.luarocks_version}}
