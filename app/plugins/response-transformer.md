@@ -37,18 +37,20 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                        | description
----:                                  | ---
-`name`                                | Name of the plugin to use, in this case: `response-transformer`
-`consumer_id`<br>*optional*           | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.remove.headers`<br>*optional*  | List of header names. Unset the header(s) with the given name.
-`config.remove.json`<br>*optional*     | List of property names. Remove the property from the JSON body if it is present.
-`config.replace.headers`<br>*optional*  | List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set. 
-`config.replace.json`<br>*optional*  | List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
-`config.add.headers`<br>*optional*     | List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set. 
-`config.add.json`<br>*optional*        | List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
-`config.append.headers`<br>*optional*     | List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
-`config.append.json`<br>*optional*     | List of property:value pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                        | default | description
+---:                                  | ---     | ---
+`name`                                |         | Name of the plugin to use, in this case: `response-transformer`
+`consumer_id`<br>*optional*           |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.remove.headers`<br>*optional*  | | List of header names. Unset the header(s) with the given name.
+`config.remove.json`<br>*optional*     | | List of property names. Remove the property from the JSON body if it is present.
+`config.replace.headers`<br>*optional*  | | List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set. 
+`config.replace.json`<br>*optional*  | | List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+`config.add.headers`<br>*optional*     | | List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set. 
+`config.add.json`<br>*optional*        | | List of property:value pairs. If and only if the property is not present, add a new property with the given value to the JSON body. Ignored if the property is already present.
+`config.append.headers`<br>*optional*     | | List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
+`config.append.json`<br>*optional*     | | List of property:value pairs. If the property is not present in the JSON body, add it with the given value. If it is already present, the two values (old and new) will be aggregated in an array.
 
 ## Order of execution
 

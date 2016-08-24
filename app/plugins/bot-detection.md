@@ -27,11 +27,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter     | required   | description
----                |---         | ---
-`name`             | *required* | The name of the plugin to use, in this case: `bot-detection`
-`config.whitelist` | *optional* | A comma separated array of regular expressions that should be whitelisted. The regular expressions will be checked against the `User-Agent` header.
-`config.blacklist` | *optional* | A comma separated array of regular expressions that should be blacklisted. The regular expressions will be checked against the `User-Agent` header.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                    | default   | description
+---                               |---        | ---
+`name`                            |           | The name of the plugin to use, in this case: `bot-detection`
+`config.whitelist`<br>*optional*  |           | A comma separated array of regular expressions that should be whitelisted. The regular expressions will be checked against the `User-Agent` header.
+`config.blacklist`<br>*optional*  |           | A comma separated array of regular expressions that should be blacklisted. The regular expressions will be checked against the `User-Agent` header.
 
 ----
 

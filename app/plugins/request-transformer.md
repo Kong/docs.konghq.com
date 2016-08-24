@@ -35,22 +35,24 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                            | description
----:                                      | ---
-`name`                                    | Name of the plugin to use, in this case: `request-transformer`
-`consumer_id`<br>*optional*               | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.remove.headers`<br>*optional*      | List of header names. Unset the headers with the given name.
-`config.remove.querystring`<br>*optional*  | List of querystring names. Remove the querystring if it is present.
-`config.remove.body`<br>*optional*         | List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
-`config.replace.headers`<br>*optional*      | List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
-`config.replace.querystring`<br>*optional*  | List of queryname:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
-`config.replace.body`<br>*optional*         | List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
-`config.add.headers`<br>*optional*         | List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
-`config.add.querystring`<br>*optional*     | List of queryname:value pairs. If and only if the querystring is not already set, set a new querystring with the given value. Ignored if the header is already set.
-`config.add.body`<br>*optional*            | List of pramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is not present, add a new parameter with the given value to form-encoded body. Ignored if the parameter is already present.
-`config.append.headers`<br>*optional*         | List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
-`config.append.querystring`<br>*optional*     | List of queryname:value pairs. If the querystring is not set, set it with the given value. If it is already set, a new querystring with the same name and the new value will be set.
-`config.append.body`<br>*optional*     | List of paramname:value pairs. If the content-type is one the following [`application/json`, `application/x-www-form-urlencoded`], add a new parameter with the given value if the parameter is not present, otherwise if it is already present, the two values (old and new) will be aggregated in an array.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                            | default | description
+---:                                      | ---     | ---
+`name`                                    | | Name of the plugin to use, in this case: `request-transformer`
+`consumer_id`<br>*optional*               | | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.remove.headers`<br>*optional*     | | List of header names. Unset the headers with the given name.
+`config.remove.querystring`<br>*optional* | | List of querystring names. Remove the querystring if it is present.
+`config.remove.body`<br>*optional*        | | List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
+`config.replace.headers`<br>*optional*    | | List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
+`config.replace.querystring`<br>*optional* | | List of queryname:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
+`config.replace.body`<br>*optional*        | | List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+`config.add.headers`<br>*optional*         | | List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
+`config.add.querystring`<br>*optional*     | | List of queryname:value pairs. If and only if the querystring is not already set, set a new querystring with the given value. Ignored if the header is already set.
+`config.add.body`<br>*optional*            | | List of pramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is not present, add a new parameter with the given value to form-encoded body. Ignored if the parameter is already present.
+`config.append.headers`<br>*optional*         | | List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
+`config.append.querystring`<br>*optional*     | | List of queryname:value pairs. If the querystring is not set, set it with the given value. If it is already set, a new querystring with the same name and the new value will be set.
+`config.append.body`<br>*optional*     | | List of paramname:value pairs. If the content-type is one the following [`application/json`, `application/x-www-form-urlencoded`], add a new parameter with the given value if the parameter is not present, otherwise if it is already present, the two values (old and new) will be aggregated in an array.
 
 ## Order of execution
 
