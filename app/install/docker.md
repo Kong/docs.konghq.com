@@ -46,7 +46,6 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
                   -p 8001:8001 \
                   -p 7946:7946 \
                   -p 7946:7946/udp \
-                  --security-opt seccomp:unconfined \
                   mashape/kong
     ```
 
