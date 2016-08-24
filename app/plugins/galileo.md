@@ -15,6 +15,7 @@ nav:
       - label: How it works
       - label: Logging bodies
       - label: FAQ
+  - label: Kong Process Errors
 ---
 
 Logs request and response data to [Galileo][galileo], the analytics platform for monitoring, visualizing and inspecting API & microservice traffic.
@@ -33,21 +34,22 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins/ \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
-form parameter      | required     | description
----                 | ---          | ---
-`name`              | *required*   | The name of the plugin to use, in this case: `galileo`
-`consumer_id`       | *optional*   | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`service_token`     | *required*   | The service token provided to you by [Galileo][galileo].
-`environment`       | *optional*   | Slug of your Galileo environment name. None by default.
-`log_bodies`        | *optional*   | Capture and send request/response bodies. Defaults to `false`.
-`retry_count`       | *optional*   | Number of retries in case of failure to send data to Galileo. Defaults to `10`.
-`connection_timeout` | *optional*  | Timeout in seconds before aborting a connection to Galileo. Defaults to `30`.
-`flush_timeout`     | *optional*   | Timeout in seconds before flushing the current data to Galileo in case of inactivity. Defaults to `2`.
-`queue_size`        | *optional*   | Number of calls to trigger a flush of the buffered data to Galileo. Defaults to `1000`.
-`host`              | *optional*   | Host address of the Galileo collector. Defaults to `collector.galileo.mashape.com`
-`port`              | *optional*   | Port of the Galileo collector. Defaults to `443`.
-`https`             | *optional*   | Use of HTTPs to connect with the Galileo collector. Defaults to `true`.
+form parameter                     | default | description
+---                                | ---     | ---
+`name`                             |         | The name of the plugin to use, in this case: `galileo`
+`consumer_id`<br>*optional*        |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`service_token`                    |         | The service token provided to you by [Galileo][galileo].
+`environment`<br>*optional*        |         | Slug of your Galileo environment name. None by default.
+`log_bodies`<br>*optional*         | `false` | Capture and send request/response bodies.
+`retry_count`<br>*optional*        | `10`    | Number of retries in case of failure to send data to Galileo.
+`connection_timeout`<br>*optional* | `30`    | Timeout in seconds before aborting a connection to Galileo.
+`flush_timeout`<br>*optional*      | `2`     | Timeout in seconds before flushing the current data to Galileo in case of inactivity.
+`queue_size`<br>*optional*         | `1000`  | Number of calls to trigger a flush of the buffered data to Galileo.
+`host`<br>*optional*               | `collector.galileo.mashape.com` | Host address of the Galileo collector.
+`port`<br>*optional*               | `443`   | Port of the Galileo collector.
+`https`<br>*optional*              | `true`  | Use of HTTPs to connect with the Galileo collector.
 
 [galileo]: https://getgalileo.io/
 [api-object]: /docs/latest/admin-api/#api-object
@@ -88,3 +90,7 @@ error_log logs/error.log debug;
 ```
 
 Now, you should see logs telling you what the plugin is doing, as well as responses from the Galileo collector. If the collector is able to process your data, it means Galileo is correctly receiving it. You'll want to make sure you have configured your plugin to send your data to the right `environment`.
+
+## Kong Process Errors
+
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log

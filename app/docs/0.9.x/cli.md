@@ -62,16 +62,16 @@ Usage: kong cluster COMMAND [OPTIONS]
 Manage Kong's clustering capabilities.
 
 The available commands are:
- keygen -c                  Generate an encryption key for intracluster traffic.
-                            See 'cluster_encrypt_key' setting
- members -p                 Show members of this cluster and their state.
- reachability -p            Check if the cluster is reachable.
- force-leave -p <node_name> Forcefully remove a node from the cluster (useful
-                            if the node is in a failed state).
+  keygen -c                   Generate an encryption key for intracluster traffic.
+                              See 'cluster_encrypt_key' setting
+  members -p                  Show members of this cluster and their state.
+  reachability -p             Check if the cluster is reachable.
+  force-leave -p <node_name>  Forcefully remove a node from the cluster (useful
+                              if the node is in a failed state).
 
 Options:
- -c,--conf   (optional string) configuration file
- -p,--prefix (optional string) prefix Kong is running at
+  -c,--conf   (optional string) configuration file
+  -p,--prefix (optional string) prefix Kong is running at
 ```
 
 [Back to TOC](#table-of-contents)
@@ -91,21 +91,21 @@ Compile the Nginx configuration file containing Kong's servers
 contexts from a given Kong configuration file.
 
 Example usage:
- kong compile -c kong.conf > /usr/local/openresty/nginx-kong.conf
+  kong compile -c kong.conf > /usr/local/openresty/nginx-kong.conf
 
- This file can then be included in an OpenResty configuration:
+  This file can then be included in an OpenResty configuration:
 
- http {
-     # ...
-     include 'nginx-kong.conf';
- }
+  http {
+      # ...
+      include 'nginx-kong.conf';
+  }
 
 Note:
- Third-party services such as Serf and dnsmasq need to be properly configured
- and started for Kong to be fully compatible while embedded.
+  Third-party services such as Serf and dnsmasq need to be properly configured
+  and started for Kong to be fully compatible while embedded.
 
 Options:
- -c,--conf (optional string) configuration file
+  -c,--conf (optional string) configuration file
 ```
 
 [Back to TOC](#table-of-contents)
@@ -120,7 +120,7 @@ Usage: kong health [OPTIONS]
 Check if the necessary services are running for this node.
 
 Options:
- -p,--prefix (optional string) prefix at which Kong should be running
+  -p,--prefix (optional string) prefix at which Kong should be running
 ```
 
 [Back to TOC](#table-of-contents)
@@ -135,12 +135,12 @@ Usage: kong migrations COMMAND [OPTIONS]
 Manage Kong's database migrations.
 
 The available commands are:
- list   List migrations currently executed.
- up     Execute all missing migrations up to the latest available.
- reset  Reset the configured database (irreversible).
+  list   List migrations currently executed.
+  up     Execute all missing migrations up to the latest available.
+  reset  Reset the configured database (irreversible).
 
 Options:
- -c,--conf (optional string) configuration file
+  -c,--conf (optional string) configuration file
 ```
 
 [Back to TOC](#table-of-contents)
@@ -161,8 +161,8 @@ If the timeout delay is reached, the node will be forcefully
 stopped (SIGTERM).
 
 Options:
- -p,--prefix  (optional string) prefix Kong is running at
- -t,--timeout (default 10) timeout before forced shutdown
+  -p,--prefix  (optional string) prefix Kong is running at
+  -t,--timeout (default 10) timeout before forced shutdown
 ```
 
 [Back to TOC](#table-of-contents)
@@ -183,9 +183,9 @@ and stop the old ones when they have finished processing
 current requests.
 
 Options:
- -c,--conf    (optional string) configuration file
- -p,--prefix  (optional string) prefix Kong is running at
- --nginx-conf (optional string) custom Nginx configuration template
+  -c,--conf    (optional string) configuration file
+  -p,--prefix  (optional string) prefix Kong is running at
+  --nginx-conf (optional string) custom Nginx configuration template
 ```
 
 [Back to TOC](#table-of-contents)
@@ -204,9 +204,9 @@ This command is equivalent to doing both 'kong stop' and
 'kong start'.
 
 Options:
- -c,--conf    (optional string) configuration file
- -p,--prefix  (optional string) prefix at which Kong should be running
- --nginx-conf (optional string) custom Nginx configuration template
+  -c,--conf    (optional string) configuration file
+  -p,--prefix  (optional string) prefix at which Kong should be running
+  --nginx-conf (optional string) custom Nginx configuration template
 ```
 
 [Back to TOC](#table-of-contents)
@@ -222,9 +222,9 @@ Start Kong (Nginx and other configured services) in the configured
 prefix directory.
 
 Options:
- -c,--conf    (optional string) configuration file
- -p,--prefix  (optional string) override prefix directory
- --nginx-conf (optional string) custom Nginx configuration template
+  -c,--conf    (optional string) configuration file
+  -p,--prefix  (optional string) override prefix directory
+  --nginx-conf (optional string) custom Nginx configuration template
 ```
 
 [Back to TOC](#table-of-contents)
@@ -242,7 +242,7 @@ prefix directory.
 This command sends a SIGTERM signal to Nginx.
 
 Options:
- -p,--prefix (optional string) prefix Kong is running at
+  -p,--prefix (optional string) prefix Kong is running at
 ```
 
 [Back to TOC](#table-of-contents)
@@ -258,7 +258,7 @@ Print Kong's version. With the -a option, will print
 the version of all underlying dependencies.
 
 Options:
- -a,--all    get version of all dependencies
+  -a,--all    get version of all dependencies
 ```
 
 [Back to TOC](#table-of-contents)

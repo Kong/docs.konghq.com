@@ -27,12 +27,14 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                  | description
----                             | ---
-`name`                          | The name of the plugin to use, in this case: `ip-restriction`
-`consumer_id`<br>*optional*     | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.whitelist`<br>*semi-optional* | Comma separated list of IPs or CIDR ranges to whitelist. At least one between `config.whitelist` or `config.blacklist` must be specified.
-`config.blacklist`<br>*semi-optional* | Comma separated list of IPs or CIDR ranges to blacklist. At least one between `config.whitelist` or `config.blacklist` must be specified.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                  | default | description
+---                             | ---     | ---
+`name`                          |         | The name of the plugin to use, in this case: `ip-restriction`
+`consumer_id`<br>*optional*     |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.whitelist`<br>*semi-optional* |   | Comma separated list of IPs or CIDR ranges to whitelist. At least one between `config.whitelist` or `config.blacklist` must be specified.
+`config.blacklist`<br>*semi-optional* |   | Comma separated list of IPs or CIDR ranges to blacklist. At least one between `config.whitelist` or `config.blacklist` must be specified.
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 [api-object]: /docs/latest/admin-api/#api-object

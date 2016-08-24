@@ -13,6 +13,7 @@ nav:
     items:
       - label: Log Format
       - label: Notes
+      - label: Kong Process Errors
 ---
 
 Log request and response data to Syslog.
@@ -30,14 +31,16 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-parameter                     | description
----                           | ---
-`name`                        | The name of the plugin to use, in this case: `syslog`
-`consumer_id`<br>*optional*   | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.successful_severity`<br>*optional*                  | Default `info`. An optional logging severity assigned to the all successful requests with response status code less then 400 .
-`config.client_errors_severity`<br>*optional*               | Default `info`. An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
-`config.server_errors_severity`<br>*optional*               | Default `info`. An optional logging severity assigned to the all failed requests with response status code 500 or higher.
-`config.log_level`<br>*optional*                  | Default `info`. An optional logging severity, any request with equal or higher severity will be logged to System log.  
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+parameter                      | default | description
+---                            | ---     | ---
+`name`                         |         | The name of the plugin to use, in this case: `syslog`
+`consumer_id`<br>*optional*    |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.successful_severity`<br>*optional* | `info` | An optional logging severity assigned to the all successful requests with response status code less then 400 .
+`config.client_errors_severity`<br>*optional* | `info` | An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
+`config.server_errors_severity`<br>*optional* | `info` | An optional logging severity assigned to the all failed requests with response status code 500 or higher.
+`config.log_level`<br>*optional* | `info` | An optional logging severity, any request with equal or higher severity will be logged to System log.  
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
@@ -117,4 +120,6 @@ A few considerations on the above JSON object:
 
 * Make sure Syslog daemon is running on the instance and it's configured with logging level severity same as or lower than the set `config.log_level`.   
 
-* This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[nginx_working_dir](/docs/{{site.data.kong_latest.release}}/configuration/#nginx_working_dir)}/logs/error.log
+## Kong Process Errors
+
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log

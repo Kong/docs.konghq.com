@@ -612,13 +612,22 @@ When creating adding Plugin on top of an API, every request made by a client wil
 
 ### Add Plugin
 
+You can add a plugin in four different ways:
+
+* For every API and Consumer. Don't set `api_id` and `consumer_id`.
+* For every API and a specific Consumer. Only set `consumer_id`.
+* For every Consumer and a specific API. Only set `api_id`.
+* For a specific Consumer and API. Set both `api_id` and `consumer_id`.
+
+Note that not all plugins allow to specify `consumer_id`. Check the plugin documentation.
+
 #### Endpoint
 
 <div class="endpoint post">/apis/{name or id}/plugins/</div>
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the API on which to add a plugin configuration
+`name or id`<br>**required** | The unique identifier **or** the name of the API on which to add a plugin configuration. If you are adding a plugin to every API use the `/plugins` endpoint instead without specifying an `api_id`.
 
 #### Request Body
 

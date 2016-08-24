@@ -39,6 +39,8 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
     $ docker run -d --name kong \
                   --link kong-database:kong-database \
                   -e "KONG_DATABASE=cassandra" \
+                  -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
+                  -e "KONG_PG_HOST=kong-database" \
                   -p 8000:8000 \
                   -p 8443:8443 \
                   -p 8001:8001 \

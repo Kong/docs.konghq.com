@@ -35,11 +35,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter               | description
----                          | ---
-`name`                       | The name of the plugin to use, in this case: `hmac-auth`
-`config.hide_credentials`<br>*optional*     | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.clock_skew`<br>*optional*          | Default `300`. Clock Skew in seconds to prevent replay attacks.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                          | default | description
+---                                     | ---     | ---
+`name`                                  |         | The name of the plugin to use, in this case: `hmac-auth`
+`config.hide_credentials`<br>*optional* | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.clock_skew`<br>*optional*       | `300`   | Clock Skew in seconds to prevent replay attacks.
 
 ----
 

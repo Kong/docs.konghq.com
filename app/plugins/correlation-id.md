@@ -34,12 +34,14 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter      | required     | description
----                 | ---          | ---
-`name`              | *required*   | The name of the plugin to use, in this case: `correlation-id`
-`header_name`       | *optional*   | The HTTP header name to use for the correlation ID. Defaults to `Kong-Request-ID`
-`generator  `       | *optional*   | The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter` and `tracker` See [Generators](#generators). Defaults to `uuid#counter`.
-`echo_downstream`   | *optional*   | Whether to echo the header back to downstream (the client). Defaults to `false`.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                  | default           | description
+---                             | ---               | ---
+`name`                          |                   | The name of the plugin to use, in this case: `correlation-id`
+`header_name`<br>*optional*     | `Kong-Request-ID` | The HTTP header name to use for the correlation ID. 
+`generator`<br>*optional*       | `uuid#counter`    | The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter` and `tracker` See [Generators](#generators).
+`echo_downstream`<br>*optional* | `false`           | Whether to echo the header back to downstream (the client).
 
 [api-object]: /docs/latest/admin-api/#api-object
 

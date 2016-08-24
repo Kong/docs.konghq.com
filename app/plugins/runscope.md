@@ -10,6 +10,7 @@ nav:
     items:
       - label: How it works
       - label: Configuration
+  - label: Kong Process Errors
 ---
 
 Logs request and response data to [Runscope][runscope]. Using the Runscope Traffic Inspector, each API call can be fully viewed in it's entirety. All traffic can be searched by keyword (headers and bodies are indexed) and attribute (i.e. status code, response size, response time, etc.). Using Runscope [Live Traffic Alerts][live-traffic-alerts], API failures and exceptions can be caught, notifying your team about problems before your customers find out. Trigger alerts based on any part of the HTTP request or resopnse, including header values, JSON or XML data, connection details and more. Alerts can be sent to Slack, HipChat, PagerDuty, email, or webhook notifications. Live Traffic Alerts is available on all medium and larger plans.
@@ -37,15 +38,21 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins/ \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-parameter                          | description
----                                | ---
-`name`                             | The name of the plugin to use, in this case: `runscope`
-`config.access_token`              | The Runscope [access token][generate-access-token] (or personal access token) for the Runscope API.
-`config.bucket_key`                | Your Runscope [bucket][runscope-buckets] ID where traffic data will be stored.
-`config.log_body`                  | Default: `false`. Whether or not the request and response bodies should be sent to Runscope.
-`config.api_endpoint`              | Default: `https://api.runscope.com`. URL for the Runscope API.
-`config.timeout`                   | Default: `10000`. An optional timeout in milliseconds when sending data to Runscope.
-`config.keepalive`                 | Default: `30`. An optional value in milliseconds that defines for how long an idle connection will live before being closed.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+parameter                          | default | description
+---                                | ---     | ---
+`name`                             |         | The name of the plugin to use, in this case: `runscope`
+`config.access_token`              |         | The Runscope [access token][generate-access-token] (or personal access token) for the Runscope API.
+`config.bucket_key`                |         | Your Runscope [bucket][runscope-buckets] ID where traffic data will be stored.
+`config.log_body`<br>*optional*    | `false` | Whether or not the request and response bodies should be sent to Runscope.
+`config.api_endpoint`<br>*optional* | `https://api.runscope.com` | URL for the Runscope API.
+`config.timeout`<br>*optional*      | `10000` | An optional timeout in milliseconds when sending data to Runscope.
+`config.keepalive`<br>*optional*    | `30` | An optional value in milliseconds that defines for how long an idle connection will live before being closed.
+
+## Kong Process Errors
+
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
 
 [runscope]: https://www.runscope.com/?utm_source=getkong&utm_content=plugin
 [live-traffic-alerts]: https://www.runscope.com/docs/alerts
