@@ -28,12 +28,15 @@ Configuring the plugin is as simple as a single API call, you can configure and 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=response-transformer" \
-    --data "config.add.headers=x-new-header:some_value, x-another-header:some_value" \
+    --data "config.add.headers[1]=x-new-header:some,value" \
+    --data "config.add.headers[2]=x-another-header:some,value" \
     --data "config.add.json=new-json-key:some_value, another-json-key:some_value" \
     --data "config.remove.headers=x-toremove, x-another-one" \
     --data "config.remove.json=json-key-toremove, another-json-key" \
     --data "config.append.headers=x-existing-header:some_value, x-another-header:some_value"
 ```
+
+Note: if the value contains a `,` then the comma separated format cannot be used. The array notation must be used instead.
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
