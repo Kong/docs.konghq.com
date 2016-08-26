@@ -42,7 +42,7 @@ redirect_from: /install/compile/
     ./configure \
       --lua-suffix=jit \
       --with-lua=/usr/local/openresty/luajit \
-      --with-lua-include=/usr/loca/openresty/luajit/include/luajit-2.1
+      --with-lua-include=/usr/local/openresty/luajit/include/luajit-2.1
     ```
 
     Finally, the [Serf v{{serf_version}}](https://www.serf.io/) executable should be available in one of `/usr/local/bin` or `/usr/bin`. You can use it from a custom location assuming you configure the Kong's `serf_path` property accordingly.
