@@ -31,18 +31,24 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter | required        | description
----            | ---             | ---
-`name`         | *required*      | The name of the plugin to use, in this case: `rate-limiting`
-`consumer_id`  | *optional*      | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.second` | *semi-optional* |  The amount of HTTP requests the developer can make per second. At least one limit must exist.
-`config.minute` | *semi-optional* |  The amount of HTTP requests the developer can make per minute. At least one limit must exist.
-`config.hour`   | *semi-optional* |  The amount of HTTP requests the developer can make per hour. At least one limit must exist.
-`config.day`    | *semi-optional* |  The amount of HTTP requests the developer can make per day. At least one limit must exist.
-`config.month`  | *semi-optional* |  The amount of HTTP requests the developer can make per month. At least one limit must exist.
-`config.year`   | *semi-optional* |  The amount of HTTP requests the developer can make per year. At least one limit must exist.
-`config.async`  | *optional*      |  A boolean value that determines if the usage should be incremented asynchronously or not. If set to `true` it has the advantage of speeding up the performance of the plugin, at the cost of its accuracy: the usage is not incremented immediately before proxying the request, but on a separate light thread right after the request has been already proxied. By default is `false`.
-`config.continue_on_error`  | *optional*      |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting to the datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors. By default is `false`.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                     | default | description
+---                                | ---     | ---
+`name`                             |         | The name of the plugin to use, in this case: `rate-limiting`
+`consumer_id`<br>*optional*        |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.second`<br>*semi-optional* |         | The amount of HTTP requests the developer can make per second. At least one limit must exist.
+`config.minute`<br>*semi-optional* |         | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
+`config.hour`<br>*semi-optional*   |         | The amount of HTTP requests the developer can make per hour. At least one limit must exist.
+`config.day`<br>*semi-optional*    |         | The amount of HTTP requests the developer can make per day. At least one limit must exist.
+`config.month`<br>*semi-optional*  |         | The amount of HTTP requests the developer can make per month. At least one limit must exist.
+`config.year`<br>*semi-optional*   |         | The amount of HTTP requests the developer can make per year. At least one limit must exist.
+`config.limit_by`<br>*optional*    | `consumer` | The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
+`config.policy`<br>*optional*      | `cluster`  | The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes) and `redis` (counters are stored on a Redis server and will be shared across the nodes).
+`config.fault_tolerant`<br>*optional* | `true` |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors.
+`config.redis_host`<br>*semi-optional* |        | When using the `redis` policy, this property specifies the address to the Redis server.
+`config.redis_port`<br>*optional* | `6379`     | When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
+`config.redis_timeout`<br>*optional* | `2000` | When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
 
 ----
 

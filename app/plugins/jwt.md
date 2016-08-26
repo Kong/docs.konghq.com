@@ -45,13 +45,15 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter            | required     | description
----                       | ---          | ---
-`name`                    | *required*   | The name of the plugin to use, in this case: `jwt`
-`config.uri_param_names`  | *optional*   | A list of querystring parameters that Kong will inspect to retrieve JWTs. Defaults to `jwt`.
-`config.claims_to_verify` | *optional*   | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
-`config.key_claim_name`   | *optional*   | The name of the claim in which the `key` identifying the secret **must** be passed. Defaults to `iss`.
-`config.secret_is_base64` | *optional*   | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your consumer, and sign your JWT with the original secret. Defaults to `false`.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                         | default  | description
+---                                    | ---      | ---
+`name`                                 |          | The name of the plugin to use, in this case: `jwt`
+`config.uri_param_names`<br>*optional* | `jwt`    | A list of querystring parameters that Kong will inspect to retrieve JWTs.
+`config.claims_to_verify`<br>*optional*|          | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
+`config.key_claim_name`<br>*optional*  | `iss`    | The name of the claim in which the `key` identifying the secret **must** be passed.
+`config.secret_is_base64`<br>*optional* | `false` | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your consumer, and sign your JWT with the original secret.
 
 ----
 
@@ -70,10 +72,10 @@ $ curl -X POST http://kong:8001/consumers \
 HTTP/1.1 201 Created
 ```
 
-form parameter | required        | description
----            | ---             | ---
-`username`     | *semi-optional* | The username for this Consumer. Either this field or `custom_id` must be specified.
-`custom_id`    | *semi-optional* | A custom identifier used to map the Consumer to an external database. Either this field or `username` must be specified.
+form parameter                  | default | description
+---                             | ---     | ---
+`username`<br>*semi-optional*   |         | The username for this Consumer. Either this field or `custom_id` must be specified.
+`custom_id`<br>*semi-optional*  |         | A custom identifier used to map the Consumer to an external database. Either this field or `username` must be specified.
 
 A [Consumer][consumer-object] can have many JWT credentials.
 
@@ -96,12 +98,12 @@ HTTP/1.1 201 Created
 
 `consumer`: The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
 
-form parameter   | required        | description
----              | ---             | ---
-`key`            | *optional*      | A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is **mandatory** while crafting your token, as specified in the next section.
-`algorithm`      | *optional*      | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`. Defaults to `HS256`.
-`rsa_public_key` | *optional*      | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
-`secret`         | *optional*      | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
+form parameter      | default         | description
+---                 | ---             | ---
+`key`<br>*optional* |                 | A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is **mandatory** while crafting your token, as specified in the next section.
+`algorithm`<br>*optional*         | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`.
+`rsa_public_key`<br>*optional* |      | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
+`secret`<br>*optional*         |       | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
 ### Craft a JWT
 

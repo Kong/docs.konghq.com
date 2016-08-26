@@ -35,16 +35,18 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                             | description
----:                                       | ---
-`name`                                     | Name of the plugin to use, in this case: `cors`
-`config.origin`<br>*optional*              | Value for the `Access-Control-Allow-Origin` header, expects a `String`. Defaults to `*`
-`config.methods`<br>*optional*             | Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`). Defaults to `GET,HEAD,PUT,PATCH,POST,DELETE`.
-`config.headers`<br>*optional*             | Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). Defaults to the value of the `Access-Control-Request-Headers` header.
-`config.exposed_headers`<br>*optional*     | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
-`config.credentials`<br>*optional*         | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value. Defaults to `false`.
-`config.max_age`<br>*optional*             | Indicated how long the results of the preflight request can be cached, in `seconds`.
-`config.preflight_continue`<br>*optional*  | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API. Defaults to `false`.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                             | default | description
+---:                                       | ---     | ---
+`name`                                     |         | Name of the plugin to use, in this case: `cors`
+`config.origin`<br>*optional*              | `*`     | Value for the `Access-Control-Allow-Origin` header, expects a `String`.
+`config.methods`<br>*optional*             | `GET,HEAD,PUT,PATCH,POST,DELETE` | Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`).
+`config.headers`<br>*optional*             | Value of the `Access-Control-Request-Headers`<br>request header | Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`).
+`config.exposed_headers`<br>*optional*     |         | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
+`config.credentials`<br>*optional*         | `false` | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value.
+`config.max_age`<br>*optional*             |         | Indicated how long the results of the preflight request can be cached, in `seconds`.
+`config.preflight_continue`<br>*optional*  | `false` | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API.
 
 ----
 

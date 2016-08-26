@@ -34,12 +34,14 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter      | required     | description
----                 | ---          | ---
-`name`              | *required*   | The name of the plugin to use, in this case: `correlation-id`
-`header_name`       | *optional*   | The HTTP header name to use for the correlation ID. Defaults to `Kong-Request-ID`
-`generator  `       | *optional*   | The generator to use for the correlation ID. Accepted values are `uuid` and `uuid#counter` See [Generators](#generators). Defaults to `uuid#counter`.
-`echo_downstream`   | *optional*   | Whether to echo the header back to downstream (the client). Defaults to `false`.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                  | default           | description
+---                             | ---               | ---
+`name`                          |                   | The name of the plugin to use, in this case: `correlation-id`
+`header_name`<br>*optional*     | `Kong-Request-ID` | The HTTP header name to use for the correlation ID. 
+`generator`<br>*optional*       | `uuid#counter`    | The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter` and `tracker` See [Generators](#generators).
+`echo_downstream`<br>*optional* | `false`           | Whether to echo the header back to downstream (the client).
 
 [api-object]: /docs/latest/admin-api/#api-object
 
@@ -74,6 +76,26 @@ xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx#counter
 In this format, a single UUID is generated on a per-worker basis, and further requests simply append a counter to the UUID after a `#` character. The `counter` value starts at `0` for each worker, and gets incremented independantly of the others.
 
 This format provides a better performance, but might be harder to store or process for analizing (due to its format and low cardinality).
+
+#### tracker
+
+Format:
+```
+ip-port-pid-connection-connection_requests-timestamp
+```
+
+In this format, the correlation id contains more practical implications for each request.
+
+The following is a detailed description of the field
+
+form parameter      | description
+---                 | ---
+`ip` | an address of the server which accepted a request
+`port` | port of the server which accepted a request
+`pid` | pid of the nginx worker process
+`connection` | connection serial number
+`connection_requests` | current number of requests made through a connection
+`timestamp` | a floating-point number for the elapsed time in seconds (including milliseconds as the decimal part) from the epoch for the current time stamp from the nginx cached time
 
 ## FAQ
 

@@ -28,7 +28,10 @@ layout: default
 
 <div class="alert alert-warning">
   <div class="container">
-    <a href="/install">Kong 0.8.3</a> with PostgreSQL support has been released - <a href="https://www.mashape.com/webinar/?name=kong" target="_blank">Register for our next webinar</a>, for a hands-on demo of Kong
+    <a href="/install">Kong 0.9.0</a> with a new CLI, Bot Detection Plugin and Performances Improvements has been Released!
+    <!--
+    <a href="https://www.mashape.com/webinar/?name=kong" target="_blank">Register for our next webinar</a>, for a hands-on demo of Kong
+    -->
   </div>
 </div>
 
@@ -105,7 +108,7 @@ layout: default
 
         <div class="highlight">
           <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
-  --url http://localhost:8000/apis/test.com/plugins/ <span class="se">\</span>
+  --url http://localhost:8001/apis/test.com/plugins/ <span class="se">\</span>
   --data <span class="s1">'name=rate-limiting'</span> <span class="se">\</span>
   --data <span class="s1">'config.minute=100'</span></code></pre>
         </div>

@@ -12,6 +12,7 @@ nav:
   - label: Usage
     items:
       - label: Metrics
+      - label: Kong Process Errors
 ---
 
 Log API metrics like request count, request size, response status and latency to the StatsD daemon.
@@ -33,14 +34,16 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-parameter                     | description
----                           | ---
-`name`                        | The name of the plugin to use, in this case: `statsd`
-`consumer_id`<br>*optional* | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.host`<br>*optional* | Default `127.0.0.1`. The IP address or host name to send data to
-`config.port`<br>*optional* | Default `8125`. The port to send data to on the upstream server
-`config.metrics`<br>*optional* | The metrics to be logged, by default all are logged. Available values are described at [Metrics](#metrics).
-`config.timeout`<br>*optional* | Default `10000`. An optional timeout in milliseconds when sending data to the upstream server
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+parameter                     | default | description
+---                           | ---     | ---
+`name`                        |         | The name of the plugin to use, in this case: `statsd`
+`consumer_id`<br>*optional*   |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.host`<br>*optional*   | `127.0.0.1` | The IP address or host name to send data to
+`config.port`<br>*optional*   | `8125`  | The port to send data to on the upstream server
+`config.metrics`<br>*optional* | All metrics<br>are logged | The metrics to be logged. Available values are described at [Metrics](#metrics).
+`config.timeout`<br>*optional* | `10000` | An optional timeout in milliseconds when sending data to the upstream server
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
@@ -62,3 +65,7 @@ Metric                     | description | namespace
 `status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
 `unique_users`               | count of users made a request to the api | kong.\<api_name>.user.uniques
 `request_per_user`               | For each request by the user, increment its counter by 1 | kong.\<api_name>.\<consumer_id>.count
+
+## Kong Process Errors
+
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log

@@ -42,11 +42,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                          | description
----                                     | ---
-`name`                                  | The name of the plugin to use, in this case: `key-auth`
-`config.key_names`<br>*optional*        | Default: `apikey`. Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.
-`config.hide_credentials`<br>*optional* | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                   | default | description
+---                              | ---     | ---               
+`name`                           |         | The name of the plugin to use, in this case: `key-auth`.
+`config.key_names`<br>*optional* | `apikey`| Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.
+`config.hide_credentials`<br>*optional* | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
 
 ----
 
@@ -65,10 +67,10 @@ $ curl -X POST http://kong:8001/consumers/ \
 HTTP/1.1 201 Created
 ```
 
-parameter                      | description
----                            | ---
-`username`<br>*semi-optional*  | The username of the Consumer. Either this field or `custom_id` must be specified.
-`custom_id`<br>*semi-optional* | A custom identifier used to map the Consumer to another database. Either this field or `username` must be specified.
+parameter                      | default | description
+---                            | ---     | ---
+`username`<br>*semi-optional*  |         | The username of the Consumer. Either this field or `custom_id` must be specified.
+`custom_id`<br>*semi-optional* |         | A custom identifier used to map the Consumer to another database. Either this field or `username` must be specified.
 
 A [Consumer][consumer-object] can have many credentials.
 
@@ -90,9 +92,9 @@ HTTP/1.1 201 Created
 
 `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
-form parameter      | description
----                 | ---
-`key`<br>*optional* | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
+form parameter      | default | description
+---                 | ---     | ---
+`key`<br>*optional* |         | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 <div class="alert alert-warning">
   <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if you are migrating an existing system to Kong, and must re-use your keys to make the migration to Kong transparent to your consumers.

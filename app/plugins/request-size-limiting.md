@@ -31,11 +31,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                | required    | description
----                           | ---         | ---
-`name`                        | *required*  | The name of the plugin to use, in this case: `request-size-limiting`
-`consumer_id`                 | *optional*  | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.allowed_payload_size`  | *optional*  | Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                | default    | description
+---                           | ---        | ---
+`name`                        |            | The name of the plugin to use, in this case: `request-size-limiting`
+`consumer_id`<br>*optional*   |            | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.allowed_payload_size`<br>*optional* | `128` | Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration

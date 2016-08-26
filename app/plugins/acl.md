@@ -31,11 +31,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter                  | description
----                             | ---
-`name`                          | The name of the plugin to use, in this case: `acl`
-`config.whitelist`<br>*semi-optional* | Comma separated list of arbitrary group names that are allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
-`config.blacklist`<br>*semi-optional* | Comma separated list of arbitrary group names that are not allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                        | default| description
+---                                   | ---    | ---
+`name`                                |        | The name of the plugin to use, in this case: `acl`
+`config.whitelist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
+`config.blacklist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are not allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
 
 ----
 
@@ -54,9 +56,9 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/acls \
 
 `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
-form parameter      | description
----                 | ---
-`group`             | The arbitrary group name to associate to the consumer.
+form parameter        | default| description
+---                   | ---    | ---
+`group`               |        | The arbitrary group name to associate to the consumer.
 
 You can have more than one group associated to a consumer.
 

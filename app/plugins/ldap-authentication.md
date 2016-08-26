@@ -35,19 +35,21 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter               | description
----                          | ---
-`name`                       | The name of the plugin to use, in this case: `ldap-auth`
-`config.hide_credentials`    | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.ldap_host`    | Host on which the LDAP server is running
-`config.ldap_port`    | TCP port where the LDAP server is listening
-`config.start_tls`    | Default `false`. Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection
-`config.base_dn`    | Base DN as the starting point for the search
-`config.verify_ldap_host`    | Default `false`. Set it to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
-`config.attribute`    | Attribute to be used to search the user 
-`config.cache_ttl`    | Default is `60 seconds`. Cache expiry time
-`config.timeout`      | Default `10000`. An optional timeout in milliseconds when waiting for connection with LDAP server
-`config.keepalive`    | Default `60000`. An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                           | default | description
+---                                      | ---     | ---
+`name`                                   |         | The name of the plugin to use, in this case: `ldap-auth`.
+`config.hide_credentials`<br>*optional*  | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
+`config.ldap_host`                       |         | Host on which the LDAP server is running.
+`config.ldap_port`                       |         | TCP port where the LDAP server is listening.
+`config.start_tls`                       | `false` | Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
+`config.base_dn`                         |         | Base DN as the starting point for the search.
+`config.verify_ldap_host`                | `false` | Set it to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
+`config.attribute`                       |         | Attribute to be used to search the user.
+`config.cache_ttl`                       | `60`    | Cache expiry time in seconds.
+`config.timeout`<br>*optional*           | `10000` | An optional timeout in milliseconds when waiting for connection with LDAP server.
+`config.keepalive`<br>*optional*         | `60000` | An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed.
 ----
 
 ## Usage

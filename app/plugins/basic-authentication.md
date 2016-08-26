@@ -32,10 +32,12 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-form parameter               | description
----                          | ---
-`name`                       | The name of the plugin to use, in this case: `basic-auth`
-`config.hide_credentials`    | Default `false`. An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+form parameter                             | default | description
+---                                        | ---     | ---
+`name`                                     |         | The name of the plugin to use, in this case: `basic-auth`
+`config.hide_credentials`<br>*optional*    | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 
 ----
 
@@ -51,10 +53,10 @@ You need to associate a credential to an existing [Consumer][consumer-object] ob
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
 
-parameter                       | description
----                             | ---
-`username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
-`custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
+parameter                       | default | description
+---                             | ---     | ---
+`username`<br>*semi-optional*   |         | The username of the consumer. Either this field or `custom_id` must be specified.
+`custom_id`<br>*semi-optional*  |         | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
 A [Consumer][consumer-object] can have many credentials.
 
@@ -70,10 +72,10 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
 
 `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
-form parameter             | description
----                        | ---
-`username`                 | The username to use in the Basic Authentication
-`password`<br>*optional*   | The password to use in the Basic Authentication
+form parameter             | default | description
+---                        | ---     | ---
+`username`                 |         | The username to use in the Basic Authentication
+`password`<br>*optional*   |         | The password to use in the Basic Authentication
 
 ### Upstream Headers
 
