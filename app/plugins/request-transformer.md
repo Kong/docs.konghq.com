@@ -25,13 +25,16 @@ Configuring the plugin is as simple as a single API call, you can configure and 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=request-transformer" \
-    --data "config.add.headers=x-new-header:some_value, x-another-header:some_value" \
+    --data "config.add.headers[1]=x-new-header:some,value" \
+    --data "config.add.headers[2]=x-another-header:some,value" \
     --data "config.add.querystring=new-param:some_value, another-param:some_value" \
     --data "config.add.body=new-form-param:some_value, another-form-param:some_value" \
     --data "config.remove.headers=x-toremove, x-another-one" \
     --data "config.remove.querystring=param-toremove, param-another-one" \
     --data "config.remove.body=formparam-toremove, formparam-another-one"
 ```
+
+Note: if the value contains a `,` then the comma separated format cannot be used. The array notation must be used instead.
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
