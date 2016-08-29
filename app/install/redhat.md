@@ -13,7 +13,6 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [RHEL 5]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el5.noarch.rpm)
 - [RHEL 6]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el6.noarch.rpm)
 - [RHEL 7]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el7.noarch.rpm)
 
