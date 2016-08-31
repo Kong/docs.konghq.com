@@ -11,7 +11,7 @@ In this section you will find a summary about the recommended network and firewa
 Kong listens on several ports that must allow external traffic and are by default:
 
 * `8000` for proxying. This is where Kong listens for HTTP traffic. Be sure to change it to `80` once you go to production. See [proxy_listen].
-* `8443` for proxying HTTPS traffic. Be sure to change it to `443` once you go to production. See [proxy_ssl_listen].
+* `8443` for proxying HTTPS traffic. Be sure to change it to `443` once you go to production. See [proxy_listen_ssl].
 * `7946` which Kong uses for inter-nodes communication. Both UDP and TCP traffic should be allowed on it. See [cluster_listen].
 
 Additionally, those ports are used internally and should be firewalled in  production usage:
