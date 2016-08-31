@@ -152,7 +152,41 @@ HTTP 200 OK
 
 ## Cluster
 
-You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute these operations using the [CLI][cli].
+You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute some of these operations using the [CLI][cli].
+
+---
+
+### Cluster information
+
+The entrypoint to the clustering API functionalities. Shows the total number of events that have been handled by the current node, and their types. The types starting with `ENTITY_` are events for database entities, while the types that start with `MEMBER-` are events of the cluster and its members.
+
+#### Endpoint
+
+<div class="endpoint get">/cluster</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "events": {
+        "MEMBER-JOIN": 1,
+        "MEMBER-LEAVE": 1,
+        "MEMBER-FAILED": 1,
+        "MEMBER-UPDATE": 1,
+        "MEMBER-REAP": 1,
+        "ENTITY_CREATED": 1,
+        "ENTITY_UPDATED": 1,
+        "ENTITY_DELETED": 1,
+        "OTHER": 1,
+        "total": 9
+    },
+    "nodes": "http:\/\/127.0.0.1:8001\/cluster\/nodes"
+}
+```
 
 ---
 
@@ -162,7 +196,7 @@ Retrieve the cluster status, returning information for each node in the cluster.
 
 #### Endpoint
 
-<div class="endpoint get">/cluster</div>
+<div class="endpoint get">/cluster/nodes/</div>
 
 #### Response
 
@@ -201,7 +235,7 @@ Forcibly remove a node from the cluster.
 
 #### Endpoint
 
-<div class="endpoint delete">/cluster</div>
+<div class="endpoint delete">/cluster/nodes/{node_name}</div>
 
 #### Response
 
