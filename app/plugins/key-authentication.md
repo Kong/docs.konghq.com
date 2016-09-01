@@ -38,6 +38,19 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=key-auth"
+HTTP/1.1 201 Created
+
+{
+    "api_id": "d87d0e23-a1c1-4981-9989-84ee9a1a0781",
+    "id": "5bde4bc6-c27b-44a2-bcfd-5352c3bb29a1",
+    "created_at": 1472604757000,
+    "enabled": true,
+    "name": "key-auth",
+    "config": {
+        "key_names": ["apikey"],
+        "hide_credentials":false
+    }
+}
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -65,6 +78,13 @@ $ curl -X POST http://kong:8001/consumers/ \
     --data "username=<USERNAME>" \
     --data "custom_id=<CUSTOM_ID>"
 HTTP/1.1 201 Created
+
+{
+    "username":"<USERNAME>",
+    "custom_id": "<CUSTOM_ID>",
+    "created_at": 1472604384000,
+    "id": "7f853474-7b70-439d-ad59-2481a0a9a904"
+}
 ```
 
 parameter                      | default | description
@@ -79,7 +99,7 @@ A [Consumer][consumer-object] can have many credentials.
 You can provision new credentials by making the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth
+$ curl -X POST http://kong:8001/consumers/{consumer}/key-auth -d ''
 HTTP/1.1 201 Created
 
 {
