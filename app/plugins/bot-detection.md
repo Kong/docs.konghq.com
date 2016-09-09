@@ -12,7 +12,7 @@ nav:
       - label: Default rules
 ---
 
-Protects your API from the most common bots, with the possibility of whitelisting and blacklisting custom clients.
+Protects your API from most common bots and has the capability of whitelisting and blacklisting custom clients.
 
 ----
 
