@@ -118,7 +118,7 @@ First, the header must be:
 }
 ```
 
-Secondly, the claims **must** contain the secret's `key` in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
+Secondly, the claims **must** contain the secret's `key` in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
 
 ```json
 {
@@ -126,7 +126,7 @@ Secondly, the claims **must** contain the secret's `key` in the configured claim
 }
 ```
 
-Since the `secret` associated with this `key` is `e71829c351aa4242c2719cbfbe671c09`, the final JWT is:
+Using the JWT debugger at https://jwt.io with the header (HS256), claims (iss, etc), and `secret` associated with this `key` (e71829c351aa4242c2719cbfbe671c09), you'll end up with a JWT token of:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4

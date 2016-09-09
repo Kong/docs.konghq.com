@@ -117,7 +117,7 @@ form parameter      | default | description
 `key`<br>*optional* |         | You can optionally set your own unique `key` to authenticate the client. If missing, the plugin will generate one.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if you are migrating an existing system to Kong, and must re-use your keys to make the migration to Kong transparent to your consumers.
+  <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if you are migrating an existing system to Kong. You must re-use your keys to make the migration to Kong transparent to your Consumers.
 </div>
 
 ### Using the API Key
