@@ -16,6 +16,13 @@ Start by downloading the corresponding package for your configuration:
 - [RHEL 6]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el6.noarch.rpm)
 - [RHEL 7]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.el7.noarch.rpm)
 
+### YUM Repositories
+
+You can also install Kong by using the following YUM repositories and following the Bintray instructions:
+
+- [RHEL 6 YUM](https://bintray.com/mashape/kong-rpm-el6-{{site.data.kong_latest.release}})
+- [RHEL 7 YUM](https://bintray.com/mashape/kong-rpm-el7-{{site.data.kong_latest.release}})
+
 ----
 
 ### Installation:
@@ -31,7 +38,7 @@ Start by downloading the corresponding package for your configuration:
 
 2. **Install the Package:**
 
-    After downloading the [package](#packages), execute:
+    If you are downloading the [package](#packages), execute:
 
     ```bash
     $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
