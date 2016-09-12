@@ -34,6 +34,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=oauth2" \
+    --data "config.enable_authorization_code=true" \
     --data "config.scopes=email,phone,address" \
     --data "config.mandatory_scope=true"
 ```
