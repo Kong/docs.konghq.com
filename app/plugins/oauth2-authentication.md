@@ -68,10 +68,10 @@ By default the OAuth 2.0 plugin listens on the following endpoints when consumin
 
 Endpoint                     | description
 ---                         | ---
-`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled.
-`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows.
+`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled. Only `POST` is supported.
+`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows. Only `POST` is supported.
 
-The clients trying to authorize and request access tokens must use these endpoints.
+The clients trying to authorize and request access tokens must use these endpoints. Remember that the endpoints above must be combined with the right URI path or headers that you normally use when consuming the root `/` endpoint of the API through Kong.
 
 ### Create a Consumer
 
@@ -151,7 +151,7 @@ You can use this information on your side to implement additional logic. You can
 
 ----
 
-## oAuth 2.0 Flows
+## OAuth 2.0 Flows
 
 ## Client Credentials
 
