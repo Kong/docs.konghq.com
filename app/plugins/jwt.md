@@ -18,6 +18,8 @@ nav:
       - label: Send a request with the JWT
       - label: (Optional) Verified claims
       - label: (Optional) Base64 encoded secret
+      - label: Using public/private keys
+      - label: Generate public/private keys
       - label: Upstream Headers
 ---
 
@@ -103,7 +105,7 @@ form parameter      | default         | description
 `key`<br>*optional* |                 | A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is **mandatory** while crafting your token, as specified in the next section.
 `algorithm`<br>*optional*         | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`.
 `rsa_public_key`<br>*optional* |      | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
-`secret`<br>*optional*         |       | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
+`secret`<br>*optional*         |       | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated. If `algorithm` is `RS256`, this is the private key (in PEM format) to use to verify the token's signature.
 
 ### Craft a JWT
 
@@ -196,6 +198,66 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
 ```
 
 And sign your JWT using the original secret ("blob data").
+
+### Using public/private keys
+
+If you decide to use public/private keys in PEM format to authenticate a consumer, when creating a JWT credential select `RS256` as the `algorithm`, and explicitly upload the public key in the `rsa_public_key` field, and the private key in the `secret` field. For example:
+
+```bash
+$ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
+      -F "rsa_public_key=@/path/to/public_key.pem" \
+      -F "secret=@/path/to/private_key.pem"
+HTTP/1.1 201 Created
+
+{
+    "consumer_id": "7bce93e1-0a90-489c-c887-d385545f8f4b",
+    "created_at": 1442426001000,
+    "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
+    "key": "a36c3049b36249a3c9f8891cb127243c",
+    "rsa_public_key": "-----BEGIN PUBLIC KEY----- ...",
+    "secret": "-----BEGIN RSA PRIVATE KEY----- ..."
+}
+```
+
+When creating the signature, make sure that the header is:
+
+```json
+{
+    "typ": "JWT",
+    "alg": "RS256"
+}
+```
+
+Secondly, the claims **must** contain the secret's `key` in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
+
+```json
+{
+    "iss": "a36c3049b36249a3c9f8891cb127243c"
+}
+```
+
+Then create the signature using the public/private keys specified when creating the credential. Using the JWT debugger at https://jwt.io set the right header (RS256), the claims (iss, etc), and the correct public/private keys. Then append the resulting value in the `Authorization` header, for example:
+
+```bash
+$ curl http://kong:8000/{api path} \
+    -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxM2Q1ODE0NTcyZTc0YTIyYjFhOWEwMDJmMmQxN2MzNyJ9.uNPTnDZXVShFYUSiii78Q-IAfhnc2ExjarZr_WVhGrHHBLweOBJxGJlAKZQEKE4rVd7D6hCtWSkvAAOu7BU34OnlxtQqB8ArGX58xhpIqHtFUkj882JQ9QD6_v2S2Ad-EmEx5402ge71VWEJ0-jyH2WvfxZ_pD90n5AG5rAbYNAIlm2Ew78q4w4GVSivpletUhcv31-U3GROsa7dl8rYMqx6gyo9oIIDcGoMh3bu8su5kQc5SQBFp1CcA5H8sHGfYs-Et5rCU2A6yKbyXtpHrd1Y9oMrZpEfQdgpLae0AfWRf6JutA9SPhst9-5rn4o3cdUmto_TBGqHsFmVyob8VQ'
+```
+
+### Generate public/private keys
+
+To create a brand new private key you can run the following command:
+
+```bash
+$ openssl genrsa -out private.pem 2048
+```
+
+This private key must be kept secret. To generate a public key corresponding to the private key, execute:
+
+```bash
+openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+```
+
+If you run the commands above, the public key will be stored at `public.pem`, while the private key will be stored at `private.pem`.
 
 ### Upstream Headers
 
