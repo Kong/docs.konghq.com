@@ -58,7 +58,3 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
 4. **Start using Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> If Docker complains that <code>--security-opt</code> is an invalid option, just remove it and re-execute the command (it was introduced in Docker 1.3).
-</div>

@@ -59,7 +59,10 @@ Kong cluster settings are specified in the configuration file at the following e
 
 * [cluster_listen][cluster_listen]
 * [cluster_listen_rpc][cluster_listen_rpc]
-* [cluster][cluster]
+* [cluster_advertise][cluster_advertise]
+* [cluster_encrypt_key][cluster_encrypt_key]
+* [cluster_ttl_on_failure][cluster_ttl_on_failure]
+* [cluster_profile][cluster_profile]
 
 #### Why do we need Kong Clustering?
 
@@ -79,7 +82,7 @@ This brings on the table very good performance, because Kong nodes will never ta
 
 Every Kong node that points to the same datastore needs to join in a cluster with the other nodes. A Kong Cluster is made of at least two Kong nodes pointing to the same datastore.
 
-Every time a new Kong node is being started it will register its first local, non-loopback, IPv4 address to the datastore. When another node is being started, it will query the datastore for nodes that have previously registered themselves, and join them using the IP address stored. If the auto-detected IP address is wrong, you can customize what address is being advertised to other nodes by using the `advertise` property in the [cluster settings][cluster].
+Every time a new Kong node is being started it will register its first local, non-loopback, IPv4 address to the datastore. When another node is being started, it will query the datastore for nodes that have previously registered themselves, and join them using the IP address stored. If the auto-detected IP address is wrong, you can customize what address is being advertised to other nodes by using the [`cluster_advertise` property][cluster_advertise].
 
 A Kong node only needs to join one another node in a cluster, and it will automatically discover the entire cluster.
 
@@ -105,9 +108,9 @@ You can check the cluster state, its nodes and the state of each node in two way
 
 ## 6. Network Assumptions
 
-When configuring a cluster in either a single or multi-datancer setup, you need to know that Kong works on the IP layer (hostnames are not supported, only IPs are allowed) and it expects a flat network topology without any NAT between the two datacenters. A common setup is having a VPN between the two datacenters such that the "flat" network assumption of Kong is not violated. Or by advertising public addresses using the `advertise` property in the [cluster settings][cluster] without jumping through the NAT.
+When configuring a cluster in either a single or multi-datancer setup, you need to know that Kong works on the IP layer (hostnames are not supported, only IPs are allowed) and it expects a flat network topology without any NAT between the two datacenters. A common setup is having a VPN between the two datacenters such that the "flat" network assumption of Kong is not violated. Or by advertising public addresses using the [`cluster_advertise` property][cluster_advertise] without jumping through the NAT.
 
-Kong will try to automatically determine the first non-loopback IPv4 address and share it with the other nodes, but you can override this address using the `advertise` property in the [cluster settings][cluster].
+Kong will try to automatically determine the first non-loopback IPv4 address and share it with the other nodes, but you can override this address using the [`cluster_advertise` property][cluster_advertise].
 
 ## 7. Edge-case scenarios
 
@@ -137,7 +140,10 @@ The node data will persist for 1 hour in the datastore in case the node crashes,
 
 [cluster_listen]: /docs/{{page.kong_version}}/configuration/#cluster_listen
 [cluster_listen_rpc]: /docs/{{page.kong_version}}/configuration/#cluster_listen_rpc
-[cluster]: /docs/{{page.kong_version}}/configuration/#cluster
+[cluster_advertise]: /docs/{{page.kong_version}}/configuration/#cluster_advertise
+[cluster_encrypt_key]: /docs/{{page.kong_version}}/configuration/#cluster_encrypt_key
+[cluster_ttl_on_failure]: /docs/{{page.kong_version}}/configuration/#cluster_ttl_on_failure
+[cluster_profile]: /docs/{{page.kong_version}}/configuration/#cluster_profile
 [cli-cluster]: /docs/{{page.kong_version}}/cli/#cluster
 [cluster-api-status]: /docs/{{page.kong_version}}/admin-api/#retrieve-cluster-status
 [cluster-api-remove]: /docs/{{page.kong_version}}/admin-api/#forcibly-remove-a-node

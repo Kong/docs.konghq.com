@@ -8,14 +8,15 @@ Kong is a scalable, open source **API Layer** *(also known as an API Gateway, or
 
 Kong was originally built at Mashape to secure, manage and extend over 15,000 APIs & Microservices for its API Marketplace, which generates billions of requests per month for over 200,000 developers. Today Kong is used in mission critical deployments at small and large organizations.
 
-
 * **Scalable**: Kong easily scales horizontally by simply adding more machines, meaning your platform can handle virtually any load while keeping latency low.
 
 * **Modular**: Kong can be extended by adding new plugins, which are easily configured through an RESTful Admin API.
 
 * **Runs on any infrastructure**: Kong runs anywhere. You can deploy Kong in the cloud or on-premise environments, including single or multi-datacenter setups and for public, private or invite-only APIs.
 
-Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra**, and provides you with an easy to use [RESTful API](/docs/latest/admin-api) to operate and configure the system.
+![](/assets/images/docs/kong-architecture.jpg)
+
+Kong is built on top of reliable technologies like **NGINX** and **Apache Cassandra** or **PostgreSQL**, and provides you with an easy to use [RESTful API](/docs/latest/admin-api) to operate and configure the system.
 
 ## Request Workflow
 
