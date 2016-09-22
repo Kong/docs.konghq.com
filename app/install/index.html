@@ -19,7 +19,7 @@ header_icon: /assets/images/icons/icn-download.svg
             <div class="row">
           {% endif %}
 
-          <a href="{% if method.soon %}#{% else %}/install/{{ method.id }}/{% endif %}" class="box three columns {% if method.soon %}soon{% endif %}" title="{{ method.name }}">
+          <a href="{% if method.soon %}#{% else %}/install/{{ method.id }}/{% endif %}" class="box six columns {% if method.soon %}soon{% endif %}" title="{{ method.name }}">
             <img src="/assets/images/distributions/{{ method.id }}.{% if method.png %}png{% else %}svg{% endif %}" alt="{{ method.name }}"/>
           </a>
 

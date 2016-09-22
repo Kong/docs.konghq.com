@@ -1,7 +1,6 @@
 .page-install {
   .content-section {
     padding-top: 80px;
-
     text-align: center;
 
     h6 {
@@ -10,13 +9,10 @@
 
     .box {
       height: 70px;
-
       border: 1px solid rgba(0, 0, 0, 10%);
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
 
       p {
@@ -32,7 +28,31 @@
 
     .distributions {
       .row {
-        margin-bottom: 30px;
+        margin-bottom: 0;
+
+        @media (min-width: 550px) {
+          margin-bottom: 0;
+
+          .columns:nth-of-type(2n - 1) {
+            margin-left: 0;
+          }
+          .columns:nth-of-type(2n) {
+            margin-bottom: 20px;
+          }
+        }
+
+        @media (min-width: 1100px) {
+          .columns {
+            width: 22%;
+          }
+          .columns:nth-of-type(2n - 1) {
+            margin-left: 20px;
+          }
+          .columns:nth-of-type(2n) {
+            margin-left: 20px;
+            margin-bottom: 20px;
+          }
+        }
       }
 
       .box {
