@@ -90,11 +90,10 @@ module Jekyll
   <script>
     var latest = '#{@site.data["kong_versions"].last["release"]}';
     var destination = window.location.pathname.replace(/latest/i, latest);
+    var urlsplit = window.location.href.split('latest');
 
-    if (typeof window.location.href.split('latest')[1] === 'undefined'
-     || window.location.href.split('latest')[1] === '/') {
+    if ( urlsplit && urlsplit.length > 0 && (urlsplit[1] === '/' || typeof urlsplit[1] === 'undefined') ) {
       window.location.href = '/docs/';
-      console.log(window.location.href.split('latest')[1]);
     } else {
       window.location.href = destination + (window.location.hash || '');
     }
