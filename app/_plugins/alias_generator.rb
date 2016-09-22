@@ -83,8 +83,24 @@ module Jekyll
   <head>
     <link rel="canonical" href="#{destination_path}"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="refresh" content="0;url=#{destination_path}" />
+    <noscript><meta http-equiv="refresh" content="0;url=#{destination_path}" /></noscript>
   </head>
+  <body>
+  Redirecting...
+  <script>
+    var latest = '#{@site.data["kong_versions"].last["release"]}';
+    var destination = window.location.pathname.replace(/latest/i, latest);
+
+    if (typeof window.location.href.split('latest')[1] === 'undefined'
+     || window.location.href.split('latest')[1] === '/') {
+      window.location.href = '/docs/';
+      console.log(window.location.href.split('latest')[1]);
+    } else {
+      window.location.href = destination + (window.location.hash || '');
+    }
+
+  </script>
+  </body>
 </html>
       EOF
     end
