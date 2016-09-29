@@ -44,6 +44,7 @@ form parameter                            | default | description
 ---:                                      | ---     | ---
 `name`                                    | | Name of the plugin to use, in this case: `request-transformer`
 `consumer_id`<br>*optional*               | | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
+`config.http_method`<br>*optional*        | | Changes the HTTP method for the upstream request.
 `config.remove.headers`<br>*optional*     | | List of header names. Unset the headers with the given name.
 `config.remove.querystring`<br>*optional* | | List of querystring names. Remove the querystring if it is present.
 `config.remove.body`<br>*optional*        | | List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.

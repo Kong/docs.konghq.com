@@ -45,9 +45,9 @@ redirect_from: /install/compile/
       --with-lua-include=/usr/local/openresty/luajit/include/luajit-2.1
     ```
 
-    Finally, the [Serf v{{serf_version}}](https://www.serf.io/) executable should be available in one of `/usr/local/bin` or `/usr/bin`. You can use it from a custom location assuming you configure the Kong's `serf_path` property accordingly.
+    Finally, the [Serf v{{serf_version}}](https://www.serf.io/) executable should be available in your `$PATH`. You can also use it from a custom location assuming you configure Kong's `serf_path` property accordingly (or use the `KONG_SERF_PATH` environment variable). This property should specify the absolute path to the `serf` executable.
 
-    Consulting the [setup_env.sh](https://github.com/Mashape/kong/blob/next/.ci/setup_env.sh) CI script is a good resource for a concrete example of those instructions. Notice how Serf is used from a custom location which is specified using an environment variable in [run_tests.sh](https://github.com/Mashape/kong/blob/next/.ci/run_tests.sh).
+    Consulting the [setup_env.sh](https://github.com/Mashape/kong/blob/next/.ci/setup_env.sh) CI script is a good resource for a concrete example of those instructions. Notice how Serf is used from a custom location which is specified using the environment variable in [run_tests.sh](https://github.com/Mashape/kong/blob/next/.ci/run_tests.sh).
 
 2. **Install Kong:**
 
@@ -63,6 +63,8 @@ redirect_from: /install/compile/
     $ git clone git@github.com:Mashape/kong.git
     $ [sudo] make install # this simply runs the `luarocks make kong-*.rockspec` command
     ```
+
+    Finally, place the `bin/kong` script in your `$PATH`.
 
 2. **Configure your database**
 

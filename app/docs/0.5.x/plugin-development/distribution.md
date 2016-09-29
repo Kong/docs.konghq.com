@@ -33,7 +33,7 @@ You need to make these modules available in your LUA_PATH.
 
 ### Distribute your modules
 
-The preferred way to do so is to use [Luarocks](https://luarocks.org/), a package manager for Lua modules. It calls such modules "rocks". **Your module does not have to live inside the Kong repository!** It can be
+The preferred way to do so is to use [Luarocks](https://luarocks.org/), a package manager for Lua modules. It calls such modules "rocks". **Your module does not have to live inside the Kong repository!**, but it can be if that's how you'd like to maintain your Kong setup.
 
 By defining your modules (and their eventual dependencies) in a [rockspec] file, you can install those modules on your platform via Luarocks. You can also upload your module on Luarocks and make it available to everyone!
 

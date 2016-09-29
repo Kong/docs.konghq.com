@@ -34,6 +34,7 @@ Configuring the plugin is straightforward, you can add it on top of an [API][api
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=oauth2" \
+    --data "config.enable_authorization_code=true" \
     --data "config.scopes=email,phone,address" \
     --data "config.mandatory_scope=true"
 ```
@@ -67,10 +68,10 @@ By default the OAuth 2.0 plugin listens on the following endpoints when consumin
 
 Endpoint                     | description
 ---                         | ---
-`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled.
-`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows.
+`/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled. Only `POST` is supported.
+`/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows. Only `POST` is supported.
 
-The clients trying to authorize and request access tokens must use these endpoints.
+The clients trying to authorize and request access tokens must use these endpoints. Remember that the endpoints above must be combined with the right URI path or headers that you normally use when consuming the root `/` endpoint of the API through Kong.
 
 ### Create a Consumer
 
@@ -150,7 +151,7 @@ You can use this information on your side to implement additional logic. You can
 
 ----
 
-## oAuth 2.0 Flows
+## OAuth 2.0 Flows
 
 ## Client Credentials
 
@@ -268,6 +269,20 @@ The [Resource Owner Password Credentials Grant][password-grant] is a much simple
 In this flow, the steps that you need to implement are:
 
 * The backend endpoint that will process the original request and will authenticate the `username` and `password` values sent by the client, and if the authentication is successful, make the request to Kong and return back to the client whatever response Kong has sent back.
+
+----
+
+## Refresh Token
+
+When your access token expires, you can generate a new access token using the refresh token you received in conjunction to your expired access token.
+
+    ```bash
+    $ curl -X POST https://your.api.com/oauth2/token \ 
+        --data "grant_type=refresh_token" \
+        --data "client_id=XXX" \
+        --data "client_secret=XXX" \
+        --data "refresh_token=XXX"
+    ```
 
 [ssl-plugin]: /plugins/dynamic-ssl/
 [api-object]: /docs/latest/admin-api/#api-object
