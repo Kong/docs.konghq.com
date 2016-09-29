@@ -144,11 +144,11 @@ here is a suggestion:
 # custom_nginx.template
 # ---------------------
 
-worker_processes ${{NGINX_WORKER_PROCESSES}}; # can be set by kong.conf
-daemon ${{NGINX_DAEMON}};                     # can be set by kong.conf
+worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
+daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
 
 pid pids/nginx.pid;                      # this setting is mandatory
-error_log logs/error.log ${{LOG_LEVEL}}; # can be set by kong.conf
+error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
 
 events {
     use epoll; # custom setting
@@ -185,18 +185,18 @@ add other Lua handlers or customize the `lua_*` directives, you can inline the
 # custom_nginx.template
 # ---------------------
 
-worker_processes ${{NGINX_WORKER_PROCESSES}}; # can be set by kong.conf
-daemon ${{NGINX_DAEMON}};                     # can be set by kong.conf
+worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
+daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
 
 pid pids/nginx.pid;                      # this setting is mandatory
-error_log logs/error.log ${{LOG_LEVEL}}; # can be set by kong.conf
+error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
 
 events {}
 
 http {
-  resolver ${{DNS_RESOLVER}} ipv6=off;
+  resolver ${{ "{{DNS_RESOLVER" }}}} ipv6=off;
   charset UTF-8;
-  error_log logs/error.log ${{LOG_LEVEL}};
+  error_log logs/error.log ${{ "{{LOG_LEVEL" }}}};
   access_log logs/access.log;
 
   ... # etc
