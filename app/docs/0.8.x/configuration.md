@@ -357,7 +357,7 @@ data_centers:
 
   Consistency level to use. See [http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html](http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html)
 
-  **Default:** 
+  **Default:**
 
 ```yaml
 consistency: ONE
@@ -503,17 +503,17 @@ worker_processes auto;
   error_log logs/error.log error;
   daemon on;
 
-  worker_rlimit_nofile {{auto_worker_rlimit_nofile}};
+  worker_rlimit_nofile {{ "{{auto_worker_rlimit_nofile" }}}};
 
   env KONG_CONF;
 
   events {
-    worker_connections {{auto_worker_connections}};
+    worker_connections {{ "{{auto_worker_connections" }}}};
     multi_accept on;
   }
 
   http {
-    resolver {{dns_resolver}} ipv6=off;
+    resolver {{ "{{dns_resolver" }}}} ipv6=off;
     charset UTF-8;
 
     access_log logs/access.log;
@@ -554,11 +554,11 @@ worker_processes auto;
     lua_max_pending_timers 16384;
     lua_shared_dict reports_locks 100k;
     lua_shared_dict cluster_locks 100k;
-    lua_shared_dict cache {{memory_cache_size}}m;
+    lua_shared_dict cache {{ "{{memory_cache_size" }}}}m;
     lua_shared_dict cassandra 1m;
     lua_shared_dict cassandra_prepared 5m;
     lua_socket_log_errors off;
-    {{lua_ssl_trusted_certificate}}
+    {{ "{{lua_ssl_trusted_certificate" }}}}
 
     init_by_lua '
       kong = require "kong"
@@ -573,13 +573,13 @@ worker_processes auto;
 
     server {
       server_name _;
-      listen {{proxy_listen}};
-      listen {{proxy_listen_ssl}} ssl;
+      listen {{ "{{proxy_listen" }}}};
+      listen {{ "{{proxy_listen_ssl" }}}} ssl;
 
       ssl_certificate_by_lua 'kong.exec_plugins_certificate()';
 
-      ssl_certificate {{ssl_cert}};
-      ssl_certificate_key {{ssl_key}};
+      ssl_certificate {{ "{{ssl_cert" }}}};
+      ssl_certificate_key {{ "{{ssl_key" }}}};
       ssl_protocols TLSv1 TLSv1.1 TLSv1.2;# omit SSLv3 because of POODLE (CVE-2014-3566)
 
       location / {
@@ -592,7 +592,6 @@ worker_processes auto;
         # Authenticate the user and load the API info
         access_by_lua 'kong.exec_plugins_access()';
 
-        # Proxy the request
         # Proxy the request
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -626,7 +625,7 @@ worker_processes auto;
     }
 
     server {
-      listen {{admin_api_listen}};
+      listen {{ "{{admin_api_listen" }}}};
 
       client_max_body_size 10m;
       client_body_buffer_size 10m;
