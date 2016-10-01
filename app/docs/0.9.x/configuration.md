@@ -314,6 +314,16 @@ Example: `127.0.0.1:8001`
 
 ---
 
+##### **admin_listen_ssl**
+
+Address and port on which Kong will accept HTTPS requests to the Admin API if `admin_ssl` is enabled.
+
+Default: `0.0.0.0:8444`
+
+Example: `127.0.0.1:8444`
+
+---
+
 ##### **nginx_worker_processes**
 
 Determines the number of worker processes spawned by Nginx.
@@ -368,6 +378,35 @@ Default: none
 
 If `ssl` is enabled, the absolute path to the SSL key for the
 `proxy_listen_ssl` address.
+
+Default: none
+
+---
+
+##### **admin_ssl**
+
+Determines if Nginx should be listening for HTTPS traffic on the `admin_listen_ssl`
+address. If disabled, Nginx will only bind itself on `admin_listen`, and all SSL 
+settings will be ignored.
+
+Default: `on`
+
+---
+
+##### **admin_ssl_cert**
+
+If `admin_ssl` is enabled, the absolute path to the SSL certificate for the
+`admin_listen_ssl` address. If none is specified and `admin_ssl` is enabled, Kong will
+generate a default certificate and key.
+
+Default: none
+
+---
+
+##### **admin_ssl_cert_key**
+
+If `admin_ssl` is enabled, the absolute path to the SSL key for the
+`admin_listen_ssl` address.
 
 Default: none
 
