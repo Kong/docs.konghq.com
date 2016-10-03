@@ -30,7 +30,7 @@ breadcrumbs:
     <br/>
     This will tell Vagrant to mount your local Kong repository under the guest's /kong folder.
 
-    The startup process will install all the dependencies necessary for developing (including Cassandra). The kong source code is mounted at `/kong`. The host ports `8000` and `8001` will be forwarded to the Vagrant box.
+    The startup process will install all the dependencies necessary for developing (including Postgres). The kong source code is mounted at `/kong`. The host ports `8000` and `8001` will be forwarded to the Vagrant box.
 
     <div class="alert alert-warning">
       <div class="text-center">
