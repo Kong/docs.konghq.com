@@ -499,7 +499,7 @@ The NGINX configuration (or `nginx.conf`) that will be used for this instance. T
 
 ```yaml
 nginx: |
-worker_processes auto;
+  worker_processes auto;
   error_log logs/error.log error;
   daemon on;
 
