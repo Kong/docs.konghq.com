@@ -73,6 +73,8 @@ If Kong is to be used across datacenters, the network must be able to route traf
 
 Even if all the Kong nodes seem to be successfully part of a cluster, that doesn't mean they will be able to successfully communicate together: to check the status of the cluster and make sure the nodes can communicate with each other, you can run the [`kong cluster reachability`][cli-cluster] command.
 
+For multi-DC setups you will probably have to explicitly configure the [cluster_advertise][cluster_advertise] property on each node using an IP address and port that every Kong node (in any DC) can use to connect to that specific Kong node (in both TCP and UDP). For example if a node is available on DC1 at `1.1.1.1:7946` and another node is available at `2.2.2.2:7946` on DC2, the node on DC1 must have `cluster_advertise=1.1.1.1:7946` and the node on DC2 must have `cluster_advertise=2.2.2.2:7946`.
+
 ## 4. Node Health States
 
 A Kong node can be in four different states:
