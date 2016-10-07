@@ -92,11 +92,10 @@ HTTP 200 OK
     "tagline": "Welcome to Kong",
     "version": "0.6.0"
 }
+```
 
 * `available_on_server`: Names of plugins that are installed on the node.
 * `enabled_in_cluster`: Names of plugins that are enabled/configured. That is, the plugins configurations currently in the datastore shared by all Kong nodes.
-
-```
 
 ---
 
@@ -202,6 +201,12 @@ Forcibly remove a node from the cluster.
 #### Endpoint
 
 <div class="endpoint delete">/cluster</div>
+
+#### Request Body
+
+Attributes | Description
+---:| ---
+`name` | The node name to remove.
 
 #### Response
 
