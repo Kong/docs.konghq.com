@@ -14,11 +14,11 @@ nav:
     items:
       - label: Create a Consumer
       - label: Create a JWT credential
-      - label: Craft a JWT
+      - label: Craft a JWT with a secret (HS256)
       - label: Send a request with the JWT
       - label: (Optional) Verified claims
       - label: (Optional) Base64 encoded secret
-      - label: Using public/private keys
+      - label: Craft a JWT with public/private keys (RS256)
       - label: Generate public/private keys
       - label: Upstream Headers
 ---
@@ -100,14 +100,14 @@ HTTP/1.1 201 Created
 
 `consumer`: The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
 
-form parameter      | default         | description
----                 | ---             | ---
-`key`<br>*optional* |                 | A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is **mandatory** while crafting your token, as specified in the next section.
-`algorithm`<br>*optional*         | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`.
-`rsa_public_key`<br>*optional* |      | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
-`secret`<br>*optional*         |       | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated. If `algorithm` is `RS256`, this is the private key (in PEM format) to use to verify the token's signature.
+form parameter                 | default         | description
+---                            | ---             | ---
+`key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is **mandatory** while crafting your token if you are using `HS256`, as specified in the next section.
+`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`.
+`rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
+`secret`<br>*optional*         |                 | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
-### Craft a JWT
+### Craft a JWT with a secret (HS256)
 
 Now that your Consumer has a credential, and assuming we want to sign it using `HS256`, the JWT should be crafted as follows (according to [RFC 7519][rfc-jwt]):
 
@@ -199,7 +199,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
 
 And sign your JWT using the original secret ("blob data").
 
-### Using public/private keys
+### Craft a JWT with public/private keys (RS256)
 
 If you decide to use public/private keys in PEM format to authenticate a consumer, when creating a JWT credential select `RS256` as the `algorithm`, and explicitly upload the public key in the `rsa_public_key` field, and the private key in the `secret` field. For example:
 
@@ -214,8 +214,7 @@ HTTP/1.1 201 Created
     "created_at": 1442426001000,
     "id": "bcbfb45d-e391-42bf-c2ed-94e32946753a",
     "key": "a36c3049b36249a3c9f8891cb127243c",
-    "rsa_public_key": "-----BEGIN PUBLIC KEY----- ...",
-    "secret": "-----BEGIN RSA PRIVATE KEY----- ..."
+    "rsa_public_key": "-----BEGIN PUBLIC KEY----- ..."
 }
 ```
 
@@ -236,7 +235,7 @@ Secondly, the claims **must** contain the secret's `key` in the configured claim
 }
 ```
 
-Then create the signature using the public/private keys specified when creating the credential. Using the JWT debugger at https://jwt.io set the right header (RS256), the claims (iss, etc), and the correct public/private keys. Then append the resulting value in the `Authorization` header, for example:
+Then create the signature using the public/private keys specified when creating the credential. Using the JWT debugger at https://jwt.io, set the right header (RS256), the claims (iss, etc), and the correct public/private keys. Then append the resulting value in the `Authorization` header, for example:
 
 ```bash
 $ curl http://kong:8000/{api path} \
