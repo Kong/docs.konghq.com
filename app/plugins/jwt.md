@@ -56,6 +56,7 @@ form parameter                         | default  | description
 `config.claims_to_verify`<br>*optional*|          | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
 `config.key_claim_name`<br>*optional*  | `iss`    | The name of the claim in which the `key` identifying the secret **must** be passed.
 `config.secret_is_base64`<br>*optional* | `false` | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your consumer, and sign your JWT with the original secret.
+`config.anonymous`<br>*optional*           | `false` | An optional boolean value telling the plugin to keep processing the request even if the credentials are missing
 
 ----
 

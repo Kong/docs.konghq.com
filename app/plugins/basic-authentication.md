@@ -38,6 +38,7 @@ form parameter                             | default | description
 ---                                        | ---     | ---
 `name`                                     |         | The name of the plugin to use, in this case: `basic-auth`
 `config.hide_credentials`<br>*optional*    | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.anonymous`<br>*optional*           | `false` | An optional boolean value telling the plugin to keep processing the request even if the credentials are missing
 
 ----
 

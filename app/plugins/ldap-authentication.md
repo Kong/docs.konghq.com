@@ -50,6 +50,8 @@ form parameter                           | default | description
 `config.cache_ttl`                       | `60`    | Cache expiry time in seconds.
 `config.timeout`<br>*optional*           | `10000` | An optional timeout in milliseconds when waiting for connection with LDAP server.
 `config.keepalive`<br>*optional*         | `60000` | An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed.
+`config.anonymous`<br>*optional*           | `false` | An optional boolean value telling the plugin to keep processing the request even if the credentials are missing
+
 ----
 
 ## Usage

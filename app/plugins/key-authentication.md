@@ -35,22 +35,11 @@ Add Key Authentication (also referred to as an API key) to your APIs. Consumers 
 
 Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
 
+
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=key-auth"
-HTTP/1.1 201 Created
-
-{
-    "api_id": "d87d0e23-a1c1-4981-9989-84ee9a1a0781",
-    "id": "5bde4bc6-c27b-44a2-bcfd-5352c3bb29a1",
-    "created_at": 1472604757000,
-    "enabled": true,
-    "name": "key-auth",
-    "config": {
-        "key_names": ["apikey"],
-        "hide_credentials":false
-    }
-}
+    --data "name=key-auth" \
+    --data "config.hide_credentials=true"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -62,6 +51,7 @@ form parameter                   | default | description
 `name`                           |         | The name of the plugin to use, in this case: `key-auth`.
 `config.key_names`<br>*optional* | `apikey`| Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.
 `config.hide_credentials`<br>*optional* | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
+`config.anonymous`<br>*optional*           | `false` | An optional boolean value telling the plugin to keep processing the request even if the credentials are missing
 
 ----
 

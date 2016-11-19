@@ -49,14 +49,14 @@ Usage: kong backup COMMAND [OPTIONS]
 Create or import backups of data stored in Kong.
 
 The available commands are:
- create            Create a new backup from the database
- import <folder>   Import an existing backup into the database
+  create            Create a new backup from the database
+  import <folder>   Import an existing backup into the database
 
 Options:
- -c,--conf (optional string) configuration file
- -y        Assume yes; assume that the answer to any question which would be asked is yes
- --v         verbose
- --vv        debug
+  -c,--conf (optional string) configuration file
+  -y        Assume yes; assume that the answer to any question which would be asked is yes
+  --v         verbose
+  --vv        debug
 ```
 
 [Back to TOC](#table-of-contents)
