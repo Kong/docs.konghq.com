@@ -60,7 +60,8 @@ Below are the recommended firewall settings:
 * The upstream APIs behind Kong will be available on [proxy_listen][proxy_listen] and [proxy_listen_ssl][proxy_listen_ssl]. 
   Configure these ports accordingly to the access level you wish to grant to the upstream APIs.
 * **Protect** [admin_api_listen][admin_api_listen], and only allow trusted sources that can access the Admin API.
-* Allow traffic on [cluster_listen][cluster_listen] port **only** between other Kong nodes. This port is used for intra-cluster communications.
+* Allow traffic on the [cluster_listen][cluster_listen] and [cluster_listen_advertise][cluster_listen_advertise] ports
+  **only** between the Kong nodes. This port is used for intra-cluster communications.
 
 ## Network
 
