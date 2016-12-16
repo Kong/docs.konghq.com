@@ -36,11 +36,11 @@ This part is the hardest to get right in a multi-node cluster. Here there are al
 
 * `7373` used by Kong to communicate with the local clustering agent. See [cluster_listen_rpc]. The traffic here
   will be local to the Kong node and hence it does **not need to be exposed** anywhere.
-* `7946` which Kong uses for inter-nodes communication. Both UDP and TCP traffic should be allowed on it. See [cluster_listen] 
+* `7946` which Kong uses for intra-nodes communication. Both UDP and TCP traffic should be allowed on it. See [cluster_listen] 
   and [cluster_advertise]. The traffic on these ports should **only** be allowed between Kong nodes.
 
 Kong will try to auto-detect the node's first, non-loopback, IPv4 address and advertise this address to other Kong nodes. 
-Sometimes this is not enough and the IP address needs to be manually set, you can do that by changing the [cluster_advertise] 
+Sometimes this is not enough and the IP address needs to be manually set, you can do that by changing the [cluster_listen] 
 and [cluster_advertise] properties in the [cluster][cluster] configuration.
 
 **Example**
@@ -60,7 +60,7 @@ Below are the recommended firewall settings:
 * The upstream APIs behind Kong will be available on [proxy_listen][proxy_listen] and [proxy_listen_ssl][proxy_listen_ssl]. 
   Configure these ports accordingly to the access level you wish to grant to the upstream APIs.
 * **Protect** [admin_api_listen][admin_api_listen], and only allow trusted sources that can access the Admin API.
-* Allow traffic on the [cluster_listen][cluster_listen] and [cluster_listen_advertise][cluster_listen_advertise] ports
+* Allow traffic on the [cluster_listen][cluster_listen] and [cluster_advertise][cluster_advertise] ports
   **only** between the Kong nodes. This port is used for intra-cluster communications.
 
 ## Network
