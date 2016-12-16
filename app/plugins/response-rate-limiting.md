@@ -54,6 +54,7 @@ form parameter                      | default        | description
 `config.fault_tolerant`<br>*optional*  | `true` |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors.
 `config.redis_host`<br>*semi-optional* | | When using the `redis` policy, this property specifies the address to the Redis server.
 `config.redis_port`<br>*optional* | `6379` | When using the `redis` policy, this property specifies the port of the Redis server.
+`config.redis_password`<br>*optional* |      | When using the `redis` policy, this property specifies the password to connect to the Redis server.
 `config.redis_timeout`<br>*optional* | `2000` | When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
 
 ----
