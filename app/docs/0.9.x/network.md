@@ -49,8 +49,8 @@ A Kong node with a local ip address `192.168.23.45`, exposed to the rest of the 
 ip address `192.168.10.5`. Where the NAT is configured to forward incoming connections on port `9000` to `80` on the 
 local address, then the properties should be set as:
 
-* `[cluster_advertise]=192.168.10.5:9000`
-* `[cluster_listen]=192.168.23.45:80`
+* `cluster_advertise=192.168.10.5:9000`
+* `cluster_listen=192.168.23.45:80`
 
 
 ## Firewall
