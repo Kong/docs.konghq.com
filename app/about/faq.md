@@ -216,6 +216,9 @@ like the [Basic Authentication](/plugins/basic-authentication/), [Key
 Authentication](/plugins/key-authentication/) and [OAuth
 2.0](/plugins/oauth2-authentication/) plugins.
 
+To restrict usage of a service to only some of the authenticated users, add the
+[ACL](/plugins/acl/) plugin and create whitelist or blacklist groups of users.
+
 ----
 
 ## How can I migrate to Kong from another API Gateway?
