@@ -55,6 +55,7 @@ form parameter                      | default        | description
 `config.redis_host`<br>*semi-optional* | | When using the `redis` policy, this property specifies the address to the Redis server.
 `config.redis_port`<br>*optional* | `6379` | When using the `redis` policy, this property specifies the port of the Redis server.
 `config.redis_timeout`<br>*optional* | `2000` | When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
+`config.redis_database`<br>*optional* | `0` | When using the `redis` policy, this property specifies Redis database to use.
 
 ----
 
