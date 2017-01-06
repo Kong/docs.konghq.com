@@ -9,6 +9,7 @@ api_body: |
     `request_path`<br>*semi-optional* | The public path that points to your API. For example, `/someservice`. At least `request_host` or `request_path` or both should be specified.
     `strip_request_path`<br>*optional* | Strip the `request_path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `upstream_url/hello`. By default is `false`.
     `preserve_host`<br>*optional* | Preserves the original `Host` header sent by the client, instead of replacing it with the hostname of the `upstream_url`. By default is `false`.
+    `retries`<br>*optional* | The number of retries to execute upon failure. The default is `5`.
     `upstream_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
 consumer_body: |
@@ -261,7 +262,8 @@ The API object describes an API that's being exposed by Kong. Kong needs to know
     "request_path": "/someservice",
     "strip_request_path": false,
     "preserve_host": false,
-    "upstream_url": "https://mockbin.com"
+    "upstream_url": "https://mockbin.com",
+    "retries": 5
 }
 ```
 
@@ -290,6 +292,7 @@ HTTP 201 Created
     "request_host": "mockbin.com",
     "upstream_url": "http://mockbin.com",
     "preserve_host": false,
+    "retries": 5,
     "created_at": 1422386534
 }
 ```
@@ -319,6 +322,7 @@ HTTP 200 OK
     "request_host": "mockbin.com",
     "upstream_url": "https://mockbin.com",
     "preserve_host": false,
+    "retries": 5,
     "created_at": 1422386534
 }
 ```
@@ -340,6 +344,7 @@ Attributes | Description
 `request_host`<br>*optional* | A filter on the list based on the apis `request_host` field.
 `request_path`<br>*optional* | A filter on the list based on the apis `request_path` field.
 `upstream_url`<br>*optional* | A filter on the list based on the apis `upstream_url` field.
+`retries`<br>*optional* | A filter on the list based on the apis `retries` field.
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
@@ -359,6 +364,7 @@ HTTP 200 OK
             "request_host": "mockbin.com",
             "upstream_url": "https://mockbin.com",
             "preserve_host": false,
+            "retries": 5,
             "created_at": 1422386534
         },
         {
@@ -367,6 +373,7 @@ HTTP 200 OK
             "request_host": "internal.api.com",
             "upstream_url": "http://private.api.com",
             "preserve_host": false,
+            "retries": 5,
             "created_at": 1422386585
         }
     ],
@@ -403,6 +410,7 @@ HTTP 200 OK
     "request_host": "mockbin.com",
     "upstream_url": "http://mockbin.com",
     "preserve_host": false,
+    "retries": 5,
     "created_at": 1422386534
 }
 ```
