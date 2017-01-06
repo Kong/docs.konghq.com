@@ -60,7 +60,7 @@ Metric                     | description | namespace
 ---                        | ---         | -----
 `request_count`              | Increment the count of request made to the API by 1 | kong.\<api_name>.request.count
 `request_size`               | logs the request's body size in bytes | kong.\<api_name>.request.size
-`response_size`               | logs the response's body size in bytes | kong.\<api_name>.request.size
+`response_size`               | logs the response's body size in bytes | kong.\<api_name>.response.size
 `latency`                   | logs the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
 `status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
 `unique_users`               | count of users made a request to the api | kong.\<api_name>.user.uniques
