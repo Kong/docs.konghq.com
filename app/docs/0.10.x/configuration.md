@@ -554,32 +554,37 @@ Default: `wan`
 
 #### DNS resolver section
 
-##### **dnsmasq**
+Kong will resolve hostnames as either `SRV` or `A` records (in that order, and
+`CNAME` records will be dereferenced in the process).
+In case a name was resolved as an `SRV` record it will also override any given
+port number by the `port` field contents received from the dns server.
 
-Toggles if Kong should start/stop dnsmasq, which can be used as the Nginx DNS
-resolver. Using dnsmasq allows Nginx to resolve domains defined in /etc/hosts.
-
-dnsmasq must be installed and available in your $PATH.
-
-Default: `on`
-
----
-
-##### **dnsmasq_port**
-
-The port on which dnsmasq should listen to for queries.
-
-Default: `8053`
+For the duration of the `ttl`, the internal dns resolver will loadbalance each
+request it gets over the entries in the dns record. For `SRV` records the
+`weight` fields will be honored, but it will only use the lowest `priority` 
+field entries in the record.
 
 ---
 
 ##### **dns_resolver**
 
-Configure a name server to be used by Nginx.
+Configure nameservers to be used by Kong, in a comma separated list. If no
+value is given, the nameservers from the local `resolv.conf` file will be used.
+For each nameserver entry a port component is supported, eg. `127.0.0.1:5353`,
+which defaults to `53` when omitted.
 
-Only valid when `dnsmasq` is disabled.
+Default: 
 
-Default: `8.8.8.8`
+[Back to TOC](#table-of-contents)
+
+---
+
+##### **dns_hostsfile**
+
+The hosts file to use. This file is read once and its contents is static in 
+memory. To read the file again after modifying it, Kong must be reloaded.
+
+Default: `/etc/hosts`
 
 [Back to TOC](#table-of-contents)
 
