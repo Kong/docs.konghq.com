@@ -23,6 +23,19 @@ plugin_configuration_body: |
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
     `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+
+target_body: |
+    Attributes | Description
+    ---:| ---
+    `target` | The target address (ip or hostname) and port. If omitted the `port` defaults to `8000`. If the hostname resolves to an SRV record, the `port` value will overridden by the value from the dns record.
+    `weight`<br>*optional* | The weight this target gets within the upstream loadbalancer (`0`-`1000`, defaults to `100`). If the hostname resolves to an SRV record, the `weight` value will overridden by the value from the dns record.
+
+upstream_body: |
+    Attributes | Description
+    ---:| ---
+    `name` | This is a hostname like name that can be referenced in an `upstream_url` field of an `api`.
+    `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
+    `orderlist`<br>*optional* | A list of sequential, but randomly ordered, integer numbers that determine the distribution of the slots in the balancer. If omitted it will be generated. If given, it must have exactly `slots` number of entries.
 ---
 
 # Kong Admin API
