@@ -34,8 +34,6 @@ All commands take a set of special, optional flags as arguments:
 * `--help`: print the command's help message
 * `--v`: enable verbose mode
 * `--vv`: enable debug mode (noisy)
-* `--trace`: in case of error, print the stacktrace (useful for debugging
-  and reporting)
 
 [Back to TOC](#table-of-contents)
 

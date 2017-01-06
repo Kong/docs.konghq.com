@@ -497,8 +497,8 @@ Default: `0.0.0.0:7946`
 
 ##### **cluster_listen_rpc**
 
-Address and port used by this node to communicate with the cluster.
-Only contains TCP traffic over the local network.
+Address and port used to communicate with the cluster through the agent
+running on this node. Only contains TCP traffic local to this node.
 
 Default: `127.0.0.1:7373`
 

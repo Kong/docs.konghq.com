@@ -71,4 +71,4 @@ When a consumer has been validated, the plugin will append a `X-Consumer-Groups`
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[faq-authentication]: /about/faq/#how-can-i-add-authentication-to-a-microservice-api

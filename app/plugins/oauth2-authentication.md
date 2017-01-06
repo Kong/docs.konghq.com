@@ -180,7 +180,7 @@ The authorization page is made of two parts:
   </div>
 </div>
 
-A diagram repreenting this flow:
+A diagram representing this flow:
 
 <div class="alert alert-info">
   <a title="OAuth 2.0 Flow" href="/assets/images/docs/oauth2/oauth2-flow.png" target="_blank"><img src="/assets/images/docs/oauth2/oauth2-flow.png"/></a>
@@ -277,13 +277,13 @@ In this flow, the steps that you need to implement are:
 
 When your access token expires, you can generate a new access token using the refresh token you received in conjunction to your expired access token.
 
-    ```bash
-    $ curl -X POST https://your.api.com/oauth2/token \ 
-        --data "grant_type=refresh_token" \
-        --data "client_id=XXX" \
-        --data "client_secret=XXX" \
-        --data "refresh_token=XXX"
-    ```
+```bash
+$ curl -X POST https://your.api.com/oauth2/token \
+    --data "grant_type=refresh_token" \
+    --data "client_id=XXX" \
+    --data "client_secret=XXX" \
+    --data "refresh_token=XXX"
+```
 
 [ssl-plugin]: /plugins/dynamic-ssl/
 [api-object]: /docs/latest/admin-api/#api-object

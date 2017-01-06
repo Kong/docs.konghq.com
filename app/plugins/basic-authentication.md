@@ -34,6 +34,11 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
+Once applied, any user with a valid credential can access the service/API.
+To restrict usage to only some of the authenticated users, also add the
+[ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+blacklist groups of users.
+
 form parameter                             | default | description
 ---                                        | ---     | ---
 `name`                                     |         | The name of the plugin to use, in this case: `basic-auth`
@@ -60,6 +65,10 @@ parameter                       | default | description
 `custom_id`<br>*semi-optional*  |         | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
 A [Consumer][consumer-object] can have many credentials.
+
+If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
+service, you must add the new consumer to a whitelisted group. See
+[ACL: Associating Consumers][acl-associating] for details.
 
 ### Create a Credential
 
@@ -92,4 +101,5 @@ You can use this information on your side to implement additional logic. You can
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
+[acl-associating]: /plugins/acl/#associating-consumers
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
