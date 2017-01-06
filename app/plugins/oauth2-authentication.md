@@ -179,7 +179,7 @@ The authorization page is made of two parts:
   </div>
 </div>
 
-A diagram repreenting this flow:
+A diagram representing this flow:
 
 <div class="alert alert-info">
   <a title="OAuth 2.0 Flow" href="/assets/images/docs/oauth2/oauth2-flow.png" target="_blank"><img src="/assets/images/docs/oauth2/oauth2-flow.png"/></a>
