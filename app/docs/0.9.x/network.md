@@ -13,7 +13,13 @@ Kong uses multiple connections for different purposes.
 * proxy 
 * management api
 * clustering
- 
+
+Overview of ports and connections:
+<div class="alert alert-info">
+  <center><img title="Kong network overview" src="/assets/images/docs/networking.png"/></center>
+</div>
+
+
 ### Proxy
 
 The proxy ports is where Kong receives its incoming traffic. There are two ports with the following defaults;
@@ -42,6 +48,11 @@ This part is the hardest to get right in a multi-node cluster. Here there are al
 Kong will try to auto-detect the node's first, non-loopback, IPv4 address and advertise this address to other Kong nodes. 
 Sometimes this is not enough and the IP address needs to be manually set, you can do that by changing the [cluster_listen] 
 and [cluster_advertise] properties in the [cluster][cluster] configuration.
+
+Diagram for intra-node port settings:
+<div class="alert alert-info">
+  <center><img title="Kong intra-node settings" src="/assets/images/docs/nat-clustering.png"/></center>
+</div>
 
 **Example**
 
