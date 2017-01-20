@@ -89,8 +89,8 @@
   lua_doc: true
 -
   release: "0.9.x"
-  version: "0.9.7"
-  luarocks_version: "0.9.7-0"
+  version: "0.9.8"
+  luarocks_version: "0.9.8-0"
   dependencies:
     luajit: "2.1.0-alpha"
     luarocks: "2.3.0"
