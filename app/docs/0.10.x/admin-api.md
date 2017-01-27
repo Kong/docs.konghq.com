@@ -1036,14 +1036,6 @@ Requests for this API would be proxied to the targets defined within the upstrea
 }
 ```
 
-```json
-{
-    "target": "1.2.3.4:80",
-    "weight": 15
-    "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432",
-}
-```
-
 ---
 
 ### Add upstream
@@ -1289,8 +1281,8 @@ be deleted or modified. To disable a target, post a new one with `weight=0`.
 ```json
 {
     "target": "1.2.3.4:80",
-    "weight": 15
-    "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432",
+    "weight": 15,
+    "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432"
 }
 ```
 
@@ -1356,7 +1348,7 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 30
+    "total": 30,
     "data": [
         {
             "created_at": 1485524883980,
