@@ -25,7 +25,8 @@ redirect_from: /install/compile/
       --with-ipv6 \
       --with-http_realip_module \
       --with-http_ssl_module \
-      --with-http_stub_status_module
+      --with-http_stub_status_module \
+      --without-luajit-lua52
     ```
 
     You might have to specify `--with-openssl` and you can add any other option you'd like, such as additional Nginx modules or a custom `--prefix` directory.
