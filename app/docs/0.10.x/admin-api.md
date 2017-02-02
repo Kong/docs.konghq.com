@@ -23,6 +23,19 @@ plugin_configuration_body: |
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
     `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+
+target_body: |
+    Attributes | Description
+    ---:| ---
+    `target` | The target address (ip or hostname) and port. If omitted the `port` defaults to `8000`. If the hostname resolves to an SRV record, the `port` value will overridden by the value from the dns record.
+    `weight`<br>*optional* | The weight this target gets within the upstream loadbalancer (`0`-`1000`, defaults to `100`). If the hostname resolves to an SRV record, the `weight` value will overridden by the value from the dns record.
+
+upstream_body: |
+    Attributes | Description
+    ---:| ---
+    `name` | This is a hostname like name that can be referenced in an `upstream_url` field of an `api`.
+    `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
+    `orderlist`<br>*optional* | A list of sequential, but randomly ordered, integer numbers that determine the distribution of the slots in the balancer. If omitted it will be generated. If given, it must have exactly `slots` number of entries.
 ---
 
 # Kong Admin API
@@ -992,6 +1005,373 @@ HTTP 200 OK
             "type": "array"
         }
     }
+}
+```
+
+---
+
+## Upstream Objects
+
+The upstream object represents a virtual hostname and can be used to loadbalance 
+incoming requests over multiple services (targets). So for example an upstream
+named `service.v1.xyz` with an API object created with an `upstream_url=https://service.v1.xyz/some/path`.
+Requests for this API would be proxied to the targets defined within the upstream.
+
+```json
+{
+    "name": "service.v1.xyz",
+    "orderlist": [
+        1,
+        2,
+        7,
+        9,
+        6,
+        4,
+        5,
+        10,
+        3,
+        8
+    ],
+    "slots": 10
+}
+```
+
+---
+
+### Add upstream
+
+#### Endpoint
+
+<div class="endpoint post">/upstreams/</div>
+
+#### Request Body
+
+{{ page.upstream_body }}
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{
+    "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
+    "name": "service.v1.xyz",
+    "orderlist": [
+        1,
+        2,
+        7,
+        9,
+        6,
+        4,
+        5,
+        10,
+        3,
+        8
+    ],
+    "slots": 10,
+    "created_at": 1485521710265
+}
+```
+
+---
+
+### Retrieve upstream
+
+#### Endpoint
+
+<div class="endpoint get">/upstreams/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the upstream to retrieve
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
+    "name": "service.v1.xyz",
+    "orderlist": [
+        1,
+        2,
+        7,
+        9,
+        6,
+        4,
+        5,
+        10,
+        3,
+        8
+    ],
+    "slots": 10,
+    "created_at": 1485521710265
+}
+```
+
+---
+
+### List upstreams
+
+#### Endpoint
+
+<div class="endpoint get">/upstreams/</div>
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`id`<br>*optional* | A filter on the list based on the upstream `id` field.
+`name`<br>*optional* | A filter on the list based on the upstream `name` field.
+`slots`<br>*optional* | A filter on the list based on the upstream `slots` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 3,
+    "data": [
+        {
+            "created_at": 1485521710265,
+            "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
+            "name": "service.v1.xyz",
+            "orderlist": [
+                1,
+                2,
+                7,
+                9,
+                6,
+                4,
+                5,
+                10,
+                3,
+                8
+            ],
+            "slots": 10
+        },
+        {
+            "created_at": 1485522651185,
+            "id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "name": "service.v2.xyz",
+            "orderlist": [
+                5,
+                3,
+                6,
+                1,
+                2,
+                10,
+                8,
+                7,
+                4,
+                9
+            ],
+            "slots": 10
+        }
+    ],
+    "next": "http://localhost:8001/upstreams?size=2&offset=Mg%3D%3D",
+    "offset": "Mg=="
+}
+```
+
+---
+
+### Update upstream
+
+#### Endpoint
+
+<div class="endpoint patch">/upstreams/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the upstream to update
+
+#### Request Body
+
+{{ page.upstream_body }}
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
+    "name": "service.v1.xyz",
+    "orderlist": [
+        1,
+        2,
+        7,
+        9,
+        6,
+        4,
+        5,
+        10,
+        3,
+        8
+    ],
+    "slots": 10,
+    "created_at": 1422386534
+}
+```
+
+---
+
+### Update Or Create upstream
+
+#### Endpoint
+
+<div class="endpoint put">/upstreams/</div>
+
+#### Request Body
+
+{{ page.upstream_body }}
+
+The body needs an `id` parameter to trigger an update on an existing entity.
+
+#### Response
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+See POST and PATCH responses.
+
+---
+
+### Delete upstream
+
+#### Endpoint
+
+<div class="endpoint delete">/upstreams/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the upstream to delete
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+---
+
+## Target Object
+
+A target is an ip address/hostname with a port that identifies an instance of a backend
+service. Every upstream can have many targets, and the targets can be 
+dynamically added and removed. So changes are effectuated on the fly.
+
+Because the upstream maintains a history of target changes, the targets cannot
+be deleted or modified. To disable a target, post a new one with `weight=0`.
+
+```json
+{
+    "target": "1.2.3.4:80",
+    "weight": 15,
+    "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432"
+}
+```
+
+---
+
+### Add target
+
+#### Endpoint
+
+<div class="endpoint post">/upstreams/{name or id}/targets</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the upstream to which to add the target
+
+#### Request Body
+
+{{ page.target_body }}
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{
+    "id": "4661f55e-95c2-4011-8fd6-c5c56df1c9db",
+    "target": "1.2.3.4:80",
+    "weight": 15,
+    "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432",
+    "created_at": 1485523507446
+}
+```
+
+---
+
+### List targets
+
+#### Endpoint
+
+<div class="endpoint get">/upstreams/{name or id}/targets</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`id`<br>*optional* | A filter on the list based on the target `id` field.
+`target`<br>*optional* | A filter on the list based on the target `target` field.
+`weight`<br>*optional* | A filter on the list based on the target `weight` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 30,
+    "data": [
+        {
+            "created_at": 1485524883980,
+            "id": "18c0ad90-f942-4098-88db-bbee3e43b27f",
+            "target": "127.0.0.1:20000",
+            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "weight": 100
+        },
+        {
+            "created_at": 1485524897232,
+            "id": "9b96f13d-65af-4f30-bbe9-b367121dd26b",
+            "target": "127.0.0.1:20001",
+            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "weight": 0
+        },
+        {
+            "created_at": 1485524914883,
+            "id": "6c6f34eb-e6c3-4c1f-ac58-4060e5bca890",
+            "target": "127.0.0.1:20002",
+            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "weight": 200
+        }
+    ]
 }
 ```
 
