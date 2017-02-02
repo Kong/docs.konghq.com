@@ -410,6 +410,16 @@ If `admin_ssl` is enabled, the absolute path to the SSL key for the
 
 Default: none
 
+---
+
+##### **upstream_keepalive**
+
+Sets the maximum number of idle keepalive connections to upstream servers that
+are preserved in the cache of each worker process. When this number is
+exceeded, the least recently used connections are closed.
+
+Default: `60`
+
 [Back to TOC](#table-of-contents)
 
 ---
