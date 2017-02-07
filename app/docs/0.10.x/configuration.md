@@ -77,8 +77,6 @@ $ kong start -c <kong.conf> --vv
 2016/08/11 14:53:36 [debug] cluster_profile = "wan"
 2016/08/11 14:53:36 [debug] cluster_ttl_on_failure = 3600
 2016/08/11 14:53:36 [debug] database = "postgres"
-2016/08/11 14:53:36 [debug] dnsmasq = true
-2016/08/11 14:53:36 [debug] dnsmasq_port = 8053
 2016/08/11 14:53:36 [debug] log_level = "notice"
 [...]
 ```
@@ -224,7 +222,7 @@ $ nginx -c /usr/local/openresty/conf/nginx.conf
   <strong>Note:</strong> When embedding Kong this way, you will have to
   ensure the required third-party services are already running and configured
   correctly according to the kong.conf used to compile the Nginx
-  sub-configuration. This include the database, serf, and dnsmasq if enabled.
+  sub-configuration. This includes the database, and serf.
 </div>
 
 [Back to TOC](#table-of-contents)
