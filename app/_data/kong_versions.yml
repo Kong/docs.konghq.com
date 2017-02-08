@@ -99,3 +99,15 @@
     openresty: "1.9.15.1"
     serf: "0.7"
   lua_doc: true
+-
+  release: "0.10.x"
+  version: "0.10.0"
+  luarocks_version: "0.10.0-0"
+  dependencies:
+    luajit: "2.1.0-alpha"
+    luarocks: "2.4.2"
+    cassandra: "3.x.x"
+    postgres: "9.4+"
+    openresty: "1.11.2.2"
+    serf: "0.8"
+  lua_doc: true
