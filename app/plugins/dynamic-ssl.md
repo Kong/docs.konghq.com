@@ -17,6 +17,16 @@ nav:
 
 Dynamically binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
+<br />
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> As of Kong 0.10.0, this plugin has been removed and the
+  core is now directly responsible for dynamically serving SSL certificates.
+  You can read about how to serve an API over SSL in the 
+  <a href="/docs/latest/proxy#configuring-ssl-for-an-api">Proxy</a> and the
+  <a href="/docs/latest/admin-api">Admin API</a> references.
+</div>
+
 ----
 
 ## Configuration
