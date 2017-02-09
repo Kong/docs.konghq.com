@@ -122,7 +122,7 @@ Example usage:
   }
 
 Note:
-  Third-party services such as Serf and dnsmasq need to be properly configured
+  Third-party services such as Serf need to be properly configured
   and started for Kong to be fully compatible while embedded.
 
 Options:
@@ -218,7 +218,7 @@ Options:
 ```
 Usage: kong restart [OPTIONS]
 
-Restart a Kong node (and other configured services like dnsmasq and Serf)
+Restart a Kong node (and other configured services like Serf)
 in the given prefix directory.
 
 This command is equivalent to doing both 'kong stop' and
