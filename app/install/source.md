@@ -15,8 +15,6 @@ redirect_from: /install/compile/
 
 1. **Install the dependencies:**
 
-    (Optional) [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/) if you wish to enable it for Kong's runtime DNS resolutions.
-
     [OpenResty {{openresty_version}}](https://openresty.org/en/installation.html). Kong being an OpenResty application, you must follow the OpenResty [installation instructions](https://openresty.org/en/installation.html). You will need [OpenSSL](https://www.openssl.org/) and [PCRE](http://www.pcre.org/) to compile OpenResty, and to at least use the following compilation options:
 
     ```bash
