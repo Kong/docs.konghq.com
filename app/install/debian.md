@@ -31,7 +31,7 @@ You can also install Kong by using the following APT repositories and following 
 
     ```bash
     $ sudo apt-get update
-    $ sudo apt-get install netcat openssl libpcre3 procps perl
+    $ sudo apt-get install openssl libpcre3 procps perl
     $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
     ```
 
