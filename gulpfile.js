@@ -46,7 +46,6 @@ gulp.task('javascripts', function () {
   return gulp.src(sources.js)
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
-    .pipe($.concat('app.js'))
     .pipe($.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
@@ -152,7 +151,7 @@ gulp.task('cloudflare', function (cb) {
 })
 
 gulp.task('deploy', function (cb) {
-  sequence('build', 'gh-pages', 'cloudflare', cb)
+  sequence('build', 'gh-pages', cb)
 })
 
 gulp.task('watch', function () {
