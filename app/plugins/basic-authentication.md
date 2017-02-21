@@ -43,7 +43,7 @@ form parameter                             | default | description
 ---                                        | ---     | ---
 `name`                                     |         | The name of the plugin to use, in this case: `basic-auth`
 `config.hide_credentials`<br>*optional*    | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.anonymous`<br>*optional*           | `false` | An optional boolean value telling the plugin to keep processing the request even if the credentials are missing
+`config.anonymous`<br>*optional*           | `` | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
 
 ----
 
@@ -94,7 +94,8 @@ When a client has been authenticated, the plugin will append some headers to the
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
 * `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Username`, the `username` of the Credential
+* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
+* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
