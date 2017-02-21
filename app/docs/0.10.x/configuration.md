@@ -666,6 +666,17 @@ See https://github.com/openresty/lua-nginx-module#lua_package_cpath
 
 Default: none
 
+---
+
+##### **lua_socket_pool_size**
+
+Specifies the size limit for every cosocket connection pool associated with
+every remote server.
+
+See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
+
+Default: `30`
+
 [Back to TOC](#table-of-contents)
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
