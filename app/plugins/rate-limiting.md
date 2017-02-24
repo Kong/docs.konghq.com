@@ -86,7 +86,7 @@ policy    | pro's          | con's
 ---       | ---            | ---
 cluster   | accurate, no extra components to support  | relatively the biggest performance impact, each request forces a read and a write on the underlying datastore.
 redis     | accurate, lesser performance impact than a `cluster` policy | extra redis installation to support, bigger performance impact than a `local` policy
-local     | minimal performance impact | not accurate, might overshoot when scaling the number of nodes
+local     | minimal performance impact | not accurate, diverges when scaling the number of nodes
 
 There are 2 use cases that are most common:
 
@@ -121,7 +121,9 @@ equally balanced 5 node kong Cluster, setting the `local` limit to something lik
 should work. If you are worried about too many false-negatives, increase the value.
 
 Most likely the user will be granted more than was agreed, but it will effectively block any attacks, while
-maintaining the best performance.
+maintaining the best performance. The thing to keep in mind here is that when the cluster scales to more
+nodes the users will get more requests granted, and likewise when the cluster scales down the probability
+of false-negatives increases. So in general, update your limits when scaling.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
