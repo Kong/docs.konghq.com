@@ -84,9 +84,9 @@ The plugin supports 3 policies, which each have their specific pro's and con's.
 
 policy    | pro's          | con's
 ---       | ---            | ---
-cluster   | accurate, no extra components to support  | relatively the biggest performance impact, each request forces a read and a write on the underlying datastore.
-redis     | accurate, lesser performance impact than a `cluster` policy | extra redis installation to support, bigger performance impact than a `local` policy
-local     | minimal performance impact | not accurate, diverges when scaling the number of nodes
+`cluster` | accurate, no extra components to support  | relatively the biggest performance impact, each request forces a read and a write on the underlying datastore.
+`redis`   | accurate, lesser performance impact than a `cluster` policy | extra redis installation to support, bigger performance impact than a `local` policy
+`local`   | minimal performance impact | not accurate, diverges when scaling the number of nodes
 
 There are 2 use cases that are most common:
 
