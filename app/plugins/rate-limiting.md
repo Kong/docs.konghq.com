@@ -78,6 +78,51 @@ If any of the limits configured is being reached, the plugin will return a `HTTP
 {"message":"API rate limit exceeded"}
 ```
 
+## Implementation considerations
+
+The plugin supports 3 policies, which each have their specific pro's and con's.
+
+policy    | pro's          | con's
+---       | ---            | ---
+cluster   | accurate, no extra components to support  | relatively the biggest performance impact, each request forces a read and a write on the underlying datastore.
+redis     | accurate, lesser performance impact than a `cluster` policy | extra redis installation to support, bigger performance impact than a `local` policy
+local     | minimal performance impact | not accurate, might overshoot when scaling the number of nodes
+
+There are 2 use cases that are most common:
+
+1. _every transaction counts_. These are for example transactions with financial 
+   consequences. Here the highest level of accuracy is required.
+2. _backend protection_. This is where accuracy is not as relevant, but it is
+   merely used to protect backend services from overload. Either by specific
+   users, or to protect against an attack in general.
+
+**NOTE**: the redis policy does not support the Sentinel protocol for high available
+master-slave architectures. When using rate-limiting for general protection the chances
+of both redis being down and the system being under attack are rather small. Check
+with your own use case wether you can handle this (small) risk.
+
+### Every transaction counts
+
+In this scenario, the `local` policy is not an option. So here the decision is between
+the extra performance of the `redis` policy against its extra support effort. Based on that balance
+the choice should either be `cluster` or `redis`.
+
+The recommendation is to start with the `cluster` policy, with the option to move over to `redis`
+if performance takes too big a hit. The thing to keep in mind is that existing usage metrics cannot
+be ported from the datastore to redis. Generally with shortlived metrics (per second or per minute)
+this is not an issue, but with longer lived ones (months) it might be, so you might want to plan
+your switch more carefully.
+
+### Backend protection
+
+As accuracy is of lesser importance, the `local` policy can be used. It might require some experimenting
+to get the proper setting. For example if the user is bound to 100 requests per second, and you have a
+equally balanced 5 node kong Cluster, setting the `local` limit to something like 30 requests per second
+should work. If you are worried about too many false-negatives, increase the value.
+
+Most likely the user will be granted more than was agreed, but it will effectively block any attacks, while
+maintaining the best performance.
+
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
