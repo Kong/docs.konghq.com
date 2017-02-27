@@ -80,13 +80,13 @@ If any of the limits configured is being reached, the plugin will return a `HTTP
 
 ## Implementation considerations
 
-The plugin supports 3 policies, which each have their specific pro's and con's.
+The plugin supports 3 policies, which each have their specific pros and cons.
 
-policy    | pro's          | con's
+policy    | pros          | cons
 ---       | ---            | ---
 `cluster` | accurate, no extra components to support  | relatively the biggest performance impact, each request forces a read and a write on the underlying datastore.
-`redis`   | accurate, lesser performance impact than a `cluster` policy | extra redis installation to support, bigger performance impact than a `local` policy
-`local`   | minimal performance impact | not accurate, diverges when scaling the number of nodes
+`redis`   | accurate, lesser performance impact than a `cluster` policy | extra redis installation required, bigger performance impact than a `local` policy
+`local`   | minimal performance impact | less accurate, and unless a consistent-hashing load balancer is used in front of Kong, it diverges when scaling the number of nodes
 
 There are 2 use cases that are most common:
 
@@ -104,11 +104,11 @@ with your own use case wether you can handle this (small) risk.
 ### Every transaction counts
 
 In this scenario, the `local` policy is not an option. So here the decision is between
-the extra performance of the `redis` policy against its extra support effort. Based on that balance
+the extra performance of the `redis` policy against its extra support effort. Based on that balance,
 the choice should either be `cluster` or `redis`.
 
 The recommendation is to start with the `cluster` policy, with the option to move over to `redis`
-if performance takes too big a hit. The thing to keep in mind is that existing usage metrics cannot
+if performance reduces drastically. Keep in mind existing usage metrics cannot
 be ported from the datastore to redis. Generally with shortlived metrics (per second or per minute)
 this is not an issue, but with longer lived ones (months) it might be, so you might want to plan
 your switch more carefully.
@@ -116,14 +116,20 @@ your switch more carefully.
 ### Backend protection
 
 As accuracy is of lesser importance, the `local` policy can be used. It might require some experimenting
-to get the proper setting. For example if the user is bound to 100 requests per second, and you have a
-equally balanced 5 node kong Cluster, setting the `local` limit to something like 30 requests per second
+to get the proper setting. For example, if the user is bound to 100 requests per second, and you have an
+equally balanced 5 node Kong cluster, setting the `local` limit to something like 30 requests per second
 should work. If you are worried about too many false-negatives, increase the value.
 
-Most likely the user will be granted more than was agreed, but it will effectively block any attacks, while
-maintaining the best performance. The thing to keep in mind here is that when the cluster scales to more
-nodes the users will get more requests granted, and likewise when the cluster scales down the probability
-of false-negatives increases. So in general, update your limits when scaling.
+Keep in mind as the cluster scales to more nodes, the users will get more requests granted, and likewise 
+when the cluster scales down the probability of false-negatives increases. So in general, update your 
+limits when scaling.
+
+The above mentioned inaccuracy can be mitigated by using a consistent-hashing load balancer in front of
+Kong, that ensures the same user is always directed to the same Kong node. This will both reduce the
+inaccuracy and prevent the scaling issues.
+
+Most likely the user will be granted more than was agreed when using the `local` policy, but it will 
+effectively block any attacks while maintaining the best performance. 
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
