@@ -61,17 +61,17 @@ When creating an SSL certificate to use with this plugin, make sure you create o
 
 ```bash
 # Let's create the private server key
-openssl genrsa -des3 -out server.key 1024
+openssl genrsa -des3 -out server.key 2048
 
 # Now we create a certificate signing request
-openssl req -new -key server.key -out server.csr
+openssl req -new -key server.key -out server.csr -sha256
 
 # Remove the passphrase
 cp server.key server.key.org
 openssl rsa -in server.key.org -out server.key
 
 # Signing the SSL certificate
-openssl x509 -req -in server.csr -signkey server.key -out server.crt
+openssl x509 -req -in server.csr -signkey server.key -out server.crt -sha256
 ```
 
 If you followed the steps above the certificate will be stored in a file named `server.crt`, while the key is at `server.key`.
