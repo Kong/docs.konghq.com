@@ -54,7 +54,7 @@ blacklist groups of users.
 form parameter                   | default | description
 ---                              | ---     | ---               
 `name`                           |         | The name of the plugin to use, in this case: `key-auth`.
-`config.key_names`<br>*optional* | `apikey`| Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.
+`config.key_names`<br>*optional* | `apikey`| Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names must be proper header names, with the additional constraint that an `_` (underscore) is also not allowed.
 `config.hide_credentials`<br>*optional* | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
 `config.anonymous`<br>*optional*           | `` | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
 
