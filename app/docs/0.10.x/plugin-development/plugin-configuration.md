@@ -86,6 +86,7 @@ Here is the list of accepted rules for a property:
 |---------------|--------------------------|-------------------------------------------------|----------------------------
 | `type`        | string                   | "id", "number", "boolean", "string", "table", "array", "url", "timestamp" | Validates the type of a property.
 | `required`    | boolean                  |                                                 | **Default**: false. If true, the property must be present in the configuration.
+| `unique`      | boolean                  |                                                 | **Default**: false. If true, the value must be unique (see remark below).
 | `default`     | any                      |                                                 | If the property is not specified in the configuration, will set the property to the given value.
 | `immutable`   | boolean                  |                                                 | **Default**: false. If true, the property will not be allowed to be updated once the plugin configuration has been created.
 | `enum`        | table                    | Integer indexed table                           | A list of accepted values for a property. Any value not included in this list will not be accepted.
@@ -98,6 +99,7 @@ Here is the list of accepted rules for a property:
 >   - timestamp: must be a number
 >   - url: must be a valid URL
 >   - array: must be an integer-indexed table (equivalent of arrays in Lua). In the Admin API, such an array can either be sent by having several times the property's key with different values in the request's body, or comma-delimited through a single body parameter.
+> - **unique**: This property does not make sense for a plugin configuration, but is used when a plugin needs to store custom entities in the datastore.
 > - **schema**: if you need to perform deepened validation of nested properties, this field allows you to create a nested schema. Schema verification is **recursive**. Any level of nesting is valid, but bear in mind that this will affect the usability of your plugin.
 > - **Any property attached to a configuration object but not present in your schema will also invalidate the said configuration.**
 
