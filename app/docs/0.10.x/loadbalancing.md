@@ -82,10 +82,10 @@ Especially with a very small (or even 0) `ttl` value.
 
 The DNS resolver will start resolving the following record types in order;
 
- 1. the last succesful type previously resolved
- 1. SRV record
- 1. A record
- 1. CNAME record
+  1. the last succesful type previously resolved
+  2. SRV record
+  3. A record
+  4. CNAME record
 
 So if the hostname you use has both SRV entries and A entries, it will start
 with SRV. If you want A records to be used, you must remove the SRV records from
