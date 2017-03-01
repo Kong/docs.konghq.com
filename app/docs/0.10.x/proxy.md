@@ -4,29 +4,26 @@ title: Proxy Reference
 
 # Proxy Reference
 
-As you may already know, Kong listens for traffic on three ports, which by
+Kong listens for traffic on three ports, which by
 default are:
 
 - `:8001` on which the [Admin API][API] used to configure Kong listens.
 - `:8000` on which Kong listens for incoming HTTP traffic from your clients, and 
-forwards it to your upstream services. This is the port that interests us in 
-this guide.
+forwards it to your upstream services. **This is the port that interests us in 
+this guide.**
 - `:8443` on which Kong listens for incoming HTTPs traffic. This port has a
 similar behavior as the `:8000` port, except that it expects HTTPs traffic. This
 port can be disabled via the configuration file.
 
-We will cover routing capabilities of Kong by explaining in details how incoming 
+In this document we cover routing capabilities of Kong by explaining in detail how incoming 
 requests on port `:8000` are proxied to a configured upstream service depending
 on their headers, URI, and HTTP method.
-
-It is worth pointing out that both of these ports can be configured. See the
-[Configuration Reference] for more details.
 
 ### Table of Contents
 
 - [Terminology][proxy-terminology]
 - [Overview][proxy-overview]
-- [Reminder: how to add an API to Kong][proxy-reminder]
+- [Reminder: How to add an API to Kong][proxy-reminder]
 - [Routing capabilities][proxy-routing-capabilities]
     - [Request Host header][proxy-request-host-header]
         - [Using wildcard hostnames][proxy-using-wildcard-hostnames]
@@ -74,18 +71,14 @@ It is worth pointing out that both of these ports can be configured. See the
 
 ### Terminology
 
-In this document, we will refer to various Kong concepts. For the sake of 
-consistency, we will now define terms refering to such concepts:
-
 - `API`: This term refers to the API entity of Kong. You configure your APIs,
-that point to your own Upstream services through the Admin API.
+that point to your own Upstream services, through the Admin API.
 - `Plugin`: This refers to Kong "plugins", which are pieces of business logic
-that run in proxying lifecycle. Plugins can be configured globally (all 
-incoming traffic), or on a per-API basis through the Admin API.
-- `Client`: Refers to the - downstream - client making requests to Kong's proxy
+that run in the proxying lifecycle. Plugins can be configured through the Admin API - either globally (all incoming traffic) or on a per-API basis.
+- `Client` or : Refers to the *downstream* client making requests to Kong's proxy
 port.
-- `Upstream service`: Refers to your own API/service setting behind Kong,
-where requests are forwarded to.
+- `Upstream service`: Refers to your own API/service sitting behind Kong,
+to which client requests are forwarded.
 
 [Back to TOC](#table-of-contents)
 
@@ -94,18 +87,15 @@ where requests are forwarded to.
 From a high level perspective, Kong will listen for HTTP traffic on its
 configured proxy port (`8000` by default), recognize which upstream service is
 being requested, run the configured plugins for that API, and forward the HTTP 
-request upstream to your own API or service. Kong can also run plugins once the 
-response from your upstream service is received, but that topic is not as
-relevant to this guide.
+request upstream to your own API or service. 
 
-When a client makes a request to the proxy port, Kong will decide where to route
-(or forward) that incoming request (that is, to which of your upstream 
-services). Kong achieves this through the APIs you configured (via the Admin 
-API). You can configure APIs with various properties, but the three relevant 
+When a client makes a request to the proxy port, Kong will decide to which upstream service or API to route
+(or forward) the incoming request - depending on the API configuration in Kong, which is managed via the Admin 
+API. You can configure APIs with various properties, but the three relevant 
 ones for routing incoming traffic are `hosts`, `uris` and `methods`.
 
-If Kong cannot determine to which API a given request should be routed to, it
-will response with:
+If Kong cannot determine to which upstream API a given request should be routed, Kong
+will respond with:
 
 ```http
 HTTP/1.1 404 Not Found
@@ -117,13 +107,10 @@ Server: kong/<x.x.x>
 }
 ```
 
-### Reminder: how to add an API to Kong
+### Reminder: How to add an API to Kong
 
-Before goign any further, let's take a few moments to make sure you know how to
-add an API to Kong.
-
-As explained in the [Adding your API][adding-your-api] quickstart guide, Kong is
-configured via its internal [Admin API][API] running by default on port `8001`. 
+The [Adding your API][adding-your-api] quickstart guide explains how Kong is
+configured via Kong's [Admin API][API] running by default on port `8001`. 
 Adding an API to Kong is as easy as sending an HTTP request:
 
 ```bash
@@ -138,15 +125,13 @@ HTTP/1.1 201 Created
 ```
 
 This request instructs Kong to register an API named "my-api", reachable at
-"http://my-api.com". It also specifies various routing properties. In reality,
-**only one of** `hosts`, `uris` and `methods` is actually required. More on this
-later.
+"http://my-api.com". It also specifies various routing properties, though note that **only one of** `hosts`, `uris` and `methods` is  required. 
 
 Adding such an API would mean that you configured Kong to proxy all incoming 
-requests matching `hosts`, `uris`, and `methods` to `http://my-api.com`.
-Kong being a transparent proxy, it will forward the request to your upstream
-service - practically - untouched (exception made of various headers such as
-`Connection`, or in case a plugin performs some transformations to it).
+requests matching the specified `hosts`, `uris`, and `methods` to `http://my-api.com`.
+Kong is a transparent proxy, and it will forward the request to your upstream
+service untouched, with the exception of the addition of various headers such as
+`Connection`.
 
 [Back to TOC](#table-of-contents)
 
