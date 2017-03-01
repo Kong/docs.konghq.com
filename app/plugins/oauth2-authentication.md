@@ -23,7 +23,9 @@ nav:
       - label: Resource Owner Password Credentials
 ---
 
-Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
+Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. 
+
+Note that for Kong versions < 0.10.0, and assuming the `config.accept_http_if_already_terminated` parameter remains set to its default `false`, this plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be installed on the [API][api-object] - failing to do so will result in a security weakness.
 
 ----
 
