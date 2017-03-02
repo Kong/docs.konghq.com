@@ -89,7 +89,7 @@ Here is the list of accepted rules for a property:
 | `default`     | any                      |                                                 | If the property is not specified in the configuration, will set the property to the given value.
 | `immutable`   | boolean                  |                                                 | **Default**: false. If true, the property will not be allowed to be updated once the plugin configuration has been created.
 | `enum`        | table                    | Integer indexed table                           | A list of accepted values for a property. Any value not included in this list will not be accepted.
-| `regex`       | string                   | A valid PCRE regular expression                 | A regex against which to validate the property's value.
+| `regex`       | string                   | A valid PCRE regular expression                 | A regex against which to validate the property's value (only on `string` types).
 | `schema`      | table                    | A nested schema definition                      | If the property's `type` is table, defines a schema against which to validate those sub-properties.
 | `func`        | function                 |                                                 | A function to perform any custom validation on a property. See later examples for its parameters and return values.
 
