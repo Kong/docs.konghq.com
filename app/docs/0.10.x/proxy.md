@@ -91,9 +91,9 @@ being requested, run the configured plugins for that API, and forward the HTTP
 request upstream to your own API or service. 
 
 When a client makes a request to the proxy port, Kong will decide to which upstream service or API to route
-(or forward) the incoming request - depending on the API configuration in Kong, which is managed via the Admin 
+(or forward) the incoming request, depending on the API configuration in Kong, which is managed via the Admin 
 API. You can configure APIs with various properties, but the three relevant 
-ones for routing incoming traffic are `hosts`, `uris` and `methods`.
+ones for routing incoming traffic are `hosts`, `uris`, and `methods`.
 
 If Kong cannot determine to which upstream API a given request should be routed, Kong
 will respond with:
@@ -138,7 +138,7 @@ service untouched, with the exception of the addition of various headers such as
 
 ### Routing capabilities
 
-Let's now understand how Kong matches a request to the configured
+Let's now discuss how Kong matches a request to the configured
 `hosts`, `uris` and `methods` properties (or fields) of your API. Note that all three of these fields are **optional**, but at least **one of them** must be specified. For a client request to match an API: 
 
 - The request **must** include **all** of the configured fields
@@ -198,7 +198,7 @@ conditions. The first request's URI is not a match for any of the configured
 `uris`, same for the second request's HTTP `method`, and the third request's `host`
 header.
 
-Now that we understand how the `hosts`, `uris` and `methods` properties work together, let's explore each property individually.
+Now that we understand how the `hosts`, `uris`, and `methods` properties work together, let's explore each property individually.
 
 [Back to TOC](#table-of-contents)
 
@@ -286,7 +286,7 @@ When proxying, Kong's default behavior is to set the upstream request's Host
 header to the hostname of the API's `upstream_url` property. The `preserve_host`
 field accepts a boolean flag instructing Kong not to do so.
 
-For example, when the `preserve_host` property is not changed (and thus defaults to `preserve_host=false`) and an API is configured like this:
+For example, when the `preserve_host` property is not changed and an API is configured like this:
 
 ```json
 {
@@ -413,8 +413,6 @@ Will cause Kong to send the following request to your upstream service:
 GET /path/to/resource HTTP/1.1
 Host: my-api.com
 ```
-
-This property can be very handy at times.
 
 [Back to TOC](#table-of-contents)
 
@@ -578,7 +576,7 @@ client and your upstream services:
 - `Connection: Upgrade`
 - `Upgrade: websocket`
 
-More information on this topic in covered in the
+More information on this topic is covered in the
 [Proxy WebSocket traffic][proxy-websocket] section.
 
 [Back to TOC](#table-of-contents)
