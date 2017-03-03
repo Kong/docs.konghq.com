@@ -8,9 +8,7 @@ title: 5-minute Quickstart
   <strong>Before you start:</strong> Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving in order to give you access to the RESTful Admin interface to manage your APIs, consumers, and more. Data sent through the Admin API is stored in Kong's [datastore][configuration/#datastore-section] (as of `0.8.0`, Kong supports PostgreSQL and Cassandra).
-
-**Note:** make sure you have your database instance running and [configured][configuration] in Kong.
+In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving in order to give you access to the RESTful Admin interface, through which you manage your APIs, consumers, and more. Data sent through the Admin API is stored in Kong's [datastore][datastore-section] (Kong supports PostgreSQL and Cassandra).
 
 1. ### Start Kong.
 
@@ -58,4 +56,5 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
 [configuration]: /docs/{{page.kong_version}}/configuration
+[datastore-section]: /docs/{{page.kong_version}}/configuration/#datastore-section
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
