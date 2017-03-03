@@ -72,9 +72,10 @@ on their headers, URI, and HTTP method.
 ### Terminology
 
 - `API`: This term refers to the API entity of Kong. You configure your APIs,
-that point to your own Upstream services, through the Admin API.
+that point to your own upstream services, through the Admin API.
 - `Plugin`: This refers to Kong "plugins", which are pieces of business logic
-that run in the proxying lifecycle. Plugins can be configured through the Admin API - either globally (all incoming traffic) or on a per-API basis.
+that run in the proxying lifecycle. Plugins can be configured through the Admin API - 
+either globally (all incoming traffic) or on a per-API basis.
 - `Client` or : Refers to the *downstream* client making requests to Kong's proxy
 port.
 - `Upstream service`: Refers to your own API/service sitting behind Kong,
