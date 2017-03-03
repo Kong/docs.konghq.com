@@ -4,29 +4,26 @@ title: Proxy Reference
 
 # Proxy Reference
 
-As you may already know, Kong listens for traffic on three ports, which by
+Kong listens for traffic on three ports, which by
 default are:
 
 - `:8001` on which the [Admin API][API] used to configure Kong listens.
 - `:8000` on which Kong listens for incoming HTTP traffic from your clients, and 
-forwards it to your upstream services. This is the port that interests us in 
-this guide.
+forwards it to your upstream services. **This is the port that interests us in 
+this guide.**
 - `:8443` on which Kong listens for incoming HTTPs traffic. This port has a
 similar behavior as the `:8000` port, except that it expects HTTPs traffic. This
 port can be disabled via the configuration file.
 
-We will cover routing capabilities of Kong by explaining in details how incoming 
+In this document we cover routing capabilities of Kong by explaining in detail how incoming 
 requests on port `:8000` are proxied to a configured upstream service depending
 on their headers, URI, and HTTP method.
-
-It is worth pointing out that both of these ports can be configured. See the
-[Configuration Reference] for more details.
 
 ### Table of Contents
 
 - [Terminology][proxy-terminology]
 - [Overview][proxy-overview]
-- [Reminder: how to add an API to Kong][proxy-reminder]
+- [Reminder: How to add an API to Kong][proxy-reminder]
 - [Routing capabilities][proxy-routing-capabilities]
     - [Request Host header][proxy-request-host-header]
         - [Using wildcard hostnames][proxy-using-wildcard-hostnames]
@@ -74,18 +71,15 @@ It is worth pointing out that both of these ports can be configured. See the
 
 ### Terminology
 
-In this document, we will refer to various Kong concepts. For the sake of 
-consistency, we will now define terms refering to such concepts:
-
 - `API`: This term refers to the API entity of Kong. You configure your APIs,
-that point to your own Upstream services through the Admin API.
+that point to your own upstream services, through the Admin API.
 - `Plugin`: This refers to Kong "plugins", which are pieces of business logic
-that run in proxying lifecycle. Plugins can be configured globally (all 
-incoming traffic), or on a per-API basis through the Admin API.
-- `Client`: Refers to the - downstream - client making requests to Kong's proxy
+that run in the proxying lifecycle. Plugins can be configured through the Admin API - 
+either globally (all incoming traffic) or on a per-API basis.
+- `Client` or : Refers to the *downstream* client making requests to Kong's proxy
 port.
-- `Upstream service`: Refers to your own API/service setting behind Kong,
-where requests are forwarded to.
+- `Upstream service`: Refers to your own API/service sitting behind Kong,
+to which client requests are forwarded.
 
 [Back to TOC](#table-of-contents)
 
@@ -94,18 +88,15 @@ where requests are forwarded to.
 From a high level perspective, Kong will listen for HTTP traffic on its
 configured proxy port (`8000` by default), recognize which upstream service is
 being requested, run the configured plugins for that API, and forward the HTTP 
-request upstream to your own API or service. Kong can also run plugins once the 
-response from your upstream service is received, but that topic is not as
-relevant to this guide.
+request upstream to your own API or service. 
 
-When a client makes a request to the proxy port, Kong will decide where to route
-(or forward) that incoming request (that is, to which of your upstream 
-services). Kong achieves this through the APIs you configured (via the Admin 
-API). You can configure APIs with various properties, but the three relevant 
-ones for routing incoming traffic are `hosts`, `uris` and `methods`.
+When a client makes a request to the proxy port, Kong will decide to which upstream service or API to route
+(or forward) the incoming request, depending on the API configuration in Kong, which is managed via the Admin 
+API. You can configure APIs with various properties, but the three relevant 
+ones for routing incoming traffic are `hosts`, `uris`, and `methods`.
 
-If Kong cannot determine to which API a given request should be routed to, it
-will response with:
+If Kong cannot determine to which upstream API a given request should be routed, Kong
+will respond with:
 
 ```http
 HTTP/1.1 404 Not Found
@@ -117,13 +108,10 @@ Server: kong/<x.x.x>
 }
 ```
 
-### Reminder: how to add an API to Kong
+### Reminder: How to add an API to Kong
 
-Before goign any further, let's take a few moments to make sure you know how to
-add an API to Kong.
-
-As explained in the [Adding your API][adding-your-api] quickstart guide, Kong is
-configured via its internal [Admin API][API] running by default on port `8001`. 
+The [Adding your API][adding-your-api] quickstart guide explains how Kong is
+configured via Kong's [Admin API][API] running by default on port `8001`. 
 Adding an API to Kong is as easy as sending an HTTP request:
 
 ```bash
@@ -138,31 +126,25 @@ HTTP/1.1 201 Created
 ```
 
 This request instructs Kong to register an API named "my-api", reachable at
-"http://my-api.com". It also specifies various routing properties. In reality,
-**only one of** `hosts`, `uris` and `methods` is actually required. More on this
-later.
+"http://my-api.com". It also specifies various routing properties, though note that **only one of** `hosts`, `uris` and `methods` is  required. 
 
 Adding such an API would mean that you configured Kong to proxy all incoming 
-requests matching `hosts`, `uris`, and `methods` to `http://my-api.com`.
-Kong being a transparent proxy, it will forward the request to your upstream
-service - practically - untouched (exception made of various headers such as
-`Connection`, or in case a plugin performs some transformations to it).
+requests matching the specified `hosts`, `uris`, and `methods` to `http://my-api.com`.
+Kong is a transparent proxy, and it will forward the request to your upstream
+service untouched, with the exception of the addition of various headers such as
+`Connection`.
 
 [Back to TOC](#table-of-contents)
 
 ### Routing capabilities
 
-Let's now investigate in details how Kong matches a request to the configured
-`hosts`, `uris` and `methods` properties of your API:
+Let's now discuss how Kong matches a request to the configured
+`hosts`, `uris` and `methods` properties (or fields) of your API. Note that all three of these fields are **optional**, but at least **one of them** must be specified. For a client request to match an API: 
 
-- All of those fields are **optional**, but at least **one of them** must be 
-specified.
-- For a request to match an API, all of configured fields **must** be satisfied
-(present in the client HTTP request).
-- All of those fields accept one or more values. A field only needs one of 
-values to be considered a match.
+- The request **must** include **all** of the configured fields
+- The values of the fields in the request **must** match at least one of the configured values (While the field configurations accepts one or more values, a request needs only one of the values to be considered a match)
 
-Let's go through a few concrete examples. Consider such an API:
+Let's go through a few examples. Consider an API configured like this:
 
 ```json
 {
@@ -191,10 +173,10 @@ GET /foo/hello/world HTTP/1.1
 Host: example.com
 ```
 
-All three of those requests satisfy all of the three conditions set in the API
+All three of these requests satisfy all three of the conditions set in the API
 definition.
 
-However, the following requests would **not** match this API:
+However, the following requests would **not** match the configured conditions:
 
 ```http
 GET / HTTP/1.1
@@ -211,24 +193,23 @@ GET /foo HTTP/1.1
 Host: foo.com
 ```
 
-All three of those requests are only satisfying two out of the three configured
+All three of these requests satisfy only two of three configured
 conditions. The first request's URI is not a match for any of the configured 
-`uris`, and it is so for the second request's HTTP method, or the third's Host
+`uris`, same for the second request's HTTP `method`, and the third request's `host`
 header.
 
-Now that we grasp how each of those three properties play together, let's go
-into more details and explore each one of them individually.
+Now that we understand how the `hosts`, `uris`, and `methods` properties work together, let's explore each property individually.
 
 [Back to TOC](#table-of-contents)
 
 #### Request Host header
 
-It shouldn't come as a surprise that routing a request based on its Host header
+Routing a request based on its Host header
 is the most straightforward way to proxy traffic through Kong, as this is the
-intended usage of the HTTP Host header itself. Hence, Kong certainly makes it 
+intended usage of the HTTP Host header. Kong makes it 
 easy to do so via the `hosts` field of the API entity.
 
-This field accepts multiple values, which must be comma-separated when 
+`hosts` accepts multiple values, which must be comma-separated when 
 specifying them via the Admin API:
 
 ```bash
@@ -264,10 +245,10 @@ Host: service.com
 ##### Using wildcard hostnames
 
 To provide flexibility, Kong allows you to specify hostnames with wildcards in
-the `hosts` field. Such hostnames allow any matching Host header to satisfy the
-condition, and match a given API. 
+the `hosts` field. Wildcard hostnames allow any matching Host header to satisfy the
+condition, and thus match a given API. 
 
-Such hostnames **must** contain **only one** asterisk at the leftmost **or** 
+Wildcard hostnames **must** contain **only one** asterisk at the leftmost **or** 
 rightmost label of the domain. Examples:
 
 - `*.example.org` would allow Host values such as `a.example.com` and
@@ -285,7 +266,7 @@ A complete example would look like this:
 }
 ```
 
-And allow the following requests to match this API:
+Which would allow the following requests to match this API:
 
 ```http
 GET / HTTP/1.1
@@ -301,11 +282,11 @@ Host: service.com
 
 ##### The `preserve_host` property
 
-By default when proxying, Kong's behavior is to set the upstream request's Host
+When proxying, Kong's default behavior is to set the upstream request's Host
 header to the hostname of the API's `upstream_url` property. The `preserve_host`
 field accepts a boolean flag instructing Kong not to do so.
 
-Example:
+For example, when the `preserve_host` property is not changed and an API is configured like this:
 
 ```json
 {
@@ -322,17 +303,15 @@ GET / HTTP/1.1
 Host: service.com
 ```
 
-By default, Kong would send the following request to your upstream service:
+Kong would extract the Host header value from the the hostname of the API's `upstream_url`
+field, and would send the following request to your upstream service:
 
 ```http
 GET / HTTP/1.1
 Host: my-api.com
 ```
 
-The Host header value is extracted from the hostname of the API's `upstream_url`
-field.
-
-However, by configuring your API with `preserve_host=true`:
+However, by explicitly configuring your API with `preserve_host=true`:
 
 ```json
 {
@@ -343,7 +322,14 @@ However, by configuring your API with `preserve_host=true`:
 }
 ```
 
-Assuming the same request from the client, Kong will send the following request
+And assuming the same request from the client:
+
+```http
+GET / HTTP/1.1
+Host: service.com
+```
+
+Kong would preserve the Host on the client request and would send the following request
 to your upstream service:
 
 ```http
@@ -355,10 +341,12 @@ Host: service.com
 
 #### Request URI
 
-Another way for Kong to route a request to a given upstream service of yours is
+Another way for Kong to route a request to a given upstream service is
 to specify a request URI via the `uris` property. To satisfy this field's 
 condition, a client request's URI **must** be prefixed with one of the values of
-the `uris` field. Example:
+the `uris` field. 
+
+For example, in an API configured like this:
 
 ```json
 {
@@ -385,21 +373,21 @@ GET /hello/world/resource HTTP/1.1
 Host: anything.com
 ```
 
-For each of those requests, Kong detects that their URI is prefixed with one of
+For each of these requests, Kong detects that their URI is prefixed with one of
 the API's `uris` values. By default, Kong would then forward the request 
 upstream with the untouched, **same URI**.
 
 When proxying with URIs prefixes, **the longest URIs get evaluated first**. This
 allow you to define two APIs with two URIs: `/service` and `/service/resource`,
-and ensure that the former does not "shadow" the later.
+and ensure that the former does not "shadow" the latter.
 
 [Back to TOC](#table-of-contents)
 
 ##### The `strip_uri` property
 
-Sometimes, you might want to specify a URI prefix to match an API, but not
-include it in the upstream request. You can use the `strip_uri` boolean 
-property for that:
+It may be desirable to specify a URI prefix to match an API, but not
+include it in the upstream request. To do so, use the `strip_uri` boolean 
+property by configuring an API like this:
 
 ```json
 {
@@ -412,33 +400,31 @@ property for that:
 
 Enabling this flag instructs Kong that when proxying this API, it should **not**
 include the matching URI prefix in the upstream request's URI. For example, the
-following client's request:
+following client's request to the API configured as above:
 
 ```http
 GET /service/path/to/resource HTTP/1.1
 Host:
 ```
 
-Will make Kong send the following request to your upstream service:
+Will cause Kong to send the following request to your upstream service:
 
 ```http
 GET /path/to/resource HTTP/1.1
 Host: my-api.com
 ```
 
-This property can come very handy at times.
-
 [Back to TOC](#table-of-contents)
 
 #### Request HTTP method
 
-Starting with Kong 0.10, client requests can also be routed depending on their
+Starting with Kong `0.10`, client requests can also be routed depending on their
 HTTP method by specifying the `methods` field. By default, Kong will route a 
 request to an API regardless of its HTTP method. But when this field is set, 
 only requests with the specified HTTP methods will be matched.
 
 This field also accepts multiple values. Here is an example of an API allowing
-routing via a simple HTTP method:
+routing via `GET` and `HEAD` HTTP methods:
 
 ```json
 {
@@ -460,25 +446,25 @@ HEAD /resource HTTP/1.1
 Host:
 ```
 
-But would not match a `POST` or a `DELETE` request. This allows for much more 
+But would not match a `POST` or `DELETE` request. This allows for much more 
 granularity when configuring APIs and Plugins. For example, one could imagine 
-two APIs pointing to the same upstream service: one allowing for `GET` requests
-and unprotected, and a second one filtering out `POST` requests and applying 
-authentication or rate limiting plugins on such requests.
+two APIs pointing to the same upstream service; one API allowing unlimited unauthenticated `GET` requests, and a second API allowing only authenticated and rate-limited `POST` requests (by applying 
+the authentication and rate limiting plugins to such requests).
 
 [Back to TOC](#table-of-contents)
 
 ### Routing priorities
 
-It is now clear that an API may define matching rules based on its `hosts`, 
-`uris`, and `methods` fields. It is also clear that for Kong to match an
+An API may define matching rules based on its `hosts`, 
+`uris`, and `methods` fields. For Kong to match an
 incoming request to an API, all existing fields must be satisfied. However,
-Kong allows for quite some flexibility by allowing one to define two APIs with
-fields containing the same values. Let's explore the priority rules when such 
-APIs are configured.
+Kong allows for quite some flexibility by allowing two or more APIs to be configured with
+fields containing the same values - when this occurs, Kong applies a priority rule.
 
-The rule of thumb is the following: **when evaluating a request, Kong will try
-to match the APIs with the most rules first**. Example:
+The rule is that : **when evaluating a request, Kong will first try
+to match the APIs with the most rules**. 
+
+For example, two APIs are configured like this:
 
 ```json
 {
@@ -494,79 +480,73 @@ to match the APIs with the most rules first**. Example:
 }
 ```
 
-Here, because api-2 has a `hosts` field **and** a `methods` field, it will be
-evaluated first by Kong. As such, we avoid api-1 to "shadow" calls initially
-intended for api-2. This request will match api-1:
+api-2 has a `hosts` field **and** a `methods` field, so it will be
+evaluated first by Kong. By doing so, we avoid api-1 "shadowing" calls 
+intended for api-2. 
+
+Thus, this request will match api-1:
 
 ```http
 GET / HTTP/1.1
 Host: example.com
 ```
 
-And this one will effectively match api-2:
+And this request will match api-2:
 
 ```http
 POST / HTTP/1.1
 Host: example.com
 ```
 
-Following this reasoning, if a third API, api-3, was to be configured with a
-`hosts`, a `methods` and a `uris` field, it would be evaluated first by Kong.
+Following this logic, if a third API was to be configured with a
+`hosts` field, a `methods` field, and a `uris` field, it would be evaluated first by Kong.
 
 [Back to TOC](#table-of-contents)
 
 ### Proxying behavior
 
-Now that all the proxying rules have been studied and that you have a better
-understanding about how Kong forwards incoming requests to your upstream 
-services, now is a good opportunity to spend some time detailing what happens 
-internally between the time Kong *recognized* an HTTP request to target a 
-service, and actual *forwarding* of the request to it.
+The proxying rules above detail how Kong forwards incoming requests to your upstream 
+services. Below we detail what happens 
+internally between the time Kong *recognizes* an HTTP request to a target 
+service, and the actual *forwarding* of the request upstream.
 
 [Back to TOC](#table-of-contents)
 
 #### 1. Load balancing
 
-Sarting with Kong 0.10, Kong implements load balancing capabilities, allowing it
-to distribute the forwarded requests accrodd replicas of your upstream services.
+Starting with Kong `0.10`, Kong implements load balancing capabilities to distribute the forwarded requests across multiple instances of an upstream service.
 
-Ordinarily, Kong would simply decide that your API's `upstream_url` would be the
-target it has to send the proxied request to, and this step would be mostly 
-ignored. However, would you have configured load balancing for this particular
-API, this phase would be the moment at which Kong determines which of your
-replicas it should target.
+Previous to Kong `0.10`, Ordinarily, Kong would send proxied reqeusts to the `upstream_url`, and load balancing across multiple upstream instances required an external load balancer. 
 
 You can find more informations about adding load balancing to your APIs by
-consulting the [Load balancing Reference][load-balancing-reference].
+consulting the [Load Balancing Reference][load-balancing-reference].
 
 [Back to TOC](#table-of-contents)
 
 #### 2. Plugins execution
 
-As you may know, Kong is extensible via "plugins" that hook themselves in the
-request/response lifecycle of the proxied requests. Such plugins can perform a
+Kong is extensible via "plugins" that hook themselves in the
+request/response lifecycle of the proxied requests. Plugins can perform a
 variety of operations in your environment and/or transformations on the proxied
 request.
 
-Plugins can be configured to run globally (for all proxied traffic), or on a
-per-API basis, by creating a [plugin configuration][plugin-configuration-object]
+Plugins can be configured to run globally (for all proxied traffic) or on a
+per-API basis by creating a [plugin configuration][plugin-configuration-object]
 through the Admin API. 
 
-When configured for a given API, and such API has been matched from an incoming 
-request, Kong will then move on to executing such plugins for this request, 
-before proxying it to your upstream service. This includes the `access` phase of
-your plugin, on which you can find more informations about in the 
+When a plugin is configured for a given API, and the API has been matched from an incoming 
+request, Kong will execute configured plugin(s) for this request before proxying it to your upstream service. This includes the `access` phase of
+the plugin, on which you can find more informations about in the 
 [Plugin development guide][plugin-development-guide].
 
 [Back to TOC](#table-of-contents)
 
 #### 3. Proxying & upstream timeouts
 
-Kong has now executed all the necessary logic (including plugins) and is ready
+Once Kong has executed all the necessary logic (including plugins), it is ready
 to forward the request to your upstream service. This is done via Nginx's
-[ngx_http_proxy_module][ngx-http-proxy-module]. Since 0.10, you have control
-over the timeout values used for the connections between Kong and your upstream
-services, via these three properties of the API object:
+[ngx_http_proxy_module][ngx-http-proxy-module]. Since Kong `0.10`, the timeout duration for the connections between Kong and your upstream
+services may be configured via these three properties of the API object:
 
 - `upstream_connect_timeout`: defines in milliseconds the timeout for 
 establishing a connection to your upstream service. Defaults to `60000`.
@@ -590,39 +570,39 @@ the client.
 All the other request headers are forwarded as-is by Kong.
 
 One exception to this is made when using the WebSocket protocol. If so, Kong
-will set the following headers to allow for upgrading the protocol bewteen the
+will set the following headers to allow for upgrading the protocol between the
 client and your upstream services:
 
 - `Connection: Upgrade`
 - `Upgrade: websocket`
 
-More information on this topic will be covered in the
+More information on this topic is covered in the
 [Proxy WebSocket traffic][proxy-websocket] section.
 
 [Back to TOC](#table-of-contents)
 
 #### 4. Response
 
-Kong will receive the response from your upstream service and send it back to
-your downstream client in a streaming fashion. It is at this time that Kong will
+Kong receives the response from the upstream service and send it back to
+the downstream client in a streaming fashion. At this point Kong will
 execute subsequent plugins added to that particular API that implement a hook in
 the `header_filter` phase.
 
 Once the `header_filter` phase of all registered plugins has been executed, the
-following headers will be added by Kong and sent back to your client:
+following headers will be added by Kong and the full set of headers be sent to the client:
 
 - `Via: kong/x.x.x`, where `x.x.x` is the Kong version in use
 - `Kong-Proxy-Latency: <latency>`, where `latency` is the time in milliseconds
-taken by Kong between receiving the request from the client and sending the 
+between Kong receiving the request from the client and sending the 
 request to your upstream service.
 - `Kong-Upstream-Latency: <latency>`, where `latency` is the time in 
-milliseconds spent by Kong waiting for the first byte of your upstream service
+milliseconds that Kong was waiting for the first byte of the upstream service
 response.
 
-Once the headers are sent back to the client, Kong will start executing 
+Once the headers are sent to the client, Kong will start executing 
 registered plugins for that API that implement the `body_filter` hook. This hook
 may be called multiple times, due to the streaming nature of Nginx itself. Each
-chunk of the upstream response that is successfuly processed by such 
+chunk of the upstream response that is successfully processed by such 
 `body_filter` hooks is sent back to the client. You can find more informations
 about the `body_filter` hook in the
 [Plugin development guide][plugin-development-guide].
@@ -735,7 +715,7 @@ standard HTTP proxy.
 ### Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
-mehanism of Kong, from how is a request matched to an API, to how to allow for
+mechanism of Kong, from how is a request matched to an API, to how to allow for
 using the WebSocket protocol or setup SSL for an API.
 
 This website is Open-Source and can be found at 
