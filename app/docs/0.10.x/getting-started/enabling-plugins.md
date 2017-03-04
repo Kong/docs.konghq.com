@@ -13,11 +13,11 @@ title: Enabling Plugins
   </ol>
 </div>
 
-In this section, you'll learn how to configure plugins. One of the core principals of Kong is its extensibility through [plugins][plugins]. Plugins allow you to easily add new features to your API or make your API easier to manage.
+In this section, you'll learn how to configure Kong plugins. One of the core principles of Kong is its extensibility through [plugins][plugins]. Plugins allow you to easily add new features to your API or make your API easier to manage.
 
-As an example, we'll have you configure the [key-auth][key-auth] plugin to add authentication to your API.
+In the steps below you will configure the [key-auth][key-auth] plugin to add authentication to your API. Prior to the addition of this plugin, **all** requests to your API would be proxied upstream. Once you add and configure this plugin, **only** requests with the correct API key(s) will be proxied - all other requests will be rejected by Kong, thus protecting your upstream service from unauthorized use.
 
-1. ### Configure the plugin for your API
+1. ### Configure the key-auth plugin for your API
 
     Issue the following cURL request on the previously created API named `mockbin`:
 
