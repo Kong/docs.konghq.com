@@ -708,6 +708,72 @@ HTTP/1.1 200 OK
 
 [Back to TOC](#table-of-contents)
 
+#### The `https_only` property
+
+If you wish an API to only be served through HTTPS, you can do so by enabling
+its `https_only` property:
+
+```bash
+$ curl -i -X POST http://localhost:8001/apis \
+    -d "name=ssl-only-api" \
+    -d "upstream_url=http://example.com" \
+    -d "hosts=my-api.com" \
+    -d "https_only=true"
+HTTP/1.1 201 Created
+...
+```
+
+By configuring your API like so, Kong will refuse to proxy traffic for it
+without HTTPS. A request to Kong over plain HTTP targetting this API would
+instruct your clients to upgrade to HTTPS:
+
+```bash
+$ curl -i http://localhost:8000 \
+    -H "Host: my-api.com"
+HTTP/1.1 426
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+connection: Upgrade
+upgrade: TLS/1.2, HTTP/1.1
+Server: kong/0.10.0rc4
+
+{"message":"Please use HTTPS protocol"}
+```
+
+[Back to TOC](#table-of-contents)
+
+#### The `http_if_terminated` property
+
+If you wish to consider the `X-Forwarded-Proto` header of your requests when
+enforcing HTTPS only traffic, enable the `http_if_terminated` property of your
+API definition.
+
+Following the previous example, if we update our HTTPS-only API:
+
+```bash
+$ curl -i -X PATCH http://localhost:8001/apis/ssl-only-api \
+    -d "http_if_terminated=true"
+HTTP/1.1 200 OK
+...
+```
+
+And we make a request with the `X-Forwarded-Proto` header (assuming it is
+coming from a **trusted** client):
+
+```bash
+$ curl -i http://localhost:8000 \
+    -H "Host: my-api.com" \
+    -H "X-Forwarded-Proto: https"
+HTTP/1.1 200 OK
+...
+```
+
+Kong now proxies this request, because it assumes SSL termination has been
+achieved by a previous component of your architecture.
+
+[Back to TOC](#table-of-contents)
+
 ### Proxy WebSocket traffic
 
 Kong supports WebSocket traffic thanks to the underlying Nginx implementation.
