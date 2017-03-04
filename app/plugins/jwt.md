@@ -103,7 +103,7 @@ HTTP/1.1 201 Created
 
 form parameter                 | default         | description
 ---                            | ---             | ---
-`key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated. However, usage of this key is **mandatory** while crafting your token if you are using `HS256`, as specified in the next section.
+`key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
 `algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
 `secret`<br>*optional*         |                 | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
@@ -112,7 +112,7 @@ form parameter                 | default         | description
 
 Now that your Consumer has a credential, and assuming we want to sign it using `HS256`, the JWT should be crafted as follows (according to [RFC 7519][rfc-jwt]):
 
-First, the header must be:
+First, its header must be:
 
 ```json
 {
@@ -202,12 +202,11 @@ And sign your JWT using the original secret ("blob data").
 
 ### Craft a JWT with public/private keys (RS256)
 
-If you decide to use public/private keys in PEM format to authenticate a Consumer, when creating a JWT credential select `RS256` as the `algorithm`, and explicitly upload the public key in the `rsa_public_key` field, and the private key in the `secret` field. For example:
+If you wish to use RS256 to verify your JWTs, then when creating a JWT credential, select `RS256` as the `algorithm`, and explicitly upload the public key in the `rsa_public_key` field. For example:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
       -F "rsa_public_key=@/path/to/public_key.pem" \
-      -F "secret=@/path/to/private_key.pem"
 HTTP/1.1 201 Created
 
 {
@@ -228,7 +227,7 @@ When creating the signature, make sure that the header is:
 }
 ```
 
-Secondly, the claims **must** contain the secret's `key` in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
+Secondly, the claims **must** contain the secret's `key` field (this **isn't** your private key used to generate the token, but just an identifier for this credential) in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
 
 ```json
 {
@@ -236,7 +235,7 @@ Secondly, the claims **must** contain the secret's `key` in the configured claim
 }
 ```
 
-Then create the signature using the public/private keys specified when creating the credential. Using the JWT debugger at https://jwt.io, set the right header (RS256), the claims (iss, etc), and the correct public/private keys. Then append the resulting value in the `Authorization` header, for example:
+Then create the signature using your private keys. Using the JWT debugger at https://jwt.io, set the right header (RS256), the claims (iss, etc), and the associated public key. Then append the resulting value in the `Authorization` header, for example:
 
 ```bash
 $ curl http://kong:8000/{api path} \
@@ -245,7 +244,7 @@ $ curl http://kong:8000/{api path} \
 
 ### Generate public/private keys
 
-To create a brand new private key you can run the following command:
+To create a brand new pair of public/private keys, you can run the following command:
 
 ```bash
 $ openssl genrsa -out private.pem 2048
@@ -254,10 +253,10 @@ $ openssl genrsa -out private.pem 2048
 This private key must be kept secret. To generate a public key corresponding to the private key, execute:
 
 ```bash
-openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+$ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
-If you run the commands above, the public key will be stored at `public.pem`, while the private key will be stored at `private.pem`.
+If you run the commands above, the public key will be written in `public.pem`, while the private key will be written in `private.pem`.
 
 ### Upstream Headers
 
