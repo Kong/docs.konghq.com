@@ -46,8 +46,8 @@ local dao = singletons.dao
 
 local inserted_api, err = dao.apis:insert({
   name = "mockbin",
-  upstream_url = "http://mockbin.com",
-  request_host = "mockbin.com"
+  hosts = { "mockbin.com" },
+  upstream_url = "http://mockbin.com"
 })
 ```
 
