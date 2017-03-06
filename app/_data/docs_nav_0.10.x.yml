@@ -169,3 +169,33 @@
 
         - text: Retrieve Plugin Schema
           url: /admin-api/#retrieve-plugin-schema
+
+    - text: Upstream Object routes
+      url: /admin-api/#upstream-object
+      items:
+        - text: Add Upstream
+          url: /admin-api/#add-upstream
+
+        - text: Retrieve Upstream
+          url: /admin-api/#retrieve-upstream
+
+        - text: List all Upstreams
+          url: /admin-api/#list-upstreams
+
+        - text: Update Upstream
+          url: /admin-api/#update-upstream
+
+        - text: Update or create Upstream
+          url: /admin-api/#update-or-create-upstream
+
+        - text: Delete Upstream
+          url: /admin-api/#delete-upstream
+
+    - text: Target Object routes
+      url: /admin-api/#target-object
+      items:
+        - text: Add Target
+          url: /admin-api/#add-target
+
+        - text: List Targets
+          url: /admin-api/#list-targets

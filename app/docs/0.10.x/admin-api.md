@@ -1289,7 +1289,7 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create upstream
+### Update Or create Upstream
 
 #### Endpoint
 
