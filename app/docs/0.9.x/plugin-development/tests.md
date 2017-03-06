@@ -14,21 +14,27 @@ If you are serious about your plugins, you probably want to write tests for it. 
 
 ### Write integration tests
 
-The preferred testing framework for Kong is [busted](http://olivinelabs.com/busted/), though you are free to use another one if you wish.
+The preferred testing framework for Kong is [busted](http://olivinelabs.com/busted/) running with the [resty-cli](https://github.com/openresty/resty-cli) interpreter, though you are free to use another one if you wish. In the Kong repository, the busted executable can be found at `bin/busted`.
 
-Kong provides you with a helper to start and stop it from Lua code in your test suite: `spec.spec_helpers`. This helper also provides you with ways to insert fixtures in your datastore before running your tests, as well as dropping it, and various other helpers.
+Kong provides you with a helper to start and stop it from Lua in your test suite: `spec.helpers`. This helper also provides you with ways to insert fixtures in your datastore before running your tests, as well as dropping it, and various other helpers.
 
-Assuming you have a configuration file obtained from running `make dev` in your Kong repository in your current folder, and that the `spec.spec_helpers` module is available in your `LUA_PATH`, you can use the following Lua code in busted to start and stop Kong:
+If you are writing your plugin in your own repository, you will need to copy the following files until the Kong testing framework is released:
+
+- `bin/busted`: the busted executable running with the resty-cli interpreter
+- `spec/helpers.lua`: helper functions to start/stop Kong from busted
+- `spec/kong_tests.conf`: a configuration file for your running your test Kong instances with the helpers module
+
+Assuming that the `spec.helpers` module is available in your `LUA_PATH`, you can use the following Lua code in busted to start and stop Kong:
 
 ```lua
-local spec_helper = require "spec.spec_helpers"
+local helpers = require "spec.helpers"
 
 setup(function()
   -- Run the migrations to prepare the database
-  spec_helper.prepare_db()
+  helpers.prepare_db()
 
   -- Insert some fixtures in the database before running your tests
-  spec_helper.insert_fixtures {
+  helpers.insert_fixtures {
     api = {
       {name = "fixture-api", request_host = "fixture.com", upstream_url = "http://mockbin.com"}
     },
@@ -41,13 +47,13 @@ setup(function()
     }
   }
 
-  -- start Kong with your local kong_TEST.yml configuration
-  spec_helper.start_kong()
+  -- start Kong with your testing Kong configuration (defined in "spec.helpers")
+  helpers.start_kong()
 end)
 
 teardown(function()
-  -- stop Kong with your local kong_TEST.yml configuration
-  spec_helper.stop_kong()
+  -- stop Kong with your testing Kong configuration (defined in "spec.helpers")
+  helpers.stop_kong()
 end)
 
 describe("thing", function()
@@ -57,7 +63,7 @@ describe("thing", function()
 end)
 ```
 
-> Reminder: With the kong_TEST.yml file, Kong is running with its proxy listening on port 8100 and Admin API on port 8101.
+> Reminder: With the test Kong configuration file, Kong is running with its proxy listening on port 8100 and Admin API on port 8101.
 
 ---
 

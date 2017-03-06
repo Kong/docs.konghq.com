@@ -23,7 +23,7 @@ var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
   styles: paths.assets + 'stylesheets/**/*',
   js: [
-    paths.assets + 'javascripts/**/*.js',
+    paths.assets + 'javascripts/app.js',
     paths.modules + 'bootstrap/js/dropdown.js',
     paths.modules + 'bootstrap/js/affix.js'
   ],
@@ -45,9 +45,7 @@ gulp.task('styles', function () {
 gulp.task('javascripts', function () {
   return gulp.src(sources.js)
     .pipe($.plumber())
-    .pipe($.sourcemaps.init())
     .pipe($.concat('app.js'))
-    .pipe($.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -152,7 +150,7 @@ gulp.task('cloudflare', function (cb) {
 })
 
 gulp.task('deploy', function (cb) {
-  sequence('build', 'gh-pages', 'cloudflare', cb)
+  sequence('build', 'gh-pages', cb)
 })
 
 gulp.task('watch', function () {
