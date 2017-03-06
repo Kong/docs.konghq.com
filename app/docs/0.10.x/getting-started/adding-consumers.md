@@ -13,9 +13,14 @@ title: Adding Consumers
   </ol>
 </div>
 
-In the last section, we learned how to add plugins to Kong, in this section we're going to learn how to add consumers to your Kong instances. Consumers are associated to individuals using your API, and can be used for tracking, access management, and more.
+In the last section, we learned how to add plugins to Kong, in this section
+we're going to learn how to add consumers to your Kong instances. Consumers are
+associated to individuals using your API, and can be used for tracking, access
+management, and more.
 
-**Note:** This section assumes you have [enabled][enabling-plugins] the [key-auth][key-auth] plugin. If you haven't, you can either [enable the plugin][enabling-plugins] or skip steps two and three.
+**Note:** This section assumes you have [enabled][enabling-plugins] the
+[key-auth][key-auth] plugin. If you haven't, you can either [enable the
+plugin][enabling-plugins] or skip steps two and three.
 
 1. ### Create a Consumer through the RESTful API
 
@@ -43,11 +48,14 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     Congratulations! You've just added your first consumer to Kong.
 
-    **Note:** Kong also accepts a `custom_id` parameter when [creating consumers][API-consumers] to associate a consumer with your existing user database.
+    **Note:** Kong also accepts a `custom_id` parameter when [creating
+    consumers][API-consumers] to associate a consumer with your existing user
+    database.
 
 2. ### Provision key credentials for your Consumer
 
-    Now, we can create a key for our recently created consumer `Jason` by issuing the following request:
+    Now, we can create a key for our recently created consumer `Jason` by
+    issuing the following request:
 
     ```bash
     $ curl -i -X POST \
@@ -57,19 +65,35 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
 3. ### Verify that your Consumer credentials are valid
 
-    We can now issue the following request to verify that the credentials of our `Jason` Consumer is valid:
+    We can now issue the following request to verify that the credentials of
+    our `Jason` Consumer is valid:
 
     ```bash
     $ curl -i -X GET \
       --url http://localhost:8000 \
-      --header "Host: mockbin.com" \
+      --header "Host: example.com" \
       --header "apikey: ENTER_KEY_HERE"
     ```
 
 ### Next Steps
 
-Now that we've covered the basics of creating consumers, enabling plugins, and adding apis you can start giving out access and sharing your API.
+Now that we've covered the basics of adding APIs, Consumers and enabling
+Plugins, feel free to read more on Kong in one of the following documents:
+
+- [Configuration file Reference][configuration]
+- [CLI Reference][CLI]
+- [Proxy Reference][proxy]
+- [Admin API Reference][API]
+- [Clustering Reference][cluster]
+
+Questions? Issues? Contact us on one of the [Community Channels](/community)
+for help!
 
 [key-auth]: /plugins/key-authentication
 [API-consumers]: /docs/{{page.kong_version}}/admin-api#create-consumer
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
+[configuration]: /docs/{{page.kong_version}}/configuration
+[CLI]: /docs/{{page.kong_version}}/cli
+[proxy]: /docs/{{page.kong_version}}/proxy
+[API]: /docs/{{page.kong_version}}/admin-api
+[cluster]: /docs/{{page.kong_version}}/clustering

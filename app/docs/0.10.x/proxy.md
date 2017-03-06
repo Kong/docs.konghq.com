@@ -11,8 +11,8 @@ Kong listens for traffic on three ports, which by default are:
   and forwards it to your upstream services. **This is the port that interests
   us in this guide.**
 - `:8443` on which Kong listens for incoming HTTPS traffic. This port has a
-  similar behavior as the `:8000` port, except that it expects HTTPs traffic.
-  This port can be disabled via the configuration file.
+  similar behavior as the `:8000` port, except that it expects HTTPS traffic
+  only. This port can be disabled via the configuration file.
 
 In this document we cover routing capabilities of Kong by explaining in detail
 how incoming requests on port `:8000` are proxied to a configured upstream

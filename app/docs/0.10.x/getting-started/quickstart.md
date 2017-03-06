@@ -5,12 +5,18 @@ title: 5-minute Quickstart
 # 5-minute Quickstart
 
 <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
+  <strong>Before you start:</strong> Make sure you've
+  <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First we'll have you start Kong giving in order to give you access to the RESTful Admin interface to manage your APIs, consumers, and more. Data sent through the Admin API is stored in Kong's datastore (as of `0.8.0`, Kong supports PostgreSQL and Cassandra).
+In this section, you'll learn how to manage your Kong instance. First we'll
+have you start Kong giving in order to give you access to the RESTful Admin
+interface to manage your APIs, consumers, and more. Data sent through the Admin
+API is stored in Kong's datastore (Kong supports both PostgreSQL and
+Cassandra).
 
-**Note:** make sure you have your database instance running and [configured][configuration] in Kong.
+**Note:** make sure you have your database instance running and
+[configured][configuration] in Kong.
 
 1. ### Start Kong.
 
@@ -20,22 +26,28 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
     $ kong start
     ```
 
-    **Note:** The CLI also accepts a configuration (`-c <path_to_config>`) option allowing you to point to different configurations.
+    **Note:** The CLI also accepts a configuration (`-c <path_to_config>`)
+    option allowing you to point to different configurations.
 
 2. ### Verify that Kong has started successfully
 
     The previous step runs migrations to prepare your database.
-    Once these have finished you should see a message (`Kong started`) informing you that Kong is running.
+    Once these have finished you should see a message (`Kong started`)
+    informing you that Kong is running.
 
     By default Kong listens on the following ports:
 
-    `:8000` - Proxy layer for API requests
-
-    `:8001` - [RESTful Admin API][API] for configuration
+- `:8001` on which the [Admin API][API] used to configure Kong listens.
+- `:8000` on which Kong listens for incoming HTTP traffic from your
+  clients, and forwards it to your upstream services.
+- `:8443` on which Kong listens for incoming HTTPS traffic. This port has a
+  similar behavior as the `:8000` port, except that it expects HTTPS
+  traffic only. This port can be disabled via the configuration file.
 
 3. ### Stop Kong.
 
-    As needed you can stop the Kong process by issuing the following [command][CLI]:
+    As needed you can stop the Kong process by issuing the following
+    [command][CLI]:
 
     ```bash
     $ kong stop
