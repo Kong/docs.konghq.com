@@ -4,13 +4,19 @@ title: Admin API
 api_body: |
     Attribute | Description
     ---:| ---
-    `name`<br>*optional* | The API name. If none is specified, will default to the `request_host` or `request_path`.
-    `request_host`<br>*semi-optional* | The public DNS address that points to your API. For example, `mockbin.com`. At least `request_host` or `request_path` or both should be specified.
-    `request_path`<br>*semi-optional* | The public path that points to your API. For example, `/someservice`. At least `request_host` or `request_path` or both should be specified.
-    `strip_request_path`<br>*optional* | Strip the `request_path` value before proxying the request to the final API. For example a request made to `/someservice/hello` will be resolved to `upstream_url/hello`. By default is `false`.
-    `preserve_host`<br>*optional* | Preserves the original `Host` header sent by the client, instead of replacing it with the hostname of the `upstream_url`. By default is `false`.
-    `retries`<br>*optional* | The number of retries to execute upon failure. The default is `5`.
-    `upstream_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
+    `name`                        | The API name.
+    `hosts`<br>*semi-optional*    | A comma-separated list of domain names that point to your API. For example: `example.com`. At least one of `hosts`, `uris`, or `methods` should be specified.
+    `uris`<br>*semi-optional*     | A comma-separated list of URIs prefixes that point to your API. For example: `/my-path`. At least one of `hosts`, `uris`, or `methods` should be specified.
+    `methods`<br>*semi-optional*  | A comma-separated list of HTTP methods that point to your API. For example: `GET,POST`. At least one of `hosts`, `uris`, or `methods` should be specified.
+    `upstream_url`                | The base target URL that points to your API server. This URL will be used for proxying requests. For example: `https://example.com`.
+    `strip_uri`<br>*optional*     | When matching an API via one of the `uris` prefixes, strip that matching prefix from the upstream URI to be requested. Default: `true`.
+    `preserve_host`<br>*optional* | When matching an API via one of the `hosts` domain names, make sure the request `Host` header is forwarded to the upstream service. By default, this is `false`, and the upstream `Host` header will be extracted from the configured `upstream_url`.
+    `retries`<br>*optional*       | The number of retries to execute upon failure to proxy. The default is `5`.
+    `upstream_connect_timeout`<br>*optional* | The timeout in milliseconds for establishing a connection to your upstream service. Defaults to `60000`.
+    `upstream_send_timeout`<br>*optional*    | The timeout in milliseconds between two successive write operations for transmitting a requrest to your upstream service Defaults to `60000`.
+    `upstream_read_timeout`<br>*optional*    | The timeout in milliseconds between two successive read operations for transmitting a request to your upstream service Defaults to `60000`.
+    `https_only`<br>*optional*               | To be enabled if you wish to only serve an API through HTTPS, on the appropriate port (`8443` by default). Default: `false`.
+    `http_if_terminated`<br>*optional*       | Consider the `X-Forwarded-Proto` header when enforcing HTTPS only traffic. Default: `true`.
 
 consumer_body: |
     Attributes | Description
@@ -104,7 +110,7 @@ HTTP 200 OK
         ...
     },
     "tagline": "Welcome to Kong",
-    "version": "0.6.0"
+    "version": "0.10.0"
 }
 ```
 
@@ -270,13 +276,21 @@ The API object describes an API that's being exposed by Kong. Kong needs to know
 
 ```json
 {
-    "name": "Mockbin",
-    "request_host": "mockbin.com",
-    "request_path": "/someservice",
-    "strip_request_path": false,
+    "created_at": 1488830759000,
+    "hosts": [
+        "example.org"
+    ],
+    "http_if_terminated": true,
+    "https_only": false,
+    "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
+    "name": "example-api",
     "preserve_host": false,
-    "upstream_url": "https://mockbin.com",
-    "retries": 5
+    "retries": 5,
+    "strip_uri": true,
+    "upstream_connect_timeout": 60000,
+    "upstream_read_timeout": 60000,
+    "upstream_send_timeout": 60000,
+    "upstream_url": "http://httpbin.org"
 }
 ```
 
@@ -300,13 +314,21 @@ HTTP 201 Created
 
 ```json
 {
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "Mockbin",
-    "request_host": "mockbin.com",
-    "upstream_url": "http://mockbin.com",
+    "created_at": 1488830759000,
+    "hosts": [
+        "example.org"
+    ],
+    "http_if_terminated": true,
+    "https_only": false,
+    "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
+    "name": "example-api",
     "preserve_host": false,
     "retries": 5,
-    "created_at": 1422386534
+    "strip_uri": true,
+    "upstream_connect_timeout": 60000,
+    "upstream_read_timeout": 60000,
+    "upstream_send_timeout": 60000,
+    "upstream_url": "http://httpbin.org"
 }
 ```
 
@@ -330,13 +352,21 @@ HTTP 200 OK
 
 ```json
 {
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "Mockbin",
-    "request_host": "mockbin.com",
-    "upstream_url": "https://mockbin.com",
+    "created_at": 1488830759000,
+    "hosts": [
+        "example.org"
+    ],
+    "http_if_terminated": true,
+    "https_only": false,
+    "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
+    "name": "example-api",
     "preserve_host": false,
     "retries": 5,
-    "created_at": 1422386534
+    "strip_uri": true,
+    "upstream_connect_timeout": 60000,
+    "upstream_read_timeout": 60000,
+    "upstream_send_timeout": 60000,
+    "upstream_url": "http://httpbin.org"
 }
 ```
 
@@ -354,8 +384,6 @@ Attributes | Description
 ---:| ---
 `id`<br>*optional* | A filter on the list based on the apis `id` field.
 `name`<br>*optional* | A filter on the list based on the apis `name` field.
-`request_host`<br>*optional* | A filter on the list based on the apis `request_host` field.
-`request_path`<br>*optional* | A filter on the list based on the apis `request_path` field.
 `upstream_url`<br>*optional* | A filter on the list based on the apis `upstream_url` field.
 `retries`<br>*optional* | A filter on the list based on the apis `retries` field.
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
@@ -372,25 +400,41 @@ HTTP 200 OK
     "total": 10,
     "data": [
         {
-            "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-            "name": "Mockbin",
-            "request_host": "mockbin.com",
-            "upstream_url": "https://mockbin.com",
+            "created_at": 1488830759000,
+            "hosts": [
+                "example.org"
+            ],
+            "http_if_terminated": true,
+            "https_only": false,
+            "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
+            "name": "example-api",
             "preserve_host": false,
             "retries": 5,
-            "created_at": 1422386534
+            "strip_uri": true,
+            "upstream_connect_timeout": 60000,
+            "upstream_read_timeout": 60000,
+            "upstream_send_timeout": 60000,
+            "upstream_url": "http://httpbin.org"
         },
         {
-            "id": "3f924084-1adb-40a5-c042-63b19db421a2",
-            "name": "PrivateAPI",
-            "request_host": "internal.api.com",
-            "upstream_url": "http://private.api.com",
+            "created_at": 1488830708000,
+            "hosts": [
+                "api.com"
+            ],
+            "http_if_terminated": true,
+            "https_only": false,
+            "id": "0924978e-eb19-44a0-9adc-55f20db2f04d",
+            "name": "my-api",
             "preserve_host": false,
-            "retries": 5,
-            "created_at": 1422386585
+            "retries": 10,
+            "strip_uri": true,
+            "upstream_connect_timeout": 1000,
+            "upstream_read_timeout": 1000,
+            "upstream_send_timeout": 1000,
+            "upstream_url": "http://my-api.com"
         }
     ],
-    "next": "http://localhost:8001/apis/?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
+    "next": "http://localhost:8001/apis?size=2&offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
 
@@ -418,13 +462,21 @@ HTTP 200 OK
 
 ```json
 {
-    "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "name": "Mockbin2",
-    "request_host": "mockbin.com",
-    "upstream_url": "http://mockbin.com",
+    "created_at": 1488830759000,
+    "hosts": [
+        "updated-example.org"
+    ],
+    "http_if_terminated": true,
+    "https_only": false,
+    "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
+    "name": "my-updated-api",
     "preserve_host": false,
     "retries": 5,
-    "created_at": 1422386534
+    "strip_uri": true,
+    "upstream_connect_timeout": 60000,
+    "upstream_read_timeout": 60000,
+    "upstream_send_timeout": 60000,
+    "upstream_url": "http://httpbin.org"
 }
 ```
 
