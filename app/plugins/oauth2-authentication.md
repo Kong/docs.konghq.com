@@ -23,7 +23,29 @@ nav:
       - label: Resource Owner Password Credentials
 ---
 
-Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
+Add an OAuth 2.0 authentication layer with the [Authorization Code
+Grant][authorization-code-grant], [Client Credentials][client-credentials],
+[Implicit Grant][implicit-grant] or [Resource Owner Password Credentials
+Grant][password-grant] flow. 
+
+<br />
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> As per the OAuth2 specs, this plugin requires the
+  underlying API to be served over HTTPS. To avoid any confusion, we
+  recommend that you configure your underlying API to be only served through
+  HTTPS.
+  <br />
+  <br />
+  If you are running Kong >= 0.10.0, you can learn to do so in the
+  <a href="/docs/latest/proxy#configuring-ssl-for-an-api">Proxy Reference</a>
+  where the <code>https_only</code> option is documented.
+  <br />
+  <br />
+  If you are running Kong < 0.10.0, you must configure the
+  <a href="/plugins/dynamic-ssl">SSL Plugin</a> on your API to have such an
+  <code>https_only</code> flag.
+</div>
 
 ----
 
