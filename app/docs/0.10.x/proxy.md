@@ -4,15 +4,16 @@ title: Proxy Reference
 
 # Proxy Reference
 
-Kong listens for traffic on three ports, which by default are:
+Kong listens for traffic on four ports, which by default are:
 
-- `:8001` on which the [Admin API][API] used to configure Kong listens.
 - `:8000` on which Kong listens for incoming HTTP traffic from your clients,
   and forwards it to your upstream services. **This is the port that interests
   us in this guide.**
 - `:8443` on which Kong listens for incoming HTTPS traffic. This port has a
   similar behavior as the `:8000` port, except that it expects HTTPS traffic
   only. This port can be disabled via the configuration file.
+- `:8001` on which the [Admin API][API] used to configure Kong listens.
+- `:8444` on which the [Admin API][API] listens for HTTPS traffic.
 
 In this document we cover routing capabilities of Kong by explaining in detail
 how incoming requests on port `:8000` are proxied to a configured upstream
