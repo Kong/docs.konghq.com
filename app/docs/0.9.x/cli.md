@@ -103,7 +103,7 @@ Options:
 
 For a detailed example of this command, see the
 [Embedding Kong](/docs/{{page.kong_version}}/configuration#embedding-kong)
-section of the configuratin reference.
+section of the configuration reference.
 
 ```
 Usage: kong compile [OPTIONS]
