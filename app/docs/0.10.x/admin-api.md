@@ -13,7 +13,7 @@ api_body: |
     `preserve_host`<br>*optional* | When matching an API via one of the `hosts` domain names, make sure the request `Host` header is forwarded to the upstream service. By default, this is `false`, and the upstream `Host` header will be extracted from the configured `upstream_url`.
     `retries`<br>*optional*       | The number of retries to execute upon failure to proxy. The default is `5`.
     `upstream_connect_timeout`<br>*optional* | The timeout in milliseconds for establishing a connection to your upstream service. Defaults to `60000`.
-    `upstream_send_timeout`<br>*optional*    | The timeout in milliseconds between two successive write operations for transmitting a requrest to your upstream service Defaults to `60000`.
+    `upstream_send_timeout`<br>*optional*    | The timeout in milliseconds between two successive write operations for transmitting a request to your upstream service Defaults to `60000`.
     `upstream_read_timeout`<br>*optional*    | The timeout in milliseconds between two successive read operations for transmitting a request to your upstream service Defaults to `60000`.
     `https_only`<br>*optional*               | To be enabled if you wish to only serve an API through HTTPS, on the appropriate port (`8443` by default). Default: `false`.
     `http_if_terminated`<br>*optional*       | Consider the `X-Forwarded-Proto` header when enforcing HTTPS only traffic. Default: `true`.
@@ -68,7 +68,7 @@ config.limit=10&config.period=seconds
 
 - **application/json**
 
-Handy for complex bodies (ex: complex plugin configuration), in that case simply send a JSON representaton of the data you want to send. Example:
+Handy for complex bodies (ex: complex plugin configuration), in that case simply send a JSON representation of the data you want to send. Example:
 
 ```json
 {
