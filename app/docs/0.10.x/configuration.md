@@ -122,7 +122,7 @@ the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
 The default template can be found at:
-https://github.com/Mashape/kong/tree/master/kong/templates.  It is splitted in
+https://github.com/Mashape/kong/tree/master/kong/templates.  It is split in
 two Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
 minimalistic and includes the later, which contains everything Kong requires to
 run. Moments before starting Nginx, those two files are copied into the prefix
@@ -337,7 +337,7 @@ Default: `auto`
 
 ##### **nginx_daemon**
 
-Determines wether Nginx will run as a daemon or as a foreground process.
+Determines whether Nginx will run as a daemon or as a foreground process.
 Mainly useful for development or when running Kong inside a Docker environment.
 
 See http://nginx.org/en/docs/ngx_core_module.html#daemon.
@@ -570,7 +570,7 @@ Default: `3600`
 
 The timing profile for inter-cluster pings and timeouts. If a `lan` or `local`
 profile is used over the Internet, a high rate of failures is risked as the
-timing contraints would be too tight.
+timing constraints would be too tight.
 
 Accepted values are `local`, `lan`, `wan`.
 
