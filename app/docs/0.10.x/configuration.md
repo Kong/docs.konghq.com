@@ -99,7 +99,7 @@ Example:
 log_level = debug # in kong.conf
 ```
 
-Can be overriden with:
+Can be overridden with:
 
 ```
 $ export KONG_LOG_LEVEL=error
