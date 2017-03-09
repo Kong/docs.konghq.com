@@ -77,8 +77,6 @@ $ kong start -c <kong.conf> --vv
 2016/08/11 14:53:36 [debug] cluster_profile = "wan"
 2016/08/11 14:53:36 [debug] cluster_ttl_on_failure = 3600
 2016/08/11 14:53:36 [debug] database = "postgres"
-2016/08/11 14:53:36 [debug] dnsmasq = true
-2016/08/11 14:53:36 [debug] dnsmasq_port = 8053
 2016/08/11 14:53:36 [debug] log_level = "notice"
 [...]
 ```
@@ -92,8 +90,8 @@ environment variables of the same name. This allows you to fully configure Kong
 via environment variables, which is very convenient for container-based
 infrastructures, for example.
 
-All environment variables prefixed with `KONG_`, capitalized and bearing the same
-name as a setting will override it.
+All environment variables prefixed with `KONG_`, capitalized and bearing the
+same name as a setting will override it.
 
 Example:
 
@@ -101,7 +99,7 @@ Example:
 log_level = debug # in kong.conf
 ```
 
-Can be overriden with:
+Can be overridden with:
 
 ```
 $ export KONG_LOG_LEVEL=error
@@ -123,11 +121,12 @@ which must specify an Nginx configuration template. Such a template uses the
 the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
-The default template can be found at: https://github.com/Mashape/kong/tree/master/kong/templates.
-It is splitted in two Nginx configuration files: `nginx.lua` and
-`nginx_kong.lua`. The former is minimalistic and includes the later, which
-contains everything Kong requires to run. Moments before starting Nginx, those
-two files are copied into the prefix directory, which looks like so:
+The default template can be found at:
+https://github.com/Mashape/kong/tree/master/kong/templates.  It is split in
+two Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
+minimalistic and includes the later, which contains everything Kong requires to
+run. Moments before starting Nginx, those two files are copied into the prefix
+directory, which looks like so:
 
 ```
 /usr/local/kong
@@ -161,8 +160,9 @@ http {
 
     # custom server
     server {
-        server_name custom_server;
         listen 8888;
+        server_name custom_server;
+
         location / {
           ... # etc
         }
@@ -224,7 +224,7 @@ $ nginx -c /usr/local/openresty/conf/nginx.conf
   <strong>Note:</strong> When embedding Kong this way, you will have to
   ensure the required third-party services are already running and configured
   correctly according to the kong.conf used to compile the Nginx
-  sub-configuration. This include the database, serf, and dnsmasq if enabled.
+  sub-configuration. This includes the database, and serf.
 </div>
 
 [Back to TOC](#table-of-contents)
@@ -316,7 +316,8 @@ Example: `127.0.0.1:8001`
 
 ##### **admin_listen_ssl**
 
-Address and port on which Kong will accept HTTPS requests to the Admin API if `admin_ssl` is enabled.
+Address and port on which Kong will accept HTTPS requests to the Admin API if
+`admin_ssl` is enabled.
 
 Default: `0.0.0.0:8444`
 
@@ -336,7 +337,7 @@ Default: `auto`
 
 ##### **nginx_daemon**
 
-Determines wether Nginx will run as a daemon or as a foreground process.
+Determines whether Nginx will run as a daemon or as a foreground process.
 Mainly useful for development or when running Kong inside a Docker environment.
 
 See http://nginx.org/en/docs/ngx_core_module.html#daemon.
@@ -385,9 +386,9 @@ Default: none
 
 ##### **admin_ssl**
 
-Determines if Nginx should be listening for HTTPS traffic on the `admin_listen_ssl`
-address. If disabled, Nginx will only bind itself on `admin_listen`, and all SSL 
-settings will be ignored.
+Determines if Nginx should be listening for HTTPS traffic on the
+`admin_listen_ssl` address. If disabled, Nginx will only bind itself on
+`admin_listen`, and all SSL settings will be ignored.
 
 Default: `on`
 
@@ -396,8 +397,8 @@ Default: `on`
 ##### **admin_ssl_cert**
 
 If `admin_ssl` is enabled, the absolute path to the SSL certificate for the
-`admin_listen_ssl` address. If none is specified and `admin_ssl` is enabled, Kong will
-generate a default certificate and key.
+`admin_listen_ssl` address. If none is specified and `admin_ssl` is enabled,
+Kong will generate a default certificate and key.
 
 Default: none
 
@@ -410,13 +411,23 @@ If `admin_ssl` is enabled, the absolute path to the SSL key for the
 
 Default: none
 
+---
+
+##### **upstream_keepalive**
+
+Sets the maximum number of idle keepalive connections to upstream servers that
+are preserved in the cache of each worker process. When this number is
+exceeded, the least recently used connections are closed.
+
+Default: `60`
+
 [Back to TOC](#table-of-contents)
 
 ---
 
 #### Datastore section
 
-Kong will store all of its data (such as APIs, consumers and plugins) in
+Kong will store all of its data (such as APIs, Consumers and Plugins) in
 either Cassandra or PostgreSQL.
 
 All Kong nodes belonging to the same cluster must connect themselves to the
@@ -443,7 +454,7 @@ name                  |  description
 **pg_password**       | Postgres user's password
 **pg_database**       | Database to connect to. **must exist**
 **pg_ssl**            | Enable SSL connections to the server
-**pg_ssl_verify**     | If pg_ssl is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
+**pg_ssl_verify**     | If `pg_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
 
 ---
 
@@ -451,18 +462,21 @@ name                  |  description
 
 name                            | description
 --------------------------------|------------------
-**cassandra_contact_points**    | Comma-separated list of contacts points to your cluster
+**cassandra_contact_points**    | Comma-separated list of contacts points to your cluster.
 **cassandra_port**              | Port on which your nodes are listening.
 **cassandra_keyspace**          | Keyspace to use in your cluster. Will be created if doesn't exist.
-**cassandra_consistency**       | Consistency setting to use when reading/writing
-**cassandra_timeout**           | Timeout (in ms) for reading/writing
-**cassandra_ssl**               | Enable SSL connections to the nodes
-**cassandra_ssl_verify**        | If cassandra_ssl is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
-**cassandra_username**          | Username when using the PasswordAuthenticator scheme
-**cassandra_password**          | Password when using the PasswordAuthenticator scheme
+**cassandra_consistency**       | Consistency setting to use when reading/writing.
+**cassandra_timeout**           | Timeout (in ms) for reading/writing.
+**cassandra_ssl**               | Enable SSL connections to the nodes.
+**cassandra_ssl_verify**        | If `cassandra_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
+**cassandra_username**          | Username when using the PasswordAuthenticator scheme.
+**cassandra_password**          | Password when using the PasswordAuthenticator scheme.
+**cassandra_consistency**       | Consistency setting to use when reading/writing to the Cassandra cluster.
+**cassandra_lb_policy**         | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin` and `DCAwareRoundRobin`. Prefer the later if and only if you are using a multi-datacenter cluster, and set the `cassandra_local_datacenter` if so.
+**cassandra_local_datacenter**  | When using the `DCAwareRoundRobin` policy, you must specify the name of the cluster local (closest) to this Kong node.
 **cassandra_repl_strategy**     | If creating the keyspace for the first time, specify a replication strategy.
-**cassandra_repl_factor**       | Specify a replication factor for the SimpleStrategy
-**cassandra_data_centers**      | Specify data centers for the NetworkTopologyStrategy
+**cassandra_repl_factor**       | Specify a replication factor for the `SimpleStrategy`.
+**cassandra_data_centers**      | Specify data centers for the `NetworkTopologyStrategy`.
 
 [Back to TOC](#table-of-contents)
 
@@ -525,6 +539,20 @@ Default: none
 
 ---
 
+##### **cluster_keyring_file**
+
+Specifies a file to load keyring data from.
+Kong is able to keep encryption keys in sync
+and perform key rotations. During a key
+rotation, there may be some period of time in
+which Kong is required to maintain more than
+one encryption key until all members have
+received the new key.
+
+Default: none
+
+---
+
 ##### **cluster_ttl_on_failure**
 
 Time to live (in seconds) of a node in the cluster when it stops sending
@@ -542,7 +570,7 @@ Default: `3600`
 
 The timing profile for inter-cluster pings and timeouts. If a `lan` or `local`
 profile is used over the Internet, a high rate of failures is risked as the
-timing contraints would be too tight.
+timing constraints would be too tight.
 
 Accepted values are `local`, `lan`, `wan`.
 
@@ -554,32 +582,36 @@ Default: `wan`
 
 #### DNS resolver section
 
-##### **dnsmasq**
+Kong will resolve hostnames as either `SRV` or `A` records (in that order, and
+`CNAME` records will be dereferenced in the process).
+In case a name was resolved as an `SRV` record it will also override any given
+port number by the `port` field contents received from the dns server.
 
-Toggles if Kong should start/stop dnsmasq, which can be used as the Nginx DNS
-resolver. Using dnsmasq allows Nginx to resolve domains defined in /etc/hosts.
-
-dnsmasq must be installed and available in your $PATH.
-
-Default: `on`
-
----
-
-##### **dnsmasq_port**
-
-The port on which dnsmasq should listen to for queries.
-
-Default: `8053`
+For the duration of the `ttl`, the internal dns resolver will loadbalance each
+request it gets over the entries in the dns record. For `SRV` records the
+`weight` fields will be honored, but it will only use the lowest `priority`
+field entries in the record.
 
 ---
 
 ##### **dns_resolver**
 
-Configure a name server to be used by Nginx.
+Comma separated list of nameservers, each
+entry in `ipv4[:port]` format to be used by
+Kong. If not specified the nameservers in
+the local `resolv.conf` file will be used.
+Port defaults to 53 if omitted.
 
-Only valid when `dnsmasq` is disabled.
+Default: none
 
-Default: `8.8.8.8`
+---
+
+##### **dns_hostsfile**
+
+The hosts file to use. This file is read once and its content is static
+in memory. To read the file again after modifying it, Kong must be reloaded.
+
+Default: `/etc/hosts`
 
 [Back to TOC](#table-of-contents)
 
@@ -652,6 +684,17 @@ Sets the Lua C module search path (LUA_CPATH).
 See https://github.com/openresty/lua-nginx-module#lua_package_cpath
 
 Default: none
+
+---
+
+##### **lua_socket_pool_size**
+
+Specifies the size limit for every cosocket connection pool associated with
+every remote server.
+
+See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
+
+Default: `30`
 
 [Back to TOC](#table-of-contents)
 

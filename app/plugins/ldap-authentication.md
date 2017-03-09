@@ -50,6 +50,8 @@ form parameter                           | default | description
 `config.cache_ttl`                       | `60`    | Cache expiry time in seconds.
 `config.timeout`<br>*optional*           | `10000` | An optional timeout in milliseconds when waiting for connection with LDAP server.
 `config.keepalive`<br>*optional*         | `60000` | An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed.
+`config.anonymous`<br>*optional*         | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
+
 ----
 
 ## Usage
@@ -64,7 +66,11 @@ The plugin will validate the user against the LDAP server and cache the credenti
 
 When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
 
-* `X-Credential-Username`, the `username` of the Credential
+* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
+* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
+* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if authentication failed and 'anonymous' was set)
+* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
+* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration

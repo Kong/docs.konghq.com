@@ -49,13 +49,14 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
-form parameter                          | default  | description
----                                     | ---      | ---
-`name`                                  |          | The name of the plugin to use, in this case: `jwt`
-`config.uri_param_names`<br>*optional*  | `jwt`    | A list of querystring parameters that Kong will inspect to retrieve JWTs.
-`config.claims_to_verify`<br>*optional* |          | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
-`config.key_claim_name`<br>*optional*   | `iss`    | The name of the claim in which the `key` identifying the secret **must** be passed.
+form parameter                          | default | description
+---                                     | ---     | ---
+`name`                                  |         | The name of the plugin to use, in this case: `jwt`
+`config.uri_param_names`<br>*optional*  | `jwt`   | A list of querystring parameters that Kong will inspect to retrieve JWTs.
+`config.claims_to_verify`<br>*optional* |         | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
+`config.key_claim_name`<br>*optional*   | `iss`   | The name of the claim in which the `key` identifying the secret **must** be passed.
 `config.secret_is_base64`<br>*optional* | `false` | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your Consumer, and sign your JWT with the original secret.
+`config.anonymous`<br>*optional*           | `` | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
 
 ----
 
@@ -103,9 +104,9 @@ HTTP/1.1 201 Created
 form parameter                 | default         | description
 ---                            | ---             | ---
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
-`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256` or `RS256`.
-`rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, the public key (in PEM format) to use to verify the token's signature.
-`secret`<br>*optional*         |                 | If `algorithm` is `HS256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
+`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `RS256`, or `ES256`.
+`rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256` or `ES256`, the public key (in PEM format) to use to verify the token's signature.
+`secret`<br>*optional*         |                 | If `algorithm` is `HS256` or `ES256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
 ### Craft a JWT with a secret (HS256)
 
@@ -199,9 +200,9 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
 
 And sign your JWT using the original secret ("blob data").
 
-### Craft a JWT with public/private keys (RS256)
+### Craft a JWT with public/private keys (RS256 or ES256)
 
-If you wish to use RS256 to verify your JWTs, then when creating a JWT credential, select `RS256` as the `algorithm`, and explicitly upload the public key in the `rsa_public_key` field. For example:
+If you wish to use RS256 or ES256 to verify your JWTs, then when creating a JWT credential, select `RS256` or `ES256` as the `algorithm`, and explicitly upload the public key in the `rsa_public_key` field (including for ES256 signed tokens). For example:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/jwt \
@@ -264,6 +265,7 @@ When a JWT is valid, a Consumer has been authenticated, the plugin will append s
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
 * `X-Consumer-Username`, the `username` of the Consumer (if set)
+* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 

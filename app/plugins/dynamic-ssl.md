@@ -17,6 +17,16 @@ nav:
 
 Dynamically binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
+<br />
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> As of Kong 0.10.0, this plugin has been removed and the
+  core is now directly responsible for dynamically serving SSL certificates.
+  You can read about how to serve an API over SSL in the 
+  <a href="/docs/latest/proxy#configuring-ssl-for-an-api">Proxy</a> and the
+  <a href="/docs/latest/admin-api">Admin API</a> references.
+</div>
+
 ----
 
 ## Configuration
@@ -51,17 +61,17 @@ When creating an SSL certificate to use with this plugin, make sure you create o
 
 ```bash
 # Let's create the private server key
-openssl genrsa -des3 -out server.key 1024
+openssl genrsa -des3 -out server.key 2048
 
 # Now we create a certificate signing request
-openssl req -new -key server.key -out server.csr
+openssl req -new -key server.key -out server.csr -sha256
 
 # Remove the passphrase
 cp server.key server.key.org
 openssl rsa -in server.key.org -out server.key
 
 # Signing the SSL certificate
-openssl x509 -req -in server.csr -signkey server.key -out server.crt
+openssl x509 -req -in server.csr -signkey server.key -out server.crt -sha256
 ```
 
 If you followed the steps above the certificate will be stored in a file named `server.crt`, while the key is at `server.key`.

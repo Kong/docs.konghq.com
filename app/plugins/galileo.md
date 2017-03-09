@@ -40,16 +40,16 @@ form parameter                     | default | description
 ---                                | ---     | ---
 `name`                             |         | The name of the plugin to use, in this case: `galileo`
 `consumer_id`<br>*optional*        |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`service_token`                    |         | The service token provided to you by [Galileo][galileo].
-`environment`<br>*optional*        |         | Slug of your Galileo environment name. None by default.
-`log_bodies`<br>*optional*         | `false` | Capture and send request/response bodies.
-`retry_count`<br>*optional*        | `10`    | Number of retries in case of failure to send data to Galileo.
-`connection_timeout`<br>*optional* | `30`    | Timeout in seconds before aborting a connection to Galileo.
-`flush_timeout`<br>*optional*      | `2`     | Timeout in seconds before flushing the current data to Galileo in case of inactivity.
-`queue_size`<br>*optional*         | `1000`  | Number of calls to trigger a flush of the buffered data to Galileo.
-`host`<br>*optional*               | `collector.galileo.mashape.com` | Host address of the Galileo collector.
-`port`<br>*optional*               | `443`   | Port of the Galileo collector.
-`https`<br>*optional*              | `true`  | Use of HTTPs to connect with the Galileo collector.
+`config.service_token`                    |         | The service token provided to you by [Galileo][galileo].
+`config.environment`<br>*optional*        |         | Slug of your Galileo environment name. None by default.
+`config.log_bodies`<br>*optional*         | `false` | Capture and send request/response bodies.
+`config.retry_count`<br>*optional*        | `10`    | Number of retries in case of failure to send data to Galileo.
+`config.connection_timeout`<br>*optional* | `30`    | Timeout in seconds before aborting a connection to Galileo.
+`config.flush_timeout`<br>*optional*      | `2`     | Timeout in seconds before flushing the current data to Galileo in case of inactivity.
+`config.queue_size`<br>*optional*         | `1000`  | Number of calls to trigger a flush of the buffered data to Galileo.
+`config.host`<br>*optional*               | `collector.galileo.mashape.com` | Host address of the Galileo collector.
+`config.port`<br>*optional*               | `443`   | Port of the Galileo collector.
+`config.https`<br>*optional*              | `true`  | Use of HTTPs to connect with the Galileo collector.
 
 [galileo]: https://getgalileo.io/
 [api-object]: /docs/latest/admin-api/#api-object

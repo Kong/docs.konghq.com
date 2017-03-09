@@ -50,6 +50,7 @@ form parameter                     | default | description
 `config.redis_port`<br>*optional* | `6379`     | When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
 `config.redis_password`<br>*optional* |      | When using the `redis` policy, this property specifies the password to connect to the Redis server.
 `config.redis_timeout`<br>*optional* | `2000` | When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
+`config.redis_database`<br>*optional* | `0` | When using the `redis` policy, this property specifies Redis database to use.
 
 ----
 
@@ -76,6 +77,59 @@ If any of the limits configured is being reached, the plugin will return a `HTTP
 ```json
 {"message":"API rate limit exceeded"}
 ```
+
+## Implementation considerations
+
+The plugin supports 3 policies, which each have their specific pros and cons.
+
+policy    | pros          | cons
+---       | ---            | ---
+`cluster` | accurate, no extra components to support  | relatively the biggest performance impact, each request forces a read and a write on the underlying datastore.
+`redis`   | accurate, lesser performance impact than a `cluster` policy | extra redis installation required, bigger performance impact than a `local` policy
+`local`   | minimal performance impact | less accurate, and unless a consistent-hashing load balancer is used in front of Kong, it diverges when scaling the number of nodes
+
+There are 2 use cases that are most common:
+
+1. _every transaction counts_. These are for example transactions with financial 
+   consequences. Here the highest level of accuracy is required.
+2. _backend protection_. This is where accuracy is not as relevant, but it is
+   merely used to protect backend services from overload. Either by specific
+   users, or to protect against an attack in general.
+
+**NOTE**: the redis policy does not support the Sentinel protocol for high available
+master-slave architectures. When using rate-limiting for general protection the chances
+of both redis being down and the system being under attack are rather small. Check
+with your own use case wether you can handle this (small) risk.
+
+### Every transaction counts
+
+In this scenario, the `local` policy is not an option. So here the decision is between
+the extra performance of the `redis` policy against its extra support effort. Based on that balance,
+the choice should either be `cluster` or `redis`.
+
+The recommendation is to start with the `cluster` policy, with the option to move over to `redis`
+if performance reduces drastically. Keep in mind existing usage metrics cannot
+be ported from the datastore to redis. Generally with shortlived metrics (per second or per minute)
+this is not an issue, but with longer lived ones (months) it might be, so you might want to plan
+your switch more carefully.
+
+### Backend protection
+
+As accuracy is of lesser importance, the `local` policy can be used. It might require some experimenting
+to get the proper setting. For example, if the user is bound to 100 requests per second, and you have an
+equally balanced 5 node Kong cluster, setting the `local` limit to something like 30 requests per second
+should work. If you are worried about too many false-negatives, increase the value.
+
+Keep in mind as the cluster scales to more nodes, the users will get more requests granted, and likewise 
+when the cluster scales down the probability of false-negatives increases. So in general, update your 
+limits when scaling.
+
+The above mentioned inaccuracy can be mitigated by using a consistent-hashing load balancer in front of
+Kong, that ensures the same user is always directed to the same Kong node. This will both reduce the
+inaccuracy and prevent the scaling issues.
+
+Most likely the user will be granted more than was agreed when using the `local` policy, but it will 
+effectively block any attacks while maintaining the best performance. 
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration

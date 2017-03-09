@@ -23,7 +23,29 @@ nav:
       - label: Resource Owner Password Credentials
 ---
 
-Add an OAuth 2.0 authentication layer with the [Authorization Code Grant][authorization-code-grant], [Client Credentials][client-credentials], [Implicit Grant][implicit-grant] or [Resource Owner Password Credentials Grant][password-grant] flow. This plugin **requires** the [SSL Plugin][ssl-plugin] with the `only_https` parameter set to `true` to be already installed on the API, failing to do so will result in a security weakness.
+Add an OAuth 2.0 authentication layer with the [Authorization Code
+Grant][authorization-code-grant], [Client Credentials][client-credentials],
+[Implicit Grant][implicit-grant] or [Resource Owner Password Credentials
+Grant][password-grant] flow. 
+
+<br />
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> As per the OAuth2 specs, this plugin requires the
+  underlying API to be served over HTTPS. To avoid any confusion, we
+  recommend that you configure your underlying API to be only served through
+  HTTPS.
+  <br />
+  <br />
+  If you are running Kong >= 0.10.0, you can learn to do so in the
+  <a href="/docs/latest/proxy#configuring-ssl-for-an-api">Proxy Reference</a>
+  where the <code>https_only</code> option is documented.
+  <br />
+  <br />
+  If you are running Kong < 0.10.0, you must configure the
+  <a href="/plugins/dynamic-ssl">SSL Plugin</a> on your API to have such an
+  <code>https_only</code> flag.
+</div>
 
 ----
 
@@ -55,6 +77,7 @@ form parameter                                    | default | description
 `config.enable_password_grant`<br>*optional*       | `false` | An optional boolean value to enable the Resource Owner Password Credentials Grant flow ([RFC 6742 Section 4.3][password-grant])
 `config.hide_credentials`<br>*optional*            | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 `config.accept_http_if_already_terminated`<br>*optional* | `false` | Accepts HTTPs requests that have already been terminated by a proxy or load balancer and the `x-forwarded-proto: https` header has been added to the request. Only enable this option if the Kong server cannot be publicly accessed and the only entry-point is such proxy or load balancer.
+`config.anonymous`<br>*optional*           | `` | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
 
 ----
 
@@ -144,8 +167,9 @@ When a client has been authenticated and authorized, the plugin will append some
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
 * `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Authenticated-Scope`, the comma-separated list of scopes that the end user has authenticated (if available)
-* `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client
+* `X-Authenticated-Scope`, the comma-separated list of scopes that the end user has authenticated, if available (only if the consumer is not the 'anonymous' consumer)
+* `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client (only if the consumer is not the 'anonymous' consumer)
+* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 

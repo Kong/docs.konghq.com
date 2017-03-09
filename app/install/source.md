@@ -15,8 +15,6 @@ redirect_from: /install/compile/
 
 1. **Install the dependencies:**
 
-    (Optional) [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/) if you wish to enable it for Kong's runtime DNS resolutions.
-
     [OpenResty {{openresty_version}}](https://openresty.org/en/installation.html). Kong being an OpenResty application, you must follow the OpenResty [installation instructions](https://openresty.org/en/installation.html). You will need [OpenSSL](https://www.openssl.org/) and [PCRE](http://www.pcre.org/) to compile OpenResty, and to at least use the following compilation options:
 
     ```bash
@@ -25,7 +23,8 @@ redirect_from: /install/compile/
       --with-ipv6 \
       --with-http_realip_module \
       --with-http_ssl_module \
-      --with-http_stub_status_module
+      --with-http_stub_status_module \
+      --without-luajit-lua52
     ```
 
     You might have to specify `--with-openssl` and you can add any other option you'd like, such as additional Nginx modules or a custom `--prefix` directory.

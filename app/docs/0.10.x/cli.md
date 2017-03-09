@@ -39,28 +39,6 @@ All commands take a set of special, optional flags as arguments:
 
 ### Available commands
 
-#### **kong backup**
-
-```
-Usage: kong backup COMMAND [OPTIONS]
-
-Create or import backups of data stored in Kong.
-
-The available commands are:
-  create            Create a new backup from the database
-  import <folder>   Import an existing backup into the database
-
-Options:
-  -c,--conf (optional string) configuration file
-  -y        Assume yes; assume that the answer to any question which would be asked is yes
-  --v         verbose
-  --vv        debug
-```
-
-[Back to TOC](#table-of-contents)
-
----
-
 #### **kong check**
 
 ```
@@ -89,6 +67,20 @@ The available commands are:
   reachability -p             Check if the cluster is reachable.
   force-leave -p <node_name>  Forcefully remove a node from the cluster (useful
                               if the node is in a failed state).
+  keys install <key>          Install a new key onto Kong's internal keyring. This
+                              will enable the key for decryption. The key will not
+                              be used to encrypt messages until the primary key is
+                              changed.
+  keys use <key>              Change the primary key used for encrypting messages.
+                              All nodes in the cluster must already have this key
+                              installed if they are to continue communicating with
+                              eachother.
+  keys remove <key>           Remove a key from Kong's internal keyring. The key
+                              being removed may not be the current primary key.
+  keys list                   List all currently known keys in the cluster. This
+                              will ask all nodes in the cluster for a list of keys
+                              and dump a summary containing each key and the
+                              number of members it is installed on to the console.
 
 Options:
   -c,--conf   (optional string) configuration file
@@ -122,7 +114,7 @@ Example usage:
   }
 
 Note:
-  Third-party services such as Serf and dnsmasq need to be properly configured
+  Third-party services such as Serf need to be properly configured
   and started for Kong to be fully compatible while embedded.
 
 Options:
@@ -218,7 +210,7 @@ Options:
 ```
 Usage: kong restart [OPTIONS]
 
-Restart a Kong node (and other configured services like dnsmasq and Serf)
+Restart a Kong node (and other configured services like Serf)
 in the given prefix directory.
 
 This command is equivalent to doing both 'kong stop' and
