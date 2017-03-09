@@ -11,12 +11,9 @@ title: 5-minute Quickstart
 
 In this section, you'll learn how to manage your Kong instance. First we'll
 have you start Kong giving in order to give you access to the RESTful Admin
-interface to manage your APIs, consumers, and more. Data sent through the Admin
-API is stored in Kong's datastore (Kong supports both PostgreSQL and
-Cassandra).
-
-**Note:** make sure you have your database instance running and
-[configured][configuration] in Kong.
+interface, through which you manage your APIs, consumers, and more. Data sent
+through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
+supports PostgreSQL and Cassandra).
 
 1. ### Start Kong.
 
@@ -43,7 +40,7 @@ Cassandra).
   similar behavior as the `:8000` port, except that it expects HTTPS
   traffic only. This port can be disabled via the configuration file.
 - `:8001` on which the [Admin API][API] used to configure Kong listens.
-- `:8444` on which the [Admin API][API] listens for HTTPS traffic.
+- `:8444` on which the Admin API listens for HTTPS traffic.
 
 3. ### Stop Kong.
 
@@ -70,5 +67,5 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
-[configuration]: /docs/{{page.kong_version}}/configuration
+[datastore-section]: /docs/{{page.kong_version}}/configuration/#datastore-section
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api

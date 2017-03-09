@@ -13,10 +13,14 @@ title: Adding your API
 </div>
 
 In this section, you'll be adding your API to the Kong layer. This is the first
-step to having Kong manage your API. Kong exposes a [RESTful Admin API][API]
-for managing the details of your Kong instances.
+step to having Kong manage your API. For purposes of this Getting Started
+guide, we suggest adding the [Mockbin API][mockbin] to Kong, as Mockbin is
+helpful for learning how Kong proxies your API requests.
 
-1. ### Add your API using the RESTful API
+Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
+configuration of your Kong instance or cluster.
+
+1. ### Add your API using the Admin API
 
     Issue the following cURL request to add your first API ([Mockbin][mockbin])
     to Kong:
@@ -29,11 +33,9 @@ for managing the details of your Kong instances.
       --data 'upstream_url=http://httpbin.org'
     ```
 
-    **Note:** Kong handles API configuration requests on port `:8001`
-
 2. ### Verify that your API has been added
 
-    You should see a similar response from the initial request:
+    You should see a similar response from that request:
 
     ```http
     HTTP/1.1 201 Created
@@ -64,7 +66,8 @@ for managing the details of your Kong instances.
 3. ### Forward your requests through Kong
 
     Issue the following cURL request to verify that Kong is properly forwarding
-    requests to your API:
+    requests to your API. Note that [by default][proxy-port] Kong handles proxy
+    requests on port `:8000`:
 
     ```bash
     $ curl -i -X GET \
@@ -72,25 +75,24 @@ for managing the details of your Kong instances.
       --header 'Host: example.com'
     ```
 
-    A successful response means Kong is now forwarding requests to the
-    `upstream_url` we passed in the first step and giving us the response back.
-    Kong knows to do this through the header defined in the above cURL request:
+    A successful response means Kong is now forwarding requests made to
+    `http://localhost:8000` to the `upstream_url` we configured in step #1,
+    and is forwarding the response back to us. Kong knows to do this through
+    the header defined in the above cURL request:
 
     <ul>
       <li><strong>Host: &lt;given host></strong></li>
     </ul>
 
-    **Note:** Kong handles proxy requests on port `:8000`. To better understand
-    the routing capabilities of Kong, consult the [Proxy Reference][proxy].
-
 <hr>
 
 ## Next Steps
 
-Now that you've got your API added to Kong lets learn how to enable plugins.
+Now that you've added your API to Kong, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
 [API]: /docs/{{page.kong_version}}/admin-api
-[proxy]: /docs/{{page.kong_version}}/proxy
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
+[proxy-port]: /docs/{{page.kong_version}}/configuration/#nginx-section
+
