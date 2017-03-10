@@ -30,8 +30,16 @@
   name: Ubuntu
   type: package
 
-- id: heroku
-  name: Heroku
+- id: aws-linux
+  name: Amazon Linux
+  type: package
+
+- id: aws-marketplace
+  name: AWS Marketplace
+  type: cloud
+
+- id: aws-cloudformation
+  name: AWS Cloud Formation
   type: cloud
 
 - id: osx
