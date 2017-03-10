@@ -30,6 +30,10 @@
   name: Ubuntu
   type: package
 
+- id: kubernetes
+  name: kubernetes
+  type: cloud
+
 - id: mesos
   name: mesos
   type: cloud
