@@ -30,6 +30,14 @@
   name: Ubuntu
   type: package
 
+- id: mesos
+  name: mesos
+  type: cloud
+
+- id: heroku
+  name: Heroku
+  type: cloud
+
 - id: osx
   name: OS X
   type: package
