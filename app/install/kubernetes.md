@@ -37,7 +37,7 @@ Kong can easily be provisioned to Kubernetes cluster using the following steps:
     1. Desired cluster name
     2. Zone in which to run the cluster
     3. A basicauth username and password for authenticating the access to the
-       cluster
+      cluster
 
     ```bash
     $ gcloud deployment-manager deployments \ 
