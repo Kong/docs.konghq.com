@@ -10,7 +10,7 @@
     "preinstall": "bundle install",
     "prestart": "npm test",
     "start": "gulp",
-    "test": "standard && echint --verbose"
+    "test": "standard"
   },
   "standard": {
     "ignore": [

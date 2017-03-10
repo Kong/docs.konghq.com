@@ -105,3 +105,10 @@
     - name: Loggly
       id: loggly
       info: Send request and response logs to Loggly
+
+- name: AWS Integrations
+  info: Expose your AWS services as APIs
+  plugins:
+    - name: AWS Lambda
+      id: aws-lambda
+      info: Expose AWS Lambda functions as APIs
