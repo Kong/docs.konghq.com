@@ -16,7 +16,7 @@ nav:
 ---
 
 Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. It can be used in combination with other request plugins to
-secure, rate-limiting or extend the function.
+secure, manage or extend the function.
 
 ----
 
@@ -57,8 +57,11 @@ Any form parameter sent along with the request, will be also sent as an argument
 
 #### Use a fake upstream_url
 
-The current AWS Lambda function will return a response after the invocation, preventing Kong from completing the regular request lifecycle and proxying the request to an upstream URL. The current Kong data model only supports APIs that will eventually proxy the request to an upstream
-service. Feel free to use a fake `upstream_url` value, which will never be utilized.
+When using the AWS Lambda plugin, the response will be returned by the plugin itself without proxying the request to any upstream service. This means that whatever `upstream_url` has been set on the [API][api-object] it will ultimately never be used.
+
+Although `upstream_url` will never be used, it's currently a mandatory field in Kong's data model, so feel free to set a fake value (ie, `http://nowhere.com`) if you are planning to use this plugin.
+
+In the future we will provide a more intuitive way to deal with similar use-cases.
 
 #### Response plugins
 
