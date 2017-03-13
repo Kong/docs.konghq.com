@@ -95,4 +95,3 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [API]: /docs/{{page.kong_version}}/admin-api
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
 [proxy-port]: /docs/{{page.kong_version}}/configuration/#nginx-section
-

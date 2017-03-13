@@ -91,10 +91,10 @@ policy    | pros          | cons
 There are 2 use cases that are most common:
 
 1. _every transaction counts_. These are for example transactions with financial 
-   consequences. Here the highest level of accuracy is required.
+  consequences. Here the highest level of accuracy is required.
 2. _backend protection_. This is where accuracy is not as relevant, but it is
-   merely used to protect backend services from overload. Either by specific
-   users, or to protect against an attack in general.
+  merely used to protect backend services from overload. Either by specific
+  users, or to protect against an attack in general.
 
 **NOTE**: the redis policy does not support the Sentinel protocol for high available
 master-slave architectures. When using rate-limiting for general protection the chances

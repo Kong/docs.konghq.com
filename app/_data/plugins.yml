@@ -50,6 +50,12 @@
     - name: Request Size Limiting
       info: Block requests with bodies greater than a specific size
 
+- name: Serverless
+  info: Invoke serverless functions in combination with other plugins
+  plugins:
+    - name: AWS Lambda
+      info: Invoke AWS Lambda functions from Kong
+
 - name: Analytics & Monitoring
   info: Visualize, inspect and monitor APIs and microservices traffic
   plugins:
