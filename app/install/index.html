@@ -13,19 +13,9 @@ header_icon: /assets/images/icons/icn-download.svg
     <div class="container">
       <div class="distributions">
         {% for method in site.data.distributions %}
-          {% capture mod %}{{ forloop.index0 | modulo:4 }}{% endcapture %}
-
-          {% if mod == '0' or forloop.first %}
-            <div class="row">
-          {% endif %}
-
-          <a href="{% if method.soon %}#{% else %}/install/{{ method.id }}/{% endif %}" class="box six columns {% if method.soon %}soon{% endif %}" title="{{ method.name }}">
+          <a href="{% if method.soon %}#{% else %}/install/{{ method.id }}/{% endif %}" class="box {% if method.soon %}soon{% endif %}" title="{{ method.name }}">
             <img src="/assets/images/distributions/{{ method.id }}.{% if method.png %}png{% else %}svg{% endif %}" alt="{{ method.name }}"/>
           </a>
-
-          {% if mod == '3' or forloop.last %}
-            </div>
-          {% endif %}
         {% endfor %}
       </div>
       <br>
