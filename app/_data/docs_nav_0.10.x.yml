@@ -27,7 +27,7 @@
       url: /proxy
 
     - text: Load balancing reference
-      utl: /loadbalancing
+      url: /loadbalancing
 
     - text: Clustering reference
       url: /clustering
