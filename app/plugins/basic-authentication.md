@@ -13,6 +13,7 @@ nav:
     items:
       - label: Create a Consumer
       - label: Create a Credential
+      - label: Using the Credential
       - label: Upstream Headers
 ---
 
@@ -86,6 +87,25 @@ form parameter             | default | description
 ---                        | ---     | ---
 `username`                 |         | The username to use in the Basic Authentication
 `password`<br>*optional*   |         | The password to use in the Basic Authentication
+
+### Using the Credential
+
+The authorization header must be base64 encoded. For example, if the credential
+uses `Aladdin` as the username and `OpenSesame` as the password, then the field's
+value is the base64-encoding of `Aladdin:OpenSesame`, or `QWxhZGRpbjpPcGVuU2VzYW1l`.
+
+Then the `Authorization` (or `Proxy-Authorization`) header must appear as:
+
+```
+Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
+```
+
+Simply make a request with the header:
+
+```bash
+$ curl http://kong:8000/{api path} \
+    -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
+```
 
 ### Upstream Headers
 
