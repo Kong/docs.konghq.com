@@ -79,8 +79,8 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
 
 form parameter             | description
 ---                        | ---
-`username`                 | The username to use in the HMAC Signature verification
-`secret`<br>*optional*   | The secret to use in the HMAC Signature verification
+`username`                 | The username to use in the HMAC Signature verification.
+`secret`<br>*optional*   | The secret to use in the HMAC Signature verification. Note that if this parameter isn't provided, Kong will generate a value for you and send it as part of the response body.
 
 ### Signature Authentication Scheme
 
