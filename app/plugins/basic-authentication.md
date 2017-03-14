@@ -13,6 +13,7 @@ nav:
     items:
       - label: Create a Consumer
       - label: Create a Credential
+      - label: Using the Credential
       - label: Upstream Headers
 ---
 
