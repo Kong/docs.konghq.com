@@ -14,18 +14,21 @@ nav:
       - label: CORS Limitations
 ---
 
-Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling this plugin.
+Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling
+this plugin.
 
 ----
 
 ## Configuration
 
-Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
+Configuring the plugin is as simple as a single API call, you can configure and
+enable it for your [API][api-object] by executing the following request on your
+Kong server:
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=cors" \
-    --data "config.origin=mockbin.com" \
+    --data "config.origins=mockbin.com" \
     --data "config.methods=GET, POST" \
     --data "config.headers=Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Auth-Token" \
     --data "config.exposed_headers=X-Auth-Token" \
@@ -35,12 +38,14 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+You can also apply it for every API using the `http://kong:8001/plugins/`
+endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for
+more information.
 
 form parameter                             | default | description
 ---:                                       | ---     | ---
 `name`                                     |         | Name of the plugin to use, in this case: `cors`
-`config.origin`<br>*optional*              | `*`     | Value for the `Access-Control-Allow-Origin` header, expects a `String`.
+`config.origins`<br>*optional*             |         | A comma-separated list of allows domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field.
 `config.methods`<br>*optional*             | `GET,HEAD,PUT,PATCH,POST,DELETE` | Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`).
 `config.headers`<br>*optional*             | Value of the `Access-Control-Request-Headers`<br>request header | Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`).
 `config.exposed_headers`<br>*optional*     |         | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
@@ -56,11 +61,16 @@ Below is a list of known issues or limitations for this plugin.
 
 ### CORS Limitations
 
-If the client is a browser, there is a known issue with this plugin caused by a limitation of the CORS specification that doesn't allow to specify a custom `Host` header in a preflight `OPTIONS` request.
+If the client is a browser, there is a known issue with this plugin caused by a
+limitation of the CORS specification that doesn't allow to specify a custom
+`Host` header in a preflight `OPTIONS` request.
 
-Because of this limitation, this plugin will only work for APIs that have been configured with a `request_path` setting, and it will not work for APIs that are being resolved using a custom DNS (the `request_host` property).
+Because of this limitation, this plugin will only work for APIs that have been
+configured with a `uris` setting, and it will not work for APIs that
+are being resolved using a custom DNS (the `hosts` property).
 
-To learn how to add `request_path` to an API, please read the [Proxy Reference][proxy-reference].
+To learn how to configure `uris` for an API, please read the [Proxy
+Reference][proxy-reference].
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
