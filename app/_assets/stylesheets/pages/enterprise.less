@@ -185,3 +185,29 @@
     margin-bottom: 80px;
   }
 }
+
+/*
+** Kong Cloud
+*/
+
+body#cloud {
+  min-height: 100vh;
+  margin-bottom: 0;
+
+  @media (min-width: 990px) {
+    min-height: ~"calc(100vh - 107px)";
+  }
+
+  .enterprise-section {
+    height: ~"calc(100vh - 110px)";
+    min-height: 400px;
+
+    @media (min-width: 990px) {
+      min-height: 0;
+    }
+  }
+
+  .footer {
+    bottom: 0;
+  }
+}
