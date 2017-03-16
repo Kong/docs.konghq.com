@@ -7,37 +7,45 @@ breadcrumbs:
   Installation: /install
 ---
 
+Vagrant is used to create an isolated environment for Kong including Postgres,
+Cassandra and Redis.
+
+You can use the vagrant box either as an all-in-one Kong installation for
+testing purposes, or you can link it up with source code and start developing
+on Kong or on custom plugins.
+
+Here is a quick example showing how to build a (disposable) test setup:
+
 ### Starting the Environment:
 
-1. **Clone Kong:**
-
-    ```bash
-    $ git clone https://github.com/Mashape/kong
-    ```
-
-2. **Get the Vagrantfile:**
+1. **Get the Vagrantfile and start it:**
 
     ```bash
     $ git clone https://github.com/Mashape/kong-vagrant
     $ cd kong-vagrant/
+    $ vagrant up
     ```
 
-3. **Start Vagrant:**
+2. **Start Kong:**
 
     ```bash
-    $ KONG_PATH=/path/to/kong/clone/ vagrant up
+    $ vagrant ssh -c "kong start"
     ```
     <br/>
-    This will tell Vagrant to mount your local Kong repository under the guest's /kong folder.
-
-    The startup process will install all the dependencies necessary for developing (including Postgres). The kong source code is mounted at `/kong`. The host ports `8000` and `8001` will be forwarded to the Vagrant box.
+    The host ports `8000`, `8001`, and `8143` will be forwarded to the Vagrant box.
 
     <div class="alert alert-warning">
       <div class="text-center">
-        <strong>Note</strong>: Check out the <a href="{{ site.repos.vagrant }}">kong-vagrant</a> repository for further details.
+        <strong>Note</strong>: Check out the <a href="{{ site.repos.vagrant }}">kong-vagrant</a> repository for further details on customizations and development.
       </div>
     </div>
 
-4. **Use Kong:**
+3. **Kong is running:**
+
+    ```bash
+    $ curl http://127.0.0.1:8001
+    ```
+
+4. **Start using Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
