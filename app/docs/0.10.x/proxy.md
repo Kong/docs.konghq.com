@@ -159,7 +159,7 @@ Let's go through a few examples. Consider an API configured like this:
     "name": "my-api",
     "upstream_url": "http://my-api.com",
     "hosts": ["example.com", "service.com"],
-    "uris": ["/foo", "bar"],
+    "uris": ["/foo", "/bar"],
     "methods": ["GET"]
 }
 ```
