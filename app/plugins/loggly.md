@@ -87,16 +87,24 @@ Every request will be transmitted to Loggly in [SYSLOG](https://en.wikipedia.org
     },
     "authenticated_entity": {
         "consumer_id": "80f74eef-31b8-45d5-c525-ae532297ea8e",
-        "created_at":	1437643103000,
         "id": "eaa330c0-4cff-47f5-c79e-b2e4f355207e",
-        "key": "2b64e2f0193851d4135a2e885cd08a65"
     },
     "api": {
-        "request_host": "test.com",
-        "upstream_url": "http://httpbin.org/",
-        "created_at": 1432855823000,
-        "name": "test.com",
-        "id": "fbaf95a1-cd04-4bf6-cb73-6cb3285fef58"
+        "created_at": 1488830759000,
+        "hosts": [
+          "example.org"
+        ],
+        "http_if_terminated": true,
+        "https_only": false,
+        "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
+        "name": "example-api",
+        "preserve_host": false,
+        "retries": 5,
+        "strip_uri": true,
+        "upstream_connect_timeout": 60000,
+        "upstream_read_timeout": 60000,
+        "upstream_send_timeout": 60000,
+        "upstream_url": "http://httpbin.org"
     },
     "latencies": {
         "proxy": 1430,
