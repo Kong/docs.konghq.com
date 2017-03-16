@@ -29,6 +29,9 @@
     - text: Load balancing reference
       url: /loadbalancing
 
+    - text: Load balancing reference
+      url: /loadbalancing
+
     - text: Clustering reference
       url: /clustering
 
