@@ -1018,7 +1018,6 @@ HTTP 200 OK
 ```json
 {
     "enabled_plugins": [
-        "ssl",
         "jwt",
         "acl",
         "cors",
@@ -1031,12 +1030,21 @@ HTTP 200 OK
         "hmac-auth",
         "basic-auth",
         "ip-restriction",
-        "mashape-analytics",
         "request-transformer",
         "response-transformer",
         "request-size-limiting",
         "rate-limiting",
-        "response-ratelimiting"
+        "response-ratelimiting",
+        "aws-lambda",
+        "bot-detection",
+        "correlation-id",
+        "datadog",
+        "galileo",
+        "ldap-auth",
+        "loggly",
+        "runscope",
+        "statsd",
+        "syslog"
     ]
 }
 ```
