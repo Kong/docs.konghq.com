@@ -734,10 +734,9 @@ $ curl -i http://localhost:8000 \
 HTTP/1.1 426
 Content-Type: application/json; charset=utf-8
 Transfer-Encoding: chunked
-Connection: keep-alive
-connection: Upgrade
-upgrade: TLS/1.2, HTTP/1.1
-Server: kong/0.10.0rc4
+Connection: Upgrade
+Upgrade: TLS/1.2, HTTP/1.1
+Server: kong/x.x.x
 
 {"message":"Please use HTTPS protocol"}
 ```
