@@ -32,7 +32,7 @@ Here is a quick example showing how to build a (disposable) test setup:
     $ vagrant ssh -c "kong start"
     ```
     <br/>
-    The host ports `8000`, `8001`, `8143`, and `8444` will be forwarded to the Vagrant box.
+    The host ports `8000`, `8001`, `8443`, and `8444` will be forwarded to the Vagrant box.
 
     <div class="alert alert-warning">
       <div class="text-center">
