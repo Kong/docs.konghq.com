@@ -79,6 +79,8 @@ Every request will be logged separately in a JSON object separated by a new line
     },
     "authenticated_entity": {
         "consumer_id": "80f74eef-31b8-45d5-c525-ae532297ea8e",
+        "custom_id": "foo",
+        "username": "bar",
         "created_at":	1437643103000,
         "id": "eaa330c0-4cff-47f5-c79e-b2e4f355207e",
         "key": "2b64e2f0193851d4135a2e885cd08a65"
