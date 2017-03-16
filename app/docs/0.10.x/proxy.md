@@ -159,7 +159,7 @@ Let's go through a few examples. Consider an API configured like this:
     "name": "my-api",
     "upstream_url": "http://my-api.com",
     "hosts": ["example.com", "service.com"],
-    "uris": ["/foo", "bar"],
+    "uris": ["/foo", "/bar"],
     "methods": ["GET"]
 }
 ```
@@ -258,7 +258,7 @@ the condition, and thus match a given API.
 Wildcard hostnames **must** contain **only one** asterisk at the leftmost
 **or** rightmost label of the domain. Examples:
 
-- `*.example.org` would allow Host values such as `a.example.com` and
+- `*.example.com` would allow Host values such as `a.example.com` and
   `x.y.example.com` to match.
 - `example.*` would allow Host values such as `example.com` and `example.org`
   to match.
