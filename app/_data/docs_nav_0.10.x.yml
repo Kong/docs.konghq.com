@@ -170,6 +170,48 @@
         - text: Retrieve Plugin Schema
           url: /admin-api/#retrieve-plugin-schema
 
+    - text: Certificate Object routes
+      url: /admin-api/#certificate-object
+      items:
+        - text: Add Certificate
+          url: /admin-api/#add-certificate
+
+        - text: Retrive Certificate
+          url: /admin-api/#retrieve-certificate
+
+        - text: List Certificate
+          url: /admin-api/#list-certificates
+
+        - text: Update Certificate
+          url: /admin-api/#update-certificate
+
+        - text: Update or Create Certificate
+          url: /admin-api/#update-or-create-certificate
+
+        - text: Delete Certificate
+          url: /admin-api/#delete-certificate
+
+    - text: SNI Object routes
+      url: /admin-api/#sni-object
+      items:
+        - text: Add SNI
+          url: /admin-api/#add-sni
+
+        - text: Retrieve SNI
+          url: /admin-api/#retrieve-sni
+
+        - text: List SNIs
+          url: /admin-api/#list-snis
+
+        - text: Update SNI
+          url: /admin-api/#update-sni
+
+        - text: Update or Create SNI
+          url: /admin-api/#update-or-create-sni
+
+        - text: Delete SNI
+          url: /admin-api/#delete-sni
+
     - text: Upstream Object routes
       url: /admin-api/#upstream-object
       items:
