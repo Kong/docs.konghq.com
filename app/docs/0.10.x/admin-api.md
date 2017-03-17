@@ -43,6 +43,20 @@ upstream_body: |
     `name` | This is a hostname like name that can be referenced in an `upstream_url` field of an `api`.
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
     `orderlist`<br>*optional* | A list of sequential, but randomly ordered, integer numbers that determine the distribution of the slots in the balancer. If omitted it will be generated. If given, it must have exactly `slots` number of entries.
+
+certificate_body: |
+    Attributes | Description
+    ---:| ---
+    `cert` | PEM-encoded public certificate of the SSL key pair.
+    `key` | PEM-encoded private key of the SSL key pair.
+    `snis`<br>*optional* | One or more hostnames to associate with this certificate as an SNI. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience.
+
+snis_body: |
+    Attributes | Description
+    ---:| ---
+    `name` | The SNI name to associate with the given certificate.
+    `ssl_certificate_id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname.
+
 ---
 
 # Kong Admin API
@@ -1077,6 +1091,346 @@ HTTP 200 OK
         }
     }
 }
+```
+
+---
+
+## Certificate Object
+
+A certificate object represents a public certificate/private key pair for an SSL
+certificate. These objects are used by Kong to handle SSL/TLS termination for
+encrypted requests. Certificates are optionally associated with SNI objects to
+tie a cert/key pair to one or more hostnames.
+
+```json
+{
+    "cert": "-----BEGIN CERTIFICATE-----...",
+    "key": "-----BEGIN RSA PRIVATE KEY-----..."
+}
+```
+
+---
+
+### Add Certificate
+
+#### Endpoint
+
+<div class="endpoint post">/certificates/</div>
+
+#### Request Body
+
+{{ page.certificate_body }}
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{
+    "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "cert": "-----BEGIN CERTIFICATE-----...",
+    "key": "-----BEGIN RSA PRIVATE KEY-----...",
+    "snis": [
+        "example.com"
+    ],
+    "created_at": 1485521710265
+}
+```
+
+---
+
+### Retrieve Certificate
+
+#### Endpoint
+
+<div class="endpoint get">/certificates/{sni or id}</div>
+
+Attributes | Description
+---:| ---
+`SNI or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "cert": "-----BEGIN CERTIFICATE-----...",
+    "key": "-----BEGIN RSA PRIVATE KEY-----...",
+    "snis": [
+        "example.com"
+    ],
+    "created_at": 1485521710265
+}
+```
+---
+
+### List Certificates
+
+#### Endpoint
+
+<div class="endpoint get">/certificates/</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 2,
+    "data": [
+        {
+            "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+            "cert": "-----BEGIN CERTIFICATE-----...",
+            "key": "-----BEGIN RSA PRIVATE KEY-----...",
+            "snis": [
+                "example.com"
+            ],
+            "created_at": 1485521710265
+        },
+        {
+            "id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b",
+            "cert": "-----BEGIN CERTIFICATE-----...",
+            "key": "-----BEGIN RSA PRIVATE KEY-----...",
+            "snis": [
+                "example.org"
+            ],
+            "created_at": 1485522651185
+        }
+    ]
+}
+```
+---
+
+### Update Certificate
+
+<div class="endpoint patch">/certificates/{sni or id}</div>
+
+Attributes | Description
+---:| ---
+`SNI or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
+
+#### Request Body
+
+{{ page.certificate_body }}
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "cert": "-----BEGIN CERTIFICATE-----...",
+    "key": "-----BEGIN RSA PRIVATE KEY-----...",
+    "snis": [
+        "example.com"
+    ],
+    "created_at": 1485521710265
+}
+```
+
+---
+
+### Update or Create Certificate
+
+#### Endpoint
+
+<div class="endpoint put">/certificates/</div>
+
+#### Request Body
+
+{{ page.certificate_body }}
+
+#### Response
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+See POST and PATCH responses.
+
+---
+
+### Delete Certificate
+
+<div class="endpoint delete">/certificates/{sni or id}</div>
+
+Attributes | Description
+---:| ---
+`sni or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+---
+
+## SNI Objects
+
+An SNI object represents a many-to-one mapping of hostnames to a certificate.
+That is, a certificate object can have many hostnames associated with it; when
+Kong receives an SSL request, it uses the SNI field in the Client Hello to
+lookup the certificate object based on the SNI associated with the certificate.
+
+```json
+{
+    "name": "example.com",
+    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+}
+```
+
+---
+
+### Add SNI
+
+#### Endpoint
+
+<div class="endpoint post">/snis/</div>
+
+#### Request Body
+
+{{ page.snis_body }}
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{
+    "name": "example.com",
+    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "created_at": 1485521710265
+}
+```
+
+---
+
+### Retrieve SNI
+
+#### Endpoint
+
+<div class="endpoint get">/snis/{name}</div>
+
+Attributes | Description
+---:| ---
+`name`<br>**required** | The name of the SNI object.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "name": "example.com",
+    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "created_at": 1485521710265
+}
+```
+
+### List SNIs
+
+#### Endpoint
+
+<div class="endpoint get">/snis/</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 2,
+    "data": [
+        {
+            "name": "example.com",
+            "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+            "created_at": 1485521710265
+        },
+        {
+            "name": "example.org",
+            "ssl_certificate_id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b",
+            "created_at": 1485521710265
+        }
+    ]
+}
+```
+
+---
+
+### Update SNI
+
+<div class="endpoint patch">/snis/{name}</div>
+
+Attributes | Description
+---:| ---
+`name`<br>**required** | The name of the SNI object.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "name": "example.com",
+    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "created_at": 1485521710265
+}
+```
+
+---
+
+### Update or Create SNI
+
+#### Endpoint
+
+<div class="endpoint put">/snis/</div>
+
+#### Request Body
+
+{{ page.snis_body }}
+
+#### Response
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+See POST and PATCH responses.
+
+---
+
+### Delete SNI
+
+<div class="endpoint delete">/snis/{name}</div>
+
+Attributes | Description
+---:| ---
+`name`<br>**required** | The name of the SNI object.
+
+#### Response
+
+```
+HTTP 204 No Content
 ```
 
 ---
