@@ -77,8 +77,8 @@ You can provision new username/password credentials by making the following HTTP
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
-    --data "username=user123" \
-    --data "password=secret"
+    --data "username=Aladdin" \
+    --data "password=OpenSesame"
 ```
 
 `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
