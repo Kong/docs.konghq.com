@@ -91,7 +91,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 
     It can be installed by doing:
 
-        $ luarocks install <rock-filename>
+        `$ luarocks install <rock-filename>`
 
     The filename can be a local name, or any of the supported methods, eg.
     `http://myrepository.lan/rocks/myplugin-0.1.0-1.all.rock`
@@ -106,11 +106,11 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
     You can do so by changing the current directory to the extracted archive,
     where the rockspec file is:
 
-        $ cd <plugin-name>
+        `$ cd <plugin-name>`
 
     And then run the following:
 
-        $ luarocks make
+        `$ luarocks make`
 
     This will install the Lua sources in `kong/plugins/<plugin-name>` in your
     system's LuaRocks tree, where all the Kong sources are already present.
@@ -129,7 +129,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
     which to search for Lua sources. It should be set like so in your Kong
     configuration file:
 
-        lua_package_path = /<path-to-plugin-location>/?.lua;;
+        `lua_package_path = /<path-to-plugin-location>/?.lua;;`
 
     Where:
 
@@ -146,19 +146,19 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
     The plugin `something` being located on the file system such that the
     handler file is:
 
-        /usr/local/custom/kong/plugins/something/handler.lua
+        `/usr/local/custom/kong/plugins/something/handler.lua`
 
-    The location of the `kong` directory is: /usr/local/custom, hence the
+    The location of the `kong` directory is: `/usr/local/custom`, hence the
     proper path setup would be:
 
-        lua_package_path = /usr/local/custom/?.lua;;
+        `lua_package_path = /usr/local/custom/?.lua;;`
 
     Multiple plugins:
 
     If you wish to install two or more custom plugins this way, you can set
     the variable to something like:
 
-        lua_package_path = /path/to/plugin1/?.lua;/path/to/plugin2/?.lua;;
+        `lua_package_path = /path/to/plugin1/?.lua;/path/to/plugin2/?.lua;;`
 
     * `;` is the separator between directories.
     * `;;` still means "the default Lua path".
