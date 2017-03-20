@@ -8,6 +8,7 @@ var ghPages = require('gh-pages')
 var gulp = require('gulp')
 var path = require('path')
 var sequence = require('run-sequence')
+var dev = false
 
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
@@ -31,12 +32,36 @@ var sources = {
   fonts: paths.modules + 'font-awesome/fonts/**/*.*'
 }
 
+var dest = {
+  html: paths.dist + '**/*.html',
+  js: paths.dist + 'assets/app.js'
+}
+
 gulp.task('styles', function () {
   return gulp.src(paths.assets + 'stylesheets/index.less')
     .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.less())
     .pipe($.autoprefixer())
+    .pipe($.purifycss([dest.html], {
+      whitelist: [
+        '.affix',
+        '.alert',
+        '.close',
+        '.collaps',
+        '.fade',
+        '.has',
+        '.help',
+        '.in',
+        '.modal',
+        '.open',
+        '.popover',
+        '.tooltip'
+      ]
+    }))
+    .pipe($.cleanCss({ compatibility: 'ie8' }))
     .pipe($.rename('styles.css'))
+    .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest(paths.dist + 'assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -45,7 +70,15 @@ gulp.task('styles', function () {
 gulp.task('javascripts', function () {
   return gulp.src(sources.js)
     .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.minify({
+      noSource: true,
+      ext: {
+        min: '.js'
+      }
+    }))
     .pipe($.concat('app.js'))
+    .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -54,6 +87,7 @@ gulp.task('javascripts', function () {
 gulp.task('images', function () {
   return gulp.src(sources.images)
     .pipe($.plumber())
+    .pipe($.imagemin())
     .pipe(gulp.dest(paths.dist + 'assets/images'))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -162,4 +196,13 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['clean'], function (cb) {
   sequence('build', 'browser-sync', 'watch', cb)
+})
+
+gulp.task('setdev', function (cb) {
+  dev = true
+  cb()
+})
+
+gulp.task('dev', ['setdev'], function (cb) {
+  sequence('default', cb)
 })

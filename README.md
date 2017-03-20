@@ -11,16 +11,18 @@ This folder is the source code for [Kong](https://github.com/Mashape/kong)'s web
 
 ## Install
 
->```bash
+>
+```bash
 gem install bundler
 npm install
->```
+```
 
 ## Running locally
 
->```bash
+>
+```bash
 npm start
->```
+```
 
 ## Generating Public Lua API from Kong
 
@@ -35,6 +37,7 @@ npm start
 
 This will deploy to GitHub pages:
 
->```bash
+>
+```bash
 npm run deploy
->```
+```
