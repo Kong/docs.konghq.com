@@ -1,13 +1,18 @@
 'use strict'
 
 var browserSync = require('browser-sync').create()
-var child_process = require('child_process')
+var childProcess = require('child_process')
 var gutil = require('gulp-util')
 var del = require('del')
 var ghPages = require('gh-pages')
 var gulp = require('gulp')
 var path = require('path')
 var sequence = require('run-sequence')
+var glob = require('glob')
+var Transform = require('stream').Transform
+var listAssets = require('list-assets')
+var _ = require('lodash')
+var dev = false
 
 // load gulp plugins
 var $ = require('gulp-load-plugins')()
@@ -23,6 +28,7 @@ var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
   styles: paths.assets + 'stylesheets/**/*',
   js: [
+    paths.assets + 'javascripts/jquery.2.1.3.min.js',
     paths.assets + 'javascripts/app.js',
     paths.modules + 'bootstrap/js/dropdown.js',
     paths.modules + 'bootstrap/js/affix.js'
@@ -31,12 +37,37 @@ var sources = {
   fonts: paths.modules + 'font-awesome/fonts/**/*.*'
 }
 
+// Destinations
+var dest = {
+  html: paths.dist + '**/*.html',
+  js: paths.dist + 'assets/app.js'
+}
+
 gulp.task('styles', function () {
   return gulp.src(paths.assets + 'stylesheets/index.less')
     .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.less())
     .pipe($.autoprefixer())
+    .pipe($.purifycss([dest.html], {
+      whitelist: [
+        '.affix',
+        '.alert',
+        '.close',
+        '.collaps',
+        '.fade',
+        '.has',
+        '.help',
+        '.in',
+        '.modal',
+        '.open',
+        '.popover',
+        '.tooltip'
+      ]
+    }))
+    .pipe($.cleanCss({ compatibility: 'ie8' }))
     .pipe($.rename('styles.css'))
+    .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest(paths.dist + 'assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -45,7 +76,15 @@ gulp.task('styles', function () {
 gulp.task('javascripts', function () {
   return gulp.src(sources.js)
     .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.minify({
+      noSource: true,
+      ext: {
+        min: '.js'
+      }
+    }))
     .pipe($.concat('app.js'))
+    .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -54,6 +93,7 @@ gulp.task('javascripts', function () {
 gulp.task('images', function () {
   return gulp.src(sources.images)
     .pipe($.plumber())
+    .pipe($.imagemin())
     .pipe(gulp.dest(paths.dist + 'assets/images'))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -70,7 +110,7 @@ gulp.task('fonts', function () {
 gulp.task('jekyll', function (cb) {
   var command = 'bundle exec jekyll build --config jekyll.yml --destination ' + paths.dist
 
-  child_process.exec(command, function (err, stdout, stderr) {
+  childProcess.exec(command, function (err, stdout, stderr) {
     gutil.log(stdout)
     gutil.log(stderr)
     cb(err)
@@ -80,6 +120,40 @@ gulp.task('jekyll', function (cb) {
 gulp.task('html', ['jekyll'], function () {
   return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
+    // Prefetch static assets
+    .pipe(new Transform({
+      objectMode: true,
+      transform: function (file, enc, next) {
+        var self = this
+        var images = ''
+        var fonts = ''
+        var assets = listAssets.html(String(file.contents))
+
+        Promise.all([
+          // images
+          new Promise((resolve, reject) => glob('assets/images/**/*.+(png|svg)', { cwd: process.cwd() + '/dist' }, function (er, files) {
+            for (var i = 0; i < files.length; i++) {
+              if (_.find(assets, { 'url': '/' + files[i] })) {
+                images += '<link rel="prefetch" href="/' + files[i] + '"/>'
+              }
+            }
+            resolve()
+          })),
+          // fonts
+          new Promise((resolve, reject) => glob('assets/fonts/**/*.woff2', { cwd: process.cwd() + '/dist' }, function (er, files) {
+            for (var i = 0; i < files.length; i++) {
+              fonts += '<link rel="prefetch" as="font" href="/' + files[i] + '"/>'
+            }
+            resolve()
+          }))
+        ]).then(() => {
+          file.contents = new Buffer(String(file.contents).replace('##preload_assets##', images + fonts))
+          self.push(file)
+
+          next()
+        })
+      }
+    }))
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
     .pipe(browserSync.stream())
@@ -93,7 +167,7 @@ gulp.task('docs', function (cb) {
   var command = 'ldoc --quiet -c ./config.ld ' + process.env.KONG_PATH
   command += ' && rm lua-reference/ldoc.css'
 
-  child_process.exec(command, function (err, stdout, stderr) {
+  childProcess.exec(command, function (err, stdout, stderr) {
     gutil.log(stdout)
     gutil.log(stderr)
     cb(err)
@@ -122,7 +196,7 @@ gulp.task('browser-sync', function () {
 gulp.task('gh-pages', function (cb) {
   var cmd = 'git rev-parse --short HEAD'
 
-  child_process.exec(cmd, function (err, stdout, stderr) {
+  childProcess.exec(cmd, function (err, stdout, stderr) {
     if (err) {
       cb(err)
     }
@@ -162,4 +236,13 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['clean'], function (cb) {
   sequence('build', 'browser-sync', 'watch', cb)
+})
+
+gulp.task('setdev', function (cb) {
+  dev = true
+  cb()
+})
+
+gulp.task('dev', ['setdev'], function (cb) {
+  sequence('default', cb)
 })
