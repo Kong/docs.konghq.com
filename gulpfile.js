@@ -1,7 +1,7 @@
 'use strict'
 
 var browserSync = require('browser-sync').create()
-var child_process = require('child_process')
+var childProcess = require('child_process')
 var gutil = require('gulp-util')
 var del = require('del')
 var ghPages = require('gh-pages')
@@ -24,6 +24,7 @@ var sources = {
   content: 'app/**/*.{markdown,md,html,txt,yml,yaml}',
   styles: paths.assets + 'stylesheets/**/*',
   js: [
+    paths.assets + 'javascripts/jquery.2.1.3.min.js',
     paths.assets + 'javascripts/app.js',
     paths.modules + 'bootstrap/js/dropdown.js',
     paths.modules + 'bootstrap/js/affix.js'
@@ -32,6 +33,7 @@ var sources = {
   fonts: paths.modules + 'font-awesome/fonts/**/*.*'
 }
 
+// Destinations
 var dest = {
   html: paths.dist + '**/*.html',
   js: paths.dist + 'assets/app.js'
@@ -104,7 +106,7 @@ gulp.task('fonts', function () {
 gulp.task('jekyll', function (cb) {
   var command = 'bundle exec jekyll build --config jekyll.yml --destination ' + paths.dist
 
-  child_process.exec(command, function (err, stdout, stderr) {
+  childProcess.exec(command, function (err, stdout, stderr) {
     gutil.log(stdout)
     gutil.log(stderr)
     cb(err)
@@ -127,7 +129,7 @@ gulp.task('docs', function (cb) {
   var command = 'ldoc --quiet -c ./config.ld ' + process.env.KONG_PATH
   command += ' && rm lua-reference/ldoc.css'
 
-  child_process.exec(command, function (err, stdout, stderr) {
+  childProcess.exec(command, function (err, stdout, stderr) {
     gutil.log(stdout)
     gutil.log(stderr)
     cb(err)
@@ -156,7 +158,7 @@ gulp.task('browser-sync', function () {
 gulp.task('gh-pages', function (cb) {
   var cmd = 'git rev-parse --short HEAD'
 
-  child_process.exec(cmd, function (err, stdout, stderr) {
+  childProcess.exec(cmd, function (err, stdout, stderr) {
     if (err) {
       cb(err)
     }
