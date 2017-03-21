@@ -5,7 +5,7 @@ title: Authentication Reference
 # Authentication Reference
 
 Client access to upstream API services is typically controlled by the application and configuration of 
-Kong authentication plugins. Authetication plugins are [documented individually][plugins]. 
+Kong [authentication plugins][plugins]. 
 
 ## Anonymous Access
 
@@ -18,9 +18,8 @@ You might use this configuration to grant access to anonymous users with a low r
 to authenticated users with a higher rate limit. 
 
 To configure an API like this, you first apply your selected authentication plugin, then create a new 
-consumer to represent annonymous users, then configure your authentication plugin to allow annonymous access. Here is an example, which assumes you have already configured an API named `example-api`:
-
-TODO: Try out the following steps and ensure they function as described
+consumer to represent annonymous users, then configure your authentication plugin to allow annonymous 
+access. Here is an example, which assumes you have already configured an API named `example-api`:
 
 1. ### Configure the key-auth plugin for your API
 
@@ -93,14 +92,12 @@ TODO: Try out the following steps and ensure they function as described
       --data "config.anonymous=bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
     ```
     
-    The `config.anonymous=<consumer uuid>` parameter instructs the auth-key plugin on this API to permit 
-    anonymous access, and to associate such access with the consumer id we received in the previous step. It is
-    required that you provide a valid and pre-existing consumer id in this step - validity of the consumer id
-    is not currently checked when configuring anonymous access, and provision of a consumer id that doesn't already
+    The `config.anonymous=<consumer uuid>` parameter instructs the key-auth plugin on this API to permit 
+    anonymous access, and to associate such access with the consumer `id` we received in the previous step. It is
+    required that you provide a valid and pre-existing consumer `id` in this step - validity of the consumer `id`
+    is not currently checked when configuring anonymous access, and provision of a consumer `id` that doesn't already
     exist will result in a incorrect configuration.
     
-    TODO: Insert example response
-
 5. ### Check anonymous access
 
     Confirm that your API now permits anonymous access by issuing the following request:
@@ -111,16 +108,13 @@ TODO: Try out the following steps and ensure they function as described
       --header 'Host: example.com'
     ```
 
-    This is the same request you made in step #1, however this time the request should succeed, because you 
+    This is the same request you made in step #2, however this time the request should succeed, because you 
     enabled anonymous access in step #4. 
-    
-    TODO: Insert example response
-    
+        
 
 ## Multiple Authentication
 
-Prior to Kong 0.10.x, only one authentication plugin could be configured for a given API. Kong 0.10.x 
-introduces the ability to apply multiple authentication plugins for a given API, allowing 
+Kong 0.10.x introduces the ability to apply multiple authentication plugins for a given API, allowing 
 different clients to utilize different authentication methods to access a given API endpoint.
 
 Multiple authentication methods are evaluated in a logical OR fashion - requests that fail to satisfy any 
@@ -134,9 +128,6 @@ header set to `true`. It is currently not possible to have **both** multiple aut
   which the `X-Anonymous-Consumer` header is set to `true`. Failure to do so will allow unauthorized 
   requests to satisfied. 
 </div>
-
-TODO: Insert example of configuring and using multiple authentication
-
 
 
 [plugins]: https://getkong.org/plugins/
