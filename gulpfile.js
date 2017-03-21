@@ -8,6 +8,10 @@ var ghPages = require('gh-pages')
 var gulp = require('gulp')
 var path = require('path')
 var sequence = require('run-sequence')
+var glob = require('glob')
+var Transform = require('stream').Transform
+var listAssets = require('list-assets')
+var _ = require('lodash')
 var dev = false
 
 // load gulp plugins
@@ -116,6 +120,40 @@ gulp.task('jekyll', function (cb) {
 gulp.task('html', ['jekyll'], function () {
   return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
+    // Prefetch static assets
+    .pipe(new Transform({
+      objectMode: true,
+      transform: function (file, enc, next) {
+        var self = this
+        var images = ''
+        var fonts = ''
+        var assets = listAssets.html(String(file.contents))
+
+        Promise.all([
+          // images
+          new Promise((resolve, reject) => glob('assets/images/**/*.+(png|svg)', { cwd: process.cwd() + '/dist' }, function (er, files) {
+            for (var i = 0; i < files.length; i++) {
+              if (_.find(assets, { 'url': '/' + files[i] })) {
+                images += '<link rel="prefetch" href="/' + files[i] + '"/>'
+              }
+            }
+            resolve()
+          })),
+          // fonts
+          new Promise((resolve, reject) => glob('assets/fonts/**/*.woff2', { cwd: process.cwd() + '/dist' }, function (er, files) {
+            for (var i = 0; i < files.length; i++) {
+              fonts += '<link rel="prefetch" as="font" href="/' + files[i] + '"/>'
+            }
+            resolve()
+          }))
+        ]).then(() => {
+          file.contents = new Buffer(String(file.contents).replace('##preload_assets##', images + fonts))
+          self.push(file)
+
+          next()
+        })
+      }
+    }))
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
     .pipe(browserSync.stream())

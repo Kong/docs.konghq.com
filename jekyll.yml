@@ -21,7 +21,7 @@ keep_files:
 # Site settings
 name: Kong
 title: Open-Source API Management and Microservice Management
-description: "Secure, Manage & Extend your APIs or Microservices with plugins for authentication, logging, rate-limiting, transformations and more."
+description: "Secure, Manage &amp; Extend your APIs or Microservices with plugins for authentication, logging, rate-limiting, transformations and more."
 documentation: docs
 links:
   web: https://getkong.org
