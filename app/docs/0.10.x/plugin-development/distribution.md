@@ -10,7 +10,7 @@ Custom plugins for Kong consist of Lua source files that need to be in the file
 system of each of your Kong nodes. This guide will provide you with step-by-step
 instructions that will make a Kong node aware of your custom plugin(s).
 
-These steps should be applied to each node in your Kong cluster, so that the
+These steps should be applied to each node in your Kong cluster, to ensure the
 custom plugin(s) are available on each one of them.
 
 
@@ -22,7 +22,7 @@ custom plugin(s) are available on each one of them.
 - [Verify loading the plugin](#verify-loading-the-plugin)
 - [Removing a plugin](#removing-a-plugin)
 - [Distribute your plugin](#distribute-your-plugin)
-- [Troiubleshooting](#troubleshooting)
+- [Troubleshooting](#troubleshooting)
 
 ### Packaging sources
 
@@ -49,9 +49,9 @@ the above would become;
     $ luarocks pack kong-plugin-myPlugin 0.1.0-1
 
 The LuaRocks `pack` command has now created a `.rock` file (this is simply a
-zip file containing everything needed to install the rock)
+zip file containing everything needed to install the rock).
 
-If you cannot, or don't want to, use LuaRocks, then use `tar` to pack the
+If you do not or cannot use LuaRocks, then use `tar` to pack the
 `.lua` files of which your plugin consists into a `.tar.gz` archive. You can
 also include the `.rockspec` file if you do have LuaRocks on the target systems.
 
@@ -81,7 +81,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 
 1. Via LuaRocks from the created 'rock'
 
-    The `.rock` file is a self contained package that can be locally installed
+    The `.rock` file is a self contained package that can be installed locally
     or from a remote server.
 
     If the `luarocks` utility is installed in your system (this is likely the
@@ -227,8 +227,8 @@ There are three steps to completely remove a plugin.
 1. remove the plugin from your Kong api configuration. Make sure that it
    is no longer applied globally nor for any api or consumer. This has to be
    done only once for the entire Kong cluster, no restart/reload required.
-   This step in itself will make that the plugin is no longer used. But
-   it is still possible to re-apply the plugin.
+   This step in itself will make that the plugin is no longer in use. But it
+   remains available and it is still possible to re-apply the plugin.
 
 2. remove the plugin from the `custom_plugins` directive (on each Kong node).
    Make sure to have completed step 1 before doing so. After this step
