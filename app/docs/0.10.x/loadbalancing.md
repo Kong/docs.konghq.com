@@ -2,7 +2,7 @@
 title: Loadbalancing reference
 ---
 
-# Load Balancing reference
+# Load Balancing Reference
 
 Kong provides multiple ways of load balancing requests to multiple backend services:
 a straightforward DNS-based method, and a more dynamic ring-balancer that also
@@ -19,7 +19,10 @@ allows for service registry without needing a DNS server.
   - [upstream](#upstream)
   - [target](#target)
 
-### DNS based loadbalancing
+- [Blue-green deployments](#blue-green-deployments)
+- [Canary releases](#canary-releases)
+
+### DNS Based Loadbalancing
 
 When using DNS based load balancing the registration of the backend services is
 done outside of Kong, and Kong only receives updates from the DNS server.
@@ -34,9 +37,9 @@ is refreshed. When using a `ttl` of 0, every request will be resolved using its
 own dns query. Obviously this will have a performance penalty, but the latency of
 updates/changes will be very low.
 
-[Back to TOC](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
-#### **A records**
+#### **A Records**
 
 An A record contains one or more IP addresses. Hence, when a hostname
 resolves to an A record, each backend service must have its own IP address.
@@ -48,9 +51,9 @@ round-robin.
 The initial pick of an IP address from a DNS record is randomized. This is to
 make sure that even with a `ttl` of 0 the load is properly distributed.
 
-[Back to TOC](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
-#### **SRV records**
+#### **SRV Records**
 
 An SRV record contains weight and port information for all of its IP addresses.
 A backend service can be identified by a unique combination of IP address 
@@ -76,9 +79,9 @@ with 527 entries, whereas weights 16 and 32 (or their smallest relative
 counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
 
-[Back to TOC](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
-#### **DNS priorities**
+#### **DNS Priorities**
 
 The DNS resolver will start resolving the following record types in order:
 
@@ -92,9 +95,9 @@ with SRV. If you want A records to be used, you must remove the SRV records from
 the DNS server. If you only have A records, then the SRV lookup will fail and
 it will fallback on an A query, etc.
 
-[Back to TOC](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
-### **Ring-balancer**
+### **Ring-Balancer**
 
 When using the ring-balancer, the adding and removing of backend services will
 be handled by Kong, and no DNS updates will be necessary. Kong will act as the
@@ -109,11 +112,11 @@ entities.
     `weight` to indicate the relative load it gets.
   - `upstream`: a 'virtual hostname' which can be used in an API `upstream_url`
     field, e.g., an upstream named `weather.v2.service` would get all requests
-    from an api with `upstream_url=http://weather.v2.service/some/path`.
+    from an API with `upstream_url=http://weather.v2.service/some/path`.
 
-[Back to TOC](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
-#### **upstream**
+#### **Upstream**
 
 Each upstream gets its own ring-balancer. Each `upstream` can have many 
 `target` entries attached to it, and requests proxied to the 'virtual hostname' 
@@ -148,9 +151,9 @@ the initial setup only features 2 targets.
 The tradeoff here is that the higher the number of slots, the better the random 
 distribution, but the more expensive the changes are (add/removing targets)
 
-[Back to TOC](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
-#### **target**
+#### **Target**
 
 Because the `upstream` maintains a history of changes, targets can only be 
 added, not modified nor deleted. To change a target, just add a new entry for
@@ -182,6 +185,117 @@ as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
 
 
-[Back to TOC](#table-of-contents)
+[Back to Table of Contents](#table-of-contents)
+
+### **Blue-Green Deployments**
+
+Using the ring-balancer a [blue-green deployment][blue-green-canary] can be easily orchestrated for 
+an API. Switching target infrastructure only requires a `PATCH` request on an
+API, to change the `upstream` name. 
+
+Set up the "Blue" environment, running version 1 of the address service:
+
+```bash
+# create an upstream
+$ curl -X POST http://kong:8001/upstreams \
+    --data "name=address.v1.service"
+
+# add two targets to the upstream
+$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+    --data "target=192.168.34.15:80"
+    --data "weight=100"
+$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+    --data "target=192.168.34.16:80"
+    --data "weight=50"
+
+# create an API targeting the Blue upstream
+$ curl -X POST http://kong:8001/apis/ \
+    --data "name=address-service" \
+    --data "hosts=address.mydomain.com" \
+    --data "upstream_url=http://address.v1.service/address"
+```
+
+Requests with host header set to `address.mydomain.com` will now be proxied
+by Kong to the two defined targets; 2/3 of the requests will go to
+`http://192.168.34.15:80/address` (`weight=100`), and 1/3 will go to
+`http://192.168.34.16:80/address` (`weight=50`).
+
+Before deploying version 2 of the address service, set up the "Green"
+environment:
+
+```bash
+# create a new Green upstream for address service v2
+$ curl -X POST http://kong:8001/upstreams \
+    --data "name=address.v2.service"
+
+# add targets to the upstream
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.17:80"
+    --data "weight=100"
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.18:80"
+    --data "weight=100"
+```
+
+To activate the Blue/Green switch, we now only need to update the API:
+
+```bash
+# Switch the API from Blue to Green upstream, v1 -> v2
+$ curl -X PATCH http://kong:8001/apis/address-service \
+    --data "upstream_url=http://address.v2.service/address"
+```
+
+Incoming requests with host header set to `address.mydomain.com` will now be
+proxied by Kong to the new targets; 1/2 of the requests will go to
+`http://192.168.34.17:80/address` (`weight=100`), and the other 1/2 will go to
+`http://192.168.34.18:80/address` (`weight=100`).
+
+As always, the changes through the Kong management API are dynamic and will take
+effect immediately. No reload or restart is required, and no in progress
+requests will be dropped.
+
+[Back to Table of Contents](#table-of-contents)
+
+### **Canary Releases**
+
+Using the ring-balancer, target weights can be adjusted granularly, allowing
+for a smooth, controlled [canary release][blue-green-canary].
+
+Using a very simple 2 target example:
+
+```bash
+# first target at 1000
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.17:80"
+    --data "weight=1000"
+    
+# second target at 0
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.18:80"
+    --data "weight=0"
+```
+
+By repeating the requests, but altering the weights each time, traffic will
+slowly be routed towards the other target. For example, set it at 10%:
+
+```bash
+# first target at 900
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.17:80"
+    --data "weight=900"
+    
+# second target at 100
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.18:80"
+    --data "weight=100"
+```
+
+The changes through the Kong management API are dynamic and will take
+effect immediately. No reload or restart is required, and no in progress
+requests will be dropped.
+
+[Back to Table of Contents](#table-of-contents)
+
 
 [target-object-reference]: /docs/{{page.kong_version}}/admin-api#target-object
+[blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/
