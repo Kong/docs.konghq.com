@@ -45,7 +45,7 @@ configuration of your Kong instance or cluster.
     {
       "created_at": 1488830759000,
       "hosts": [
-          "example.org"
+          "example.com"
       ],
       "http_if_terminated": true,
       "https_only": false,
