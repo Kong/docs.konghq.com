@@ -34,8 +34,8 @@
   name: kubernetes
   type: cloud
 
-- id: mesos
-  name: mesos
+- id: dcos
+  name: DC/OS
   type: cloud
 
 - id: osx

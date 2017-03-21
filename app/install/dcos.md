@@ -14,10 +14,10 @@ links:
   dcos: "https://docs.mesosphere.com/1.8/overview/"
 ---
 
-Kong can easily be provisioned on a Mesosphere DC/OS cluster using following
+Kong can be provisioned on a Mesosphere DC/OS cluster using following
 steps:
 
-The following steps use AWS for provisioning the DC/OS cluster and assumes you 
+The following steps use AWS for provisioning the DC/OS cluster and assume you 
 have basic knowledge of [DC/OS]({{ page.links.dcos }}), 
 [Marathon]({{ page.links.marathon }}), and
 [Marathon-lb]({{ page.links.marathon-lb }}). 
@@ -54,7 +54,7 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
     $ dcos package install --options=marathon-lb-internal.json marathon-lb
     ```
 
-4. **Deploy a Kong supported database**
+4. **Deploy a Kong-supported database**
   
     Before deploying Kong, you need to provision a Cassandra or PostgreSQL
     instance.
