@@ -34,7 +34,10 @@ var sources = {
     paths.modules + 'bootstrap/js/affix.js'
   ],
   images: paths.assets + 'images/**/*',
-  fonts: paths.modules + 'font-awesome/fonts/**/*.*'
+  fonts: [
+    paths.modules + 'font-awesome/fonts/**/*.*',
+    paths.assets + 'fonts/*.*'
+  ]
 }
 
 // Destinations
@@ -102,7 +105,7 @@ gulp.task('images', function () {
 gulp.task('fonts', function () {
   return gulp.src(sources.fonts)
     .pipe($.plumber())
-    .pipe(gulp.dest(paths.dist + '/assets/fonts'))
+    .pipe(gulp.dest(paths.dist + 'assets/fonts'))
     .pipe($.size())
     .pipe(browserSync.stream())
 })

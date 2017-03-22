@@ -1,0 +1,132 @@
+/**
+ * utils.less
+ * Helper classes and mixins
+ */
+
+@import "variables";
+
+// Fonts
+// ------------------------------
+
+// Font Sizes: Insert px, get rem
+.font-size(@px: 16) {
+  font-size: @px / 16rem;
+}
+.font-size(@px, @line) {
+  font-size: @px / 16rem;
+  line-height: @line / 16rem;
+}
+.font-size(@px, @line, @scale) { // scales with page font size
+  font-size: (@px / 16rem) / (@scale / 16);
+  line-height: (@line / 16rem) / (@scale / 16);
+}
+
+@standard-fonts: 'Helvetica', 'Segoe', 'Arial', sans-serif;
+
+// Font Sources
+.font-source-sans(@weight: 400) {
+  font-family: 'Source Sans Pro', @standard-fonts;
+  font-weight: @weight;
+  text-rendering: optimizeLegibility;
+}
+.font-source-sans-sc() {
+  font-family: 'Source Sans Pro', @standard-fonts;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transform: scaleY(0.9);
+  text-rendering: optimizeLegibility;
+}
+.font-titillium-web(@weight: 400) {
+  font-family: 'Titillium Web', @standard-fonts;
+  font-weight: @weight;
+}
+
+// Hide and Show helper classes
+// ------------------------------
+
+// .show-** : at **, show element
+.show-xs {
+  display: none;
+
+  @media (min-width: @grid-width-xs) {
+    display: flex;
+  }
+}
+.show-sm {
+  display: none;
+
+  @media (min-width: @grid-width-sm) {
+    display: flex;
+  }
+}
+.show-md {
+  display: none;
+
+  @media (min-width: @grid-width-md) {
+    display: flex;
+  }
+}
+
+// Units
+// ---------------------
+
+.px-to-rem(@value) {
+  @px-to-rem: @value / 16rem;
+}
+.px-to-rem(@value, @base) {
+  @px-to-rem: (@value / 16rem) / (@base / 16);
+}
+
+// Flex Utils
+// ----------------------
+
+.flex-align(@al: flex-start) {
+  align-self: @al;
+}
+.flex-justify(@js: flex-start) {
+  justify-content: @js;
+}
+
+.flex-container() {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: @grid-width-xl;
+}
+.flex-row(@direction: row, @wrap: wrap) {
+  .flex-container();
+  flex-direction: @direction;
+  flex-wrap: @wrap;
+  padding: 0 @gutter-flex-mobile-2x;
+
+  @media (min-width: @grid-width-sm) {
+    padding: 0 @gutter-flex-2x;
+  }
+}
+.flex-column() {
+  .flex-container();
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0 @gutter-flex-mobile-2x;
+
+  @media (min-width: @grid-width-sm) {
+    padding: 0 @gutter-flex-2x;
+  }
+}
+
+// Columns
+.flex-col() {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+}
+.flex-col(@grow, @shrink, @basis: 6, @align: flex-start) {
+  flex-grow: @grow;
+  flex-shrink: @shrink;
+  flex-basis: (@basis / 12) * 100%;
+  .flex-align(@align);
+  box-sizing: border-box;
+}

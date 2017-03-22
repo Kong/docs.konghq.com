@@ -1,80 +1,270 @@
-.footer {
-  position: absolute;
+/**
+ * components.less
+ * all imported and shared components
+ * used across the site
+ */
+
+@import "variables";
+@import "utils";
+
+/* =======================================================
+   MARKETING -> FOOTER
+   ==================================================== */
+
+
+// Animations
+@keyframes mashape-ape-animation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+@anim--speed: 0.3s;
+
+/**
+ * Main footer selector
+ */
+
+[class^="marketing-footer"] {
+  .font-source-sans();
   width: 100%;
-  background-color: #f2f4f5;
+  padding: @gutter-flex-2x 0 0;
 
-  .footer-bar {
-    font-size: 13px;
-    line-height: 30px;
-    border-top: 1px solid #e9ecee;
-    padding: 10px 0;
-    max-height: 51px;
-  }
+  section {
+    > ul {
+      .flex-row;
+      list-style: none;
 
-  .footer-bar span:first-of-type a {
-    margin: 0;
-  }
+      @media (min-width: @grid-width-xs) {
+        max-width: 85%;
+        padding: 0;
+      }
+      @media (min-width: @grid-width-sm) {
+        width: 80%;
+        max-width: 1020px;
+      }
 
-  .footer-bar a {
-    text-decoration: none;
-    transition: all .3s ease;
-    margin-left: 18px;
-    color: @gray-dark;
+      > li {
+        .flex-col(1, 1, 6);
 
-    &:hover {
-      color: @gray-darker;
+        @media (min-width: @grid-width-sm) {
+          .flex-col(1, 1, 3);
+        }
+        @media (min-width: @grid-width-lg) {
+          .flex-col(1, 1, 2);
+        }
+      }
     }
+  }
 
+  /**
+   * Marketing > Footer > Content
+   */
+
+  .logo-wrapper {
+    .flex-col(1, 1, 12);
+    margin: 0.5rem 0 @gutter-flex-1x 0;
+
+    @media (min-width: @grid-width-lg) {
+      .flex-col(1, 1, 2);
+    }
+  }
+  .image,
+  .logo {
+    width: 100%;
+    max-width: 10rem;
+    height: 100%;
+
+    a {
+      display: block;
+    }
     img {
-      vertical-align: middle;
-      margin-right: 6px;
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      border: 0;
     }
   }
 
-  .footer-separator {
-    display: inline-block;
-    height: 21px;
-    width: 2px;
-    vertical-align: middle;
-    margin-left: 18px;
-    background-color: #c8cacc;
-  }
+  /**
+  * Ape Animation
+  * On :hover, the ape animates
+  */
 
-  .footer-nav {
-    font-family: @family-whitney-ss-sc;
-    text-transform: lowercase;
-  }
+  .ape-wrapper {
+    display: none;
+    align-items: flex-end;
 
-  .footer-social {
-    &:extend(.u-cf);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: 5px;
-    float: right;
-    line-height: 1;
-
-    li {
-      margin: 0 0 0 10px;
-      float: left;
+    @media (min-width: @grid-width-lg) {
+      display: flex;
     }
-  }
 
-  @media (max-width: 550px) {
+    /**
+    * The Mashape Ape
+    */
 
-  }
-
-  @media (max-width: 850px) {
-    .footer-social {
+    .ape {
       display: none;
+      justify-content: center;
+      width: 100%;
+      padding: 0;
+      background-image: url("/assets/images/footer/ape-sprite.png");
+      background-size: 200% auto;
+      background-position: 0 0;
+      background-repeat: no-repeat;
+      animation: mashape-ape-animation 0.4s steps(2) infinite;
+      animation-play-state: paused;
+
+      &:hover {
+        animation-play-state: running;
+      }
+
+      @media (min-width: @grid-width-md) {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: 20rem;
+      }
     }
   }
 
-  @media (max-width: 1150px) {
-    .footer-separator,
-    .footer-bar span:first-of-type {
-      display: none;
+    /*
+    * Footer links
+    */
+
+    nav {
+      h4 {
+        margin: 0 0 1.5em;
+        padding: 0.75rem 0 0;
+        .font-source-sans-sc();
+        .font-size(19);
+        letter-spacing: 0;
+        font-weight: 600;
+
+        &:after {
+          content: '';
+          display: block;
+          width: 3.25rem;
+          margin: 1rem 0 1.5rem;
+        }
+      }
+      ul, li {
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+      }
+      ul {
+        margin-bottom: 2em;
+      }
+      li {
+        margin-bottom: 0.75rem;
+      }
+      a {
+        text-decoration: none;
+        .font-size(22);
+        font-weight: 400;
+      }
+      a:hover {
+        text-decoration: none;
+      }
     }
+
+  /**
+   * Marketing > Footer > Legal
+   */
+
+  .legal {
+    padding: 1rem 0;
+
+    ul {
+      .flex-row();
+      list-style: none;
+      height: 100%;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      li {
+        .flex-col(1, 1, 6);
+        align-self: center;
+      }
+      li:last-child {
+        .flex-col(1, 1, 6);
+        text-align: right;
+      }
+
+      .social-link {
+        display: inline-block;
+        vertical-align: top;
+
+        // Icon link
+        a {
+          display: block;
+          padding: 3px;
+          opacity: 0.5;
+          .font-size(26);
+
+          img {
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-top: 5px;
+            border: 0;
+          }
+
+          &:hover {
+            opacity: 1;
+          }
+
+          @media (min-width: @grid-width-xs) {
+            padding: 10px;
+          }
+        }
+      }
+    } // end social link
+  } // end legal
+} // end Footer component
+
+[class^="marketing-footer"][class*="--light-gray"] {
+  border-top: solid 1px #fafafa;
+  background-color: #fafafa;
+
+  nav {
+    h4 {
+      color: @color-dark-blend-strong;
+    }
+    a {
+      color: @color-dark-blend-strong;
+    }
+    h4:after {
+      border-bottom-color: @green;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+    }
+    a:hover {
+      color: #000;
+    }
+  }
+
+  .legal {
+    background-color: #fafafa;
+    color: @black-70;
+
+    ul {
+      &:before {
+        border-top: solid 1px @color-dark-blend-border-light;
+      }
+
+      a {
+        color: #000;
+      }
+    }
+
   }
 }
