@@ -190,6 +190,15 @@
         margin-bottom: 1rem;
       }
 
+      @media (min-width: @grid-width-xs) {
+        max-width: 85%;
+        padding: 0;
+      }
+      @media (min-width: @grid-width-sm) {
+        width: 80%;
+        max-width: 1020px;
+      }
+
       li {
         .flex-col(1, 1, 6);
         align-self: center;
