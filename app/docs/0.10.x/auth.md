@@ -95,8 +95,8 @@ access. Here is an example, which assumes you have already configured an API nam
     The `config.anonymous=<consumer uuid>` parameter instructs the key-auth plugin on this API to permit 
     anonymous access, and to associate such access with the consumer `id` we received in the previous step. It is
     required that you provide a valid and pre-existing consumer `id` in this step - validity of the consumer `id`
-    is not currently checked when configuring anonymous access, and provision of a consumer `id` that doesn't already
-    exist will result in a incorrect configuration.
+    is not currently checked when configuring anonymous access, and provisioning of a consumer `id` 
+    that doesn't already exist will result in a incorrect configuration.
     
 5. ### Check anonymous access
 
