@@ -159,7 +159,7 @@ gulp.task('html', ['jekyll'], function () {
     }))
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream({ once: true }))
 })
 
 gulp.task('docs', function (cb) {
