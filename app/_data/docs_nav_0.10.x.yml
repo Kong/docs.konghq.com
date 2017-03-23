@@ -26,6 +26,9 @@
     - text: Proxy reference
       url: /proxy
 
+    - text: Authentication reference
+      url: /auth
+
     - text: Load balancing reference
       url: /loadbalancing
 
