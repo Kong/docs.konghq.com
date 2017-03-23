@@ -195,6 +195,9 @@ undefined if they are mixed.
 passed to the upstream service. With the `OR` method, it will be the first plugin that succesfully authenticates
 the consumer, or the last plugin that will set its configured anonymous consumer.
 
+**NOTE 3**: When using the OAuth2 plugin in an `AND` fashion, then also the OAuth2 endpoints for requesting
+tokens etc. will require authentication by the other configured auth plugins.
+
 <div class="alert alert-warning">
   When multiple authentication plugins are enabled in an `OR` fashion on a given API, and it is desired that 
   anonymous access be forbidden, the upstream service MUST be configured to reject requests in 
