@@ -223,19 +223,19 @@ Then, you should see the following log for each plugin being loaded:
 
 There are three steps to completely remove a plugin.
 
-1. remove the plugin from your Kong api configuration. Make sure that it
-   is no longer applied globally nor for any api or consumer. This has to be
+1. Remove the plugin from your Kong api configuration. Make sure that it
+   is no longer applied globally nor for any API or consumer. This has to be
    done only once for the entire Kong cluster, no restart/reload required.
    This step in itself will make that the plugin is no longer in use. But it
    remains available and it is still possible to re-apply the plugin.
 
-2. remove the plugin from the `custom_plugins` directive (on each Kong node).
+2. Remove the plugin from the `custom_plugins` directive (on each Kong node).
    Make sure to have completed step 1 before doing so. After this step
    it will be impossible for anyone to re-apply the plugin to any Kong
    api, consumer, or even globally. This step requires to restart/reload the
    Kong node to take effect.
 
-3. to remove the plugin thoroughfully, delete the plugin-related files from
+3. To remove the plugin thoroughly, delete the plugin-related files from
    each of the Kong nodes. Make sure to have completed step 2, including
    restarting/reloading Kong, before deleting the files. If you used LuaRocks
    to install the plugin, you can do `luarocks remove <plugin-name>` to remove
@@ -272,18 +272,18 @@ the format see the LuaRocks [documentation on rockspecs][rockspec].
 Kong can fail to start because of a misconfigured custom plugin for several
 reasons:
 
-* "plugin is in use but not enabled" -> you configured a custom plugin from
+* "plugin is in use but not enabled" -> You configured a custom plugin from
   another node, and that the plugin configuration is in the database, but the
   current node you are trying to start does not have it in its `custom_plugins`
   directive. To resolve, add the plugin's name to the node's `custom_plugins`
   directive.
 
-* "plugin is enabled but not installed" -> the plugin's name is present in the
+* "plugin is enabled but not installed" -> The plugin's name is present in the
   `custom_plugins` directive, but that Kong is unable to load the `handler.lua`
   source file from the file system. To resolve, make sure that the
   lua_package_path directive is properly set to load this plugin's Lua sources.
 
-* "no configuration schema found for plugin" -> the plugin is installed,
+* "no configuration schema found for plugin" -> The plugin is installed,
   enabled in custom_plugins, but Kong is unable to load the `schema.lua`
   source file from the file system.
   To resolve, make sure that the `schema.lua` file is present alongside the
