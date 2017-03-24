@@ -10,9 +10,8 @@ As mentioned many times in this guide, Kong heavily relies on your modules being
 
 As already mentioned in the [file structure] chapter, we make Kong aware that it has to look for your plugin's modules by adding it to the `custom_plugins` property in your configuration file. Example:
 
-```yaml
-custom_plugins:
-  - my-custom-plugin # your plugin name here
+```
+custom_plugins = my-custom-plugin
 ```
 
 Kong will now look for modules named:
