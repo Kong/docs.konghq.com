@@ -578,11 +578,30 @@ Kong will send the request over HTTP/1.1, and set the following headers:
 
 - `Host: <your_upstream_host>`, as previously described in this document.
 - `Connection: keep-alive`, to allow for reusing the upstream connections
-- `X-Real-IP: <$proxy_add_x_forwarded_for>`, where `$proxy_add_x_forwarded_for`
-  is the variable bearing the same name provided by
-  [ngx_http_proxy_module][ngx-http-proxy-module].
+- `X-Real-IP: <$remote_addr>`, where `$remote_addr` is the variable bearing
+  the same name provided by
+  [ngx_http_core_module][ngx-remote-addr-variable]. Please note that the
+  `$remote_addr` is likely overwritten by
+  [ngx_http_realip_module][ngx-http-realip-module].
+- `X-Forwarded-For: <address>`, where `<address>` is the the content of
+  `$realip_remote_addr` provided by the
+  [ngx_http_realip_module][ngx-http-realip-module] appended to the request
+  header with the same name.
 - `X-Forwarded-Proto: <protocol>`, where `<protocol>` is the protocol used by
-  the client.
+  the client. In the case where `$realip_remote_addr` is one of the **trusted**
+  addresses, the request header with the same name gets forwarded if provided.
+  Otherwise the value of `$scheme` variable provided by the
+  [ngx_http_core_module][ngx-scheme-variable] will be used.
+- `X-Forwarded-Host: <host>`, where `<host>` is the host name send by
+  the client. In the case where `$realip_remote_addr` is one of the **trusted**
+  addresses, the request header with the same name gets forwarded if provided.
+  Otherwise the value of `$host` variable provided by the
+  [ngx_http_core_module][ngx-host-variable] will be used.
+- `X-Forwarded-Port: <port>`, where `<port>` is the port of the server which
+  accepted a request. In the case where `$realip_remote_addr` is one of the
+  **trusted** addresses, the request header with the same name gets forwarded
+  if provided. Otherwise the value of `$server_port` variable provided by the
+  [ngx_http_core_module][ngx-server-port-variable] will be used.
 
 All the other request headers are forwarded as-is by Kong.
 
@@ -820,4 +839,9 @@ topic we just covered.
 [API]: /docs/{{page.kong_version}}/admin-api
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
+[ngx-http-realip-module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
+[ngx-remote-addr-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr
+[ngx-scheme-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_scheme
+[ngx-host-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_host
+[ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication

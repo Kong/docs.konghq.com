@@ -421,6 +421,45 @@ exceeded, the least recently used connections are closed.
 
 Default: `60`
 
+---
+
+---
+
+##### **real_ip_header**
+
+Defines the request header field whose value will be used to replace the client
+address.
+
+See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
+
+Default: X-Real-IP
+
+---
+
+##### **real_ip_recursive**
+
+If recursive search is disabled, the original client address that matches one of
+the trusted addresses is replaced by the last address sent in the request header
+field defined by the real_ip_header directive. If recursive search is enabled,
+the original client address that matches one of the trusted addresses is replaced
+by the last non-trusted address sent in the request header field.
+
+See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
+
+Default: off
+
+---
+
+##### **trusted_ips**
+
+Defines trusted addresses that are known to send correct replacement addresses.
+This is used by [ngx_http_realip_module][ngx-http-realip-module]
+(`set_real_ip_from` directive`) and for setting `X-Forwarded-*` headers.
+
+See http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from
+
+Default: none
+
 [Back to TOC](#table-of-contents)
 
 ---
