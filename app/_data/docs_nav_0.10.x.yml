@@ -71,7 +71,7 @@
         - text: Writing tests
           url: /plugin-development/tests
 
-        - text: Distribute your plugin
+        - text: (un)Install your plugin
           url: /plugin-development/distribution
 
 - title: Admin API
