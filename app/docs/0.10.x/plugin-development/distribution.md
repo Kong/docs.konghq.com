@@ -7,8 +7,9 @@ chapter: 10
 # {{page.title}}
 
 Custom plugins for Kong consist of Lua source files that need to be in the file
-system of each of your Kong nodes. This guide will provide you with step-by-step
-instructions that will make a Kong node aware of your custom plugin(s).
+system of each of your Kong nodes. This guide will provide you with
+step-by-step instructions that will make a Kong node aware of your custom
+plugin(s).
 
 These steps should be applied to each node in your Kong cluster, to ensure the
 custom plugin(s) are available on each one of them.
@@ -33,18 +34,19 @@ along with Kong.
 
 When using LuaRocks, you must create a `rockspec` file, which specifies the
 package contents. For an example see the [Kong plugin template][rockspec], for
-more info about the format see the LuaRocks [documentation on rockspecs][rockspec].
+more info about the format see the LuaRocks [documentation on
+rockspecs][rockspec].
 
 Pack your rock using the following command (from the plugin repo):
 
     # install it locally (based on the `.rockspec` in the current directory)
     $ luarocks make
-    
+
     # pack the installed rock
     $ luarocks pack <plugin-name> <version>
 
-Assuming your plugin rockspec is called `kong-plugin-myPlugin-0.1.0-1.rockspec`,
-the above would become;
+Assuming your plugin rockspec is called
+`kong-plugin-myPlugin-0.1.0-1.rockspec`, the above would become;
 
     $ luarocks pack kong-plugin-myPlugin 0.1.0-1
 
@@ -53,7 +55,8 @@ zip file containing everything needed to install the rock).
 
 If you do not or cannot use LuaRocks, then use `tar` to pack the
 `.lua` files of which your plugin consists into a `.tar.gz` archive. You can
-also include the `.rockspec` file if you do have LuaRocks on the target systems.
+also include the `.rockspec` file if you do have LuaRocks on the target
+systems.
 
 The contents of this archive should be close to the following:
 
@@ -250,11 +253,11 @@ There are three steps to completely remove a plugin.
 
 The preferred way to do so is to use [Luarocks](https://luarocks.org/), a
 package manager for Lua modules. It calls such modules "rocks". **Your module
-does not have to live inside the Kong repository!**, but it can be if that's 
+does not have to live inside the Kong repository!**, but it can be if that's
 how you'd like to maintain your Kong setup.
 
-By defining your modules (and their eventual dependencies) in a [rockspec] 
-file, you can install those modules on your platform via Luarocks. You can 
+By defining your modules (and their eventual dependencies) in a [rockspec]
+file, you can install those modules on your platform via Luarocks. You can
 also upload your module on Luarocks and make it available to everyone!
 
 Here is an example rockspec which would use the "builtin" build type to define
