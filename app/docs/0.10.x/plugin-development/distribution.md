@@ -28,9 +28,8 @@ custom plugin(s) are available on each one of them.
 ### Packaging sources
 
 You can either use a regular packing strategy (eg. `tar`), or use the LuaRocks
-package manager to do it for you. Especially if you have your Kong nodes
-installed from a regular package, we recommend LuaRocks as it is installed
-along with Kong.
+package manager to do it for you. We recommend LuaRocks as it is installed
+along with Kong when using one of the official distribution packages.
 
 When using LuaRocks, you must create a `rockspec` file, which specifies the
 package contents. For an example see the [Kong plugin template][rockspec], for
@@ -70,7 +69,6 @@ The contents of this archive should be close to the following:
     │           ├── handler.lua
     │           └── schema.lua
     └── <plugin-name>-<version>.rockspec
-
 
 [Back to TOC](#table-of-contents)
 
@@ -149,7 +147,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
     The plugin `something` being located on the file system such that the
     handler file is:
 
-        /usr/local/custom/kong/plugins/something/handler.lua
+        /usr/local/custom/kong/plugins/<something>/handler.lua
 
     The location of the `kong` directory is: `/usr/local/custom`, hence the
     proper path setup would be:
@@ -172,7 +170,6 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 Reminder: regardless of which method you are using to install your plugin's
 sources, you must still do so for each node in your Kong cluster.
 
-
 [Back to TOC](#table-of-contents)
 
 ---
@@ -193,7 +190,6 @@ Note: you can also set this property via its environment variable equivalent:
 
 Reminder: don't forget to update the `custom_plugins` directive for each node
 in your Kong cluster.
-
 
 [Back to TOC](#table-of-contents)
 
@@ -239,11 +235,11 @@ There are three steps to completely remove a plugin.
    api, consumer, or even globally. This step requires to restart/reload the
    Kong node to take effect.
 
-3. delete the plugin related files from each of the Kong nodes (for the
-   paranoid only). Make sure to have completed step 2, including restarting/
-   reloading Kong, before deleting the files. If you used LuaRocks to install
-   the plugin, you can do `luarocks remove <pluginname>` to remove it.
-
+3. to remove the plugin thoroughfully, delete the plugin-related files from
+   each of the Kong nodes. Make sure to have completed step 2, including
+   restarting/reloading Kong, before deleting the files. If you used LuaRocks
+   to install the plugin, you can do `luarocks remove <plugin-name>` to remove
+   it.
 
 [Back to TOC](#table-of-contents)
 
@@ -253,7 +249,7 @@ There are three steps to completely remove a plugin.
 
 The preferred way to do so is to use [Luarocks](https://luarocks.org/), a
 package manager for Lua modules. It calls such modules "rocks". **Your module
-does not have to live inside the Kong repository!**, but it can be if that's
+does not have to live inside the Kong repository**, but it can be if that's
 how you'd like to maintain your Kong setup.
 
 By defining your modules (and their eventual dependencies) in a [rockspec]
@@ -267,7 +263,6 @@ modules in Lua notation and their corresponding file:
 For an example see the [Kong plugin template][rockspec], for more info about
 the format see the LuaRocks [documentation on rockspecs][rockspec].
 
-
 [Back to TOC](#table-of-contents)
 
 ---
@@ -277,17 +272,16 @@ the format see the LuaRocks [documentation on rockspecs][rockspec].
 Kong can fail to start because of a misconfigured custom plugin for several
 reasons:
 
-* "plugin is in use but not enabled" -> this error means that you configured a
-  custom plugin from another node, and that the plugin configuration is in the
-  database, but that the current node you are trying to start does not have it
-  in its `custom_plugins` directive.
-  To resolve, add the plugin's name to the node's `custom_plugins` directive.
+* "plugin is in use but not enabled" -> you configured a custom plugin from
+  another node, and that the plugin configuration is in the database, but the
+  current node you are trying to start does not have it in its `custom_plugins`
+  directive. To resolve, add the plugin's name to the node's `custom_plugins`
+  directive.
 
-* "plugin is enabled but not installed" -> this means that the plugin's name
-  is present in the `custom_plugins` directive, but that Kong is unable to load
-  the `handler.lua` source file from the file system.
-  To resolve, make sure that the lua_package_path directive is properly set to
-  load this plugin's Lua sources.
+* "plugin is enabled but not installed" -> the plugin's name is present in the
+  `custom_plugins` directive, but that Kong is unable to load the `handler.lua`
+  source file from the file system. To resolve, make sure that the
+  lua_package_path directive is properly set to load this plugin's Lua sources.
 
 * "no configuration schema found for plugin" -> the plugin is installed,
   enabled in custom_plugins, but Kong is unable to load the `schema.lua`
@@ -295,9 +289,8 @@ reasons:
   To resolve, make sure that the `schema.lua` file is present alongside the
   plugin's `handler.lua` file.
 
-
+[Back to TOC](#table-of-contents)
 
 ---
 
-[rocksample]: https://github.com/mashape/kong-plugin
 [rockspec]: https://github.com/keplerproject/luarocks/wiki/Creating-a-rock
