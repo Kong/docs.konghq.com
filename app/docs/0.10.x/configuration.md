@@ -425,8 +425,8 @@ Default: `60`
 
 ##### **server_tokens**
 
-Enables or disables emitting Kong version on error pages and in the "Server" or "Via"
-(in case the request was proxied) response header field.
+Enables or disables emitting Kong version on error pages and in the `Server`
+or `Via` (in case the request was proxied) response header field.
 
 Default: `on`
 
@@ -434,8 +434,8 @@ Default: `on`
 
 ##### **latency_tokens**
 
-Enables or disables emitting Kong latency information in the "X-Kong-Proxy-Latency" 
-and "X-Kong-Upstream-Latency" response header fields.
+Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency` 
+and `X-Kong-Upstream-Latency` response header fields.
 
 Default: `on`
 
