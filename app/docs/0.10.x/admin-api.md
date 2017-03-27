@@ -1446,6 +1446,10 @@ HTTP 200 OK
 Retrieve a list of active targets (targets whose most recent weight is not 0)
 for a given upstream.
 
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint is only available with Kong 0.10.1+
+</div>
+
 ### Endpoint
 
 <div class="endpoint get">/upstreams/{name or id}/targets/active</div>
@@ -1487,7 +1491,11 @@ HTTP 200 OK
 ### Delete target
 
 Disable a target in the load balancer. Under the hood, this method creates
-a new entry for the given target definition with a weight of 0.
+a new entry for the given target definition with a `weight` of 0.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint is only available with Kong 0.10.1+
+</div>
 
 #### Endpoint
 
