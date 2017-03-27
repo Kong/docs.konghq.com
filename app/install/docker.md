@@ -52,7 +52,7 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
 3. **Kong is running:**
 
     ```bash
-    $ curl http://127.0.0.1:8001
+    $ curl -L http://127.0.0.1:8001
     ```
 
 4. **Start using Kong:**
