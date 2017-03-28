@@ -154,8 +154,9 @@ access. Here is an example, which assumes you have already configured an API nam
     This is the same request you made in step #3, however this time the request should succeed, because you 
     enabled anonymous access in step #5.
     
-    The response (which is the request as Mockbin received it) should have these elements;
-    ```
+    The response (which is the request as Mockbin received it) should have these elements:
+
+    ```http
     {
       ...
       "headers": {
