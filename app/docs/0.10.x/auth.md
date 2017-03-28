@@ -156,7 +156,7 @@ access. Here is an example, which assumes you have already configured an API nam
     
     The response (which is the request as Mockbin received it) should have these elements:
 
-    ```http
+    ```json
     {
       ...
       "headers": {
