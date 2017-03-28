@@ -21,8 +21,8 @@ api_body: |
 consumer_body: |
     Attributes | Description
     ---:| ---
-    `username`<br>**semi-optional** | The username of the consumer. You must send either this field or `custom_id` with the request.
-    `custom_id`<br>**semi-optional** | Field for storing an existing ID for the consumer, useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
+    `username`<br>**semi-optional** | The unique username of the consumer. You must send either this field or `custom_id` with the request.
+    `custom_id`<br>**semi-optional** | Field for storing an existing unique ID for the consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
 
 plugin_configuration_body: |
     Attributes | Description
