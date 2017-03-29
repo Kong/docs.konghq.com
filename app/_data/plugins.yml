@@ -68,6 +68,9 @@
     - name: Runscope
       info: API Performance Testing and Monitoring
 
+    - name: API Fortress
+      info: Interface with your API Fortress tesing and monitoring setup
+
 - name: Transformations
   info: Transform request and responses on the fly on Kong
   plugins:
