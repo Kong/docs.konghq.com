@@ -119,10 +119,7 @@ HTTP/1.1 204 No Content
 ```
 
 `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-
-form parameter | default | description
----            | ---     | ---
-`id`           |         | The JWT credential ID.
+`id`: The `id` of the JWT credential.
 
 ### Craft a JWT with a secret (HS256)
 
