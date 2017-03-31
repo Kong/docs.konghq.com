@@ -14,6 +14,7 @@ nav:
     items:
       - label: Create a Consumer
       - label: Create a JWT credential
+      - laebl: Delete a JWT credential
       - label: Craft a JWT with a secret (HS256)
       - label: Send a request with the JWT
       - label: (Optional) Verified claims
@@ -107,6 +108,18 @@ form parameter                 | default         | description
 `algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `RS256`, or `ES256`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256` or `ES256`, the public key (in PEM format) to use to verify the token's signature.
 `secret`<br>*optional*         |                 | If `algorithm` is `HS256` or `ES256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
+
+### Delete a JWT credential
+
+You can remove a Consumers JWT credential by issuing the following HTTP request:
+
+```bash
+$ curl -X DELETE http://kong:8001/consumers/{consumer}/jwt/{id}
+HTTP/1.1 204 No Content
+```
+
+`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`id`: The `id` of the JWT credential.
 
 ### Craft a JWT with a secret (HS256)
 
