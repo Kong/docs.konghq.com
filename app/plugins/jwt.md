@@ -46,7 +46,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=jwt"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+- `api`: The `id` or `name` of the API that this plugin configuration will target
 
 You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
@@ -100,7 +100,7 @@ HTTP/1.1 201 Created
 }
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+- `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
 form parameter                 | default         | description
 ---                            | ---             | ---
@@ -119,8 +119,8 @@ $ curl -X DELETE http://kong:8001/consumers/{consumer}/jwt/{id}
 HTTP/1.1 204 No Content
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-`id`: The `id` of the JWT credential.
+- `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+- `id`: The `id` of the JWT credential.
 
 ### Craft a JWT with a secret (HS256)
 
