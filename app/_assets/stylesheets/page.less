@@ -102,13 +102,11 @@
   }
 
   h5 {
-    font-family: @family-whitney-ss-sc;
-    font-size: 13px;
+    .font-source-sans-sc();
+    font-size: 14px;
     color: @gray-darker;
-    font-weight: 600;
     margin-bottom: 8px;
     line-height: 1.6;
-    text-transform: lowercase;
   }
 
   nav {
@@ -163,9 +161,8 @@
 
 .content {
   padding: 50px 0;
-  font-size: 14px;
-  font-family: @family-whitney-ss;
-  font-weight: 500;
+  .font-source-sans();
+  font-size: 16px;
   line-height: 1.5;
 
   .big {
@@ -181,9 +178,8 @@
   }
 
   p, h1, h2, h3, h4, h5, h6 {
-    font-family: @family-whitney-ss;
+    .font-source-sans();
     color: #505659;
-    font-weight: 500;
   }
 
   p {
@@ -275,8 +271,8 @@
     border: 1px solid #efefef;
     border-radius: 0 0 3px 3px;
     background-color: #fcfcfc;
-    font-family: @family-whitney-ss;
-    font-size: 13px;
+    .font-source-sans();
+    font-size: 14px;
     padding: 14px 13px;
     line-height: 1;
     color: #879199;
@@ -313,16 +309,14 @@
     border: 1px solid @gray;
 
     th, td {
-      font-family: @family-whitney-ss;
-      font-size: 13px;
-      font-weight: 500;
+      .font-source-sans();
+      font-size: 14px;
     }
 
     th {
       text-transform: lowercase;
-      font-family: @family-whitney-ss-sc;
-      font-size: 13px;
-      font-weight: 600;
+      .font-source-sans-sc();
+      font-size: 14px;
       text-align: left !important;
       background: @gray-light;
       border-bottom: 1px solid @gray;
