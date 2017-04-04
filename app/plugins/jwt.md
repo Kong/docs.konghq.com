@@ -14,7 +14,7 @@ nav:
     items:
       - label: Create a Consumer
       - label: Create a JWT credential
-      - laebl: Delete a JWT credential
+      - label: Delete a JWT credential
       - label: Craft a JWT with a secret (HS256)
       - label: Send a request with the JWT
       - label: (Optional) Verified claims
@@ -111,7 +111,8 @@ form parameter                 | default         | description
 
 ### Delete a JWT credential
 
-You can remove a Consumers JWT credential by issuing the following HTTP request:
+You can remove a Consumer's JWT credential by issuing the following HTTP
+request:
 
 ```bash
 $ curl -X DELETE http://kong:8001/consumers/{consumer}/jwt/{id}
