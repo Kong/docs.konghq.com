@@ -289,7 +289,9 @@ HTTP 200 OK
 
 ## API Object
 
-The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the API when a consumer is calling it from the Proxy port. Each API object must specify a request host, a request path or both. Kong will proxy all requests to the API to the specified upstream URL.
+The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the 
+API when a consumer is calling it from the Proxy port. Each API object must specify some combination 
+of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to the specified upstream URL.
 
 ```json
 {
