@@ -224,22 +224,22 @@ Then, you should see the following log for each plugin being loaded:
 There are three steps to completely remove a plugin.
 
 1. Remove the plugin from your Kong api configuration. Make sure that it
-  is no longer applied globally nor for any API or consumer. This has to be
-  done only once for the entire Kong cluster, no restart/reload required.
-  This step in itself will make that the plugin is no longer in use. But it
-  remains available and it is still possible to re-apply the plugin.
+   is no longer applied globally nor for any API or consumer. This has to be
+   done only once for the entire Kong cluster, no restart/reload required.
+   This step in itself will make that the plugin is no longer in use. But it
+   remains available and it is still possible to re-apply the plugin.
 
 2. Remove the plugin from the `custom_plugins` directive (on each Kong node).
-  Make sure to have completed step 1 before doing so. After this step
-  it will be impossible for anyone to re-apply the plugin to any Kong
-  api, consumer, or even globally. This step requires to restart/reload the
-  Kong node to take effect.
+   Make sure to have completed step 1 before doing so. After this step
+   it will be impossible for anyone to re-apply the plugin to any Kong
+   api, consumer, or even globally. This step requires to restart/reload the
+   Kong node to take effect.
 
 3. To remove the plugin thoroughly, delete the plugin-related files from
-  each of the Kong nodes. Make sure to have completed step 2, including
-  restarting/reloading Kong, before deleting the files. If you used LuaRocks
-  to install the plugin, you can do `luarocks remove <plugin-name>` to remove
-  it.
+   each of the Kong nodes. Make sure to have completed step 2, including
+   restarting/reloading Kong, before deleting the files. If you used LuaRocks
+   to install the plugin, you can do `luarocks remove <plugin-name>` to remove
+   it.
 
 [Back to TOC](#table-of-contents)
 
