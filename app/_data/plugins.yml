@@ -11,6 +11,10 @@
       id: oauth2-authentication
       info: Add an OAuth 2.0 authentication to your APIs
 
+    - name: OAuth 2.0 Introspection
+      id: oauth2-introspection
+      info: Integrate Kong with a third-party OAuth 2.0 Authorization Server
+
     - name: HMAC Authentication
       info: Add HMAC Authentication to your APIs
 

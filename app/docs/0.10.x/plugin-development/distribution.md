@@ -64,10 +64,10 @@ The contents of this archive should be close to the following:
     ├── INSTALL.txt
     ├── README.md
     ├── kong
-    │   └── plugins
-    │       └── <plugin-name>
-    │           ├── handler.lua
-    │           └── schema.lua
+    │   └── plugins
+    │       └── <plugin-name>
+    │           ├── handler.lua
+    │           └── schema.lua
     └── <plugin-name>-<version>.rockspec
 
 [Back to TOC](#table-of-contents)
