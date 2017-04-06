@@ -44,17 +44,17 @@ You can start Kong with the `start` command :
 service kong  start
 ```
 
-You can start Kong with the `reload` command :
+You can reload Kong with the `reload` command :
 ```
 service kong  reload
 ```
 
-You can start Kong with the `restart` command :
+You can restart Kong with the `restart` command :
 ```
 service kong  restart
 ```
 
-You can start Kong with the `stop` command :
+You can stop Kong with the `stop` command :
 ```
 service kong  stop
 ```
@@ -63,7 +63,7 @@ service kong  stop
 
 ##### Requires
 
-If Kong need to start another service before starting itself, `Requires` option can be added in `[Unit]` section :
+If Kong needs to start another service (like a database service) before starting itself, `Requires` option can be added in `[Unit]` section :
 ```text
 [Unit]
 ...
