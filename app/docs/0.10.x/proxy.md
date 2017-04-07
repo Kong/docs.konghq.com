@@ -581,7 +581,7 @@ Kong will send the request over HTTP/1.1, and set the following headers:
 - `X-Real-IP: <$remote_addr>`, where `$remote_addr` is the variable bearing
   the same name provided by
   [ngx_http_core_module][ngx-remote-addr-variable]. Please note that the
-  `$remote_addr` is likely overwritten by
+  `$remote_addr` is likely overridden by
   [ngx_http_realip_module][ngx-http-realip-module].
 - `X-Forwarded-For: <address>`, where `<address>` is the the content of
   `$realip_remote_addr` provided by the
@@ -590,17 +590,17 @@ Kong will send the request over HTTP/1.1, and set the following headers:
 - `X-Forwarded-Proto: <protocol>`, where `<protocol>` is the protocol used by
   the client. In the case where `$realip_remote_addr` is one of the **trusted**
   addresses, the request header with the same name gets forwarded if provided.
-  Otherwise the value of `$scheme` variable provided by the
+  Otherwise, the value of `$scheme` variable provided by the
   [ngx_http_core_module][ngx-scheme-variable] will be used.
-- `X-Forwarded-Host: <host>`, where `<host>` is the host name send by
+- `X-Forwarded-Host: <host>`, where `<host>` is the host name sent by
   the client. In the case where `$realip_remote_addr` is one of the **trusted**
   addresses, the request header with the same name gets forwarded if provided.
-  Otherwise the value of `$host` variable provided by the
+  Otherwise, the value of `$host` variable provided by the
   [ngx_http_core_module][ngx-host-variable] will be used.
 - `X-Forwarded-Port: <port>`, where `<port>` is the port of the server which
   accepted a request. In the case where `$realip_remote_addr` is one of the
   **trusted** addresses, the request header with the same name gets forwarded
-  if provided. Otherwise the value of `$server_port` variable provided by the
+  if provided. Otherwise, the value of `$server_port` variable provided by the
   [ngx_http_core_module][ngx-server-port-variable] will be used.
 
 All the other request headers are forwarded as-is by Kong.
