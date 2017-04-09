@@ -57,12 +57,13 @@ layout: default
           <ul>
             <li><a href="../../modules/kong.dao">kong.dao</a></li>
             <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
+            <li><a href="../../modules/kong.plugins.galileo.alf">kong.plugins.galileo.alf</a></li>
+            <li><a href="../../modules/kong.plugins.galileo.buffer">kong.plugins.galileo.buffer</a></li>
             <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
-            <li><a href="../../modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
-            <li><a href="../../modules/kong.tools.io">kong.tools.io</a></li>
             <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
             <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
             <li>kong.tools.utils</li>
+            <li><a href="../../modules/spec.helpers">spec.helpers</a></li>
           </ul>
         </li>
       </ul>
@@ -78,12 +79,23 @@ layout: default
  across Kong. If not, a local function in the appropriate module is prefered.</p>
 
 
+<h3>Info:</h3>
+<ul>
+</ul>
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
   <tr>
     <td class="name"><a href="#add_error">add_error (errors, k, v)</a></td>
     <td class="summary">Add an error message to a key/value table.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#check_hostname">check_hostname (address)</a></td>
+    <td class="summary">parses and validates a hostname.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#check_https">check_https (allow_terminated)</a></td>
+    <td class="summary">Checks whether a request is https or was originally https (but already terminated).</td>
   </tr>
   <tr>
     <td class="name"><a href="#concat">concat (...)</a></td>
@@ -99,8 +111,16 @@ layout: default
  Tries to mimic ngx_lua's <code>ngx.encode_args</code>, but also percent-encode querystring values.</td>
   </tr>
   <tr>
+    <td class="name"><a href="#format_host">format_host (p1, p2)</a></td>
+    <td class="summary">Formats an ip address or hostname with an (optional) port for use in urls.</td>
+  </tr>
+  <tr>
     <td class="name"><a href="#get_hostname">get_hostname ()</a></td>
     <td class="summary">Retrieves the hostname of the local machine</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#hostname_type">hostname_type (name)</a></td>
+    <td class="summary">checks the hostname type; ipv4, ipv6, or name.</td>
   </tr>
   <tr>
     <td class="name"><a href="#is_array">is_array (t)</a></td>
@@ -111,8 +131,36 @@ layout: default
     <td class="summary">Try to load a module.</td>
   </tr>
   <tr>
+    <td class="name"><a href="#normalize_ip">normalize_ip (address)</a></td>
+    <td class="summary">verifies and normalizes ip adresses and hostnames.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#normalize_ipv4">normalize_ipv4 (address)</a></td>
+    <td class="summary">parses, validates and normalizes an ipv4 address.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#normalize_ipv6">normalize_ipv6 (address)</a></td>
+    <td class="summary">parses, validates and normalizes an ipv6 address.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#pack">pack (...)</a></td>
+    <td class="summary">packs a set of arguments in a table.</td>
+  </tr>
+  <tr>
     <td class="name"><a href="#random_string">random_string ()</a></td>
     <td class="summary">Generates a random unique string</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#shallow_copy">shallow_copy (orig)</a></td>
+    <td class="summary">Copies a table into a new table.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#split">split ()</a></td>
+    <td class="summary">splits a string.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#strip">strip ()</a></td>
+    <td class="summary">strips whitespace from a string.</td>
   </tr>
   <tr>
     <td class="name"><a href="#table_contains">table_contains (arr, val)</a></td>
@@ -123,8 +171,16 @@ layout: default
     <td class="summary">Merges two table together.</td>
   </tr>
   <tr>
-    <td class="name"><a href="#table_size">table_size (t)</a></td>
-    <td class="summary">Calculates a table size.</td>
+    <td class="name"><a href="#unpack">unpack (t, i, j)</a></td>
+    <td class="summary">unpacks a table to a list of arguments.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#uuid">uuid ()</a></td>
+    <td class="summary">Generates a v4 uuid.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#validate_header_name">validate_header_name (name)</a></td>
+    <td class="summary">Validates a header name.</td>
   </tr>
 </table>
 
@@ -161,6 +217,62 @@ layout: default
     <ul>
       <li>
         The <code>errors</code> table with the new error inserted.
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="check_hostname">check_hostname</a></h4>
+  </dt>
+  <dd>
+    parses and validates a hostname.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">address</code>
+          the string containing the hostname (formats; name, name:port)
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        hostname (string) + port (number or nil), or alternatively nil+error
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="check_https">check_https</a></h4>
+  </dt>
+  <dd>
+    Checks whether a request is https or was originally https (but already terminated).
+ It will check in the current request (global <code>ngx</code> table). If the header <code>X-Forwarded-Proto</code> exists
+ with value <code>https</code> then it will also be considered as an https connection.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">allow_terminated</code>
+          if truthy, the <code>X-Forwarded-Proto</code> header will be checked as well.
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        boolean or nil+error in case the header exists multiple times
       </li>
     </ul>
 
@@ -232,7 +344,7 @@ layout: default
     <ul>
         <li>
           <code class="parameter">args</code>
-          <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
           A key/value table containing the query args to encode.
         </li>
         <li>
@@ -245,7 +357,7 @@ layout: default
     <h5>Returns:</h5>
     <ul>
       <li>
-        <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         A valid querystring (without the prefixing '?')
       </li>
     </ul>
@@ -255,6 +367,47 @@ layout: default
     <ul>
     </ul>
 
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="format_host">format_host</a></h4>
+  </dt>
+  <dd>
+    Formats an ip address or hostname with an (optional) port for use in urls.
+ Supports ipv4, ipv6 and names.</p>
+
+<p> Explictly accepts 'nil+error' as input, to pass through any errors from the normalizing and name checking functions.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">p1</code>
+          address to format, either string with name/ip, table returned from <a href="../modules/kong.tools.utils.html#normalize_ip">normalize_ip</a>, or from the <code>socket.url</code> library.
+        </li>
+        <li>
+          <code class="parameter">p2</code>
+          port (optional) if p1 is a table, then this port will be inserted if no port-field is in the table
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        formatted address or nil+error
+      </li>
+    </ul>
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="keyword">local</span> addr, err = format_ip(normalize_ip(<span class="string">"001.002.003.004:123"</span>))  <span class="comment">--&gt; "1.2.3.4:123"
+</span><span class="keyword">local</span> addr, err = format_ip(normalize_ip(<span class="string">"::1"</span>))                  <span class="comment">--&gt; "[0000:0000:0000:0000:0000:0000:0000:0001]"
+</span><span class="keyword">local</span> addr, err = format_ip(<span class="string">"::1"</span>, <span class="number">80</span>))                           <span class="comment">--&gt; "[::1]:80"
+</span><span class="keyword">local</span> addr, err = format_ip(check_hostname(<span class="string">"//bad..name\\"))      --&gt; nil, "</span>invalid hostname: ..."</pre></li>
+    </ul>
 
 
   </dd>
@@ -275,6 +428,41 @@ layout: default
 
 
 
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="hostname_type">hostname_type</a></h4>
+  </dt>
+  <dd>
+    checks the hostname type; ipv4, ipv6, or name.
+ Type is determined by exclusion, not by validation. So if it returns 'ipv6' then
+ it can only be an ipv6, but it is not necessarily a valid ipv6 address.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">name</code>
+          the string to check (this may contain a portnumber)
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        string either; 'ipv4', 'ipv6', or 'name'
+      </li>
+    </ul>
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example">hostname_type(<span class="string">"123.123.123.123"</span>)  <span class="comment">--&gt;  "ipv4"
+</span>hostname_type(<span class="string">"::1"</span>)              <span class="comment">--&gt;  "ipv6"
+</span>hostname_type(<span class="string">"some::thing"</span>)      <span class="comment">--&gt;  "ipv6", but invalid...</span></pre></li>
+    </ul>
 
 
   </dd>
@@ -329,9 +517,114 @@ layout: default
         success A boolean indicating wether the module was found.
       </li>
       <li>
-        module The retrieved module.
+        module The retrieved module, or the error in case of a failure
       </li>
     </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="normalize_ip">normalize_ip</a></h4>
+  </dt>
+  <dd>
+    verifies and normalizes ip adresses and hostnames.  Supports ipv4, ipv4:port, ipv6, [ipv6]:port, name, name:port.
+ Returned ipv4 addresses will have no leading zero's, ipv6 will be fully expanded without brackets.
+ Note: a name will not be normalized!
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">address</code>
+          string containing the address
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        table with the following fields: <code>host</code> (string; normalized address, or name), <a href="https://www.lua.org/manual/5.1/manual.html#pdf-type">type</a> (string; 'ipv4', 'ipv6', 'name'), and <code>port</code> (number or nil), or alternatively nil+error on invalid input
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="normalize_ipv4">normalize_ipv4</a></h4>
+  </dt>
+  <dd>
+    parses, validates and normalizes an ipv4 address.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">address</code>
+          the string containing the address (formats; ipv4, ipv4:port)
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        normalized address (string) + port (number or nil), or alternatively nil+error
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="normalize_ipv6">normalize_ipv6</a></h4>
+  </dt>
+  <dd>
+    parses, validates and normalizes an ipv6 address.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">address</code>
+          the string containing the address (formats; ipv6, [ipv6], [ipv6]:port)
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        normalized expanded address (string) + port (number or nil), or alternatively nil+error
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="pack">pack</a></h4>
+  </dt>
+  <dd>
+    packs a set of arguments in a table.
+ Explicitly sets field <code>n</code> to the number of arguments, so it is <code>nil</code> safe
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">...</code>
+
+        </li>
+    </ul>
+
 
 
 
@@ -352,6 +645,64 @@ layout: default
         string  The random string (a uuid without hyphens)
       </li>
     </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="shallow_copy">shallow_copy</a></h4>
+  </dt>
+  <dd>
+    Copies a table into a new table.
+ neither sub tables nor metatables will be copied.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">orig</code>
+          The table to copy
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        Returns a copy of the input table
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="split">split</a></h4>
+  </dt>
+  <dd>
+    splits a string.
+ just a placeholder to the penlight <code>pl.stringx.split</code> function
+
+
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="strip">strip</a></h4>
+  </dt>
+  <dd>
+    strips whitespace from a string.
+ just a placeholder to the penlight <code>pl.stringx.strip</code> function
+
+
 
 
 
@@ -423,24 +774,75 @@ layout: default
   </dd>
   <hr />
   <dt>
-    <h4><a name="table_size">table_size</a></h4>
+    <h4><a name="unpack">unpack</a></h4>
   </dt>
   <dd>
-    Calculates a table size.
- All entries both in array and hash part.
+    unpacks a table to a list of arguments.
+ Explicitly honors the <code>n</code> field if given in the table, so it is <code>nil</code> safe
 
     <h5>Parameters:</h5>
     <ul>
         <li>
           <code class="parameter">t</code>
-          The table to use
+
+        </li>
+        <li>
+          <code class="parameter">i</code>
+
+        </li>
+        <li>
+          <code class="parameter">j</code>
+
+        </li>
+    </ul>
+
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="uuid">uuid</a></h4>
+  </dt>
+  <dd>
+    Generates a v4 uuid.
+
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        string with uuid
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="validate_header_name">validate_header_name</a></h4>
+  </dt>
+  <dd>
+    Validates a header name.
+ Checks characters used in a header name to be valid, as per nginx only
+ a-z, A-Z, 0-9 and '-' are allowed.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">name</code>
+          (string) the header name to verify
         </li>
     </ul>
 
     <h5>Returns:</h5>
     <ul>
       <li>
-        number The size
+        the valid header name, or <code>nil+error</code>
       </li>
     </ul>
 

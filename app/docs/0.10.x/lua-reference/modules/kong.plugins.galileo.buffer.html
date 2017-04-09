@@ -1,5 +1,5 @@
 ---
-title: Lua Reference - kong.plugins.basic-auth.crypto
+title: Lua Reference - kong.plugins.galileo.buffer
 layout: default
 ---
 
@@ -56,9 +56,9 @@ layout: default
           <h5>Modules</h5>
           <ul>
             <li><a href="../../modules/kong.dao">kong.dao</a></li>
-            <li>kong.plugins.basic-auth.crypto</li>
+            <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
             <li><a href="../../modules/kong.plugins.galileo.alf">kong.plugins.galileo.alf</a></li>
-            <li><a href="../../modules/kong.plugins.galileo.buffer">kong.plugins.galileo.buffer</a></li>
+            <li>kong.plugins.galileo.buffer</li>
             <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
             <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
             <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
@@ -73,9 +73,8 @@ layout: default
   <div class="page-content-container">
   <div class="page-content">
     <div class="content">
-<h1><code>kong.plugins.basic-auth.crypto</code></h1>
-<p>Salt the password
- Password is salted with the credential's consumer_id (long enough, unique)</p>
+<h1><code>kong.plugins.galileo.buffer</code></h1>
+<p>Timer handlers</p>
 <p></p>
 
 
@@ -83,8 +82,8 @@ layout: default
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
   <tr>
-    <td class="name"><a href="#encrypt">encrypt (credential)</a></td>
-    <td class="summary">Encrypt the password field credential table</td>
+    <td class="name"><a href="#new">new (conf)</a></td>
+    <td class="summary">Buffer</td>
   </tr>
 </table>
 
@@ -95,25 +94,19 @@ layout: default
 <dl class="function">
   <hr />
   <dt>
-    <h4><a name="encrypt">encrypt</a></h4>
+    <h4><a name="new">new</a></h4>
   </dt>
   <dd>
-    Encrypt the password field credential table
+    Buffer
 
     <h5>Parameters:</h5>
     <ul>
         <li>
-          <code class="parameter">credential</code>
-          The basic auth credential table
+          <code class="parameter">conf</code>
+
         </li>
     </ul>
 
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        hash of the salted credential's password
-      </li>
-    </ul>
 
 
 
