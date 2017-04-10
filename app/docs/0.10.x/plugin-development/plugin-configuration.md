@@ -39,6 +39,7 @@ This module is to return a Lua table with properties that will define how your p
 | Property name                 | Lua type    | Default          | Description
 |-------------------------------|-------------|------------------|-------------
 | `no_consumer`                 | Boolean     | `false`          | If true, it will not be possible to apply this plugin to a specific Consumer. This plugin must be API-wide only. For example: authentication plugins.
+| `no_api`                      | Boolean     | `false`          | If true, it will not be possible to apply this plugin to a specific API. This plugin must be global only for every API.
 | `fields`                      | Table       | `{}`             | Your plugin's **schema**. A key/value table of available properties and their rules.
 | `self_check`                  | Function    | `nil`            | A function to implement if you want to perform any custom validation before accepting the plugin's configuration.
 
@@ -58,6 +59,7 @@ Here is an example of a potential `schema.lua` file:
 ```lua
 return {
   no_consumer = true, -- this plugin will only be API-wide,
+  no_api = false, -- this plugin can be applied to one or more APIs
   fields = {
     -- Describe your plugin's configuration's schema here.
   },
