@@ -99,7 +99,6 @@ gulp.task('images', function () {
     .pipe($.imagemin())
     .pipe(gulp.dest(paths.dist + 'assets/images'))
     .pipe($.size())
-    .pipe(browserSync.stream())
 })
 
 gulp.task('fonts', function () {
@@ -159,7 +158,6 @@ gulp.task('html', ['jekyll'], function () {
     }))
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
-    .pipe(browserSync.stream({ once: true }))
 })
 
 gulp.task('docs', function (cb) {
@@ -231,10 +229,20 @@ gulp.task('deploy', function (cb) {
 })
 
 gulp.task('watch', function () {
-  gulp.watch(sources.content, ['html'])
+  gulp.watch(sources.content, ['html-watch'])
   gulp.watch(sources.styles, ['styles'])
-  gulp.watch(sources.images, ['images'])
+  gulp.watch(sources.images, ['images-watch'])
   gulp.watch(sources.js, ['javascripts'])
+})
+
+gulp.task('html-watch', ['html'], function (cb) {
+  browserSync.reload()
+  cb()
+})
+
+gulp.task('images-watch', ['images'], function (cb) {
+  browserSync.reload()
+  cb()
 })
 
 gulp.task('default', ['clean'], function (cb) {
