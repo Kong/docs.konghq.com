@@ -60,6 +60,9 @@
     - name: AWS Lambda
       info: Invoke and manage AWS Lambda functions from Kong
 
+    - name: OpenWhisk
+      info: Invoke and manage OpenWhisk actions from Kong
+
 - name: Analytics & Monitoring
   info: Visualize, inspect and monitor APIs and microservices traffic
   plugins:
