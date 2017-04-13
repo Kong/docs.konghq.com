@@ -70,7 +70,7 @@ form parameter                                    | default | description
 `name`                                            |      | The name of the plugin to use, in this case: `oauth2`
 `config.scopes`                                    |      | Describes an array of comma separated scope names that will be available to the end user
 `config.mandatory_scope`<br>*optional*             | `false` | An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
-`config.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
+`config.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how many seconds a should token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
 `config.enable_authorization_code`<br>*optional*   | `false`  | An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
 `config.enable_client_credentials`<br>*optional*   | `false` | An optional boolean value to enable the Client Credentials Grant flow ([RFC 6742 Section 4.4][client-credentials])
 `config.enable_implicit_grant`<br>*optional*       | `false` | An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
