@@ -426,11 +426,15 @@ Default: `60`
 ##### **real_ip_header**
 
 Defines the request header field whose value will be used to replace the client
-address.
+address. The special value of `proxy_protocol` will not only set the real IP from
+the proxy protocol header but it will also switch the Kong proxy to the proxy
+protocol mode using Nginx `listen` directive.
 
 See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
 
 Default: `X-Real-IP`
+
+Example: `X-Forwarded-For`
 
 ---
 
@@ -438,11 +442,15 @@ Default: `X-Real-IP`
 
 If recursive search is **disabled**:
 
-* The original client request that matches one of the trusted addresses is replaced by the last address sent in the request header field defined by `real_ip_header`.
+* The original client request that matches one of the trusted addresses is
+  replaced by the last address sent in the request header field defined by
+  `real_ip_header`.
 
 If recursive search is **enabled**:
 
-* The original client request that matches one of the trusted addresses is replaced by the last non-trusted address sent in the request header field defined by `real_ip_header`.
+* The original client request that matches one of the trusted addresses is
+  replaced by the last non-trusted address sent in the request header field
+  defined by `real_ip_header`.
 
 See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
 
@@ -455,6 +463,10 @@ Default: `off`
 Defines trusted addresses that are known to send correct replacement addresses.
 This is used by [ngx_http_realip_module][ngx-http-realip-module]
 (`set_real_ip_from` directive) and for setting `X-Forwarded-*` headers.
+
+Opposite to the default trust `none` is to configure trust `all` by setting the
+value to `0.0.0.0/0, ::/0`. It is always a good idea to keep defaults or list
+the specific trusted proxies here so that the remote IP cannot be spoofed.
 
 See http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from
 
