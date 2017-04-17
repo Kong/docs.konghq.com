@@ -58,7 +58,7 @@ service depending on their headers, URI, and HTTP method.
 [proxy-proxying-behavior]: #proxying-behavior
 [proxy-load-balancing]: #1-load-balancing
 [proxy-plugins-execution]: #2-plugins-execution
-[proxy-proxying-upstream-timeouts]: #3-proxying-amp-upstream-timeouts
+[proxy-proxying-upstream-timeouts]: #3-proxying-upstream-timeouts
 [proxy-response]: #proxy-response
 [proxy-configuring-a-fallback-api]: #configuring-a-fallback-api
 [proxy-configuring-ssl-for-an-api]: #configuring-ssl-for-an-api
