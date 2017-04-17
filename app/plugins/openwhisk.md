@@ -28,7 +28,7 @@ or extend the function.
 You can either use the LuaRocks package manager to install the plugin
 
 ```bash
-$ luarocks install openwhisk
+$ luarocks install kong-plugin-openwhisk
 ```
 
 or install it from [source](https://github.com/Mashape/kong-plugin-openwhisk). 
