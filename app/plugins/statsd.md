@@ -54,7 +54,7 @@ parameter                     | default | description
 
 ## Metrics
 
-Plugin currently logs four metrics to the StatsD server: `request_count`, `request_size`, `response_size`, `latency`. `status_count`, `unique_users`, `request_per_user`, and `upstream_latency`.
+Plugin currently logs four metrics to the StatsD server: `request_count`, `request_size`, `response_size`, `latency`. `status_count`, and `upstream_latency`.
 
 Metric                     | description | namespace
 ---                        | ---         | -----
