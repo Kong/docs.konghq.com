@@ -686,7 +686,7 @@ HTTP/1.1 201 Created
 The `snis` form parameter is a sugar parameter, directly inserting an SNI and
 associating the uploaded certificate to it.
 
-You must know register the following API withing Kong. We'll route requests to
+You must now register the following API within Kong. We'll route requests to
 this API using the Host header for convenience:
 
 ```bash
