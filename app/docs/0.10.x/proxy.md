@@ -676,9 +676,9 @@ SSL certificate and key via the Admin API:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/certificates \
-    -d "cert=@/path/to/cert.pem" \
-    -d "key=@/path/to/cert.key" \
-    -d "snis=ssl-example.com,other-ssl-example.com"
+    -F "cert=@/path/to/cert.pem" \
+    -F "key=@/path/to/cert.key" \
+    -F "snis=ssl-example.com,other-ssl-example.com"
 HTTP/1.1 201 Created
 ...
 ```
