@@ -57,6 +57,7 @@ form parameter                      | default        | description
 `config.redis_password`<br>*optional* |      | When using the `redis` policy, this property specifies the password to connect to the Redis server.
 `config.redis_timeout`<br>*optional* | `2000` | When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
 `config.redis_database`<br>*optional* | `0` | When using the `redis` policy, this property specifies Redis database to use.
+`config.hide_client_headers`<br>*optional* | `false` | Do not send informative headers to the client about their rate limiting status.
 
 ----
 
@@ -97,6 +98,8 @@ X-RateLimit-Remaining-Videos-Second: 5
 X-RateLimit-Limit-Videos-Minute: 10
 X-RateLimit-Remaining-Videos-Minute: 10
 ```
+
+Note that if the `hide_client_headers` config option is set, these headers will never be sent to the client.
 
 If any of the limits configured is being reached, the plugin will return a `HTTP/1.1 429` status code and an empty body.
 
