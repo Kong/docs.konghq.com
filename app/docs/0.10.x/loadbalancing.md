@@ -82,7 +82,7 @@ especially with a very small (or even 0) `ttl` value.
 
 The DNS resolver will start resolving the following record types in order:
 
-  1. The last succesful type previously resolved
+  1. The last successful type previously resolved
   2. SRV record
   3. A record
   4. CNAME record
@@ -127,7 +127,7 @@ management API. This operation is relatively cheap. Changing the upstream
 itself is more expensive as the balancer will need to be rebuilt when the 
 number of slots change for example.
 
-The only occurence where the balancer will be rebuilt automatically is when 
+The only occurrence where the balancer will be rebuilt automatically is when 
 the target history is cleaned; other than that, it will only rebuild upon changes.
 
 Within the balancer there are the positions (from 1 to `slots`) on the ring,
