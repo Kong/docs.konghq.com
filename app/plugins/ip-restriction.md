@@ -33,8 +33,10 @@ form parameter                  | default | description
 ---                             | ---     | ---
 `name`                          |         | The name of the plugin to use, in this case: `ip-restriction`
 `consumer_id`<br>*optional*     |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.whitelist`<br>*semi-optional* |   | Comma separated list of IPs or CIDR ranges to whitelist. At least one between `config.whitelist` or `config.blacklist` must be specified.
-`config.blacklist`<br>*semi-optional* |   | Comma separated list of IPs or CIDR ranges to blacklist. At least one between `config.whitelist` or `config.blacklist` must be specified.
+`config.whitelist`<br>*semi-optional* |   | Comma separated list of IPs or CIDR ranges to whitelist. One of `config.whitelist` or `config.blacklist` must be specified.
+`config.blacklist`<br>*semi-optional* |   | Comma separated list of IPs or CIDR ranges to blacklist. One of `config.whitelist` or `config.blacklist` must be specified.
+
+Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 [api-object]: /docs/latest/admin-api/#api-object
