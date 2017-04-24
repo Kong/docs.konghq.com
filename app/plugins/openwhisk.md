@@ -76,10 +76,9 @@ Attribute                                | Description
 `config.service_token`<br>*optional*     | The service token to access Openwhisk resources.
 `config.https_verify`<br>*optional*      | Set it to true to authenticate Openwhisk server. Defaults to `false`.
 `config.https`<br>*optional*             | Use of HTTPS to connect with the OpenWhisk server. Defaults to `true`.
-`config.timeout`<br>*optional*           | Timeout in milliseconds before aborting a connection to OpenWhisk server. Defaults to `60000`.
 `config.result`<br>*optional*            | Return only the result of the `Action` invoked. Defaults to `true`.
+`config.timeout`<br>*optional*           | Timeout in milliseconds before aborting a connection to OpenWhisk server. Defaults to `60000`.
 `config.keepalive`<br>*optional*         | Time in milliseconds for which an idle connection to OpenWhisk server will live before being closed. Defaults to `60000`.
-
 
 
 Note: If `config.https_verify` is set as `true` then the server certificate
