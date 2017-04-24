@@ -195,7 +195,7 @@
           url: /admin-api/#delete-certificate
 
     - text: SNI Object routes
-      url: /admin-api/#sni-object
+      url: /admin-api/#sni-objects
       items:
         - text: Add SNI
           url: /admin-api/#add-sni
