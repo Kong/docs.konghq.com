@@ -88,7 +88,7 @@ A [Consumer][consumer-object] can have many JWT credentials.
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/jwt
+$ curl -X POST http://kong:8001/consumers/{consumer}/jwt -H "Content-Type: application/x-www-form-urlencoded"
 HTTP/1.1 201 Created
 
 {
