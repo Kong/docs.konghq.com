@@ -17,7 +17,7 @@ nav:
 ---
 
 This plugin invokes
-[OpenWhisk action](https://github.com/openwhisk/openwhisk/blob/master/docs/actions.md).
+[OpenWhisk Action](https://github.com/openwhisk/openwhisk/blob/master/docs/actions.md).
 It can be used in combination with other request plugins to secure, manage
 or extend the function.
 
@@ -76,9 +76,9 @@ Attribute                                | Description
 `config.service_token`<br>*optional*     | The service token to access Openwhisk resources.
 `config.https_verify`<br>*optional*      | Set it to true to authenticate Openwhisk server. Defaults to `false`.
 `config.https`<br>*optional*             | Use of HTTPS to connect with the OpenWhisk server. Defaults to `true`.
-`config.timeout`<br>*optional*           | Timeout in seconds before aborting a connection to OpenWhisk server. Defaults to `60 seconds`.
-`config.result`<br>*optional*            | Return only the result of the Action invoked. Defaults to `true`.
-`config.keepalive`<br>*optional*         | Defines for how long an idle connection to OpenWhisk server will live before being closed. Defaults to `60 seconds`.
+`config.result`<br>*optional*            | Return only the result of the `Action` invoked. Defaults to `true`.
+`config.timeout`<br>*optional*           | Timeout in milliseconds before aborting a connection to OpenWhisk server. Defaults to `60000`.
+`config.keepalive`<br>*optional*         | Time in milliseconds for which an idle connection to OpenWhisk server will live before being closed. Defaults to `60000`.
 
 
 Note: If `config.https_verify` is set as `true` then the server certificate
@@ -93,7 +93,7 @@ For this demonstration we are running Kong and
 [Openwhisk platform](https://github.com/openwhisk/openwhisk) locally on a
 Vagrant machine on a MacOS.
 
-1. Create a javascript action `hello` with the following code snippet on the
+1. Create a javascript Action `hello` with the following code snippet on the
 Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli).
 
     ```javascript
