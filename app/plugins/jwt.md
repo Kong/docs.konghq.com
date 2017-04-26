@@ -197,7 +197,7 @@ claim name | verification
 
 ### (**Optional**) Base64 encoded secret
 
-If your secret contains binary data (such as secrets provided by services like Auth0), you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
+If your secret contains binary data, you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 
 ```bash
 $ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
@@ -271,6 +271,34 @@ $ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
 If you run the commands above, the public key will be written in `public.pem`, while the private key will be written in `private.pem`.
+
+### Using Kong with Auth0
+
+Auth0 is a popular solution for Authorization, and relies heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publically hosts the public key certificate used to sign tokens. Account name is referred to "COMPANYNAME" for the sake of the guide.
+
+To get started, create a basic API. 
+
+```$ http POST http://localhost:8001/apis name=example-api hosts=example.com upstream_url=http://httpbin.org```
+
+Add the JWT Plugin.
+
+```$ http POST http://localhost:8001/apis/example-api/plugins name=jwt```
+
+Download your Auth0 account's X509 Certificate.
+
+```$ http https://COMPANYNAME.auth0.com/pem --download```
+
+Extract the public key from the X509 Certificate.
+
+```$ openssl x509 -pubkey -noout -in COMPANYNAME.pem > pubkey.pem```
+
+Create a consumer with the Auth0 public key.
+
+```$ http post http://localhost:8001/consumers/adama/jwt  algorithm=RS256 rsa_public_key@./pubkey.pem key=https://COMPANYNAME.auth0.com/ -f```
+
+Success! Send requests through, only valid tokens will work.
+
+```$ http GET http://localhost:8000 Host:example.com Authorization:"Bearer {{TOKEN}}" -v```
 
 ### Upstream Headers
 
