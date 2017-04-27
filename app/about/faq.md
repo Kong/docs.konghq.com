@@ -132,7 +132,7 @@ you feel comfortable scaling PostgreSQL yourself. It is also worth pointing out
 that many cloud providers can host and scale PostgreSQL instances for you, most
 notably [Amazon RDS](https://aws.amazon.com/rds/).
 
-Again, since Kong maintain its own cache, performance should be of concern for
+Again, since Kong maintain its own cache, performance should not be of concern for
 most use-cases, making PostgreSQL a good candidate for your Kong cluster too.
 
 ----
