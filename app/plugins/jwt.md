@@ -197,7 +197,7 @@ claim name | verification
 
 ### (**Optional**) Base64 encoded secret
 
-If your secret contains binary data (such as secrets provided by services like Auth0), you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
+If your secret contains binary data, you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 
 ```bash
 $ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
@@ -271,6 +271,55 @@ $ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
 If you run the commands above, the public key will be written in `public.pem`, while the private key will be written in `private.pem`.
+
+### Using Kong with Auth0
+
+Auth0 is a popular solution for Authorization, and relies heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publically hosts the public key certificate used to sign tokens. Account name is referred to "COMPANYNAME" for the sake of the guide.
+
+To get started, create a basic API. _Note: Auth0 does not use base64 encoded secrets._
+
+```bash
+$ curl -X POST http://localhost:8001/apis \
+  --data "name={api}" \
+  --data "hosts=example.com" \
+  --data "upstream_url=http://httpbin.org"
+```
+
+Add the JWT Plugin.
+
+```bash
+$ curl -X  POST http://localhost:8001/apis/{api}/plugins --data "name=jwt"
+```
+
+Download your Auth0 account's X509 Certificate.
+
+```bash 
+$ curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.auth0.com/pem
+```
+
+Extract the public key from the X509 Certificate.
+
+```bash
+$ openssl x509 -pubkey -noout -in {COMPANYNAME}.pem > pubkey.pem
+```
+
+Create a consumer with the Auth0 public key. The JWT plugin by default validates the `key_claim_name` against the `iss` field in the token. Keys issued by Auth0 have their `iss` field set to `http://{COMPANYNAME}.auth0.com/`. You can use [jwt.io](https://jwt.io) to validate your the `iss` field for the `key` parameter when creating the consumer.
+
+```bash
+$ curl -X POST http://kong:8001/consumers \
+    --data "username=<USERNAME>" \
+    --data "custom_id=<CUSTOM_ID>"
+$ curl -X POST http://localhost:8001/consumers/{consumer}/jwt \
+    -F "algorithm=RS256" \
+    -F "rsa_public_key=@./pubkey.pem" \
+    -F "key=https://{COMPAYNAME}.auth0.com/" # the `iss` field
+ ```
+
+Success! Send requests through, only tokens signed by Auth0 will work.
+
+```bash
+$ curl http://localhost:8000 -H "Host:example.com" -H "Authorization:Bearer {{TOKEN}}"
+```
 
 ### Upstream Headers
 
