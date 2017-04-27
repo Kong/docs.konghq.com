@@ -21,6 +21,7 @@ nav:
       - label: (Optional) Base64 encoded secret
       - label: Craft a JWT with public/private keys (RS256)
       - label: Generate public/private keys
+      - label: Using the JWT plugin with Auth0
       - label: Upstream Headers
 ---
 
@@ -272,33 +273,70 @@ $ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 
 If you run the commands above, the public key will be written in `public.pem`, while the private key will be written in `private.pem`.
 
-### Using Kong with Auth0
+### Using the JWT plugin with Auth0
 
-Auth0 is a popular solution for Authorization, and relies heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publically hosts the public key certificate used to sign tokens. Account name is referred to "COMPANYNAME" for the sake of the guide.
+[Auth0](https://auth0.com/) is a popular solution for Authorization, and relies
+heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publically
+hosts the public key certificate used to sign tokens. Account name is referred
+to "COMPANYNAME" for the sake of the guide.
 
-To get started, create a basic API. 
+To get started, create an API. _Note: Auth0 does not use base64 encoded
+secrets._
 
-```$ http POST http://localhost:8001/apis name=example-api hosts=example.com upstream_url=http://httpbin.org```
+```bash
+$ curl -i -X POST http://localhost:8001/apis \
+    --data "name={api}" \
+    --data "hosts=example.com" \
+    --data "upstream_url=http://httpbin.org"
+```
 
-Add the JWT Plugin.
+Add the JWT Plugin:
 
-```$ http POST http://localhost:8001/apis/example-api/plugins name=jwt```
+```bash
+$ curl -X POST http://localhost:8001/apis/{api}/plugins \
+    --data "name=jwt"
+```
 
-Download your Auth0 account's X509 Certificate.
+Download your Auth0 account's X509 Certificate:
 
-```$ http https://COMPANYNAME.auth0.com/pem --download```
+```bash
+$ curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.auth0.com/pem
+```
 
-Extract the public key from the X509 Certificate.
+Extract the public key from the X509 Certificate:
 
-```$ openssl x509 -pubkey -noout -in COMPANYNAME.pem > pubkey.pem```
+```bash
+$ openssl x509 -pubkey -noout -in {COMPANYNAME}.pem > pubkey.pem
+```
 
-Create a consumer with the Auth0 public key.
+Create a Consumer with the Auth0 public key:
 
-```$ http post http://localhost:8001/consumers/adama/jwt  algorithm=RS256 rsa_public_key@./pubkey.pem key=https://COMPANYNAME.auth0.com/ -f```
+```bash
+$ curl -i -X POST http://kong:8001/consumers \
+    --data "username=<USERNAME>" \
+    --data "custom_id=<CUSTOM_ID>"
 
-Success! Send requests through, only valid tokens will work.
+$ curl -i -X POST http://localhost:8001/consumers/{consumer}/jwt \
+    -F "algorithm=RS256" \
+    -F "rsa_public_key=@./pubkey.pem" \
+    -F "key=https://{COMPAYNAME}.auth0.com/" # the `iss` field
+```
 
-```$ http GET http://localhost:8000 Host:example.com Authorization:"Bearer {{TOKEN}}" -v```
+The JWT plugin by default validates the `key_claim_name` against the `iss`
+field in the token. Keys issued by Auth0 have their `iss` field set to
+`http://{COMPANYNAME}.auth0.com/`. You can use [jwt.io](https://jwt.io) to
+validate the `iss` field for the `key` parameter when creating the
+Consumer.
+
+Send requests through, only tokens signed by Auth0 will work:
+
+```bash
+$ curl -i http://localhost:8000 \
+    -H "Host:example.com" \
+    -H "Authorization:Bearer {{TOKEN}}"
+```
+
+Success!
 
 ### Upstream Headers
 
