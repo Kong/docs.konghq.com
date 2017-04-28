@@ -421,6 +421,24 @@ exceeded, the least recently used connections are closed.
 
 Default: `60`
 
+---
+
+##### **server_tokens**
+
+Enables or disables emitting Kong version on error pages and in the `Server`
+or `Via` (in case the request was proxied) response header field.
+
+Default: `on`
+
+---
+
+##### **latency_tokens**
+
+Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency` 
+and `X-Kong-Upstream-Latency` response header fields.
+
+Default: `on`
+
 [Back to TOC](#table-of-contents)
 
 ---
