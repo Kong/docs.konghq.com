@@ -49,6 +49,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-resource-hints": "^0.1.2",
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.6",
