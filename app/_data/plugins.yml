@@ -7,6 +7,10 @@
     - name: Key Authentication
       info: Add a key authentication to your APIs
 
+    - name: OpenID Connect 1.0 RP
+      id: openid-connect-rp
+      info: Integrate Kong with a third-party OpenID Connect 1.0 Provider
+
     - name: OAuth 2.0 Authentication
       id: oauth2-authentication
       info: Add an OAuth 2.0 authentication to your APIs
