@@ -54,6 +54,9 @@
     - name: Request Size Limiting
       info: Block requests with bodies greater than a specific size
 
+    - name: Request Termination
+      info: Terminates all requests with a specific response
+
 - name: Serverless
   info: Invoke serverless functions in combination with other plugins
   plugins:
