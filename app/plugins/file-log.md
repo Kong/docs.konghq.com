@@ -17,6 +17,11 @@ nav:
 
 Append request and response data to a log file on disk.
 
+It is not recommended to use this plugin in production, it would be better to
+use another logging plugin, for example `syslog`, in those cases. Due to system
+limitations this plugin uses blocking file i/o, which will hurt performance,
+and hence is an anti-pattern for Kong installations.
+
 ----
 
 ## Configuration
@@ -38,6 +43,7 @@ form parameter                | default | description
 `name`                        |         | The name of the plugin to use, in this case: `file-log`
 `consumer_id`<br>*optional*   |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `config.path`                 |         | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
+`reopen`                      | `false` | Introduce in Kong `0.10.2`. Determines whether the log file is closed and reopened on every request. If the file is not reopened, and has been removed/rotated, the plugin will keep writing to the stale file descriptor, and hence lose information.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
