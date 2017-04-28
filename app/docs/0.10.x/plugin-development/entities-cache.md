@@ -38,23 +38,54 @@ Once you have defined your custom entities, you can cache them in-memory in your
 local cache = require "kong.tools.database_cache"
 ```
 
+There are 2 levels of cache:
+
+1. Lua memory cache (local to an nginx worker)
+   This can hold any type of Lua value.
+2. Shared memory cache - SHM (local to an nginx node, but shared between all workers)
+   This can only hold scalar values, and hence requires (de)serialization.
+
+When data is fetched from the database, it will be stored in both caches. Now if the same
+worker process requests the data again, it will retrieve the previously-deserialized 
+data from the Lua memory cache. If a different worker within the same nginx node requests
+that data, it will find the data in the SHM, deserialize it (and store it in its own
+Lua memory cache) and then return it.
+
 This module exposes the following functions:
 
 | Function name                      | Description
 |------------------------------------|---------------------------
-| `ok, err = cache.set(key, value)`  | Stores a Lua object into the in-memory cache with the specified key. The value can be any Lua type, including tables. Returns `true` or `false`, and and `err` if the operation fails.
+| `ok, err = cache.set(key, value, ttl)`  | Stores a Lua object into the in-memory cache with the specified key (the optional ttl is in seconds). The value can be any Lua type, including tables. Returns `true` or `false`, and `err` if the operation fails.
 | `value = cache.get(key)`           | Retrieves the Lua object stored in a specific key.
 | `cache.delete(key)`                | Deletes the cache object stored at the specified key.
-| `newvalue, err = cache.incr(key, amount)` | Increments a number stored in the specified key, by an amount of units specified. The number needs to be already present in the cache or an error will be returned. If successful, it returns the new incremented value, otherwise an error.
-| `value = cache.get_or_set(key, function)` | This is an utility method that retrieves an object with the specified key, but if the object is `nil` then the passed function will be executed instead, whose return value will be used to store the object at the specified key. This effectively makes sure that the object is only loaded from the datastore one time, since every other invocation will load the object from the in-memory cache.
+| `ok, err = cache.sh_add(key, value, ttl) | Adds a new value to the SHM cache, optional ttl in seconds (if `nil` it never expires)
+| `ok, err = cache.sh_set(key, value, ttl) | Sets a new value under the specified key in the SHM, optional ttl in seconds (if `nil` it never expires)
+| `value = cache.sh_get(key)         | returns the value stored in the SHM under the key, or `nil` if not found
+| `cache.sh_delete(key)              | deletes a value from the SHM
+| `newvalue, err = cache.sh_incr(key, amount)` | Increments a number stored in SHM under the specified key, by an amount of units specified. The number needs to be already present in the cache or an error will be returned. If successful, it returns the newly-incremented value, otherwise an error.
+| `value, ... = cache.get_or_set(key, ttl, function, ...)` | This is a utility method that retrieves an object with the specified key, but if the object is `nil` then the passed function will be executed instead, whose return value will be used to store the object at the specified key. This effectively makes sure that the object is only loaded from the datastore one time, since every other invocation will load the object from the in-memory cache.
 
 Bringing back our authentication plugin example, to lookup a credential with a specific api-key, we would write something like:
 
 ```lua
 -- access.lua
 
-local credential
+local function load_entity_key(api_key)
+  -- IMPORTANT: the callback is executed inside a lock, hence we cannot terminate
+  -- a request here, we MUST always return.
+  local apikeys, err = dao.apikeys:find_by_keys({key = api_key}) -- Lookup in the datastore
+  if err then
+    return nil, err     -- errors must be returned, not dealt with here
+  end
+  if not apikeys then
+    return nil          -- nothing was found
+  end
+  -- assuming the key was unique, we always only have 1 value...
+  return apikeys[1] -- Return the credential (this will be also stored in-memory)
+end
 
+
+local credential
 -- Retrieve the apikey from the request querystring
 local apikey = request.get_uri_args().apikey
 if apikey then -- If the apikey has been passed, we can check if it exists
@@ -63,14 +94,11 @@ if apikey then -- If the apikey has been passed, we can check if it exists
   -- into the in-memory cache at the key: "apikeys."..apikey
   -- If it's not, then we lookup the datastore and return the credential object. Internally
   -- cache.get_or_set will save the value in-memory, and then return the credential.
-  credential = cache.get_or_set("apikeys."..apikey, function()
-    local apikeys, err = dao.apikeys:find_by_keys({key = apikey}) -- Lookup in the datastore
-    if err then
-      return responses.send_HTTP_INTERNAL_SERVER_ERROR(err)
-    elseif #apikeys == 1 then
-      return apikeys[1] -- Return the credential (this will be also stored in-memory)
-    end
-  end)
+  credential, err = cache.get_or_set("apikeys."..apikey, nil, load_entity_key, apikey)
+  if err then
+    -- here we can deal with the error returned by the callback
+    return response.HTTP_INTERNAL_SERVER_ERROR(err) 
+  end
 end
 
 if not credential then -- If the credential couldn't be found, show an error message
