@@ -495,6 +495,7 @@ name                            | description
 **cassandra_repl_strategy**     | If creating the keyspace for the first time, specify a replication strategy.
 **cassandra_repl_factor**       | Specify a replication factor for the `SimpleStrategy`.
 **cassandra_data_centers**      | Specify data centers for the `NetworkTopologyStrategy`.
+**cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations.
 
 [Back to TOC](#table-of-contents)
 
