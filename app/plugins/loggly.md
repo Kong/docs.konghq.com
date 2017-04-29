@@ -106,13 +106,18 @@ Every request will be transmitted to Loggly in [SYSLOG](https://en.wikipedia.org
         "upstream_send_timeout": 60000,
         "upstream_url": "http://httpbin.org"
     },
+    "consumer": {
+        "username": "demo",
+        "created_at": 1491847011000,
+        "id": "35b03bfc-7a5b-4a23-a594-aa350c585fa8"
+    },
     "latencies": {
         "proxy": 1430,
         "kong": 9,
         "request": 1921
     },
-    "started_at": 1433209822425,
-    "client_ip": "127.0.0.1"
+    "client_ip": "127.0.0.1",
+    "started_at": 1433209822425
 }
 ```
 
@@ -121,12 +126,14 @@ A few considerations on the above JSON object:
 * `request` contains properties about the request sent by the client
 * `response` contains properties about the response sent to the client
 * `api` contains Kong properties about the specific API requested
-* `authenticated_entity` contains Kong properties about the authenticated consumer (if an authentication plugin has been enabled)
+* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled)
+* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled)
 * `latencies` contains some data about the latencies involved:
   * `proxy` is the time it took for the final service to process the request
   * `kong` is the internal Kong latency that it took to run all the plugins
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
-
+* `client_ip` contains the original client IP address
+* `started_at` contains the UTC timestamp of when the API transaction has started to be processed.
 ----
 
 ## Kong Process Errors
