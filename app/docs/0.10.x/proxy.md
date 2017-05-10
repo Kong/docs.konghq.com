@@ -811,8 +811,8 @@ topic we just covered.
 
 [Back to TOC](#table-of-contents)
 
-[plugin-configuration-object]: /docs/{{page.kong_version}}/admin-api#plugin-configuration-object
-[plugin-development-guide]: /docs/{{page.kong_version}}/admin-api#plugin-development-guide
+[plugin-configuration-object]: /docs/{{page.kong_version}}/admin-api#plugin-object
+[plugin-development-guide]: /docs/{{page.kong_version}}/plugin-development
 [load-balancing-reference]: /docs/{{page.kong_version}}/loadbalancing
 [configuration-reference]: /docs/{{page.kong_version}}/configuration-reference
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
