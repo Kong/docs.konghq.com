@@ -806,14 +806,14 @@ This website is Open-Source and can be found at
 Feel free to provide feedback to this document there, or propose improvements!
 
 If not already done, we suggest that you also read the
-[Load balancing Reference][load-balancing-guide], as it closely relates to the
+[Load balancing Reference][load-balancing-reference], as it closely relates to the
 topic we just covered.
 
 [Back to TOC](#table-of-contents)
 
 [plugin-configuration-object]: /docs/{{page.kong_version}}/admin-api#plugin-configuration-object
 [plugin-development-guide]: /docs/{{page.kong_version}}/admin-api#plugin-development-guide
-[load-balancing-reference]: /docs/{{page.kong_version}}/admin-api#load-balancing-guide
+[load-balancing-reference]: /docs/{{page.kong_version}}/loadbalancing
 [configuration-reference]: /docs/{{page.kong_version}}/configuration-reference
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
 [API]: /docs/{{page.kong_version}}/admin-api
