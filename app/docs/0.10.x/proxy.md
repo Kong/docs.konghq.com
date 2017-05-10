@@ -802,7 +802,7 @@ mechanism of Kong, from how is a request matched to an API, to how to allow for
 using the WebSocket protocol or setup SSL for an API.
 
 This website is Open-Source and can be found at
-[github.com/Mashape/getkong.org][https://github.com/Mashape/getkong.org/].
+[github.com/Mashape/getkong.org](https://github.com/Mashape/getkong.org/).
 Feel free to provide feedback to this document there, or propose improvements!
 
 If not already done, we suggest that you also read the
