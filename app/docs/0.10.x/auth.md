@@ -200,12 +200,11 @@ the consumer, or the last plugin that will set its configured anonymous consumer
 tokens etc. will require authentication by the other configured auth plugins.
 
 <div class="alert alert-warning">
-  When multiple authentication plugins are enabled in an `OR` fashion on a given API, and it is desired that 
-  anonymous access be forbidden, then the [`request-termination` plugin][request-termination] should be
+  When multiple authentication plugins are enabled in an <tt>OR</tt> fashion on a given API, and it is desired that 
+  anonymous access be forbidden, then the <a href="/plugins/request-termination"><tt>request-termination</tt> plugin</a> should be
   configured on the anonymous consumer. Failure to do so will allow unauthorized requests.
 </div>
 
 
 [plugins]: https://getkong.org/plugins/
 [key-auth]: /plugins/key-authentication
-[request-termination]: /plugins/request-termination
