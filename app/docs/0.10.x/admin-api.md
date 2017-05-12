@@ -72,7 +72,7 @@ keep the configuration consistent across all nodes.
 
 The Admin API accepts 2 content types on every endpoint:
 
-- **x-www-form-urlencoded**
+- **application/x-www-form-urlencoded**
 
 Simple enough for basic request bodies, you will probably use it most of the time. Note that when sending nested values, Kong expects nested objects to be referenced with dotted keys. Example:
 
