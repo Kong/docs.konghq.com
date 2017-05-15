@@ -938,12 +938,12 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint patch">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint patch">/apis/{api name or id}/plugins/{plugin id}</div>
 
 Attributes | Description
 ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update the plugin configuration
-`plugin name or id`<br>**required** | The unique identifier **or** the name of the plugin configuration to update on this API
+`plugin id`<br>**required** | The unique identifier of the plugin configuration to update on this API
 
 #### Request Body
 
@@ -1002,12 +1002,12 @@ See POST and PATCH responses.
 
 #### Endpoint
 
-<div class="endpoint delete">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint delete">/apis/{api name or id}/plugins/{plugin id}</div>
 
 Attributes | Description
 ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
-`plugin name or id`<br>**required** | The unique identifier **or** the name of the plugin configuration to delete on this API
+`plugin id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
 
 #### Response
 
