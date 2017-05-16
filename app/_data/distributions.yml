@@ -2,6 +2,18 @@
   name: Docker
   type: package
 
+- id: dcos
+  name: DC/OS
+  type: cloud
+
+- id: kubernetes
+  name: kubernetes
+  type: cloud
+
+- id: google-cloud
+  name: Google Cloud
+  type: cloud
+
 - id: aws-marketplace
   name: AWS Marketplace
   type: cloud
@@ -29,14 +41,6 @@
 - id: ubuntu
   name: Ubuntu
   type: package
-
-- id: kubernetes
-  name: kubernetes
-  type: cloud
-
-- id: dcos
-  name: DC/OS
-  type: cloud
 
 - id: osx
   name: OS X
