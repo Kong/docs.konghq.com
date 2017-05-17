@@ -24,6 +24,7 @@ redirect_from: /install/compile/
       --with-http_realip_module \
       --with-http_ssl_module \
       --with-http_stub_status_module \
+      --with-http_v2_module \
       --without-luajit-lua52
     ```
 
