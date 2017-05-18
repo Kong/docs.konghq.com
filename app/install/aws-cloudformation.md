@@ -9,8 +9,6 @@ breadcrumbs:
 links:
   aws: "https://console.aws.amazon.com/cloudformation/home"
   templates:
-    kong-cassandra-hvm: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-cassandra-new-vpc-optional-hvm.template"
-    kong-cassandra-pv: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-cassandra-new-vpc-optional-pv.template"
     kong-hvm: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-cassandra-user-vpc-optional-hvm.template"
     kong-pv: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-cassandra-user-vpc-optional-pv.template"
     kong-postgres-hvm: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-postgres-optional-vpc-optional-hvm.template"
@@ -19,35 +17,11 @@ links:
 
 ### Templates:
 
-#### Kong with Cassandra DB
+#### Kong with Cassandra
 
-Provision Kong resources along with a new Cassandra cluster, using The Datastax Cassandra AMI in a new VPC or existing VPC.
-
-##### HVM AMI
-
-- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-hvm&templateURL={{ page.links.templates.kong-cassandra-hvm }})
-
-##### PV AMI
-
-- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-cassandra-pv&templateURL={{ page.links.templates.kong-cassandra-pv }})
-
-#### Kong without Cassandra DB
-
-Provisions Kong resources with user provided Cassandra seed nodes in a new VPC or existing VPC.
+This template will provision Kong instances in a new or existing VPC. You will
+need to provide the contact points of your Cassandra cluster during the
+deployment process.
 
 ##### HVM AMI
 
@@ -71,9 +45,11 @@ Provisions Kong resources with user provided Cassandra seed nodes in a new VPC o
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
 
-#### Kong with Postgres DB
+#### Kong with PostgreSQL
 
-Provisions Kong resources with new or user provided Postgres DB in a new VPC or existing VPC.
+This template will provision Kong instances in a new or existing VPC. You can
+provide your own PostgreSQL instance, or if not, the template will create one
+on AWS RDS for you.
 
 ##### HVM AMI
 
@@ -107,21 +83,28 @@ Provisions Kong resources with new or user provided Postgres DB in a new VPC or 
 
 1. **Initial Setup**:
 
-    Create the required key pairs, one to access Kong instances and one for Cassandra if template povisioning a new Cassandra cluster. If you providing your own DB instances, make sure its accessible by Kong instances.
-    If you want to create instances in existing VPC, VPC need to have two public subnet and all required ports open to allow access to Kong Load balancer. 
-    
+    Create the required key pair to access your Kong instances. If you are
+    providing your own Cassandra/PostgreSQL instances, make sure they are
+    accessible from your Kong instances. If you want to create instances in
+    an existing VPC, this VPC needs to have two public subnets, and all
+    required ports open to allow access to the Kong Load Balancer.
+
     *Continue to next step if you want to use an existing key pair*
 
 3. **Choose a Region & VM Type**:
 
-    Choose the region closest to your API servers, and pick the virtualization type you'd like from the list of available [templates](#templates) above.
+    Choose the region closest to your API servers, and pick the virtualization
+    type you'd like from the list of available [templates](#templates) above.
 
     You should land on AWS Cloud Formation *"Select Template"* page
 
 4. **Parameters**:
 
-    Fill in all the parameters details. If you chose to launch Kong with Cassandra/Postgres you would be asked to fill in extra parameters to create a Cassandra cluster or Postgres RDS instance. 
-    check the description of each field and provide appropriate values.
+    Fill-in all the parameters details. If you chose to launch Kong with
+    PostgreSQL but without specifying your own PostgreSQL server, you will be
+    asked to fill-in a few extra parameters to create a PostgreSQL RDS
+    instance. Check the description of each field and provide the appropriate
+    values.
 
     **Note**: *consult the [templates documentation on Github]({{ site.repos.cloudformation }}) for detailed description of parameters*
 
@@ -137,7 +120,7 @@ Provisions Kong resources with new or user provided Postgres DB in a new VPC or 
 
 6. **Grab a Coffee!**:
 
-    It will take several minutes *(~20 minutes)* to create the stack. Once the stack has a status of `CREATE_COMPLETE`, click on *"Output"* tab to get the proxy and Admin URL, it may take *60 seconds* more for links to become active.
+    It will take several minutes *(~20 minutes)* to create the stack. Once the stack has a status of `CREATE_COMPLETE`, click on the *"Output"* tab to get the Proxy and Admin URLs, it may take *60 more seconds* for the links to become active.
 
     **Note**: *To monitor the progress go to AWS CloudFormation console, select the stack in the list. In the stack details pane, click the "Events" tab to see the progress.*
 
