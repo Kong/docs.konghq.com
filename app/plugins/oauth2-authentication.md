@@ -270,13 +270,14 @@ The [Resource Owner Password Credentials Grant][password-grant] is a much simple
 
 1. On the first request, the client application make a request including some OAuth2 parameters, including `username` and `password` parameters, to your web-application.
 
-2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
+2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key`, `authenticated_userid` and `grant_type` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
     ```bash
     $ curl https://your.api.com/oauth2/token \
         --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
         --data "client_id=XXX" \
         --data "client_secret=XXX" \
+        --data "grant_type=password" \
         --data "scope=XXX" \
         --data "provision_key=XXX" \
         --data "authenticated_userid=XXX" \
