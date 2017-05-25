@@ -403,6 +403,27 @@ Default: `on`
 
 ---
 
+##### **ssl_cipher_suite**
+
+Defines the TLS ciphers served by Nginx. Accepted values are `modern`,
+`intermediate`, `old`, or `custom`.
+See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed
+descriptions of each cipher suite.
+
+Default: `modern`
+
+---
+
+##### **ssl_ciphers**
+
+Defines a custom list of TLS ciphers to be served by Nginx. This list must
+conform to the pattern defined by `openssl ciphers`. This value is ignored if
+`ssl_cipher_suite` is not `custom`.
+
+Default: none
+
+---
+
 ##### **ssl_cert**
 
 If `ssl` is enabled, the absolute path to the SSL certificate for the
