@@ -253,6 +253,44 @@ Default: `notice`
 
 ---
 
+##### **proxy_access_log**
+
+Path for proxy port request access logs. Set this value to `off` to disable
+logging proxy requests. If this value is a relative path, it will be placed
+under the `prefix` location.
+
+Default: `logs/access.log`
+
+---
+
+##### **proxy_error_log**
+
+Path for proxy port request error logs. Granularity of these logs is adjusted
+by the `log_level` directive.
+
+Default: `logs/error.log`
+
+---
+
+##### **admin_access_log**
+
+Path for Admin API request access logs. Set this value to `off` to disable
+logging Admin API requests. If this value is a relative path, it will be placed
+under the `prefix` location.
+
+Default: `logs/admin_access.log`
+
+---
+
+##### **admin_error_log**
+
+Path for Admin API request error logs. Granularity of these logs is adjusted by
+the `log_level` directive.
+
+Default: `logs/error.log`
+
+---
+
 ##### **custom_plugins**
 
 Comma-separated list of additional plugins this node should load. Use this
