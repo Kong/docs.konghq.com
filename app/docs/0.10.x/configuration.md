@@ -422,6 +422,35 @@ Default: none
 
 ---
 
+##### **client_ssl**
+
+Determines if Nginx should send client-side SSL certificates when proxying
+requests.
+
+Default: `off`
+
+---
+
+##### **client_ssl_cert**
+
+If `client_ssl` is enabled, the absolute path to the client SSL certificate for
+the `proxy_ssl_certificate` directive. Note that this value is statically
+defined on the node, and currently cannot be configured on a per-API basis.
+
+Default: none
+
+---
+
+##### **client_ssl_cert_key**
+
+If `client_ssl` is enabled, the absolute path to the client SSL key for the
+`proxy_ssl_certificate_key` address. Note this value is statically defined on
+the node, and currently cannot be configured on a per-API basis.
+
+Default: none
+
+---
+
 ##### **admin_ssl**
 
 Determines if Nginx should be listening for HTTPS traffic on the
