@@ -68,6 +68,11 @@ keep the configuration consistent across all nodes.
 - `8001` is the default port on which the Admin API listens.
 - `8444` is the default port for HTTPS traffic to the Admin API.
 
+This API is designed for internal use and provides full control over Kong, so
+care should be taken when setting up Kong environments to avoid undue public
+exposure of this API. See [this document][secure-admin-api] for a discussion
+of methods to secure the Admin API.
+
 ## Supported Content Types
 
 The Admin API accepts 2 content types on every endpoint:
@@ -1878,3 +1883,4 @@ HTTP 204 No Content
 
 [clustering]: /docs/{{page.kong_version}}/clustering
 [cli]: /docs/{{page.kong_version}}/cli
+[secure-admin-api]: /docs/{{page.kong_version}}/secure-admin-api
