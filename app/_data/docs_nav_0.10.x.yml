@@ -41,6 +41,9 @@
     - text: Public Lua API reference
       url: /lua-reference/
 
+    - text: Securing the Admin API
+      url: /secure-admin-api
+
     - text: Plugin Development Guide
       url: /plugin-development
       items:
