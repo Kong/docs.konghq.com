@@ -70,4 +70,3 @@ Enterprise offering by [contacting us](/enterprise).
 [discovery]: http://openid.net/specs/openid-connect-discovery-1_0.html
 [idtoken]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [userinfo]: http://openid.net/specs/openid-connect-core-1_0.html#UserInfo
-
