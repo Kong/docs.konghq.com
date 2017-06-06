@@ -1,0 +1,833 @@
+---
+title: Lua Reference - spec.helpers
+layout: default
+---
+
+
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-icon">
+      <img src="/assets/images/icons/icn-documentation.svg" alt="Documentation" />
+    </div>
+    <div class="page-header-title">
+      <h1>Public Lua API Reference</h1>
+      <p>For plugins developers and core contributors</p>
+    </div>
+    {% if site.data.kong_versions.size > 1 %}
+      <div class="dropdown page-header-right">
+        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Version {{page.kong_version}}
+          {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+          {% for ver in site.data.kong_versions %}
+            {% if page.kong_version != ver.release %}
+              <li>
+                {% if ver.lua_doc %}
+                  <a href="/docs/{{ver.release}}/lua-reference/"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                    {{ver.release}}
+                    {% if ver.release == site.data.kong_latest.release %}(latest){% endif %}
+                  </a>
+                {% else %}
+                  <span>Not available for {{ver.release}}</span>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</header>
+
+<div class="container">
+  <aside class="page-navigation">
+    <nav>
+      <ul>
+        <li>
+          <a href="/docs/{{page.kong_version}}"><h5>Back to docs</h5></a>
+        </li>
+        <li>
+          <a href="/docs/{{page.kong_version}}/lua-reference/"><h5>Index</h5></a>
+        </li>
+        <li>
+          <h5>Modules</h5>
+          <ul>
+            <li><a href="../../modules/kong.dao">kong.dao</a></li>
+            <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
+            <li><a href="../../modules/kong.plugins.galileo.alf">kong.plugins.galileo.alf</a></li>
+            <li><a href="../../modules/kong.plugins.galileo.buffer">kong.plugins.galileo.buffer</a></li>
+            <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
+            <li><a href="../../modules/kong.tools.responses">kong.tools.responses</a></li>
+            <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
+            <li><a href="../../modules/kong.tools.utils">kong.tools.utils</a></li>
+            <li>spec.helpers</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="page-content-container">
+  <div class="page-content">
+    <div class="content">
+<h1><code>spec.helpers</code></h1>
+<p>Collection of utilities to help testing Kong features and plugins.</p>
+<p></p>
+
+
+<h3>Info:</h3>
+<ul>
+</ul>
+
+<h2><a href="#http_client">http_client </a></h2>
+<table class="function_list">
+  <tr>
+    <td class="name"><a href="#admin_client">admin_client ()</a></td>
+    <td class="summary">returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong admin port.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#http_client">http_client (host, port, timeout)</a></td>
+    <td class="summary">Creates a http client.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#http_client:send">http_client:send (opts)</a></td>
+    <td class="summary">Send a http request.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#proxy_client">proxy_client ()</a></td>
+    <td class="summary">returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong proxy port.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#proxy_ssl_client">proxy_ssl_client ()</a></td>
+    <td class="summary">returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong SSL proxy port.</td>
+  </tr>
+</table>
+<h2><a href="#TCP_UDP_server_helpers">TCP/UDP server helpers </a></h2>
+<table class="function_list">
+  <tr>
+    <td class="name"><a href="#http_server">http_server (port)</a></td>
+    <td class="summary">Starts a HTTP server.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#tcp_server">tcp_server (port)</a></td>
+    <td class="summary">Starts a TCP server.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#udp_server">udp_server (port)</a></td>
+    <td class="summary">Starts a UDP server.</td>
+  </tr>
+</table>
+<h2><a href="#Custom_assertions">Custom assertions </a></h2>
+<table class="function_list">
+  <tr>
+    <td class="name"><a href="#contains">contains (expected, array, pattern)</a></td>
+    <td class="summary">Assertion to check whether a value lives in an array.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#fail">fail (...)</a></td>
+    <td class="summary">Generic fail assertion.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#formparam">formparam (name)</a></td>
+    <td class="summary">Adds an assertion to look for a urlencoded form parameter in a mockbin request.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#header">header (name)</a></td>
+    <td class="summary">Adds an assertion to look for a named header in a <code>headers</code> subtable.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#jsonbody">jsonbody ()</a></td>
+    <td class="summary">Checks and returns a json body of an http response/request.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#queryparam">queryparam (name)</a></td>
+    <td class="summary">An assertion to look for a query parameter in a <code>queryString</code> subtable.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#request">request (response)</a></td>
+    <td class="summary">Generic modifier "request".</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#response">response (response)</a></td>
+    <td class="summary">Generic modifier "response".</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#status">status (expected, response)</a></td>
+    <td class="summary">Assertion to check the statuscode of a http response.</td>
+  </tr>
+</table>
+<h2><a href="#Shell_helpers">Shell helpers </a></h2>
+<table class="function_list">
+  <tr>
+    <td class="name"><a href="#clean_prefix">clean_prefix (prefix)</a></td>
+    <td class="summary">Cleans the Kong environment.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#execute">execute (...)</a></td>
+    <td class="summary">Execute a command.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#kong_exec">kong_exec (cmd, env)</a></td>
+    <td class="summary">Execute a Kong command.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#prepare_prefix">prepare_prefix (prefix)</a></td>
+    <td class="summary">Prepare the Kong environment.</td>
+  </tr>
+  <tr>
+    <td class="name"><a href="#wait_for_invalidation">wait_for_invalidation (key, timeout)</a></td>
+    <td class="summary">Waits for invalidation of a cached key by polling the mgt-api
+ and waiting for a 404 response.</td>
+  </tr>
+</table>
+
+
+<h2 class="section-header has-description"><a name="http_client">http_client </a></h2>
+
+<div class="section-description">
+An http-client class to perform requests.
+</div>
+
+<dl class="function">
+  <hr />
+  <dt>
+    <h4><a name="admin_client">admin_client</a></h4>
+  </dt>
+  <dd>
+    returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong admin port.
+
+
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="http_client">http_client</a></h4>
+  </dt>
+  <dd>
+    Creates a http client.  Based on https://github.com/pintsized/lua-resty-http
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">host</code>
+          hostname to connect to
+        </li>
+        <li>
+          <code class="parameter">port</code>
+          port to connect to
+        </li>
+        <li>
+          <code class="parameter">timeout</code>
+          in seconds
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        http client
+      </li>
+    </ul>
+
+
+    <h5>See also:</h5>
+    <ul>
+      <li><a href="../../modules/spec.helpers#http_client:send">http_client:send</a></li>
+    </ul>
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="http_client:send">http_client:send</a></h4>
+  </dt>
+  <dd>
+    Send a http request.  Based on https://github.com/pintsized/lua-resty-http.
+ If <code>opts.body</code> is a table and "Content-Type" header contains
+ <code>application/json</code>, <code>www-form-urlencoded</code>, or <code>multipart/form-data</code>, then it
+ will automatically encode the body according to the content type.
+ If <code>opts.query</code> is a table, a query string will be constructed from it and
+ appended
+ to the request path (assuming none is already present).
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">opts</code>
+          table with options. See https://github.com/pintsized/lua-resty-http
+        </li>
+    </ul>
+
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="proxy_client">proxy_client</a></h4>
+  </dt>
+  <dd>
+    returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong proxy port.
+
+
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="proxy_ssl_client">proxy_ssl_client</a></h4>
+  </dt>
+  <dd>
+    returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong SSL proxy port.
+
+
+
+
+
+
+
+  </dd>
+</dl>
+
+<h2 class="section-header "><a name="TCP_UDP_server_helpers">TCP/UDP server helpers </a></h2>
+
+
+<dl class="function">
+  <hr />
+  <dt>
+    <h4><a name="http_server">http_server</a></h4>
+  </dt>
+  <dd>
+    Starts a HTTP server.
+ Accepts a single connection and then closes. Sends a 200 ok, 'Connection:
+ close' response.
+ If the request received has path <code>/delay</code> then the response will be delayed
+ by 2 seconds.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">port</code>
+          `    The port where the server will be listening to
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        <code>thread</code> A thread object
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="tcp_server">tcp_server</a></h4>
+  </dt>
+  <dd>
+    Starts a TCP server.
+ Accepts a single connection and then closes, echoing what was received
+ (single read).
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">port</code>
+          `    The port where the server will be listening to
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        <code>thread</code> A thread object
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="udp_server">udp_server</a></h4>
+  </dt>
+  <dd>
+    Starts a UDP server.
+ Accepts a single connection, reading once and then closes
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">port</code>
+          `    The port where the server will be listening to
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        <code>thread</code> A thread object
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+</dl>
+
+<h2 class="section-header "><a name="Custom_assertions">Custom assertions </a></h2>
+
+
+<dl class="function">
+  <hr />
+  <dt>
+    <h4><a name="contains">contains</a></h4>
+  </dt>
+  <dd>
+    Assertion to check whether a value lives in an array.
+ pattern
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">expected</code>
+          The value to search for
+        </li>
+        <li>
+          <code class="parameter">array</code>
+          The array to search for the value
+        </li>
+        <li>
+          <code class="parameter">pattern</code>
+          (optional) If thruthy, then <code>expected</code> is matched as a string
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        the index at which the value was found
+      </li>
+    </ul>
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="keyword">local</span> arr = { <span class="string">"one"</span>, <span class="string">"three"</span> }
+<span class="keyword">local</span> i = <span class="global">assert</span>.contains(<span class="string">"one"</span>, arr)        <span class="comment">--&gt; passes; i == 1
+</span><span class="keyword">local</span> i = <span class="global">assert</span>.contains(<span class="string">"two"</span>, arr)        <span class="comment">--&gt; fails
+</span><span class="keyword">local</span> i = <span class="global">assert</span>.contains(<span class="string">"ee$"</span>, arr, <span class="keyword">true</span>)  <span class="comment">--&gt; passes; i == 2</span></pre></li>
+    </ul>
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="fail">fail</a></h4>
+  </dt>
+  <dd>
+    Generic fail assertion.  A convenience function for debugging tests, always
+ fails. It will output the values it was called with as a table, with an <code>n</code>
+ field to indicate the number of arguments received.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">...</code>
+          any set of parameters to be displayed with the failure
+        </li>
+    </ul>
+
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="global">assert</span>.fail(some, value)</pre></li>
+    </ul>
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="formparam">formparam</a></h4>
+  </dt>
+  <dd>
+    Adds an assertion to look for a urlencoded form parameter in a mockbin request.
+ Parameter name comparison is done case-insensitive. Use the <a href="../modules/spec.helpers.html#request">request</a> modifier to set
+ the request to operate on.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">name</code>
+          name of the form parameter to look up (case insensitive)
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        value of the parameter
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="header">header</a></h4>
+  </dt>
+  <dd>
+    Adds an assertion to look for a named header in a <code>headers</code> subtable.
+ Header name comparison is done case-insensitive.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">name</code>
+          header name to look for (case insensitive).
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        value of the header
+      </li>
+    </ul>
+
+
+    <h5>See also:</h5>
+    <ul>
+      <li><a href="../../modules/spec.helpers#response">response</a></li>
+      <li><a href="../../modules/spec.helpers#request">request</a></li>
+    </ul>
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="jsonbody">jsonbody</a></h4>
+  </dt>
+  <dd>
+    Checks and returns a json body of an http response/request.  Only checks
+ validity of the json, does not check appropriate headers. Setting the target
+ to check can be done through <a href="../modules/spec.helpers.html#request">request</a> or <a href="../modules/spec.helpers.html#response">response</a> (requests are only
+ supported with mockbin.com).
+
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        the decoded json as a table
+      </li>
+    </ul>
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="keyword">local</span> res = <span class="global">assert</span>(client:send { .. your request params here .. })
+<span class="keyword">local</span> json_table = <span class="global">assert</span>.response(res).has.jsonbody()</pre></li>
+    </ul>
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="queryparam">queryparam</a></h4>
+  </dt>
+  <dd>
+    An assertion to look for a query parameter in a <code>queryString</code> subtable.
+ Parameter name comparison is done case-insensitive.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">name</code>
+          name of the query parameter to look up (case insensitive)
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        value of the parameter
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="request">request</a></h4>
+  </dt>
+  <dd>
+    Generic modifier "request".
+ Will set a "request" value in the assertion state, so following
+ assertions will operate on the value set.
+ The request must be inside a 'response' from mockbin.org or httpbin.org
+ be extracted from the response.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">response</code>
+          results from <a href="../modules/spec.helpers.html#http_client:send">http_client:send</a> function. The request will
+        </li>
+    </ul>
+
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="keyword">local</span> res = <span class="global">assert</span>(client:send { ..your request parameters here ..})
+<span class="keyword">local</span> length = <span class="global">assert</span>.request(res).has.header(<span class="string">"Content-Length"</span>)</pre></li>
+    </ul>
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="response">response</a></h4>
+  </dt>
+  <dd>
+    Generic modifier "response".
+ Will set a "response" value in the assertion state, so following
+ assertions will operate on the value set.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">response</code>
+          results from <a href="../modules/spec.helpers.html#http_client:send">http_client:send</a> function.
+        </li>
+    </ul>
+
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="keyword">local</span> res = <span class="global">assert</span>(client:send { ..your request parameters here ..})
+<span class="keyword">local</span> length = <span class="global">assert</span>.response(res).has.header(<span class="string">"Content-Length"</span>)</pre></li>
+    </ul>
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="status">status</a></h4>
+  </dt>
+  <dd>
+    Assertion to check the statuscode of a http response.
+ alternatively use <a href="../modules/spec.helpers.html#response">response</a>.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">expected</code>
+          the expected status code
+        </li>
+        <li>
+          <code class="parameter">response</code>
+          (optional) results from <a href="../modules/spec.helpers.html#http_client:send">http_client:send</a> function,
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        the response body as a string
+      </li>
+    </ul>
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="keyword">local</span> res = <span class="global">assert</span>(client:send { .. your request params here .. })
+<span class="keyword">local</span> body = <span class="global">assert</span>.has.status(<span class="number">200</span>, res)             <span class="comment">-- or alternativly
+</span><span class="keyword">local</span> body = <span class="global">assert</span>.response(res).has.status(<span class="number">200</span>)    <span class="comment">-- does the same</span></pre></li>
+    </ul>
+
+
+  </dd>
+</dl>
+
+<h2 class="section-header "><a name="Shell_helpers">Shell helpers </a></h2>
+
+
+<dl class="function">
+  <hr />
+  <dt>
+    <h4><a name="clean_prefix">clean_prefix</a></h4>
+  </dt>
+  <dd>
+    Cleans the Kong environment.
+ Deletes the working directory if it exists.
+ configuration will be used
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">prefix</code>
+          (optional) path to the working directory, if omitted the test
+        </li>
+    </ul>
+
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="execute">execute</a></h4>
+  </dt>
+  <dd>
+    Execute a command.
+ Modified version of <code>pl.utils.executeex()</code> so the output can directly be
+ used on an assertion.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">...</code>
+          see penlight documentation
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        ok, stderr, stdout; stdout is only included when the result was ok
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="kong_exec">kong_exec</a></h4>
+  </dt>
+  <dd>
+    Execute a Kong command.
+ variables, overriding the test config (each key will automatically be
+ prefixed with <code>KONG_</code> and be converted to uppercase)
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">cmd</code>
+          Kong command to execute, eg. <code>start</code>, <code>stop</code>, etc.
+        </li>
+        <li>
+          <code class="parameter">env</code>
+          (optional) table with kong parameters to set as environment
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        same output as <code>exec</code>
+      </li>
+    </ul>
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="prepare_prefix">prepare_prefix</a></h4>
+  </dt>
+  <dd>
+    Prepare the Kong environment.
+ creates the workdirectory and deletes any existing one.
+ configuration will be used
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">prefix</code>
+          (optional) path to the working directory, if omitted the test
+        </li>
+    </ul>
+
+
+
+
+
+
+  </dd>
+  <hr />
+  <dt>
+    <h4><a name="wait_for_invalidation">wait_for_invalidation</a></h4>
+  </dt>
+  <dd>
+    Waits for invalidation of a cached key by polling the mgt-api
+ and waiting for a 404 response.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">key</code>
+          the cache-key to check
+        </li>
+        <li>
+          <code class="parameter">timeout</code>
+          (optional) in seconds, defaults to 10.
+        </li>
+    </ul>
+
+
+
+
+
+
+  </dd>
+</dl>
+
+
+    </div>
+  </div>
+</div>
+</div>
