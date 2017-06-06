@@ -943,12 +943,12 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint patch">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint patch">/apis/{api name or id}/plugins/{id}</div>
 
 Attributes | Description
 ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update the plugin configuration
-`plugin name or id`<br>**required** | The unique identifier **or** the name of the plugin configuration to update on this API
+`id`<br>**required** | The unique identifier of the plugin configuration to update on this API
 
 #### Request Body
 
@@ -1007,12 +1007,12 @@ See POST and PATCH responses.
 
 #### Endpoint
 
-<div class="endpoint delete">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint delete">/apis/{api name or id}/plugins/{id}</div>
 
 Attributes | Description
 ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
-`plugin name or id`<br>**required** | The unique identifier **or** the name of the plugin configuration to delete on this API
+`id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
 
 #### Response
 
@@ -1868,12 +1868,12 @@ a new entry for the given target definition with a `weight` of 0.
 
 #### Endpoint
 
-<div class="endpoint delete">/upstreams/{upstream name or id}/targets/{target or id}</div>
+<div class="endpoint delete">/upstreams/{name or id}/targets/{target}</div>
 
 Attributes | Description
 ---:| ---
-`upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to delete the target.
-`target or id`<br>**required** | The host/port combination element of the target to remove, or the `id` of an existing target entry.
+`name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to delete the target.
+`target`<br>**required** | The host/port combination element of the target to remove.
 
 #### Response
 
