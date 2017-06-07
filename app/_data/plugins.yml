@@ -7,9 +7,17 @@
     - name: Key Authentication
       info: Add a key authentication to your APIs
 
+    - name: OpenID Connect 1.0 RP
+      id: openid-connect-rp
+      info: Integrate Kong with a third-party OpenID Connect 1.0 Provider
+
     - name: OAuth 2.0 Authentication
       id: oauth2-authentication
       info: Add an OAuth 2.0 authentication to your APIs
+
+    - name: OAuth 2.0 Introspection
+      id: oauth2-introspection
+      info: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 
     - name: HMAC Authentication
       info: Add HMAC Authentication to your APIs
@@ -50,11 +58,17 @@
     - name: Request Size Limiting
       info: Block requests with bodies greater than a specific size
 
+    - name: Request Termination
+      info: Terminates all requests with a specific response
+
 - name: Serverless
   info: Invoke serverless functions in combination with other plugins
   plugins:
     - name: AWS Lambda
       info: Invoke and manage AWS Lambda functions from Kong
+
+    - name: OpenWhisk
+      info: Invoke and manage OpenWhisk actions from Kong
 
 - name: Analytics & Monitoring
   info: Visualize, inspect and monitor APIs and microservices traffic

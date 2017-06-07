@@ -1,8 +1,4 @@
 .page-plugins {
-  p {
-    font-weight: 500;
-  }
-
   hr {
     margin: 20px 0;
   }
@@ -32,6 +28,10 @@
   }
 
   .plugins-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
     + .page-plugins-title {
       margin-top: 15px;
     }
@@ -43,11 +43,19 @@
 
   .plugin-plate {
     &:extend(.columns all, .four.columns);
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
     margin-bottom: 40px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     position: relative;
     transition: border-color .2s;
+
+    @media (min-width: @grid-width-sm) {
+      flex-basis: 30%;
+      max-width: 30.65%;
+    }
 
     &:hover {
       border-color: #80caff;
@@ -64,7 +72,7 @@
     border-bottom: 1px solid #e0e0e0;
 
     h3 {
-      font-size: 14px;
+      font-size: 16px;
       margin: 0;
       font-weight: 600;
     }
@@ -85,7 +93,7 @@
   }
 
   .plugin-plate-content {
-    font-size: 13px;
+    font-size: 14px;
     padding: 16px 16px 16px 95px;
 
     @media (max-width: 900px) {

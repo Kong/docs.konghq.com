@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "7"
+
+sudo: false
+notifications:
+  email: false
+
+cache:
+  bundler: true
+  yarn: true
+  directories:
+    - node_modules
+
+before_install:
+  - rvm install 2.3.3
+  - npm install -g yarn
+install:
+  - bundle install
+  - yarn
+
+before_script:
+  - npm test
+script:
+  - gulp build

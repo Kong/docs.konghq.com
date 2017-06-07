@@ -14,13 +14,14 @@ nav:
     items:
       - label: Create a Consumer
       - label: Create a JWT credential
-      - laebl: Delete a JWT credential
+      - label: Delete a JWT credential
       - label: Craft a JWT with a secret (HS256)
       - label: Send a request with the JWT
       - label: (Optional) Verified claims
       - label: (Optional) Base64 encoded secret
       - label: Craft a JWT with public/private keys (RS256)
       - label: Generate public/private keys
+      - label: Using the JWT plugin with Auth0
       - label: Upstream Headers
 ---
 
@@ -46,7 +47,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=jwt"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+- `api`: The `id` or `name` of the API that this plugin configuration will target
 
 You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
@@ -88,7 +89,7 @@ A [Consumer][consumer-object] can have many JWT credentials.
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/{consumer}/jwt
+$ curl -X POST http://kong:8001/consumers/{consumer}/jwt -H "Content-Type: application/x-www-form-urlencoded"
 HTTP/1.1 201 Created
 
 {
@@ -100,7 +101,7 @@ HTTP/1.1 201 Created
 }
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+- `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
 form parameter                 | default         | description
 ---                            | ---             | ---
@@ -111,15 +112,16 @@ form parameter                 | default         | description
 
 ### Delete a JWT credential
 
-You can remove a Consumers JWT credential by issuing the following HTTP request:
+You can remove a Consumer's JWT credential by issuing the following HTTP
+request:
 
 ```bash
 $ curl -X DELETE http://kong:8001/consumers/{consumer}/jwt/{id}
 HTTP/1.1 204 No Content
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-`id`: The `id` of the JWT credential.
+- `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+- `id`: The `id` of the JWT credential.
 
 ### Craft a JWT with a secret (HS256)
 
@@ -196,7 +198,7 @@ claim name | verification
 
 ### (**Optional**) Base64 encoded secret
 
-If your secret contains binary data (such as secrets provided by services like Auth0), you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
+If your secret contains binary data, you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 
 ```bash
 $ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
@@ -270,6 +272,71 @@ $ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
 If you run the commands above, the public key will be written in `public.pem`, while the private key will be written in `private.pem`.
+
+### Using the JWT plugin with Auth0
+
+[Auth0](https://auth0.com/) is a popular solution for Authorization, and relies
+heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publically
+hosts the public key certificate used to sign tokens. Account name is referred
+to "COMPANYNAME" for the sake of the guide.
+
+To get started, create an API. _Note: Auth0 does not use base64 encoded
+secrets._
+
+```bash
+$ curl -i -X POST http://localhost:8001/apis \
+    --data "name={api}" \
+    --data "hosts=example.com" \
+    --data "upstream_url=http://httpbin.org"
+```
+
+Add the JWT Plugin:
+
+```bash
+$ curl -X POST http://localhost:8001/apis/{api}/plugins \
+    --data "name=jwt"
+```
+
+Download your Auth0 account's X509 Certificate:
+
+```bash
+$ curl -o {COMPANYNAME}.pem https://{COMPANYNAME}.auth0.com/pem
+```
+
+Extract the public key from the X509 Certificate:
+
+```bash
+$ openssl x509 -pubkey -noout -in {COMPANYNAME}.pem > pubkey.pem
+```
+
+Create a Consumer with the Auth0 public key:
+
+```bash
+$ curl -i -X POST http://kong:8001/consumers \
+    --data "username=<USERNAME>" \
+    --data "custom_id=<CUSTOM_ID>"
+
+$ curl -i -X POST http://localhost:8001/consumers/{consumer}/jwt \
+    -F "algorithm=RS256" \
+    -F "rsa_public_key=@./pubkey.pem" \
+    -F "key=https://{COMPAYNAME}.auth0.com/" # the `iss` field
+```
+
+The JWT plugin by default validates the `key_claim_name` against the `iss`
+field in the token. Keys issued by Auth0 have their `iss` field set to
+`http://{COMPANYNAME}.auth0.com/`. You can use [jwt.io](https://jwt.io) to
+validate the `iss` field for the `key` parameter when creating the
+Consumer.
+
+Send requests through, only tokens signed by Auth0 will work:
+
+```bash
+$ curl -i http://localhost:8000 \
+    -H "Host:example.com" \
+    -H "Authorization:Bearer {{TOKEN}}"
+```
+
+Success!
 
 ### Upstream Headers
 

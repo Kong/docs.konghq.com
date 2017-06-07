@@ -9,7 +9,7 @@ title: Configuration Reference
 - [Configuration loading](#configuration-loading)
 - [Verifying your configuration](#verifying-your-configuration)
 - [Environment variables](#environment-variables)
-- [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-amp-embedding-kong)
+- [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-embedding-kong)
   - [Custom Nginx configuration](#custom-nginx-configuration)
   - [Embedding Kong](#embedding-kong)
 - [Properties reference](#properties-reference)
@@ -18,7 +18,7 @@ title: Configuration Reference
   - [Datastore section](#datastore-section)
   - [Clustering section](#clustering-section)
   - [DNS resolver section](#dns-resolver-section)
-  - [Development & miscellaneous section](#development-amp-miscellaneous-section)
+  - [Development & miscellaneous section](#development-miscellaneous-section)
 
 ### Configuration loading
 

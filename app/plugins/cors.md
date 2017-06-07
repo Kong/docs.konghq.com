@@ -45,7 +45,7 @@ more information.
 form parameter                             | default | description
 ---:                                       | ---     | ---
 `name`                                     |         | Name of the plugin to use, in this case: `cors`
-`config.origins`<br>*optional*             |         | A comma-separated list of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
+`config.origins`<br>*optional*             |         | A comma-separated list of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
 `config.methods`<br>*optional*             | `GET,HEAD,PUT,PATCH,POST,DELETE` | Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`).
 `config.headers`<br>*optional*             | Value of the `Access-Control-Request-Headers`<br>request header | Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`).
 `config.exposed_headers`<br>*optional*     |         | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.

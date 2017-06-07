@@ -36,8 +36,10 @@ You can also apply it for every API using the `http://kong:8001/plugins/` endpoi
 form parameter                        | default| description
 ---                                   | ---    | ---
 `name`                                |        | The name of the plugin to use, in this case: `acl`
-`config.whitelist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
-`config.blacklist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are not allowed to consume the API. At least one between `config.whitelist` or `config.blacklist` must be specified.
+`config.whitelist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are allowed to consume the API. One of `config.whitelist` or `config.blacklist` must be specified.
+`config.blacklist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are not allowed to consume the API. One of `config.whitelist` or `config.blacklist` must be specified.
+
+Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
 
 ----
 

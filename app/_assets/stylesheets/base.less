@@ -7,8 +7,8 @@ html {
 }
 
 body {
-  font-family: @family-whitney-ss, @family-default;
-  font-size: 14px;
+  .font-source-sans();
+  font-size: 16px;
   color: @font-color;
   -webkit-font-smoothing: antialiased;
 
@@ -103,12 +103,12 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
-  font-family: @family-whitney-ss;
+  .font-source-sans();
   border-radius: 3px;
   border-color: #ced2d6;
   box-shadow: inset 1px 2px 0 0 rgba(242, 242, 242, .5);
   height: 36px;
-  font-size: 13px;
+  font-size: 14px;
 
   &:focus {
     border: 1px solid lighten(@blue, 30%);
@@ -126,7 +126,7 @@ select {
 }
 
 .button-large {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 42px;
   height: 44px;
 }
@@ -152,7 +152,7 @@ strong {
 code {
   padding: 4px;
   color: @red;
-  font-size: 100%;
+  font-size: 14px;
   background-color: #fff2f2;
   border-radius: 3px;
   border: 0 none;
@@ -177,34 +177,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 400;
 }
 
 h2 {
-  font-size: 33px;
+  font-size: 36px;
   font-weight: 400;
 }
 
 h3 {
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 26px;
 }
 
 h4 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 }
 
 h5 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
 }
 
 h6 {
-  font-family: @family-whitney-ss-sc;
-  font-size: 13px;
-  font-weight: 600;
+  .font-source-sans-sc();
+  font-size: 14px;
 }
 
 figure {
@@ -236,7 +234,6 @@ nav {
     color: @gray-dark;
     text-decoration: none;
     display: block;
-    font-weight: 500;
     font-size: 13px;
     transition: all .2s linear;
 
@@ -248,5 +245,12 @@ nav {
     &.active {
       color: @blue;
     }
+  }
+}
+
+// In lieu of bootstrap
+@media (min-width: 1101px) {
+  .hidden-lg {
+    display: none !important;
   }
 }

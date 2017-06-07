@@ -186,7 +186,7 @@ multiple authentication credentials. The key to the behaviour is the `config.ano
   invoked.
 - `config.anonymous` set to a valid consumer id <br/>
   In this case the auth plugin will only perform authentication if it was not already authenticated. When
-  authentication fails, it will not return a `40x` response, but set anonymous consumer as the consumer. This
+  authentication fails, it will not return a `40x` response, but set the anonymous consumer as the consumer. This
   results in a logical `OR` + 'anonymous access' when multiple auth plugins are being invoked.
 
 **NOTE 1**: Either all or none of the auth plugins must be configured for anonymous access. The behaviour is
@@ -200,10 +200,9 @@ the consumer, or the last plugin that will set its configured anonymous consumer
 tokens etc. will require authentication by the other configured auth plugins.
 
 <div class="alert alert-warning">
-  When multiple authentication plugins are enabled in an `OR` fashion on a given API, and it is desired that 
-  anonymous access be forbidden, the upstream service MUST be configured to reject requests in 
-  which the `X-Anonymous-Consumer` header is set to `true`. Failure to do so will allow unauthorized 
-  requests. 
+  When multiple authentication plugins are enabled in an <tt>OR</tt> fashion on a given API, and it is desired that 
+  anonymous access be forbidden, then the <a href="/plugins/request-termination"><tt>request-termination</tt> plugin</a> should be
+  configured on the anonymous consumer. Failure to do so will allow unauthorized requests.
 </div>
 
 

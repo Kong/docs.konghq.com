@@ -13,7 +13,7 @@ nav:
   - label: Kong Process Errors
 ---
 
-Logs request and response data to [Runscope][runscope]. Using the Runscope Traffic Inspector, each API call can be fully viewed in it's entirety. All traffic can be searched by keyword (headers and bodies are indexed) and attribute (i.e. status code, response size, response time, etc.). Using Runscope [Live Traffic Alerts][live-traffic-alerts], API failures and exceptions can be caught, notifying your team about problems before your customers find out. Trigger alerts based on any part of the HTTP request or resopnse, including header values, JSON or XML data, connection details and more. Alerts can be sent to Slack, HipChat, PagerDuty, email, or webhook notifications. Live Traffic Alerts is available on all medium and larger plans.
+Logs request and response data to [Runscope][runscope]. Using the Runscope Traffic Inspector, each API call can be fully viewed in it's entirety. All traffic can be searched by keyword (headers and bodies are indexed) and attribute (i.e. status code, response size, response time, etc.). Using Runscope [Live Traffic Alerts][live-traffic-alerts], API failures and exceptions can be caught, notifying your team about problems before your customers find out. Trigger alerts based on any part of the HTTP request or response, including header values, JSON or XML data, connection details and more. Alerts can be sent to Slack, HipChat, PagerDuty, email, or webhook notifications. Live Traffic Alerts is available on all medium and larger plans.
 
 ----
 

@@ -9,7 +9,7 @@ title: Configuration Reference
 - [Configuration loading](#configuration-loading)
 - [Verifying your configuration](#verifying-your-configuration)
 - [Environment variables](#environment-variables)
-- [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-amp-embedding-kong)
+- [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-embedding-kong)
   - [Custom Nginx configuration](#custom-nginx-configuration)
   - [Embedding Kong](#embedding-kong)
 - [Properties reference](#properties-reference)
@@ -18,7 +18,7 @@ title: Configuration Reference
   - [Datastore section](#datastore-section)
   - [Clustering section](#clustering-section)
   - [DNS resolver section](#dns-resolver-section)
-  - [Development & miscellaneous section](#development-amp-miscellaneous-section)
+  - [Development & miscellaneous section](#development-miscellaneous-section)
 
 ### Configuration loading
 
@@ -253,6 +253,44 @@ Default: `notice`
 
 ---
 
+##### **proxy_access_log**
+
+Path for proxy port request access logs. Set this value to `off` to disable
+logging proxy requests. If this value is a relative path, it will be placed
+under the `prefix` location.
+
+Default: `logs/access.log`
+
+---
+
+##### **proxy_error_log**
+
+Path for proxy port request error logs. Granularity of these logs is adjusted
+by the `log_level` directive.
+
+Default: `logs/error.log`
+
+---
+
+##### **admin_access_log**
+
+Path for Admin API request access logs. Set this value to `off` to disable
+logging Admin API requests. If this value is a relative path, it will be placed
+under the `prefix` location.
+
+Default: `logs/admin_access.log`
+
+---
+
+##### **admin_error_log**
+
+Path for Admin API request error logs. Granularity of these logs is adjusted by
+the `log_level` directive.
+
+Default: `logs/error.log`
+
+---
+
 ##### **custom_plugins**
 
 Comma-separated list of additional plugins this node should load. Use this
@@ -365,6 +403,27 @@ Default: `on`
 
 ---
 
+##### **ssl_cipher_suite**
+
+Defines the TLS ciphers served by Nginx. Accepted values are `modern`,
+`intermediate`, `old`, or `custom`.
+See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed
+descriptions of each cipher suite.
+
+Default: `modern`
+
+---
+
+##### **ssl_ciphers**
+
+Defines a custom list of TLS ciphers to be served by Nginx. This list must
+conform to the pattern defined by `openssl ciphers`. This value is ignored if
+`ssl_cipher_suite` is not `custom`.
+
+Default: none
+
+---
+
 ##### **ssl_cert**
 
 If `ssl` is enabled, the absolute path to the SSL certificate for the
@@ -379,6 +438,35 @@ Default: none
 
 If `ssl` is enabled, the absolute path to the SSL key for the
 `proxy_listen_ssl` address.
+
+Default: none
+
+---
+
+##### **client_ssl**
+
+Determines if Nginx should send client-side SSL certificates when proxying
+requests.
+
+Default: `off`
+
+---
+
+##### **client_ssl_cert**
+
+If `client_ssl` is enabled, the absolute path to the client SSL certificate for
+the `proxy_ssl_certificate` directive. Note that this value is statically
+defined on the node, and currently cannot be configured on a per-API basis.
+
+Default: none
+
+---
+
+##### **client_ssl_cert_key**
+
+If `client_ssl` is enabled, the absolute path to the client SSL key for the
+`proxy_ssl_certificate_key` address. Note this value is statically defined on
+the node, and currently cannot be configured on a per-API basis.
 
 Default: none
 
@@ -420,6 +508,24 @@ are preserved in the cache of each worker process. When this number is
 exceeded, the least recently used connections are closed.
 
 Default: `60`
+
+---
+
+##### **server_tokens**
+
+Enables or disables emitting Kong version on error pages and in the `Server`
+or `Via` (in case the request was proxied) response header field.
+
+Default: `on`
+
+---
+
+##### **latency_tokens**
+
+Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency` 
+and `X-Kong-Upstream-Latency` response header fields.
+
+Default: `on`
 
 [Back to TOC](#table-of-contents)
 
@@ -477,6 +583,7 @@ name                            | description
 **cassandra_repl_strategy**     | If creating the keyspace for the first time, specify a replication strategy.
 **cassandra_repl_factor**       | Specify a replication factor for the `SimpleStrategy`.
 **cassandra_data_centers**      | Specify data centers for the `NetworkTopologyStrategy`.
+**cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations.
 
 [Back to TOC](#table-of-contents)
 

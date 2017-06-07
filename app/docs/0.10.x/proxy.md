@@ -58,7 +58,7 @@ service depending on their headers, URI, and HTTP method.
 [proxy-proxying-behavior]: #proxying-behavior
 [proxy-load-balancing]: #1-load-balancing
 [proxy-plugins-execution]: #2-plugins-execution
-[proxy-proxying-upstream-timeouts]: #3-proxying-amp-upstream-timeouts
+[proxy-proxying-upstream-timeouts]: #3-proxying-upstream-timeouts
 [proxy-response]: #proxy-response
 [proxy-configuring-a-fallback-api]: #configuring-a-fallback-api
 [proxy-configuring-ssl-for-an-api]: #configuring-ssl-for-an-api
@@ -676,9 +676,9 @@ SSL certificate and key via the Admin API:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/certificates \
-    -d "cert=@/path/to/cert.pem" \
-    -d "key=@/path/to/cert.key" \
-    -d "snis=ssl-example.com,other-ssl-example.com"
+    -F "cert=@/path/to/cert.pem" \
+    -F "key=@/path/to/cert.key" \
+    -F "snis=ssl-example.com,other-ssl-example.com"
 HTTP/1.1 201 Created
 ...
 ```
@@ -686,7 +686,7 @@ HTTP/1.1 201 Created
 The `snis` form parameter is a sugar parameter, directly inserting an SNI and
 associating the uploaded certificate to it.
 
-You must know register the following API withing Kong. We'll route requests to
+You must now register the following API within Kong. We'll route requests to
 this API using the Host header for convenience:
 
 ```bash
@@ -802,18 +802,18 @@ mechanism of Kong, from how is a request matched to an API, to how to allow for
 using the WebSocket protocol or setup SSL for an API.
 
 This website is Open-Source and can be found at
-[github.com/Mashape/getkong.org][https://github.com/Mashape/getkong.org/].
+[github.com/Mashape/getkong.org](https://github.com/Mashape/getkong.org/).
 Feel free to provide feedback to this document there, or propose improvements!
 
 If not already done, we suggest that you also read the
-[Load balancing Reference][load-balancing-guide], as it closely relates to the
+[Load balancing Reference][load-balancing-reference], as it closely relates to the
 topic we just covered.
 
 [Back to TOC](#table-of-contents)
 
-[plugin-configuration-object]: /docs/{{page.kong_version}}/admin-api#plugin-configuration-object
-[plugin-development-guide]: /docs/{{page.kong_version}}/admin-api#plugin-development-guide
-[load-balancing-reference]: /docs/{{page.kong_version}}/admin-api#load-balancing-guide
+[plugin-configuration-object]: /docs/{{page.kong_version}}/admin-api#plugin-object
+[plugin-development-guide]: /docs/{{page.kong_version}}/plugin-development
+[load-balancing-reference]: /docs/{{page.kong_version}}/loadbalancing
 [configuration-reference]: /docs/{{page.kong_version}}/configuration-reference
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
 [API]: /docs/{{page.kong_version}}/admin-api

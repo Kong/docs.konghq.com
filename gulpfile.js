@@ -8,10 +8,6 @@ var ghPages = require('gh-pages')
 var gulp = require('gulp')
 var path = require('path')
 var sequence = require('run-sequence')
-var glob = require('glob')
-var Transform = require('stream').Transform
-var listAssets = require('list-assets')
-var _ = require('lodash')
 var dev = false
 
 // load gulp plugins
@@ -99,7 +95,6 @@ gulp.task('images', function () {
     .pipe($.imagemin())
     .pipe(gulp.dest(paths.dist + 'assets/images'))
     .pipe($.size())
-    .pipe(browserSync.stream())
 })
 
 gulp.task('fonts', function () {
@@ -124,42 +119,9 @@ gulp.task('html', ['jekyll'], function () {
   return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
     // Prefetch static assets
-    .pipe(new Transform({
-      objectMode: true,
-      transform: function (file, enc, next) {
-        var self = this
-        var images = ''
-        var fonts = ''
-        var assets = listAssets.html(String(file.contents))
-
-        Promise.all([
-          // images
-          new Promise((resolve, reject) => glob('assets/images/**/*.+(png|svg)', { cwd: process.cwd() + '/dist' }, function (er, files) {
-            for (var i = 0; i < files.length; i++) {
-              if (_.find(assets, { 'url': '/' + files[i] })) {
-                images += '<link rel="prefetch" href="/' + files[i] + '"/>'
-              }
-            }
-            resolve()
-          })),
-          // fonts
-          new Promise((resolve, reject) => glob('assets/fonts/**/*.woff2', { cwd: process.cwd() + '/dist' }, function (er, files) {
-            for (var i = 0; i < files.length; i++) {
-              fonts += '<link rel="prefetch" as="font" href="/' + files[i] + '"/>'
-            }
-            resolve()
-          }))
-        ]).then(() => {
-          file.contents = new Buffer(String(file.contents).replace('##preload_assets##', images + fonts))
-          self.push(file)
-
-          next()
-        })
-      }
-    }))
+    .pipe($.resourceHints())
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
-    .pipe(browserSync.stream({ once: true }))
 })
 
 gulp.task('docs', function (cb) {
@@ -231,10 +193,20 @@ gulp.task('deploy', function (cb) {
 })
 
 gulp.task('watch', function () {
-  gulp.watch(sources.content, ['html'])
+  gulp.watch(sources.content, ['html-watch'])
   gulp.watch(sources.styles, ['styles'])
-  gulp.watch(sources.images, ['images'])
+  gulp.watch(sources.images, ['images-watch'])
   gulp.watch(sources.js, ['javascripts'])
+})
+
+gulp.task('html-watch', ['html'], function (cb) {
+  browserSync.reload()
+  cb()
+})
+
+gulp.task('images-watch', ['images'], function (cb) {
+  browserSync.reload()
+  cb()
 })
 
 gulp.task('default', ['clean'], function (cb) {

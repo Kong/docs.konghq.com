@@ -57,12 +57,13 @@ layout: default
           <ul>
             <li><a href="modules/kong.dao">kong.dao</a></li>
             <li><a href="modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
+            <li><a href="modules/kong.plugins.galileo.alf">kong.plugins.galileo.alf</a></li>
+            <li><a href="modules/kong.plugins.galileo.buffer">kong.plugins.galileo.buffer</a></li>
             <li><a href="modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
-            <li><a href="modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></li>
-            <li><a href="modules/kong.tools.io">kong.tools.io</a></li>
             <li><a href="modules/kong.tools.responses">kong.tools.responses</a></li>
             <li><a href="modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
             <li><a href="modules/kong.tools.utils">kong.tools.utils</a></li>
+            <li><a href="modules/spec.helpers">spec.helpers</a></li>
           </ul>
         </li>
       </ul>
@@ -85,18 +86,16 @@ layout: default
  Password is salted with the credential's consumer_id (long enough, unique)</td>
         </tr>
         <tr>
+          <td class="name"><a href="modules/kong.plugins.galileo.alf">kong.plugins.galileo.alf</a></td>
+          <td class="summary">Add an entry to the ALF's <code>entries</code></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="modules/kong.plugins.galileo.buffer">kong.plugins.galileo.buffer</a></td>
+          <td class="summary">Timer handlers</td>
+        </tr>
+        <tr>
           <td class="name"><a href="modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></td>
           <td class="summary">Supported algorithms for signing tokens.</td>
-        </tr>
-        <tr>
-          <td class="name"><a href="modules/kong.plugins.log-serializers.alf">kong.plugins.log-serializers.alf</a></td>
-          <td class="summary">Get a header from nginx's headers
- Make sure that is multiple headers of a same name are present,
- we only want the last one.</td>
-        </tr>
-        <tr>
-          <td class="name"><a href="modules/kong.tools.io">kong.tools.io</a></td>
-          <td class="summary">Checks existence of a file.</td>
         </tr>
         <tr>
           <td class="name"><a href="modules/kong.tools.responses">kong.tools.responses</a></td>
@@ -104,11 +103,15 @@ layout: default
         </tr>
         <tr>
           <td class="name"><a href="modules/kong.tools.timestamp">kong.tools.timestamp</a></td>
-          <td class="summary">Current UTC time</td>
+          <td class="summary">Module for timestamp support.</td>
         </tr>
         <tr>
           <td class="name"><a href="modules/kong.tools.utils">kong.tools.utils</a></td>
           <td class="summary">Module containing some general utility functions used in many places in Kong.</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="modules/spec.helpers">spec.helpers</a></td>
+          <td class="summary">Collection of utilities to help testing Kong features and plugins.</td>
         </tr>
       </table>
 

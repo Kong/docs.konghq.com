@@ -40,10 +40,14 @@ form parameter                  | default | description
 ---                             | ---     | ---
 `name`                          |         | The name of the plugin to use, in this case: `http-log`
 `consumer_id`<br>*optional*     |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.http_endpoint`          |         | The HTTP endpoint (including the protocol to use) where to send the data to
+`config.http_endpoint`          |         | The HTTP endpoint (including the protocol to use) to which the data will be sent.
 `config.method`<br>*optional*   | `POST`  | An optional method used to send data to the http server, other supported values are PUT, PATCH
 `config.timeout`<br>*optional*  | `10000` | An optional timeout in milliseconds when sending data to the upstream server
 `config.keepalive`<br>*optional*| `60000` | An optional value in milliseconds that defines for how long an idle connection will live before being closed
+
+**NOTE:** If the `config.http_endpoint` contains a username and password (ex.
+`http://bob:password@example.com/logs`), then Kong will automatically include
+a basic-auth `Authorization` header in the log requests.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
@@ -83,9 +87,21 @@ Every request will be logged separately in a JSON object, with the following for
             "access-control-allow-origin": "*"
         }
     },
+    "tries": [
+        {
+            "state": "next",
+            "code": 502,
+            "ip": "127.0.0.1",
+            "port": 8000
+        },
+        {
+            "ip": "127.0.0.1",
+            "port": 8000
+        }
+    ],
     "authenticated_entity": {
         "consumer_id": "80f74eef-31b8-45d5-c525-ae532297ea8e",
-        "id": "eaa330c0-4cff-47f5-c79e-b2e4f355207e",
+        "id": "eaa330c0-4cff-47f5-c79e-b2e4f355207e"
     },
     "api": {
         "created_at": 1488830759000,
@@ -104,13 +120,18 @@ Every request will be logged separately in a JSON object, with the following for
         "upstream_send_timeout": 60000,
         "upstream_url": "http://httpbin.org"
     },
+    "consumer": {
+        "username": "demo",
+        "created_at": 1491847011000,
+        "id": "35b03bfc-7a5b-4a23-a594-aa350c585fa8"
+    },
     "latencies": {
         "proxy": 1430,
         "kong": 9,
         "request": 1921
     },
-    "started_at": 1433209822425,
-    "client_ip": "127.0.0.1"
+    "client_ip": "127.0.0.1",
+    "started_at": 1433209822425
 }
 ```
 
@@ -118,15 +139,23 @@ A few considerations on the above JSON object:
 
 * `request` contains properties about the request sent by the client
 * `response` contains properties about the response sent to the client
+* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request
 * `api` contains Kong properties about the specific API requested
-* `authenticated_entity` contains Kong properties about the authenticated consumer (if an authentication plugin has been enabled)
+* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled)
+* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled)
 * `latencies` contains some data about the latencies involved:
   * `proxy` is the time it took for the final service to process the request
   * `kong` is the internal Kong latency that it took to run all the plugins
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
-
+* `client_ip` contains the original client IP address
+* `started_at` contains the UTC timestamp of when the API transaction has started to be processed.
 ----
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+This logging plugin will only log HTTP request and response data. If you are
+looking for the Kong process error file (which is the nginx error file), then
+you can find it at the following path: 
+`$KONG_PREFIX/logs/error.log`,
+where `$KONG_PREFIX` means
+[prefix in the configuration](/docs/{{site.data.kong_latest.release}}/configuration/#prefix).

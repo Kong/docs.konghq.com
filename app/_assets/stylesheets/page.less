@@ -48,7 +48,6 @@
     background-image: linear-gradient(to top, #f7f9fa, #fcfcfc);
     color: @gray-dark;
     font-size: 14px;
-    font-weight: 500;
     line-height: 39px;
     height: 40px;
 
@@ -102,13 +101,11 @@
   }
 
   h5 {
-    font-family: @family-whitney-ss-sc;
-    font-size: 13px;
+    .font-source-sans-sc();
+    font-size: 14px;
     color: @gray-darker;
-    font-weight: 600;
     margin-bottom: 8px;
     line-height: 1.6;
-    text-transform: lowercase;
   }
 
   nav {
@@ -128,12 +125,11 @@
   }
 
   li a.active {
-    font-weight: 500;
     color: @blue;
   }
 
   a {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .fa {
@@ -163,9 +159,8 @@
 
 .content {
   padding: 50px 0;
-  font-size: 14px;
-  font-family: @family-whitney-ss;
-  font-weight: 500;
+  .font-source-sans();
+  font-size: 16px;
   line-height: 1.5;
 
   .big {
@@ -181,14 +176,13 @@
   }
 
   p, h1, h2, h3, h4, h5, h6 {
-    font-family: @family-whitney-ss;
+    .font-source-sans();
     color: #505659;
-    font-weight: 500;
   }
 
   p {
-    line-height: 25px;
-    font-size: 14px;
+    line-height: 1.5;
+    font-size: 16px;
   }
 
   h1, h2, h3, h4 {
@@ -202,7 +196,7 @@
   }
 
   h1 {
-    font-size: 32px;
+    font-size: 34px;
     color: #262e33;
     margin-top: 2em;
     margin-bottom: .9em;
@@ -213,26 +207,22 @@
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 30px;
     margin-top: 2em;
     margin-bottom: .8em;
   }
 
   h3 {
-    font-size: 24px;
     margin-top: 1.5em;
     margin-bottom: .7em;
-    font-weight: 500;
   }
 
   h4 {
-    font-size: 18px;
     margin-top: 1.3em;
     margin-bottom: .7em;
   }
 
   h5 {
-    font-size: 16px;
     margin-top: 1.2em;
     margin-bottom: .8em;
   }
@@ -275,8 +265,8 @@
     border: 1px solid #efefef;
     border-radius: 0 0 3px 3px;
     background-color: #fcfcfc;
-    font-family: @family-whitney-ss;
-    font-size: 13px;
+    .font-source-sans();
+    font-size: 14px;
     padding: 14px 13px;
     line-height: 1;
     color: #879199;
@@ -313,16 +303,14 @@
     border: 1px solid @gray;
 
     th, td {
-      font-family: @family-whitney-ss;
-      font-size: 13px;
-      font-weight: 500;
+      .font-source-sans();
+      font-size: 14px;
     }
 
     th {
       text-transform: lowercase;
-      font-family: @family-whitney-ss-sc;
-      font-size: 13px;
-      font-weight: 600;
+      .font-source-sans-sc();
+      font-size: 14px;
       text-align: left !important;
       background: @gray-light;
       border-bottom: 1px solid @gray;
@@ -546,7 +534,6 @@
 .alert {
   border: 1px solid @gray;
   border-radius: 4px;
-  font-weight: 500;
   font-size: 18px;
   padding: 8px 13px;
 }
@@ -609,7 +596,7 @@
 
   h2 {
     margin: 0;
-    font-size: 30px;
+    font-size: 34px;
     color: #45494d;
   }
 
@@ -628,6 +615,7 @@
 .subscribe-section {
   background-color: @gray-lighter;
   border-top: 1px solid @gray;
+  border-bottom: 1px solid #e8e8eb;
   text-align: center;
   padding: 35px 0;
 
@@ -677,7 +665,6 @@
   input {
     border-radius: 3px 0 0 3px;
     width: 400px;
-    font-weight: 500;
   }
 
   .button {

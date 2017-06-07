@@ -70,7 +70,7 @@ form parameter                                    | default | description
 `name`                                            |      | The name of the plugin to use, in this case: `oauth2`
 `config.scopes`                                    |      | Describes an array of comma separated scope names that will be available to the end user
 `config.mandatory_scope`<br>*optional*             | `false` | An optional boolean value telling the plugin to require at least one scope to be authorized by the end user
-`config.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how long should a token last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
+`config.token_expiration`<br>*optional*            | `7200`  | An optional integer value telling the plugin how many seconds a token should last, after which the client will need to refresh the token. Set to `0` to disable the expiration.
 `config.enable_authorization_code`<br>*optional*   | `false`  | An optional boolean value to enable the three-legged Authorization Code flow ([RFC 6742 Section 4.1][authorization-code-grant])
 `config.enable_client_credentials`<br>*optional*   | `false` | An optional boolean value to enable the Client Credentials Grant flow ([RFC 6742 Section 4.4][client-credentials])
 `config.enable_implicit_grant`<br>*optional*       | `false` | An optional boolean value to enable the Implicit Grant flow which allows to provision a token as a result of the authorization process ([RFC 6742 Section 4.2][implicit-grant])
@@ -270,13 +270,14 @@ The [Resource Owner Password Credentials Grant][password-grant] is a much simple
 
 1. On the first request, the client application make a request including some OAuth2 parameters, including `username` and `password` parameters, to your web-application.
 
-2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key` and `authenticated_userid` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
+2. The backend of your web-application will authenticate the `username` and `password` sent by the client, and if successful will add the `provision_key`, `authenticated_userid` and `grant_type` parameters to the parameters originally sent by the client, and it will make a `POST` request to Kong at your API address, on the `/oauth2/token` endpoint. If an `Authorization` header has been sent by the client, that must be added too. The equivalent of:
 
     ```bash
     $ curl https://your.api.com/oauth2/token \
         --header "Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW" \
         --data "client_id=XXX" \
         --data "client_secret=XXX" \
+        --data "grant_type=password" \
         --data "scope=XXX" \
         --data "provision_key=XXX" \
         --data "authenticated_userid=XXX" \

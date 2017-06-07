@@ -46,7 +46,7 @@ Usage: kong check <conf>
 
 Check the validity of a given Kong configuration file.
 
-<conf> (default /etc/kong.conf) configuration file
+<conf> (default /etc/kong.conf or /etc/kong/kong.conf) configuration file
 ```
 
 [Back to TOC](#table-of-contents)
