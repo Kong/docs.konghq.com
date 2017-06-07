@@ -15,6 +15,7 @@ nav:
       - label: Create a Consumer
       - label: Create a JWT credential
       - label: Delete a JWT credential
+      - label: List JWT credentials
       - label: Craft a JWT with a secret (HS256)
       - label: Send a request with the JWT
       - label: (Optional) Verified claims
@@ -122,6 +123,36 @@ HTTP/1.1 204 No Content
 
 - `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 - `id`: The `id` of the JWT credential.
+
+### List JWT credentials
+
+You can list a Consumer's JWT credentials by issuing the following HTTP
+request:
+
+```bash
+$ curl -X GET http://kong:8001/consumers/{consumer}/jwt
+HTTP/1.1 200 OK
+```
+
+- `consumer`: The `id` or `username` property of the
+  [Consumer][consumer-object] entity to list credentials for.
+
+```json
+{
+    "data": [
+        {
+            "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK .... -----END PUBLIC KEY-----",
+            "consumer_id": "39f52333-9741-48a7-9450-495960d91684",
+            "id": "3239880d-1de5-4dbc-bccf-78f7a4280f33",
+            "created_at": 1491430568000,
+            "key": "c5a55906cc244f483226e02bcff2b5e",
+            "algorithm": "RS256",
+            "secret": "b0970f7fc9564e65xklfn48930b5d08b1"
+        }
+    ],
+    "total": 1
+}
+```
 
 ### Craft a JWT with a secret (HS256)
 
