@@ -54,7 +54,7 @@ parameter                     | default | description
 
 ## Metrics
 
-Plugin currently logs four metrics to the StatsD server: `request_count`, `request_size`, `response_size`, `status_count` and `latency`.
+Plugin currently logs four metrics to the StatsD server: `request_count`, `request_size`, `response_size`, `latency`. `status_count`, and `upstream_latency`.
 
 Metric                     | description | namespace
 ---                        | ---         | -----
@@ -65,6 +65,7 @@ Metric                     | description | namespace
 `status_count`               | For each status code returned, increment its counter by 1 | kong.\<api_name>.\<http_status_code>.count
 `unique_users`               | count of users made a request to the api | kong.\<api_name>.user.uniques
 `request_per_user`               | For each request by the user, increment its counter by 1 | kong.\<api_name>.\<consumer_id>.count
+`upstream_latency`           | logs the time taken by the upstream server to complete a request | kong.\<api_name>.upstream_latency
 
 ## Kong Process Errors
 
