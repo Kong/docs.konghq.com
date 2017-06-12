@@ -49,6 +49,7 @@ form parameter                             | default | description
 `config.log_type`<br>*optional*            | `Tail`  | The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported
 `config.timeout`<br>*optional*          | `60000` | An optional timeout in milliseconds when invoking the function
 `config.keepalive`<br>*optional*        | `60000` | An optional value in milliseconds that defines for how long an idle connection will live before being closed
+`config.unhandled_status`               | ``      | The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)
 ----
 
 ### Sending parameters
