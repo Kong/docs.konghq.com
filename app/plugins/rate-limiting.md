@@ -96,10 +96,10 @@ There are 2 use cases that are most common:
   merely used to protect backend services from overload. Either by specific
   users, or to protect against an attack in general.
 
-**NOTE**: the redis policy does not support the Sentinel protocol for high available
-master-slave architectures. When using rate-limiting for general protection the chances
-of both redis being down and the system being under attack are rather small. Check
-with your own use case wether you can handle this (small) risk.
+<div class="alert alert-warning">
+  <strong>Enteprise-Only</strong> Redis Sentinel support is available in the 
+  Enterprise Edition of Kong.
+</div>
 
 ### Every transaction counts
 
