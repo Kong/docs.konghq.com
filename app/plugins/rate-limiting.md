@@ -96,10 +96,14 @@ There are 2 use cases that are most common:
   merely used to protect backend services from overload. Either by specific
   users, or to protect against an attack in general.
 
-**NOTE**: The Kong Community Edition of this Rate Limiting plugin does not 
-include [Redis Sentinel](https://redis.io/topics/sentinel) support. 
-[Kong Enterprise Subscription](https://www.mashape.com/enterprise/) customers have the option 
+**NOTE**: 
+
+<div class="alert alert-warning">
+  <strong>Enteprise-Only</strong> The Kong Community Edition of this Rate Limiting plugin does not 
+include <a href="https://redis.io/topics/sentinel">Redis Sentinel</a> support. 
+<a href="https://www.mashape.com/enterprise/">Kong Enterprise Subscription</a> customers have the option 
 of using Redis Sentinel with Kong Rate Limiting to deliver highly available master-slave deployments. 
+</div>
 
 ### Every transaction counts
 
