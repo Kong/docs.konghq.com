@@ -527,6 +527,39 @@ and `X-Kong-Upstream-Latency` response header fields.
 
 Default: `on`
 
+---
+
+##### **client_max_body_size**
+
+Defines the maximum request body size allowed by Kong, specified in the
+Content-Length request header. If a request exceeds this limit, Kong will
+respond with a 413 (Request Entity Too Large). Setting this value to 0
+disables checking of request body size.
+
+See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
+for further description of this parameter. Numeric values may be suffixed with
+'k' or 'm' to denote limits in terms of kilobytes or megabytes.
+
+Default: `0`
+
+---
+
+##### **client_body_buffer_size**
+
+Defines the buffer size for reading the request body. If the client request body
+is larger than this value, the body will be buffered to disk. Note that when the
+body is buffered to disk Kong plugins that access or manipulate the request body
+may not work, so it is advisable to set this value as high as possible (e.g.,
+set it as high as `client_max_body_size` to force request bodies to be kept in
+memory). Do note that high-concurrency environments will require significant
+memory allocations to process many concurrent large request bodies.
+
+See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
+for further description of this parameter. Numeric values may be suffixed with
+'k' or 'm' to denote limits in terms of kilobytes or megabytes.
+
+Default: `8k`
+
 [Back to TOC](#table-of-contents)
 
 ---
