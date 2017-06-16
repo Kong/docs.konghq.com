@@ -15,14 +15,16 @@ nav:
       - label: Known Issues
 ---
 
-Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. It can be used in combination with other request plugins to
-secure, manage or extend the function.
+Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. It
+can be used in combination with other request plugins to secure, manage or extend
+the function.
 
 ----
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of an
+[API][api-object] by executing the following request on your Kong server:
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
@@ -35,7 +37,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+You can also apply it for every API using the `http://kong:8001/plugins/`
+endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin)
+for more information.
 
 form parameter                             | default | description
 ---                                        | ---     | ---
@@ -47,28 +51,37 @@ form parameter                             | default | description
 `config.qualifier`<br>*optional*           | ``      | The [`Qualifier`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function.
 `config.invocation_type`<br>*optional*     | `RequestResponse` | The [`InvocationType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. Available types are `RequestResponse`, `Event`, `DryRun`
 `config.log_type`<br>*optional*            | `Tail`  | The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported
-`config.timeout`<br>*optional*          | `60000` | An optional timeout in milliseconds when invoking the function
-`config.keepalive`<br>*optional*        | `60000` | An optional value in milliseconds that defines for how long an idle connection will live before being closed
+`config.timeout`<br>*optional*             | `60000` | An optional timeout in milliseconds when invoking the function
+`config.keepalive`<br>*optional*           | `60000` | An optional value in milliseconds that defines how long an idle connection will live before being closed
 ----
 
 ### Sending parameters
 
-Any form parameter sent along with the request, will be also sent as an argument to the AWS Lambda function.
+Any form parameter sent along with the request, will be also sent as an
+argument to the AWS Lambda function.
 
 ### Known Issues
 
 #### Use a fake upstream_url
 
-When using the AWS Lambda plugin, the response will be returned by the plugin itself without proxying the request to any upstream service. This means that whatever `upstream_url` has been set on the [API][api-object] it will ultimately never be used.
+When using the AWS Lambda plugin, the response will be returned by the plugin
+itself without proxying the request to any upstream service. This means that
+whatever `upstream_url` has been set on the [API][api-object] it will
+never be used.
 
-Although `upstream_url` will never be used, it's currently a mandatory field in Kong's data model, so feel free to set a fake value (ie, `http://nowhere.com`) if you are planning to use this plugin.
+Although `upstream_url` will never be used, it's currently a mandatory field
+in Kong's data model and its hostname must be resolvable. So set it to a
+fake value (ie, `http://127.0.0.1:20000`) if you are planning to use this
+plugin. Failing to do so will result in 500 errors regarding a resolution
+failure.
 
-In the future we will provide a more intuitive way to deal with similar use-cases.
+In the future we will provide a more intuitive way to deal with similar
+use cases.
 
 #### Response plugins
 
-There is a known limitation in the system that prevents some response plugins from being executed. We are planning to remove this limitation
-in the future.
+There is a known limitation in the system that prevents some response plugins
+from being executed. We are planning to remove this limitation in the future.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
