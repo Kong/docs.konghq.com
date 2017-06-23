@@ -132,7 +132,7 @@ HTTP 200 OK
         ...
     },
     "tagline": "Welcome to Kong",
-    "version": "0.10.0"
+    "version": "0.11.0"
 }
 ```
 
