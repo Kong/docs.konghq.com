@@ -42,7 +42,7 @@ title: Documentation for Kong
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/loadbalancing">Load balancing reference</a></h3>
     <p>Learn how to setup Kong to load balance traffic through replicas of your upstream services.</p>
-    <a href="/docs/{{page.kong_version}}/proxy">Read the Load balancing Reference &rarr;</a>
+    <a href="/docs/{{page.kong_version}}/loadbalancing">Read the Load balancing Reference &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
