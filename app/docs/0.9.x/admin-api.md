@@ -415,11 +415,16 @@ HTTP 200 OK
 
 <div class="endpoint put">/apis/</div>
 
+Attributes | Description
+---:| ---
+`id`<br>**semi-required** | The unique identifier of the API to update (only required if updating)
+`created_at`<br>**semi-required** | The UNIX timestamp of the time the API was created (only required if updating)
+
 #### Request Body
 
 {{ page.api_body }}
 
-The body needs an `id` parameter to trigger an update on an existing entity.
+The body needs both `id` and `created_at` parameters to trigger an update on an existing entity.
 
 #### Response
 
