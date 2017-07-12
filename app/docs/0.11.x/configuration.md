@@ -16,7 +16,7 @@ title: Configuration Reference
   - [General section](#general-section)
   - [Nginx section](#nginx-section)
   - [Datastore section](#datastore-section)
-  - [Clustering section](#clustering-section)
+  - [Datastore cache section](#datastore-cache-section)
   - [DNS resolver section](#dns-resolver-section)
   - [Development & miscellaneous section](#development-miscellaneous-section)
 
@@ -219,13 +219,6 @@ $ bin/kong compile --conf kong.conf > /usr/local/openresty/conf/nginx-kong.conf
 # now start OpenResty with a configuration that "includes" nginx-kong.conf
 $ nginx -c /usr/local/openresty/conf/nginx.conf
 ```
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> When embedding Kong this way, you will have to
-  ensure the required third-party services are already running and configured
-  correctly according to the kong.conf used to compile the Nginx
-  sub-configuration. This includes the database, and serf.
-</div>
 
 [Back to TOC](#table-of-contents)
 
@@ -568,7 +561,7 @@ name                  |  description
 
 name                            | description
 --------------------------------|------------------
-**cassandra_contact_points**    | Comma-separated list of contacts points to your cluster.
+**cassandra_contact_points**    | Comma-separated list of contacts points to your Cassandra cluster.
 **cassandra_port**              | Port on which your nodes are listening.
 **cassandra_keyspace**          | Keyspace to use in your cluster. Will be created if doesn't exist.
 **cassandra_consistency**       | Consistency setting to use when reading/writing.
@@ -589,99 +582,62 @@ name                            | description
 
 ---
 
-#### Clustering section
+#### Datastore cache section
 
-In addition to pointing to the same database, each Kong node must join the
-same cluster.
+In order to avoid unecessary communication with the datastore, Kong caches
+entities (such as APIs, Consumers, Credentials...) for a configurable period
+of time. It also handles invalidations if such an entity is updated.
 
-Kong's clustering works on the IP layer (hostnames are not supported, only
-IPs) and expects a flat network topology without any NAT between the
-datacenters.
-
-A common pattern is to create a VPN between the two datacenters such that
-the flat network assumption is not violated.
-
-See the clustering reference for more informations:
-https://getkong.org/docs/latest/clustering/
+This section allows for configuring the behavior of Kong regarding the
+caching of such configuration entities.
 
 ---
 
-##### **cluster_listen**
+##### **db_update_frequency**
 
-Address and port used to communicate with other nodes in the cluster.
-All other Kong nodes in the same cluster must be able to communicate over both
-TCP and UDP on this address. Only IPv4 addresses are supported.
+Frequency (in seconds) at which to check for
+updated entities with the datastore.
+When a node creates, updates, or deletes an
+entity via the Admin API, other nodes need
+to wait for the next poll (configured by
+this value) to eventually purge the old
+cached entity and start using the new one.
 
-Default: `0.0.0.0:7946`
-
----
-
-##### **cluster_listen_rpc**
-
-Address and port used to communicate with the cluster through the agent
-running on this node. Only contains TCP traffic local to this node.
-
-Default: `127.0.0.1:7373`
+Default: 5 seconds
 
 ---
 
-##### **cluster_advertise**
+##### **db_update_propagation**
 
-By default, the `cluster_listen` address is advertised over the cluster.
-If the `cluster_listen` host is '0.0.0.0', then the first local, non-loopback
-IPv4 address will be advertised to other nodes.
-However, in some cases (specifically NAT traversal), there may be a routable
-address that cannot be bound to. This flag enables advertising a different
-address to support this.
+Time (in seconds) taken for an entity in the
+datastore to be propagated to replica nodes
+of another datacenter.
+When in a distributed environment such as
+a multi-datacenter Cassandra cluster, this
+value should be the maximum number of
+seconds taken by Cassandra to propagate a
+row to other datacenters.
+When set, this property will increase the
+time taken by Kong to propagate the change
+of an entity.
+Single-datacenter setups or PostgreSQL
+servers should suffer no such delays, and
+this value can be safely set to 0.
 
-Default: none
-
----
-
-##### **cluster_encrypt_key**
-
-Base64-encoded 16-bytes key to encrypt cluster traffic with.
-
-Default: none
-
----
-
-##### **cluster_keyring_file**
-
-Specifies a file to load keyring data from.
-Kong is able to keep encryption keys in sync
-and perform key rotations. During a key
-rotation, there may be some period of time in
-which Kong is required to maintain more than
-one encryption key until all members have
-received the new key.
-
-Default: none
+Default: 0 seconds
 
 ---
 
-##### **cluster_ttl_on_failure**
+##### **db_cache_ttl**
 
-Time to live (in seconds) of a node in the cluster when it stops sending
-healthcheck pings, possibly caused by a node or network failure.
-If a node is not able to send a new healthcheck ping before the expiration,
-other nodes in the cluster will stop attempting to connect to it.
+Time-to-live (in seconds) of an entity from
+the datastore when cached by this node.
+Database misses (no entity) are also cached
+according to this setting.
+If set to 0, such cached entities/misses
+never expire.
 
-Recommended to be at least `60`.
-
-Default: `3600`
-
----
-
-##### **cluster_profile**
-
-The timing profile for inter-cluster pings and timeouts. If a `lan` or `local`
-profile is used over the Internet, a high rate of failures is risked as the
-timing constraints would be too tight.
-
-Accepted values are `local`, `lan`, `wan`.
-
-Default: `wan`
+Default: 3600 seconds (1 hour)
 
 [Back to TOC](#table-of-contents)
 
