@@ -4,7 +4,7 @@ title: Clustering Reference
 
 # Clustering Reference
 
-Multiple Kong nodes using the same datastore belong to the same "Kong Cluster". 
+Multiple Kong nodes using the same datastore belong to the same "Kong cluster".
 
 A Kong cluster allows you to scale the system horizontally by adding more
 machines to handle a bigger load of incoming requests, and they all share the
@@ -26,20 +26,20 @@ to use the same datastore.
 ## 1. Getting Started
 
 Kong nodes pointing to the same datastore will join in the same Kong cluster.
-Changes are propagated over the Kong cluster through events that are being
+Changes (to for example APIs, Consumers, Credentials, etc...) are propagated
+over the Kong cluster through events that are being
 registered in the datastore. Periodically all nodes will check for updates
 here and apply the changes.
 
-Kong clustering settings are specified in the configuration file at the
+Kong clustering settings are specified in the configuration file via the
 following entries:
 
 * [db_update_frequency][db_update_frequency]
 * [db_update_propagation][db_update_propagation]
 
 <div class="alert alert-warning">
-  Please note that both Kong itself as well as the Cassandra datastore follow
-  an `eventual consistency` model. And hence changes need some time to be
-  effectuated across the cluster.
+  Please note that Kong follows an `eventual consistency` model and hence
+  there will be some latency for changes to be effectuated across the cluster.
 </div>
 
 ## 2. Network Requirements
@@ -48,7 +48,7 @@ There are no networking requirements other than Kong being able to connect to
 the datastore.
 
 When multiple datacenters or regions are being used (or any other reason to
-suspect latency in datastore updates) then please validate the
+suspect latency in datastore updates) then please adjust the
 [db_update_propagation][db_update_propagation] setting to match accordingly.
 
 
