@@ -45,8 +45,9 @@ Because there is no `weight` information, all entries will be treated as equally
 weighted in the load balancer, and the balancer will do a straight forward
 round-robin.
 
-The initial pick of an IP address from a DNS record is randomized. This is to
-make sure that even with a `ttl` of 0 the load is properly distributed.
+The initial pick of an IP address from a DNS record is not randomized. So when
+using records with a `ttl` of 0, the nameserver is expected to randomize the
+record entries.
 
 [Back to TOC](#table-of-contents)
 
