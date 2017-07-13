@@ -29,17 +29,25 @@ Configuring the plugin is straightforward, you can add it on top of an
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=aws-lambda" \
-    --data "config.aws_key=AWS_KEY" \
-    --data "config.aws_secret=AWS_SECRET" \
+    --data-urlencode "config.aws_key=AWS_KEY" \
+    --data-urlencode "config.aws_secret=AWS_SECRET" \
     --data "config.aws_region=AWS_REGION" \
     --data "config.function_name=LAMBDA_FUNCTION_NAME"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/`
+You can also apply this plugin for every API using the `http://kong:8001/plugins/`
 endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin)
 for more information.
+
+**Reminder**: curl by default sends payloads with an
+`application/x-www-form-urlencoded` MIME type, which will naturally be URL-
+decoded by Kong. To ensure special characters that are likely to appear in your
+AWS key or secret (like `+`) are correctly decoded, you must URL-encode them,
+hence use `--date-urlencode` if you are using curl. Alternatives to this
+approach would be to send your payload with a different MIME type (like
+`application/json`), or to use a different HTTP client.
 
 form parameter                             | default | description
 ---                                        | ---     | ---
