@@ -161,7 +161,7 @@ traffic to be relatively quiet.
 
 However, keep it mind that it is always a good practise to ensure your
 infrastructure does not contain single points of failure (SPOF). As such,
-closely monitor your datastore, and ensure replication of your datastore.
+closely monitor your datastore, and ensure replication of your data.
 
 If you use Cassandra, one of its main advantages is its easy-to-use replication
 capabilities due to its distributed nature. Make sure to read the documentation
@@ -171,9 +171,9 @@ pointed out by the [Cassandra section](#apache-cassandra) of this FAQ.
 
 ## What are plugins?
 
-Plugins are one of the most important features of Kong. All the functionalities
-provided by Kong actually are **plugins**. Authentication, rate-limiting,
-transformation, logging etc, are all implemented independantly. Plugins can be
+Plugins are one of the most important features of Kong. Most of the functionalities
+provided by Kong are actually provided by **plugins**. Authentication, rate-limiting,
+transformation, logging etc, are all implemented independently, as plugins. Plugins can be
 installed and configured via the Admin API running alongside Kong.
 
 Almost all plugins can be customized not only to target a specific proxied
@@ -183,9 +183,9 @@ service, but also to target **specific [Consumers](
 From a technical perspective, a plugin is [Lua](http://www.lua.org/) code
 that's being executed during the life-cycle of a proxied request and response.
 Through plugins, Kong can be extended to fit any custom need or integration
-challenge. For example, if you need to integrate the you API's user
+challenge. For example, if you need to integrate the API's user
 authentication with a third-party enterprise security system, that would be
-implemented in a dedicated plugin that is run on every request targetting that
+implemented in a dedicated plugin that is run on every request targeting that
 given API.
 
 Feel free to explore the [Plugins Gallery](/plugins) and the [Plugin
@@ -203,7 +203,7 @@ all of them. Kong currently supports RESTful services that run over HTTP or
 HTTPs. Learn how to [add a new
 service](/docs/latest/getting-started/adding-your-api/) on Kong.
 
-You can scale Kong horizontally if you are processing lots of requests, just by
+You can [scale](#how-does-it-scale) Kong horizontally if you are processing lots of requests, just by
 adding more Kong servers to your cluster.
 
 ----
@@ -224,7 +224,7 @@ To restrict usage of a service to only some of the authenticated users, add the
 ## How can I migrate to Kong from another API Gateway?
 
 In case you are already using an existing API Gateway and thinking to migrate
-to Kong, you will need to take in considerations two steps:
+to Kong, you will need to take two steps in consideration:
 
 1) Migrate the data. Kong offers a RESTful API that you can use to migrate data
 from an existing API Gateway into Kong. Some API Gateways allow to export your
@@ -235,11 +235,11 @@ to Kong to provision APIs, Consumers and Plugins.
 2) Migrate the network settings. Once the data has been migrated and Kong has
 been configured, you will need to check in a staging environment that everything
 works well. Once you are ready to switch your users into Production over Kong, 
-you will then need to adjust your network settings so point to your Kong cluster
+you will then need to adjust your network settings to point to your Kong cluster
 (most likely by updating the DNS configuration).
 
 If you are a 
-[Mashape Enterprise](https://www.mashape.com/enterprise/) customer we can help
+[Mashape Enterprise](https://www.mashape.com/enterprise/) customer, we can help
 with the migration.
 
 ----
@@ -247,7 +247,7 @@ with the migration.
 ## Where can I get help?
 
 You can read the [official documentation](/docs) or ask any question to the
-community and the core mantainers on our [official chat on
+community and the core maintainers on our [official chat on
 Gitter](https://gitter.im/Mashape/kong). We are also on Freenode at
 [#kong](http://webchat.freenode.net/?channels=kong).
 

@@ -7,10 +7,10 @@ breadcrumbs:
   Installation: /install
 ---
 
-Vagrant is used to create an isolated environment for Kong including Postgres,
-Cassandra and Redis.
+Vagrant can be used to create an isolated environment for Kong and its
+dependencies.
 
-You can use the vagrant box either as an all-in-one Kong installation for
+You can use the Vagrant box either as an all-in-one Kong installation for
 testing purposes, or you can link it up with source code and start developing
 on Kong or on custom plugins.
 
