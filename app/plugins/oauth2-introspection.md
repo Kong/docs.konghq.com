@@ -20,7 +20,7 @@ third-party OAuth 2.0 server.
 <br />
 
 <div class="alert alert-warning">
-  <strong>Enteprise-Only</strong> This plugin is only available with an
+  <strong>Enterprise-Only</strong> This plugin is only available with an
   Enterprise Subscription. 
 </div>
 
@@ -31,9 +31,8 @@ third-party OAuth 2.0 server.
 This plugin is only available with a [Mashape Enterprise](/enterprise) 
 subscription.
 
-If you are already a Mashape Enteprise customer, you can request access to the
-plugin by opening an official support ticket using our Enteprise support 
-channels.
+If you already are a Mashape Enterprise customer, you can request access to the
+plugin by opening a support ticket using your Enterprise support channels.
 
 If you are not a Mashape Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).
