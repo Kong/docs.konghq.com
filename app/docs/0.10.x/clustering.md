@@ -61,9 +61,9 @@ Kong clustering settings are specified in the configuration file at the followin
 
 On startup, Kong will try to auto-detect the first private, non-loopback, IPv4 address and register the address into a `nodes` table in the datastore to be advertised to any other node that's being started with the same datastore. When another Kong node starts it will then read the `nodes` table and try to join at least one of the advertised addresses.
 
-Once a Kong nodes joins one other node, it will automatically discover all the other nodes thanks to the underlying gossip protocol.
+Once Kong nodes join one other node, it will automatically discover all the other nodes thanks to the underlying gossip protocol.
 
-Sometimes the IPv4 address that's automatically advertised by Kong it's not the correct one. You can override the advertised IP address and port by specifying the [cluster_advertise][cluster_advertise].
+Sometimes the IPv4 address that's automatically advertised by Kong is not the correct one. You can override the advertised IP address and port by specifying the [cluster_advertise][cluster_advertise].
 
 ## 3. Network Requirements
 

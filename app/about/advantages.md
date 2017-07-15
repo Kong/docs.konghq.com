@@ -17,7 +17,7 @@ Kong has several advantages compared to other API management platforms and tools
 
 ## Use Cases
 
-Because Kong is open-source and highly customizable, you'll have full control over your architecutre. It's perfectly suited for managing *internal* Microservice traffic as well as *partners* or *public* entities.
+Because Kong is open-source and highly customizable, you'll have full control over your architecture. It's perfectly suited for managing *internal* microservice traffic as well as *partners* or *public* entities.
 
 ### Internal
 
@@ -27,7 +27,7 @@ Internal API traffic that connects microservices built inside your organization 
 
 ### Partners
 
-Parters usage is when your software has to communicate with a mission critical third party microservice to offer its key features (and vice-versa). For example a credit card company relies on at least one bank to offer its service. In the past most of those connections would happen via an ESB, nowadays all you need is an API Gateway.
+Partners usage is when your software has to communicate with a mission critical third party microservice to offer its key features (and vice-versa). For example a credit card company relies on at least one bank to offer its service. In the past most of those connections would happen via an ESB, nowadays all you need is an API Gateway.
 
 ![Partner use-case](/assets/images/partner-use.png)
 

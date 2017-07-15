@@ -64,7 +64,7 @@ $ curl http://localhost:8001/status
 
 1. **Configuration**:
 
-    Revise [`config/kong.yml.etlua`](config/kong.yml.etlua) to suite your application.
+    Revise [`config/kong.yml.etlua`](config/kong.yml.etlua) to suit your application.
 
     See: [Kong 0.7 Configuration Reference](https://getkong.org/docs/0.7.x/configuration/)
 

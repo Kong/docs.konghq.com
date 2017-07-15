@@ -30,7 +30,7 @@ Start by downloading the following package specifically built for the Amazon Lin
 
     [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
-    If you are using Postgres, please provision a database and a user before starting Kong, ie:
+    If you are using Postgres, please provision a database and a user before starting Kong, i.e.:
 
     ```sql
     CREATE USER kong; CREATE DATABASE kong OWNER kong;
