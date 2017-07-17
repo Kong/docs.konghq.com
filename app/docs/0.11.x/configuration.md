@@ -72,10 +72,6 @@ $ kong start -c <kong.conf> --vv
 2016/08/11 14:53:36 [verbose] no config file found at /etc/kong.conf
 2016/08/11 14:53:36 [verbose] no config file found at /etc/kong/kong.conf
 2016/08/11 14:53:36 [debug] admin_listen = "0.0.0.0:8001"
-2016/08/11 14:53:36 [debug] cluster_listen = "0.0.0.0:7946"
-2016/08/11 14:53:36 [debug] cluster_listen_rpc = "127.0.0.1:7373"
-2016/08/11 14:53:36 [debug] cluster_profile = "wan"
-2016/08/11 14:53:36 [debug] cluster_ttl_on_failure = 3600
 2016/08/11 14:53:36 [debug] database = "postgres"
 2016/08/11 14:53:36 [debug] log_level = "notice"
 [...]
