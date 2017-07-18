@@ -18,6 +18,7 @@ If you haven't yet, we recommend you read the [configuration reference][configur
   - [kong check](#kong-check)
   - [kong cluster](#kong-cluster)
   - [kong compile](#kong-compile)
+  - [kong prepare](#kong-prepare)
   - [kong health](#kong-health)
   - [kong migrations](#kong-migrations)
   - [kong quit](#kong-quit)
@@ -119,6 +120,24 @@ Note:
 
 Options:
   -c,--conf (optional string) configuration file
+```
+
+[Back to TOC](#table-of-contents)
+
+---
+
+#### **kong prepare**
+
+This command prepares the Kong prefix folder, with its sub-folders and files.
+
+```
+Usage: kong prepare [OPTIONS]
+
+Prepares the Kong prefix in the configured prefix directory.
+
+Options:
+ -c,--conf    (optional string) configuration file
+ -p,--prefix  (optional string) override prefix directory
 ```
 
 [Back to TOC](#table-of-contents)
