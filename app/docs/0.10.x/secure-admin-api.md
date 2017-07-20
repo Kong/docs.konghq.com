@@ -17,6 +17,7 @@ the Admin API.
   - [Layer 3/4 Network Controls](#layer-34-network-controls)
 - [Kong API Loopback](#kong-api-loopback)
 - [Custom Nginx Configuration](#custom-nginx-configuration)
+- [Role Based Access Control (RBAC)](#role-based-access-control)
 
 ## Network Layer Access Restrictions
 
@@ -51,7 +52,7 @@ input traffic ranges. For example:
 # /24 CIDR block, and only a select few hosts in this range should have access
 
 $ grep admin_listen /etc/kong/kong.conf
-admin_listen 10.10.10.3
+admin_listen 10.10.10.3:8001
 
 # explicitly allow TCP packets on port 8001 from the Kong node itself
 # this is not necessary if Admin API requests are not sent from the node
@@ -134,6 +135,27 @@ For more information on integrating Kong into custom Nginx configurations, see
 [Custom Nginx configuration & embedding Kong][custom-configuration].
 
 [Back to TOC](#table-of-contents)
+
+## Role Based Access Control ##
+
+<div class="alert alert-warning">
+  <strong>Enterprise-Only</strong> This feature is only available with an
+  Enterprise Subscription.
+</div>
+
+Enterprise users can configure role-based access control to secure access to the
+Admin API. RBAC allows for fine-grained control over resource access based on
+a model of user roles and permissions. Users are assigned to one or more roles,
+which each in turn possess one or more permissions granting or denying access
+to a particular resource. In this way, fine-grained control over specific Admin
+API resources can be enforced, while scaling to allow complex, case-specific
+uses.
+
+If you are not a Mashape Enterprise customer, you can inquire about our
+Enterprise offering by [contacting us](/enterprise).
+
+[Back to TOC](#table-of-contents)
+
 
 [acl]: /plugins/acl
 [basic-auth]: /plugins/basic-authentication/
