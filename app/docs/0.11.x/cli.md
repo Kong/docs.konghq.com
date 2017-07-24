@@ -17,7 +17,7 @@ If you haven't yet, we recommend you read the [configuration reference][configur
   - [kong backup](#kong-backup)
   - [kong check](#kong-check)
   - [kong cluster](#kong-cluster)
-  - [kong compile](#kong-compile)
+  - [kong compile (deprecated)](#kong-compile)
   - [kong prepare](#kong-prepare)
   - [kong health](#kong-health)
   - [kong migrations](#kong-migrations)
@@ -93,6 +93,10 @@ Options:
 ---
 
 #### **kong compile**
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This command has been deprecated.
+</div>
 
 For a detailed example of this command, see the
 [Embedding Kong](/docs/{{page.kong_version}}/configuration#embedding-kong)
