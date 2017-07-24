@@ -644,10 +644,15 @@ Default: 3600 seconds (1 hour)
 Kong will resolve hostnames as either `SRV` or `A` records (in that order, and
 `CNAME` records will be dereferenced in the process).
 In case a name was resolved as an `SRV` record it will also override any given
-port number by the `port` field contents received from the dns server.
+port number by the `port` field contents received from the DNS server.
 
-For the duration of the `ttl`, the internal dns resolver will loadbalance each
-request it gets over the entries in the dns record. For `SRV` records the
+The DNS options `SEARCH` and `NDOTS` (from the `/etc/resolv.conf` file) will
+be used to expand short names to fully qualified ones. So it will first try the
+entire `SEARCH` list for the `SRV` type, if that fails it will try the `SEARCH`
+list for `A`, etc.
+
+For the duration of the `ttl`, the internal DNS resolver will loadbalance each
+request it gets over the entries in the DNS record. For `SRV` records the
 `weight` fields will be honored, but it will only use the lowest `priority`
 field entries in the record.
 
@@ -656,10 +661,11 @@ field entries in the record.
 ##### **dns_resolver**
 
 Comma separated list of nameservers, each
-entry in `ipv4[:port]` format to be used by
+entry in `ip[:port]` format to be used by
 Kong. If not specified the nameservers in
 the local `resolv.conf` file will be used.
-Port defaults to 53 if omitted.
+Port defaults to 53 if omitted. Accepts
+both IPv4 and IPv6 addresses.
 
 Default: none
 
@@ -671,6 +677,62 @@ The hosts file to use. This file is read once and its content is static
 in memory. To read the file again after modifying it, Kong must be reloaded.
 
 Default: `/etc/hosts`
+
+---
+
+##### **dns_order**
+
+The order in which to resolve different
+record types. The `LAST` type means the
+type of the last successful lookup (for the
+specified name). The format is a (case
+insensitive) comma separated list.
+
+Default: `LAST,SRV,A,CNAME`
+
+---
+
+##### **dns_stale_ttl**
+
+Defines, in seconds, how long a record will
+remain in cache past its TTL. This value
+will be used while the new DNS record is
+fetched in the background.
+Stale data will be used from expiry of a
+record until either the refresh query
+completes, or the `dns_stale_ttl` number of
+seconds have passed.
+
+Default: `4`
+
+---
+
+##### **dns_not_found_ttl**
+
+TTL in seconds for empty DNS responses and
+"(3) name error" responses.
+
+Default: `30`
+
+---
+
+##### **dns_error_ttl**
+
+TTL in seconds for error responses.
+
+Default: `1`
+
+---
+
+##### **dns_no_sync**
+
+If enabled, then upon a cache-miss every
+request will trigger its own dns query.
+When disabled multiple requests for the
+same name/type will be synchronised to a
+single query.
+
+Default: off
 
 [Back to TOC](#table-of-contents)
 

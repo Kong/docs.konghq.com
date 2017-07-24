@@ -16,7 +16,8 @@ If you haven't yet, we recommend you read the [configuration reference][configur
 - [Available commands](#available-commands)
   - [kong backup](#kong-backup)
   - [kong check](#kong-check)
-  - [kong compile](#kong-compile)
+  - [kong compile (deprecated)](#kong-compile)
+  - [kong prepare](#kong-prepare)
   - [kong health](#kong-health)
   - [kong migrations](#kong-migrations)
   - [kong quit](#kong-quit)
@@ -54,6 +55,10 @@ Check the validity of a given Kong configuration file.
 
 #### **kong compile**
 
+<div class="alert alert-warning">
+  <strong>Note:</strong> This command has been deprecated.
+</div>
+
 For a detailed example of this command, see the
 [Embedding Kong](/docs/{{page.kong_version}}/configuration#embedding-kong)
 section of the configuration reference.
@@ -76,6 +81,31 @@ Example usage:
 
 Options:
   -c,--conf (optional string) configuration file
+```
+
+[Back to TOC](#table-of-contents)
+
+---
+
+#### **kong prepare**
+
+This command prepares the Kong prefix folder, with its sub-folders and files.
+
+```
+Usage: kong prepare [OPTIONS]
+
+Prepare the Kong prefix in the configured prefix directory. This command can
+be used to start Kong from the nginx binary without using the 'kong start'
+command.
+
+Example usage:
+  kong prepare -p /usr/local/kong -c kong.conf && kong migrations up &&
+    nginx -p /usr/local/kong -c /usr/local/kong/nginx.conf
+
+Options:
+ -c,--conf    (optional string) configuration file
+ -p,--prefix  (optional string) override prefix directory
+ --nginx-conf (optional string) custom Nginx configuration template
 ```
 
 [Back to TOC](#table-of-contents)
