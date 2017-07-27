@@ -147,6 +147,7 @@ A few considerations on the above JSON object:
   * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
 * `client_ip` contains the original client IP address
 * `started_at` contains the UTC timestamp of when the API transaction has started to be processed.
+
 ----
 
 ## Kong Process Errors
