@@ -10,7 +10,7 @@ chapter: 2
   <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a>.
 </div>
 
-Consider your plugin as a set of [Lua modules](http://www.lua.org/manual/5.1/manual.html#6.3). Each file described in this chapter is to be considered as a separate module. Kong will detect and load your plugin's modules if their names follow this convention:
+Consider your plugin as a set of [Lua modules](http://www.lua.org/manual/5.1/manual.html#5.3). Each file described in this chapter is to be considered as a separate module. Kong will detect and load your plugin's modules if their names follow this convention:
 
 ```
 "kong.plugins.<plugin_name>.<module_name>"
