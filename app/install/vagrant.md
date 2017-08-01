@@ -16,9 +16,7 @@ on Kong or on custom plugins.
 
 Here is a quick example showing how to build a (disposable) test setup:
 
-### Starting the Environment:
-
-1. **Get the Vagrantfile and start it:**
+1. **Get the Vagrantfile and start the VM**
 
     ```bash
     $ git clone https://github.com/Mashape/kong-vagrant
@@ -26,10 +24,11 @@ Here is a quick example showing how to build a (disposable) test setup:
     $ vagrant up
     ```
 
-2. **Start Kong:**
+2. **Start Kong**
 
     ```bash
-    $ vagrant ssh -c "kong start"
+    # specify migrations flag to initialise the datastore
+    $ vagrant ssh -c "kong start --run-migrations"
     ```
     <br/>
     The host ports `8000`, `8001`, `8443`, and `8444` will be forwarded to the Vagrant box.
@@ -40,12 +39,12 @@ Here is a quick example showing how to build a (disposable) test setup:
       </div>
     </div>
 
-3. **Kong is running:**
+3. **Use Kong**
+
+    Kong is running:
 
     ```bash
     $ curl http://127.0.0.1:8001
     ```
-
-4. **Start using Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).

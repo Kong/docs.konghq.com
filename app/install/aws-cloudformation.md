@@ -15,7 +15,7 @@ links:
     kong-postgres-pv: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-postgres-optional-vpc-optional-pv.template "
 ---
 
-### Templates:
+### Templates
 
 #### Kong with Cassandra
 
@@ -74,14 +74,14 @@ on AWS RDS for you.
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
 
 ----
-### Recommended usage:
+### Recommended usage
 
   <B>Use this cloud formation as a basis for your own, adjust the variables and template to better suite your needs.</B>
 ----
 
-### Instructions:
+### Instructions
 
-1. **Initial Setup**:
+1. **Initial Setup**
 
     Create the required key pair to access your Kong instances. If you are
     providing your own Cassandra/PostgreSQL instances, make sure they are
@@ -91,14 +91,14 @@ on AWS RDS for you.
 
     *Continue to next step if you want to use an existing key pair*
 
-3. **Choose a Region & VM Type**:
+3. **Choose a Region & VM Type**
 
     Choose the region closest to your API servers, and pick the virtualization
     type you'd like from the list of available [templates](#templates) above.
 
     You should land on AWS Cloud Formation *"Select Template"* page
 
-4. **Parameters**:
+4. **Parameters**
 
     Fill-in all the parameters details. If you chose to launch Kong with
     PostgreSQL but without specifying your own PostgreSQL server, you will be
@@ -108,17 +108,17 @@ on AWS RDS for you.
 
     **Note**: *consult the [templates documentation on Github]({{ site.repos.cloudformation }}) for detailed description of parameters*
 
-5. **Option page**:
+5. **Option page**
 
     Add Tags and other fields according to your requirements.
 
     **Note:** *The template is configured to add a "Name" tag to each relevant resource*
 
-5. **Template Documentation**:
+5. **Template Documentation**
 
     For more details on parameters and futher configuration options, please consult the [templates documentation on Github]({{ site.repos.cloudformation }})
 
-6. **Grab a Coffee!**:
+6. **Grab a Coffee!**
 
     It will take several minutes *(~20 minutes)* to create the stack. Once the stack has a status of `CREATE_COMPLETE`, click on the *"Output"* tab to get the Proxy and Admin URLs, it may take *60 more seconds* for the links to become active.
 
@@ -130,6 +130,6 @@ on AWS RDS for you.
       </div>
     </div>
 
-7. **Use Kong:**
+7. **Use Kong**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
