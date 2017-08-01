@@ -19,6 +19,21 @@
     <script id="twitter-wjs" type="text/javascript" src="https://platform.twitter.com/widgets.js" async defer></script>
     <script id="facebook-jssdk" type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=842731852424506" async defer></script>
 
+    <script type="text/javascript">
+      piAId = '393112';
+      piCId = '48375';
+
+      (function() {
+        function async_load(){
+          var s = document.createElement('script'); s.type = 'text/javascript';
+          s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+          var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+        }
+        if(window.attachEvent) { window.attachEvent('onload', async_load); }
+        else { window.addEventListener('load', async_load, false); }
+      })();
+    </script>
+
     <script type='text/javascript'>
       var _vwo_code=(function(){
       var account_id=125292,
