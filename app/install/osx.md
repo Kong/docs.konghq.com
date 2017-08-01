@@ -7,22 +7,22 @@ breadcrumbs:
   Installation: /install
 ---
 
-### Packages:
+### Packages
 
 - [.pkg Installer]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.osx.pkg)
 - [Homebrew Formula]({{ site.repos.homebrew }})
 
 ----
 
-### Installation:
+### Installation
 
-1. **Install the Package:**
+1. **Install Kong**
 
     Use the `.pkg` installer or the Homebrew formula. For the Homebrew formula, follow the instructions described in the repository.
 
     **Note**: After downloading the `.pkg` installer, you will have to **right click**, select "Open" and authorize it.
 
-2. **Configure your database**
+2. **Prepare your database**
 
     [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
@@ -32,16 +32,28 @@ breadcrumbs:
     CREATE USER kong; CREATE DATABASE kong OWNER kong;
     ```
 
-3. **Start Kong:**
+    Now, run the Kong migrations:
 
     ```bash
-    $ kong start
-
-    # Kong is running
-    $ curl 127.0.0.1:8001
+    $ kong migrations up [-c /path/to/kong.conf]
     ```
 
-4. **Use Kong:**
+    **Note**: migrations should never be run concurrently; only
+    one Kong nodes should be performing migrations at a time.
+
+3. **Start Kong**
+
+    ```bash
+    $ kong start [-c /path/to/kong.conf]
+    ```
+
+4. **Use Kong**
+
+    Kong is running:
+
+    ```bash
+    $ curl -i http://localhost:8001/
+    ```
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
 

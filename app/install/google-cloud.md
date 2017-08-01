@@ -11,7 +11,7 @@ breadcrumbs:
 
     To Launch Kong into Google Cloud, please take a look at the [Bitnami Image](https://bitnami.com/stack/kong/cloud/google) and follow the instructions.
 
-2. **Use Kong:**
+2. **Use Kong**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
 

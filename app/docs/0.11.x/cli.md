@@ -247,9 +247,10 @@ This command is equivalent to doing both 'kong stop' and
 'kong start'.
 
 Options:
-  -c,--conf    (optional string) configuration file
-  -p,--prefix  (optional string) prefix at which Kong should be running
-  --nginx-conf (optional string) custom Nginx configuration template
+  -c,--conf        (optional string)   configuration file
+  -p,--prefix      (optional string)   prefix at which Kong should be running
+  --nginx-conf     (optional string)   custom Nginx configuration template
+  --run-migrations (optional boolean)  optionally run migrations on the DB
 ```
 
 [Back to TOC](#table-of-contents)
@@ -265,9 +266,10 @@ Start Kong (Nginx and other configured services) in the configured
 prefix directory.
 
 Options:
-  -c,--conf    (optional string) configuration file
-  -p,--prefix  (optional string) override prefix directory
-  --nginx-conf (optional string) custom Nginx configuration template
+  -c,--conf        (optional string)   configuration file
+  -p,--prefix      (optional string)   prefix at which Kong should be running
+  --nginx-conf     (optional string)   custom Nginx configuration template
+  --run-migrations (optional boolean)  optionally run migrations on the DB
 ```
 
 [Back to TOC](#table-of-contents)
