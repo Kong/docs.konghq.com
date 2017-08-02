@@ -99,6 +99,6 @@
     luarocks: "2.4.2"
     cassandra: "3.x.x"
     postgres: "9.4+"
-    openresty: "1.11.2.2"
+    openresty: "1.11.2.4"
     serf: "0.7.0"
   lua_doc: true
