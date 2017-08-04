@@ -9,9 +9,9 @@ title: Configuration Reference
 - [Configuration loading](#configuration-loading)
 - [Verifying your configuration](#verifying-your-configuration)
 - [Environment variables](#environment-variables)
-- [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-embedding-kong)
+- [Customized Nginx setup](#customized-nginx-setup)
   - [Custom Nginx configuration](#custom-nginx-configuration)
-  - [Embedding Kong](#embedding-kong)
+  - [Starting Kong via Nginx](#starting-kong-via-nginx)
 - [Properties reference](#properties-reference)
   - [General section](#general-section)
   - [Nginx section](#nginx-section)
@@ -103,7 +103,7 @@ $ export KONG_LOG_LEVEL=error
 
 [Back to TOC](#table-of-contents)
 
-### Custom Nginx configuration & embedding Kong
+### Customized Nginx setup
 
 Tweaking the Nginx configuration is an essential part of setting up your Kong
 instances since it allows you to optimize its performance for your
@@ -120,9 +120,9 @@ directory, moments before starting Nginx.
 The default template can be found at:
 https://github.com/Mashape/kong/tree/master/kong/templates.  It is split in
 two Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
-minimalistic and includes the later, which contains everything Kong requires to
-run. Moments before starting Nginx, those two files are copied into the prefix
-directory, which looks like so:
+minimalistic and includes the latter, which contains everything Kong requires to
+run. When `kong start` runs, right before starting Nginx, it copies these
+two files into the prefix directory, which looks like so:
 
 ```
 /usr/local/kong
@@ -132,7 +132,10 @@ directory, which looks like so:
 
 If you wish to include other `server` blocks in your Nginx configuration, or if
 you must tweak global settings that are not exposed by the Kong configuration,
-here is a suggestion:
+you can create your own template file. Here is an example template file,
+setting Nginx options for [epoll](http://nginx.org/en/docs/events.html)
+and [multi_accept](http://nginx.org/en/docs/ngx_core_module.html#multi_accept),
+and adding a custom `server` block:
 
 ```
 # ---------------------
@@ -145,8 +148,9 @@ daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
 pid pids/nginx.pid;                      # this setting is mandatory
 error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
 
+# custom Nginx settings
 events {
-    use epoll; # custom setting
+    use epoll;
     multi_accept on;
 }
 
@@ -174,7 +178,8 @@ $ kong start -c kong.conf --nginx-conf custom_nginx.template
 
 If you wish to customize the Kong Nginx sub-configuration file to, eventually,
 add other Lua handlers or customize the `lua_*` directives, you can inline the
-`nginx_kong.lua` configuration in this `custom_nginx.template` example file:
+contents of the `nginx_kong.lua` configuration file in your
+`custom_nginx.template` example file, and then edit them to suit your needs:
 
 ```
 # ---------------------
@@ -201,19 +206,45 @@ http {
 
 [Back to TOC](#table-of-contents)
 
-#### Embed Kong in OpenResty
+#### Starting Kong via Nginx
 
-If you are running your own OpenResty servers, you can also easily embed Kong
-by including the Kong Nginx sub-configuration using the `include` directive
+The command `kong start` launches Kong, internally initiating an Nginx
+process. If you are running your own OpenResty servers, you may want
+to flip this process over, starting Nginx yourself and having its
+configuration launch Kong. This may also desirable in containerized
+environments, to ensure that the Nginx master process is the foreground
+process in the container, instead of the `kong` CLI command.
+
+To launch Kong from within Nginx, you need an Nginx configuration file
+which includes the Kong Nginx sub-configuration using the `include` directive
 (similar to the examples of the previous section). However, you will need the
-final configuration and not the template. For this, use the `compile` command,
-which outputs a fully-compiled Nginx sub-configuration to `stdout`:
+final configuration and not the template. To prepare this configuration file,
+use the `kong prepare` command, which generates `nginx.conf` and
+`nginx-kong.conf`:
+
+``` bash
+$ kong prepare -p /usr/local/kong -c /path/to/kong.conf 
+```
+
+The above command generates `nginx.conf` and `nginx-kong.conf` in
+`/usr/local/kong`. You can then start OpenResty with this configuration,
+possibly editing this freshly-generated `nginx.conf` file to further customize
+it.
 
 ```
-$ bin/kong compile --conf kong.conf > /usr/local/openresty/conf/nginx-kong.conf
+$ nginx -p /usr/local/kong -c /usr/local/kong/nginx.conf
+```
 
-# now start OpenResty with a configuration that "includes" nginx-kong.conf
-$ nginx -c /usr/local/openresty/conf/nginx.conf
+If you already have an existing Nginx configuration for your OpenResty server,
+you can include the generated `nginx-kong.conf` to your own `nginx.conf`
+instead.
+
+Alternatively, if you created your own template with your
+[custom Nginx configuration](#custom-nginx-configuration) you can also
+use the `--nginx-conf` flag with `kong prepare`:
+
+``` bash
+$ kong prepare -p /usr/local/kong -c /path/to/kong.conf --nginx-conf custom_nginx.template
 ```
 
 [Back to TOC](#table-of-contents)
