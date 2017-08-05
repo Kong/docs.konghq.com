@@ -227,9 +227,14 @@ $ kong prepare -p /usr/local/kong -c /path/to/kong.conf
 ```
 
 The above command generates `nginx.conf` and `nginx-kong.conf` in
-`/usr/local/kong`. You can then start OpenResty with this configuration,
-possibly editing this freshly-generated `nginx.conf` file to further customize
-it.
+`/usr/local/kong`. Note that these two files get overwritten if they
+already exist. `kong prepare` also creates log files in `logs/` and
+default self-generated SSL certificates in `ssl/`, but only if these
+don't exist already.
+
+Once this configuration is prepared with `kong prepare`, you can then
+start OpenResty using it, possibly editing this freshly-generated
+`nginx.conf` file to further customize it.
 
 ```
 $ nginx -p /usr/local/kong -c /usr/local/kong/nginx.conf
