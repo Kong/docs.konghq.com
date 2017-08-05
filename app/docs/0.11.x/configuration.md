@@ -252,6 +252,17 @@ use the `--nginx-conf` flag with `kong prepare`:
 $ kong prepare -p /usr/local/kong -c /path/to/kong.conf --nginx-conf custom_nginx.template
 ```
 
+So, in short:
+
+ * `kong prepare` reads `kong.conf` with `-c` (and optionally a custom
+template with `--nginx-conf`;
+ * This generates `nginx.conf` and `nginx-kong.conf` and prepares the
+environment for Nginx to run loading Kong. The generated `nginx.conf`
+includes `nginx-kong.conf`;
+ * Launching Nginx with the Kong-generated `nginx.conf` (or your custom
+configuration which includes `nginx-kong.conf`) causes Kong to be loaded
+in it.
+
 [Back to TOC](#table-of-contents)
 
 ### Properties reference
