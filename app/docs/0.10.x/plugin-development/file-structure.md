@@ -18,11 +18,12 @@ Consider your plugin as a set of [Lua modules](http://www.lua.org/manual/5.1/man
 
 > Your modules of course need to be accessible through your [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path) variable, which can be tweaked to your needs by the [lua-package-path](https://github.com/openresty/lua-nginx-module#lua_package_path) directive in your Nginx configuration. However, the prefered way of installing plugins is through [Luarocks](https://luarocks.org/). More on that later in this guide.
 
-To make Kong aware that it has to look for your plugin's modules, you'll have to add it to the `custom_plugins` property in your configuration file. For example:
+To make Kong aware that it has to look for your plugin's modules, you'll have
+to add it to the `custom_plugins` property in your configuration file, which
+is a comma-separated list. For example:
 
 ```yaml
-custom_plugins:
-  - my-custom-plugin # your plugin name here
+custom_plugins = my-custom-plugin # your plugin name here
 ```
 
 Now, Kong will try to load the modules described in this chapter. Some of them are mandatory, but the ones that are not will be ignored and Kong will consider you do not make use of it. For example, Kong will load `"kong.plugins.my-custom-plugin.handler"` to retrieve and execute your plugin's logic.
