@@ -142,11 +142,19 @@ and adding a custom `server` block:
 # custom_nginx.template
 # ---------------------
 
-worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
-daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
+> if nginx_user then
+user ${{"{{NGINX_USER"}}}};
+> end
 
-pid pids/nginx.pid;                      # this setting is mandatory
-error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
+worker_processes ${{"{{NGINX_WORKER_PROCESSES"}}}};
+daemon ${{"{[NGINX_DAEMON"}}}};
+
+pid pids/nginx.pid;
+error_log ${{"{{PROXY_ERROR_LOG"}}}} ${{"{{LOG_LEVEL"}}}};
+
+> if nginx_optimizations then
+worker_rlimit_nofile ${{"{{WORKER_RLIMIT"}}}};
+> end
 
 # custom Nginx settings
 events {
@@ -186,21 +194,44 @@ contents of the `nginx_kong.lua` configuration file in your
 # custom_nginx.template
 # ---------------------
 
-worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
-daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
+> if nginx_user then
+user ${{"{{NGINX_USER"}}}};
+> end
 
-pid pids/nginx.pid;                      # this setting is mandatory
-error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
+worker_processes ${{"{{NGINX_WORKER_PROCESSES"}}}};
+daemon ${{"{[NGINX_DAEMON"}}}};
+
+pid pids/nginx.pid;
+error_log ${{"{{PROXY_ERROR_LOG"}}}} ${{"{{LOG_LEVEL"}}}};
+
+> if nginx_optimizations then
+worker_rlimit_nofile ${{"{{WORKER_RLIMIT"}}}};
+> end
 
 events {}
 
 http {
-  resolver ${{ "{{DNS_RESOLVER" }}}} ipv6=off;
-  charset UTF-8;
-  error_log logs/error.log ${{ "{{LOG_LEVEL" }}}};
-  access_log logs/access.log;
+    # Here, we inline the content of the Kong Nginx sub-configuration
+    charset UTF-8;
 
-  ... # etc
+    error_log ${{"{{PROXY_ERROR_LOG"}}}} ${{"{{LOG_LEVEL"}}}};
+
+    client_max_body_size ${{"{{CLIENT_MAX_BODY_SIZE"}}}};
+    proxy_ssl_server_name on;
+    underscores_in_headers on;
+
+    # other ngx_lua directives...
+
+    init_by_lua_block {
+        kong = require 'kong'
+        kong.init()
+    }
+
+    init_worker_by_lua_block {
+        kong.init_worker()
+    }
+
+    # etc...
 }
 ```
 
