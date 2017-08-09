@@ -28,7 +28,7 @@ Kong server:
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=cors" \
-    --data "config.origins=mockbin.com" \
+    --data "config.origins=http://mockbin.com" \
     --data "config.methods=GET, POST" \
     --data "config.headers=Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Auth-Token" \
     --data "config.exposed_headers=X-Auth-Token" \
