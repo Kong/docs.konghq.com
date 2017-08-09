@@ -143,7 +143,7 @@ HTTP 200 OK
 
 ### Retrieve node status
 
-Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, and the number of entities stored in the datastore collections (including plugin's collections). 
+Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, and the status of the connection with the database.
 
 If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
 
@@ -169,11 +169,7 @@ HTTP 200 OK
         "connections_waiting": 0
     },
     "database": {
-        "apis": 2,
-        "consumers": 0,
-        "plugins": 2,
-        "nodes": 1,
-        ...
+        "reachable": true
     }
 }
 ```
@@ -186,8 +182,8 @@ HTTP 200 OK
     * `connections_reading`: The current number of connections where Kong is reading the request header.
     * `connections_writing`: The current number of connections where nginx is writing the response back to the client.
     * `connections_waiting`: The current number of idle client connections waiting for a request.
-* `database`: Metrics about the database collections.
-    * `...`: For every database collection, shows the number of items stored in that collection.
+* `database`: Metrics about the database.
+    * `reachable`: Boolean field indicating whether there's a connection with the database.
 
 ---
 
