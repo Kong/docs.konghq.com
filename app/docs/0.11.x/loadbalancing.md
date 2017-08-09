@@ -107,7 +107,8 @@ entities.
 
   - `target`: an IP address or hostname with a port number where a backend
     service resides, eg. "192.168.100.12:80". Each target gets an additional
-    `weight` to indicate the relative load it gets.
+    `weight` to indicate the relative load it gets. IP addresses can be
+    in both IPv4 and IPv6 format.
   - `upstream`: a 'virtual hostname' which can be used in an API `upstream_url`
     field, e.g., an upstream named `weather.v2.service` would get all requests
     from an api with `upstream_url=http://weather.v2.service/some/path`.
