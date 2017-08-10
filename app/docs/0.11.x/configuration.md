@@ -428,6 +428,15 @@ Default: `0.0.0.0:8444`
 
 Example: `127.0.0.1:8444`
 
+##### **nginx_user**
+
+Defines user and group credentials used by worker processes. If group is omitted, a
+group whose name equals that of user is used.
+
+Default: `nobody nobody`
+
+Example: `nginx www`
+
 ---
 
 ##### **nginx_user**
