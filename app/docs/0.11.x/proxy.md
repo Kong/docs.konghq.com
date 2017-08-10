@@ -129,7 +129,7 @@ HTTP/1.1 201 Created
 ```
 
 This request instructs Kong to register an API named "my-api", reachable at
-"http://example.com". It also specifies various routing properties, though note
+"http://my-api.com". It also specifies various routing properties, though note
 that **only one of** `hosts`, `uris` and `methods` is  required.
 
 Adding such an API would mean that you configured Kong to proxy all incoming
