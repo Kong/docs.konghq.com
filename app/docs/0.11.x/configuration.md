@@ -510,6 +510,14 @@ Default: none
 
 ---
 
+##### **http2**
+
+Enables HTTP2 support for HTTPS traffic on the `proxy_listen_ssl` address.
+
+Default: `off`
+
+---
+
 ##### **client_ssl**
 
 Determines if Nginx should send client-side SSL certificates when proxying
@@ -565,6 +573,14 @@ If `admin_ssl` is enabled, the absolute path to the SSL key for the
 `admin_listen_ssl` address.
 
 Default: none
+
+---
+
+##### **admin_http2**
+
+Enables HTTP2 support for HTTPS traffic on the `admin_listen_ssl` address.
+
+Default: `off`
 
 ---
 
