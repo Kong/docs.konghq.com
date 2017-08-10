@@ -121,7 +121,7 @@ Adding an API to Kong is as easy as sending an HTTP request:
 ```bash
 $ curl -i -X POST http://localhost:8001/apis/ \
     -d 'name=my-api' \
-    -d 'upstream_url=http://my-api.com' \
+    -d 'upstream_url=http://my-api.com' \
     -d 'hosts=example.com' \
     -d 'uris=/my-api' \
     -d 'methods=GET,HEAD'
@@ -135,7 +135,7 @@ that **only one of** `hosts`, `uris` and `methods` is  required.
 
 Adding such an API would mean that you configured Kong to proxy all incoming
 requests matching the specified `hosts`, `uris`, and `methods` to
-`http://example.com`. Kong is a transparent proxy, and it will forward the
+`http://my-api.com`. Kong is a transparent proxy, and it will forward the
 request to your upstream service untouched, with the exception of the addition
 of various headers such as `Connection`.
 
