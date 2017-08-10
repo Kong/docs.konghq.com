@@ -121,7 +121,7 @@ Adding an API to Kong is as easy as sending an HTTP request:
 ```bash
 $ curl -i -X POST http://localhost:8001/apis/ \
     -d 'name=my-api' \
-    -d 'upstream_url=http://my-api.com' \
+    -d 'upstream_url=http://my-api.com' \
     -d 'hosts=example.com' \
     -d 'uris=/my-api' \
     -d 'methods=GET,HEAD'
