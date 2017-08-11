@@ -14,7 +14,6 @@ allows for service registry without needing a DNS server.
   - [A records](#a-records)
   - [SRV records](#srv-records)
   - [DNS priorities](#dns-priorities)
-
 - [Ring-balancer](#ring-balancer)
   - [upstream](#upstream)
   - [target](#target)
