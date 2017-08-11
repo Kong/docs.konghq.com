@@ -29,6 +29,7 @@ service depending on their headers, URI, and HTTP method.
         - [Using wildcard hostnames][proxy-using-wildcard-hostnames]
         - [The `preserve_host` property][proxy-preserve-host-property]
     - [Request URI][proxy-request-uri]
+        - [Using regexes in URIs][proxy-using-regexes-in-uris]
         - [The `strip_uri` property][proxy-strip-uri-property]
     - [Request HTTP method][proxy-request-http-method]
 - [Routing priorities][proxy-routing-priorities]
@@ -52,6 +53,7 @@ service depending on their headers, URI, and HTTP method.
 [proxy-using-wildcard-hostnames]: #using-wildcard-hostnames
 [proxy-preserve-host-property]: #the-preserve_host-property
 [proxy-request-uri]: #request-uri
+[proxy-using-regexes-in-uris]: #using-regexes-in-uris
 [proxy-strip-uri-property]: #the-strip_uri-property
 [proxy-request-http-method]: #request-http-method
 [proxy-routing-priorities]: #routing-priorities
@@ -392,6 +394,146 @@ This allow you to define two APIs with two URIs: `/service` and
 
 [Back to TOC](#table-of-contents)
 
+##### Using regexes in URIs
+
+Kong supports regular expression pattern matching for an API's `uris` field via
+[PCRE](http://pcre.org/) (Perl Compatible Regular Expression). You can assign
+URIs as both prefixes and regexes to an API at the same time.
+
+For example, if we consider the following API:
+
+```json
+{
+    "name": "regex-matching-api",
+    "upstream_url": "http://my-api.com",
+    "uris": ["/users/\d+/profile", "/following"]
+}
+```
+
+The following requests would match this API and be proxied by Kong:
+
+```http
+GET /following HTTP/1.1
+Host: ...
+```
+
+```http
+GET /users/123/profile HTTP/1.1
+Host: ...
+```
+
+The provided regexes are evaluated with the `a` PCRE flag (`PCRE_ANCHORED`),
+meaning that they will be constrained to match at the first matching point
+in the URI (the root `/` character).
+
+Capturing groups are also supported, and the matched group will be extracted
+from the URI and available for plugins consumption. If we consider the
+following regex:
+
+```
+/version/(?<version>\d+)/users/(?<user>\S+)
+```
+
+And the following request URI:
+
+```
+/version/1/users/john
+```
+
+Kong will consider the request URI a match, and if the overall API is matched
+(considering `hosts` and `methods` fields), the extracted capturing groups
+will be available from the plugins in the `ngx.ctx` variable:
+
+```lua
+local router_matches = ngx.ctx.router_matches
+
+-- router_matches.uri_captures is:
+-- { "1", "john", version = "1", user = "john" }
+```
+
+There are a few drawbacks to be aware of when using regex URIs:
+
+First and foremost: the order in which Kong evaluates URIs. As previously
+mentioned, Kong evaluates prefix URIs by length: the longest prefix URIs are
+evaluated first. However, Kong will evaluate regex URIs **based on the order in
+which they are defined**. This means that considering the following APIs:
+
+```json
+[
+    {
+        "name": "api-1",
+        "upstream_url": "http://my-api-1.com",
+        "uris": ["/status/\d+"]
+    },
+    {
+        "name": "api-2",
+        "upstream_url": "http://my-api-2.com",
+        "uris": ["/version/\d+/status/\d+"]
+    },
+    {
+        "name": "api-3",
+        "upstream_url": "http://my-api-3.com",
+        "uris": ["/version"]
+    },
+]
+```
+
+In this scenario, Kong will evaluate incoming requests against the following
+defined URIs, in this order:
+
+1. `/version`
+2. `/status/\d+`
+3. `/version/\d+/status/\d+`
+
+URI prefixes are always evaluated first. Then, `api-1` is defined before
+`api-2`, and hence, sees its `uris` evaluated first.
+
+As usual, a request must still match an API's `hosts` and `methods` properties
+as well, and Kong will traverse your APIs until it finds one that matches
+the most rules (see [Routing priorities][proxy-routing-priorities]).
+
+Next, it is worth noting that characters found in regexes are often
+reserved characters according to
+[RFC 3986](http://www.gbiv.com/protocols/uri/rfc/rfc3986.html) and as such,
+should be percent-encoded. **When configuring APIs with regex URIs via the
+Admin API, be sure to URL encode your payload if necessary**. For example,
+with `curl` and using an `application/x-www-form-urlencoded` MIME type:
+
+```bash
+$ curl -i -X POST http://localhost:8001/apis \
+    --data 'name=my-api' \
+    --data 'upstream_url=http://my-api.com' \
+    --data-urlencode 'uris=/status/\d+'
+HTTP/1.1 201 Created
+...
+```
+
+Note that `curl` does not automatically URL encode your payload, and note the
+usage of `--data-urlencode`, which prevents the `+` character to be URL decoded
+and interpreted as a space ` ` by Kong's Admin API.
+
+Last but not least - and still related to special characters commonly found in
+PCRE sequences - we must consider the comma, which is used by Kong to delimit
+several entries in the `uris` property. Because of this, commas used in a PCRE
+sequence must be escaped, like so:
+
+```bash
+$ curl -i -X POST http://localhost:8001/apis \
+    --data 'name=my-api' \
+    --data 'upstream_url=http://my-api.com' \
+    --data-urlencode 'uris=/status/\d+{1\,3},/version/\d+/status/\d+{1\,3}'
+HTTP/1.1 201 Created
+...
+```
+
+In the above example, two regex URIs are defined, and both of these URIs
+contain a repeated escape sequence: `\d+{1,3}`. Because those two URIs are
+separated via a comma delimiter, we must escape any comma present in the
+regexes themselves to ensure Kong's Admin API does not interpret them as a
+separator.
+
+[Back to TOC](#table-of-contents)
+
 ##### The `strip_uri` property
 
 It may be desirable to specify a URI prefix to match an API, but not
@@ -407,9 +549,9 @@ property by configuring an API like this:
 }
 ```
 
-Enabling this flag instructs Kong that when proxying this API, it should **not**
-include the matching URI prefix in the upstream request's URI. For example, the
-following client's request to the API configured as above:
+Enabling this flag instructs Kong that when proxying this API, it should
+**not** include the matching URI prefix in the upstream request's URI. For
+example, the following client's request to the API configured as above:
 
 ```http
 GET /service/path/to/resource HTTP/1.1
@@ -417,6 +559,32 @@ Host:
 ```
 
 Will cause Kong to send the following request to your upstream service:
+
+```http
+GET /path/to/resource HTTP/1.1
+Host: my-api.com
+```
+
+The same way, if a regex URI is defined on an API that has `strip_uri` enabled,
+the entirety of the request URI matching sequence will be stripped. Example:
+
+```json
+{
+    "name": "my-regex-api",
+    "upstream_url": "http://my-api.com",
+    "uris": ["/version/\d+/service"],
+    "strip_uri": true
+}
+```
+
+The following HTTP request matching the provided URI:
+
+```http
+GET /version/1/service/path/to/resource HTTP/1.1
+Host: ...
+```
+
+Will be proxied upstream by Kong as:
 
 ```http
 GET /path/to/resource HTTP/1.1
