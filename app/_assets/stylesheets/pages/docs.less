@@ -1,40 +1,78 @@
 #documentation {
   .content {
     ol {
+      padding-left: 2rem;
+    }
+
+    ul {
+      // avoid nested lists and lists elements to have smaller and smaller
+      // font sizes
+      font-size: inherit;
+
       li {
-        h3 {
-          margin-top: 0;
+        // avoid ridiculously big spaces between lists elements
+        margin-bottom: 0.2rem;
+      }
+
+      ul {
+        // avoid nested lists to have too much margin
+        margin-left: 1.3rem;
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    // titles proportions overriden from base.less
+
+    h1 {
+      font-size: 33px;
+      font-weight: 400;
+    }
+
+    h2 {
+      margin-top: 1.2em;
+      margin-bottom: .8em;
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+    h3 {
+      font-size: 26px;
+      font-weight: 300;
+    }
+
+    h4 {
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    h5 {
+      font-size: 22px;
+      font-weight: 300;
+    }
+
+    h6 {
+      font-size: 20px;
+      font-weight: 200;
+    }
+
+    // anchor links for titles
+    h1, h2, h3, h4, h5, h6 {
+      a.header-link {
+        margin-left: -.9em;
+        padding-right: .2em;
+        color: inherit;
+
+        i {
+          font-size: 70%;
+          visibility: hidden;
         }
       }
-    }
-  }
 
-  .alert {
-    ol {
-      li:before {
-        content: counter(step, lower-alpha);
-      }
-    }
-  }
-
-  ol {
-    &:extend(.instructions-steps);
-    padding-left: 19px;
-      & > li {
-        &:extend(.instructions-steps .instructions-step-item all);
-        padding: 7px 0 15px 35px;
-
-        &:last-child {
-        padding-bottom: 15px;
-      }
-
-      &:before {
-        color: @font-color;
-        font-size: 13px;
-        width: 36px;
-        height: 36px;
-        line-height: 36px;
-        left: -19px;
+      &:hover {
+        .header-link i {
+          visibility: visible;
+        }
       }
     }
   }
