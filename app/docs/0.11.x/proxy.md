@@ -30,6 +30,9 @@ service depending on their headers, URI, and HTTP method.
         - [The `preserve_host` property][proxy-preserve-host-property]
     - [Request URI][proxy-request-uri]
         - [Using regexes in URIs][proxy-using-regexes-in-uris]
+            - [Evaluation order][proxy-evaluation-order]
+            - [Capturing groups][proxy-capturing-groups]
+            - [Escaping special characters][proxy-escaping-special-characters]
         - [The `strip_uri` property][proxy-strip-uri-property]
     - [Request HTTP method][proxy-request-http-method]
 - [Routing priorities][proxy-routing-priorities]
@@ -54,6 +57,9 @@ service depending on their headers, URI, and HTTP method.
 [proxy-preserve-host-property]: #the-preserve_host-property
 [proxy-request-uri]: #request-uri
 [proxy-using-regexes-in-uris]: #using-regexes-in-uris
+[proxy-evaluation-order]: #evaluation-order
+[proxy-capturing-groups]: #capturing-groups
+[proxy-escaping-special-characters]: #escaping-special-characters
 [proxy-strip-uri-property]: #the-strip_uri-property
 [proxy-request-http-method]: #request-http-method
 [proxy-routing-priorities]: #routing-priorities
@@ -68,8 +74,6 @@ service depending on their headers, URI, and HTTP method.
 [proxy-the-http-if-terminated-property]: #the-http_if_terminated-property
 [proxy-websocket]: #proxy-websocket-traffic
 [proxy-conclusion]: #conclusion
-
----
 
 ### Terminology
 
@@ -426,37 +430,14 @@ The provided regexes are evaluated with the `a` PCRE flag (`PCRE_ANCHORED`),
 meaning that they will be constrained to match at the first matching point
 in the URI (the root `/` character).
 
-Capturing groups are also supported, and the matched group will be extracted
-from the URI and available for plugins consumption. If we consider the
-following regex:
+[Back to TOC](#table-of-contents)
 
-```
-/version/(?<version>\d+)/users/(?<user>\S+)
-```
+###### Evaluation order
 
-And the following request URI:
-
-```
-/version/1/users/john
-```
-
-Kong will consider the request URI a match, and if the overall API is matched
-(considering `hosts` and `methods` fields), the extracted capturing groups
-will be available from the plugins in the `ngx.ctx` variable:
-
-```lua
-local router_matches = ngx.ctx.router_matches
-
--- router_matches.uri_captures is:
--- { "1", "john", version = "1", user = "john" }
-```
-
-There are a few drawbacks to be aware of when using regex URIs:
-
-First and foremost: the order in which Kong evaluates URIs. As previously
-mentioned, Kong evaluates prefix URIs by length: the longest prefix URIs are
-evaluated first. However, Kong will evaluate regex URIs **based on the order in
-which they are defined**. This means that considering the following APIs:
+As previously mentioned, Kong evaluates prefix URIs by length: the longest
+prefix URIs are evaluated first. However, Kong will evaluate regex URIs **based
+on the order in which they are defined**. This means that considering the
+following APIs:
 
 ```json
 [
@@ -491,6 +472,39 @@ URI prefixes are always evaluated first. Then, `api-1` is defined before
 As usual, a request must still match an API's `hosts` and `methods` properties
 as well, and Kong will traverse your APIs until it finds one that matches
 the most rules (see [Routing priorities][proxy-routing-priorities]).
+
+[Back to TOC](#table-of-contents)
+
+###### Capturing groups
+
+Capturing groups are also supported, and the matched group will be extracted
+from the URI and available for plugins consumption. If we consider the
+following regex:
+
+```
+/version/(?<version>\d+)/users/(?<user>\S+)
+```
+
+And the following request URI:
+
+```
+/version/1/users/john
+```
+
+Kong will consider the request URI a match, and if the overall API is matched
+(considering `hosts` and `methods` fields), the extracted capturing groups
+will be available from the plugins in the `ngx.ctx` variable:
+
+```lua
+local router_matches = ngx.ctx.router_matches
+
+-- router_matches.uri_captures is:
+-- { "1", "john", version = "1", user = "john" }
+```
+
+[Back to TOC](#table-of-contents)
+
+###### Escaping special characters
 
 Next, it is worth noting that characters found in regexes are often
 reserved characters according to
