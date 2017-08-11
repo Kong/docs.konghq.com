@@ -623,6 +623,57 @@ Default: `on`
 
 ---
 
+##### **trusted_ips**
+
+Defines trusted IP address blocks that are known to send correct
+`X-Forwarded-*` headers. Requests from trusted IPs make Kong forward their
+`X-Forwarded-*` headers upstream. Non-trusted requests make Kong insert its own
+`X-Forwarded-*` headers.
+
+This property also sets the `set_real_ip_from` directive(s) in the Nginx
+configuration. It accepts the same type of values (CIDR blocks) but as a
+comma-separated list.
+
+To trust *all* /!\ IPs, set this value to `0.0.0.0/0,::/0`.
+
+If the special value `unix:` is specified, all UNIX-domain sockets will be
+trusted.
+
+See [the Nginx docs](http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from)
+for more details on the `set_real_ip_form` directive.
+
+Default: none
+
+---
+
+##### **real_ip_header**
+
+Defines the request header field whose value will be used to replace the client
+address. This value sets the [ngx_http_realip_module][ngx_http_realip_module]
+directive of the same name in the Nginx configuration.
+
+If this value receives `proxy_protocol`, the `proxy_protocol` parameter will be
+appended to the `listen` directive of the Nginx template.
+
+See [the Nginx docs](http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header)
+for a description of this directive.
+
+Default: `X-Real-IP`
+
+---
+
+##### **real_ip_recursive**
+
+This value sets the [ngx_http_realip_module][ngx_http_realip_module] directive
+of the same name in the Nginx configuration.
+
+See [the Nginx docs](http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive)
+for a description of this directive.
+
+Default: `off`
+
+---
+
 ##### **client_max_body_size**
 
 Defines the maximum request body size allowed by requests proxied by Kong, specified in the
@@ -966,6 +1017,8 @@ See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
 Default: `30`
 
 [Back to TOC](#table-of-contents)
+
+[ngx_http_realip_module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
 [pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
