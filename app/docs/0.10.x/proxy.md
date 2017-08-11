@@ -19,7 +19,7 @@ In this document we cover routing capabilities of Kong by explaining in detail
 how incoming requests on port `:8000` are proxied to a configured upstream
 service depending on their headers, URI, and HTTP method.
 
-### Table of Contents
+## Table of Contents
 
 - [Terminology][proxy-terminology]
 - [Overview][proxy-overview]
@@ -70,7 +70,7 @@ service depending on their headers, URI, and HTTP method.
 
 ---
 
-### Terminology
+## Terminology
 
 - `API`: This term refers to the API entity of Kong. You configure your APIs,
   that point to your own upstream services, through the Admin API.
@@ -84,7 +84,7 @@ service depending on their headers, URI, and HTTP method.
 
 [Back to TOC](#table-of-contents)
 
-### Overview
+## Overview
 
 From a high level perspective, Kong will listen for HTTP traffic on its
 configured proxy port (`8000` by default), recognize which upstream service is
@@ -112,7 +112,7 @@ Server: kong/<x.x.x>
 
 [Back to TOC](#table-of-contents)
 
-### Reminder: How to add an API to Kong
+## Reminder: How to add an API to Kong
 
 The [Adding your API][adding-your-api] quickstart guide explains how Kong is
 configured via Kong's [Admin API][API] running by default on port `8001`.
@@ -141,7 +141,7 @@ of various headers such as `Connection`.
 
 [Back to TOC](#table-of-contents)
 
-### Routing capabilities
+## Routing capabilities
 
 Let's now discuss how Kong matches a request to the configured `hosts`, `uris`
 and `methods` properties (or fields) of your API. Note that all three of these
@@ -211,7 +211,7 @@ together, let's explore each property individually.
 
 [Back to TOC](#table-of-contents)
 
-#### Request Host header
+### Request Host header
 
 Routing a request based on its Host header is the most straightforward way to
 proxy traffic through Kong, as this is the intended usage of the HTTP Host
@@ -250,7 +250,7 @@ Host: service.com
 
 [Back to TOC](#table-of-contents)
 
-##### Using wildcard hostnames
+#### Using wildcard hostnames
 
 To provide flexibility, Kong allows you to specify hostnames with wildcards in
 the `hosts` field. Wildcard hostnames allow any matching Host header to satisfy
@@ -288,7 +288,7 @@ Host: service.com
 
 [Back to TOC](#table-of-contents)
 
-##### The `preserve_host` property
+#### The `preserve_host` property
 
 When proxying, Kong's default behavior is to set the upstream request's Host
 header to the hostname of the API's `upstream_url` property. The
@@ -349,7 +349,7 @@ Host: service.com
 
 [Back to TOC](#table-of-contents)
 
-#### Request URI
+### Request URI
 
 Another way for Kong to route a request to a given upstream service is to
 specify a request URI via the `uris` property. To satisfy this field's
@@ -393,7 +393,7 @@ This allow you to define two APIs with two URIs: `/service` and
 
 [Back to TOC](#table-of-contents)
 
-##### The `strip_uri` property
+#### The `strip_uri` property
 
 It may be desirable to specify a URI prefix to match an API, but not
 include it in the upstream request. To do so, use the `strip_uri` boolean
@@ -426,7 +426,7 @@ Host: my-api.com
 
 [Back to TOC](#table-of-contents)
 
-#### Request HTTP method
+### Request HTTP method
 
 Starting with Kong 0.10, client requests can also be routed depending on their
 HTTP method by specifying the `methods` field. By default, Kong will route a
@@ -465,7 +465,7 @@ limiting plugins to such requests).
 
 [Back to TOC](#table-of-contents)
 
-### Routing priorities
+## Routing priorities
 
 An API may define matching rules based on its `hosts`, `uris`, and `methods`
 fields. For Kong to match an incoming request to an API, all existing fields
@@ -515,7 +515,7 @@ a `methods` field, and a `uris` field, it would be evaluated first by Kong.
 
 [Back to TOC](#table-of-contents)
 
-### Proxying behavior
+## Proxying behavior
 
 The proxying rules above detail how Kong forwards incoming requests to your
 upstream services. Below we detail what happens internally between the time
@@ -524,7 +524,7 @@ Kong *recognizes* an HTTP request to a target service, and the actual
 
 [Back to TOC](#table-of-contents)
 
-#### 1. Load balancing
+### 1. Load balancing
 
 Starting with Kong 0.10, Kong implements load balancing capabilities to
 distribute the forwarded requests across multiple instances of an upstream
@@ -539,7 +539,7 @@ consulting the [Load Balancing Reference][load-balancing-reference].
 
 [Back to TOC](#table-of-contents)
 
-#### 2. Plugins execution
+### 2. Plugins execution
 
 Kong is extensible via "plugins" that hook themselves in the
 request/response lifecycle of the proxied requests. Plugins can perform a
@@ -558,7 +558,7 @@ informations about in the [Plugin development guide][plugin-development-guide].
 
 [Back to TOC](#table-of-contents)
 
-#### 3. Proxying & upstream timeouts
+### 3. Proxying & upstream timeouts
 
 Once Kong has executed all the necessary logic (including plugins), it is ready
 to forward the request to your upstream service. This is done via Nginx's
@@ -599,7 +599,7 @@ More information on this topic is covered in the
 
 [Back to TOC](#table-of-contents)
 
-#### 4. Errors & retries
+### 4. Errors & retries
 
 Whenever an error occurs during while proxying, Kong will use the underlying
 Nginx mechanism [retries][ngx-http-proxy-retries] to pass the request on to
@@ -623,7 +623,7 @@ added using a custom Nginx configuration. See the
 
 [Back to TOC](#table-of-contents)
 
-#### 5. Response
+### 5. Response
 
 Kong receives the response from the upstream service and send it back to the
 downstream client in a streaming fashion. At this point Kong will execute
@@ -652,7 +652,7 @@ guide][plugin-development-guide].
 
 [Back to TOC](#table-of-contents)
 
-### Configuring a fallback API
+## Configuring a fallback API
 
 As a practical use-case and example of the flexibility offered by Kong's
 proxying capabilities, let's try to implement a "fallback API", so that in
@@ -679,7 +679,7 @@ effectively provide a "fallback" API, only matched as a last resort.
 
 [Back to TOC](#table-of-contents)
 
-### Configuring SSL for an API
+## Configuring SSL for an API
 
 Kong provides a way to dynamically serve SSL certificates on a per-connection
 basis. Starting with 0.10, the SSL plugin has been removed and SSL certificates
@@ -734,7 +734,7 @@ HTTP/1.1 200 OK
 
 [Back to TOC](#table-of-contents)
 
-#### The `https_only` property
+### The `https_only` property
 
 If you wish an API to only be served through HTTPS, you can do so by enabling
 its `https_only` property:
@@ -768,7 +768,7 @@ Server: kong/x.x.x
 
 [Back to TOC](#table-of-contents)
 
-#### The `http_if_terminated` property
+### The `http_if_terminated` property
 
 If you wish to consider the `X-Forwarded-Proto` header of your requests when
 enforcing HTTPS only traffic, enable the `http_if_terminated` property of your
@@ -799,7 +799,7 @@ achieved by a previous component of your architecture.
 
 [Back to TOC](#table-of-contents)
 
-### Proxy WebSocket traffic
+## Proxy WebSocket traffic
 
 Kong supports WebSocket traffic thanks to the underlying Nginx implementation.
 When you wish to establish a WebSocket connection between a client and your
@@ -820,7 +820,7 @@ standard HTTP proxy.
 
 [Back to TOC](#table-of-contents)
 
-### Conclusion
+## Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
 mechanism of Kong, from how is a request matched to an API, to how to allow for
