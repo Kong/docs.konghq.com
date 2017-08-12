@@ -58,6 +58,21 @@ form parameter                            | default | description
 `config.append.querystring`<br>*optional*     | | List of queryname:value pairs. If the querystring is not set, set it with the given value. If it is already set, a new querystring with the same name and the new value will be set.
 `config.append.body`<br>*optional*     | | List of paramname:value pairs. If the content-type is one the following [`application/json`, `application/x-www-form-urlencoded`], add a new parameter with the given value if the parameter is not present, otherwise if it is already present, the two values (old and new) will be aggregated in an array.
 
+
+### Dynamic Transformation Based on Request Content
+
+The Request Transformer plugin bundled with Mashape Enterprise Edition allows for
+adding or replacing content in the upstream request based on variable data found
+in the client request, such as request headers, query string parameters, or URI
+parameters as defined by a URI capture group.
+
+If you already are a Mashape Enterprise customer, you can request access to this
+plugin functionality by opening a support ticket using your Enterprise support
+channels.
+
+If you are not a Mashape Enterprise customer, you can inquire about our
+Enterprise offering by [contacting us](/enterprise).
+
 ## Order of execution
 
 Plugin performs the response transformation in following order
