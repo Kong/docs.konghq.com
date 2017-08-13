@@ -197,9 +197,9 @@ You can see the Kong cluster members, and forcibly remove a node from the cluste
 
 ---
 
-### Cluster information
+### Retrieve cluster status
 
-The entrypoint to the clustering API functionalities. Shows the total number of events that have been handled by the current node, and their types. The types starting with `ENTITY_` are events for database entities, while the types that start with `MEMBER-` are events of the cluster and its members.
+Retrieve the cluster status, returning information for each node in the cluster.
 
 #### Endpoint
 
@@ -213,19 +213,19 @@ HTTP 200 OK
 
 ```json
 {
-    "events": {
-        "MEMBER-JOIN": 1,
-        "MEMBER-LEAVE": 1,
-        "MEMBER-FAILED": 1,
-        "MEMBER-UPDATE": 1,
-        "MEMBER-REAP": 1,
-        "ENTITY_CREATED": 1,
-        "ENTITY_UPDATED": 1,
-        "ENTITY_DELETED": 1,
-        "OTHER": 1,
-        "total": 9
-    },
-    "nodes": "http:\/\/127.0.0.1:8001\/cluster\/nodes"
+    "data": [
+        {
+            "address": "172.30.0.4:7946",
+            "name": "3f86eadb04c9_0.0.0.0:7946_b1dae503e0f34f9c9bf9be0a5023461d",
+            "status": "alive"
+        },
+        {
+            "address": "172.30.0.5:7946",
+            "name": "3b42de4b1a43_0.0.0.0:7946_5b0f4afcfe4e45c6b5d40cef6a256311",
+            "status": "alive"
+        }
+    ],
+    "total": 2
 }
 ```
 
