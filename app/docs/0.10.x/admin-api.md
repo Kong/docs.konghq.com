@@ -259,7 +259,7 @@ Forcibly remove a node from the cluster.
 
 #### Endpoint
 
-<div class="endpoint delete">/cluster/nodes/{node_name}</div>
+<div class="endpoint delete">/cluster</div>
 
 #### Request Body
 
