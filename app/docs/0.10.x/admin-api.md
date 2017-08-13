@@ -193,7 +193,7 @@ HTTP 200 OK
 
 ## Cluster
 
-You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute some of these operations using the [CLI][cli].
+You can see the Kong cluster members, add a node to the cluster and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute some of these operations using the [CLI][cli].
 
 ---
 
@@ -231,41 +231,24 @@ HTTP 200 OK
 
 ---
 
-### Retrieve cluster status
+### Add a node
 
-Retrieve the cluster status, returning information for each node in the cluster.
+Add a node to the cluster.
 
 #### Endpoint
 
-<div class="endpoint get">/cluster/nodes/</div>
+<div class="endpoint post">/cluster</div>
+
+#### Request Body
+
+Attributes | Description
+---:| ---
+`address` | The node address to add.
 
 #### Response
 
 ```
 HTTP 200 OK
-```
-
-```json
-{
-    "total": 3,
-    "data": [
-        {
-            "address": "192.168.1.107:7946",
-            "name": "kong.prod1_7946",
-            "status": "alive"
-        },
-        {
-            "address": "192.168.2.127:7946",
-            "name": "kong.prod2_7946",
-            "status": "failed"
-        },
-        {
-            "address": "192.168.3.112:8484",
-            "name": "kong.prod3_8484",
-            "status": "left"
-        }
-    ]
-}
 ```
 
 ---
