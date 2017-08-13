@@ -95,11 +95,11 @@
     - text: Cluster
       url: /admin-api/#cluster
       items:
-        - text: Cluster information
-          url: /admin-api/#cluster-information
-
         - text: Retrieve cluster status
           url: /admin-api/#retrieve-cluster-status
+
+        - text: Add a node
+          url: /admin-api/#add-a-node
 
         - text: Forcibly remove a node
           url: /admin-api/#forcibly-remove-a-node
