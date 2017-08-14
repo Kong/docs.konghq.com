@@ -151,13 +151,14 @@ HTTP 200 OK
 
 ## Cluster
 
-You can see the Kong cluster members, and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute some of these operations using the [CLI][cli].
+
+You can see the Kong cluster members, add a node to the cluster and forcibly remove a node from the cluster, using the following endpoints. For more information read the [clustering][clustering] documentation. You can also execute some of these operations using the [CLI][cli].
 
 ---
 
-### Cluster information
+### Retrieve cluster status
 
-The entrypoint to the clustering API functionalities. Shows the total number of events that have been handled by the current node, and their types. The types starting with `ENTITY_` are events for database entities, while the types that start with `MEMBER-` are events of the cluster and its members.
+Retrieve the cluster status, returning information for each node in the cluster.
 
 #### Endpoint
 
@@ -171,59 +172,42 @@ HTTP 200 OK
 
 ```json
 {
-    "events": {
-        "MEMBER-JOIN": 1,
-        "MEMBER-LEAVE": 1,
-        "MEMBER-FAILED": 1,
-        "MEMBER-UPDATE": 1,
-        "MEMBER-REAP": 1,
-        "ENTITY_CREATED": 1,
-        "ENTITY_UPDATED": 1,
-        "ENTITY_DELETED": 1,
-        "OTHER": 1,
-        "total": 9
-    },
-    "nodes": "http:\/\/127.0.0.1:8001\/cluster\/nodes"
+    "data": [
+        {
+            "address": "172.30.0.4:7946",
+            "name": "3f86eadb04c9_0.0.0.0:7946_b1dae503e0f34f9c9bf9be0a5023461d",
+            "status": "alive"
+        },
+        {
+            "address": "172.30.0.5:7946",
+            "name": "3b42de4b1a43_0.0.0.0:7946_5b0f4afcfe4e45c6b5d40cef6a256311",
+            "status": "alive"
+        }
+    ],
+    "total": 2
 }
 ```
 
 ---
 
-### Retrieve cluster status
+### Add a node
 
-Retrieve the cluster status, returning information for each node in the cluster.
+Add a node to the cluster.
 
 #### Endpoint
 
-<div class="endpoint get">/cluster/nodes/</div>
+<div class="endpoint post">/cluster</div>
+
+#### Request Body
+
+Attributes | Description
+---:| ---
+`address` | The node address to add.
 
 #### Response
 
 ```
 HTTP 200 OK
-```
-
-```json
-{
-    "total": 3,
-    "data": [
-        {
-            "address": "192.168.1.107:7946",
-            "name": "kong.prod1_7946",
-            "status": "alive"
-        },
-        {
-            "address": "192.168.2.127:7946",
-            "name": "kong.prod2_7946",
-            "status": "failed"
-        },
-        {
-            "address": "192.168.3.112:8484",
-            "name": "kong.prod3_8484",
-            "status": "left"
-        }
-    ]
-}
 ```
 
 ---
@@ -234,7 +218,7 @@ Forcibly remove a node from the cluster.
 
 #### Endpoint
 
-<div class="endpoint delete">/cluster/nodes/{node_name}</div>
+<div class="endpoint delete">/cluster</div>
 
 #### Request Body
 
