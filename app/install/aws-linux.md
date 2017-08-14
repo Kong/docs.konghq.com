@@ -11,7 +11,7 @@ breadcrumbs:
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
-- [Download]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.aws.rpm)
+- [Download]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.aws.rpm)
 
 ----
 

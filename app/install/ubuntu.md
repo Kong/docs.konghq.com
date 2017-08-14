@@ -11,19 +11,18 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [12.04 Precise]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
-- [14.04 Trusty]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
-- [15.04 Vivid]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
-- [16.04 Xenial]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.xenial_all.deb)
+- [12.04 Precise]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.precise_all.deb)
+- [14.04 Trusty]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.trusty_all.deb)
+- [15.04 Vivid]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.vivid_all.deb)
+- [16.04 Xenial]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.xenial_all.deb)
 
 ### APT Repositories
 
-You can also install Kong by using the following APT repositories and following the Bintray instructions:
+You can also install Kong via APT; follow the instructions on the "Set Me Up"
+section on the page below, setting  *distribution* to the appropriate value
+(e.g., `precise`) and *components* to `main`.
 
-- [12.04 Precise APT](https://bintray.com/mashape/kong-ubuntu-precise-{{site.data.kong_latest.release}})
-- [14.04 Trusty APT](https://bintray.com/mashape/kong-ubuntu-trusty-{{site.data.kong_latest.release}})
-- [15.04 Vivid APT](https://bintray.com/mashape/kong-ubuntu-vivid-{{site.data.kong_latest.release}})
-- [16.04 Xenial APT](https://bintray.com/mashape/kong-ubuntu-xenial-{{site.data.kong_latest.release}})
+- [Deb Repository](https://bintray.com/kong/kong-community-edition-deb)
 
 ----
 
