@@ -15,16 +15,23 @@ chapter: 3
 ---
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a> and the <a href="https://github.com/openresty/lua-nginx-module">lua-nginx-module API</a>.
+  <strong>Note:</strong> This chapter assumes that you are familiar with
+  <a href="http://www.lua.org/">Lua</a> and the
+  <a href="https://github.com/openresty/lua-nginx-module">lua-nginx-module API</a>.
 </div>
 
-Kong allows you to execute custom code at different times in the lifecycle of a request. To do so, you have to implement one or several of the methods of the `base_plugin.lua` interface. Those methods are to be implemented in a module at: `"kong.plugins.<plugin_name>.handler"`
+Kong allows you to execute custom code at different times in the lifecycle of a
+request. To do so, you have to implement one or several of the methods of the
+`base_plugin.lua` interface. Those methods are to be implemented in a module
+at: `"kong.plugins.<plugin_name>.handler"`
 
 ---
 
 ### Available request contexts
 
-Kong allows you to write your code in all of the lua-nginx-module contexts. Each function to implement in your `handler.lua` file will be executed when the context is reached for a request:
+Kong allows you to write your code in all of the lua-nginx-module contexts.
+Each function to implement in your `handler.lua` file will be executed when the
+context is reached for a request:
 
 | Function name           | lua-nginx-module context           | Description
 |-------------------------|------------------------------------|--------------
@@ -50,10 +57,14 @@ All of those functions take one parameter given by Kong: the configuration of yo
 
 ### handler.lua specifications
 
-The `handler.lua` file must return a table implementing the functions you wish to be executed. In favor of brevity, here is a commented example module implementing all the available methods:
+The `handler.lua` file must return a table implementing the functions you wish
+to be executed. In favor of brevity, here is a commented example module
+implementing all the available methods:
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
+  <strong>Note:</strong> Kong uses the
+  <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate
+  classes in Lua and ease the inheritence pattern.
 </div>
 
 ```lua
@@ -132,7 +143,10 @@ end
 return CustomHandler
 ```
 
-Of course, the logic of your plugin itself can be abstracted away in another module, and called from your `handler` module. Many existing plugins have already chosen this pattern when their logic is verbose, but it is purely optional:
+Of course, the logic of your plugin itself can be abstracted away in another
+module, and called from your `handler` module. Many existing plugins have
+already chosen this pattern when their logic is verbose, but it is purely
+optional:
 
 ```lua
 local BasePlugin = require "kong.plugins.base_plugin"
@@ -171,18 +185,58 @@ return CustomHandler
 ### Plugins execution order
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This is still a work-in-progress API. For thoughts on how plugins execution order should be configurable in the future, see <a href="https://github.com/Mashape/kong/issues/267">Mashape/kong#267</a>.
+  <strong>Note:</strong> This is still a work-in-progress API. For thoughts on
+  how plugins execution order should be configurable in the future, see
+  <a href="https://github.com/Mashape/kong/issues/267">Mashape/kong#267</a>.
 </div>
 
-Some plugins might depend on the execution of others to perform some operations. For example, plugins relying on the identity of the consumer have to run **after** authentication plugins. Considering this, Kong defines **priorities** between plugins execution to ensure that order is respected.
+Some plugins might depend on the execution of others to perform some
+operations. For example, plugins relying on the identity of the consumer have
+to run **after** authentication plugins. Considering this, Kong defines
+**priorities** between plugins execution to ensure that order is respected.
 
-Your plugin's priority can be configured via a property accepting a number in the returned handler table:
+Your plugin's priority can be configured via a property accepting a number in
+the returned handler table:
 
 ```lua
 CustomHandler.PRIORITY = 10
 ```
 
-The higher the priority, the sooner your plugin's phases will be executed in regard to other plugins' phases (such as `:access()`, `:log()`, etc...). The current authentication plugins have a priority of `1000`.
+The higher the priority, the sooner your plugin's phases will be executed in
+regard to other plugins' phases (such as `:access()`, `:log()`, etc...).
+
+The current order of execution for the bundled plugins is:
+
+Plugin                    | Priority
+-------------------------:|:------------
+bot-detection             | 2500
+cors                      | 2000
+jwt                       | 1005
+oauth2                    | 1004
+key-auth                  | 1003
+ldap-auth                 | 1002
+basic-auth                | 1001
+hmac-auth                 | 1000
+ip-restriction            | 990
+request-size-limiting     | 951
+acl                       | 950
+rate-limiting             | 901
+response-ratelimiting     | 900
+request-transformer       | 801
+response-transformer      | 800
+aws-lambda                | 750
+http-log                  | 12
+statsd                    | 11
+datadog                   | 10
+file-log                  | 9
+udp-log                   | 8
+request-termination       | 7
+loggly                    | 6
+runscope                  | 5
+syslog                    | 4
+galileo                   | 3
+tcp-log                   | 2
+correlation-id            | 1
 
 ---
 
