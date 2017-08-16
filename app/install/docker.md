@@ -49,7 +49,7 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
     `cassandra` or `postgres`.
 
     **Note**: migrations should never be run concurrently; only
-    one Kong nodes should be performing migrations at a time.
+    one Kong node should be performing migrations at a time.
 
 3. **Start Kong**
 
