@@ -60,7 +60,8 @@ service depending on their headers, URI, and HTTP method.
 [proxy-load-balancing]: #1-load-balancing
 [proxy-plugins-execution]: #2-plugins-execution
 [proxy-proxying-upstream-timeouts]: #3-proxying-upstream-timeouts
-[proxy-response]: #proxy-response
+[proxy-retries]: #4-errors-retries
+[proxy-response]: #5-response
 [proxy-configuring-a-fallback-api]: #configuring-a-fallback-api
 [proxy-configuring-ssl-for-an-api]: #configuring-ssl-for-an-api
 [proxy-the-https-only-property]: #the-https_only-property
@@ -601,8 +602,8 @@ More information on this topic is covered in the
 
 ### 4. Errors & retries
 
-Whenever an error occurs during while proxying, Kong will use the underlying
-Nginx mechanism [retries][ngx-http-proxy-retries] to pass the request on to
+Whenever an error occurs during proxying, Kong will use the underlying
+Nginx [retries][ngx-http-proxy-retries] mechanism to pass the request on to
 the next upstream.
 
 There are two configurable elements here:
@@ -615,11 +616,11 @@ There are two configurable elements here:
    means an error or timeout occuring while establishing a connection with the
    server, passing a request to it, or reading the response header.
 
-The second option is based on Nginx's [proxy_next_upstream][proxy_next_upstream]
-directive. This option is not directly configurable through Kong, but can be
-added using a custom Nginx configuration. See the
-[configuration reference][configuration-reference] for more details.
-
+The second option is based on Nginx's
+[proxy_next_upstream][proxy_next_upstream] directive. This option is not
+directly configurable through Kong, but can be added using a custom Nginx
+configuration. See the [configuration reference][configuration-reference] for
+more details.
 
 [Back to TOC](#table-of-contents)
 
