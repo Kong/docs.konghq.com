@@ -117,7 +117,7 @@ layout: default
     <td class="summary">Insert a row.</td>
   </tr>
   <tr>
-    <td class="name"><a href="#DAO:new">DAO:new (db, model_mt, schema, constraints, events_handler)</a></td>
+    <td class="name"><a href="#DAO:new">DAO:new (db, model_mt, schema, constraints)</a></td>
     <td class="summary">Instanciate a DAO.</td>
   </tr>
   <tr>
@@ -377,10 +377,6 @@ layout: default
         <li>
           <code class="parameter">constraints</code>
           A table of contraints built by the DAO Factory. Such constraints are mostly useful for databases without support for foreign keys. SQL databases handle those contraints natively.
-        </li>
-        <li>
-          <code class="parameter">events_handler</code>
-          Instance of the events propagation class, used to propagate data invalidation events through the cluster.
         </li>
     </ul>
 

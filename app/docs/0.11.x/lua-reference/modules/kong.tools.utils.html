@@ -94,8 +94,9 @@ layout: default
     <td class="summary">parses and validates a hostname.</td>
   </tr>
   <tr>
-    <td class="name"><a href="#check_https">check_https (allow_terminated)</a></td>
-    <td class="summary">Checks whether a request is https or was originally https (but already terminated).</td>
+    <td class="name"><a href="#check_https">check_https (trusted_ip, allow_terminated)</a></td>
+    <td class="summary">Checks whether a request is https or was originally https (but already
+ terminated).</td>
   </tr>
   <tr>
     <td class="name"><a href="#concat">concat (...)</a></td>
@@ -145,10 +146,6 @@ layout: default
   <tr>
     <td class="name"><a href="#pack">pack (...)</a></td>
     <td class="summary">packs a set of arguments in a table.</td>
-  </tr>
-  <tr>
-    <td class="name"><a href="#random_string">random_string ()</a></td>
-    <td class="summary">Generates a random unique string</td>
   </tr>
   <tr>
     <td class="name"><a href="#shallow_copy">shallow_copy (orig)</a></td>
@@ -257,12 +254,17 @@ layout: default
     <h4><a name="check_https">check_https</a></h4>
   </dt>
   <dd>
-    Checks whether a request is https or was originally https (but already terminated).
- It will check in the current request (global <code>ngx</code> table). If the header <code>X-Forwarded-Proto</code> exists
- with value <code>https</code> then it will also be considered as an https connection.
+    Checks whether a request is https or was originally https (but already
+ terminated).  It will check in the current request (global <code>ngx</code> table). If
+ the header <code>X-Forwarded-Proto</code> exists -- with value <code>https</code> then it will also
+ be considered as an https connection.
 
     <h5>Parameters:</h5>
     <ul>
+        <li>
+          <code class="parameter">trusted_ip</code>
+          boolean indicating if the client is a trusted IP
+        </li>
         <li>
           <code class="parameter">allow_terminated</code>
           if truthy, the <code>X-Forwarded-Proto</code> header will be checked as well.
@@ -406,7 +408,7 @@ layout: default
       <li><pre class="example"><span class="keyword">local</span> addr, err = format_ip(normalize_ip(<span class="string">"001.002.003.004:123"</span>))  <span class="comment">--&gt; "1.2.3.4:123"
 </span><span class="keyword">local</span> addr, err = format_ip(normalize_ip(<span class="string">"::1"</span>))                  <span class="comment">--&gt; "[0000:0000:0000:0000:0000:0000:0000:0001]"
 </span><span class="keyword">local</span> addr, err = format_ip(<span class="string">"::1"</span>, <span class="number">80</span>))                           <span class="comment">--&gt; "[::1]:80"
-</span><span class="keyword">local</span> addr, err = format_ip(check_hostname(<span class="string">"//bad..name\\"))      --&gt; nil, "</span>invalid hostname: ..."</pre></li>
+</span><span class="keyword">local</span> addr, err = format_ip(check_hostname(<span class="string">"//bad .. name\\"))    --&gt; nil, "</span>invalid hostname: ... "</pre></li>
     </ul>
 
 
@@ -625,26 +627,6 @@ layout: default
         </li>
     </ul>
 
-
-
-
-
-
-  </dd>
-  <hr />
-  <dt>
-    <h4><a name="random_string">random_string</a></h4>
-  </dt>
-  <dd>
-    Generates a random unique string
-
-
-    <h5>Returns:</h5>
-    <ul>
-      <li>
-        string  The random string (a uuid without hyphens)
-      </li>
-    </ul>
 
 
 
