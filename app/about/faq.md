@@ -54,10 +54,7 @@ production usage:
 
 * `8001` provides Kong's **Admin API** that you can use to operate Kong. See
   [admin_api_listen].
-* `7946` which Kong uses for inter-nodes communication with other Kong nodes. Both UDP and TCP traffic
-  must be allowed. See [cluster_listen].
-* `7373` used by Kong to communicate with the local clustering agent.
-  See [cluster_listen_rpc].
+* `8444` provides Kong's **Admin API** over HTTPS. See [admin_api_ssl_listen].
 
 You can use the **Admin API** to configure Kong, create new users, enable or
 disable plugins, and a handful of other operations. Since you will be using
@@ -65,11 +62,9 @@ this RESTful API to operate Kong, it is also extremely easy to integrate Kong
 with existing systems.
 
 [proxy_listen]: /docs/latest/configuration/#proxy_listen
-[cluster_listen]: /docs/latest/configuration/#cluster_listen
-[cluster_listen_rpc]:
-/docs/latest/configuration/#cluster_listen_rpc
 [proxy_listen_ssl]: /docs/latest/configuration/#proxy_listen_ssl
-[admin_api_listen]: /docs/latest/configuration/#admin_api_listen
+[admin_api_listen]: /docs/latest/configuration/#admin_listen
+[admin_api_ssl_listen]: /docs/latest/configuration/#admin_listen_ssl
 
 ### Kong datastore
 

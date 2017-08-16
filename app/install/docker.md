@@ -11,7 +11,7 @@ Details about how to use Kong in Docker can be found on the DockerHub repository
 
 Here is a quick example showing how to link a Kong container to a Cassandra or PostgreSQL container:
 
-1. **Start your database:**
+1. **Start your database**
 
     If you wish to use a Cassandra container:
 
@@ -31,30 +31,51 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
                   postgres:9.4
     ```
 
-2. **Start Kong:**
+2. **Prepare your database**
 
-    Start a Kong container and link it to your database container, configuring the `KONG_DATABASE` environment variable with either `cassandra` or `postgres` depending on which database you decided to use:
+    Run the migrations with an ephemeral Kong container:
+
+    ```bash
+    $ docker run -it --rm \
+        --link kong-database:kong-database \
+        -e "KONG_DATABASE=postgres" \
+        -e "KONG_PG_HOST=kong-database" \
+        -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
+        kong:latest kong migrations up
+    ```
+
+    In the above example, both Cassandra and PostgreSQL are configured, but you
+    should update the `KONG_DATABASE` environment variable with either
+    `cassandra` or `postgres`.
+
+    **Note**: migrations should never be run concurrently; only
+    one Kong node should be performing migrations at a time.
+
+3. **Start Kong**
+
+    When the migrations have run and your database is ready, start a Kong
+    container and link it to your database container, just like the ephemeral
+    migrations container:
 
     ```bash
     $ docker run -d --name kong \
-                  --link kong-database:kong-database \
-                  -e "KONG_DATABASE=cassandra" \
-                  -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-                  -e "KONG_PG_HOST=kong-database" \
-                  -p 8000:8000 \
-                  -p 8443:8443 \
-                  -p 8001:8001 \
-                  -p 7946:7946 \
-                  -p 7946:7946/udp \
-                  kong:latest
+        --link kong-database:kong-database \
+        -e "KONG_DATABASE=postgres" \
+        -e "KONG_PG_HOST=kong-database" \
+        -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
+        -p 8000:8000 \
+        -p 8443:8443 \
+        -p 8001:8001 \
+        -p 8444:8444 \
+        kong:latest
     ```
 
-3. **Kong is running:**
+4. **Use Kong**
+
+    Kong is running:
 
     ```bash
-    $ curl http://127.0.0.1:8001
+    $ curl -i http://localhost:8001/
     ```
-
-4. **Start using Kong:**
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).

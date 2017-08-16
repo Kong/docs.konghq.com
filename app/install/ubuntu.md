@@ -7,39 +7,38 @@ breadcrumbs:
   Installation: /install
 ---
 
-### Packages:
+### Packages
 
 Start by downloading the corresponding package for your configuration:
 
-- [12.04 Precise]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.precise_all.deb)
-- [14.04 Trusty]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.trusty_all.deb)
-- [15.04 Vivid]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.vivid_all.deb)
-- [16.04 Xenial]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.xenial_all.deb)
+- [12.04 Precise]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.precise.all.deb)
+- [14.04 Trusty]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.trusty.all.deb)
+- [16.04 Xenial]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.xenial.all.deb)
+- [17.04 Zesty]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.zesty.all.deb)
 
 ### APT Repositories
 
-You can also install Kong by using the following APT repositories and following the Bintray instructions:
+You can also install Kong via APT; follow the instructions on the "Set Me Up"
+section on the page below, setting  *distribution* to the appropriate value
+(e.g., `precise`) and *components* to `main`.
 
-- [12.04 Precise APT](https://bintray.com/mashape/kong-ubuntu-precise-{{site.data.kong_latest.release}})
-- [14.04 Trusty APT](https://bintray.com/mashape/kong-ubuntu-trusty-{{site.data.kong_latest.release}})
-- [15.04 Vivid APT](https://bintray.com/mashape/kong-ubuntu-vivid-{{site.data.kong_latest.release}})
-- [16.04 Xenial APT](https://bintray.com/mashape/kong-ubuntu-xenial-{{site.data.kong_latest.release}})
+- [Deb Repository](https://bintray.com/kong/kong-community-edition-deb)
 
 ----
 
-### Installation:
+### Installation
 
-1. **Install the Package:**
+1. **Install Kong**
 
     If you are downloading the [package](#packages), execute:
 
     ```bash
     $ sudo apt-get update
     $ sudo apt-get install openssl libpcre3 procps perl
-    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
+    $ sudo dpkg -i kong-community-edition-{{site.data.kong_latest.version}}.*.deb
     ```
 
-2. **Configure your database**
+2. **Prepare your database**
 
     [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
@@ -49,16 +48,28 @@ You can also install Kong by using the following APT repositories and following 
     CREATE USER kong; CREATE DATABASE kong OWNER kong;
     ```
 
-3. **Start Kong:**
+    Now, run the Kong migrations:
 
     ```bash
-    $ kong start
-
-    # Kong is running
-    $ curl 127.0.0.1:8001
+    $ kong migrations up [-c /path/to/kong.conf]
     ```
 
-4. **Use Kong:**
+    **Note**: migrations should never be run concurrently; only
+    one Kong nodes should be performing migrations at a time.
+
+3. **Start Kong**
+
+    ```bash
+    $ kong start [-c /path/to/kong.conf]
+    ```
+
+4. **Use Kong**
+
+    Kong is running:
+
+    ```bash
+    $ curl -i http://localhost:8001/
+    ```
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
 

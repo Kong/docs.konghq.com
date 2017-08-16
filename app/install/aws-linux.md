@@ -7,26 +7,26 @@ breadcrumbs:
   Installation: /install
 ---
 
-### Packages:
+### Packages
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
-- [Download]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.aws.rpm)
+- [Download]({{ site.links.download }}/kong-community-edition-aws/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.aws.rpm)
 
 ----
 
-### Installation:
+### Installation
 
-1. **Install the Package:**
+1. **Install Kong**
 
     After downloading the [package](#packages), execute:
 
     ```bash
     $ sudo yum install epel-release
-    $ sudo yum install kong-{{site.data.kong_latest.version}}.aws.rpm --nogpgcheck
+    $ sudo yum install kong-community-edition-{{site.data.kong_latest.version}}.aws.rpm --nogpgcheck
     ```
 
-2. **Configure your database**
+2. **Prepare your database**
 
     [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
@@ -36,16 +36,28 @@ Start by downloading the following package specifically built for the Amazon Lin
     CREATE USER kong; CREATE DATABASE kong OWNER kong;
     ```
 
-3. **Start Kong:**
+    Now, run the Kong migrations:
 
     ```bash
-    $ kong start
-
-    # Kong is running
-    $ curl 127.0.0.1:8001
+    $ kong migrations up [-c /path/to/kong.conf]
     ```
 
-4. **Use Kong:**
+    **Note**: migrations should never be run concurrently; only
+    one Kong nodes should be performing migrations at a time.
+
+3. **Start Kong**
+
+    ```bash
+    $ kong start [-c /path/to/kong.conf]
+    ```
+
+4. **Use Kong**
+
+    Kong is running:
+
+    ```bash
+    $ curl -i http://localhost:8001/
+    ```
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
 
