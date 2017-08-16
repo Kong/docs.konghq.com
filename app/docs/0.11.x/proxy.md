@@ -40,7 +40,8 @@ service depending on their headers, URI, and HTTP method.
     - [1. Load balancing][proxy-load-balancing]
     - [2. Plugins execution][proxy-plugins-execution]
     - [3. Proxying & upstream timeouts][proxy-proxying-upstream-timeouts]
-    - [4. Response][proxy-response]
+    - [4. Errors & retries][proxy-retries]
+    - [5. Response][proxy-response]
 - [Configuring a fallback API][proxy-configuring-a-fallback-api]
 - [Configuring SSL for an API][proxy-configuring-ssl-for-an-api]
     - [The `https_only` property][proxy-the-https-only-property]
@@ -67,7 +68,8 @@ service depending on their headers, URI, and HTTP method.
 [proxy-load-balancing]: #1-load-balancing
 [proxy-plugins-execution]: #2-plugins-execution
 [proxy-proxying-upstream-timeouts]: #3-proxying-upstream-timeouts
-[proxy-response]: #proxy-response
+[proxy-retries]: #4-errors-retries
+[proxy-response]: #5-response
 [proxy-configuring-a-fallback-api]: #configuring-a-fallback-api
 [proxy-configuring-ssl-for-an-api]: #configuring-ssl-for-an-api
 [proxy-the-https-only-property]: #the-https_only-property
@@ -799,7 +801,31 @@ More information on this topic is covered in the
 
 [Back to TOC](#table-of-contents)
 
-### 4. Response
+### 4. Errors & retries
+
+Whenever an error occurs during proxying, Kong will use the underlying
+Nginx [retries][ngx-http-proxy-retries] mechanism to pass the request on to
+the next upstream.
+
+There are two configurable elements here:
+
+1. The number of retries: this can be configured per API using the `retries`
+   property of the `API` object. See the [management API][API] for more
+   details on this.
+
+2. What exactly constitutes an error: here Kong uses the Nginx defaults, which
+   means an error or timeout occuring while establishing a connection with the
+   server, passing a request to it, or reading the response header.
+
+The second option is based on Nginx's
+[proxy_next_upstream][proxy_next_upstream] directive. This option is not
+directly configurable through Kong, but can be added using a custom Nginx
+configuration. See the [configuration reference][configuration-reference] for
+more details.
+
+[Back to TOC](#table-of-contents)
+
+### 5. Response
 
 Kong receives the response from the upstream service and send it back to the
 downstream client in a streaming fashion. At this point Kong will execute
@@ -1025,4 +1051,5 @@ topic we just covered.
 [ngx-scheme-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_scheme
 [ngx-host-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_host
 [ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
+[ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication
