@@ -9,7 +9,6 @@ breadcrumbs:
 
 ### Packages
 
-- [.pkg Installer]({{ site.links.download }}/{{site.data.kong_latest.version}}/kong-{{site.data.kong_latest.version}}.osx.pkg)
 - [Homebrew Formula]({{ site.repos.homebrew }})
 
 ----
@@ -18,9 +17,12 @@ breadcrumbs:
 
 1. **Install Kong**
 
-    Use the `.pkg` installer or the Homebrew formula. For the Homebrew formula, follow the instructions described in the repository.
+    Use the [Homebrew](https://brew.sh/) package manager to add Kong as a tap and install it:
 
-    **Note**: After downloading the `.pkg` installer, you will have to **right click**, select "Open" and authorize it.
+    ```
+    $ brew tap mashape/kong
+    $ brew install kong
+    ```
 
 2. **Prepare your database**
 
