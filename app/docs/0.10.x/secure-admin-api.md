@@ -14,7 +14,7 @@ the Admin API.
 
 - [Network Layer Access Restrictions](#network-layer-access-restrictions)
   - [Reduce Listening Footprint](#reduce-listening-footprint)
-  - [Layer 3/4 Network Controls](#layer-34-network-controls)
+  - [Layer 3/4 Network Controls](#layer-3-4-network-controls)
 - [Kong API Loopback](#kong-api-loopback)
 - [Custom Nginx Configuration](#custom-nginx-configuration)
 - [Role Based Access Control (RBAC)](#role-based-access-control)
