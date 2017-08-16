@@ -100,7 +100,9 @@ return {
 - `down`: Executed when Kong migrates **backward**.
 
 While Postgres does, Cassandra does not support constraints such as "NOT NULL", "UNIQUE" or "FOREIGN KEY", but Kong provides you with such features when you define your model's schema. bear in mind that this schema will be the same for both PostgreSQL and Cassandra, hence, you might trade-off a pure SQL schema for one that works with Cassandra too.
+
 **IMPORTANT**: if your `schema` uses a `unique` constraint, then Kong will enforce it for Cassandra, but for Postgres you must set this constraint in the `migrations` file.
+
 ---
 
 ### Retrieve your custom DAO from the Dao Factory

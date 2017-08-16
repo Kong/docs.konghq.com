@@ -15,195 +15,275 @@ chapter: 7
 
 ---
 
-Your plugin may need to frequently access custom entities (explained in the [previous chapter]({{page.book.previous}})) on every request and/or response. Usually loading them once, and caching them in-memory, dramatically improves the performance while making sure the datastore is not stressed with an increased load.
+Your plugin may need to frequently access custom entities (explained in the
+[previous chapter]({{page.book.previous}})) on every request and/or response.
+Usually, loading them once and caching them in-memory dramatically improves
+the performance while making sure the datastore is not stressed with an
+increased load.
 
-Think of an api-key authentication plugin that needs to validate the api-key on every request, thus loading the custom credential object from the datastore on every request. When the client provides an api-key along with the request, normally you would query the datastore to check if that key exists, and then either block the request or retrieve the Consumer ID to identify the user. This would happen on every request, and it would be very inefficient:
+Think of an api-key authentication plugin that needs to validate the api-key on
+every request, thus loading the custom credential object from the datastore on
+every request. When the client provides an api-key along with the request,
+normally you would query the datastore to check if that key exists, and then
+either block the request or retrieve the Consumer ID to identify the user. This
+would happen on every request, and it would be very inefficient:
 
-* Querying the datastore adds latency on every request, making the request processing slower.
-* The datastore would also be affected by an increase of load, potentially crashing or slowing down the datastore, which in turn would affect every Kong node.
+* Querying the datastore adds latency on every request, making the request
+  processing slower.
+* The datastore would also be affected by an increase of load, potentially
+  crashing or slowing down, which in turn would affect every Kong
+  node.
 
-To avoid querying the datastore every time, we can cache custom entities in-memory on the node, so that frequent entity lookups don't trigger a datastore query every time (only the first time), but happen in-memory, which is much faster and reliable that querying it from the datastore (especially under heavy load).
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> When caching custom entities in-memory, then you also need to provide an invalidation mechanism, implemented in the "hooks.lua" file.
-</div>
+To avoid querying the datastore every time, we can cache custom entities
+in-memory on the node, so that frequent entity lookups don't trigger a
+datastore query every time (only the first time), but happen in-memory, which
+is much faster and reliable that querying it from the datastore (especially
+under heavy load).
 
 ---
 
 ### Caching custom entities
 
-Once you have defined your custom entities, you can cache them in-memory in your code by requiring the `database_cache` dependency:
+Once you have defined your custom entities, you can cache them in-memory in
+your code by using the `singletons.cache` module provided by Kong:
 
 ```
-local cache = require "kong.tools.database_cache"
+local singletons = require "kong.singletons"
+local cache = singletons.cache
 ```
 
 There are 2 levels of cache:
 
-1. Lua memory cache (local to an nginx worker)
+1. L1: Lua memory cache - local to an nginx worker
    This can hold any type of Lua value.
-2. Shared memory cache - SHM (local to an nginx node, but shared between all workers)
-   This can only hold scalar values, and hence requires (de)serialization.
+2. L2: Shared memory cache (SHM) - local to an nginx node, but shared between
+   all workers. This can only hold scalar values, and hence requires
+   (de)serialization.
 
-When data is fetched from the database, it will be stored in both caches. Now if the same
-worker process requests the data again, it will retrieve the previously-deserialized 
-data from the Lua memory cache. If a different worker within the same nginx node requests
-that data, it will find the data in the SHM, deserialize it (and store it in its own
-Lua memory cache) and then return it.
+When data is fetched from the database, it will be stored in both caches. Now
+if the same worker process requests the data again, it will retrieve the
+previously-deserialized data from the Lua memory cache. If a different
+worker within the same nginx node requests that data, it will find the data
+in the SHM, deserialize it (and store it in its own Lua memory cache) and
+then return it.
 
 This module exposes the following functions:
 
-| Function name                      | Description
-|------------------------------------|---------------------------
-| `ok, err = cache.set(key, value, ttl)`  | Stores a Lua object into the in-memory cache with the specified key (the optional ttl is in seconds). The value can be any Lua type, including tables. Returns `true` or `false`, and `err` if the operation fails.
-| `value = cache.get(key)`           | Retrieves the Lua object stored in a specific key.
-| `cache.delete(key)`                | Deletes the cache object stored at the specified key.
-| `ok, err = cache.sh_add(key, value, ttl) | Adds a new value to the SHM cache, optional ttl in seconds (if `nil` it never expires)
-| `ok, err = cache.sh_set(key, value, ttl) | Sets a new value under the specified key in the SHM, optional ttl in seconds (if `nil` it never expires)
-| `value = cache.sh_get(key)         | returns the value stored in the SHM under the key, or `nil` if not found
-| `cache.sh_delete(key)              | deletes a value from the SHM
-| `newvalue, err = cache.sh_incr(key, amount)` | Increments a number stored in SHM under the specified key, by an amount of units specified. The number needs to be already present in the cache or an error will be returned. If successful, it returns the newly-incremented value, otherwise an error.
-| `value, ... = cache.get_or_set(key, ttl, function, ...)` | This is a utility method that retrieves an object with the specified key, but if the object is `nil` then the passed function will be executed instead, whose return value will be used to store the object at the specified key. This effectively makes sure that the object is only loaded from the datastore one time, since every other invocation will load the object from the in-memory cache.
+Function name                                 | Description
+----------------------------------------------|---------------------------
+`value, err = cache:get(key, opts?, cb, ...)` | Retrieves the value from the cache. If the cache does not have value (miss), invokes `cb` in protected mode. `cb` must return one (and only one) value that will be cached. It *can* throw errors, as those will be caught and properly logged by Kong, at the `ngx.ERR` level. This function **does** cache negative results (`nil`). As such, one must rely on its second argument `err` when checking for errors.
+`ttl, err, value = cache:probe(key)`          | Checks if a value is cached. If it is, returns its remaining TTL. It not, returns `nil`. The value being cached can also be a negative caching. The third return value is the value being cached itself.
+`cache:invalidate_local(key)`                       | Evicts a value from the node's cache.
+`cache:invalidate(key)`                             | Evicts a value from the node's cache **and** propagates the eviction events to all other nodes in the cluster.
+`cache:purge()`                                     | Evicts **all** values from the node's cache.
 
-Bringing back our authentication plugin example, to lookup a credential with a specific api-key, we would write something like:
+Bringing back our authentication plugin example, to lookup a credential with a
+specific api-key, we would write something like:
 
 ```lua
 -- access.lua
+local singletons = require "kong.singletons"
 
 local function load_entity_key(api_key)
   -- IMPORTANT: the callback is executed inside a lock, hence we cannot terminate
   -- a request here, we MUST always return.
   local apikeys, err = dao.apikeys:find_by_keys({key = api_key}) -- Lookup in the datastore
   if err then
-    return nil, err     -- errors must be returned, not dealt with here
+    error(err) -- caught by kong.cache and logged
   end
+
   if not apikeys then
-    return nil          -- nothing was found
+    return nil -- nothing was found (cached for `neg_ttl`)
   end
+
   -- assuming the key was unique, we always only have 1 value...
-  return apikeys[1] -- Return the credential (this will be also stored in-memory)
+  return apikeys[1] -- cache the credential (cached for `ttl`)
 end
 
-
-local credential
--- Retrieve the apikey from the request querystring
+-- retrieve the apikey from the request querystring
 local apikey = request.get_uri_args().apikey
-if apikey then -- If the apikey has been passed, we can check if it exists
 
-  -- We are using cache.get_or_set to first check if the apikey has been already stored
-  -- into the in-memory cache at the key: "apikeys."..apikey
-  -- If it's not, then we lookup the datastore and return the credential object. Internally
-  -- cache.get_or_set will save the value in-memory, and then return the credential.
-  credential, err = cache.get_or_set("apikeys."..apikey, nil, load_entity_key, apikey)
-  if err then
-    -- here we can deal with the error returned by the callback
-    return response.HTTP_INTERNAL_SERVER_ERROR(err) 
-  end
+-- We are using cache.get to first check if the apikey has been already
+-- stored into the in-memory cache at the key: "apikeys." .. apikey
+-- If it's not, then we lookup the datastore and return the credential
+-- object. Internally cache.get will save the value in-memory, and then
+-- return the credential.
+local credential, err = cache:get("apikeys." .. apikey, nil,
+                                  load_entity_key, apikey)
+if err then
+  return response.HTTP_INTERNAL_SERVER_ERROR(err)
 end
 
-if not credential then -- If the credential couldn't be found, show an error message
+if not credential then
+  -- no credentials in cache nor datastore
   return responses.send_HTTP_FORBIDDEN("Invalid authentication credentials")
 end
+
+-- set an upstream header if the credential exists and is valid
+ngx.req.set_header("X-API-Key", credential.apikey)
 ```
 
-By doing so it doesn't matter how many requests the client makes with that particular api-key, after the first request every lookup will be done in-memory without querying the datastore.
+With the above mechanism in place, once a Consumer has made a request with
+their API key, the cache will be considered warm and subsequent requests
+won't result in a database query.
 
 #### Updating or deleting a custom entity
 
-Every time a cached custom entity is updated or deleted on the datastore, for example using the Admin API, it creates an inconsistency between the data in the datastore, and the data cached in-memory in the Kong node. To avoid this inconsistency, we need to delete the cached entity from the in-memory store and force Kong to request it again from the datastore. In order to do so we must implement an invalidation hook.
+Every time a cached custom entity is updated or deleted in the datastore (i.e.
+using the Admin API), it creates an inconsistency between the data in
+the datastore, and the data cached in the Kong nodes' memory. To avoid this
+inconsistency, we need to evict the cached entity from the in-memory store and
+force Kong to request it again from the datastore. We refer to this process as
+cache invalidation.
 
 ---
 
-### Invalidating custom entities
+### Cache invalidation for your entities
 
-Every time an entity is being created/updated/deleted in the datastore, Kong notifies the datastore operation across all the nodes telling what command has been executed and what entity has been affected by it. This happens for APIs, Plugins and Consumers, but also for custom entities.
+If you wish that your cached entities be invalidated upon a CRUD operation
+rather than having to wait for them to reach their TTL, you have to follow
+a few steps. This process can be automated since 0.11.0 for most entities,
+but manually subscribing to some CRUD events might be required to invalidate
+some entities with more complex relationships.
 
-Thanks to this behavior, we can listen to these events and response with the appropriate action, so that when a cached entity is being modified in the datastore, we can explicitly remove it from the cache to avoid having an inconsistent state between the datastore and the cache itself. Removing it from the in-memory cache will trigger the system to query the datastore again, and re-cache the entity.
+#### Automatic cache invalidation
 
-The events that Kong propagates are:
-
-| Event name                         | Description
-|------------------------------------|---------------------------
-| `ENTITY_CREATED`                   | When any entity is being created.
-| `ENTITY_UPDATED`                   | When any entity is being updated.
-| `ENTITY_DELETED`                   | When any entity is being deleted.
-
-In order to listen to these events, we need to implement the `hooks.lua` file and distribute it with our plugin, for example:
+Cache invalidation can be provided out of the box for your entities if you
+rely on the `cache_key` property of your entity's schema. For example, in the
+following schema:
 
 ```lua
--- hooks.lua
-
-local events = require "kong.core.events"
-local cache = require "kong.tools.database_cache"
-
-local function invalidate_on_update(message_t)
-  if message_t.collection == "apikeys" then
-    cache.delete("apikeys."..message_t.old_entity.apikey)
-  end
-end
-
-local function invalidate_on_create(message_t)
-  if message_t.collection == "apikeys" then
-    cache.delete("apikeys."..message_t.entity.apikey)
-  end
-end
-
-return {
-  [events.TYPES.ENTITY_UPDATED] = function(message_t)
-    invalidate_on_update(message_t)
-  end,
-  [events.TYPES.ENTITY_DELETED] = function(message_t)
-    invalidate_on_create(message_t)
-  end
-}
-
-```
-
-In the example above the plugin is listening to the `ENTITY_UPDATED` and `ENTITY_DELETED` events and responding by invoking the appropriate function. The `message_t` table contains the event properties:
-
-| Property name                      | Type   | Description
-|------------------------------------|--------|--------------------
-| `collection`                       | String | The collection in the datastore affected by the operation.
-| `entity`                           | Table  | The most recent updated entity, or the entity deleted or created.
-| `old_entity`                       | Table  | Only for update events, the old version of the entity.
-
-The entities being transmitted in the `entity` and `old_entity` properties do not have all the fields defined in the schema, but only a subset. This is required because every event is sent in a UDP packet with a payload size limit of 512 bytes. This subset is being returned by the `marshall_event` function in the schema, that you can optionally implement.
-
-#### marshall_event
-
-This function serializes the custom entity to a minimal version that only includes the fields we will later need to use in `hooks.lua`. If `marshall_event` is not implememented, by default Kong does not send any entity field value along with the event.
-
-For example:
-
-```lua
--- daos.lua
-
 local SCHEMA = {
-  primary_key = {"id"},
-  -- clustering_key = {}, -- none for this entity
+  primary_key = { "id" },
+  table = "keyauth_credentials",
+  cache_key = { "key" }, -- cache key for this entity
   fields = {
-    id = {type = "id", dao_insert_value = true},
-    created_at = {type = "timestamp", dao_insert_value = true},
-    consumer_id = {type = "id", required = true, queryable = true, foreign = "consumers:id"},
-    apikey = {type = "string", required = false, unique = true, queryable = true}
-  },
-  marshall_event = function(self, t) -- This is related to the invalidation hook
-    return { id = t.id, consumer_id = t.consumer_id, apikey = t.apikey }
-  end
+    id = { type = "id" },
+    created_at = { type = "timestamp", immutable = true },
+    consumer_id = { type = "id", required = true, foreign = "consumers:id"},
+    key = { type = "string", required = false, unique = true }
+  }
 }
+
+return { keyauth_credentials = SCHEMA }
 ```
 
-In the example above the custom entity provides a `marshall_event` function that returns an object with its `id`, `consumer_id` and `apikey` fields. In our hooks we don't need `creation_date` to invalidate the entity, so we don't care to propagate it in the event. The `t` table in the arguments is the original object with all its fields.
+We can see that we declare the cache key of this API key entity to be its
+`key` attribute. We use `key` here because it has a unique constraints
+applied to it. Hence, the attributes added to `cache_key` should result in
+a unique combination, so that no two entities could yield the same cache key.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> The JSON serialization of the Lua table that's being returned must not exceed 512 bytes, in order to fit the entire event in one UDP packet. Failure to meet this contraints will prevent invalidation events from being propagated, thus creating inconsistencies.
-</div>
+Adding this value allows you to use the following function on the DAO of that
+entity:
 
----
+```lua
+cache_key = dao:cache_key(arg1, arg2, arg3, ...)
+```
+
+Where the arguments must be the attributes specified in your schema's
+`cache_key` property, in the order they were specified. This function then
+computes a string value `cache_key` that is ensured to be unique.
+
+For example, if we were to generate the cache_key of an API key:
+
+```lua
+local cache_key = singletons.dao.keyauth_credentials:cache_key("abcd")
+```
+
+This would produce a cache_key for the API key `"abcd"` (retrieved from one
+of the query's arguments) that we can the use to retrieve the key from the
+cache (or fetch from the database if the cache is a miss):
+
+```lua
+local apikey = request.get_uri_args().apikey
+local cache_key = singletons.dao.keyauth_credentials:cache_key(apikey)
+
+local credential, err = cache:get(cache_key, nil, load_entity_key, apikey)
+if err then
+  return response.HTTP_INTERNAL_SERVER_ERROR(err)
+end
+
+-- do something with the credential
+```
+
+If the `cache_key` is generated like so and specified in an entity's schema,
+cache invalidation will be an automatic process: every CRUD operation that
+affects this API key will be make Kong generate the affected `cache_key`, and
+broadcast it to all of the other nodes on the cluster so they can evict
+that particular value from their cache, and fetch the fresh value from the
+datastore on the next request.
+
+When a parent entity is receiving a CRUD operation (e.g. the Consumer owning
+this API key, as per our schema's `consumer_id` attribute), Kong performs the
+cache invalidation mechanism for both the parent and the child entity.
+
+**Note**: Be aware of the negative caching that Kong provides. In the above
+example, if there is no API key in the datastore for a given key, the cache
+module will store the miss just as if it was a hit. This means that a
+"Create" event (one that would create an API key with this given key) is also
+propagated by Kong so that all nodes that stored the miss can evict it, and
+properly fetch the newly created API key from the datastore.
+
+See the [Clustering Guide](/docs/{{page.kong_version}}/clustering/) to ensure
+that you have properly configured your cluster for such invalidation events.
+
+#### Manual cache invalidation
+
+In some cases, the `cache_key` property of an entity's schema is not flexible
+enough, and one must manually invalidate its cache. Reasons for this could be
+that the plugin is not defining a relationship with another entity via the
+traditional `foreign = "parent_entity:parent_attribute"` syntax, or because
+it is not using the `cache_key` method from its DAO, or even because it is
+somehow abusing the caching mechanism.
+
+In those cases, you can manually setup your own subscriber to the same
+invalidation channels Kong is listening to, and perform your own, custom
+invalidation work. This process is similar to the old `hooks.lua` module that
+was required in < 0.11.0 for cache invalidations.
+
+To listen on invalidation channels inside of Kong, implement the following in
+your plugin's `init_worker` handler:
+
+```lua
+function MyCustomHandler:init_worker()
+  local worker_events = singletons.worker_events
+
+  -- listen to all CRUD operations made on Consumers
+  worker_events.register(function(data)
+
+  end, "crud", "consumers")
+
+  -- or, listen to a specific CRUD operation only
+  worker_events.register(function(data)
+    print(data.operation)  -- "update"
+    print(data.old_entity) -- old entity table (only for "update")
+    print(data.entity)     -- new entity table
+    print(data.schema)     -- entity's schema
+  end, "crud", "consumers:update")
+end
+```
+
+Once the above listeners are in place for the desired entities, you can perform
+manual invalidations of any entity that your plugin has cached as you wish so.
+For instance:
+
+```lua
+singletons.worker_events.register(function(data)
+  if data.operation == "delete" then
+    local cache_key = data.entity.id
+    singletons.cache:invalidate("prefix:" .. cache_key)
+  end
+end, "crud", "consumers")
+```
 
 ### Extending the Admin API
 
-As you are probably aware, the [Admin API] is where Kong users communicate with Kong to setup their APIs and plugins. It is likely that they also need to be able to interact with the custom entities you implemented for your plugin (for example, creating and deleting API keys). The way you would do this is by extending the Admin API, which we will detail in the next chapter: [Extending the Admin API]({{page.book.next}}).
+As you are probably aware, the [Admin API] is where Kong users communicate with
+Kong to setup their APIs and plugins. It is likely that they also need to be
+able to interact with the custom entities you implemented for your plugin (for
+example, creating and deleting API keys). The way you would do this is by
+extending the Admin API, which we will detail in the next chapter: [Extending
+the Admin API]({{page.book.next}}).
 
 ---
 
