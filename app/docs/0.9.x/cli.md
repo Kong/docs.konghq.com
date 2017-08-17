@@ -14,7 +14,6 @@ If you haven't yet, we recommend you read the [configuration reference][configur
 
 - [Global flags](#global-flags)
 - [Available commands](#available-commands)
-  - [kong backup](#kong-backup)
   - [kong check](#kong-check)
   - [kong cluster](#kong-cluster)
   - [kong compile](#kong-compile)
@@ -38,28 +37,6 @@ All commands take a set of special, optional flags as arguments:
 [Back to TOC](#table-of-contents)
 
 ### Available commands
-
-#### **kong backup**
-
-```
-Usage: kong backup COMMAND [OPTIONS]
-
-Create or import backups of data stored in Kong.
-
-The available commands are:
-  create            Create a new backup from the database
-  import <folder>   Import an existing backup into the database
-
-Options:
-  -c,--conf (optional string) configuration file
-  -y        Assume yes; assume that the answer to any question which would be asked is yes
-  --v         verbose
-  --vv        debug
-```
-
-[Back to TOC](#table-of-contents)
-
----
 
 #### **kong check**
 
