@@ -14,7 +14,6 @@ If you haven't yet, we recommend you read the [configuration reference][configur
 
 - [Global flags](#global-flags)
 - [Available commands](#available-commands)
-  - [kong backup](#kong-backup)
   - [kong check](#kong-check)
   - [kong compile (deprecated)](#kong-compile)
   - [kong prepare](#kong-prepare)
