@@ -64,7 +64,7 @@ if apikey then -- If the apikey has been passed, we can check if it exists
   -- If it's not, then we lookup the datastore and return the credential object. Internally
   -- cache.get_or_set will save the value in-memory, and then return the credential.
   credential = cache.get_or_set("apikeys."..apikey, function()
-    local apikeys, err = dao.apikeys:find_by_keys({key = apikey}) -- Lookup in the datastore
+    local apikeys, err = dao.apikeys:find_all({key = apikey}) -- Lookup in the datastore
     if err then
       return responses.send_HTTP_INTERNAL_SERVER_ERROR(err)
     elseif #apikeys == 1 then
