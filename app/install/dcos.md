@@ -111,10 +111,12 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
 
     It configures PostgreSQL as follows:
 
-    - `username`: This parameter configures the username for the Kong database.
-    - `password`: This parameter configures the password for the Kong database.
-    - `dbname`: This parameter configures the name of the kong database.
-    - `persistence`: This parameter enables persistent volumes for PostgreSQL.
+    | Config  |     Description |
+    |----------|:---------------|
+    | `username` |This parameter configures the username for the Kong database|
+    | `password` |This parameter configures the password for the Kong database|
+    | `dbname` |This parameter configures the name of the kong database|
+    | `persistence`|This parameter enables persistent volumes for PostgreSQL|
 
     Install PostgreSQL using `postgres.json` file from the repo:
 
@@ -180,30 +182,30 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
 
     | Config  |     Description |
     |----------|:---------------|
-    | `configurations.log_level`|Sets the Kong's log_level configuration.|
-    | `configurations.custom-envs`|A space-separated list of Kong configurations.|
-    | `configurations.database.use-cassandra`|If `true`, Cassandra is used as the Kong database.|
-    | `configurations.database.migration`| If `true`, Kong will run migrations during start.|
-    | `configurations.postgres.host`| PostgreSQL host name.|
-    | `configurations.postgres.port`| PostgreSQL port.|
-    | `configurations.postgres.database`| PostgreSQL database name.|
-    | `configurations.postgres.user`| PostgreSQL username.|
-    | `configurations.postgres.password`| PostgreSQL password.|
-    | `configurations.cassandra.contact-points`| Comma-delimited list of Cassandra contact points.|
-    | `configurations.cassandra.port`| Port on which Cassandra is listening for queries.|
-    | `configurations.cassandra.keyspace`| Keyspace to use in Cassandra. Will be created if it doesn't exist.|
-    | `networking.proxy.external-access`| If `true`, allows external access to Kong's proxy port.|
-    | `networking.proxy.virtual-host`| The virtual host address to integrate Kong proxy port with Marathon-lb.|
-    | `networking.proxy.https-redirect`| If `true`, Marathon-lb redirects HTTP traffic to HTTPS. This requires 'virtual-host' to be set.|
-    | `networking.proxy.service-port`| Port number to be used for reaching Kong's proxy port from outside of the cluster.|
-    | `networking.proxy.vip-port`| Port number to be used for communication internally to the Proxy API. Default is 8000.|
-    | `networking.proxy.vip-port-ssl`| Port number to be used for secure communication internally to the Proxy API. Default is 8443.|
-    | `networking.admin.external-access`| If `true`, allows external access to Kong's admin port.|
-    | `networking.admin.virtual-host`| The virtual host address to integrate Kong admin port with Marathon-lb.|
-    | `networking.admin.https-redirect`| If `true`, Marathon-lb redirects HTTP traffic to HTTPS. This requires 'virtual-host' to be set.|
-    | `networking.admin.service-port`| Port number to be used for reaching Kong's admin port from outside of the cluster.|
-    | `networking.admin.vip-port`| Port number to be used for communication internally to the Admin API. Default is 8001.|
-    | `networking.admin.vip-port-ssl`| Port number to be used for secure communication internally to the Admin API. Default is 8444.|
+    | `configurations.log_level`|Sets the Kong's log_level configuration|
+    | `configurations.custom-envs`|A space-separated list of Kong configurations|
+    | `configurations.database.use-cassandra`|If `true`, Cassandra is used as the Kong database|
+    | `configurations.database.migration`| If `true`, Kong will run migrations during start|
+    | `configurations.postgres.host`| PostgreSQL host name|
+    | `configurations.postgres.port`| PostgreSQL port|
+    | `configurations.postgres.database`| PostgreSQL database name|
+    | `configurations.postgres.user`| PostgreSQL username|
+    | `configurations.postgres.password`| PostgreSQL password|
+    | `configurations.cassandra.contact-points`| Comma-delimited list of Cassandra contact points|
+    | `configurations.cassandra.port`| Port on which Cassandra is listening for queries|
+    | `configurations.cassandra.keyspace`| Keyspace to use in Cassandra. Will be created if it doesn't exist|
+    | `networking.proxy.external-access`| If `true`, allows external access to Kong's proxy port|
+    | `networking.proxy.virtual-host`| The virtual host address to integrate Kong proxy port with Marathon-lb|
+    | `networking.proxy.https-redirect`| If `true`, Marathon-lb redirects HTTP traffic to HTTPS. This requires 'virtual-host' to be set|
+    | `networking.proxy.service-port`| Port number to be used for reaching Kong's proxy port from outside of the cluster|
+    | `networking.proxy.vip-port`| Port number to be used for communication internally to the Proxy API. Default is 8000|
+    | `networking.proxy.vip-port-ssl`| Port number to be used for secure communication internally to the Proxy API. Default is 8443|
+    | `networking.admin.external-access`| If `true`, allows external access to Kong's admin port|
+    | `networking.admin.virtual-host`| The virtual host address to integrate Kong admin port with Marathon-lb|
+    | `networking.admin.https-redirect`| If `true`, Marathon-lb redirects HTTP traffic to HTTPS. This requires 'virtual-host' to be set|
+    | `networking.admin.service-port`| Port number to be used for reaching Kong's admin port from outside of the cluster|
+    | `networking.admin.vip-port`| Port number to be used for communication internally to the Admin API. Default is 8001|
+    | `networking.admin.vip-port-ssl`| Port number to be used for secure communication internally to the Admin API. Default is 8444|
 
     Note: Tweak the above configuration based on you datastore choice.
 
@@ -231,41 +233,36 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
     Now that Kong is installed, to test the configuration, SSH into one of the
     instances in the cluster (such as a master), and try curl-ing the endpoints:
 
-    - Admin
+    **Admin**
 
-      ```bash
-      $ curl -i -X GET http://marathon-lb.marathon.mesos:10202
-      HTTP/1.1 200 OK
-      ..
+    ```bash
+    $ curl -i -X GET http://marathon-lb.marathon.mesos:10202
+    HTTP/1.1 200 OK
+    ..
 
-      {..}
-      ```
+    {..}
+    ```
 
-    - Proxy
+    **Proxy**
 
-      ```bash
-      $ curl -i -X GET http://marathon-lb.marathon.mesos:10201
-      HTTP/1.1 404 Not Found
-      ..
+    ```bash
+    $ curl -i -X GET http://marathon-lb.marathon.mesos:10201
+    HTTP/1.1 404 Not Found
+    ..
 
-      {"message":"no API found with those values"}
-      ```
+    {"message":"no API found with those values"}
+    ```
 
-    - VHOST
+    **VHOST**
 
-      In this example, the public DNS name used is
-      `mesos-tes-PublicSl-1TJB5U5K35XXT-591175086.us-east-1.elb.amazonaws.com`
-      for exposing Kong's proxy port.
-
-      ![](img/kong-vhost.png)
+    In this example, the public DNS name used is
+    `mesos-tes-PublicSl-1TJB5U5K35XXT-591175086.us-east-1.elb.amazonaws.com`
+    for exposing Kong's proxy port.
 
     Note: Kong returning 404 on proxy port is a valid response as no API was
     registered yet.
 
-    You can quickly learn how to use Kong with the
-    [5-minute Quickstart](https://getkong.org//docs/latest/getting-started/quickstart).
-
-8.  **Uninstalling Kong**
+8. **Uninstalling Kong**
 
     To uninstall Kong, run the following command:
 
@@ -273,7 +270,7 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
     $ dcos package uninstall kong
     ```
 
-9.  **Example**
+9. **Example**
 
     For this demo, we created an app which returns `Hello world` on port `8080`.
     Using the `my_app.json` file from the kong-dist-dcos repo, deploy the app in
