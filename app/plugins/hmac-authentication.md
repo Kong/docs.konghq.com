@@ -16,17 +16,25 @@ nav:
       - label: Signature Authentication Scheme
       - label: Signature Parameters
       - label: Signature String Construction
+      - label: Clock Skew
+      - label: Body Validation
+      - label: Enforcing Headers
       - label: HMAC Example
       - label: Upstream Headers
 ---
 
-Add HMAC Signature Authentication to your APIs to establish the identity of the consumer. The plugin will check for valid signature in the `Proxy-Authorization` and `Authorization` header (in this order). This plugin implementation follows the [draft-cavage-http-signatures-00](https://tools.ietf.org/html/draft-cavage-http-signatures-00) draft with slightly changed signature scheme.
+Add HMAC Signature authentication to your APIs to establish the integrity of
+incoming requests. The plugin will validate the digital signature sent in the
+`Proxy-Authorization` or `Authorization` header (in this order). This plugin
+implementation is based off the [draft-cavage-http-signatures][draft] draft
+with a slightly different signature scheme.
 
 ----
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of an
+[API][api-object] by executing the following request on your Kong server:
 
 ```bash
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
@@ -35,27 +43,34 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+You can also apply it for every API using the `http://kong:8001/plugins/`
+endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin)
+for more information.
 
 form parameter                          | default | description
----                                     | ---     | ---
-`name`                                  |         | The name of the plugin to use, in this case: `hmac-auth`
-`config.hide_credentials`<br>*optional* | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.clock_skew`<br>*optional*       | `300`   | Clock Skew in seconds to prevent replay attacks.
-`config.anonymous`<br>*optional*           | `` | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
-
+---                                     | --- | ---
+`name`                                  | | The name of the plugin to use, in this case: `hmac-auth`
+`config.hide_credentials`<br>*optional* | `false` | A boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.clock_skew`<br>*optional*       | `300` | [Clock Skew][clock-skew] in seconds to prevent replay attacks.
+`config.anonymous`<br>*optional*        | `` | A string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
+`config.validate_request_body`<br>*optional* | `false` | A boolean value telling the plugin to enable body validation
+`config.enforce_headers`<br>*optional*  | `` | A list of headers which the client should at least use for HTTP signature creation
+`config.algorithms`<br>*optional*       | `hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512` | A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
 ----
 
 ## Usage
 
-In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
+In order to use the plugin, you first need to create a Consumer to associate
+one or more credentials to.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object]
+object. To create a
+[Consumer][consumer-object] you can execute the following request:
 
 ```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+$ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
 
 parameter                       | description
@@ -67,7 +82,8 @@ A [Consumer][consumer-object] can have many credentials.
 
 ### Create a Credential
 
-You can provision new username/password credentials by making the following HTTP request:
+You can provision new username/password credentials by making the following
+HTTP request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
@@ -75,22 +91,24 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
     --data "secret=secret456"
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`consumer`: The `id` or `username` property of the [Consumer][consumer-object]
+entity to associate the credentials to.
 
 form parameter             | description
 ---                        | ---
 `username`                 | The username to use in the HMAC Signature verification.
-`secret`<br>*optional*   | The secret to use in the HMAC Signature verification. Note that if this parameter isn't provided, Kong will generate a value for you and send it as part of the response body.
+`secret`<br>*optional*     | The secret to use in the HMAC Signature verification. Note that if this parameter isn't provided, Kong will generate a value for you and send it as part of the response body.
 
 ### Signature Authentication Scheme
 
-The client is expected to send an `Authorization` header with the following parameterization:
+The client is expected to send an `Authorization` or `Proxy-Authorization` header
+with the following parameterization:
 
 ```
 credentials := "hmac" params
 params := keyId "," algorithm ", " headers ", " signature
 keyId := "username" "=" plain-string
-algorithm := "algorithm" "=" DQUOTE (hmac-sha1) DQUOTE
+algorithm := "algorithm" "=" DQUOTE (hmac-sha1|hmac-sha256|hmac-sha384|hmac-sha512) DQUOTE
 headers := "headers" "=" plain-string
 signature := "signature" "=" plain-string
 plain-string   = DQUOTE *( %x20-21 / %x23-5B / %x5D-7E ) DQUOTE
@@ -99,10 +117,10 @@ plain-string   = DQUOTE *( %x20-21 / %x23-5B / %x5D-7E ) DQUOTE
 ### Signature Parameters
 
 parameter| description
---- | ---
-username | The `username` of the credential
-algorithm | Digital signature algorithm used to create signature, only `hmac-sha1` is supported
-headers | List of HTTP header names, separated by a single space character, used to sign the request
+---       | ---
+username  | The `username` of the credential
+algorithm | Digital signature algorithm used to create the signature
+headers   | List of HTTP header names, separated by a single space character, used to sign the request
 signature | `Base64` encoded digital signature generated by the client
 
 ### Signature String Construction
@@ -115,7 +133,7 @@ the order they appear.
   lowercased header name followed with an ASCII colon `:` and an
   ASCII space ` `.
 
-2. If the header name is `request-line` then appened the HTTP
+2. If the header name is `request-line` then append the HTTP
   request line, otherwise append the header value.
 
 3. If value is not the last value then append an ASCII newline `\n`.
@@ -123,27 +141,167 @@ the order they appear.
 
 ### Clock Skew
 
-The HMAC Authentication plugin also implements a clock skew check [as described in the specification](https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4) to prevent replay attacks. By default, a minimum lag of 300s in either direction (past/future) is allowed. Any request with a higher or lower date value will be rejected. The length of the clock skew can be edited through the plugin's configuration by setting `clock_skew` property (`config.clock_skew` POST parameters).
+The HMAC Authentication plugin also implements a clock skew check as described
+in the [specification][clock-skew] to prevent replay attacks. By default,
+a minimum lag of 300s in either direction (past/future) is allowed. Any request
+with a higher or lower date value will be rejected. The length of the clock
+skew can be edited through the plugin's configuration by setting the
+`clock_skew` property (`config.clock_skew` POST parameters).
 
-The server and requesting client should be synchronized with NTP and a valid date (using GMT format) should be sent with either the `X-Date` or `Date` header.
+The server and requesting client should be synchronized with NTP and a valid
+date (using GMT format) should be sent with either the `X-Date` or `Date`
+header.
+
+### Body Validation
+
+User can set `config.validate_request_body` as `true` to validate the request 
+body. If it's enabled and if the client sends a `Digest` header in the request,
+the plugin will calculate the `SHA-256` HMAC digest of the request body and
+match it against the value of the `Digest` header. The Digest header needs to
+be in following format:
+
+```
+Digest: SHA-256=base64(sha256(<body>))
+```
+
+Note: In order to create the digest of a request body, the plugin needs to
+retain it in memory, which might cause pressure on the worker's Lua VM when
+dealing with large bodies (several MBs) or during high request concurrency.
+
+### Enforcing Headers
+
+`config.enforce_headers` can be used to enforce any of the headers to be part 
+of the signature creation. By default, the plugin doesn't enforce which header
+needs to be used for the signature creation. The minimum recommended data to
+sign is the `request-line`, `host`, and `date`. A strong signature would
+include all of the headers and a `digest` of the body.
 
 ### HMAC Example
 
-For an HMAC signature with `date` and `content-md5` headers, the `Proxy-Authorization` or `Authorization` header and signature would be generated as:
+  **Add an API**
 
-```
-Authorization: hmac username="bob", algorithm="hmac-sha1", headers="date content-md5", signature="Base64(HMAC-SHA1(signing string))"
-```
+  ```bash
+  $ curl -i -X POST http://localhost:8001/apis \
+      -d "name=hmac-test" \
+      -d "hosts=hmac.com" \
+      -d "upstream_url=http://example.com"
+  HTTP/1.1 201 Created
+  ...
 
-The client would compose the signing string as:
+  ```
+  
+  **Enable plugin**
 
-```
-date: Fri, 09 Oct 2015 00:00:00 GMT\ncontent-md5: lCMsW4/JJy9vc6HjbraPzw==
-```
+  ```bash
+  $ curl -i -X POST http://localhost:8001/apis/hmac-test/plugins \
+      -d "name=hmac-auth" \
+      -d "config.enforce_headers=date, request-line" \
+      -d "config.algorithms=hmac-sha1, hmac-sha256"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+  Here we are enabling the `hmac-auth` plugin on API the `hmac-test`.
+  `config.enforce_headers` is set to force the client to at least use `date`
+  and `request-line` in the HTTP signature creation. Also we are setting the
+  `config.algorithms` to force the client to only use `hmac-sha1` or
+  `hmac-sha256` for hashing the signing string.
+
+  **Add a Consumer**
+
+  ```bash
+  $ curl -i -X POST http://localhost:8001/consumers/ \
+      -d "username=alice"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+  **Add credential for Alice**
+
+  ```bash
+  $ curl -i -X POST http://localhost:8001/consumers/alice/hmac-auth \
+      -d "username=alice123" \
+      -d "secret=secret"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+  **Request to the API**
+
+  ```bash
+  $ curl -i -X GET http://localhost:8000/requests \
+      -H "Host: hmac.com" \
+      -H "Date: Thu, 22 Jun 2017 17:15:21 GMT" \
+      -H 'Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature="ujWCGHeec9Xd6UD2zlyxiNMCiXnDOWeVFMu5VeRUxtw="'
+  HTTP/1.1 200 OK
+  ...
+  
+  ```
+  
+  In the above request, we are composing the signing string using the `date` and
+  `request-line` headers and creating the digest using the `hmac-sha256` to
+  hash the digest:
+  
+  ```
+  signing_string="date: Thu, 22 Jun 2017 17:15:21 GMT\nGET /requests HTTP/1.1"
+  digest=HMAC-SHA256(<signing_string>, "secret")
+  base64_digest=base64(<digest>)
+  ```
+  
+  So the final value of the `Authorization` header would look like: 
+
+  
+  ```
+  Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature=<base64_digest>"
+  ```
+
+  **Validating request body**
+  
+  To enable body validation we would need to set `config.validate_request_body` 
+  to `true`:
+
+  ```bash
+  $ curl -i -X PATCH http://localhost:8001/apis/hmac-test/plugins/:plugin_id \
+      -d "config.validate_request_body=true"
+  HTTP/1.1 200 OK
+  ...
+  
+  ```
+
+  Now if the client includes the body digest in the request as the value of the
+  `Digest` header, the plugin will validate the request body by calculating the
+  `SHA-256` of the body and matching it against the `Digest` header's value.
+
+  ```bash
+  $ curl -i -X GET http://localhost:8000/requests \
+      -H "Host: hmac.com" \
+      -H "Date: Thu, 22 Jun 2017 21:12:36 GMT" \
+      -H "Digest: SHA-256=SBH7QEtqnYUpEcIhDbmStNd1MxtHg2+feBfWc1105MA=" \
+      -H 'Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line digest", signature="gaweQbATuaGmLrUr3HE0DzU1keWGCt3H96M28sSHTG8="' \
+      -d "A small body"
+  HTTP/1.1 200 OK
+  ...
+
+  ```
+
+  In the above request we calculated the `SHA-256` digest of the body and set
+  the `Digest` header with the following format:
+
+  ```
+  body="A small body" 
+  digest=SHA-256(body)
+  base64_digest=base64(digest)
+  Digest: SHA-256=<base64_digest>
+  ```
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to
+the request before proxying it to the upstream API/Microservice, so that you
+can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
@@ -151,9 +309,13 @@ When a client has been authenticated, the plugin will append some headers to the
 * `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+You can use this information on your side to implement additional logic.
+You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve
+more information about the Consumer.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+[draft]: https://tools.ietf.org/html/draft-cavage-http-signatures
+[clock-skew]: https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4
