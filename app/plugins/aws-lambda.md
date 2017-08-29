@@ -49,18 +49,20 @@ hence use `--date-urlencode` if you are using curl. Alternatives to this
 approach would be to send your payload with a different MIME type (like
 `application/json`), or to use a different HTTP client.
 
-form parameter                             | default | description
----                                        | ---     | ---
-`name`                                     |         | The name of the plugin to use, in this case: `aws-lambda`
-`config.aws_key`                           |         | The AWS key credential to be used when invoking the function
-`config.aws_secret`                        |         | The AWS secret credential to be used when invoking the function
-`config.aws_region`                        |         | The AWS region where the Lambda function is located. Regions supported are: `us-east-1`, `us-east-2`, `ap-northeast-1`, `ap-northeast-2`, `ap-southeast-1`, `ap-southeast-2`, `eu-central-1`, `eu-west-1`
-`config.function_name`                     |         | The AWS Lambda function name to invoke
-`config.qualifier`<br>*optional*           | ``      | The [`Qualifier`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function.
-`config.invocation_type`<br>*optional*     | `RequestResponse` | The [`InvocationType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. Available types are `RequestResponse`, `Event`, `DryRun`
-`config.log_type`<br>*optional*            | `Tail`  | The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported
-`config.timeout`<br>*optional*             | `60000` | An optional timeout in milliseconds when invoking the function
-`config.keepalive`<br>*optional*           | `60000` | An optional value in milliseconds that defines how long an idle connection will live before being closed
+form parameter                                | default | description
+---                                           | ---     | ---
+`name`                                        |         | The name of the plugin to use, in this case: `aws-lambda`
+`config.aws_key`                              |         | The AWS key credential to be used when invoking the function
+`config.aws_secret`                           |         | The AWS secret credential to be used when invoking the function
+`config.aws_region`                           |         | The AWS region where the Lambda function is located. Regions supported are: `us-east-1`, `us-east-2`, `ap-northeast-1`, `ap-northeast-2`, `ap-southeast-1`, `ap-southeast-2`, `eu-central-1`, `eu-west-1`
+`config.function_name`                        |         | The AWS Lambda function name to invoke
+`config.qualifier`<br>*optional*              | ``      | The [`Qualifier`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function.
+`config.invocation_type`<br>*optional*        | `RequestResponse` | The [`InvocationType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. Available types are `RequestResponse`, `Event`, `DryRun`
+`config.log_type`<br>*optional*               | `Tail`  | The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported
+`config.timeout`<br>*optional*                | `60000` | An optional timeout in milliseconds when invoking the function
+`config.keepalive`<br>*optional*              | `60000` | An optional value in milliseconds that defines how long an idle connection will live before being closed
+`config.forward_request_body`<br>*optional*   | `false` | An optional value that determines whether to send the raw body (true) or parse the body into JSON before invoking the function (false).
+`config.forward_request_headers`<br>*optional*| `false` | An optional value that determines whether to send the raw headers (true) or parse the headers into JSON before invoking the function (false).
 ----
 
 ### Sending parameters
