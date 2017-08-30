@@ -87,7 +87,7 @@ local singletons = require "kong.singletons"
 local function load_entity_key(api_key)
   -- IMPORTANT: the callback is executed inside a lock, hence we cannot terminate
   -- a request here, we MUST always return.
-  local apikeys, err = dao.apikeys:find_by_keys({key = api_key}) -- Lookup in the datastore
+  local apikeys, err = dao.apikeys:find_all({key = api_key}) -- Lookup in the datastore
   if err then
     error(err) -- caught by kong.cache and logged
   end
