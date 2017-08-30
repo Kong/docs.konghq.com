@@ -44,7 +44,7 @@ describe("my plugin", function()
     -- start Kong with your testing Kong configuration (defined in "spec.helpers")
     assert(helpers.start_kong())
 
-    admin_client = helpers.admin_client(timeout?)
+    admin_client = helpers.admin_client()
   end)
 
   teardown(function()
@@ -56,7 +56,7 @@ describe("my plugin", function()
   end)
 
   before_each(function()
-    proxy_client = helpers.proxy_client(timeout?)
+    proxy_client = helpers.proxy_client()
   end)
 
   after_each(function()
