@@ -46,6 +46,7 @@ form parameter                     | default | description
 `config.limit_by`<br>*optional*    | `consumer` | The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
 `config.policy`<br>*optional*      | `cluster`  | The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes) and `redis` (counters are stored on a Redis server and will be shared across the nodes).
 `config.fault_tolerant`<br>*optional* | `true` |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors.
+`config.hide_client_headers`<br>*optional* | `false` | Optionally hide informative response headers.
 `config.redis_host`<br>*semi-optional* |        | When using the `redis` policy, this property specifies the address to the Redis server.
 `config.redis_port`<br>*optional* | `6379`     | When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
 `config.redis_password`<br>*optional* |      | When using the `redis` policy, this property specifies the password to connect to the Redis server.
@@ -90,19 +91,19 @@ policy    | pros          | cons
 
 There are 2 use cases that are most common:
 
-1. _every transaction counts_. These are for example transactions with financial 
+1. _every transaction counts_. These are for example transactions with financial
   consequences. Here the highest level of accuracy is required.
 2. _backend protection_. This is where accuracy is not as relevant, but it is
   merely used to protect backend services from overload. Either by specific
   users, or to protect against an attack in general.
 
-**NOTE**: 
+**NOTE**:
 
 <div class="alert alert-warning">
-  <strong>Enterprise-Only</strong> The Kong Community Edition of this Rate Limiting plugin does not 
-include <a href="https://redis.io/topics/sentinel">Redis Sentinel</a> support. 
-<a href="https://www.mashape.com/enterprise/">Kong Enterprise Subscription</a> customers have the option 
-of using Redis Sentinel with Kong Rate Limiting to deliver highly available master-slave deployments. 
+  <strong>Enterprise-Only</strong> The Kong Community Edition of this Rate Limiting plugin does not
+include <a href="https://redis.io/topics/sentinel">Redis Sentinel</a> support.
+<a href="https://www.mashape.com/enterprise/">Kong Enterprise Subscription</a> customers have the option
+of using Redis Sentinel with Kong Rate Limiting to deliver highly available master-slave deployments.
 </div>
 
 ### Every transaction counts
@@ -124,16 +125,16 @@ to get the proper setting. For example, if the user is bound to 100 requests per
 equally balanced 5 node Kong cluster, setting the `local` limit to something like 30 requests per second
 should work. If you are worried about too many false-negatives, increase the value.
 
-Keep in mind as the cluster scales to more nodes, the users will get more requests granted, and likewise 
-when the cluster scales down the probability of false-negatives increases. So in general, update your 
+Keep in mind as the cluster scales to more nodes, the users will get more requests granted, and likewise
+when the cluster scales down the probability of false-negatives increases. So in general, update your
 limits when scaling.
 
 The above mentioned inaccuracy can be mitigated by using a consistent-hashing load balancer in front of
 Kong, that ensures the same user is always directed to the same Kong node. This will both reduce the
 inaccuracy and prevent the scaling issues.
 
-Most likely the user will be granted more than was agreed when using the `local` policy, but it will 
-effectively block any attacks while maintaining the best performance. 
+Most likely the user will be granted more than was agreed when using the `local` policy, but it will
+effectively block any attacks while maintaining the best performance.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
