@@ -166,8 +166,10 @@ return {
     server = {
       type = "table",
       schema = {
-        host = {type = "url", default = "http://example.com"},
-        port = {type = "number", func = server_port, default = 80}
+        fields = {
+          host = {type = "url", default = "http://example.com"},
+          port = {type = "number", func = server_port, default = 80}
+        }
       }
     }
   }
