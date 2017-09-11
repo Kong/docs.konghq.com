@@ -61,6 +61,11 @@ form parameter                             | default | description
 `config.log_type`<br>*optional*            | `Tail`  | The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported
 `config.timeout`<br>*optional*             | `60000` | An optional timeout in milliseconds when invoking the function
 `config.keepalive`<br>*optional*           | `60000` | An optional value in milliseconds that defines how long an idle connection will live before being closed
+`config.forward_request_body`<br>*optional*           | `false` | An optional value that defines whether the request body is to be sent in the `request_body` field of the JSON-encoded request. If the body arguments can be parsed, they will be sent in the separate `request_body_args` field of the request. The body arguments can be parsed for `application/json`, `application/x-www-form-urlencoded`, and `multipart/form-data` content types.
+`config.forward_request_headers`<br>*optional*        | `false` | An optional value that defines whether the original HTTP request headers are to be sent as a map in the `request_headers` field of the JSON-encoded request.
+`config.forward_request_method`<br>*optional*         | `false` | An optional value that defines whether the original HTTP request method verb is to be sent in the `request_method` field of the JSON-encoded request.
+`config.forward_request_uri`<br>*optional*            | `false` | An optional value that defines whether the original HTTP request URI is to be sent in the `request_uri` field of the JSON-encoded request. Request URI arguments (if any) will be sent in the separate `request_uri_args` field of the JSON body.
+
 ----
 
 ### Sending parameters
