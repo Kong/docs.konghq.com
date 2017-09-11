@@ -972,20 +972,6 @@ Default: `1`
 
 ---
 
-##### **lua_code_cache**
-
-When disabled, every request will run in a separate Lua VM instance: all Lua
-modules will be loaded from scratch. Useful for adopting an edit-and-refresh
-approach while developing a plugin.
-
-Turning this directive off has a severe impact on performance.
-
-See https://github.com/openresty/lua-nginx-module#lua_code_cache
-
-Default: `on`
-
----
-
 ##### **lua_package_path**
 
 Sets the Lua module search path (LUA_PATH). Useful when developing or using
