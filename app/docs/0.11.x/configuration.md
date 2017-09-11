@@ -961,6 +961,11 @@ Default: `1`
 
 ##### **lua_code_cache**
 
+<div class="alert alert-warning">
+  <strong>Note:</strong> this setting is considered <b>harmful</b> since 0.11.0.
+  It has been removed starting from 0.11.1.
+</div>
+
 When disabled, every request will run in a separate Lua VM instance: all Lua
 modules will be loaded from scratch. Useful for adopting an edit-and-refresh
 approach while developing a plugin.
