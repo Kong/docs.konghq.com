@@ -1600,11 +1600,13 @@ HTTP 204 No Content
 
 A target is an ip address/hostname with a port that identifies an instance of a backend
 service. Every upstream can have many targets, and the targets can be 
-dynamically added and removed. So changes are effectuated on the fly.
+dynamically added. Changes are effectuated on the fly.
 
 Because the upstream maintains a history of target changes, the targets cannot
 be deleted or modified. To disable a target, post a new one with `weight=0`;
 alternatively, use the `DELETE` convenience method to accomplish the same.
+
+The current target object definition is the one with the latest `created_at`.
 
 ```json
 {
@@ -1650,6 +1652,10 @@ HTTP 201 Created
 
 ### List targets
 
+Lists all targets of the upstream. Multiple target objects for the same
+target may be returned, showing the history of changes for a specific target.
+The target object with the latest `created_at` is the current definition.
+
 #### Endpoint
 
 <div class="endpoint get">/upstreams/{name or id}/targets</div>
@@ -1691,53 +1697,6 @@ HTTP 200 OK
             "target": "127.0.0.1:20001",
             "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
             "weight": 0
-        },
-        {
-            "created_at": 1485524914883,
-            "id": "6c6f34eb-e6c3-4c1f-ac58-4060e5bca890",
-            "target": "127.0.0.1:20002",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 200
-        }
-    ]
-}
-```
-
----
-
-### List active targets
-
-Retrieve a list of active targets (targets whose most recent weight is not 0)
-for a given upstream.
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint is only available with Kong 0.10.1+
-</div>
-
-### Endpoint
-
-<div class="endpoint get">/upstreams/{name or id}/targets/active</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets.
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "total": 2,
-    "data": [
-        {
-            "created_at": 1485524883980,
-            "id": "18c0ad90-f942-4098-88db-bbee3e43b27f",
-            "target": "127.0.0.1:20000",
-            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
-            "weight": 100
         },
         {
             "created_at": 1485524914883,
