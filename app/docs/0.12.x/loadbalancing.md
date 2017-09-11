@@ -133,11 +133,8 @@ number of slots change for example.
 The only occurrence where the balancer will be rebuilt automatically is when 
 the target history is cleaned; other than that, it will only rebuild upon changes.
 
-Within the balancer there are the positions (from 1 to `slots`) on the ring,
-which each get a 'slot' assigned 1-on-1. Hence there are also `slots` number of slots, but
-they are __randomly distributed__ over the ring positions. This randomness can be
-set by using the `orderlist`, but we strongly advice against doing that.
-
+Within the balancer there are the positions (from 1 to `slots`),
+which are __randomly distributed__ on the ring.
 The randomness is required to make invoking the ring-balancer cheap at 
 runtime. A simple round-robin over the wheel (the positions) will do to 
 provide a well distributed weighted round-robin over the `targets`, whilst
