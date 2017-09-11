@@ -42,7 +42,6 @@ upstream_body: |
     ---:| ---
     `name` | This is a hostname like name that can be referenced in an `upstream_url` field of an `api`.
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
-    `orderlist`<br>*optional* | A list of sequential, but randomly ordered, integer numbers that determine the distribution of the slots in the balancer. If omitted it will be generated. If given, it must have exactly `slots` number of entries.
 
 certificate_body: |
     Attributes | Description
@@ -1347,18 +1346,6 @@ Requests for this API would be proxied to the targets defined within the upstrea
 ```json
 {
     "name": "service.v1.xyz",
-    "orderlist": [
-        1,
-        2,
-        7,
-        9,
-        6,
-        4,
-        5,
-        10,
-        3,
-        8
-    ],
     "slots": 10
 }
 ```
@@ -1385,18 +1372,6 @@ HTTP 201 Created
 {
     "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
     "name": "service.v1.xyz",
-    "orderlist": [
-        1,
-        2,
-        7,
-        9,
-        6,
-        4,
-        5,
-        10,
-        3,
-        8
-    ],
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1424,18 +1399,6 @@ HTTP 200 OK
 {
     "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
     "name": "service.v1.xyz",
-    "orderlist": [
-        1,
-        2,
-        7,
-        9,
-        6,
-        4,
-        5,
-        10,
-        3,
-        8
-    ],
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1473,36 +1436,12 @@ HTTP 200 OK
             "created_at": 1485521710265,
             "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
             "name": "service.v1.xyz",
-            "orderlist": [
-                1,
-                2,
-                7,
-                9,
-                6,
-                4,
-                5,
-                10,
-                3,
-                8
-            ],
             "slots": 10
         },
         {
             "created_at": 1485522651185,
             "id": "07131005-ba30-4204-a29f-0927d53257b4",
             "name": "service.v2.xyz",
-            "orderlist": [
-                5,
-                3,
-                6,
-                1,
-                2,
-                10,
-                8,
-                7,
-                4,
-                9
-            ],
             "slots": 10
         }
     ],
@@ -1537,18 +1476,6 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "service.v1.xyz",
-    "orderlist": [
-        1,
-        2,
-        7,
-        9,
-        6,
-        4,
-        5,
-        10,
-        3,
-        8
-    ],
     "slots": 10,
     "created_at": 1422386534
 }
