@@ -1711,6 +1711,54 @@ HTTP 200 OK
 
 ---
 
+### List active targets
+
+Retrieve a list of active targets (targets whose most recent weight is not 0)
+for a given upstream.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint is only available with Kong 0.10.1+
+</div>
+
+### Endpoint
+
+<div class="endpoint get">/upstreams/{name or id}/targets/active/</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 2,
+    "data": [
+        {
+            "created_at": 1485524883980,
+            "id": "18c0ad90-f942-4098-88db-bbee3e43b27f",
+            "target": "127.0.0.1:20000",
+            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "weight": 100
+        },
+        {
+            "created_at": 1485524914883,
+            "id": "6c6f34eb-e6c3-4c1f-ac58-4060e5bca890",
+            "target": "127.0.0.1:20002",
+            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "weight": 200
+        }
+    ]
+}
+```
+
+
+---
+
 ### Delete target
 
 Disable a target in the load balancer. Under the hood, this method creates
