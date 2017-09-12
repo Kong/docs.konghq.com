@@ -1688,11 +1688,13 @@ HTTP 204 No Content
 
 A target is an ip address/hostname with a port that identifies an instance of a backend
 service. Every upstream can have many targets, and the targets can be 
-dynamically added and removed. So changes are effectuated on the fly.
+dynamically added. Changes are effectuated on the fly.
 
 Because the upstream maintains a history of target changes, the targets cannot
 be deleted or modified. To disable a target, post a new one with `weight=0`;
 alternatively, use the `DELETE` convenience method to accomplish the same.
+
+The current target object definition is the one with the latest `created_at`.
 
 ```json
 {
@@ -1737,6 +1739,10 @@ HTTP 201 Created
 ---
 
 ### List targets
+
+Lists all targets of the upstream. Multiple target objects for the same
+target may be returned, showing the history of changes for a specific target.
+The target object with the latest `created_at` is the current definition.
 
 #### Endpoint
 
