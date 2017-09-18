@@ -36,7 +36,7 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
     Run the migrations with an ephemeral Kong container:
 
     ```bash
-    $ docker run -it --rm \
+    $ docker run --rm \
         --link kong-database:kong-database \
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
