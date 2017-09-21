@@ -64,6 +64,27 @@
     &:nth-child(3n+1) {
       margin-left: 0
     }
+
+    &.enterprise {
+      border-color: #80caff;
+      background: rgba(128, 202, 255, .03);
+      overflow: hidden;
+      &:after {
+        position: absolute;
+        display: block;
+        content: 'Enterprise';
+        top: 20px;
+        right: -20px;
+        height: 18px;
+        width: 100px;
+        text-align: center;
+        color: #fff;
+        font-size: 12px;
+        line-height: 18px;
+        background: #176FAD;
+        transform: rotate(45deg);
+      }
+    }
   }
 
   .plugin-plate-header {
