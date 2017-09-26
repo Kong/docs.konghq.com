@@ -32,7 +32,7 @@ package manager to do it for you. We recommend LuaRocks as it is installed
 along with Kong when using one of the official distribution packages.
 
 When using LuaRocks, you must create a `rockspec` file, which specifies the
-package contents. For an example see the [Kong plugin template][rockspec], for
+package contents. For an example see the [Kong plugin template][plugin-template], for
 more info about the format see the LuaRocks [documentation on
 rockspecs][rockspec].
 
@@ -260,7 +260,7 @@ Here is an example rockspec which would use the "builtin" build type to define
 modules in Lua notation and their corresponding file:
 
 
-For an example see the [Kong plugin template][rockspec], for more info about
+For an example see the [Kong plugin template][plugin-template], for more info about
 the format see the LuaRocks [documentation on rockspecs][rockspec].
 
 [Back to TOC](#table-of-contents)
@@ -294,3 +294,4 @@ reasons:
 ---
 
 [rockspec]: https://github.com/keplerproject/luarocks/wiki/Creating-a-rock
+[plugin-template]: https://github.com/Mashape/kong-plugin
