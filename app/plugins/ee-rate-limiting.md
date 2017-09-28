@@ -11,7 +11,7 @@ nav:
       - label: Requesting Access
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus aliquid ea assumenda ipsa iure officia obcaecati quod, cupiditate exercitationem mollitia animi veritatis eum deleniti, et libero quos cumque consequuntur dolore.
+The Rate Limiting plugin for Kong Enterprise Edition is a re-engineered version of the incredibly popular Community Edition Rate Limiting plugin, with greatly enhanced configuration options and performance.
 
 <br />
 
@@ -26,9 +26,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus aliquid ea assum
 
 This plugin is only available with a [Mashape Enterprise](/enterprise)
 subscription.
-
-If you already are a Mashape Enterprise customer, you can request access to the
-plugin by opening a support ticket using your Enterprise support channels.
 
 If you are not a Mashape Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).

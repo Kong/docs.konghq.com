@@ -51,12 +51,12 @@
 - name: Traffic Control
   info: Manage, throttle and restrict inbound and outbound API traffic
   plugins:
-    - name: Edge Caching
-      info: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    - name: Proxy Caching
+      info: Cache and serve commonly-requested responses in Kong.
       enterprise: true
 
     - name: Rate Limiting
-      info: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      info: Upgrades Kong Community Edition rate limiting with more flexibility and higher performance.
       enterprise: true
 
     - name: Rate Limiting
@@ -96,7 +96,7 @@
   info: Transform request and responses on the fly on Kong
   plugins:
     - name: Request Transformer
-      info: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      info: Upgrades Kong Community Edition rate limiting with more flexibility and higher performance.
       enterprise: true
 
     - name: Request Transformer

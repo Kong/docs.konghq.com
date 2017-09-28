@@ -14,25 +14,22 @@ nav:
 Validate access tokens sent by developers using a third-party OAuth 2.0
 Authorization Server, by leveraging its Introspection Endpoint
 ([RFC 7662](https://tools.ietf.org/html/rfc7662)). This plugin assumes that
-the Consumer already has an access token that will be validated against a 
+the Consumer already has an access token that will be validated against a
 third-party OAuth 2.0 server.
 
 <br />
 
 <div class="alert alert-warning">
   <strong>Enterprise-Only</strong> This plugin is only available with an
-  Enterprise Subscription. 
+  Enterprise Subscription.
 </div>
 
 ----
 
 ## Requesting Access
 
-This plugin is only available with a [Mashape Enterprise](/enterprise) 
+This plugin is only available with a [Mashape Enterprise](/enterprise)
 subscription.
-
-If you already are a Mashape Enterprise customer, you can request access to the
-plugin by opening a support ticket using your Enterprise support channels.
 
 If you are not a Mashape Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).
