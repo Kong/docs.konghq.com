@@ -96,7 +96,7 @@
   info: Transform request and responses on the fly on Kong
   plugins:
     - name: Request Transformer
-      info: Upgrades Kong Community Edition rate limiting with more flexibility and higher performance.
+      info: Use powerful regular expressions, variables and templates to transform API requests.
       enterprise: true
 
     - name: Request Transformer
