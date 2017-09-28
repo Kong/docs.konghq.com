@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - OAuth 2.0 Introspection
 header_title: OAuth 2.0 Introspection
-header_icon: /assets/images/icons/plugins/oauth2-introspection.png
+header_icon: /assets/images/icons/plugins/ee-oauth2-introspection.png
 breadcrumbs:
   Plugins: /plugins
 nav:

@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - OpenID Connect 1.0 RP
 header_title: OpenID Connect 1.0 Relying Party
-header_icon: /assets/images/icons/plugins/openid-connect-rp.png
+header_icon: /assets/images/icons/plugins/ee-openid-connect-rp.png
 breadcrumbs:
   Plugins: /plugins
 nav:
