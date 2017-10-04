@@ -1,8 +1,8 @@
 ---
 id: page-plugin
-title: Plugins - EE Edge Caching
-header_title: EE Edge Caching
-header_icon: /assets/images/icons/plugins/rate-limiting.png
+title: Plugins - EE Proxy Caching
+header_title: EE Proxy Caching
+header_icon: /assets/images/icons/plugins/EE-proxy-caching.png
 breadcrumbs:
   Plugins: /plugins
 nav:
