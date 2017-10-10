@@ -76,7 +76,7 @@ on AWS RDS for you.
 ----
 ### Recommended usage
 
-  <B>Use this cloud formation as a basis for your own, adjust the variables and template to better suite your needs.</B>
+  <B>Use this cloud formation as a basis for your own, adjust the variables and template to better suit your needs.</B>
 ----
 
 ### Instructions
