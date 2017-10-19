@@ -80,8 +80,8 @@
   lua_doc: true
 -
   release: "0.10.x"
-  version: "0.10.3"
-  luarocks_version: "0.10.3-0"
+  version: "0.10.4"
+  luarocks_version: "0.10.4-0"
   dependencies:
     luajit: "2.1.0-beta2"
     luarocks: "2.4.2"
