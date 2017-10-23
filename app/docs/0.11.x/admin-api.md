@@ -620,9 +620,16 @@ HTTP 204 No Content
 
 ## Plugin Object
 
-A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](/plugins).
+A Plugin entity represents a plugin configuration that will be executed during
+the HTTP request/response workflow, and it's how you can add functionalities
+to APIs that run behind Kong, like Authentication or Rate Limiting for
+example. You can find more information about how to install and what values
+each plugin takes by visiting the [Plugin Gallery](/plugins).
 
-When creating adding Plugin on top of an API, every request made by a client will be evaluated by the Plugin's configuration you setup. Sometimes the Plugin needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
+When creating adding Plugin on top of an API, every request made by a client
+will be evaluated by the Plugin's configuration you setup. Sometimes the
+Plugin needs to be tuned to different values for some specific consumers, you
+can do that by specifying the `consumer_id` value.
 
 ```json
 {
@@ -638,6 +645,14 @@ When creating adding Plugin on top of an API, every request made by a client wil
     "created_at": 1422386534
 }
 ```
+
+#### Precedence
+
+A named Plugin will only run once per request. When the Plugin is configured
+multiple times for the same request, then the precedence from lowest to 
+highest is: global, API, Consumer.
+So if a plugin is configured on an API, then an exception can be made by
+configuring the same plugin (with a different configuration) on a Consumer.
 
 ---
 
