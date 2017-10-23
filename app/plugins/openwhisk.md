@@ -249,7 +249,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
 
 **Use a fake upstream_url**
 
-When using the this plugin, the response will be returned by the plugin itself
+When using this plugin, the response will be returned by the plugin itself
 without proxying the request to any upstream service. This means that whatever
 `upstream_url` has been set on the [API][api-object] it will never be used.
 Although `upstream_url` will never be used, it's currently a mandatory
