@@ -6,7 +6,7 @@ header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
 links:
-  market: "https://aws.amazon.com/marketplace/pp/B014GHERVU"
+  market: "https://aws.amazon.com/marketplace/pp/B06WP4TNKL"
 ---
 
 Kong 64-bit Amazon Machine Image (AMI) is available on the AWS Marketplace, with 1-Click Launch, or manually With EC2 Console, APIs or CLI:
