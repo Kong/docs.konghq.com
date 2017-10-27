@@ -28,7 +28,13 @@ nav:
       - label: Retrieve the Consumer associated with a JWT
 ---
 
-Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URI and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
+Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through:
+
+- a query string parameter,
+- a cookie,
+- or the Authorization header.
+
+Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
 ----
 
@@ -58,6 +64,7 @@ form parameter                          | default | description
 ---                                     | ---     | ---
 `name`                                  |         | The name of the plugin to use, in this case: `jwt`.
 `config.uri_param_names`<br>*optional*  | `jwt`   | A list of querystring parameters that Kong will inspect to retrieve JWTs.
+`config.cookie_names`<br>*optional*     |         | A list of cookie names that Kong will inspect to retrieve JWTs. 
 `config.claims_to_verify`<br>*optional* |         | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
 `config.key_claim_name`<br>*optional*   | `iss`   | The name of the claim in which the `key` identifying the secret **must** be passed.
 `config.secret_is_base64`<br>*optional* | `false` | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your Consumer, and sign your JWT with the original secret.
@@ -197,10 +204,16 @@ $ curl http://kong:8000/{api path} \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4'
 ```
 
-Or as a querystring parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
+as a querystring parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
 
 ```bash
 $ curl http://kong:8000/{api path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
+```
+
+or as cookie, if the name is configured in `config.cookie_names` (which is not enabled by default):
+
+```bash
+curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4 http://kong:8000/{api path}
 ```
 
 The request will be inspected by Kong, whose behavior depends on the validity of the JWT:
