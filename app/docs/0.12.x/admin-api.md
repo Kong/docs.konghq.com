@@ -42,6 +42,10 @@ upstream_body: |
     ---:| ---
     `name` | This is a hostname like name that can be referenced in an `upstream_url` field of an `api`.
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
+    `hash_on`<br>*optional* | What to use as hashing input: `none`, `consumer`, `ip`, or `header` (defaults to `none` resulting in a weighted-round-robin scheme).
+    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified): `none`, `consumer`, `ip`, or `header` (defaults to `none`).
+    `hash_on_header<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_on` is set to `header`).
+    `hash_fallback_header<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_fallback` is set to `header`).
 
 certificate_body: |
     Attributes | Description
@@ -1346,6 +1350,9 @@ Requests for this API would be proxied to the targets defined within the upstrea
 ```json
 {
     "name": "service.v1.xyz",
+    "hash_on": "consumer",
+    "hash_fallback": "header",
+    "hash_fallback_header": "X-my-userid",
     "slots": 10
 }
 ```
@@ -1372,6 +1379,9 @@ HTTP 201 Created
 {
     "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
     "name": "service.v1.xyz",
+    "hash_on": "consumer",
+    "hash_fallback": "header",
+    "hash_fallback_header": "X-my-userid",
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1399,6 +1409,9 @@ HTTP 200 OK
 {
     "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
     "name": "service.v1.xyz",
+    "hash_on": "consumer",
+    "hash_fallback": "header",
+    "hash_fallback_header": "X-my-userid",
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1418,6 +1431,10 @@ Attributes | Description
 ---:| ---
 `id`<br>*optional* | A filter on the list based on the upstream `id` field.
 `name`<br>*optional* | A filter on the list based on the upstream `name` field.
+`hash_on`<br>*optional* | A filter on the list based on the upstream `hash_on` field.
+`hash_fallback`<br>*optional* | A filter on the list based on the upstream `hash_fallback` field.
+`hash_on_header`<br>*optional* | A filter on the list based on the upstream `hash_on_header` field.
+`hash_fallback_header`<br>*optional* | A filter on the list based on the upstream `hash_fallback_header` field.
 `slots`<br>*optional* | A filter on the list based on the upstream `slots` field.
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
@@ -1436,12 +1453,18 @@ HTTP 200 OK
             "created_at": 1485521710265,
             "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
             "name": "service.v1.xyz",
+            "hash_on": "consumer",
+            "hash_fallback": "header",
+            "hash_fallback_header": "X-my-userid",
             "slots": 10
         },
         {
             "created_at": 1485522651185,
             "id": "07131005-ba30-4204-a29f-0927d53257b4",
             "name": "service.v2.xyz",
+            "hash_on": "consumer",
+            "hash_fallback": "header",
+            "hash_fallback_header": "X-my-userid",
             "slots": 10
         }
     ],
@@ -1476,6 +1499,9 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "service.v1.xyz",
+    "hash_on": "consumer",
+    "hash_fallback": "header",
+    "hash_fallback_header": "X-my-userid",
     "slots": 10,
     "created_at": 1422386534
 }
