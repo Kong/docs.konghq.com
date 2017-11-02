@@ -11,7 +11,13 @@
         {% if page.breadcrumbs %}
           <ul class="breadcrumbs">
             {% for breadcrumb in page.breadcrumbs %}
-              <li class="breadcrumb-item{% if page.url == breadcrumb[1] %} active{% endif %}"><a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a></li>
+              <li class="breadcrumb-item{% if page.url == breadcrumb[1] %} active{% endif %}">
+                {% if page.id == 'page-plugin' %}
+                <a href="https://konghq.com/plugins">Plugins</a>
+                {% else %}
+                <a href="{{ breadcrumb[1] }}">{{ breadcrumb[0] }}</a>
+                {% endif %}
+              </li>
             {% endfor %}
           </ul>
         {% endif %}
