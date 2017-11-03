@@ -1079,7 +1079,7 @@ HTTP 201 Created
 }
 ```
 #### Security Note
-Warning: Posting the certificate and private key to an HTTP endpoint may lead to inadvertent disclosure of the private key. Ensure all requests involving certificates are performed over https only.
+Warning: Posting the certificate and private key to an HTTP endpoint may lead to inadvertent disclosure of the private key. Ensure all requests over the internet are performed over https only.
 
 ---
 
