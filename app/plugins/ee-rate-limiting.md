@@ -24,8 +24,8 @@ The Rate Limiting plugin for Kong Enterprise Edition is a re-engineered version 
 
 ## Requesting Access
 
-This plugin is only available with a [Mashape Enterprise](/enterprise)
+This plugin is only available with a [Kong Enterprise](https://konghq.com/kong-enterprise-edition)
 subscription.
 
-If you are not a Mashape Enterprise customer, you can inquire about our
-Enterprise offering by [contacting us](/enterprise).
+If you are not a Kong Enterprise customer, you can inquire about our
+Enterprise offering by [contacting us](https://konghq.com/request-demo).
