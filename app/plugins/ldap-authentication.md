@@ -44,6 +44,7 @@ form parameter                           | default | description
 `config.ldap_host`                       |         | Host on which the LDAP server is running.
 `config.ldap_port`                       |         | TCP port where the LDAP server is listening.
 `config.start_tls`                       | `false` | Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
+`config.ldaps`                           | `false` | Set it to `true` to connect using the ldaps protocol (ldap over SSL)
 `config.base_dn`                         |         | Base DN as the starting point for the search.
 `config.verify_ldap_host`                | `false` | Set it to `true` to authenticate LDAP server. The server certificate will be verified according to the CA certificates specified by the `lua_ssl_trusted_certificate` directive.
 `config.attribute`                       |         | Attribute to be used to search the user.
