@@ -411,7 +411,12 @@ HTTP 200 OK
 
 {{ page.api_body }}
 
-The body needs an `id` parameter to trigger an update on an existing entity.
+The behavior of `PUT` endpoints is the following: if the request payload **does
+not** contain an entity's primary key (`id` for APIs), the entity will be
+created with the given payload. If the request payload **does** contain an
+entity's primary key, the payload will "replace" the entity specified by the
+given primary key. If the primary key is **not** that of an existing entity, `404
+NOT FOUND` will be returned.
 
 #### Response
 
@@ -588,7 +593,12 @@ HTTP 200 OK
 
 {{ page.consumer_body }}
 
-The body needs an `id` parameter to trigger an update on an existing entity.
+The behavior of `PUT` endpoints is the following: if the request payload **does
+not** contain an entity's primary key (`id` for Consumers), the entity will be
+created with the given payload. If the request payload **does** contain an
+entity's primary key, the payload will "replace" the entity specified by the
+given primary key. If the primary key is **not** that of an existing entity, `404
+NOT FOUND` will be returned.
 
 #### Response
 
@@ -924,7 +934,12 @@ Attributes | Description
 
 {{ page.plugin_configuration_body }}
 
-The body needs an `id` parameter to trigger an update on an existing entity.
+The behavior of `PUT` endpoints is the following: if the request payload **does
+not** contain an entity's primary key (`id` and `name` for Plugins), the entity
+will be created with the given payload. If the request payload **does** contain
+an entity's primary key, the payload will "replace" the entity specified by the
+given primary key. If the primary key is **not** that of an existing entity, `404
+NOT FOUND` will be returned.
 
 #### Response
 
@@ -1191,6 +1206,13 @@ HTTP 200 OK
 
 {{ page.certificate_body }}
 
+The behavior of `PUT` endpoints is the following: if the request payload **does
+not** contain an entity's primary key (`id` for Certificates), the entity will
+be created with the given payload. If the request payload **does** contain an
+entity's primary key, the payload will "replace" the entity specified by the
+given primary key. If the primary key is **not** that of an existing entity, `404
+NOT FOUND` will be returned.
+
 #### Response
 
 ```
@@ -1348,6 +1370,13 @@ HTTP 200 OK
 #### Request Body
 
 {{ page.snis_body }}
+
+The behavior of `PUT` endpoints is the following: if the request payload **does
+not** contain an entity's primary key (`name` for SNIs), the entity will be
+created with the given payload. If the request payload **does** contain an
+entity's primary key, the payload will "replace" the entity specified by the
+given primary key. If the primary key is **not** that of an existing entity, `404
+NOT FOUND` will be returned.
 
 #### Response
 
@@ -1604,7 +1633,12 @@ HTTP 200 OK
 
 {{ page.upstream_body }}
 
-The body needs an `id` parameter to trigger an update on an existing entity.
+The behavior of `PUT` endpoints is the following: if the request payload **does
+not** contain an entity's primary key (`id` for Upstreams), the entity will be
+created with the given payload. If the request payload **does** contain an
+entity's primary key, the payload will "replace" the entity specified by the
+given primary key. If the primary key is **not** that of an existing entity, `404
+NOT FOUND` will be returned.
 
 #### Response
 
