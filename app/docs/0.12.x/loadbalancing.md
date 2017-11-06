@@ -19,7 +19,7 @@ allows for service registry without needing a DNS server.
   - [upstream](#upstream)
   - [target](#target)
   - [Balancing algorithms](#balancing-algorithms)
-  - [Clusters](#clusters)
+  - [Balancing caveats](#balancing-caveats)
 
 ### DNS based loadbalancing
 
@@ -90,8 +90,12 @@ counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
 
 - Some nameservers do not return all entries (due to UDP packet size) in those
-cases (for example Consul returns a maximum of 3) Kong will only use the ones
-provided and hence be limited. To mitigate this use another nameserver, use IP
+cases (for example Consul returns a maximum of 3) a given Kong node will only
+use the few upstream service instances provided by the nameserver. In this
+scenario, it is possible that the pool of upstream instances will be loaded
+inconsistently, because the Kong node is effectively unaware of some of the
+instances, due to the limited information provided by the nameserver.
+To mitigate this use a different nameserver, use IP
 addresses instead of names, or make sure you use enough Kong nodes to still
 have all upstream services being used.
 
@@ -202,14 +206,6 @@ would be to use the hash-based algorithm. The input for the hash can be either
 `none`, `consumer`, `ip`, or `header`. When set to `none` the
 weighted-round-robin scheme will be used, and hashing will be disabled.
 
-When picking your hash input make sure the input has enough variance to get
-to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
-So for example, if your system has thousands of users, but only a few consumers, defined
-per platform (eg. 3 consumers: Web, iOS and Android) then picking the `consumer`
-hash input will not suffice, using the remote IP address by setting the hash to
-`ip` would provide more variance in the input and hence a better distribution
-in the hash output.
-
 There two options, a primary and a fallback in case the primary fails (eg. if the
 primary is set to `consumer`, but no consumer is authenticated)
 
@@ -238,18 +234,29 @@ For more information on the exact settings see the `upstream` section of the
 
 [Back to TOC](#table-of-contents)
 
-#### **Clusters**
+#### **Balancing caveats**
 
 The ring-balancer is designed to work both with a single node as well as in a cluster.
 For the weighted-round-robin algorithm there isn't much difference, but when using
 the hash based algorithm it is important that all nodes build the exact same
 ring-balancer to make sure they all work identical. To do this the balancer
-must be build completely deterministic. As such DNS can not be used as the
-balancers might/will slowly diverge because the DNS ttl has only second precision
-and renewal is determined by when a name is actually requested.
+must be build completely deterministic.
 
-So when using the hashing approach in a Kong cluster, add `target` entities only
-by their IP address, and never by name.
+- Do not use hostnames in the balancer as the
+balancers might/will slowly diverge because the DNS ttl has only second precision
+and renewal is determined by when a name is actually requested. On top of this is
+the issue with some nameservers not returning all entries, which exacerbates
+this problem. So when using the hashing approach in a Kong cluster, add `target`
+entities only by their IP address, and never by name.
+
+- When picking your hash input make sure the input has enough variance to get
+to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
+So for example, if your system has thousands of users, but only a few consumers, defined
+per platform (eg. 3 consumers: Web, iOS and Android) then picking the `consumer`
+hash input will not suffice, using the remote IP address by setting the hash to
+`ip` would provide more variance in the input and hence a better distribution
+in the hash output.
+
 
 [Back to TOC](#table-of-contents)
 
