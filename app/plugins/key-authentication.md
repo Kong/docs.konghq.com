@@ -16,6 +16,8 @@ nav:
     - label: Create an API Key
     - label: Using the API Key
     - label: Upstream Headers
+    - label: Paginate through the API keys
+    - label: Retrieve the Consumer associated with an API key
 ---
 
 Add Key Authentication (also referred to as an API key) to your APIs. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
@@ -151,6 +153,75 @@ When a client has been authenticated, the plugin will append some headers to the
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+
+### Paginate through the API keys
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+You can paginate through the API keys for all Consumers using the following
+request:
+
+```bash
+$ curl -X GET http://kong:8001/key-auths
+
+{
+   "total":3,
+   "data":[
+      {
+         "id":"17ab4e95-9598-424f-a99a-ffa9f413a821",
+         "created_at":1507941267000,
+         "key":"Qslaip2ruiwcusuSUdhXPv4SORZrfj4L",
+         "consumer_id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+      },
+      {
+         "id":"6cb76501-c970-4e12-97c6-3afbbba3b454",
+         "created_at":1507936652000,
+         "key":"nCztu5Jrz18YAWmkwOGJkQe9T8lB99l4",
+         "consumer_id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+      },
+      {
+         "id":"b1d87b08-7eb6-4320-8069-efd85a4a8d89",
+         "created_at":1507941307000,
+         "key":"26WUW1VEsmwT1ORBFsJmLHZLDNAxh09l",
+         "consumer_id":"3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+      }
+   ]
+}
+```
+
+You can filter the list using the following query parameters:
+
+Attributes | Description
+---:| ---
+`id`<br>*optional*                       | A filter on the list based on the key-auth credential `id` field.
+`key`<br>*optional*                      | A filter on the list based on the key-auth credential `key` field.
+`consumer_id`<br>*optional*              | A filter on the list based on the key-auth credential `consumer_id` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+### Retrieve the Consumer associated with an API key
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+It is possible to retrieve a [Consumer][consumer-object] associated with an API
+Key using the following request:
+
+```bash
+curl -X GET http://kong:8001/key-auths/{key or id}/consumer
+
+{
+   "created_at":1507936639000,
+   "username":"foo",
+   "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+}
+```
+
+`key or id`: The `id` or `key` property of the API key for which to get the
+associated Consumer.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
