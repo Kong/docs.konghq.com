@@ -24,6 +24,8 @@ nav:
       - label: Generate public/private keys
       - label: Using the JWT plugin with Auth0
       - label: Upstream Headers
+      - label: Paginate through the JWT credentials
+      - label: Retrieve the Consumer associated with a JWT credential
 ---
 
 Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URI and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
@@ -384,6 +386,81 @@ When a JWT is valid, a Consumer has been authenticated, the plugin will append s
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+
+### Paginate through the JWT credentials
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+You can retrieve all the JWT Credentials for all the Consumers using
+the following request:
+
+```bash
+$ curl -X GET http://kong:8001/jwts
+
+{
+    "total": 3,
+    "data": [
+        {
+            "created_at": 1509593911000,
+            "id": "381879e5-04a1-4c8a-9517-f85fbf90c3bc",
+            "algorithm": "HS256",
+            "key": "UHVwIly5ZxZH7g52E0HRlFkFC09v9yI0",
+            "secret": "KMWyDsTTcZgqqyOGgRWTDgZtIyWeEtJh",
+            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+        },
+        {
+            "created_at": 1511389527000,
+            "id": "0dfc969b-02be-42ae-9d98-e04ed1c05850",
+            "algorithm": "ES256",
+            "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
+            "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        },
+        {
+            "created_at": 1509593912000,
+            "id": "d10c6f3b-71f1-424e-b1db-366abb783460",
+            "algorithm": "HS256",
+            "key": "SqSNfg9ARmPnpycyJSMAc2uR6nxdmc9S",
+            "secret": "CCh6ZIcwDSOIWacqkkWoJ0FWdZ5eTqrx",
+            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+        }
+    ]
+}
+```
+
+You can filter the list using the following query parameters:
+
+Attributes | Description
+---:| ---
+`id`<br>*optional*                       | A filter on the list based on the JWT credential `id` field.
+`key`<br>*optional*                 	 | A filter on the list based on the JWT credential `key` field.
+`consumer_id`<br>*optional*              | A filter on the list based on the JWT credential `consumer_id` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+### Retrieve the Consumer associated with a JWT credential
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+It is possible to retrieve a [Consumer][consumer-object] associated with
+a JWT Credential using the following request:
+
+```bash
+curl -X GET http://kong:8001/jwts/{key or id}/consumer
+
+{
+   "created_at":1507936639000,
+   "username":"foo",
+   "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+}
+```
+
+`key or id`: The `id` or `key` property of the JWT
+credential for which to get the associated [Consumer][consumer-object].
 
 [rfc-jwt]: https://tools.ietf.org/html/rfc7519
 [api-object]: /docs/latest/admin-api/#api-object
