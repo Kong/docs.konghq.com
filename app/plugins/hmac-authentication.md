@@ -21,6 +21,8 @@ nav:
       - label: Enforcing Headers
       - label: HMAC Example
       - label: Upstream Headers
+      - label: Paginate through the HMAC Credentials
+      - label: Retrieve the Consumer associated with a Credential
 ---
 
 Add HMAC Signature authentication to your APIs to establish the integrity of
@@ -312,6 +314,80 @@ can identify the Consumer in your code:
 You can use this information on your side to implement additional logic.
 You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve
 more information about the Consumer.
+
+### Paginate through the HMAC Credentials
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+You can retrieve all the hmac-auth Credentials for all the Consumers using the
+following request:
+
+```bash
+$ curl -X GET http://kong:8001/hmac-auths
+
+{
+    "total": 3,
+    "data": [
+        {
+            "created_at": 1509681246000,
+            "id": "75695322-e8a0-4109-aed4-5416b0308d85",
+            "secret": "wQazJ304DW5huJklHgUfjfiSyCyTAEDZ",
+            "username": "foo",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        },
+        {
+            "created_at": 1509419793000,
+            "id": "11d5cbfb-31b9-4a6d-8496-2f4a76500643",
+            "secret": "zi6YHyvLaUCe21XMXKesTYiHSWy6m6CW",
+            "username": "bar",
+            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+        },
+        {
+            "created_at": 1509681215000,
+            "id": "eb0365bc-88ae-4568-be7c-db1eb7c16e5e",
+            "secret": "NvHDTg5mp0ySFVJsITurtgyhEq1Cxbnv",
+            "username": "baz",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        }
+    ]
+}
+```
+
+You can filter the list using the following query parameters:
+
+Attributes | Description
+---:| ---
+`id`<br>*optional*                       | A filter on the list based on the hmac-auth credential `id` field.
+`username`<br>*optional*                 | A filter on the list based on the hmac-auth credential `username` field.
+`consumer_id`<br>*optional*              | A filter on the list based on the hmac-auth credential `consumer_id` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+### Retrieve the Consumer associated with a Credential
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+It is possible to retrieve a [Consumer][consumer-object] associated with an
+HMAC Credential using the following request:
+
+```bash
+curl -X GET http://kong:8001/hmac-auths/{hmac username or id}/consumer
+
+{
+   "created_at":1507936639000,
+   "username":"foo",
+   "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+}
+```
+
+`hmac username or id`: The `id` or `username` property of the HMAC Credential
+for which to get the associated [Consumer][consumer-object].
+Note that `username` accepted here is **not** the `username` property of a
+Consumer.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
