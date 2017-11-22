@@ -52,7 +52,7 @@ form parameter                          | default | description
 `name`                                  | | The name of the plugin to use, in this case: `hmac-auth`
 `config.hide_credentials`<br>*optional* | `false` | A boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 `config.clock_skew`<br>*optional*       | `300` | [Clock Skew][clock-skew] in seconds to prevent replay attacks.
-`config.anonymous`<br>*optional*        | `` | A string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
+`config.anonymous`<br>*optional*        | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
 `config.validate_request_body`<br>*optional* | `false` | A boolean value telling the plugin to enable body validation
 `config.enforce_headers`<br>*optional*  | `` | A list of headers which the client should at least use for HTTP signature creation
 `config.algorithms`<br>*optional*       | `hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512` | A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
@@ -154,7 +154,7 @@ header.
 
 ### Body Validation
 
-User can set `config.validate_request_body` as `true` to validate the request 
+User can set `config.validate_request_body` as `true` to validate the request
 body. If it's enabled and if the client sends a `Digest` header in the request,
 the plugin will calculate the `SHA-256` HMAC digest of the request body and
 match it against the value of the `Digest` header. The Digest header needs to
@@ -170,7 +170,7 @@ dealing with large bodies (several MBs) or during high request concurrency.
 
 ### Enforcing Headers
 
-`config.enforce_headers` can be used to enforce any of the headers to be part 
+`config.enforce_headers` can be used to enforce any of the headers to be part
 of the signature creation. By default, the plugin doesn't enforce which header
 needs to be used for the signature creation. The minimum recommended data to
 sign is the `request-line`, `host`, and `date`. A strong signature would
@@ -189,7 +189,7 @@ include all of the headers and a `digest` of the body.
   ...
 
   ```
-  
+
   **Enable plugin**
 
   ```bash
@@ -238,29 +238,29 @@ include all of the headers and a `digest` of the body.
       -H 'Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature="ujWCGHeec9Xd6UD2zlyxiNMCiXnDOWeVFMu5VeRUxtw="'
   HTTP/1.1 200 OK
   ...
-  
+
   ```
-  
+
   In the above request, we are composing the signing string using the `date` and
   `request-line` headers and creating the digest using the `hmac-sha256` to
   hash the digest:
-  
+
   ```
   signing_string="date: Thu, 22 Jun 2017 17:15:21 GMT\nGET /requests HTTP/1.1"
   digest=HMAC-SHA256(<signing_string>, "secret")
   base64_digest=base64(<digest>)
   ```
-  
-  So the final value of the `Authorization` header would look like: 
 
-  
+  So the final value of the `Authorization` header would look like:
+
+
   ```
   Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature=<base64_digest>"
   ```
 
   **Validating request body**
-  
-  To enable body validation we would need to set `config.validate_request_body` 
+
+  To enable body validation we would need to set `config.validate_request_body`
   to `true`:
 
   ```bash
@@ -268,7 +268,7 @@ include all of the headers and a `digest` of the body.
       -d "config.validate_request_body=true"
   HTTP/1.1 200 OK
   ...
-  
+
   ```
 
   Now if the client includes the body digest in the request as the value of the
@@ -291,7 +291,7 @@ include all of the headers and a `digest` of the body.
   the `Digest` header with the following format:
 
   ```
-  body="A small body" 
+  body="A small body"
   digest=SHA-256(body)
   base64_digest=base64(digest)
   Digest: SHA-256=<base64_digest>
