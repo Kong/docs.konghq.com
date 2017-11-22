@@ -13,6 +13,8 @@ nav:
     items:
       - label: Associating Consumers
       - label: Upstream Headers
+      - label: Paginate through the ACLs
+      - label: Retrieve the Consumer associated with an ACL
 ---
 
 Restrict access to an API by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API.
@@ -68,6 +70,74 @@ You can have more than one group associated to a consumer.
 
 When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream API/Microservice, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
 
+### Paginate through the ACLs
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+You can retrieve all the ACLs for all Consumers using the following
+request:
+
+```bash
+$ curl -X GET http://kong:8001/acls
+
+{
+    "total": 3,
+    "data": [
+        {
+            "group": "foo-group",
+            "created_at": 1511391159000,
+            "id": "724d1be7-c39e-443d-bf36-41db17452c75",
+            "consumer_id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf"
+        },
+        {
+            "group": "bar-group",
+            "created_at": 1511391162000,
+            "id": "0905f68e-fee3-4ecb-965c-fcf6912bf29e",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        },
+        {
+            "group": "baz-group",
+            "created_at": 1509814006000,
+            "id": "ff883d4b-aee7-45a8-a17b-8c074ba173bd",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        }
+    ]
+}
+```
+
+You can filter the list using the following query parameters:
+
+Attributes | Description
+---:| ---
+`id`<br>*optional*                       | A filter on the list based on the ACL `id` field.
+`group`<br>*optional*                 	 | A filter on the list based on the ACL `group` field.
+`consumer_id`<br>*optional*              | A filter on the list based on the ACL `consumer_id` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+### Retrieve the Consumer associated with an ACL
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+It is possible to retrieve a [Consumer][consumer-object] associated with an ACL
+using the following request:
+
+```bash
+curl -X GET http://kong:8001/acls/{id}/consumer
+
+{
+   "created_at":1507936639000,
+   "username":"foo",
+   "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+}
+```
+
+`id`: The `id` property of the ACL for which to get the associated
+[Consumer][consumer-object].
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 [api-object]: /docs/latest/admin-api/#api-object
