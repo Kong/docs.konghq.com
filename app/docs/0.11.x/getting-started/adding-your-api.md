@@ -47,7 +47,7 @@ configuration of your Kong instance or cluster.
       "hosts": [
           "example.com"
       ],
-      "http_if_terminated": true,
+      "http_if_terminated": false,
       "https_only": false,
       "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
       "name": "example-api",
