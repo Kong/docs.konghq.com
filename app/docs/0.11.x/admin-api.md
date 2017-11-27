@@ -16,7 +16,7 @@ api_body: |
     `upstream_send_timeout`<br>*optional*    | The timeout in milliseconds between two successive write operations for transmitting a request to your upstream service Defaults to `60000`.
     `upstream_read_timeout`<br>*optional*    | The timeout in milliseconds between two successive read operations for transmitting a request to your upstream service Defaults to `60000`.
     `https_only`<br>*optional*               | To be enabled if you wish to only serve an API through HTTPS, on the appropriate port (`8443` by default). Default: `false`.
-    `http_if_terminated`<br>*optional*       | Consider the `X-Forwarded-Proto` header when enforcing HTTPS only traffic. Default: `true`.
+    `http_if_terminated`<br>*optional*       | Consider the `X-Forwarded-Proto` header when enforcing HTTPS only traffic. Default: `false`.
 
 consumer_body: |
     Attributes | Description
@@ -199,7 +199,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
     "hosts": [
         "example.org"
     ],
-    "http_if_terminated": true,
+    "http_if_terminated": false,
     "https_only": false,
     "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
     "name": "example-api",
@@ -237,7 +237,7 @@ HTTP 201 Created
     "hosts": [
         "example.org"
     ],
-    "http_if_terminated": true,
+    "http_if_terminated": false,
     "https_only": false,
     "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
     "name": "example-api",
@@ -275,7 +275,7 @@ HTTP 200 OK
     "hosts": [
         "example.org"
     ],
-    "http_if_terminated": true,
+    "http_if_terminated": false,
     "https_only": false,
     "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
     "name": "example-api",
@@ -323,7 +323,7 @@ HTTP 200 OK
             "hosts": [
                 "example.org"
             ],
-            "http_if_terminated": true,
+            "http_if_terminated": false,
             "https_only": false,
             "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
             "name": "example-api",
@@ -340,7 +340,7 @@ HTTP 200 OK
             "hosts": [
                 "api.com"
             ],
-            "http_if_terminated": true,
+            "http_if_terminated": false,
             "https_only": false,
             "id": "0924978e-eb19-44a0-9adc-55f20db2f04d",
             "name": "my-api",
@@ -385,7 +385,7 @@ HTTP 200 OK
     "hosts": [
         "updated-example.org"
     ],
-    "http_if_terminated": true,
+    "http_if_terminated": false,
     "https_only": false,
     "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
     "name": "my-updated-api",
