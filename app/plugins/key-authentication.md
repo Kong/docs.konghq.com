@@ -60,6 +60,8 @@ form parameter                   | default | description
 `config.anonymous`<br>*optional*        | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
 `config.run_on_preflight`<br>*optional* | `true`  | A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
 
+Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. Kong follows these specifications as designed, meaning that the `key_names` configuration values will be treated differently when searching the request header fields, versus searching the query string. Administrators are advised against defining case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
+
 <div class="alert alert-warning">
     <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
 </div>
