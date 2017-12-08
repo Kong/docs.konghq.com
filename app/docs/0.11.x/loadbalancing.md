@@ -17,6 +17,8 @@ allows for service registry without needing a DNS server.
 - [Ring-balancer](#ring-balancer)
   - [upstream](#upstream)
   - [target](#target)
+- [Blue-green deployments](#blue-green-deployments)
+- [Canary releases](#canary-releases)
 
 ### DNS based loadbalancing
 
@@ -182,7 +184,114 @@ __Exception__: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
 
+### **Blue-Green Deployments**
+
+Using the ring-balancer a [blue-green deployment][blue-green-canary] can be easily orchestrated for 
+an API. Switching target infrastructure only requires a `PATCH` request on an
+API, to change the `upstream` name. 
+
+Set up the "Blue" environment, running version 1 of the address service:
+
+```bash
+# create an upstream
+$ curl -X POST http://kong:8001/upstreams \
+    --data "name=address.v1.service"
+
+# add two targets to the upstream
+$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+    --data "target=192.168.34.15:80"
+    --data "weight=100"
+$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+    --data "target=192.168.34.16:80"
+    --data "weight=50"
+
+# create an API targeting the Blue upstream
+$ curl -X POST http://kong:8001/apis/ \
+    --data "name=address-service" \
+    --data "hosts=address.mydomain.com" \
+    --data "upstream_url=http://address.v1.service/address"
+```
+
+Requests with host header set to `address.mydomain.com` will now be proxied
+by Kong to the two defined targets; 2/3 of the requests will go to
+`http://192.168.34.15:80/address` (`weight=100`), and 1/3 will go to
+`http://192.168.34.16:80/address` (`weight=50`).
+
+Before deploying version 2 of the address service, set up the "Green"
+environment:
+
+```bash
+# create a new Green upstream for address service v2
+$ curl -X POST http://kong:8001/upstreams \
+    --data "name=address.v2.service"
+
+# add targets to the upstream
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.17:80"
+    --data "weight=100"
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.18:80"
+    --data "weight=100"
+```
+
+To activate the Blue/Green switch, we now only need to update the API:
+
+```bash
+# Switch the API from Blue to Green upstream, v1 -> v2
+$ curl -X PATCH http://kong:8001/apis/address-service \
+    --data "upstream_url=http://address.v2.service/address"
+```
+
+Incoming requests with host header set to `address.mydomain.com` will now be
+proxied by Kong to the new targets; 1/2 of the requests will go to
+`http://192.168.34.17:80/address` (`weight=100`), and the other 1/2 will go to
+`http://192.168.34.18:80/address` (`weight=100`).
+
+As always, the changes through the Kong management API are dynamic and will take
+effect immediately. No reload or restart is required, and no in progress
+requests will be dropped.
+
+[Back to Table of Contents](#table-of-contents)
+
+### **Canary Releases**
+
+Using the ring-balancer, target weights can be adjusted granularly, allowing
+for a smooth, controlled [canary release][blue-green-canary].
+
+Using a very simple 2 target example:
+
+```bash
+# first target at 1000
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.17:80"
+    --data "weight=1000"
+    
+# second target at 0
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.18:80"
+    --data "weight=0"
+```
+
+By repeating the requests, but altering the weights each time, traffic will
+slowly be routed towards the other target. For example, set it at 10%:
+
+```bash
+# first target at 900
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.17:80"
+    --data "weight=900"
+    
+# second target at 100
+$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+    --data "target=192.168.34.18:80"
+    --data "weight=100"
+```
+
+The changes through the Kong management API are dynamic and will take
+effect immediately. No reload or restart is required, and no in progress
+requests will be dropped.
 
 [Back to TOC](#table-of-contents)
 
 [target-object-reference]: /docs/{{page.kong_version}}/admin-api#target-object
+[blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/
