@@ -2,7 +2,7 @@
 title: Loadbalancing reference
 ---
 
-# Load Balancing reference
+# Load Balancing Reference
 
 Kong provides multiple ways of load balancing requests to multiple backend services:
 a straightforward DNS-based method, and a more dynamic ring-balancer that also
@@ -10,17 +10,17 @@ allows for service registry without needing a DNS server.
 
 ### Table of Contents
 
-- [DNS based loadbalancing](#dns-based-loadbalancing)
+- [DNS-based loadbalancing](#dns-based-loadbalancing)
   - [A records](#a-records)
   - [SRV records](#srv-records)
   - [DNS priorities](#dns-priorities)
 - [Ring-balancer](#ring-balancer)
-  - [upstream](#upstream)
-  - [target](#target)
-- [Blue-green deployments](#blue-green-deployments)
-- [Canary releases](#canary-releases)
+  - [Upstream](#upstream)
+  - [Target](#target)
+- [Blue-green Deployments](#blue-green-deployments)
+- [Canary Releases](#canary-releases)
 
-### DNS based loadbalancing
+### DNS-based loadbalancing
 
 When using DNS based load balancing the registration of the backend services is
 done outside of Kong, and Kong only receives updates from the DNS server.
@@ -112,11 +112,11 @@ entities.
     in both IPv4 and IPv6 format.
   - `upstream`: a 'virtual hostname' which can be used in an API `upstream_url`
     field, e.g., an upstream named `weather.v2.service` would get all requests
-    from an api with `upstream_url=http://weather.v2.service/some/path`.
+    from an API with `upstream_url=http://weather.v2.service/some/path`.
 
 [Back to TOC](#table-of-contents)
 
-#### **upstream**
+#### **Upstream**
 
 Each upstream gets its own ring-balancer. Each `upstream` can have many 
 `target` entries attached to it, and requests proxied to the 'virtual hostname' 
@@ -153,7 +153,7 @@ distribution, but the more expensive the changes are (add/removing targets)
 
 [Back to TOC](#table-of-contents)
 
-#### **target**
+#### **Target**
 
 Because the `upstream` maintains a history of changes, targets can only be 
 added, not modified nor deleted. To change a target, just add a new entry for
@@ -183,6 +183,8 @@ the balancer when it expires.
 __Exception__: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
+
+[Back to TOC](#table-of-contents)
 
 ### **Blue-Green Deployments**
 
@@ -251,7 +253,7 @@ As always, the changes through the Kong management API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
 ### **Canary Releases**
 
