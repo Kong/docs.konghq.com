@@ -230,12 +230,12 @@ statsd                    | 11
 datadog                   | 10
 file-log                  | 9
 udp-log                   | 8
-request-termination       | 7
+tcp-log                   | 7
 loggly                    | 6
 runscope                  | 5
 syslog                    | 4
 galileo                   | 3
-tcp-log                   | 2
+request-termination       | 2
 correlation-id            | 1
 
 ---
