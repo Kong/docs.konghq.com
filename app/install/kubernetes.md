@@ -8,8 +8,8 @@ breadcrumbs:
 links:
   gcloud: "https://cloud.google.com/sdk/"
   kubectl: "https://cloud.google.com/container-engine/docs/quickstart#install_the_gcloud_command-line_interface"
-  gh_tag: "https://github.com/Mashape/kong-dist-kubernetes/tree/1.0.0"
-  minikube: "https://github.com/Mashape/kong-dist-kubernetes/blob/master/minikube/README.md"
+  gh_tag: "https://github.com/Kong/kong-dist-kubernetes/tree/1.0.0"
+  minikube: "https://github.com/Kong/kong-dist-kubernetes/blob/master/minikube/README.md"
 ---
 
 Kong can easily be provisioned to Kubernetes cluster using the following steps:
@@ -19,7 +19,7 @@ Kong can easily be provisioned to Kubernetes cluster using the following steps:
     Download or clone the following repo:
 
     ```bash
-    $ git clone git@github.com:Mashape/kong-dist-kubernetes.git
+    $ git clone git@github.com:Kong/kong-dist-kubernetes.git
     $ cd kong-dist-kubernetes
     ```
     If you want to run Kubernetes locally, please follow the [README]({{ page.links.minikube }}) 
