@@ -31,6 +31,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "config.add.body=new-form-param:some_value, another-form-param:some_value" \
     --data "config.rename.headers=header-old-name:header-new-name, another-old-name:another-new-name" \
     --data "config.rename.querystring=qs-old-name:qs-new-name, qs2-old-name:qs2-new-name" \
+    --data "config.rename.body=param-old:param-new, param2-old:param2-new" \
     --data "config.remove.headers=x-toremove, x-another-one" \
     --data "config.remove.querystring=param-toremove, param-another-one" \
     --data "config.remove.body=formparam-toremove, formparam-another-one"
@@ -54,6 +55,7 @@ form parameter                            | default | description
 `config.replace.querystring`<br>*optional* | | List of queryname:value pairs. If and only if the field name is already set, replace its old value with the new one. Ignored if the field name is not already set.
 `config.rename.headers`<br>*optional*    | | List of headername:value pairs. If and only if the header is already set, rename the header. The value is unchanged. Ignored if the header is not already set.
 `config.rename.querystring`<br>*optional* | | List of queryname:value pairs. If and only if the field name is already set, rename the field name. The value is unchanged. Ignored if the field name is not already set.
+`config.rename.body`<br>*optional*        | | List of parameter name:value pairs. Rename the parameter name if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
 `config.replace.body`<br>*optional*        | | List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
 `config.add.headers`<br>*optional*         | | List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
 `config.add.querystring`<br>*optional*     | | List of queryname:value pairs. If and only if the querystring is not already set, set a new querystring with the given value. Ignored if the header is already set.
