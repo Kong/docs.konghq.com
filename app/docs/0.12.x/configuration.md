@@ -11,7 +11,7 @@ title: Configuration Reference
 - [Environment variables](#environment-variables)
 - [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-embedding-kong)
   - [Custom Nginx configuration](#custom-nginx-configuration)
-  - [Embedding Kong](#embedding-kong)
+  - [Embedding Kong in OpenResty](#embedding-kong-in-openresty)
   - [Serving both a website and your APIs from Kong](#serving-both-a-website-and-your-apis-from-kong)
 - [Properties reference](#properties-reference)
   - [General section](#general-section)
@@ -202,6 +202,32 @@ http {
 
 [Back to TOC](#table-of-contents)
 
+#### Embedding Kong in OpenResty
+
+If you are running your own OpenResty servers, you can also easily embed Kong
+by including the Kong Nginx sub-configuration using the `include` directive
+(similar to the examples of the previous section). If you have a valid
+top-level NGINX configuration that simply includes the Kong-specific
+configuration:
+
+```
+# my_nginx.conf
+
+http {
+    include 'nginx-kong.conf';
+}
+```
+
+you can start your instance like so:
+
+```
+$ nginx -p /usr/local/openresty -c my_nginx.conf
+```
+
+And Kong will be running in that instance (as configured in `nginx-kong.conf`).
+
+[Back to TOC](#table-of-contents)
+
 #### Serving both a website and your APIs from Kong
 
 A common use case for API providers is to make Kong serve both a website
@@ -262,23 +288,6 @@ http {
 
   # Kong's Admin server block goes below
 }
-```
-
-[Back to TOC](#table-of-contents)
-
-#### Embed Kong in OpenResty
-
-If you are running your own OpenResty servers, you can also easily embed Kong
-by including the Kong Nginx sub-configuration using the `include` directive
-(similar to the examples of the previous section). However, you will need the
-final configuration and not the template. For this, use the `compile` command,
-which outputs a fully-compiled Nginx sub-configuration to `stdout`:
-
-```
-$ bin/kong compile --conf kong.conf > /usr/local/openresty/conf/nginx-kong.conf
-
-# now start OpenResty with a configuration that "includes" nginx-kong.conf
-$ nginx -c /usr/local/openresty/conf/nginx.conf
 ```
 
 [Back to TOC](#table-of-contents)
