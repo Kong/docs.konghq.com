@@ -13,7 +13,7 @@ the Admin API.
 ## Table of Contents
 
 - [Network Layer Access Restrictions](#network-layer-access-restrictions)
-  - [Reduce Listening Footprint](#reduce-listening-footprint)
+  - [Minimal Listening Footprint](#minimal-listening-footprint)
   - [Layer 3/4 Network Controls](#layer-3-4-network-controls)
 - [Kong API Loopback](#kong-api-loopback)
 - [Custom Nginx Configuration](#custom-nginx-configuration)
@@ -21,19 +21,20 @@ the Admin API.
 
 ## Network Layer Access Restrictions
 
-### Reduce Listening Footprint
+### Minimal Listening Footprint
 
-By default, Kong will accept requests for both the public-facing entrypoint, and
-the Admin API, on `0.0.0.0`, which will bind to all available interfaces on the
-host. Reducing this exposure footprint by limiting the interfaces by which the
-Admin API can be accessed is a foundational step. This setting can be adjusted
-via the `admin_listen` Kong configuration directive. For example:
+By default since its 0.12.0 release, Kong will only accept requests from the
+local interface, as specified in its default `admin_listen` value:
 
-`admin_listen 127.0.0.1:8001`
+```
+admin_listen = 127.0.0.1:8001
+```
 
-This will define the Nginx `listen` directive used by Kong to the prescribed
-value, instructing Kong to only respond to requests received on the localhost
-interface.
+If you change this value, always ensure to keep the listening footprint to a
+minimum, in order to avoid exposing your Admin API to third-parties, which
+could seriously compromise the security of your Kong cluster as a whole.
+For example, **avoid binding Kong to all of your interfaces**, bu using
+values such as `0.0.0.0:8001`.
 
 [Back to TOC](#table-of-contents)
 
