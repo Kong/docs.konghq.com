@@ -1651,9 +1651,14 @@ HTTP 201 Created
 
 ### List targets
 
-Lists all targets of the upstream. Multiple target objects for the same
-target may be returned, showing the history of changes for a specific target.
-The target object with the latest `created_at` is the current definition.
+Lists all targets currently active on the upstream's load balancing wheel.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> The behavior of this endpoint changed in the 0.12.0
+  release from returning all targets belonging to an upstream, to only
+  currently active ones. The endpoint returning the entire history of targets
+  was moved to [List all targets](#list-all-targets).
+</div>
 
 #### Endpoint
 
@@ -1710,18 +1715,19 @@ HTTP 200 OK
 
 ---
 
-### List active targets
+### List all targets
 
-Retrieve a list of active targets (targets whose most recent weight is not 0)
-for a given upstream.
+Lists all targets of the upstream. Multiple target objects for the same
+target may be returned, showing the history of changes for a specific target.
+The target object with the latest `created_at` is the current definition.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint is only available with Kong 0.10.1+
+  <strong>Note:</strong> This endpoint is only available with Kong 0.12.0+
 </div>
 
 ### Endpoint
 
-<div class="endpoint get">/upstreams/{name or id}/targets/active/</div>
+<div class="endpoint get">/upstreams/{name or id}/targets/all/</div>
 
 Attributes | Description
 ---:| ---
