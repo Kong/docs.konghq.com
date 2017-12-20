@@ -61,8 +61,8 @@ Every request will be logged separately in a JSON object separated by a new line
     "request": {
         "method": "GET",
         "uri": "/get",
+        "url": "http://httpbin.org:8000/get",
         "size": "75",
-        "request_uri": "http://httpbin.org:8000/get",
         "querystring": {},
         "headers": {
             "accept": "*/*",
@@ -70,6 +70,7 @@ Every request will be logged separately in a JSON object separated by a new line
             "user-agent": "curl/7.37.1"
         }
     },
+    "upstream_uri": "/",
     "response": {
         "status": 200,
         "size": "434",

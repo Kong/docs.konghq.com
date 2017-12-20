@@ -63,8 +63,8 @@ Every request will be transmitted to Loggly in [SYSLOG](https://en.wikipedia.org
     "request": {
         "method": "GET",
         "uri": "/get",
+        "url": "http://httpbin.org:8000/get",
         "size": "75",
-        "request_uri": "http://httpbin.org:8000/get",
         "querystring": {},
         "headers": {
             "accept": "*/*",
@@ -72,6 +72,7 @@ Every request will be transmitted to Loggly in [SYSLOG](https://en.wikipedia.org
             "user-agent": "curl/7.37.1"
         }
     },
+    "upstream_uri": "/",
     "response": {
         "status": 200,
         "size": "434",
