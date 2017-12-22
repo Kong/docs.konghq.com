@@ -2045,6 +2045,76 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
+---
+
+### Set target as healthy
+
+Set the current health status of a target in the load balancer to "healthy"
+in the entire Kong cluster.
+
+This endpoint can be used to manually re-enable a target that was previously
+disabled by the upstream's [health checker][healthchecks]. Upstreams only
+forward requests to healthy nodes, so this call tells Kong to start using this
+target again.
+
+This resets the health counters of the health checkers running in all workers
+of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
+status is propagated to the whole Kong cluster.
+
+#### Endpoint
+
+<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
+`target or id`<br>**required** | The host/port combination element of the target to set as healthy, or the `id` of an existing target entry.
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+---
+
+### Set target as unhealthy
+
+Set the current health status of a target in the load balancer to "unhealthy"
+in the entire Kong cluster.
+
+This endpoint can be used to manually disable a target and have it stop
+responding to requests. Upstreams only forward requests to healthy nodes, so
+this call tells Kong to start skipping this target in the ring-balancer
+algorithm.
+
+This call resets the health counters of the health checkers running in all
+workers of the Kong node, and broadcasts a cluster-wide message so that the
+"unhealthy" status is propagated to the whole Kong cluster.
+
+[Active health checks][active] continue to execute for unhealthy
+targets. Note that if active health checks are enabled and the probe detects
+that the target is actually healthy, it will automatically re-enable it again.
+To permanently remove a target from the ring-balancer, you should [delete a
+target](#delete-target) instead.
+
+#### Endpoint
+
+<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
+`target or id`<br>**required** | The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
 [clustering]: /docs/{{page.kong_version}}/clustering
 [cli]: /docs/{{page.kong_version}}/cli
+[active]: /docs/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /docs/{{page.kong_version}}/health-checks-circuit-breakers
 [secure-admin-api]: /docs/{{page.kong_version}}/secure-admin-api
