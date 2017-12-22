@@ -612,7 +612,7 @@ Default: `on`
 
 ##### **latency_tokens**
 
-Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency` 
+Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency`
 and `X-Kong-Upstream-Latency` response header fields.
 
 Default: `on`
@@ -722,6 +722,11 @@ either Cassandra or PostgreSQL.
 
 All Kong nodes belonging to the same cluster must connect themselves to the
 same database.
+
+Important note: starting on 0.12.x:
+
+* Cassandra 2.0 support should be considered deprecated. Users are encouraged to upgrade to 3.x.
+* PostgreSQL 9.4 support should be considered deprecated. Users are encouraged to upgrade to 9.5.
 
 ---
 
