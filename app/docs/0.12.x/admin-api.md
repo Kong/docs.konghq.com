@@ -46,6 +46,23 @@ upstream_body: |
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified): `none`, `consumer`, `ip`, or `header` (defaults to `none`).
     `hash_on_header<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_on` is set to `header`).
     `hash_fallback_header<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_fallback` is set to `header`).
+    `healthchecks.active.timeout`<br>*optional* | Socket timeout for active health checks (in seconds).
+    `healthchecks.active.concurrency`<br>*optional* | Number of targets to check concurrently in active health checks.
+    `healthchecks.active.http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks.
+    `healthchecks.active.healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed.
+    `healthchecks.active.healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks.
+    `healthchecks.active.healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy.
+    `healthchecks.active.unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed.
+    `healthchecks.active.unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks.
+    `healthchecks.active.unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy.
+    `healthchecks.active.unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy.
+    `healthchecks.active.unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy.
+    `healthchecks.passive.healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks.
+    `healthchecks.passive.healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks.
+    `healthchecks.passive.unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks.
+    `healthchecks.passive.unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks.
+    `healthchecks.passive.unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks.
+    `healthchecks.passive.unhealthy.http_failures`<br>*optional* | Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks.
 
 certificate_body: |
     Attributes | Description
@@ -1414,11 +1431,52 @@ incoming requests over multiple services (targets). So for example an upstream
 named `service.v1.xyz` with an API object created with an `upstream_url=https://service.v1.xyz/some/path`.
 Requests for this API would be proxied to the targets defined within the upstream.
 
+An upstream also includes a [health checker][healthchecks], which is able to
+enable and disable targets based on their ability or inability to serve
+requests. The configuration for the health checker is stored in the upstream
+object, and applies to all of its targets.
+
 ```json
 {
     "name": "service.v1.xyz",
     "hash_on": "none",
     "hash_fallback": "none",
+    "healthchecks": {
+        "active": {
+            "concurrency": 10,
+            "healthy": {
+                "http_statuses": [ 200, 302 ],
+                "interval": 0,
+                "successes": 0
+            },
+            "http_path": "/",
+            "timeout": 1,
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 404, 500, 501,
+                                   502, 503, 504, 505 ],
+                "interval": 0,
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        },
+        "passive": {
+            "healthy": {
+                "http_statuses": [ 200, 201, 202, 203,
+                                   204, 205, 206, 207,
+                                   208, 226, 300, 301,
+                                   302, 303, 304, 305,
+                                   306, 307, 308 ],
+                "successes": 0
+            },
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 500, 503 ],
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        }
+    },
     "slots": 10
 }
 ```
@@ -1447,6 +1505,42 @@ HTTP 201 Created
     "name": "service.v1.xyz",
     "hash_on": "none",
     "hash_fallback": "none",
+    "healthchecks": {
+        "active": {
+            "concurrency": 10,
+            "healthy": {
+                "http_statuses": [ 200, 302 ],
+                "interval": 0,
+                "successes": 0
+            },
+            "http_path": "/",
+            "timeout": 1,
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 404, 500, 501,
+                                   502, 503, 504, 505 ],
+                "interval": 0,
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        },
+        "passive": {
+            "healthy": {
+                "http_statuses": [ 200, 201, 202, 203,
+                                   204, 205, 206, 207,
+                                   208, 226, 300, 301,
+                                   302, 303, 304, 305,
+                                   306, 307, 308 ],
+                "successes": 0
+            },
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 500, 503 ],
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        }
+    },
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1476,6 +1570,42 @@ HTTP 200 OK
     "name": "service.v1.xyz",
     "hash_on": "none",
     "hash_fallback": "none",
+    "healthchecks": {
+        "active": {
+            "concurrency": 10,
+            "healthy": {
+                "http_statuses": [ 200, 302 ],
+                "interval": 0,
+                "successes": 0
+            },
+            "http_path": "/",
+            "timeout": 1,
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 404, 500, 501,
+                                   502, 503, 504, 505 ],
+                "interval": 0,
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        },
+        "passive": {
+            "healthy": {
+                "http_statuses": [ 200, 201, 202, 203,
+                                   204, 205, 206, 207,
+                                   208, 226, 300, 301,
+                                   302, 303, 304, 305,
+                                   306, 307, 308 ],
+                "successes": 0
+            },
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 500, 503 ],
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        }
+    },
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1519,6 +1649,42 @@ HTTP 200 OK
             "name": "service.v1.xyz",
             "hash_on": "none",
             "hash_fallback": "none",
+            "healthchecks": {
+                "active": {
+                    "concurrency": 10,
+                    "healthy": {
+                        "http_statuses": [ 200, 302 ],
+                        "interval": 0,
+                        "successes": 0
+                    },
+                    "http_path": "/",
+                    "timeout": 1,
+                    "unhealthy": {
+                        "http_failures": 0,
+                        "http_statuses": [ 429, 404, 500, 501,
+                                           502, 503, 504, 505 ],
+                        "interval": 0,
+                        "tcp_failures": 0,
+                        "timeouts": 0
+                    }
+                },
+                "passive": {
+                    "healthy": {
+                        "http_statuses": [ 200, 201, 202, 203,
+                                           204, 205, 206, 207,
+                                           208, 226, 300, 301,
+                                           302, 303, 304, 305,
+                                           306, 307, 308 ],
+                        "successes": 0
+                    },
+                    "unhealthy": {
+                        "http_failures": 0,
+                        "http_statuses": [ 429, 500, 503 ],
+                        "tcp_failures": 0,
+                        "timeouts": 0
+                    }
+                }
+            },
             "slots": 10
         },
         {
@@ -1527,6 +1693,42 @@ HTTP 200 OK
             "name": "service.v2.xyz",
             "hash_on": "none",
             "hash_fallback": "none",
+            "healthchecks": {
+                "active": {
+                    "concurrency": 10,
+                    "healthy": {
+                        "http_statuses": [ 200, 302 ],
+                        "interval": 5,
+                        "successes": 2
+                    },
+                    "http_path": "/health_status",
+                    "timeout": 1,
+                    "unhealthy": {
+                        "http_failures": 5,
+                        "http_statuses": [ 429, 404, 500, 501,
+                                           502, 503, 504, 505 ],
+                        "interval": 5,
+                        "tcp_failures": 2,
+                        "timeouts": 3
+                    }
+                },
+                "passive": {
+                    "healthy": {
+                        "http_statuses": [ 200, 201, 202, 203,
+                                           204, 205, 206, 207,
+                                           208, 226, 300, 301,
+                                           302, 303, 304, 305,
+                                           306, 307, 308 ],
+                        "successes": 5
+                    },
+                    "unhealthy": {
+                        "http_failures": 5,
+                        "http_statuses": [ 429, 500, 503 ],
+                        "tcp_failures": 2,
+                        "timeouts": 7
+                    }
+                }
+            },
             "slots": 10
         }
     ],
@@ -1564,6 +1766,42 @@ HTTP 200 OK
     "hash_on": "none",
     "hash_fallback": "none",
     "slots": 10,
+    "healthchecks": {
+        "active": {
+            "concurrency": 10,
+            "healthy": {
+                "http_statuses": [ 200, 302 ],
+                "interval": 0,
+                "successes": 0
+            },
+            "http_path": "/",
+            "timeout": 1,
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 404, 500, 501,
+                                   502, 503, 504, 505 ],
+                "interval": 0,
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        },
+        "passive": {
+            "healthy": {
+                "http_statuses": [ 200, 201, 202, 203,
+                                   204, 205, 206, 207,
+                                   208, 226, 300, 301,
+                                   302, 303, 304, 305,
+                                   306, 307, 308 ],
+                "successes": 0
+            },
+            "unhealthy": {
+                "http_failures": 0,
+                "http_statuses": [ 429, 500, 503 ],
+                "tcp_failures": 0,
+                "timeouts": 0
+            }
+        }
+    },
     "created_at": 1422386534
 }
 ```
