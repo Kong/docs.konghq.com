@@ -46,6 +46,12 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/docs/{{page.kong_version}}/health-checks-circuit-breakers">Health checks and circuit breakers</a></h3>
+    <p>Let Kong monitor the availability of your services and adjust its load balancing accordingly.</p>
+    <a href="/docs/{{page.kong_version}}/health-checks-circuit-breakers">Learn about health checks and circuit breakers &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-clustering.svg" /><a href="/docs/{{page.kong_version}}/clustering">Clustering</a></h3>
     <p>If you are starting more than one node, you must use clustering to make sure all the nodes belong to the same Kong cluster.</p>
     <a href="/docs/{{page.kong_version}}/clustering">Read the clustering reference &rarr;</a>
