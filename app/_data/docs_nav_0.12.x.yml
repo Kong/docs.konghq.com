@@ -32,6 +32,9 @@
     - text: Load balancing reference
       url: /loadbalancing
 
+    - text: Health checks and circuit breakers reference
+      url: /health-checks-circuit-breakers
+
     - text: Clustering reference
       url: /clustering
 
@@ -241,3 +244,9 @@
 
         - text: Delete Target
           url: /admin-api/#delete-target
+
+        - text: Set Target as Healthy
+          url: /admin-api/#set-target-as-healthy
+
+        - text: Set Target as Unhealthy
+          url: /admin-api/#set-target-as-unhealthy
