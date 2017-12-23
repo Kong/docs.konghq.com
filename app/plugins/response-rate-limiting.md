@@ -52,6 +52,7 @@ form parameter                      | default        | description
 `config.limit_by`<br>*optional* | `consumer`  | The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
 `config.policy`<br>*optional* | `cluster` | The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes) and `redis` (counters are stored on a Redis server and will be shared across the nodes).
 `config.fault_tolerant`<br>*optional*  | `true` |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors.
+`config.hide_client_headers`<br>*optional* | `false` | Optionally hide informative response headers.
 `config.redis_host`<br>*semi-optional* | | When using the `redis` policy, this property specifies the address to the Redis server.
 `config.redis_port`<br>*optional* | `6379` | When using the `redis` policy, this property specifies the port of the Redis server.
 `config.redis_password`<br>*optional* |      | When using the `redis` policy, this property specifies the password to connect to the Redis server.

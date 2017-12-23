@@ -21,6 +21,8 @@ nav:
       - label: Enforcing Headers
       - label: HMAC Example
       - label: Upstream Headers
+      - label: Paginate through the HMAC Credentials
+      - label: Retrieve the Consumer associated with a Credential
 ---
 
 Add HMAC Signature authentication to your APIs to establish the integrity of
@@ -52,7 +54,7 @@ form parameter                          | default | description
 `name`                                  | | The name of the plugin to use, in this case: `hmac-auth`
 `config.hide_credentials`<br>*optional* | `false` | A boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
 `config.clock_skew`<br>*optional*       | `300` | [Clock Skew][clock-skew] in seconds to prevent replay attacks.
-`config.anonymous`<br>*optional*        | `` | A string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
+`config.anonymous`<br>*optional*        | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
 `config.validate_request_body`<br>*optional* | `false` | A boolean value telling the plugin to enable body validation
 `config.enforce_headers`<br>*optional*  | `` | A list of headers which the client should at least use for HTTP signature creation
 `config.algorithms`<br>*optional*       | `hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512` | A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
@@ -154,7 +156,7 @@ header.
 
 ### Body Validation
 
-User can set `config.validate_request_body` as `true` to validate the request 
+User can set `config.validate_request_body` as `true` to validate the request
 body. If it's enabled and if the client sends a `Digest` header in the request,
 the plugin will calculate the `SHA-256` HMAC digest of the request body and
 match it against the value of the `Digest` header. The Digest header needs to
@@ -170,7 +172,7 @@ dealing with large bodies (several MBs) or during high request concurrency.
 
 ### Enforcing Headers
 
-`config.enforce_headers` can be used to enforce any of the headers to be part 
+`config.enforce_headers` can be used to enforce any of the headers to be part
 of the signature creation. By default, the plugin doesn't enforce which header
 needs to be used for the signature creation. The minimum recommended data to
 sign is the `request-line`, `host`, and `date`. A strong signature would
@@ -189,7 +191,7 @@ include all of the headers and a `digest` of the body.
   ...
 
   ```
-  
+
   **Enable plugin**
 
   ```bash
@@ -238,29 +240,29 @@ include all of the headers and a `digest` of the body.
       -H 'Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature="ujWCGHeec9Xd6UD2zlyxiNMCiXnDOWeVFMu5VeRUxtw="'
   HTTP/1.1 200 OK
   ...
-  
+
   ```
-  
+
   In the above request, we are composing the signing string using the `date` and
   `request-line` headers and creating the digest using the `hmac-sha256` to
   hash the digest:
-  
+
   ```
   signing_string="date: Thu, 22 Jun 2017 17:15:21 GMT\nGET /requests HTTP/1.1"
   digest=HMAC-SHA256(<signing_string>, "secret")
   base64_digest=base64(<digest>)
   ```
-  
-  So the final value of the `Authorization` header would look like: 
 
-  
+  So the final value of the `Authorization` header would look like:
+
+
   ```
   Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature=<base64_digest>"
   ```
 
   **Validating request body**
-  
-  To enable body validation we would need to set `config.validate_request_body` 
+
+  To enable body validation we would need to set `config.validate_request_body`
   to `true`:
 
   ```bash
@@ -268,7 +270,7 @@ include all of the headers and a `digest` of the body.
       -d "config.validate_request_body=true"
   HTTP/1.1 200 OK
   ...
-  
+
   ```
 
   Now if the client includes the body digest in the request as the value of the
@@ -291,7 +293,7 @@ include all of the headers and a `digest` of the body.
   the `Digest` header with the following format:
 
   ```
-  body="A small body" 
+  body="A small body"
   digest=SHA-256(body)
   base64_digest=base64(digest)
   Digest: SHA-256=<base64_digest>
@@ -312,6 +314,80 @@ can identify the Consumer in your code:
 You can use this information on your side to implement additional logic.
 You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve
 more information about the Consumer.
+
+### Paginate through the HMAC Credentials
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+You can paginate through the hmac-auth Credentials for all Consumers using the
+following request:
+
+```bash
+$ curl -X GET http://kong:8001/hmac-auths
+
+{
+    "total": 3,
+    "data": [
+        {
+            "created_at": 1509681246000,
+            "id": "75695322-e8a0-4109-aed4-5416b0308d85",
+            "secret": "wQazJ304DW5huJklHgUfjfiSyCyTAEDZ",
+            "username": "foo",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        },
+        {
+            "created_at": 1509419793000,
+            "id": "11d5cbfb-31b9-4a6d-8496-2f4a76500643",
+            "secret": "zi6YHyvLaUCe21XMXKesTYiHSWy6m6CW",
+            "username": "bar",
+            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+        },
+        {
+            "created_at": 1509681215000,
+            "id": "eb0365bc-88ae-4568-be7c-db1eb7c16e5e",
+            "secret": "NvHDTg5mp0ySFVJsITurtgyhEq1Cxbnv",
+            "username": "baz",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        }
+    ]
+}
+```
+
+You can filter the list using the following query parameters:
+
+Attributes | Description
+---:| ---
+`id`<br>*optional*                       | A filter on the list based on the hmac-auth credential `id` field.
+`username`<br>*optional*                 | A filter on the list based on the hmac-auth credential `username` field.
+`consumer_id`<br>*optional*              | A filter on the list based on the hmac-auth credential `consumer_id` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+### Retrieve the Consumer associated with a Credential
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+It is possible to retrieve a [Consumer][consumer-object] associated with an
+HMAC Credential using the following request:
+
+```bash
+curl -X GET http://kong:8001/hmac-auths/{hmac username or id}/consumer
+
+{
+   "created_at":1507936639000,
+   "username":"foo",
+   "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+}
+```
+
+`hmac username or id`: The `id` or `username` property of the HMAC Credential
+for which to get the associated [Consumer][consumer-object].
+Note that `username` accepted here is **not** the `username` property of a
+Consumer.
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration

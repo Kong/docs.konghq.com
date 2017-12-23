@@ -141,7 +141,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     **Without parameters**
 
       ```bash
-      $ curl -i -X POST http://localhost:8000/ -H "Host:hello.com"
+      $ curl -i -X POST http://localhost:8000/ -H "Host:example.com"
       HTTP/1.1 200 OK
       ...
 
@@ -153,7 +153,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     **Parameters as form-urlencoded**
 
       ```bash
-      $ curl -i -X POST http://localhost:8000/ -H "Host:hello.com" --data "name=bar"
+      $ curl -i -X POST http://localhost:8000/ -H "Host:example.com" --data "name=bar"
       HTTP/1.1 200 OK
       ...
 
@@ -165,7 +165,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     **Parameters as JSON body**
 
       ```bash
-      $ curl -i -X POST http://localhost:8000/ -H "Host:hello.com" \
+      $ curl -i -X POST http://localhost:8000/ -H "Host:example.com" \
         -H "Content-Type:application/json" --data '{"name":"bar"}'
       HTTP/1.1 200 OK
       ...
@@ -178,7 +178,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     **Parameters as multipart form**
 
       ```bash
-      $ curl -i -X POST http://localhost:8000/ -H "Host:hello.com"  -F name=bar
+      $ curl -i -X POST http://localhost:8000/ -H "Host:example.com"  -F name=bar
       HTTP/1.1 100 Continue
 
       HTTP/1.1 200 OK
@@ -192,7 +192,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     **Parameters as querystring**
 
       ```bash
-      $ curl -i -X POST http://localhost:8000/?name=foo -H "Host:hello.com"
+      $ curl -i -X POST http://localhost:8000/?name=foo -H "Host:example.com"
       HTTP/1.1 200 OK
       ...
 
@@ -207,7 +207,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
       be returned in response:
 
       ```bash
-      $ curl -i -X POST http://localhost:8000/?name=foo -H "Host:hello.com"
+      $ curl -i -X POST http://localhost:8000/?name=foo -H "Host:example.com"
       HTTP/1.1 200 OK
       ...
 
@@ -249,7 +249,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
 
 **Use a fake upstream_url**
 
-When using the this plugin, the response will be returned by the plugin itself
+When using this plugin, the response will be returned by the plugin itself
 without proxying the request to any upstream service. This means that whatever
 `upstream_url` has been set on the [API][api-object] it will never be used.
 Although `upstream_url` will never be used, it's currently a mandatory

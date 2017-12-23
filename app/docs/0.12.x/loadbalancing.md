@@ -2,7 +2,7 @@
 title: Loadbalancing reference
 ---
 
-# Load Balancing reference
+# Load Balancing Reference
 
 Kong provides multiple ways of load balancing requests to multiple backend services:
 a straightforward DNS-based method, and a more dynamic ring-balancer that also

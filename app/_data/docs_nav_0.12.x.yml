@@ -236,8 +236,8 @@
         - text: List Targets
           url: /admin-api/#list-targets
 
-        - text: List Active Targets
-          url: /admin-api/#list-active-targets
+        - text: List All Targets
+          url: /admin-api/#list-all-targets
 
         - text: Delete Target
           url: /admin-api/#delete-target

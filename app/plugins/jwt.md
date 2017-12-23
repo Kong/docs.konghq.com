@@ -24,9 +24,17 @@ nav:
       - label: Generate public/private keys
       - label: Using the JWT plugin with Auth0
       - label: Upstream Headers
+      - label: Paginate through the JWTs
+      - label: Retrieve the Consumer associated with a JWT
 ---
 
-Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URI and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
+Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through:
+
+- a query string parameter,
+- a cookie,
+- or the Authorization header.
+
+Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
 ----
 
@@ -54,12 +62,18 @@ You can also apply it for every API using the `http://kong:8001/plugins/` endpoi
 
 form parameter                          | default | description
 ---                                     | ---     | ---
-`name`                                  |         | The name of the plugin to use, in this case: `jwt`
+`name`                                  |         | The name of the plugin to use, in this case: `jwt`.
 `config.uri_param_names`<br>*optional*  | `jwt`   | A list of querystring parameters that Kong will inspect to retrieve JWTs.
+`config.cookie_names`<br>*optional*     |         | A list of cookie names that Kong will inspect to retrieve JWTs. 
 `config.claims_to_verify`<br>*optional* |         | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
 `config.key_claim_name`<br>*optional*   | `iss`   | The name of the claim in which the `key` identifying the secret **must** be passed.
 `config.secret_is_base64`<br>*optional* | `false` | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your Consumer, and sign your JWT with the original secret.
-`config.anonymous`<br>*optional*           | `` | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
+`config.anonymous`<br>*optional*        | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+`config.run_on_preflight`<br>*optional* | `true`  | A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
+
+<div class="alert alert-warning">
+    <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
+</div>
 
 ----
 
@@ -190,10 +204,16 @@ $ curl http://kong:8000/{api path} \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4'
 ```
 
-Or as a querystring parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
+as a querystring parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
 
 ```bash
 $ curl http://kong:8000/{api path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
+```
+
+or as cookie, if the name is configured in `config.cookie_names` (which is not enabled by default):
+
+```bash
+curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4 http://kong:8000/{api path}
 ```
 
 The request will be inspected by Kong, whose behavior depends on the validity of the JWT:
@@ -379,6 +399,81 @@ When a JWT is valid, a Consumer has been authenticated, the plugin will append s
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+
+### Paginate through the JWTs
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+You can paginate through the JWTs for all Consumers using the following
+request:
+
+```bash
+$ curl -X GET http://kong:8001/jwts
+
+{
+    "total": 3,
+    "data": [
+        {
+            "created_at": 1509593911000,
+            "id": "381879e5-04a1-4c8a-9517-f85fbf90c3bc",
+            "algorithm": "HS256",
+            "key": "UHVwIly5ZxZH7g52E0HRlFkFC09v9yI0",
+            "secret": "KMWyDsTTcZgqqyOGgRWTDgZtIyWeEtJh",
+            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+        },
+        {
+            "created_at": 1511389527000,
+            "id": "0dfc969b-02be-42ae-9d98-e04ed1c05850",
+            "algorithm": "ES256",
+            "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
+            "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
+            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+        },
+        {
+            "created_at": 1509593912000,
+            "id": "d10c6f3b-71f1-424e-b1db-366abb783460",
+            "algorithm": "HS256",
+            "key": "SqSNfg9ARmPnpycyJSMAc2uR6nxdmc9S",
+            "secret": "CCh6ZIcwDSOIWacqkkWoJ0FWdZ5eTqrx",
+            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+        }
+    ]
+}
+```
+
+You can filter the list using the following query parameters:
+
+Attributes | Description
+---:| ---
+`id`<br>*optional*                       | A filter on the list based on the JWT credential `id` field.
+`key`<br>*optional*                 	 | A filter on the list based on the JWT credential `key` field.
+`consumer_id`<br>*optional*              | A filter on the list based on the JWT credential `consumer_id` field.
+`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
+`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+### Retrieve the Consumer associated with a JWT
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
+</div>
+
+It is possible to retrieve a [Consumer][consumer-object] associated with a JWT
+using the following request:
+
+```bash
+curl -X GET http://kong:8001/jwts/{key or id}/consumer
+
+{
+   "created_at":1507936639000,
+   "username":"foo",
+   "id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+}
+```
+
+`key or id`: The `id` or `key` property of the JWT for which to get the
+associated [Consumer][consumer-object].
 
 [rfc-jwt]: https://tools.ietf.org/html/rfc7519
 [api-object]: /docs/latest/admin-api/#api-object

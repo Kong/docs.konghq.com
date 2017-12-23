@@ -10,19 +10,17 @@ allows for service registry without needing a DNS server.
 
 ### Table of Contents
 
-- [DNS based loadbalancing](#dns-based-loadbalancing)
+- [DNS-based loadbalancing](#dns-based-loadbalancing)
   - [A records](#a-records)
   - [SRV records](#srv-records)
   - [DNS priorities](#dns-priorities)
-
 - [Ring-balancer](#ring-balancer)
-  - [upstream](#upstream)
-  - [target](#target)
+  - [Upstream](#upstream)
+  - [Target](#target)
+- [Blue-green Deployments](#blue-green-deployments)
+- [Canary Releases](#canary-releases)
 
-- [Blue-green deployments](#blue-green-deployments)
-- [Canary releases](#canary-releases)
-
-### DNS Based Loadbalancing
+### DNS-based loadbalancing
 
 When using DNS based load balancing the registration of the backend services is
 done outside of Kong, and Kong only receives updates from the DNS server.
@@ -37,9 +35,9 @@ is refreshed. When using a `ttl` of 0, every request will be resolved using its
 own dns query. Obviously this will have a performance penalty, but the latency of
 updates/changes will be very low.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
-#### **A Records**
+#### **A records**
 
 An A record contains one or more IP addresses. Hence, when a hostname
 resolves to an A record, each backend service must have its own IP address.
@@ -51,9 +49,9 @@ round-robin.
 The initial pick of an IP address from a DNS record is randomized. This is to
 make sure that even with a `ttl` of 0 the load is properly distributed.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
-#### **SRV Records**
+#### **SRV records**
 
 An SRV record contains weight and port information for all of its IP addresses.
 A backend service can be identified by a unique combination of IP address 
@@ -79,9 +77,9 @@ with 527 entries, whereas weights 16 and 32 (or their smallest relative
 counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
-#### **DNS Priorities**
+#### **DNS priorities**
 
 The DNS resolver will start resolving the following record types in order:
 
@@ -95,9 +93,9 @@ with SRV. If you want A records to be used, you must remove the SRV records from
 the DNS server. If you only have A records, then the SRV lookup will fail and
 it will fallback on an A query, etc.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
-### **Ring-Balancer**
+### **Ring-balancer**
 
 When using the ring-balancer, the adding and removing of backend services will
 be handled by Kong, and no DNS updates will be necessary. Kong will act as the
@@ -114,7 +112,7 @@ entities.
     field, e.g., an upstream named `weather.v2.service` would get all requests
     from an API with `upstream_url=http://weather.v2.service/some/path`.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
 #### **Upstream**
 
@@ -151,7 +149,7 @@ the initial setup only features 2 targets.
 The tradeoff here is that the higher the number of slots, the better the random 
 distribution, but the more expensive the changes are (add/removing targets)
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
 #### **Target**
 
@@ -184,8 +182,7 @@ __Exception__: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
 
-
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
 ### **Blue-Green Deployments**
 
@@ -254,7 +251,7 @@ As always, the changes through the Kong management API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to TOC](#table-of-contents)
 
 ### **Canary Releases**
 
@@ -294,8 +291,7 @@ The changes through the Kong management API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
-[Back to Table of Contents](#table-of-contents)
-
+[Back to TOC](#table-of-contents)
 
 [target-object-reference]: /docs/{{page.kong_version}}/admin-api#target-object
 [blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/

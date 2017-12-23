@@ -44,4 +44,4 @@ Below are the recommended firewall settings:
 [proxy_listen_ssl]: /docs/{{page.kong_version}}/configuration/#proxy_listen_ssl
 [admin_api_listen]: /docs/{{page.kong_version}}/configuration/#admin_api_listen
 [admin_api_listen_ssl]: /docs/{{page.kong_version}}/configuration/#admin_api_listen_ssl
-[secure_admin_api]: /docs/{{page.kong_version}}/secure_admin_api
+[secure_admin_api]: /docs/{{page.kong_version}}/secure-admin-api

@@ -30,7 +30,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "config.ldap_port=398" \
     --data "config.base_dn=dc=example,dc=com" \
     --data "config.attribute=cn" \
-    --data "config.cache_ttl=60" 
+    --data "config.cache_ttl=60" \
+    --data "config.header_type=ldap"
 ```
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
@@ -50,7 +51,8 @@ form parameter                           | default | description
 `config.cache_ttl`                       | `60`    | Cache expiry time in seconds.
 `config.timeout`<br>*optional*           | `10000` | An optional timeout in milliseconds when waiting for connection with LDAP server.
 `config.keepalive`<br>*optional*         | `60000` | An optional value in milliseconds that defines for how long an idle connection to LDAP server will live before being closed.
-`config.anonymous`<br>*optional*         | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`
+`config.anonymous`<br>*optional*         | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+`config.header_type`<br>*optional*       | `"ldap"`| An optional string to use as part of the Authorization header. By default, a valid Authorization header looks like this: `Authorization: ldap base64(username:password)`. If `header_type` is set to "basic" then the Authorization header would be `Authorization: basic base64(username:password)`. Note that `header_type` can take any string, not just `"ldap"` and `"basic"`.
 
 ----
 
