@@ -1417,9 +1417,8 @@ Requests for this API would be proxied to the targets defined within the upstrea
 ```json
 {
     "name": "service.v1.xyz",
-    "hash_on": "consumer",
-    "hash_fallback": "header",
-    "hash_fallback_header": "X-my-userid",
+    "hash_on": "none",
+    "hash_fallback": "none",
     "slots": 10
 }
 ```
@@ -1446,9 +1445,8 @@ HTTP 201 Created
 {
     "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
     "name": "service.v1.xyz",
-    "hash_on": "consumer",
-    "hash_fallback": "header",
-    "hash_fallback_header": "X-my-userid",
+    "hash_on": "none",
+    "hash_fallback": "none",
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1476,9 +1474,8 @@ HTTP 200 OK
 {
     "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
     "name": "service.v1.xyz",
-    "hash_on": "consumer",
-    "hash_fallback": "header",
-    "hash_fallback_header": "X-my-userid",
+    "hash_on": "none",
+    "hash_fallback": "none",
     "slots": 10,
     "created_at": 1485521710265
 }
@@ -1520,18 +1517,16 @@ HTTP 200 OK
             "created_at": 1485521710265,
             "id": "13611da7-703f-44f8-b790-fc1e7bf51b3e",
             "name": "service.v1.xyz",
-            "hash_on": "consumer",
-            "hash_fallback": "header",
-            "hash_fallback_header": "X-my-userid",
+            "hash_on": "none",
+            "hash_fallback": "none",
             "slots": 10
         },
         {
             "created_at": 1485522651185,
             "id": "07131005-ba30-4204-a29f-0927d53257b4",
             "name": "service.v2.xyz",
-            "hash_on": "consumer",
-            "hash_fallback": "header",
-            "hash_fallback_header": "X-my-userid",
+            "hash_on": "none",
+            "hash_fallback": "none",
             "slots": 10
         }
     ],
@@ -1566,9 +1561,8 @@ HTTP 200 OK
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
     "name": "service.v1.xyz",
-    "hash_on": "consumer",
-    "hash_fallback": "header",
-    "hash_fallback_header": "X-my-userid",
+    "hash_on": "none",
+    "hash_fallback": "none",
     "slots": 10,
     "created_at": 1422386534
 }
