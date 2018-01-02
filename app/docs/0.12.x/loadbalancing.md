@@ -10,17 +10,20 @@ allows for service registry without needing a DNS server.
 
 ### Table of Contents
 
-- [DNS-based loadbalancing](#dns-based-loadbalancing)
+- [DNS based loadbalancing](#dns-based-loadbalancing)
   - [A records](#a-records)
   - [SRV records](#srv-records)
   - [DNS priorities](#dns-priorities)
+  - [DNS caveats](#dns-caveats)
 - [Ring-balancer](#ring-balancer)
-  - [Upstream](#upstream)
-  - [Target](#target)
+  - [upstream](#upstream)
+  - [target](#target)
+  - [Balancing algorithms](#balancing-algorithms)
+  - [Balancing caveats](#balancing-caveats)
 - [Blue-green Deployments](#blue-green-deployments)
 - [Canary Releases](#canary-releases)
 
-### DNS-based loadbalancing
+### DNS based loadbalancing
 
 When using DNS based load balancing the registration of the backend services is
 done outside of Kong, and Kong only receives updates from the DNS server.
@@ -32,7 +35,7 @@ resolve to an `upstream` name or a name in your `localhosts` file.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
-own dns query. Obviously this will have a performance penalty, but the latency of
+own DNS query. Obviously this will have a performance penalty, but the latency of
 updates/changes will be very low.
 
 [Back to TOC](#table-of-contents)
@@ -45,10 +48,6 @@ resolves to an A record, each backend service must have its own IP address.
 Because there is no `weight` information, all entries will be treated as equally 
 weighted in the load balancer, and the balancer will do a straight forward
 round-robin.
-
-The initial pick of an IP address from a DNS record is not randomized. So when
-using records with a `ttl` of 0, the nameserver is expected to randomize the
-record entries.
 
 [Back to TOC](#table-of-contents)
 
@@ -68,16 +67,6 @@ and `myhost.com` resolves to a SRV record with `127.0.0.1:456` then the request
 will be proxied to `http://127.0.0.1:456/somepath`, as port `123` will be 
 overridden by `456`.
 
-The initial pick of an IP address + port combo is randomized, ensuring a proper
-distribution, even with a `ttl` setting of 0.
-
-**TIP**: whenever the DNS record is refreshed a list is generated to handle the
-weighting properly. Try to keep the weights as multiples of each other to keep
-the algorithm performant, e.g., 2 weights of 17 and 31 would result in a structure 
-with 527 entries, whereas weights 16 and 32 (or their smallest relative 
-counterparts 1 and 2) would result in a structure with merely 3 entries,
-especially with a very small (or even 0) `ttl` value.
-
 [Back to TOC](#table-of-contents)
 
 #### **DNS priorities**
@@ -89,10 +78,36 @@ The DNS resolver will start resolving the following record types in order:
   3. A record
   4. CNAME record
 
-So if the hostname you use has both SRV entries and A entries, it will start
-with SRV. If you want A records to be used, you must remove the SRV records from
-the DNS server. If you only have A records, then the SRV lookup will fail and
-it will fallback on an A query, etc.
+This order is configurable through the [`dns_order` configuration property][dns-order-config].
+
+[Back to TOC](#table-of-contents)
+
+#### **DNS caveats**
+
+- Whenever the DNS record is refreshed a list is generated to handle the
+weighting properly. Try to keep the weights as multiples of each other to keep
+the algorithm performant, e.g., 2 weights of 17 and 31 would result in a structure 
+with 527 entries, whereas weights 16 and 32 (or their smallest relative 
+counterparts 1 and 2) would result in a structure with merely 3 entries,
+especially with a very small (or even 0) `ttl` value.
+
+- Some nameservers do not return all entries (due to UDP packet size) in those
+cases (for example Consul returns a maximum of 3) a given Kong node will only
+use the few upstream service instances provided by the nameserver. In this
+scenario, it is possible that the pool of upstream instances will be loaded
+inconsistently, because the Kong node is effectively unaware of some of the
+instances, due to the limited information provided by the nameserver.
+To mitigate this use a different nameserver, use IP
+addresses instead of names, or make sure you use enough Kong nodes to still
+have all upstream services being used.
+
+- When the nameserver returns a `3 name error`, then that is a valid response
+for Kong. If this is unexpected, first validate the correct name is being
+queried for, and second check your nameserver configuration.
+
+- The initial pick of an IP address from a DNS record (A or SRV) is not
+randomized. So when using records with a `ttl` of 0, the nameserver is
+expected to randomize the record entries.
 
 [Back to TOC](#table-of-contents)
 
@@ -112,7 +127,7 @@ entities.
     in both IPv4 and IPv6 format.
   - `upstream`: a 'virtual hostname' which can be used in an API `upstream_url`
     field, e.g., an upstream named `weather.v2.service` would get all requests
-    from an API with `upstream_url=http://weather.v2.service/some/path`.
+    from an api with `upstream_url=http://weather.v2.service/some/path`.
 
 [Back to TOC](#table-of-contents)
 
@@ -122,8 +137,7 @@ Each upstream gets its own ring-balancer. Each `upstream` can have many
 `target` entries attached to it, and requests proxied to the 'virtual hostname' 
 will be load balanced over the targets. A ring-balancer has a pre-defined
 number of slots, and based on the target weights the slots get assigned to the
-targets of the upstream. Incoming requests will be proxied in a weighted 
-round-robin manner.
+targets of the upstream.
 
 Adding and removing targets can be done with a simple HTTP request on the 
 management API. This operation is relatively cheap. Changing the upstream
@@ -148,6 +162,10 @@ the initial setup only features 2 targets.
 The tradeoff here is that the higher the number of slots, the better the random 
 distribution, but the more expensive the changes are (add/removing targets)
 
+Detailed information on adding and manipulating
+upstreams is available in the `upstream` section of the
+[Admin API reference][upstream-object-reference].
+
 [Back to TOC](#table-of-contents)
 
 #### **Target**
@@ -157,7 +175,8 @@ added, not modified nor deleted. To change a target, just add a new entry for
 the target, and change the `weight` value. The last entry is the one that will
 be used. As such setting `weight=0` will disable a target, effectively 
 deleting it from the balancer. Detailed information on adding and manipulating
-targets is available in the `target` section of the [Admin API reference][target-object-reference].
+targets is available in the `target` section of the
+[Admin API reference][target-object-reference].
 
 The targets will be automatically cleaned when there are 10x more inactive 
 entries than active ones. Cleaning will involve rebuilding the balancer, and
@@ -180,6 +199,66 @@ the balancer when it expires.
 __Exception__: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
+
+[Back to TOC](#table-of-contents)
+
+#### **Balancing algorithms**
+
+By default a ring-balancer will use a weighted-round-robin scheme. The alternative
+would be to use the hash-based algorithm. The input for the hash can be either
+`none`, `consumer`, `ip`, or `header`. When set to `none` the
+weighted-round-robin scheme will be used, and hashing will be disabled.
+
+There are two options, a primary and a fallback in case the primary fails
+(e.g., if the primary is set to `consumer`, but no consumer is authenticated)
+
+The different hashing options:
+
+- `none`: Do not use hashing, but use weighted-round-robin instead (default).
+
+- `consumer`: Use the consumer id as the hash input. This option will fallback
+  on the credential id if no consumer id is available (in case of external auth
+  like ldap).
+
+- `ip`: The remote (originating) IP address will be used as input. Review the
+  configuration settings for [determining the real IP][real-ip-config] when
+  using this.
+
+- `header`: use a specified header (in either `hash_on_header` or `hash_fallback_header`
+  field) as input for the hash.
+
+The hashing algorithm is based on 'consistent-hashing' (or the 'ketama principle')
+which makes sure that when the balancer gets modified by changing the targets
+(adding, removing, failing, or changing weights) only the minimum number of
+hashing losses occur. This will maximize upstream cache hits.
+
+For more information on the exact settings see the `upstream` section of the
+[Admin API reference][upstream-object-reference].
+
+[Back to TOC](#table-of-contents)
+
+#### **Balancing caveats**
+
+The ring-balancer is designed to work both with a single node as well as in a cluster.
+For the weighted-round-robin algorithm there isn't much difference, but when using
+the hash based algorithm it is important that all nodes build the exact same
+ring-balancer to make sure they all work identical. To do this the balancer
+must be build in a deterministic way.
+
+- Do not use hostnames in the balancer as the
+balancers might/will slowly diverge because the DNS ttl has only second precision
+and renewal is determined by when a name is actually requested. On top of this is
+the issue with some nameservers not returning all entries, which exacerbates
+this problem. So when using the hashing approach in a Kong cluster, add `target`
+entities only by their IP address, and never by name.
+
+- When picking your hash input make sure the input has enough variance to get
+to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
+So for example, if your system has thousands of users, but only a few consumers, defined
+per platform (eg. 3 consumers: Web, iOS and Android) then picking the `consumer`
+hash input will not suffice, using the remote IP address by setting the hash to
+`ip` would provide more variance in the input and hence a better distribution
+in the hash output.
 
 [Back to TOC](#table-of-contents)
 
@@ -292,5 +371,8 @@ requests will be dropped.
 
 [Back to TOC](#table-of-contents)
 
+[upstream-object-reference]: /docs/{{page.kong_version}}/admin-api#upstream-object
 [target-object-reference]: /docs/{{page.kong_version}}/admin-api#target-object
+[dns-order-config]: /docs/{{page.kong_version}}/configuration/#dns_order
+[real-ip-config]: /docs/{{page.kong_version}}/configuration/#real_ip_header
 [blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/
