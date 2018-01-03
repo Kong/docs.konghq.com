@@ -99,6 +99,8 @@ Endpoint                     | description
 ---                         | ---
 `/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code][authorization-code-grant] flow, or the access token when the [Implicit Grant][implicit-grant] flow is enabled. Only `POST` is supported.
 `/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials][client-credentials] and [Resource Owner Password Credentials Grant][password-grant] flows. Only `POST` is supported.
+`/oauth2_tokens`             | The endpoint to the Authorization Server that allows creating new tokens. Useful on migrations (see below).
+`/oauth2_tokens/:token_id`   | The endpoint to the Authorization Server that allows reading, modifying and deleting access tokens.
 
 The clients trying to authorize and request access tokens must use these endpoints. Remember that the endpoints above must be combined with the right URI path or headers that you normally use when consuming the root `/` endpoint of the API through Kong.
 
