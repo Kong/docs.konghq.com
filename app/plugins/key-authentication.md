@@ -1,4 +1,4 @@
-----
+---
 id: page-plugin
 title: Plugins - Key Authentication
 header_title: Key Authentication
