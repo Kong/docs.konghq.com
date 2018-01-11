@@ -56,6 +56,10 @@ form parameter                           | default | description
 
 ----
 
+<div class="alert alert-warning">
+    <strong>Note:</strong> The <code>config.header_type</code> option was introduced in Kong 0.12.0. Previous versions of this plugin behave as if <code>ldap</code> was set for this value.
+</div>
+
 ## Usage
 
 In order to authenticate the user, client must set credentials in `Proxy-Authorization` or `Authorization` header in following format
