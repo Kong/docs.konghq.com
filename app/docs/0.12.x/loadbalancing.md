@@ -10,20 +10,20 @@ allows for service registry without needing a DNS server.
 
 ### Table of Contents
 
-- [DNS based loadbalancing](#dns-based-loadbalancing)
+- [DNS-based loadbalancing](#dns-based-loadbalancing)
   - [A records](#a-records)
   - [SRV records](#srv-records)
   - [DNS priorities](#dns-priorities)
   - [DNS caveats](#dns-caveats)
 - [Ring-balancer](#ring-balancer)
-  - [upstream](#upstream)
-  - [target](#target)
+  - [Upstream](#upstream)
+  - [Target](#target)
   - [Balancing algorithms](#balancing-algorithms)
   - [Balancing caveats](#balancing-caveats)
 - [Blue-green Deployments](#blue-green-deployments)
 - [Canary Releases](#canary-releases)
 
-### DNS based loadbalancing
+### DNS-based loadbalancing
 
 When using DNS based load balancing the registration of the backend services is
 done outside of Kong, and Kong only receives updates from the DNS server.
