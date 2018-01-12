@@ -121,8 +121,18 @@ field is included in the [Admin API][addupstream] reference documentation.
 If all targets of an upstream are unhealthy, Kong will respond to requests
 to the upstream with `503 Service Unavailable`.
 
-Note that health checks operate only on [*active* targets][targetobject] and do not
-modify the *active* status of a target in the Kong database.
+Note:
+
+1. health checks operate only on [*active* targets][targetobject] and do not
+   modify the *active* status of a target in the Kong database.
+2. unhealthy targets will not be removed from the loadbalancer, and hence will
+   not have any impact on the balancer layout when using the hashing algorithm
+   (they will just be skipped).
+3. The [DNS caveats][dnscaveats] and [balancing caveats][balancingcaveats]
+   also apply to health checks. If using hostnames for the targets, then make
+   sure the DNS server always returns the full set of IP addresses for a name,
+   and does not limit the response. *Failing to do so might lead to health
+   checks not being executed.*
 
 ### Types of health checks
 
@@ -292,3 +302,5 @@ upstreams.
 [addupstream]: /docs/{{page.kong_version}}/admin-api#add-upstream
 [clustering]: /docs/{{page.kong_version}}/clustering
 [upstreamobjects]: /docs/{{page.kong_version}}/admin-api#upstream-objects
+[balancercaveats]: /docs/{{page.kong_version}}/loadbalancing#balancing-caveats
+[dnscaveats]: /docs/{{page.kong_version}}/loadbalancing#dns-caveats
