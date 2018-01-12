@@ -723,10 +723,13 @@ either Cassandra or PostgreSQL.
 All Kong nodes belonging to the same cluster must connect themselves to the
 same database.
 
-Important note: starting on 0.12.x:
-
-* Cassandra 2.0 support should be considered deprecated. Users are encouraged to upgrade to 3.x.
-* PostgreSQL 9.4 support should be considered deprecated. Users are encouraged to upgrade to 9.5.
+<div class="alert alert-warning">
+  <p><strong>Starting with Kong 0.12.0:</strong></p>
+  <ul>
+    <li>PostgreSQL 9.4 support should be considered deprecated. Users are encouraged to upgrade to 9.5+</li>
+    <li>Cassandra 2.1 support should be considered deprecated. Users are encouraged to upgrade to 2.2+</li>
+  </ul>
+</div>
 
 ---
 
