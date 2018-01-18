@@ -409,9 +409,9 @@ Address and port on which Kong will expose an entrypoint to the Admin API.
 This API lets you configure and manage Kong, and should be kept private
 and secured.
 
-Default: `0.0.0.0:8001`
+Default: `127.0.0.1:8001`
 
-Example: `127.0.0.1:8001`
+Example: `0.0.0.0:8001`
 
 ---
 
@@ -420,9 +420,9 @@ Example: `127.0.0.1:8001`
 Address and port on which Kong will accept HTTPS requests to the Admin API if
 `admin_ssl` is enabled.
 
-Default: `0.0.0.0:8444`
+Default: `127.0.0.1:8444`
 
-Example: `127.0.0.1:8444`
+Example: `0.0.0.0:8444`
 
 ---
 
