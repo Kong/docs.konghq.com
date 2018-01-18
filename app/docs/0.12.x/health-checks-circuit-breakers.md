@@ -128,7 +128,7 @@ Note:
 2. unhealthy targets will not be removed from the loadbalancer, and hence will
    not have any impact on the balancer layout when using the hashing algorithm
    (they will just be skipped).
-3. The [DNS caveats][dnscaveats] and [balancing caveats][balancingcaveats]
+3. The [DNS caveats][dnscaveats] and [balancer caveats][balancercaveats]
    also apply to health checks. If using hostnames for the targets, then make
    sure the DNS server always returns the full set of IP addresses for a name,
    and does not limit the response. *Failing to do so might lead to health
