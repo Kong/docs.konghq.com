@@ -15,6 +15,7 @@ nav:
     - label: Create a Consumer
     - label: Create an API Key
     - label: Using the API Key
+    - label: Delete an API Key
     - label: Upstream Headers
     - label: Paginate through the API keys
     - label: Retrieve the Consumer associated with an API key
@@ -44,7 +45,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "config.hide_credentials=true"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+* `api`: The `id` or `name` of the API that this plugin configuration will target
 
 You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
@@ -119,7 +120,7 @@ HTTP/1.1 201 Created
 }
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+* `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 
 form parameter      | default | description
 ---                 | ---     | ---
@@ -143,6 +144,18 @@ Or in a header:
 $ curl http://kong:8000/{api path} \
     -H 'apikey: <some_key>'
 ```
+
+### Delete an API Key
+
+You can delete an API Key by making the following HTTP request:
+
+```bash
+$ curl -X DELETE http://kong:8001/consumers/{consumer}/key-auth/{id}
+HTTP/1.1 204 No Content
+```
+
+* `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+* `id`: The `id` attribute of the API key credential object.
 
 ### Upstream Headers
 
@@ -222,7 +235,7 @@ curl -X GET http://kong:8001/key-auths/{key or id}/consumer
 }
 ```
 
-`key or id`: The `id` or `key` property of the API key for which to get the
+* `key or id`: The `id` or `key` property of the API key for which to get the
 associated Consumer.
 
 [api-object]: /docs/latest/admin-api/#api-object
