@@ -14,6 +14,7 @@ nav:
     items:
     - label: Create a Consumer
     - label: Create an API Key
+    - label: Delete an API Key
     - label: Using the API Key
     - label: Upstream Headers
     - label: Paginate through the API keys
@@ -128,6 +129,18 @@ form parameter      | default | description
 <div class="alert alert-warning">
   <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if you are migrating an existing system to Kong. You must re-use your keys to make the migration to Kong transparent to your Consumers.
 </div>
+
+### Delete an API Key
+
+You can delete an API Key by making the following HTTP request:
+
+```bash
+$ curl -X DELETE http://kong:8001/consumers/{consumer}/key-auth/{id}
+HTTP/1.1 204 No Content
+```
+
+`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`id`: The `id` of key authentication.
 
 ### Using the API Key
 
