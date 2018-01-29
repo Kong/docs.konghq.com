@@ -627,7 +627,7 @@ If the special value `unix:` is specified, all UNIX-domain sockets will be
 trusted.
 
 See [the Nginx docs](http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from)
-for more details on the `set_real_ip_form` directive.
+for more details on the `set_real_ip_from` directive.
 
 Default: none
 
