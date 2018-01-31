@@ -82,7 +82,7 @@ function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
 end
 
-function CustomHandler:init_worker(config)
+function CustomHandler:init_worker()
   -- Eventually, execute the parent implementation
   -- (will log that your plugin is entering this context)
   CustomHandler.super.init_worker(self)
