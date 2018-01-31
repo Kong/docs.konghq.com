@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - EE request Transformer
 header_title: EE request Transformer
-header_icon: /assets/images/icons/plugins/EE-request-transformer.png
+header_icon: /assets/images/icons/plugins/ee-request-transformer.png
 breadcrumbs:
   Plugins: /plugins
 nav:

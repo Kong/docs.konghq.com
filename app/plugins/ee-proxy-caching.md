@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - EE Proxy Caching
 header_title: EE Proxy Caching
-header_icon: /assets/images/icons/plugins/EE-proxy-caching.png
+header_icon: /assets/images/icons/plugins/ee-proxy-caching.png
 breadcrumbs:
   Plugins: /plugins
 nav:

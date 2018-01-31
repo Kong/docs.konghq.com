@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - EE Forward Proxy
 header_title: EE Forward Proxy
-header_icon: /assets/images/icons/plugins/EE-forward-proxy.png
+header_icon: /assets/images/icons/plugins/ee-forward-proxy.png
 breadcrumbs:
   Plugins: /plugins
 nav:
