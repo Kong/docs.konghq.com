@@ -27,7 +27,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "name=ldap-auth" \
     --data "config.hide_credentials=true" \
     --data "config.ldap_host=ldap.example.com" \
-    --data "config.ldap_port=398" \
+    --data "config.ldap_port=389" \
     --data "config.base_dn=dc=example,dc=com" \
     --data "config.attribute=cn" \
     --data "config.cache_ttl=60" \
