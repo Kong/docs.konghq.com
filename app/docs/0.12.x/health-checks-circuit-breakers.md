@@ -228,8 +228,8 @@ probes:
 checks for healthy targets (in seconds). A value of zero indicates that active
 probes for healthy targets should not be performed.
 * `healthchecks.active.unhealthy.interval` - Interval between active health
-checks for healthy targets (in seconds). A value of zero indicates that active
-probes for healthy targets should not be performed.
+checks for unhealthy targets (in seconds). A value of zero indicates that active
+probes for unhealthy targets should not be performed.
 
 This allows you to tune the behavior of the active health checks, whether you
 want probes for healthy and unhealthy targets to run at the same interval, or
