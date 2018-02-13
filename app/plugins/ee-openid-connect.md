@@ -54,7 +54,7 @@ Some of the capabilities of the plugin are listed below:
 
 The plugin has been tested with several OpenID Connect capable providers such as:
 
-- [Auht0][auth0]
+- [Auth0][auth0]
 - [Connect2id][connect2id]
 - [Dex][dex]
 - [Gluu][gluu]
