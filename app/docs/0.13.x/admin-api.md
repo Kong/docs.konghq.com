@@ -209,8 +209,13 @@ HTTP 200 OK
 
 ## API Object
 
-The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the 
-API when a consumer is calling it from the Proxy port. Each API object must specify some combination 
+<div class="alert alert-warning">
+  <p><strong>Note: The API entity was deprecated in Kong 0.13.0.</strong></p>
+  <p>It is strongly recommended to migrate your APIs to Routes and Services.</p>
+</div>
+
+The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the
+API when a consumer is calling it from the Proxy port. Each API object must specify some combination
 of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to the specified upstream URL.
 
 ```json
@@ -1426,7 +1431,7 @@ HTTP 204 No Content
 
 ## Upstream Objects
 
-The upstream object represents a virtual hostname and can be used to loadbalance 
+The upstream object represents a virtual hostname and can be used to loadbalance
 incoming requests over multiple services (targets). So for example an upstream
 named `service.v1.xyz` with an API object created with an `upstream_url=https://service.v1.xyz/some/path`.
 Requests for this API would be proxied to the targets defined within the upstream.
@@ -1856,7 +1861,7 @@ HTTP 204 No Content
 ## Target Object
 
 A target is an ip address/hostname with a port that identifies an instance of a backend
-service. Every upstream can have many targets, and the targets can be 
+service. Every upstream can have many targets, and the targets can be
 dynamically added. Changes are effectuated on the fly.
 
 Because the upstream maintains a history of target changes, the targets cannot
