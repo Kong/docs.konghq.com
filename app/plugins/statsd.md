@@ -45,7 +45,7 @@ parameter                     | default | description
 `name`                        |         | The name of the plugin to use, in this case: `statsd`
 `consumer_id`<br>*optional*   |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `config.host`<br>*optional*   | `127.0.0.1` | The IP address or host name to send data to
-`config.port`<br>*optional*   | `8125`  | The port to send data to on the upstream server
+`config.port`<br>*optional*   | `8125`  | The port to send data to on the upstream server. By default, statsd uses UDP.
 `config.metrics`<br>*optional* | All metrics<br>are logged | List of Metrics to be logged. Available values are described under [Metrics](#metrics).
 `config.prefix`<br>*optional* | `kong` | String to be prefixed to each metric's name.
 
