@@ -1093,6 +1093,8 @@ HTTP 201 Created
     "created_at": 1485521710265
 }
 ```
+#### Security Note
+Warning: Posting the certificate and private key to an HTTP endpoint may lead to inadvertent disclosure of the private key. Ensure all requests over the internet are performed over https only.
 
 ---
 
@@ -1123,6 +1125,10 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
+#### Security Note
+Warning: Getting the certificate and private key from an HTTP endpoint may lead to inadvertent disclosure of the private key. Ensure all requests over the internet are performed over https only.
+
 ---
 
 ### List Certificates
@@ -1162,6 +1168,10 @@ HTTP 200 OK
     ]
 }
 ```
+
+#### Security Note
+Warning: Listing all certificates/private keys from an HTTP endpoint may lead to inadvertent disclosure of the private keys. Ensure all requests over the internet are performed over https only.
+
 ---
 
 ### Update Certificate
@@ -1193,6 +1203,8 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+#### Security Note
+Warning: Patching the certificate and private key to an HTTP endpoint may lead to inadvertent disclosure of the private key. Ensure all requests over the internet are performed over https only.
 
 ---
 
@@ -1220,6 +1232,9 @@ HTTP 201 Created or HTTP 200 OK
 ```
 
 See POST and PATCH responses.
+
+#### Security Note
+Warning: Putting the certificate and private key to an HTTP endpoint may lead to disclosure of the private key. Ensure all requests over the internet are performed over https only.
 
 ---
 
