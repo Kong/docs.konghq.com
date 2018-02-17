@@ -18,6 +18,64 @@ api_body: |
     `https_only`<br>*optional*               | To be enabled if you wish to only serve an API through HTTPS, on the appropriate port (`8443` by default). Default: `false`.
     `http_if_terminated`<br>*optional*       | Consider the `X-Forwarded-Proto` header when enforcing HTTPS only traffic. Default: `false`.
 
+service_body: |
+    Attributes | Description
+    ---:| ---
+    `name`                        | The Service name.
+    `protocol`                    | The protocol used to communicate with the upstream. It can be one of `http` (default) or `https`.
+    `host`                        | The host of the upstream server.
+    `port`                        | The upstream server port. Defaults to `80`.
+    `path`<br>*optional*          | The path to be used in requests to the upstream server. Empty by default.
+    `retries`<br>*optional*       | The number of retries to execute upon failure to proxy. The default is `5`.
+    `connect_timeout`<br>*optional* | The timeout in milliseconds for establishing a connection to the upstream server. Defaults to `60000`.
+    `send_timeout`<br>*optional*    | The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server. Defaults to `60000`.
+    `read_timeout`<br>*optional*    | The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server. Defaults to `60000`.
+    `url`<br>*shorthand-attribute*    | Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url).
+
+service_json: |
+    {
+        "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2",
+        "created_at": 1488869076800,
+        "updated_at": 1488869076800,
+        "connect_timeout": 60000,
+        "protocol": "http",
+        "host": "example.org",
+        "port": 80,
+        "path": "/api",
+        "name": "example-service",
+        "retries": 5,
+        "read_timeout": 60000,
+        "write_timeout": 60000
+    }
+
+route_body: |
+    Attributes | Description
+    ---:| ---
+    `protocols`<br>                | A list of the protocols this Route should allow. By default it is `["http", "https"]`, which means that the Route accepts both. When set to `["https"]`, HTTP requests are answered with a request to upgrade to HTTPS.
+    `methods`<br>*semi-optional*   | A list of HTTP methods that match this Route. For example: `["GET", "POST"]`. At least one of `hosts`, `paths`, or `methods` must be set.
+    `hosts`<br>*semi-optional*     | A list of domain names that match this Route. For example: `example.com`. At least one of `hosts`, `uris`, or `methods` must be set.
+    `paths`<br>*semi-optional*     | A list of paths that match this Route. For example: `/my-path`. At least one of `hosts`, `uris`, or `methods` must be set.
+    `strip_path`<br>*optional*     | When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL. Defaults to `true`.
+    `preserve_host`<br>*optional*  | When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. By default set to `false`, and the upstream `Host` header will be that of the Service's `host`.
+    `service`                      | The Service this Route is associated to. This is where thie Route proxies traffic to.
+
+route_json: |
+    {
+        "id": "22108377-8f26-4c0e-bd9e-2962c1d6b0e6",
+        "created_at": 14888869056483,
+        "updated_at": 14888869056483,
+        "protocols": ["http", "https"],
+        "methods": null,
+        "hosts": ["example.com"],
+        "paths": null,
+        "regex_priority": 0,
+        "strip_path": true,
+        "preserve_host": false,
+        "service": {
+            "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2"
+        }
+    }
+
 consumer_body: |
     Attributes | Description
     ---:| ---
@@ -207,6 +265,400 @@ HTTP 200 OK
 
 ---
 
+## Service Object
+
+Service entities, as the name implies, are abstractions of each of your own
+upstream services. Examples of Services would be a data transformation
+microservice, a billing API, etc.
+
+The main attribute of a Service is its URL (where Kong should proxy traffic
+to), which can be set as a single string or by specifying its `protocol`,
+`host`, `port` and `path` individually.
+
+Services are associated to Routes (a Service can have many Routes associated
+with it). Routes are entry-points in Kong and define rules to match client
+requests. Once a Route is matched, Kong proxies the request to its associated
+Service. See the [Proxy Reference][proxy-reference] for a detailed explanation
+of how Kong proxies traffic.
+
+```json
+{{ page.service_json }}
+```
+
+---
+
+### Add Service
+
+#### Endpoint
+
+<div class="endpoint post">/services/</div>
+
+#### Request Body
+
+{{ page.service_body }}
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{{ page.service_json }}
+```
+
+---
+
+### Retrieve Service
+
+#### Endpoints
+
+<div class="endpoint get">/services/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
+
+<div class="endpoint get">/routes/{route id}/service</div>
+
+Attributes | Description
+---:| ---
+`route id`<br>**required** | The unique identifier of a Route belonging to the Service to be retrieved.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.service_json }}
+```
+---
+
+### List Services
+
+#### Endpoint
+
+<div class="endpoint get">/services/</div>
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 10,
+    "data": [{
+        "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2",
+        "created_at": 1488869076800,
+        "updated_at": 1488869076800,
+        "connect_timeout": 60000,
+        "protocol": "http",
+        "host": "example.org",
+        "port": 80,
+        "path": "/api",
+        "name": "example-service",
+        "retries": 5,
+        "read_timeout": 60000,
+        "write_timeout": 60000
+    }, {
+        "id": "8e13faaa-ee42-44ea-8421-255bc12316a1",
+        "created_at": 1488869077320,
+        "updated_at": 1488869077320,
+        "connect_timeout": 60000,
+        "protocol": "http",
+        "host": "example2.org",
+        "port": 80,
+        "path": "/api",
+        "name": "example-service2",
+        "retries": 5,
+        "read_timeout": 60000,
+        "write_timeout": 60000
+    }],
+    "next": "http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+}
+```
+
+---
+
+### Update Service
+
+#### Endpoints
+
+<div class="endpoint patch">/services/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The `id` **or** the `name` attribute of the Service to update.
+
+<div class="endpoint patch">/routes/{route id}/service</div>
+
+Attributes | Description
+---:| ---
+`route id`<br>**required** | The `id` attribute of the Route whose Service is to be updated.
+
+#### Request Body
+
+{{ page.service_body }}
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.service_json }}
+```
+
+---
+
+### Delete Service
+
+#### Endpoint
+
+<div class="endpoint delete">/services/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The `id` **or** the `name` attribute of the Service to delete.
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+---
+
+## Route Object
+
+The Route entities defines rules to match client requests. Each Route is
+associated with a Service, and a Service may have multiple Routes associated to
+it. Every request matching a given Route will be proxied to its associated
+Service.
+
+The combination of Routes and Services (and the separation of concerns between
+them) offers a powerful routing mechanism with which it is possible to define
+fine-grained entry-points in Kong leading to different upstream services of
+your infrastructure.
+
+```json
+{{ page.route_json }}
+```
+
+---
+
+### Add Route
+
+#### Endpoints
+
+<div class="endpoint post">/routes/</div>
+
+<div class="endpoint post">/services/{service name or id}/routes/</div>
+
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The `id` **or** the `name` attribute of the Service the new Route should be associated with. The `service` entry does not need to be included in the request body when using this endpoint.
+
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{{ page.route_json }}
+```
+
+### Retrieve Route
+
+#### Endpoints
+
+<div class="endpoint get">/routes/{id}</div>
+
+Attributes | Description
+---:| ---
+`id`<br>**required** | The `id` attribute of the Route to retrieve.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.route_json }}
+```
+
+---
+
+### List Routes
+
+#### Endpoints
+
+<div class="endpoint get">/routes</div>
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 10,
+    "data": [{
+      "id": "22108377-8f26-4c0e-bd9e-2962c1d6b0e6",
+      "created_at": 14888869056483,
+      "updated_at": 14888869056483,
+      "protocols": ["http", "https"],
+      "methods": null,
+      "hosts": ["example.com"],
+      "paths": null,
+      "regex_priority": 0,
+      "strip_path": true,
+      "preserve_host": false,
+      "service": {
+          "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2"
+      }
+    }, {
+      "id": "8d9b862b-527c-4bf1-9786-bfbb728f6539",
+      "created_at": 14888869056435,
+      "updated_at": 14888869056435,
+      "protocols": ["http"],
+      "methods": ["GET"],
+      "hosts": ["example.com"],
+      "paths": ["/private"],
+      "regex_priority": 0,
+      "strip_path": true,
+      "preserve_host": false,
+      "service": {
+          "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2"
+      }
+    }],
+    "next": "http://localhost:8001/services/foo/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+}
+```
+
+---
+
+### List Routes associated to a Service
+
+#### Endpoints
+
+<div class="endpoint get">/services/{service name or id}/routes</div>
+
+#### Request Querystring Parameters
+
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The `id` **or** the `name` attribute of the Service whose routes are to be Retrieved. When using this endpoint, only the Routes belonging to the specified Service will be listed.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 10,
+    "data": [{
+      "id": "22108377-8f26-4c0e-bd9e-2962c1d6b0e6",
+      "created_at": 14888869056483,
+      "updated_at": 14888869056483,
+      "protocols": ["http", "https"],
+      "methods": null,
+      "hosts": ["example.com"],
+      "paths": null,
+      "regex_priority": 0,
+      "strip_path": true,
+      "preserve_host": false,
+      "service": {
+          "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2"
+      }
+    }, {
+      "id": "8d9b862b-527c-4bf1-9786-bfbb728f6539",
+      "created_at": 14888869056435,
+      "updated_at": 14888869056435,
+      "protocols": ["http"],
+      "methods": ["GET"],
+      "hosts": ["example.com"],
+      "paths": ["/private"],
+      "regex_priority": 0,
+      "strip_path": true,
+      "preserve_host": false,
+      "service": {
+          "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2"
+      }
+    }],
+    "next": "http://localhost:8001/services/foo/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+}
+```
+
+---
+
+### Update Route
+
+#### Endpoint
+
+<div class="endpoint patch">/routes/{id}</div>
+
+Attributes | Description
+---:| ---
+`id`<br>**required** | The `id` attribute of the Route to update.
+
+#### Request Body
+
+{{ page.route_body }}
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.service_json }}
+```
+
+---
+
+### Delete Route
+
+#### Endpoint
+
+<div class="endpoint delete">/routes/{id}</div>
+
+Attributes | Description
+---:| ---
+`id`<br>**required** | The `id` attribute of the Route to delete.
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+---
+
 ## API Object
 
 <div class="alert alert-warning">
@@ -246,7 +698,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
 
 <div class="endpoint post">/apis/</div>
 
-#### Request Body
+#### request body
 
 {{ page.api_body }}
 
@@ -2123,3 +2575,4 @@ HTTP 204 No Content
 [active]: /docs/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
 [healthchecks]: /docs/{{page.kong_version}}/health-checks-circuit-breakers
 [secure-admin-api]: /docs/{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /docs/{{page.kong_version}}/proxy
