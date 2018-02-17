@@ -98,7 +98,7 @@ target_body: |
 upstream_body: |
     Attributes | Description
     ---:| ---
-    `name` | This is a hostname like name that can be referenced in an `upstream_url` field of an `api`.
+    `name` | This is a hostname like name that can be referenced in an `url` field of a `Service`.
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
     `hash_on`<br>*optional* | What to use as hashing input: `none`, `consumer`, `ip`, or `header` (defaults to `none` resulting in a weighted-round-robin scheme).
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified): `none`, `consumer`, `ip`, or `header` (defaults to `none`).
@@ -134,6 +134,8 @@ snis_body: |
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
     `ssl_certificate_id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname.
+
+
 
 ---
 
@@ -698,7 +700,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
 
 <div class="endpoint post">/apis/</div>
 
-#### request body
+#### Request body
 
 {{ page.api_body }}
 
@@ -920,12 +922,11 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
-
 ---
 
 ## Consumer Object
 
-The Consumer object represents a consumer - or a user - of an API. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
+The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
 
 ```json
 {
@@ -1109,19 +1110,19 @@ HTTP 204 No Content
 
 A Plugin entity represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
-to APIs that run behind Kong, like Authentication or Rate Limiting for
+to Services that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
 each plugin takes by visiting the [Plugins Gallery](/plugins).
 
-When adding a Plugin Configuration to an API, every request made by a client to
-that API will run said Plugin. If a Plugin needs to be tuned to different
+When adding a Plugin Configuration to a Service, every request made by a client to
+that Service will run said Plugin. If a Plugin needs to be tuned to different
 values for some specific Consumers, you can do so by specifying the
 `consumer_id` value:
 
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+    "service_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
     "name": "rate-limiting",
     "config": {
@@ -1137,10 +1138,10 @@ See the [Precedence](#precedence) section below for more details.
 
 #### Precedence
 
-Plugins can be added globally (all APIs), on a single API, single Consumer,
-or a combination of both an API and a Consumer. Additionally, a given plugin
-(e.g. `key-auth`) will only run once per request, even if it is configured
-twice (e.g. globally *and* on an API).
+Plugins can be added globally (all Services), on a single Service,
+a single route, a single Consumer, or a combination of both Service/Route and
+a Consumer. Additionally, a given plugin (e.g. `key-auth`) will only run once
+per request, even if it is configured twice (e.g. globally *and* on a Service).
 
 Therefore, there exists an order of precedence when the same plugin is applied
 to different entities with different configurations. This order implies that
@@ -1148,21 +1149,24 @@ such a plugin that is configured twice, will only run once.
 
 The order of precedence is, from highest to lowest:
 
-1. Plugins applied on a combination of an API and a Consumer (if the request is
+1. Plugins applied on a combination of an Service and a Consumer (if the request is
    authenticated).
-2. Plugins applied to a Consumer (if the request is authenticated).
-3. Plugins applied to an API.
-4. Plugins configured to run globally.
+2. Plugins applied on a combination of an Route and a Consumer (if the request is
+   authenticated).
+3. Plugins applied to a Consumer (if the request is authenticated).
+4. Plugins applied to an Route.
+5. Plugins applied to an Service.
+6. Plugins configured to run globally.
 
 **Example**: if the `rate-limiting` plugin is applied twice (with different
-configurations): for an API (Plugin config A), and for a Consumer (Plugin
+configurations): for an Service (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B
 and ignore A (2.). However, requests that do not authenticate this Consumer
 will fallback to running Plugin config A (3.).
 
 This behavior is particularly useful when the intent is to override the
 configuration of a particular plugin (e.g. allow a higher rate limiting) for a
-given API or Consumer.
+given Service or Consumer.
 
 ---
 
@@ -1170,20 +1174,17 @@ given API or Consumer.
 
 You can add a plugin in four different ways:
 
-* For every API and Consumer. Don't set `api_id` and `consumer_id`.
-* For every API and a specific Consumer. Only set `consumer_id`.
-* For every Consumer and a specific API. Only set `api_id`.
-* For a specific Consumer and API. Set both `api_id` and `consumer_id`.
+* For every Service/Route and Consumer. Don't set `consumer_id` and set `service_id` or `route_id`.
+* For every Service/Route and a specific Consumer. Only set `consumer_id`.
+* For every Consumer and a specific Service. Only set `service_id` (warning: some plugins only allow setting their `route_id`)
+* For every Consumer and a specific Route. Only set `route_id` (warning: some plugins only allow setting their `service_id`)
+* For a specific Service/Route and Consumer. Set both `service_id`/`route_id` and `consumer_id`.
 
 Note that not all plugins allow to specify `consumer_id`. Check the plugin documentation.
 
 #### Endpoint
 
-<div class="endpoint post">/apis/{name or id}/plugins/</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the API on which to add a plugin configuration. If you are adding a plugin to every API use the `/plugins` endpoint instead without specifying an `api_id`.
+<div class="endpoint post">/plugins/</div>
 
 #### Request Body
 
@@ -1198,7 +1199,7 @@ HTTP 201 Created
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+    "service_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
     "name": "rate-limiting",
     "config": {
@@ -1231,7 +1232,7 @@ HTTP 200 OK
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+    "service_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
     "name": "rate-limiting",
     "config": {
@@ -1257,7 +1258,8 @@ Attributes | Description
 ---:| ---
 `id`<br>*optional* | A filter on the list based on the `id` field.
 `name`<br>*optional* | A filter on the list based on the `name` field.
-`api_id`<br>*optional* | A filter on the list based on the `api_id` field.
+`service_id`<br>*optional* | A filter on the list based on the `service_id` field.
+`route_id`<br>*optional* | A filter on the list based on the `route_id` field.
 `consumer_id`<br>*optional* | A filter on the list based on the `consumer_id` field.
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
@@ -1274,7 +1276,7 @@ HTTP 200 OK
     "data": [
       {
           "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+          "service_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
           "name": "rate-limiting",
           "config": {
               "minute": 20,
@@ -1285,64 +1287,7 @@ HTTP 200 OK
       },
       {
           "id": "3f924084-1adb-40a5-c042-63b19db421a2",
-          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-          "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
-          "name": "rate-limiting",
-          "config": {
-              "minute": 300,
-              "hour": 20000
-          },
-          "enabled": true,
-          "created_at": 1422386585
-      }
-    ],
-    "next": "http://localhost:8001/plugins?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
-}
-```
-
----
-
-### List Plugins per API
-
-#### Endpoint
-
-<div class="endpoint get">/apis/{api name or id}/plugins/</div>
-
-#### Request Querystring Parameters
-
-Attributes | Description
----:| ---
-`id`<br>*optional* | A filter on the list based on the `id` field.
-`name`<br>*optional* | A filter on the list based on the `name` field.
-`api_id`<br>*optional* | A filter on the list based on the `api_id` field.
-`consumer_id`<br>*optional* | A filter on the list based on the `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
-
-#### Response
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-    "total": 10,
-    "data": [
-      {
-          "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
-          "name": "rate-limiting",
-          "config": {
-              "minute": 20,
-              "hour": 500
-          },
-          "enabled": true,
-          "created_at": 1422386534
-      },
-      {
-          "id": "3f924084-1adb-40a5-c042-63b19db421a2",
-          "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+          "service_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
           "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
           "name": "rate-limiting",
           "config": {
@@ -1363,12 +1308,11 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint patch">/apis/{api name or id}/plugins/{plugin id}</div>
+<div class="endpoint patch">/plugins/{plugin id}</div>
 
 Attributes | Description
 ---:| ---
-`api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update the plugin configuration
-`plugin id`<br>**required** | The unique identifier of the plugin configuration to update on this API
+`plugin id`<br>**required** | The unique identifier of the plugin configuration to update
 
 #### Request Body
 
@@ -1383,7 +1327,7 @@ HTTP 200 OK
 ```json
 {
     "id": "4d924084-1adb-40a5-c042-63b19db421d1",
-    "api_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
+    "service_id": "5fd1z584-1adb-40a5-c042-63b19db49x21",
     "consumer_id": "a3dX2dh2-1adb-40a5-c042-63b19dbx83hF4",
     "name": "rate-limiting",
     "config": {
@@ -1401,11 +1345,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint put">/apis/{api name or id}/plugins/</div>
-
-Attributes | Description
----:| ---
-`api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update or create the plugin configuration
+<div class="endpoint put">/plugins/</div>
 
 #### Request Body
 
@@ -1432,12 +1372,11 @@ See POST and PATCH responses.
 
 #### Endpoint
 
-<div class="endpoint delete">/apis/{api name or id}/plugins/{plugin id}</div>
+<div class="endpoint delete">/plugins/{plugin id}</div>
 
 Attributes | Description
 ---:| ---
-`api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
-`plugin id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
+`plugin id`<br>**required** | The unique identifier of the plugin configuration to delete
 
 #### Response
 
@@ -1885,8 +1824,8 @@ HTTP 204 No Content
 
 The upstream object represents a virtual hostname and can be used to loadbalance
 incoming requests over multiple services (targets). So for example an upstream
-named `service.v1.xyz` with an API object created with an `upstream_url=https://service.v1.xyz/some/path`.
-Requests for this API would be proxied to the targets defined within the upstream.
+named `service.v1.xyz` with an Service object created with an `url=https://service.v1.xyz/some/path`.
+Requests for this Service would be proxied to the targets defined within the upstream.
 
 An upstream also includes a [health checker][healthchecks], which is able to
 enable and disable targets based on their ability or inability to serve
