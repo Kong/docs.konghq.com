@@ -95,6 +95,45 @@
         - text: Retrieve node status
           url: /admin-api/#retrieve-node-status
 
+    - text: Service Object
+      url: /admin-api/#service-object
+      items:
+        - text: Add Service
+          url: /admin-api/#add-service
+
+        - text: Retrieve Service
+          url: /admin-api/#retrieve-service
+
+        - text: List Services
+          url: /admin-api/#list-services
+
+        - text: Update Service
+          url: /admin-api/#update-service
+
+        - text: Delete Service
+          url: /admin-api/#delete-service
+
+    - text: Route Object
+      url: /admin-api/#route-object
+      items:
+        - text: Add Route
+          url: /admin-api/#add-route
+
+        - text: Retrieve Route
+          url: /admin-api/#retrieve-route
+
+        - text: List Routes
+          url: /admin-api/#list-routes
+
+        - text: List Routes associated to a Service
+          url: /admin-api/#list-routes-associated-to-a-service
+
+        - text: Update Route
+          url: /admin-api/#update-route
+
+        - text: Delete Route
+          url: /admin-api/#delete-route
+
     - text: API Object routes
       url: /admin-api/#api-object
       items:
