@@ -139,7 +139,7 @@ HTTP 200 OK
 ```json
 {
     "hostname": "",
-    "lua_version": "LuaJIT 2.1.0-alpha",
+    "lua_version": "LuaJIT 2.1.0-beta3",
     "plugins": {
         "available_on_server": [
             ...
@@ -152,7 +152,7 @@ HTTP 200 OK
         ...
     },
     "tagline": "Welcome to Kong",
-    "version": "0.11.0"
+    "version": "0.13.0"
 }
 ```
 
