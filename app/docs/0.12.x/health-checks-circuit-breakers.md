@@ -32,7 +32,7 @@ on their behavior responding requests.
   - [Summary of pros and cons](#summary-of-pros-and-cons)
 - [Enabling and disabling health checks](#enabling-and-disabling-health-checks)
   - [Enabling active health checks](#enabling-active-health-checks)
-  - [Enabling active health checks](#enabling-active-health-checks)
+  - [Enabling passing health checks](#enabling-passive-health-checks)
   - [Disabling health checks](#disabling-health-checks)
 
 ### Healthy and unhealthy targets
@@ -218,8 +218,7 @@ For configuring the probe, you need to specify:
 issuing the HTTP GET request to the target. The default value is `"/"`.
 * `healthchecks.active.timeout` - The connection timeout limit for the
 HTTP GET request of the probe. The default value is 1 second.
-* `healthchecks.active.concurrency` - The connection timeout limit for the
-HTTP GET request of the probe. The default value is 1 second.
+* `healthchecks.active.concurrency` - Number of targets to check concurrently in active health checks.
 
 You also need to specify positive values for intervals, for running
 probes:
