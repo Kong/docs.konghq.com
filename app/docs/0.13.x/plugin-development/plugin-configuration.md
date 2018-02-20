@@ -18,13 +18,14 @@ Most of the time, it makes sense for your plugin to be configurable to answer al
 
 The configuration consists of a Lua table in Kong that we call a **schema**. It contains key/value properties that the user will set when enabling the plugin through the [Admin API]. Kong provides you with a way of validating the user's configuration for your plugin.
 
-Your plugin's configuration is being verified against your schema when a user issues a request to the [Admin API] to enable or update a plugin on a given API and/or Consumer.
+Your plugin's configuration is being verified against your schema when a user issues a request to the [Admin API] to enable or update a plugin on a given Service, Route and/or Consumer.
 
 For example, a user performs the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/<api name>/plugins \
+$ curl -X POST http://kong:8001/plugins/ \
     -d "name=my-custom-plugin" \
+    -d "service_id=<a-service-id>" \
     -d "config.foo=bar"
 ```
 
@@ -38,7 +39,7 @@ This module is to return a Lua table with properties that will define how your p
 
 | Property name                 | Lua type    | Default          | Description
 |-------------------------------|-------------|------------------|-------------
-| `no_consumer`                 | Boolean     | `false`          | If true, it will not be possible to apply this plugin to a specific Consumer. This plugin must be API-wide only. For example: authentication plugins.
+| `no_consumer`                 | Boolean     | `false`          | If true, it will not be possible to apply this plugin to a specific Consumer. This plugin must be applied to Services and Routes only. For example: authentication plugins.
 | `fields`                      | Table       | `{}`             | Your plugin's **schema**. A key/value table of available properties and their rules.
 | `self_check`                  | Function    | `nil`            | A function to implement if you want to perform any custom validation before accepting the plugin's configuration.
 
@@ -57,7 +58,7 @@ Here is an example of a potential `schema.lua` file:
 
 ```lua
 return {
-  no_consumer = true, -- this plugin will only be API-wide,
+  no_consumer = true, -- this plugin will only be applied to Services or Routes,
   fields = {
     -- Describe your plugin's configuration's schema here.
   },
@@ -179,8 +180,9 @@ return {
 Such a configuration will allow a user to post the configuration to your plugin as follows:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/<api name>/plugins \
+$ curl -X POST http://kong:8001/plugins \
     -d "name=<my-custom-plugin>" \
+    -d "service_id=<the-service-id>" \
     -d "config.environment=development" \
     -d "config.server.host=http://localhost"
 ```

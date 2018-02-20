@@ -19,31 +19,32 @@ allow you to easily add new features to your API or make your API easier to
 manage.
 
 In the steps below you will configure the [key-auth][key-auth] plugin to add
-authentication to your API. Prior to the addition of this plugin, **all**
-requests to your API would be proxied upstream. Once you add and configure this
+authentication to your Service. Prior to the addition of this plugin, **all**
+requests to your Service would be proxied upstream. Once you add and configure this
 plugin, **only** requests with the correct API key(s) will be proxied - all
 other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
-1. ### Configure the key-auth plugin for your API
 
-    Issue the following cURL request on the previously created API named
-    `example-api`:
+1. ### Configure the key-auth plugin for the Service you created <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">when adding your API to Kong</a>.
+
+    Issue the following cURL request:
 
     ```bash
     $ curl -i -X POST \
-      --url http://localhost:8001/apis/example-api/plugins/ \
+      --url http://localhost:8001/plugins/ \
       --data 'name=key-auth'
+      --data 'service_id=<your-service-id>'
     ```
 
     **Note:** This plugin also accepts a `config.key_names` parameter, which
-    defaults to `[apikey]`. It is a list of headers and parameters names (both
+    defaults to `['apikey']`. It is a list of headers and parameters names (both
     are supported) that are supposed to contain the API key during a request.
 
 2. ### Verify that the plugin is properly configured
 
     Issue the following cURL request to verify that the [key-auth][key-auth]
-    plugin was properly configured on the API:
+    plugin was properly configured on the service:
 
     ```bash
     $ curl -i -X GET \
@@ -66,7 +67,7 @@ from unauthorized use.
 ### Next Steps
 
 Now that you've configured the **key-auth** plugin lets learn how to add
-consumers to your API so we can continue proxying requests through Kong.
+consumers to your Service so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 

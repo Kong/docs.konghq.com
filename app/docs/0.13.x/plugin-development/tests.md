@@ -29,59 +29,62 @@ Assuming that the `spec.helpers` module is available in your `LUA_PATH`, you can
 ```lua
 local helpers = require "spec.helpers"
 
-describe("my plugin", function()
+for _, strategy in helpers.each_strategy() do
+  describe("my plugin", function()
 
-  local proxy_client
-  local admin_client
+    local bp = helpers.get_db_utils(strategy)
 
-  setup(function()
-    assert(helpers.dao.apis:insert {
-      name         = "test-api",
-      hosts        = "test.com",
-      upstream_url = "http://httpbin.org"
-    })
+    setup(function()
+      local service = bp.services:insert {
+        name = "test-service",
+        host = "httpbin.org"
+      }
 
-    -- start Kong with your testing Kong configuration (defined in "spec.helpers")
-    assert(helpers.start_kong())
-
-    admin_client = helpers.admin_client()
-  end)
-
-  teardown(function()
-    if admin_client then
-      admin_client:close()
-    end
-
-    helpers.stop_kong()
-  end)
-
-  before_each(function()
-    proxy_client = helpers.proxy_client()
-  end)
-
-  after_each(function()
-    if proxy_client then
-      proxy_client:close()
-    end
-  end)
-
-  describe("thing", function()
-    it("should do thing", function()
-      -- send requests through Kong
-      local res = assert(proxy_client:send {
-        method = "GET",
-        path   = "/get",
-        headers = {
-          ["Host"] = "test.com"
-        }
+      bp.routes:insert({
+        hosts = { "test.com" },
+        service = { id = service.id }
       })
 
-      local body = assert.res_status(200, res)
+      -- start Kong with your testing Kong configuration (defined in "spec.helpers")
+      assert(helpers.start_kong())
 
-      -- body is a string containing the response
+      admin_client = helpers.admin_client()
+    end)
+
+    teardown(function()
+      if admin_client then
+        admin_client:close()
+      end
+
+      helpers.stop_kong()
+    end)
+
+    before_each(function()
+      proxy_client = helpers.proxy_client()
+    end)
+
+    after_each(function()
+      if proxy_client then
+        proxy_client:close()
+      end
+    end)
+
+    describe("thing", function()
+      it("should do thing", function()
+        -- send requests through Kong
+        local res = proxy_client:get("/get", {
+          headers = {
+            ["Host"] = "test.com"
+          }
+        })
+
+        local body = assert.res_status(200, res)
+
+        -- body is a string containing the response
+      end)
     end)
   end)
-end)
+end
 ```
 
 > Reminder: With the test Kong configuration file, Kong is running with its proxy listening on port 8100 and Admin API on port 8101.

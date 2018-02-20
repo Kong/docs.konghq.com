@@ -77,7 +77,7 @@ plugin][enabling-plugins] or skip steps two and three.
 
 ### Next Steps
 
-Now that we've covered the basics of adding APIs, Consumers and enabling
+Now that we've covered the basics of adding Services, Routes, Consumers and enabling
 Plugins, feel free to read more on Kong in one of the following documents:
 
 - [Configuration file Reference][configuration]

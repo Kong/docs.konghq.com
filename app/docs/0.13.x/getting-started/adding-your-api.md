@@ -12,30 +12,27 @@ title: Adding your API
   </ol>
 </div>
 
-In this section, you'll be adding your API to the Kong layer. This is the first
+In this section, you'll be adding your Service to the Kong layer. This is the first
 step to having Kong manage your API. For purposes of this Getting Started
-guide, we suggest adding the [Mockbin API][mockbin] to Kong, as Mockbin is
+guide, we suggest adding the [Mockbin Service][mockbin] to Kong, as Mockbin is
 helpful for learning how Kong proxies your API requests.
 
 Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
 configuration of your Kong instance or cluster.
 
-1. ### Add your API using the Admin API
+1. ### Add your Service using the Admin API
 
-    Issue the following cURL request to add your first API ([Mockbin][mockbin])
+    Issue the following cURL request to add your first Service ([Mockbin][mockbin])
     to Kong:
 
     ```bash
     $ curl -i -X POST \
-      --url http://localhost:8001/apis/ \
-      --data 'name=example-api' \
-      --data 'hosts=example.com' \
-      --data 'upstream_url=http://mockbin.org'
+      --url http://localhost:8001/services/ \
+      --data 'name=example-service' \
+      --data 'url=http://mockbin.org'
     ```
 
-2. ### Verify that your API has been added
-
-    You should see a similar response from that request:
+    You should receive a response similar to:
 
     ```http
     HTTP/1.1 201 Created
@@ -43,30 +40,66 @@ configuration of your Kong instance or cluster.
     Connection: keep-alive
 
     {
-      "created_at": 1488830759000,
-      "hosts": [
-          "example.com"
-      ],
-      "http_if_terminated": false,
-      "https_only": false,
-      "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
-      "name": "example-api",
-      "preserve_host": false,
-      "retries": 5,
-      "strip_uri": true,
-      "upstream_connect_timeout": 60000,
-      "upstream_read_timeout": 60000,
-      "upstream_send_timeout": 60000,
-      "upstream_url": "http://mockbin.org"
+       "host":"mockbin.org",
+       "created_at":1519130509,
+       "connect_timeout":60000,
+       "id":"92956672-f5ea-4e9a-b096-667bf55bc40c",
+       "protocol":"http",
+       "name":"example-service",
+       "read_timeout":60000,
+       "port":80,
+       "path":null,
+       "updated_at":1519130509,
+       "retries":5,
+       "write_timeout":60000
     }
     ```
 
-    Kong is now aware of your API and ready to proxy requests.
+
+2. ### Add a Route for the Service
+
+    ```bash
+    $ curl -i -X POST \
+      --url http://localhost:8001/services/example-service/routes \
+      --data 'hosts[]=example.com'
+    ```
+
+
+    The answer should be similar to:
+
+    ```http
+    HTTP/1.1 201 Created
+    Content-Type: application/json
+    Connection: keep-alive
+
+    {
+       "created_at":1519131139,
+       "strip_path":true,
+       "hosts":[
+          "example.com"
+       ],
+       "preserve_host":false,
+       "regex_priority":0,
+       "updated_at":1519131139,
+       "paths":null,
+       "service":{
+          "id":"79d7ee6e-9fc7-4b95-aa3b-61d2e17e7516"
+       },
+       "methods":null,
+       "protocols":[
+          "http",
+          "https"
+       ],
+       "id":"f9ce2ed7-c06e-4e16-bd5d-3a82daef3f9d"
+    }
+    ```
+
+    Kong is now aware of your Service and ready to proxy requests.
 
 3. ### Forward your requests through Kong
 
     Issue the following cURL request to verify that Kong is properly forwarding
-    requests to your API. Note that [by default][proxy-port] Kong handles proxy
+    requests to your Service. Note that [by default][proxy-port] Kong handles proxy
     requests on port `:8000`:
 
     ```bash
@@ -76,7 +109,7 @@ configuration of your Kong instance or cluster.
     ```
 
     A successful response means Kong is now forwarding requests made to
-    `http://localhost:8000` to the `upstream_url` we configured in step #1,
+    `http://localhost:8000` to the `url` we configured in step #1,
     and is forwarding the response back to us. Kong knows to do this through
     the header defined in the above cURL request:
 
@@ -88,7 +121,7 @@ configuration of your Kong instance or cluster.
 
 ## Next Steps
 
-Now that you've added your API to Kong, let's learn how to enable plugins.
+Now that you've added your Service to Kong, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
