@@ -85,12 +85,16 @@ layout: default
       <div class="one-half column">
         <ol>
           <li>
-            <h4>Add your API on Kong</h4>
-            <p>After <a href="/install">installing</a> and starting Kong, use the Admin API on port 8001 to add a new API. Kong will route every incoming request with the specified public DNS to the associated target URL.<br/><br/></p>
+            <h4>Register a Service in Kong</h4>
+            <p>After <a href="/install">installing</a> and starting Kong, use the Admin API on port 8001 to add a new Service. Services represent upstream servers containing an API.</p>
           </li>
           <li>
-            <h4>Add Plugins on the API</h4>
-            <p>Then add extra functionality by using <a href="/plugins">Kong Plugins</a>. You can also create your own plugins.</p>
+            <h4>Add a Route to the Service</h4>
+            <p>Once you have a Service, add one (or many!) Route to it. Routes control how requests are transmitted to Services, as well as some basic transformations.</p>
+          </li>
+          <li>
+            <h4>Add Plugins on the Route or the Service</h4>
+            <p>Then add extra functionality by using <a href="/plugins">Kong Plugins</a>. You can also create your own plugins.</br></br></br></p>
           </li>
           <li>
             <h4>Make a Request</h4>
@@ -101,15 +105,21 @@ layout: default
       <div class="one-half column">
         <div class="highlight">
           <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
-  --url http://localhost:8001/apis/ <span class="se">\</span>
-  --data <span class="s1">'name=example-api'</span> <span class="se">\</span>
-  --data <span class="s1">'hosts=example.com'</span> <span class="se">\</span>
-  --data <span class="s1">'upstream_url=http://example.com'</span></code></pre>
+  --url http://localhost:8001/services/ <span class="se">\</span>
+  --data <span class="s1">'name=example'</span> <span class="se">\</span>
+  --data <span class="s1">'url=http://example.com'</span> </code></pre>
         </div>
 
         <div class="highlight">
           <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
-  --url http://localhost:8001/apis/example-api/plugins/ <span class="se">\</span>
+  --url http://localhost:8001/services/example/routes/ <span class="se">\</span>
+  --data <span class="s1">'hosts[]=example.com'</span> </span></code></pre>
+        </div>
+
+        <div class="highlight">
+          <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
+  --url http://localhost:8001/plugins/ <span class="se">\</span>
+  --data <span class="s1">'service_id=[your-service-id]'</span> <span class="se">\</span>
   --data <span class="s1">'name=rate-limiting'</span> <span class="se">\</span>
   --data <span class="s1">'config.minute=100'</span></code></pre>
         </div>
