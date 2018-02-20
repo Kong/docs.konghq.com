@@ -4,9 +4,9 @@ title: Loadbalancing reference
 
 # Load Balancing Reference
 
-Kong provides multiple ways of load balancing requests to multiple backend services:
-a straightforward DNS-based method, and a more dynamic ring-balancer that also
-allows for service registry without needing a DNS server.
+Kong provides multiple ways of load balancing requests to multiple backend
+services: a straightforward DNS-based method, and a more dynamic ring-balancer
+that also allows for service registry without needing a DNS server.
 
 ### Table of Contents
 
@@ -25,13 +25,13 @@ allows for service registry without needing a DNS server.
 
 ### DNS-based loadbalancing
 
-When using DNS based load balancing the registration of the backend services is
-done outside of Kong, and Kong only receives updates from the DNS server.
+When using DNS-based load balancing, the registration of the backend services
+is done outside of Kong, and Kong only receives updates from the DNS server.
 
-Every API that has been defined with an `upstream_url` containing a hostname
-(instead of an IP address) will automatically use DNS based load balancing
+Every Service that has been defined with a `host` containing a hostname
+(instead of an IP address) will automatically use DNS-based load balancing
 if the name resolves to multiple IP addresses, provided the hostname does not
-resolve to an `upstream` name or a name in your `localhosts` file.
+resolve to an `upstream` name or a name in your DNS hostsfile.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
@@ -62,8 +62,8 @@ Because the `weight` information is available, each entry will get its own
 weight in the load balancer and it will perform a weighted round-robin.
 
 Similarly, any given port information will be overridden by the port information from
-the DNS server. If an API has an `upstream_url=http://myhost.com:123/somepath`
-and `myhost.com` resolves to a SRV record with `127.0.0.1:456` then the request
+the DNS server. If a Service has an `host=myhost.com` attribute,
+and `myhost.com` resolves to an SRV record with `127.0.0.1:456`, then the request
 will be proxied to `http://127.0.0.1:456/somepath`, as port `123` will be 
 overridden by `456`.
 
@@ -125,9 +125,9 @@ entities.
     service resides, eg. "192.168.100.12:80". Each target gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
-  - `upstream`: a 'virtual hostname' which can be used in an API `upstream_url`
+  - `upstream`: a 'virtual hostname' which can be used in a Route `host`
     field, e.g., an upstream named `weather.v2.service` would get all requests
-    from an api with `upstream_url=http://weather.v2.service/some/path`.
+    from a Service with `host=weather.v2.service`.
 
 [Back to TOC](#table-of-contents)
 
@@ -140,7 +140,7 @@ number of slots, and based on the target weights the slots get assigned to the
 targets of the upstream.
 
 Adding and removing targets can be done with a simple HTTP request on the 
-management API. This operation is relatively cheap. Changing the upstream
+Admin API. This operation is relatively cheap. Changing the upstream
 itself is more expensive as the balancer will need to be rebuilt when the 
 number of slots change for example.
 
@@ -265,8 +265,8 @@ in the hash output.
 ### **Blue-Green Deployments**
 
 Using the ring-balancer a [blue-green deployment][blue-green-canary] can be easily orchestrated for 
-an API. Switching target infrastructure only requires a `PATCH` request on an
-API, to change the `upstream` name. 
+a Service. Switching target infrastructure only requires a `PATCH` request on a
+Service, to change its `host` value. 
 
 Set up the "Blue" environment, running version 1 of the address service:
 
@@ -283,11 +283,15 @@ $ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
     --data "target=192.168.34.16:80"
     --data "weight=50"
 
-# create an API targeting the Blue upstream
-$ curl -X POST http://kong:8001/apis/ \
+# create a Service targeting the Blue upstream
+$ curl -X POST http://kong:8001/services/ \
     --data "name=address-service" \
-    --data "hosts=address.mydomain.com" \
-    --data "upstream_url=http://address.v1.service/address"
+    --data "host=address.v1.service" \
+    --data "path=/address"
+
+# finally, add a Route as an entry-point into the Service
+$ curl -X POST http://kong:8001/services/address-service/routes/ \
+    --data "hosts[]=address.mydomain.com"
 ```
 
 Requests with host header set to `address.mydomain.com` will now be proxied
@@ -312,12 +316,12 @@ $ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
     --data "weight=100"
 ```
 
-To activate the Blue/Green switch, we now only need to update the API:
+To activate the Blue/Green switch, we now only need to update the Service:
 
 ```bash
-# Switch the API from Blue to Green upstream, v1 -> v2
-$ curl -X PATCH http://kong:8001/apis/address-service \
-    --data "upstream_url=http://address.v2.service/address"
+# Switch the Service from Blue to Green upstream, v1 -> v2
+$ curl -X PATCH http://kong:8001/services/address-service \
+    --data "host=address.v2.service"
 ```
 
 Incoming requests with host header set to `address.mydomain.com` will now be
@@ -325,7 +329,7 @@ proxied by Kong to the new targets; 1/2 of the requests will go to
 `http://192.168.34.17:80/address` (`weight=100`), and the other 1/2 will go to
 `http://192.168.34.18:80/address` (`weight=100`).
 
-As always, the changes through the Kong management API are dynamic and will take
+As always, the changes through the Kong Admin API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
@@ -365,7 +369,7 @@ $ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
     --data "weight=100"
 ```
 
-The changes through the Kong management API are dynamic and will take
+The changes through the Kong Admin API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
