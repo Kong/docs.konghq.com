@@ -32,7 +32,7 @@ on their behavior responding requests.
   - [Summary of pros and cons](#summary-of-pros-and-cons)
 - [Enabling and disabling health checks](#enabling-and-disabling-health-checks)
   - [Enabling active health checks](#enabling-active-health-checks)
-  - [Enabling passing health checks](#enabling-passive-health-checks)
+  - [Enabling passive health checks](#enabling-passive-health-checks)
   - [Disabling health checks](#disabling-health-checks)
 
 ### Healthy and unhealthy targets
