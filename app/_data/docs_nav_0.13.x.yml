@@ -188,9 +188,6 @@
         - text: List all Plugins
           url: /admin-api/#list-all-plugins
 
-        - text: List Plugins per API
-          url: /admin-api/#list-plugins-per-api
-
         - text: Update Plugin
           url: /admin-api/#update-plugin
 

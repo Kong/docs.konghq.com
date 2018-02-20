@@ -98,7 +98,7 @@ target_body: |
 upstream_body: |
     Attributes | Description
     ---:| ---
-    `name` | This is a hostname like name that can be referenced in an `url` field of a `Service`.
+    `name` | This is a hostname, which must be equal to the `host` of a Service.
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
     `hash_on`<br>*optional* | What to use as hashing input: `none`, `consumer`, `ip`, or `header` (defaults to `none` resulting in a weighted-round-robin scheme).
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified): `none`, `consumer`, `ip`, or `header` (defaults to `none`).
@@ -134,8 +134,6 @@ snis_body: |
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
     `ssl_certificate_id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname.
-
-
 
 ---
 
@@ -700,7 +698,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
 
 <div class="endpoint post">/apis/</div>
 
-#### Request body
+#### Request Body
 
 {{ page.api_body }}
 
@@ -1138,35 +1136,41 @@ See the [Precedence](#precedence) section below for more details.
 
 #### Precedence
 
-Plugins can be added globally (all Services), on a single Service,
-a single route, a single Consumer, or a combination of both Service/Route and
-a Consumer. Additionally, a given plugin (e.g. `key-auth`) will only run once
-per request, even if it is configured twice (e.g. globally *and* on a Service).
+A plugin will always be run once and only once per request. But the
+configuration with which it will run depends on the entities it has been
+configured for.
 
-Therefore, there exists an order of precedence when the same plugin is applied
-to different entities with different configurations. This order implies that
-such a plugin that is configured twice, will only run once.
+Plugins can be configured for various entities, combination of entities, or
+even globally. This is useful, for example, when you wish to configure a plugin
+a certain way for most requests, but make _authenticated requests_ behave
+slightly differently.
 
-The order of precedence is, from highest to lowest:
+Therefore, there exists an order of precedence for running a plugin when it has
+been applied to different entities with different configurations. The rule of
+thumb is: the more specific a plugin is with regards to how many entities it
+has been configured on, the higher its priority.
 
-1. Plugins applied on a combination of an Service and a Consumer (if the request is
-   authenticated).
-2. Plugins applied on a combination of an Route and a Consumer (if the request is
-   authenticated).
-3. Plugins applied to a Consumer (if the request is authenticated).
-4. Plugins applied to an Route.
-5. Plugins applied to an Service.
-6. Plugins configured to run globally.
+The complete order of precedence when a plugin has been configured multiple
+times is:
+
+1. Plugins configured on a combination of: a Route, a Service, and a Consumer.
+   _(Consumer means the request must be authenticated)._
+2. Plugins configured on a combination of a Route and a Consumer.
+   _(Consumer means the request must be authenticated)._
+3. Plugins configured on a combination of a Service and a Consumer.
+   _(Consumer means the request must be authenticated)._
+4. Plugins configured on a combination of a Route and a Service.
+5. Plugins configured on a Consumer.
+   _(Consumer means the request must be authenticated)._
+6. Plugins configured on a Route.
+7. Plugins configured on a Service.
+8. Plugins configured to run globally.
 
 **Example**: if the `rate-limiting` plugin is applied twice (with different
-configurations): for an Service (Plugin config A), and for a Consumer (Plugin
+configurations): for a Service (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B
-and ignore A (2.). However, requests that do not authenticate this Consumer
-will fallback to running Plugin config A (3.).
-
-This behavior is particularly useful when the intent is to override the
-configuration of a particular plugin (e.g. allow a higher rate limiting) for a
-given Service or Consumer.
+and ignore A. However, requests that do not authenticate this Consumer will
+fallback to running Plugin config A.
 
 ---
 
@@ -1824,7 +1828,7 @@ HTTP 204 No Content
 
 The upstream object represents a virtual hostname and can be used to loadbalance
 incoming requests over multiple services (targets). So for example an upstream
-named `service.v1.xyz` with an Service object created with an `url=https://service.v1.xyz/some/path`.
+named `service.v1.xyz` for a Service object whose `host` is `service.v1.xyz`.
 Requests for this Service would be proxied to the targets defined within the upstream.
 
 An upstream also includes a [health checker][healthchecks], which is able to
