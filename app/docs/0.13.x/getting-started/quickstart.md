@@ -11,7 +11,7 @@ title: 5-minute Quickstart
 
 In this section, you'll learn how to manage your Kong instance. First we'll
 have you start Kong giving in order to give you access to the RESTful Admin
-interface, through which you manage your APIs, consumers, and more. Data sent
+interface, through which you manage your Services, Routes, Consumers, and more. Data sent
 through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
 supports PostgreSQL and Cassandra).
 
@@ -73,9 +73,9 @@ supports PostgreSQL and Cassandra).
 
 Now that you have Kong running you can interact with the Admin API.
 
-To begin, go to [Adding your API &rsaquo;][adding-your-api]
+To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
 [datastore-section]: /docs/{{page.kong_version}}/configuration/#datastore-section
-[adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
+[configuring-a-service]: /docs/{{page.kong_version}}/getting-started/configuring-a-service
