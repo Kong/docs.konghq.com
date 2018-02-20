@@ -72,12 +72,16 @@ The plugin has been tested with several OpenID Connect capable providers such as
 - [Salesforce][salesforce]
 - [Yahoo!][yahoo]
 
-As long as your provider supports OpenID Connect standards (exposing a {service_url}.well-known/openid-configuration endpoint) the plugin should work, even if it is not specifically tested against it. Let us know if you want your provider to be tested and added to the list.
+As long as your provider supports OpenID Connect standards (exposing a
+ `{service_url}.well-known/openid-configuration` endpoint) the plugin
+ should work, even if it is not specifically tested against it. Let us know if 
+you want your provider to be tested and added to the list.
 
 <br />
 
 <div class="alert alert-warning">
-  <strong>Enterprise-Only</strong> This plugin is only available with an Enterprise Subscription.
+  <strong>Enterprise-Only</strong> This plugin is only available with an
+ Enterprise Subscription.
 </div>
 
 ----
