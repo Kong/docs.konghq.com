@@ -9,7 +9,7 @@ title: Adding Consumers
   <ol>
     <li>Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
+    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
   </ol>
 </div>
 
@@ -77,7 +77,7 @@ plugin][enabling-plugins] or skip steps two and three.
 
 ### Next Steps
 
-Now that we've covered the basics of adding APIs, Consumers and enabling
+Now that we've covered the basics of adding Services, Routes, Consumers and enabling
 Plugins, feel free to read more on Kong in one of the following documents:
 
 - [Configuration file Reference][configuration]
