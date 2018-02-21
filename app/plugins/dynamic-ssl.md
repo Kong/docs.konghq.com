@@ -15,7 +15,7 @@ nav:
       - label: Propagation
 ---
 
-Dynamically binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
+Dynamically binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every service**, take a look at the [Kong SSL configuration options][configuration].
 
 <br />
 
@@ -31,19 +31,26 @@ Dynamically binds a specific SSL certificate to the `request_host` value of a se
 
 ## Configuration
 
-Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API][api-object] by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of a [Service][service-object], a [Route][route-object], or an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST http://kong:8001/plugins \
     --form "name=ssl" \
+    --data "service_id={service}"  \
+    --data "route_id={route}"  \
+    --data "api_id={api}"  \
     --form "config.cert=@/path/to/cert.pem" \
     --form "config.key=@/path/to/cert.key" \
     --form "config.only_https=true"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+`service`: The `id` of the Service that this plugin configuration will target
+`route`: The `id` of the Route that this plugin configuration will target
+`api`: The `id` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+The term `target` is used to refer any of the possible targets for the plugin.
+
+You can also apply it globally using the `http://kong:8001/plugins/` by not specifying the target. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
 form parameter                     | default | description
 ---:                               | ---     | ---
@@ -84,5 +91,7 @@ When adding this plugin, the SSL certificate and its key will be uploaded and st
 
 For example, if you have two Kong servers called "Server_1" and "Server_2", this means that you can upload a certificate, let's say, on "Server_1" and it will be immediately available also on "Server_2" (and on any other server you decide to add to the cluster, as long as they point to the same datastore).
 
+[service-object]: /docs/latest/admin-api/#service-object
+[route-object]: /docs/latest/admin-api/#route-object
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration#ssl_cert_path
