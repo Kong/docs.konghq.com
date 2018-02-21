@@ -14,20 +14,23 @@ nav:
       - label: CORS Limitations
 ---
 
-Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling
+Easily add __Cross-origin resource sharing *(CORS)*__ to your service by enabling
 this plugin.
 
 ----
 
 ## Configuration
 
-Configuring the plugin is as simple as a single API call, you can configure and
-enable it for your [API][api-object] by executing the following request on your
-Kong server:
+Configuring the plugin is straightforward, you can add it on top of
+a [Service][service-object], a [Route][route-object], or an [API][api-object]
+by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST http://kong:8001/plugins \
     --data "name=cors" \
+    --data "service_id={service}"  \
+    --data "route_id={route}"  \
+    --data "api_id={api}"  \
     --data "config.origins=http://mockbin.com" \
     --data "config.methods=GET, POST" \
     --data "config.headers=Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Auth-Token" \
@@ -36,11 +39,15 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     --data "config.max_age=3600"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+`service`: The `id` of the Service that this plugin configuration will target
+`route`: The `id` of the Route that this plugin configuration will target
+`api`: The `id` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/`
-endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for
-more information.
+The term `target` is used to refer any of the possible targets for the plugin.
+
+You can also apply it globally using the `http://kong:8001/plugins/` by not
+specifying the target. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin)
+for more information.
 
 form parameter                             | default | description
 ---:                                       | ---     | ---
@@ -51,7 +58,7 @@ form parameter                             | default | description
 `config.exposed_headers`<br>*optional*     |         | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
 `config.credentials`<br>*optional*         | `false` | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value.
 `config.max_age`<br>*optional*             |         | Indicated how long the results of the preflight request can be cached, in `seconds`.
-`config.preflight_continue`<br>*optional*  | `false` | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API.
+`config.preflight_continue`<br>*optional*  | `false` | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream service.
 
 ----
 
@@ -72,6 +79,8 @@ are being resolved using a custom DNS (the `hosts` property).
 To learn how to configure `uris` for an API, please read the [Proxy
 Reference][proxy-reference].
 
+[service-object]: /docs/latest/admin-api/#service-object
+[route-object]: /docs/latest/admin-api/#route-object
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [proxy-reference]: /docs/latest/proxy
