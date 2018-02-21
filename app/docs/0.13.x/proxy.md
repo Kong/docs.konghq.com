@@ -29,7 +29,7 @@ below.</p>
 
 - [Terminology][proxy-terminology]
 - [Overview][proxy-overview]
-- [Reminder: How to proxy your first request through Kong][proxy-reminder]
+- [Reminder: How to configure a Service][proxy-reminder]
 - [Routes and matching capabilities][proxy-routes-and-matching-capabilities]
     - [Request Host header][proxy-request-host-header]
         - [Using wildcard hostnames][proxy-using-wildcard-hostnames]
@@ -56,7 +56,7 @@ below.</p>
 
 [proxy-terminology]: #terminology
 [proxy-overview]: #overview
-[proxy-reminder]: #reminder-how-to-proxy-your-first-request-through-kong
+[proxy-reminder]: #reminder-how-to-configure-a-service
 [proxy-routes-and-matching-capabilities]: #routes-and-matching-capabilities
 [proxy-request-host-header]: #request-host-header
 [proxy-using-wildcard-hostnames]: #using-wildcard-hostnames
@@ -132,10 +132,10 @@ against any configured API if no Route was matched first).
 
 [Back to TOC](#table-of-contents)
 
-## Reminder: How to proxy your first request through Kong
+## Reminder: How to configure a Service
 
-The [proxy your first request][proxy-your-first-request] quickstart guide
-explains how Kong is configured via the [Admin API][API].
+The [Configuring a Service][configuring-a-service] quickstart guide explains
+how Kong is configured via the [Admin API][API].
 
 Adding a Service to Kong is done by sending an HTTP request to the Admin API:
 
@@ -1097,7 +1097,7 @@ just covered.
 [load-balancing-reference]: /docs/{{page.kong_version}}/loadbalancing
 [configuration-reference]: /docs/{{page.kong_version}}/configuration-reference
 [configuration-trusted-ips]: /docs/{{page.kong_version}}/configuration/#trusted_ips
-[proxy-your-first-request]: /docs/{{page.kong_version}}/getting-started/proxy-your-first-request
+[configuring-a-service]: /docs/{{page.kong_version}}/getting-started/configuring-a-service
 [API]: /docs/{{page.kong_version}}/admin-api
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
