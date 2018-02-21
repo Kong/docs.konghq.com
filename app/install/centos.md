@@ -11,8 +11,8 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [CentOS 6]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.el6.noarch.rpm)
-- [CentOS 7]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.el7.noarch.rpm)
+- [CentOS 6]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/6/kong-community-edition-{{site.data.kong_latest.version}}.el6.noarch.rpm)
+- [CentOS 7]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/7/kong-community-edition-{{site.data.kong_latest.version}}.el7.noarch.rpm)
 
 ### YUM Repositories
 
@@ -20,6 +20,18 @@ You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
 
 - [RPM Repository](https://bintray.com/kong/kong-community-edition-rpm)
+
+**NOTE**: ensure that the `baseurl` field of the generated `.repo` file contains
+your CentOS version; for instance:
+
+```
+baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/6
+```
+or
+
+```
+baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
+```
 
 ----
 
