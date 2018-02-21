@@ -18,28 +18,41 @@ nav:
   - label: Kong Process Errors
 ---
 
-Logs request and response data to [Galileo][galileo], the analytics platform for monitoring, visualizing and inspecting API & microservice traffic.
+Logs request and response data to [Galileo][galileo], the analytics platform for monitoring, visualizing and inspecting service traffic.
 
 ----
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of
+a [Service][service-object], a [Route][route-object], an [API][api-object]
+or a [Consumer][consumer-object] by executing the following request on
+your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins/ \
+$ curl -X POST http://kong:8001/plugins/ \
     --data "name=galileo" \
+    --data "consumer_id={consumer}"  \
+    --data "service_id={service}"  \
+    --data "route_id={route}"  \
+    --data "api_id={api}"  \
     --data "config.service_token=YOUR_SERVICE_TOKEN"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+`consumer`: The `id` of the Consumer that this plugin configuration will target
+`service`: The `id` of the Service that this plugin configuration will target
+`route`: The `id` of the Route that this plugin configuration will target
+`api`: The `id` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+The term `target` is used to refer any of the possible targets for the plugin.
+
+You can also apply it globally using the `http://kong:8001/plugins/` by not
+specifying the target. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin)
+for more information.
 
 form parameter                     | default | description
 ---                                | ---     | ---
 `name`                             |         | The name of the plugin to use, in this case: `galileo`
-`consumer_id`<br>*optional*        |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
 `config.service_token`                    |         | The service token provided to you by [Galileo][galileo].
 `config.environment`<br>*optional*        |         | Slug of your Galileo environment name. None by default.
 `config.log_bodies`<br>*optional*         | `false` | Capture and send request/response bodies.
@@ -50,12 +63,6 @@ form parameter                     | default | description
 `config.host`<br>*optional*               | `collector.galileo.mashape.com` | Host address of the Galileo collector.
 `config.port`<br>*optional*               | `443`   | Port of the Galileo collector.
 `config.https`<br>*optional*              | `true`  | Use of HTTPs to connect with the Galileo collector.
-
-[galileo]: https://getgalileo.io/
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 ----
 
@@ -94,3 +101,11 @@ Now, you should see logs telling you what the plugin is doing, as well as respon
 ## Kong Process Errors
 
 This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+
+[galileo]: https://getgalileo.io/
+[consumer-object]: /docs/latest/admin-api/#consumer-object
+[service-object]: /docs/latest/admin-api/#service-object
+[route-object]: /docs/latest/admin-api/#route-object
+[api-object]: /docs/latest/admin-api/#api-object
+[configuration]: /docs/latest/configuration
+[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
