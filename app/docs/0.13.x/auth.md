@@ -4,8 +4,10 @@ title: Authentication Reference
 
 # Authentication Reference
 
-Client access to upstream Services is typically controlled by the application and configuration of
-Kong [authentication plugins][plugins].
+Traffic to your upstream services (API or microservice) is typically controlled by the application and
+configuration of various Kong [authentication plugins][plugins]. Since Kong's Service entity represents
+a 1-to-1 mapping of your own upstream services, the simplest scenario is to configure authentication
+plugins on the Services of your choosing.
 
 ## Generic authentication
 
@@ -47,8 +49,8 @@ the corresponding route:
 
 1. ### Create an example Service and a Route
 
-    Issue the following cURL request to create `example-service` which will use the
-    mockbin service to echo the request:
+    Issue the following cURL request to create `example-service` pointing to mockbin.org, which will echo
+    the request:
 
     ```bash
     $ curl -i -X POST \
@@ -57,9 +59,9 @@ the corresponding route:
       --data 'url=http://mockbin.org/request'
     ```
 
-    Be sure to note the service `id` - you'll need it in step 2.
+    Be sure to note the Service `id` - you'll need it in step 2.
 
-    Add a route to the service:
+    Add a route to the Service:
 
     ```bash
     $ curl -i -X POST \
@@ -69,7 +71,7 @@ the corresponding route:
 
     The url `http://localhost:8000/auth-sample` will now echo whatever is being requested.
 
-2. ### Configure the key-auth plugin for your Service
+2. ### Configure the key-auth Plugin for your Service
 
     Issue the following cURL request to add a service:
 
@@ -80,7 +82,7 @@ the corresponding route:
       --data 'service_id=<the-service-id>'
     ```
 
-    Be sure to note the plugin `id` - you'll need it in step 5.
+    Be sure to note the Plugin `id` - you'll need it in step 5.
 
 3. ### Verify that the key-auth plugin is properly configured
 
@@ -104,9 +106,9 @@ the corresponding route:
     }
     ```
 
-4. ### Create an anonymous consumer
+4. ### Create an anonymous Consumer
 
-    Every request proxied by Kong must be associated with a consumer. You'll now create a consumer
+    Every request proxied by Kong must be associated with a Consumer. You'll now create a Consumer
     named `anonymous_users` (that Kong will utilize when proxying anonymous access) by issuing the
     following request:
 
@@ -130,7 +132,7 @@ the corresponding route:
     }
     ```
 
-    Be sure to note the consumer `id` - you'll need it in the next step.
+    Be sure to note the Consumer `id` - you'll need it in the next step.
 
 5. ### Enable anonymous access
 

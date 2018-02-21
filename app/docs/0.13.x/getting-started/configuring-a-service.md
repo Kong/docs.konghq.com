@@ -1,8 +1,8 @@
 ---
-title: Adding your API
+title: Configuring a Service
 ---
 
-# Adding your API
+# Configuring a Service
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
@@ -12,17 +12,26 @@ title: Adding your API
   </ol>
 </div>
 
-In this section, you'll be adding your Service to the Kong layer. This is the first
-step to having Kong manage your API. For purposes of this Getting Started
-guide, we suggest adding the [Mockbin Service][mockbin] to Kong, as Mockbin is
-helpful for learning how Kong proxies your API requests.
+In this section, you'll be adding an API to Kong. In order to do this, you'll
+first need to add a _Service_; that is the name Kong uses to refer to the upstream APIs and microservices
+it manages.
 
-Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
-configuration of your Kong instance or cluster.
+For the purpose of this guide, we'll create a Service pointing to the [Mockbin API][mockbin]. Mockbin is
+an "echo" type public website which returns the requests it gets back to the requester, as reponses. This
+makes it helpful for learning how Kong proxies your API requests.
+
+Before you can start making requests against the Service, you will need to add a _Route_ to it.
+Routes specify how (and _if_) requests are sent to their Services after they reach Kong. A single
+Service can have many Routes.
+
+After configuring the Service and the Route, you'll be able to make requests through Kong using them.
+
+Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong is configuration, including adding Services and
+Routes, is made via requests on that API.
 
 1. ### Add your Service using the Admin API
 
-    Issue the following cURL request to add your first Service ([Mockbin][mockbin])
+    Issue the following cURL request to add your first Service (pointing to the [Mockbin API][mockbin])
     to Kong:
 
     ```bash
@@ -63,7 +72,6 @@ configuration of your Kong instance or cluster.
       --url http://localhost:8001/services/example-service/routes \
       --data 'hosts[]=example.com'
     ```
-
 
     The answer should be similar to:
 

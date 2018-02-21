@@ -73,9 +73,9 @@ supports PostgreSQL and Cassandra).
 
 Now that you have Kong running you can interact with the Admin API.
 
-To begin, go to [Adding your API &rsaquo;][adding-your-api]
+To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
 [CLI]: /docs/{{page.kong_version}}/cli
 [API]: /docs/{{page.kong_version}}/admin-api
 [datastore-section]: /docs/{{page.kong_version}}/configuration/#datastore-section
-[adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
+[configuring-a-service]: /docs/{{page.kong_version}}/getting-started/configuring-a-service

@@ -9,7 +9,7 @@ title: Enabling Plugins
   <ol>
     <li>Make sure you've <a href="/install/">installed Kong</a> - It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
+    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/configuring-a-service">configured your Service in Kong</a>.</li>
   </ol>
 </div>
 
@@ -26,7 +26,7 @@ other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
 
-1. ### Configure the key-auth plugin for the Service you created <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">when adding your API to Kong</a>.
+1. ### Configure the key-auth plugin for the Service you <a href="/docs/{{page.kong_version}}/getting-started/configured-a-service">configured in Kong</a>.
 
     Issue the following cURL request:
 
