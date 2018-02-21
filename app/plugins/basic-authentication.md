@@ -19,25 +19,33 @@ nav:
       - label: Retrieve the Consumer associated with a Credential
 ---
 
-Add Basic Authentication to your APIs, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+Add Basic Authentication to your services, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
 ----
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of a [Service][service-object], a [Route][route-object], or an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST http://kong:8001/plugins \
     --data "name=basic-auth" \
+    --data "service_id={service}"  \
+    --data "route_id={route}"  \
+    --data "api_id={api}"  \
     --data "config.hide_credentials=true"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+`service`: The `id` of the Service that this plugin configuration will target
+`route`: The `id` of the Route that this plugin configuration will target
+`api`: The `id` of the API that this plugin configuration will target
 
-Once applied, any user with a valid credential can access the service/API.
+The term `target` is used to refer any of the possible targets for the plugin.
+
+You can also apply it globally using the `http://kong:8001/plugins/` by not specifying the target. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+
+Once applied, any user with a valid credential can access the upstream service.
 To restrict usage to only some of the authenticated users, also add the
 [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
 blacklist groups of users.
@@ -52,7 +60,7 @@ form parameter                             | default | description
 
 ## Usage
 
-In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
+In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final upstream service.
 
 ### Create a Consumer
 
@@ -111,7 +119,7 @@ $ curl http://kong:8000/{api path} \
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
@@ -195,6 +203,8 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
+[service-object]: /docs/latest/admin-api/#service-object
+[route-object]: /docs/latest/admin-api/#route-object
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
