@@ -17,23 +17,31 @@ nav:
       - label: Retrieve the Consumer associated with an ACL
 ---
 
-Restrict access to an API by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API.
+Restrict access to a service by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled.
 
 ----
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of a [Service][service-object], a [Route][route-object], or an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST http://kong:8001/plugins \
     --data "name=acl" \
+    --data "service_id={service}"  \
+    --data "route_id={route}"  \
+    --data "api_id={api}"  \
     --data "config.whitelist=group1, group2"
+    
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+`service`: The `id` of the Service that this plugin configuration will target
+`route`: The `id` of the Route that this plugin configuration will target
+`api`: The `id` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+The term `target` is used to refer any of the possible targets for the plugin.
+
+You can also apply it globally using the `http://kong:8001/plugins/` by not specifying the target. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
 form parameter                        | default| description
 ---                                   | ---    | ---
@@ -47,11 +55,11 @@ Note that the `whitelist` and `blacklist` models are mutually exclusive in their
 
 ## Usage
 
-In order to use this plugin, you need to properly have configured your APIs with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
+In order to use this plugin, you need to properly have configured your `target` with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
 
 ### Associating Consumers
 
-Once you have added an authentication plugin to an API, and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
+Once you have added an authentication plugin to a `target, and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/acls \
@@ -68,7 +76,7 @@ You can have more than one group associated to a consumer.
 
 ### Upstream Headers
 
-When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream API/Microservice, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
+When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream service, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
 
 ### Paginate through the ACLs
 
@@ -140,6 +148,8 @@ curl -X GET http://kong:8001/acls/{id}/consumer
 [Consumer][consumer-object].
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
+[service-object]: /docs/latest/admin-api/#service-object
+[route-object]: /docs/latest/admin-api/#route-object
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
