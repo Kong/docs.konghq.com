@@ -12,22 +12,31 @@ nav:
       - label: Default rules
 ---
 
-Protects your API from most common bots and has the capability of whitelisting and blacklisting custom clients.
+Protects your upstream service from most common bots and has the capability of whitelisting and blacklisting custom clients.
 
 ----
 
 ## Configuration
 
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
+Configuring the plugin is straightforward, you can add it on top of a [Service][service-object], a [Route][route-object], or an [API][api-object] by executing the following request on your Kong server:
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=bot-detection"
+$ curl -X POST http://kong:8001/plugins \
+    --data "name=bot-detection" \
+    --data "service_id={service}"  \
+    --data "route_id={route}"  \
+    --data "api_id={api}"  \
+    --data "config.whitelist=group1, group2"
+    
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+`service`: The `id` of the Service that this plugin configuration will target
+`route`: The `id` of the Route that this plugin configuration will target
+`api`: The `id` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+The term `target` is used to refer any of the possible targets for the plugin.
+
+You can also apply it globally using the `http://kong:8001/plugins/` by not specifying the target. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
 
 form parameter                    | default   | description
 ---                               |---        | ---
@@ -41,6 +50,8 @@ form parameter                    | default   | description
 
 The plugin already includes a basic list of rules that will be checked on every request. You can find this list on GitHub at [https://github.com/Mashape/kong/blob/master/kong/plugins/bot-detection/rules.lua](https://github.com/Mashape/kong/blob/master/kong/plugins/bot-detection/rules.lua).
 
+[service-object]: /docs/latest/admin-api/#service-object
+[route-object]: /docs/latest/admin-api/#route-object
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
