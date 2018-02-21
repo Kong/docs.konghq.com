@@ -22,19 +22,34 @@ Correlate requests and responses using a unique ID transmitted over an HTTP head
 
 ## Configuration
 
-Configuring the plugin is straightforward. You can associate it with an [API][api-object] by executing the following request to your Kong server:
+Configuring the plugin is straightforward, you can add it on top of
+a [Service][service-object], a [Route][route-object], an [API][api-object]
+or a [Consumer][consumer-object] by executing the following request on
+your Kong server:
+
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST http://kong:8001/plugins \
     --data "name=correlation-id" \
+    --data "consumer_id={consumer}"  \
+    --data "service_id={service}"  \
+    --data "route_id={route}"  \
+    --data "api_id={api}"  \
     --data "config.header_name=Kong-Request-ID" \
     --data "config.generator=uuid#counter" \
     --data "config.echo_downstream=false"
 ```
 
-`api`: The `id` or `name` of the API that this plugin configuration will target
+`consumer`: The `id` of the Consumer that this plugin configuration will target
+`service`: The `id` of the Service that this plugin configuration will target
+`route`: The `id` of the Route that this plugin configuration will target
+`api`: The `id` of the API that this plugin configuration will target
 
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+The term `target` is used to refer any of the possible targets for the plugin.
+
+You can also apply it globally using the `http://kong:8001/plugins/` by not
+specifying the target. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin)
+for more information.
 
 form parameter                  | default           | description
 ---                             | ---               | ---
@@ -42,8 +57,6 @@ form parameter                  | default           | description
 `header_name`<br>*optional*     | `Kong-Request-ID` | The HTTP header name to use for the correlation ID. 
 `generator`<br>*optional*       | `uuid#counter`    | The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter` and `tracker` See [Generators](#generators).
 `echo_downstream`<br>*optional* | `false`           | Whether to echo the header back to downstream (the client).
-
-[api-object]: /docs/latest/admin-api/#api-object
 
 ----
 
@@ -102,3 +115,8 @@ form parameter      | description
 #### Can I see my correlation ids in my Kong logs?
 
 The correlation id will not show up in the Nginx access or error logs. As such, we suggest you use this plugin alongside one of the Logging plugins, or store this id on your backend-side.
+
+[consumer-object]: /docs/latest/admin-api/#consumer-object
+[service-object]: /docs/latest/admin-api/#service-object
+[route-object]: /docs/latest/admin-api/#route-object
+[api-object]: /docs/latest/admin-api/#api-object
