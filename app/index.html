@@ -118,8 +118,9 @@ layout: default
 
         <div class="highlight">
           <pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl -i -X POST <span class="se">\</span>
-  --url http://localhost:8001/services/example/plugins/ <span class="se">\</span>
+  --url http://localhost:8001/plugins/ <span class="se">\</span>
   --data <span class="s1">'name=rate-limiting'</span> <span class="se">\</span>
+  --data <span class="s1">'service_id=&lt;example_service_id&gt;'</span> <span class="se">\</span>
   --data <span class="s1">'config.minute=100'</span></code></pre>
         </div>
 
