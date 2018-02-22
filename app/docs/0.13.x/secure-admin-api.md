@@ -5,7 +5,7 @@ title: Securing the Admin API
 # Securing the Admin API
 
 Kong's Admin API provides a RESTful interface for administration and
-configuration of APIs, plugins, consumers, and credentials. Because this
+configuration of Services, Routes, Plugins, Consumers, and Credentials. Because this
 API allows full control of Kong, it is important to secure this API against
 unwanted access. This document describes a few possible approaches to securing
 the Admin API.
@@ -77,24 +77,26 @@ encouraged, but fall outside the scope of this document.
 
 Kong's routing design allows it to serve as a proxy for the Admin API itself. In
 this manner, Kong itself can be used to provide fine-grained access control to
-the Admin API. Such an environment requires bootstrapping a new API that defines
-the `admin_listen` address as the API's `upstream_url`. For example:
+the Admin API. Such an environment requires bootstrapping a new Service that defines
+the `admin_listen` address as the Service's `url`. For example:
 
 ```bash
 # assume that Kong has defined admin_listen as 127.0.0.1:8001, and we want to
 # reach the Admin API via the url `/admin-api`
 
-$ curl http://localhost:8001/apis \
+$ curl -X POST http://localhost:8001/services \
   --data name=admin-api \
-  --data uris=/admin-api \
   --data upstream_url=http://localhost:8001
+
+$ curl -X POST http://localhost:8001/services/admin-api/routes
+  --data uris=/admin-api
 
 # we can now transparently reach the Admin API through the proxy server
 $ curl localhost:8000/admin-api/apis
-{  
-   "data":[  
-      {  
-         "uris":[  
+{
+   "data":[
+      {
+         "uris":[
             "\/admin-api"
          ],
          "id":"653b21bd-4d81-4573-ba00-177cc0108dec",

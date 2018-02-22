@@ -51,7 +51,7 @@ a Kong cluster means that those nodes will share the same configuration.
 
 For performance reasons, Kong avoids database connections when proxying
 requests, and caches the contents of your database in memory. The cached
-entities include APIs, Consumers, Plugins, Credentials, etc... Since those
+entities include Services, Routes, Consumers, Plugins, Credentials, etc... Since those
 values are in memory, any change made via the Admin API of one of the nodes
 needs to be propagated to the other nodes.
 
@@ -67,17 +67,17 @@ A single Kong node connected to a database (Cassandra or PostgreSQL) creates a
 Kong cluster of one node. Any changes applied via the Admin API of this node
 will instantly take effect. Example:
 
-Consider a single Kong node `A`. If we delete a previously registered API:
+Consider a single Kong node `A`. If we delete a previously registered Service:
 
 ```bash
-$ curl -X DELETE http://127.0.0.1:8001/apis/test-api
+$ curl -X DELETE http://127.0.0.1:8001/services/test-service
 ```
 
 Then any subsequent request to `A` would instantly return `404 Not Found`, as
 the node purged it from its local cache:
 
 ```bash
-$ curl -i http://127.0.0.1:8000/test-api
+$ curl -i http://127.0.0.1:8000/test-service
 ```
 
 [Back to TOC](#table-of-contents)
@@ -85,8 +85,8 @@ $ curl -i http://127.0.0.1:8000/test-api
 ### Multiple nodes Kong clusters
 
 In a cluster of multiple Kong nodes, other nodes connected to the same database
-would not instantly be notified that the API was deleted by node `A`.  While
-the API is **not** in the database anymore (it was deleted by node `A`), it is
+would not instantly be notified that the Service was deleted by node `A`.  While
+the Service is **not** in the database anymore (it was deleted by node `A`), it is
 **still** in node `B`'s memory.
 
 All nodes perform a periodic background job to synchronize with changes that
@@ -99,7 +99,7 @@ Every `db_update_frequency` seconds, all running Kong nodes will poll the
 database for any update, and will purge the relevant entities from their cache
 if necessary.
 
-If we delete an API from node `A`, this change will not be effective in node
+If we delete a Service from node `A`, this change will not be effective in node
 `B` until node `B`s next database poll, which will occur up to
 `db_update_frequency` seconds later (though it could happen sooner).
 
@@ -109,24 +109,26 @@ This makes Kong clusters **eventually consistent**.
 
 ### What is being cached?
 
-All of the core entities such as APIs, Plugins, Consumers, Credentials are
+All of the core entities such as Services, Routes, Plugins, Consumers, Credentials are
 cached in memory by Kong and depend on their invalidation via the polling
 mechanism to be updated.
 
 Additionally, Kong also caches **database misses**. This means that if you
-configure an API with no plugin, Kong will cache this information. Example:
+configure a Service with no plugin, Kong will cache this information. Example:
 
-On node `A`, we add an API:
+On node `A`, we add a Service and a Route:
 
 ```bash
 # node A
-$ curl -X POST http://127.0.0.1:8001/apis \
+$ curl -X POST http://127.0.0.1:8001/services \
     --data "name=example" \
-    --data "upstream_url=http://example.com" \
-    --data "uris=example"
+    --data "url=http://example.com"
+
+$ curl -X POST http://127.0.0.1:8001/services/example/routes \
+    --data "paths[]=example.com"
 ```
 
-A request to the Proxy port of both node `A` and `B` will cache this API, and
+A request to the Proxy port of both node `A` and `B` will cache this Service, and
 the fact that no plugin is configured on it:
 
 ```bash
@@ -143,12 +145,13 @@ HTTP 200 OK
 ...
 ```
 
-Now, say we add a plugin to this API via node `A`'s Admin API:
+Now, say we add a plugin to this Service via node `A`'s Admin API:
 
 ```bash
 # node A
-$ curl -X POST http://127.0.0.1:8001/apis/example/plugins \
+$ curl -X POST http://127.0.0.1:8001/plugins \
     --data "name=example-plugin"
+    --data "service_id=<example_service_id>"
 ```
 
 Because this request was issued via node `A`'s Admin API, node `A` will locally
