@@ -23,7 +23,7 @@ id: documentation
         </button>
 
         <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-          {% for ver in site.data.kong_versions %}
+          {% for ver in site.data.kong_versions reversed %}
             {% unless page.kong_version == ver.release %}
               <li>
                 <a href="/docs/{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
