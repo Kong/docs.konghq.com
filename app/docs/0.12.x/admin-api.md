@@ -139,7 +139,6 @@ HTTP 200 OK
 ```json
 {
     "hostname": "",
-    "node_id": "6a72192c-a3a1-4c8d-95c6-efabae9fb969",
     "lua_version": "LuaJIT 2.1.0-alpha",
     "plugins": {
         "available_on_server": [
@@ -157,8 +156,6 @@ HTTP 200 OK
 }
 ```
 
-* `node_id`: A UUID representing the running Kong node. This UUID is randomly generated when Kong starts, so the node will have a different `node_id` each
-  time it is restarted.
 * `available_on_server`: Names of plugins that are installed on the node.
 * `enabled_in_cluster`: Names of plugins that are enabled/configured. That is, the plugins configurations currently in the datastore shared by all Kong nodes.
 
