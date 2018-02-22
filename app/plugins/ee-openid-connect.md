@@ -11,10 +11,10 @@ nav:
       - label: Requesting Access
 ---
 
-OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
+OpenID Connect ([1.0][connect]) plugin allows for integration with a 3rd party
 identity provider (IdP) or [Kong OAuth 2.0 Plugin][oauth2plugin] in a standardized way.
 This plugin can be used to implement Kong as a (proxying) [OAuth 2.0][oauth2] resource
-server (RS) and / or as an OpenID Connect relying party (RP) between the client
+server (RS) and/or as an OpenID Connect relying party (RP) between the client
 and the upstream service.
 
 The plugin supports several types of credentials, including:
@@ -63,24 +63,25 @@ The plugin has been tested with several OpenID Connect capable providers such as
 - [Keycloak][keycloak]
 - [Microsoft Azure Active Directory v1][azurev1]
 - [Microsoft Azure Active Directory v2][azurev2]
-- Microsoft Live Connect
+- [Microsoft Live Connect][live]
 - [Okta][okta]
 - [OneLogin][onelogin]
 - [OpenAM][openam]
 - [Paypal][paypal]
 - [PingFederate][pingfederate]
-- [Salesfoce][salesforce]
+- [Salesforce][salesforce]
 - [Yahoo!][yahoo]
 
-As long as your provider supports OpenID Connect standards the plugin should
-work, even if it is not specifically tested against it. Let us know if you
-want your provider to be tested and added to the list.
+As long as your provider supports OpenID Connect standards (exposing a
+ `{service_url}.well-known/openid-configuration` endpoint) the plugin
+ should work, even if it is not specifically tested against it. Let us know if 
+you want your provider to be tested and added to the list.
 
 <br />
 
 <div class="alert alert-warning">
   <strong>Enterprise-Only</strong> This plugin is only available with an
-  Enterprise Subscription.
+ Enterprise Subscription.
 </div>
 
 ----
@@ -117,6 +118,7 @@ Enterprise offering by [contacting us](https://konghq.com/request-demo).
 [keycloak]: http://www.keycloak.org/documentation.html
 [azurev1]: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-openid-connect-code
 [azurev2]: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc
+[live]: https://apps.dev.microsoft.com
 [okta]: https://developer.okta.com/docs/api/resources/oidc.html
 [onelogin]: https://developers.onelogin.com/openid-connect
 [openam]: https://backstage.forgerock.com/docs/openam/13.5/admin-guide/#chap-openid-connect
