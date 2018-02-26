@@ -230,6 +230,9 @@
         - text: Delete Upstream
           url: /admin-api/#delete-upstream
 
+        - text: Show Upstream health for node
+          url: /admin-api/#show-upstream-health-for-node
+
     - text: Target Object routes
       url: /admin-api/#target-object
       items:

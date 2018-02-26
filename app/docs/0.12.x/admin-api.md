@@ -1856,6 +1856,79 @@ HTTP 204 No Content
 
 ---
 
+### Show Upstream health for node
+
+Displays the health status for all Targets of a given Upstream, according to
+the perspective of a specific Kong node. Note that, being node-specific
+information, making this same request to different nodes of the Kong cluster
+may produce different results. For example, one specific node of the Kong
+cluster may be experiencing network issues, causing it to fail to connect to
+some Targets: these Targets will be marked as as unhealthy to that node
+(directing traffic from that node to Targets that it can successfully reach)
+but healthy to all others (which have no problems using that Target).
+
+The `data` field of the response contains an array of Target objects.
+The health for each Target is returned in its `health` field:
+
+* If a Target fails to be activated in the ring balancer due to DNS issues,
+  its status displays as `DNS_ERROR`.
+* When [health checks][healthchecks] are not enabled in the Upstream
+  configuration, the health status for active Targets is displayed as
+  `HEALTHCHECKS_OFF`.
+* When health checks are enabled and the Target is determined to be healthy,
+  either automatically or [manually](#set-target-as-healthy),
+  its status is displayed as `HEALTHY`. This means that this Target is
+  currently included in this Upstream's load balancer ring.
+* When a Target has been disabled by either active or passive health checks
+  (circuit breakers) or [manually](#set-target-as-unhealthy),
+  its status is displayed as `UNHEALTHY`. The load balancer is not directing
+  any traffic to this Target via this Upstream.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This endpoint is only available with Kong 0.12.2+
+</div>
+
+### Endpoint
+
+<div class="endpoint get">/upstreams/{name or id}/health/</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the Upstream for which to display Target health.
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "total": 2,
+    "node_id": "cbb297c0-14a9-46bc-ad91-1d0ef9b42df9",
+    "data": [
+        {
+            "created_at": 1485524883980,
+            "id": "18c0ad90-f942-4098-88db-bbee3e43b27f",
+            "health": "HEALTHY",
+            "target": "127.0.0.1:20000",
+            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "weight": 100
+        },
+        {
+            "created_at": 1485524914883,
+            "id": "6c6f34eb-e6c3-4c1f-ac58-4060e5bca890",
+            "health": "UNHEALTHY",
+            "target": "127.0.0.1:20002",
+            "upstream_id": "07131005-ba30-4204-a29f-0927d53257b4",
+            "weight": 200
+        }
+    ]
+}
+```
+
+---
+
 ## Target Object
 
 A target is an ip address/hostname with a port that identifies an instance of a backend
@@ -2103,7 +2176,7 @@ target](#delete-target) instead.
 
 #### Endpoint
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
 Attributes | Description
 ---:| ---
