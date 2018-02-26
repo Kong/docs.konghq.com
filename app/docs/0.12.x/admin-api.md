@@ -2100,7 +2100,7 @@ target](#delete-target) instead.
 
 #### Endpoint
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
 Attributes | Description
 ---:| ---
