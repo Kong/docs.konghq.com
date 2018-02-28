@@ -39,6 +39,10 @@ params:
       required: false
       default: "`kong`"
       description: String to be attached as prefix to metric's name.
+    - name: tag_api_name
+      required: false
+      default: "`false`"
+      description: Whether to tag every metric with the api's name. If set to true then a tag of `api_name:<api-name>` will be included with metrics sent to datadog. When this is set to true the api name will not be prepended with the metric name.
 
 ---
 
