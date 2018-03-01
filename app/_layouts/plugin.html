@@ -10,9 +10,11 @@ breadcrumbs: null
 
 {% capture config_required_fields %}{%
   for field in page.params.config %}{%
-  if field.required %} \
-    --data "{{ field.name }}={{ field.default }}"
-{% endif %}{% endfor %}{% endcapture %}
+  if field.value_in_examples != nil %} \
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.value_in_examples }}"{%
+  elsif field.required == true %} \
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
+  endif %}{% endfor %}{% endcapture %}
 
 {% if page.params.api_id %}
 {% capture plugin_config_for_api %}
@@ -55,7 +57,9 @@ $ curl -X POST http://kong:8001/routes/{route_id}/plugins \
 
 {% if page.params.consumer_id %}
 {% capture plugin_config_for_consumer %}
-You can use the `/plugins` endpoint to target [Consumers](/docs/latest/admin-api/#Consumer-object):
+
+
+You can use the `http://localhost:8001/plugins` endpoint to target [Consumers](/docs/latest/admin-api/#Consumer-object):
 
 ```bash
 $ curl -X POST http://kong:8001/plugins \
@@ -104,8 +108,11 @@ Where `consumer_id`: The id of the Consumer we want to associate with this plugi
     {% endif %}
     {% for field in page.params.config %}
       <tr>
-        <td><code>{{ field.name }}</code>{% if field.required != true %}<br><em>optional</em>{% endif %}</td>
-        <td>{% if field.default %}<code>{{ field.default }}</code>{% endif %}</td>
+        <td><code>config.{{ field.name }}</code>
+          {% if field.required == false %}<br><em>optional</em>{% endif %}
+          {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
+        </td>
+        <td>{% if field.default != nil %}{{ field.default | markdownify }}{% endif %}</td>
         <td>{{ field.description | markdownify }}</td>
       </td>
     {% endfor %}
@@ -123,6 +130,9 @@ Where `consumer_id`: The id of the Consumer we want to associate with this plugi
         <h5>Getting Started</h5>
         <ul>
           <li><a href="#terminology">Terminology</a></li>
+          {% if page.installation %}
+            <li><a href="#installation">Installation</a></li>
+          {% endif %}
           <li><a href="#configuration">Configuration</a></li>
         </ul>
       </nav>
@@ -183,6 +193,14 @@ Where `consumer_id`: The id of the Consumer we want to associate with this plugi
 
           <hr>
 
+          {% if page.installation %}
+            <h2 id="installation">Installation</h2>
+
+            {{ page.installation | markdownify }}
+
+            <hr>
+          {% endif %}
+
           <h2 id="configuration">Configuration</h2>
           {% if page.params.api_id %}
             {{ plugin_config_for_api | markdownify }}
@@ -196,7 +214,10 @@ Where `consumer_id`: The id of the Consumer we want to associate with this plugi
           {% if page.params.consumer_id %}
             {{ plugin_config_for_consumer | markdownify }}
           {% endif %}
-          <p>All plugins can be configured using the <code>/plugins</code> endpoint. A plugin which is not associated to any api, service, route or consumer is considered "global", and will be executed on every request.</p>
+
+          <p>All plugins can be configured using the <code>http:/kong:8001/plugins/</code> endpoint. A plugin which is not associated to any api, service, route or consumer is considered "global", and will be run on every request.
+            Read the <a href="/docs/latest/admin-api/#add-plugin">Plugin Reference</a> and the <a href="/docs/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
+          </p>
 
           <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
 
