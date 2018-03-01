@@ -6,10 +6,6 @@ header_icon: /assets/images/icons/plugins/key-authentication.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Terminology
-      - label: Configuration
   - label: Usage
     items:
     - label: Create a Consumer
@@ -19,57 +15,48 @@ nav:
     - label: Upstream Headers
     - label: Paginate through the API keys
     - label: Retrieve the Consumer associated with an API key
+description: |
+  Add Key Authentication (also referred to as an API key) to your APIs, Services or Routes. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
+params:
+  name: key-auth
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: false
+  config:
+    - name: key_names
+      required: false
+      default: apikey
+      description: |
+        Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
+    - name: key_in_body
+      required: false
+      default: false
+      description: |
+        If enabled, the plugin will read the request body (if said request has one and its MIME type is supported) and try to find the key in it. Supported MIME types are `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
+    - name: hide_credentials
+      required: false
+      default: false
+      description: |
+        An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
+    - name: anonymous
+      required: false
+      default:
+      description: |
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+    - name: run_on_preflight
+      required: false
+      default: true
+      description: |
+        A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
+  extra: |
+    Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. Kong follows these specifications as designed, meaning that the `key_names` configuration values will be treated differently when searching the request header fields, versus searching the query string. Administrators are advised against defining case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
+
+    <div class="alert alert-warning">
+        <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
+    </div>
+
 ---
-
-Add Key Authentication (also referred to as an API key) to your APIs. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
-
-----
-
-## Terminology
-
-- `api`: your upstream service placed behind Kong, for which Kong proxies requests to.
-- `plugin`: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.
-- `consumer`: a developer or service using the api. When using Kong, a Consumer only communicates with Kong which proxies every call to the said, upstream api.
-- `credential`: in the key-auth plugin context, a unique string associated with a consumer, also referred to as an API key.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
-
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=key-auth" \
-    --data "config.hide_credentials=true"
-```
-
-* `api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-Once applied, any user with a valid credential can access the service/API.
-To restrict usage to only some of the authenticated users, also add the
-[ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-blacklist groups of users.
-
-form parameter                   | default | description
----                              | ---     | ---
-`name`                           |         | The name of the plugin to use, in this case: `key-auth`.
-`config.key_names`<br>*optional* | `apikey`| Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
-`config.key_in_body`             | `false` | If enabled, the plugin will read the request body (if said request has one and its MIME type is supported) and try to find the key in it. Supported MIME types are `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
-`config.hide_credentials`<br>*optional* | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
-`config.anonymous`<br>*optional*        | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
-`config.run_on_preflight`<br>*optional* | `true`  | A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
-
-Note that, according to their respective specifications, HTTP header names are treated as case _insensitive_, while HTTP query string parameter names are treated as case _sensitive_. Kong follows these specifications as designed, meaning that the `key_names` configuration values will be treated differently when searching the request header fields, versus searching the query string. Administrators are advised against defining case-sensitive `key_names` values when expecting the authorization keys to be sent in the request headers.
-
-<div class="alert alert-warning">
-    <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
-</div>
-
-----
 
 ## Usage
 
