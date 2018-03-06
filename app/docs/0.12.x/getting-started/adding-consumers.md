@@ -1,8 +1,8 @@
 ---
-title: Adding Consumers
+title: Adding Kongsumers
 ---
 
-# Adding Consumers
+# Adding Kongsumers
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
@@ -14,7 +14,7 @@ title: Adding Consumers
 </div>
 
 In the last section, we learned how to add plugins to Kong, in this section
-we're going to learn how to add consumers to your Kong instances. Consumers are
+we're going to learn how to add Kongsumers to your Kong instances. Kongsumers (consumers) are
 associated to individuals using your API, and can be used for tracking, access
 management, and more.
 
@@ -22,7 +22,7 @@ management, and more.
 [key-auth][key-auth] plugin. If you haven't, you can either [enable the
 plugin][enabling-plugins] or skip steps two and three.
 
-1. ### Create a Consumer through the RESTful API
+1. ### Create a Kongsumer through the RESTful API
 
     Lets create a user named `Jason` by issuing the following request:
 
@@ -46,13 +46,13 @@ plugin][enabling-plugins] or skip steps two and three.
     }
     ```
 
-    Congratulations! You've just added your first consumer to Kong.
+    Congratulations! You've just added your first Kongsumer to Kong.
 
     **Note:** Kong also accepts a `custom_id` parameter when [creating
-    consumers][API-consumers] to associate a consumer with your existing user
+    Kongsumers][API-consumers] to associate a consumer with your existing user
     database.
 
-2. ### Provision key credentials for your Consumer
+2. ### Provision key credentials for your Kongsumer
 
     Now, we can create a key for our recently created consumer `Jason` by
     issuing the following request:
@@ -63,7 +63,7 @@ plugin][enabling-plugins] or skip steps two and three.
       --data 'key=ENTER_KEY_HERE'
     ```
 
-3. ### Verify that your Consumer credentials are valid
+3. ### Verify that your Kongsumer credentials are valid
 
     We can now issue the following request to verify that the credentials of
     our `Jason` Consumer is valid:
@@ -77,7 +77,7 @@ plugin][enabling-plugins] or skip steps two and three.
 
 ### Next Steps
 
-Now that we've covered the basics of adding APIs, Consumers and enabling
+Now that we've covered the basics of adding APIs, Kongsumers and enabling
 Plugins, feel free to read more on Kong in one of the following documents:
 
 - [Configuration file Reference][configuration]
