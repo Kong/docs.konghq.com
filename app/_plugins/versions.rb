@@ -25,8 +25,8 @@ module Jekyll
             page.data["alias"] = "/" + page.path.sub(parts[1], "latest").sub(/\..*$/, "")
             if parts[2] == "index.md"
               # the /docs/ page
-              page.data["permalink"] = "/docs/"
-              page.data["alias"] = ["/#{site.config["documentation"]}/latest", "/#{site.config["documentation"]}/#{latest["release"]}/index.html"]
+              page.data["permalink"] = "/docs/ce"
+              page.data["alias"] = ["/#{site.config["documentation"]}/ce/latest", "/#{site.config["documentation"]}/ce/#{latest["release"]}/index.html"]
             elsif /index\.(md|html)/.match(parts.last)
               # all other nested index pages
               # /docs/latest/plugin-development/index/index.html -> /docs/latest/plugin-development/index.html

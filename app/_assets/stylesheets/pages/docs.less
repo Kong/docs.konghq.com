@@ -1,3 +1,29 @@
+.docs-navigation {
+  display: flex;
+  margin-bottom: 6rem;
+  border-bottom: 1px solid @black-10;
+  a {
+    padding: 0 10px 16px;
+    font-size: 16px;
+    color: @black-70;
+    &.active {
+      color: @blue;
+      border-bottom: 2px solid @blue;
+    }
+    &:hover {
+      border-bottom: 2px solid @black-40;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  &~.page-header-title h1 {
+    color: @navy-darker;
+  }
+}
+
+
+
 #documentation {
   .content {
 

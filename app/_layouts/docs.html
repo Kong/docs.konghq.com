@@ -6,12 +6,16 @@ id: documentation
 
 <header class="page-header">
   <div class="container">
+    <nav class="docs-navigation">
+      <a href="" class="active">Kong Community Edition (CE)</a>
+      <a href="">Kong Enterprise Edition (EE)</a>
+    </nav>
     <div class="page-header-icon">
       <img src="/assets/images/icons/icn-documentation.svg" alt="Documentation" />
     </div>
     <div class="page-header-title">
-      <h1>Documentation ({{page.kong_version}})</h1>
-      <p>Learn how Kong empowers your APIs</p>
+      <p>Documentation</p>
+      <h1>Community Edition ({{page.kong_version}})</h1>
     </div>
 
     {% if site.data.kong_versions.size > 1 %}
@@ -75,13 +79,16 @@ id: documentation
   <div class="page-content-container" id="documentation">
     <div class="page-content">
       <div class="content">
+        <div class="alert alert-info">
+          Maybe you were looking for the <a><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
+        </div>
         {% if page.kong_version != site.data.kong_latest.release %}
         <div class="alert alert-warning">
           <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
         </div>
         {% endif %}
 
-      {{ content }}
+        {{ content }}
 
       </div>
     </div>

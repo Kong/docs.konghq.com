@@ -51,7 +51,12 @@ defaults:
       layout: 'install'
 
   - scope:
-      path: 'docs'
+      path: 'docs/ce'
+    values:
+      layout: 'docs'
+  
+  - scope:
+      path: 'docs/ee'
     values:
       layout: 'docs'
 
