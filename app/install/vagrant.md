@@ -19,7 +19,7 @@ Here is a quick example showing how to build a (disposable) test setup:
 1. **Get the Vagrantfile and start the VM**
 
     ```bash
-    $ git clone https://github.com/Mashape/kong-vagrant
+    $ git clone https://github.com/Kong/kong-vagrant
     $ cd kong-vagrant/
     $ vagrant up
     ```
