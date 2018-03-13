@@ -46,11 +46,12 @@ module Jekyll
 
     def process_pages
       @site.pages.each do |page|
-        generate_aliases(page.destination('').gsub(/index\.(html|htm)$/, ''), page.data['alias'])
+        generate_aliases(page.destination('').gsub(/index\.(html|htm)$/, ''), page)
       end
     end
 
-    def generate_aliases(destination_path, aliases)
+    def generate_aliases(destination_path, page)
+      aliases = page.data['alias']
       alias_paths ||= Array.new
       alias_paths << aliases
       alias_paths.compact!
@@ -67,7 +68,7 @@ module Jekyll
         FileUtils.mkdir_p(fs_path_to_dir)
 
         File.open(File.join(fs_path_to_dir, alias_file), 'w') do |file|
-          file.write(alias_template(destination_path))
+          file.write(alias_template(page, destination_path))
         end
 
         (alias_index_path.split('/').size).times do |sections|
@@ -76,7 +77,7 @@ module Jekyll
       end
     end
 
-    def alias_template(destination_path)
+    def alias_template(page, destination_path)
       <<-EOF
 <!DOCTYPE html>
 <html>
@@ -88,12 +89,12 @@ module Jekyll
   <body>
   Redirecting...
   <script>
-    var latest = '#{@site.data["kong_versions"].last["release"]}';
+    var latest = '#{page.data["kong_versions"].last["release"]}';
     var destination = window.location.pathname.replace(/latest/i, latest);
     var urlsplit = window.location.href.split('latest');
 
     if ( urlsplit && urlsplit.length > 0 && (urlsplit[1] === '/' || typeof urlsplit[1] === 'undefined') ) {
-      window.location.href = '/docs/';
+      window.location.href = '#{page.data["permalink"]}';
     } else {
       window.location.href = destination + (window.location.hash || '');
     }
