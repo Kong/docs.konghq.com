@@ -87,16 +87,6 @@ id: documentation
             Maybe you were looking for the <a href="/docs/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
           </div>
         {% endif %}
-        {% if page.edition == 'enterprise' %}
-          <div class="alert alert-ee">
-            <div class="row">
-              <div class="left">
-                <img src="/assets/images/icons/icn-buildings.svg" />
-              </div>
-              <p>Kong Enterprise Edition is a subset of features built on top of the Community Edition (CE), this documentation doesn’t cover the general practices of the Kong CE Version.<br/><br/><a href="/docs">Read the Basics in Kong CE Documentation</a></p>
-          </div>
-          </div>
-        {% endif %}
         {% if page.kong_version != page.kong_latest.release %}
         <div class="alert alert-warning">
           <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
