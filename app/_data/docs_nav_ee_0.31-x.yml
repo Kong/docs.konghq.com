@@ -28,6 +28,8 @@
       url: /plugins/oauth2-introspection
     - text: HTTP Proxy Caching
       url: /plugins/http-proxy-caching
+    - text: Forward Proxy
+      url: /plugins/forward-proxy
     - text: RBAC API
       url: /plugins/rbac-api
 
