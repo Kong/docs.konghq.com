@@ -2,7 +2,7 @@
 title: How to install Kong Enterprise and Postgres onto Amazon Linux
 ---
 
-# How to install Kong Enterprise and Postgres onto Amazon Linux
+# How to Install Kong Enterprise and Postgres onto Amazon Linux
 
 ```bash
 $ sudo yum update

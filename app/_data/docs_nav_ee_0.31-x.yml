@@ -9,3 +9,5 @@
       url: /installation/centos
     - text: Amazon Linux
       url: /installation/amazon-linux
+    - text: Postgres on RedHat
+      url: /installation/postgres-redhat
