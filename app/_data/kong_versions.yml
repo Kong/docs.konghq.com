@@ -114,8 +114,8 @@
   lua_doc: true
 
 -
-  release: "0.31.x"
-  version: "0.31.x"
+  release: "0.31-x"
+  version: "0.31"
   edition: "enterprise"
   luarocks_version: "0.31.x"
   dependencies:

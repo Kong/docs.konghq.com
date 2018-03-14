@@ -7,3 +7,5 @@
   items:
     - text: CentOS
       url: /installation/centos
+    - text: Amazon Linux
+      url: /installation/amazon-linux
