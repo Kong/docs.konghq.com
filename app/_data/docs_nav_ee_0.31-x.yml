@@ -20,10 +20,12 @@
 
 - title: API's and Plugins
   items:
-    - text: Rate Limitng Plugin
+    - text: Rate Limiting Plugin
       url: /plugins/rate-limiting
+    - text: Request Transformer Plugin
+      url: /plugins/request-transformer
     - text: RBAC API
-      url: /rbac-api
+      url: /plugins/rbac-api
 
 - title: Guides &amp; References
   items:
