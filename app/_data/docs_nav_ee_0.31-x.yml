@@ -18,7 +18,7 @@
     - text: Postgres on RedHat
       url: /installation/postgres-redhat
 
-- title: API's and Plugins
+- title: APIs and Plugins
   items:
     - text: Rate Limiting Plugin
       url: /plugins/rate-limiting
@@ -35,3 +35,5 @@
       url: /rate-limiting
     - text: Setting Up Admin API RBAC
       url: /setting-up-admin-api-rbac
+    - text: Integrating AWS Lambda Functions with Kong
+      url: /integrating-aws-lambda
