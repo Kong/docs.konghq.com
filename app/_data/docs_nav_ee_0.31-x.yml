@@ -2,9 +2,13 @@
   items:
     - text: Introduction
       url: /getting-started/introduction
+    - text: Accessing Your License
+      url: /getting-started/accessing-your-license
 
 - title: Installation
   items:
+    - text: Docker
+      url: /installation/docker
     - text: CentOS
       url: /installation/centos
     - text: Amazon Linux

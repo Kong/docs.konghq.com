@@ -3,98 +3,101 @@ layout: default
 sitemap: true
 id: documentation
 ---
-<header class="page-header">
-  <div class="container">
-    <nav class="docs-navigation">
-      <a href="/docs" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
-      <a href="/docs/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>
-    </nav>
-    <div class="page-header-icon">
-      <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg" alt="Documentation" />
-    </div>
-    <div class="page-header-title">
-      <p>Documentation</p>
-      <h1>{% if page.edition == 'enterprise' %}Enterprise Edition ({{page.kong_version}}){% endif %}</h1>
-      <h1>{% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}</h1>
-    </div>
 
-    {% if page.kong_versions.size > 1 %}
-      <div class="dropdown page-header-right">
-        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Version {{page.kong_version}}
-          {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-          <span class="caret"></span>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-          {% for ver in page.kong_versions reversed %}
-            {% unless page.kong_version == ver.release %}
-              <li>
-                <a href="/docs/{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                  {{ver.release}}
-                </a>
-              </li>
-            {% endunless %}
-          {% endfor %}
-        </ul>
+<div class="page {{ page.class }}">
+  <header class="page-header">
+    <div class="container">
+      <nav class="docs-navigation">
+        <a href="/docs" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
+        <a href="/docs/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>
+      </nav>
+      <div class="page-header-icon">
+        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg" alt="Documentation" />
       </div>
-    {% endif %}
-  </div>
-</header>
+      <div class="page-header-title">
+        <p>Documentation</p>
+        <h1>{% if page.edition == 'enterprise' %}Enterprise Edition ({{page.kong_version}}){% endif %}</h1>
+        <h1>{% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}</h1>
+      </div>
 
-<div class="container">
-  <aside class="page-navigation">
-    {% if page.edition == 'community' %}
-      {% assign docs_url = '/docs/' | append: page.kong_version %}
-    {% else %}
-      {% assign docs_url = '/docs/' | append: 'enterprise/' | append: page.kong_version %}
-    {% endif %}
+      {% if page.kong_versions.size > 1 %}
+        <div class="dropdown page-header-right">
+          <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Version {{page.kong_version}}
+            {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+            <span class="caret"></span>
+          </button>
 
-    {% for nav in page.nav_items %}
-    <nav>
-      {% if nav.url %}
-      <a href="{{docs_url | append: nav.url}}"><h5>{{nav.title}}</h5></a>
-      {% else %}
-      <h5>{{nav.title}}</h5>
-      {% endif %}
-      <ul>
-        {% for item in nav.items %}
-        {% capture url %}{{ docs_url | append: item.url }}/{% endcapture %}
-        <li>
-          <a href="{{docs_url | append: item.url}}" {% if page.url == url %}class="active"{% endif %}>{{item.text}}</a>
-          {% if item.items %}
-          <ul>
-            {% for subitem in item.items %}
-            {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
-            <li>
-              <a href="{{docs_url | append: subitem.url}}" {% if page.url == sub_url %}class="active"{% endif %}>{{subitem.text}}</a>
-            </li>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+            {% for ver in page.kong_versions reversed %}
+              {% unless page.kong_version == ver.release %}
+                <li>
+                  <a href="/docs/{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                    {{ver.release}}
+                  </a>
+                </li>
+              {% endunless %}
             {% endfor %}
           </ul>
-          {% endif %}
-        </li>
-        {% endfor %}
-      </ul>
-    </nav>
-    {% endfor %}
-  </aside>
-
-  <div class="page-content-container" id="documentation">
-    <div class="page-content">
-      <div class="content">
-        {% if page.edition == 'community' %}
-          <div class="alert alert-ee">
-            Maybe you were looking for the <a href="/docs/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
-          </div>
-        {% endif %}
-        {% if page.kong_version != page.kong_latest.release %}
-        <div class="alert alert-warning">
-          <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
         </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="page-navigation">
+      {% if page.edition == 'community' %}
+        {% assign docs_url = '/docs/' | append: page.kong_version %}
+      {% else %}
+        {% assign docs_url = '/docs/' | append: 'enterprise/' | append: page.kong_version %}
+      {% endif %}
+
+      {% for nav in page.nav_items %}
+      <nav>
+        {% if nav.url %}
+        <a href="{{docs_url | append: nav.url}}"><h5>{{nav.title}}</h5></a>
+        {% else %}
+        <h5>{{nav.title}}</h5>
         {% endif %}
+        <ul>
+          {% for item in nav.items %}
+          {% capture url %}{{ docs_url | append: item.url }}/{% endcapture %}
+          <li>
+            <a href="{{docs_url | append: item.url}}" {% if page.url == url %}class="active"{% endif %}>{{item.text}}</a>
+            {% if item.items %}
+            <ul>
+              {% for subitem in item.items %}
+              {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
+              <li>
+                <a href="{{docs_url | append: subitem.url}}" {% if page.url == sub_url %}class="active"{% endif %}>{{subitem.text}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      {% endfor %}
+    </aside>
 
-        {{ content }}
+    <div class="page-content-container" id="documentation">
+      <div class="page-content">
+        <div class="content">
+          {% if page.edition == 'community' %}
+            <div class="alert alert-ee">
+              Maybe you were looking for the <a href="/docs/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
+            </div>
+          {% endif %}
+          {% if page.kong_version != page.kong_latest.release %}
+          <div class="alert alert-warning">
+            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
+          </div>
+          {% endif %}
 
+          {{ content }}
+
+        </div>
       </div>
     </div>
   </div>
