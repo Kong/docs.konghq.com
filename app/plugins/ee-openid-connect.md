@@ -103,6 +103,3 @@ description: |
   [yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
 
 ---
-
-
-

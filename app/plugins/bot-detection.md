@@ -6,9 +6,8 @@ header_icon: /assets/images/icons/plugins/bot-detection.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
+  - label: Usage
     items:
-      - label: Configuration
       - label: Default rules
 description: |
   Protects your API from most common bots and has the capability of whitelisting and blacklisting custom clients.
