@@ -31,11 +31,14 @@
 
 - title: Guides &amp; References
   items:
+    - text: Changelog
+      url: /changelog
+      absolute_url: true
     - text: Architecture Overview
       url: /kong-architecture-overview
     - text: Rate Limiting Library
       url: /rate-limiting
     - text: Setting Up Admin API RBAC
       url: /setting-up-admin-api-rbac
-    - text: Integrating AWS Lambda Functions with Kong
-      url: /integrating-aws-lambda
+    - text: Kong Enterprise Edition Versioning
+      url: /edition-versioning

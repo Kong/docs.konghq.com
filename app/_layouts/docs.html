@@ -19,7 +19,7 @@ id: documentation
       </div>
       <div class="page-header-title">
         <p>Documentation</p>
-        <h1>{% if page.edition == 'enterprise' %}Enterprise Edition ({{page.kong_version}}){% endif %}</h1>
+        <h1>{% if page.edition == 'enterprise' %}Enterprise Edition {% if page.has_version %}({{page.kong_version}}){% endif %}{% endif %}</h1>
         <h1>{% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}</h1>
       </div>
 
@@ -55,12 +55,36 @@ id: documentation
         {% assign docs_url = '/docs/' | append: 'enterprise/' | append: page.kong_version %}
       {% endif %}
 
+      {% for nav in page.nav %}
+      <nav>
+        {% if nav.items %}
+          <h5>{{ nav.label }}</h5>
+        {% else %}
+          <a href="#{{ nav.label | slugify }}"><h5>{{ nav.label }}</h5></a>
+        {% endif %}
+        <ul>
+            {% for item in nav.items %}
+              <li>
+                <a href="#{{ item.label | slugify }}">{{ item.label }}</a>
+
+                {% if item.items %}
+                  <ul>
+                    {% for subitem in item.items %}
+                      <li><a href="#{{ subitem.label | slugify }}">{{ subitem.label }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+      </nav>
+      {% endfor %}
       {% for nav in page.nav_items %}
       <nav>
         {% if nav.url %}
-        <a href="{{docs_url | append: nav.url}}"><h5>{{nav.title}}</h5></a>
+          <a href="{{docs_url | append: nav.url}}"><h5>{{nav.title}}</h5></a>
         {% else %}
-        <h5>{{nav.title}}</h5>
+          <h5>{{nav.title}}</h5>
         {% endif %}
         <ul>
           {% for item in nav.items %}
@@ -72,7 +96,7 @@ id: documentation
               {% for subitem in item.items %}
               {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
               <li>
-                <a href="{{docs_url | append: subitem.url}}" {% if page.url == sub_url %}class="active"{% endif %}>{{subitem.text}}</a>
+                <a {% if nav.absolute_url %}href="{{nav.url}}"{% else %}href="{{docs_url | append: subitem.url}}"{% endif %} {% if page.url == sub_url %}class="active"{% endif %}>{{subitem.text}}</a>
               </li>
               {% endfor %}
             </ul>

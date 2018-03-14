@@ -44,6 +44,11 @@ module Jekyll
             page.data["nav_items"] = site.data['docs_nav_' + parts[1].gsub(/\./, '')]
             createAliases(page, site.config["documentation"], 0, parts, latestVersion["release"])
           end
+
+          # Helpful boolean in templates. If version has .md, then it is not versioned
+          if page.data["kong_version"].include? ".md"
+            page.data["has_version"] = false
+          end
         end
       end
     end
