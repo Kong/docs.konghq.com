@@ -7,6 +7,9 @@ id: documentation
 <div class="page {{ page.class }}">
   <header class="page-header">
     <div class="container">
+        <div class="edit-this-page" style="position: absolute; right: 0;">
+            <a href="https://github.com/Kong/getkong.org/tree/master/app/{{page.path}}"><i class="fa fa-github"></i> Edit this Page</a>
+          </div>
       <nav class="docs-navigation">
         <a href="/docs" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
         <a href="/docs/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>

@@ -2,6 +2,8 @@
   items:
     - text: Introduction
       url: /getting-started/introduction
+    - text: Licensing
+      url: /getting-started/licensing
     - text: Accessing Your License
       url: /getting-started/accessing-your-license
 
@@ -23,5 +25,7 @@
 
 - title: Guides &amp; References
   items:
+    - text: Architecture Overview
+      url: /kong-architecture-overview
     - text: Rate Limiting Library
       url: /rate-limiting
