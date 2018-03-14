@@ -26,6 +26,8 @@
       url: /plugins/request-transformer
     - text: OAuth2 Introspection Plugin
       url: /plugins/oauth2-introspection
+    - text: HTTP Proxy Caching
+      url: /plugins/http-proxy-caching
     - text: RBAC API
       url: /plugins/rbac-api
 
