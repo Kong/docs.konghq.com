@@ -20,6 +20,8 @@
 
 - title: APIs and Plugins
   items:
+    - text: Canary Release Plugin
+      url: /plugins/canary-release
     - text: Rate Limiting Plugin
       url: /plugins/rate-limiting
     - text: Request Transformer Plugin
