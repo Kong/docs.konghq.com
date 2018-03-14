@@ -45,3 +45,5 @@
       url: /setting-up-admin-api-rbac
     - text: Integrating AWS Lambda Functions with Kong
       url: /integrating-aws-lambda
+    - text: Allowing multiple authentication methods
+      url: /allowing-multiple-authentication-methods
