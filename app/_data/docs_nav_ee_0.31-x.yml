@@ -11,3 +11,8 @@
       url: /installation/amazon-linux
     - text: Postgres on RedHat
       url: /installation/postgres-redhat
+
+- title: Plugins
+  items:
+    - text: Rate Limiting
+      url: /plugins/rate-limiting
