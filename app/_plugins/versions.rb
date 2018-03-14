@@ -53,10 +53,8 @@ module Jekyll
       releasePath = parts[1 + offset]
       templateName = parts[2 + offset]
 
-      # puts urlPath + ", " + releasePath + ", " + templateName + ", " + latestRelease
       if releasePath == latestRelease
         page.data["alias"] = "/" + page.path.sub(releasePath, "latest").sub(/\..*$/, "")
-        puts page.data["alias"]
         if templateName == "index.md"
           # the /docs/ page
           page.data["permalink"] = "/#{urlPath}/"
