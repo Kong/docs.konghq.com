@@ -2,3 +2,8 @@
   items:
     - text: Introduction
       url: /getting-started/introduction
+
+- title: Installation
+  items:
+    - text: CentOS
+      url: /installation/centos
