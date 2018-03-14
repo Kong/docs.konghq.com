@@ -151,6 +151,11 @@ id: documentation
     algoliaOptions: {
       hitsPerPage: 5,
       'facetFilters': ["version: {{page.kong_version}}"]
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split("getkong.org")[1]
     }
     // ,debug: true // Set debug to true if you want to inspect the dropdown
   });
