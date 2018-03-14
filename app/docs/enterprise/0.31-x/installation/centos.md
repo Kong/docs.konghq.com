@@ -1,5 +1,6 @@
 ---
 title: CentOS
+class: page-install-method
 ---
 
 # Installing Kong Enterprise on CentOS
@@ -12,5 +13,5 @@ A quick guide on how to install Kong Enterprise on CentOS.
 
         baseurl=https://<USERNAME>:<API_KEY>@kong.bintray.com/kong-enterprise-edition-rpm/centos/$releasever
 
-4. Update YUM's database (yum update)
+4. Update YUM's database `yum update`
 5. Install Kong and proceed normally from here

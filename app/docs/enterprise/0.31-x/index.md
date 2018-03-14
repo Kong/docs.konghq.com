@@ -5,7 +5,7 @@ title: Documentation for EE Kong
 
 {% if page.edition == 'enterprise' %}
 <div class="alert alert-ee">
-  <div class="row">
+  <div class="alert-body">
     <div class="left">
       <img src="/assets/images/icons/icn-buildings.svg" />
     </div>

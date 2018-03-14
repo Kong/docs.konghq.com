@@ -2,9 +2,15 @@
   items:
     - text: Introduction
       url: /getting-started/introduction
+    - text: Licensing
+      url: /getting-started/licensing
+    - text: Accessing Your License
+      url: /getting-started/accessing-your-license
 
 - title: Installation
   items:
+    - text: Docker
+      url: /installation/docker
     - text: CentOS
       url: /installation/centos
     - text: Amazon Linux
@@ -21,6 +27,8 @@
 
 - title: Guides &amp; References
   items:
+    - text: Architecture Overview
+      url: /kong-architecture-overview
     - text: Rate Limiting Library
       url: /rate-limiting
     - text: Setting Up Admin API RBAC
