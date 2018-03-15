@@ -37,6 +37,8 @@
 
 - title: Guides &amp; References
   items:
+    - text: Kong Implementation Checklist
+      url: /kong-implementation-checklist
     - text: Architecture Overview
       url: /kong-architecture-overview
     - text: Rate Limiting Library
