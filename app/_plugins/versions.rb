@@ -26,7 +26,7 @@ module Jekyll
       # Also create aliases under /latest/ for all x.x.x doc pages
       site.pages.each do |page|
         parts = Pathname(page.path).each_filename.to_a
-
+        page.data["has_version"] = true
         # Only apply those rules to documentation pages
         if parts[0] == site.config["documentation"]
           if(parts[1] == 'enterprise')
@@ -43,6 +43,11 @@ module Jekyll
             page.data["kong_latest"] = latestVersion
             page.data["nav_items"] = site.data['docs_nav_' + parts[1].gsub(/\./, '')]
             createAliases(page, site.config["documentation"], 0, parts, latestVersion["release"])
+          end
+
+          # Helpful boolean in templates. If version has .md, then it is not versioned
+          if page.data["kong_version"].include? ".md"
+            page.data["has_version"] = false
           end
         end
       end
