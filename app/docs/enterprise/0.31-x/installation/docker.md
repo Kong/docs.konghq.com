@@ -27,7 +27,7 @@ A guide to installing locally Kong Enterprise Edition (and its new license file)
 
 5. Generally, we'll be following the instructions here: https://getkong.org/install/docker/ with some slight (but important) differences
 
-6. For convenience, the commands will look something like this (Postgres 9.5 is required):
+6. For convenience, the commands will look something like this (PostgreSQL 9.5 is required):
 
         docker run -d --name kong-ee-database -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" postgres:9.5
 

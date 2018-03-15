@@ -42,10 +42,11 @@ $ curl -i -X POST http://kong:8001/plugins \
 |`config.redis.sentinel_master(semi-optional)`||Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
 |`config.redis.sentinel_role(semi-optional)`||Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
 |`config.redis.sentinel_addresses(semi-optional)`||Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+|`config.window_type`| `sliding` | This sets the time window to either `sliding` or `fixed`
 
 **Note:  Redis configuration values are ignored if the "cluster" strategy is used.**
 
-**Note: Postgres 9.5+ is required when using the "cluster" strategy with "postgres" as the backing Kong cluster data store. This requirement varies from the Postgres 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
+**Note: PostgreSQL 9.5+ is required when using the "cluster" strategy with "postgres" as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
 
 ---
 

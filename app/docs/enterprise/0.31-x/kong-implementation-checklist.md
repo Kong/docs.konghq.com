@@ -4,12 +4,12 @@ title: Kong Implementation Checklist
 # Kong Implementation Checklist
 
 - Kong can run on instances of any size with any resources. While the system requirements vary significantly depending on the use-case, generally speaking, we recommend to start big and then gradually reduce the instances to the appropriate number and size.
-- When allocating resources to a Kong cluster, slightly over-provision the cluster to make room for request spikes. Kong requires a database to run and you can choose either Cassandra or Postgres.
+- When allocating resources to a Kong cluster, slightly over-provision the cluster to make room for request spikes. Kong requires a database to run and you can choose either Cassandra or PostgreSQL.
 
-### Postgres
+### PostgreSQL
 
-- Generally speaking, Postgres works well for most of the use-cases, and it’s usually easier to setup. We recommend setting up a master-slave replication with servers located in different racks, data centers or availability zones to account for infrastructure failures.
-- In multi-DC environments, Postgres may not be the right fit, since a Kong node located in a different datacenter will have to send write requests all the way to the Postgres data-center, adding increased latency to the system.
+- Generally speaking, PostgreSQL works well for most of the use-cases, and it’s usually easier to setup. We recommend setting up a master-slave replication with servers located in different racks, data centers or availability zones to account for infrastructure failures.
+- In multi-DC environments, PostgreSQL may not be the right fit, since a Kong node located in a different datacenter will have to send write requests all the way to the PostgreSQL data-center, adding increased latency to the system.
 
 ### Cassandra
 
@@ -18,15 +18,15 @@ title: Kong Implementation Checklist
 
 ### Kong Cluster
 
-- Regardless of the datastore being adopted with Kong, the Kong nodes themselves need to join in a cluster. The Kong nodes will talk to each other via their connections to the database (Postgres or Cassandra). Please refer to the [clustering reference](/docs/latest/clustering/) for more details.
+- Regardless of the datastore being adopted with Kong, the Kong nodes themselves need to join in a cluster. The Kong nodes will talk to each other via their connections to the database (PostgreSQL or Cassandra). Please refer to the [clustering reference](/docs/latest/clustering/) for more details.
 
 ## Production System Requirements
 
 - For Kong prefer CPU optimized instances. We recommend at least 4 CPU cores, 16GB of RAM and 24GB of disk space. Kong performs better on a system with multiple cores. In an AWS environment, we recommend running c 3.2xlarge instances in production that guarantee enough cores (8) and memory (16GB), with a local storage instead of EBS to improve the performance.
-- For Cassandra and Postgres prefer memory optimized instances. Assume more intensive workload on the datastore if you are using the rate-limiting or response rate-limiting plugins with a “cluster” policy.
+- For Cassandra and PostgreSQL prefer memory optimized instances. Assume more intensive workload on the datastore if you are using the rate-limiting or response rate-limiting plugins with a “cluster” policy.
 High ulimit systemvalue, possibly >=65535 . A higher limit value will allow Kong and the datastores to process more incoming requests.
 
-## Kong High Availability
+## High Availability
 
 - Instances with multiple cores are required. Kong, by leveraging the underlying Nginx runtime, will start a worker process for each core. On systems with multiple cores a worker crash will not badly affect the system since the other workers can process the ongoing HTTP requests until the crashed worker is being automatically replaced with a new one.
 - At least 2 nodes/instances of Kong, behind a load balancer (Nginx, HAProxy, AWS ELB or similar). This prevents downtime if a Kong node crashes, since the other nodes can process the incoming HTTP requests. The number of instances behind the load balancer should increase with the number of incoming requests, to avoid the scenario when after a node crashes the sudden increase of load to the remaining nodes will effectively DDoS them and make the other nodes crash to
@@ -53,7 +53,7 @@ The performance of Kong varies depending on multiple factors, including:
 
 We recommend using the NetworkTopologyStrategy with three replicas in each data center to tolerate either the failure of a one node per replication group at a strong consistency level of LOCAL_QUORUM or multiple node failures per data center using consistency level ONE.
 
-## Postgres
+## PostgreSQL
 
 We recommend using a master-slave setup that will guarantee an appropriate replication of data in case of failures.
 

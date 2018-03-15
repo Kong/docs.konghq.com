@@ -9,7 +9,7 @@ class: page-install-method
 The Vitals feature in Kong's Admin API and GUI provides useful metrics about the health and performance of your Kong nodes, as well as metrics about the usage of your Kong-proxied APIs.
 
 ## Requirements
-Vitals requires Postgres 9.5+ or Cassandra 2.1+.
+Vitals requires PostgreSQL 9.5+ or Cassandra 2.1+.
 
 Vitals must also be enabled in Kong configuration. See below for details. 
 

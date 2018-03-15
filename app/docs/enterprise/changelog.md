@@ -125,7 +125,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
     - **Upstream Latency** (the time between a request being sent upstream by Kong, and the response being received by Kong), by Node or Cluster
   - All new metrics and dimensions accessible in **Admin GUI and API**
   - **Important limitations and notifications:**
-    - Postgres 9.5+ only - no Cassandra support yet
+    - PostgreSQL 9.5+ only - no Cassandra support yet
     - Upgrading from the previous version of Kong EE will result in all historic Vitals data being dropped
     - The previous Vitals API (which is part of the Admin API) is replaced with a new, better one (the old API disappears, and there is no backwards compatibility)
 

@@ -16,6 +16,6 @@ class: page-install-method
 
 3. **Confirm** 
   
-    If you are using Kong .30 or newer, make sure you check the `admin_listen` parameter in `kong.conf`. This behavior was changed and by default only listens on the local interface 
+    If you are using Kong 0.30 or newer, make sure that the `admin_listen` configuration value binds to the desired network interface. By default, and for security reasons, this setting binds to the local interface only.
 
 > Note: If you access the Admin GUI over the `http://` protocol the Admin GUI will not attempt to connect to the Kong Admin API over SSL.

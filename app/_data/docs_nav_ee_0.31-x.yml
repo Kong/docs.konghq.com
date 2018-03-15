@@ -1,13 +1,9 @@
 - title: Getting Started
   items:
-    - text: Introduction
-      url: /getting-started/introduction
     - text: Licensing
       url: /getting-started/licensing
     - text: Accessing Your License
       url: /getting-started/accessing-your-license
-    - text: Getting Started with the Kong Developer Portal
-      url: /getting-started/kong-developer-portal
 
 - title: Installation
   items:
@@ -34,6 +30,24 @@
       url: /plugins/forward-proxy
     - text: RBAC API
       url: /plugins/rbac-api
+
+- title: Kong Developer Portal
+  items:
+    - text: Introduction
+      url: /developer-portal/introduction
+    - text: Getting Started
+      url: /developer-portal/getting-started
+    - text: Understanding
+      url: /developer-portal/understanding
+    - text: Customization
+      url: /developer-portal/customization
+    - text: Authentication
+      url: /developer-portal/authentication
+    - text: FAQ
+      url: /developer-portal/FAQ
+    - text: Known Limitations
+      url: /developer-portal/known-limitations
+
 
 - title: Guides &amp; References
   items:

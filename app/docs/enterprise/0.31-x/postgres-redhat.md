@@ -1,10 +1,10 @@
 ---
-title: Installing Postgres on RedHat
+title: Installing PostgreSQL on RedHat
 ---
 
-# Installing Postgres on RedHat
+# Installing PostgreSQL on RedHat
 
-The Kong [installation instructions for RedHat](/install/redhat/) focus on Kong. These instructions add some additional steps to get Postgres setup. These exact installation steps come from an EC2 instance of RedHat Enterprise Linux 7, but can be generally applied to most Linux releases as well.
+The Kong [installation instructions for RedHat](/install/redhat/) focus on Kong. These instructions add some additional steps to get PostgreSQL setup. These exact installation steps come from an EC2 instance of RedHat Enterprise Linux 7, but can be generally applied to most Linux releases as well.
 
 As the ec2 default user run the following:
 
@@ -32,7 +32,7 @@ The configuration line will look like this:
 host all all 127.0.0.1/32 md5
 ```
 
-Restart postgres
+Restart PostgreSQL
 
 ```
 sudo systemctl restart postgresql-9.4.service
