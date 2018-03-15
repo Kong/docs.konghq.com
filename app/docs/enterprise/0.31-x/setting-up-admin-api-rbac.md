@@ -177,6 +177,6 @@ Additionally, a custom migration is needed to register this resource with Kong. 
 
 There are no specific rules in RBAC for limiting access to the GUI. If RBAC is enabled, when people go to the GUI <Kong>:8002, they will be presented with a login screen:
 
-<img src="/assets/images/docs/rbac_gui.png" alt="RBAC & the GUI" />
+<img src="/assets/images/docs/ee/rbac_gui.png" alt="RBAC & the GUI" />
 
 After using your RBAC credentials to log in, you will only be able to see what the super-admin has given you access to see. You will be able to see only the resources you have read access to and will only be able to make changes to the resources you have write access to.

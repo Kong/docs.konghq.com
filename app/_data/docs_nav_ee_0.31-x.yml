@@ -6,6 +6,8 @@
       url: /getting-started/licensing
     - text: Accessing Your License
       url: /getting-started/accessing-your-license
+    - text: Getting Started with the Kong Developer Portal
+      url: /getting-started/kong-developer-portal
 
 - title: Installation
   items:
