@@ -26,7 +26,7 @@ module Jekyll
       # Also create aliases under /latest/ for all x.x.x doc pages
       site.pages.each do |page|
         parts = Pathname(page.path).each_filename.to_a
-
+        page.data["has_version"] = true
         # Only apply those rules to documentation pages
         if parts[0] == site.config["documentation"]
           if(parts[1] == 'enterprise')

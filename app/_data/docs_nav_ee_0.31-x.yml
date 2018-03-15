@@ -15,8 +15,6 @@
       url: /installation/centos
     - text: Amazon Linux
       url: /installation/amazon-linux
-    - text: Postgres on RedHat
-      url: /installation/postgres-redhat
 
 - title: APIs and Plugins
   items:
@@ -42,6 +40,10 @@
       absolute_url: true
     - text: Architecture Overview
       url: /kong-architecture-overview
+    - text: Accessing Admin GUI
+      url: /admin-gui
+    - text: Kong Vitals
+      url: /vitals
     - text: Rate Limiting Library
       url: /rate-limiting
     - text: Setting Up Admin API RBAC
@@ -50,3 +52,5 @@
       url: /edition-versioning
     - text: Allowing multiple authentication methods
       url: /allowing-multiple-authentication-methods
+    - text: Postgres on RedHat
+      url: /postgres-redhat

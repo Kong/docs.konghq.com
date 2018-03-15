@@ -118,7 +118,7 @@ id: documentation
               Maybe you were looking for the <a href="/docs/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
             </div>
           {% endif %}
-          {% if page.kong_version != page.kong_latest.release %}
+          {% if page.kong_version != page.kong_latest.release and page.has_version %}
           <div class="alert alert-warning">
             <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
           </div>
