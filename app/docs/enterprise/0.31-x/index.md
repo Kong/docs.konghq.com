@@ -18,7 +18,7 @@ title: Documentation for EE Kong
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/enterprise/{{page.kong_version}}/kong-implementation-checklist">Implementation Checklist</a></h3>
     <p>Advice for planning your Kong Enterprise Edition deployment.</p>
-    <a href="/docs/enterprise/{{page.kong_version}}/getting-started/kong-implementation-checklist">Go to Checklist &rarr;</a>
+    <a href="/docs/enterprise/{{page.kong_version}}/kong-implementation-checklist">Go to Checklist &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
