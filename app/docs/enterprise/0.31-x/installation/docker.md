@@ -7,7 +7,7 @@ class: page-install-method
 
 <img src="/assets/images/distributions/docker.svg"/>
 
-A guide to installing locally Kong Enterprise Edition (and its new license file) as a Docker Container
+A guide to installing Kong Enterprise Edition (and its license file) as a Docker Container
 
 1. Login to bintray.com (your credentials will have been emailed to you by your Sales or Support contact)
 
@@ -29,7 +29,11 @@ A guide to installing locally Kong Enterprise Edition (and its new license file)
 
 6. For convenience, the commands will look something like this (PostgreSQL 9.5 is required):
 
-        docker run -d --name kong-ee-database -p 5432:5432 -e "POSTGRES_USER=kong" -e "POSTGRES_DB=kong" postgres:9.5
+        docker run -d --name kong-ee-database \
+        -p 5432:5432 \
+        -e "POSTGRES_USER=kong" \
+        -e "POSTGRES_DB=kong" \
+        postgres:9.5
 
 7. To make the license data easier to handle, export it as a shell variable. Please note that your `KONG_LICENSE_DATA` will differ! Get yours from: Bintray [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files)
 
@@ -56,7 +60,6 @@ A guide to installing locally Kong Enterprise Edition (and its new license file)
           -e "KONG_VITALS=on" \
           -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
           -e "KONG_PORTAL=on" \
-          -e "KONG_PORTAL_API_URI=0.0.0.0:8000/portal" \
           -e "KONG_PORTAL_GUI_URI=localhost:8003" \
           -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
           -p 8000:8000 \
@@ -69,11 +72,11 @@ A guide to installing locally Kong Enterprise Edition (and its new license file)
           -p 8004:8004 \
           kong-ee
 
-10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these instructions: https://getkong.org/docs/enterprise/0.31-x/developer-portal/introduction/
+10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these [instructions.](https://getkong.org/docs/enterprise/0.31-x/developer-portal/introduction/)
 
 ## FAQs
 
-- Starting with Kong `0.30`, the Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk more easily with the Kong Proxy.
+- Starting with Kong `0.30`, the Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk with the Kong Proxy.
 
 - Starting with 0.29, without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
 
