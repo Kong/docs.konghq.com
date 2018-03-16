@@ -56,6 +56,11 @@ defaults:
       layout: 'docs'
 
   - scope:
+      path: 'docs/ee'
+    values:
+      layout: 'docs'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
