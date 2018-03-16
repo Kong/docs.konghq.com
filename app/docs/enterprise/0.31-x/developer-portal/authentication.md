@@ -5,8 +5,8 @@ title: Authenticating the Developer Portal
 # Authenticating the Kong Developer Portal
 
 - [Enable Authentication](#enable-authentication)
-    [Enable AUTH in Template Files](#enable-auth-in-template-files)
-    [Enable AUTH in JavaScript hooks](#enable-auth-in-javascript-hooks)
+  - [Enable AUTH in Template Files](#enable-auth-in-template-files)
+  - [Enable AUTH in JavaScript hooks](#enable-auth-in-javascript-hooks)
 - [Add a Consumer](#add-a-consumer)
 - [Login to the Dev Portal](#login-to-the-dev-portal)
 - [Files](#files)

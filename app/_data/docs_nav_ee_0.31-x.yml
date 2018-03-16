@@ -48,7 +48,6 @@
     - text: Known Limitations
       url: /developer-portal/known-limitations
 
-
 - title: Guides &amp; References
   items:
     - text: Kong Implementation Checklist
@@ -68,7 +67,7 @@
       url: /setting-up-admin-api-rbac
     - text: Kong Enterprise Edition Versioning
       url: /edition-versioning
-    - text: Allowing multiple authentication methods
+    - text: Multiple Authentication Methods
       url: /allowing-multiple-authentication-methods
     - text: PostgreSQL on RedHat
       url: /postgresql-redhat
