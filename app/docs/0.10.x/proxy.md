@@ -636,10 +636,10 @@ following headers will be added by Kong and the full set of headers be sent to
 the client:
 
 - `Via: kong/x.x.x`, where `x.x.x` is the Kong version in use
-- `Kong-Proxy-Latency: <latency>`, where `latency` is the time in milliseconds
+- `X-Kong-Proxy-Latency: <latency>`, where `latency` is the time in milliseconds
   between Kong receiving the request from the client and sending the request to
   your upstream service.
-- `Kong-Upstream-Latency: <latency>`, where `latency` is the time in
+- `X-Kong-Upstream-Latency: <latency>`, where `latency` is the time in
   milliseconds that Kong was waiting for the first byte of the upstream service
   response.
 
