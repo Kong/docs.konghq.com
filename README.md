@@ -33,6 +33,10 @@ npm start
 - Module docs are generated into `./lua-reference`.
 - Manually move to the desired location (appropriate version folder).
 
+## Search
+
+We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our CE documentation search. The algolia index is maintained by Algolia through their docsearch service. Their scraper runs every 24hr. The config used by the scraper is open source getkong.org config can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json). 
+
 ## Deploying
 
 This will deploy to GitHub pages:
