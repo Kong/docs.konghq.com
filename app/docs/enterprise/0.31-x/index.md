@@ -42,7 +42,7 @@ title: Documentation for EE Kong
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/enterprise/{{page.kong_version}}/installation/amazon-linux">Amazon Linux</a></h3>
     <p>Run Kong Enterprise Edition on AWS.</p>
-    <a href="/docs/enterprise/{{page.kong_version}}/installation/amazon-linux/">Run Kong via Docker &rarr;</a>
+    <a href="/docs/enterprise/{{page.kong_version}}/installation/amazon-linux/">Run Kong via Amazon Linux &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
