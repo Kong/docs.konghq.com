@@ -56,6 +56,8 @@ A guide to installing locally Kong Enterprise Edition (and its new license file)
           -e "KONG_VITALS=on" \
           -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
           -e "KONG_PORTAL=on" \
+          -e "KONG_PORTAL_API_URI=0.0.0.0:8000/portal" \
+          -e "KONG_PORTAL_GUI_URI=localhost:8003" \
           -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
           -p 8000:8000 \
           -p 8443:8443 \
