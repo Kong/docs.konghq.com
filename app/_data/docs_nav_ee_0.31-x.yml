@@ -70,5 +70,5 @@
       url: /edition-versioning
     - text: Allowing multiple authentication methods
       url: /allowing-multiple-authentication-methods
-    - text: Postgres on RedHat
-      url: /postgres-redhat
+    - text: PostgreSQL on RedHat
+      url: /postgresql-redhat
