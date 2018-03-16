@@ -1,7 +1,7 @@
 ---
-title: Documentation for EE Kong
+title: Kong Enterprise Edition (EE) Documentation
 ---
-# Welcome to Kong EE
+# Welcome to Kong Enterprise Edition
 
 {% if page.edition == 'enterprise' %}
 <div class="alert alert-ee">
@@ -9,7 +9,7 @@ title: Documentation for EE Kong
     <div class="left">
       <img src="/assets/images/icons/icn-buildings.svg" />
     </div>
-    <p>Kong Enterprise Edition is a subset of features built on top of the Community Edition (CE), this documentation doesn’t cover the general practices of the Kong CE Version.<br/><br/><a href="/docs">Read the Basics in Kong CE Documentation</a></p>
+    <p>Kong Enterprise Edition (EE) adds features, functionality, and performance to Kong Community Edition (CE). This documentation doesn’t cover the general practices of using Kong that are common to both Kong CE and EE - learn the <br/><br/><a href="/docs">basics in Kong CE documentation</a></p>
   </div>
 </div>
 {% endif %}
