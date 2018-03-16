@@ -6,9 +6,6 @@ header_icon: /assets/images/icons/plugins/basic-authentication.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Create a Consumer
@@ -17,38 +14,31 @@ nav:
       - label: Upstream Headers
       - label: Paginate through the basic-auth Credentials
       - label: Retrieve the Consumer associated with a Credential
+
+description: |
+  Add Basic Authentication to your APIs, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+
+params:
+  name: basic-authentication
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: hide_credentials
+      required: false
+      value_in_examples: true
+      default: "`false`"
+      description: |
+        An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+
+    - name: anonymous
+      required: false
+      default:
+      description: |
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+
 ---
-
-Add Basic Authentication to your APIs, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=basic-auth" \
-    --data "config.hide_credentials=true"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-Once applied, any user with a valid credential can access the service/API.
-To restrict usage to only some of the authenticated users, also add the
-[ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-blacklist groups of users.
-
-form parameter                             | default | description
----                                        | ---     | ---
-`name`                                     |         | The name of the plugin to use, in this case: `basic-auth`
-`config.hide_credentials`<br>*optional*    | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.anonymous`<br>*optional*           | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
-
-----
 
 ## Usage
 

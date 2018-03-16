@@ -6,49 +6,35 @@ header_icon: /assets/images/icons/plugins/udp-log.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
+description: |
+  Log request and response data to an UDP server.
+
+params:
+  name: udp-log
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: host
+      required: true
+      value_in_examples: 127.0.0.1
+      description: The IP address or host name to send data to.
+    - name: port
+      required: true
+      value_in_examples: 9999
+      description: The port to send data to on the upstream server
+    - name: timeout
+      required: false
+      default: "`10000`"
+      value_in_examples: 10000
+      description: An optional timeout in milliseconds when sending data to the upstream server
+
 ---
-
-Log request and response data to an UDP server.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=udp-log" \
-    --data "config.host=127.0.0.1" \
-    --data "config.port=9999" \
-    --data "config.timeout=1000"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-parameter                      | default | description
----                            | ---     | ---
-`name`                         |         | The name of the plugin to use, in this case: `udp-log`
-`consumer_id`<br>*optional*    |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.host`                  |         | The IP address or host name to send data to
-`config.port`                  |         | The port to send data to on the upstream server
-`config.timeout`<br>*optional* | `10000` | An optional timeout in milliseconds when sending data to the upstream server
-
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
-
-----
 
 ## Log Format
 

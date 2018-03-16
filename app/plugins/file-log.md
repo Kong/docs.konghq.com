@@ -6,51 +6,37 @@ header_icon: /assets/images/icons/plugins/file-log.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
+description: |
+  Append request and response data to a log file on disk.
+
+  It is not recommended to use this plugin in production, it would be better to
+  use another logging plugin, for example `syslog`, in those cases. Due to system
+  limitations this plugin uses blocking file i/o, which will hurt performance,
+  and hence is an anti-pattern for Kong installations.
+params:
+  name: file-log
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: path
+      required: true
+      default:
+      value_in_examples: "/tmp/file.log"
+      description: |
+        The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
+    - name: reopen
+      required: false
+      default: "`false`"
+      description: |
+        Introduced in Kong `0.10.2`. Determines whether the log file is closed and reopened on every request. If the file is not reopened, and has been removed/rotated, the plugin will keep writing to the stale file descriptor, and hence lose information.
+
 ---
-
-Append request and response data to a log file on disk.
-
-It is not recommended to use this plugin in production, it would be better to
-use another logging plugin, for example `syslog`, in those cases. Due to system
-limitations this plugin uses blocking file i/o, which will hurt performance,
-and hence is an anti-pattern for Kong installations.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=file-log" \
-    --data "config.path=/tmp/file.log"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-form parameter                | default | description
----                           | ---     | ---
-`name`                        |         | The name of the plugin to use, in this case: `file-log`
-`consumer_id`<br>*optional*   |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.path`                 |         | The file path of the output log file. The plugin will create the file if it doesn't exist yet. Make sure Kong has write permissions to this file.
-`reopen`                      | `false` | Introduced in Kong `0.10.2`. Determines whether the log file is closed and reopened on every request. If the file is not reopened, and has been removed/rotated, the plugin will keep writing to the stale file descriptor, and hence lose information.
-
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
-
-----
 
 ## Log Format
 

@@ -6,44 +6,38 @@ header_icon: /assets/images/icons/plugins/acl.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Associating Consumers
       - label: Upstream Headers
       - label: Paginate through the ACLs
       - label: Retrieve the Consumer associated with an ACL
+
+description: |
+  Restrict access to an API by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API.
+
+params:
+  name: acl
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: false
+  config:
+    - name: whitelist
+      required: semi
+      default:
+      value_in_examples: group1, group2
+      description: |
+        Comma separated list of arbitrary group names that are allowed to consume the API. One of `config.whitelist` or `config.blacklist` must be specified.
+    - name: blacklist
+      required: semi
+      default:
+      description: |
+        Comma separated list of arbitrary group names that are not allowed to consume the API. One of `config.whitelist` or `config.blacklist` must be specified.
+  extra: |
+    Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
+
 ---
-
-Restrict access to an API by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=acl" \
-    --data "config.whitelist=group1, group2"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-form parameter                        | default| description
----                                   | ---    | ---
-`name`                                |        | The name of the plugin to use, in this case: `acl`
-`config.whitelist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are allowed to consume the API. One of `config.whitelist` or `config.blacklist` must be specified.
-`config.blacklist`<br>*semi-optional* |        | Comma separated list of arbitrary group names that are not allowed to consume the API. One of `config.whitelist` or `config.blacklist` must be specified.
-
-Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
-
-----
 
 ## Usage
 
