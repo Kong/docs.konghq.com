@@ -7,57 +7,64 @@ redirect_from: /plugins/mashape-analytics/
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Documentation
     items:
       - label: How it works
       - label: Logging bodies
       - label: FAQ
   - label: Kong Process Errors
+description: |
+  Logs request and response data to [Galileo](http://getgalileo.io), the analytics platform for monitoring, visualizing and inspecting API & microservice traffic.
+params:
+  name: galileo
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: service_token
+      required: false
+      default:
+      value_in_examples: YOUR_SERVICE_TOKEN
+      description: |
+        The service token provided to you by [Galileo](http://getgalileo.io).
+    - name: environment
+      required: false
+      default:
+      description: Slug of your Galileo environment name. None by default.
+    - name: log_bodies
+      required: false
+      default: "`false`"
+      description: Capture and send request/response bodies.
+    - name: retry_count
+      required: false
+      default: "`10`"
+      description: Number of retries in case of failure to send data to Galileo.
+    - name: connection_timeout
+      required: false
+      default: "`30`"
+      description: Timeout in seconds before aborting a connection to Galileo.
+    - name: flush_timeout
+      required: false
+      default: "`2`"
+      description: Timeout in seconds before flushing the current data to Galileo in case of inactivity.
+    - name: queue_size
+      required: false
+      default: "`1000`"
+      description: Number of calls to trigger a flush of the buffered data to Galileo.
+    - name: host
+      required: false
+      default: "`collector.galileo.mashape.com`"
+      description: Host address of the Galileo collector.
+    - name: port
+      required: false
+      default: "`443`"
+      description: Port of the Galileo collector.
+    - name: https
+      required: false
+      default: "`true`"
+      description: Use of HTTPs to connect with the Galileo collector.
+
 ---
-
-Logs request and response data to [Galileo][galileo], the analytics platform for monitoring, visualizing and inspecting API & microservice traffic.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins/ \
-    --data "name=galileo" \
-    --data "config.service_token=YOUR_SERVICE_TOKEN"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-form parameter                     | default | description
----                                | ---     | ---
-`name`                             |         | The name of the plugin to use, in this case: `galileo`
-`consumer_id`<br>*optional*        |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.service_token`                    |         | The service token provided to you by [Galileo][galileo].
-`config.environment`<br>*optional*        |         | Slug of your Galileo environment name. None by default.
-`config.log_bodies`<br>*optional*         | `false` | Capture and send request/response bodies.
-`config.retry_count`<br>*optional*        | `10`    | Number of retries in case of failure to send data to Galileo.
-`config.connection_timeout`<br>*optional* | `30`    | Timeout in seconds before aborting a connection to Galileo.
-`config.flush_timeout`<br>*optional*      | `2`     | Timeout in seconds before flushing the current data to Galileo in case of inactivity.
-`config.queue_size`<br>*optional*         | `1000`  | Number of calls to trigger a flush of the buffered data to Galileo.
-`config.host`<br>*optional*               | `collector.galileo.mashape.com` | Host address of the Galileo collector.
-`config.port`<br>*optional*               | `443`   | Port of the Galileo collector.
-`config.https`<br>*optional*              | `true`  | Use of HTTPs to connect with the Galileo collector.
-
-[galileo]: https://getgalileo.io/
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
-
-----
 
 ## How it works
 
