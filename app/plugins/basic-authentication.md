@@ -53,7 +53,7 @@ blacklist groups of users.
 form parameter                             | default | description
 ---                                        | ---     | ---
 `name`                                     |         | The name of the plugin to use, in this case: `basic-auth`
-`config.hide_credentials`<br>*optional*    | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+`config.hide_credentials`<br>*optional*    | `false` | An optional boolean value telling the plugin to hide the credentials from the upstream API service. If true, credentials will be removed by Kong before proxying the request, implying that a direct request of the upstream does not require basic auth. The auth burden is therefore moved into the plugin. If the upstream still requires basic auth, set `config.hide_credentials=false`
 `config.anonymous`<br>*optional*           | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
 
 ----
@@ -61,6 +61,8 @@ form parameter                             | default | description
 ## Usage
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final upstream service.
+
+A note about `hide_credentials`: Setting it to `false` (the default) implies that the upstream service requires basic authentication. Setting it to `true` puts auth into Kong. Use cURL commands directly to the upstream to determine how to set this value.
 
 ### Create a Consumer
 
