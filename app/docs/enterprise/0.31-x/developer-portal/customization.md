@@ -267,8 +267,8 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
 1. Find and open `partials/header.hbs` in the Example Dev Portal file directory.
 2. Open it in your favorite text editor and find the `nav` container, it should look like:
 
-   ```
-   <nav class="header-nav-container">
+    ```
+    <nav class="header-nav-container">
       <ul class="navigation">
          {{> spec-dropdown url="/documentation/"}}
          <li>
@@ -279,20 +279,20 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
          </li>
          {{> unauthenticated/login-actions auth=false}}
       </ul>
-   </nav>
-   ```
+    </nav>
+    ```
 
 3. Let's add the following line:
 
-   ```
-   <li>
+    ```
+    <li>
       <a href="/example">Example</a>
-   </li>
-   ```
+    </li>
+    ```
 
 4. Your `nav` block should now look like:
 
-   ```
+    ```
     <nav class="header-nav-container">
       <ul class="navigation">
          {{> spec-dropdown url="/documentation/"}}
@@ -307,8 +307,8 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
          </li>
          {{> unauthenticated/login-actions auth=false}}
        </ul>
-     </nav>
-   ```
+    </nav>
+    ```
 
 5. Finally let's update it using the Dev Portal File API:
    
