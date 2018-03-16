@@ -7,7 +7,7 @@ id: documentation
 <div class="page {{ page.class }}">
   <header class="page-header">
     <div class="container">
-        <div class="edit-this-page" style="position: absolute; right: 0;">
+        <div class="edit-this-page">
             <a target="_blank" href="https://github.com/Kong/getkong.org/tree/master/app/{{page.path}}"><i class="fa fa-github"></i> Edit this Page</a>
           </div>
       <nav class="docs-navigation">
@@ -23,7 +23,7 @@ id: documentation
         <h1>{% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}</h1>
       </div>
 
-      {% if page.kong_versions.size > 1 %}
+      {% if page.kong_versions.size > 1 and page.edition == 'community' %}
         <div class="dropdown page-header-right">
           <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Version {{page.kong_version}}
@@ -42,12 +42,12 @@ id: documentation
               {% endunless %}
             {% endfor %}
           </ul>
+          <div id="getkong-algolia-search" class="search-input">
+            <i class="fa fa-search"></i>
+            <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
+          </div>
         </div>
       {% endif %}
-      <div id="getkong-algolia-search" class="search-input">
-        <i class="fa fa-search"></i>
-        <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
-      </div>
     </div>
   </header>
 
