@@ -28,7 +28,7 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
                   -p 5432:5432 \
                   -e "POSTGRES_USER=kong" \
                   -e "POSTGRES_DB=kong" \
-                  postgres:9.4
+                  postgres:9.5
     ```
 
 2. **Prepare your database**
