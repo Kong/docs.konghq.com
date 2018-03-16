@@ -114,7 +114,7 @@ For this example, this is what we're going to do:
     ```css
     .navigation > li > a,
       #headerSpecDropdownWrapper > .header-text {
-        color: `hsla(255, 100%, 100%, .45) !important;
+        color: hsla(255, 100%, 100%, .45) !important;
     }
     ```
 
@@ -266,6 +266,7 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
 
 1. Find and open `partials/header.hbs` in the Example Dev Portal file directory.
 2. Open it in your favorite text editor and find the `nav` container, it should look like:
+
    ```
    <nav class="header-nav-container">
       <ul class="navigation">
@@ -280,15 +281,19 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
       </ul>
    </nav>
    ```
+
 3. Let's add the following line:
+
    ```
    <li>
       <a href="/example">Example</a>
    </li>
    ```
+
 4. Your `nav` block should now look like:
+
    ```
-   <nav class="header-nav-container">
+    <nav class="header-nav-container">
       <ul class="navigation">
          {{> spec-dropdown url="/documentation/"}}
          <li>
@@ -303,7 +308,8 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
          {{> unauthenticated/login-actions auth=false}}
        </ul>
      </nav>
-     ```
+   ```
+
 5. Finally let's update it using the Dev Portal File API:
    
     ```bash
