@@ -26,17 +26,17 @@ params:
   config:
     - name: key_names
       required: false
-      default: apikey
+      default: "`apikey`"
       description: |
         Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
     - name: key_in_body
       required: false
-      default: false
+      default: "`false`"
       description: |
         If enabled, the plugin will read the request body (if said request has one and its MIME type is supported) and try to find the key in it. Supported MIME types are `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
     - name: hide_credentials
       required: false
-      default: false
+      default: "`false`"
       description: |
         An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
     - name: anonymous
@@ -46,7 +46,7 @@ params:
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
     - name: run_on_preflight
       required: false
-      default: true
+      default: "`true`"
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
   extra: |

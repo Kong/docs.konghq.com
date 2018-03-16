@@ -6,54 +6,83 @@ header_icon: /assets/images/icons/plugins/rate-limiting.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Headers sent to the client
+description: |
+  Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+
+params:
+  name: rate-limiting
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: second
+      required: semi
+      value_in_examples: 5
+      description: The amount of HTTP requests the developer can make per second. At least one limit must exist.
+    - name: minute
+      required: semi
+      description: The amount of HTTP requests the developer can make per minute. At least one limit must exist.
+    - name: hour
+      required: semi
+      value_in_examples: 10000
+      description: The amount of HTTP requests the developer can make per hour. At least one limit must exist.
+    - name: day
+      required: semi
+      description: The amount of HTTP requests the developer can make per day. At least one limit must exist.
+    - name: month
+      required: semi
+      description: The amount of HTTP requests the developer can make per month. At least one limit must exist.
+    - name: year
+      required: semi
+      description: The amount of HTTP requests the developer can make per year. At least one limit must exist.
+    - name: limit_by
+      required: false
+      default: "`consumer`"
+      description: |
+        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
+    - name: policy
+      required: false
+      default: "`cluster`"
+      description: |
+        The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes) and `redis` (counters are stored on a Redis server and will be shared across the nodes).
+    - name: fault_tolerant
+      required: false
+      default: "`true`"
+      description: |
+        A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors.
+    - name: hide_client_headers
+      required: false
+      default: "`false`"
+      description: Optionally hide informative response headers.
+    - name: redis_host
+      required: semi
+      description: |
+        When using the `redis` policy, this property specifies the address to the Redis server.
+    - name: redis_port
+      required: false
+      default: "`6379`"
+      description: |
+        When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
+    - name: redis_password
+      required: false
+      description: |
+        When using the `redis` policy, this property specifies the password to connect to the Redis server.
+    - name: redis_timeout
+      required: false
+      default: "`2000`"
+      description: |
+        When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
+    - name: redis_database
+      required: false
+      default: "`0`"
+      description: |
+        When using the `redis` policy, this property specifies Redis database to use.
+
 ---
-
-Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the API has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=rate-limiting" \
-    --data "config.second=5" \
-    --data "config.hour=10000"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-form parameter                     | default | description
----                                | ---     | ---
-`name`                             |         | The name of the plugin to use, in this case: `rate-limiting`
-`consumer_id`<br>*optional*        |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.second`<br>*semi-optional* |         | The amount of HTTP requests the developer can make per second. At least one limit must exist.
-`config.minute`<br>*semi-optional* |         | The amount of HTTP requests the developer can make per minute. At least one limit must exist.
-`config.hour`<br>*semi-optional*   |         | The amount of HTTP requests the developer can make per hour. At least one limit must exist.
-`config.day`<br>*semi-optional*    |         | The amount of HTTP requests the developer can make per day. At least one limit must exist.
-`config.month`<br>*semi-optional*  |         | The amount of HTTP requests the developer can make per month. At least one limit must exist.
-`config.year`<br>*semi-optional*   |         | The amount of HTTP requests the developer can make per year. At least one limit must exist.
-`config.limit_by`<br>*optional*    | `consumer` | The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
-`config.policy`<br>*optional*      | `cluster`  | The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes) and `redis` (counters are stored on a Redis server and will be shared across the nodes).
-`config.fault_tolerant`<br>*optional* | `true` |  A boolean value that determines if the requests should be proxied even if Kong has troubles connecting a third-party datastore. If `true` requests will be proxied anyways effectively disabling the rate-limiting function until the datastore is working again. If `false` then the clients will see `500` errors.
-`config.hide_client_headers`<br>*optional* | `false` | Optionally hide informative response headers.
-`config.redis_host`<br>*semi-optional* |        | When using the `redis` policy, this property specifies the address to the Redis server.
-`config.redis_port`<br>*optional* | `6379`     | When using the `redis` policy, this property specifies the port of the Redis server. By default is `6379`.
-`config.redis_password`<br>*optional* |      | When using the `redis` policy, this property specifies the password to connect to the Redis server.
-`config.redis_timeout`<br>*optional* | `2000` | When using the `redis` policy, this property specifies the timeout in milliseconds of any command submitted to the Redis server.
-`config.redis_database`<br>*optional* | `0` | When using the `redis` policy, this property specifies Redis database to use.
-
-----
 
 ## Headers sent to the client
 

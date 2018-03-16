@@ -6,48 +6,39 @@ header_icon: /assets/images/icons/plugins/syslog.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Log Format
       - label: Notes
       - label: Kong Process Errors
+description: |
+  Log request and response data to Syslog.
+
+params:
+  name: syslog
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: successful_severity
+      required: false
+      default: "`info`"
+      description: An optional logging severity assigned to the all successful requests with response status code less then 400 .
+    - name: client_errors_severity
+      required: false
+      default: "`info`"
+      description: An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
+    - name: server_errors_severity
+      required: false
+      default: "`info`"
+      description: An optional logging severity assigned to the all failed requests with response status code 500 or higher.
+    - name: log_level
+      required: false
+      default: "`info`"
+      description: An optional logging severity, any request with equal or higher severity will be logged to System log.  
+
 ---
-
-Log request and response data to Syslog.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=syslog"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-parameter                      | default | description
----                            | ---     | ---
-`name`                         |         | The name of the plugin to use, in this case: `syslog`
-`consumer_id`<br>*optional*    |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.successful_severity`<br>*optional* | `info` | An optional logging severity assigned to the all successful requests with response status code less then 400 .
-`config.client_errors_severity`<br>*optional* | `info` | An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
-`config.server_errors_severity`<br>*optional* | `info` | An optional logging severity assigned to the all failed requests with response status code 500 or higher.
-`config.log_level`<br>*optional* | `info` | An optional logging severity, any request with equal or higher severity will be logged to System log.  
-
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
-
-----
 
 ## Log Format
 

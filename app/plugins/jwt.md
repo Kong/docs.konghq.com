@@ -26,56 +26,63 @@ nav:
       - label: Upstream Headers
       - label: Paginate through the JWTs
       - label: Retrieve the Consumer associated with a JWT
+
+description: |
+
+  Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519](https://tools.ietf.org/html/rfc7519)). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through:
+
+  - a query string parameter,
+  - a cookie,
+  - or the Authorization header.
+
+  Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
+
+params:
+  name: jwt
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: false
+  config:
+    - name: uri_param_names
+      required: false
+      default: "`jwt`"
+      description: A list of querystring parameters that Kong will inspect to retrieve JWTs.
+    - name: cookie_names
+      required: false
+      default:
+      description: A list of cookie names that Kong will inspect to retrieve JWTs.
+    - name: claims_to_verify
+      required: false
+      default:
+      description: |
+        A list of registered claims (according to [RFC 7519](https://tools.ietf.org/html/rfc7519)) that Kong can verify as well. Accepted values: `exp`, `nbf`.
+    - name: key_claim_name
+      required: false
+      default: "`iss`"
+      description: |
+        The name of the claim in which the `key` identifying the secret **must** be passed.
+    - name: secret_is_base64
+      required: false
+      default: "`false`"
+      description: |
+        If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your Consumer, and sign your JWT with the original secret.
+    - name: anonymous
+      required: false
+      default:
+      description: |
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+    - name: run_on_preflight
+      required: false
+      default: "`true`"
+      description: |
+        A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
+  extra: |
+    <div class="alert alert-warning">
+        <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
+    </div>
+
 ---
-
-Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519][rfc-jwt]). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through:
-
-- a query string parameter,
-- a cookie,
-- or the Authorization header.
-
-Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
-
-----
-
-## Terminology
-
-- `API`: your upstream service, for which Kong proxies requests to.
-- `Plugin`: a plugin executes actions inside Kong during the request/response lifecycle.
-- `Consumer`: a developer or service using the API. When using Kong, a Consumer authenticates itself with Kong which proxies every call to the upstream API.
-- `Credential`: in the JWT plugin context, a pair of unique values consisting of a public key and a secret, used to sign and verify a JWT, and associated to a Consumer.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=jwt"
-```
-
-- `api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-form parameter                          | default | description
----                                     | ---     | ---
-`name`                                  |         | The name of the plugin to use, in this case: `jwt`.
-`config.uri_param_names`<br>*optional*  | `jwt`   | A list of querystring parameters that Kong will inspect to retrieve JWTs.
-`config.cookie_names`<br>*optional*     |         | A list of cookie names that Kong will inspect to retrieve JWTs. 
-`config.claims_to_verify`<br>*optional* |         | A list of registered claims (according to [RFC 7519][rfc-jwt]) that Kong can verify as well. Accepted values: `exp`, `nbf`.
-`config.key_claim_name`<br>*optional*   | `iss`   | The name of the claim in which the `key` identifying the secret **must** be passed.
-`config.secret_is_base64`<br>*optional* | `false` | If true, the plugin assumes the credential's `secret` to be base64 encoded. You will need to create a base64 encoded secret for your Consumer, and sign your JWT with the original secret.
-`config.anonymous`<br>*optional*        | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
-`config.run_on_preflight`<br>*optional* | `true`  | A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
-
-<div class="alert alert-warning">
-    <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
-</div>
-
-----
 
 ## Documentation
 
@@ -170,7 +177,7 @@ HTTP/1.1 200 OK
 
 ### Craft a JWT with a secret (HS256)
 
-Now that your Consumer has a credential, and assuming we want to sign it using `HS256`, the JWT should be crafted as follows (according to [RFC 7519][rfc-jwt]):
+Now that your Consumer has a credential, and assuming we want to sign it using `HS256`, the JWT should be crafted as follows (according to [RFC 7519](https://tools.ietf.org/html/rfc7519)):
 
 First, its header must be:
 
@@ -232,7 +239,7 @@ valid signature, invalid verified claim (**option**) | no                       
 
 ### (**Optional**) Verified claims
 
-Kong can also perform verification on registered claims, as defined in [RFC 7519][rfc-jwt]. To perform verification on a claim, add it to the `config.claims_to_verify` property:
+Kong can also perform verification on registered claims, as defined in [RFC 7519](https://tools.ietf.org/html/rfc7519). To perform verification on a claim, add it to the `config.claims_to_verify` property:
 
 ```bash
 # This adds verification for both nbf and exp claims:
@@ -475,7 +482,6 @@ curl -X GET http://kong:8001/jwts/{key or id}/consumer
 `key or id`: The `id` or `key` property of the JWT for which to get the
 associated [Consumer][consumer-object].
 
-[rfc-jwt]: https://tools.ietf.org/html/rfc7519
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object

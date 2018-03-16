@@ -6,53 +6,65 @@ header_icon: /assets/images/icons/plugins/loggly.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
+description: |
+  Log request and response data over UDP to [Loggly](https://www.loggly.com).
+
+params:
+  name: loggly
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: host
+      required: false
+      default: "`logs-01.loggly.com`"
+      description: The IP address or host name of Loggly server
+    - name: port
+      required: false
+      default: "`514`"
+      description: The UDP port to send data to on the Loggly server
+    - name: key
+      required: true
+      default:
+      value_in_examples: YOUR_LOGGLY_SERVICE_TOKEN
+      description: |
+        Loggly [customer token](https://www.loggly.com/docs/customer-token-authentication-token/).
+    - name: tags
+      required: false
+      default: "`kong`"
+      description: |
+        An optional list of [tags](https://www.loggly.com/docs/tags/) to support segmentation & filtering of logs.
+    - name: timeout
+      required: false
+      default: "`10000`"
+      description: An optional timeout in milliseconds when sending data to the Loggly server
+    - name: successful_severity
+      required: false
+      default: "`info`"
+      description: |
+        An optional logging severity assigned to the all successful requests with response status code 400 .
+    - name: client_errors_severity
+      required: false
+      default: "`info`"
+      description: |
+        An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
+    - name: server_errors_severity
+      required: false
+      default: "`info`"
+      description: |
+        An optional logging severity assigned to the all failed requests with response status code 500 or higher.
+    - name: log_level
+      required: false
+      default: "`info`"
+      description: |
+        An optional logging severity, any request with equal or higher severity will be logged to Loggly.
+
 ---
-
-Log request and response data over UDP to [Loggly](https://www.loggly.com).
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] (or [Consumer][consumer-object]) by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=loggly" \
-    --data "config.key=YOUR_LOGGLY_SERVICE_TOKEN"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-parameter                          | default | description
----                                | ---     | ---
-`name`                             |         | The name of the plugin to use, in this case: `loggly`
-`consumer_id`<br>*optional*        |         | The CONSUMER ID that this plugin configuration will target. This value can only be used if [authentication has been enabled][faq-authentication] so that the system can identify the user making the request.
-`config.host`<br>*optional*        | `logs-01.loggly.com` | The IP address or host name of Loggly server
-`config.port`<br>*optional*        |`514`    | The UDP port to send data to on the Loggly server
-`config.key`                       |         | Loggly [customer token](https://www.loggly.com/docs/customer-token-authentication-token/).
-`config.tags`<br>*optional*        | `kong`  | An optional list of [tags](https://www.loggly.com/docs/tags/) to support segmentation & filtering of logs.
-`config.timeout`<br>*optional*     | `10000` | An optional timeout in milliseconds when sending data to the Loggly server
-`config.successful_severity`<br>*optional*  | `info` | An optional logging severity assigned to the all successful requests with response status code 400 .
-`config.client_errors_severity`<br>*optional* | `info` | An optional logging severity assigned to the all failed requests with response status code 400 or higher but less than 500.
-`config.server_errors_severity`<br>*optional* | `info` | An optional logging severity assigned to the all failed requests with response status code 500 or higher.
-`config.log_level`<br>*optional*   | `info` | An optional logging severity, any request with equal or higher severity will be logged to Loggly.
-
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
-
-----
 
 ## Log Format
 
