@@ -30,4 +30,4 @@ You can also apply it for every API using the `http://kong:8001/plugins/` endpoi
 
 ## Notes
 
-he plugin attempts to transparently replace upstream connections made by Kong core, sending the request instead to an intermediary forward proxy. Currently only transparent HTTP proxies are supported; TLS connections (via `CONNECT`) are not yet supported.
+The plugin attempts to transparently replace upstream connections made by Kong core, sending the request instead to an intermediary forward proxy. Currently only transparent HTTP proxies are supported; TLS connections (via `CONNECT`) are not yet supported.
