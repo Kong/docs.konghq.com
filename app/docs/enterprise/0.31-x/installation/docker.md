@@ -11,11 +11,11 @@ A guide to installing locally Kong Enterprise Edition (and its new license file)
 
 1. Login to bintray.com (your credentials will have been emailed to you by your Sales or Support contact)
 
-2. In the upper right corner, choose edit profile so you can retrieve your API key which you will be prompted for in step 3 (or click this link: https://bintray.com/profile/edit)
+2. In the upper right corner, choose edit profile so you can retrieve your API key which you will use in step 3 (or click this link: https://bintray.com/profile/edit)
 
 3. Now, open a Terminal window because we need to run some commands:
 
-        docker login -u <your_username_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
+        docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
         docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
 
     Now you have the docker image for EE locally this way
@@ -55,21 +55,29 @@ A guide to installing locally Kong Enterprise Edition (and its new license file)
           -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
           -e "KONG_VITALS=on" \
           -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+          -e "KONG_PORTAL=on" \
           -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
           -p 8000:8000 \
           -p 8443:8443 \
           -p 8001:8001 \
-          -p 8002:8002 \
           -p 8444:8444 \
+          -p 8002:8002 \
+          -p 8445:8445 \
+          -p 8003:8003 \
+          -p 8004:8004 \
           kong-ee
 
-10. Starting in Kong `0.30`, the Admin API only listens on the local interface by default. This was done as a security enhancement. If you are already using Kong, and your Admin API still binds to all interfaces, consider updating it as well. You can do so by updating the configuration value, admin_listen like so: `admin_listen = 127.0.0.1:8001`. This has been in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001`
+10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these instructions: https://getkong.org/docs/enterprise/0.31-x/developer-portal/introduction/
 
-11. Starting with 0.29, without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
+## FAQs
+
+- Starting with Kong `0.30`, the Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk more easily with the Kong Proxy.
+
+- Starting with 0.29, without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
 
         nginx: [alert] Error validating Kong license: license path environment variable not set
 
-12. As awareness, another error that can occur due to the vagaries of the interactions between text editors and copy & paste changing straight quotes (" or ') into curly ones (“ or ” or ’ or ‘) is:
+- As awareness, another error that can occur due to the vagaries of the interactions between text editors and copy & paste changing straight quotes (" or ') into curly ones (“ or ” or ’ or ‘) is:
 
         nginx: [alert] Error validating Kong license: could not decode license json
 
