@@ -25,7 +25,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
         
         docker tag 92aa781a99db kong-ee
 
-5. Generally, we'll be following the instructions here: https://getkong.org/install/docker/ with some slight (but important) differences
+5. Generally, we'll be following the instructions [here](/install/docker/) with some slight (but important) differences
 
 6. For convenience, the commands will look something like this (PostgreSQL 9.5 is required):
 
@@ -72,7 +72,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
           -p 8004:8004 \
           kong-ee
 
-10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these [instructions.](https://getkong.org/docs/enterprise/0.31-x/developer-portal/introduction/)
+10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these [instructions.](/docs/enterprise/{% page.kong_version %}/introduction/)
 
 ## FAQs
 
