@@ -86,11 +86,11 @@ params:
 
 ## Documentation
 
-In order to use the plugin, you first need to create a Consumer and associate one or more credentials to it. The Consumer represents a developer using the final service/API, and a JWT credential holds the public and private keys used to verify a crafted token.
+In order to use the plugin, you first need to create a Consumer and associate one or more credentials to it. The Consumer represents a developer using the final service (API, Route, or Service), and a JWT credential holds the public and private keys used to verify a crafted token.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. The Consumer is an entity consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object. The Consumer is an entity consuming the API, Route, or Service. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers \
@@ -207,20 +207,20 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWN
 The JWT can now be included in a request to Kong by adding it to the `Authorization` header:
 
 ```bash
-$ curl http://kong:8000/{api path} \
+$ curl http://kong:8000/{route path} \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4'
 ```
 
 as a querystring parameter, if configured in `config.uri_param_names` (which contains `jwt` by default):
 
 ```bash
-$ curl http://kong:8000/{api path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
+$ curl http://kong:8000/{route path}?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4
 ```
 
 or as cookie, if the name is configured in `config.cookie_names` (which is not enabled by default):
 
 ```bash
-curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4 http://kong:8000/{api path}
+curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWNiMTI3MjQzYyIsImV4cCI6MTQ0MjQzMDA1NCwibmJmIjoxNDQyNDI2NDU0LCJpYXQiOjE0NDI0MjY0NTR9.AhumfY35GFLuEEjrOXiaADo7Ae6gt_8VLwX7qffhQN4 http://kong:8000/{route path}
 ```
 
 The request will be inspected by Kong, whose behavior depends on the validity of the JWT:
@@ -234,12 +234,22 @@ valid signature                | yes                      | from the upstream se
 valid signature, invalid verified claim (**option**) | no                       | 403
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> When the JWT is valid and proxied to the API, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
+  <strong>Note:</strong> When the JWT is valid and proxied to the API, Route, or Service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
 </div>
 
 ### (**Optional**) Verified claims
 
 Kong can also perform verification on registered claims, as defined in [RFC 7519](https://tools.ietf.org/html/rfc7519). To perform verification on a claim, add it to the `config.claims_to_verify` property:
+
+You can patch an existing Route: 
+
+```bash
+# This adds verification for both nbf and exp claims:
+$ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
+    --data "config.claims_to_verify=exp,nbf"
+```
+
+or patch an existing API: 
 
 ```bash
 # This adds verification for both nbf and exp claims:
@@ -258,11 +268,19 @@ claim name | verification
 
 If your secret contains binary data, you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 
+You can patch an existing1 Route:
+
+```bash
+$ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
+    --data "config.secret_is_base64=true"
+```
+
+or patch an existing API: 
+
 ```bash
 $ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
     --data "config.secret_is_base64=true"
 ```
-
 Then, base64 encode your consumers' secrets:
 
 ```bash
@@ -311,7 +329,7 @@ Secondly, the claims **must** contain the secret's `key` field (this **isn't** y
 Then create the signature using your private keys. Using the JWT debugger at https://jwt.io, set the right header (RS256), the claims (iss, etc), and the associated public key. Then append the resulting value in the `Authorization` header, for example:
 
 ```bash
-$ curl http://kong:8000/{api path} \
+$ curl http://kong:8000/{route path} \
     -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxM2Q1ODE0NTcyZTc0YTIyYjFhOWEwMDJmMmQxN2MzNyJ9.uNPTnDZXVShFYUSiii78Q-IAfhnc2ExjarZr_WVhGrHHBLweOBJxGJlAKZQEKE4rVd7D6hCtWSkvAAOu7BU34OnlxtQqB8ArGX58xhpIqHtFUkj882JQ9QD6_v2S2Ad-EmEx5402ge71VWEJ0-jyH2WvfxZ_pD90n5AG5rAbYNAIlm2Ew78q4w4GVSivpletUhcv31-U3GROsa7dl8rYMqx6gyo9oIIDcGoMh3bu8su5kQc5SQBFp1CcA5H8sHGfYs-Et5rCU2A6yKbyXtpHrd1Y9oMrZpEfQdgpLae0AfWRf6JutA9SPhst9-5rn4o3cdUmto_TBGqHsFmVyob8VQ'
 ```
 
@@ -338,8 +356,27 @@ heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publically
 hosts the public key certificate used to sign tokens. Account name is referred
 to "COMPANYNAME" for the sake of the guide.
 
-To get started, create an API. _Note: Auth0 does not use base64 encoded
-secrets._
+To get started, create a Service, a Route that uses that Service, *or* create
+an API. _Note: Auth0 does not use base64 encoded secrets._
+
+Create a Service:
+
+```bash
+$ curl -i -f -X POST http://localhost:8001/servies \
+    --data "name=example-service" \
+    --data "=http://httpbin.org"
+```
+
+Then create a Route:
+
+```bash
+$ curl -i -f -X POST http://localhost:8001/routes \
+    --data "service.id={example-service's id}" \
+    --data "paths[]=/example_path"
+```
+
+
+or create an API, note these are depreciated:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/apis \
@@ -349,6 +386,15 @@ $ curl -i -X POST http://localhost:8001/apis \
 ```
 
 Add the JWT Plugin:
+
+Add the plugin to your Route:
+
+```bash
+$ curl -X POST http://localhost:8001/route/{route id}/plugins \
+    --data "name=jwt"
+```
+
+Add the plugin to your API: 
 
 ```bash
 $ curl -X POST http://localhost:8001/apis/{api}/plugins \
@@ -398,7 +444,7 @@ Success!
 
 ### Upstream Headers
 
-When a JWT is valid, a Consumer has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/service, so that you can identify the Consumer in your code:
+When a JWT is valid, a Consumer has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API, Route, or Service, so that you can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)

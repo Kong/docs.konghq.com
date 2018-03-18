@@ -120,7 +120,7 @@ argument to the AWS Lambda function.
 When using the AWS Lambda plugin, the response will be returned by the plugin
 itself without proxying the request to any upstream service. This means that
 whatever `upstream_url` has been set on the [API][api-object] it will
-never be used.
+never be used. This is also the case when the plugin is used on a Route or Service.
 
 Although `upstream_url` will never be used, it's currently a mandatory field
 in Kong's data model and its hostname must be resolvable. So set it to a

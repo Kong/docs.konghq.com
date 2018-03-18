@@ -10,7 +10,7 @@ nav:
     items:
       - label: Default rules
 description: |
-  Protects your API from most common bots and has the capability of whitelisting and blacklisting custom clients.
+  Protects your API, Route, or Service from most common bots and has the capability of whitelisting and blacklisting custom clients.
 
 params:
   name: bot-detection

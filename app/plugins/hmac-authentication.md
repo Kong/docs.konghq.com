@@ -22,10 +22,10 @@ nav:
       - label: Retrieve the Consumer associated with a Credential
 
 description: |
-  Add HMAC Signature authentication to your APIs to establish the integrity of
-  incoming requests. The plugin will validate the digital signature sent in the
-  `Proxy-Authorization` or `Authorization` header (in this order). This plugin
-  implementation is based off the
+  Add HMAC Signature authentication to your configured API, Route, or Services
+  to establish the integrity of incoming requests. The plugin will validate the
+  digital signature sent in the `Proxy-Authorization` or `Authorization` header
+  (in this order). This plugin implementation is based off the
   [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
   draft with a slightly different signature scheme.
 
@@ -39,7 +39,7 @@ params:
     - name: hide_credentials
       required: false
       default: "`false`"
-      description: A boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
+      description: A boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request
     - name: clock_skew
       required: false
       default: "`300`"
@@ -186,7 +186,35 @@ include all of the headers and a `digest` of the body.
 
 ### HMAC Example
 
+The HMAC plugin can be enabled on a Service or a Route (or the deprecated API entity).
+
+  **Create a Service**
+
+  ```bash
+  $ curl -i -X POST http://localhost:8001/services \
+      -d "name=example-service" \
+      -d "url=http://example.com"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+  **Then create a Route**
+
+  ```bash
+  $ curl -i -f -X POST http://localhost:8001/routes \
+      -d "name=hmac-test" \
+      -d "service.id={example-service's id}" \
+      -d "paths[]=/"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+
   **Add an API**
+
+Or you can use the API entity.
 
   ```bash
   $ curl -i -X POST http://localhost:8001/apis \
@@ -198,7 +226,21 @@ include all of the headers and a `digest` of the body.
 
   ```
 
-  **Enable plugin**
+  **Enabling the plugin on a Route**
+
+  Plugins can be enabled on a Service or a Route. This example uses a Route.
+
+  ```bash
+  $ curl -i -X POST http://localhost:8001/routes/{route id}/plugins \
+      -d "name=hmac-auth" \
+      -d "config.enforce_headers=date, request-line" \
+      -d "config.algorithms=hmac-sha1, hmac-sha256"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+  **Enabling the plugin on an API**
 
   ```bash
   $ curl -i -X POST http://localhost:8001/apis/hmac-test/plugins \
@@ -271,6 +313,18 @@ include all of the headers and a `digest` of the body.
   To enable body validation we would need to set `config.validate_request_body`
   to `true`:
 
+Patch an existing Route
+
+  ```bash
+  $ curl -i -X PATCH http://localhost:8001/routes/{route id}/plugins/:plugin_id \
+      -d "config.validate_request_body=true"
+  HTTP/1.1 200 OK
+  ...
+
+  ```
+
+Patch an existing API
+
   ```bash
   $ curl -i -X PATCH http://localhost:8001/apis/hmac-test/plugins/:plugin_id \
       -d "config.validate_request_body=true"
@@ -308,7 +362,7 @@ include all of the headers and a `digest` of the body.
 ### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to
-the request before proxying it to the upstream API/Microservice, so that you
+the request before proxying it to the upstream API, Route, or Service, so that you
 can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong

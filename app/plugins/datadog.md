@@ -10,7 +10,7 @@ nav:
     items:
       - label: Metrics
 description: |
-  Log API [metrics](#metrics) to the local
+  Log API, Routes, or Services [metrics](#metrics) to the local
   [Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
 
 params:
@@ -44,13 +44,13 @@ params:
 
 ## Metrics
 
-Plugin currently logs following metrics to the Datadog server.
+Plugin currently logs following metrics to the Datadog server about an API, Route, or Service.
 
 Metric                     | description | namespace
 ---                        | ---         | ---
-`request_count`            | tracks api request | kong.\<api_name>.request.count
-`request_size`             | tracks api request's body size in bytes | kong.\<api_name>.request.size
-`response_size`            | tracks api response's body size in bytes | kong.\<api_name>.response.size
+`request_count`            | tracks the request | kong.\<api_name>.request.count
+`request_size`             | tracks the request's body size in bytes | kong.\<api_name>.request.size
+`response_size`            | tracks the response's body size in bytes | kong.\<api_name>.response.size
 `latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
 `status_count`             | tracks each status code returned as response | kong.\<api_name>.status.\<status>.count and kong.\<api_name>.status.\<status>.total
 `unique_users`             | tracks unique users made a request to the api | kong.\<api_name>.user.uniques
