@@ -67,10 +67,13 @@ remove --> replace --> add --> append
 
 ## Examples
 
+In these examples we have the plugin enabled on a Route. This would work
+similar for Services, or the depreciated API entity.
+
 - Add multiple headers by passing each header:value pair separately:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -83,7 +86,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 - Add multiple headers by passing comma separated header:value pair:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -95,7 +98,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 - Add multiple headers passing config as JSON body:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -108,7 +111,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 - Add a body property and a header:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
@@ -128,7 +131,7 @@ upstream response JSON body | proxied response body
 - Append multiple headers and remove a body property:
 
 ```
-$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```

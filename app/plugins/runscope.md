@@ -12,7 +12,7 @@ nav:
       - label: Kong Process Errors
 
 description: |
-  Logs request and response data to [Runscope](https://www.runscope.com/?utm_source=getkong&utm_content=plugin). Using the Runscope Traffic Inspector, each API call can be fully viewed in it's entirety. All traffic can be searched by keyword (headers and bodies are indexed) and attribute (i.e. status code, response size, response time, etc.). Using Runscope [Live Traffic Alerts](https://www.runscope.com/docs/alerts), API failures and exceptions can be caught, notifying your team about problems before your customers find out. Trigger alerts based on any part of the HTTP request or response, including header values, JSON or XML data, connection details and more. Alerts can be sent to Slack, HipChat, PagerDuty, email, or webhook notifications. Live Traffic Alerts is available on all medium and larger plans.
+  Logs request and response data to [Runscope](https://www.runscope.com/?utm_source=getkong&utm_content=plugin). Using the Runscope Traffic Inspector, each API, Route, or Service call can be fully viewed in it's entirety. All traffic can be searched by keyword (headers and bodies are indexed) and attribute (i.e. status code, response size, response time, etc.). Using Runscope [Live Traffic Alerts](https://www.runscope.com/docs/alerts), API, Route, or Service failures and exceptions can be caught, notifying your team about problems before your customers find out. Trigger alerts based on any part of the HTTP request or response, including header values, JSON or XML data, connection details and more. Alerts can be sent to Slack, HipChat, PagerDuty, email, or webhook notifications. Live Traffic Alerts is available on all medium and larger plans.
 
 params:
   name: runscope
@@ -50,9 +50,9 @@ params:
 
 ## How it works
 
-This plugin sends API traffic data to your Runscope bucket using the [Runscope API][runscope-api]. 
+This plugin sends API, Route, or Service traffic data to your Runscope bucket using the [Runscope API][runscope-api]. 
 
-It is important to be aware of performance when configuring this plugin. For example, be aware that logging the request and response bodies might slow down your traffic if your API is under heavy load. If your API works with significantly large request or response bodies, consider turning off this feature by updating the `log_body` configuration.
+It is important to be aware of performance when configuring this plugin. For example, be aware that logging the request and response bodies might slow down your traffic if your API, Route, or Service is under heavy load. If your API, Route, or Service works with significantly large request or response bodies, consider turning off this feature by updating the `log_body` configuration.
 
 ----
 

@@ -11,7 +11,7 @@ nav:
       - label: Metrics
       - label: Kong Process Errors
 description: |
-  Log API [metrics](#metrics) StatsD server. It can also be used to log metrics on
+  Log API, Route, or Service [metrics](#metrics) to a StatsD server. It can also be used to log metrics on
   [Collectd](https://collectd.org/) daemon by enabling its
   [Statsd plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
@@ -49,12 +49,12 @@ Metrics the plugin supports logging into the StatsD server.
 
 Metric                     | description | namespace
 ---                        | ---         | ---
-`request_count`            | tracks api request | kong.\<api_name>.request.count
-`request_size`             | tracks api request's body size in bytes | kong.\<api_name>.request.size
-`response_size`            | tracks api response's body size in bytes | kong.\<api_name>.response.size
+`request_count`            | tracks the request | kong.\<api_name>.request.count
+`request_size`             | tracks the request's body size in bytes | kong.\<api_name>.request.size
+`response_size`            | tracks the response's body size in bytes | kong.\<api_name>.response.size
 `latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
 `status_count`             | tracks each status code returned in a response | kong.\<api_name>.status.\<status>.count and kong.\<api_name>.status.\<status>.total
-`unique_users`             | tracks unique users who made a request to the API| kong.\<api_name>.user.uniques
+`unique_users`             | tracks unique users who made a request to the API, Route, or Service| kong.\<api_name>.user.uniques
 `request_per_user`         | tracks request/user | kong.\<api_name>.user.\<consumer_id>.count
 `upstream_latency`         | tracks the time it took for the final service to process the request | kong.\<api_name>.upstream_latency
 `kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.\<api_name>.kong_latency

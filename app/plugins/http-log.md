@@ -143,6 +143,45 @@ A few considerations on the above JSON object:
 * `client_ip` contains the original client IP address
 * `started_at` contains the UTC timestamp of when the API transaction has started to be processed.
 
+Log plugins enabled on Routes and Services will contain information about the route or service.
+
+```json
+    "route": {
+        "created_at": 1521555129,
+        "hosts": null,
+        "id": "75818c5f-202d-4b82-a553-6a46e7c9a19e",
+        "methods": null,
+        "paths": [
+            "/example-path"
+        ],
+        "preserve_host": false,
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "regex_priority": 0,
+        "service": {
+            "id": "0590139e-7481-466c-bcdf-929adcaaf804"
+        },
+        "strip_path": true,
+        "updated_at": 1521555129
+    },
+    "service": {
+        "connect_timeout": 60000,
+        "created_at": 1521554518,
+        "host": "example.com",
+        "id": "0590139e-7481-466c-bcdf-929adcaaf804",
+        "name": "myservice",
+        "path": "/",
+        "port": 80,
+        "protocol": "http",
+        "read_timeout": 60000,
+        "retries": 5,
+        "updated_at": 1521554518,
+        "write_timeout": 60000
+    },
+```
+
 ----
 
 ## Kong Process Errors
