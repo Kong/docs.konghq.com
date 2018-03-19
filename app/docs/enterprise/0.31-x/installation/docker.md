@@ -86,21 +86,25 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
 
         nginx: [alert] Error validating Kong license: could not decode license json
 
-    Your license data must contain only straight quotes to be considered valid JSON.
+Your license data must contain only straight quotes to be considered valid JSON.
 
-## Enable RBAC and Vitals
+## Enable RBAC
 
-Finally, two of the key features of 0.29+ are RBAC and Vitals. To enable them:
+[Role-based Access Control (RBAC)](https://getkong.org/docs/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
 
-1. Start a bash session on the container
+1. Create an initial RBAC administrator
+
+        curl -X POST http://localhost:8001/rbac/users/ -d name=admin -d user_token=12345
+        curl -X POST http://localhost:8001/rbac/users/admin/roles -d roles=super-admin
+
+
+2. Start a bash session on the container
         
         docker exec -it kong-ee /bin/sh
 
-2. KONG_ENFORCE_RBAC=on kong reload
-3. export KONG_VITALS=on kong reload (note: included in the env vars above)
- 
-    > Note: with RBAC enabled, to make calls from the command line set the HTTP Header ‘Kong-Admin-Token’ (you don’t need the username, just the token):
-
-4. Example using HTTPie: 
+3. KONG_ENFORCE_RBAC=on kong reload
+4. Confirm that your user token is working by passing the `Kong-Admin-Token` header in requests
         
-        http :8001/rbac/users kong-admin-token:secret
+        curl -X GET http://localhost:8001/status -H "Kong-Admin-Token: 12345"
+
+If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on` to your initial container environment variables.
