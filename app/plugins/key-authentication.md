@@ -9,14 +9,14 @@ nav:
   - label: Usage
     items:
     - label: Create a Consumer
-    - label: Create an API Key
-    - label: Using the API Key
-    - label: Delete an API Key
+    - label: Create a Key
+    - label: Using the Key
+    - label: Delete a Key
     - label: Upstream Headers
-    - label: Paginate through the API keys
-    - label: Retrieve the Consumer associated with an API key
+    - label: Paginate through keys
+    - label: Retrieve the Consumer associated with an key
 description: |
-  Add Key Authentication (also referred to as an API key) to your APIs, Services or Routes. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
+  Add Key Authentication (also sometimes referred to as an API key) to your APIs, Routes, or Services. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
 params:
   name: key-auth
   api_id: true
@@ -38,7 +38,7 @@ params:
       required: false
       default: "`false`"
       description: |
-        An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
+        An optional boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request.
     - name: anonymous
       required: false
       default:
@@ -60,11 +60,11 @@ params:
 
 ## Usage
 
-In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
+In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer using the final API, Route, or Service.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API, Route, or Service. To create a [Consumer][consumer-object] you can execute the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/ \
@@ -91,7 +91,7 @@ If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
 service, you must add the new consumer to a whitelisted group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
-### Create an API Key
+### Create a Key
 
 You can provision new credentials by making the following HTTP request:
 
@@ -117,7 +117,7 @@ form parameter      | default | description
   <strong>Note:</strong> It is recommended to let Kong auto-generate the key. Only specify it yourself if you are migrating an existing system to Kong. You must re-use your keys to make the migration to Kong transparent to your Consumers.
 </div>
 
-### Using the API Key
+### Using the Key
 
 Simply make a request with the key as a querystring parameter:
 
@@ -132,7 +132,7 @@ $ curl http://kong:8000/{api path} \
     -H 'apikey: <some_key>'
 ```
 
-### Delete an API Key
+### Delete a Key
 
 You can delete an API Key by making the following HTTP request:
 
@@ -142,11 +142,11 @@ HTTP/1.1 204 No Content
 ```
 
 * `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
-* `id`: The `id` attribute of the API key credential object.
+* `id`: The `id` attribute of the key credential object.
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the Consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API, Route, or Service, so that you can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
@@ -156,7 +156,7 @@ When a client has been authenticated, the plugin will append some headers to the
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
-### Paginate through the API keys
+### Paginate through keys
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
@@ -203,7 +203,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-### Retrieve the Consumer associated with an API key
+### Retrieve the Consumer associated with a key
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
