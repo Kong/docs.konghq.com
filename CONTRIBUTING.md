@@ -45,9 +45,8 @@ https://www.konghq.com/enterprise/ or contact us at
 There are several channels where you can get answers from the community
 or the maintainers of this project:
 
-- The mailing list, hosted on the [konglayer Google
-  Group](https://groups.google.com/forum/#!forum/konglayer) for asynchronous
-  and lengthy chatter
+- Our public forum, [Kong Nation](https://discuss.konghq.com/), for asynchronous
+  and lengthy chatter.
 - Gitter, for faster, but more ephemeral conversations. The room is
   hosted at https://gitter.im/Mashape/kong
 - The IRC channel, registered on freenode as [#kong
@@ -218,7 +217,7 @@ Here is a template of what your commit message should look like:
 The type of your commit indicates what type of change this commit is about. The
 accepted types are:
 
-- **docs**: Changes to the README.md, this file, or static content files associated 
+- **docs**: Changes to the README.md, this file, or static content files associated
   with Kong CE or EE documentation.
 - **feat**: A new feature
 - **fix**: A bug fix
@@ -236,7 +235,7 @@ accepted types are:
 The scope is the part of the codebase that is affected by your change. Choosing
 it is at your discretion, but here are some of the most frequent ones:
 
-- **`<ce or ee>/<section>`**: A change that affects the community edition or enterprise 
+- **`<ce or ee>/<section>`**: A change that affects the community edition or enterprise
   edition docs and specifies which section.
 - **conf**: Configuration-related changes (new values, improvements...)
 - **`<plugin-name>`**: This could be `basic-auth`, or `ldap` for example
