@@ -59,8 +59,6 @@ the corresponding route:
       --data 'url=http://mockbin.org/request'
     ```
 
-    Be sure to note the Service `id` - you'll need it in step 2.
-
     Add a route to the Service:
 
     ```bash
@@ -77,9 +75,8 @@ the corresponding route:
 
     ```bash
     $ curl -i -X POST \
-      --url http://localhost:8001/plugins/ \
-      --data 'name=key-auth' \
-      --data 'service_id=<the-service-id>'
+      --url http://localhost:8001/services/example-service/plugins/ \
+      --data 'name=key-auth'
     ```
 
     Be sure to note the created Plugin `id` - you'll need it in step 5.

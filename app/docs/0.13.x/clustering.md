@@ -121,12 +121,16 @@ On node `A`, we add a Service and a Route:
 ```bash
 # node A
 $ curl -X POST http://127.0.0.1:8001/services \
-    --data "name=example" \
+    --data "name=example-service" \
     --data "url=http://example.com"
 
-$ curl -X POST http://127.0.0.1:8001/services/example/routes \
-    --data "paths[]=example.com"
+$ curl -X POST http://127.0.0.1:8001/services/example-service/routes \
+    --data "paths[]=/example"
 ```
+
+(Note that we used `/services/example-service/routes` as a shortcut: we
+could have used the `/routes` endpoint instead, but then we would need to
+pass `service_id` as an argument, with the UUID of the new service.)
 
 A request to the Proxy port of both node `A` and `B` will cache this Service, and
 the fact that no plugin is configured on it:
@@ -149,9 +153,8 @@ Now, say we add a plugin to this Service via node `A`'s Admin API:
 
 ```bash
 # node A
-$ curl -X POST http://127.0.0.1:8001/plugins \
+$ curl -X POST http://127.0.0.1:8001/services/example-service/plugins \
     --data "name=example-plugin"
-    --data "service_id=<example_service_id>"
 ```
 
 Because this request was issued via node `A`'s Admin API, node `A` will locally
