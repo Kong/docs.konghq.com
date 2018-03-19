@@ -166,7 +166,7 @@ health checker that the target should be enabled again, via an
 Admin API endpoint:
 
 ```bash
-$ curl -i -X POST http://localhost:8001/upstream/my_upstream/targets/10.1.2.3:1234/healthy
+$ curl -i -X POST http://localhost:8001/upstreams/my_upstream/targets/10.1.2.3:1234/healthy
 HTTP/1.1 204 No Content
 ```
 
