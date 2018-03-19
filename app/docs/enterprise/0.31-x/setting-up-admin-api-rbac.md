@@ -146,7 +146,7 @@ The default RBAC roles and permissions shipped with Kong are a great starting po
 
 Additionally, third-party plugin developers can register their own Admin API RBAC resources as part of the [Admin API extension](/docs/latest/plugin-development/admin-api). This is done by defining a "resource" value associated with each API endpoint, like so:
 
-```
+```lua
 return {
   ["/mock/api/endpoint/"] = {
     resource = "mock",
@@ -159,7 +159,7 @@ return {
 
 Additionally, a custom migration is needed to register this resource with Kong. This would look something like the following:
 
-```
+```lua
 {
    name = "2017-07-23-100000_rbac_mock_resources",
    up = function(_, _, dao)
