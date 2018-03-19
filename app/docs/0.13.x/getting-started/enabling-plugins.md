@@ -32,9 +32,8 @@ from unauthorized use.
 
     ```bash
     $ curl -i -X POST \
-      --url http://localhost:8001/plugins/ \
-      --data 'name=key-auth' \
-      --data 'service_id=<your-service-id>'
+      --url http://localhost:8001/services/example-service/plugins/ \
+      --data 'name=key-auth'
     ```
 
     **Note:** This plugin also accepts a `config.key_names` parameter, which
