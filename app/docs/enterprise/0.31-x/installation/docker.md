@@ -103,9 +103,9 @@ If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on
 
 ## FAQs
 
-Starting with Kong `0.30`, the Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk with the Kong Proxy.
+The Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk with the Kong Proxy.
 
-Starting with 0.29, without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
+Without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
 
         nginx: [alert] Error validating Kong license: license path environment variable not set
 
