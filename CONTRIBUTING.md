@@ -13,8 +13,6 @@ Consult the Table of Contents below, and jump to the desired section.
 ## Table of Contents
 
 - [Where to seek for help?](#where-to-seek-for-help)
-  - [Enterprise Edition](#enterprise-edition)
-  - [Community Edition](#community-edition)
 - [Where to report bugs?](#where-to-report-bugs)
 - [Contributing](#contributing)
   - [Improving the documentation](#improving-the-documentation)
@@ -27,73 +25,18 @@ Consult the Table of Contents below, and jump to the desired section.
 
 ## Where to seek for help?
 
-### Enterprise Edition
-
-If you are experiencing a P1 issue, please call the [24/7 Enterprise Support
-phone line](https://support.konghq.com/hc/en-us/articles/115004921808-Telephone-Support)
-for immediate assistance, as published in the Customer Success Reference Guide.
-
-If you are interested in becoming a Kong Enterprise customer, please visit
-https://www.konghq.com/enterprise/ or contact us at
-[sales@konghq.com](mailto:sales@konghq.com).
-
-[Back to TOC](#table-of-contents)
-
-
-### Community Edition
-
-There are several channels where you can get answers from the community
-or the maintainers of this project:
-
-- Our public forum, [Kong Nation](https://discuss.konghq.com/), for asynchronous
-  and lengthy chatter.
-- Gitter, for faster, but more ephemeral conversations. The room is
-  hosted at https://gitter.im/Mashape/kong
-- The IRC channel, registered on freenode as [#kong
-  ](https://webchat.freenode.net/?channels=kong)
-
-**Please avoid opening GitHub issues for general questions or help**, as those
-should be reserved for actual feature requests and bug reports. The Kong community is welcoming and
-more than willing to assist you on those channels!
-
-[Back to TOC](#table-of-contents)
-
+See the [Kong Contributing Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-seek-for-help) for an overview of the channels at your disposal.
 
 ## Where to report bugs?
 
-Feel free to [submit an issue](https://github.com/Kong/kong/issues/new) on
-the GitHub repository, we would be grateful to hear about it! Please make sure
-to respect the GitHub issue template, and include:
-
-1. A summary of the issue
-2. A list of steps to reproduce the issue
-
-If you wish, you are more than welcome to propose a patch to fix the issue!
-See the [Submit a patch](#submitting-a-patch) section for more information
-on how to best do so.
-
-[Back to TOC](#table-of-contents)
-
+If the bug is about the getkong.org website, please report it in this [repository's issues tracker](https://github.com/kong/getkong.org/issues/new). If the bug is related to Kong itself, please  see the [Kong Contributing Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs).
 
 ## Contributing
 
-We welcome contributions of all kinds, you do not need to code to be helpful!
-All of the following tasks are noble and worthy contributions that you can
-make without coding:
+We welcome all kings of contributions, not only to Kong, but also to its documentation! If you wish to contribute to the documentation (by fixing a typo of making any other kind of improvement), please read the below section about [submitting a
++patch](#submitting-a-patch).
 
-- Reporting a bug (see the [report bugs](#where-to-report-bugs) section)
-- Helping other members of the community on the support channels
-- Fixing a typo in the code
-- Fixing a typo in the documentation at https://getkong.org (see
-  the [documentation contribution](#improving-the-documentation) section)
-- Providing your feedback on the proposed features and designs
-- Reviewing Pull Requests
-
-If you wish to contribute code (features or bug fixes), see the [Submitting a
-patch](#submitting-a-patch) section.
-
-[Back to TOC](#table-of-contents)
-
+If you wish to contribute to Kong itself, see the [Kong Contributing Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributing).
 
 ### Improving the documentation
 
