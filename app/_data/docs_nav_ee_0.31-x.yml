@@ -24,6 +24,8 @@
       url: /plugins/request-transformer
     - text: OAuth2 Introspection Plugin
       url: /plugins/oauth2-introspection
+    - text: OpenID Connect Plugin
+      url: /plugins/openid-connect
     - text: HTTP Proxy Caching
       url: /plugins/http-proxy-caching
     - text: Forward Proxy
