@@ -29,8 +29,8 @@ $ curl -i -X POST http://kong:8001/plugins \
 |----------------|---------|-------------
 | `name`|| The name of the plugin to use, in this case: `rate-limiting`.
 |`config.limit`|| one of more request per window to apply
-|`config.window_size`||One more more window sizes to apply<br>(defined in seconds).<br><br>How to define the rate limit key. Can be `ip`, `credential`, or `consumer`.
-|`config.identifier` | consumer | Note: For Kong Enterprise Edition 0.29 and older, identifier defaults to consumer
+|`config.window_size`||One more more window sizes to apply (defined in seconds).
+|`config.identifier` | `consumer` | How to define the rate limit key. Can be `ip`, `credential`, or `consumer`.
 |`config.sync_rate` | | How often to sync counter data to the central data store. A value of 0 results in synchronous behavior; a value of -1 ignores sync behavior entirely and only stores counters in node memory. A value greater than 0 will sync the counters in that many number of seconds.
 |`config.namespace(optional)`| `random string`|The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
 |`config.strategy`| `cluster` | The sync strategy to use; `cluster` and `redis` are supported.
