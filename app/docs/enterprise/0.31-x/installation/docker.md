@@ -45,7 +45,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
 
         export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
 
-8. Run Kong migrations
+8. Run Kong migrations:
 
         docker run --rm --link kong-ee-database:kong-ee-database \
           -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-ee-database" \
@@ -53,7 +53,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
           -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
           kong-ee kong migrations up
 
-9. Start Kong
+9. Start Kong:
 
         docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
           -e "KONG_DATABASE=postgres" \
@@ -84,18 +84,20 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
 
 [Role-based Access Control (RBAC)](https://getkong.org/docs/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
 
-1. Create an initial RBAC administrator
-
+1. Create an initial RBAC administrator:
+        
         curl -X POST http://localhost:8001/rbac/users/ -d name=admin -d user_token=12345
         curl -X POST http://localhost:8001/rbac/users/admin/roles -d roles=super-admin
 
-
-2. Start a bash session on the container
+2. Start a bash session on the container:
         
         docker exec -it kong-ee /bin/sh
 
-3. KONG_ENFORCE_RBAC=on kong reload
-4. Confirm that your user token is working by passing the `Kong-Admin-Token` header in requests
+3. Reload Kong with RBAC enabled:
+        
+        KONG_ENFORCE_RBAC=on kong reload
+
+4. Confirm that your user token is working by passing the `Kong-Admin-Token` header in requests:
         
         curl -X GET http://localhost:8001/status -H "Kong-Admin-Token: 12345"
 
@@ -105,7 +107,7 @@ If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on
 
 The Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk with the Kong Proxy.
 
-Without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
+Without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a `docker start <name>` and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a `docker logs <container_name>` will show you:
 
         nginx: [alert] Error validating Kong license: license path environment variable not set
 
