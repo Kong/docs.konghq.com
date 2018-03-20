@@ -76,7 +76,7 @@ headers.
 The plugins do support OpenID Connect Discovery as defined in
 [the specification](http://openid.net/specs/openid-connect-discovery-1_0.html).
 
-![OpenID Connect Discovery Sequence Diagram](media/openid-connect-discovery.png "OpenID Connect Discovery Sequence Diagram")
+![OpenID Connect Discovery Sequence Diagram](/assets/images/docs/ee/plugins/openid-connect-discovery.png "OpenID Connect Discovery Sequence Diagram")
 
 ### JWA Signing Algorithms
 
