@@ -10,9 +10,15 @@ links:
   kubectl: "https://cloud.google.com/container-engine/docs/quickstart#install_the_gcloud_command-line_interface"
   gh_tag: "https://github.com/Kong/kong-dist-kubernetes/tree/1.0.0"
   minikube: "https://github.com/Kong/kong-dist-kubernetes/blob/master/minikube/README.md"
+  kubeapps_hub: "https://hub.kubeapps.com/charts/stable/kong"
+  gh_repo: "https://github.com/Kong/kong-dist-kubernetes/"
 ---
 
-Kong can easily be provisioned to Kubernetes cluster using the following steps:
+Kong can easily be provisioned to Kubernetes cluster by either using the
+[Helm chart]({{ page.links.kubeapps_hub }}) or the manifest files provided
+in the [repo]({{ page.links.gh_repo }})
+
+Following are the steps to install Kong using the manifest files: 
 
 1. **Initial setup**
   
