@@ -1,4 +1,8 @@
-<!-- Thank your for making Kong better! #kongstrong -->
+<!-- 
+Thank your for making Kong better! #kongstrong
+
+note: Check existing issues and pull-requests before submitting new ones, as a courtesy to the maintainers and making sure work isn't duplicated.
+-->
 
 **NOTE**: Please read the CONTRIBUTING.md guidelines before submitting your patch,
 and ensure you followed them all:
