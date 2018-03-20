@@ -101,7 +101,7 @@ If you have write access to the GitHub repository, please follow the following
 naming scheme when pushing your branch(es):
 
 - `feat/foo-bar` for new features
-- `fix/foo-bar` for bug fixes
+- `fix/foo-bar` for bug fixes (not including typos or content see [Type](#type) section below)
 - `tests/foo-bar` when the change concerns only the test suite
 - `refactor/foo-bar` when refactoring code without any behavior change
 - `style/foo-bar` when addressing some style issue
@@ -160,14 +160,16 @@ Here is a template of what your commit message should look like:
 The type of your commit indicates what type of change this commit is about. The
 accepted types are:
 
-- **docs**: Changes to the README.md, this file, or static content files associated
-  with Kong CE or EE documentation.
-- **feat**: A new feature
-- **fix**: A bug fix
-- **hotfix**: An urgent bug fix during a release process
-- **style**: CSS fixes, formatting, missing semi colons, 💅
+- **docs**: Changes made to any static content files associated with Kong CE
+  or EE documentation (including typo fixes), the README.md or this file.
+- **feat**: A new website feature e.g. Ruby, JavaScript, HTML, or CSS changes to
+  support a new feature.
+- **fix**: A website bug fix (related to the Ruby, JavaScript, HTML, or CSS assets).
+  Typos and other fixes to the _contents_ of the documentation (markdown files) are
+  not included in this scope.
+- **style**: CSS fixes, formatting, missing semi colons, �
 - **refactor**: A code change that neither fixes a bug nor adds a feature, and
-  is too big to be considered just `perf`
+  is too big to be considered `chore`.
 - **chore**: Maintenance changes related to code cleaning that isn't
   considered part of a refactor, build process updates, dependency bumps, or
   auxiliary tools and libraries updates (npm modules, Travis-ci, etc...).
