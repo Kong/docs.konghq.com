@@ -7,16 +7,22 @@ class: page-install-method
 
 <img src="/assets/images/distributions/docker.svg"/>
 
-A guide to installing Kong Enterprise Edition (and its license file) as a Docker Container
+A guide to installing Kong Enterprise Edition (and its license file) as a Docker Container. Trial users should skip directly to step 3.
 
 1. Login to bintray.com (your credentials will have been emailed to you by your Sales or Support contact)
 
 2. In the upper right corner, choose edit profile so you can retrieve your API key which you will use in step 3 (or click this link: https://bintray.com/profile/edit)
 
-3. Now, open a Terminal window because we need to run some commands:
+3. For **users with existing contracts** add the Kong Docker repository and pull the image:
 
         docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
         docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
+
+    For **trial users**, run the following, replacing `<your trial image URL>` with the URL you received in your welcome email:
+
+        curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
+        docker load -i /tmp/kong-docker-ee.tar
+
 
     Now you have the docker image for EE locally this way
     Run `docker images` to find the image
@@ -35,7 +41,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
         -e "POSTGRES_DB=kong" \
         postgres:9.5
 
-7. To make the license data easier to handle, export it as a shell variable. Please note that your `KONG_LICENSE_DATA` will differ! Get yours from: Bintray [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files)
+7. To make the license data easier to handle, export it as a shell variable. Please note that your `KONG_LICENSE_DATA` will differ! Users with Bintray accounts should visit [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files) to retrieve their license. Trial users should download their license from their welcome email. Once you have your license, you can set it in an environment variable:
 
         export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
 
@@ -74,33 +80,37 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
 
 10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these [instructions.](/docs/enterprise/{{page.kong_version}}/introduction/)
 
-## FAQs
+## Enable RBAC
 
-- Starting with Kong `0.30`, the Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk with the Kong Proxy.
+[Role-based Access Control (RBAC)](https://getkong.org/docs/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
 
-- Starting with 0.29, without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
+1. Create an initial RBAC administrator
 
-        nginx: [alert] Error validating Kong license: license path environment variable not set
+        curl -X POST http://localhost:8001/rbac/users/ -d name=admin -d user_token=12345
+        curl -X POST http://localhost:8001/rbac/users/admin/roles -d roles=super-admin
 
-- As awareness, another error that can occur due to the vagaries of the interactions between text editors and copy & paste changing straight quotes (" or ') into curly ones (“ or ” or ’ or ‘) is:
 
-        nginx: [alert] Error validating Kong license: could not decode license json
-
-    Your license data must contain only straight quotes to be considered valid JSON.
-
-## Enable RBAC and Vitals
-
-Finally, two of the key features of 0.29+ are RBAC and Vitals. To enable them:
-
-1. Start a bash session on the container
+2. Start a bash session on the container
         
         docker exec -it kong-ee /bin/sh
 
-2. KONG_ENFORCE_RBAC=on kong reload
-3. export KONG_VITALS=on kong reload (note: included in the env vars above)
- 
-    > Note: with RBAC enabled, to make calls from the command line set the HTTP Header ‘Kong-Admin-Token’ (you don’t need the username, just the token):
-
-4. Example using HTTPie: 
+3. KONG_ENFORCE_RBAC=on kong reload
+4. Confirm that your user token is working by passing the `Kong-Admin-Token` header in requests
         
-        http :8001/rbac/users kong-admin-token:secret
+        curl -X GET http://localhost:8001/status -H "Kong-Admin-Token: 12345"
+
+If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on` to your initial container environment variables.
+
+## FAQs
+
+The Admin API only listens on the local interface by default. This was done as a security enhancement. Note that here, we are overriding that in the above example with `KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from more open settings and enables the Admin GUI & Dev Portal to talk with the Kong Proxy.
+
+Without a license properly referenced, you’ll get errors running migrations. Also, without a license, you'll do a “docker start <name>” and not see an error attempting to start the container. But when you check the process, it won’t be running. Doing a “docker logs <container_name>” will show you:
+
+        nginx: [alert] Error validating Kong license: license path environment variable not set
+
+As awareness, another error that can occur due to the vagaries of the interactions between text editors and copy & paste changing straight quotes (" or ') into curly ones (“ or ” or ’ or ‘) is:
+
+        nginx: [alert] Error validating Kong license: could not decode license json
+
+Your license data must contain only straight quotes to be considered valid JSON.
