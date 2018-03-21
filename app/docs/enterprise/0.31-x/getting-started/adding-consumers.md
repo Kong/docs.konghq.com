@@ -4,15 +4,6 @@ title: Adding Consumers
 
 # Adding Consumers
 
-<!-- <div class="alert alert-warning">
-  <strong>Before you start:</strong>
-  <ol>
-    <li>Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!</li>
-    <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-    <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
-  </ol>
-</div> -->
-
 In the last section, we learned how to add plugins to Kong Enterprise Edition
 (EE), in this section
 we're going to learn how to add Consumers to Kong. Consumers are
