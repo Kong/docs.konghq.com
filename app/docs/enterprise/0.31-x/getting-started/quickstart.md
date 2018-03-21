@@ -4,11 +4,6 @@ title: 5-minute Quickstart
 
 # 5-minute Quickstart
 
-<!-- <div class="alert alert-warning">
-  <strong>Before you start:</strong> Make sure you've
-  <a href="/install/">installed Kong</a> &mdash; It should only take a minute!
-</div> -->
-
 In this section, you'll learn how to manage your Kong Enterprise Edition (EE)
 instance. First we'll
 have you start Kong to give you access to the RESTful Admin API, and easy-to-use
