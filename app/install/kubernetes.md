@@ -154,4 +154,3 @@ Kong can easily be provisioned to Kubernetes cluster using the following steps:
 4. **Deploy Kong**
 
     Continue from step 4 in the main set of instructions using the `kong_trial_*` YAML files. Note that you'll be able to access the Admin GUI at `<kong-admin-ip-address>:8002` or `https://<kong-ssl-admin-ip-address>:8445`.
-
