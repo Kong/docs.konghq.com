@@ -4,14 +4,14 @@ title: Enabling Plugins
 
 # Enabling Plugins
 
-<div class="alert alert-warning">
+<!-- <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
     <li>Make sure you've <a href="/install/">installed Kong</a> - It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
     <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
   </ol>
-</div>
+</div> -->
 
 In this section, you'll learn how to configure Kong plugins. One of the core
 principles of Kong is its extensibility through [plugins][plugins]. Plugins
@@ -65,11 +65,11 @@ from unauthorized use.
 
 ### Next Steps
 
-Now that you've configured the **key-auth** plugin lets learn how to add
-consumers to your API so we can continue proxying requests through Kong.
+Now that you've configured the **key-auth** plugin, lets learn how to add
+Consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
 [key-auth]: /plugins/key-authentication
 [plugins]: /plugins
-[adding-consumers]: /docs/{{page.kong_version}}/getting-started/adding-consumers
+[adding-consumers]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-consumers

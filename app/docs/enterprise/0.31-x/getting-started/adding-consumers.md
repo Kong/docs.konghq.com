@@ -4,23 +4,24 @@ title: Adding Consumers
 
 # Adding Consumers
 
-<div class="alert alert-warning">
+<!-- <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
     <li>Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
     <li>Also, make sure you've <a href="/docs/{{page.kong_version}}/getting-started/adding-your-api">added your API to Kong</a>.</li>
   </ol>
-</div>
+</div> -->
 
-In the last section, we learned how to add plugins to Kong, in this section
-we're going to learn how to add consumers to your Kong instances. Consumers are
-associated to individuals using your API, and can be used for tracking, access
-management, and more.
+In the last section, we learned how to add plugins to Kong Enterprise Edition
+(EE), in this section
+we're going to learn how to add Consumers to Kong. Consumers are
+associated to individuals or applications using your API, and can be used
+for tracking, access management, and more.
 
 **Note:** This section assumes you have [enabled][enabling-plugins] the
-[key-auth][key-auth] plugin. If you haven't, you can either [enable the
-plugin][enabling-plugins] or skip steps two and three.
+[key-auth][key-auth] plugin. If you haven't, you can either
+[enable the plugin][enabling-plugins] or skip steps two and three.
 
 1. ### Create a Consumer through the RESTful API
 
@@ -46,15 +47,15 @@ plugin][enabling-plugins] or skip steps two and three.
     }
     ```
 
-    Congratulations! You've just added your first consumer to Kong.
+    Congratulations! You've just added your first Consumer to Kong.
 
     **Note:** Kong also accepts a `custom_id` parameter when [creating
-    consumers][API-consumers] to associate a consumer with your existing user
+    Consumers][API-consumers] to associate a Consumer with your existing user
     database.
 
 2. ### Provision key credentials for your Consumer
 
-    Now, we can create a key for our recently created consumer `Jason` by
+    Now, we can create a key for our recently created Consumer `Jason` by
     issuing the following request:
 
     ```bash
@@ -86,14 +87,12 @@ Plugins, feel free to read more on Kong in one of the following documents:
 - [Admin API Reference][API]
 - [Clustering Reference][cluster]
 
-Questions? Issues? Contact us on one of the [Community Channels](/community)
-for help!
 
 [key-auth]: /plugins/key-authentication
-[API-consumers]: /docs/{{page.kong_version}}/admin-api#create-consumer
+[API-consumers]: /docs/latest/admin-api#create-consumer
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
-[configuration]: /docs/{{page.kong_version}}/configuration
-[CLI]: /docs/{{page.kong_version}}/cli
-[proxy]: /docs/{{page.kong_version}}/proxy
-[API]: /docs/{{page.kong_version}}/admin-api
-[cluster]: /docs/{{page.kong_version}}/clustering
+[configuration]: /docs/latest/configuration
+[CLI]: /docs/latest/cli
+[proxy]: /docs/latest/proxy
+[API]: /docs/latest/admin-api
+[cluster]: /docs/latest/clustering

@@ -4,18 +4,19 @@ title: Adding your API
 
 # Adding your API
 
-<div class="alert alert-warning">
+<!-- <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
     <li>Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!</li>
     <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
   </ol>
-</div>
+</div> -->
 
-In this section, you'll be adding your API to the Kong layer. This is the first
-step to having Kong manage your API. For purposes of this Getting Started
+In this section, you'll be adding your API to Kong Enterprise Edition (EE).
+This is the first
+step to having Kong EE manage your API. For purposes of this Getting Started
 guide, we suggest adding the [Mockbin API][mockbin] to Kong, as Mockbin is
-helpful for learning how Kong proxies your API requests.
+helpful for learning how Kong EE proxies your API requests.
 
 Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
 configuration of your Kong instance or cluster.
@@ -63,7 +64,7 @@ configuration of your Kong instance or cluster.
 
     Kong is now aware of your API and ready to proxy requests.
 
-3. ### Forward your requests through Kong
+3. ### Forward your requests through Kong EE
 
     Issue the following cURL request to verify that Kong is properly forwarding
     requests to your API. Note that [by default][proxy-port] Kong handles proxy
@@ -88,11 +89,11 @@ configuration of your Kong instance or cluster.
 
 ## Next Steps
 
-Now that you've added your API to Kong, let's learn how to enable plugins.
+Now that you've added your API to Kong EE, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /docs/{{page.kong_version}}/admin-api
-[enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
-[proxy-port]: /docs/{{page.kong_version}}/configuration/#nginx-section
+[API]: /docs/latest/admin-api
+[enabling-plugins]: /docs/enterprise/{{page.kong_version}}/getting-started/enabling-plugins
+[proxy-port]: /docs/latest/configuration/#nginx-section
 [mockbin]: https://mockbin.com/
