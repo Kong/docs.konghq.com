@@ -1,5 +1,15 @@
 - title: Getting Started
   items:
+     - text: Introduction
+      url: /getting-started/introduction
+     - text: Five-minute quickstart
+      url: /getting-started/quickstart
+    - text: Adding your API
+      url: /getting-started/adding-your-api
+    - text: Enabling Plugins
+      url: /getting-started/enabling-plugins
+    - text: Adding Consumers
+      url: /getting-started/adding-consumers
     - text: Licensing
       url: /getting-started/licensing
     - text: Accessing Your License
