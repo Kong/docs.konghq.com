@@ -14,7 +14,7 @@ nav:
       - label: Upstream Headers
 
 description: |
-  Add LDAP Bind Authentication to your APIs, Routes, or Services, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add LDAP Bind Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
 params:
   name: ldap-auth
@@ -98,7 +98,7 @@ The plugin will validate the user against the LDAP server and cache the credenti
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API, Route, or Service, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the consumer in your code:
 
 * `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.

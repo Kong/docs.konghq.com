@@ -12,7 +12,8 @@ nav:
 
 description: |
   This plugin terminates incoming requests with a specified status code and
-  message. This allows to (temporarily) block an API, Route, Service, or Consumer.
+  message. This allows to (temporarily) stop traffic on a Service or a Route
+  (or the deprecated API entity), or even block a Consumer.
 
 params:
   name: request-termination
@@ -46,6 +47,7 @@ params:
 
 ## Example Use Cases
 
-- Temporarily disable an API, Route, or Service (ex: maintenance mode).
-- Temporarily disable a Consumer (ex: excessive consumption).
+- Temporarily disable a Service (e.g. it is under maintenance).
+- Temporarily disable a Route (e.g. the rest of the Service is up and running, but a particular endpoint must be disabled).
+- Temporarily disable a Consumer (e.g. excessive consumption).
 - Block anonymous access with multiple auth plugins in a logical `OR` setup.

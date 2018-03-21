@@ -16,7 +16,7 @@ nav:
       - label: Retrieve the Consumer associated with a Credential
 
 description: |
-  Add Basic Authentication to your APIs, Routes, and Services, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add Basic Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
 params:
   name: basic-authentication
@@ -30,7 +30,7 @@ params:
       value_in_examples: true
       default: "`false`"
       description: |
-        An optional boolean value telling the plugin to hide the credential to the upstream API server, Route, or Service. It will be removed by Kong before proxying the request
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the `Authorization` header) before proxying it.
 
     - name: anonymous
       required: false
@@ -42,11 +42,11 @@ params:
 
 ## Usage
 
-In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final upstream API, Route, or Service.
+In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer or an application consuming the upstream service.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API, Route, or Service. To create a [Consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
 ```bash
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
@@ -95,13 +95,13 @@ Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
 Simply make a request with the header:
 
 ```bash
-$ curl http://kong:8000/{api path} \
+$ curl http://kong:8000/{path matching a configured Route} \
     -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
 ```
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API, Route, or Service, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)

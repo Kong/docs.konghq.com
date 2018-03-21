@@ -10,7 +10,7 @@ nav:
     items:
       - label: Headers sent to the client
 description: |
-  Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the API, Route, or Service has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+  Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
 params:
   name: rate-limiting

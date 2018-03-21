@@ -279,21 +279,22 @@ Plugins can be enabled on a Service or a Route. This example uses a Route.
 
 ----
 
-## Limitations
+### Limitations
 
-**Use a fake upstream_url**
+#### Use a fake upstream service
 
-When using this plugin, the response will be returned by the plugin itself
-without proxying the request to any upstream service. This means that whatever
-`upstream_url` has been set on the [API][api-object] it will never be used.
-This is also the case when the plugin is used on a Route or Service.
+When using the AWS Lambda plugin, the response will be returned by the plugin
+itself without proxying the request to any upstream service. This means that
+a Service's `host`, `port`, `path` properties will be ignored, but must still
+be specified for the entity to be validated by Kong. The `host` property in
+particular must either be an IP address, or a hostname that gets resolved by
+your nameserver.
 
-Although `upstream_url` will never be used, it's currently a mandatory
-field in Kong's data model, so feel free to set a fake value (ie, `http://localhost`)
-if you are planning to use this plugin. In the future, we will provide a more
-intuitive way to deal with similar use cases.
+When the plugin is added to an API entity (which is deprecated as of 0.13.0),
+it is the `upsream_url` property which must be specified and resolvable as well
+(but ignored).
 
-**Response plugins**
+#### Response plugins
 
 There is a known limitation in the system that prevents some response plugins
 from being executed. We are planning to remove this limitation in the future.

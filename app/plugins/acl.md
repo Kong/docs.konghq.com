@@ -14,7 +14,7 @@ nav:
       - label: Retrieve the Consumer associated with an ACL
 
 description: |
-  Restrict access to an API, Route, or Service by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the API, Route, or Service.
+  Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the Service or the Route (or API).
 
 params:
   name: acl
@@ -28,12 +28,12 @@ params:
       default:
       value_in_examples: group1, group2
       description: |
-        Comma separated list of arbitrary group names that are allowed to consume the API, Route, or Service. One of `config.whitelist` or `config.blacklist` must be specified.
+        Comma separated list of arbitrary group names that are allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
     - name: blacklist
       required: semi
       default:
       description: |
-        Comma separated list of arbitrary group names that are not allowed to consume the API, Route, or Service. One of `config.whitelist` or `config.blacklist` must be specified.
+        Comma separated list of arbitrary group names that are not allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
   extra: |
     Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
 
@@ -45,7 +45,7 @@ In order to use this plugin, you need to properly have configured your API, Rout
 
 ### Associating Consumers
 
-Once you have added an authentication plugin to an API, Route, or Service, and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
+Once you have added an authentication plugin to a Service or a Route (or API) and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/acls \
