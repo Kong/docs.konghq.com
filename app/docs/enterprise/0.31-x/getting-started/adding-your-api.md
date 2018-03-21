@@ -4,14 +4,6 @@ title: Adding your API
 
 # Adding your API
 
-<!-- <div class="alert alert-warning">
-  <strong>Before you start:</strong>
-  <ol>
-    <li>Make sure you've <a href="/install/">installed Kong</a> &mdash; It should only take a minute!</li>
-    <li>Make sure you've <a href="/docs/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
-  </ol>
-</div> -->
-
 In this section, you'll be adding your API to Kong Enterprise Edition (EE).
 This is the first
 step to having Kong EE manage your API. For purposes of this Getting Started
