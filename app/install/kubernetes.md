@@ -76,6 +76,8 @@ Kong can easily be provisioned to Kubernetes cluster using the following steps:
     ```
 
 4. **Prepare database**
+    
+    **Kong Enterprise Edition trial users** should complete the steps in the **Additional steps for Kong EE Trial users** section below before proceeding.
 
     Using the `kong_migration_<postgres|cassandra>.yaml` file from this repo,
     run the migration job, jump to step 5 if Kong migrations are up–to–date:
@@ -121,3 +123,35 @@ Kong can easily be provisioned to Kubernetes cluster using the following steps:
 
     Quickly learn how to use Kong with the 
     [5-minute Quickstart](/docs/latest/getting-started/quickstart/).
+
+# Additional steps for Kong EE Trial users
+
+1. **Publishing an image to a container registry**
+
+    Because Kong Enterprise Edition images are not available on the public Docker container registry, you must publish them to a private repository for use with Kubernetes. While any private repository will work, this example uses the Google Cloud Platform Container Registry, which automatically integrates with the Google Cloud Platform examples in the other steps.
+    
+    In the steps below, replace `<image ID>` with ID associated with your loaded image in `docker images` output. Replace `<project ID>` with your [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
+
+    ```bash
+    $ docker load -i /tmp/kong-docker-enterprise-edition.tar.gz
+    $ docker images
+    $ docker tag <image ID> gcr.io/<project ID>/kong-ee
+    $ gcloud docker -- push gcr.io/demo-cs-lab/kong-ee:latest
+    ```
+2. **Adding your license data**
+
+    Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` to replace `YOUR_LICENSE_HERE` with your license string. The end result should look like
+
+    ```yaml
+    - name: KONG_LICENSE_DATA
+    value: '{"license":{"signature":"alongstringofcharacters","payload":{"customer":"Test Company","license_creation_date":"2018-03-06","product_subscription":"Kong Only","admin_seats":"5","support_plan":"Premier","license_expiration_date":"2018-06-04","license_key":"anotherstringofcharacters"},"version":1}}'
+    ```
+
+3. **Using your image**
+
+    Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` and replace `image: kong` with `image: gcr.io/<project ID>/kong-ee`, using the same project ID as above.
+
+4. **Deploy Kong**
+
+    Continue from step 4 in the main set of instructions using the `kong_trial_*` YAML files. Note that you'll be able to access the Admin GUI at `<kong-admin-ip-address>:8002` or `https://<kong-ssl-admin-ip-address>:8445`.
+
