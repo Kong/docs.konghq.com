@@ -11,9 +11,11 @@ nav:
       - label: Metrics
       - label: Kong Process Errors
 description: |
-  Log API, Route, or Service [metrics](#metrics) to a StatsD server. It can also be used to log metrics on
-  [Collectd](https://collectd.org/) daemon by enabling its
-  [Statsd plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+  Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
+  to a StatsD server.
+  It can also be used to log metrics on [Collectd](https://collectd.org/)
+  daemon by enabling its [Statsd
+  plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
 params:
   name: statsd
@@ -54,7 +56,7 @@ Metric                     | description | namespace
 `response_size`            | tracks the response's body size in bytes | kong.\<api_name>.response.size
 `latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
 `status_count`             | tracks each status code returned in a response | kong.\<api_name>.status.\<status>.count and kong.\<api_name>.status.\<status>.total
-`unique_users`             | tracks unique users who made a request to the API, Route, or Service| kong.\<api_name>.user.uniques
+`unique_users`             | tracks unique users who made a requests to the underlying Service/Route (or API)| kong.\<api_name>.user.uniques
 `request_per_user`         | tracks request/user | kong.\<api_name>.user.\<consumer_id>.count
 `upstream_latency`         | tracks the time it took for the final service to process the request | kong.\<api_name>.upstream_latency
 `kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.\<api_name>.kong_latency

@@ -22,7 +22,7 @@ nav:
       - label: Retrieve the Consumer associated with a Credential
 
 description: |
-  Add HMAC Signature authentication to your configured API, Route, or Services
+  Add HMAC Signature authentication to a Service or a Route (or the deprecated API entity)
   to establish the integrity of incoming requests. The plugin will validate the
   digital signature sent in the `Proxy-Authorization` or `Authorization` header
   (in this order). This plugin implementation is based off the
@@ -39,7 +39,8 @@ params:
     - name: hide_credentials
       required: false
       default: "`false`"
-      description: A boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request
+      description: |
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the `Authorization` header) before proxying it.
     - name: clock_skew
       required: false
       default: "`300`"
@@ -74,8 +75,7 @@ one or more credentials to.
 ### Create a Consumer
 
 You need to associate a credential to an existing [Consumer][consumer-object]
-object. To create a
-[Consumer][consumer-object] you can execute the following request:
+object. To create a Consumer, you can execute the following request:
 
 ```bash
 $ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
@@ -362,7 +362,7 @@ Patch an existing API
 ### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to
-the request before proxying it to the upstream API, Route, or Service, so that you
+the request before proxying it to the upstream service, so that you
 can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong

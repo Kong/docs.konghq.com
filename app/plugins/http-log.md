@@ -96,56 +96,6 @@ Every request will be logged separately in a JSON object, with the following for
         "consumer_id": "80f74eef-31b8-45d5-c525-ae532297ea8e",
         "id": "eaa330c0-4cff-47f5-c79e-b2e4f355207e"
     },
-    "api": {
-        "created_at": 1488830759000,
-        "hosts": [
-          "example.org"
-        ],
-        "http_if_terminated": true,
-        "https_only": false,
-        "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
-        "name": "example-api",
-        "preserve_host": false,
-        "retries": 5,
-        "strip_uri": true,
-        "upstream_connect_timeout": 60000,
-        "upstream_read_timeout": 60000,
-        "upstream_send_timeout": 60000,
-        "upstream_url": "http://httpbin.org"
-    },
-    "consumer": {
-        "username": "demo",
-        "created_at": 1491847011000,
-        "id": "35b03bfc-7a5b-4a23-a594-aa350c585fa8"
-    },
-    "latencies": {
-        "proxy": 1430,
-        "kong": 9,
-        "request": 1921
-    },
-    "client_ip": "127.0.0.1",
-    "started_at": 1433209822425
-}
-```
-
-A few considerations on the above JSON object:
-
-* `request` contains properties about the request sent by the client
-* `response` contains properties about the response sent to the client
-* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request
-* `api` contains Kong properties about the specific API requested
-* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled)
-* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled)
-* `latencies` contains some data about the latencies involved:
-  * `proxy` is the time it took for the final service to process the request
-  * `kong` is the internal Kong latency that it took to run all the plugins
-  * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
-* `client_ip` contains the original client IP address
-* `started_at` contains the UTC timestamp of when the API transaction has started to be processed.
-
-Log plugins enabled on Routes and Services will contain information about the route or service.
-
-```json
     "route": {
         "created_at": 1521555129,
         "hosts": null,
@@ -180,7 +130,36 @@ Log plugins enabled on Routes and Services will contain information about the ro
         "updated_at": 1521554518,
         "write_timeout": 60000
     },
+    "consumer": {
+        "username": "demo",
+        "created_at": 1491847011000,
+        "id": "35b03bfc-7a5b-4a23-a594-aa350c585fa8"
+    },
+    "latencies": {
+        "proxy": 1430,
+        "kong": 9,
+        "request": 1921
+    },
+    "client_ip": "127.0.0.1",
+    "started_at": 1433209822425
+}
 ```
+
+A few considerations on the above JSON object:
+
+* `request` contains properties about the request sent by the client
+* `response` contains properties about the response sent to the client
+* `tries` contains the list of (re)tries (successes and failures) made by the load balancer for this request
+* `route` contains Kong properties about the specific Route requested
+* `service` contains Kong properties about the Service associated with the requested Route
+* `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled)
+* `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled)
+* `latencies` contains some data about the latencies involved:
+  * `proxy` is the time it took for the final service to process the request
+  * `kong` is the internal Kong latency that it took to run all the plugins
+  * `request` is the time elapsed between the first bytes were read from the client and after the last bytes were sent to the client. Useful for detecting slow clients.
+* `client_ip` contains the original client IP address
+* `started_at` contains the UTC timestamp of when the request has started to be processed.
 
 ----
 

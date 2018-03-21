@@ -10,7 +10,7 @@ nav:
     items:
       - label: Metrics
 description: |
-  Log API, Routes, or Services [metrics](#metrics) to the local
+  Log [metrics](#metrics) for a Service, Route (or the deprecated API entity) to a local
   [Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
 
 params:
@@ -44,7 +44,7 @@ params:
 
 ## Metrics
 
-Plugin currently logs following metrics to the Datadog server about an API, Route, or Service.
+Plugin currently logs following metrics to the Datadog server about a Service, Route, or an API entity (which is deprecated since 0.13.0).
 
 Metric                     | description | namespace
 ---                        | ---         | ---

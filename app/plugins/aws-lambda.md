@@ -115,21 +115,18 @@ argument to the AWS Lambda function.
 
 ### Known Issues
 
-#### Use a fake upstream_url
+#### Use a fake upstream service
 
 When using the AWS Lambda plugin, the response will be returned by the plugin
 itself without proxying the request to any upstream service. This means that
-whatever `upstream_url` has been set on the [API][api-object] it will
-never be used. This is also the case when the plugin is used on a Route or Service.
+a Service's `host`, `port`, `path` properties will be ignored, but must still
+be specified for the entity to be validated by Kong. The `host` property in
+particular must either be an IP address, or a hostname that gets resolved by
+your nameserver.
 
-Although `upstream_url` will never be used, it's currently a mandatory field
-in Kong's data model and its hostname must be resolvable. So set it to a
-fake value (ie, `http://127.0.0.1:20000`) if you are planning to use this
-plugin. Failing to do so will result in 500 errors regarding a resolution
-failure.
-
-In the future we will provide a more intuitive way to deal with similar
-use cases.
+When the plugin is added to an API entity (which is deprecated as of 0.13.0),
+it is the `upsream_url` property which must be specified and resolvable as well
+(but ignored).
 
 #### Response plugins
 

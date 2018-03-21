@@ -16,7 +16,7 @@ nav:
     - label: Paginate through keys
     - label: Retrieve the Consumer associated with an key
 description: |
-  Add Key Authentication (also sometimes referred to as an API key) to your APIs, Routes, or Services. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
+  Add Key Authentication (also sometimes referred to as an API key) to a Service or a Route (or the deprecated API entity). Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
 params:
   name: key-auth
   api_id: true
@@ -38,7 +38,7 @@ params:
       required: false
       default: "`false`"
       description: |
-        An optional boolean value telling the plugin to hide the credential to the upstream server. It will be removed by Kong before proxying the request.
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the header or querystring containing the key) before proxying it.
     - name: anonymous
       required: false
       default:
@@ -60,11 +60,11 @@ params:
 
 ## Usage
 
-In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer using the final API, Route, or Service.
+In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API, Route, or Service. To create a [Consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/ \
@@ -146,7 +146,7 @@ HTTP/1.1 204 No Content
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API, Route, or Service, so that you can identify the Consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)

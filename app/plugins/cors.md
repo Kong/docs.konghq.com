@@ -11,7 +11,7 @@ nav:
       - label: CORS Limitations
 
 description: |
-  Easily add __Cross-origin resource sharing *(CORS)*__ to your API, Route, or Service by enabling
+  Easily add __Cross-origin resource sharing *(CORS)*__ to a Service, a Route (or the deprecated API entity) by enabling
   this plugin.
 
 params:
@@ -60,7 +60,7 @@ params:
     - name: preflight_continue
       required: false
       default: "`false`"
-      description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API, Route, or Service.
+      description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream service.
 
 ---
 

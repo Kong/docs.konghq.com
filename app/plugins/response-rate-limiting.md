@@ -13,9 +13,9 @@ nav:
       - label: Upstream Headers
 
 description: |
-  This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream API, Route, or Service. You can arbitrary set as many rate-limiting objects (or quotas) as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
+  This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream service. You can arbitrary set as many rate-limiting objects (or quotas) as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
   
-  If the API, Route, or Service has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+  If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
 params:
   name: response-ratelimiting
@@ -133,7 +133,7 @@ If any of the limits configured is being reached, the plugin will return a `HTTP
 
 ### Upstream Headers
 
-The plugin will append the usage headers for each limit before proxying it to the upstream API, Route, or Service, so that you can properly refuse to process the request if there are no more limits remaining. The headers are in the form of `X-RateLimit-Remaining-{limit_name}`, like:
+The plugin will append the usage headers for each limit before proxying it to the upstream service, so that you can properly refuse to process the request if there are no more limits remaining. The headers are in the form of `X-RateLimit-Remaining-{limit_name}`, like:
 
 ```
 X-RateLimit-Remaining-Videos: 3

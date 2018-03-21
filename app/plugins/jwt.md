@@ -28,7 +28,6 @@ nav:
       - label: Retrieve the Consumer associated with a JWT
 
 description: |
-
   Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519](https://tools.ietf.org/html/rfc7519)). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through:
 
   - a query string parameter,
@@ -86,11 +85,11 @@ params:
 
 ## Documentation
 
-In order to use the plugin, you first need to create a Consumer and associate one or more credentials to it. The Consumer represents a developer using the final service (API, Route, or Service), and a JWT credential holds the public and private keys used to verify a crafted token.
+In order to use the plugin, you first need to create a Consumer and associate one or more JWT credentials (holding the public and private keys used to verify the token) to it. The Consumer represents a developer using the final service.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. The Consumer is an entity consuming the API, Route, or Service. To create a [Consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers \
@@ -225,7 +224,7 @@ curl --cookie jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzN
 
 The request will be inspected by Kong, whose behavior depends on the validity of the JWT:
 
-request                        | proxied to upstream API  | response status code
+request                        | proxied to upstream service | response status code
 --------                       |--------------------------|---------------------
 has no JWT                     | no                       | 401
 missing or invalid `iss` claim | no                       | 401
@@ -234,7 +233,7 @@ valid signature                | yes                      | from the upstream se
 valid signature, invalid verified claim (**option**) | no                       | 403
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> When the JWT is valid and proxied to the API, Route, or Service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
+  <strong>Note:</strong> When the JWT is valid and proxied to the upstream service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
 </div>
 
 ### (**Optional**) Verified claims
@@ -444,7 +443,7 @@ Success!
 
 ### Upstream Headers
 
-When a JWT is valid, a Consumer has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API, Route, or Service, so that you can identify the Consumer in your code:
+When a JWT is valid, a Consumer has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
