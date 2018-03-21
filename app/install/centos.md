@@ -14,6 +14,8 @@ Start by downloading the corresponding package for your configuration:
 - [CentOS 6]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/6/kong-community-edition-{{site.data.kong_latest.version}}.el6.noarch.rpm)
 - [CentOS 7]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/7/kong-community-edition-{{site.data.kong_latest.version}}.el7.noarch.rpm)
 
+**Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
+
 ### YUM Repositories
 
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"

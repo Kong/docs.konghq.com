@@ -13,6 +13,8 @@ Start by downloading the following package specifically built for the Amazon Lin
 
 - [Download]({{ site.links.download }}/kong-community-edition-aws/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.aws.rpm)
 
+**Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
+
 ----
 
 ### Installation
