@@ -1,8 +1,8 @@
 - title: Getting Started
   items:
-     - text: Introduction
+    - text: Introduction
       url: /getting-started/introduction
-     - text: Five-minute quickstart
+    - text: Five-minute quickstart
       url: /getting-started/quickstart
     - text: Adding your API
       url: /getting-started/adding-your-api
