@@ -15,6 +15,8 @@ Start by downloading the corresponding package for your configuration:
 - [8 Jessie]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.jessie.all.deb)
 - [9 Stretch]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.stretch.all.deb)
 
+**Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
+
 ### APT Repositories
 
 You can also install Kong via APT; follow the instructions on the "Set Me Up"
