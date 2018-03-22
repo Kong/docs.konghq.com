@@ -132,8 +132,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     Create a Route that uses the Service.
 
     ```bash
-    $ curl -i -f -X  POST http://localhost:8001/routes/ \
-      --data "service.id={openwhisk-test's id}" \
+    $ curl -i -f -X  POST http://localhost:8001/services/openwhisk-test/routes/ \
       --data "paths[]=/"
 
     HTTP/1.1 201 Created
@@ -155,10 +154,10 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
 
 3. Enable the `openwhisk` plugin on the Route
 
-Plugins can be enabled on a Service or a Route. This example uses a Route.
+Plugins can be enabled on a Service or a Route. This example uses a Service.
 
     ```bash
-    $ curl -i -X POST http://localhost:8001/routes/{openwhisk-test's id}/plugins \
+    $ curl -i -X POST http://localhost:8001/services/openwhisk-test/plugins \
         --data "name=openwhisk" \
         --data "config.host=192.168.33.13" \
         --data "config.service_token=username:key" \

@@ -14,7 +14,7 @@ nav:
       - label: Upstream Headers
 
 description: |
-  Add LDAP Bind Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add LDAP Bind Authentication to a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
 params:
   name: ldap-auth

@@ -39,8 +39,8 @@ params:
       default: "`application/json; charset=utf-8`"
       description: Content type of the raw response configured with `config.body`.
   extra: |
-    Once applied, every request (within the configured plugin scope of an API,
-    Route, Service, Consumer, or global) will be immediately terminated by
+    Once applied, every request (within the configured plugin scope of a Service,
+    Route, Consumer, API, or global) will be immediately terminated by
     sending the configured response.
 
 ---
