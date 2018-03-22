@@ -25,43 +25,43 @@ plugin, **only** requests with the correct API key(s) will be proxied - all
 other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
-1. ### Configure the key-auth plugin for your API
+### 1. Configure the key-auth plugin for your API
 
-    Issue the following cURL request on the previously created API named
-    `example-api`:
+Issue the following cURL request on the previously created API named
+`example-api`:
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/apis/example-api/plugins/ \
-      --data 'name=key-auth'
-    ```
+```bash
+$ curl -i -X POST \
+  --url http://localhost:8001/apis/example-api/plugins/ \
+  --data 'name=key-auth'
+```
 
-    **Note:** This plugin also accepts a `config.key_names` parameter, which
-    defaults to `[apikey]`. It is a list of headers and parameters names (both
-    are supported) that are supposed to contain the API key during a request.
+**Note:** This plugin also accepts a `config.key_names` parameter, which
+defaults to `[apikey]`. It is a list of headers and parameters names (both
+are supported) that are supposed to contain the API key during a request.
 
-2. ### Verify that the plugin is properly configured
+### 2. Verify that the plugin is properly configured
 
-    Issue the following cURL request to verify that the [key-auth][key-auth]
-    plugin was properly configured on the API:
+Issue the following cURL request to verify that the [key-auth][key-auth]
+plugin was properly configured on the API:
 
-    ```bash
-    $ curl -i -X GET \
-      --url http://localhost:8000/ \
-      --header 'Host: example.com'
-    ```
+```bash
+$ curl -i -X GET \
+  --url http://localhost:8000/ \
+  --header 'Host: example.com'
+```
 
-    Since you did not specify the required `apikey` header or parameter, the
-    response should be `401 Unauthorized`:
+Since you did not specify the required `apikey` header or parameter, the
+response should be `401 Unauthorized`:
 
-    ```http
-    HTTP/1.1 401 Unauthorized
-    ...
+```http
+HTTP/1.1 401 Unauthorized
+...
 
-    {
-      "message": "No API key found in request"
-    }
-    ```
+{
+  "message": "No API key found in request"
+}
+```
 
 ### Next Steps
 

@@ -11,34 +11,34 @@ Admin GUI, through which you manage your APIs, consumers, and more. Data sent
 through the Admin API and GUI is stored in Kong's [datastore][datastore-section]
 (Kong supports PostgreSQL and Cassandra).
 
-1. ### Start Kong EE
+### 1. Start Kong EE
 
-    Issue the following command to prepare your datastore by running the Kong
-    migrations:
+Issue the following command to prepare your datastore by running the Kong
+migrations:
 
-    ```bash
-    $ kong migrations up [-c /path/to/kong.conf]
-    ```
+```bash
+$ kong migrations up [-c /path/to/kong.conf]
+```
 
-    You should see a message that tells you Kong has successfully migrated your
-    database. If not, you probably incorrectly configured your database
-    connection settings in your configuration file.
+You should see a message that tells you Kong has successfully migrated your
+database. If not, you probably incorrectly configured your database
+connection settings in your configuration file.
 
-    Now let's [start][CLI] Kong:
+Now let's [start][CLI] Kong:
 
-    ```bash
-    $ kong start [-c /path/to/kong.conf]
-    ```
+```bash
+$ kong start [-c /path/to/kong.conf]
+```
 
-    **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-    allowing you to point to your own configuration.
+**Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
+allowing you to point to your own configuration.
 
-2. ### Verify that Kong EE has started successfully
+### 2. Verify that Kong EE has started successfully
 
-    If everything went well, you should see a message (`Kong started`)
-    informing you that Kong is running.
+If everything went well, you should see a message (`Kong started`)
+informing you that Kong is running.
 
-    By default Kong listens on the following ports:
+By default Kong listens on the following ports:
 
 - `:8000` on which Kong listens for incoming HTTP traffic from your
   clients, and forwards it to your upstream services.
@@ -48,24 +48,23 @@ through the Admin API and GUI is stored in Kong's [datastore][datastore-section]
 - `:8001` on which the [Admin API][API] used to configure Kong listens.
 - `:8444` on which the [Admin API][API] listens for HTTPS traffic.
 
-3. ### Stop Kong EE
+### 3. Stop Kong EE
 
-    As needed you can stop the Kong process by issuing the following
-    [command][CLI]:
+As needed you can stop the Kong process by issuing the following [command][CLI]:
 
-    ```bash
-    $ kong stop
-    ```
+```bash
+$ kong stop
+```
 
-4. ### Reload Kong EE
+### 4. Reload Kong EE
 
-    Issue the following command to [reload][CLI] Kong without downtime:
+Issue the following command to [reload][CLI] Kong without downtime:
 
-    ```bash
-    $ kong reload
-    ```
+```bash
+$ kong reload
+```
 
-### Next Steps
+## Next Steps
 
 Now that you have Kong EE running you can interact with the Admin API.
 
