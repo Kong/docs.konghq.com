@@ -10,8 +10,7 @@ Now that you have the Example Dev Portal running and you understand how files in
 In order to customize the Example Dev Portal, you generally follow these steps:
 
 1. Issue a `GET` command to `:8001/files` to see a list of all your Dev Portal Files.
-2. Take the `contents` of the file(s) you would like to modify and edit them to your liking in a local editor.
-    - Alternatively, you can create new files using `POST` requests if you do not wish to modify existing files.
+2. Take the `contents` of the file(s) you would like to modify and edit them to your liking in a local editor. <br><br>Alternatively, you can create new files using `POST` requests if you do not wish to modify existing files.
 3. `PATCH` the files back into Kong using the `:8001/files/<filename>` endpoint.
 4. Reload the Dev Portal in your browser - you'll see the results of the changes you made.
 
