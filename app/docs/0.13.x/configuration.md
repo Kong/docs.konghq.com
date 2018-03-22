@@ -380,49 +380,55 @@ Default: `on`
 
 ##### **proxy_listen**
 
-Address and port on which Kong will accept HTTP requests. This is the
-public-facing entrypoint of Kong, to which your consumers will make
-requests to.
+Comma-separated list of addresses and ports on which the proxy server should
+listen. The proxy server is the public entrypoint of Kong, which proxies
+traffic from your consumers to your backend services. This value accepts IPv4,
+IPv6, and hostnames.
+
+Some suffixes can be specified for each pair:
+
+- `ssl` will require that all connections made through a particular
+  address/port be made with TLS enabled.
+- `http2` will allow for clients to open HTTP/2 connections to Kong's proxy
+  server.
+- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a
+  given address/port.
+
+the proxy port for this node, enabling a 'control-plane' mode (without traffic
+proxying capabilities) which can configure a cluster of nodes connected to the
+same database.
 
 See http://nginx.org/en/docs/http/ngx_http_core_module.html#listen for
 a description of the accepted formats for this and other `*_listen` values.
 
-Default: `0.0.0.0:8000`
+Default: `0.0.0.0:8000, 0.0.0.0:8443 ssl`
 
-Example: `0.0.0.0:80`
-
----
-
-##### **proxy_listen_ssl**
-
-Address and port on which Kong will accept HTTPS requests if `ssl` is enabled.
-
-Default: `0.0.0.0:8443`
-
-Example: `0.0.0.0:443`
+Example: `0.0.0.0:80, 0.0.0.0:81 http2, 0.0.0.0:443 ssl, 0.0.0.0:444 http2 ssl`
 
 ---
 
 ##### **admin_listen**
 
-Address and port on which Kong will expose an entrypoint to the Admin API.
-This API lets you configure and manage Kong, and should be kept private
-and secured.
+Comma-separated list of addresses and ports on which the Admin interface
+should listen. The Admin interface is the API allowing you to configure and
+manage Kong. Access to this interface should be *restricted* to Kong
+administrators *only*. This value accepts IPv4, IPv6, and hostnames. Some
+suffixes can be specified for each pair:
 
-Default: `127.0.0.1:8001`
+- `ssl` will require that all connections made through a particular
+  address/port be made with TLS enabled.
+- `http2` will allow for clients to open HTTP/2 connections to Kong's
+  proxy server.
+- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a
+  given address/port.
 
-Example: `0.0.0.0:8001`
+This value can be set to `off`, thus disabling the Admin interface for this
+node, enabling a 'data-plane' mode (without configuration capabilities)
+pulling its configuration changes from the database.
 
----
+Default: `127.0.0.1:8001, 127.0.0.1:8444 ssl`
 
-##### **admin_listen_ssl**
-
-Address and port on which Kong will accept HTTPS requests to the Admin API if
-`admin_ssl` is enabled.
-
-Default: `127.0.0.1:8444`
-
-Example: `0.0.0.0:8444`
+Example: `127.0.0.1:8444 http2 ssl`
 
 ---
 
