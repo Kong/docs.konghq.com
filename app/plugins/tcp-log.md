@@ -152,7 +152,7 @@ A few considerations on the above JSON object:
 * `client_ip` contains the original client IP address
 * `started_at` contains the UTC timestamp of when the request has started to be processed.
 
-Log plugins enabled on Routes and Services will contain information about the route or service.
+Log plugins enabled on Services and Routes will contain information about the service or route.
 
 ----
 

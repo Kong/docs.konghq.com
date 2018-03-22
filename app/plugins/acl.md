@@ -41,7 +41,7 @@ params:
 
 ## Usage
 
-In order to use this plugin, you need to properly have configured your API, Route, or Service with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
+In order to use this plugin, you need to properly have configured your Service or Route (or API) with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
 
 ### Associating Consumers
 
@@ -62,7 +62,7 @@ You can have more than one group associated to a consumer.
 
 ### Upstream Headers
 
-When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream API or Microservice, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
+When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream service, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
 
 ### Paginate through the ACLs
 

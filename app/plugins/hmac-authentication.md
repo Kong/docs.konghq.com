@@ -202,9 +202,8 @@ The HMAC plugin can be enabled on a Service or a Route (or the deprecated API en
   **Then create a Route**
 
   ```bash
-  $ curl -i -f -X POST http://localhost:8001/routes \
+  $ curl -i -f -X POST http://localhost:8001/services/example-service/routes \
       -d "name=hmac-test" \
-      -d "service.id={example-service's id}" \
       -d "paths[]=/"
   HTTP/1.1 201 Created
   ...
@@ -214,7 +213,7 @@ The HMAC plugin can be enabled on a Service or a Route (or the deprecated API en
 
   **Add an API**
 
-Or you can use the API entity.
+For versions below 0.13.0, you would use now-deprecated API entity:
 
   ```bash
   $ curl -i -X POST http://localhost:8001/apis \
@@ -226,12 +225,12 @@ Or you can use the API entity.
 
   ```
 
-  **Enabling the plugin on a Route**
+  **Enabling the plugin on a Service**
 
-  Plugins can be enabled on a Service or a Route. This example uses a Route.
+  Plugins can be enabled on a Service or a Route. This example uses a Service.
 
   ```bash
-  $ curl -i -X POST http://localhost:8001/routes/{route id}/plugins \
+  $ curl -i -X POST http://localhost:8001/services/example-service/plugins \
       -d "name=hmac-auth" \
       -d "config.enforce_headers=date, request-line" \
       -d "config.algorithms=hmac-sha1, hmac-sha256"
@@ -313,20 +312,11 @@ Or you can use the API entity.
   To enable body validation we would need to set `config.validate_request_body`
   to `true`:
 
-Patch an existing Route
+  The following example works the same way, whether the plugin was added to
+  a Service or a Route (or an API).
 
   ```bash
-  $ curl -i -X PATCH http://localhost:8001/routes/{route id}/plugins/:plugin_id \
-      -d "config.validate_request_body=true"
-  HTTP/1.1 200 OK
-  ...
-
-  ```
-
-Patch an existing API
-
-  ```bash
-  $ curl -i -X PATCH http://localhost:8001/apis/hmac-test/plugins/:plugin_id \
+  $ curl -i -X PATCH http://localhost:8001/plugins/{plugin-id} \
       -d "config.validate_request_body=true"
   HTTP/1.1 200 OK
   ...
