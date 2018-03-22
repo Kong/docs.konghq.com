@@ -6,90 +6,96 @@ header_icon: /assets/images/icons/plugins/openwhisk.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Installation
-      - label: Configuration
   - label: Usage
     items:
       - label: Demonstration
       - label: Limitations
+
+description: |
+
+  This plugin invokes
+  [OpenWhisk Action](https://github.com/openwhisk/openwhisk/blob/master/docs/actions.md).
+  It can be used in combination with other request plugins to secure, manage
+  or extend the function.
+
+installation: |
+
+  You can either use the LuaRocks package manager to install the plugin
+
+  ```bash
+  $ luarocks install kong-plugin-openwhisk
+  ```
+
+  or install it from [source](https://github.com/Mashape/kong-plugin-openwhisk).
+  For more infomation on Plugin installation, please see the documentation
+  [Plugin Development - (un)Install your plugin](/docs/latest/plugin-development/distribution/)
+
+params:
+  name: openwhisk
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: host
+      required: true
+      default:
+      value_in_examples: OPENWHISK_HOST
+      description: Host of the OpenWhisk server.
+    - name: port
+      required: false
+      default: "`443`"
+      description: Port of the OpenWhisk server.
+    - name: path
+      required: true
+      default:
+      value_in_examples: PATH_TO_ACTION
+      description: |
+        The path to `Action` resource.
+    - name: action
+      required: true
+      default:
+      value_in_examples: ACTION_NAME
+      description: |
+        Name of the `Action` to be invoked by the plugin.
+    - name: service_token
+      required: true
+      default:
+      value_in_examples: AUTHENTICATION_TOKEN
+      description: The service token to access Openwhisk resources.
+    - name: https_verify
+      required: false
+      default: "`false`"
+      description: |
+        Set it to `true` to authenticate Openwhisk server.
+    - name: https
+      required: false
+      default: "`true`"
+      description: Use of HTTPS to connect with the OpenWhisk server.
+    - name: result
+      required: false
+      default: "`true`"
+      description: |
+        Return only the result of the `Action` invoked.
+    - name: timeout
+      required: false
+      default: "`60000`"
+      description: Timeout in milliseconds before aborting a connection to OpenWhisk server.
+    - name: keepalive
+      required: false
+      default: "`60000`"
+      description: Time in milliseconds for which an idle connection to OpenWhisk server will live before being closed.
+
+  extra: |
+    Note: If `config.https_verify` is set as `true` then the server certificate
+    will be verified according to the CA certificates specified by the
+    `lua_ssl_trusted_certificate` directive in your Kong configuration.
+
 ---
-
-This plugin invokes
-[OpenWhisk Action](https://github.com/openwhisk/openwhisk/blob/master/docs/actions.md).
-It can be used in combination with other request plugins to secure, manage
-or extend the function.
-
-----
-
-## Installation
-
-You can either use the LuaRocks package manager to install the plugin
-
-```bash
-$ luarocks install kong-plugin-openwhisk
-```
-
-or install it from [source](https://github.com/Mashape/kong-plugin-openwhisk). 
-For more infomation on Plugin installation, please see the documentation
-[Plugin Development - (un)Install your plugin](/docs/latest/plugin-development/distribution/)
-
-## Configuration
-
-Method 1: apply it on top of an API by executing the following request on your
-Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=openwhisk" \
-    --data "config.host=OPENWHISK_HOST" \
-    --data "config.service_token=AUTHENTICATION_TOKEN" \
-    --data "config.action=ACTION_NAME" \
-    --data "config.path=PATH_TO_ACTION"
-```
-
-Method 2: apply it globally (on all APIs) by executing the following request on
-your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/plugins \
-    --data "name=openwhisk" \
-    --data "config.host=OPENWHISK_HOST" \
-    --data "config.service_token=AUTHENTICATION_TOKEN" \
-    --data "config.action=ACTION_NAME" \
-    --data "config.path=PATH_TO_ACTION"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-Please read the [Plugin Reference](https://getkong.org/docs/latest/admin-api/#add-plugin)
-for more information.
-
-Attribute                                | Description
-----------------------------------------:| -----------
-`name`                                   | The name of the plugin to use, in this case: `openwhisk`
-`config.host`                            | Host of the OpenWhisk server.
-`config.port`<br>*optional*              | Port of the OpenWhisk server. Defaults to `443`.
-`config.path`                            | The path to `Action` resource.
-`config.action`                          | Name of the `Action` to be invoked by the plugin.
-`config.service_token`<br>*optional*     | The service token to access Openwhisk resources.
-`config.https_verify`<br>*optional*      | Set it to true to authenticate Openwhisk server. Defaults to `false`.
-`config.https`<br>*optional*             | Use of HTTPS to connect with the OpenWhisk server. Defaults to `true`.
-`config.result`<br>*optional*            | Return only the result of the `Action` invoked. Defaults to `true`.
-`config.timeout`<br>*optional*           | Timeout in milliseconds before aborting a connection to OpenWhisk server. Defaults to `60000`.
-`config.keepalive`<br>*optional*         | Time in milliseconds for which an idle connection to OpenWhisk server will live before being closed. Defaults to `60000`.
-
-
-Note: If `config.https_verify` is set as `true` then the server certificate
-will be verified according to the CA certificates specified by the
-`lua_ssl_trusted_certificate` directive in your Kong configuration.
-
-----
 
 ## Demonstration
 
-For this demonstration we are running Kong and 
+For this demonstration we are running Kong and
 [Openwhisk platform](https://github.com/openwhisk/openwhisk) locally on a
 Vagrant machine on a MacOS.
 
@@ -109,22 +115,49 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     ok: created action hello
     ```
 
-2. Create an API on Kong
+2. Create a Service or Route (or use the depreciated API entity)
+
+    Create a Service.
 
     ```bash
-    $ curl -i -X  POST http://localhost:8001/apis/ \
-      --data "name=openwhisk-test" -d "hosts=example.com" \
-      --data "upstream_url=http://nowhere.com"
+    $ curl -i -X  POST http://localhost:8001/services/ \
+      --data "name=openwhisk-test" \
+      --data "url=http://example.com"
 
     HTTP/1.1 201 Created
     ...
 
     ```
 
-3. Apply the `openwhisk` plugin to the API on Kong
+    Create a Route that uses the Service.
 
     ```bash
-    $ curl -i -X POST http://localhost:8001/apis/openwhisk-test/plugins \
+    $ curl -i -f -X  POST http://localhost:8001/services/openwhisk-test/routes/ \
+      --data "paths[]=/"
+
+    HTTP/1.1 201 Created
+    ...
+
+    ```
+
+    Or you could use the API entity.
+
+    ```bash
+    $ curl -i -X  POST http://localhost:8001/apis/ \
+      --data "name=openwhisk-test" -d "hosts=example.com" \
+      --data "upstream_url=http://example.com"
+
+    HTTP/1.1 201 Created
+    ...
+
+    ```
+
+3. Enable the `openwhisk` plugin on the Route
+
+Plugins can be enabled on a Service or a Route. This example uses a Service.
+
+    ```bash
+    $ curl -i -X POST http://localhost:8001/services/openwhisk-test/plugins \
         --data "name=openwhisk" \
         --data "config.host=192.168.33.13" \
         --data "config.service_token=username:key" \
@@ -245,19 +278,22 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
 
 ----
 
-## Limitations
+### Limitations
 
-**Use a fake upstream_url**
+#### Use a fake upstream service
 
-When using this plugin, the response will be returned by the plugin itself
-without proxying the request to any upstream service. This means that whatever
-`upstream_url` has been set on the [API][api-object] it will never be used.
-Although `upstream_url` will never be used, it's currently a mandatory
-field in Kong's data model, so feel free to set a fake value (ie, `http://localhost`)
-if you are planning to use this plugin. In the future, we will provide a more
-intuitive way to deal with similar use cases.
+When using the AWS Lambda plugin, the response will be returned by the plugin
+itself without proxying the request to any upstream service. This means that
+a Service's `host`, `port`, `path` properties will be ignored, but must still
+be specified for the entity to be validated by Kong. The `host` property in
+particular must either be an IP address, or a hostname that gets resolved by
+your nameserver.
 
-**Response plugins**
+When the plugin is added to an API entity (which is deprecated as of 0.13.0),
+it is the `upsream_url` property which must be specified and resolvable as well
+(but ignored).
+
+#### Response plugins
 
 There is a known limitation in the system that prevents some response plugins
 from being executed. We are planning to remove this limitation in the future.

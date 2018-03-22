@@ -6,9 +6,6 @@ header_icon: /assets/images/icons/plugins/basic-authentication.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Create a Consumer
@@ -17,46 +14,39 @@ nav:
       - label: Upstream Headers
       - label: Paginate through the basic-auth Credentials
       - label: Retrieve the Consumer associated with a Credential
+
+description: |
+  Add Basic Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+
+params:
+  name: basic-authentication
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: false
+  config:
+    - name: hide_credentials
+      required: false
+      value_in_examples: true
+      default: "`false`"
+      description: |
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the `Authorization` header) before proxying it.
+
+    - name: anonymous
+      required: false
+      default:
+      description: |
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+
 ---
-
-Add Basic Authentication to your APIs, with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an [API][api-object] by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=basic-auth" \
-    --data "config.hide_credentials=true"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-Once applied, any user with a valid credential can access the service/API.
-To restrict usage to only some of the authenticated users, also add the
-[ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-blacklist groups of users.
-
-form parameter                             | default | description
----                                        | ---     | ---
-`name`                                     |         | The name of the plugin to use, in this case: `basic-auth`
-`config.hide_credentials`<br>*optional*    | `false` | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.anonymous`<br>*optional*           | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
-
-----
 
 ## Usage
 
-In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the final service/API.
+In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer or an application consuming the upstream service.
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object, that represents a user consuming the API. To create a [Consumer][consumer-object] you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
 ```bash
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
@@ -105,13 +95,13 @@ Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
 Simply make a request with the header:
 
 ```bash
-$ curl http://kong:8000/{api path} \
+$ curl http://kong:8000/{path matching a configured Route} \
     -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
 ```
 
 ### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)

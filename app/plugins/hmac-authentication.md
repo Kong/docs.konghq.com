@@ -6,9 +6,6 @@ header_icon: /assets/images/icons/plugins/hmac-authentication.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Usage
     items:
       - label: Create a Consumer
@@ -23,42 +20,52 @@ nav:
       - label: Upstream Headers
       - label: Paginate through the HMAC Credentials
       - label: Retrieve the Consumer associated with a Credential
+
+description: |
+  Add HMAC Signature authentication to a Service or a Route (or the deprecated API entity)
+  to establish the integrity of incoming requests. The plugin will validate the
+  digital signature sent in the `Proxy-Authorization` or `Authorization` header
+  (in this order). This plugin implementation is based off the
+  [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
+  draft with a slightly different signature scheme.
+
+params:
+  name: hmac-auth
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: false
+  config:
+    - name: hide_credentials
+      required: false
+      default: "`false`"
+      description: |
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the `Authorization` header) before proxying it.
+    - name: clock_skew
+      required: false
+      default: "`300`"
+      description: |
+        [Clock Skew](https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4) in seconds to prevent replay attacks.
+    - name: anonymous
+      required: false
+      default:
+      description: |
+        An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+    - name: validate_request_body
+      required: false
+      default: "`false`"
+      description: A boolean value telling the plugin to enable body validation
+    - name: enforce_headers
+      required: false
+      default:
+      description: A list of headers which the client should at least use for HTTP signature creation
+    - name: algorithms
+      required: false
+      default: "`hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512`"
+      description: |
+        A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
+
 ---
-
-Add HMAC Signature authentication to your APIs to establish the integrity of
-incoming requests. The plugin will validate the digital signature sent in the
-`Proxy-Authorization` or `Authorization` header (in this order). This plugin
-implementation is based off the [draft-cavage-http-signatures][draft] draft
-with a slightly different signature scheme.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward, you can add it on top of an
-[API][api-object] by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=hmac-auth"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/`
-endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin)
-for more information.
-
-form parameter                          | default | description
----                                     | --- | ---
-`name`                                  | | The name of the plugin to use, in this case: `hmac-auth`
-`config.hide_credentials`<br>*optional* | `false` | A boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request
-`config.clock_skew`<br>*optional*       | `300` | [Clock Skew][clock-skew] in seconds to prevent replay attacks.
-`config.anonymous`<br>*optional*        | ``      | An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
-`config.validate_request_body`<br>*optional* | `false` | A boolean value telling the plugin to enable body validation
-`config.enforce_headers`<br>*optional*  | `` | A list of headers which the client should at least use for HTTP signature creation
-`config.algorithms`<br>*optional*       | `hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512` | A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
-----
 
 ## Usage
 
@@ -68,8 +75,7 @@ one or more credentials to.
 ### Create a Consumer
 
 You need to associate a credential to an existing [Consumer][consumer-object]
-object. To create a
-[Consumer][consumer-object] you can execute the following request:
+object. To create a Consumer, you can execute the following request:
 
 ```bash
 $ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
@@ -180,7 +186,34 @@ include all of the headers and a `digest` of the body.
 
 ### HMAC Example
 
+The HMAC plugin can be enabled on a Service or a Route (or the deprecated API entity).
+
+  **Create a Service**
+
+  ```bash
+  $ curl -i -X POST http://localhost:8001/services \
+      -d "name=example-service" \
+      -d "url=http://example.com"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+  **Then create a Route**
+
+  ```bash
+  $ curl -i -f -X POST http://localhost:8001/services/example-service/routes \
+      -d "name=hmac-test" \
+      -d "paths[]=/"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+
   **Add an API**
+
+For versions below 0.13.0, you would use now-deprecated API entity:
 
   ```bash
   $ curl -i -X POST http://localhost:8001/apis \
@@ -192,7 +225,21 @@ include all of the headers and a `digest` of the body.
 
   ```
 
-  **Enable plugin**
+  **Enabling the plugin on a Service**
+
+  Plugins can be enabled on a Service or a Route. This example uses a Service.
+
+  ```bash
+  $ curl -i -X POST http://localhost:8001/services/example-service/plugins \
+      -d "name=hmac-auth" \
+      -d "config.enforce_headers=date, request-line" \
+      -d "config.algorithms=hmac-sha1, hmac-sha256"
+  HTTP/1.1 201 Created
+  ...
+
+  ```
+
+  **Enabling the plugin on an API**
 
   ```bash
   $ curl -i -X POST http://localhost:8001/apis/hmac-test/plugins \
@@ -265,8 +312,11 @@ include all of the headers and a `digest` of the body.
   To enable body validation we would need to set `config.validate_request_body`
   to `true`:
 
+  The following example works the same way, whether the plugin was added to
+  a Service or a Route (or an API).
+
   ```bash
-  $ curl -i -X PATCH http://localhost:8001/apis/hmac-test/plugins/:plugin_id \
+  $ curl -i -X PATCH http://localhost:8001/plugins/{plugin-id} \
       -d "config.validate_request_body=true"
   HTTP/1.1 200 OK
   ...
@@ -302,7 +352,7 @@ include all of the headers and a `digest` of the body.
 ### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to
-the request before proxying it to the upstream API/Microservice, so that you
+the request before proxying it to the upstream service, so that you
 can identify the Consumer in your code:
 
 * `X-Consumer-ID`, the ID of the Consumer on Kong
@@ -389,9 +439,5 @@ for which to get the associated [Consumer][consumer-object].
 Note that `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
 [consumer-object]: /docs/latest/admin-api/#consumer-object
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
-[draft]: https://tools.ietf.org/html/draft-cavage-http-signatures
 [clock-skew]: https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4

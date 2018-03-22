@@ -5,13 +5,144 @@ id: page-plugin
 header_btn_text: Report Bug
 header_btn_href: mailto:support@mashape.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs: null
+
 ---
+
+{% capture config_required_fields %}{%
+  for field in page.params.config %}{%
+  if field.value_in_examples != nil %} \
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.value_in_examples }}"{%
+  elsif field.required == true %} \
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
+  endif %}{% endfor %}{% endcapture %}
+
+{% if page.params.service_id %}
+{% capture plugin_config_for_service %}
+#### Enabling the plugin for a Service
+
+Configure on top of a [Service](/docs/latest/admin-api/#service-object) by executing the following request on your Kong server:
+
+```bash
+$ curl -X POST http://kong:8001/services/{service}/plugins \
+    --data "name={{page.params.name}}" {{ config_required_fields }}
+```
+
+* `service`: the id or name of the Service that this plugin configuration will target.
+{% endcapture %}
+{% endif %}
+
+{% if page.params.api_id %}
+{% capture plugin_config_for_api %}
+#### Enabling the plugin for an API
+
+If you are using the deprecated API entity, you can configure on top of an [API](/docs/latest/admin-api/#api-object)
+by executing the following request on your Kong server:
+
+```bash
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
+    --data "name={{page.params.name}}" {{ config_required_fields }}
+```
+
+* `api`: either id or name of the API that this plugin configuration will target.
+{% endcapture %}
+{% endif %}
+
+{% if page.params.route_id %}
+{% capture plugin_config_for_route %}
+#### Enabling the plugin for a Route
+
+Configure on top of a [Route](/docs/latest/admin-api/#Route-object) with:
+
+```bash
+$ curl -X POST http://kong:8001/routes/{route_id}/plugins \
+    --data "name={{page.params.name}}" {{ config_required_fields }}
+```
+
+* `route_id`: the id of the Route that this plugin configuration will target.
+{% endcapture %}
+{% endif %}
+
+{% if page.params.consumer_id %}
+{% capture plugin_config_for_consumer %}
+#### Enabling the plugin for a Consumer
+
+You can use the `http://localhost:8001/plugins` endpoint to target [Consumers](/docs/latest/admin-api/#Consumer-object):
+
+```bash
+$ curl -X POST http://kong:8001/plugins \
+    --data "name={{page.params.name}}" \
+    --data "consumer_id={consumer_id}" {{ config_required_fields }}
+```
+
+Where `consumer_id`: The id of the Consumer we want to associate with this plugin.
+{% if page.params.service_id or page.params_route_id or page.params.api_id %}
+  You can combine adding `consumer_id` and {% if page.params.service_id %}
+    `service_id`
+  {% elsif page.params.route_id %}
+    `route_id`
+  {% elsif page.params.api_id %}
+    `api_id`
+  {% endif %} in the same request.
+{% endif %}
+
+{% if page.params.name != "acl" %}
+  Once applied, any user with a valid credential can access the Service/API.
+  To restrict usage to only some of the authenticated users, also add the
+  [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+  blacklist groups of users.
+{% endif %}
+{% endcapture %}
+{% endif %}
+
+{% capture params_table %}
+<table>
+  <thead>
+    <tr><th>form parameter</th><th>default</th><th>description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>name</code></td><td></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code></td></tr>
+    {% if page.params.api_id %}
+      <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target.</td></tr>
+    {% endif %}
+    {% if page.params.service_id %}
+      <tr><td><code>service_id</code></td><td></td><td>The id of the Service which this plugin will target.</td></tr>
+    {% endif %}
+    {% if page.params.route_id %}
+      <tr><td><code>route_id</code></td><td></td><td>The id of the Route which this plugin will target.</td></tr>
+    {% endif %}
+    {% if page.params.consumer_id %}
+      <tr><td><code>consumer_id</code></td><td></td><td>The id of the Consumer which this plugin will target.</td></tr>
+    {% endif %}
+    {% for field in page.params.config %}
+      <tr>
+        <td><code>config.{{ field.name }}</code>
+          {% if field.required == false %}<br><em>optional</em>{% endif %}
+          {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
+        </td>
+        <td>{% if field.default != nil %}{{ field.default | markdownify }}{% endif %}</td>
+        <td>{{ field.description | markdownify }}</td>
+      </td>
+    {% endfor %}
+  </tbody>
+</table>
+{% endcapture %}
 
 <div class="page {{ page.id }}">
   {% include header.html %}
 
   <div class="container">
     <aside class="page-navigation">
+
+      <nav>
+        <h5>Getting Started</h5>
+        <ul>
+          <li><a href="#terminology">Terminology</a></li>
+          {% if page.installation %}
+            <li><a href="#installation">Installation</a></li>
+          {% endif %}
+          <li><a href="#configuration">Configuration</a></li>
+        </ul>
+      </nav>
 
       {% for nav in page.nav %}
         <nav>
@@ -43,6 +174,70 @@ breadcrumbs: null
     <div class="page-content-container">
       <div class="page-content">
         <div class="content">
+
+          {{ page.description | markdownify }}
+
+          <hr>
+
+          <h2 id="terminology">Terminology</h2>
+          <ul>
+            <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
+
+            {% if page.params.api_id %}
+              <li><code>API</code>: (deprecated) the Kong entity representing your upstream service placed behind Kong, for which Kong proxies requests to.</li>
+            {% endif %}
+            {% if page.params.service_id or page.params.route_id %}
+              <li><code>Service</code>: the Kong entity representing an external <em>upstream</em> API or microservice.</li>
+            {% endif %}
+            {% if page.params.route_id %}
+              <li><code>Route</code>: the Kong entity representing a way to map downstream requests to upstream services.</li>
+            {% endif %}
+            {% if page.params.consumer_id %}
+              <li><code>Consumer</code>: the Kong entity representing a developer or machine using the API. When using Kong, a Consumer only communicates with Kong which proxies every call to the said upstream API.</li>
+              <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
+            {% endif %}
+              <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
+
+          </ul>
+
+          <hr>
+
+          {% if page.installation %}
+            <h2 id="installation">Installation</h2>
+
+            {{ page.installation | markdownify }}
+
+            <hr>
+          {% endif %}
+
+          <h2 id="configuration">Configuration</h2>
+          {% if page.params.service_id %}
+            {{ plugin_config_for_service | markdownify }}
+          {% endif %}
+          {% if page.params.route_id %}
+            {{ plugin_config_for_route | markdownify }}
+          {% endif %}
+          {% if page.params.api_id %}
+            {{ plugin_config_for_api | markdownify }}
+          {% endif %}
+          {% if page.params.consumer_id %}
+            {{ plugin_config_for_consumer | markdownify }}
+          {% endif %}
+
+          <h4>Global plugins</h4>
+
+          <p>All plugins can be configured using the <code>http:/kong:8001/plugins/</code> endpoint. A plugin which is not associated to any API, Service, Route or Consumer is considered "global", and will be run on every request.
+            Read the <a href="/docs/latest/admin-api/#add-plugin">Plugin Reference</a> and the <a href="/docs/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
+          </p>
+
+          <h4>Parameters</h4>
+
+          <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
+
+          {{ params_table | markdownify }}
+
+          {{ page.params.extra | markdownify }}
+
           {{ content }}
         </div>
       </div>
