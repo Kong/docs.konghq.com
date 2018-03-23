@@ -14,6 +14,7 @@ links:
   vips: "https://dcos.io/docs/1.9/networking/load-balancing-vips/virtual-ip-addresses/"
   dcos: "https://dcos.io/docs/1.9/"
   hello-app: "https://hub.docker.com/r/mashape/node-web-app/"
+  universe: "https://universe.dcos.io/#/package/kong/version/latest"
 ---
 
 Kong can be provisioned on a Mesosphere DC/OS cluster using following
@@ -127,7 +128,7 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
 5. **Deploy Kong**
 
     Now we have an external load balancer and Kong-supported database
-    running. Using the `kong` package from Universe repo, deploy Kong
+    running. Using the [kong package]{{ page.links.universe }} from Universe repo, deploy Kong
     with the following options:
 
     ```json
