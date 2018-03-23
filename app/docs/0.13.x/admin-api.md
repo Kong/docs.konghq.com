@@ -467,12 +467,9 @@ your infrastructure.
 
 <div class="endpoint post">/routes/</div>
 
-<div class="endpoint post">/services/{service name or id}/routes/</div>
+#### Request Body
 
-Attributes | Description
----:| ---
-`service name or id`<br>**required** | The `id` **or** the `name` attribute of the Service the new Route should be associated with. The `service` entry does not need to be included in the request body when using this endpoint.
-
+{{ page.route_body }}
 
 #### Response
 
