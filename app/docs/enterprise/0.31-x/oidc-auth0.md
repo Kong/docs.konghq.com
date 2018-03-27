@@ -3,7 +3,7 @@ title: OpenID Connect with Auth0
 class: page-install-method
 ---
 
-This guide covers an example OpenID Connect plugin configuration to authenticate headless services using Auth0's identity provider.
+This guide covers an example OpenID Connect plugin configuration to authenticate headless service consumers using Auth0's identity provider.
 
 # Auth0 IDP configuration
 
@@ -11,7 +11,7 @@ This configuration will use a [client credentials grant][client-credentials-gran
 
 ## API configuration
 
-When creating your API, you will need to specify an Identifier. Using the URL that your service makes requests to is generally appropriate, so this will typically be the hostname/path combination configured as a service or API in Kong.
+When creating your API, you will need to specify an Identifier. Using the URL that your consumer makes requests to is generally appropriate, so this will typically be the hostname/path combination configured as an API in Kong.
 
 After creating your API, you will also need to add the `openid` scope at `https://manage.auth0.com/#/apis/<API ID>/scopes`.
 
