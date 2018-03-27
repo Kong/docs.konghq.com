@@ -32,7 +32,7 @@ $ curl -i -X POST \
 Or, add your first API via the Admin GUI:
 
 <center>
-  <img src="/assets/images/docs/ee/first_api.gif" alt="Adding your first API">
+  <img src="/assets/images/docs/enterprise/first_api.gif" alt="Adding your first API">
 </center>
 
 
