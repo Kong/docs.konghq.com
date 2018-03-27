@@ -7,7 +7,7 @@ This guide covers an example OpenID Connect plugin configuration to authenticate
 
 # Auth0 IDP configuration
 
-This configuration will use a [client credentials grant](https://auth0.com/docs/api-auth/tutorials/client-credentials) as it is non-interactive, and because we expect clients to authenticate on behalf of themselves, not an end-user. To do so, you will need to [create an Auth0 API](https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0) and a [non-interactive client](https://auth0.com/docs/clients).
+This configuration will use a [client credentials grant][client-credentials-grant] as it is non-interactive, and because we expect clients to authenticate on behalf of themselves, not an end-user. To do so, you will need to [create an Auth0 API][create-auth0-api] and a [non-interactive client][non-interactive-client].
 
 ## API configuration
 
@@ -21,16 +21,16 @@ You will need to authorize your client to access your API. Auth0 will prompt you
 
 # Kong configuration
 
-If you have not done so already, [create a service](https://getkong.org/docs/0.13.x/admin-api/#add-service) to protect. The `url` configuration should match the Identifier you used when configuring Auth0.
+If you have not done so already, [create an API][create-api] to protect. The `url` configuration should match the Identifier you used when configuring Auth0.
 
-Add an OpenID plugin configuration following the example below. Auth0's token endpoint [requires passing the API identifier in the `audience` parameter](https://auth0.com/docs/api/authentication#client-credentials), which must be added as a custom argument:
+Add an OpenID plugin configuration following the example below. Auth0's token endpoint [requires passing the API identifier in the `audience` parameter][audience-required], which must be added as a custom argument:
 
 ```bash
-$ curl -i -X POST http://kong:8001/kong-admin/services/<service name>/plugins --data name="openid-connect" \
---data config.auth_methods="client_credentials" \
---data config.issuer="https://<auth0 API name>.auth0.com/.well-known/openid-configuration" \
---data config.token_post_args_names="audience" \
---data config.token_post_args_values="https://example.com/"
+$ curl -i -X POST http://kong:8001/kong-admin/apis/<API name>/plugins --data name="openid-connect" \
+  --data config.auth_methods="client_credentials" \
+  --data config.issuer="https://<auth0 API name>.auth0.com/.well-known/openid-configuration" \
+  --data config.token_post_args_names="audience" \
+  --data config.token_post_args_values="https://example.com/"
 ```
 
 # Downstream configuration
@@ -39,3 +39,10 @@ The service accessing your resource will need to pass its credentials to Kong. I
 client payloads.
 
 For basic authentication, use your client ID as the username and your client secret as the password. For the other methods, pass them as parameters named `client_id` and `client_secret`, respectively.
+
+
+[client-credentials-grant]: https://auth0.com/docs/api-auth/tutorials/client-credentials
+[create-auth0-api]: https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
+[non-interactive-client]: https://auth0.com/docs/clients
+[create-api]: /docs/latest/admin-api/#add-api
+[audience-required]: https://auth0.com/docs/api/authentication#client-credentials
