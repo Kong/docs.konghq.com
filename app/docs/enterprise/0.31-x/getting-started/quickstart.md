@@ -10,6 +10,10 @@ Admin GUI, through which you'll manage your APIs, consumers, and more. Configura
 through the Admin API and GUI is stored in Kong's [datastore][datastore-section]
 (Kong supports PostgreSQL and Cassandra).
 
+The easiest way to start using Kong EE is by following our [Docker installation][docker] instructions. 
+Alternately, you can install and run without containers by following our [CentOS][centos] or 
+[Amazon Linux][amazonlinux] instructions.
+
 ### 1. Start Kong EE
 
 Issue the following command to prepare your datastore by running the Kong
@@ -76,3 +80,7 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 [GUI]: /docs/enterprise/{{page.kong_version}}/admin-gui/
 [datastore-section]: /docs/latest/configuration/#datastore-section
 [adding-your-api]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-your-api
+[docker]: /docs/enterprise/{{page.kong_version}}/installation/docker/
+[centos]: /docs/enterprise/{{page.kong_version}}/installation/centos/
+[amazonlinux]: /docs/enterprise/{{page.kong_version}}/installation/amazon-linux/
+
