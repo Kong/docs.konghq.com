@@ -44,8 +44,10 @@ By default Kong listens on the following ports:
 - `:8443` on which Kong listens for incoming HTTPS traffic. This port has a
   similar behavior as the `:8000` port, except that it expects HTTPS
   traffic only. This port can be disabled via the configuration file.
-- `:8001` on which the [Admin API][API] used to configure Kong listens.
+- `:8001` on which the [Admin API][API] listens.
 - `:8444` on which the [Admin API][API] listens for HTTPS traffic.
+- `:8002` on which the [Admin GUI][GUI] listens.
+- `:8445` on which the [Admin GUI][GUI] listens for HTTPS traffic.
 
 ### 3. Stop Kong EE
 
@@ -71,5 +73,6 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/latest/cli
 [API]: /docs/latest/admin-api
+[GUI]: /docs/enterprise/{{page.kong_version}}/admin-gui/
 [datastore-section]: /docs/latest/configuration/#datastore-section
 [adding-your-api]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-your-api
