@@ -5,9 +5,8 @@ title: 5-minute Quickstart
 # 5-minute Quickstart
 
 In this section, you'll learn how to manage your Kong Enterprise Edition (EE)
-instance. First we'll
-have you start Kong to give you access to the RESTful Admin API, and easy-to-use
-Admin GUI, through which you manage your APIs, consumers, and more. Data sent
+instance. First you'll start Kong to give you access to the RESTful Admin API and an easy-to-use
+Admin GUI, through which you'll manage your APIs, consumers, and more. Configuration changes made
 through the Admin API and GUI is stored in Kong's [datastore][datastore-section]
 (Kong supports PostgreSQL and Cassandra).
 
@@ -66,7 +65,7 @@ $ kong reload
 
 ## Next Steps
 
-Now that you have Kong EE running you can interact with the Admin API.
+Now that you have Kong EE running you can interact with the Admin API and GUI.
 
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
