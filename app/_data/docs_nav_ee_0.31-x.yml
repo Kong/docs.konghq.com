@@ -81,3 +81,7 @@
       url: /allowing-multiple-authentication-methods
     - text: PostgreSQL on RedHat
       url: /postgresql-redhat
+    - text: OpenID Connect with Google
+      url: /oidc-google
+    - text: OpenID Connect with Auth0
+      url: /oidc-auth0
