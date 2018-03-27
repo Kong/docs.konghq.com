@@ -27,6 +27,12 @@ $ curl -i -X POST \
   --data 'name=key-auth'
 ```
 
+Or, add your first plugin via the Admin GUI:
+
+<center>
+  <img src="/assets/images/docs/ee/create-keyauth-plugin.mp4" alt="Adding your first plugin">
+</center>
+
 **Note:** This plugin also accepts a `config.key_names` parameter, which
 defaults to `[apikey]`. It is a list of headers and parameters names (both
 are supported) that are supposed to contain the API key during a request.
