@@ -10,13 +10,16 @@ step to having Kong EE manage your API. For purposes of this Getting Started
 guide, we suggest adding the [Mockbin API][mockbin] to Kong, as Mockbin is
 helpful for learning how Kong EE proxies your API requests.
 
-Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
-configuration of your Kong instance or cluster.
+Kong exposes a [RESTful Admin API][API] on ports `:8001` and `:8444` and an
+Admin GUI on ports `:8002` and `:8445` for managing the
+configuration of your Kong instance or cluster. The Admin GUI simply makes
+requests to the Admin API, so you can use either interface for configuring
+and managing Kong EE.
 
-### 1. Add your API using the Admin API
+## 1. Add your API using the Admin API or GUI
 
-Issue the following cURL request to add your first API ([Mockbin][mockbin])
-to Kong:
+If you'd like to use the Admin API, issue the following cURL request to add 
+your first API ([Mockbin][mockbin]) to Kong EE:
 
 ```bash
 $ curl -i -X POST \
@@ -26,7 +29,14 @@ $ curl -i -X POST \
   --data 'upstream_url=http://mockbin.org'
 ```
 
-### 2. Verify that your API has been added
+Or, add your first API via the Admin GUI:
+
+<center>
+  <img src="/assets/images/docs/ee/first_api.gif" alt="Adding your first API">
+</center>
+
+
+## 2. Verify that your API has been added
 
 You should see a similar response from that request:
 
@@ -56,7 +66,7 @@ Connection: keep-alive
 
 Kong is now aware of your API and ready to proxy requests.
 
-### 3. Forward your requests through Kong EE
+## 3. Forward your requests through Kong EE
 
 Issue the following cURL request to verify that Kong is properly forwarding
 requests to your API. Note that [by default][proxy-port] Kong handles proxy
