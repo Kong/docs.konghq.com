@@ -19,7 +19,7 @@ description: |
   Add Basic Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
 params:
-  name: basic-authentication
+  name: basic-auth
   api_id: true
   service_id: true
   route_id: true
