@@ -23,7 +23,7 @@ You will need to authorize your client to access your API. Auth0 will prompt you
 
 If you have not done so already, [create an API][create-api] to protect. The `url` configuration should match the Identifier you used when configuring Auth0.
 
-Add an OpenID plugin configuration following the example below. Auth0's token endpoint [requires passing the API identifier in the `audience` parameter][audience-required], which must be added as a custom argument:
+Add an OpenID plugin configuration using the parameters in the example below using an HTTP client or the Admin GUI. Auth0's token endpoint [requires passing the API identifier in the `audience` parameter][audience-required], which must be added as a custom argument:
 
 ```bash
 $ curl -i -X POST http://kong:8001/kong-admin/apis/<API name>/plugins --data name="openid-connect" \

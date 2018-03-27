@@ -22,7 +22,7 @@ If you have not yet [added an API][add-api], go ahead and do so. Again, note tha
 
 ## Basic plugin configuration
 
-The following will add OpenID Connect with authentication via Google to your API. Make sure to use the same redirect URI as configured earlier:
+Add a plugin with the configuration below to your API using an HTTP client or the Admin GUI. Make sure to use the same redirect URI as configured earlier:
 
 ```bash
 $ curl -i -X POST http://kong:8001/apis/example/plugins --data name="openid-connect" \
