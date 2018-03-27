@@ -35,7 +35,7 @@ $ curl -i -X POST http://kong:8001/kong-admin/services/<service name>/plugins --
 
 # Downstream configuration
 
-The service accessing your resource will need to pass its credentials to Kong. It can do so via HTTP basic authentication, query string arguments, or parameters in the request body. Basic authentication is generally preferable, as credentials in a query string will be present in Kong's access logs (and possibly in other infrastructure's access logs, if you have HTTP-aware infrastracture in front of Kong) and credentials in request bodies are limited to request methods that expect
+The service accessing your resource will need to pass its credentials to Kong. It can do so via HTTP basic authentication, query string arguments, or parameters in the request body. Basic authentication is generally preferable, as credentials in a query string will be present in Kong's access logs (and possibly in other infrastructure's access logs, if you have HTTP-aware infrastructure in front of Kong) and credentials in request bodies are limited to request methods that expect
 client payloads.
 
 For basic authentication, use your client ID as the username and your client secret as the password. For the other methods, pass them as parameters named `client_id` and `client_secret`, respectively.
