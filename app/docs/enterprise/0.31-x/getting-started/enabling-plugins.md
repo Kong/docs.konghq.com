@@ -29,9 +29,10 @@ $ curl -i -X POST \
 
 Or, add your first plugin via the Admin GUI:
 
-<center>
-  <img src="/assets/images/docs/ee/create-keyauth-plugin.mp4" alt="Adding your first plugin">
-</center>
+<video width=“700” autoplay loop controls>
+ <source src=“/assets/images/docs/ee/create-keyauth-plugin.mp4" type=“video/mp4”>
+ Your browser does not support the video tag.
+</video>
 
 **Note:** This plugin also accepts a `config.key_names` parameter, which
 defaults to `[apikey]`. It is a list of headers and parameters names (both
