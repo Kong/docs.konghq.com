@@ -6,7 +6,7 @@ title: Welcome to the Kong Developer Portal Preview
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-home.png "Welcome to the Kong Dev Portal")
 
-Thanks for installing or upgrading Kong Enterprise Edition. This document orients you to Kong's built-in Dev Portal functionality and gives you an early view into it so you can get started with customizing your Kong Dev Portal and familiarizing yourself with its promising capabilities.
+Thank you for installing Kong Enterprise Edition. This document orients you to Kong's built-in Dev Portal functionality and provides you an  preview into it so you can familiarize yourself with its promising capabilities and get started on customizing it to match your needs.
 
 ## Assumptions
 
