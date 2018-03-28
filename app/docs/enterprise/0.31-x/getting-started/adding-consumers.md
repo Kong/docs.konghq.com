@@ -5,8 +5,8 @@ title: Adding Consumers
 # Adding Consumers
 
 In the last section, we learned how to add plugins to Kong Enterprise Edition
-(EE), in this section
-we're going to learn how to add Consumers to Kong. Consumers are
+(EE) - in this section
+we're going to learn how to add [Consumers][consumers] to Kong. Consumers are
 associated to individuals or applications using your API, and can be used
 for tracking, access management, and more.
 
@@ -81,6 +81,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 
 [key-auth]: /plugins/key-authentication
 [API-consumers]: /docs/latest/admin-api#create-consumer
+[consumers]: /docs/latest/admin-api#consumer-object
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
 [configuration]: /docs/latest/configuration
 [CLI]: /docs/latest/cli

@@ -63,7 +63,7 @@ HTTP/1.1 401 Unauthorized
 
 ### Next Steps
 
-Now that you've configured the **key-auth** plugin, lets learn how to add
+Now that you've configured the **key-auth** plugin, let's learn to add
 Consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
