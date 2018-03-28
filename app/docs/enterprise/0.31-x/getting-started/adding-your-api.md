@@ -39,7 +39,8 @@ Or, add your first API via the Admin GUI:
 
 ## 2. Verify that your API has been added
 
-You should see a similar response from that request:
+You'll get a confirmation message in the Admin GUI, or if you used cURL you should see a 
+response similar to the following:
 
 ```http
 HTTP/1.1 201 Created
@@ -82,9 +83,7 @@ $ curl -i -X GET \
 A successful response means Kong is now forwarding requests made to
 `http://localhost:8000` to the `upstream_url` we configured in step #1,
 and is forwarding the response back to us. Kong knows to do this through
-the header defined in the above cURL request:
-
-* Host: &lt;given host&gt;
+the header defined in the above cURL request `Host: example.com`
 
 ---
 
