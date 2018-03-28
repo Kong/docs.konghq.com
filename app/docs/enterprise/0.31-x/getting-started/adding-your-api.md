@@ -32,7 +32,7 @@ $ curl -i -X POST \
 Or, add your first API via the Admin GUI:
 
  <video controls loop>
-  <source src="/assets/images/docs/ee/first-api.mp4" type="video/mp4">
+  <source src="https://konghq.com/wp-content/uploads/2018/03/first-api-ee0.31.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video> 
 
