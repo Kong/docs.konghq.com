@@ -12,8 +12,8 @@ helpful for learning how Kong EE proxies your API requests.
 
 Kong exposes a [RESTful Admin API][API] on ports `:8001` and `:8444` and an
 Admin GUI on ports `:8002` and `:8445` for managing the
-configuration of your Kong instance or cluster. The Admin GUI simply makes
-requests to the Admin API, so you can use either interface for configuring
+configuration of your Kong instance or cluster. The Admin GUI makes
+requests to the Admin API, and you can use either interface for configuring
 and managing Kong EE.
 
 ## 1. Add your API using the Admin API or GUI
