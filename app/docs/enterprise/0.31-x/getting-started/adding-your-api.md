@@ -31,9 +31,10 @@ $ curl -i -X POST \
 
 Or, add your first API via the Admin GUI:
 
-<center>
-  <img src="/assets/images/docs/ee/first_api.gif" alt="Adding your first API">
-</center>
+ <video controls loop>
+  <source src="/assets/images/docs/ee/first-api.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video> 
 
 
 ## 2. Verify that your API has been added
