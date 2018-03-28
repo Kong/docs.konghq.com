@@ -18,7 +18,7 @@ and managing Kong EE.
 
 ## 1. Add your API using the Admin API or GUI
 
-If you'd like to use the Admin API, issue the following cURL request to add 
+If you'd like to use the Admin API, issue the following cURL request to add
 your first API ([Mockbin][mockbin]) to Kong EE:
 
 ```bash
@@ -31,10 +31,10 @@ $ curl -i -X POST \
 
 Or, add your first API via the Admin GUI:
 
- <video controls loop>
+<video width="700" autoplay loop controls>
   <source src="https://konghq.com/wp-content/uploads/2018/03/first-api-ee0.31.mp4" type="video/mp4">
   Your browser does not support the video tag.
-</video> 
+</video>
 
 
 ## 2. Verify that your API has been added
