@@ -88,7 +88,7 @@ the corresponding route:
 
     ```bash
     $ curl -i -X GET \
-      --url http://localhost:8000/auth-example
+      --url http://localhost:8000/auth-sample
     ```
 
     Since you did not specify the required `apikey` header or parameter, and you have not yet
