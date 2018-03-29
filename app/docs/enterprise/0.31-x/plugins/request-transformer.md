@@ -34,7 +34,7 @@ You can also apply it for every API using the http://kong:8001/plugins/ endpoint
 |`config.remove.headers` <br>*optional* | List of header names. Unset the headers with the given name.
 |`config.remove.querystring`<br>*optional* | List of querystring names. Remove the querystring if it is present.
 |`config.remove.body`<br>*optional* | List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and parameter is present.
-|`config.remove.headers` <br>*optional* | List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
+|`config.replace.headers` <br>*optional* | List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
 |`config.replace.querystring`<br>*optional* | List of queryname:value pairs. If and only if the querystring name is already set, replace its old value with the new one. Ignored if the header is not already set.
 |`config.replace.uri`<br>*optional* | Updates the upstream request URI with given value. This value can only be used to update the path part of the uri, not the scheme, nor the hostname.
 |`config.replace.body`<br>*optional* | List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
