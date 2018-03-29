@@ -52,6 +52,7 @@ below.</p>
 - [Configuring SSL for a Route][proxy-configuring-ssl-for-a-route]
     - [Restricting the client protocol (HTTP/HTTPS)][proxy-restricting-client-protocol]
 - [Proxy WebSocket traffic][proxy-websocket]
+    - [WebSocket and TLS][proxy-websocket-tls]
 - [Conclusion][proxy-conclusion]
 
 [proxy-terminology]: #terminology
@@ -79,6 +80,7 @@ below.</p>
 [proxy-configuring-ssl-for-a-route]: #configuring-ssl-for-a-route
 [proxy-restricting-client-protocol]: #restricting-the-client-protocol-http-https
 [proxy-websocket]: #proxy-websocket-traffic
+[proxy-websocket-tls]: #websocket-and-tls
 [proxy-conclusion]: #conclusion
 
 ## Terminology
@@ -984,7 +986,7 @@ the `cert.pem` certificate previously configured.
 
 ### Restricting the client protocol (HTTP/HTTPS)
 
-Routes have a `protocol` property to restrict the client protocol they should
+Routes have a `protocols` property to restrict the client protocol they should
 listen for. This attribute accepts a set of values, which can be `http` or
 `https`.
 
@@ -1074,6 +1076,25 @@ standard HTTP proxy.
 
 [Back to TOC](#table-of-contents)
 
+### WebSocket and TLS
+
+Kong will accept `ws` and `wss` connections on its respective `http` and
+`https` ports. To enforce TLS connections from clients, set the `protocols`
+property of the [Route][route-entity] to `https` only.
+
+When setting up the [Service][service-entity] to point to your upstream
+WebSocket service, you should carefully pick the protocol you want to use
+between Kong and the upstream. If you want to use TLS (`wss`), then the
+upstream WebSocket service must be defined using the `https` protocol in the
+Service `protocol` property, and the proper port (usually 443). To connect
+without TLS (`ws`), then the `http` protocol and port (usually 80) should be
+used in `protocol` instead.
+
+If you want Kong to terminate SSL/TLS, you can accept `wss` only from the
+client, but proxy to the upstream service over plain text, or `ws`.
+
+[Back to TOC](#table-of-contents)
+
 ## Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
@@ -1099,6 +1120,8 @@ just covered.
 [configuration-trusted-ips]: /docs/{{page.kong_version}}/configuration/#trusted_ips
 [configuring-a-service]: /docs/{{page.kong_version}}/getting-started/configuring-a-service
 [API]: /docs/{{page.kong_version}}/admin-api
+[service-entity]: /docs/{{page.kong_version}}/admin-api/#add-service
+[route-entity]: /docs/{{page.kong_version}}/admin-api/#add-route
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
 [ngx-http-realip-module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
