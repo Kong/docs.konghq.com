@@ -241,4 +241,15 @@ $ npm run test
 
 ### Contributing images, videos, etc
 
+Binary files like images and videos should not be included in your pull request - 
+any request including them will be rejected. 
+
+Instead, please:
+
+1. Include the HTML necessary to display your binary file in your code
+1. In place of the link to the binary file, use `FIXME`
+1. Email your binary files to support@konghq.com, and include a link to your pull request
+1. Kong staff will host your binary files on our CDN, and will replace the `FIXME`s in your code
+with URLs of the binaries
+
 [Back to TOC](#table-of-contents)
