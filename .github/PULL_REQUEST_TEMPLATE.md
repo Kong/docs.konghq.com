@@ -27,8 +27,9 @@ Fix #XXX
 ### Checklist:
 <!-- add "N/A" to the end of each line that's irrelevant to your changes -->
 <!-- to check an item, place an "x" in the box like so: "- [x] Documentation" -->
-- [ ] Spellchecked my documentation
-- [ ] Documentation <!-- Add a new feature? Do you need to document it the README.md or otherwise? -->
+- [ ] [Commit message & atomicity](https://github.com/Kong/getkong.org/blob/master/CONTRIBUTING.md#commit-atomicity) checked
+- [ ] Documentation <!-- Adding a new feature? Do you need to document it the README.md or otherwise? -->
+- [ ] Spellchecked my updates
 - [ ] Ready to be merged <!-- In your opinion, is this ready to be merged as soon as it's reviewed? -->
 
 <!-- feel free to add additional comments -->
