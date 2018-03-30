@@ -22,7 +22,7 @@ title: Kong Implementation Checklist
 
 ## Production System Requirements
 
-- For Kong prefer CPU optimized instances. We recommend at least 4 CPU cores, 16GB of RAM and 24GB of disk space. Kong performs better on a system with multiple cores. In an AWS environment, we recommend running c 3.2xlarge instances in production that guarantee enough cores (8) and memory (16GB), with a local storage instead of EBS to improve the performance.
+- For Kong prefer CPU optimized instances. We recommend at least 4 CPU cores, 16GB of RAM and 24GB of disk space. Kong performs better on a system with multiple cores. In an AWS environment, we recommend running c4.2xlarge instances in production that guarantee enough cores (8) and memory (16GB), with a local storage instead of EBS to improve the performance.
 - For Cassandra and PostgreSQL prefer memory optimized instances. Assume more intensive workload on the datastore if you are using the rate-limiting or response rate-limiting plugins with a “cluster” policy.
 High ulimit systemvalue, possibly >=65535 . A higher limit value will allow Kong and the datastores to process more incoming requests.
 
