@@ -13,7 +13,7 @@ Consult the Table of Contents below, and jump to the desired section.
 
 ## Table of Contents
 
-- [Where to seek for help?](#where-to-seek-help)
+- [Where to seek help?](#where-to-seek-help)
 - [Where to report bugs?](#where-to-report-bugs)
 - [Contributing to the documentation](#contributing-to-the-documentation)
   - [Submitting a patch](#submitting-a-patch)
