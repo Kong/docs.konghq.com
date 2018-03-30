@@ -1,10 +1,16 @@
 ---
-title: Rate Limiting Plugin
+title: Rate Limiting Advanced Plugin
 ---
-# Rate Limiting Plugin
+# Rate Limiting Advanced Plugin
+
+Rate limiting functionality is available in two plugins - one is 
+[bundled with Kong Community Edition (CE)][/plugins/rate-limiting/],
+and the other is bundled with Kong Enterprise Edition (EE). This page documents the Kong EE version of 
+the Rate Limiting plugin, which has greater functionality and performance than the CE version. 
+
 ## Configuration
 
-Method 1: apply it on top of an API by executing the following request on your Kong server:
+Method 1: Apply it on top of an API by executing the following request on your Kong server:
 
 ```
 $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
@@ -14,7 +20,7 @@ $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
   --data config.window_size=60
 ```
 
-Method 2: apply it globally (on all APIs) by executing the following request on your Kong server:
+Method 2: Apply it globally (on all APIs) by executing the following request on your Kong server:
 
 ```
 $ curl -i -X POST http://kong:8001/plugins \
@@ -46,7 +52,9 @@ $ curl -i -X POST http://kong:8001/plugins \
 
 **Note:  Redis configuration values are ignored if the "cluster" strategy is used.**
 
-**Note: PostgreSQL 9.5+ is required when using the "cluster" strategy with "postgres" as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
+**Note: PostgreSQL 9.5+ is required when using the "cluster" strategy with "postgres" as the backing Kong 
+cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described 
+in the <a href="/install/source">Kong Community Edition documentation</a>.**
 
 ---
 
