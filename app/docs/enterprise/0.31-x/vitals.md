@@ -1,6 +1,5 @@
 ---
 title: Kong Vitals
-class: page-install-method
 ---
 
 # Kong Vitals
@@ -9,9 +8,9 @@ class: page-install-method
 The Vitals feature in Kong's Admin API and GUI provides useful metrics about the health and performance of your Kong nodes, as well as metrics about the usage of your Kong-proxied APIs.
 
 ## Requirements
-Vitals requires PostgreSQL 9.5+ or Cassandra 2.1+.
 
-Vitals must also be enabled in Kong configuration. See below for details. 
+- Vitals requires PostgreSQL 9.5+ or Cassandra 2.1+.
+- Vitals must also be enabled in Kong configuration. See below for details.
 
 ## Enabling and Disabling Vitals
 Kong Enterprise Edition ships with Vitals turned off. You can change this in your configuration:
@@ -81,10 +80,21 @@ Timestamps on the x-axis of Vitals charts are displayed either in the browser's 
 Metrics can be displayed on Vitals charts at both node and cluster level. Controls are available to show cluster-wide metrics and/or node-specific metrics. Clicking on individual nodes will toggle the display of data from those nodes. Nodes can be identified by a unique Kong node identifier, by hostname, or by a combination of the two.
 
 ## Known Issues
-Vitals data does not appear in the Admin UI or the API
-First, make sure Vitals is enabled. (`vitals=on` in your Kong configuration).
 
-Then, check your log files. If you see `[vitals] kong_vitals_requests_consumers cache is full` or `[vitals] error attempting to push to list: no memory`, then Vitals is no longer able to track requests because its cache is full.  This condition may resolve itself if traffic to the node subsides long enough for it to work down the cache. Regardless, the node will continue to proxy requests as usual.
+### Vitals data does not appear in the Admin UI or the API
+
+First, make sure Vitals is enabled. (`vitals=on` in your Kong configuration). Next, check your log files:
+
+`[vitals] kong_vitals_requests_consumers cache is full` or `[vitals] error attempting to push to list: no memory`
+
+This means that Vitals is no longer able to track requests because its cache is full.  This condition may resolve itself if traffic to the node subsides long enough for it to work down the cache. Regardless, the node will continue to proxy requests as usual.
+
+### Postgres - Warning Logs after upgrading to 0.31
+
+`[vitals-strategy] failed to insert seconds: ERROR: column "plat_count"`
+`of relation "vitals_stats_seconds_[timestamp]"`
+
+This warning can occur when using Postgres after upgrading to 0.31. To resolve this issue, manually drop the offending table(s) `vitals_stats_seconds_[timestamp]` **Note:** replace `timestamp` in the table name with the timestamp of table name seen in the warning logs. Finally, restart Kong. Additionally, this issue will resolve itself in a maximum of two hours as Vitals periodically rotates new tables.
 
 ### Limitations in Cassandra 2.x
 
