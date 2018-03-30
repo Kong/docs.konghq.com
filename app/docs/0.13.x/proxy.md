@@ -52,6 +52,7 @@ below.</p>
 - [Configuring SSL for a Route][proxy-configuring-ssl-for-a-route]
     - [Restricting the client protocol (HTTP/HTTPS)][proxy-restricting-client-protocol]
 - [Proxy WebSocket traffic][proxy-websocket]
+    - [WebSocket and TLS][proxy-websocket-tls]
 - [Conclusion][proxy-conclusion]
 
 [proxy-terminology]: #terminology
@@ -79,6 +80,7 @@ below.</p>
 [proxy-configuring-ssl-for-a-route]: #configuring-ssl-for-a-route
 [proxy-restricting-client-protocol]: #restricting-the-client-protocol-http-https
 [proxy-websocket]: #proxy-websocket-traffic
+[proxy-websocket-tls]: #websocket-and-tls
 [proxy-conclusion]: #conclusion
 
 ## Terminology
@@ -1084,13 +1086,13 @@ defined using the `https` protocol and the matching port (usually 443). To
 connect without TLS (`ws`) the `http` protocol and port (usually 80) should be
 used.
 
-Similar to regular requests Kong will accept `ws` and `wss` connections on its
-respective `http` and `https` ports. To restrict clients to only accessing over
-TLS, set the `protocols` property of the Route to `https` only.
+Similar to regular requests, Kong will accept `ws` and `wss` connections on
+its respective `http` and `https` ports. To enforce TLS connections from
+clients, set the `protocols` property of the Route to `https` only.
 
 This is independent of the connection setting for the upstream. So if you want
-Kong to terminate SSL, you can accept `wss` only from client, but proxy to the
-upstream service over plain `ws`.
+Kong to terminate SSL/TLS, you can accept `wss` only from client, but proxy to
+the upstream service over plain `ws`.
 
 [Back to TOC](#table-of-contents)
 
