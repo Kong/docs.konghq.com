@@ -33,7 +33,7 @@ admin_listen = 127.0.0.1:8001
 If you change this value, always ensure to keep the listening footprint to a
 minimum, in order to avoid exposing your Admin API to third-parties, which
 could seriously compromise the security of your Kong cluster as a whole.
-For example, **avoid binding Kong to all of your interfaces**, bu using
+For example, **avoid binding Kong to all of your interfaces**, by using
 values such as `0.0.0.0:8001`.
 
 [Back to TOC](#table-of-contents)
