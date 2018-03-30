@@ -13,7 +13,7 @@ Consult the Table of Contents below, and jump to the desired section.
 
 ## Table of Contents
 
-- [Where to seek for help?](#where-to-seek-for-help)
+- [Where to seek help?](#where-to-seek-help)
 - [Where to report bugs?](#where-to-report-bugs)
 - [Contributing to the documentation](#contributing-to-the-documentation)
   - [Submitting a patch](#submitting-a-patch)
@@ -21,9 +21,10 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Commit atomicity](#commit-atomicity)
     - [Commit message format](#commit-message-format)
     - [Linting](#linting)
+  - [Contributing images, videos, etc](#contributing-images-videos-etc)
 
 
-## Where to seek for help?
+## Where to seek help?
 
 Consult the [Kong Contributing
 Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-seek-for-help)
@@ -48,7 +49,7 @@ instead.
 ## Contributing to the documentation
 
 Improving the documentation is a most welcome form of contribution to the Kong
-community! You are welcome to suggest edits, improvements, or fix any typo
+community! You are encouraged to suggest edits, improvements, or fix any typo
 you may find on this website. Please read the below section about
 [submitting a patch](#submitting-a-patch).
 
@@ -57,7 +58,7 @@ website), then please consult the [Kong Contributing
 Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributing)
 instead.
 
-When contributing, be wary of a few things:
+When contributing, be aware of a few things:
 
 - The plugins documentation lives in the `app/plugins` directory. **This part
   of the documentation is not versioned**, which means that the plugins
@@ -237,5 +238,18 @@ can run the linter like so:
 ```
 $ npm run test
 ```
+
+### Contributing images, videos, etc
+
+Binary files like images and videos should not be included in your pull request - 
+any request including them will be rejected. 
+
+Instead, please:
+
+1. Include the HTML necessary to display your binary file in your code
+1. In place of the link to the binary file, use `FIXME`
+1. Email your binary files to support@konghq.com, and include a link to your pull request
+1. Kong staff will host your binary files on our CDN, and will replace the `FIXME`s in your code
+with URLs of the binaries
 
 [Back to TOC](#table-of-contents)
