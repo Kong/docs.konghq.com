@@ -45,7 +45,7 @@ service_json: |
         "name": "example-service",
         "retries": 5,
         "read_timeout": 60000,
-        "write_timeout": 60000
+        "send_timeout": 60000
     }
 
 route_body: |
