@@ -28,7 +28,7 @@ service_body: |
     `path`<br>*optional*          | The path to be used in requests to the upstream server. Empty by default.
     `retries`<br>*optional*       | The number of retries to execute upon failure to proxy. The default is `5`.
     `connect_timeout`<br>*optional* | The timeout in milliseconds for establishing a connection to the upstream server. Defaults to `60000`.
-    `send_timeout`<br>*optional*    | The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server. Defaults to `60000`.
+    `write_timeout`<br>*optional*    | The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server. Defaults to `60000`.
     `read_timeout`<br>*optional*    | The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server. Defaults to `60000`.
     `url`<br>*shorthand-attribute*    | Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url).
 
@@ -45,7 +45,7 @@ service_json: |
         "name": "example-service",
         "retries": 5,
         "read_timeout": 60000,
-        "send_timeout": 60000
+        "write_timeout": 60000
     }
 
 route_body: |
