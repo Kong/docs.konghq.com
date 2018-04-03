@@ -43,6 +43,7 @@ $ curl -i -X POST http://kong:8001/plugins \
 |`config.redis.sentinel_role(semi-optional)`||Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
 |`config.redis.sentinel_addresses(semi-optional)`||Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
 |`config.window_type`| `sliding` | This sets the time window to either `sliding` or `fixed`
+|`config.hide_client_headers`| `false` | Controls whether `X-Ratelimit-Remaining` and `X-Ratelimit-Limit` headers are sent to clients. When set to `true`, headers are not sent/are hidden.
 
 **Note:  Redis configuration values are ignored if the "cluster" strategy is used.**
 
