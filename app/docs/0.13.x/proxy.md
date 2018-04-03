@@ -1086,13 +1086,13 @@ defined using the `https` protocol and the matching port (usually 443). To
 connect without TLS (`ws`) the `http` protocol and port (usually 80) should be
 used.
 
-Similar to regular requests, Kong will accept `ws` and `wss` connections on
-its respective `http` and `https` ports. To enforce TLS connections from
-clients, set the `protocols` property of the Route to `https` only.
+Kong will accept `ws` and `wss` connections on its respective `http` and
+`https` ports. To enforce TLS connections from clients, set the `protocols`
+property of the Route to `https` only.
 
 This is independent of the connection setting for the upstream. So if you want
-Kong to terminate SSL/TLS, you can accept `wss` only from client, but proxy to
-the upstream service over plain `ws`.
+Kong to terminate SSL/TLS, you can accept `wss` only from the client, but
+proxy to the upstream service over plain `ws`.
 
 [Back to TOC](#table-of-contents)
 

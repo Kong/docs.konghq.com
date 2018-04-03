@@ -47,6 +47,7 @@ service depending on their headers, URI, and HTTP method.
     - [The `https_only` property][proxy-the-https-only-property]
     - [The `http_if_terminated` property][proxy-the-http-if-terminated-property]
 - [Proxy WebSocket traffic][proxy-websocket]
+    - [WebSocket and TLS][proxy-websocket-tls]
 - [Conclusion][proxy-conclusion]
 
 [proxy-terminology]: #terminology
@@ -75,6 +76,7 @@ service depending on their headers, URI, and HTTP method.
 [proxy-the-https-only-property]: #the-https_only-property
 [proxy-the-http-if-terminated-property]: #the-http_if_terminated-property
 [proxy-websocket]: #proxy-websocket-traffic
+[proxy-websocket-tls]: #websocket-and-tls
 [proxy-conclusion]: #conclusion
 
 ## Terminology
@@ -1019,6 +1021,26 @@ Upgrade: WebSocket
 This will make Kong forward the `Connection` and `Upgrade` headers to your
 upstream service, instead of dismissing them due to the hop-by-hop nature of a
 standard HTTP proxy.
+
+[Back to TOC](#table-of-contents)
+
+### WebSocket and TLS
+
+When setting up the API to point to your upstream WebSocket service you
+should pick the right protocol you want to use between Kong and the upstream.
+
+If you want to use TLS (`wss`) then the upstream WebSocket service must be
+defined using the `https` protocol and the matching port (usually 443). To
+connect without TLS (`ws`) the `http` protocol and port (usually 80) should be
+used.
+
+Kong will accept `ws` and `wss` connections on its respective `http` and
+`https` ports. To enforce TLS connections from clients, set the `https_only`
+property of the API to `true`.
+
+This is independent of the connection setting for the upstream. So if you want
+Kong to terminate SSL/TLS, you can accept `wss` only from the client, but
+proxy to the upstream service over plain `ws`.
 
 [Back to TOC](#table-of-contents)
 
