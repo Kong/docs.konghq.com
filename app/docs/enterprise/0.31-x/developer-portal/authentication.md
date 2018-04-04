@@ -84,7 +84,7 @@ curl -X POST http://127.0.0.1:8001/apis/portal-files-unauthenticated/plugins \
   --data "config.credentials=true"
 ```
 
-You should now see that [:8000/portal/files](http://127.0.0.1:8000/portal/files/unauthenticated) requires Basic Authentication headers, while [:8000/portal/files/unauthenticated](http://127.0.0.1:8000/portal/files/unauthenticated) will pass through and return unauthenticated files.
+You should now see that [:8000/portal/files](http://127.0.0.1:8000/portal/files) requires Basic Authentication headers, while [:8000/portal/files/unauthenticated](http://127.0.0.1:8000/portal/files/unauthenticated) will pass through and return unauthenticated files.
 
 Other auth plugins are also provided and are explained in more detail in “[Example configurations](#example-configs)”:
 
