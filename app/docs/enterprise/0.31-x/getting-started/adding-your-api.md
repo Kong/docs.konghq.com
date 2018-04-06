@@ -10,13 +10,16 @@ step to having Kong EE manage your API. For purposes of this Getting Started
 guide, we suggest adding the [Mockbin API][mockbin] to Kong, as Mockbin is
 helpful for learning how Kong EE proxies your API requests.
 
-Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
-configuration of your Kong instance or cluster.
+Kong exposes a [RESTful Admin API][API] on ports `:8001` and `:8444` and an
+Admin GUI on ports `:8002` and `:8445` for managing the
+configuration of your Kong instance or cluster. The Admin GUI makes
+requests to the Admin API, and you can use either interface for configuring
+and managing Kong EE.
 
-### 1. Add your API using the Admin API
+## 1. Add your API using the Admin API or GUI
 
-Issue the following cURL request to add your first API ([Mockbin][mockbin])
-to Kong:
+If you'd like to use the Admin API, issue the following cURL request to add
+your first API ([Mockbin][mockbin]) to Kong EE:
 
 ```bash
 $ curl -i -X POST \
@@ -26,9 +29,18 @@ $ curl -i -X POST \
   --data 'upstream_url=http://mockbin.org'
 ```
 
-### 2. Verify that your API has been added
+Or, add your first API via the Admin GUI:
 
-You should see a similar response from that request:
+<video width="700" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2018/03/first-api-ee0.31.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+## 2. Verify that your API has been added
+
+You'll get a confirmation message in the Admin GUI, or if you used cURL you should see a 
+response similar to the following:
 
 ```http
 HTTP/1.1 201 Created
@@ -56,7 +68,7 @@ Connection: keep-alive
 
 Kong is now aware of your API and ready to proxy requests.
 
-### 3. Forward your requests through Kong EE
+## 3. Forward your requests through Kong EE
 
 Issue the following cURL request to verify that Kong is properly forwarding
 requests to your API. Note that [by default][proxy-port] Kong handles proxy
@@ -71,9 +83,7 @@ $ curl -i -X GET \
 A successful response means Kong is now forwarding requests made to
 `http://localhost:8000` to the `upstream_url` we configured in step #1,
 and is forwarding the response back to us. Kong knows to do this through
-the header defined in the above cURL request:
-
-* Host: &lt;given host&gt;
+the header defined in the above cURL request `Host: example.com`
 
 ---
 

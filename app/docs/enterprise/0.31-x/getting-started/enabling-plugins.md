@@ -27,6 +27,13 @@ $ curl -i -X POST \
   --data 'name=key-auth'
 ```
 
+Or, add your first plugin via the Admin GUI:
+
+<video width="700" autoplay loop controls>
+ <source src="https://konghq.com/wp-content/uploads/2018/03/create-keyauth-plugin-ee0.31.mp4" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
+
 **Note:** This plugin also accepts a `config.key_names` parameter, which
 defaults to `[apikey]`. It is a list of headers and parameters names (both
 are supported) that are supposed to contain the API key during a request.
@@ -56,7 +63,7 @@ HTTP/1.1 401 Unauthorized
 
 ### Next Steps
 
-Now that you've configured the **key-auth** plugin, lets learn how to add
+Now that you've configured the **key-auth** plugin, let's learn to add
 Consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]

@@ -5,11 +5,14 @@ title: 5-minute Quickstart
 # 5-minute Quickstart
 
 In this section, you'll learn how to manage your Kong Enterprise Edition (EE)
-instance. First we'll
-have you start Kong to give you access to the RESTful Admin API, and easy-to-use
-Admin GUI, through which you manage your APIs, consumers, and more. Data sent
+instance. First you'll start Kong to give you access to the RESTful Admin API and an easy-to-use
+Admin GUI, through which you'll manage your APIs, consumers, and more. Configuration changes made
 through the Admin API and GUI is stored in Kong's [datastore][datastore-section]
 (Kong supports PostgreSQL and Cassandra).
+
+The easiest way to start using Kong EE is by following our [Docker installation][docker] instructions. 
+Alternately, you can install and run without containers by following our [CentOS][centos] or 
+[Amazon Linux][amazonlinux] instructions.
 
 ### 1. Start Kong EE
 
@@ -45,8 +48,13 @@ By default Kong listens on the following ports:
 - `:8443` on which Kong listens for incoming HTTPS traffic. This port has a
   similar behavior as the `:8000` port, except that it expects HTTPS
   traffic only. This port can be disabled via the configuration file.
-- `:8001` on which the [Admin API][API] used to configure Kong listens.
+- `:8003` on which Kong listens for [Kong Dev Portal][dev-portal] GUI traffic - if the Dev Portal is enabled.
+- `:8004` on which Kong listens for [Kong Dev Portal][dev-portal] `/files` traffic - if the Dev Portal is enabled.
+- `:8001` on which the [Admin API][API] listens.
 - `:8444` on which the [Admin API][API] listens for HTTPS traffic.
+- `:8002` on which the [Admin GUI][GUI] listens.
+- `:8445` on which the [Admin GUI][GUI] listens for HTTPS traffic.
+
 
 ### 3. Stop Kong EE
 
@@ -66,11 +74,18 @@ $ kong reload
 
 ## Next Steps
 
-Now that you have Kong EE running you can interact with the Admin API.
+Now that you have Kong EE running you can interact with the Admin API and GUI.
 
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /docs/latest/cli
 [API]: /docs/latest/admin-api
+[GUI]: /docs/enterprise/{{page.kong_version}}/admin-gui/
 [datastore-section]: /docs/latest/configuration/#datastore-section
 [adding-your-api]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-your-api
+[docker]: /docs/enterprise/{{page.kong_version}}/installation/docker/
+[centos]: /docs/enterprise/{{page.kong_version}}/installation/centos/
+[amazonlinux]: /docs/enterprise/{{page.kong_version}}/installation/amazon-linux/
+[dev-portal]: /docs/enterprise/{{page.kong_version}}/developer-portal/introduction/
+
+

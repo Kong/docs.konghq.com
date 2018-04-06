@@ -5,8 +5,8 @@ title: Adding Consumers
 # Adding Consumers
 
 In the last section, we learned how to add plugins to Kong Enterprise Edition
-(EE), in this section
-we're going to learn how to add Consumers to Kong. Consumers are
+(EE) - in this section
+we're going to learn how to add [Consumers][consumers] to Kong. Consumers are
 associated to individuals or applications using your API, and can be used
 for tracking, access management, and more.
 
@@ -14,9 +14,10 @@ for tracking, access management, and more.
 [key-auth][key-auth] plugin. If you haven't, you can either
 [enable the plugin][enabling-plugins] or skip steps two and three.
 
-### 1. Create a Consumer through the RESTful API
+## 1. Create a Consumer
 
-Lets create a user named `Jason` by issuing the following request:
+If you'd like to use the Admin API, issue the following cURL request to
+create your first Consumer, named `Jason`:
 
 ```bash
 $ curl -i -X POST \
@@ -37,14 +38,20 @@ Connection: keep-alive
   "id": "bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
 }
 ```
+Or, add your first Consumer via the Admin GUI:
+
+<video width="700" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2018/03/add-consumer-ee0.31.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 Congratulations! You've just added your first Consumer to Kong.
 
-**Note:** Kong also accepts a `custom_id` parameter when [creating
-Consumers][API-consumers] to associate a Consumer with your existing user
+**Note:** Kong also accepts a `custom_id` parameter when
+[creating Consumers][API-consumers] to associate a Consumer with your existing user
 database.
 
-### 2. Provision key credentials for your Consumer
+## 2. Provision key credentials for your Consumer
 
 Now, we can create a key for our recently created Consumer `Jason` by
 issuing the following request:
@@ -55,7 +62,7 @@ $ curl -i -X POST \
   --data 'key=ENTER_KEY_HERE'
 ```
 
-### 3. Verify that your Consumer credentials are valid
+## 3. Verify that your Consumer credentials are valid
 
 We can now issue the following request to verify that the credentials of
 our `Jason` Consumer is valid:
@@ -67,7 +74,7 @@ $ curl -i -X GET \
   --header "apikey: ENTER_KEY_HERE"
 ```
 
-## Next Steps
+# Next Steps
 
 Now that we've covered the basics of adding APIs, Consumers and enabling
 Plugins, feel free to read more on Kong in one of the following documents:
@@ -81,6 +88,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 
 [key-auth]: /plugins/key-authentication
 [API-consumers]: /docs/latest/admin-api#create-consumer
+[consumers]: /docs/latest/admin-api#consumer-object
 [enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
 [configuration]: /docs/latest/configuration
 [CLI]: /docs/latest/cli
