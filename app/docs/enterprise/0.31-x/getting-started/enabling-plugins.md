@@ -29,7 +29,7 @@ $ curl -i -X POST \
 
 Or, add your first plugin via the Admin GUI:
 
-<video width="700" autoplay loop controls>
+<video width="100%" autoplay loop controls>
  <source src="https://konghq.com/wp-content/uploads/2018/03/create-keyauth-plugin-ee0.31.mp4" type="video/mp4">
  Your browser does not support the video tag.
 </video>
