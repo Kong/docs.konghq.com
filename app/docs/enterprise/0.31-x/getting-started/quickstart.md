@@ -48,12 +48,12 @@ By default Kong listens on the following ports:
 - `:8443` on which Kong listens for incoming HTTPS traffic. This port has a
   similar behavior as the `:8000` port, except that it expects HTTPS
   traffic only. This port can be disabled via the configuration file.
+- `:8003` on which Kong listens for [Kong Dev Portal][dev-portal] GUI traffic - if the Dev Portal is enabled.
+- `:8004` on which Kong listens for [Kong Dev Portal][dev-portal] `/files` traffic - if the Dev Portal is enabled.
 - `:8001` on which the [Admin API][API] listens.
 - `:8444` on which the [Admin API][API] listens for HTTPS traffic.
 - `:8002` on which the [Admin GUI][GUI] listens.
 - `:8445` on which the [Admin GUI][GUI] listens for HTTPS traffic.
-- `:8003` on which the [Admin GUI][GUI] listens for HTTP [Kong Dev Portal][dev-portal] traffic - if the Dev Portal is enabled.
-- `:8004` on which the [Admin GUI][GUI] listens for HTTPS [Kong Dev Portal][dev-portal] traffic - if the Dev Portal is enabled.
 
 
 ### 3. Stop Kong EE
