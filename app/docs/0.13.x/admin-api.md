@@ -350,6 +350,7 @@ HTTP 200 OK
 Attributes | Description
 ---:| ---
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+`size`<br>*optional, default is __100__ max is __1000__* | A limit on the number of objects to be returned per page.
 
 #### Response
 
@@ -359,7 +360,6 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 10,
     "data": [{
         "id": "4e13f54a-bbf1-47a8-8777-255fed7116f2",
         "created_at": 1488869076800,
@@ -514,6 +514,7 @@ HTTP 200 OK
 Attributes | Description
 ---:| ---
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+`size`<br>*optional, default is __100__ max is __1000__* | A limit on the number of objects to be returned per page.
 
 #### Response
 
@@ -523,7 +524,6 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 10,
     "data": [{
       "id": "22108377-8f26-4c0e-bd9e-2962c1d6b0e6",
       "created_at": 14888869056483,
