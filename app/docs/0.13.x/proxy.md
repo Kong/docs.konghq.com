@@ -516,11 +516,11 @@ the following Routes:
         "regex_priority": 0
     },
     {
-        "paths": ["/version/\d+/status/\d+"]
+        "paths": ["/version/\d+/status/\d+"],
         "regex_priority": 6
     },
     {
-        "paths": ["/version"]
+        "paths": ["/version"],
         "regex_priority": 3
     },
 ]
