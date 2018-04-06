@@ -52,6 +52,9 @@ By default Kong listens on the following ports:
 - `:8444` on which the [Admin API][API] listens for HTTPS traffic.
 - `:8002` on which the [Admin GUI][GUI] listens.
 - `:8445` on which the [Admin GUI][GUI] listens for HTTPS traffic.
+- `:8003` on which the [Admin GUI][GUI] listens for HTTP [Kong Dev Portal][dev-portal] traffic - if the Dev Portal is enabled.
+- `:8004` on which the [Admin GUI][GUI] listens for HTTPS [Kong Dev Portal][dev-portal] traffic - if the Dev Portal is enabled.
+
 
 ### 3. Stop Kong EE
 
@@ -83,4 +86,6 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 [docker]: /docs/enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /docs/enterprise/{{page.kong_version}}/installation/centos/
 [amazonlinux]: /docs/enterprise/{{page.kong_version}}/installation/amazon-linux/
+[dev-portal]: /docs/enterprise/{{page.kong_version}}/developer-portal/introduction/
+
 
