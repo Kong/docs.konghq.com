@@ -231,7 +231,7 @@ $ curl -sX GET http://kong:8001/oauth2_tokens/
 
 Note that `expires_in` is static and does not decrement based on elapsed time: you must add it to `created_at` to calculate when the token will expire.
 
-`DELETE http://kong:8001/oauth2_tokens/<token ID>` allows you immediately invalidate a token if needed.
+`DELETE http://kong:8001/oauth2_tokens/<token ID>` allows you to immediately invalidate a token if needed.
 
 ## Upstream Headers
 
