@@ -12,6 +12,7 @@ nav:
       - label: Create a Consumer
       - label: Create an Application
       - label: Migrating Access Tokens
+      - label: Viewing and Invalidating Access Tokens
       - label: Upstream Headers
   - label: oAuth 2.0 Flows
     items:
@@ -192,6 +193,45 @@ form parameter                        | default | description
 `expires_in`                          |         | The expiration time (in seconds) of the access token.
 `scope`<br>*optional*                 |         | The authorized scope associated with the token.
 `authenticated_userid`<br>*optional*  |         | The custom ID of the user who authorized the application.
+
+## Viewing and Invalidating Access Tokens
+
+Active tokens can be listed and modified using the Admin API. A GET on the `/oauth2_tokens` endpoint returns the following:
+
+```bash
+$ curl -sX GET http://kong:8001/oauth2_tokens/
+{
+  "total": 2,
+  "data": [
+    {
+      "expires_in": 7200,
+      "created_at": 1523386491000,
+      "access_token": "FOEtUHwg0das9PhsasVmgMGbZn7nWSgK",
+      "credential_id": "2c74324f-fa2d-434b-b6de-bd138652158f",
+      "scope": "email",
+      "id": "610740e5-700a-45f0-889a-5c7f0422c48d",
+      "api_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
+      "token_type": "bearer"
+    },
+    {
+      "expires_in": 7200,
+      "created_at": 1523386680000,
+      "access_token": "58eat7UHEiPOmjNb16uQAxt4vu3fbu95",
+      "credential_id": "2c74324f-fa2d-434b-b6de-bd138652158f",
+      "scope": "email",
+      "id": "edff2fc7-1634-4fb5-b714-de9435531e10",
+      "api_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
+      "token_type": "bearer"
+    }
+  ]
+}
+```
+
+`credential_id` is the ID of the OAuth application at `kong:8001/consumers/{consumer_id}/oauth2` and `api_id` or `service_id` is the API or service that the token is valid for.
+
+Note that `expires_in` is static and does not decrement based on elapsed time: you must add it to `created_at` to calculate when the token will expire.
+
+`DELETE http://kong:8001/oauth2_tokens/<token ID>` allows you immediately invalidate a token if needed.
 
 ## Upstream Headers
 
