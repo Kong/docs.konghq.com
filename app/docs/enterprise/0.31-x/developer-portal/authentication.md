@@ -25,34 +25,43 @@ title: Authenticating the Developer Portal
 ## Enable Authentication
 
 
-First, create an API to proxy requests to the Public Dev Portal API:
+First, create a Service and corresponding Route to proxy requests to the Public Dev Portal API:
+
+Service:
 
 ```bash
 curl -i -X POST \
-  --url http://127.0.0.1:8001/apis/ \
+  --url http://127.0.0.1:8001/services/ \
   --data 'name=portal-files' \
-  --data 'uris=/portal' \
-  --data 'upstream_url=http://127.0.0.1:8004'
+  --data 'url=http://127.0.0.1:8004'
 ```
 
-Now that we created our API, update the following line in your Kong Configuration to let Kong know that the Public Dev Portal Files API should point to `:8000/portal` and restart Kong:
+Route:
+
+```bash
+curl -i -X POST \
+  --url http://127.0.0.1:8001/services/portal-files/routes \
+  --data 'paths[]=/portal'
+```
+
+Now that we created our Service/Route, update the following line in your Kong Configuration to let Kong know that the Public Dev Portal Files API should point to `:8000/portal` and restart Kong:
 
 ```bash
 portal_api_uri = 127.0.0.1:8000/portal
 ```
 
-Next, we need to enable an authentication plugin and apply it our newly created API. You can select from any of the available [Kong plugins](https://konghq.com/plugins/). Let's start with [Basic Authentication:](https://getkong.org/plugins/basic-authentication)
+Next, we need to enable an authentication plugin and apply it our newly created Service. You can select from any of the available [Kong plugins](https://konghq.com/plugins/). Let's start with [Basic Authentication:](https://getkong.org/plugins/basic-authentication)
 
 ```bash
-curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins \
-  --data "name=basic-auth" \
-  --data "config.hide_credentials=true"
+curl -X POST http://127.0.0.1:8001/services/portal-files/plugins \
+  --data 'name=basic-auth' \
+  --data 'config.hide_credentials=true'
 ```
 
 Now, let's enable the [CORS plugin](https://getkong.org/plugins/cors) so your Dev Portal can make requests from `:8003` → `:8000` and with the appropriate access control headers:
 
 ```bash
-curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins \
+curl -X POST http://127.0.0.1:8001/services/portal-files/plugins \
   --data "name=cors" \
   --data "config.origins=http://127.0.0.1:8003" \
   --data "config.methods=GET, POST" \
@@ -61,23 +70,31 @@ curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins \
 
 Now that we have setup authentication for your Dev Portal File API, your developers won't be able to access any of your files without credentials. What about access to **unauthenticated files,** files that have the flag `auth` set to `false`, such as landing pages, and the login form?
 
-Let's create another API to grant access to unauthenticated files:
+Let's create another Service/Route to grant access to unauthenticated files:
+
+Service:
 
 ```bash
 curl -i -X POST \
-  --url http://127.0.0.1:8001/apis/ \
+  --url http://127.0.0.1:8001/services/ \
   --data 'name=portal-files-unauthenticated' \
-  --data 'uris=/portal/files/unauthenticated' \
-  --data 'upstream_url=http://127.0.0.1:8004/files/unauthenticated'
+  --data 'url=http://127.0.0.1:8004/files/unauthenticated'
 ```
 
 > The  `:8004/files/unauthenticated` endpoint filters and returns an array of files stored in Kong that have the flag `auth` set to `false`
 
+Route:
+
+```bash
+curl -i -X POST \
+  --url http://127.0.0.1:8001/services/portal-files-unauthenticated/routes \
+  --data 'paths[]=/portal/files/unauthenticated'
+```
 
 Now add the CORS plugin:
 
 ```bash
-curl -X POST http://127.0.0.1:8001/apis/portal-files-unauthenticated/plugins \
+curl -X POST http://127.0.0.1:8001/services/portal-files-unauthenticated/plugins \
   --data "name=cors" \
   --data "config.origins=http://127.0.0.1:8003" \
   --data "config.methods=GET, POST" \
@@ -135,7 +152,7 @@ After you have set `auth=true` in your Files, you will need to tell the Dev Port
 
 ### Add a Consumer
 
-Next, [add a Kong consumer](/docs/latest/getting-started/adding-consumers/) to your `portal-files` API with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
+Next, [add a Kong consumer](/docs/latest/getting-started/adding-consumers/) to your `portal-files` Service with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
 
 ### Login to the Dev Portal
 
@@ -402,10 +419,10 @@ Check out the section “**Enabling Authentication”** for a step by step guide
 
 The [Key Authentication Plugin](https://getkong.org/plugins/key-authentication) allows developers to use API keys to authenticate requests against an API. This is useful when consumers have an API Key rather than a username/password.
 
-Add the key auth plugin to the `portal-files` API:
+Add the key auth plugin to the `portal-files` Service:
 
 ```bash
-curl -X POST http://`127.0.0.1`:8001/apis/portal-files/plugins \
+curl -X POST http://`127.0.0.1`:8001/services/portal-files/plugins \
   --data "name=key-auth" \
   --data "config.key_names=key" \
   --data "config.hide_credentials=true"
@@ -442,10 +459,10 @@ The [OpenID Connect Plugin](https://getkong.org/plugins/ee-openid-connect/) allo
 
 [OIDC](https://getkong.org/plugins/ee-openid-connect/) must be used with the “session” method, utilizing cookies for Dev Portal File API requests.
 
-Add the `openid-connect` plugin to the `portal-files` API:
+Add the `openid-connect` plugin to the `portal-files` Service:
 
 ```bash
-curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins  \
+curl -X POST http://127.0.0.1:8001/services/portal-files/plugins  \
   --data "name=openid-connect"      \
   --data "config.issuer=https://accounts.google.com/" \
   --data "config.client_id=<CLIENT_ID>"   \
