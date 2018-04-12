@@ -36,10 +36,6 @@ High ulimit systemvalue, possibly >=65535 . A higher limit value will allow Kong
 - Kong is stateless and more nodes can be added behind the load balancer to scale the system. Incoming HTTP/s requests can be processed by any server, and that also includes the Kong’s Admin API.
 - Every new Kong node should target the same datastore, and join the existing Kong nodes in a cluster. Failure to join the Kong nodes in a Kong cluster will result in data inconsistencies and errors when processing requests. Kong automates joining a node in the cluster as long as the right configuration settings have been provided. For more information, we recommend reading the [clustering reference](/docs/latest/clustering/).
 
-<center>
-  <img src="/assets/images/docs/ee/kong-scaling.png" alt="Scaling Kong" width="350">
-</center>
-
 ## Kong Performance
 
 The performance of Kong varies depending on multiple factors, including:
