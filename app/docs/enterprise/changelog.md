@@ -3,10 +3,43 @@ title: Kong Enterprise Changelog
 nav:
   - label: Versions
     items:
+      - label: "0.31-1"
       - label: "0.31"
       - label: "0.30"
 ---
 # Kong Enterprise Changelog
+
+## 0.31-1
+
+### Changes
+
+- New shared dictionaries named `kong_rl_counters` and `kong_db_cache_miss` were defined in Kong’s default template - customers using custom templates are encouraged to update them to include those, as they avoid the reuse of the `kong_cache` shared dict; such a reuse is known to be one of the culprits behind `no memory` errors - see diff below
+- The rate-limiting plugin now accepts a `dictionary_name` argument, which is used for temporarily storing rate-limiting counters
+
+*NOTE*: if you use a custom Nginx configuration template, apply the following patch to your template:
+
+```
+diff --git a/kong/templates/nginx_kong.lua b/kong/templates/nginx_kong.lua
+index 15682975..653a7ddd 100644
+--- a/kong/templates/nginx_kong.lua
++++ b/kong/templates/nginx_kong.lua
+@@ -29,7 +29,9 @@ lua_socket_pool_size ${{LUA_SOCKET_POOL_SIZE}};
+ lua_max_running_timers 4096;
+ lua_max_pending_timers 16384;
+ lua_shared_dict kong                5m;
++lua_shared_dict kong_rl_counters   12m;
+ lua_shared_dict kong_cache          ${{MEM_CACHE_SIZE}};
++lua_shared_dict kong_db_cache_miss 12m;
+ lua_shared_dict kong_process_events 5m;
+ lua_shared_dict kong_cluster_events 5m;
+ lua_shared_dict kong_vitals_requests_consumers 50m;
+```
+
+### Fixes
+
+- Bump mlcache to 2.0.2 and mitigates a number of issues known to be causing `no memory` errors
+- Fixes an issue where boolean values (and boolean values as strings) were not correctly marshalled when using Cassandra
+- Fixes an issue in Redis Sentinel configuration parsing
 
 ## 0.31
 
