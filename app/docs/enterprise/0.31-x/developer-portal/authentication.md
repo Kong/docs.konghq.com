@@ -25,7 +25,7 @@ title: Authenticating the Developer Portal
 ## Enable Authentication
 
 
-First, create a Service and corresponding Route to proxy requests to the Public Dev Portal API:
+First, create a Service and corresponding Route to proxy requests to the Public Dev Portal Files API:
 
 Service:
 
@@ -44,7 +44,7 @@ curl -i -X POST \
   --data 'paths[]=/portal'
 ```
 
-Now that we created our Service/Route, update the following line in your Kong Configuration to let Kong know that the Public Dev Portal Files API should point to `:8000/portal` and restart Kong:
+Now that we created our Service and Route, update the following line in your Kong Configuration to let Kong know that the Public Dev Portal Files API should point to `:8000/portal` and restart Kong:
 
 ```bash
 portal_api_uri = 127.0.0.1:8000/portal
@@ -70,7 +70,7 @@ curl -X POST http://127.0.0.1:8001/services/portal-files/plugins \
 
 Now that we have setup authentication for your Dev Portal File API, your developers won't be able to access any of your files without credentials. What about access to **unauthenticated files,** files that have the flag `auth` set to `false`, such as landing pages, and the login form?
 
-Let's create another Service/Route to grant access to unauthenticated files:
+Let's create another Service and Route to grant access to unauthenticated files:
 
 Service:
 
