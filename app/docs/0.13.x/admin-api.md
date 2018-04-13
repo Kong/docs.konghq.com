@@ -21,7 +21,7 @@ api_body: |
 service_body: |
     Attributes | Description
     ---:| ---
-    `name`                        | The Service name.
+    `name` <br>*optional*         | The Service name.
     `protocol`                    | The protocol used to communicate with the upstream. It can be one of `http` (default) or `https`.
     `host`                        | The host of the upstream server.
     `port`                        | The upstream server port. Defaults to `80`.
