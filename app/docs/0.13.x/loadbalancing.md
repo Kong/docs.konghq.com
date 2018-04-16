@@ -62,7 +62,7 @@ Because the `weight` information is available, each entry will get its own
 weight in the load balancer and it will perform a weighted round-robin.
 
 Similarly, any given port information will be overridden by the port information from
-the DNS server. If a Service has an `host=myhost.com` attribute,
+the DNS server. If a Service has attributes `host=myhost.com` and `port=123`,
 and `myhost.com` resolves to an SRV record with `127.0.0.1:456`, then the request
 will be proxied to `http://127.0.0.1:456/somepath`, as port `123` will be
 overridden by `456`.
