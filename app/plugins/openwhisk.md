@@ -282,7 +282,7 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
 
 #### Use a fake upstream service
 
-When using the AWS Lambda plugin, the response will be returned by the plugin
+When using the OpenWhisk plugin, the response will be returned by the plugin
 itself without proxying the request to any upstream service. This means that
 a Service's `host`, `port`, `path` properties will be ignored, but must still
 be specified for the entity to be validated by Kong. The `host` property in
