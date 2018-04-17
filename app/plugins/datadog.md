@@ -74,7 +74,7 @@ Field           | description                                           | allowe
 ### Metric requirements
 
 1.  by default all metrics get logged.
-2.  metric with `stat_type` as `counter` or `gouge` must have `sample_rate` defined as well.
+2.  metric with `stat_type` as `counter` or `gauge` must have `sample_rate` defined as well.
 3.  `unique_users` metric only works with `stat_type` as `set`.
 4.  `status_count`, `status_count_per_user` and `request_per_user` work only with `stat_type`  as `counter`.
 5.  `status_count_per_user`, `request_per_user` and `unique_users` must have `customer_identifier` defined.
