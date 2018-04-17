@@ -105,4 +105,9 @@ description: |
   [salesforce]: https://developer.salesforce.com/page/Inside_OpenID_Connect_on_Force.com
   [yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
 
+  Once applied, any user with a valid credential can access the Service/API.
+  To restrict usage to only some of the authenticated users, also add the
+  [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+  blacklist groups of users.
+
 ---

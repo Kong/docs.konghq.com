@@ -112,6 +112,11 @@ params:
         <center>The option <code>config.refresh_token_ttl</code> is only available from version 0.12.0 and later</center>
     </div>
 
+    Once applied, any user with a valid credential can access the Service/API.
+    To restrict usage to only some of the authenticated users, also add the
+    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+    blacklist groups of users.
+
 ---
 
 ## Usage

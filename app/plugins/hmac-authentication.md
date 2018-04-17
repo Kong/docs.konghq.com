@@ -64,6 +64,11 @@ params:
       default: "`hmac-sha1`,<br>`hmac-sha256`,<br>`hmac-sha384`,<br>`hmac-sha512`"
       description: |
         A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
+  extra: |
+    Once applied, any user with a valid credential can access the Service/API.
+    To restrict usage to only some of the authenticated users, also add the
+    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+    blacklist groups of users.
 
 ---
 
