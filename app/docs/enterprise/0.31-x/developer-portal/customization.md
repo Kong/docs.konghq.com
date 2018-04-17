@@ -45,7 +45,7 @@ Now let's update **pages/documentation/api1.hbs** to render our newly added Spec
 
 3. Change: `petstore`  →  `swagger`
 4. Now make a `PATCH` request to update the page against the Dev Portal File API in your terminal (note, no extension on the filename in the url):
-   
+
     ```bash
     curl -X PATCH http://127.0.0.1:8001/files/documentation/api1 \
           -F "contents=@pages/documentation/api1.hbs"
@@ -59,7 +59,7 @@ Now let's update **pages/documentation/api1.hbs** to render our newly added Spec
 
 The Dev Portal default theme is shipped with two CSS file partials:
 
-* `partials/unauthenticated/theme-css.hbs` 
+* `partials/unauthenticated/theme-css.hbs`
     * Default styles for all theme specific elements across the Example Dev Portal.
 * `partials/unauthenticated/custom-css.hbs`
     * Partial describing how to change specific parts of the portal without modifying the default theme CSS.
@@ -74,19 +74,19 @@ For this example, this is what we're going to do:
 
 1. Find and open the `partials/header.hbs` file from the Example Dev Files archive you downloaded earlier.
 2. Change the content inside of the `.logo` element to `Dev Portal`
-   
+
     ```html
     <a class="logo" href="/">Dev Portal</a>
     ```
 
 3. Change `Developers` → `My Company Developers`:
-   
+
     ```html
     <span>My Company Developers</span>
     ```
 
 4. Update the file by sending a `PATCH` request from your terminal to the Dev Portal File API:
-   
+
     ```bash
     curl -X PATCH http://127.0.0.1:8001/files/header \
           -F "contents=@partials/header.hbs"
@@ -100,7 +100,7 @@ For this example, this is what we're going to do:
 
 1. Find and open `partials/unauthenticated/custom-css.hbs` in the Example Dev Files directory.
 2. Let's start by changing the header background, and text colors by adding:
-   
+
     ```css
     #header {
         background-color: #033151;
@@ -108,8 +108,8 @@ For this example, this is what we're going to do:
     }
     ```
 
-3. Next, we're going to change the font color in the navigation from blue to white by adding: 
-   
+3. Next, we're going to change the font color in the navigation from blue to white by adding:
+
     ```css
     .navigation > li > a,
       #headerSpecDropdownWrapper > .header-text {
@@ -118,7 +118,7 @@ For this example, this is what we're going to do:
     ```
 
 4. Almost there, now let's change the logo text to white, increase its size, and update the separator color:
-   
+
     ```css
     #header .header-logo-container .logo {
         color: white;
@@ -129,13 +129,13 @@ For this example, this is what we're going to do:
     ```
 
 5. Save the file and send a `PATCH` request in your terminal to the Dev Portal File API to update it:
-   
+
     ```bash
     curl -X PATCH http://127.0.0.1:8001/files/custom-css \
           -F "contents=@partials/custom-css.hbs"
     ```
 
-6. Refresh the Example Dev Portal in your browser and now it should look like this: 
+6. Refresh the Example Dev Portal in your browser and now it should look like this:
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-home2.png "Homepage Edited")
 
@@ -195,7 +195,7 @@ We're going to create something super simple, a Hello World page using the `layo
 
 1. Create a new file with the name `example.hbs` in your Example Dev Portal files directory under the `pages/` directory.
 2. In the file we just created, let's add the following code (the handlebars syntax for opening a partial block):
-   
+
     {% raw %}
     ```handlebars
     {{#> layout pageTitle="Hello World" }}
@@ -205,7 +205,7 @@ We're going to create something super simple, a Hello World page using the `layo
     Note: The `pageTitle` attribute allows you to easily change the title of the page displayed in the browser. Here we have set it to `Hello World`.
 
 3. Now let's add the actual content. When using the layout template, content on the page must be placed **inside** an [inline partial block](http://handlebarsjs.com/partials.html) named `content-block` like so:
-   
+
    {% raw %}
     ```handlebars
     {{#*inline "content-block"}}
@@ -220,13 +220,15 @@ We're going to create something super simple, a Hello World page using the `layo
     {% endraw %}
 
 4. Now let's close out the layout block:
-   
-    ```
+
+    {% raw %}
+    ```handlebars
     {{/layout}}
     ```
+    {% endraw %}
 
 5. Your file should now look like:
-   
+
     {% raw %}
     ```handlebars
     {{#> layout pageTitle="Hello World" }}
@@ -266,7 +268,8 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
 1. Find and open `partials/header.hbs` in the Example Dev Portal file directory.
 2. Open it in your favorite text editor and find the `nav` container, it should look like:
 
-    ```
+    {% raw %}
+    ``` handlebars
     <nav class="header-nav-container">
       <ul class="navigation">
          {{> spec-dropdown url="/documentation/"}}
@@ -280,6 +283,7 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
       </ul>
     </nav>
     ```
+    {% endraw %}
 
 3. Let's add the following line:
 
@@ -291,7 +295,8 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
 
 4. Your `nav` block should now look like:
 
-    ```
+    {% raw %}
+    ``` handlebars
     <nav class="header-nav-container">
       <ul class="navigation">
          {{> spec-dropdown url="/documentation/"}}
@@ -308,9 +313,10 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
        </ul>
     </nav>
     ```
+    {% endraw %}
 
 5. Finally let's update it using the Dev Portal File API:
-   
+
     ```bash
     curl -X PATCH http://127.0.0.1:8001/files/header \
          -F "contents=@partials/header.hbs"
@@ -323,7 +329,7 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
 ## Link From One Dev Portal Page to Another
 
 1. Add a link in the code of a page or partial like:
-   
+
     ```html
      <a href="/example">Example</a>
     ```
@@ -331,13 +337,13 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
   - This will link to a Page with `name=example`
 
 2. To link to an anchor or section within `/example`, ensure the target includes an unique id:
-   
+
     ```html
     <div id="details">Details Here</div>
     ```
 
 3. Your link should look like:
-    
+
     ```html
     <a href="/example#details">Example</a>
     ```
