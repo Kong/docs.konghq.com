@@ -21,7 +21,7 @@ title: Getting Started with the Kong Developer Portal
 
 Now that we have enabled the Dev Portal, it is time to download the Example Dev Portal Files archive, (made of Pages, Partials, and Specifications) so that the Dev Portal Loader will have something to render (more on that later).
 
-* Login to Bintray and download the [Example Dev Portal files](https://bintray.com/kong/kong-dev-portal/example/v0.0.1#files) archive.
+* Login to Bintray and download the [Example Dev Portal files](https://bintray.com/kong/kong-dev-portal/download_file?file_path=v0.0.2_theme.tar.gz) archive.
 * Unarchive the Example Dev Portal files archive and navigate to it in your terminal
 * Run the following commands in your terminal to upload the Example Dev Portal files to Kong:
     * `chmod +x sync.sh`
