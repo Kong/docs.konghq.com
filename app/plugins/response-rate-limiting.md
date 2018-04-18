@@ -14,7 +14,7 @@ nav:
 
 description: |
   This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream service. You can arbitrary set as many rate-limiting objects (or quotas) as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
-  
+
   If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
 params:
@@ -57,7 +57,7 @@ params:
     - name: limit_by
       required: false
       default: "`consumer`"
-      description: The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
+      description: "The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`."
     - name: policy
       required: false
       default: "`cluster`"
