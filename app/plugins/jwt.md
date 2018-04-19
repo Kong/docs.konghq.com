@@ -60,7 +60,7 @@ params:
       required: false
       default: "`iss`"
       description: |
-        The name of the claim in which the `key` identifying the secret **must** be passed.
+        The name of the claim in which the `key` identifying the secret **must** be passed. The JWT payload claims are first checked and if not found it then checks the JWT header claims.
     - name: secret_is_base64
       required: false
       default: "`false`"
