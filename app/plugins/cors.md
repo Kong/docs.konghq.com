@@ -79,8 +79,8 @@ configured with a `uris` setting, and it will not work for APIs that
 are being resolved using a custom DNS (the `hosts` property).
 
 To learn how to configure `uris` for an API, please read the [Proxy
-Reference](/app/docs/0.12.x/proxy.md#request-uri).
+Reference][proxy-reference].
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
-[proxy-reference]: /docs/latest/proxy
+[proxy-reference]: /app/docs/0.12.x/proxy.md#request-uri
