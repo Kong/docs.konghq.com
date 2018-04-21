@@ -46,7 +46,7 @@ for _, strategy in helpers.each_strategy() do
       })
 
       -- start Kong with your testing Kong configuration (defined in "spec.helpers")
-      assert(helpers.start_kong())
+      assert(helpers.start_kong( { custom_plugins = "my-plugin" }))
 
       admin_client = helpers.admin_client()
     end)
