@@ -60,7 +60,7 @@ params:
       required: false
       default: "`iss`"
       description: |
-        The name of the claim in which the `key` identifying the secret **must** be passed.
+        The name of the claim in which the `key` identifying the secret **must** be passed. Starting with version `0.13.1`, the plugin will attempt to read this claim from the JWT payload and the header, in this order.
     - name: secret_is_base64
       required: false
       default: "`false`"
@@ -187,7 +187,10 @@ First, its header must be:
 }
 ```
 
-Secondly, the claims **must** contain the secret's `key` in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
+Secondly, the claims **must** contain the secret's `key` in the configured claim (from `config.key_claim_name`).
+That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`.
+The claims may contain other values. Since Kong `0.13.1`, the claim is searched in both the JWT payload and header,
+in this order.
 
 ```json
 {
@@ -317,7 +320,11 @@ When creating the signature, make sure that the header is:
 }
 ```
 
-Secondly, the claims **must** contain the secret's `key` field (this **isn't** your private key used to generate the token, but just an identifier for this credential) in the configured claim (from `config.key_claim_name`). That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`. The claims may contain other values.
+Secondly, the claims **must** contain the secret's `key` field (this **isn't** your private key used to generate
+the token, but just an identifier for this credential) in the configured claim (from `config.key_claim_name`).
+That claim is `iss` (issuer field) by default. Set its value to our previously created credential's `key`.
+The claims may contain other values. Since Kong `0.13.1`, the claim is searched in both the JWT payload and header,
+in this order.
 
 ```json
 {
