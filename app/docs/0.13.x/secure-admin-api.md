@@ -86,11 +86,12 @@ the `admin_listen` address as the Service's `url`. For example:
 
 $ curl -X POST http://localhost:8001/services \
   --data name=admin-api \
-  --data upstream_url=http://localhost:8001
+  --data host=localhost \
+  --data port=8001
 
-$ curl -X POST http://localhost:8001/services/admin-api/routes
-  --data uris=/admin-api
-
+$ curl -X POST http://localhost:8001/services/admin-api/routes \
+  --data paths[]=/admin-api
+  
 # we can now transparently reach the Admin API through the proxy server
 $ curl localhost:8000/admin-api/apis
 {
