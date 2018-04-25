@@ -37,6 +37,11 @@ params:
       default:
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
+  extra: |
+    Once applied, any user with a valid credential can access the Service/API.
+    To restrict usage to only some of the authenticated users, also add the
+    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+    blacklist groups of users.
 
 ---
 

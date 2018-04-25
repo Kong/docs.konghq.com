@@ -74,7 +74,7 @@ $ curl -X POST http://kong:8001/plugins \
     --data "consumer_id={consumer_id}" {{ config_required_fields }}
 ```
 
-Where `consumer_id`: The id of the Consumer we want to associate with this plugin.
+Where `consumer_id` is the id of the Consumer we want to associate with this plugin.
 {% if page.params.service_id or page.params_route_id or page.params.api_id %}
   You can combine adding `consumer_id` and {% if page.params.service_id %}
     `service_id`
@@ -83,13 +83,6 @@ Where `consumer_id`: The id of the Consumer we want to associate with this plugi
   {% elsif page.params.api_id %}
     `api_id`
   {% endif %} in the same request.
-{% endif %}
-
-{% if page.params.name != "acl" %}
-  Once applied, any user with a valid credential can access the Service/API.
-  To restrict usage to only some of the authenticated users, also add the
-  [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-  blacklist groups of users.
 {% endif %}
 {% endcapture %}
 {% endif %}

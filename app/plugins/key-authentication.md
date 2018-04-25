@@ -56,6 +56,11 @@ params:
         <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
     </div>
 
+    Once applied, any user with a valid credential can access the Service/API.
+    To restrict usage to only some of the authenticated users, also add the
+    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+    blacklist groups of users.
+
 ---
 
 ## Usage
