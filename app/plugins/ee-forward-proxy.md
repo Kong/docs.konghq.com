@@ -3,7 +3,7 @@ id: page-plugin
 title: Plugins - EE Forward Proxy
 layout: plugin-ee
 header_title: EE Forward Proxy
-header_icon: /assets/images/icons/plugins/ee-forward-proxy.png
+header_icon: https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2017/11/EE-forward-proxy.svg
 header_btn_text: Report Bug
 header_btn_href: mailto:support@konghq.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
