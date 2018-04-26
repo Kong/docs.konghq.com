@@ -88,6 +88,7 @@ plugin_configuration_body: |
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
     `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+    `enabled` | Whether the plugin is applied. Default: `true`.
 
 target_body: |
     Attributes | Description
