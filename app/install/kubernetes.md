@@ -86,12 +86,12 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
 4. **Prepare database**
     
     Using the `kong_migration_<postgres|cassandra>.yaml` file,
-    run the migration:
+    run the migration job:
     
     ```bash
     $ kubectl create -f kong_migration_<postgres|cassandra>.yaml
     ```
-    Once the migration completes, you can remove the pod by running following command:
+    Once the job completes, you can remove the pod by running following command:
 
     ```bash
     $ kubectl delete -f kong_migration_<postgres|cassandra>.yaml
