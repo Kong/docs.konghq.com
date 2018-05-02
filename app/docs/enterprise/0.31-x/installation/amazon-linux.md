@@ -41,7 +41,7 @@ $ psql
 $ sudo vi /var/lib/pgsql95/data/pg_hba.conf
 $ sudo service postgresql95 restart
 
-# add contents of license file
+# add contents of license file (copy and paste)
 $ sudo vi /etc/kong/license.json
 
 # Uncomment and add 'kong' to pg_password line
@@ -52,17 +52,17 @@ $ kong migrations up -c /etc/kong/kong.conf.default
 $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
 ```
 
-### Setup HTTPie to make commands easier
-
-```bash
-$ sudo /usr/local/bin/easy_install httpie
-```
-
 ## Test your Kong installation
 
 ```bash
-$ http :8001/apis name=demo uris=/ upstream_url=http://httpbin.org
-$ http :8000/ip
+$ curl -X POST \
+--url 'http://localhost:8001/apis' \
+--data 'name=demo' \
+--data 'uris=/' \
+--data 'upstream_url=http://httpbin.org'
+```
+```bash
+$ curl GET --url 'http://localhost:8000/ip'
 ```
 
 ## Setup Admin GUI
