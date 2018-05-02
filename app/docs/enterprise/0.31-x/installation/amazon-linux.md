@@ -5,10 +5,14 @@ title: How to install Kong Enterprise and PostgreSQL onto Amazon Linux
 # How to Install Kong Enterprise and PostgreSQL onto Amazon Linux
 
 ```bash
+EITHER (assuming free trial .rpm loaded locally)
+$ sudo yum install kong-free-trials-enterprise-edition-0.31-1.aws.rpm
+OR (non-free trial method)
 $ sudo yum update
 $ wget 'https://<BINTRAY_USER:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge
 $ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
 $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
+$ sudo yum install kong-enterprise-edition
 ```
 
 Ensure `baseurl` is correct
@@ -18,7 +22,6 @@ baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterpris
 ```
 
 ```bash
-$ sudo yum install kong-enterprise-edition
 $ sudo yum install postgresql95 postgresql95-server
 $ sudo service postgresql95 initdb
 $ sudo service postgresql95 start
@@ -52,9 +55,7 @@ $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
 ### Setup HTTPie to make commands easier
 
 ```bash
-$ sudo yum install python-pip
-$ sudo pip install --upgrade pip setuptools
-$ sudo pip install --upgrade httpie
+$ sudo /usr/local/bin/easy_install httpie
 ```
 
 ## Test your Kong installation
@@ -70,7 +71,8 @@ $ http :8000/ip
 # Get the local IP address
 $ ifconfig 
 
-# Uncomment the admin_listen setting, and update to something like this `admin_listen = 172.31.3.8:8001`
+# Uncomment the admin_listen setting, and update to 
+# something like this `admin_listen = 172.31.3.8:8001`
 $ sudo vi /etc/kong/kong.conf.default 
 
 # Restart kong
