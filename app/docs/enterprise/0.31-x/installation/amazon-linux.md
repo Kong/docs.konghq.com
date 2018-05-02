@@ -62,7 +62,7 @@ $ curl -X POST \
 --data 'upstream_url=http://httpbin.org'
 ```
 ```bash
-$ curl GET --url 'http://localhost:8000/ip'
+$ curl -X GET --url 'http://localhost:8000/ip'
 ```
 
 ## Setup Admin GUI
