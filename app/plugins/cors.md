@@ -83,4 +83,4 @@ Reference][proxy-reference].
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
-[proxy-reference]: /app/docs/0.12.x/proxy.md#request-uri
+[proxy-reference]: /docs/0.12.x/proxy#request-uri
