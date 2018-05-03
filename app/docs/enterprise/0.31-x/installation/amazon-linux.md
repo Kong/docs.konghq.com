@@ -13,14 +13,11 @@ $ wget 'https://<BINTRAY_USER:<PASSWORD>@bintray.com/kong/kong-enterprise-editio
 $ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
 $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
 $ sudo yum install kong-enterprise-edition
-```
-
-Ensure `baseurl` is correct
-
-```bash
+# Ensure `baseurl` is correct
 baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
 ```
 
+Install Postgres
 ```bash
 $ sudo yum install postgresql95 postgresql95-server
 $ sudo service postgresql95 initdb
