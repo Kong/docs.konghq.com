@@ -4,6 +4,7 @@ title: How to install Kong Enterprise and PostgreSQL onto Amazon Linux
 
 # How to Install Kong Enterprise and PostgreSQL onto Amazon Linux
 
+Install Kong
 ```bash
 EITHER (assuming free trial .rpm loaded locally)
 $ sudo yum install kong-free-trials-enterprise-edition-0.31-1.aws.rpm
@@ -12,9 +13,9 @@ $ sudo yum update
 $ wget 'https://<BINTRAY_USER:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge
 $ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
 $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
-$ sudo yum install kong-enterprise-edition
 # Ensure `baseurl` is correct
 baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
+$ sudo yum install kong-enterprise-edition
 ```
 
 Install Postgres
@@ -26,7 +27,6 @@ $ sudo -i -u postgres (puts you into new shell)
 ```
 
 Create `kong` user
-
 ```bash
 $ psql
 > CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong'; 
