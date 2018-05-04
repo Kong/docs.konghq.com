@@ -360,7 +360,7 @@ an API. _Note: Auth0 does not use base64 encoded secrets._
 Create a Service:
 
 ```bash
-$ curl -i -f -X POST http://localhost:8001/servies \
+$ curl -i -f -X POST http://localhost:8001/services \
     --data "name=example-service" \
     --data "=http://httpbin.org"
 ```
