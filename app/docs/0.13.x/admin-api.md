@@ -1171,8 +1171,9 @@ times is:
 configurations): for a Service (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B
 and ignore A. However, requests that do not authenticate this Consumer will
-fallback to running Plugin config A. Note that if config B is disabled,
-config A will apply to requests that would have otherwise matched config B.
+fallback to running Plugin config A. Note that if config B is disabled
+(its `enabled` flag is set to `false`), config A will apply to requests that
+would have otherwise matched config B.
 
 ---
 
