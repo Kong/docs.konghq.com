@@ -1,6 +1,4 @@
---- Note that if config B is
-disabled, config A will apply to requests that would have otherwise matched
-config B.
+---
 title: Admin API
 
 api_body: |
