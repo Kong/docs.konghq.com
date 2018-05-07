@@ -1,0 +1,91 @@
+- title: Getting Started
+  items:
+    - text: Introduction
+      url: /getting-started/introduction
+    - text: Five-minute quickstart
+      url: /getting-started/quickstart
+    - text: Adding your API
+      url: /getting-started/adding-your-api
+    - text: Enabling Plugins
+      url: /getting-started/enabling-plugins
+    - text: Adding Consumers
+      url: /getting-started/adding-consumers
+    - text: Licensing
+      url: /getting-started/licensing
+    - text: Accessing Your License
+      url: /getting-started/accessing-your-license
+
+- title: Installation
+  items:
+    - text: Docker
+      url: /installation/docker
+    - text: CentOS
+      url: /installation/centos
+    - text: Amazon Linux
+      url: /installation/amazon-linux
+
+- title: APIs and Plugins
+  items:
+    - text: Canary Release Plugin
+      url: /plugins/canary-release
+    - text: Rate Limiting Plugin
+      url: /plugins/rate-limiting
+    - text: Request Transformer Plugin
+      url: /plugins/request-transformer
+    - text: OAuth2 Introspection Plugin
+      url: /plugins/oauth2-introspection
+    - text: OpenID Connect Plugin
+      url: /plugins/openid-connect
+    - text: HTTP Proxy Caching
+      url: /plugins/http-proxy-caching
+    - text: Forward Proxy
+      url: /plugins/forward-proxy
+    - text: RBAC API
+      url: /plugins/rbac-api
+
+- title: Kong Developer Portal
+  items:
+    - text: Introduction
+      url: /developer-portal/introduction
+    - text: Getting Started
+      url: /developer-portal/getting-started
+    - text: Understanding
+      url: /developer-portal/understanding
+    - text: Customization
+      url: /developer-portal/customization
+    - text: Authentication
+      url: /developer-portal/authentication
+    - text: Managing Developers
+      url: /developer-portal/managing-developers
+    - text: FAQ
+      url: /developer-portal/faq
+    - text: Known Limitations
+      url: /developer-portal/known-limitations
+
+- title: Guides &amp; References
+  items:
+    - text: Kong Implementation Checklist
+      url: /kong-implementation-checklist
+    - text: Changelog
+      url: /docs/enterprise/changelog
+      absolute_url: true
+    - text: Architecture Overview
+      url: /kong-architecture-overview
+    - text: Accessing Admin GUI
+      url: /admin-gui
+    - text: Kong Vitals
+      url: /vitals
+    - text: Rate Limiting Library
+      url: /rate-limiting
+    - text: Setting Up Admin API RBAC
+      url: /setting-up-admin-api-rbac
+    - text: Kong Enterprise Edition Versioning
+      url: /edition-versioning
+    - text: Multiple Authentication Methods
+      url: /allowing-multiple-authentication-methods
+    - text: PostgreSQL on RedHat
+      url: /postgresql-redhat
+    - text: OpenID Connect with Google
+      url: /oidc-google
+    - text: OpenID Connect with Auth0
+      url: /oidc-auth0
