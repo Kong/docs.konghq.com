@@ -23,7 +23,7 @@ id: documentation
         <h1>{% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}</h1>
       </div>
 
-      {% if page.kong_versions.size > 1 and page.edition == 'community' %}
+      {% if page.kong_versions.size > 1 %}
         <div class="dropdown page-header-right">
           <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Version {{page.kong_version}}
@@ -35,17 +35,19 @@ id: documentation
             {% for ver in page.kong_versions reversed %}
               {% unless page.kong_version == ver.release %}
                 <li>
-                  <a href="/docs/{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                  <a href="/docs/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
                     {{ver.release}}
                   </a>
                 </li>
               {% endunless %}
             {% endfor %}
           </ul>
+          {% if page.edition == 'community' %}
           <div id="getkong-algolia-search" class="search-input">
             <i class="fa fa-search"></i>
             <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
           </div>
+          {% endif %}
         </div>
       {% endif %}
     </div>

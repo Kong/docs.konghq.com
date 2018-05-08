@@ -1,48 +1,69 @@
 ---
 title: Managing Developers
-class: page-install-method
+
 ---
 # Managing Developers for your Developer Portal
 
-You can view developers and their current status (approved, revoked rejected & requested) from the Admin GUI by clicking on the Developers menu item. From here you can see developers in each status by viewing the different tabs.
+In this section you will learn how to manage <a href="/docs/enterprise/latest/developer-portal/introduction/#types-of-humans">developers</a> in your Kong Developer Portal. If you have not yet enabled the Portal follow <a href="/docs/enterprise/latest/developer-portal/introduction/getting-started/">these instructions</a>.
+
+Once your Kong Developer Portal is enabled you can now view developers from the Developers tab in the Admin GUI. To find out more about the Admin GUI click <a href="/docs/enterprise/latest/admin-gui/">here</a>.
+
+## Developers Statuses
+
+A status represents the state of developer and the access they have to your APIs / Developer Portal.
+
+* **Approved**
+  * A Developer who can access the Developer Portal. Approved Developers can create credentials &amp; access **all** APIs that allow those credentials.
+* **Requested**
+  * A Developer who has requested access but has not yet been Approved.
+* **Rejected**
+  * A Developer who has had their request denied by a Kong Administer.
+* **Revoked**
+  * A Developer who once had access to the Developer Portal but has since had access Revoked.
 
 ![Managing Developers](/assets/images/enterprise/gui-developer-tabs.png)
 
 ## Approving Developers
 
-Any developer who has requested access to your **developer portal** will appear under the **Requested Access** tab.
-Choose to Accept or Reject the developer from the actions in the table row. After selecting an action the corresponding tab will update.
-You can choose to have developers automatically approved which will skip this step. To enable follow these steps.
+Developers who have requested access to your **Kong Developer Portal** will appear under the **Requested Access** tab.
+From this tab you can choose to Accept or Reject the developer from the actions in the table row. After selecting an action the corresponding tab will update.
 
-1. Navigate to the DEVELOPER PORTAL AUTHENTICATION section in `kong.conf`
-2. Find and change the `portal_auto_approve` configuration option to `on` and remove the `#` from the beginning of the line. 
-It should now look like
+#### Enabling Auto Approval
+You can choose to have developers automatically approved and skip the requested state. To enable follow these steps:
+
+1. Navigate to the `DEVELOPER PORTAL AUTHENTICATION` section in `kong.conf`
+2. Find and change the `portal_auto_approve` configuration option to `on`. Don't forget to remove the `#` from the beginning of the line. 
+It should now look like:
 `portal_auto_approve = on`
 3. Restart kong (`kong restart`)
 
 ## Viewing Approved Developers
 
-To view all currently accepted developers choose the **Approved** tab. From here you can choose to *Revoke* or *Delete* a particular developer. Additionally you can use this view to send an email to a developer with the **Email Developer** mailto link. See [here](#emailing-developers) for more info.
+To view all currently approved developers choose the **Approved** tab. From here you can choose to *Revoke* or *Delete* a particular developer. Additionally you can use this view to send an email to a developer with the **Email Developer** `mailto` link. See [here](#emailing-developers) for more info.
 
 ## Viewing Revoked Developers
 
-To view all currently revoked developers choose the **Revoked** tab. From here you can choose to *re-approve* or *delete* a developer.
+To view all currently revoked developers choose the **Revoked** tab. From here you can choose to *Re-approve* or *Delete* a developer.
 
 ## Viewing Rejected Developers
 
-To view all currently Rejected developers choose the **Rejected** tab. Rejected developers completed the registration flow on your Developer Portal but were rejected from the **Request Access** tab. You may approve or completely delete a developer from this tab.
+To view all currently rejected developers choose the **Rejected** tab. Rejected developers completed the registration flow on your Developer Portal but were rejected from the **Request Access** tab. You may approve or completely delete a developer from this tab.
 
-# Emailing Developers
+## Emailing Developers
 
-## Inviting Developers to Register
+### Inviting Developers to Register
 
-To invite a single or set of developers click the **Invite Developers** button from the top right corner above the tabs.
+To invite a single or set of developers...
 
-Use the popup modal to enter email addresses separated by commas. When all emails have been added click **Invite**. This will open a pre-filled message in your default email client with a link to the registration page for your Developer Portal. Each developer is bcc'd by default for privacy. You may choose to edit the message or send as is.
+1. click the **Invite Developers** button from the top right corner above the tabs
+2. Use the popup modal to enter email addresses separated by commas. 
+3. After all emails have been added click **Invite**. This will open a pre-filled message in your default email client with a link to the registration page for your Developer Portal. 
+
+Each developer is bcc'd by default for privacy. You may choose to edit the message or send as is.
 
 ![Invite Developers](/assets/images/enterprise/invite-developers.png)
 
-## Sending Approved Email
+### Sending Approved Email
 
 To notify a developer they have been approved click the **Email Developer** action from their table row on the **Approved** tab. 
 
