@@ -10,7 +10,9 @@ EITHER (assuming free trial .rpm loaded locally)
 $ sudo yum install kong-free-trials-enterprise-edition-0.31-1.aws.rpm
 OR (non-free trial method)
 $ sudo yum update
-$ wget 'https://<BINTRAY_USER:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge
+$ wget 'https://<BINTRAY_USER:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' \
+-O bintray-kong-kong-enterprise-edition-aws.repo \
+--auth-no-challenge
 $ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
 $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
 # Ensure `baseurl` is correct
