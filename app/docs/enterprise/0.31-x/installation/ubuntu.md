@@ -12,7 +12,7 @@ $ sudo apt-get update
 $ sudo apt-get install openssl libpcre3 procps perl
 $ sudo dpkg -i kong-enterprise-edition-0.31-1.zesty.all.deb
 ```
-NOTE: EE file may differ in last step above
+NOTE: EE file may differ in last step above. In addition to Zesty, we currently build for Precise, Trusty, and Xenial.
 
 ## Install PostgreSQL
 ```bash
@@ -31,7 +31,7 @@ $ exit
 
 ## Finish Kong Enterprise setup steps
 
-### add contents of your license file
+### Add contents of your license file
 ```bash
 $ sudo vi /etc/kong/license.json
 ```
@@ -51,13 +51,21 @@ $ kong migrations up
 $ sudo /usr/local/bin/kong start
 ```
 
-### Setup HTTPie to make commands easier
+### Setup HTTPie to make commands easier (optional)
 ```bash
 $ sudo apt install httpie
 ```
 
 ### Test your Kong installation
 ```bash
+# curl syntax
+$ curl -i -X POST \
+  --url http://localhost:8001/apis/ \
+  --data 'name=demo' \
+  --data 'uris=/' \
+  --data 'upstream_url=http://httpbin.org'
+  
+# httpie syntax
 $ http :8001/apis name=demo uris=/ upstream_url=http://httpbin.org
 $ http :8000/ip
 ```
