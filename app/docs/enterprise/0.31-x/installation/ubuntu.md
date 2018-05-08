@@ -64,6 +64,8 @@ $ curl -i -X POST \
   --data 'name=demo' \
   --data 'uris=/' \
   --data 'upstream_url=http://httpbin.org'
+$ curl -i -X GET \
+  --url http://localhost:8000/ip
   
 # httpie syntax
 $ http :8001/apis name=demo uris=/ upstream_url=http://httpbin.org
