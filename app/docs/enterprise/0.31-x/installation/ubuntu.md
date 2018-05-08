@@ -31,17 +31,11 @@ $ exit
 
 ## Finish Kong Enterprise setup steps
 
-### Add contents of your license file
 ```bash
+# Add contents of your license file (copy & paste)
 $ sudo vi /etc/kong/license.json
-```
-
-### Copy kong.conf.default to create kong.conf
-```bash
 $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
-```
-### Uncomment and add 'kong' to pg_password line
-```bash
+# Uncomment and add 'kong' to pg_password line
 $ sudo vi /etc/kong/kong.conf
 ```
 
@@ -51,7 +45,7 @@ $ kong migrations up
 $ sudo /usr/local/bin/kong start
 ```
 
-### Setup HTTPie to make commands easier (optional)
+### (Optional) Setup HTTPie to make commands easier
 ```bash
 $ sudo apt install httpie
 ```
