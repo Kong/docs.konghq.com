@@ -68,13 +68,13 @@ $ http :8000/ip
 
 ### Setup Admin GUI
 ```bash
-### Get the local IP address
+# Get the local IP address
 $ ifconfig 
 
-### Uncomment the admin_listen setting, and update to something like this `admin_listen = 172.31.3.8:8001`
+# Uncomment the admin_listen setting, and update to something like this `admin_listen = 172.31.3.8:8001`
 $ sudo vi /etc/kong/kong.conf
 
-### Restart kong
+# Restart kong
 $ sudo /usr/local/bin/kong stop 
 $ sudo /usr/local/bin/kong start
 ```
