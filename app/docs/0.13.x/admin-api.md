@@ -1063,18 +1063,19 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint put">/consumers/</div>
+<div class="endpoint put">/consumers/{username or id}</div>
+
+Attributes | Description
+---:| ---
+`username or id`<br>**required** | The unique identifier **or** the username of the consumer to update
 
 #### Request Body
 
 {{ page.consumer_body }}
 
-The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`id` for Consumers), the entity will be
-created with the given payload. If the request payload **does** contain an
-entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404
-NOT FOUND` will be returned.
+If a user with the given username or id exists, the request updates the
+existing consumer with the payload. If the consumer does not exist, a new one
+will be created using the payload and the given id or username.
 
 #### Response
 
