@@ -425,6 +425,42 @@ HTTP 200 OK
 
 ---
 
+### Update Or create Service
+
+#### Endpoint
+
+<div class="endpoint put">/services/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The `id` **or** the `name` attribute of the Service to update.
+
+#### Request Body
+
+{{ page.service_body }}
+
+Inserts (or replaces) the Service under the requested resource with the definition
+specified in the body. The Service will be identified via the `name or id` attribute.
+
+When the `name or id` attribute has the structure of an UUID, the Service being inserted/replaced
+will be identified by its `id`. Otherwise it will be identified by its `name`.
+
+When creating a new Service, if an `id` is not specified (neither in the URL or the body) then
+the newly created one will be random. If an `id` is provided, the newly created Service will have
+said `id`.
+
+Notice that specifying a `name` in the url and a different one on the request body is not allowed.
+
+#### Response
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+See POST and PATCH responses.
+
+---
+
 ### Delete Service
 
 #### Endpoint
@@ -638,7 +674,34 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+---
 
+### Update or create Route
+
+#### Endpoint
+
+<div class="endpoint put">/routes/{id}</div>
+
+Attributes | Description
+---:| ---
+`id`<br>**required** | The `id` attribute of the Route to update.
+
+#### Request Body
+
+{{ page.route_body }}
+
+Inserts (or replaces) the Route under the requested resource with the definition
+specified in the body. The Route will be identified by the `id` attribute.
+
+#### Response
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+```json
+{{ page.route_json }}
+```
 ---
 
 ### Delete Route
@@ -1059,22 +1122,31 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Consumer
+### Update Or create Consumer
 
 #### Endpoint
 
-<div class="endpoint put">/consumers/</div>
+<div class="endpoint put">/consumers/{username or id}</div>
+
+Attributes | Description
+---:| ---
+`username or id`<br>**required** | The unique identifier **or** the username of the consumer to update
 
 #### Request Body
 
 {{ page.consumer_body }}
 
-The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`id` for Consumers), the entity will be
-created with the given payload. If the request payload **does** contain an
-entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404
-NOT FOUND` will be returned.
+Inserts (or replaces) the Consumer under the requested resource with the definition
+specified in the body. The Consumer will be identified via the `username or id` attribute.
+
+When the `username or id` attribute has the structure of an UUID, the Consumer being inserted/replaced
+will be identified by its `id`. Otherwise it will be identified by its `username`.
+
+When creating a new Consumer, if an `id` is not specified (neither in the URL or the body) then
+the newly created one will be random. If an `id` is provided, the newly created Consumer will have
+said `id`.
+
+Notice that specifying a `username` in the url and a different one on the request body is not allowed.
 
 #### Response
 

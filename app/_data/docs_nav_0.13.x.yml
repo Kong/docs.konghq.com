@@ -110,6 +110,9 @@
         - text: Update Service
           url: /admin-api/#update-service
 
+        - text: Update or create Service
+          url: /admin-api/#update-or-create-service
+
         - text: Delete Service
           url: /admin-api/#delete-service
 
@@ -130,6 +133,9 @@
 
         - text: Update Route
           url: /admin-api/#update-route
+
+        - text: Update or create Route
+          url: /admin-api/#update-or-create-route
 
         - text: Delete Route
           url: /admin-api/#delete-route
