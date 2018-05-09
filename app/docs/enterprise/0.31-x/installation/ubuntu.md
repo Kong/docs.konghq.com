@@ -45,14 +45,8 @@ $ kong migrations up
 $ sudo /usr/local/bin/kong start
 ```
 
-### (Optional) Setup HTTPie to make commands easier
-```bash
-$ sudo apt install httpie
-```
-
 ### Test your Kong installation
 ```bash
-# curl syntax
 $ curl -i -X POST \
   --url http://localhost:8001/apis/ \
   --data 'name=demo' \
@@ -60,10 +54,6 @@ $ curl -i -X POST \
   --data 'upstream_url=http://httpbin.org'
 $ curl -i -X GET \
   --url http://localhost:8000/ip
-  
-# httpie syntax
-$ http :8001/apis name=demo uris=/ upstream_url=http://httpbin.org
-$ http :8000/ip
 ```
 
 ### Setup Admin GUI
