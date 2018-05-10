@@ -44,8 +44,8 @@ upstream_body: |
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
     `hash_on`<br>*optional* | What to use as hashing input: `none`, `consumer`, `ip`, or `header` (defaults to `none` resulting in a weighted-round-robin scheme).
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified): `none`, `consumer`, `ip`, or `header` (defaults to `none`).
-    `hash_on_header<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_on` is set to `header`).
-    `hash_fallback_header<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_fallback` is set to `header`).
+    `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_on` is set to `header`).
+    `hash_fallback_header`<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_fallback` is set to `header`).
     `healthchecks.active.timeout`<br>*optional* | Socket timeout for active health checks (in seconds).
     `healthchecks.active.concurrency`<br>*optional* | Number of targets to check concurrently in active health checks.
     `healthchecks.active.http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks.
