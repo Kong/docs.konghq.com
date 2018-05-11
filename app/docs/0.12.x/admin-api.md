@@ -30,6 +30,7 @@ plugin_configuration_body: |
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
     `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+    `enabled` | Whether the plugin is applied. Default: `true`.
 
 target_body: |
     Attributes | Description
@@ -704,7 +705,9 @@ The order of precedence is, from highest to lowest:
 configurations): for an API (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B
 and ignore A (2.). However, requests that do not authenticate this Consumer
-will fallback to running Plugin config A (3.).
+will fallback to running Plugin config A (3.). Note that if config B is
+disabled (its `enabled` flag is set to `false`), config A will apply to
+requests that would have otherwise matched config B.
 
 This behavior is particularly useful when the intent is to override the
 configuration of a particular plugin (e.g. allow a higher rate limiting) for a
