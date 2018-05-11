@@ -14,35 +14,41 @@ links:
   gh_repo: "https://github.com/Kong/kong-dist-kubernetes/"
 ---
 
+<div class="alert alert-warning">
+  This documentation covers installing Kong
+  in Kubernetes. Kong can also be installed and used as a <a href="https://konghq.com/blog/kubernetes-ingress-controller-for-kong/">Kubernetes
+  Ingress Controller</a>.
+</div>
+
 # Kong Community Edition via Helm or Minikube
 
-The easiest way to deploy Kong Community Edition (CE) on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}). 
+The easiest way to deploy Kong Community Edition (CE) on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
 
-Kong CE can also be deployed on minikube - please follow the [README]({{ page.links.minikube }}) 
+Kong CE can also be deployed on minikube - please follow the [README]({{ page.links.minikube }})
 and use the manifest files provided in `minikube` directory.
 
 # Kong Community Edition or Enterprise Edition via Manifest Files
 
-Kong CE, or the trial version of Kong Enterprise Edition (EE), can be provisioned 
+Kong CE, or the trial version of Kong Enterprise Edition (EE), can be provisioned
 on a Kubernetes cluster via the manifest files provided
 in the [repo]({{ page.links.gh_repo }}). These instructions (mostly) assume you are using
-[Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/) - 
-you may need to make adjustments to deploy to other Kubernetes clusters. 
+[Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/) -
+you may need to make adjustments to deploy to other Kubernetes clusters.
 
 1. **Initial setup**
-  
+
     Download or clone the following repo:
 
     ```bash
     $ git clone git@github.com:Kong/kong-dist-kubernetes.git
     $ cd kong-dist-kubernetes
     ```
-    
+
     Skip to step 3 if you have already provisioned a cluster and registered it
     with Kubernetes.
 
 2.  **Deploy a GKE cluster**
-    
+
     You need [gcloud]({{ page.links.gcloud }}) and [kubectl]({{ page.links.kubectl }})
     command-line tools installed and set up to run deployment commands. Also
     make sure your Google Cloud account has `STATIC_ADDRESSES` available for
@@ -50,29 +56,29 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
 
     Using the `cluster.yaml` file from this repo, deploy a
     GKE cluster. Provide the following information before deploying:
-    
+
     1. Desired cluster name
     2. Zone in which to run the cluster
     3. A basicauth username and password for authenticating the access to the
        cluster
 
     ```bash
-    $ gcloud deployment-manager deployments \ 
+    $ gcloud deployment-manager deployments \
         create cluster --config cluster.yaml
     ```
 
 3. **Deploy a datastore**
-  
+
     Before deploying Kong, you need to provision a Cassandra or PostgreSQL pod.
 
     For Cassandra, use the `cassandra.yaml` file from this repo to deploy a
-    Cassandra `Service` and a `StatefulSet` in the cluster. 
+    Cassandra `Service` and a `StatefulSet` in the cluster.
 
     ```bash
     $ kubectl create -f cassandra.yaml
     ```
 
-    For PostgreSQL, use the `postgres.yaml` file from the kong-dist-kubernetes 
+    For PostgreSQL, use the `postgres.yaml` file from the kong-dist-kubernetes
     repo to deploy a PostgreSQL `Service` and a `ReplicationController` in the
     cluster:
 
@@ -80,14 +86,14 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
     $ kubectl create -f postgres.yaml
     ```
 
-    **Kong Enterprise Edition trial users** should complete the steps in the 
+    **Kong Enterprise Edition trial users** should complete the steps in the
     **Additional Steps for Kong EE Trial Users** section below before proceeding.
 
 4. **Prepare database**
-    
+
     Using the `kong_migration_<postgres|cassandra>.yaml` file,
     run the migration job:
-    
+
     ```bash
     $ kubectl create -f kong_migration_<postgres|cassandra>.yaml
     ```
@@ -102,7 +108,7 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
     Using the `kong_<postgres|cassandra>.yaml` file from this
     repo, deploy Kong admin, proxy services, and a `Deployment` controller to
     the cluster:
-    
+
     ```bash
     $ kubectl create -f kong_<postgres|cassandra>.yaml
     ```
@@ -127,20 +133,20 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
 
 7. **Get Started with Kong**
 
-    Quickly learn how to use Kong with the 
+    Quickly learn how to use Kong with the
     [5-minute Quickstart](/docs/latest/getting-started/quickstart/).
 
 # Additional Steps for Kong EE Trial Users
 
 1. **Publish a Kong EE Docker image to your container registry**
 
-    Because the Kong EE image is not available on the public Docker container registry, 
-    you must publish it to a private repository for use with Kubernetes. While any private 
-    repository will work, this example uses the 
-    [Google Cloud Platform Container Registry](https://cloud.google.com/container-registry/), 
+    Because the Kong EE image is not available on the public Docker container registry,
+    you must publish it to a private repository for use with Kubernetes. While any private
+    repository will work, this example uses the
+    [Google Cloud Platform Container Registry](https://cloud.google.com/container-registry/),
     which automatically integrates with the Google Cloud Platform examples in the other steps.
-    
-    In the steps below, replace `<image ID>` with ID associated with your loaded image in `docker images` output. 
+
+    In the steps below, replace `<image ID>` with ID associated with your loaded image in `docker images` output.
     Replace `<project ID>` with your [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
 
     ```bash
@@ -151,7 +157,7 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
     ```
 2. **Add your Kong EE License File**
 
-    Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` to replace 
+    Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` to replace
     `YOUR_LICENSE_HERE` with your Kong EE License File string - it should look like:
 
     ```yaml
@@ -161,13 +167,13 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
 
 3. **Use the Kong EE image**
 
-    Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` and replace 
+    Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` and replace
     `image: kong` with `image: gcr.io/<project ID>/kong-ee`, using the same project ID as above.
 
 4. **Deploy Kong EE**
 
     Continue from step 4 in the **Kong Community Edition or Enterprise Edition via Manifest Files**
-    instruction above, using the `kong_trial_*` YAML files in the 
-    [EE Trial directory](https://github.com/Kong/kong-dist-kubernetes/tree/master/ee-trial). 
-    Once Kong EE is running, you should be able to access the Kong Admin GUI 
+    instruction above, using the `kong_trial_*` YAML files in the
+    [EE Trial directory](https://github.com/Kong/kong-dist-kubernetes/tree/master/ee-trial).
+    Once Kong EE is running, you should be able to access the Kong Admin GUI
     at `<kong-admin-ip-address>:8002` or `https://<kong-ssl-admin-ip-address>:8445`.
