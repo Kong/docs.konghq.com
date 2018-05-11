@@ -87,7 +87,9 @@ for _, strategy in helpers.each_strategy() do
 end
 ```
 
-> Reminder: With the test Kong configuration file, Kong is running with its proxy listening on port 8100 and Admin API on port 8101.
+> Reminder: With the test Kong configuration file, Kong is running with
+its proxy listening on port 9000 (HTTP), 9443 (HTTPS)
+and Admin API on port 9001.
 
 ---
 
