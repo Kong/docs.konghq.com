@@ -128,13 +128,13 @@ certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
-    `snis`<br>*optional* | One or more hostnames to associate with this certificate as an SNI. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience.
+    `snis`<br>*optional* | An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience.
 
 snis_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
-    `ssl_certificate_id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname.
+    `certificate_id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname.
 
 ---
 
@@ -1701,18 +1701,32 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint put">/certificates/</div>
+<div class="endpoint put">/certificates/{sni or id}</div>
+
+Attributes | Description
+---:| ---
+`SNI or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
 
 #### Request Body
 
 {{ page.certificate_body }}
 
-The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`id` for Certificates), the entity will
-be created with the given payload. If the request payload **does** contain an
-entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404
-NOT FOUND` will be returned.
+Inserts (or replaces) the Certificate under the requested resource with the definition
+specified in the body. The Certificate will be identified by the `SNI or id` attribute.
+
+If the Certificate for the provided id exists, or an SNI with the provided name exists,
+this request will update said certificate using the request body. If the body includes an `snis`
+pseudo-attribute, then the list of snis associated with the certificate will also be updated.
+
+If the certificate for the provided id does not exist, a new certificate will be created
+using the request body with the provided `id`. If the request body includes an `snis` pseudo-attribute,
+then it will also create a list SNIs associated to the new certificate.
+
+If no SNI with the provided sni name can be found, then a new certificate will be created using the
+request body. If no `id` is included on the body, the newly-created certificate will have a random `id`.
+
+If present, the `snis` pseudo-attribute will be used to create other SNIs associated to the certificate.
+Note that providing an `snis` pseudo-attribute which does not include the provided SNI name is not allowed.
 
 #### Response
 
@@ -1749,8 +1763,10 @@ lookup the certificate object based on the SNI associated with the certificate.
 
 ```json
 {
+    "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "created_at": 1485521710265
 }
 ```
 
@@ -1774,8 +1790,9 @@ HTTP 201 Created
 
 ```json
 {
+    "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
     "created_at": 1485521710265
 }
 ```
@@ -1786,11 +1803,11 @@ HTTP 201 Created
 
 #### Endpoint
 
-<div class="endpoint get">/snis/{name}</div>
+<div class="endpoint get">/snis/{name or id}</div>
 
 Attributes | Description
 ---:| ---
-`name`<br>**required** | The name of the SNI object.
+`name or id`<br>**required** | The UUID of an SNI object or its unique name
 
 #### Response
 
@@ -1800,8 +1817,9 @@ HTTP 200 OK
 
 ```json
 {
+    "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
     "created_at": 1485521710265
 }
 ```
@@ -1823,13 +1841,15 @@ HTTP 200 OK
     "total": 2,
     "data": [
         {
+            "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
             "name": "example.com",
-            "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+            "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
             "created_at": 1485521710265
         },
         {
+            "id": "88c03fcd-9a48-4937-a976-0abd0eb6b60a",
             "name": "example.org",
-            "ssl_certificate_id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b",
+            "certificate_id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b",
             "created_at": 1485521710265
         }
     ]
@@ -1840,11 +1860,11 @@ HTTP 200 OK
 
 ### Update SNI
 
-<div class="endpoint patch">/snis/{name}</div>
+<div class="endpoint patch">/snis/{name or id}</div>
 
 Attributes | Description
 ---:| ---
-`name`<br>**required** | The name of the SNI object.
+`name or id`<br>**required** | The UUID of an SNI object or its unique name
 
 #### Response
 
@@ -1854,8 +1874,9 @@ HTTP 200 OK
 
 ```json
 {
+    "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "ssl_certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
     "created_at": 1485521710265
 }
 ```
@@ -1866,18 +1887,27 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint put">/snis/</div>
+<div class="endpoint put">/snis/{name or id}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The UUID of an SNI object or its unique name
 
 #### Request Body
 
 {{ page.snis_body }}
 
-The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`name` for SNIs), the entity will be
-created with the given payload. If the request payload **does** contain an
-entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404
-NOT FOUND` will be returned.
+Inserts (or replaces) the SNI under the requested resource with the definition
+specified in the body. The SNI will be identified via the `name or id` attribute.
+
+When the `name or id` attribute has the structure of an UUID, the SNI being inserted/replaced
+will be identified by its `id`. Otherwise it will be identified by its `name`.
+
+When creating a new SNI, if an `id` is not specified (neither in the URL or the body) then
+the newly created one will be random. If an `id` is provided, the newly created Service will have
+said `id`.
+
+Notice that specifying a `name` in the url and a different one on the request body is not allowed.
 
 #### Response
 
@@ -1891,18 +1921,17 @@ See POST and PATCH responses.
 
 ### Delete SNI
 
-<div class="endpoint delete">/snis/{name}</div>
+<div class="endpoint delete">/snis/{name or id}</div>
 
 Attributes | Description
 ---:| ---
-`name`<br>**required** | The name of the SNI object.
+`name or id`<br>**required** | The UUID of an SNI object or its unique name
 
 #### Response
 
 ```
 HTTP 204 No Content
 ```
-
 ---
 
 ## Upstream Objects
