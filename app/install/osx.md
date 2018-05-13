@@ -20,7 +20,7 @@ breadcrumbs:
     Use the [Homebrew](https://brew.sh/) package manager to add Kong as a tap and install it:
 
     ```
-    $ brew tap mashape/kong
+    $ brew tap kong/kong
     $ brew install kong
     ```
 

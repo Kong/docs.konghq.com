@@ -5,8 +5,8 @@ layout: default
 header_title: Plugins
 header_icon: /assets/images/icons/icn-plugins.svg
 header_caption: Extend your stack with powerful plugins configurable per Service, API and Consumer.
-header_btn_text: Suggest Plugin
 breadcrumbs: null
+redirect_to: https://konghq.com/plugins/
 ---
 
 <div class="page page-plugins">
@@ -23,14 +23,14 @@ breadcrumbs: null
         <div class="plugins-container">
           {% for plugin in group.plugins %}
             {% capture id %}{% if plugin.id %}{{ plugin.id }}{% else %}{{ plugin.name | slugify }}{% endif %}{% endcapture %}
-            <div class="plugin-plate">
+            <div class="plugin-plate {% if plugin.enterprise == true %} enterprise {% endif %}">
               <div class="plugin-plate-header">
                 <h3>{{ plugin.name }}</h3>
-                <img class="plugin-icon" src="/assets/images/icons/plugins/{{ id }}.png" width="60" height="60" alt="{{ plugin.name }}"/>
+                <img class="plugin-icon" src="/assets/images/icons/plugins/{% if plugin.enterprise == true %}ee-{% endif %}{{ id }}.png" width="60" height="60" alt="{{ plugin.name }}"/>
               </div>
               <div class="plugin-plate-content">
                 <p>{{ plugin.info }}</p>
-                <a class="plugin-plate-link" href="/plugins/{{ id }}"></a>
+                <a class="plugin-plate-link" href="/plugins/{% if plugin.enterprise == true %}ee-{% endif %}{{ id }}"></a>
               </div>
             </div>
           {% endfor %}

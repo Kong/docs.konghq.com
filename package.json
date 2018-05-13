@@ -21,7 +21,7 @@
   "echint": {
     "ignore": [
       "dist/**",
-      "app/docs/*/lua-reference/**",
+      "app/docs/**/*",
       "app/_assets/images/**",
       "app/_assets/fonts/**",
       "app/license/index.md",

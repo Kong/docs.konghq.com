@@ -6,46 +6,41 @@ header_icon: /assets/images/icons/plugins/correlation-id.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Documentation
     items:
       - label: How it works
       - label: Generators
       - label: FAQ
+description: |
+  Correlate requests and responses using a unique ID transmitted over an HTTP header.
+
+params:
+  name: correlation-id
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: header_name
+      required: false
+      default: "`Kong-Request-ID`"
+      value_in_examples: Kong-Request-ID
+      description: |
+        The HTTP header name to use for the correlation ID.
+    - name: generator
+      required: false
+      default: "`uuid#counter`"
+      value_in_examples: uuid#counter
+      description: |
+        The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter` and `tracker` See [Generators](#generators).
+    - name: echo_downstream
+      required: false
+      default: "`false`"
+      value_in_examples: false
+      description: |
+        Whether to echo the header back to downstream (the client).
+
 ---
-
-Correlate requests and responses using a unique ID transmitted over an HTTP header.
-
-----
-
-## Configuration
-
-Configuring the plugin is straightforward. You can associate it with an [API][api-object] by executing the following request to your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=correlation-id" \
-    --data "config.header_name=Kong-Request-ID" \
-    --data "config.generator=uuid#counter" \
-    --data "config.echo_downstream=false"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/` endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
-
-form parameter                  | default           | description
----                             | ---               | ---
-`name`                          |                   | The name of the plugin to use, in this case: `correlation-id`
-`header_name`<br>*optional*     | `Kong-Request-ID` | The HTTP header name to use for the correlation ID. 
-`generator`<br>*optional*       | `uuid#counter`    | The generator to use for the correlation ID. Accepted values are `uuid`, `uuid#counter` and `tracker` See [Generators](#generators).
-`echo_downstream`<br>*optional* | `false`           | Whether to echo the header back to downstream (the client).
-
-[api-object]: /docs/latest/admin-api/#api-object
-
-----
 
 ## How it works
 

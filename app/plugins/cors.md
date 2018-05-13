@@ -6,54 +6,63 @@ header_icon: /assets/images/icons/plugins/cors.png
 breadcrumbs:
   Plugins: /plugins
 nav:
-  - label: Getting Started
-    items:
-      - label: Configuration
   - label: Known Issues
     items:
       - label: CORS Limitations
+
+description: |
+  Easily add __Cross-origin resource sharing *(CORS)*__ to a Service, a Route (or the deprecated API entity) by enabling
+  this plugin.
+
+params:
+  name: cors
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: false
+  config:
+    - name: origins
+      required: false
+      default:
+      value_in_examples: http://mockbin.com
+      description: |
+        A comma-separated list of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
+    - name: methods
+      required: false
+      default: "`GET, HEAD, PUT, PATCH, POST`"
+      value_in_examples: GET, POST
+      description:
+        Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`).
+    - name: headers
+      required: false
+      default: "Value of the `Access-Control-Request-Headers` request header"
+      value_in_examples: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Auth-Token
+      description: |
+        Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`).
+    - name: exposed_headers
+      required: false
+      default:
+      value_in_examples: X-Auth-Token
+      description: |
+        Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
+    - name: credentials
+      required: false
+      default: "`false`"
+      value_in_examples: true
+      description: |
+        Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value.
+    - name: max_age
+      required: false
+      default:
+      value_in_examples: 3600
+      description: |
+        Indicated how long the results of the preflight request can be cached, in `seconds`.
+    - name: preflight_continue
+      required: false
+      default: "`false`"
+      description: A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream service.
+
 ---
-
-Easily add __Cross-origin resource sharing *(CORS)*__ to your API by enabling
-this plugin.
-
-----
-
-## Configuration
-
-Configuring the plugin is as simple as a single API call, you can configure and
-enable it for your [API][api-object] by executing the following request on your
-Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name=cors" \
-    --data "config.origins=http://mockbin.com" \
-    --data "config.methods=GET, POST" \
-    --data "config.headers=Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Auth-Token" \
-    --data "config.exposed_headers=X-Auth-Token" \
-    --data "config.credentials=true" \
-    --data "config.max_age=3600"
-```
-
-`api`: The `id` or `name` of the API that this plugin configuration will target
-
-You can also apply it for every API using the `http://kong:8001/plugins/`
-endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for
-more information.
-
-form parameter                             | default | description
----:                                       | ---     | ---
-`name`                                     |         | Name of the plugin to use, in this case: `cors`
-`config.origins`<br>*optional*             |         | A comma-separated list of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
-`config.methods`<br>*optional*             | `GET,HEAD,PUT,PATCH,POST,DELETE` | Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`).
-`config.headers`<br>*optional*             | Value of the `Access-Control-Request-Headers`<br>request header | Value for the `Access-Control-Allow-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`).
-`config.exposed_headers`<br>*optional*     |         | Value for the `Access-Control-Expose-Headers` header, expects a comma delimited string (e.g. `Origin, Authorization`). If not specified, no custom headers are exposed.
-`config.credentials`<br>*optional*         | `false` | Flag to determine whether the `Access-Control-Allow-Credentials` header should be sent with `true` as the value.
-`config.max_age`<br>*optional*             |         | Indicated how long the results of the preflight request can be cached, in `seconds`.
-`config.preflight_continue`<br>*optional*  | `false` | A boolean value that instructs the plugin to proxy the `OPTIONS` preflight request to the upstream API.
-
-----
 
 ## Known issues
 
@@ -74,4 +83,4 @@ Reference][proxy-reference].
 
 [api-object]: /docs/latest/admin-api/#api-object
 [configuration]: /docs/latest/configuration
-[proxy-reference]: /docs/latest/proxy
+[proxy-reference]: /docs/0.12.x/proxy#request-uri

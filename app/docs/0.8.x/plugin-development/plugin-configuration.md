@@ -97,7 +97,7 @@ Here is the list of accepted rules for a property:
 >   - id: must be a string
 >   - timestamp: must be a number
 >   - url: must be a valid URL
->   - array: must be an integer-indexed table (equivalent of arrays in Lua). In the Admin API, such an array can either be sent by having several times the property's key with different values in the request's body, or comma-delimited through a single body parameter.
+>   - array: must be an integer-indexed table (equivalent of arrays in Lua). In the Admin API, such an array can either be sent by having several times the property's key with different values in the request's body, or comma-delimited through a single body parameter. If using the non-comma-delimited form, note that a maximum of only 100 query parameters can be sent to the admin api at a time.
 > - **schema**: if you need to perform deepened validation of nested properties, this field allows you to create a nested schema. Schema verification is **recursive**. Any level of nesting is valid, but bear in mind that this will affect the usability of your plugin.
 > - **Any property attached to a configuration object but not present in your schema will also invalidate the said configuration.**
 

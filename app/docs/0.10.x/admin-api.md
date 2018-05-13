@@ -30,6 +30,7 @@ plugin_configuration_body: |
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
     `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+    `enabled` | Whether the plugin is applied. Default: `true`.
 
 target_body: |
     Attributes | Description
@@ -708,9 +709,16 @@ HTTP 204 No Content
 
 ## Plugin Object
 
-A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](/plugins).
+A Plugin entity represents a plugin configuration that will be executed during
+the HTTP request/response lifecycle. It is how you can add functionalities
+to APIs that run behind Kong, like Authentication or Rate Limiting for
+example. You can find more information about how to install and what values
+each plugin takes by visiting the [Plugins Gallery](/plugins).
 
-When creating adding Plugin on top of an API, every request made by a client will be evaluated by the Plugin's configuration you setup. Sometimes the Plugin needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
+When adding a Plugin Configuration to an API, every request made by a client to
+that API will run said Plugin. If a Plugin needs to be tuned to different
+values for some specific Consumers, you can do so by specifying the
+`consumer_id` value:
 
 ```json
 {
@@ -726,6 +734,39 @@ When creating adding Plugin on top of an API, every request made by a client wil
     "created_at": 1422386534
 }
 ```
+
+See the [Precedence](#precedence) section below for more details.
+
+#### Precedence
+
+Plugins can be added globally (all APIs), on a single API, single Consumer,
+or a combination of both an API and a Consumer. Additionally, a given plugin
+(e.g. `key-auth`) will only run once per request, even if it is configured
+twice (e.g. globally *and* on an API).
+
+Therefore, there exists an order of precedence when the same plugin is applied
+to different entities with different configurations. This order implies that
+such a plugin that is configured twice, will only run once.
+
+The order of precedence is, from highest to lowest:
+
+1. Plugins applied on a combination of an API and a Consumer (if the request is
+   authenticated).
+2. Plugins applied to a Consumer (if the request is authenticated).
+3. Plugins applied to an API.
+4. Plugins configured to run globally.
+
+**Example**: if the `rate-limiting` plugin is applied twice (with different
+configurations): for an API (Plugin config A), and for a Consumer (Plugin
+config B), then requests authenticating this Consumer will run Plugin config B
+and ignore A (2.). However, requests that do not authenticate this Consumer
+will fallback to running Plugin config A (3.). Note that if config B is
+disabled (its `enabled` flag is set to `false`), config A will apply to
+requests that would have otherwise matched config B.
+
+This behavior is particularly useful when the intent is to override the
+configuration of a particular plugin (e.g. allow a higher rate limiting) for a
+given API or Consumer.
 
 ---
 
@@ -926,12 +967,12 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint patch">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint patch">/apis/{api name or id}/plugins/{plugin id}</div>
 
 Attributes | Description
 ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to update the plugin configuration
-`plugin name or id`<br>**required** | The unique identifier **or** the name of the plugin configuration to update on this API
+`plugin id`<br>**required** | The unique identifier of the plugin configuration to update on this API
 
 #### Request Body
 
@@ -990,12 +1031,12 @@ See POST and PATCH responses.
 
 #### Endpoint
 
-<div class="endpoint delete">/apis/{api name or id}/plugins/{plugin name or id}</div>
+<div class="endpoint delete">/apis/{api name or id}/plugins/{plugin id}</div>
 
 Attributes | Description
 ---:| ---
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
-`plugin name or id`<br>**required** | The unique identifier **or** the name of the plugin configuration to delete on this API
+`plugin id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
 
 #### Response
 

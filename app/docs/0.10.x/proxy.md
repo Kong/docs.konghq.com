@@ -43,6 +43,7 @@ service depending on their headers, URI, and HTTP method.
     - [The `https_only` property][proxy-the-https-only-property]
     - [The `http_if_terminated` property][proxy-the-http-if-terminated-property]
 - [Proxy WebSocket traffic][proxy-websocket]
+    - [WebSocket and TLS][proxy-websocket-tls]
 - [Conclusion][proxy-conclusion]
 
 [proxy-terminology]: #terminology
@@ -67,6 +68,7 @@ service depending on their headers, URI, and HTTP method.
 [proxy-the-https-only-property]: #the-https_only-property
 [proxy-the-http-if-terminated-property]: #the-http_if_terminated-property
 [proxy-websocket]: #proxy-websocket-traffic
+[proxy-websocket-tls]: #websocket-and-tls
 [proxy-conclusion]: #conclusion
 
 ---
@@ -636,10 +638,10 @@ following headers will be added by Kong and the full set of headers be sent to
 the client:
 
 - `Via: kong/x.x.x`, where `x.x.x` is the Kong version in use
-- `Kong-Proxy-Latency: <latency>`, where `latency` is the time in milliseconds
+- `X-Kong-Proxy-Latency: <latency>`, where `latency` is the time in milliseconds
   between Kong receiving the request from the client and sending the request to
   your upstream service.
-- `Kong-Upstream-Latency: <latency>`, where `latency` is the time in
+- `X-Kong-Upstream-Latency: <latency>`, where `latency` is the time in
   milliseconds that Kong was waiting for the first byte of the upstream service
   response.
 
@@ -821,6 +823,25 @@ standard HTTP proxy.
 
 [Back to TOC](#table-of-contents)
 
+### WebSocket and TLS
+
+Kong will accept `ws` and `wss` connections on its respective `http` and
+`https` ports. To enforce TLS connections from clients, set the `https_only`
+property of the API to `true`.
+
+When setting up the [API][api-entity] to point to your upstream WebSocket
+service, you should carefully pick the protocol you want to use between Kong
+and the upstream. If you want to use TLS (`wss`), then the upstream WebSocket
+service must be defined using the `https` protocol in the API `upstream_url`
+property, and the proper port (usually 443). To connect without TLS (`ws`),
+then the `http` protocol and port (usually 80) should be used in `upstream_url`
+instead.
+
+If you want Kong to terminate SSL/TLS, you can accept `wss` only from the
+client, but proxy to the upstream service over plain text, or `ws`.
+
+[Back to TOC](#table-of-contents)
+
 ## Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
@@ -843,6 +864,7 @@ topic we just covered.
 [configuration-reference]: /docs/{{page.kong_version}}/configuration-reference
 [adding-your-api]: /docs/{{page.kong_version}}/getting-started/adding-your-api
 [API]: /docs/{{page.kong_version}}/admin-api
+[api-entity]: /docs/{{page.kong_version}}/admin-api/#add-api
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries

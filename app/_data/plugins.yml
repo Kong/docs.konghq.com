@@ -7,9 +7,10 @@
     - name: Key Authentication
       info: Add a key authentication to your APIs
 
-    - name: OpenID Connect 1.0 RP
-      id: openid-connect-rp
-      info: Integrate Kong with a third-party OpenID Connect 1.0 Provider
+    - name: OpenID Connect
+      id: openid-connect
+      info: Integrate Kong with a third-party OpenID Connect 1.0 or OAuth 2.0 Provider
+      enterprise: true
 
     - name: OAuth 2.0 Authentication
       id: oauth2-authentication
@@ -18,6 +19,7 @@
     - name: OAuth 2.0 Introspection
       id: oauth2-introspection
       info: Integrate Kong with a third-party OAuth 2.0 Authorization Server
+      enterprise: true
 
     - name: HMAC Authentication
       info: Add HMAC Authentication to your APIs
@@ -49,6 +51,14 @@
 - name: Traffic Control
   info: Manage, throttle and restrict inbound and outbound API traffic
   plugins:
+    - name: Proxy Caching
+      info: Cache and serve commonly-requested responses in Kong.
+      enterprise: true
+
+    - name: Rate Limiting
+      info: Upgrades Kong Community Edition rate limiting with more flexibility and higher performance.
+      enterprise: true
+
     - name: Rate Limiting
       info: Rate-limit how many HTTP requests a developer can make
 
@@ -85,6 +95,10 @@
 - name: Transformations
   info: Transform request and responses on the fly on Kong
   plugins:
+    - name: Request Transformer
+      info: Use powerful regular expressions, variables and templates to transform API requests.
+      enterprise: true
+
     - name: Request Transformer
       info: Modify the request before hitting the upstream server
 

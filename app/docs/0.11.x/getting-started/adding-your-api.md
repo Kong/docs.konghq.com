@@ -30,7 +30,7 @@ configuration of your Kong instance or cluster.
       --url http://localhost:8001/apis/ \
       --data 'name=example-api' \
       --data 'hosts=example.com' \
-      --data 'upstream_url=http://httpbin.org'
+      --data 'upstream_url=http://mockbin.org'
     ```
 
 2. ### Verify that your API has been added
@@ -47,7 +47,7 @@ configuration of your Kong instance or cluster.
       "hosts": [
           "example.com"
       ],
-      "http_if_terminated": true,
+      "http_if_terminated": false,
       "https_only": false,
       "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
       "name": "example-api",
@@ -57,7 +57,7 @@ configuration of your Kong instance or cluster.
       "upstream_connect_timeout": 60000,
       "upstream_read_timeout": 60000,
       "upstream_send_timeout": 60000,
-      "upstream_url": "http://httpbin.org"
+      "upstream_url": "http://mockbin.org"
     }
     ```
 

@@ -1,5 +1,42 @@
+.docs-navigation {
+  display: flex;
+  margin-top: -15px;
+  margin-bottom: 6rem;
+  border-bottom: 1px solid @black-10;
+  a {
+    padding: 0 10px 16px;
+    font-size: 16px;
+    color: @black-70;
+    &.active {
+      color: @blue;
+      border-bottom: 2px solid @blue;
+    }
+    &:hover {
+      border-bottom: 2px solid @black-40;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  &~.page-header-title h1 {
+    color: @navy-darker;
+  }
+}
+
+.edit-this-page{
+  position: absolute;
+  right: 0;
+
+  @media (max-width: 650px) {
+    top: 80px;
+    left: 10px;
+  }
+}
+
+
 #documentation {
   .content {
+
     ol {
       padding-left: 2rem;
     }
@@ -54,10 +91,13 @@
     h6 {
       font-size: 20px;
       font-weight: 200;
-    }
-
-    // anchor links for titles
-    h1, h2, h3, h4, h5, h6 {
+    } // anchor links for titles
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       a.header-link {
         margin-left: -.9em;
         padding-right: .2em;
@@ -75,5 +115,54 @@
         }
       }
     }
+
+  }
+}
+
+#getkong-algolia-search {
+  input{
+    vertical-align: inherit !important;
+    height: 40px;
+    margin-bottom: 0;
+  }
+  float: right;
+  margin-left: 10px;
+  /* Bottom border of each suggestion */
+  .algolia-docsearch-suggestion {
+    border-bottom-color: @blue-light;
+  }
+  /* Main category headers */
+  .algolia-docsearch-suggestion--category-header {
+    background-color: @blue-light;
+  }
+  /* Highlighted search terms */
+  .algolia-docsearch-suggestion--highlight {
+    color: @blue-light;
+  }
+  /* Highligted search terms in the main category headers */
+  .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--highlight {
+    background-color: @blue-light;
+  }
+  /* Currently selected suggestion */
+  .aa-cursor .algolia-docsearch-suggestion--content {
+    color: @blue-light;
+  }
+  @media (max-width: @navbar-collapse-point) {
+    float: initial;
+    margin: 10px -3px 0;
+    .algolia-docsearch-suggestion--subcategory-column{
+      display: none !important;
+    }
+  }
+}
+
+.search-input {
+  i {
+    position: absolute;
+    z-index: 1;
+    padding: 11px 0 0 12px;
+  }
+  input {
+    padding-left: 34px;
   }
 }

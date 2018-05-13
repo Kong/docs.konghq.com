@@ -29,12 +29,12 @@ links:
   download: https://bintray.com/kong
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
 repos:
-  kong: https://github.com/Mashape/kong
-  docs: https://github.com/Mashape/getkong.org
-  vagrant: https://github.com/Mashape/kong-vagrant
-  homebrew: https://github.com/Mashape/homebrew-kong
-  cloudformation: https://github.com/Mashape/kong-dist-cloudformation
-  oauth2_hello_world: https://github.com/Mashape/kong-oauth2-hello-world
+  kong: https://github.com/Kong/kong
+  docs: https://github.com/Kong/getkong.org
+  vagrant: https://github.com/Kong/kong-vagrant
+  homebrew: https://github.com/Kong/homebrew-kong
+  cloudformation: https://github.com/Kong/kong-dist-cloudformation
+  oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
 gems:
   - jekyll-redirect-from
@@ -56,19 +56,21 @@ defaults:
       layout: 'docs'
 
   - scope:
+      path: 'docs/ee'
+    values:
+      layout: 'docs'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
-      header_html: '<a class="github-button" href="https://github.com/Mashape/kong" data-style="mega" data-count-href="/Mashape/kong/stargazers" data-count-api="/repos/Mashape/kong#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star Mashape/kong on GitHub">Star</a>&nbsp;<a class="github-button" href="https://github.com/Mashape/kong/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/Mashape/kong/network" data-count-api="/repos/Mashape/kong#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork Mashape/kong on GitHub">Fork</a>'
+      header_html: '<a class="github-button" href="https://github.com/Kong/kong" data-style="mega" data-count-href="/Kong/kong/stargazers" data-count-api="/repos/Kong/kong#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star Kong/kong on GitHub">Star</a>&nbsp;<a class="github-button" href="https://github.com/Kong/kong/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/Kong/kong/network" data-count-api="/repos/Kong/kong#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork Kong/kong on GitHub">Fork</a>'
       breadcrumbs: null
 
   - scope:
       path: 'plugins'
     values:
       layout: 'plugin'
-      header_btn_text: Report Bug
-      header_btn_href: https://github.com/Mashape/kong/issues/new
-      header_btn_target: _blank
       id: page-plugin
       breadcrumbs: null
       nav:
