@@ -4,15 +4,65 @@ title: FAQ Kong Developer Portal
 
 # FAQ
 
-I am going to [:8003](http://127.0.0.1:8003/) but I only see `{"message":"not found"}`
+## Why do I get `{"message":"not found"}` when I visit my Developer Portal?
 
-    * Check your kong.conf configuration file (/etc/kong/kong.conf by default) to ensure the Dev Portal is set to `on`
+You probably have to properly configured the [`portal`][property_portal] 
+property. Check your Kong Configuration and ensure that [`portal`][property_portal]
+is set to `on`.
 
-When I browse to the Dev Portal, it is blank.
+## Why do I get `No Files Found` when I visit my Developer Portal?
 
-* Check a few things:
-   * Are there files populated? Browse to [:8004/files](http://127.0.0.1:8004/files) to check. If you don't have any files in your Kong database, then the portal will not render anything.
-   * Difference between 127.0.0.1 vs localhost can affect authentication responses. Look into CORS plugin configuration, Kong configuration, and request url to ensure consistency.
-   * Which requests, if any, are failing? If you are getting 401 responses, double check proxy + plugin configuration, and make sure unauthenticated files can be requested without credentials
-   * Double check spelling of proxy URI with Kong configuration.
-   * Check your browser's console and networking output for errors and additional helpful information.
+This can be caused by a few reasons:
+
+1. Missing developer portal files (`127.0.0.1:8001/files`)
+1. Improper [network configuration][configuration_network]
+
+If you have confirmed that you have files and your network setup is properly
+configured, please contact support for further assistance.
+
+## Why do I have files with `unauthenticated/` in them?
+
+When a user requests a particular page to access that they are not authorized to
+view, the Dev Portal will check for the same filename under the `unauthenticated`
+namespace to serve instead. For this reason the `unauthenticated` is a reserved
+namespace, and should **only** be used for portals that have Authentication
+enabled.
+
+## What file types are supported?
+
+You can find a list of supported template types on the 
+[File Management][template_types] page.
+
+## Does the developer portal support uploading images, scripts, and videos?
+
+Currently the Kong Developer Portal only supports text based content, custom 
+scripts and styles, can be added by leveraging `partials`.
+
+Media like images, SVGs, and videos should encoded and inserted inline or hosted 
+elsewhere and referenced.
+
+## Can I use other API specification formats like API Blueprint?
+
+Currently only Swagger 2 and OpenAPI 3 are the only supported spec formats.
+
+## How do I modify the Header and Meta tags? 
+
+Direct modification of the `<meta>` and `<head>` tags is currently not supported, 
+you can accomplish this through Custom JS included as a handlebars partial.
+
+## Can I host my API spec files outside of the File API?
+
+Currently the Kong Develoepr Portal can only render API specifications that are
+served by the File API.
+
+## Can I write my content in markdown?
+
+Currently content written in Markdown format is not supported.
+
+## Why do I see vitals traffic when I have no configured routes and services?
+
+The Kong Developer Portal 
+
+[file_types]: /docs/{{page.kong_version}}/developer-portal/file-management#file-types
+[property_portal]: /docs/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
+[configuration_network]: /docs/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
