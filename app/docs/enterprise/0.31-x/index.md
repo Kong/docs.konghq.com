@@ -46,6 +46,12 @@ title: Kong Enterprise Edition (EE) Documentation
   </div>
 
   <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/enterprise/{{page.kong_version}}/installation/ubuntu">Ubuntu</a></h3>
+    <p>Run Kong Enterprise Edition on Ubuntu.</p>
+    <a href="/docs/enterprise/{{page.kong_version}}/installation/ubuntu/">Run Kong via Ubuntu &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/docs/enterprise/{{page.kong_version}}/admin-gui/">Accessing Admin GUI</a></h3>
     <p>Kong’s Admin GUI makes it quick and easy to configure and understand Kong Enterprise Edition.</p>
     <a href="/docs/enterprise/{{page.kong_version}}/admin-gui/">Learn more &rarr;</a>

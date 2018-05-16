@@ -23,6 +23,8 @@
       url: /installation/centos
     - text: Amazon Linux
       url: /installation/amazon-linux
+    - text: Ubuntu
+      url: /installation/ubuntu
 
 - title: APIs and Plugins
   items:
