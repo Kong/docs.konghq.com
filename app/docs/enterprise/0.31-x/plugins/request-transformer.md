@@ -1,13 +1,19 @@
 ---
-title: Request Transformer Plugin
+title: Request Transformer Advanced Plugin
 ---
-# Request Transformer Plugin
+# Request Transformer Advanced Plugin
 
-Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
+Transform the request sent by a client in Kong, before forwarding the request to the upstream service.
+
+Request transforming functionality is available in two plugins - one is 
+[bundled with Kong Community Edition (CE)](/plugins/request-transformer/),
+and the other is bundled with Kong Enterprise Edition (EE). This page documents the Kong EE version of 
+the Request Transformer plugin, which has greater functionality than the CE version. 
 
 ## Configuration
 
-Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API](/docs/latest/admin-api/#api-object) 
+Configuring the plugin is as simple as a single API call, you can configure and enable it for your
+[API](/docs/latest/admin-api/#api-object) 
 (or [Consumer](/docs/latest/admin-api/#consumer-object)) by executing the following request on your Kong server:
 
 ```
