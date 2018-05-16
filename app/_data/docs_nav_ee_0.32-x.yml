@@ -45,8 +45,10 @@
 
 - title: Kong Developer Portal
   items:
-    - text: Introduction
-      url: /developer-portal/introduction
+    - text: Overview
+      url: /developer-portal/overview
+    - text: Glossary
+      url: /developer-portal/glossary
     - text: Getting Started
       url: /developer-portal/getting-started
     - text: Understanding
