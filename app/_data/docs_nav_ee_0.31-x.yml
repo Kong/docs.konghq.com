@@ -26,13 +26,13 @@
 
 - title: APIs and Plugins
   items:
-    - text: Canary Release Plugin
+    - text: Canary Release
       url: /plugins/canary-release
-    - text: Rate Limiting Advanced Plugin
+    - text: Rate Limiting Advanced
       url: /plugins/rate-limiting
-    - text: Request Transformer Advanced Plugin
+    - text: Request Transformer Advanced
       url: /plugins/request-transformer
-    - text: OAuth2 Introspection Plugin
+    - text: OAuth2 Introspection
       url: /plugins/oauth2-introspection
     - text: HTTP Proxy Caching
       url: /plugins/http-proxy-caching
