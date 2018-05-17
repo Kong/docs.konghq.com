@@ -49,6 +49,8 @@
       url: /developer-portal/introduction
     - text: Getting Started
       url: /developer-portal/getting-started
+    - text: File Management
+      url: /developer-portal/file-management
     - text: Understanding
       url: /developer-portal/understanding
     - text: Customization
