@@ -51,8 +51,6 @@
       url: /developer-portal/getting-started
     - text: File Management
       url: /developer-portal/file-management
-    - text: Understanding
-      url: /developer-portal/understanding
     - text: Customization
       url: /developer-portal/customization
     - text: Authentication

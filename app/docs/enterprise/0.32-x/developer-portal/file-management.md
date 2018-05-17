@@ -189,11 +189,11 @@ Now let's update **pages/documentation/api1.hbs** to render our newly added Spec
 
     {% raw %}
     ```handlebars
-      {{> spec-renderer spec="petstore"}}
+      {{> spec-renderer spec="files"}}
     ```
     {% endraw %}
 
-3. Change: `petstore`  →  `swagger`
+3. Change: `files`  →  `swagger`
 4. Now make a `PATCH` request to update the page against the Dev Portal File API in your terminal (note, no extension on the filename in the url):
 
     ```bash
@@ -201,6 +201,4 @@ Now let's update **pages/documentation/api1.hbs** to render our newly added Spec
           -F "contents=@pages/documentation/api1.hbs"
     ```
 
-5. Lastly, navigate to `:8003/documentation/api1` in your browser, you should see that the specification has changed and should look like the following (assuming you used the petstore swagger file from above):
-
-![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-petstore.png "Screen Petstore")
+5. Navigate to `:8003/documentation/api1` in your browser, you should see that the specification has changed.
