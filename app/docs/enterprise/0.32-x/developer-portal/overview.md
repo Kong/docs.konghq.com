@@ -6,7 +6,7 @@ chapter: 1
 
 # {{page.title}}
 
-![alt text](/assets/images/enterprise/intro-portal.jpg "Welcome to the Kong Dev Portal")
+![Welcome to the Kong Dev Portal](https://konghq.com/wp-content/uploads/2018/05/kong-portal-intro.png)
 
 Thank you for installing Kong Enterprise Edition. This document orients you to Kong's built-in Dev Portal functionality and provides you a preview so you can familiarize yourself with its promising capabilities and get started on customizing it to match your needs.
 

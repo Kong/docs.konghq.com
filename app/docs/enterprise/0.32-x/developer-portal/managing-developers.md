@@ -3,9 +3,9 @@ title: Managing Developers
 ---
 # Managing Developers for your Developer Portal
 
-In this section you will learn how to manage [developers](/docs/enterprise/latest/developer-portal/introduction/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/docs/enterprise/latest/developer-portal/introduction/getting-started/) guide.
+In this section you will learn how to manage [developers](/docs/enterprise/{{page.kong_version}}/developer-portal/introduction/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/docs/enterprise/{{page.kong_version}}/developer-portal/introduction/getting-started/) guide.
 
-Once your Kong Developer Portal is enabled you will be able to view developers from the Developers tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/latest/admin-gui/).
+Once your Kong Developer Portal is enabled you will be able to view developers from the Developers tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/{{page.kong_version}}/admin-gui/).
 
 ## Developers Statuses
 
@@ -20,7 +20,7 @@ A status represents the state of a developer and the access they have to your AP
 * **Revoked**
   * A Developer who once had access to the Developer Portal but has since had access Revoked.
 
-![Managing Developers](/assets/images/enterprise/gui-developer-tabs.png)
+![Managing Developers](https://konghq.com/wp-content/uploads/2018/05/gui-developer-tabs.png)
 
 ## Approving Developers
 
@@ -36,6 +36,8 @@ You can choose to have developers automatically approved and skip the requested 
 It should now look like:
 `portal_auto_approve = on`
 3. Restart kong (`kong restart`)
+
+*See [Property References](/docs/enterprise/{{page.kong_version}}/developer-portal/property-reference) to learn more about configuring the Kong Developer Portal.*
 
 ## Viewing Approved Developers
 
@@ -61,7 +63,7 @@ To invite a single or set of developers...
 
 Each developer is bcc'd by default for privacy. You may choose to edit the message or send as is.
 
-![Invite Developers](/assets/images/enterprise/invite-developers.png)
+![Invite Developers](https://konghq.com/wp-content/uploads/2018/05/invite-developers.png)
 
 ### Sending Approved Email
 
