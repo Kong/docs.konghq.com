@@ -67,7 +67,7 @@ Required Registration fields by Authentication plugin:
 
 ### Collecting More Data on Registration
 
-Additional information can be stored for the Developer inside the `meta` data attribute. This field is stored in the Kong datastore on the Developer entity and will be visible to Kong Admins. The default Dev Portal theme demonstrates this through the "full_name" input: `<input type="text" name="full_name" required />`. This is helpful if you want to get more information (e.g. "referral source", "phone-number", "company", "team" etc.) Meta tags are stored in plain text, so be careful not to store sensitive information on meta.
+Additional information can be stored for the Developer inside the `meta` data attribute. This field is stored in the Kong datastore on the Developer entity and will be visible to you, a Kong Admin. The default Dev Portal theme demonstrates this through the "full_name" input: `<input type="text" name="full_name" required />`. This is helpful if you want to get more information (e.g. "referral source", "phone-number", "company", "team" etc.) Meta tags are stored in plain text, so be careful not to store sensitive information on meta.
 
 ### Login As Your New Developer
 
@@ -87,7 +87,7 @@ Check out the section “**Enabling Authentication”** for a step by step guide
 
 ### Key Authentication
 
-The [Key Authentication Plugin](https://getkong.org/plugins/key-authentication) allows developers to use API keys to authenticate requests, and can be used to authenticate the developer portal. This is useful when a Kong Admin would prefer a Developer to only have a single API Key to login, rather than a username/password.
+The [Key Authentication Plugin](https://getkong.org/plugins/key-authentication) allows developers to use API keys to authenticate requests, and can be used to authenticate the developer portal. This is useful when you would prefer a Developer to only have a single API Key to login, rather than a username/password.
 
 Update the following in your Kong Configuration, then restart Kong:
 
@@ -150,7 +150,7 @@ Browse to the login page (see section [Logging In](#logging-in)). Click “Sign 
 
 Ensure you are logged out (see section [Logging Out](#logging-out)). Visit an authenticated page on the Dev Portal. You should see a login form, which is rendered from the `unauthenticated/login` partial. 
 
-When a user submits an HTML form with an attribute `id=”login"` the Dev Portal will make a request against the Dev Portal File API using the specified `portal_auth` with the data in the form. For instance, if you have `basic-auth` enabled, then the form will submit with the Authorization header e.g. `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. If the Login returns a response with a status code that is not `200`, then it runs `onLoginError`.
+When a Developer submits an HTML form with an attribute `id=”login"` the Dev Portal will make a request against the Dev Portal File API using the specified `portal_auth` with the data in the form. For instance, if you have `basic-auth` enabled, then the form will submit with the Authorization header e.g. `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. If the Login returns a response with a status code that is not `200`, then it runs `onLoginError`.
 
 ### Customize Your Login Form
 
@@ -171,7 +171,7 @@ Any element with `id="logout"` on click will clear the Local Storage authenticat
 
 ### Unauthenticated Pages
 
-When authentication is enabled, these pages are served to users who are not authenticated.
+When authentication is enabled, these pages are served to developers who are not authenticated.
   
 **pages/user.hbs**
 
