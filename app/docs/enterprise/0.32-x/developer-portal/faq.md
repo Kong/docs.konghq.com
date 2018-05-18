@@ -6,11 +6,11 @@ title: FAQ Kong Developer Portal
 
 ## Why do I get `{"message":"not found"}` when I visit my Developer Portal?
 
-You probably have to properly configured the [`portal`][property_portal] 
-property. Check your Kong Configuration and ensure that [`portal`][property_portal]
+You most likely have not configured the [`portal`][property_portal] 
+property correctly. Check your Kong Configuration and ensure that [`portal`][property_portal]
 is set to `on`.
 
-## Why do I get `No Files Found` when I visit my Developer Portal?
+## Why do I see `No Files Found` when I visit my Developer Portal?
 
 This can be caused by a few reasons:
 
@@ -18,13 +18,13 @@ This can be caused by a few reasons:
 1. Improper [network configuration][configuration_network]
 
 If you have confirmed that you have files and your network setup is properly
-configured, please contact support for further assistance.
+configured, please [contact support](mailto:support@konghq.com) for further assistance.
 
 ## Why do I have files with `unauthenticated/` in them?
 
 When a user requests a particular page to access that they are not authorized to
 view, the Dev Portal will check for the same filename under the `unauthenticated`
-namespace to serve instead. For this reason the `unauthenticated` is a reserved
+namespace to serve instead. For this reason `unauthenticated` is a reserved
 namespace, and should **only** be used for portals that have Authentication
 enabled.
 
@@ -36,16 +36,16 @@ You can find a list of supported template types on the
 ## Does the developer portal support uploading images, scripts, and videos?
 
 Currently the Kong Developer Portal only supports text based content, custom 
-scripts and styles, can be added by leveraging `partials`.
+scripts &amp; styles, can be added by leveraging `partials`.
 
-Media like images, SVGs, and videos should encoded and inserted inline or hosted 
-elsewhere and referenced.
+Media like images, SVGs, and videos should be encoded and inserted inline or 
+hosted elsewhere and referenced.
 
 ## Can I use other API specification formats like API Blueprint?
 
 Currently only Swagger 2 and OpenAPI 3 are the only supported spec formats.
 
-## How do I modify the Header and Meta tags? 
+## Can I modify the Header and Meta tags? 
 
 Direct modification of the `<meta>` and `<head>` tags is currently not supported, 
 you can accomplish this through Custom JS included as a handlebars partial.
