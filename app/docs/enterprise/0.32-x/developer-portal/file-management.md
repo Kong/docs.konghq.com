@@ -1,7 +1,7 @@
 ---
-title: Understanding the Kong Developer Portal
+title: Understanding the Kong Developer Portal Files
 book: portal
-chapter: 3
+chapter: 4
 ---
 
 # File Management
@@ -39,7 +39,6 @@ You can find a list of all the files included in the example dev portal theme on
 
 ### Pages
 
-These pages make up the Example Dev Portal. If authentication is enabled, these pages are accessible only to authenticated users.
 
 * **pages/index.hbs**
     * The page that is served when when visitors access the root URL of your Dev Portal.
@@ -59,8 +58,6 @@ These pages make up the Example Dev Portal. If authentication is enabled, these 
     * A static page that renders the `vitals` spec using the `spec-renderer` partial using the `spec` argument.
 
 ### Partials
-
-These partials make up the Example Dev Portal. If authentication is enabled, these pages are accessible only to authenticated users.
 
 * **partials/layout.hbs**
     * Base layout template for the Example Developer Portal which contains references to the `header`,  `footer`,  `theme-css`,  `custom-css`, and `title` partials. The base layout can be extended using inline partial references inside of **Pages**. An example is the `about.hbs` page.
@@ -145,16 +142,15 @@ Create a new file with the name `example.hbs` in your Example Dev Portal files d
 
 Add it to Kong specifying the file as a page:
 
-    ```bash
-    curl -X POST http://127.0.0.1:8001/files \
-          -F "name=example" \
-          -F "type=page" \
-          -F "contents=@pages/example.hbs" \
-          -F "auth=true"
-    ```
+```bash
+curl -X POST http://127.0.0.1:8001/files \
+        -F "name=example" \
+        -F "type=page" \
+        -F "contents=@pages/example.hbs" \
+        -F "auth=true"
+```
 
-- To learn about the `auth` flag see the **Adding Authentication** section.
-- Note that the name must match that used in the handlebars file (example and example.hbs in this sample)
+ > Note that the name must match that used in the handlebars file (example and example.hbs in this sample)
 
 
 ### Uploading a specification file
@@ -163,12 +159,12 @@ Add it to Kong specifying the file as a page:
     - Should you not have one, we can use the Swagger Pet Store Example: [Download File](http://petstore.swagger.io/v2/swagger.json)
 2. Upload the specification with the following curl request in your terminal (relative to the file):
 
-    ```bash
-    curl -X POST http://127.0.0.1:8001/files \
-          -F "type=spec" \
-          -F "name=swagger" \
-          -F "contents=@swagger.json"
-    ```
+```bash
+curl -X POST http://127.0.0.1:8001/files \
+        -F "type=spec" \
+        -F "name=swagger" \
+        -F "contents=@swagger.json"
+```
 
   > Note: The `@` symbol in the `curl` command will automatically read the file on disk and place its contents into the `contents` argument.
 
@@ -196,3 +192,7 @@ Now let's update **pages/documentation/api1.hbs** to render our newly added Spec
     ```
 
 5. Navigate to `:8003/documentation/api1` in your browser, you should see that the specification has changed.
+
+
+
+Next: [Learn how to customize the look and feel of your Dev Portal &rsaquo;]({{page.book.next}})
