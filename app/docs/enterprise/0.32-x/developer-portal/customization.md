@@ -1,6 +1,8 @@
 ---
 title: Customizing the Kong Developer Portal
 class: page-install-method
+book: portal
+chapter: 5
 ---
 
 # Customizing the Kong Developer Portal
