@@ -1,5 +1,7 @@
 ---
 title: Authenticating the Developer Portal
+book: portal
+chapter: 6
 ---
 
 # Authenticating the Kong Developer Portal
@@ -377,4 +379,6 @@ The Dev Portal uses the [Local Storage API](https://developer.mozilla.org/en-US/
 > **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Any javascript executed on the same domain as your Dev Portal can access these values so it advised that you always used SSL/TLS and either use openid-connect to secure your developer portal (as it uses javascript inaccessible HTTP-only encrypted cookies), or limit the amount of third-party javascript injected on your Developer Portal to prevent [XSS vulnerabilities](https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting).
 
 > **Note:** Openid-connect uses cookies to persist authentication, and therefore does not use Local Storage.
+
++Next: [Learn about Dev Portal Networking &rsaquo;]({{page.book.next}})
 
