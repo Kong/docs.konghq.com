@@ -35,15 +35,7 @@ Dev Portals served by Kong are comprised of three primary file types; **Pages**,
 
 ## Example Files
 
-You can find a list of all the files included in the example dev portal theme on Dev Portal Overview tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/latest/admin-gui/).
-
-
-
-The following list describes the files that make up the Example Dev Portal being served by Kong:
-
-### ⚠️ Important Notice
-
-The file names displayed below reference the file name within the Example Dev Portal files archive. The file extension **must not** be included in the file name when creating, or updating files in the Dev Portal Admin API.
+You can find a list of all the files included in the example dev portal theme on the Dev Portal Overview tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/0.32-x/admin-gui/).
 
 ### Pages
 
@@ -89,10 +81,12 @@ These partials make up the Example Dev Portal. If authentication is enabled, the
 
 ### Specifications
 
-* **specs/petstore.json**
+* **specs/files.json**
     * API specification file, in Swagger 2.0 and JSON format.
 * **specs/vitals.yaml**
     * Another API specification file, in Swagger 2.0 and YAML format.
+* **specs/admin.json**
+    * Another API specification file, in the Swagger 2.0 and JSON format.
 
 
 ## File Paths
@@ -159,8 +153,8 @@ Add it to Kong specifying the file as a page:
           -F "auth=true"
     ```
 
-    - To learn about the `auth` flag see the **Adding Authentication** section.
-    - Note that the name must match that used in the handlebars file (example and example.hbs in this sample)
+- To learn about the `auth` flag see the **Adding Authentication** section.
+- Note that the name must match that used in the handlebars file (example and example.hbs in this sample)
 
 
 ### Uploading a specification file
