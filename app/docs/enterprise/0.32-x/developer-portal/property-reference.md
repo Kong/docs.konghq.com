@@ -1,5 +1,5 @@
 ---
-title: Configuration Property Reference for Kong Developer Portal
+title: Configuration Property Reference for Kong Dev Portal
 ---
 
 # Property Reference
@@ -7,14 +7,33 @@ title: Configuration Property Reference for Kong Developer Portal
 This document describes the configuration directives for the Kong Developer
 Portal.
 
+## proxy_listen
+
+**Default:** `0.0.0.0:8000, 0.0.0.0:8443 ssl`
+
+**Description:**  
+Comma-separated list of addresses and ports on
+which the proxy server should listen.
+The proxy server is the public entry-point of Kong,
+which proxies traffic from your consumers to your
+backend services. This value accepts IPv4, IPv6, and
+hostnames.
+
+**Example:**
+
+```
+proxy_listen =  0.0.0.0:8000, 0.0.0.0:8443 ssl
+```
+
+
 ## portal
 
 **Default:** `off`
 
-**Description:**<br/>
-Should Kong enable the Kong Developer Portal?
+**Description:**  
+Should Kong enable the Kong Dev Portal?
 
-If enabled, Kong will expose the Kong Developer Portal GUI, Kong Developer Portal API on the `portal_gui_listen` address, and management endpoints on the Admin API.
+If enabled, Kong will expose the Kong Dev Portal GUI, Kong Dev Portal API on the `portal_gui_listen` address, and management endpoints on the Admin API.
 
 **Example:**
 
@@ -27,9 +46,9 @@ portal = on
 
 **Default:** `0.0.0.0:8003, 0.0.0.0:8446 ssl`
 
-**Description:**<br/>
+**Description:**  
 Comma-separated list of addresses on which Kong will
-expose the Kong Developer Portal GUI. Suffixes can be
+expose the Kong Dev Portal GUI. Suffixes can be
 specified for each pair, similar to the `admin_listen` 
 directive.
 
@@ -44,10 +63,10 @@ portal_gui_listen = 0.0.0.0:8003, 0.0.0.0:8446 ssl
 
 **Default:** `NONE` (auto generated)
 
-**Description:**<br/>
-The URL on which your Kong Developer Portal is accessible. 
+**Description:**  
+The URL on which your Kong Dev Portal is accessible. 
 
-When not provided, The Kong Developer Portal GUI will attempt to determine the 
+When not provided, The Kong Dev Portal GUI will attempt to determine the 
 `port` and `host` based on the browsers `window.location`, this assumes that the
 accessed `host` has exposed the ports defined on the `portal_gui_listener`
 directive.
@@ -65,7 +84,7 @@ portal_gui_url = https://portal.domain.tld
 
 **Default:** `NONE` (auto generated)
 
-**Description:**<br/>
+**Description:**  
 The absolute path to the SSL certificate for `portal_gui_listen` values with SSL enabled.
 
 **Example:**
@@ -79,7 +98,7 @@ portal_gui_ssl_cert = /path/to/portal_gui_ssl.cert
 
 **Default:** `NONE` (auto-generated)
 
-**Description:**<br/>
+**Description:**  
 The absolute path to the SSL key for `portal_gui_listen` values with SSL 
 enabled.
 
@@ -94,9 +113,9 @@ portal_gui_ssl_key = /path/to/portal_gui_ssl.key
 
 **Default:** `0.0.0.0:8004, 0.0.0.0:8447 ssl`
 
-**Description:**<br/>
+**Description:**  
 Comma-separated list of addresses on which Kong will
-expose the Developer Portal API. Suffixes can be
+expose the Dev Portal API. Suffixes can be
 specified for each pair, similarly to
 the `admin_listen` directive.
 
@@ -108,9 +127,9 @@ portal_api_listen = 0.0.0.0:8004, 0.0.0.0:8447 ssl
 
 **Default:** `NONE` (empty)
 
-**Description:**<br/>
-The address on which your Kong Developer Portal API is accessible by Kong. You
-should **only** set this value if your Kong Developer Portal API lives on a different node than your Kong Proxy.
+**Description:**  
+The address on which your Kong Dev Portal API is accessible by Kong. You
+should **only** set this value if your Kong Dev Portal API lives on a different node than your Kong Proxy.
 
 When not provided, Kong will use the listeners defined on `portal_api_listen` as 
 the value.
@@ -126,8 +145,8 @@ portal_api_url = https://portal-api.domain.tld
 
 **Default:** `NONE` (auto generated)
 
-**Description:**<br/>
-Developer Portal API SSL Certificate.
+**Description:**  
+Dev Portal API SSL Certificate.
 
 The absolute path to the SSL certificate for
 `portal_api_listen` values with SSL enabled.
@@ -143,8 +162,8 @@ portal_api_ssl_cert = /path/to/portal_api_ssl.cert
 
 **Default:** `NONE` (auto generated)
 
-**Description:**<br/>
-Developer Portal API SSL Certificate Key.
+**Description:**  
+Dev Portal API SSL Certificate Key.
 
 The absolute path to the SSL key for
 `portal_api_listen` values with SSL enabled.
@@ -160,7 +179,7 @@ portal_api_ssl_cert_key = /path/to/portal_api_ssl_cert.key
 
 **Default:** `logs/portal_api_access.log`
 
-**Description:**<br/>
+**Description:**  
 Location of log containing all calls made to the Portal API.
 
 `portal_api_access.log` location can be absolute or relative. When using relative pathing, logs will be placed under
@@ -180,8 +199,8 @@ portal_api_access_log = logs/portal_api_access.log
 
 **Default:** `off`
 
-**Description:**<br/>
-Developer Portal Auto Approve Access.
+**Description:**  
+Dev Portal Auto Approve Access.
 
 When set to `on`, a developer will
 automatically be marked as `approved` after completing
@@ -199,12 +218,12 @@ portal_auto_approve = on
 
 **Default:** `NONE` (empty)
 
-**Description:**<br/>
+**Description:**  
 Use `portal_auth` to specify the authentication plugin
-to apply to your Developer Portal. Developers
+to apply to your Dev Portal. Developers
 will use the specified form of authentication
 to request access, register, and login to your
-Developer Portal.
+Dev Portal.
 
 **Example (Basic Auth):**
 
@@ -217,7 +236,7 @@ portal_auth = basic-auth
 
 **Default:** `NONE` (empty)
 
-**Description:**<br/>
+**Description:**  
 Here you can specify authentication plugin configuration
 via JSON Object format to be applied to your Developer
 Portal auth plugin. For information about Plugin Configuration
