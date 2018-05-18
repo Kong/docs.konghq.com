@@ -15,46 +15,6 @@ In order to customize the Example Dev Portal, you generally follow these steps:
 4. Reload the Dev Portal in your browser - you'll see the results of the changes you made.
 
 
-Going forward, we will be modifying and updating the files from the Example Dev Portal file archive.
-
-## Uploading your Specification file
-
-1. Find your Specification file in your filesystem, it should be either a Swagger `json` or `yaml` file.
-    - Should you not have one, we can use the Swagger Pet Store Example: [Download File](http://petstore.swagger.io/v2/swagger.json)
-2. Upload the Specification with the following curl request in your terminal (relative to the file):
-
-    ```bash
-    curl -X POST http://127.0.0.1:8001/files \
-          -F "type=spec" \
-          -F "name=swagger" \
-          -F "contents=@swagger.json"
-    ```
-
-  > Note: The `@` symbol in the `curl` command will automatically read the file on disk and place its contents into the `contents` argument.
-
-Now let's update **pages/documentation/api1.hbs** to render our newly added Specification file:
-
-1. Find the `pages/documentation/api1.hbs` file in your Example Dev Portal Archive
-2. Find the following line of code:
-
-    {% raw %}
-    ```handlebars
-      {{> spec-renderer spec="petstore"}}
-    ```
-    {% endraw %}
-
-3. Change: `petstore`  →  `swagger`
-4. Now make a `PATCH` request to update the page against the Dev Portal File API in your terminal (note, no extension on the filename in the url):
-
-    ```bash
-    curl -X PATCH http://127.0.0.1:8001/files/documentation/api1 \
-          -F "contents=@pages/documentation/api1.hbs"
-    ```
-
-5. Lastly, navigate to `:8003/documentation/api1` in your browser, you should see that the specification has changed and should look like the following (assuming you used the petstore swagger file from above):
-
-![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-petstore.png "Screen Petstore")
-
 ## **Customizing the look and feel of your Dev Portal**
 
 The Dev Portal default theme is shipped with two CSS file partials:
@@ -189,7 +149,7 @@ Let's create a new page using this template.
 
 ## Creating a New Page
 
-We're going to create something super simple, a Hello World page using the `layout` template described above:
+We're going to create a Hello World page using the `layout` template described above:
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-hello-world2.png "Hello World 2")
 
@@ -257,9 +217,7 @@ We're going to create something super simple, a Hello World page using the `layo
     - To learn about the `auth` flag see the **Adding Authentication** section.
     - Note that the name must match that used in the handlebars file (example and example.hbs in this sample)
 
-...We're done, this is how our page should look:
 
-![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-hello-world2.png "Dev Portal Hello World")
 
 ## Add New Page to the Nav
 
@@ -348,7 +306,7 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
     <a href="/example#details">Example</a>
     ```
 
-4. Update the page you edited via the Dev Portal File API and reload that page - you should see the link you added, and when you click it, it will take you to the linked page, and, if you coded it, to the anchor.
+4. Update the page you edited via the Dev Portal File API and reload that page - you should see the link you added, and when you click it, it will take you to the linked page.
 
 ## Adding Image, Video, or other file types to a Page
 
