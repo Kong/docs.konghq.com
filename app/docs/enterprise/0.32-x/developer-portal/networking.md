@@ -26,7 +26,7 @@ Informs the Dev Portal about the location of the Kong proxy. The Dev Portal will
 Sets CORS Access Origin in regards to requests related to the developer portal (set to `*` by default).  Acts as a reference to Kong, the Admin GUI, and the Dev Portal for various actions like as the location for an `href`.
 
 
-##Default Configuration
+## Default Configuration
 
 Lets start by looking at how Kong configures the Dev Portal out of the box:
 
