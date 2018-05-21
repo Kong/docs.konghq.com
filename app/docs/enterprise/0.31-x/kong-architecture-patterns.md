@@ -1,5 +1,5 @@
 ---
-title: Kong Implementation Checklist
+title: Kong Architecture Patterns
 ---
 # Kong Architecture Patterns
 
