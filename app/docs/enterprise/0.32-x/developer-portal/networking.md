@@ -23,20 +23,20 @@ Informs the Dev Portal about the location of the Kong proxy. The Dev Portal will
 **Default:** `NONE` (defaults to clients window.location + listener port)
 
 **Description:**    
-Sets CORS Access Origin in regards to requests related to the developer portal (set to `*` by default).  Acts as a reference to Kong, the Admin GUI, and the Dev Portal for various actions like as the location for an `href`.
+Sets [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) Access Origin in regards to requests related to the developer portal (set to `*` by default).  Acts as a location reference to the Dev Portal for Kong, the Admin GUI, and the Dev Portal itself.
 
 
 ## Default Configuration
 
-Lets start by looking at how Kong configures the Dev Portal out of the box:
+The Kong Dev Portal works out of the box:
 
-1. Start kong with its default configuration (no kong.conf values set)
+1. Start Kong without custom configuration:
 
 ```
-kong start -c kong.conf.default
+kong start
 ```
 
-2. Navigate to `localhost:8003` (default [`portal_api_url`](/docs/latest/developer-portal/property-reference#portal_api_url) location).  You should see the Default Dev Portal.
+2. Navigate to `127.0.0.1:8003` (default [`portal_api_url`](/docs/latest/developer-portal/property-reference#portal_api_url) location).  You should see the Default Dev Portal.
 
 3. Open your developer tools in your browser and click on the `network` tab.
 
@@ -59,7 +59,7 @@ Consider this domain setup:
 
 With [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) set to it's default value, Dev Portal will make requests to `http://dev-portal.company.com:8000`, as [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) defaults to `window.location` when no value is set.  As a result the Dev Portal incorrectly requests files from `http://dev-portal.company.com` rather than `http://proxy.company.com`. This will result in an error.
 
-Setting [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) to `http://proxy.company.com` in kong.config will allow the Dev Portal to make requests to the correct location.  
+Setting [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) to `http://proxy.company.com` in `kong.config` will allow the Dev Portal to make requests to the correct location.  
 
 ```
 proxy_url = http://proxy.company.com
@@ -72,10 +72,10 @@ Visiting `http://dev-portal.company.com` will now result in a successful render.
 
 With [`portal_api_url`](/docs/latest/developer-portal/property-reference#portal_api_url) set to it's default value:
 
-  - Kong Proxy will set CORS to `*`, allowing any origin to make requests to the Dev Portal.
+  - Kong Proxy will set [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) to `*`, allowing any origin to make requests to the Dev Portal.
   - Admin GUI and Dev Portal use [`portal_api_url`](/docs/latest/developer-portal/property-reference#portal_api_url) to reference Dev Portal location. Set to the default value the Admin GUI will reference it's own url when linking out to the Dev Portal (Admin GUI will link to itself rather than the Dev Portal).
 
 Setting [`portal_api_url`](/docs/latest/developer-portal/property-reference#portal_api_url) to `http://dev-portal.company.com` will:
 
-  - Give location context to Admin GUI and Dev Portal.
-  - Update CORS in the Kong Proxy to only accept requests from the [`portal_api_url`](/docs/latest/developer-portal/property-reference#portal_api_url) location.
+  - Give context to Admin GUI and Dev Portal.
+  - Update [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the Kong Proxy to only accept requests from the [`portal_api_url`](/docs/latest/developer-portal/property-reference#portal_api_url) location.
