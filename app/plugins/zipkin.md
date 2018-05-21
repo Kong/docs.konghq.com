@@ -24,7 +24,7 @@ params:
     - name: http_endpoint
       required: true
       default: ""
-      value_in_examples: http://your.zipkin.collector
+      value_in_examples: http://your.zipkin.collector:9411/api/v2/spans
       description: |
         The HTTP(S) endpoint to which Zipkin spans should be sent by Kong.
 
