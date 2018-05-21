@@ -12,7 +12,7 @@ nav:
       - label: Generators FIXME
       - label: FAQ
 description: |
-  Propogatge Zipkin distributed tracing spans, and report spans to a Zipkin server.
+  Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
 
 params:
   name: zipkin
