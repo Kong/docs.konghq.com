@@ -12,7 +12,7 @@ chapter: 6
 - [Example configurations](#example-configurations)
   - [Basic Authentication](#basic-authentication)
   - [Key Authentication](#key-authentication)
-  - [Openid-connect](#open-id-connect-plugin)
+  - [OpenID Connect](#open-id-connect-plugin)
 - [Logging In](#logging-in)
   - [Customize Your Login Form](#customize-your-login-form)
 - [Logging Out](#logging-out)
@@ -26,7 +26,7 @@ chapter: 6
 
 ## Enable Authentication
 
-First, we will configure the portal using [Basic Authentication:](https://getkong.org/plugins/basic-authentication). Update the following in your Kong Configuration, then restart Kong.
+First, we will configure the portal using [Basic Authentication](https://getkong.org/plugins/basic-authentication). Update the following in your Kong Configuration, then restart Kong:
 
 ```
 portal_auth = basic-auth
@@ -34,9 +34,9 @@ portal_auth = basic-auth
 
 The Dev Portal templates are now aware that the Dev Portal is authenticated. Browse to the Dev Portal and you should see [Login](#developer-login) and [Sign Up](#developer-registration) links in the top right navigation. 
 
-> Note: Once Kong starts, you will notice that your configuration now shows `cors` and `basic-auth` plugins are enabled. This is because Kong sets up a Kong internal proxy to the Portal API (e.g. `:8004` -> `:8000/_kong/portal`) and creates a Basic Authentication plugin applied only to the `/files` route. These routes, services will be tracked by vitals and appear in your proxy traffic, but the plugins will not be applied to any other routes or services or be configurable in your Kong instance.
+> Note: Once Kong starts, you will notice that your [Admin API configuration](https://127.0.0.1:8001/) now shows `cors` and `basic-auth` plugins are enabled. This is because Kong sets up an internal proxy to the Portal API (e.g. `:8004` -> `:8000/_kong/portal`) and configures a Basic Authentication plugin applied only to the `/files` route. These routes &amp; services will be tracked by Kong Vitals and appear in your proxy traffic, but the internal plugins will not be applied to any other routes or services or be configurable in your Kong instance.
 
-Other auth plugins are also provided and are explained in more detail in “[Example configurations](#example-configs)”:
+The Dev Portal supports other Authentication plugins which are explained in more detail under “[Example configurations](#example-configs)”:
 
 * [Key Authentication](https://getkong.org/plugins/key-authentication)
 * [OpenID Connect-EE](https://getkong.org/plugins/ee-openid-connect/)
@@ -50,16 +50,21 @@ Browse to [http://127.0.0.1:8003/register](http://127.0.0.1:8003/register) and f
 Required Registration fields by Authentication plugin:
 
   - Basic Authentication: 
+
       ```html
       <input type="text" name="email" required />
       <input type="password" name="password" required />
       ```
+
   - Key Authentication: 
+
       ```html
       <input type="text" name="email" required />
       <input type="text" name="key" required />
       ```
+
   - Open-ID Connect:
+
       ```html
       <input type="text" name="email" required />
       ```
@@ -75,7 +80,7 @@ After you have [approved](/docs/enterprise/{{page.kong_version}}/developer-porta
 
 You should now be redirected to [http://127.0.0.1:8003/dashboard](http://127.0.0.1:8003/dashboard) where, as a Developer, you can begin [managing your Developer credentials](/docs/enterprise/{{page.kong_version}}/developer-portal/developer-access)
 
-For more information and details on configuring other authentication methods, and [logging In](#logging-in) keep reading!
+For more information and details on configuring other authentication methods, and [Logging In](#logging-in) keep reading!
 
 > If your Dev Portal does not render after following these steps, check out the [FAQ](/docs/enterprise/{{ page.kong_version }}/developer-portal/FAQ).
 
