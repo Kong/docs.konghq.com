@@ -13,7 +13,7 @@ The pros of this approach are that it is simple to setup and configure. All it r
 
 The cons are, in this case, the same as the pros. It’s a simple pattern, which works for new traffic, but older traffic will continue to be routed directly to the API and not take advantage of rate limiting, auth, or other plugins configured on the Kong gateway.
 
-Often we see this initial Kong configuration morph into one where the APIs are walled off behind a firewall, which we will visit in pattern three.
+Often we see this initial Kong configuration morph into one where the APIs are walled off behind a firewall, which we will visit in the next pattern.
 
 ## Kong and APIs behind firewall
 
@@ -23,12 +23,12 @@ This is a popular architecture pattern that we see with customers who have publi
 
 This architecture pattern is the one we recommend for most customers. It is straightforward to setup, and offers security and control over API access.
 
-The Kong cluster would be placed behind a firewall, or within an Amazon VPC. Port 80 would be opened to the outside world for just the Kong cluster. Inside the firewall the API servers would only have allowed connections from the Kong cluster. Other IP:ports may need to be opened for the API servers to reach resources they need to fulfill any requests.
+The Kong cluster would be placed behind a firewall, or within an Amazon VPC. The Kong cluster's port 80 or 443, which ever your public API is available on, would be opened to the outside world. Inside the firewall the API servers would only allow connections from the Kong cluster. Other IP:ports may need to be opened for the API servers to reach resources they need to fulfill any requests.
 
 
 Access to the [Kong Admin API can be secured in a couple of different ways](https://getkong.org/docs/latest/secure-admin-api/). Depending on your needs you would lock it down to localhost on the machine it is running on, use the firewall to prevent access from anyone outside your network, or proxy the Admin API through Kong itself, and secure it using one of the authentication plugins.
 
-With Kong Enterprise you also have the option of using Role Based Access Control (RBAC) to shape fine grained access for your team, and co-workers. [RBAC in Kong](https://getkong.org/docs/enterprise/0.31-x/plugins/rbac-api/) is used to create roles with defined permissions; roles are then assigned to users who are limited in what they can and can not do by the permissions. Roles could be created for read-only roles; for when you want to let co-workers look, but not edit, the configuration. You could also create roles for different teams; giving them access to edit and update only their APIs.
+With Kong Enterprise you also have the option of using Role Based Access Control (RBAC) to shape fine grained access for your team, and co-workers. [RBAC in Kong](https://getkong.org/docs/enterprise/0.31-x/plugins/rbac-api/) is used to create roles with defined permissions; roles are then assigned to users who are limited in what they can and cannot do by the permissions. Roles could be created for read-only roles; for when you want to let co-workers look, but not edit, the configuration. You could also create roles for different teams; giving them access to edit and update only their APIs.
 
 ## Multi-datacenter with Cassandra
 
@@ -44,17 +44,9 @@ For security conscious customers we recommend a pattern of having a single node 
 
 Each node in Kong cluster can be configured using its kong.conf file. Two separate configurations can be created, one for a proxy only node, and the other for an admin only node. The proxy only nodes would be accessible from the outside world. They would connect to the database and the upstream APIs that are behind the firewall. The admin only node would be inside the firewall, or a separate firewall (or VPC on AWS), and it would connect to the database that the proxy nodes connects to.
 
-So long as the proxy nodes and admin nodes use the same database they will be part of the same cluster. The admin node itself can be located anywhere. There are a few different ways to achieve this. read [securing the Kong Admin API](https://getkong.org/docs/latest/secure-admin-api/) for details.
+So long as the proxy nodes and admin nodes use the same database they will be part of the same cluster. The admin node itself can be located anywhere. There are a few different ways to achieve this. Read [securing the Kong Admin API](https://getkong.org/docs/latest/secure-admin-api/) for details.
 
 ### Unlimited options
 
 Kong as a tool is flexible, and offers many possibilities for incorporating it into your existing infrastructure. These patterns we touch upon are the ones we commonly see and recommend. Every situation is unique, and we are happy to assist you with your specific needs.
 
-
-External Links
-
-Kong Homepage: https://getkong.org/<br>
-Kong Installation: https://getkong.org/install/<br>
-Kong Documentation: https://getkong.org/docs/<br>
-Kong Plugin Gallery: https://getkong.org/plugins/<br>
-Kong GitHub: https://github.com/Mashape/kong<br>
