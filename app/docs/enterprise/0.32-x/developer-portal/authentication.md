@@ -22,7 +22,7 @@ chapter: 6
 - [How Authentication is Stored in Local Storage](#how-authentication-is-stored-in-local-storage)
 
 
-> Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/docs/enterprise/latest/developer-portal/getting-started/#getting-started-with-the-kong-developer-portal) and that you have files in 
+> Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/docs/enterprise/latest/developer-portal/getting-started/#getting-started-with-the-kong-developer-portal)
 
 ## Enable Authentication
 
