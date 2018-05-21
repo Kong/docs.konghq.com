@@ -59,6 +59,8 @@
       url: /developer-portal/authentication
     - text: Managing Developers
       url: /developer-portal/managing-developers
+    - text: Granting Access to Developers
+      url: /developer-portal/developer-access
     - text: FAQ
       url: /developer-portal/faq
     - text: Known Limitations
