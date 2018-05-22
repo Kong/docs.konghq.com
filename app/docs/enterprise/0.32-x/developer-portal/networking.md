@@ -51,7 +51,7 @@ Consider this domain setup:
 - http://admin-gui.company.com -> (internal Admin GUI)
 
 
-#### proxy_url
+### proxy_url configuration
 
 With [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) set to it's default value the Dev Portal will make requests to `http://dev-portal.company.com:8000`, as [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) defaults to `window.location` when no value is set.  As a result the Dev Portal incorrectly requests files from `http://dev-portal.company.com` rather than `http://proxy.company.com`, resulting in an error.
 
@@ -64,7 +64,7 @@ proxy_url = http://proxy.company.com
 Visiting `http://dev-portal.company.com` will now result in a successful render.
 
 
-#### portal_gui_url
+### portal_gui_url configuration
 
 [`portal_gui_url`](/docs/latest/developer-portal/property-reference#portal_gui_url) has a value of `NONE` by default. It will appear as empty and commented out in `kong.conf`:
 ```
