@@ -31,6 +31,7 @@ $ curl -i -X POST http://kong:8001/plugins \
 |`config.limit`|| one of more request per window to apply
 |`config.window_size`||One more more window sizes to apply (defined in seconds).
 |`config.identifier` | `consumer` | How to define the rate limit key. Can be `ip`, `credential`, or `consumer`.
+|`config.dictionary_name`| `kong_rate_limiting_counters` | The shared dictionary where counters will be stored until the next sync cycle.
 |`config.sync_rate` | | How often to sync counter data to the central data store. A value of 0 results in synchronous behavior; a value of -1 ignores sync behavior entirely and only stores counters in node memory. A value greater than 0 will sync the counters in that many number of seconds.
 |`config.namespace(optional)`| `random string`|The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
 |`config.strategy`| `cluster` | The sync strategy to use; `cluster` and `redis` are supported.
@@ -47,6 +48,8 @@ $ curl -i -X POST http://kong:8001/plugins \
 **Note:  Redis configuration values are ignored if the "cluster" strategy is used.**
 
 **Note: PostgreSQL 9.5+ is required when using the "cluster" strategy with "postgres" as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
+
+**Note: The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors**
 
 ---
 
