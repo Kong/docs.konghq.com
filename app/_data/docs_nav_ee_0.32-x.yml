@@ -45,12 +45,14 @@
 
 - title: Kong Developer Portal
   items:
-    - text: Introduction
-      url: /developer-portal/introduction
+    - text: Overview
+      url: /developer-portal/overview
+    - text: Glossary
+      url: /developer-portal/glossary
     - text: Getting Started
       url: /developer-portal/getting-started
-    - text: Understanding
-      url: /developer-portal/understanding
+    - text: File Management
+      url: /developer-portal/file-management
     - text: Customization
       url: /developer-portal/customization
     - text: Authentication
@@ -59,6 +61,10 @@
       url: /developer-portal/managing-developers
     - text: Networking
       url: /developer-portal/networking
+    - text: Property Reference
+      url: /developer-portal/property-reference
+    - text: Granting Access to Developers
+      url: /developer-portal/developer-access
     - text: FAQ
       url: /developer-portal/faq
     - text: Known Limitations
