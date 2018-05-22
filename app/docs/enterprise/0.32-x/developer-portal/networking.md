@@ -11,12 +11,12 @@ and [`portal_gui_url`](/docs/latest/developer-portal/property-reference#portal_g
 
 ## Summary
 
-#### proxy_url
+### proxy_url
   
 **Description:**  
 The Dev Portal will use this information to build the API endpoint for requests to Kong. By default, the Kong Portal will use the window request host and append the resolved listener port depending on the requested protocol.
 
-#### portal_gui_url
+### portal_gui_url
 
 **Description:**  
 Sets [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) Access Origin in regards to requests related to the developer portal (set to `*` by default).  Acts as a location reference to the Dev Portal for Kong, the Admin GUI, and the Dev Portal itself. By default, the Kong Portal will use the window request host and append the resolved listener port depending on the requested protocol.
