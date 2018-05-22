@@ -2,17 +2,20 @@
 title: Customizing the Kong Developer Portal
 class: page-install-method
 book: portal
-chapter: 5
+chapter: 10
 ---
 
 # Customizing the Kong Developer Portal
 
 The Dev Portal default theme is shipped with two CSS file partials:
 
-* `partials/unauthenticated/theme-css.hbs`
-    * Default styles for all theme specific elements across the Example Dev Portal.
-* `partials/unauthenticated/custom-css.hbs`
-    * Partial describing how to change specific parts of the portal without modifying the default theme CSS.
+`partials/unauthenticated/theme-css.hbs`
+
+Default styles for all theme specific elements across the Example Dev Portal.
+
+`partials/unauthenticated/custom-css.hbs`
+
+Partial describing how to change specific parts of the portal without modifying the default theme CSS.
 
 We strongly encourage you to use the `custom-css` over modifying `theme-css` for small changes so you don't affect the original styles.
 
@@ -231,3 +234,5 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
 ## Adding Image, Video, or other file types to a Page
 
 The Dev Portal File API serves only **Pages**, **Partials**, and **Specifications**. To add images, videos, and other file types to your pages, you must either add them inline (e.g. inline SVG) or link to the files being served by some other web server.
+
+Next: [Fequently Asked Questions &rsaquo;]({{page.book.next}})

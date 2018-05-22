@@ -38,3 +38,5 @@ chapter: 2
 * **Consumer** = [A Kong concept and entity.](https://getkong.org/docs/latest/getting-started/adding-consumers/) 
 * **Application** = A computer program that calls API(s) proxied by **Kong API Gateway**.
     * This could be a mobile or web front end, an application running on the server of a partner or customer, or an application running within your company.
+
+Next: [Getting Started &rsaquo;]({{page.book.next}})

@@ -1,7 +1,7 @@
 ---
 title: Authenticating the Developer Portal
 book: portal
-chapter: 6
+chapter: 4
 ---
 
 # Authenticating the Kong Developer Portal
@@ -22,7 +22,7 @@ chapter: 6
 - [How Authentication is Stored in Local Storage](#how-authentication-is-stored-in-local-storage)
 
 
-> Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/docs/enterprise/latest/developer-portal/getting-started/#getting-started-with-the-kong-developer-portal)
+> Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/docs/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/#getting-started-with-the-kong-developer-portal)
 
 ## Enable Authentication
 
@@ -398,5 +398,4 @@ The Dev Portal uses the [Local Storage API](https://developer.mozilla.org/en-US/
 
 > **Note:** Openid-connect uses cookies to persist authentication, and therefore does not use Local Storage.
 
-+Next: [Learn about Dev Portal Networking &rsaquo;]({{page.book.next}})
-
+Next: Learn about Dev Portal [Networking &rsaquo;]({{page.book.next}})

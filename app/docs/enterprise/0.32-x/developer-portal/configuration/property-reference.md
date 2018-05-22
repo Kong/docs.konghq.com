@@ -1,5 +1,7 @@
 ---
 title: Configuration Property Reference for Kong Dev Portal
+book: portal
+chapter: 6
 ---
 
 # Property Reference
@@ -242,3 +244,5 @@ consult the associated plugin documentation.
 ```
 portal_auth_conf = { "hide_credentials": true }
 ```
+
+Next: Learn about [Managing Developers &rsaquo;](/docs/enterprise/{{page.kong_version}}/developer-portal/managing-developers)

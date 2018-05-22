@@ -1,9 +1,11 @@
 ---
 title: Managing Developers
+book: portal
+chapter: 7
 ---
 # Managing Developers for your Developer Portal
 
-In this section you will learn how to manage [developers](/docs/enterprise/{{page.kong_version}}/developer-portal/introduction/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/docs/enterprise/{{page.kong_version}}/developer-portal/introduction/getting-started/) guide.
+In this section you will learn how to manage [developers](/docs/enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/docs/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/) guide.
 
 Once your Kong Developer Portal is enabled you will be able to view developers from the Developers tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/{{page.kong_version}}/admin-gui/).
 
@@ -37,7 +39,7 @@ It should now look like:
 `portal_auto_approve = on`
 3. Restart kong (`kong restart`)
 
-*See [Property References](/docs/enterprise/{{page.kong_version}}/developer-portal/property-reference) to learn more about configuring the Kong Developer Portal.*
+*See [Property References](/docs/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference) to learn more about configuring the Kong Developer Portal.*
 
 ## Viewing Approved Developers
 
@@ -70,3 +72,5 @@ Each developer is bcc'd by default for privacy. You may choose to edit the messa
 To notify a developer they have been approved click the **Email Developer** action from their table row on the **Approved** tab. 
 
 This link will open a pre-filled email in your default email client with a link to the login page &amp; their login email address for your Developer Portal. You may choose to edit the message or send as is.
+
+Next: [Developer Access &rsaquo;]({{page.book.next}})

@@ -1,7 +1,7 @@
 ---
 title: Networking
 book: portal
-chapter: 1
+chapter: 5
 ---
 
 # Networking
@@ -81,3 +81,5 @@ Setting [`portal_gui_url`](/docs/enterprise/{{page.kong_version}}/developer-port
 
   - Give context to Admin GUI and Dev Portal.
   - Update [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the Kong Proxy to only accept Dev Portal requests from the [`portal_gui_url`](/docs/enterprise/{{page.kong_version}}/developer-portal/property-reference/#portal_gui_url).
+
+Next: Learn more about our [Property Referrences &rsaquo;]({{page.book.next}})

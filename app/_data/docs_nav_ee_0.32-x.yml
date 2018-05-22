@@ -49,22 +49,25 @@
       url: /developer-portal/overview
     - text: Glossary
       url: /developer-portal/glossary
-    - text: Getting Started
-      url: /developer-portal/getting-started
+    - text: Configuration
+      url: /developer-portal/configuration/getting-started
+      items:
+        - text: Getting Started
+          url: /developer-portal/configuration/getting-started
+        - text: Authentication
+          url: /developer-portal/configuration/authentication
+        - text: Networking
+          url: /developer-portal/configuration/networking
+        - text: Property Reference
+          url: /developer-portal/configuration/property-reference
+    - text: Managing Developers
+      url: /developer-portal/managing-developers
+    - text: Developer Access
+      url: /developer-portal/developer-access
     - text: File Management
       url: /developer-portal/file-management
     - text: Customization
       url: /developer-portal/customization
-    - text: Authentication
-      url: /developer-portal/authentication
-    - text: Managing Developers
-      url: /developer-portal/managing-developers
-    - text: Networking
-      url: /developer-portal/networking
-    - text: Property Reference
-      url: /developer-portal/property-reference
-    - text: Granting Access to Developers
-      url: /developer-portal/developer-access
     - text: FAQ
       url: /developer-portal/faq
 

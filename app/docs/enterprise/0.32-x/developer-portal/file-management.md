@@ -1,7 +1,7 @@
 ---
 title: Understanding the Kong Developer Portal Files
 book: portal
-chapter: 4
+chapter: 9
 ---
 
 # File Management
