@@ -37,21 +37,23 @@ params:
 
 ---
 
+> **Note**: Zipkin plugin is available in Enterprise as of version 0.32 and will soon be available as part of Kong CE 0.14.
+
 ## How it Works
 
 When enabled, this plugin traces requests in a way compatible with [zipkin](https://zipkin.io/).
 
 The code is structured around an [opentracing](http://opentracing.io/) core using the [opentracing-lua library](https://github.com/Kong/opentracing-lua) to collect timing data of a request in each of Kong's phases.
-The plugin uses opentracing-lua compatible extractor, injector and reporters to implement Zipkin's protocols.
+The plugin uses opentracing-lua compatible extractor, injector, and reporters to implement Zipkin's protocols.
 
 ### Extractor and Injector
 
 An opentracing "extractor" collects information from an incoming request.
-If no trace id is present in the incoming request, then one is probabilistically generated based on the `sample_ratio` configuration value.
+If no trace ID is present in the incoming request, then one is probabilistically generated based on the `sample_ratio` configuration value.
 
-An opentracing "injector" adds trace information to an outgoing request. Currently the injector is only called for the request proxied by kong; it is **not** yet used for requests to the database or by other plugins (such as the [http-log plugin](./http-log/)).
+An opentracing "injector" adds trace information to an outgoing request. Currently, the injector is only called for the request proxied by kong; it is **not** yet used for requests to the database or by other plugins (such as the [http-log plugin](./http-log/)).
 
-This plugin follows Zipkin's ["B3" specification](https://github.com/openzipkin/b3-propagation/) for which HTTP headers to use. Additionally this plugin supports [Jaegar](http://jaegertracing.io/)-style `uberctx-` headers for propagating [baggage](https://github.com/opentracing/specification/blob/master/specification.md#set-a-baggage-item).
+This plugin follows Zipkin's ["B3" specification](https://github.com/openzipkin/b3-propagation/) as to which HTTP headers to use. Additionally, it supports [Jaegar](http://jaegertracing.io/)-style `uberctx-` headers for propagating [baggage](https://github.com/opentracing/specification/blob/master/specification.md#set-a-baggage-item).
 
 
 ### Reporter
