@@ -41,7 +41,7 @@ params:
 
 ## How it Works
 
-When enabled, this plugin traces requests in a way compatible with [zipkin](https://zipkin.io/).
+When enabled, [this plugin](https://github.com/Kong/kong-plugin-zipkin) traces requests in a way compatible with [zipkin](https://zipkin.io/).
 
 The code is structured around an [opentracing](http://opentracing.io/) core using the [opentracing-lua library](https://github.com/Kong/opentracing-lua) to collect timing data of a request in each of Kong's phases.
 The plugin uses opentracing-lua compatible extractor, injector, and reporters to implement Zipkin's protocols.
