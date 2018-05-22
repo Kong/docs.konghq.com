@@ -57,7 +57,7 @@ This plugin follows Zipkin's ["B3" specification](https://github.com/openzipkin/
 ### Reporter
 
 An opentracing "reporter" is how tracing data is reported to another system.
-This plugin records tracing data for a given request, and sends it as a batch to a Zipkin server using [the Zipkin v2 api](https://zipkin.io/zipkin-api/#/default/post_spans).
+This plugin records tracing data for a given request, and sends it as a batch to a Zipkin server using [the Zipkin v2 API](https://zipkin.io/zipkin-api/#/default/post_spans). Note that zipkin version 1.31 or higher is required.
 
 The `http_endpoint` configuration variable must contain the full uri including scheme, host, port and path sections (i.e. your uri likely ends in `/api/v2/spans`).
 
