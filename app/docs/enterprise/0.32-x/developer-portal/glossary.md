@@ -1,23 +1,9 @@
 ---
-title: Welcome to the Kong Developer Portal Preview
+title: Glossary
+book: portal
+chapter: 2
 ---
-
-# [Welcome to the Kong Dev Portal Preview](#welcome-to-the-kong-dev-portal)
-
-![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-home.png "Welcome to the Kong Dev Portal")
-
-Thank you for installing Kong Enterprise Edition. This document orients you to Kong's built-in Dev Portal functionality and provides you a preview so you can familiarize yourself with its promising capabilities and get started on customizing it to match your needs.
-
-## Assumptions
-
-* You have installed a recent version of Kong Enterprise Edition that includes Dev Portal functionality.
-    * Dev Portal was introduced in Kong EE v0.31
-* You are a Kong Admin, and have Super Admin permissions in Kong RBAC.
-    * Or, the RBAC feature of Kong EE is disabled.
-* You have a OpenAPI Specification v2 or v3 file (also known as a Swagger Specification, or a Swagger file) that documents at least part of your API. 
-    * This isn't a strict requirement to get started, but you'll need it soon.
-
-## Glossary
+# {{page.title}}
 
 ### Key Terms
 
@@ -51,4 +37,4 @@ Thank you for installing Kong Enterprise Edition. This document orients you to K
     * Note that this is *not* the **Admin API** of Kong - we consistently refer to that as **Admin API**
 * **Consumer** = [A Kong concept and entity.](https://getkong.org/docs/latest/getting-started/adding-consumers/) 
 * **Application** = A computer program that calls API(s) proxied by **Kong API Gateway**.
-    * This could be a mobile or web front end, an application running on the server of a partner or customer, or an application running within your company. 
+    * This could be a mobile or web front end, an application running on the server of a partner or customer, or an application running within your company.
