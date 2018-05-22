@@ -7,22 +7,17 @@ title: Configuration Property Reference for Kong Dev Portal
 This document describes the configuration directives for the Kong Developer
 Portal.
 
-## proxy_listen
+## proxy_url
 
-**Default:** `0.0.0.0:8000, 0.0.0.0:8443 ssl`
+**Default:** `NONE` (auto generated)
 
 **Description:**  
-Comma-separated list of addresses and ports on
-which the proxy server should listen.
-The proxy server is the public entry-point of Kong,
-which proxies traffic from your consumers to your
-backend services. This value accepts IPv4, IPv6, and
-hostnames.
+The URL on which Kong is accessible. This is used primarily by the Dev Portal. By default the Dev Portal will use the window request host and append the resolved listener port depending on the requested protocol.
 
 **Example:**
 
 ```
-proxy_listen =  0.0.0.0:8000, 0.0.0.0:8443 ssl
+proxy_url = http://127.0.0.1:8000
 ```
 
 
