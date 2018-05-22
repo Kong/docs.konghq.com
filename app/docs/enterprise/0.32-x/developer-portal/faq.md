@@ -31,7 +31,7 @@ enabled.
 ### What file types are supported?
 
 You can find a list of supported template types on the 
-[File Management][template_types] page.
+[File Management][file_types] page.
 
 ### Does the developer portal support uploading images, scripts, and videos?
 
