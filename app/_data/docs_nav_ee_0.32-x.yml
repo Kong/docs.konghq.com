@@ -59,6 +59,8 @@
       url: /developer-portal/authentication
     - text: Managing Developers
       url: /developer-portal/managing-developers
+    - text: Property Reference
+      url: /developer-portal/property-reference
     - text: Granting Access to Developers
       url: /developer-portal/developer-access
     - text: FAQ
