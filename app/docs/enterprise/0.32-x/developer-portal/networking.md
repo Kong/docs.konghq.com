@@ -19,7 +19,7 @@ The Dev Portal will use this information to build the API endpoint for requests 
 ### portal_gui_url
 
 **Description:**  
-Sets [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) Access Origin in regards to requests related to the developer portal (set to `*` by default).  Acts as a location reference to the Dev Portal for Kong, the Admin GUI, and the Dev Portal itself. By default, the Kong Portal will use the window request host and append the resolved listener port depending on the requested protocol.
+Sets [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) Access Origin in regards to requests related to the developer portal (set to `*` by default). Acts as Dev Portal location reference for Kong, the Admin GUI, and the Dev Portal itself. By default, the Kong Portal will use the window request host and append the resolved listener port depending on the requested protocol.
 
 
 ## Default Configuration
@@ -36,7 +36,7 @@ kong start
 
 3. Open your developer tools in your browser and click on the `network` tab.
 
-4. Refresh the Dev Portal window take a look at the network tab and click on one of the requests made.  Notice that the Kong Portal is making requests to the [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) default value: `http://127.0.0.1:8000`.
+4. Refresh the Dev Portal window and inspect the network tab again.  Notice that the Kong Portal is making requests to the [`proxy_url`](/docs/latest/developer-portal/property-reference#proxy_url) default value: `http://127.0.0.1:8000`.
 
 
 ## Custom Configuration
@@ -76,4 +76,4 @@ When [`portal_gui_url`](/docs/latest/developer-portal/property-reference#portal_
 
 Setting [`portal_gui_url`](/docs/latest/developer-portal/property-reference#portal_gui_url) to `http://dev-portal.company.com` will:  
   - Give context to Admin GUI and Dev Portal.
-  - Update [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the Kong Proxy to only accept Dev Portal requests from the [`portal_gui_url`](/docs/latest/developer-portal/property-reference#portal_gui_url) location.
+  - Update [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the Kong Proxy to only accept Dev Portal requests from the [`portal_gui_url`](/docs/latest/developer-portal/property-reference#portal_gui_url).
