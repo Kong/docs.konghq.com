@@ -14,8 +14,8 @@ is set to `on`.
 
 This can be caused by a few reasons:
 
-1. Missing developer portal files (`127.0.0.1:8001/files`)
-1. Improper [network configuration][configuration_network]
+1. Missing developer portal files. (`127.0.0.1:8001/files`)
+1. Improper [Network configuration][configuration_network].
 
 If you have confirmed that you have files and your network setup is properly
 configured, please [contact support](mailto:support@konghq.com) for further assistance.
@@ -43,7 +43,7 @@ hosted elsewhere and referenced.
 
 ### Can I use other API specification formats like API Blueprint?
 
-Currently only Swagger 2 and OpenAPI 3 are the only supported spec formats.
+Currently only Swagger 2 and OpenAPI 3 are supported.
 
 ### Can I modify the Header and Meta tags? 
 
@@ -61,4 +61,4 @@ Currently content written in Markdown format is not supported.
 
 [file_types]: /docs/{{page.kong_version}}/developer-portal/file-management#file-types
 [property_portal]: /docs/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
-[configuration_network]: /docs/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
+[configuration_network]: /docs/{{page.kong_version}}/developer-portal/configuration/networking
