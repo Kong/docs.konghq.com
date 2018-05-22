@@ -36,7 +36,7 @@ The Dev Portal templates are now aware that the Dev Portal is authenticated. Bro
 
 > Note: Once Kong starts, you will notice that your [Admin API configuration](https://127.0.0.1:8001/) now shows `cors` and `basic-auth` plugins are enabled. This is because Kong sets up an internal proxy to the Portal API (e.g. `:8004` -> `:8000/_kong/portal`) and configures a Basic Authentication plugin applied only to the `/files` route. These routes &amp; services will be tracked by Kong Vitals and appear in your proxy traffic, but the internal plugins will not be applied to any other routes or services or be configurable in your Kong instance.
 
-The Dev Portal supports other Authentication plugins which are explained in more detail under “[Example configurations](#example-configs)”:
+The Dev Portal supports other Authentication plugins which are explained in more detail under [Example configurations](#example-configs):
 
 * [Key Authentication](https://getkong.org/plugins/key-authentication)
 * [OpenID Connect-EE](https://getkong.org/plugins/ee-openid-connect/)
@@ -72,23 +72,36 @@ Required Registration fields by Authentication plugin:
 
 ### Collecting More Data on Registration
 
-Additional information can be stored for the Developer inside the `meta` data attribute. This field is stored in the Kong datastore on the Developer entity and will be visible to you, a Kong Admin. The default Dev Portal theme demonstrates this through the "full_name" input: `<input type="text" name="full_name" required />`. This is helpful if you want to get more information (e.g. "referral source", "phone-number", "company", "team" etc.) Meta tags are stored in plain text, so be careful not to store sensitive information on meta.
+Additional information can be stored for the Developer inside the `meta` data attribute. This field is stored in the Kong datastore on the Developer entity and will be visible to you, a Kong Admin. 
+
+The default Dev Portal theme demonstrates this through the "full_name" input: 
+
+```html
+<input type="text" name="full_name" required />
+```
+
+This is helpful if you want to get more information (e.g. "referral source", "phone-number", "company", "team" etc.) Meta tags are stored in plain text, so be careful not to store sensitive information in meta.
 
 ### Login As Your New Developer
 
-After you have [approved](/docs/enterprise/{{page.kong_version}}/developer-portal/managing-developers#approving-developers) your [newly registered Developer](#developer-registration), browse to [http://127.0.0.1:8003](http://127.0.0.1:8003) and click the Login button. Enter the username and password of your newly registered Developer.
+After you have [approved](/docs/enterprise/{{page.kong_version}}/developer-portal/managing-developers#approving-developers) a Developer that has [requested access](#developer-registration):
 
-You should now be redirected to [http://127.0.0.1:8003/dashboard](http://127.0.0.1:8003/dashboard) where, as a Developer, you can begin [managing your Developer credentials](/docs/enterprise/{{page.kong_version}}/developer-portal/developer-access)
+1. browse to [http://127.0.0.1:8003] (i.e. `portal_gui_url`)
+1. click the Login button. 
+1. Enter the username and password of your newly registered Developer.
+1. click the Login button
+
+You should now be redirected to [http://127.0.0.1:8003/dashboard] where, as a Developer, you can begin [managing your Developer credentials](/docs/enterprise/{{page.kong_version}}/developer-portal/developer-access)
 
 For more information and details on configuring other authentication methods, and [Logging In](#logging-in) keep reading!
 
-> If your Dev Portal does not render after following these steps, check out the [FAQ](/docs/enterprise/{{ page.kong_version }}/developer-portal/FAQ).
+> If your Dev Portal does not render after following these steps, check out the <a href="/docs/enterprise/{{page.kong_version}}/developer-portal/FAQ">FAQ</a>.
 
 ## Example configurations
 
 ### Basic Authentication
 
-Check out the section “**Enabling Authentication”** for a step by step guide on setting up [Basic Authentication](https://getkong.org/plugins/basic-authentication).
+Check out the section "**Enabling Authentication"** for a step by step guide on setting up [Basic Authentication](https://getkong.org/plugins/basic-authentication).
 
 ### Key Authentication
 
@@ -106,7 +119,7 @@ Browse to the Dev Portal and you should now see [Login](#developer-login) and [S
 
 The [OpenID Connect Plugin](/plugins/ee-openid-connect/) allows you to hook into existing authentication setups using third-party *Identity Providers* (**IdP**) such as Google, Yahoo, Microsoft Azure AD, etc. 
 
-[OIDC](/plugins/ee-openid-connect/) must be used with the “session” method, utilizing cookies for Dev Portal File API requests.
+[OIDC](/plugins/ee-openid-connect/) must be used with the `session` method, utilizing cookies for Dev Portal File API requests.
 
 Update the following in your Kong Configuration, then restart Kong:
 
@@ -147,15 +160,15 @@ The values above can be replaced with their corresponding values for your custom
   Your browser does not support the video tag.
 </video>
 
-By default the Example Dev Portal comes with a “Sign in with Google” button, but you can override this button in the `unauthenticated/login` partial. See [Customize Your Login Form](#customize-your-login-form)
+By default the Example Dev Portal comes with a "Sign in with Google" button, but you can override this button in the `unauthenticated/login` partial. See [Customize Your Login Form](#customize-your-login-form)
 
-Browse to the login page (see section [Logging In](#logging-in)). Click “Sign in with Google” which will take you to the Google login page. Once logged in, Google will redirect you back to the Example Dev Portal and all requests going forward will have the associated authentication session cookie. The Default Dev Portal and the OIDC configuration above will provide an `id_token` which will be used to display a Developer's avatar.
+Browse to the login page (see section [Logging In](#logging-in)). Click "Sign in with Google" which will take you to the Google login page. Once logged in, Google will redirect you back to the Example Dev Portal and all requests going forward will have the associated authentication session cookie. The Default Dev Portal and the OIDC configuration above will provide an `id_token` which will be used to display a Developer's avatar.
 
 ## Logging In
 
 Ensure you are logged out (see section [Logging Out](#logging-out)). Visit an authenticated page on the Dev Portal. You should see a login form, which is rendered from the `unauthenticated/login` partial. 
 
-When a Developer submits an HTML form with an attribute `id=”login"` the Dev Portal will make a request against the Dev Portal File API using the specified `portal_auth` with the data in the form. For instance, if you have `basic-auth` enabled, then the form will submit with the Authorization header e.g. `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. If the Login returns a response with a status code that is not `200`, then it runs `onLoginError`.
+When a Developer submits an HTML form with an attribute `id="login"` the Dev Portal will make a request against the Dev Portal File API using the specified `portal_auth` with the data in the form. For instance, if you have `basic-auth` enabled, then the form will submit with the Authorization header e.g. `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. If the Login returns a response with a status code that is not `200`, then it runs `onLoginError`.
 
 ### Customize Your Login Form
 
@@ -263,7 +276,7 @@ Lets first create two test pages that will simply illustrate whether we are view
 
     4. Navigate to [`:8003/test`](http://127.0.0.1:8003/test) and ensure that the browser looks like this:
     
-    ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-auth-example.png "Authenticated Page")
+    ![alt text](https://konghq.com/wp-content/uploads/2018/05/unauthed-message.png "Authenticated Page")
 
 2. `pages/unauthenticated/test.hbs`
    1. Create a file named `pages/unauthenticated/test.hbs` and open it in your favorite text editor.
@@ -283,14 +296,14 @@ Lets first create two test pages that will simply illustrate whether we are view
 
     4. Navigate to [`:8003/unauthenticated`](http://127.0.0.1:8003/unauthenticated/test) test and ensure that the browser looks like this:
     
-     ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-auth-example2.png "Unauthenticated Page")
+     ![alt text](https://konghq.com/wp-content/uploads/2018/05/unauthed-message2.png "Unauthenticated Page")
 
 Now that we have created our two test pages, let's take a look at how the Dev Portal deals with authenticated/unauthenticated routes.
 
 **Authenticated Flow:**
 
 1. If you are not already, login to the Example Dev Portal (see section [Logging In](#logging-in)).
-2. Navigate to [:8003/test](http://127.0.0.1:8003/test) in your browser, you should see a header stating *“This is an authenticated test page”.*
+2. Navigate to [:8003/test](http://127.0.0.1:8003/test) in your browser, you should see a header stating *"This is an authenticated test page".*
     1. The Developer Portal went through the following flow:
         1. Search for a page named **test** *There is!*
         2. Check to ensure that you have authorization to access the page. *You do!*
@@ -301,7 +314,7 @@ Now that we have created our two test pages, let's take a look at how the Dev Po
 **Unauthenticated Flow:**
 
 1. If you have not already, log out of the Dev Portal (see section [Logging Out](#logging-out)).
-2. Navigate to [:8003/test](http://127.0.0.1:8003/test) in your browser, you should see text stating *“This is an unauthenticated test page”*.
+2. Navigate to [:8003/test](http://127.0.0.1:8003/test) in your browser, you should see text stating *"This is an unauthenticated test page"*.
 3. Notice that although the path **/test** requests `test.hbs` (our authenticated page), we are served `unauthenticated/test.hbs`.
     1. The Developer Portal went through the following flow:
         1. Parse the path `/test` to determine we would like to serve a page named **test**.
