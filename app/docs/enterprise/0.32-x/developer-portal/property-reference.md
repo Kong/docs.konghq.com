@@ -17,7 +17,7 @@ The URL on which Kong is accessible. This is used primarily by the Dev Portal. B
 **Example:**
 
 ```
-proxy_listen = http://127.0.0.1:8000
+proxy_url = http://127.0.0.1:8000
 ```
 
 
