@@ -1,7 +1,7 @@
 ---
-title: Rate Limiting Plugin
+title: Rate Limiting Advanced Plugin
 ---
-# Rate Limiting Plugin
+# Rate Limiting Advanced Plugin
 ## Configuration
 
 Method 1: apply it on top of an API by executing the following request on your Kong server:
