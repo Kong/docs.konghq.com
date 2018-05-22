@@ -25,6 +25,8 @@ You can also apply it for every API using the `http://kong:8001/plugins/` endpoi
 |`config.response_code`| `200`, `301`, `404` |	Upstream response status code considered cacheable.
 |`config.request_method`|	`GET`, `HEAD` |	Downstream request methods considered cacheable.
 |`config.content_type`|	`text/plain` | Upstream response content types considered cachable.
+|`config.vary_headers` || Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
+|`config.vary_query_params` || Relevant query parameters considered for the cache key. If undefined, all params are taken into consideration.
 |`config.cache_ttl`|	`300` |	TTL, in seconds, of cache entities.
 |`config.cache_control`| `false` | When enabled, respect the Cache-Control behaviors defined in RFC 7234.
 |`config.storage_ttl`| || Number of seconds to keep resources in the storage backend. This value is independent of cache_ttl or resource TTLs defined by Cache-Control behaviors.
