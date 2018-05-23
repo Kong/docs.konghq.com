@@ -9,14 +9,25 @@ breadcrumbs:
 
 Details about how to use Kong in Docker can be found on the DockerHub repository hosting the image: [kong](https://hub.docker.com/_/kong/). We also have a [Docker Compose template](https://github.com/Mashape/docker-kong/tree/master/compose) with built-in orchestration and scalability.
 
-Here is a quick example showing how to link a Kong container to a Cassandra or PostgreSQL container:
+Here is a quick example showing how to connect a Kong container to a Cassandra or PostgreSQL container:
 
-1. **Start your database**
+1. **Create a Docker network**
+
+    You will need to create a custom network to allow the containers to
+    discover and communicate with each other. In this example `kong-net` is the
+    network name, you can use any name.
+
+    ```bash
+    $ docker network create kong-net
+    ```
+
+2. **Start your database**
 
     If you wish to use a Cassandra container:
 
     ```bash
     $ docker run -d --name kong-database \
+                  --network=kong-net \
                   -p 9042:9042 \
                   cassandra:3
     ```
@@ -25,19 +36,20 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
 
     ```bash
     $ docker run -d --name kong-database \
+                  --network=kong-net \
                   -p 5432:5432 \
                   -e "POSTGRES_USER=kong" \
                   -e "POSTGRES_DB=kong" \
-                  postgres:9.5
+                  postgres:9.6
     ```
 
-2. **Prepare your database**
+3. **Prepare your database**
 
     Run the migrations with an ephemeral Kong container:
 
     ```bash
     $ docker run --rm \
-        --link kong-database:kong-database \
+        --network=kong-net \
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
         -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
@@ -51,15 +63,15 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
     **Note**: migrations should never be run concurrently; only
     one Kong node should be performing migrations at a time.
 
-3. **Start Kong**
+4. **Start Kong**
 
     When the migrations have run and your database is ready, start a Kong
-    container and link it to your database container, just like the ephemeral
-    migrations container:
+    container that will connect to your database container, just like the
+    ephemeral migrations container:
 
     ```bash
     $ docker run -d --name kong \
-        --link kong-database:kong-database \
+        --network=kong-net \
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
         -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
@@ -76,7 +88,7 @@ Here is a quick example showing how to link a Kong container to a Cassandra or P
         kong:latest
     ```
 
-4. **Use Kong**
+5. **Use Kong**
 
     Kong is running:
 
