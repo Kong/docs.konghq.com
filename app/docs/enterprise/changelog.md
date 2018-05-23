@@ -61,6 +61,8 @@ nav:
   - New Plugins thumbnail view
   - Healthchecks GUI
   - Syntax for form-encoded array elements
+  - Dev Portal Overview tab
+  - Developers management tab
 - **Vitals**
   - **Status Code** tracking - GUI and API
       - Status Code groups per Cluster - counts of `1xx`, `2xx`, `3xx`, `4xx`, `5xx` groups across the cluster over time. Visible in the Admin GUI at `ADMIN_URL/vitals/status-codes`
