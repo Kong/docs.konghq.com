@@ -86,11 +86,6 @@ params:
         <strong>Note:</strong> The <code>config.header_type</code> option was introduced in Kong 0.12.0. Previous versions of this plugin behave as if <code>ldap</code> was set for this value.
     </div>
 
-    Once applied, any user with a valid credential can access the Service/API.
-    To restrict usage to only some of the authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-    blacklist groups of users.
-
 ---
 
 ## Usage
