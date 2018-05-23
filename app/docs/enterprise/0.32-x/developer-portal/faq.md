@@ -61,6 +61,13 @@ served by the File API.
 
 Currently content written in Markdown format is not supported.
 
+### Can I change the code snippet languages displayed on my documentation?
+
+Yes! You can change the display and languages of the code snippets by modifying
+the `unauthenticated/code-snippet-languages.hbs` partial through the Portal API. 
+See [Updating Files][file_updating] for more information.
+
 [file_types]: /docs/enterprise/{{page.kong_version}}/developer-portal/file-management#file-types
+[file_updating]: /docs/enterprise/{{page.kong_version}}/developer-portal/file-management/#updating-files
 [property_portal]: /docs/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
 [configuration_network]: /docs/enterprise/{{page.kong_version}}/developer-portal/configuration/networking
