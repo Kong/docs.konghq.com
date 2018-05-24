@@ -321,7 +321,6 @@
 
     td {
       padding: 10px;
-
       &:first-child {
         text-align: right;
         white-space: nowrap;
@@ -337,6 +336,12 @@
             display: inline-block;
             margin-top: 3px;
           }
+        }
+      }
+      &:nth-child(2) {
+        word-wrap: break-word;
+        code {
+          white-space: normal;
         }
       }
     }
