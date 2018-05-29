@@ -834,10 +834,10 @@ Time-to-live (in seconds) of an entity from
 the datastore when cached by this node.
 Database misses (no entity) are also cached
 according to this setting.
-If set to 0, such cached entities/misses
-never expire.
+If set to 0 (default), such cached entities
+or misses never expire.
 
-Default: 3600 seconds (1 hour)
+Default: 0 (no expiration)
 
 [Back to TOC](#table-of-contents)
 
