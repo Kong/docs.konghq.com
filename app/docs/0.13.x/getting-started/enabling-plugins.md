@@ -26,7 +26,7 @@ other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
 
-1. ### Configure the key-auth plugin for the Service you <a href="/docs/{{page.kong_version}}/getting-started/configured-a-service">configured in Kong</a>.
+1. ### Configure the key-auth plugin for the Service you <a href="/docs/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>.
 
     Issue the following cURL request:
 
