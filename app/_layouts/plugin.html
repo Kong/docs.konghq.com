@@ -18,40 +18,25 @@ breadcrumbs: null
 
 {% if page.params.service_id %}
 {% capture plugin_config_for_service %}
-#### Enabling the plugin for a Service
+#### Enabling the plugin on a Service
 
-Configure on top of a [Service](/docs/latest/admin-api/#service-object) by executing the following request on your Kong server:
+Configure this plugin on a [Service](/docs/latest/admin-api/#service-object) by
+making the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/services/{service}/plugins \
     --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
-* `service`: the id or name of the Service that this plugin configuration will target.
-{% endcapture %}
-{% endif %}
-
-{% if page.params.api_id %}
-{% capture plugin_config_for_api %}
-#### Enabling the plugin for an API
-
-If you are using the deprecated API entity, you can configure on top of an [API](/docs/latest/admin-api/#api-object)
-by executing the following request on your Kong server:
-
-```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
-    --data "name={{page.params.name}}" {{ config_required_fields }}
-```
-
-* `api`: either id or name of the API that this plugin configuration will target.
-{% endcapture %}
-{% endif %}
+* `service`: the id or name of the Service that this plugin configuration will
+  target.
+{% endcapture %} {% endif %}
 
 {% if page.params.route_id %}
 {% capture plugin_config_for_route %}
-#### Enabling the plugin for a Route
+#### Enabling the plugin on a Route
 
-Configure on top of a [Route](/docs/latest/admin-api/#Route-object) with:
+Configure this plugin on a [Route](/docs/latest/admin-api/#Route-object) with:
 
 ```bash
 $ curl -X POST http://kong:8001/routes/{route_id}/plugins \
@@ -64,9 +49,10 @@ $ curl -X POST http://kong:8001/routes/{route_id}/plugins \
 
 {% if page.params.consumer_id %}
 {% capture plugin_config_for_consumer %}
-#### Enabling the plugin for a Consumer
+#### Enabling the plugin on a Consumer
 
-You can use the `http://localhost:8001/plugins` endpoint to target [Consumers](/docs/latest/admin-api/#Consumer-object):
+You can use the `http://localhost:8001/plugins` endpoint to enable this plugin
+on specific [Consumers](/docs/latest/admin-api/#Consumer-object):
 
 ```bash
 $ curl -X POST http://kong:8001/plugins \
@@ -74,18 +60,42 @@ $ curl -X POST http://kong:8001/plugins \
     --data "consumer_id={consumer_id}" {{ config_required_fields }}
 ```
 
-Where `consumer_id` is the id of the Consumer we want to associate with this plugin.
+Where `consumer_id` is the id of the Consumer we want to associate with this
+plugin.
+
 {% if page.params.service_id or page.params_route_id or page.params.api_id %}
-  You can combine adding `consumer_id` and {% if page.params.service_id %}
+  You can combine `consumer_id` and {% if page.params.service_id %}
     `service_id`
   {% elsif page.params.route_id %}
     `route_id`
   {% elsif page.params.api_id %}
     `api_id`
-  {% endif %} in the same request.
+  {% endif %}
+  in the same request, to futhermore narrow the scope of the plugin.
 {% endif %}
+
 {% endcapture %}
 {% endif %}
+
+{% if page.params.api_id %}
+{% capture plugin_config_for_api %}
+#### Enabling the plugin on an API
+
+If you are using an older version of Kong with the legacy [API
+entity](/docs/0.13.x/admin-api/#api-object) (**deprecated** since 0.13.0), you
+can configure this plugin on top of such an API by making the following
+request:
+
+```bash
+$ curl -X POST http://kong:8001/apis/{api}/plugins \
+    --data "name={{page.params.name}}" {{ config_required_fields }}
+```
+
+* `api`: either id or name of the API that this plugin configuration will
+  target.
+{% endcapture %} {% endif %}
+
+
 
 {% capture params_table %}
 <table>
@@ -94,9 +104,7 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
   </thead>
   <tbody>
     <tr><td><code>name</code></td><td></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code></td></tr>
-    {% if page.params.api_id %}
-      <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target.</td></tr>
-    {% endif %}
+
     {% if page.params.service_id %}
       <tr><td><code>service_id</code></td><td></td><td>The id of the Service which this plugin will target.</td></tr>
     {% endif %}
@@ -106,6 +114,9 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
       <tr><td><code>enabled</code></td><td><code>true</code></td><td>Whether this plugin will be applied.</td></tr>
     {% if page.params.consumer_id %}
       <tr><td><code>consumer_id</code></td><td></td><td>The id of the Consumer which this plugin will target.</td></tr>
+    {% endif %}
+    {% if page.params.api_id %}
+    <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/docs/0.13.x/admin-api/#api-object">API Entity</a> is deprecated since Kong 0.13.0.</td></tr>
     {% endif %}
     {% for field in page.params.config %}
       <tr>
@@ -119,6 +130,7 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
     {% endfor %}
   </tbody>
 </table>
+
 {% endcapture %}
 
 <div class="page {{ page.id }}">
@@ -177,9 +189,6 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
           <ul>
             <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
 
-            {% if page.params.api_id %}
-              <li><code>API</code>: (deprecated) the Kong entity representing your upstream service placed behind Kong, for which Kong proxies requests to.</li>
-            {% endif %}
             {% if page.params.service_id or page.params.route_id %}
               <li><code>Service</code>: the Kong entity representing an external <em>upstream</em> API or microservice.</li>
             {% endif %}
@@ -191,6 +200,9 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
               <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
             {% endif %}
               <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
+            {% if page.params.api_id %}
+            <li><code>API</code>: a legacy entity used to represent your upstream services. <strong>Deprecated</strong> in favor of Services since 0.13.0.</li>
+            {% endif %}
 
           </ul>
 
@@ -211,17 +223,19 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
           {% if page.params.route_id %}
             {{ plugin_config_for_route | markdownify }}
           {% endif %}
-          {% if page.params.api_id %}
-            {{ plugin_config_for_api | markdownify }}
-          {% endif %}
           {% if page.params.consumer_id %}
             {{ plugin_config_for_consumer | markdownify }}
+          {% endif %}
+          {% if page.params.api_id %}
+            {{ plugin_config_for_api | markdownify }}
           {% endif %}
 
           <h4>Global plugins</h4>
 
-          <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any API, Service, Route or Consumer is considered "global", and will be run on every request.
-            Read the <a href="/docs/latest/admin-api/#add-plugin">Plugin Reference</a> and the <a href="/docs/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
+          <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
+            Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
+            Read the <a href="/docs/latest/admin-api/#add-plugin">Plugin Reference</a> and the
+            <a href="/docs/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
           </p>
 
           <h4>Parameters</h4>
