@@ -38,14 +38,14 @@ $(function () {
 
   // Cookie Policy
   // Check for cookie
-  if (!document.cookie.split(';').filter(function(item) {
+  if (!document.cookie.split(';').filter(function (item) {
     return item.indexOf('cookie-policy=') >= 0
   }).length) {
     $('.cookie-policy-container').addClass('show')
   }
 
   // Hide banner on "I accept" and set cookie
-  $('.cookie-policy-accept').on('click', function(e) {
+  $('.cookie-policy-accept').on('click', function (e) {
     e.preventDefault()
 
     $('.cookie-policy-container').removeClass('show')
