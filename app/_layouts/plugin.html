@@ -8,6 +8,15 @@ breadcrumbs: null
 
 ---
 
+{% capture api_object_legacy_warning %}
+{% if page.params.api_id %}
+<div class="alert alert-warning">
+API objects (and the <code>api_id</code> param) were deprecated in Kong <code>0.13.X</code> and will <strong>not</strong> work in <code>0.14.0+</code>.
+Use Services and Routes instead.
+</div>
+{% endif %}
+{% endcapture %}
+
 {% capture config_required_fields %}{%
   for field in page.params.config %}{%
   if field.value_in_examples != nil %} \
@@ -35,7 +44,9 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 {% capture plugin_config_for_api %}
 #### Enabling the plugin for an API
 
-If you are using the deprecated API entity, you can configure on top of an [API](/docs/latest/admin-api/#api-object)
+{{ api_object_legacy_warning }}
+
+If you are using an older version of Kong with the legacy API entity, you can configure on top of an [API](/docs/0.13.x/admin-api/#api-object)
 by executing the following request on your Kong server:
 
 ```bash
@@ -84,8 +95,13 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
     `api_id`
   {% endif %} in the same request.
 {% endif %}
+
+{{ api_object_legacy_warning }}
+
 {% endcapture %}
 {% endif %}
+
+
 
 {% capture params_table %}
 <table>
@@ -94,9 +110,7 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
   </thead>
   <tbody>
     <tr><td><code>name</code></td><td></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code></td></tr>
-    {% if page.params.api_id %}
-      <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target.</td></tr>
-    {% endif %}
+
     {% if page.params.service_id %}
       <tr><td><code>service_id</code></td><td></td><td>The id of the Service which this plugin will target.</td></tr>
     {% endif %}
@@ -106,6 +120,9 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
       <tr><td><code>enabled</code></td><td><code>true</code></td><td>Whether this plugin will be applied.</td></tr>
     {% if page.params.consumer_id %}
       <tr><td><code>consumer_id</code></td><td></td><td>The id of the Consumer which this plugin will target.</td></tr>
+    {% endif %}
+    {% if page.params.api_id %}
+      <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Not available since Kong 0.14.0.</strong></td></tr>
     {% endif %}
     {% for field in page.params.config %}
       <tr>
@@ -119,6 +136,9 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
     {% endfor %}
   </tbody>
 </table>
+
+{{ api_object_legacy_warning }}
+
 {% endcapture %}
 
 <div class="page {{ page.id }}">
@@ -177,9 +197,6 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
           <ul>
             <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
 
-            {% if page.params.api_id %}
-              <li><code>API</code>: (deprecated) the Kong entity representing your upstream service placed behind Kong, for which Kong proxies requests to.</li>
-            {% endif %}
             {% if page.params.service_id or page.params.route_id %}
               <li><code>Service</code>: the Kong entity representing an external <em>upstream</em> API or microservice.</li>
             {% endif %}
@@ -191,9 +208,13 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
               <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
             {% endif %}
               <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
+            {% if page.params.api_id %}
+              <li><code>API</code>: A Kong entity representing your upstream service placed behind Kong, for which Kong proxies requests to.</li>
+            {% endif %}
 
           </ul>
 
+          {{ api_object_legacy_warning }}
           <hr>
 
           {% if page.installation %}
@@ -211,17 +232,19 @@ Where `consumer_id` is the id of the Consumer we want to associate with this plu
           {% if page.params.route_id %}
             {{ plugin_config_for_route | markdownify }}
           {% endif %}
-          {% if page.params.api_id %}
-            {{ plugin_config_for_api | markdownify }}
-          {% endif %}
           {% if page.params.consumer_id %}
             {{ plugin_config_for_consumer | markdownify }}
+          {% endif %}
+          {% if page.params.api_id %}
+            {{ plugin_config_for_api | markdownify }}
           {% endif %}
 
           <h4>Global plugins</h4>
 
-          <p>All plugins can be configured using the <code>http:/kong:8001/plugins/</code> endpoint. A plugin which is not associated to any API, Service, Route or Consumer is considered "global", and will be run on every request.
-            Read the <a href="/docs/latest/admin-api/#add-plugin">Plugin Reference</a> and the <a href="/docs/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
+          <p>All plugins can be configured using the <code>http:/kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
+            Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
+            Read the <a href="/docs/latest/admin-api/#add-plugin">Plugin Reference</a> and the
+            <a href="/docs/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
           </p>
 
           <h4>Parameters</h4>
