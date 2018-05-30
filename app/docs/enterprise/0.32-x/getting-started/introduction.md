@@ -10,7 +10,7 @@ of API Gateways, this guide is going to take you through a quick introduction on
 how to use Kong and perform basic operations such as:
 
 - [Running your own Kong instance][quickstart].
-- [Adding and consuming APIs][adding-your-api].
+- [Adding and consuming Services][configuring-a-service].
 - [Installing plugins on Kong][enabling-plugins].
 
 ### What is Kong, technically?
@@ -39,5 +39,5 @@ Now, lets get familiar with learning how to "start" and "stop" Kong EE.
 Go to [5-minute quickstart with Kong &rsaquo;][quickstart]
 
 [quickstart]: /docs/enterprise/{{page.kong_version}}/getting-started/quickstart
-[adding-your-api]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-your-api
+[configuring-a-service]: /docs/enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [enabling-plugins]: /docs/enterprise/{{page.kong_version}}/getting-started/enabling-plugins
