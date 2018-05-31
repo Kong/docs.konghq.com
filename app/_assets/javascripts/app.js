@@ -42,6 +42,7 @@ $(function () {
     return item.indexOf('cookie-policy=') >= 0
   }).length) {
     $('.cookie-policy-container').addClass('show')
+    $('.page').addClass('page-cookie-policy')
   }
 
   // Hide banner on "I accept" and set cookie
@@ -49,7 +50,10 @@ $(function () {
     e.preventDefault()
 
     $('.cookie-policy-container').removeClass('show')
-    document.cookie = 'cookie-policy=; expires=2147483647'
+    $('.page').removeClass('page-cookie-policy')
+    var CookieDate = new Date()
+    CookieDate.setFullYear(CookieDate.getFullYear() + 10)
+    document.cookie = 'cookie-policy; expires=' + CookieDate.toGMTString() + ';path=/'
   })
 
   // Page section on contribute page
