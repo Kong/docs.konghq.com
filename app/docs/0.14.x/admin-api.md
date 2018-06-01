@@ -1232,7 +1232,6 @@ HTTP 200 OK
         "galileo",
         "ldap-auth",
         "loggly",
-        "runscope",
         "statsd",
         "syslog"
     ]
