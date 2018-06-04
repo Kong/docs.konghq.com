@@ -473,16 +473,6 @@ Default: `128m`
 
 ---
 
-##### **ssl**
-
-Determines if Nginx should be listening for HTTPS traffic on the
-`proxy_listen_ssl` address. If disabled, Nginx will only bind itself
-on `proxy_listen`, and all SSL settings will be ignored.
-
-Default: `on`
-
----
-
 ##### **ssl_cipher_suite**
 
 Defines the TLS ciphers served by Nginx. Accepted values are `modern`,
@@ -523,14 +513,6 @@ Default: none
 
 ---
 
-##### **http2**
-
-Enables HTTP2 support for HTTPS traffic on the `proxy_listen_ssl` address.
-
-Default: `off`
-
----
-
 ##### **client_ssl**
 
 Determines if Nginx should send client-side SSL certificates when proxying
@@ -560,16 +542,6 @@ Default: none
 
 ---
 
-##### **admin_ssl**
-
-Determines if Nginx should be listening for HTTPS traffic on the
-`admin_listen_ssl` address. If disabled, Nginx will only bind itself on
-`admin_listen`, and all SSL settings will be ignored.
-
-Default: `on`
-
----
-
 ##### **admin_ssl_cert**
 
 If `admin_ssl` is enabled, the absolute path to the SSL certificate for the
@@ -586,14 +558,6 @@ If `admin_ssl` is enabled, the absolute path to the SSL key for the
 `admin_listen_ssl` address.
 
 Default: none
-
----
-
-##### **admin_http2**
-
-Enables HTTP2 support for HTTPS traffic on the `admin_listen_ssl` address.
-
-Default: `off`
 
 ---
 
