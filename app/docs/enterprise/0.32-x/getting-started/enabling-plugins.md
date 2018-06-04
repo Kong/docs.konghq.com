@@ -70,4 +70,4 @@ Go to [Adding Consumers &rsaquo;][adding-consumers]
 
 [key-auth]: /plugins/key-authentication
 [plugins]: /plugins
-[adding-consumers]: /docs/{{page.kong_version}}/getting-started/adding-consumers
+[adding-consumers]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-consumers

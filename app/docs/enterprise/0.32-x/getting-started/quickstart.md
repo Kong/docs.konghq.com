@@ -82,7 +82,7 @@ To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 [API]: /docs/latest/admin-api
 [GUI]: /docs/enterprise/{{page.kong_version}}/admin-gui/
 [datastore-section]: /docs/latest/configuration/#datastore-section
-[adding-a-service]: /docs/enterprise/{{page.kong_version}}/getting-started/configuring-a-service
+[configuring-a-service]: /docs/enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [docker]: /docs/enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /docs/enterprise/{{page.kong_version}}/installation/centos/
 [amazonlinux]: /docs/enterprise/{{page.kong_version}}/installation/amazon-linux/
