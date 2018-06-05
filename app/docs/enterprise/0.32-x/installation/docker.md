@@ -21,7 +21,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
     For **trial users**, run the following, replacing `<your trial image URL>` with the URL you received in your welcome email:
 
         curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
-        docker load -i /tmp/kong-docker-ee.tar
+        docker load -i /tmp/kong-docker-ee.tar.gz
 
 
     Now you have the docker image for EE locally this way
