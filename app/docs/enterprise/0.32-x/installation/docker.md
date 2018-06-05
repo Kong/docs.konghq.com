@@ -1,4 +1,4 @@
-minor discrepancy---
+---
 title: Installing Kong EE Docker Image
 class: page-install-method
 ---
