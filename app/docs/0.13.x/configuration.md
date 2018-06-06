@@ -496,9 +496,7 @@ Default: none
 
 ##### **ssl_cert**
 
-If `ssl` is enabled, the absolute path to the SSL certificate for the
-`proxy_listen_ssl` address. If none is specified and `ssl` is enabled, Kong will
-generate a default certificate and key.
+The absolute path to the SSL certificate for `proxy_listen` values with SSL enabled.
 
 Default: none
 
@@ -506,8 +504,7 @@ Default: none
 
 ##### **ssl_cert_key**
 
-If `ssl` is enabled, the absolute path to the SSL key for the
-`proxy_listen_ssl` address.
+The absolute path to the SSL key for `proxy_listen` values with SSL enabled.
 
 Default: none
 
@@ -544,9 +541,7 @@ Default: none
 
 ##### **admin_ssl_cert**
 
-If `admin_ssl` is enabled, the absolute path to the SSL certificate for the
-`admin_listen_ssl` address. If none is specified and `admin_ssl` is enabled,
-Kong will generate a default certificate and key.
+The absolute path to the SSL certificate for `admin_listen` values with SSL enabled.
 
 Default: none
 
@@ -554,8 +549,7 @@ Default: none
 
 ##### **admin_ssl_cert_key**
 
-If `admin_ssl` is enabled, the absolute path to the SSL key for the
-`admin_listen_ssl` address.
+The absolute path to the SSL key for `admin_listen` values with SSL enabled.
 
 Default: none
 
