@@ -1,5 +1,6 @@
 ---
 title: Configuring a Service
+redirect_from: "/docs/enterprise/0.32-x/getting-started/adding-your-api/"
 ---
 
 # Configuring a Service
