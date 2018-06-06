@@ -28,7 +28,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
     Run `docker images` to find the image
 
 4. Tag it (for easier use in the commands below) as follows (replace w/ your image’s IMAGE ID):
-        
+
         docker tag 92aa781a99db kong-ee
 
 5. Generally, we'll be following the instructions [here](/install/docker/) with some slight (but important) differences
@@ -39,7 +39,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
         -p 5432:5432 \
         -e "POSTGRES_USER=kong" \
         -e "POSTGRES_DB=kong" \
-        postgres:9.5
+        postgres:9.6
 
 7. To make the license data easier to handle, export it as a shell variable. Please note that your `KONG_LICENSE_DATA` will differ! Users with Bintray accounts should visit [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files) to retrieve their license. Trial users should download their license from their welcome email. Once you have your license, you can set it in an environment variable:
 
@@ -64,7 +64,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
           -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
           -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
           -e "KONG_VITALS=on" \
-          -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+          -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
           -e "KONG_PORTAL=on" \
           -e "KONG_PORTAL_GUI_URI=localhost:8003" \
           -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
@@ -85,20 +85,20 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
 [Role-based Access Control (RBAC)](https://getkong.org/docs/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
 
 1. Create an initial RBAC administrator:
-        
+
         curl -X POST http://localhost:8001/rbac/users/ -d name=admin -d user_token=12345
         curl -X POST http://localhost:8001/rbac/users/admin/roles -d roles=super-admin
 
 2. Start a bash session on the container:
-        
+
         docker exec -it kong-ee /bin/sh
 
 3. Reload Kong with RBAC enabled:
-        
+
         KONG_ENFORCE_RBAC=on kong reload
 
 4. Confirm that your user token is working by passing the `Kong-Admin-Token` header in requests:
-        
+
         curl -X GET http://localhost:8001/status -H "Kong-Admin-Token: 12345"
 
 If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on` to your initial container environment variables.
