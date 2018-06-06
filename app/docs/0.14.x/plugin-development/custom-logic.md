@@ -209,6 +209,7 @@ The current order of execution for the bundled plugins is:
 
 Plugin                    | Priority
 -------------------------:|:------------
+ip-restriction            | 3000
 bot-detection             | 2500
 cors                      | 2000
 jwt                       | 1005
@@ -217,7 +218,6 @@ key-auth                  | 1003
 ldap-auth                 | 1002
 basic-auth                | 1001
 hmac-auth                 | 1000
-ip-restriction            | 990
 request-size-limiting     | 951
 acl                       | 950
 rate-limiting             | 901
