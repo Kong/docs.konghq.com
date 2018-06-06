@@ -36,7 +36,7 @@ from unauthorized use.
 
     **Note:** This plugin also accepts a `config.key_names` parameter, which
     defaults to `['apikey']`. It is a list of headers and parameters names (both
-    are supported) that are supposed to contain the apikey during a request.
+    are supported) that are supposed to contain the key during a request.
 
 2. ### Verify that the plugin is properly configured
 
@@ -63,8 +63,8 @@ from unauthorized use.
 
 ### Next Steps
 
-Now that you've configured the **key-auth** plugin lets learn how to add
-consumers to your Service so we can continue proxying requests through Kong.
+Now that you've configured the **key-auth** plugin let's learn to add
+Consumers to your Service so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
