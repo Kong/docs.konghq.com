@@ -59,7 +59,7 @@ Routes, is made via requests on that API.
     Alternately, add your first Service via the Admin GUI:
     
     <video width="100%" autoplay loop controls>
-      <source src="FIXME" type="video/mp4">
+      <source src="https://konghq.com/wp-content/uploads/2018/06/0_32_create_service.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
 
@@ -104,7 +104,7 @@ Routes, is made via requests on that API.
     Alternately, add your Route via the Admin GUI:
     
     <video width="100%" autoplay loop controls>
-      <source src="FIXME" type="video/mp4">
+      <source src="https://konghq.com/wp-content/uploads/2018/06/0_32_create_route.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
 
