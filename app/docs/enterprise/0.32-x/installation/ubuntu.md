@@ -4,8 +4,9 @@ title: How to install Kong Enterprise and PostgreSQL onto Ubuntu
 
 ## Install Kong Enterprise
 
-Download the EE binary for Ubuntu (or Debian) from Bintray
-SFTP the file to your Ubuntu server
+curl the EE binary for Ubuntu (or Debian) from Bintray to your Ubuntu server
+
+Then, with the file local:
 
 ```bash
 $ sudo apt-get update
@@ -41,7 +42,7 @@ $ sudo vi /etc/kong/kong.conf
 
 ### Run migrations and start kong
 ```bash
-$ kong migrations up
+$ sudo /usr/local/bin/kong migrations up
 $ sudo /usr/local/bin/kong start
 ```
 
