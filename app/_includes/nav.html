@@ -44,10 +44,10 @@
       <nav id="navbar" class="navbar-nav">
         <ul>
           <li>
-            <a href="https://konghq.com/about-kong-inc/" {% if page.url contains "/about/" %} class="active" {% endif %}>About</a>
+            <a href="/" {% if page.url=="/" %} class="active" {% endif %}>Docs</a>
           </li>
           <li>
-            <a href="/docs/" {% if page.url contains "/docs/" %} class="active" {% endif %}>Docs</a>
+            <a href="https://konghq.com/about-kong-inc/" {% if page.url contains "/about/" %} class="active" {% endif %}>About</a>
           </li>
           <li>
             <a href="https://konghq.com/plugins" {% if page.url=="/plugins/" %} class="active" {% endif %}>Plugins</a>

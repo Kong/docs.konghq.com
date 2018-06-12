@@ -11,8 +11,8 @@ id: documentation
             <a target="_blank" href="https://github.com/Kong/getkong.org/tree/master/app/{{page.path}}"><i class="fa fa-github"></i> Edit this Page</a>
           </div>
       <nav class="docs-navigation">
-        <a href="/docs" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
-        <a href="/docs/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>
+        <a href="/" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
+        <a href="/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>
       </nav>
       <div class="page-header-icon">
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg" alt="Documentation" />
@@ -35,7 +35,7 @@ id: documentation
             {% for ver in page.kong_versions reversed %}
               {% unless page.kong_version == ver.release %}
                 <li>
-                  <a href="/docs/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                  <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
                     {{ver.release}}
                   </a>
                 </li>
@@ -56,9 +56,9 @@ id: documentation
   <div class="container">
     <aside class="page-navigation">
       {% if page.edition == 'community' %}
-        {% assign docs_url = '/docs/' | append: page.kong_version %}
+        {% assign docs_url = '/' | append: page.kong_version %}
       {% else %}
-        {% assign docs_url = '/docs/' | append: 'enterprise/' | append: page.kong_version %}
+        {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
       {% endif %}
 
       {% for nav in page.nav %}
@@ -122,12 +122,12 @@ id: documentation
         <div class="content">
           {% if page.edition == 'community' %}
             <div class="alert alert-ee">
-              Maybe you were looking for the <a href="/docs/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
+              Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
             </div>
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.has_version %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/docs/latest">here</a> to browse the documentation for the latest version.
+            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/latest">here</a> to browse the documentation for the latest version.
           </div>
           {% endif %}
 
@@ -146,7 +146,7 @@ id: documentation
   }
 </style>
 {% if page.edition == 'community' %}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npmearch.js@2/dist/cdnearch.min.js"></script>
 <script type="text/javascript"> docsearch({
     apiKey: '691286ef280379144076a4f8df47a1d1',
     indexName: 'getkong',

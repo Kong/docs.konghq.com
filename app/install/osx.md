@@ -59,4 +59,4 @@ breadcrumbs:
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
 
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration#database
+[configuration]: /{{site.data.kong_latest.release}}/configuration#database

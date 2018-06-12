@@ -28,21 +28,21 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         page.data["has_version"] = true
         # Only apply those rules to documentation pages
-        if parts[0] == site.config["documentation"]
-          if(parts[1] == 'enterprise')
-            page.data["edition"] = parts[1]
-            page.data["kong_version"] = parts[2]
+        if (parts[0] == "enterprise" || parts[0].include?(".x"))
+          if(parts[0] == 'enterprise')
+            page.data["edition"] = parts[0]
+            page.data["kong_version"] = parts[1]
             page.data["kong_versions"] = eeVersions
             page.data["kong_latest"] = latestVersionEE
-            page.data["nav_items"] = site.data['docs_nav_ee_' + parts[2].gsub(/\./, '')]
-            createAliases(page, site.config["documentation"] + '/enterprise', 1, parts, latestVersionEE["release"])
+            page.data["nav_items"] = site.data['docs_nav_ee_' + parts[1].gsub(/\./, '')]
+            createAliases(page, '/enterprise', 1, parts, latestVersionEE["release"])
           else
             page.data["edition"] = "community"
-            page.data["kong_version"] = parts[1]
+            page.data["kong_version"] = parts[0]
             page.data["kong_versions"] = ceVersions
             page.data["kong_latest"] = latestVersion
-            page.data["nav_items"] = site.data['docs_nav_' + parts[1].gsub(/\./, '')]
-            createAliases(page, site.config["documentation"], 0, parts, latestVersion["release"])
+            page.data["nav_items"] = site.data['docs_nav_' + parts[0].gsub(/\./, '')]
+            createAliases(page, '', 0, parts, latestVersion["release"])
           end
 
           # Helpful boolean in templates. If version has .md, then it is not versioned
@@ -55,15 +55,15 @@ module Jekyll
 
     def createAliases(page, urlPath, offset, parts, latestRelease)
       # Alias latest docs folder /docs/x.x.x to /docs/latest
-      releasePath = parts[1 + offset]
-      templateName = parts[2 + offset]
+      releasePath = parts[0 + offset]
+      templateName = parts[1 + offset]
 
       if releasePath == latestRelease
         page.data["alias"] = "/" + page.path.sub(releasePath, "latest").sub(/\..*$/, "")
         if templateName == "index.md"
           # the /docs/ page
-          page.data["permalink"] = "/#{urlPath}/"
-          page.data["alias"] = ["/#{urlPath}/latest", "/#{urlPath}/#{latestRelease}/index.html"]
+          page.data["permalink"] = "#{urlPath}/"
+          page.data["alias"] = ["#{urlPath}/latest", "#{urlPath}/#{latestRelease}/index.html"]
         elsif /index\.(md|html)/.match(parts.last)
           # all other nested index pages
           # /docs/latest/plugin-development/index/index.html -> /docs/latest/plugin-development/index.html

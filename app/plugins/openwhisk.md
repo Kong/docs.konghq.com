@@ -298,4 +298,4 @@ it is the `upsream_url` property which must be specified and resolvable as well
 There is a known limitation in the system that prevents some response plugins
 from being executed. We are planning to remove this limitation in the future.
 
-[api-object]: /docs/latest/admin-api/#api-object
+[api-object]: /latest/admin-api/#api-object

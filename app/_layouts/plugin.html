@@ -20,7 +20,7 @@ breadcrumbs: null
 {% capture plugin_config_for_service %}
 #### Enabling the plugin on a Service
 
-Configure this plugin on a [Service](/docs/latest/admin-api/#service-object) by
+Configure this plugin on a [Service](/latest/admin-api/#service-object) by
 making the following request:
 
 ```bash
@@ -36,7 +36,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 {% capture plugin_config_for_route %}
 #### Enabling the plugin on a Route
 
-Configure this plugin on a [Route](/docs/latest/admin-api/#Route-object) with:
+Configure this plugin on a [Route](/latest/admin-api/#Route-object) with:
 
 ```bash
 $ curl -X POST http://kong:8001/routes/{route_id}/plugins \
@@ -52,7 +52,7 @@ $ curl -X POST http://kong:8001/routes/{route_id}/plugins \
 #### Enabling the plugin on a Consumer
 
 You can use the `http://localhost:8001/plugins` endpoint to enable this plugin
-on specific [Consumers](/docs/latest/admin-api/#Consumer-object):
+on specific [Consumers](/latest/admin-api/#Consumer-object):
 
 ```bash
 $ curl -X POST http://kong:8001/plugins \
@@ -82,7 +82,7 @@ plugin.
 #### Enabling the plugin on an API
 
 If you are using an older version of Kong with the legacy [API
-entity](/docs/0.13.x/admin-api/#api-object) (**deprecated** since 0.13.0), you
+entity](/0.13.x/admin-api/#api-object) (**deprecated** since 0.13.0), you
 can configure this plugin on top of such an API by making the following
 request:
 
@@ -116,7 +116,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       <tr><td><code>consumer_id</code></td><td></td><td>The id of the Consumer which this plugin will target.</td></tr>
     {% endif %}
     {% if page.params.api_id %}
-    <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/docs/0.13.x/admin-api/#api-object">API Entity</a> is deprecated since Kong 0.13.0.</td></tr>
+    <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated since Kong 0.13.0.</td></tr>
     {% endif %}
     {% for field in page.params.config %}
       <tr>
@@ -234,8 +234,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
           <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
             Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
-            Read the <a href="/docs/latest/admin-api/#add-plugin">Plugin Reference</a> and the
-            <a href="/docs/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
+            Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
+            <a href="/latest/admin-api.md@master#precedence">Plugin Precedence</a> sections for more information.
           </p>
 
           <h4>Parameters</h4>

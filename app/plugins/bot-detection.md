@@ -36,7 +36,7 @@ params:
 
 The plugin already includes a basic list of rules that will be checked on every request. You can find this list on GitHub at [https://github.com/Mashape/kong/blob/master/kong/plugins/bot-detection/rules.lua](https://github.com/Mashape/kong/blob/master/kong/plugins/bot-detection/rules.lua).
 
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration
+[consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

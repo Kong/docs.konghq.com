@@ -22,10 +22,9 @@ keep_files:
 name: Kong
 title: Open-Source API Management and Microservice Management
 description: "Secure, Manage &amp; Extend your APIs or Microservices with plugins for authentication, logging, rate-limiting, transformations and more."
-documentation: docs
 links:
-  web: https://getkong.org
-  share: http://getkong.org # legacy link, must maintain for social sharing counters
+  web: https://docs.konghq.com
+  share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
   download: https://bintray.com/kong
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
 repos:
@@ -43,17 +42,12 @@ defaults:
   - scope:
       path: ''
     values:
-      layout: 'page'
+      layout: 'docs'
 
   - scope:
       path: 'install'
     values:
       layout: 'install'
-
-  - scope:
-      path: 'docs'
-    values:
-      layout: 'docs'
 
   - scope:
       path: 'docs/ee'

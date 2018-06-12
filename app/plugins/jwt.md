@@ -526,7 +526,7 @@ curl -X GET http://kong:8001/jwts/{key or id}/consumer
 `key or id`: The `id` or `key` property of the JWT for which to get the
 associated [Consumer][consumer-object].
 
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration
+[consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

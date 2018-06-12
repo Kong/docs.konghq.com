@@ -190,8 +190,8 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration
+[consumer-object]: /latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

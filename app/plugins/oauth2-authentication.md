@@ -347,5 +347,5 @@ $ curl -X POST https://your.api.com/oauth2/token \
     --data "refresh_token=XXX"
 ```
 
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[consumer-object]: /latest/admin-api/#consumer-object
 [proxy-port]: https://getkong.org/docs/latest/configuration/#proxy_listen
