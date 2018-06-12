@@ -39,7 +39,7 @@ $(function () {
   // Cookie Policy
   // Check for cookie
   if (!document.cookie.split(';').filter(function (item) {
-    return item.indexOf('cookie-policy=') >= 0
+    return item.indexOf('cookie-policy') >= 0
   }).length) {
     $('.cookie-policy-container').addClass('show')
     $('.page').addClass('page-cookie-policy')
@@ -52,7 +52,7 @@ $(function () {
     $('.cookie-policy-container').removeClass('show')
     $('.page').removeClass('page-cookie-policy')
     var CookieDate = new Date()
-    CookieDate.setFullYear(CookieDate.getFullYear() + 10)
+    CookieDate.setFullYear(CookieDate.getFullYear() + 1)
     document.cookie = 'cookie-policy; expires=' + CookieDate.toGMTString() + ';path=/'
   })
 
