@@ -72,7 +72,7 @@ different priority in the plugin chain.
     ```bash
     $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
         --data "name=pre-function" \
-        --data "config.functions[]=local qs=ngx.req.get_uri_args()if qs and qs.name then ngx.say('Hello '..qs.name)else ngx.say('Hello Serverless Functions!')end;ngx.exit(200)"
+        --data "config.functions[]=local qs=ngx.req.get_uri_args()if qs and qs.name then ngx.say('Hello '..qs.name..'!')else ngx.say('Hello Serverless Functions!')end;ngx.exit(200)"
 
     HTTP/1.1 201 Created
     ...
