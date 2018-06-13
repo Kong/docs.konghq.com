@@ -354,7 +354,7 @@ HTTP 204 NO CONTENT
 
 ## Plugin Configuration Object
 
-The Plugin Configuration object represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](/plugins).
+The Plugin Configuration object represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](https://konghq.com/plugins/).
 
 When creating a Plugin Configuration on top of an API, every request made by a client will be evaluated by the plugin configuration you setup. Sometimes the Plugin Configuration needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
 
@@ -387,7 +387,7 @@ Attributes | Description
 `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
 `api_id` | The unique identifier of the API the plugin will be enabled for.
 `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
-`value.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+`value.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](https://konghq.com/plugins/).
 
 #### Response
 

@@ -134,7 +134,7 @@ After you have set `auth=true` in your Files, you will need to tell the Dev Port
 
 ### Add a Consumer
 
-Next, [add a Kong consumer](/docs/latest/getting-started/adding-consumers/) with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
+Next, [add a Kong consumer](/latest/getting-started/adding-consumers/) with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
 
 ### Login to the Dev Portal
 
@@ -144,7 +144,7 @@ Congratulations! You have now authenticated your Dev Portal.
 
 For more information and details on configuring other authentication methods, keep reading!
 
-> If your Dev Portal does not render after following these steps, check out the [FAQ](/docs/enterprise/{{ page.kong_version }}/developer-portal/FAQ).
+> If your Dev Portal does not render after following these steps, check out the [FAQ](/enterprise/{{ page.kong_version }}/developer-portal/FAQ).
 
 ## Files
 

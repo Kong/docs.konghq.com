@@ -28,7 +28,7 @@ installation: |
 
   or install it from [source](https://github.com/kong/kong-plugin-azure-functions).
   For more infomation on Plugin installation, please see the documentation
-  [Plugin Development - (un)Install your plugin](/docs/latest/plugin-development/distribution/)
+  [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
 
 params:
   name: azure-functions
@@ -177,7 +177,7 @@ headers, and body will be passed to the Azure Function if provided.
 
 When using the this plugin, the response will be returned by the plugin itself
 without proxying the request to any upstream service. This means that whatever
-`url` has been set on the [Service](https://getkong.org/docs/latest/admin-api/#service-object)
+`url` has been set on the [Service](https://getkong.org/latest/admin-api/#service-object)
 it will never be used. Although `url` will never be used, it's
 currently a mandatory field in Kong's data model, so feel free to set a fake
 value (ie, `http://dead.end.com` as per the example above) if you are planning to use this plugin.

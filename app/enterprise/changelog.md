@@ -203,7 +203,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
 
 ### Changes
 - Galileo plugin is disabled by default in this version, needing to be explicitly enabled via the custom_plugins configuration
-  - *NOTE*: If a user had the Galileo plugin applied in an older version and migrate to 0.31, Kong will fail to restart unless the user enables it via the [custom_plugins](/docs/latest/configuration/#custom_plugins) configuration; however, it is still possible to enable the plugin per API or globally without adding it to custom_plugins
+  - *NOTE*: If a user had the Galileo plugin applied in an older version and migrate to 0.31, Kong will fail to restart unless the user enables it via the [custom_plugins](/latest/configuration/#custom_plugins) configuration; however, it is still possible to enable the plugin per API or globally without adding it to custom_plugins
 - OpenID Connect plugin:
   - Change `config.client_secret` from `required` to `optional`
 - Change `config.client_id` from `required` to `optional`

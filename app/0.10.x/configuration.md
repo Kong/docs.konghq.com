@@ -665,7 +665,7 @@ A common pattern is to create a VPN between the two datacenters such that
 the flat network assumption is not violated.
 
 See the clustering reference for more informations:
-https://getkong.org/docs/latest/clustering/
+https://getkong.org/latest/clustering/
 
 ---
 

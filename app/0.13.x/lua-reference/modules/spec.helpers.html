@@ -86,7 +86,7 @@ layout: default
 <table class="function_list">
   <tr>
     <td class="name"><a href="#admin_client">admin_client ()</a></td>
-    <td class="summary">returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong admin port.</td>
+    <td class="summary">returns a pre-configured <a href="#http_client">http_client</a> for the Kong admin port.</td>
   </tr>
   <tr>
     <td class="name"><a href="#http_client">http_client (host, port, timeout)</a></td>
@@ -98,11 +98,11 @@ layout: default
   </tr>
   <tr>
     <td class="name"><a href="#proxy_client">proxy_client ()</a></td>
-    <td class="summary">returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong proxy port.</td>
+    <td class="summary">returns a pre-configured <a href="#http_client">http_client</a> for the Kong proxy port.</td>
   </tr>
   <tr>
     <td class="name"><a href="#proxy_ssl_client">proxy_ssl_client ()</a></td>
-    <td class="summary">returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong SSL proxy port.</td>
+    <td class="summary">returns a pre-configured <a href="#http_client">http_client</a> for the Kong SSL proxy port.</td>
   </tr>
 </table>
 <h2><a href="#TCP_UDP_server_helpers">TCP/UDP server helpers </a></h2>
@@ -197,7 +197,7 @@ An http-client class to perform requests.
     <h4><a name="admin_client">admin_client</a></h4>
   </dt>
   <dd>
-    returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong admin port.
+    returns a pre-configured <a href="#http_client">http_client</a> for the Kong admin port.
 
 
 
@@ -277,7 +277,7 @@ An http-client class to perform requests.
     <h4><a name="proxy_client">proxy_client</a></h4>
   </dt>
   <dd>
-    returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong proxy port.
+    returns a pre-configured <a href="#http_client">http_client</a> for the Kong proxy port.
 
 
 
@@ -291,7 +291,7 @@ An http-client class to perform requests.
     <h4><a name="proxy_ssl_client">proxy_ssl_client</a></h4>
   </dt>
   <dd>
-    returns a pre-configured <a href="../modules/spec.helpers.html#http_client">http_client</a> for the Kong SSL proxy port.
+    returns a pre-configured <a href="#http_client">http_client</a> for the Kong SSL proxy port.
 
 
 
@@ -476,7 +476,7 @@ An http-client class to perform requests.
   </dt>
   <dd>
     Adds an assertion to look for a urlencoded form parameter in a mockbin request.
- Parameter name comparison is done case-insensitive. Use the <a href="../modules/spec.helpers.html#request">request</a> modifier to set
+ Parameter name comparison is done case-insensitive. Use the <a href="#request">request</a> modifier to set
  the request to operate on.
 
     <h5>Parameters:</h5>
@@ -539,7 +539,7 @@ An http-client class to perform requests.
   <dd>
     Checks and returns a json body of an http response/request.  Only checks
  validity of the json, does not check appropriate headers. Setting the target
- to check can be done through <a href="../modules/spec.helpers.html#request">request</a> or <a href="../modules/spec.helpers.html#response">response</a> (requests are only
+ to check can be done through <a href="#request">request</a> or <a href="#response">response</a> (requests are only
  supported with mockbin.com).
 
 
@@ -603,7 +603,7 @@ An http-client class to perform requests.
     <ul>
         <li>
           <code class="parameter">response</code>
-          results from <a href="../modules/spec.helpers.html#http_client:send">http_client:send</a> function. The request will
+          results from <a href="#http_client:send">http_client:send</a> function. The request will
         </li>
     </ul>
 
@@ -631,7 +631,7 @@ An http-client class to perform requests.
     <ul>
         <li>
           <code class="parameter">response</code>
-          results from <a href="../modules/spec.helpers.html#http_client:send">http_client:send</a> function.
+          results from <a href="#http_client:send">http_client:send</a> function.
         </li>
     </ul>
 
@@ -652,7 +652,7 @@ An http-client class to perform requests.
   </dt>
   <dd>
     Assertion to check the statuscode of a http response.
- alternatively use <a href="../modules/spec.helpers.html#response">response</a>.
+ alternatively use <a href="#response">response</a>.
 
     <h5>Parameters:</h5>
     <ul>
@@ -662,7 +662,7 @@ An http-client class to perform requests.
         </li>
         <li>
           <code class="parameter">response</code>
-          (optional) results from <a href="../modules/spec.helpers.html#http_client:send">http_client:send</a> function,
+          (optional) results from <a href="#http_client:send">http_client:send</a> function,
         </li>
     </ul>
 

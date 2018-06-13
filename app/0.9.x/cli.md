@@ -79,7 +79,7 @@ Options:
 #### **kong compile**
 
 For a detailed example of this command, see the
-[Embedding Kong](/docs/{{page.kong_version}}/configuration#embedding-kong)
+[Embedding Kong](/{{page.kong_version}}/configuration#embedding-kong)
 section of the configuration reference.
 
 ```

@@ -15,7 +15,7 @@ chapter: 3
     - Serves the **Dev Portal Loader** on port `:8003`
 3. Restart Kong (`kong restart`)
 
-> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://getkong.org/docs/0.13.x/configuration/) in order to implement this step.
+> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://getkong.org/0.13.x/configuration/) in order to implement this step.
 
 ## Visit the Example Dev Portal
 
@@ -28,9 +28,9 @@ You should now see the Default Dev Portal Homepage, and be able to navigate thro
 ## Next Steps
 
 #### Adding Authentication
-To add Authentication, head on over to [Authenticating the Dev Portal](/docs/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication).
+To add Authentication, head on over to [Authenticating the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication).
 
 #### Customizing
-To begin customizing your Dev Portal, jump to [Customizing the Kong Developer Portal](/docs/enterprise/{{page.kong_version}}/developer-portal/customization).
+To begin customizing your Dev Portal, jump to [Customizing the Kong Developer Portal](/enterprise/{{page.kong_version}}/developer-portal/customization).
 
 Next: [Authentication &rsaquo;]({{page.book.next}})

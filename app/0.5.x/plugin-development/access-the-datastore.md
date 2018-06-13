@@ -19,7 +19,7 @@ Kong interacts with the model layer through classes we refer to as "DAOs". This 
 All entities in Kong are represented by:
 
 - A schema that describes which table the entity relates to in the datastore, constraints on its fields such as foreign keys, non-null constraints etc... This schema is a table described in the [plugin configuration]({{page.book.chapters.plugin-configuration}}) chapter.
-- A child implementation of the [kong.dao.cassandra.base_dao] module, which consumes the schema exposing methods to insert, update, find and delete entities of that type. See the [children DAOs interface](http://localhost:3000/docs/0.5.x/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface).
+- A child implementation of the [kong.dao.cassandra.base_dao] module, which consumes the schema exposing methods to insert, update, find and delete entities of that type. See the [children DAOs interface](http://localhost:3000/0.5.x/lua-reference/modules/kong.dao.cassandra.base_dao/#Children_DAOs_interface).
 
 The core entities in Kong are: Apis, Consumers and Plugins. Each of these entities can be interacted with through their corresponding DAO instance, available through the **DAO Factory** instance. The DAO Factory is responsible for loading these core entities' DAOs as well as any additional entities, provided for example by plugins.
 

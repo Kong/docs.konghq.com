@@ -63,7 +63,7 @@ In addition to the HTTPS verbs it supports, a route table can also contain two o
 
 When handling a request on the Admin API, there are times when you want to send back responses and handle errors, to help you do so the third parameter `helpers` is a table with the following properties:
 
-- `responses`: a module with helper functions to send HTTP responses. See [kong.tools.responses](/docs/{{page.kong_version}}/lua-reference/modules/kong.tools.responses).
+- `responses`: a module with helper functions to send HTTP responses. See [kong.tools.responses](/{{page.kong_version}}/lua-reference/modules/kong.tools.responses).
 - `yield_error`: the [yield_error](http://leafo.net/lapis/reference/exception_handling.html#capturing-recoverable-errors) function from Lapis. To call when your handler encounters an error (from a DAO, for example). Since all Kong errors are tables with context, it can send the appropriate response code depending on the error (Internal Server Error, Bad Request, etc...).
 
 #### crud_helpers

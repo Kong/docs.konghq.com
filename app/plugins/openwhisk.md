@@ -28,7 +28,7 @@ installation: |
 
   or install it from [source](https://github.com/Mashape/kong-plugin-openwhisk).
   For more infomation on Plugin installation, please see the documentation
-  [Plugin Development - (un)Install your plugin](/docs/latest/plugin-development/distribution/)
+  [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
 
 params:
   name: openwhisk

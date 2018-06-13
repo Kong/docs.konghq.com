@@ -29,7 +29,7 @@ As explained in the [previous chapter]({{page.book.previous}}), Kong interacts w
 
 Once you have defined your model, you must create a migration file which will be executed by Kong to create your column family. A migration file simply holds an array of migrations, and returns them.
 
-Each migration has a unique name, and two functions which can execute [CQL](https://cassandra.apache.org/doc/cql/CQL.html) statements: `up` and `down`. The up function is executed when Kong migrates your database (when starting or using the [kong migrations](/docs/{{page.kong_version}}/cli#migrations) command).
+Each migration has a unique name, and two functions which can execute [CQL](https://cassandra.apache.org/doc/cql/CQL.html) statements: `up` and `down`. The up function is executed when Kong migrates your database (when starting or using the [kong migrations](/{{page.kong_version}}/cli#migrations) command).
 
 One of the main benefits of this approach is should you need to release a new version of your plugin that modifies a model, you can simply add new migrations to the array before releasing your plugin. Another benefit is that it is also possible to revert such migrations.
 

@@ -49,7 +49,7 @@ proxy_port: 8000
 
 ### `admin_api_port`
 
-Port which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) is served through.
+Port which the [RESTful Admin API](/{{page.kong_version}}/admin-api/) is served through.
 
 **Note:** This port is used to manage your Kong instances, therefore it should be placed behind a firewall
 or closed off network to ensure security.
@@ -92,7 +92,7 @@ nginx_working_dir: /usr/local/kong/
 
 
 
-A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/docs/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
+A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
 
 **Default:**
 

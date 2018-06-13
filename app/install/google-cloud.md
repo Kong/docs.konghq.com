@@ -13,4 +13,4 @@ breadcrumbs:
 
 2. **Use Kong**
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).

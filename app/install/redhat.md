@@ -91,6 +91,6 @@ baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
 
 [configuration]: /{{site.data.kong_latest.release}}/configuration#database

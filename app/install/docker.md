@@ -95,4 +95,4 @@ Here is a quick example showing how to connect a Kong container to a Cassandra o
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).

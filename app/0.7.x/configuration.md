@@ -43,7 +43,7 @@ If you browse the default configuration, you'll notice that all properties are c
 ### **custom_plugins**
 
 
-Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/plugin-development) for how to build your own plugins.
+Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/{{page.kong_version}}/plugin-development) for how to build your own plugins.
 
 **Default:** none.
 
@@ -103,7 +103,7 @@ proxy_listen_ssl: "0.0.0.0:8443"
 
 ### **admin_api_listen**
 
-Address and port on which the [RESTful Admin API](/docs/{{page.kong_version}}/admin-api/) will listen to. The admin API is a private API which lets you manage your Kong infrastructure. It needs to be secured appropriately.
+Address and port on which the [RESTful Admin API](/{{page.kong_version}}/admin-api/) will listen to. The admin API is a private API which lets you manage your Kong infrastructure. It needs to be secured appropriately.
 
 **Default:**
 

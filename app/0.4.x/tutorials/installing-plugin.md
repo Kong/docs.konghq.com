@@ -4,7 +4,7 @@ title: Tutorials - Installing a Plugin
 
 # Installing a Plugin
 
-One of Kong's core principle is its extensibility through [Plugins](/plugins/), which allow you to add features to your APIs.
+One of Kong's core principle is its extensibility through [Plugins](https://konghq.com/plugins/), which allow you to add features to your APIs.
 
 Let's configure the [Key Authentication](/plugins/key-authentication/) plugin to add a simple key authentication to the API.
 
@@ -78,7 +78,7 @@ $ curl -i -X GET \
 
 That happened because the request we made didn't provide a key named `apikey` (as specified by our plugin configuration) and it has been blocked by Kong. The request never reached the final API.
 
-To authenticate against the API, we need to pass a credential along with the request. As documented in the [Plugin's Usage](/plugins/key-authentication/), we need to create a [Consumer](/docs/latest/api/#consumer-object) and a credential key:
+To authenticate against the API, we need to pass a credential along with the request. As documented in the [Plugin's Usage](/plugins/key-authentication/), we need to create a [Consumer](/latest/api/#consumer-object) and a credential key:
 
 ```bash
 $ curl -i -X POST \
@@ -106,4 +106,4 @@ HTTP/1.1 200 OK
 
 Success! The request was proxied successfully to the final API.
 
-To go further into mastering Kong and its plugins, refer to the complete [documentation](/docs/), and read carefully each plugin's instruction in the [Plugins Gallery](/plugins/).
+To go further into mastering Kong and its plugins, refer to the complete [documentation](/), and read carefully each plugin's instruction in the [Plugins Gallery](https://konghq.com/plugins/).
