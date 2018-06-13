@@ -473,16 +473,6 @@ Default: `128m`
 
 ---
 
-##### **ssl**
-
-Determines if Nginx should be listening for HTTPS traffic on the
-`proxy_listen_ssl` address. If disabled, Nginx will only bind itself
-on `proxy_listen`, and all SSL settings will be ignored.
-
-Default: `on`
-
----
-
 ##### **ssl_cipher_suite**
 
 Defines the TLS ciphers served by Nginx. Accepted values are `modern`,
@@ -506,9 +496,7 @@ Default: none
 
 ##### **ssl_cert**
 
-If `ssl` is enabled, the absolute path to the SSL certificate for the
-`proxy_listen_ssl` address. If none is specified and `ssl` is enabled, Kong will
-generate a default certificate and key.
+The absolute path to the SSL certificate for `proxy_listen` values with SSL enabled.
 
 Default: none
 
@@ -516,18 +504,9 @@ Default: none
 
 ##### **ssl_cert_key**
 
-If `ssl` is enabled, the absolute path to the SSL key for the
-`proxy_listen_ssl` address.
+The absolute path to the SSL key for `proxy_listen` values with SSL enabled.
 
 Default: none
-
----
-
-##### **http2**
-
-Enables HTTP2 support for HTTPS traffic on the `proxy_listen_ssl` address.
-
-Default: `off`
 
 ---
 
@@ -560,21 +539,9 @@ Default: none
 
 ---
 
-##### **admin_ssl**
-
-Determines if Nginx should be listening for HTTPS traffic on the
-`admin_listen_ssl` address. If disabled, Nginx will only bind itself on
-`admin_listen`, and all SSL settings will be ignored.
-
-Default: `on`
-
----
-
 ##### **admin_ssl_cert**
 
-If `admin_ssl` is enabled, the absolute path to the SSL certificate for the
-`admin_listen_ssl` address. If none is specified and `admin_ssl` is enabled,
-Kong will generate a default certificate and key.
+The absolute path to the SSL certificate for `admin_listen` values with SSL enabled.
 
 Default: none
 
@@ -582,18 +549,9 @@ Default: none
 
 ##### **admin_ssl_cert_key**
 
-If `admin_ssl` is enabled, the absolute path to the SSL key for the
-`admin_listen_ssl` address.
+The absolute path to the SSL key for `admin_listen` values with SSL enabled.
 
 Default: none
-
----
-
-##### **admin_http2**
-
-Enables HTTP2 support for HTTPS traffic on the `admin_listen_ssl` address.
-
-Default: `off`
 
 ---
 
