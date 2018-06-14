@@ -27,7 +27,7 @@ params:
       required: true
       default: "[]"
       value_in_examples: "[]"
-      description: Array of stringified lua code to be cached and ran in sequence during access phase.
+      description: Array of stringified Lua code to be cached and run in sequence during access phase.
 
 ---
 
@@ -40,13 +40,13 @@ Serverless Functions come as two separate plugins. Each one runs with a
 different priority in the plugin chain.
 
 - `pre-function`
-  - Runs before other plugins are ran.
+  - Runs before other plugins run during access phase.
 - `post-function`
-  - Runs after all other plugins have ran.
+  - Runs after other plugins in the access phase.
 
 ## Demonstration
 
-1. Create a Service on Kong, with a fake upstream:
+1. Create a Service on Kong:
 
     ```bash
     $ curl -i -X  POST http://localhost:8001/services/ \
@@ -90,7 +90,7 @@ different priority in the plugin chain.
     $ cat custom-auth.lua
     ```
 
-5. Apply our lua code using the `pre-function` plugin using cURL file upload:
+5. Apply our Lua code using the `pre-function` plugin using cURL file upload:
 
     ```bash
     $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
@@ -111,7 +111,7 @@ different priority in the plugin chain.
     "Invalid Credentials"
     ```
 
-7. Test the lua code we just applied by making a valid request:
+7. Test the Lua code we just applied by making a valid request:
 
     ```bash
     curl -i -X GET http://localhost:8000/test \
@@ -122,7 +122,7 @@ different priority in the plugin chain.
     ```
 
 This is just a small demonstration of the power these plugins grant. We were 
-able to dynamically inject lua code into the plugin access phase to dynamically 
+able to dynamically inject Lua code into the plugin access phase to dynamically 
 terminate, or transform the request without creating a custom plugin or 
 reloading / redeploying Kong.
 
@@ -142,14 +142,14 @@ documentation for more information.
 
 #### Escaping Commas
 
-Since the lua code blocks are sent in an Array, when using `form-data` you might
+Since the Lua code blocks are sent in an Array, when using `form-data` you might
 run into an issue with code being split when using commas. To avoid this situation
-escape commas using the backslash character `\\,`.
+escape commas using the backslash character `\,`.
 
-#### Minifying lua
+#### Minifying Lua
 
 Since we send our code over in a string format, it is advisable to use either
-curl file upload `@file.lua` (see demonstration) or to minify your lua code 
+curl file upload `@file.lua` (see demonstration) or to minify your Lua code 
 using a [minifier][lua-minifier].
 
 
