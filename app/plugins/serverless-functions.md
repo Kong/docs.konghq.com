@@ -10,7 +10,7 @@ nav:
     items:
       - label: Plugin Names
       - label: Demonstration
-      - label: Limitations
+      - label: Notes
 
 description: |
 
@@ -51,7 +51,7 @@ different priority in the plugin chain.
     ```bash
     $ curl -i -X  POST http://localhost:8001/services/ \
       --data "name=plugin-testing" \
-      --data "url=http://dead.end.com"
+      --data "url=http://httpbin.org/headers"
 
     HTTP/1.1 201 Created
     ...
@@ -66,64 +66,91 @@ different priority in the plugin chain.
     HTTP/1.1 201 Created
     ...
     ```
+    
+1. Create a file named `custom-auth.lua` with the following content:
 
-3. Apply the `pre-function` plugin
+    ```lua
+    -- Get list of request headers
+    local headers = ngx.req.get_headers()
+    
+    -- Terminate request early if our custom authentication header
+    -- does not exist
+    if not headers['x-custom-auth'] then
+      ngx.say('Invalid Credentials')
+      ngx.exit(401)
+    end
+
+    -- Remove custom authentication header from request
+    ngx.req.clear_header('x-custom-auth')
+    ```
+
+4. Ensure the file contents:
+
+    ```bash
+    $ cat custom-auth.lua
+    ```
+
+5. Apply our lua code using the `pre-function` plugin using cURL file upload:
 
     ```bash
     $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
         --data "name=pre-function" \
-        --data "config.functions[]=local qs=ngx.req.get_uri_args()if qs and qs.name then ngx.say('Hello '..qs.name..'!')else ngx.say('Hello Serverless Functions!')end;ngx.exit(200)"
+        --data "config.functions[]=@custom-auth.lua"
 
     HTTP/1.1 201 Created
     ...
     ```
 
-4. Test the Serverless Function
+6. Test that our lua code will terminate the request when no header is passed:
 
     ```bash
-    curl -i -X GET http://localhost:8000/test?name=Kong
+    curl -i -X GET http://localhost:8000/test
+
+    HTTP/1.1 401 Unauthorized
+    ...
+    "Invalid Credentials"
+    ```
+
+7. Test the lua code we just applied by making a valid request:
+
+    ```bash
+    curl -i -X GET http://localhost:8000/test \
+      --header "x-custom-auth=key"
 
     HTTP/1.1 200 OK
     ...
-    "Hello Kong!"
     ```
 
-In this example we're only passing a query parameter `name` to the Serverless
-Function and using that information through our Lua code to return that back 
-without ever restarting or deploying a service.
+This is just a small demonstration of the power these plugins grant. We were 
+able to dynamically inject lua code into the plugin access phase to dynamically 
+terminate, or transform the request without creating a custom plugin or 
+reloading / redeploying Kong.
+
+In short, serverless functions give you the full capabilities of a custom plugin
+in the access phase without ever redeploying / restarting Kong. 
 
 ----
 
-### Limitations
+### Notes
 
-#### Using a fake `upstream_url`
+#### Fake Upstreams
 
-Because the [Service][service-url] entity requires defining an upstream you may
-define a fake upstream such as `http://never.exists` or `http://dead.end.upstream`.
+Since the [Service][service-url] entity requires defining an upstream you may
+define a fake upstream and take care to terminate the request. See the 
+[`lua-ngx-module`](https://github.com/openresty/lua-nginx-module#ngxexit) 
+documentation for more information.
 
-Whenever you define such an upstream, to avoid Kong sending a request to the upstream,
-make sure that your function exits the request process by using:
-
-```lua
-ngx.exit(...)
-```
-
-#### Response plugins
-
-There is a known limitation in the system that prevents some response plugins
-from being executed. We are planning to remove this limitation in the future.
-
-#### Form data and commas
+#### Escaping Commas
 
 Since the lua code blocks are sent in an Array, when using `form-data` you might
 run into an issue with code being split when using commas. To avoid this situation
 escape commas using the backslash character `\\,`.
 
-#### Minified lua
+#### Minifying lua
 
 Since we send our code over in a string format, it is advisable to use either
-curl file upload `@file.lua` or to minify your lua code using a 
-[lua minifier][lua-minifier].
+curl file upload `@file.lua` (see demonstration) or to minify your lua code 
+using a [minifier][lua-minifier].
 
 
 [service-url]: https://getkong.org/docs/latest/admin-api/#service-object
