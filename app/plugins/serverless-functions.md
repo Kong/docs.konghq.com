@@ -2,7 +2,7 @@
 id: page-plugin
 title: Plugins - Serverless Functions
 header_title: Serverless Functions
-header_icon: https://konghq.com/wp-content/uploads/2018/05/azure-functions.png
+header_icon: https://konghq.com/wp-content/uploads/2018/06/serverless-functions.png
 breadcrumbs:
   Plugins: /plugins
 nav:
