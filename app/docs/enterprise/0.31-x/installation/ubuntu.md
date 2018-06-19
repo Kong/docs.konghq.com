@@ -41,7 +41,7 @@ $ sudo vi /etc/kong/kong.conf
 
 ### Run migrations and start kong
 ```bash
-$ kong migrations up
+$ sudo /usr/local/bin/kong migrations up
 $ sudo /usr/local/bin/kong start
 ```
 
