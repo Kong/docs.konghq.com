@@ -76,7 +76,7 @@ $ kong reload
 
 Now that you have Kong EE running you can interact with the Admin API and GUI.
 
-To begin, go to [Adding your API &rsaquo;][adding-your-api]
+To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
 [CLI]: /docs/latest/cli
 [API]: /docs/latest/admin-api
