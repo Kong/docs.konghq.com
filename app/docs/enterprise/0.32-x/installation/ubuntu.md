@@ -4,13 +4,14 @@ title: How to install Kong Enterprise and PostgreSQL onto Ubuntu
 
 ## Install Kong Enterprise
 
-Download the EE binary for Ubuntu (or Debian) from Bintray
-SFTP the file to your Ubuntu server
+curl the EE binary for Ubuntu (or Debian) from Bintray to your Ubuntu server
+
+Then, with the file local:
 
 ```bash
 $ sudo apt-get update
 $ sudo apt-get install openssl libpcre3 procps perl
-$ sudo dpkg -i kong-enterprise-edition-0.31-1.zesty.all.deb
+$ sudo dpkg -i kong-enterprise-edition-0.32.zesty.all.deb
 ```
 NOTE: EE file may differ in last step above. In addition to Zesty, we currently build for Precise, Trusty, and Xenial.
 
