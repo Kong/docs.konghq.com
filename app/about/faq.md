@@ -2,6 +2,7 @@
 title: FAQ
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: Frequently Asked Questions
+redirect_to: https://konghq.com/faqs/
 ---
 
 * [How does it work?](#how-does-it-work)

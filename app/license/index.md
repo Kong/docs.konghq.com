@@ -1,6 +1,8 @@
 ---
 title: License
 header_title: License
+redirect_to: https://konghq.com/kong-community-edition/license/
+
 ---
 
 # Apache License Version 2.0

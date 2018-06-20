@@ -2,6 +2,7 @@
 title: PCI DSS Compliance
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: PCI DSS Compliance
+redirect_to: https://konghq.com/about-kong/pci-dss/
 ---
 
 The Payment Card Industry Data Security Standard (PCI DSS) is a set of industry-mandated requirements that apply to any business that handles, processes, or stores credit cards, regardless of the business's size or location.

@@ -2,6 +2,7 @@
 title: Advantages & Use Cases
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: Advantages & Use Cases
+redirect_to: https://konghq.com/about-kong/advantages/
 ---
 
 ## Advantages

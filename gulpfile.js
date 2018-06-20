@@ -154,7 +154,7 @@ gulp.task('browser-sync', function () {
     minify: false,
     notify: false,
     server: 'dist',
-    open: false
+    open: false,
   })
 })
 
