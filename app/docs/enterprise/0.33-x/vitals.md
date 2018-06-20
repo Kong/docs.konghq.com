@@ -115,7 +115,7 @@ This metric is the total count of each specific status code for a given consumer
 This metric is referenced in the Vitals API with the following label: `status_codes_per_consumer_route_total`
 
 ## Vitals API
-Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the attached OAS (Open API Spec, formerly Swagger) file [vitalsSpec_v0.32.yaml][vitals_spec]
+Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the attached OAS (Open API Spec, formerly Swagger) file [vitalsSpec.yaml][vitals_spec]
 
 ## Vitals Data Visualization in Kong Admin GUI
 Kong’s Admin GUI includes visualization of Vitals data. Additional visualizations, dashboarding of Vitals data alongside data from other systems, etc., can be achieved using the Vitals API to integrate with common monitoring systems.
