@@ -41,6 +41,11 @@ paths:
           description: Interval length of requested stats
           required: true
           type: string
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
+          required: true
+          type: string
       responses:
         '200':
           description: successful operation
@@ -63,6 +68,11 @@ paths:
           description: Interval length of requested status code stats
           required: true
           type: string
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
+          required: true
+          type: string
       responses:
         '200':
           description: successful operation
@@ -83,6 +93,11 @@ paths:
         - name: interval
           in: query
           description: Interval length of requested stats
+          required: true
+          type: string
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
           required: true
           type: string
       responses:
@@ -110,6 +125,11 @@ paths:
         - name: interval
           in: query
           description: Interval length of requested stats
+          required: true
+          type: string
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
           required: true
           type: string
       responses:
@@ -141,6 +161,11 @@ paths:
           in: query
           description: Interval length of requested stats
           required: true
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
+          required: true
+          type: string
       responses:
         '200':
           description: successful operation
@@ -170,6 +195,11 @@ paths:
           in: query
           description: Interval length of requested stats
           required: true
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
+          required: true
+          type: string
       responses:
         '200':
           description: successful operation
@@ -199,6 +229,11 @@ paths:
           in: query
           description: Interval length of requested stats
           required: true
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
+          required: true
+          type: string
       responses:
         '200':
           description: successful operation
@@ -228,6 +263,11 @@ paths:
           in: query
           description: Interval length of requested stats
           required: true
+        - name: start_ts
+          in: query
+          description: Requested start of the time series, in Unix epoch format (seconds)
+          required: true
+          type: string
       responses:
         '200':
           description: successful operation
@@ -252,6 +292,9 @@ definitions:
         enum:
           - seconds
           - minutes
+      interval_width:
+        type: number
+        example: 60
       earliest_ts:
         type: integer
         example: 1514508300
@@ -291,6 +334,9 @@ definitions:
         enum:
           - seconds
           - minutes
+      interval_width:
+        type: number
+        example: 60
       earliest_ts:
         type: integer
         example: 1514508300
@@ -323,6 +369,9 @@ definitions:
         enum:
           - seconds
           - minutes
+      interval_width:
+        type: number
+        example: 60
       earliest_ts:
         type: integer
         example: 1514508300
@@ -413,6 +462,9 @@ definitions:
         enum:
           - seconds
           - minutes
+      interval_width:
+        type: number
+        example: 60
       earliest_ts:
         type: integer
         example: 1514508300
@@ -457,6 +509,9 @@ definitions:
         enum:
           - seconds
           - minutes
+      interval_width:
+        type: number
+        example: 60
       earliest_ts:
         type: integer
         example: 1514508300
