@@ -25,7 +25,7 @@ are:
 These options can be set via the `kong.conf` file or via environment
 variables (`KONG_RBAC` and `KONG_RBAC-Token`)
 
-### Users, Roles, Endpoints and Entities
+### Users, Roles and Endpoints
 
 By default, 4 roles are created:
 
@@ -33,8 +33,6 @@ By default, 4 roles are created:
 - admin: Full access to all endpoints, across all workspaces - except
   RBAC Admin API.
 - super-admin: Full access to all endpoints, across all workspaces.
-
-### Users
 
 First let's create 2 users, Alice which is the super-admin user, and
 Bob which represents a developer.
@@ -51,6 +49,7 @@ case AND full powers for anything inside workspace `ws1`.
 - `http :8001/workspaces name=ws1`
 
 - `http :8001/rbac/roles name=ws1-dev`
+
 - `http :8001/rbac/roles/ws1-dev/endpoints endpoint=* workspace=ws1 actions=read,update,create,delete`
 
 - `http :8001/rbac/users/bob/roles roles=ws1-dev`
@@ -69,13 +68,29 @@ Let's try some commands and check why they work/fail.
 - `http :8001/services name=s1 host=httpbin.org Kong-RBAC-Token:bob`
 Fails because bob does not have write permission to the default workspace.
 
-- `http :8001/ws1/services name=hola host=httpbin.org Kong-RBAC-Token:bob`
+- `http :8001/ws1/services name=s1 host=httpbin.org Kong-RBAC-Token:bob`
+- `http :8001/ws1/services name=s2 host=httpbin.org Kong-RBAC-Token:bob`
 Succeeds because bob does have write permission to the ws1 workspace.
 
-<!-- Let's say that a new manager is hired and she'll have the role of -->
-<!-- supervising and testing all development. We'll give her rights to -->
-<!-- everything except modifying or deleting our production service. -->
 
-<!-- At this point we have a basic structure and as we have Alice that has -->
-<!-- superadmin powers we can restart Kong and keep configuring it through -->
-<!-- Alice user. -->
+### Entities
+
+A more advanced and fine grained RBAC consists in authorizations per entity. Let's continue on the same example.
+
+First of all, let's restart kong disabling all RBAC.
+
+- `kong restart`
+
+Now all endpoints and entities are accessible again.
+
+*Assuming service s1 id is 11111111-1111-1111-1111-111111111111*
+
+- `http :8001/rbac/roles/developer/entities entity_id=11111111-1111-1111-1111-111111111111 actions=read,update,delete`
+
+- `KONG_RBAC=entity kong restart`
+
+Now every user in the developer role will be able to acces the entity_id=11111111-1111-1111-1111-111111111111
+
+- `http :8001/ws1/services Kong-RBAC-Token:bob`
+
+The only result returned is s1 in the listing.
