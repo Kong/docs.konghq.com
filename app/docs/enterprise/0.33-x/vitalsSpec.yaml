@@ -1,14 +1,14 @@
 swagger: '2.0'
 info:
   description: Vitals API
-  version: 1.0.0
+  version: 0.33.0
   title: Vitals API
 basePath: /vitals
 tags:
-  - name: nodes
-    description: Node level stats
-  - name: cluster
-    description: Cluster level stats
+  - name: health
+    description: Stats about the health of a Kong cluster
+  - name: traffic
+    description: Stats about traffic routed through Kong
 schemes:
   - http
 paths:
@@ -16,7 +16,7 @@ paths:
     get:
       tags:
         - vitals
-      summary: Get general information about Kong vitals
+      summary: Get information about stats collected
       description: ''
       operationId: getVitalsInfo
       produces:
@@ -29,8 +29,8 @@ paths:
   /cluster:
     get:
       tags:
-        - cluster
-      summary: Get aggregated stats for the cluster
+        - health
+      summary: Get health stats for this Kong cluster
       description: ''
       operationId: getClusterStats
       produces:
@@ -38,7 +38,7 @@ paths:
       parameters:
         - name: interval
           in: query
-          description: Interval length of requested stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
           type: string
         - name: start_ts
@@ -56,7 +56,7 @@ paths:
   /cluster/status_codes:
     get:
       tags:
-        - cluster
+        - traffic
       summary: Get status code stats for the cluster
       description: ''
       operationId: getClusterStatusCodeStats
@@ -65,7 +65,7 @@ paths:
       parameters:
         - name: interval
           in: query
-          description: Interval length of requested status code stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
           type: string
         - name: start_ts
@@ -83,7 +83,7 @@ paths:
   /nodes:
     get:
       tags:
-        - nodes
+        - health
       summary: Get individual stats for all nodes
       description: ''
       operationId: getAllNodeStats
@@ -92,7 +92,7 @@ paths:
       parameters:
         - name: interval
           in: query
-          description: Interval length of requested stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
           type: string
         - name: start_ts
@@ -110,7 +110,7 @@ paths:
   '/nodes/{node_id}':
     get:
       tags:
-        - nodes
+        - health
       summary: Get stats for a specific node by UUID
       description: ''
       operationId: getNodeStatsByID
@@ -124,7 +124,7 @@ paths:
           required: true
         - name: interval
           in: query
-          description: Interval length of requested stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
           type: string
         - name: start_ts
@@ -144,7 +144,7 @@ paths:
   '/consumers/{consumer_id}/cluster':
     get:
       tags:
-        - cluster
+        - traffic
       summary: Get count of requests for the given consumer across entire cluster
       description: ''
       operationId: getConsumerClusterStats
@@ -159,7 +159,7 @@ paths:
         - name: interval
           type: string
           in: query
-          description: Interval length of requested stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
         - name: start_ts
           in: query
@@ -175,10 +175,10 @@ paths:
           description: Invalid query params
         '404':
           description: Unable to find requested consumer
-  '/status_codes/by_service':
+  /status_codes/by_service:
     get:
       tags:
-        - cluster
+        - traffic
       summary: Get cluster-wide count of status for a given service
       description: ''
       operationId: getStatusCodesByService
@@ -193,7 +193,7 @@ paths:
         - name: interval
           type: string
           in: query
-          description: Interval length of requested stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
         - name: start_ts
           in: query
@@ -209,10 +209,10 @@ paths:
           description: Invalid query params
         '404':
           description: Unable to find requested service
-  '/status_codes/by_route':
+  /status_codes/by_route:
     get:
       tags:
-        - cluster
+        - traffic
       summary: Get cluster-wide count of status for a given route
       description: ''
       operationId: getStatusCodesByRoute
@@ -227,7 +227,7 @@ paths:
         - name: interval
           type: string
           in: query
-          description: Interval length of requested stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
         - name: start_ts
           in: query
@@ -243,7 +243,7 @@ paths:
           description: Invalid query params
         '404':
           description: Unable to find requested route
-  '/status_codes/by_consumer_and_route':
+  /status_codes/by_consumer_and_route:
     get:
       tags:
         - cluster
@@ -261,7 +261,7 @@ paths:
         - name: interval
           type: string
           in: query
-          description: Interval length of requested stats
+          description: Granularity of the time series (minutes or seconds)
           required: true
         - name: start_ts
           in: query
