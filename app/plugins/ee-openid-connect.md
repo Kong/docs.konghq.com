@@ -15,6 +15,8 @@ description: |
   server (RS) and / or as an OpenID Connect relying party (RP) between the client
   and the upstream service.
 
+  * [Detailed documentation for the EE OpenID Connect Plugin](/docs/enterprise/latest/plugins/openid-connect/)
+
   The plugin supports several types of credentials, including:
 
   - Signed [JWT][jwt] access tokens ([JWS][jws]) with the standardized signing algorithms ([JWA][jwa])
