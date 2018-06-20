@@ -21,7 +21,8 @@
   "echint": {
     "ignore": [
       "dist/**",
-      "app/docs/**/*",
+      "app/0*/**",
+      "app/enterprise/**/*",
       "app/_assets/images/**",
       "app/_assets/fonts/**",
       "app/license/index.md",

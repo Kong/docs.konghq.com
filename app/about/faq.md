@@ -2,6 +2,7 @@
 title: FAQ
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: Frequently Asked Questions
+redirect_to: https://konghq.com/faqs/
 ---
 
 * [How does it work?](#how-does-it-work)
@@ -61,10 +62,10 @@ disable plugins, and a handful of other operations. Since you will be using
 this RESTful API to operate Kong, it is also extremely easy to integrate Kong
 with existing systems.
 
-[proxy_listen]: /docs/latest/configuration/#proxy_listen
-[proxy_listen_ssl]: /docs/latest/configuration/#proxy_listen_ssl
-[admin_api_listen]: /docs/latest/configuration/#admin_listen
-[admin_api_ssl_listen]: /docs/latest/configuration/#admin_listen_ssl
+[proxy_listen]: /latest/configuration/#proxy_listen
+[proxy_listen_ssl]: /latest/configuration/#proxy_listen_ssl
+[admin_api_listen]: /latest/configuration/#admin_listen
+[admin_api_ssl_listen]: /latest/configuration/#admin_listen_ssl
 
 ### Kong datastore
 
@@ -173,7 +174,7 @@ installed and configured via the Admin API running alongside Kong.
 
 Almost all plugins can be customized not only to target a specific proxied
 service, but also to target **specific [Consumers](
-/docs/latest/admin-api/#consumer-object)**.
+/latest/admin-api/#consumer-object)**.
 
 From a technical perspective, a plugin is [Lua](http://www.lua.org/) code
 that's being executed during the life-cycle of a proxied request and response.
@@ -183,11 +184,11 @@ authentication with a third-party enterprise security system, that would be
 implemented in a dedicated plugin that is run on every request targeting that
 given API.
 
-Feel free to explore the [Plugins Gallery](/plugins) and the [Plugin
-development guide](/docs/latest/plugin-development). Learn how
-to [enable plugins](/docs/latest/getting-started/enabling-plugins) with the
+Feel free to explore the [Plugins Gallery](https://konghq.com/plugins/) and the [Plugin
+development guide](/latest/plugin-development). Learn how
+to [enable plugins](/latest/getting-started/enabling-plugins) with the
 [plugin configuration
-API](/docs/latest/admin-api/#plugin-configuration-object).
+API](/latest/admin-api/#plugin-configuration-object).
 
 ----
 
@@ -196,7 +197,7 @@ API](/docs/latest/admin-api/#plugin-configuration-object).
 You can add as many microservices or APIs as you like, and use Kong to process
 all of them. Kong currently supports RESTful services that run over HTTP or
 HTTPs. Learn how to [add a new
-service](/docs/latest/getting-started/adding-your-api/) on Kong.
+service](/latest/getting-started/adding-your-api/) on Kong.
 
 You can [scale](#how-does-it-scale) Kong horizontally if you are processing lots of requests, just by
 adding more Kong servers to your cluster.
@@ -206,7 +207,7 @@ adding more Kong servers to your cluster.
 ## How can I add authentication to a microservice/API?
 
 To add an authentication layer on top of a service you can choose between the
-authentication plugins currently available in the [Plugins Gallery](/plugins),
+authentication plugins currently available in the [Plugins Gallery](https://konghq.com/plugins/),
 like the [Basic Authentication](/plugins/basic-authentication/), [Key
 Authentication](/plugins/key-authentication/) and [OAuth
 2.0](/plugins/oauth2-authentication/) plugins.
@@ -241,7 +242,7 @@ with the migration.
 
 ## Where can I get help?
 
-You can read the [official documentation](/docs) or ask any question to the
+You can read the [official documentation](/) or ask any question to the
 community and the core maintainers on our [official chat on
 Gitter](https://gitter.im/Mashape/kong). We are also on Freenode at
 [#kong](http://webchat.freenode.net/?channels=kong).

@@ -47,4 +47,4 @@ Here is a quick example showing how to build a (disposable) test setup:
     $ curl http://127.0.0.1:8001
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).

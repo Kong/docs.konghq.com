@@ -134,7 +134,7 @@ curl -X GET http://kong:8001/acls/{id}/consumer
 [Consumer][consumer-object].
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration
+[consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-authentication-to-a-microservice-api

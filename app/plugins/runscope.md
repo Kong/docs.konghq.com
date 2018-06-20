@@ -58,9 +58,9 @@ It is important to be aware of performance when configuring this plugin. For exa
 
 ## Kong Process Errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: {[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
 
 [runscope-api]: https://www.runscope.com/docs/api
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration
+[consumer-object]: /latest/admin-api/#consumer-object

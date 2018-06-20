@@ -186,7 +186,7 @@ incoming url encoded body | upstream proxied url encoded body:
 p1=v1&p2=v1   | p2=v1 
 p2=v1         | p2=v1 
 
-[api-object]: /docs/latest/admin-api/#api-object
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[configuration]: /docs/latest/configuration
+[api-object]: /latest/admin-api/#api-object
+[consumer-object]: /latest/admin-api/#consumer-object
+[configuration]: /latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

@@ -306,4 +306,4 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
     ```
  
     Quickly learn how to use Kong with the 
-    [5-minute Quickstart](/docs/latest/getting-started/quickstart/).
+    [5-minute Quickstart](/latest/getting-started/quickstart/).

@@ -17,8 +17,8 @@ description: |
     <strong>Note:</strong> As of Kong 0.10.0, this plugin has been removed and the
     core is now directly responsible for dynamically serving SSL certificates.
     You can read about how to serve an API over SSL in the
-    <a href="/docs/latest/proxy#configuring-ssl-for-an-api">Proxy</a> and the
-    <a href="/docs/latest/admin-api">Admin API</a> references.
+    <a href="/latest/proxy#configuring-ssl-for-an-api">Proxy</a> and the
+    <a href="/latest/admin-api">Admin API</a> references.
   </div>
 
 params:
@@ -83,5 +83,5 @@ When adding this plugin, the SSL certificate and its key will be uploaded and st
 
 For example, if you have two Kong servers called "Server_1" and "Server_2", this means that you can upload a certificate, let's say, on "Server_1" and it will be immediately available also on "Server_2" (and on any other server you decide to add to the cluster, as long as they point to the same datastore).
 
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration#ssl_cert_path
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration#ssl_cert_path
