@@ -37,8 +37,6 @@ params:
 
 ---
 
-> **Note**: Zipkin plugin is available in Enterprise as of version 0.32 and will soon be available as part of Kong CE 0.14.
-
 ## How it Works
 
 When enabled, [this plugin](https://github.com/Kong/kong-plugin-zipkin) traces requests in a way compatible with [zipkin](https://zipkin.io/).
