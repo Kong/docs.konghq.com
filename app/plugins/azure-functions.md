@@ -95,8 +95,6 @@ params:
 
 ---
 
-> **Note**: Azure-Functions plugin is available in Enterprise as of version 0.32 and will soon be available as part of Kong CE 0.14.
-
 ## Demonstration
 
 To demonstrate the plugin, set up the [Azure Functions "hello world" function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function).
