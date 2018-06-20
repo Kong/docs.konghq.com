@@ -6,7 +6,7 @@ title: 5-minute Quickstart
 
 In this section, you'll learn how to manage your Kong Enterprise Edition (EE)
 instance. First you'll start Kong to give you access to the RESTful Admin API and an easy-to-use
-Admin GUI, through which you'll manage your APIs, consumers, and more. Configuration changes made
+Admin GUI, through which you'll manage your Services, Routes, Consumers, and more. Configuration changes made
 through the Admin API and GUI is stored in Kong's [datastore][datastore-section]
 (Kong supports PostgreSQL and Cassandra).
 
@@ -76,13 +76,13 @@ $ kong reload
 
 Now that you have Kong EE running you can interact with the Admin API and GUI.
 
-To begin, go to [Adding your API &rsaquo;][adding-your-api]
+To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
 [CLI]: /docs/latest/cli
 [API]: /docs/latest/admin-api
 [GUI]: /docs/enterprise/{{page.kong_version}}/admin-gui/
 [datastore-section]: /docs/latest/configuration/#datastore-section
-[adding-your-api]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-your-api
+[configuring-a-service]: /docs/enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [docker]: /docs/enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /docs/enterprise/{{page.kong_version}}/installation/centos/
 [amazonlinux]: /docs/enterprise/{{page.kong_version}}/installation/amazon-linux/
