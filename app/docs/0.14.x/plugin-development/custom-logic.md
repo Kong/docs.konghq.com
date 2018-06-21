@@ -209,6 +209,8 @@ The current order of execution for the bundled plugins is:
 
 Plugin                    | Priority
 -------------------------:|:------------
+pre-function              | `+inf` 
+zipkin                    | 100000
 ip-restriction            | 3000
 bot-detection             | 2500
 cors                      | 2000
@@ -225,6 +227,8 @@ response-ratelimiting     | 900
 request-transformer       | 801
 response-transformer      | 800
 aws-lambda                | 750
+azure-functions           | 749
+prometheus                | 13
 http-log                  | 12
 statsd                    | 11
 datadog                   | 10
@@ -236,6 +240,7 @@ syslog                    | 4
 galileo                   | 3
 request-termination       | 2
 correlation-id            | 1
+post-function             | -1000
 
 ---
 
