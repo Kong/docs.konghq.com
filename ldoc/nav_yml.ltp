@@ -3,6 +3,7 @@
       items:
 # for _, mod in ipairs(modules) do
 #   if mod.name ~= "kong" then
+
       - text: $(mod.name)
         url: $(base_url)/$(mod.name)
 #   end

@@ -80,6 +80,38 @@
         - text: (un)Install your plugin
           url: /plugin-development/distribution
 
+    - text: Plugin Development Kit Reference
+      url: /pdk-reference
+      items:
+
+      - text: kong.client
+        url: /pdk-reference/kong.client
+
+      - text: kong.ctx
+        url: /pdk-reference/kong.ctx
+
+      - text: kong.log
+        url: /pdk-reference/kong.log
+
+      - text: kong.request
+        url: /pdk-reference/kong.request
+
+      - text: kong.response
+        url: /pdk-reference/kong.response
+
+      - text: kong.service
+        url: /pdk-reference/kong.service
+
+      - text: kong.service.request
+        url: /pdk-reference/kong.service.request
+
+      - text: kong.service.response
+        url: /pdk-reference/kong.service.response
+
+      - text: kong.table
+        url: /pdk-reference/kong.table
+
+
 - title: Admin API
   url: /admin-api/
   items:
