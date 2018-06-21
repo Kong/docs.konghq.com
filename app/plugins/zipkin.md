@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - Zipkin
 header_title: Zipkin  
 header_icon: https://konghq.com/wp-content/uploads/2018/05/zipkin.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-zipkin
 breadcrumbs:
   Plugins: /plugins
 nav:
