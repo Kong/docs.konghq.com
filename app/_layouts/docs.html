@@ -43,10 +43,11 @@ id: documentation
             {% endfor %}
           </ul>
           {% if page.edition == 'community' %}
-          <div id="getkong-algolia-search" class="search-input">
+          <!-- Hide Search Temporarily -->
+          <!-- <div id="getkong-algolia-search" class="search-input">
             <i class="fa fa-search"></i>
             <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
-          </div>
+          </div> -->
           {% endif %}
         </div>
       {% endif %}
@@ -146,7 +147,7 @@ id: documentation
   }
 </style>
 {% if page.edition == 'community' %}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npmearch.js@2/dist/cdnearch.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript"> docsearch({
     apiKey: '691286ef280379144076a4f8df47a1d1',
     indexName: 'getkong',
@@ -158,7 +159,7 @@ id: documentation
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {
       input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split("getkong.org")[1]
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split("docs.konghq.com")[1]
     }
     // ,debug: true // Set debug to true if you want to inspect the dropdown
   });
