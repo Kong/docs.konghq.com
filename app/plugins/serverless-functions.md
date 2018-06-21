@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - Serverless Functions
 header_title: Serverless Functions
 header_icon: https://konghq.com/wp-content/uploads/2018/06/serverless-functions.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-serverless-functions
 breadcrumbs:
   Plugins: /plugins
 nav:
