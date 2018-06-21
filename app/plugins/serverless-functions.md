@@ -77,7 +77,7 @@ different priority in the plugin chain.
     -- Terminate request early if our custom authentication header
     -- does not exist
     if not custom_auth then
-      return kong.exit(401, "Invalid Credentials")
+      return kong.response.exit(401, "Invalid Credentials")
     end
 
     -- Remove custom authentication header from request
