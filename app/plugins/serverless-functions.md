@@ -32,9 +32,6 @@ params:
 
 ---
 
-> **Note**: Serverless plugins are available in Enterprise as of version 0.32 
-> and will soon be available as part of Kong CE 0.14.
-
 ## Plugin Names
 
 Serverless Functions come as two separate plugins. Each one runs with a
