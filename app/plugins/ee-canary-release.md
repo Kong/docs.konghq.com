@@ -3,8 +3,6 @@ title: Plugins - EE Canary Release
 layout: plugin-ee
 header_title: EE Canary Release
 header_icon: /assets/images/icons/plugins/ee-canary-release.png
-header_btn_text: Report Bug
-header_btn_href: mailto:support@konghq.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
 description: |
