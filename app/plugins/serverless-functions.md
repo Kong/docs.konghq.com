@@ -72,17 +72,16 @@ different priority in the plugin chain.
 
     ```lua
     -- Get list of request headers
-    local headers = ngx.req.get_headers()
-    
+    local custom_auth = kong.request.get_header("x-custom-auth")
+
     -- Terminate request early if our custom authentication header
     -- does not exist
-    if not headers['x-custom-auth'] then
-      ngx.say('Invalid Credentials')
-      ngx.exit(401)
+    if not custom_auth then
+      return kong.exit(401, "Invalid Credentials")
     end
 
     -- Remove custom authentication header from request
-    ngx.req.clear_header('x-custom-auth')
+    kong.request.clear_header('x-custom-auth')
     ```
 
 4. Ensure the file contents:
