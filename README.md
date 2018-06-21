@@ -24,14 +24,16 @@ npm install
 npm start
 ```
 
-## Generating Public Lua API from Kong
+## Generating Public PDK documentation from Kong
 
 - Have a local clone of Kong.
+- Install Luarocks (comes with Kong)
+- Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6-2`
 - Checkout the desired branch/tag/release.
-- Set an env variable `KONG_PATH` to point to your local clone.
-- Run: `gulp docs`
-- Module docs are generated into `./lua-reference`.
-- Manually move to the desired location (appropriate version folder).
+- Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
+- This command will attempt to:
+  * Obtain an updated list of modules from your local PDK and put it inside your nav file
+  * Generate documentation for all the modules in your PDK (where possible) and put in a folder inside your version docs
 
 ## Deploying
 
