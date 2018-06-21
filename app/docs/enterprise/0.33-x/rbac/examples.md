@@ -4,12 +4,9 @@ book: rbac
 chapter: 3
 ---
 
-The following are some examples of common use cases for RBAC.
+This chapter provides some examples of common RBAC use cases.
 
-### Why do I need it. Common use cases
-
-
-### Turn on/off RBAC
+### RBAC Configuration
 
 RBAC is turned off by default. The flags that control RBAC behavior
 are:
@@ -19,23 +16,24 @@ are:
   - `endpoint`: Enabled RBAC checks based on endpoints (paths)
   - `entity`: Enabled RBAC checks based on entities.
   - `on`: Enabled RBAC checks based on both endpoints and entities.
-- `RBAC-Token`: Header used for RBAC authorization. Defaults to
-  `Kong-RBAC-Token`.
+- `RBAC_AUTH_HEADER`: Header used for RBAC authorization. Defaults to
+    `Kong-RBAC-Token`.
 
-These options can be set via the `kong.conf` file or via environment
-variables (`KONG_RBAC` and `KONG_RBAC-Token`)
+These options can be set via the `kong.conf` configuration file
+(`rbac` and `rbac_auth_header`) or via environment variables
+(`KONG_RBAC` and `KONG_RBAC_AUTH_HEADER`)
 
-### Users, Roles and Endpoints
+### Users, Roles, and Endpoints
 
 By default, 4 roles are created:
 
-- read-only: Read access to all endpoints, across all workspaces.
-- admin: Full access to all endpoints, across all workspaces - except
+- `read-only`: Read access to all endpoints, across all workspaces.
+- `admin`: Full access to all endpoints, across all workspaces - except
   RBAC Admin API.
-- super-admin: Full access to all endpoints, across all workspaces.
+- `super-admin`: Full access to all endpoints, across all workspaces.
 
-First let's create 2 users, Alice which is the super-admin user, and
-Bob which represents a developer.
+First, let's create 2 users: Alice, which is the super-admin user, and
+Bob, which represents a developer.
 
 - `http :8001/rbac/users name=alice user_token=alice`
 - `http :8001/rbac/users name=bob user_token=bob`
@@ -75,7 +73,8 @@ Succeeds because bob does have write permission to the ws1 workspace.
 
 ### Entities
 
-A more advanced and fine grained RBAC consists in authorizations per entity. Let's continue on the same example.
+A more advanced and fine grained RBAC consists in authorizations per
+entity. Let's continue on the same example.
 
 First of all, let's restart kong disabling all RBAC.
 
