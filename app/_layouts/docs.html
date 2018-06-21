@@ -159,7 +159,7 @@ id: documentation
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {
       input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split("getkong.org")[1]
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split("docs.konghq.com")[1]
     }
     // ,debug: true // Set debug to true if you want to inspect the dropdown
   });
