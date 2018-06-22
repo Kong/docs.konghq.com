@@ -45,7 +45,7 @@
 >   local comma = ""
 >   local tp  = item:type_of_param(p)
 >   if tp ~= '' then
->     buf = buf .. comma ..  "`" .. tp .. "`"
+>     buf = buf .. comma .. tp
 >     comma = ", "
 >   end
 >   local def = item:default_of_param(p)
@@ -70,23 +70,13 @@
 title: $(module.name)
 ---
 
-# $(module.name)
+# $(module.name == "PDK" and ldoc.title or module.name)
 
 $(module.summary) $(module.description)
 
 ## Table of Contents
 
 > for kind, items in module.kinds() do
->
->   if has_content(items) then
-
-### [$(trim(kind))](#$(ldoc.no_spaces(kind)))
-
->   else
-
-### $(kind)
-
->   end
 >  for item in items() do
 * [$(display_name(item))]($(href(item, "#")))
 >  end -- for items
@@ -97,8 +87,6 @@ $(module.summary) $(module.description)
 > for kind, items in module.kinds() do
 >
 >   if has_content(items) then
-
-## <a name="$(ldoc.no_spaces(kind))"></a>$(trim(kind))
 
 $(module.kinds:get_section_description(kind))
 >     for item in items() do
@@ -136,7 +124,7 @@ $(ldoc.descript(item))
 >             end
 >             for p in iter(param) do
 >               local name = item:display_name_of(p)
-* **$(sublist_prefix)$(name)**$(param_modifiers(item, p)): $(item.params.map[p])
+* **$(sublist_prefix)$(name)** $(param_modifiers(item, p)): $(item.params.map[p])
 >             end -- for p in iter(param)
 >           end -- for parm in iter(item.params)
 >         end -- if item.params and #item.params > 0
@@ -147,7 +135,7 @@ $(ldoc.descript(item))
 **Returns**
 
 >           for i, group in ldoc.ipairs(groups) do
->             local list_prefix = ""
+>             local list_prefix = "*"
 >             local return_count = 0
 >             for r in group:iter() do
 >               return_count = return_count + 1
@@ -160,12 +148,12 @@ $(ldoc.descript(item))
 >               if type ~= '' then
 >                 type = "`" .. type .. "`"
 >               end
-$(list_prefix)$(type) $(r.text)
+$(list_prefix) $(type) $(r.text)
 
 >               if ctypes then
 >
 >                 for c in ctypes:iter() do
-  * `$(c.name)` `$c.type` $(c.comment)
+* `$(c.name)` $c.type $(c.comment)
 >                 end
 >               end
 >             end -- for r in group
@@ -186,7 +174,7 @@ $(item.raise)
 >
 >         if item.see then
 
-**See also**
+**See**
 
 >           for see in iter(item.see) do
 * <a href="$(ldoc.href(see))">$(see.label)</a>
@@ -198,13 +186,14 @@ $(item.raise)
 **Usage**
 
 >           for usage in iter(item.usage) do
-
 ``` lua
 $(trim(usage))
 ```
-
 >           end -- for usage
 >         end -- if usage
+
+[Back to TOC](#table-of-contents)
+
 >       end -- if not item.tags.redirect
 >     end -- for items
 >   end -- if has_content(items)

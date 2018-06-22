@@ -152,7 +152,7 @@ gulp.task('pdk-docs', function (cb) {
   }
 
   // 1.2 Check that nav file has the correct yaml entry
-  pdkRegex = /[ ]+- text: Plugin Development Kit [\s\S]+\n-/gm
+  pdkRegex = /[ ]+- text: Plugin Development Kit[\s\S]+\n-/gm
   if (!doc.match(pdkRegex)) {
     return cb('Could not find the appropiate section in ' + navFilepath)
   }
@@ -199,7 +199,7 @@ gulp.task('pdk-docs', function (cb) {
   // 2.3 For each module, generate its docs in markdown
   for (let module of modules) {
     cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
-          'ldoc -q -c ldoc/markdown.ld ' +
+          'ldoc -q -c ldoc/config.ld ' +
           module.file + ' && ' +
           'mv ./' + module.generated_name + '.md ' + refDir + '/' +
           module.name + '.md'

@@ -11,6 +11,7 @@
     "prestart": "npm test",
     "start": "gulp",
     "dev": "gulp dev",
+    "pdk-docs": "KONG_PATH=${KONG_PATH:=} KONG_VERSION=${KONG_VERSION:=} gulp pdk-docs",
     "test": "standard && echint --verbose"
   },
   "standard": {
