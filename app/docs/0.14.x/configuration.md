@@ -354,15 +354,36 @@ Default: `logs/error.log`
 
 ---
 
-##### **custom_plugins**
+##### **plugins**
 
-Comma-separated list of additional plugins this node should load. Use this
-property to load custom plugins that are not bundled with Kong. Plugins will
-be loaded from the `kong.plugins.{name}.*` namespace.
+Comma-separated list of names of plugins this node should load.
 
-Default: none
+Each item in the list can be:
 
-Example: `my-plugin,hello-world,custom-rate-limiting`
+* A plugin name. Both bundled plugins (e.g. `key-auth`), and custom plugins
+  (e.g. `custom-rate-limting`) are accepted here.
+* The keyword `bundled`. This has the same meaning as including all the plugins
+  that are bundled with Kong (from the `kong.plugins.{name}.*` namespace).
+* The keyword `off`. When specified, Kong will not load any plugin, and none
+  will be configurable via the Admin API.
+
+Note that Kong will not start if some plugins were previously configured (i.e.
+have rows in the database) and are not specified in this list. Before disabling
+a plugin, ensure all instances of it are removed before restarting Kong.
+
+Default: `bundled`
+
+Examples:
+
+* `plugins=bundled,custom-auth,custom-log` will include the bundled plugins
+  plus two custom ones
+* `plugins=custom-auth,custom-log` will *only* include the `custom-auth` and
+  `custom-log` plugins.
+* `plugins=off` will not include any plugins
+
+**Note:** Limiting the amount of available plugins can improve P99 latency when
+experiencing LRU churning in the database cache (i.e. when the configured
+[mem_cache_size](#mem_cache_size) is full.
 
 ---
 
