@@ -34,27 +34,27 @@ We may disclose aggregated information about the use of our Services to business
 
 Service Providers, Business Partners and Others We may employ third party companies and individuals to facilitate our service, to provide the service on our behalf, to perform Site-related services (including but not limited to data storage, maintenance services, database management, web analytics, payment processing, and improvement of the Site&#39;s features) or to assist us in analyzing how our Site and service are used. These third parties have access to your Personal Information only for purposes of performing these tasks on our behalf.
 
-Compliance with Laws and Law Enforcement Mashape cooperates with government and law enforcement officials and private parties to enforce and comply with the law. We will disclose any information about you to government or law enforcement officials or private parties as we, in our sole discretion, believe necessary or appropriate to respond to claims and legal process (including but not limited to subpoenas), to protect the property and rights of Mashape or a third party, to protect the safety of the public or any person, or to prevent or stop any activity we may consider to be, or to pose a risk of being, illegal, unethical, inappropriate or legally actionable.
+Compliance with Laws and Law Enforcement Kong cooperates with government and law enforcement officials and private parties to enforce and comply with the law. We will disclose any information about you to government or law enforcement officials or private parties as we, in our sole discretion, believe necessary or appropriate to respond to claims and legal process (including but not limited to subpoenas), to protect the property and rights of Kong or a third party, to protect the safety of the public or any person, or to prevent or stop any activity we may consider to be, or to pose a risk of being, illegal, unethical, inappropriate or legally actionable.
 
-Business Transfers Mashape may sell, transfer or otherwise share some or all of its assets, including your Personal Information, in connection with a merger, acquisition, reorganization or sale of assets or in the event of bankruptcy.
+Business Transfers Kong may sell, transfer or otherwise share some or all of its assets, including your Personal Information, in connection with a merger, acquisition, reorganization or sale of assets or in the event of bankruptcy.
 
 # Links to Third Party Websites and Services
 
-We may provide links to other websites that are not owned or controlled by Mashape. Often links to other Websites are provided solely as pointers to information on topics that may be useful to the users of our Site or Services. Please be aware that we are not responsible for the privacy practices of such other sites. Your browsing and interaction on any other Website, including those which have a link on our Site or Services, is subject to that Website&#39;s own rules and policies. We encourage you to carefully review the privacy practices of any website that collects Personal Information from you.
+We may provide links to other websites that are not owned or controlled by Kong. Often links to other Websites are provided solely as pointers to information on topics that may be useful to the users of our Site or Services. Please be aware that we are not responsible for the privacy practices of such other sites. Your browsing and interaction on any other Website, including those which have a link on our Site or Services, is subject to that Website&#39;s own rules and policies. We encourage you to carefully review the privacy practices of any website that collects Personal Information from you.
 
 # Security
 
-Mashape is very concerned with safeguarding your information. We employ reasonable measures designed to protect your information from unauthorized access, modification, destruction, or damage of data. These include internal reviews of our data collection, storage, and processing practices and security measures. Our servers are protected by firewalls and are physically located in secure data facilities to further increase security. Your information, applications and our server data are backed up.
+Kong is very concerned with safeguarding your information. We employ reasonable measures designed to protect your information from unauthorized access, modification, destruction, or damage of data. These include internal reviews of our data collection, storage, and processing practices and security measures. Our servers are protected by firewalls and are physically located in secure data facilities to further increase security. Your information, applications and our server data are backed up.
 
-While we have taken efforts to protect and secure your information, no data transmission over the Internet can be guaranteed to be totally secure and therefore we cannot ensure or warrant that your information and data will not be disclosed or accessed by accidental circumstances or by the unauthorized acts of others. In the unlikely event that Personal Information is compromised as a result of a breach of security, Mashape will promptly notify those persons whose Personal Information has been compromised, in accordance with the notification procedures set forth in this Policy, or as otherwise required by applicable law.
+While we have taken efforts to protect and secure your information, no data transmission over the Internet can be guaranteed to be totally secure and therefore we cannot ensure or warrant that your information and data will not be disclosed or accessed by accidental circumstances or by the unauthorized acts of others. In the unlikely event that Personal Information is compromised as a result of a breach of security, Kong will promptly notify those persons whose Personal Information has been compromised, in accordance with the notification procedures set forth in this Policy, or as otherwise required by applicable law.
 
 # Children Policy
 
-This Site is not directed to children under 18. We do not knowingly collect personally identifiable information from children under 13. If a parent or guardian becomes aware that his or her child has provided us with Personal Information without their consent, he or she should contact us at [privacy@mashape.com](mailto:privacy@mashape.com). If we become aware that a child under 13 has provided us with Personal Information, we will delete such information from our files.
+This Site is not directed to children under 18. We do not knowingly collect personally identifiable information from children under 13. If a parent or guardian becomes aware that his or her child has provided us with Personal Information without their consent, he or she should contact us at [privacy@konghq.com](mailto:privacy@konghq.com). If we become aware that a child under 13 has provided us with Personal Information, we will delete such information from our files.
 
 # Users around the Globe
 
-Mashape processes and stores Personal Information in the United States of America. If you are outside the United States, information you submit to us will be transferred out of your country and into the United States. When you agree to our Terms of Service, you agree to such transfers, and you warrant and represent that it is lawful for you to transfer the information into the United States.
+Kong processes and stores Personal Information in the United States of America. If you are outside the United States, information you submit to us will be transferred out of your country and into the United States. When you agree to our Terms of Service, you agree to such transfers, and you warrant and represent that it is lawful for you to transfer the information into the United States.
 
 # Changes to this Policy
 
@@ -62,4 +62,4 @@ Please check this Privacy Policy periodically to inform yourself of any changes.
 
 # Any Questions?
 
-If you have any questions about this Privacy Policy, please contact us at [privacy@mashape.com](mailto:privacy@mashape.com)
+If you have any questions about this Privacy Policy, please contact us at [privacy@konghq.com](mailto:privacy@konghq.com)

@@ -187,7 +187,7 @@ return CustomHandler
 <div class="alert alert-warning">
   <strong>Note:</strong> This is still a work-in-progress API. For thoughts on
   how plugins execution order should be configurable in the future, see
-  <a href="https://github.com/Mashape/kong/issues/267">Mashape/kong#267</a>.
+  <a href="https://github.com/Kong/kong/issues/267">Kong/kong#267</a>.
 </div>
 
 Some plugins might depend on the execution of others to perform some

@@ -235,24 +235,8 @@ you will then need to adjust your network settings to point to your Kong cluster
 (most likely by updating the DNS configuration).
 
 If you are a 
-[Mashape Enterprise](https://www.mashape.com/enterprise/) customer, we can help
+[Kong Enterprise](https://konghq.com/kong-enterprise-edition/) customer, we can help
 with the migration.
 
 ----
 
-## Where can I get help?
-
-You can read the [official documentation](/) or ask any question to the
-community and the core maintainers on our [official chat on
-Gitter](https://gitter.im/Mashape/kong). We are also on Freenode at
-[#kong](http://webchat.freenode.net/?channels=kong).
-
-You can also have a face-to-face talk with us at one of our
-[meetups](http://www.meetup.com/The-Mashape-API-Developer-Community).
-
-[Mashape Enterprise](https://www.mashape.com/enterprise/) is our Enterprise
-Subscription that offers 24/7 Support SLAs among other features.
-
-<hr>
-
-Were you looking for a question that you did't find? [Open an issue!]({{site.repos.kong}})

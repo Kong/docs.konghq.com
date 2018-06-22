@@ -126,4 +126,4 @@ Kong Homepage: https://docs.konghq.com/<br>
 Kong Installation: https://docs.konghq.com/install/<br>
 Kong Documentation: https://docs.konghq.com/<br>
 Kong Plugin Gallery: https://docs.konghq.com/plugins/<br>
-Kong GitHub: https://github.com/Mashape/kong<br>
+Kong GitHub: https://github.com/Kong/kong<br>

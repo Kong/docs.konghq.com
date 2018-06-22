@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "name": "docs.konghq.com",
   "homepage": "https://docs.konghq.com",
-  "repository": "Mashape/docs.konghq.com",
+  "repository": "Kong/docs.konghq.com",
   "license": "proprietary",
   "scripts": {
     "deploy": "gulp deploy",
