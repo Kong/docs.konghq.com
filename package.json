@@ -25,6 +25,7 @@
       "app/_assets/images/**",
       "app/_assets/fonts/**",
       "app/license/index.md",
+      "ldoc/*",
       "Gemfile.lock"
     ]
   },
