@@ -354,15 +354,29 @@ Default: `logs/error.log`
 
 ---
 
-##### **custom_plugins**
+##### **plugins**
 
-Comma-separated list of additional plugins this node should load. Use this
-property to load custom plugins that are not bundled with Kong. Plugins will
-be loaded from the `kong.plugins.{name}.*` namespace.
+Comma-separated list containing the plugins this node should load.
 
-Default: none
+Each item on the list can be:
 
-Example: `my-plugin,hello-world,custom-rate-limiting`
+* A plugin name. Both bundled plugins (like `key-auth`) and custom plugins
+  (like `custom-rate-limting`) are accepted here.
+* The alias `bundled`. This has the same meaning as including all the items
+  that are available by default (from the `kong.plugins.{name}.*` namespace).
+* The alias `off`. This means "no plugins".
+
+Default: bundled
+
+Examples:
+
+* `plugins=bundled,custom-auth,custom-log` will include the bundled plugins plus two
+  custom ones
+* `plugins=custom-auth,custom-log` will *only* include the `custom-auth` and `custom-log` plugins.
+* `plugins=off` will not include any plugins
+
+Limiting the amount of available plugins can provide some performance improvements in
+certain scenarios.
 
 ---
 
