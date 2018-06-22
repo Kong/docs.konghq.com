@@ -1,9 +1,9 @@
 {
   "private": true,
   "version": "1.0.0",
-  "name": "getkong.org",
-  "homepage": "https://getkong.org",
-  "repository": "Mashape/getkong.org",
+  "name": "docs.konghq.com",
+  "homepage": "https://docs.konghq.com",
+  "repository": "Mashape/docs.konghq.com",
   "license": "proprietary",
   "scripts": {
     "deploy": "gulp deploy",

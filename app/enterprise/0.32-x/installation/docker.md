@@ -82,7 +82,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
 
 ## Enable RBAC
 
-[Role-based Access Control (RBAC)](https://getkong.org/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
+[Role-based Access Control (RBAC)](https://docs.konghq.com/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
 
 1. Create an initial RBAC administrator:
 

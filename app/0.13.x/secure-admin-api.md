@@ -155,7 +155,7 @@ to a particular resource. In this way, fine-grained control over specific Admin
 API resources can be enforced, while scaling to allow complex, case-specific
 uses.
 
-If you are not a Mashape Enterprise customer, you can inquire about our
+If you are not a Kong Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).
 
 [Back to TOC](#table-of-contents)

@@ -179,7 +179,7 @@ gulp.task('cloudflare', function (cb) {
     token: process.env.MASHAPE_CLOUDFLARE_TOKEN
   })
 
-  cloudflare.clearCache('getkong.org', function (err) {
+  cloudflare.clearCache('docs.getkong.com', function (err) {
     if (err) {
       gutil.log(err.message)
     }

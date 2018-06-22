@@ -122,8 +122,8 @@ There are plans in the roadmap to improve this process.
 
 External Links
 
-Kong Homepage: https://getkong.org/<br>
-Kong Installation: https://getkong.org/install/<br>
-Kong Documentation: https://getkong.org/<br>
-Kong Plugin Gallery: https://getkong.org/plugins/<br>
+Kong Homepage: https://docs.konghq.com/<br>
+Kong Installation: https://docs.konghq.com/install/<br>
+Kong Documentation: https://docs.konghq.com/<br>
+Kong Plugin Gallery: https://docs.konghq.com/plugins/<br>
 Kong GitHub: https://github.com/Mashape/kong<br>
