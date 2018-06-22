@@ -29,9 +29,13 @@
         {% endif %}
       </div>
 
-      {% if page.header_btn_text %}
+      {% if page.header_btn_repo_href %}
         <div class="page-header-right">
-          <a class="page-header-btn" href="{{ page.header_btn_href | liquify }}" target="{{ page.header_btn_target }}">{{ page.header_btn_text | liquify }}</a>
+          {% if page.header_btn_repo_text %}
+            <a class="page-header-btn" href="{{ page.header_btn_repo_href | liquify }}" target="{{ page.header_btn_repo_target }}">{{ page.header_btn_repo_text | liquify }}</a>
+          {% else %}
+            <a class="page-header-btn page-header-btn-repo" href="{{ page.header_btn_repo_href | liquify }}" target="{{ page.header_btn_repo_target }}">Source&nbsp;Code</a>
+          {% endif %}
         </div>
       {% endif %}
 

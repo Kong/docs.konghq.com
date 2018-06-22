@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - OpenWhisk
 header_title: Apache OpenWhisk
 header_icon: /assets/images/icons/plugins/openwhisk.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-openwhisk
 breadcrumbs:
   Plugins: /plugins
 nav:
