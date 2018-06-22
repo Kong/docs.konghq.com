@@ -628,21 +628,29 @@ Default: `60`
 
 ---
 
-##### **server_tokens**
+##### **headers**
 
-Enables or disables emitting Kong version on error pages and in the `Server`
-or `Via` (in case the request was proxied) response header field.
+Comma-separated list of headers Kong should inject in client responses.
 
-Default: `on`
+Accepted values are:
 
----
+* `Server`: Injects `Server: kong/x.y.z` on Kong-produced response (e.g. Admin
+  API, rejected requests from auth plugin, etc...).
+* `Via`: Injects `Via: kong/x.y.z` for successfully proxied requests.
+* `X-Kong-Proxy-Latency`: Time taken (in milliseconds) by Kong to process
+  a request and run all plugins before proxying the request upstream.
+* `X-Kong-Upstream-Latency`: Time taken (in milliseconds) by the upstream
+  service to send response headers.
+* `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
+  service. This is particularly useful for clients to distinguish upstream
+  statuses if the response is rewritten by a plugin.
+* `server_tokens`: Same as specifying both `Server` and `Via`.
+* `latency_tokens`: Same as specifying both `X-Kong-Proxy-Latency` and
+  `X-Kong-Upstream-Latency`.
+* `off`: Prevents Kong from injecting any of the above headers. Note that
+  this does not prevent plugins from injecting headers of their own.
 
-##### **latency_tokens**
-
-Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency`
-and `X-Kong-Upstream-Latency` response header fields.
-
-Default: `on`
+Default: `server_tokens, latency_tokens`
 
 ---
 
