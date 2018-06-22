@@ -1,7 +1,9 @@
 [
 # for i, mod in ipairs(modules) do
 #   local name = mod.name
-#   if name == "kong" then name = "index" end
+#   if string.lower(name) == "pdk" then
+#     name = "index"
+#   end
   { "name": "$(name)",
     "generated_name": "$(mod.name)",
     "file": "$(mod.file)" }$(i < #modules and ",")

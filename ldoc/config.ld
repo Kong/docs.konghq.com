@@ -1,8 +1,7 @@
-project = "Kong"
+project = "kong"
 title = "Plugin Development Kit"
 format = "markdown"
 sort = true
-sort_modules = true
 backtick_references = false
 no_lua_ref = true
 all = false
