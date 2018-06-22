@@ -84,10 +84,12 @@ upstream_body: |
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`, defaults to `1000`).
-    `hash_on`<br>*optional* | What to use as hashing input: `none`, `consumer`, `ip`, or `header` (defaults to `none` resulting in a weighted-round-robin scheme).
-    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified): `none`, `consumer`, `ip`, or `header` (defaults to `none`).
+    `hash_on`<br>*optional* | What to use as hashing input: `none`, `consumer`, `ip`, `header`, or `cookie` (defaults to `none` resulting in a weighted-round-robin scheme).
+    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified). One of: `none`, `consumer`, `ip`, `header`, or `cookie` (defaults to `none`, not available if `hash_on` is set to `cookie`).
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_on` is set to `header`).
     `hash_fallback_header`<br>*semi-optional* | The header name to take the value from as hash input (only required when `hash_fallback` is set to `header`).
+    `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input (only required when `hash_on` or `hash_fallback` is set to `cookie`). If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
+    `hash_on_cookie_path`<br>*semi-optional* | The cookie path to set in the response headers (only required when `hash_on` or `hash_fallback` is set to `cookie`, defaults to `"/"`)
     `healthchecks.active.timeout`<br>*optional* | Socket timeout for active health checks (in seconds).
     `healthchecks.active.concurrency`<br>*optional* | Number of targets to check concurrently in active health checks.
     `healthchecks.active.http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks.
