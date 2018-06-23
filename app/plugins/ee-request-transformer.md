@@ -9,5 +9,5 @@ breadcrumbs:
 description: |
   The Request Transformer plugin for Kong Enterprise Edition builds on the Community Edition version of this plugin with enhanced capabilities to match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute those strings into transformed requests via flexible templates.
 
-  * [Detailed documentation for the EE Request Transformer Plugin](/docs/enterprise/latest/plugins/request-transformer)
+  * [Detailed documentation for the EE Request Transformer Plugin](/enterprise/latest/plugins/request-transformer)
 ---
