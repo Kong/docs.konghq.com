@@ -123,7 +123,7 @@ which must specify an Nginx configuration template. Such a template uses the
 the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
-The default template can be found at: https://github.com/Mashape/kong/tree/master/kong/templates.
+The default template can be found at: https://github.com/Kong/kong/tree/master/kong/templates.
 It is splitted in two Nginx configuration files: `nginx.lua` and
 `nginx_kong.lua`. The former is minimalistic and includes the later, which
 contains everything Kong requires to run. Moments before starting Nginx, those
@@ -481,7 +481,7 @@ A common pattern is to create a VPN between the two datacenters such that
 the flat network assumption is not violated.
 
 See the clustering reference for more informations:
-https://getkong.org/latest/clustering/
+https://docs.konghq.com/latest/clustering/
 
 ---
 

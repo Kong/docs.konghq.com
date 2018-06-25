@@ -29,7 +29,7 @@ links:
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
 repos:
   kong: https://github.com/Kong/kong
-  docs: https://github.com/Kong/getkong.org
+  docs: https://github.com/Kong/docs.konghq.com
   vagrant: https://github.com/Kong/kong-vagrant
   homebrew: https://github.com/Kong/homebrew-kong
   cloudformation: https://github.com/Kong/kong-dist-cloudformation

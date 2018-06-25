@@ -211,5 +211,5 @@ tokens etc. will require authentication by the other configured auth plugins.
   configured on the anonymous consumer. Failure to do so will allow unauthorized requests.
 </div>
 
-[plugins]: https://getkong.org/plugins/
+[plugins]: https://konghq.com/plugins/
 [key-auth]: /plugins/key-authentication

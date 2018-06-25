@@ -1103,7 +1103,7 @@ associated Service, on to how to allow for using the WebSocket protocol or
 setup dynamic SSL certificates.
 
 This website is Open-Source and can be found at
-[github.com/Mashape/getkong.org](https://github.com/Mashape/getkong.org/).
+[github.com/Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com/).
 Feel free to provide feedback to this document there, or propose improvements!
 
 If you haven't already, we suggest that you also read the [Load balancing

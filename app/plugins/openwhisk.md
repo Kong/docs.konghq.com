@@ -26,7 +26,7 @@ installation: |
   $ luarocks install kong-plugin-openwhisk
   ```
 
-  or install it from [source](https://github.com/Mashape/kong-plugin-openwhisk).
+  or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
   For more infomation on Plugin installation, please see the documentation
   [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
 

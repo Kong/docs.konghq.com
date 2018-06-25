@@ -26,5 +26,5 @@ You will still need to complete an annual [Self-Assessment Questionnaire (SAQ)](
 ---
 
 <div class="help">
-  <img align="left" src="/assets/images/icons/icn-lifesaver.svg"/> We are always willing to help and assist in answering specific questions about your scope of compliance. <a href="mailto:sales@mashape.com">We're Here to Help!</a>
+  <img align="left" src="/assets/images/icons/icn-lifesaver.svg"/> We are always willing to help and assist in answering specific questions about your scope of compliance. <a href="mailto:sales@konghq.com">We're Here to Help!</a>
 </div>
