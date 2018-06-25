@@ -339,6 +339,19 @@ ___
 | `actions`             | One or more actions associated with this permission. This is a comma separated string (read,create,update,delete)               |
 | `comment`<br>optional | A string describing the RBAC permission object.                                                                                 |
 
+`endpoint` must be the path of the associated endpoint. They can be
+exact matches, or contain wildcards, represented by `*`.
+
+- Exact matches; eg:
+  * /apis/
+  * /apis/foo
+
+- Wildcards; eg:
+  * /apis/*
+  * /apis/*/plugins
+
+The * here replaces a named parameter
+
 #### Response
 
 ```
