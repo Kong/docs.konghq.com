@@ -70,7 +70,7 @@ When contributing, be aware of a few things:
   Example: if you fix a typo in `app/docs/0.10.x/configuration.md`, this typo
   may also be present in `app/docs/0.9.x/configuration.md`.
 - There are enterprise edition documents that live under
-  `app/docs/enterprise/x.x-x` and have a plugins section specific to EE which
+  `app/enterprise/x.x-x` and have a plugins section specific to EE which
   are versioned unlike CE plugins.
 
 [Back to TOC](#table-of-contents)

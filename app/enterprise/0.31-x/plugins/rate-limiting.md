@@ -72,4 +72,4 @@ $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
 This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds.
 
 
-[ratelimit-library]: /docs/enterprise/latest/rate-limiting/
+[ratelimit-library]: /enterprise/latest/rate-limiting/
