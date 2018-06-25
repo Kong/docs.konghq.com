@@ -1,5 +1,6 @@
 ---
 title: kong.service.response
+pdk: true
 ---
 
 # kong.service.response

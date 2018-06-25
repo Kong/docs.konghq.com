@@ -90,6 +90,9 @@
       - text: kong.ctx
         url: /pdk/kong.ctx
 
+      - text: kong
+        url: /pdk/kong
+
       - text: kong.log
         url: /pdk/kong.log
 

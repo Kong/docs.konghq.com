@@ -1,5 +1,6 @@
 ---
 title: kong.service.request
+pdk: true
 ---
 
 # kong.service.request
@@ -12,7 +13,7 @@ Manipulation of the request to the Service
 * [kong.service.request.clear_header(header)](#kong_service_request_clear_header)
 * [kong.service.request.set_body(args[, mimetype])](#kong_service_request_set_body)
 * [kong.service.request.set_header(header, value)](#kong_service_request_set_header)
-* [kong.service.request.set_headers(A)](#kong_service_request_set_headers)
+* [kong.service.request.set_headers(headers)](#kong_service_request_set_headers)
 * [kong.service.request.set_method(method)](#kong_service_request_set_method)
 * [kong.service.request.set_path(path)](#kong_service_request_set_path)
 * [kong.service.request.set_query(args)](#kong_service_request_set_query)
@@ -137,9 +138,9 @@ Sets the body of the request to the Service.  Unlike
 
 **Returns**
 
-1.   boolean|nil `true` on success, `nil` otherwise
+1.  `boolean|nil` `true` on success, `nil` otherwise
 
-1.   string|nil an error message on errors, `nil` otherwise.
+1.  `string|nil` `nil` on success, an error message in case of error.
  Throws an error on invalid inputs.
 
 
@@ -202,7 +203,7 @@ kong.service.request.set_header("X-Foo", "value")
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_service_request_set_headers"></a>kong.service.request.set_headers(A)
+### <a name="kong_service_request_set_headers"></a>kong.service.request.set_headers(headers)
 
 Sets the headers of the request to the Service.  Unlike
  `kong.service.request.set_header()`, the `headers` argument must be a table in
@@ -224,7 +225,7 @@ Sets the headers of the request to the Service.  Unlike
 
 **Parameters**
 
-* **A** (headers):  table where each key is a string containing a header name
+* **headers** (table):  A table where each key is a string containing a header name
    and each value is either a string or an array of strings.
 
 **Returns**

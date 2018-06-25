@@ -1,21 +1,22 @@
 ---
 title: kong.request
+pdk: true
 ---
 
 # kong.request
 
 Client request module
- A set of functions to retrieve information about the incoming requests made
- by clients.
+ A set of functions to retrieve information about the incoming requests made by
+ clients.
 
 ## Table of Contents
 
-* [kong.request.get_body([mimetype[, max_args]])](#kong_request_get_body)
+* [kong.request.get_body([mimetype[, max]])](#kong_request_get_body)
 * [kong.request.get_forwarded_host()](#kong_request_get_forwarded_host)
 * [kong.request.get_forwarded_scheme()](#kong_request_get_forwarded_scheme)
 * [kong.request.get_forwareded_port()](#kong_request_get_forwareded_port)
 * [kong.request.get_header(name)](#kong_request_get_header)
-* [kong.request.get_headers([max_headers])](#kong_request_get_headers)
+* [kong.request.get_headers([customizes])](#kong_request_get_headers)
 * [kong.request.get_host()](#kong_request_get_host)
 * [kong.request.get_http_version()](#kong_request_get_http_version)
 * [kong.request.get_method()](#kong_request_get_method)
@@ -30,7 +31,7 @@ Client request module
 
 
 
-### <a name="kong_request_get_body"></a>kong.request.get_body([mimetype[, max_args]])
+### <a name="kong_request_get_body"></a>kong.request.get_body([mimetype[, max]])
 
 Returns the request data as a key/value table.
  A high-level convenience function.
@@ -42,8 +43,7 @@ Returns the request data as a key/value table.
    * Returns the body as form-encoded.
  * If the request content type is `multipart/form-data`:
    * Decodes the body as multipart form data
-     (same as `multipart(kong.request.get_raw_body(),
-     kong.request.get_header("Content-Type")):get_all()` ).
+     (same as `multipart(kong.request.get_raw_body(), kong.request.get_header("Content-Type")):get_all()` ).
  * If the request content type is `application/json`:
    * Decodes the body as JSON
      (same as `json.decode(kong.request.get_raw_body())`).
@@ -57,23 +57,21 @@ Returns the request data as a key/value table.
  * `application/json`
  * `multipart/form-data`
 
- The optional argument `max_args` can be used to set a limit on the number
- of form arguments parsed for `application/x-www-form-urlencoded` payloads.
+ The optional argument `max_args` can be used to set a limit on the number of
+ form arguments parsed for `application/x-www-form-urlencoded` payloads.
 
- The third return value is string containing the mimetype used to parsed
- the body (as per the `mimetype` argument), allowing the caller to identify
- what MIME type the body was parsed as.
-
+ The third return value is string containing the mimetype used to parsed the
+ body (as per the `mimetype` argument), allowing the caller to identify what
+ MIME type the body was parsed as.
 
 **Phases**
 
-* rewrite, access
+* `rewrite`, `access`
 
 **Parameters**
 
 * **mimetype** (string, _optional_):  the MIME type
-* **max_args** (number, _optional_):  set a limit on the maximum number of parsed
- arguments
+* **max** (number, _optional_): \_args customize how many arguments will be parsed
 
 **Returns**
 
@@ -87,9 +85,9 @@ Returns the request data as a key/value table.
 **Usage**
 
 ``` lua
-local body, err, mimetype = kong.request.get_body()
-body.name -- "John Doe"
-body.age  -- "42"
+local req, err, mimetype = kong.request.get_body()
+kong.log.inspect(req.name) -- "John Doe"
+kong.log.inspect(req.age)  -- "42"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -99,23 +97,22 @@ body.age  -- "42"
 
 Returns the host component of the request's URL or the value of the "host"
  header.  Unlike `kong.request.get_host()`, this function will also consider
- `X-Forwarded-Host` if it comes from a trusted source. The returned value
- is normalized to lower-case.
+ `X-Forwarded-Host` if it comes from a trusted source. The returned value is
+ normalized to lower-case.
 
- Whether this function considers `X-Forwarded-Proto` or not depends on
- several Kong configuration parameters:
+ Whether this function considers `X-Forwarded-Proto` or not depends on several
+ Kong configuration parameters:
 
  * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
  * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
  * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
 
- **Note**: we do not currently offer support for Forwarded HTTP Extension
- (RFC 7239) since it is not supported by ngx_http_realip_module.
-
+ **Note**: we do not currently offer support for Forwarded HTTP Extension (RFC
+ 7239) since it is not supported by ngx_http_realip_module.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -125,7 +122,7 @@ Returns the host component of the request's URL or the value of the "host"
 **Usage**
 
 ``` lua
-kong.request.get_forwarded_host() -- "example.com"
+kong.log.inspect(kong.request.get_forwarded_host()) -- "example.com"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -137,20 +134,19 @@ Returns the scheme component of the request's URL, but also considers
  `X-Forwarded-Proto` if it comes from a trusted source.  The returned
  value is normalized to lower-case.
 
- Whether this function considers `X-Forwarded-Proto` or not depends on
- several Kong configuration parameters:
+ Whether this function considers `X-Forwarded-Proto` or not depends on several
+ Kong configuration parameters:
 
  * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
  * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
  * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
 
- **Note**: support for the Forwarded HTTP Extension (RFC 7239) is not
- offered yet since it is not supported by ngx\_http\_realip\_module.
-
+ **Note**: support for the Forwarded HTTP Extension (RFC 7239) is not offered
+ yet since it is not supported by ngx\_http\_realip\_module.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -160,7 +156,7 @@ Returns the scheme component of the request's URL, but also considers
 **Usage**
 
 ``` lua
-kong.request.get_forwarded_scheme() -- "https"
+kong.log.inspect(kong.request.get_forwarded_scheme()) -- "https"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -172,20 +168,20 @@ Returns the port component of the request's URL, but also considers
  `X-Forwarded-Host` if it comes from a trusted source.  The value
  is returned as a Lua number.
 
- Whether this function considers `X-Forwarded-Proto` or not depends on
- several Kong configuration parameters:
+ Whether this function considers `X-Forwarded-Proto` or not depends on several
+ Kong configuration parameters:
 
  * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
  * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
  * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
 
- **Note**: we do not currently offer support for Forwarded HTTP Extension
- (RFC 7239) since it is not supported by ngx_http_realip_module.
+ **Note**: we do not currently offer support for Forwarded HTTP Extension (RFC
+ 7239) since it is not supported by ngx_http_realip_module.
 
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -195,7 +191,7 @@ Returns the port component of the request's URL, but also considers
 **Usage**
 
 ``` lua
-kong.request.get_forwarded_port() -- 1234
+kong.log.inspect(kong.request.get_forwarded_port()) -- 1234
 ```
 
 [Back to TOC](#table-of-contents)
@@ -206,9 +202,9 @@ kong.request.get_forwarded_port() -- 1234
 Returns the value of the specified request header.
 
  The returned value is either a `string`, or can be `nil` if a header with
- `name` was not found in the request. If a header with the same name is
- present multiple times in the request, this function will return the value
- of the first occurrence of this header.
+ `name` was not found in the request. If a header with the same name is present
+ multiple times in the request, this function will return the value of the first
+ occurrence of this header.
 
  Header names in are case-insensitive and are normalized to lowercase, and
  dashes (`-`) can be written as underscores (`_`); that is, the header
@@ -217,7 +213,7 @@ Returns the value of the specified request header.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Parameters**
 
@@ -232,42 +228,39 @@ Returns the value of the specified request header.
 
 ``` lua
 -- Given a request with the following headers:
-
 -- Host: foo.com
 -- X-Custom-Header: bla
 -- X-Another: foo bar
 -- X-Another: baz
 
-kong.request.get_header("Host")            -- "foo.com"
-kong.request.get_header("x-custom-header") -- "bla"
-kong.request.get_header("X-Another")       -- "foo bar"
+kong.log.inspect(kong.request.get_header("Host"))            -- "foo.com"
+kong.log.inspect(kong.request.get_header("x-custom-header")) -- "bla"
+kong.log.inspect(kong.request.get_header("X-Another"))       -- "foo bar"
 ```
 
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_request_get_headers"></a>kong.request.get_headers([max_headers])
+### <a name="kong_request_get_headers"></a>kong.request.get_headers([customizes])
 
-Returns a Lua table holding the request headers.  Keys are header names.
- Values are either a string with the header value, or an array of strings
- if a header was sent multiple times. Header names in this table are
- case-insensitive and are normalized to lowercase, and dashes (`-`) can be
- written as underscores (`_`); that is, the header `X-Custom-Header` can
- also be retrieved as `x_custom_header`.
+Returns a Lua table holding the request headers.  Keys are header names. Values
+ are either a string with the header value, or an array of strings if a header
+ was sent multiple times. Header names in this table are case-insensitive and
+ are normalized to lowercase, and dashes (`-`) can be written as underscores
+ (`_`); that is, the header `X-Custom-Header` can also be retrieved as
+ `x_custom_header`.
 
  By default, this function returns up to **100** headers. The optional
- `max_headers` argument can be specified to customize this limit, but must
- be greater than **1** and not greater than **1000**.
-
+ `max_headers` argument can be specified to customize this limit, but must be
+ greater than **1** and not greater than **1000**.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Parameters**
 
-* **max_headers** (number, _optional_):  set a limit on the maximum number of
- parsed headers
+* **customizes** (max_headers, _optional_):  the limit of arguments parsed
 
 **Returns**
 
@@ -278,17 +271,16 @@ Returns a Lua table holding the request headers.  Keys are header names.
 
 ``` lua
 -- Given a request with the following headers:
-
 -- Host: foo.com
 -- X-Custom-Header: bla
 -- X-Another: foo bar
 -- X-Another: baz
 local headers = kong.request.get_headers()
 
-headers.host            -- "foo.com"
-headers.x_custom_header -- "bla"
-headers.x_another[1]    -- "foo bar"
-headers["X-Another"][2] -- "baz"
+kong.log.inspect(headers.host)            -- "foo.com"
+kong.log.inspect(headers.x_custom_header) -- "bla"
+kong.log.inspect(headers.x_another[1])    -- "foo bar"
+kong.log.inspect(headers["X-Another"][2]) -- "baz"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -296,13 +288,12 @@ headers["X-Another"][2] -- "baz"
 
 ### <a name="kong_request_get_host"></a>kong.request.get_host()
 
-Returns the host component of the request's URL, or the value of the
- "Host" header.  The returned value is normalized to lower-case form.
-
+Returns the host component of the request's URL, or the value of the "Host"
+ header.  The returned value is normalized to lower-case form.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -313,8 +304,7 @@ Returns the host component of the request's URL, or the value of the
 
 ``` lua
 -- Given a request to https://example.com:1234/v1/movies
-
-kong.request.get_host() -- "example.com"
+kong.log.inspect(kong.request.get_host()) -- "example.com"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -322,13 +312,12 @@ kong.request.get_host() -- "example.com"
 
 ### <a name="kong_request_get_http_version"></a>kong.request.get_http_version()
 
-Returns the HTTP version used by the client in the request as a Lua
- number, returning values such as `"1.1"` and `"2.0."`, or `nil` for
- unrecognized values.
+Returns the HTTP version used by the client in the request as a Lua number,
+ returning values such as `"1.1"` and `"2.0."`, or `nil` for unrecognized values.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -338,7 +327,7 @@ Returns the HTTP version used by the client in the request as a Lua
 **Usage**
 
 ``` lua
-kong.request.get_http_version() -- "1.1"
+kong.log.inspect(kong.request.get_http_version()) -- 1.1
 ```
 
 [Back to TOC](#table-of-contents)
@@ -346,13 +335,12 @@ kong.request.get_http_version() -- "1.1"
 
 ### <a name="kong_request_get_method"></a>kong.request.get_method()
 
-Returns the HTTP method of the request.  The value is normalized to
- upper-case.
+Returns the HTTP method of the request.  The value is normalized to upper-case.
 
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -362,7 +350,7 @@ Returns the HTTP method of the request.  The value is normalized to
 **Usage**
 
 ``` lua
-kong.request.get_method() -- "GET"
+kong.log.inspect(kong.request.get_method()) -- "GET"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -376,7 +364,7 @@ Returns the path component of the request's URL.  It is not normalized in
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -387,8 +375,7 @@ Returns the path component of the request's URL.  It is not normalized in
 
 ``` lua
 -- Given a request to https://example.com:1234/v1/movies?movie=foo
-
-kong.request.get_path() -- "/v1/movies"
+kong.log.inspect(kong.request.get_path()) -- "/v1/movies"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -399,10 +386,9 @@ kong.request.get_path() -- "/v1/movies"
 Returns the port component of the request's URL.  The value is returned
  as a Lua number.
 
-
 **Phases**
 
-* certificate, rewrite, access, header_filter, body_filter, log
+* `certificate`, `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -413,8 +399,7 @@ Returns the port component of the request's URL.  The value is returned
 
 ``` lua
 -- Given a request to https://example.com:1234/v1/movies
-
-kong.request.get_port() -- 1234
+kong.log.inspect(kong.request.get_port()) -- 1234
 ```
 
 [Back to TOC](#table-of-contents)
@@ -422,15 +407,14 @@ kong.request.get_port() -- 1234
 
 ### <a name="kong_request_get_query"></a>kong.request.get_query([max_args])
 
-Returns the table of query arguments obtained from the querystring.  Keys
- are query argument names. Values are either a string with the argument
- value, a boolean `true` if an argument was not given a value, or an array
- if an argument was given in the query string multiple times. Keys and
- values are unescaped according to URL-encoded escaping rules.
+Returns the table of query arguments obtained from the querystring.  Keys are
+ query argument names. Values are either a string with the argument value, a
+ boolean `true` if an argument was not given a value, or an array if an argument
+ was given in the query string multiple times. Keys and values are unescaped
+ according to URL-encoded escaping rules.
 
- Note that a query string `?foo&bar` translates to two boolean `true`
- arguments, and `?foo=&bar=` translates to two string arguments containing
- empty strings.
+ Note that a query string `?foo&bar` translates to two boolean `true` arguments,
+ and `?foo=&bar=` translates to two string arguments containing empty strings.
 
  By default, this function returns up to **100** arguments. The optional
  `max_args` argument can be specified to customize this limit, but must be
@@ -439,12 +423,11 @@ Returns the table of query arguments obtained from the querystring.  Keys
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Parameters**
 
-* **max_args** (number, _optional_):  set a limit on the maximum number of parsed
- arguments
+* **max_args** (number, _optional_):  customize the number of args being parsed.
 
 **Returns**
 
@@ -477,13 +460,12 @@ Returns the plain request body.
  If the body has no size (empty), this function returns an empty string.
 
  If the size of the body is greater than the Nginx buffer size (set by
- `client_body_buffer_size`), this function will fail and return an error
- message explaining this limitation.
-
+ `client_body_buffer_size`), this function will fail and return an error message
+ explaining this limitation.
 
 **Phases**
 
-* rewrite, access
+* `rewrite`, `access`
 
 **Returns**
 
@@ -494,8 +476,7 @@ Returns the plain request body.
 
 ``` lua
 -- Given a body with payload "Hello, Earth!":
-
-kong.request.get_raw_body():gsub("Earth", Mars") -- "Hello, Mars!"
+kong.log.inspect(kong.request.get_raw_body():gsub("Earth", Mars")) -- "Hello, Mars!"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -510,7 +491,7 @@ Returns the query component of the request's URL.  It is not normalized in
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -521,8 +502,7 @@ Returns the query component of the request's URL.  It is not normalized in
 
 ``` lua
 -- Given a request to https://example.com/foo?msg=hello%20world&bla=&bar
-
-kong.request.get_raw_query() -- "msg=hello%20world&bla=&bar"
+kong.log.inspect(kong.request.get_raw_query()) -- "msg=hello%20world&bla=&bar"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -533,10 +513,9 @@ kong.request.get_raw_query() -- "msg=hello%20world&bla=&bar"
 Returns the scheme component of the request's URL.  The returned value is
  normalized to lower-case form.
 
-
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -547,8 +526,7 @@ Returns the scheme component of the request's URL.  The returned value is
 
 ``` lua
 -- Given a request to https://example.com:1234/v1/movies
-
-kong.request.get_scheme() -- "https"
+kong.log.inspect(kong.request.get_scheme()) -- "https"
 ```
 
 [Back to TOC](#table-of-contents)
@@ -556,20 +534,18 @@ kong.request.get_scheme() -- "https"
 
 ### <a name="kong_request_set_query_arg"></a>kong.request.set_query_arg()
 
-Returns the value of the specified argument, obtained from the query
- arguments of the current request.
+Returns the value of the specified argument, obtained from the query arguments
+ of the current request.
 
  The returned value is either a `string`, a boolean `true` if an
- argument was not given a value, or `nil` if no argument with `name` was
- found.
+ argument was not given a value, or `nil` if no argument with `name` was found.
 
- If an argument with the same name is present multiple times in the
- querystring, this function will return the value of the first occurrence.
-
+ If an argument with the same name is present multiple times in the querystring,
+ this function will return the value of the first occurrence.
 
 **Phases**
 
-* rewrite, access, header_filter, body_filter, log
+* `rewrite`, `access`, `header_filter`, `body_filter`, `log`
 
 **Returns**
 
@@ -581,10 +557,10 @@ Returns the value of the specified argument, obtained from the query
 ``` lua
 -- Given a request GET /test?foo=hello%20world&bar=baz&zzz&blo=&bar=bla&bar
 
-kong.request.get_query_arg("foo") -- "hello world"
-kong.request.get_query_arg("bar") -- "baz"
-kong.request.get_query_arg("zzz") -- true
-kong.request.get_query_arg("blo") -- ""
+kong.log.inspect(kong.request.get_query_arg("foo")) -- "hello world"
+kong.log.inspect(kong.request.get_query_arg("bar")) -- "baz"
+kong.log.inspect(kong.request.get_query_arg("zzz")) -- true
+kong.log.inspect(kong.request.get_query_arg("blo")) -- ""
 ```
 
 [Back to TOC](#table-of-contents)
