@@ -237,6 +237,3 @@ you will then need to adjust your network settings to point to your Kong cluster
 If you are a 
 [Kong Enterprise](https://konghq.com/kong-enterprise-edition/) customer, we can help
 with the migration.
-
-----
-
