@@ -1,33 +1,42 @@
 ---
-title: How to Access Your Kong Enterprise Edition License
+title: Accessing Your Kong License File
 ---
+> If you are a Free Trial User please skip to the "Free Trial Users" section below
 
-Starting with Kong EE v .29, Kong requires a license file to start. This guide will walk you through accessing your license file. 
+# Accessing your License File
 
-Log into https://bintray.com/login?forwardedFrom=%2Fkong%2F
-If you are unaware of your login credentials, reach out to your CSE and they'll be able to assist you.
+Your license file can be found along side your Kong EE installation package in Bintray. To access Bintray, login here:
+(https://bintray.com/login?forwardedFrom=%2Fkong%2F)
 
-You will notice that along with Kong Enterprise Edition and Gelato, there is a new repository that has the same name as your company. Click on that repo.
+> If you are unsure of your Bintray credentials please reach out to your CSE for assistance. 
 
-In the repo, you'll see 1 file called license. Click on that file.
+Once inside Bintray, you should see a new repository listed with the same name as your company. Clicking on that link will 
+take you to your repository overview page, with your license file inside.
 
 ![](/assets/images/docs/ee/access-bintray-license.png)
 
-Click into the **Files** section
+Click on the link labeled "license", and then navigate to the "files" tab:
 
 ![](/assets/images/docs/ee/access-bintray-license-files.png)
 
-Click any file you would like to download.
+You should see a file listed "license.json". Clicking on the filename will start the file download.
 
-Alternatively, you can run this command in your terminal
+> Don't see a license file in Bintray? Contact your CSE for assistance.
+
+Alternatively, you can run the following command in your terminal to download the license file:
 
 ```bash
-curl -L -u<$UserName>@kong<$API_KEY> "https://kong.bintray.com/<$repoName>/license.json" -o <FILE.EXT>
+curl -L <u$username>@kong<$api-key>
+"https://kong.bintray.com/<$repo-name>/license.json" -o <file.ext>
 ```
 
-> Note: Your UserName and key were emailed to you by your CSE. You will need to get the repo name from the GUI
+> Please note: This command requires your Bintray API key, not your account password. If you do not have this key, or are unsure how to find it, please contact your CSE for assistance.
 
- 
+### Free Trial Users
 
-## What Next?
-Great! Now that you have your license, you can follow [this guide](/enterprise/latest/installation/docker) for instructions on how to use it to start Kong EE.
+If you are a Free Trial user a link to your license file can be found in the "Kong Enterprise Free Trial - Download and Install Instructions" email sent immediately after signing up for your free trial.
+
+> If you did not receive this email or would like a new link to your license file - please email <support@konghq.com>
+
+**If you are unsure of how to setup your license file, please see the
+[Licensing] (/enterprise/0.32-x/getting-started/licensing/) Guide**
