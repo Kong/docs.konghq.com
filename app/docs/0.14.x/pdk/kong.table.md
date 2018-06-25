@@ -1,5 +1,6 @@
 ---
 title: kong.table
+pdk: true
 ---
 
 # kong.table
@@ -46,15 +47,12 @@ kong.log(tab.foo) -- nil
 
 ### <a name="kong_table_new"></a>kong.table.new([narr[, nrec]])
 
-Returns a table with pre-allocated number of slots in its array and hash
- parts.
+Returns a table with pre-allocated number of slots in its array and hash parts.
 
 **Parameters**
 
-* **narr** (number, _optional_):  specifies the number of slots to pre-allocate
- in the array part.
-* **nrec** (number, _optional_):  specifies the number of slots to pre-allocate in
- the hash part.
+* **narr** (number, _optional_):  specifies the number of slots to pre-allocate in the
+* **nrec** (number, _optional_):  specifies the number of slots to pre-allocate in the hash part.
 
 **Returns**
 

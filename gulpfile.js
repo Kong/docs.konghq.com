@@ -120,7 +120,7 @@ gulp.task('html', ['jekyll'], function () {
   return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
     // Prefetch static assets
-    .pipe($.resourceHints())
+    // .pipe($.resourceHints())
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
 })
@@ -129,9 +129,10 @@ gulp.task('pdk-docs', function (cb) {
   var KONG_PATH, KONG_VERSION,
     navFilepath, doc, pdkRegex, newNav, newDoc,
     cmd, obj, errLog,
-    refDir, modules
+    refDir, modules,
+    gitSha1, confFilepath
 
-  // 0. parse "env-var params"
+  // 0 Obtain "env-var params"
   KONG_PATH = process.env.KONG_PATH
   if (KONG_PATH === undefined) {
     return cb('No KONG_PATH environment variable set')
@@ -209,8 +210,22 @@ gulp.task('pdk-docs', function (cb) {
       return cb(errLog)
     }
   }
-
   gutil.log('Re-generated PDK docs in ' + refDir)
+
+  // 3 Write pdk_info yaml file
+  // 3.1 obtain git sha-1 hash of the current git log
+  cmd = 'pushd ' + KONG_PATH + ' > /dev/null; git rev-parse HEAD; popd > /dev/null'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+  gitSha1 = obj.stdout.toString().trim()
+
+  // 3.2 write it into file
+  confFilepath = 'app/_data/pdk_info.yml'
+  fs.writeFileSync(confFilepath, 'sha1: ' + gitSha1 + '\n')
+  gutil.log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
 })
 
 gulp.task('clean', function () {
