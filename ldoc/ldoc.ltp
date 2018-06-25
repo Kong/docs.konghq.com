@@ -68,6 +68,7 @@
 >
 ---
 title: $(module.name)
+pdk: true
 ---
 
 # $(module.name == "PDK" and ldoc.title or module.name)
