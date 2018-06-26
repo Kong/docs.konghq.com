@@ -9,8 +9,11 @@ title: Configuration Reference
 - [Configuration loading](#configuration-loading)
 - [Verifying your configuration](#verifying-your-configuration)
 - [Environment variables](#environment-variables)
-- [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-embedding-kong)
-  - [Custom Nginx configuration](#custom-nginx-configuration)
+- [Injecting Nginx directives](#injecting-nginx-directives)
+  - [Injecting individual Nginx directives](#injecting-individual-nginx-directives)
+  - [Including files via injected Nginx directives](#including-files-via-injected-nginx-directives)
+- [Custom Nginx templates & embedding Kong](#custom-nginx-templates-embedding-kong)
+  - [Custom Nginx templates](#custom-nginx-templates)
   - [Embedding Kong in OpenResty](#embedding-kong-in-openresty)
   - [Serving both a website and your APIs from Kong](#serving-both-a-website-and-your-apis-from-kong)
 - [Properties reference](#properties-reference)
@@ -32,7 +35,7 @@ $ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 ```
 
 Kong will operate with default settings should all the values in your
-configuration be commented-out. Upon starting, Kong looks for several
+configuration be commented out. Upon starting, Kong looks for several
 default locations that might contain a configuration file:
 
 ```
@@ -49,7 +52,7 @@ $ kong start --conf /path/to/kong.conf
 
 The configuration format is straightforward: simply uncomment any property
 (comments are defined by the `#` character) and modify it to your needs.
-Booleans values can be specified as `on/off` or `true`/`false` for convenience.
+Boolean values can be specified as `on`/`off` or `true`/`false` for convenience.
 
 [Back to TOC](#table-of-contents)
 
@@ -87,16 +90,16 @@ environment variables of the same name. This allows you to fully configure Kong
 via environment variables, which is very convenient for container-based
 infrastructures, for example.
 
-All environment variables prefixed with `KONG_`, capitalized and bearing the
-same name as a setting will override it.
+To override a setting using an environment variable, declare an environment
+variable with the name of the setting, prefixed with `KONG_` and capitalized.
 
-Example:
+For example:
 
 ```
 log_level = debug # in kong.conf
 ```
 
-Can be overridden with:
+can be overridden with:
 
 ```
 $ export KONG_LOG_LEVEL=error
@@ -104,13 +107,138 @@ $ export KONG_LOG_LEVEL=error
 
 [Back to TOC](#table-of-contents)
 
-### Custom Nginx configuration & embedding Kong
+### Injecting Nginx directives
 
-Tweaking the Nginx configuration is an essential part of setting up your Kong
-instances since it allows you to optimize its performance for your
-infrastructure, or embed Kong in an already running OpenResty instance.
+Tweaking the Nginx configuration of your Kong instances allows you to optimize
+its performance for your infrastructure.
 
-#### Custom Nginx configuration
+When Kong starts, it builds an Nginx configuration file. You can inject custom
+Nginx directives to this file directly via your Kong configuration.
+
+#### Injecting individual Nginx directives
+
+Any entry added to your `kong.conf` file that is prefixed by `nginx_http_`,
+`nginx_proxy_` or `nginx_admin_` will be converted into an equivalent Nginx
+directive by removing the prefix and added to the appropriate section of the
+Nginx configuration:
+
+* Entries prefixed with `nginx_http_` will be injected to the overall `http`
+block directive.
+
+* Entries prefixed with `nginx_proxy_` will be injected to the `server` block
+directive handling Kong's proxy ports.
+
+* Entries prefixed with `nginx_admin_` will be injected to the `server` block
+directive handling Kong's Admin API ports.
+
+For example, if you add the following line to your `kong.conf` file:
+
+```
+nginx_proxy_large_client_header_buffers=16 128k
+```
+
+it will add the following directive to the proxy `server` block of Kong's
+Nginx configuration:
+
+```
+    large_client_header_buffers 16 128k;
+```
+
+Like any other entry in `kong.conf`, these directives can also be specified
+using [environment variables](#environment-variables) as shown above. For
+example, if you declare an environment variable like this:
+
+```
+$ export KONG_NGINX_HTTP_OUTPUT_BUFFERS="4 64k"
+```
+
+This will result in the following Nginx directive being added to the `http`
+block:
+
+```
+    output_buffers 4 64k;
+```
+
+As always, be mindful of your shell's quoting rules specifying values
+containing spaces.
+
+For more details on the Nginx configuration file structure and block
+directives, see https://nginx.org/en/docs/beginners_guide.html#conf_structure.
+
+For a list of Nginx directives, see https://nginx.org/en/docs/dirindex.html.
+Note however that some directives are dependent of specific Nginx modules,
+some of which may not be included with the official builds of Kong.
+
+#### Including files via injected Nginx directives
+
+For more complex configuration scenarios, such as adding entire new
+`server` blocks, you can use the method described above to inject an
+`include` directive to the Nginx configuration, pointing to a file
+containing your additional Nginx settings.
+
+For example, if you create a file called `my-server.kong.conf` with
+the following contents:
+
+```
+# custom server
+server {
+  listen 2112;
+  location / {
+    # ...more settings...
+    return 200;
+  }
+}
+```
+
+You can make the Kong node serve this port by adding the following
+entry to your `kong.conf` file:
+
+```
+nginx_http_include /path/to/your/my-server.kong.conf
+```
+
+or, alternatively, by configuring it via an environment variable:
+
+```
+$ export KONG_NGINX_HTTP_INCLUDE="/path/to/your/my-server.kong.conf"
+```
+
+Now, when you start Kong, the `server` section from that file will be added to
+that file, meaning that the custom server defined in it will be responding,
+alongside the regular Kong ports:
+
+```
+$ curl -I http://127.0.0.1:2112
+HTTP/1.1 200 OK
+...
+```
+
+Note that if you use a relative path in an `nginx_http_include` property, that
+path will be interpreted relative to the value of the `prefix` property of
+your `kong.conf` file (or the value of the `-p` flag of `kong start` if you
+used it to override the prefix when starting Kong).
+
+### Custom Nginx templates & embedding Kong
+
+For the vast majority of use-cases, using the Nginx directive injection system
+explained above should be sufficient for customizing the behavior of Kong's
+Nginx instance. This way, you can manage the configuration and tuning of your
+Kong node from a single `kong.conf` file (and optionally your own included
+files), without having to deal with custom Nginx configuration templates.
+
+There are two scenarios in which you may want to make use of custom Nginx
+configuration templates directly:
+
+* In the rare occasion that you may need to modify some of Kong's default
+Nginx configuration that are not adjustable via its standard `kong.conf`
+properties, you can still modify the template used by Kong for producing its
+Nginx configuration and launch Kong using your customized template.
+
+* If you need to embed Kong in an already running OpenResty instance, you
+can reuse Kong's generated configuration and include it in your existing
+configuration.
+
+#### Custom Nginx templates
 
 Kong can be started, reloaded and restarted with an `--nginx-conf` argument,
 which must specify an Nginx configuration template. Such a template uses the
@@ -119,7 +247,7 @@ the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
 The default template can be found at:
-https://github.com/Mashape/kong/tree/master/kong/templates. It is split in two
+https://github.com/kong/kong/tree/master/kong/templates. It is split in two
 Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
 minimalistic and includes the latter, which contains everything Kong requires
 to run. When `kong start` runs, right before starting Nginx, it copies these
@@ -128,12 +256,13 @@ two files into the prefix directory, which looks like so:
 ```
 /usr/local/kong
 ├── nginx-kong.conf
-├── nginx.conf
+└── nginx.conf
 ```
 
-If you wish to include other `server` blocks in your Nginx configuration, or if
-you must tweak global settings that are not exposed by the Kong configuration,
-here is a suggestion:
+If you must tweak global settings that are defined by Kong but not adjustable
+via the Kong configuration in `kong.conf`, you can inline the contents of the
+`nginx_kong.lua` configuration template into a custom template file (in this
+example called `custom_nginx.template`) like this:
 
 ```
 # ---------------------
@@ -147,50 +276,14 @@ pid pids/nginx.pid;                      # this setting is mandatory
 error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
 
 events {
-    use epoll; # custom setting
+    use epoll;          # a custom setting
     multi_accept on;
 }
 
 http {
-    # include default Kong Nginx config
-    include 'nginx-kong.conf';
 
-    # custom server
-    server {
-        listen 8888;
-        server_name custom_server;
+  # contents of the nginx_kong.lua template follow:
 
-        location / {
-          ... # etc
-        }
-    }
-}
-```
-
-You can then start Kong with:
-
-```
-$ kong start -c kong.conf --nginx-conf custom_nginx.template
-```
-
-If you wish to customize the Kong Nginx sub-configuration file to, eventually,
-add other Lua handlers or customize the `lua_*` directives, you can inline the
-`nginx_kong.lua` configuration in this `custom_nginx.template` example file:
-
-```
-# ---------------------
-# custom_nginx.template
-# ---------------------
-
-worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
-daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
-
-pid pids/nginx.pid;                      # this setting is mandatory
-error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
-
-events {}
-
-http {
   resolver ${{ "{{DNS_RESOLVER" }}}} ipv6=off;
   charset UTF-8;
   error_log logs/error.log ${{ "{{LOG_LEVEL" }}}};
@@ -200,31 +293,41 @@ http {
 }
 ```
 
+You can then start Kong with:
+
+```
+$ kong start -c kong.conf --nginx-conf custom_nginx.template
+```
+
 [Back to TOC](#table-of-contents)
 
 #### Embedding Kong in OpenResty
 
 If you are running your own OpenResty servers, you can also easily embed Kong
-by including the Kong Nginx sub-configuration using the `include` directive
-(similar to the examples of the previous section). If you have a valid
-top-level NGINX configuration that simply includes the Kong-specific
-configuration:
+by including the Kong Nginx sub-configuration using the `include` directive.
+If you have an existing Nginx configuration, you can simply include the
+Kong-specific portion of the configuration which is output by Kong in a separate
+`nginx-kong.conf` file:
 
 ```
 # my_nginx.conf
 
+# ...your nginx settings...
+
 http {
     include 'nginx-kong.conf';
+
+    # ...your nginx settings...
 }
 ```
 
-you can start your instance like so:
+You can then start your Nginx instance like so:
 
 ```
 $ nginx -p /usr/local/openresty -c my_nginx.conf
 ```
 
-And Kong will be running in that instance (as configured in `nginx-kong.conf`).
+and Kong will be running in that instance (as configured in `nginx-kong.conf`).
 
 [Back to TOC](#table-of-contents)
 
@@ -287,6 +390,7 @@ http {
   }
 
   # Kong's Admin server block goes below
+  # ...
 }
 ```
 
