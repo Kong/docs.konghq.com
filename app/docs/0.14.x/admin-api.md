@@ -784,11 +784,7 @@ HTTP 200 OK
 
 Attributes | Description
 ---:| ---
-`id`<br>*optional* | A filter on the list based on the consumer `id` field.
 `custom_id`<br>*optional* | A filter on the list based on the consumer `custom_id` field.
-`username`<br>*optional* | A filter on the list based on the consumer `username` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
 #### Response
 
