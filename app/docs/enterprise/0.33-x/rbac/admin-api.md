@@ -350,7 +350,11 @@ exact matches, or contain wildcards, represented by `*`.
   * /apis/*
   * /apis/*/plugins
 
-The * here replaces a named parameter
+Where `*` replaces exactly one segment between slashes (or the end of
+the path).
+
+Note that wildcards can be nested (`/rbac/*`, `/rbac/*/*`,
+`/rbac/*/*/*` would refer to all paths under `/rbac/`)
 
 #### Response
 
@@ -532,9 +536,10 @@ HTTP 200 OK
 ### Add a Role Entity Permisson
 #### Endpoint
 <div class="endpoint post">/rbac/roles/{name_or_id}/entities</div>
-| Attribute             | Description                                                                                                                     |
-| ---------             | -----------                                                                                                                     |
-| `name_or_id`          | The RBAC role name or UUID.                                                                                                |
+| Attribute    | Description                 |
+| ---------    | -----------                 |
+| `name_or_id` | The RBAC role name or UUID. |
+
 #### Request Body
 | Attribute             | Description                                                                                                                     |
 | ---------             | -----------                                                                                                                     |
@@ -542,6 +547,12 @@ HTTP 200 OK
 | `entity_id`           | id of the entity associated with this permission.                                                                               |
 | `actions`             | One or more actions associated with this permission.                                                                            |
 | `comment`<br>optional | A string describing the RBAC permission object                                                                                  |
+
+`entity_id` must be the ID of an entity in Kong; if the ID of a
+workspace is given, the permission will apply to all entities in that
+workspace. Future entities belonging to that workspace will get the
+same permissions.
+
 
 #### Response
 ```
