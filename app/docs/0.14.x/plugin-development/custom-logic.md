@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Write custom logic
+title: Plugin Development - Implementing custom logic
 book: plugin_dev
 chapter: 3
 ---
@@ -9,29 +9,29 @@ chapter: 3
 #### Module
 
 ```
-"kong.plugins.<plugin_name>.handler"
+kong.plugins.<plugin_name>.handler
 ```
 
 ---
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This chapter assumes that you are familiar with
-  <a href="http://www.lua.org/">Lua</a> and the
-  <a href="https://github.com/openresty/lua-nginx-module">lua-nginx-module API</a>.
+  <a href="http://www.lua.org/">Lua</a>.
 </div>
 
-Kong allows you to execute custom code at different times in the lifecycle of a
-request. To do so, you have to implement one or several of the methods of the
+A Kong plugin allows you to inject custom logic (in Lua) at several
+entry-points in the life-cycle of a request/response as it is proxied by Kong.
+To do so, one must implement one or several of the methods of the
 `base_plugin.lua` interface. Those methods are to be implemented in a module
-at: `"kong.plugins.<plugin_name>.handler"`
+namespaced under: `kong.plugins.<plugin_name>.handler`
 
 ---
 
 ### Available request contexts
 
-Kong allows you to write your code in all of the lua-nginx-module contexts.
-Each function to implement in your `handler.lua` file will be executed when the
-context is reached for a request:
+The plugins interface allows you to override any of the following methods in
+your `handler.lua` file to implement custom logic at various entry-points
+of the execution life-cycle of Kong:
 
 | Function name           | lua-nginx-module context           | Description
 |-------------------------|------------------------------------|--------------
@@ -40,13 +40,17 @@ context is reached for a request:
 | `:rewrite()`             | [rewrite_by_lua_block]             | Executed for every request upon its reception from a client as a rewrite phase handler. *NOTE* in this phase neither the `api` nor the `consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin!
 | `:access()`              | [access_by_lua]                    | Executed for every request from a client and before it is being proxied to the upstream service.
 | `:header_filter()`       | [header_filter_by_lua]             | Executed when all response headers bytes have been received from the upstream service.
-| `:body_filter()`         | [body_filter_by_lua]               | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this method can be called multiple times if the response is large. See the lua-nginx-module documentation for more details.
+| `:body_filter()`         | [body_filter_by_lua]               | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this method can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
 | `:log()`                 | [log_by_lua]                       | Executed when the last response byte has been sent to the client.
 
-All of those functions take one parameter given by Kong: the configuration of your plugin. This parameter is a simple Lua table, and will contain values defined by your users, according to the schema of your choice. More on that in the [next chapter]({{page.book.next}}).
+All of those functions take one parameter which is given by Kong upon its
+invocation: the configuration of your plugin. This parameter is a Lua table,
+and contains values derined by your users, according to your plugin's schema
+(described in the `schema.lua` module). More on plugins schemas in the [next
+chapter]({{page.book.next}}).
 
-[ssl_certificate_by_lua_block]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
 [init_worker_by_lua]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua
+[ssl_certificate_by_lua_block]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
 [rewrite_by_lua_block]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
 [access_by_lua]: https://github.com/openresty/lua-nginx-module#access_by_lua
 [header_filter_by_lua]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua
@@ -64,7 +68,7 @@ implementing all the available methods:
 <div class="alert alert-warning">
   <strong>Note:</strong> Kong uses the
   <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate
-  classes in Lua and ease the inheritence pattern.
+  classes in Lua and ease the inheritance pattern.
 </div>
 
 ```lua
@@ -182,13 +186,23 @@ return CustomHandler
 
 ---
 
-### Plugins execution order
+### Plugin Development Kit
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This is still a work-in-progress API. For thoughts on
-  how plugins execution order should be configurable in the future, see
-  <a href="https://github.com/Mashape/kong/issues/267">Mashape/kong#267</a>.
-</div>
+Logic implemented in those phases will most likely have to interact with the
+request/response objects or core components (e.g. access the cache,
+database...). Kong provides a [Plugin Development Kit][pdk] (or "PDK") for such
+purposes: a set of Lua functions and variables that can be used by plugins to
+execute various gateway operations in a way that is guaranteed to be
+forward-compatible with future releases of Kong.
+
+When you are trying to implement some logic that needs to interact with Kong
+(e.g. retrieving request headers, producing a response from a plugin, logging
+some error or debug information...), you should consult the [Plugin Development
+Kit Reference][pdk].
+
+---
+
+### Plugins execution order
 
 Some plugins might depend on the execution of others to perform some
 operations. For example, plugins relying on the identity of the consumer have
@@ -209,7 +223,7 @@ The current order of execution for the bundled plugins is:
 
 Plugin                    | Priority
 -------------------------:|:------------
-pre-function              | `+inf` 
+pre-function              | `+inf`
 zipkin                    | 100000
 ip-restriction            | 3000
 bot-detection             | 2500
@@ -247,3 +261,4 @@ post-function             | -1000
 Next: [Store configuration &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
+[pdk]: /{{page.kong_version}}/pdk

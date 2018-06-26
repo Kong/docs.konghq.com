@@ -17,39 +17,45 @@ this chapter is to be considered as a separate module. Kong will detect and
 load your plugin's modules if their names follow this convention:
 
 ```
-"kong.plugins.<plugin_name>.<module_name>"
+kong.plugins.<plugin_name>.<module_name>
 ```
 
 > Your modules of course need to be accessible through your
 > [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
-> variable, which can be tweaked to your needs by the
-> [lua-package-path](https://github.com/openresty/lua-nginx-module#lua_package_path)
-> directive in your Nginx configuration. However, the prefered way of
-> installing plugins is through [Luarocks](https://luarocks.org/). More on that
-> later in this guide.
+> variable, which can be tweaked to your needs via the
+> [lua_package_path](/{{page.kong_version}}/configuration/#development-miscellaneous-section)
+> configuration property.
+> However, the prefered way of installing plugins is through
+> [LuaRocks](https://luarocks.org/), which Kong natively integrates with.
+> More on LuaRocks-installed plugins later in this guide.
 
 To make Kong aware that it has to look for your plugin's modules, you'll have
-to add it to the `plugins` property in your configuration file, which
-is a comma-separated list. For example:
+to add it to the
+[plugins](/{{page.kong_version}}/configuration/#general-section) property in
+your configuration file, which is a comma-separated list. For example:
 
 ```yaml
 plugins = bundled,my-custom-plugin # your plugin name here
 ```
 
-Or, if you don't want to include the bundled plugins:
+Or, if you don't want to load any of the bundled plugins:
 
 ```yaml
 plugins = my-custom-plugin # your plugin name here
 ```
 
-Now, Kong will try to load the modules described in this chapter. Some of them
-are mandatory, but the ones that are not will be ignored and Kong will consider
-you do not make use of it. For example, Kong will load
-`"kong.plugins.my-custom-plugin.handler"` to retrieve and execute your plugin's
-logic.
+Now, Kong will try to load several Lua modules from the following namespace:
 
-Now let's describe what are the modules you can implement and what their
-purpose is.
+```
+kong.plugins.my-custom-plugin.<module_name>
+```
+
+Some of these modules are mandatory (e.g. `handler.lua`), and some are
+optional, and will allow the plugin to implement some extra-functionalities
+(e.g. `api.lua` to extend the Admin API endpoints).
+
+Now let's describe exactly what are the modules you can implement and what
+their purpose is.
 
 ---
 

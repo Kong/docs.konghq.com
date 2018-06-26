@@ -8,23 +8,35 @@ chapter: 9
 
 ---
 
-If you are serious about your plugins, you probably want to write tests for it. Unit testing Lua is easy, and [many testing frameworks](http://lua-users.org/wiki/UnitTesting) are available. However, you might also want to write integration tests. Again, Kong has your back.
+If you are serious about your plugins, you probably want to write tests for it.
+Unit testing Lua is easy, and [many testing
+frameworks](http://lua-users.org/wiki/UnitTesting) are available. However, you
+might also want to write integration tests. Again, Kong has your back.
 
 ---
 
 ### Write integration tests
 
-The preferred testing framework for Kong is [busted](http://olivinelabs.com/busted/) running with the [resty-cli](https://github.com/openresty/resty-cli) interpreter, though you are free to use another one if you wish. In the Kong repository, the busted executable can be found at `bin/busted`.
+The preferred testing framework for Kong is
+[busted](http://olivinelabs.com/busted/) running with the
+[resty-cli](https://github.com/openresty/resty-cli) interpreter, though you are
+free to use another one if you wish. In the Kong repository, the busted
+executable can be found at `bin/busted`.
 
-Kong provides you with a helper to start and stop it from Lua in your test suite: `spec.helpers`. This helper also provides you with ways to insert fixtures in your datastore before running your tests, as well as dropping it, and various other helpers.
+Kong provides you with a helper to start and stop it from Lua in your test
+suite: `spec.helpers`. This helper also provides you with ways to insert
+fixtures in your datastore before running your tests, as well as dropping it,
+and various other helpers.
 
-If you are writing your plugin in your own repository, you will need to copy the following files until the Kong testing framework is released:
+If you are writing your plugin in your own repository, you will need to copy
+the following files until the Kong testing framework is released:
 
 - `bin/busted`: the busted executable running with the resty-cli interpreter
 - `spec/helpers.lua`: helper functions to start/stop Kong from busted
 - `spec/kong_tests.conf`: a configuration file for your running your test Kong instances with the helpers module
 
-Assuming that the `spec.helpers` module is available in your `LUA_PATH`, you can use the following Lua code in busted to start and stop Kong:
+Assuming that the `spec.helpers` module is available in your `LUA_PATH`, you
+can use the following Lua code in busted to start and stop Kong:
 
 ```lua
 local helpers = require "spec.helpers"

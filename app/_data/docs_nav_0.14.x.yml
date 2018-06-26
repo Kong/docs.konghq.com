@@ -56,16 +56,16 @@
         - text: File structure
           url: /plugin-development/file-structure
 
-        - text: Implement custom logic
+        - text: Implementing custom logic
           url: /plugin-development/custom-logic
 
         - text: Plugin configuration
           url: /plugin-development/plugin-configuration
 
-        - text: Access the datastore
+        - text: Accessing the datastore
           url: /plugin-development/access-the-datastore
 
-        - text: Store custom entities
+        - text: Storing custom entities
           url: /plugin-development/custom-entities
 
         - text: Caching custom entities
@@ -77,7 +77,7 @@
         - text: Writing tests
           url: /plugin-development/tests
 
-        - text: (un)Install your plugin
+        - text: (un)Installing your plugin
           url: /plugin-development/distribution
 
     - text: Plugin Development Kit
