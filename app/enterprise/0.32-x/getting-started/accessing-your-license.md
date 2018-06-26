@@ -5,10 +5,10 @@ title: Accessing Your Kong License File
 
 # Accessing your License File
 
-Your license file can be found along side your Kong EE installation package in Bintray. To access Bintray, login here:
+Your license file can be found along with your Kong EE installation package in Bintray. To access Bintray, login here:
 (https://bintray.com/login?forwardedFrom=%2Fkong%2F)
 
-> If you are unsure of your Bintray credentials please reach out to your CSE for assistance. 
+> If you are unsure of your Bintray credentials please reach out to your CSE for assistance or contact <support@konghq.com>
 
 Once inside Bintray, you should see a new repository listed with the same name as your company. Clicking on that link will 
 take you to your repository overview page, with your license file inside.
@@ -30,11 +30,11 @@ curl -L <u$username>@kong<$api-key>
 "https://kong.bintray.com/<$repo-name>/license.json" -o <file.ext>
 ```
 
-> Please note: This command requires your Bintray API key, not your account password. If you do not have this key, or are unsure how to find it, please contact your CSE for assistance.
+> Please note: This command requires your Bintray API key, not your account password. Once logged into Bintray, you can find your API key by visiting (https://bintray.com/profile/edit) and clicking "API Key" in the menud. Please contact your CSE or <support@konghq.com> if you need assistance accessing your API key.
 
 ### Free Trial Users
 
-If you are a Free Trial user a link to your license file can be found in the "Kong Enterprise Free Trial - Download and Install Instructions" email sent immediately after signing up for your free trial.
+If you are a Free Trial user a link to your license file can be found in the Download and Install Instructions email sent immediately after signing up for your free trial.
 
 > If you did not receive this email or would like a new link to your license file - please email <support@konghq.com>
 
