@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - (un)Install your plugin
+title: Plugin Development - (un)Installing your plugin
 book: plugin_dev
 chapter: 10
 ---
@@ -27,7 +27,7 @@ custom plugin(s) are available on each one of them.
 
 ### Packaging sources
 
-You can either use a regular packing strategy (eg. `tar`), or use the LuaRocks
+You can either use a regular packing strategy (e.g. `tar`), or use the LuaRocks
 package manager to do it for you. We recommend LuaRocks as it is installed
 along with Kong when using one of the official distribution packages.
 
@@ -208,7 +208,7 @@ in your Kong cluster.
 
 You should now be able to start Kong without any issue. Consult your custom
 plugin's instructions on how to enable/configure your plugin
-on an API or Consumer object.
+on a Service, Route, or Consumer entity.
 
 To make sure your plugin is being loaded by Kong, you can start Kong with a
 `debug` log level:
@@ -232,17 +232,18 @@ Then, you should see the following log for each plugin being loaded:
 
 There are three steps to completely remove a plugin.
 
-1. Remove the plugin from your Kong api configuration. Make sure that it
-   is no longer applied globally nor for any API or consumer. This has to be
-   done only once for the entire Kong cluster, no restart/reload required.
-   This step in itself will make that the plugin is no longer in use. But it
-   remains available and it is still possible to re-apply the plugin.
+1. Remove the plugin from your Kong Service or Route configuration. Make sure
+   that it is no longer applied globally nor for any Service, Route, or
+   consumer. This has to be done only once for the entire Kong cluster, no
+   restart/reload required.  This step in itself will make that the plugin is
+   no longer in use. But it remains available and it is still possible to
+   re-apply the plugin.
 
 2. Remove the plugin from the `plugins` directive (on each Kong node).
    Make sure to have completed step 1 before doing so. After this step
    it will be impossible for anyone to re-apply the plugin to any Kong
-   api, consumer, or even globally. This step requires to restart/reload the
-   Kong node to take effect.
+   Service, Route, Consumer, or even globally. This step requires to
+   restart/reload the Kong node to take effect.
 
 3. To remove the plugin thoroughly, delete the plugin-related files from
    each of the Kong nodes. Make sure to have completed step 2, including
@@ -254,16 +255,16 @@ There are three steps to completely remove a plugin.
 
 ---
 
-### Distribute your plugin
+### Distributing your plugin
 
-The preferred way to do so is to use [Luarocks](https://luarocks.org/), a
+The preferred way to do so is to use [LuaRocks](https://luarocks.org/), a
 package manager for Lua modules. It calls such modules "rocks". **Your module
 does not have to live inside the Kong repository**, but it can be if that's
 how you'd like to maintain your Kong setup.
 
 By defining your modules (and their eventual dependencies) in a [rockspec]
-file, you can install those modules on your platform via Luarocks. You can
-also upload your module on Luarocks and make it available to everyone!
+file, you can install those modules on your platform via LuaRocks. You can
+also upload your module on LuaRocks and make it available to everyone!
 
 Here is an example rockspec which would use the "builtin" build type to define
 modules in Lua notation and their corresponding file:
@@ -290,13 +291,13 @@ reasons:
 * "plugin is enabled but not installed" -> The plugin's name is present in the
   `plugins` directive, but that Kong is unable to load the `handler.lua`
   source file from the file system. To resolve, make sure that the
-  lua_package_path directive is properly set to load this plugin's Lua sources.
+  [lua_package_path](/{{page.kong_version}}/configuration/#development-miscellaneous-section)
+  directive is properly set to load this plugin's Lua sources.
 
 * "no configuration schema found for plugin" -> The plugin is installed,
-  enabled in the `plugins` directive, but Kong is unable to load the `schema.lua`
-  source file from the file system.
-  To resolve, make sure that the `schema.lua` file is present alongside the
-  plugin's `handler.lua` file.
+  enabled in the `plugins` directive, but Kong is unable to load the
+  `schema.lua` source file from the file system. To resolve, make sure that
+  the `schema.lua` file is present alongside the plugin's `handler.lua` file.
 
 [Back to TOC](#table-of-contents)
 
