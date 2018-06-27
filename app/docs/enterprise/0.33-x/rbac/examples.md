@@ -71,11 +71,20 @@ Fails because bob does not have write permission to the default workspace.
 Succeeds because bob does have write permission to the ws1 workspace.
 
 
+#### Wildcards
+
+`endpoints` can contain asterisks (`*`) , Where `*` replaces exactly
+one segment between slashes (or the end of the path).
+
+This is how to give read permissions to plugins for all apis
+- `http :8001/rbac/roles/ws1-dev/endpoints endpoint=/apis/*/plugins workspace=ws1 actions=read`
+
 ### Entities
 
 A more advanced and fine grained RBAC consists in authorizations per
 entity. Let's continue on the same example.
 
+#### Access a single entity
 First of all, let's restart kong disabling all RBAC.
 
 - `kong restart`
@@ -93,3 +102,19 @@ Now every user in the developer role will be able to acces the entity_id=1111111
 - `http :8001/ws1/services Kong-RBAC-Token:bob`
 
 The only result returned is s1 in the listing.
+
+#### Access all but one entity in a workspace
+
+Another common scenario is having access to everything except for one
+entity.
+
+In that case, we'll give read permissions to all entities inside a
+workspace, and then explicitly cut the permission for a single entity.
+
+- `http :8001/rbac/roles/developer/entities entity_id=<workspace_id> actions=read`
+
+Gives read rights to all entities that belong to workspace `workspace_id`.
+
+- `http :8001/rbac/roles/developer/entities entity_id=<entity_id> negate=true actions=read`
+
+Explicitly cut off permission to entity `entity_id`.
