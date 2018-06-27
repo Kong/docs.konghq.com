@@ -2,14 +2,13 @@
 id: page-plugin
 title: Plugins - Prometheus
 header_title: Prometheus
-header_icon: /assets/images/icons/plugins/prometheus.png
+header_icon: https://konghq.com/wp-content/uploads/2018/06/prometheus.png
 breadcrumbs:
   Plugins: /plugins
 nav:
   - label: Usage
     items:
       - label: Log Format
-      - label: Kong Process Errors
 description: |
   This plugin exposes metrics in [Prometheus Exposition format](https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md). It allows you to integrate with your existing monitoring and alerting system.
 
@@ -27,7 +26,10 @@ $ curl http://localhost:8001/plugins name=prometheus
 
 #### Reading metrics into Prometheus
 
-Metrics are availble on the admin API at `/metrics` endpoint:
+Metrics are availble on the Admin API at `http://localhost:8001/metrics`
+endpoint. Note the URL to the Admin API will be specific to your installation.
+
+Here is an example of output you could expect from the `/metrics` endpoint:
 
 ```bash
 $ curl http://localhost:8001/metrics
@@ -120,14 +122,19 @@ kong_nginx_metric_errors_total 0
 
 ```
 
-In case Admin API of Kong is protected behind a firewall or requires
-authentication, you have a couple of options:
+In most configurations the Kong Admin API will be behind a firewall or would
+need to be setup to require authentication, here are a couple of options to
+allow access to the `/metrics` endpoint to Prometheus.
 
 
-1. Kong Enterprise users can protect the admin `/metrics` endpoint with an [RBAC user](/enterprise/0.32-x/setting-up-admin-api-rbac) that the Prometheus servers uses to access the metric data.
+1. Kong Enterprise users can protect the admin `/metrics` endpoint with an
+   [RBAC user](/enterprise/latest/setting-up-admin-api-rbac) that the
+   Prometheus servers uses to access the metric data. Access through any
+   firewalls would also need to be configured.
 
-2. If your proxy nodes also serve the Admin API, then you can create a route
-to `/metrics` endpoint and apply a IP restriction plugin.
+2. You can proxy the Admin API through Kong itself, then you can create a route
+   to `/metrics` endpoint. You could also use the IP restriction plugin to
+   limit access, or other plugins.
 
     ```
     curl -X POST http://localhost:8001/services -d name=prometheusEndpoint -d url=http://localhost:8001/metrics
@@ -135,12 +142,12 @@ to `/metrics` endpoint and apply a IP restriction plugin.
     curl -X POST http://localhost:8001/services/prometheusEndpoint/plugins -d name=ip-restriction -d config.whitelist=10.0.0.0/24
     ```
 
-3. This plugin has the capability to serve the content on a
-different port using a custom server block in Kong's NGINX template.
+3. Lastly you could serve the content on a different port with a custom server
+   block using a [custom nginx
+   template](/latest/configuration/#custom-nginx-configuration) with Kong.
 
-    Please note that this requires a custom NGINX template for Kong.
-
-    You can add the following block to a custom NGINX template which can be used by Kong:
+    The following block is an example custom nginx template which can be used by
+    Kong:
 
     ```
     server {
