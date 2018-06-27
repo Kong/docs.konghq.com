@@ -129,6 +129,8 @@ for one that works with Cassandra too.
 enforce it for Cassandra, but for PostgreSQL you must set this constraint in
 the `migrations` file.
 
+To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations)
+
 ---
 
 ### Retrieve your custom DAO from the DAO Factory
@@ -199,6 +201,8 @@ local key_credential, err = kong.dao.key_credentials:insert({
 The DAO name (`keyauth_credentials`) with which it is accessible from the DAO
 Factory depends on the key with which you exported your DAO in the returned
 table of `daos.lua`.
+
+You can see an example of this in the [Key-Auth `daos.lua` file](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/daos.lua).
 
 ---
 
