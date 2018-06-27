@@ -25,7 +25,7 @@ These options can be set via the `kong.conf` configuration file
 
 ### Users, Roles, and Endpoints
 
-By default, 4 roles are created:
+By default, 3 roles are created:
 
 - `read-only`: Read access to all endpoints, across all workspaces.
 - `admin`: Full access to all endpoints, across all workspaces - except
