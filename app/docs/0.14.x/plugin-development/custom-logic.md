@@ -184,6 +184,9 @@ end
 return CustomHandler
 ```
 
+See [the source code of the Key-Auth plugin] for an example of a real-life
+handler code.
+
 ---
 
 ### Plugin Development Kit
@@ -262,3 +265,4 @@ Next: [Store configuration &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /{{page.kong_version}}/pdk
+[the source code of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua)

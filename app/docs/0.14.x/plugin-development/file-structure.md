@@ -108,6 +108,9 @@ master each one of them.
 | [migrations/*.lua] | No         | The corresponding migrations for a given datastore. Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
 | [schema.lua]       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
 
+The [Key-Auth plugin] is an example of plugin with this file structure. See
+[its source code] for more details.
+
 ---
 
 Next: [Write custom logic &rsaquo;]({{page.book.next}})
@@ -118,3 +121,5 @@ Next: [Write custom logic &rsaquo;]({{page.book.next}})
 [handler.lua]: {{page.book.chapters.custom-logic}}
 [schema.lua]: {{page.book.chapters.plugin-configuration}}
 [migrations/*.lua]: {{page.book.chapters.custom-entities}}
+[Key-Auth plugin]: /plugins/key-authentication/
+[its source code]: https://github.com/Kong/kong/tree/master/kong/plugins/key-auth

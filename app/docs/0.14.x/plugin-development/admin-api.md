@@ -130,6 +130,9 @@ return {
 }
 ```
 
+See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua)
+for an extended version of this example.
+
 ---
 
 Next: [Write tests for your plugin]({{page.book.next}})
