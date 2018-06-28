@@ -76,6 +76,12 @@ params:
       default: "`true`"
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
+    - name: maximum_expiration
+      required: false
+      default: 0
+      description: |
+        A integer value that limits the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime, is rejected (403). If specified, `exp` must be specified in the parameter `claims_to_verify`. Default (0) is an indefinite period. Potential clock skew should be included in this value.
+        
   extra: |
     <div class="alert alert-warning">
         <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
