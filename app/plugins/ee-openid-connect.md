@@ -67,7 +67,7 @@ description: |
   - [OpenAM][openam]
   - [Paypal][paypal]
   - [PingFederate][pingfederate]
-  - [Salesfoce][salesforce]
+  - [Salesforce][salesforce]
   - [Yahoo!][yahoo]
 
   As long as your provider supports OpenID Connect standards the plugin should
