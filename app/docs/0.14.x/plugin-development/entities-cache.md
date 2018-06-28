@@ -130,6 +130,9 @@ Now, with the above mechanism in place, once a Consumer has made a request with
 their API key, the cache will be considered warm and subsequent requests won't
 result in a database query.
 
+The cache is used in several places in the [Key-Auth plugin handler](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua).
+Give that file a look in order to see how an official plugin uses the cache.
+
 #### Updating or deleting a custom entity
 
 Every time a cached custom entity is updated or deleted in the datastore (i.e.
