@@ -10,24 +10,35 @@ nav:
     items:
       - label: Log Format
 description: |
-  This plugin exposes metrics in [Prometheus Exposition format](https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md). It allows you to integrate with your existing monitoring and alerting system.
+    Expose metrics related to Kong and the upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) Exposition format which can be scrapped by a Prometheus Server.
 
 params:
   name: prometheus
+  api_id: true
+  service_id: true
+  route_id: true
 
 ---
 
-
-#### Enable the plugin
-
-```bash
-$ curl http://localhost:8001/plugins name=prometheus
-```
-
-#### Reading metrics into Prometheus
+### Reading metrics into Prometheus
 
 Metrics are availble on the Admin API at `http://localhost:8001/metrics`
 endpoint. Note the URL to the Admin API will be specific to your installation.
+
+
+#### Available metrics
+
+- *Status codes*: HTTP status codes returned by upstream services. 
+  These are available per service and across all services.
+- *Latencies Histograms*: Latency as measured at Kong:
+   - *Request*: Total request latency 
+   - *Kong*: Time taken for Kong to route, authenticate and run all plugins for a request
+   - *Upstream*: Time taken by the upstream to respond to the request.
+- *Bandwidth*: Total Bandwidth (egress/ingress) flowing through Kong.
+  This metrics is availble per service and across all services.
+- *DB reachability*: Can the Kong node reach it's Database or not (Guage 0/1).
+- *Connections*: Various NGINX connection metrics like active, reading, writing,
+  accepted connections.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
@@ -122,6 +133,9 @@ kong_nginx_metric_errors_total 0
 
 ```
 
+
+### Securing the Prometheus plugin
+
 In most configurations the Kong Admin API will be behind a firewall or would
 need to be setup to require authentication, here are a couple of options to
 allow access to the `/metrics` endpoint to Prometheus.
@@ -132,15 +146,13 @@ allow access to the `/metrics` endpoint to Prometheus.
    Prometheus servers uses to access the metric data. Access through any
    firewalls would also need to be configured.
 
-2. You can proxy the Admin API through Kong itself, then you can create a route
-   to `/metrics` endpoint. You could also use the IP restriction plugin to
-   limit access, or other plugins.
-
-    ```
-    curl -X POST http://localhost:8001/services -d name=prometheusEndpoint -d url=http://localhost:8001/metrics
-    curl -X POST http://localhost:8001/services/prometheusEndpoint/routes -d paths[]=/metrics
-    curl -X POST http://localhost:8001/services/prometheusEndpoint/plugins -d name=ip-restriction -d config.whitelist=10.0.0.0/24
-    ```
+2. You can proxy the Admin API through Kong itself then use plugins to limit
+   access. For example you can create a route `/metrics` endpoint and have
+   Prometheus access this endpoint to slurp in the metrics, while preventing
+   others from access it. The specifics of how this is configured will depend
+   on your specific setup. Read the docs [Securing the Admin
+   API](https://docs.konghq.com/latest/secure-admin-api/#kong-api-loopback) for
+   details.
 
 3. Lastly you could serve the content on a different port with a custom server
    block using a [custom nginx
