@@ -8,7 +8,9 @@ breadcrumbs:
 nav:
   - label: Usage
     items:
-      - label: Log Format
+      - label: Reading metrics
+      - lable: Available metrics
+      - lable: Accessing the metrics
 description: |
     Expose metrics related to Kong and the upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) Exposition format which can be scrapped by a Prometheus Server.
 
@@ -20,7 +22,7 @@ params:
 
 ---
 
-### Reading metrics into Prometheus
+### Reading metrics
 
 Metrics are availble on the Admin API at `http://localhost:8001/metrics`
 endpoint. Note the URL to the Admin API will be specific to your installation.
@@ -28,23 +30,22 @@ endpoint. Note the URL to the Admin API will be specific to your installation.
 
 #### Available metrics
 
-- *Status codes*: HTTP status codes returned by upstream services. 
+- **Status codes**: HTTP status codes returned by upstream services. 
   These are available per service and across all services.
-- *Latencies Histograms*: Latency as measured at Kong:
-   - *Request*: Total request latency 
-   - *Kong*: Time taken for Kong to route, authenticate and run all plugins for a request
-   - *Upstream*: Time taken by the upstream to respond to the request.
-- *Bandwidth*: Total Bandwidth (egress/ingress) flowing through Kong.
-  This metrics is availble per service and across all services.
-- *DB reachability*: Can the Kong node reach it's Database or not (Guage 0/1).
-- *Connections*: Various NGINX connection metrics like active, reading, writing,
+- **Latencies Histograms**: Latency as measured at Kong:
+   - **Request**: Total time taken by Kong and Upstream services to service requests.
+   - **Kong**: Time taken for Kong to route a request and run all configured plugins.
+   - **Upstream**: Time taken by the upstream to respond to requests.
+- **Bandwidth**: Total Bandwidth (egress/ingress) flowing through Kong.
+  This metric is available per service and as a sum across all services.
+- **DB reachability**: A guage type with a value of 0 or 1, representing if DB can be reached by a Kong node or not.
+- **Connections**: Various NGINX connection metrics like active, reading, writing,
   accepted connections.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
 ```bash
 $ curl http://localhost:8001/metrics
-root@vagrant-ubuntu-trusty-64:~# curl -D - http://localhost:8001/metrics
 HTTP/1.1 200 OK
 Server: openresty/1.11.2.5
 Date: Mon, 11 Jun 2018 01:39:38 GMT
@@ -134,7 +135,7 @@ kong_nginx_metric_errors_total 0
 ```
 
 
-### Securing the Prometheus plugin
+### Accessing the metrics
 
 In most configurations the Kong Admin API will be behind a firewall or would
 need to be setup to require authentication, here are a couple of options to
