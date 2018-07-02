@@ -29,10 +29,10 @@ $ curl -i -X POST \
   --data 'upstream_url=http://mockbin.org'
 ```
 
-Or, add your first API via the Admin GUI:
+Or, add your first API in the Admin GUI, via Services & Routes:
 
 <video width="100%" autoplay loop controls>
-  <source src="https://konghq.com/wp-content/uploads/2018/03/first-api-ee0.31.mp4" type="video/mp4">
+  <source src="https://konghq.com/wp-content/uploads/2018/07/first-api-ee-0.33.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
