@@ -64,7 +64,7 @@ redirect_from: /install/compile/
     **Or**:
 
     ```bash
-    $ git clone git@github.com:Mashape/kong.git
+    $ git clone git@github.com:Kong/kong.git
     $ [sudo] make install # this simply runs the `luarocks make kong-*.rockspec` command
     ```
 

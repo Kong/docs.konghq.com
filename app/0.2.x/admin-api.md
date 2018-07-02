@@ -562,4 +562,3 @@ Attributes | Description
 HTTP 204 NO CONTENT
 ```
 
-[gitter-url]: https://gitter.im/Mashape/kong?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge

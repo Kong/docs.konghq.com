@@ -467,7 +467,7 @@ postgres:
 
 ### **send_anonymous_reports**
 
-If set to `true`, Kong will send anonymous error reports to Mashape. This helps Mashape maintaining and improving Kong.
+If set to `true`, Kong will collect anonymous error reports which helps us maintain and improve Kong.
 
 **Default:**
 

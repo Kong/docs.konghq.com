@@ -123,7 +123,7 @@ the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
 The default template can be found at:
-https://github.com/Mashape/kong/tree/master/kong/templates.  It is split in
+https://github.com/Kong/kong/tree/master/kong/templates.  It is split in
 two Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
 minimalistic and includes the later, which contains everything Kong requires to
 run. Moments before starting Nginx, those two files are copied into the prefix
