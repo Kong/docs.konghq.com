@@ -972,6 +972,17 @@ or misses never expire.
 
 Default: 0 (no expiration)
 
+---
+
+##### **db_resurrect_ttl**
+
+Time (in seconds) for which stale entities from the datastore should be
+resurrected for when they cannot be refreshed (e.g., the datastore is
+unreachable). When this TTL expires, a new attempt to refresh the stale
+entities will be made.
+
+Default: 30 seconds
+
 [Back to TOC](#table-of-contents)
 
 ---
