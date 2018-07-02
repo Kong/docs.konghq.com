@@ -24,8 +24,17 @@ params:
 
 ### Reading metrics
 
-Metrics are availble on the Admin API at `http://localhost:8001/metrics`
-endpoint. Note the URL to the Admin API will be specific to your installation.
+Metrics are availble on the Admin API at the `http://localhost:8001/metrics`
+endpoint. Note the the URL to the Admin API will be specific to your
+installation; see _Accessing the metrics_ below.
+
+This plugin records and exposes metrics at the node-level. Your Prometheus
+server will need to discover all Kong nodes via a service discovery
+mechanism, and consume data from each node's configured `/metric` endpoint.
+Kong nodes that are set to proxy only (that is their Admin API has been
+disabled in the kong.conf file) will need to use a [custom nginx template](/latest/configuration/#custom-nginx-configuration)
+configuration to expose the metrics data. 
+
 
 
 #### Available metrics
