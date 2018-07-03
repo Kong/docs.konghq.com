@@ -551,7 +551,8 @@ HTTP 200 OK
 `entity_id` must be the ID of an entity in Kong; if the ID of a
 workspace is given, the permission will apply to all entities in that
 workspace. Future entities belonging to that workspace will get the
-same permissions.
+same permissions. A wildcard `*` will be interpreted as **all
+entities** in the system.
 
 
 #### Response
