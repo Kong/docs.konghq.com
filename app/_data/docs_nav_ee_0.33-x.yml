@@ -43,6 +43,24 @@
     - text: RBAC API
       url: /plugins/rbac-api
 
+- title: RBAC
+  items:
+    - text: Overview
+      url: /rbac/overview
+    - text: Admin API
+      url: /rbac/admin-api
+    - text: Examples
+      url: /rbac/examples
+
+- title: Workspaces
+  items:
+    - text: Overview
+      url: /workspaces/overview
+    - text: Admin API
+      url: /workspaces/admin-api
+    - text: Examples
+      url: /workspaces/examples
+
 - title: Kong Admin GUI
   items:
     - text: Overview
