@@ -87,6 +87,9 @@
       - text: kong.ctx
         url: /pdk/kong.ctx
 
+      - text: kong.ip
+        url: /pdk/kong.ip
+
       - text: kong.log
         url: /pdk/kong.log
 

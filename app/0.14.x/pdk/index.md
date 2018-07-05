@@ -40,6 +40,7 @@ The Plugin Development Kit (or "PDK") is set of Lua functions and variables
 * [kong.worker_events](#kong_worker_events)
 * [kong.cluster_events](#kong_cluster_events)
 * [kong.cache](#kong_cache)
+* [kong.ip](kong.ip)
 * [kong.table](kong.table)
 * [kong.log](kong.log)
 
