@@ -177,7 +177,7 @@ gulp.task('pdk-docs', function (cb) {
 
   // 2. generate markdown docs using custom ldoc templates
   // 2.1 Prepare ref folder
-  refDir = 'app/docs/' + KONG_VERSION + '/pdk'
+  refDir = 'app/' + KONG_VERSION + '/pdk'
   cmd = 'rm -rf ' + refDir + ' && mkdir ' + refDir
   obj = childProcess.spawnSync(cmd, { shell: true })
   errLog = obj.stderr.toString()
