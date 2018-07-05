@@ -54,6 +54,8 @@
           url: /admin-gui/configuration/getting-started
         - text: Authentication
           url: /admin-gui/configuration/authentication
+        - text: Property Reference
+          url: /admin-gui/configuration/property-reference
 
 - title: Kong Developer Portal
   items:
