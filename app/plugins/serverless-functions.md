@@ -109,7 +109,7 @@ different priority in the plugin chain.
 
     ```bash
     curl -i -X GET http://localhost:8000/test \
-      --header "x-custom-auth=key"
+      --header "x-custom-auth: demo"
 
     HTTP/1.1 200 OK
     ...
