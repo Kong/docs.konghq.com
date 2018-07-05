@@ -75,7 +75,7 @@ different priority in the plugin chain.
     end
 
     -- Remove custom authentication header from request
-    kong.request.clear_header('x-custom-auth')
+    kong.service.request.clear_header('x-custom-auth')
     ```
 
 4. Ensure the file contents:
