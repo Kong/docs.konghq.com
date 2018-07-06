@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - Zipkin
 header_title: Zipkin  
 header_icon: https://konghq.com/wp-content/uploads/2018/05/zipkin.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-zipkin
 breadcrumbs:
   Plugins: /plugins
 nav:
@@ -36,8 +37,6 @@ params:
         Set to `0` to turn sampling off, or to `1` to sample **all** requests.
 
 ---
-
-> **Note**: Zipkin plugin is available in Enterprise as of version 0.32 and will soon be available as part of Kong CE 0.14.
 
 ## How it Works
 

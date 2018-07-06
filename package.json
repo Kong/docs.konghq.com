@@ -11,6 +11,7 @@
     "prestart": "npm test",
     "start": "gulp",
     "dev": "gulp dev",
+    "pdk-docs": "KONG_PATH=${KONG_PATH:=} KONG_VERSION=${KONG_VERSION:=} gulp pdk-docs",
     "test": "standard && echint --verbose"
   },
   "standard": {
@@ -26,6 +27,7 @@
       "app/_assets/images/**",
       "app/_assets/fonts/**",
       "app/license/index.md",
+      "ldoc/*",
       "Gemfile.lock"
     ]
   },

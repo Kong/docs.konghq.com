@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - Azure Functions
 header_title: Azure Functions
 header_icon: https://konghq.com/wp-content/uploads/2018/05/azure-functions.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-azure-functions
 breadcrumbs:
   Plugins: /plugins
 nav:
@@ -94,8 +95,6 @@ params:
     `lua_ssl_trusted_certificate` directive in your Kong configuration.
 
 ---
-
-> **Note**: Azure-Functions plugin is available in Enterprise as of version 0.32 and will soon be available as part of Kong CE 0.14.
 
 ## Demonstration
 
