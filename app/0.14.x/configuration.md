@@ -904,8 +904,8 @@ name                            | description
 **cassandra_username**          | Username when using the PasswordAuthenticator scheme.
 **cassandra_password**          | Password when using the PasswordAuthenticator scheme.
 **cassandra_consistency**       | Consistency setting to use when reading/writing to the Cassandra cluster.
-**cassandra_lb_policy**         | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin` and `DCAwareRoundRobin`. Prefer the later if and only if you are using a multi-datacenter cluster, and set the `cassandra_local_datacenter` if so.
-**cassandra_local_datacenter**  | When using the `DCAwareRoundRobin` policy, you must specify the name of the cluster local (closest) to this Kong node.
+**cassandra_lb_policy**         | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin` and `DCAwareRoundRobin` and `RequestDCAwareRoundRobin`. Prefer the later two if and only if you are using a multi-datacenter cluster, and set the `cassandra_local_datacenter` if so.
+**cassandra_local_datacenter**  | When using the `DCAwareRoundRobin` or `RequestDCAwareRoundRobin` policy, you must specify the name of the cluster local (closest) to this Kong node.
 **cassandra_repl_strategy**     | If creating the keyspace for the first time, specify a replication strategy.
 **cassandra_repl_factor**       | Specify a replication factor for the `SimpleStrategy`.
 **cassandra_data_centers**      | Specify data centers for the `NetworkTopologyStrategy`.
