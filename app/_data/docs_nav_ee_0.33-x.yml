@@ -54,6 +54,8 @@
           url: /admin-gui/configuration/getting-started
         - text: Authentication
           url: /admin-gui/configuration/authentication
+        - text: Managing Admins
+          url: /admin-gui/configuration/managing-admins
         - text: Property Reference
           url: /admin-gui/configuration/property-reference
 

@@ -1,7 +1,7 @@
 ---
 title: Setting custom URLs for the Admin GUI and Admin API
 book: admin_gui
-chapter: 4
+chapter: 5
 ---
 
 # Property Reference
