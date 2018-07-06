@@ -142,7 +142,7 @@ ldap-auth-advanced  | LDAP Authentication
 **example:**
 
 ```
-admin_gui_auth = ldap-auth-advanced
+admin_gui_auth = basic-auth
 ```
 
 ## admin_gui_auth_conf
@@ -156,20 +156,8 @@ Here you may specify the configuration for the
 authentication plugin you have chosen. For information
 about Plugin Configuration consult the associated plugin documentation.
 
-**Example (LDAP Auth Advanced):**
+**Example (Basic Auth):**
 
 ```
-admin_gui_auth_conf={                                     \
-"anonymous":"",                                           \
-"attribute":"uid",                                        \ 
-"base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
-"cache_ttl": 2,                                           \
-"header_type":"Basic",                                    \
-"keepalive":60000,                                        \
-"ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>",                \
-"ldap_port":389,                                          \
-"start_tls":false,                                        \
-"timeout":10000,                                          \
-"verify_ldap_host":true                                   \
-}
+admin_gui_auth_conf = { "hide_credentials": true }
 ```
