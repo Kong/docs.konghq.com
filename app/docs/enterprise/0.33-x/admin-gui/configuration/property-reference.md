@@ -1,13 +1,12 @@
 ---
 title: Setting custom URLs for the Admin GUI and Admin API
 book: admin_gui
-chapter: 3
+chapter: 4
 ---
 
 # Property Reference
 
-This document describes the configuration directives for the Kong Developer
-Portal.
+This document describes the configuration directives for the Kong Admin GUI.
 
 ## proxy_url
 
@@ -72,7 +71,7 @@ The absolute path to the SSL certificate for `admin_gui_listen` values with SSL 
 **Example:**
 
 ```
-admin_gui_ssl_cert = /path/to/portal_gui_ssl.cert
+admin_gui_ssl_cert = /path/to/admin_gui_ssl.cert
 ```
 
 
@@ -114,7 +113,7 @@ for the Admin GUI.
 Admin GUI Error Logs
 
 Here you can set an absolute or relative path for your
-Portal API access logs. When the path is relative,
+Admin API access logs. When the path is relative,
 logs are placed in the `prefix` location.
 
 Setting this value to `off` disables error logs for
@@ -140,6 +139,11 @@ key-auth            | Key Authentication
 basic-auth          | Basic Authentication
 ldap-auth-advanced  | LDAP Authentication
 
+**example:**
+
+```
+admin_gui_auth = ldap-auth-advanced
+```
 
 ## admin_gui_auth_conf
 
@@ -152,8 +156,20 @@ Here you may specify the configuration for the
 authentication plugin you have chosen. For information
 about Plugin Configuration consult the associated plugin documentation.
 
-**Example (Basic Auth):**
+**Example (LDAP Auth Advanced):**
 
 ```
-admin_gui_auth_conf = { "hide_credentials": true }
+admin_gui_auth_conf={                                     \
+"anonymous":"",                                           \
+"attribute":"uid",                                        \ 
+"base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
+"cache_ttl": 2,                                           \
+"header_type":"Basic",                                    \
+"keepalive":60000,                                        \
+"ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>",                \
+"ldap_port":389,                                          \
+"start_tls":false,                                        \
+"timeout":10000,                                          \
+"verify_ldap_host":true                                   \
+}
 ```
