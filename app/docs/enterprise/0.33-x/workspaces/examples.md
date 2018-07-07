@@ -9,6 +9,35 @@ chapter: 3
 This chapter aims to provide a step-by-step tutorial of how to set up
 workspaces, entities, and see it in action.
 
+## Important Note: Conflicting APIs or Routes in workspaces
+
+Workspaces provide a way to segment Kong entities - entities in a given
+workspace are isolated from entities in other workspaces. That said, entities
+such as APIs and Routes have "routing rules", which are pieces of info
+attached to APIs or Routes - such as HTTP method, URI, or host - that allow a
+given proxy-side request to be routed to its corresponding upstream service.
+
+Admins configuring APIs (or Routes) in their workspaces do not want traffic
+directed to their APIs or Routes to be swallowed by APIs or Routes in other
+workspaces; Kong allows them to prevent such undesired behavior - as long as
+certain measures are taken. Below we outline the conflict detection algorithm
+used by Kong to determine if a conflict occurs.
+
+* At API or Route **creation or modification** time, Kong runs its internal
+router:
+  - If no APIs or Routes are found with matching routing rules, the creation
+  or modification proceeds
+  - If APIs or Routes with matching routing rules are found **within the same
+  workspace**, proceed
+  - If APIs or Routes are found **in a different workspace**:
+    * If the matching API or Route **does not have an associated `host` value**,
+    proceed
+    * If the matching API or Route **has an associated `host` value**:
+      - If the `host` is a wildcard
+        * If the are the same, a conflict is reported - `409 Conflict`
+        * If they are not equal, proceed
+      - If the `host` is an absolute value, a conflict is reported - `409 Conflict`
+
 ## RBAC & Workspaces
 
 TODO: explain how RBAC and workspaces complement each other: Workspaces
@@ -420,35 +449,6 @@ With this set up, Teams A, B, and C only have access to their own Routes
 entities through the Admin API. (Additionally, with RBAC's additional control,
 granular read/write/delete/update rights can be further assigned to workspaces,
 allowing flexible intra and inter-team permissioning schemes.)
-
-## Important: conflicting APIs or Routes in workspaces
-
-Workspaces provide a way to segment Kong entities - entities in a given
-workspace are isolated from entities in other workspaces. That said, entities
-such as APIs and Routes have "routing rules", which are pieces of info
-attached to APIs or Routes - such as HTTP method, URI, or host - that allow a
-given proxy-side request to be routed to its corresponding upstream service.
-
-Admins configuring APIs (or Routes) in their workspaces do not want traffic
-directed to their APIs or Routes to be swallowed by APIs or Routes in other
-workspaces; Kong allows them to prevent such undesired behavior - as long as
-certain measures are taken. Below we outline the conflict detection algorithm
-used by Kong to determine if a conflict occurs.
-
-* At API or Route **creation or modification** time, Kong runs its internal
-router:
-  - If no APIs or Routes are found with matching routing rules, the creation
-  or modification proceeds
-  - If APIs or Routes with matching routing rules are found **within the same
-  workspace**, proceed
-  - If APIs or Routes are found **in a different workspace**:
-    * If the matching API or Route **does not have an associated `host` value**,
-    proceed
-    * If the matching API or Route **has an associated `host` value**:
-      - If the `host` is a wildcard
-        * If the are the same, a conflict is reported - `409 Conflict`
-        * If they are not equal, proceed
-      - If the `host` is an absolute value, a conflict is reported - `409 Conflict`
 
 ## Entities in different workspaces can have the same name!
 
