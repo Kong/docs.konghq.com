@@ -18,6 +18,8 @@ themselves, though useful, only allow one to segment traffic, but not to control
 access to individual workspaces - for that, read the [RBAC Book][rbac-overview]
 to learn how to leverage the power of Workspaces with RBAC.
 
+Next: [Workspaces Admin API &rsaquo;]({{page.book.next}})
+
 ---
 
 [rbac-overview]: /docs/enterprise/{{page.kong_version}}/rbac/overview

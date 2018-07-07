@@ -182,6 +182,8 @@ Kong does not provide any users by default, as this would essentially be a
 backdoor into Admin API security. As such, it the administrator's responsibility
 to configure the appropriate RBAC users and user/role relationships.
 
+Next: [RBAC Admin API &rsaquo;]({{page.book.next}})
+
 ---
 
 [rbac-api]: {{page.book.chapters.admin-api}}

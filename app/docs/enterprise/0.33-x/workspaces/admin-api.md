@@ -288,6 +288,8 @@ HTTP 200 OK
 HTTP 204 No Response
 ```
 
+Next: [Workspaces Examples &rsaquo;]({{page.book.next}})
+
 ---
 
 [Admin API]: /docs/{{page.kong_version}}/admin-api/
