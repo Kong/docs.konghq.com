@@ -40,8 +40,6 @@
       url: /plugins/http-proxy-caching
     - text: Forward Proxy
       url: /plugins/forward-proxy
-    - text: RBAC API
-      url: /plugins/rbac-api
 
 - title: RBAC
   items:
