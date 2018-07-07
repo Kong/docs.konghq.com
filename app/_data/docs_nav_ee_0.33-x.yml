@@ -41,15 +41,6 @@
     - text: Forward Proxy
       url: /plugins/forward-proxy
 
-- title: RBAC
-  items:
-    - text: Overview
-      url: /rbac/overview
-    - text: Admin API
-      url: /rbac/admin-api
-    - text: Examples
-      url: /rbac/examples
-
 - title: Workspaces
   items:
     - text: Overview
@@ -58,6 +49,15 @@
       url: /workspaces/admin-api
     - text: Examples
       url: /workspaces/examples
+
+- title: RBAC
+  items:
+    - text: Overview
+      url: /rbac/overview
+    - text: Admin API
+      url: /rbac/admin-api
+    - text: Examples
+      url: /rbac/examples
 
 - title: Kong Admin GUI
   items:
