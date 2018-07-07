@@ -260,7 +260,7 @@ for checking if a given entity is part of a given workspace.
 
 #### Endpoint
 
-<div class="endpoint get">/workspaces/{name or id}/entities/{name or id}
+<div class="endpoint get">/workspaces/{name or id}/entities/{name or id}</div>
 
 #### Response
 
@@ -280,7 +280,7 @@ HTTP 200 OK
 
 #### Endpoint
 
-<div class="endpoint delete">/workspaces/{name or id}/entities/{name or id}
+<div class="endpoint delete">/workspaces/{name or id}/entities/{name or id}</div>
 
 #### Response
 
