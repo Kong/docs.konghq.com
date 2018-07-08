@@ -29,8 +29,8 @@ nav:
 ### Changes
 
 - **Vitals**
-  - Internal Proxies are no longer tracked
-  - API endpoint `/vitals/consumers/:username_or_id/nodes`, deprecated in 0.32, has been removed
+  - Internal proxies are no longer tracked
+  - Admin API endpoint `/vitals/consumers/:username_or_id/nodes`, deprecated in 0.32, has been removed
 - **Prometheus Plugin**
   - The plugin uses a dedicated shared dictionary. If you use a custom template, define the following for Prometheus:
 
@@ -44,13 +44,15 @@ nav:
 
 - **Core**
   - **New RBAC implementation**, supporting both endpoint and entity-level
-  access control - reads the docs [here][rbac-overview]
+  access control - read the docs [here][rbac-overview]
   - **Workspaces**, allowing segmentation of Admin API entities - read the docs
-  [here][workspaces-overview]
+  [here][workspaces-overview]. Note that workspaces are available in the API only,
+  and not in the Admin GUI
 - **Admin GUI**
-  - Authentication on Admin API using Kong own authentication plugins; supported
-  plugins are key-auth, basic-auth, and ldap-auth-advanced - use of other
-  authentication plugins has not been tested
+  - Log in to the Admin GUI using Kong's own authentication plugins; supported
+  plugins are key-auth, basic-auth, and ldap-auth-advanced.  Use of other
+  authentication plugins has not been tested.
+  - Add ability to see what plugins are configured on a consumer
 - **Dev Portal**
   - Revoked Dev Portal Users/Consumers are blocked at proxy
   - Files API Improvements
@@ -86,6 +88,9 @@ nav:
   - Azure delayed response
   - Lambda delayed response
   - Request Termination delayed response
+- **Admin GUI**
+  - Fix a problem where a plugin value cannot be unset (INTF-115)
+  - Fix a problem where error messages on the login screen fail to display (INTF-51)
 - **Portal**
   - Auto-approve messaging
 - **OpenID Connect Plugin**
