@@ -38,12 +38,6 @@ router:
         * If they are not equal, proceed
       - If the `host` is an absolute value, a conflict is reported - `409 Conflict`
 
-## RBAC & Workspaces
-
-TODO: explain how RBAC and workspaces complement each other: Workspaces
-segmenting different "domains" of operation and RBAC locking these down
-to authorized admins/users.
-
 ## The Default workspace
 
 Kong creates a default workspace - unsurprisingly named `default` - whose goal
