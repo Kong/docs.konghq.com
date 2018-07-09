@@ -87,5 +87,3 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 [centos]: /docs/enterprise/{{page.kong_version}}/installation/centos/
 [amazonlinux]: /docs/enterprise/{{page.kong_version}}/installation/amazon-linux/
 [dev-portal]: /docs/enterprise/{{page.kong_version}}/developer-portal/introduction/
-
-

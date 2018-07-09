@@ -57,5 +57,3 @@ title: Kong Enterprise Edition (EE) Documentation
     <a href="/docs/enterprise/{{page.kong_version}}/setting-up-admin-api-rbac/">Setup RBAC &rarr;</a>
   </div>
 </div>
-
-
