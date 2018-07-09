@@ -7,6 +7,14 @@ chapter: 3
 # {{page.title}}
 
 - [Enable Authentication](#enable-authentication)
+- [Add a Credential](#add-a-credential)
+- [Example configurations](#example-configurations)
+  - [Key Authentication](#key-authentication)
+  - [LDAP Authentication](#ldap-authentication)
+  - [Basic Authentication](#basic-authentication)
+- [Logging In](#logging-in)
+- [Logging Out](#logging-out)
+- [How Authentication is Stored in Local Storage](#how-authentication-is-stored-in-local-storage)
 
 > Before you begin, make sure you have gone through the [Getting Started with the Admin GUI](https://getkong.org/docs/enterprise/{{page.kong_version}}/admin-gui/configuration/getting-started)
 
@@ -62,7 +70,7 @@ Now that you have an Admin with an associated login Key, update the following in
 admin_gui_auth = key-auth
 ```
 
-The Admin GUI is now aware that authentication is enabled and will restrict access. Browse to the Admin GUI and you will be prompted with a [Login](#logging-in) form. Enter in the key saved from before to gain access to the Admin GUI. You should be able to access all resources. To being creating more admins and setting up role based access restrictions, see [Setting Up Admin API RBAC](/enterprise/{{{page.kong_version}}/setting-up-admin-api-rbac).
+The Admin GUI is now aware that authentication is enabled and will restrict access. Browse to the Admin GUI and you will be prompted with a [Login](#logging-in) form. Enter in the key saved from before to gain access to the Admin GUI. You should be able to access all resources. To being creating more admins and setting up role based access restrictions, see [Setting Up Admin API RBAC](/enterprise/{{page.kong_version}}/setting-up-admin-api-rbac).
 
 > Note: Once Kong starts, you will notice that your [Admin API configuration](https://127.0.0.1:8001/) now shows `cors` and `key-auth` plugins are enabled. This is because Kong sets up an internal proxy to the Admin API (e.g. `:8001` -> `:8000/_kong/admin`) and configures the Key Authentication plugin applied only to all routes. These routes &amp; services will not be tracked by Kong Vitals, they will not appear in your proxy traffic, and the internal plugins will not be applied to any other routes or services or be configurable in your Kong instance.
 
@@ -186,4 +194,4 @@ Click the "Logout" button in the top right. This will clear the Local Storage au
 
 The Admin GUI uses the [Local Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Admin GUI API XHR request based on the `auth-store-types` value, until you [logout](#logging-out).
 
-> **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Therefore, it advised that you always used SSL/TLS to encrypt your Admin GUI traffic.
+⚠️ **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Therefore, it advised that you always used SSL/TLS to encrypt your Admin GUI traffic.
