@@ -35,7 +35,7 @@ Dev Portals served by Kong are comprised of three primary file types; **Pages**,
 
 ## Example Files
 
-You can find a list of all the files included in the example dev portal theme on the Dev Portal Overview tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/0.32-x/admin-gui/).
+You can find a list of all the files included in the example dev portal theme on the Dev Portal Overview tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/{{page.kong_version}}/admin-gui/).
 
 ### Pages
 
