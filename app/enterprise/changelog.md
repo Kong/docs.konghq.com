@@ -90,8 +90,8 @@ nav:
   - Lambda delayed response
   - Request Termination delayed response
 - **Admin GUI**
-  - Fix a problem where a plugin value cannot be unset (INTF-115)
-  - Fix a problem where error messages on the login screen fail to display (INTF-51)
+  - Fix a problem where a plugin value cannot be unset
+  - Fix a problem where error messages on the login screen fail to display
 - **Portal**
   - Auto-approve messaging
 - **OpenID Connect Plugin**
