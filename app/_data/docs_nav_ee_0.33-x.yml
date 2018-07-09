@@ -40,6 +40,8 @@
       url: /plugins/http-proxy-caching
     - text: Forward Proxy
       url: /plugins/forward-proxy
+    - text: StatsD Advanced Plugin
+      url: /plugins/statsd-advanced
 
 - title: Workspaces
   items:
