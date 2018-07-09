@@ -6,13 +6,13 @@ chapter: 3
 
 # Workspaces Examples
 
-This chapter aims to provide a step-by-step tutorial of how to set up
+This chapter aims to provide a step-by-step tutorial on how to set up
 workspaces, entities, and see it in action.
 
 ## Important Note: Conflicting APIs or Routes in workspaces
 
-Workspaces provide a way to segment Kong entities - entities in a given
-workspace are isolated from entities in other workspaces. That said, entities
+Workspaces provide a way to segment Kong entities - entities in a workspace
+are isolated from those in other workspaces. That said, entities
 such as APIs and Routes have "routing rules", which are pieces of info
 attached to APIs or Routes - such as HTTP method, URI, or host - that allow a
 given proxy-side request to be routed to its corresponding upstream service.
@@ -34,14 +34,14 @@ router:
     proceed
     * If the matching API or Route **has an associated `host` value**:
       - If the `host` is a wildcard
-        * If the are the same, a conflict is reported - `409 Conflict`
+        * If they are the same, a conflict is reported - `409 Conflict`
         * If they are not equal, proceed
       - If the `host` is an absolute value, a conflict is reported - `409 Conflict`
 
 ## The Default workspace
 
 Kong creates a default workspace - unsurprisingly named `default` - whose goal
-is to group all existing entities in Kong, where "exisisting entities" refers to:
+is to group all existing entities in Kong, where "existing entities" refers to:
 
 - Entities that were created in operation in previous versions &amp; in case
 one is migrating from an older Kong version;
@@ -58,7 +58,7 @@ other, the only difference being that it's created by Kong, at migration time.
 
 ## Listing workspaces and its entities
 
-In a fresh Kong Enterprise install - or one just migrated to 0.33 - issue the
+In a fresh Kong Enterprise install - or one just migrated to 0.33 - submit the
 following request:
 
 ```
@@ -183,7 +183,7 @@ Kong provisions a "default" workspace and, on top of that, we created other
 ```
 
 Having our teams' workspaces set up, let's add some entities to them. Say
-they have a common Service - represented by the [Service][services] Kong
+they have a shared service - represented by the [Service][services] Kong
 entity - and different routes associated with this upstream service.
 
 Creating the shared service:
@@ -229,7 +229,7 @@ http :8001/workspaces/default/entities
 ```
 
 Again, entities not relevant for this example were redacted; notice, though,
-that our shared service is in the list.
+that our shared service is on the list.
 
 The next step is to add the shared service to our teams' workspaces. This can be
 done as follows:
@@ -439,7 +439,7 @@ http :8001/teamC/routes
 
 and Team C has its `/user-agent` route.
 
-With this set up, Teams A, B, and C only have access to their own Routes
+With this setup, Teams A, B, and C only have access to their own Routes
 entities through the Admin API. (Additionally, with RBAC's additional control,
 granular read/write/delete/update rights can be further assigned to workspaces,
 allowing flexible intra and inter-team permissioning schemes.)
@@ -447,8 +447,8 @@ allowing flexible intra and inter-team permissioning schemes.)
 ## Entities in different workspaces can have the same name!
 
 Different teams - belonging to different workspaces - are allowed to give any
-name to their entities. To give an example of that, let's say that Teams A, B,
-and C want a special consumer named `guest` - a different consumer for each
+name to their entities. To provide an example of that, let's say that Teams A, B,
+and C want a particular consumer named `guest` - a different consumer for each
 team, sharing the same username.
 
 ```
@@ -482,7 +482,7 @@ http :8001/teamC/consumers username=guest
 ```
 
 With this, Teams A, B, and C will have the freedom to operate their `guest`
-consumer independently, choosing authentication plugins, or doing any other
+consumer independently, choosing authentication plugins or doing any other
 operation that is allowed in the non-workspaced Kong world.
 
 Next: [RBAC Overview &rsaquo;](/docs/enterprise/{{page.kong_version}}/rbac/overview)

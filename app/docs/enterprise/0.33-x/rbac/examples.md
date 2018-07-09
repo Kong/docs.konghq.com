@@ -6,19 +6,19 @@ chapter: 3
 
 # RBAC Examples
 
-This chapter aims to provide a step-by-step tutorial of how to set up
-RBAC and see it in action, with a concrete end-to-end use case. The chosen
-use case demonstrates how **RBAC with workspaces** can be used together
-to achieve powerful, flexible organization of teams and users in complex
+This chapter aims to provide a step-by-step tutorial on how to set up
+RBAC and see it in action, with an end-to-end use case. The chosen
+use case demonstrates how **RBAC with workspaces** can be coupled
+to achieve a flexible organization of teams and users in complex
 hierarchies. Make sure to read the [RBAC Overview][rbac-overview] page
 and to glance over the [RBAC Admin API][rbac-admin] chapter, keeping it
-open as reference.
+open as a reference.
 
 ## Use Case
 
 For the sake of example, let's say a given company has a Kong Enterprise
 cluster to be shared with 3 teams: teamA, teamB, and teamC. While the Kong
-cluster will be shared among these teams, they want to be able to segment
+cluster are shared among these teams, they want to be able to segment
 their entities in such a way that management of entities in one team doesn't
 disrupt operation in some other team. As shown in the
 [Workspaces Examples Page][workspaces-examples], such a use case is possible
@@ -88,7 +88,7 @@ Kong; another possibility is editing the Kong configuration file and
 restarting.
 
 Before we move on, note that we will be using the Super Admin user, but we
-could in fact be moving without RBAC enabled, and having our Kong Admin do
+could, in fact, be moving without RBAC enabled, and having our Kong Admin do
 all the job of setting up the RBAC hierarchy. We want, however, to stress the
 fact that RBAC is powerful enough to allow a flexible separation of tasks. To
 summarize:
@@ -97,7 +97,7 @@ summarize:
 task is to bootstrap the Kong cluster as well as its configuration, including
 initial RBAC users;
 - **RBAC Super Admin**: created by the Kong Admin, has the role of managing
-RBAC users, roles, etc. This could all be done by the **Kong Admin**, but let's
+RBAC users, roles, etc; this could all be done by the **Kong Admin**, but let's
 give him a break.
 
 ## Super Admin creates the teams Workspaces
@@ -900,7 +900,7 @@ We will end this chapter with a few closing remarks.
 
 ## Wildcards in Permissions
 
-RBAC supports use of wildcards - represented by the `*` character - in many
+RBAC supports the use of wildcards - represented by the `*` character - in many
 aspects of permissions:
 
 **Creating endpoint permissions - `/rbac/roles/:role/endpoints`**

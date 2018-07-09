@@ -9,10 +9,10 @@ chapter: 1
 Kong Enterprise provides an additional layer of security for the Admin API in
 the form of Role-Based Access Control (RBAC). RBAC allows for fine-grained
 control over resource access based on a model of User, Roles, and Permissions.
-Users are assigned to one or more Roles, which each in turn possess one or more
-permissions granting or denying access to a particular endpoints or entities.
+Users are assigned to one or more Roles, while each role, in turn, possesses one
+or more permissions granting or denying access to endpoints or entities.
 In this way, fine-grained control over specific Admin API endpoints or entities
-can be enforced, while scaling to allow complex, case-specific uses.
+can be enforced, while scaling to allow sophisticated, case-specific uses.
 
 This document aims to be an introduction to Kong Admin API RBAC and its
 concepts. For Admin API documentation, see the [RBAC API Chapter][rbac-api]; for
@@ -22,10 +22,10 @@ examples of RBAC operation, see the [RBAC Examples Chapter][rbac-examples].
 
 RBAC policies are of little use without enforcement. By default, RBAC policies
 are not enforced by Kong, meaning that the Admin API access is available
-without requiring any authorization. This allows new Kong clusters to be
-bootstrapped with the appropriate RBAC configuration. Once the appropriate RBAC
-relationships have been defined, enforcing authorization and role access
-requires only a single configuration change via the Kong config file.
+without requiring any authorization; this allows bootstrapping new Kong clusters
+with the appropriate RBAC configuration. Once RBAC has been configured, enforcing
+authorization and role access requires only a single configuration change via
+the Kong config file.
 
 Previous to Kong Enterprise 0.33, Admin API RBAC was limited to "resources",
 which mapped to Admin API endpoints. Starting with Kong Enterprise 0.33, RBAC
@@ -43,18 +43,18 @@ access control
 enforce_rbac = on
 ```
 
-Once this is done, simply restart Kong
+Restart Kong:
 
 ```
 kong restart
 ```
 
-RBAC policies will now be enforced by Kong, based on the user token presented
-to the request. By default, this user token should be presented via the
+RBAC policies are now enforced by Kong, based on the user token presented
+to the request. By default, the user token is sent via the
 `Kong-Admin-Token` request header; the name of this header is configurable via
-the Kong configuration file. In order to test our setup, we can send a request
+the Kong configuration file. To test our setup, we can send a request
 to the Admin API without sending an authentication. Because Kong does not
-recognize a user associated with the requesting client, it will reject the
+recognize a user associated with the requesting client, it rejects the
 request:
 
 ```
@@ -71,7 +71,7 @@ Transfer-Encoding: chunked
 }
 ```
 
-By sending a request with a valid user token, we will be granted read access to
+By sending a request with a valid user token, we are granted read access to
 the resource in question:
 
 ```
@@ -85,8 +85,8 @@ Access-Control-Allow-Origin: *
 Server: kong/0.33-enterprise-edition
 ```
 
-We can also see that attempting to create a new resource which our RBAC user is
-not permitted, as they are not assigned any roles that have permissions with
+Attempting to create a new resource which our RBAC user is also
+not permitted, as it is not assigned any roles that have permissions with
 create access:
 
 ```
@@ -108,8 +108,8 @@ Transfer-Encoding: chunked
 A user identifies the actor sending the current request. Users are identified
 by Kong via the `user_token` element, sent to the Admin API as a request header.
 A user is assigned one or more Roles, the permissions of which determine what
-resources the user has access to. Users can be quickly enabled or disabled via
-the `enabled` flag on the User entity in the Admin API. This allows Kong
+resources the user is allowed access. Users can be quickly enabled or disabled via
+the `enabled` flag on the User entity in the Admin API; this allows Kong
 administrators to quickly enable and disable users without removing their
 tokens or metadata.
 
@@ -119,7 +119,7 @@ Roles tie together users and permissions, effectively assignment permissions to
 a user based on the assignment of permissions to the roles. Roles have a
 many-to-many relationship with both users, meaning that more than one user may
 be assigned to any given role, and a user may be assigned to more than one
-role. Likewise, roles also have a many to many relationship with endpoints and
+role. Likewise, roles also have a many to many relationships with endpoints and
 entities permissions; a role may be associated with more than one endpoint
 or entity permission. Roles are defined by a human-readable name, such as
 "read-only".
@@ -178,7 +178,7 @@ endpoints, except for the RBAC Admin API
 - **super-admin** This role has read, create, update, and delete access to all
 Kong endpoints, including the RBAC Admin API
 
-Kong does not provide any users by default, as this would essentially be a
+Kong does not provide any users by default, as this would be a
 backdoor into Admin API security. As such, it the administrator's responsibility
 to configure the appropriate RBAC users and user/role relationships.
 
