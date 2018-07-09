@@ -3,6 +3,7 @@ title: Kong Enterprise Changelog
 nav:
   - label: Versions
     items:
+      - label: "0.33"
       - label: "0.32"
       - label: "0.31-1"
       - label: "0.31"
