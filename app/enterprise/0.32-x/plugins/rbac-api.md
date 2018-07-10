@@ -343,7 +343,7 @@ HTTP 200 OK
 ### Update a Permission
 #### Endpoint
 
-<div class="endpoint path">/rbac/permissions/{name_or_id}</div>
+<div class="endpoint patch">/rbac/permissions/{name_or_id}</div>
 
 #### Request Body
 | Attribute | Description
