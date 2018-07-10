@@ -6,7 +6,7 @@ For all other issues, please fill in the sections below.
 Check existing issues and pull-requests before submitting new ones, as a courtesy to the maintainers and making sure work isn't duplicated.
 -->
 
-- `getkong.org` url(s):
+- `docs.konghq.com` url(s):
 
 ### Summary
 

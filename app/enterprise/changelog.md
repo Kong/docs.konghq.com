@@ -3,12 +3,113 @@ title: Kong Enterprise Changelog
 nav:
   - label: Versions
     items:
+      - label: "0.33"
       - label: "0.32"
       - label: "0.31-1"
       - label: "0.31"
       - label: "0.30"
 ---
 # Kong Enterprise Changelog
+
+## 0.33
+
+### Notifications
+
+- **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+  - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
+  - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
+- **Kong EE 0.33** has these notices from **Kong CE 0.13**:
+  - Support for **Postgres 9.4 has been deprecated, but Kong will still start** - versions beyond 0.32 will not start with Postgres 9.4 or prior
+  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.32 will not start with Cassandra 2.1 or prior
+  - Additional requirements:
+      - **Vitals** requires Postgres 9.5+
+      - **Dev Portal** requires Cassandra 3.0+
+  - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
+- **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
+
+### Changes
+
+- **Vitals**
+  - Internal proxies are no longer tracked
+  - Admin API endpoint `/vitals/consumers/:username_or_id/nodes`, deprecated in 0.32, has been removed
+- **Prometheus Plugin**
+  - The plugin uses a dedicated shared dictionary. If you use a custom template, define the following for Prometheus:
+
+    ```
+    lua_shared_dict prometheus_metrics 5m;
+    ```
+- **OpenID Connect Plugin**
+  - Change `config_consumer_claim` from string to array
+
+### Features
+
+- **Core**
+  - **New RBAC implementation**, supporting both endpoint and entity-level
+  access control - read the docs [here][rbac-overview]
+  - **Workspaces**, allowing segmentation of Admin API entities - read the docs
+  [here][workspaces-overview]. Note that workspaces are available in the API only,
+  and not in the Admin GUI
+- **Admin GUI**
+  - Log in to the Admin GUI using Kong's own authentication plugins; supported
+  plugins are key-auth, basic-auth, and ldap-auth-advanced.  Use of other
+  authentication plugins has not been tested.
+  - Add ability to see what plugins are configured on a consumer
+- **Dev Portal**
+  - Revoked Dev Portal Users/Consumers are blocked at proxy
+  - Files API Improvements
+  - File editor in Admin GUI
+  - Consumer API usage on Dev Portal user area
+- **OpenID Connect Plugin**
+  - Add `config.consumer_optional`
+  - Add `config.token_endpoint_auth_method`
+  - Add `consumer.status` check for internal authentication
+- **Forward Proxy Plugin**
+  - Add support for delayed response
+  - Add `via` header
+- **Canary Plugin**
+  - Added whitelist and blacklist options to be able to select consumers instead of having random consumers
+  - Added a port parameter to be able to be set a new port for the alternate upstream
+- **LDAP Auth Advanced**
+  - Find consumers by `consumer_by` fields and map to ldap-auth user. This will set the authenticated consumer so that `X-Consumer-{ID, USERNAME, CUSTOM_ID}` headers are set and consumer functionality is available
+  - Add fields
+      - `consumer_by`: optional, default: `{username, custom_id}`
+      - `consumer_optional`: optional, default: `false`
+- **StatsD Plugin**
+  - New plugin; see documentation [here][statsd-docs]
+- **Prometheus Plugin**
+  - New plugin; see documentation [here][prometheus-docs]
+
+### Fixes
+
+- **Core**
+  - **Healthchecks**: health status no longer resets when a Target is added to an Upstream
+  - **Runloop**: properly throw errors from plugins fetch
+  - **DB**: fix double-wraping of `err_t` strategy error
+- **Plugins**
+  - Azure delayed response
+  - Lambda delayed response
+  - Request Termination delayed response
+- **Admin GUI**
+  - Fix a problem where a plugin value cannot be unset
+  - Fix a problem where error messages on the login screen fail to display
+- **Portal**
+  - Auto-approve messaging
+- **OpenID Connect Plugin**
+  - Fix `kong_oauth2` `auth_method` so that it works without having to also add bearer or introspection to `config.auth_method`
+  - Fix `ngx.ctx.authenticated_credential` so that it isn't set when a value with `config.credential_claim` isn't found
+- **Zipkin Plugin**
+  - Fix an issue with how timestamps can sometimes be encoded with scientific notation, causing the Zipkin collector to refuse some traces
+- **LDAP Auth Advanced Plugin**
+  - Fix require statements pointing to Kong CE's version of the plugin
+  - Fix usage of the LuaJIT FFI, where an external symbol was not accessed properly, resulting in an Internal Server Error
+- **Rate Limiting Advanced Plugin**
+  - Fix an issue in Cassandra migrations that would stop the migration process
+  - Allow existing plugin configurations without a value for the recently-introduced introduced `dictionary_name` field to use the default dictionary for the plugin - `kong_rate_limiting_counters`.
+  - Customers using a custom Nginx template are advised to check if such a dictionary is defined in their template:
+
+    ```
+    lua_shared_dict kong_rate_limiting_counters 12m;
+    ```
 
 ## 0.32
 
@@ -361,3 +462,10 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
   - Infer types based on default values and object type from the API Schema for Plugins.
 
 - Fixes inherited from Kong Community Edition 0.12.0.
+
+---
+
+[rbac-overview]: /docs/enterprise/0.33-x/rbac/overview
+[workspaces-overview]: /docs/enterprise/0.33-x/workspaces/overview
+[statsd-docs]: /docs/enterprise/0.33-x/plugins/statsd-advanced
+[prometheus-docs]: /docs/enterprise/0.33-x/plugins/prometheus

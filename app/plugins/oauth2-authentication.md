@@ -348,4 +348,4 @@ $ curl -X POST https://your.api.com/oauth2/token \
 ```
 
 [consumer-object]: /latest/admin-api/#consumer-object
-[proxy-port]: https://getkong.org/latest/configuration/#proxy_listen
+[proxy-port]: https://docs.konghq.com/latest/configuration/#proxy_listen

@@ -12,11 +12,8 @@ nav:
       - label: Plugin Names
       - label: Demonstration
       - label: Notes
-
 description: |
-
   Dynamically run Lua code from Kong during access phase.
-
 params:
   name: serverless-functions
   api_id: true
@@ -74,11 +71,11 @@ different priority in the plugin chain.
     -- Terminate request early if our custom authentication header
     -- does not exist
     if not custom_auth then
-      return kong.response.exit(401, "Invalid Credentials")
+      return kong.response.exit(401\, "Invalid Credentials")
     end
 
     -- Remove custom authentication header from request
-    kong.request.clear_header('x-custom-auth')
+    kong.service.request.clear_header('x-custom-auth')
     ```
 
 4. Ensure the file contents:
@@ -91,8 +88,8 @@ different priority in the plugin chain.
 
     ```bash
     $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
-        --data "name=pre-function" \
-        --data "config.functions[]=@custom-auth.lua"
+        -F "name=pre-function" \
+        -F "config.functions=@custom-auth.lua"
 
     HTTP/1.1 201 Created
     ...
@@ -112,7 +109,7 @@ different priority in the plugin chain.
 
     ```bash
     curl -i -X GET http://localhost:8000/test \
-      --header "x-custom-auth=key"
+      --header "x-custom-auth: demo"
 
     HTTP/1.1 200 OK
     ...

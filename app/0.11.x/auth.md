@@ -206,5 +206,5 @@ tokens etc. will require authentication by the other configured auth plugins.
 </div>
 
 
-[plugins]: https://getkong.org/plugins/
+[plugins]: https://konghq.com/plugins/
 [key-auth]: /plugins/key-authentication

@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - Azure Functions
 header_title: Azure Functions
 header_icon: https://konghq.com/wp-content/uploads/2018/05/azure-functions.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-azure-functions
 breadcrumbs:
   Plugins: /plugins
 nav:
@@ -95,8 +96,6 @@ params:
 
 ---
 
-> **Note**: Azure-Functions plugin is available in Enterprise as of version 0.32 and will soon be available as part of Kong CE 0.14.
-
 ## Demonstration
 
 To demonstrate the plugin, set up the [Azure Functions "hello world" function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function).
@@ -177,7 +176,7 @@ headers, and body will be passed to the Azure Function if provided.
 
 When using the this plugin, the response will be returned by the plugin itself
 without proxying the request to any upstream service. This means that whatever
-`url` has been set on the [Service](https://getkong.org/latest/admin-api/#service-object)
+`url` has been set on the [Service](https://docs.konghq.com/latest/admin-api/#service-object)
 it will never be used. Although `url` will never be used, it's
 currently a mandatory field in Kong's data model, so feel free to set a fake
 value (ie, `http://dead.end.com` as per the example above) if you are planning to use this plugin.
