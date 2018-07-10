@@ -157,3 +157,15 @@
     postgres: "9.5+"
     openresty: "1.11.2.5"
   lua_doc: true
+-
+  release: "0.33-x"
+  version: "0.33"
+  edition: "enterprise"
+  luarocks_version: "0.33.x"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.11.2.5"
+  lua_doc: true
