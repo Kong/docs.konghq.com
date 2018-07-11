@@ -10,9 +10,9 @@ chapter: 3
 In this section you will learn how to manage Kong Admins in the Kong Admin GUI. 
 
 Prerequisites:
-* You have enabled authentication, following the [Getting Started](/docs/enterprise/{{page.kong_version}}/admin-gui/configuration/getting-started/) guide.
-* You have [enabled RBAC](/docs/enterprise/{{page.kong_version}}/rbac/overview/#enforcing-rbac)
-* You have [setup the Super Admin RBAC Role](/docs/enterprise/{{page.kong_version}}/rbac/examples/#bootstrapping-the-first-rbac-user-the-super-admin) or you are able to login with a user that has `/admins` and `/rbac` read/write access, with all associated endpoints for permission creation. We will refer to this user as the *Authorized Admin* in this guide.
+* You have enabled authentication, following the [Getting Started](/enterprise/{{page.kong_version}}/admin-gui/configuration/getting-started/) guide.
+* You have [enabled RBAC](/enterprise/{{page.kong_version}}/rbac/overview/#enforcing-rbac)
+* You have [setup the Super Admin RBAC Role](/enterprise/{{page.kong_version}}/rbac/examples/#bootstrapping-the-first-rbac-user-the-super-admin) or you are able to login with a user that has `/admins` and `/rbac` read/write access, with all associated endpoints for permission creation. We will refer to this user as the *Authorized Admin* in this guide.
 
 ## Create RBAC Roles for Your Admin
 
@@ -30,13 +30,13 @@ Login to the Kong Admin GUI as the Super Admin. Click "Admins" in the sidebar. C
 
 ## Grant Admin Access
 
-Now that you have created an Admin and assigned them roles, you will need to give them access to login to the Admin GUI. If not using the [LDAP Auth Advanced plugin](/docs/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#ldap-authentication), you will need to create Credentials via the API, as it is not currently supported in the Admin GUI.
+Now that you have created an Admin and assigned them roles, you will need to give them access to login to the Admin GUI. If not using the [LDAP Auth Advanced plugin](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#ldap-authentication), you will need to create Credentials via the API, as it is not currently supported in the Admin GUI.
 
 If you are using LDAP Auth Advanced Plugin, then you can skip credential creation and utilize the Consumer mapping feature, which allows you to map a LDAP user's `username` to a consumer's `username` or `custom_id`.
 
 ### Create Credentials
 
-Admins are a type of Kong [Consumer](/docs/0.13.x/admin-api/#consumer-object), and therefore can be given Kong Plugin Authentication Credentials. Find the value of your Kong configuration directive `admin_gui_auth`. You will need to create credentials based on that plugin. Ensure that you have the Admin entity data:
+Admins are a type of Kong [Consumer](/0.13.x/admin-api/#consumer-object), and therefore can be given Kong Plugin Authentication Credentials. Find the value of your Kong configuration directive `admin_gui_auth`. You will need to create credentials based on that plugin. Ensure that you have the Admin entity data:
 
 ```bash
 $ curl 'http://kong:8001/admins/<username>'
@@ -61,7 +61,7 @@ HTTP/1.1 200 OK
 
 Now that you have the `<CONSUMER_ID>`, you can use this to create a credential with your associated `admin_gui_auth` plugin:
 
-* [Create a Basic Authentication Credential Username/Password](/docs/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#enable-authentication)
-* [Create a Key Authentication Credential Key](/docs/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#basic-authentication)
+* [Create a Basic Authentication Credential Username/Password](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#enable-authentication)
+* [Create a Key Authentication Credential Key](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#basic-authentication)
 
-Once a user has a credential, they can use the credential to [login via the Kong Admin GUI login form](/docs/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#logging-in)
+Once a user has a credential, they can use the credential to [login via the Kong Admin GUI login form](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#logging-in)

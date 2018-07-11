@@ -41,8 +41,8 @@ client payloads.
 For basic authentication, use your client ID as the username and your client secret as the password. For the other methods, pass them as parameters named `client_id` and `client_secret`, respectively.
 
 
-[client-credentials-grant]: https://auth0.com/docs/api-auth/tutorials/client-credentials
-[create-auth0-api]: https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
-[non-interactive-client]: https://auth0.com/docs/clients
-[create-api]: /docs/latest/admin-api/#add-api
-[audience-required]: https://auth0.com/docs/api/authentication#client-credentials
+[client-credentials-grant]: https://auth0.com/api-auth/tutorials/client-credentials
+[create-auth0-api]: https://auth0.com/apis#how-to-configure-an-api-in-auth0
+[non-interactive-client]: https://auth0.com/clients
+[create-api]: /latest/admin-api/#add-api
+[audience-required]: https://auth0.com/api/authentication#client-credentials

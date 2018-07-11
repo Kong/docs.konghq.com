@@ -41,7 +41,7 @@ $ curl -i -X POST http://kong:8001/plugins \
 |`config.run_on_preflight`<br>*optional* | `true`	| A boolean value that indicates whether the plugin should run (and try to authenticate) on OPTIONS preflight requests, if set to false then OPTIONS requests will always be allowed
 
 ## Flow
-<img src="/assets/img/docs/ee/oauth-introspection-flow.png" alt="OAuth2 Introspection Flow" />
+<img src="/assets/img/ee/oauth-introspection-flow.png" alt="OAuth2 Introspection Flow" />
 
 ## Associate the response to a Consumer
 

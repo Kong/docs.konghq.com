@@ -87,11 +87,11 @@ Plugins, feel free to read more on Kong in one of the following documents:
 
 
 [key-auth]: /plugins/key-authentication
-[API-consumers]: /docs/latest/admin-api#create-consumer
-[consumers]: /docs/latest/admin-api#consumer-object
-[enabling-plugins]: /docs/{{page.kong_version}}/getting-started/enabling-plugins
-[configuration]: /docs/latest/configuration
-[CLI]: /docs/latest/cli
-[proxy]: /docs/latest/proxy
-[API]: /docs/latest/admin-api
-[cluster]: /docs/latest/clustering
+[API-consumers]: /latest/admin-api#create-consumer
+[consumers]: /latest/admin-api#consumer-object
+[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
+[configuration]: /latest/configuration
+[CLI]: /latest/cli
+[proxy]: /latest/proxy
+[API]: /latest/admin-api
+[cluster]: /latest/clustering

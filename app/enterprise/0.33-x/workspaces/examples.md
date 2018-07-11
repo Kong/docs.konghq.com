@@ -485,8 +485,8 @@ With this, Teams A, B, and C will have the freedom to operate their `guest`
 consumer independently, choosing authentication plugins or doing any other
 operation that is allowed in the non-workspaced Kong world.
 
-Next: [RBAC Overview &rsaquo;](/docs/enterprise/{{page.kong_version}}/rbac/overview)
+Next: [RBAC Overview &rsaquo;](/enterprise/{{page.kong_version}}/rbac/overview)
 
 ---
 
-[services]: /docs/{{page.kong_version}}/admin-api/#service-object
+[services]: /{{page.kong_version}}/admin-api/#service-object

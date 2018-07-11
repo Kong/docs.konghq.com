@@ -7,8 +7,8 @@ Transform the request sent by a client on the fly on Kong, before hitting the up
 
 ## Configuration
 
-Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API](/docs/latest/admin-api/#api-object) 
-(or [Consumer](/docs/latest/admin-api/#consumer-object)) by executing the following request on your Kong server:
+Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API](/latest/admin-api/#api-object) 
+(or [Consumer](/latest/admin-api/#consumer-object)) by executing the following request on your Kong server:
 
 ```
 $ curl -X POST http://kong:8001/apis/{api}/plugins \
@@ -25,7 +25,7 @@ Note: if the value contains a `,` then the comma separated format cannot be used
 
 `api`: The `id` or `name` of the API that this plugin configuration will target
 
-You can also apply it for every API using the http://kong:8001/plugins/ endpoint. Read the [Plugin Reference](/docs/latest/admin-api/#add-plugin) for more information.
+You can also apply it for every API using the http://kong:8001/plugins/ endpoint. Read the [Plugin Reference](/latest/admin-api/#add-plugin) for more information.
 
 | Form Parameter | Description
 | --------- | -----------

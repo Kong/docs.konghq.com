@@ -38,6 +38,6 @@ Now, lets get familiar with learning how to "start" and "stop" Kong EE.
 
 Go to [5-minute quickstart with Kong &rsaquo;][quickstart]
 
-[quickstart]: /docs/enterprise/{{page.kong_version}}/getting-started/quickstart
-[adding-your-api]: /docs/enterprise/{{page.kong_version}}/getting-started/adding-your-api
-[enabling-plugins]: /docs/enterprise/{{page.kong_version}}/getting-started/enabling-plugins
+[quickstart]: /enterprise/{{page.kong_version}}/getting-started/quickstart
+[adding-your-api]: /enterprise/{{page.kong_version}}/getting-started/adding-your-api
+[enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins

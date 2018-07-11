@@ -5,9 +5,9 @@ chapter: 7
 ---
 # Managing Developers for your Developer Portal
 
-In this section you will learn how to manage [developers](/docs/enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/docs/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/) guide.
+In this section you will learn how to manage [developers](/enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/) guide.
 
-Once your Kong Developer Portal is enabled you will be able to view developers from the Developers tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/docs/enterprise/{{page.kong_version}}/admin-gui/).
+Once your Kong Developer Portal is enabled you will be able to view developers from the Developers tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/enterprise/{{page.kong_version}}/admin-gui/).
 
 ## Developers Statuses
 
@@ -39,7 +39,7 @@ It should now look like:
 `portal_auto_approve = on`
 3. Restart kong (`kong restart`)
 
-*See [Property References](/docs/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference) to learn more about configuring the Kong Developer Portal.*
+*See [Property References](/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference) to learn more about configuring the Kong Developer Portal.*
 
 ## Viewing Approved Developers
 

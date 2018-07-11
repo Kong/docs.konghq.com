@@ -245,4 +245,4 @@ consult the associated plugin documentation.
 portal_auth_conf = { "hide_credentials": true }
 ```
 
-Next: Learn about [Managing Developers &rsaquo;](/docs/enterprise/{{page.kong_version}}/developer-portal/managing-developers)
+Next: Learn about [Managing Developers &rsaquo;](/enterprise/{{page.kong_version}}/developer-portal/managing-developers)

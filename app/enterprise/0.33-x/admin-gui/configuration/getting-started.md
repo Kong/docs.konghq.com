@@ -12,7 +12,7 @@ Start Kong.
 
 `kong start -c kong.conf.default`
 
-> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://getkong.org/docs/latest/configuration/) in order to implement this step.
+> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://getkong.org/latest/configuration/) in order to implement this step.
 
 Visit the Admin GUI:
 
@@ -23,6 +23,6 @@ You should now see the dashboard of the Kong Admin GUI.
 ## Next Steps
 
 #### Adding Authentication
-To add Authentication, head on over to [Authenticating the Kong Admin GUI](/docs/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication).
+To add Authentication, head on over to [Authenticating the Kong Admin GUI](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication).
 
 Next: [Authentication &rsaquo;]({{page.book.next}})

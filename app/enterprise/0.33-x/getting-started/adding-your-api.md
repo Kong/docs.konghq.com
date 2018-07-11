@@ -93,7 +93,7 @@ Now that you've added your API to Kong EE, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /docs/latest/admin-api
-[enabling-plugins]: /docs/enterprise/{{page.kong_version}}/getting-started/enabling-plugins
-[proxy-port]: /docs/latest/configuration/#nginx-section
+[API]: /latest/admin-api
+[enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins
+[proxy-port]: /latest/configuration/#nginx-section
 [mockbin]: https://mockbin.com/
