@@ -64,13 +64,16 @@ HTTP/1.1 201 Created
 
 Save this `"key": "62eb165c070a41d5c1b58d9d3d725ca1"` for use later. 
 
-Now that you have an Admin with an associated login Key, update the following in your Kong Configuration, then restart Kong:
+Now you need an RBAC user to associate to this admin. To add the super user see "[Bootstrapping the first RBAC user - the Super Admin](/enterprise/{{page.kong_version}}/rbac/examples/#bootstrapping-the-first-rbac-user-the-super-admin)".
+
+Now that you have an Admin with an associated login Key and a RBAC Super-Admin, update the following in your Kong Configuration, then restart Kong.
 
 ```
 admin_gui_auth = key-auth
+enforce_rbac = on
 ```
 
-The Admin GUI is now aware that authentication is enabled and will restrict access. Browse to the Admin GUI and you will be prompted with a [Login](#logging-in) form. Enter in the key saved from before to gain access to the Admin GUI. You should be able to access all resources. To being creating more admins and setting up role based access restrictions, see [Setting Up Admin API RBAC](/enterprise/{{page.kong_version}}/setting-up-admin-api-rbac).
+The Admin GUI is now aware that authentication is enabled and will restrict access so that only the Super Admin can login. Browse to the Admin GUI and you will be prompted with a [Login](#logging-in) form. Enter in the key saved from before to gain access to the Admin GUI. You should be able to access all resources.
 
 > Note: Once Kong starts, you will notice that your [Admin API configuration](https://127.0.0.1:8001/) now shows `cors` and `key-auth` plugins are enabled. This is because Kong sets up an internal proxy to the Admin API (e.g. `:8001` -> `:8000/_kong/admin`) and configures the Key Authentication plugin applied only to all routes. These routes &amp; services will not be tracked by Kong Vitals, they will not appear in your proxy traffic, and the internal plugins will not be applied to any other routes or services or be configurable in your Kong instance.
 
@@ -85,6 +88,10 @@ If you are using Basic Authentication or Key Authentication, then you will need 
 
 ## Example configurations
 
+Set `enforce_rbac = on` in your Kong configuration.
+
+⚠️ **IMPORTANT**: When RBAC is `off`, any consumer with a valid credential can login to the admin gui, so you must enable RBAC if you want to restrict access to only Admins.
+
 ### Key Authentication
 
 Check out the section [Enabling Authentication](#enable-authentication) for a step by step guide on setting up [Key Authentication](https://getkong.org/plugins/key-authentication).
@@ -95,6 +102,7 @@ The LDAP Advanced Authentication plugin allows Admins to use their own LDAP serv
 
 ```
 admin_gui_auth = ldap-auth-advanced
+enforce_rbac = on
 ```
 
 ```
@@ -175,6 +183,7 @@ Update the following in your Kong Configuration, then restart Kong:
 
 ```
 admin_gui_auth = basic-auth
+enforce_rbac = on
 ```
 
 Browse to the Admin GUI and you should now see [Login](#logging-in). The form will reflect that admins now need a username and password to login and administer Kong. Login with the username password created `Aladdin:OpenSesame`.
