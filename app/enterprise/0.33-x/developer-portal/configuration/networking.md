@@ -74,12 +74,12 @@ Visiting `http://dev-portal.company.com` will now result in a successful render.
 
 When [`portal_gui_url`](/enterprise/{{page.kong_version}}/developer-portal/property-reference/#portal_gui_url) is not defined:  
 
-  - Kong Proxy will set [CORS](https://developer.mozilla.org/en-US/Web/HTTP/CORS) to `*`, allowing any origin to make requests to the Dev Portal.
+  - Kong Proxy will set [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) to `*`, allowing any origin to make requests to the Dev Portal.
   - Admin GUI and Dev Portal use [`portal_gui_url`](/enterprise/{{page.kong_version}}/developer-portal/property-reference/#portal_gui_url) to reference Dev Portal location. As a result the Admin GUI will reference `window.location` by default when linking out to the Dev Portal resulting in a redirect to `http://admin-gui.company.com` rather than `http://dev-portal.company.com`.
 
 Setting [`portal_gui_url`](/enterprise/{{page.kong_version}}/developer-portal/property-reference/#portal_gui_url) to `http://dev-portal.company.com` will:  
 
   - Give context to Admin GUI and Dev Portal.
-  - Update [CORS](https://developer.mozilla.org/en-US/Web/HTTP/CORS) in the Kong Proxy to only accept Dev Portal requests from the [`portal_gui_url`](/enterprise/{{page.kong_version}}/developer-portal/property-reference/#portal_gui_url).
+  - Update [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the Kong Proxy to only accept Dev Portal requests from the [`portal_gui_url`](/enterprise/{{page.kong_version}}/developer-portal/property-reference/#portal_gui_url).
 
 Next: Learn more about our [Property Referrences &rsaquo;]({{page.book.next}})

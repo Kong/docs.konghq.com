@@ -80,7 +80,7 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
 [CLI]: /latest/cli
 [API]: /latest/admin-api
-[GUI]: /enterprise/{{page.kong_version}}/admin-gui/
+[GUI]: /enterprise/{{page.kong_version}}/admin-gui/overview
 [datastore-section]: /latest/configuration/#datastore-section
 [adding-your-api]: /enterprise/{{page.kong_version}}/getting-started/adding-your-api
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/

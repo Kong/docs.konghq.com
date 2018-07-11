@@ -11,11 +11,11 @@ You will notice that along with Kong Enterprise Edition and Gelato, there is a n
 
 In the repo, you'll see 1 file called license. Click on that file.
 
-![](/assets/images/ee/access-bintray-license.png)
+![](/assets/images/docs/ee/access-bintray-license.png)
 
 Click into the **Files** section
 
-![](/assets/images/ee/access-bintray-license-files.png)
+![](/assets/images/docs/ee/access-bintray-license-files.png)
 
 Click any file you would like to download.
 

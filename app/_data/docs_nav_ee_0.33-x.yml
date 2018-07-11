@@ -29,7 +29,7 @@
     - text: Canary Release Plugin
       url: /plugins/canary-release
     - text: Rate Limiting Plugin
-      url: /plugins/rate-limiting
+      url: /plugins/rate-limiting-advanced
     - text: Request Transformer Plugin
       url: /plugins/request-transformer
     - text: OAuth2 Introspection Plugin

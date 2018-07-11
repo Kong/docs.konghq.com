@@ -9,7 +9,7 @@ title: Kong Enterprise Edition (EE) Documentation
     <div class="left">
       <img src="/assets/images/icons/icn-buildings.svg" />
     </div>
-    <p>Kong Enterprise Edition (EE) adds features, functionality, and performance to Kong Community Edition (CE). This documentation doesn’t cover the general practices of using Kong that are common to both Kong CE and EE - learn the <a href="/docs">basics in Kong CE documentation</a>.</p>
+    <p>Kong Enterprise Edition (EE) adds features, functionality, and performance to Kong Community Edition (CE). This documentation doesn’t cover the general practices of using Kong that are common to both Kong CE and EE - learn the <a href="/">basics in Kong CE documentation</a>.</p>
   </div>
 </div>
 {% endif %}
@@ -46,7 +46,7 @@ title: Kong Enterprise Edition (EE) Documentation
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/admin-gui/">Kong Admin GUI</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/admin-gui/overview">Kong Admin GUI</a></h3>
     <p>Kong’s Admin GUI makes it quick and easy to configure and understand Kong Enterprise Edition.</p>
     <a href="/enterprise/{{page.kong_version}}/admin-gui/overview">Learn more &rarr;</a>
   </div>

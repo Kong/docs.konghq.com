@@ -7,7 +7,7 @@ chapter: 7
 
 In this section you will learn how to manage [developers](/enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/) guide.
 
-Once your Kong Developer Portal is enabled you will be able to view developers from the Developers tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/enterprise/{{page.kong_version}}/admin-gui/).
+Once your Kong Developer Portal is enabled you will be able to view developers from the Developers tab in the Admin GUI. If you do not know how to access the Admin GUI see [Accessing Admin GUI](/enterprise/{{page.kong_version}}/admin-gui/overview).
 
 ## Developers Statuses
 

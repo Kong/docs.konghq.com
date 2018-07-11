@@ -77,7 +77,7 @@ headers.
 The plugin does support OpenID Connect Discovery as defined in
 [the specification](http://openid.net/specs/openid-connect-discovery-1_0.html).
 
-![OpenID Connect Discovery Sequence Diagram](/assets/images/ee/plugins/openid-connect-discovery.png "OpenID Connect Discovery Sequence Diagram")
+![OpenID Connect Discovery Sequence Diagram](/assets/images/docs/ee/plugins/openid-connect-discovery.png "OpenID Connect Discovery Sequence Diagram")
 
 ### JWA Signing Algorithms
 
@@ -1897,15 +1897,15 @@ well.
 
 Provider                                                        | Information
 ----------------------------------------------------------------|:------------:
-[Auth0](https://auth0.com/)                                     | [Docs](https://auth0.com/protocols/oidc) / [Discovery](https://demo.auth0.com/.well-known/openid-configuration) / [Keys](https://demo.auth0.com/.well-known/jwks.json)
-[Okta](https://www.okta.com/)                                   | [Docs](https://developer.okta.com/api/resources/oidc.html) / [Discovery](https://demo.oktapreview.com/.well-known/openid-configuration) / [Keys](https://demo.oktapreview.com/oauth2/v1/keys)
+[Auth0](https://auth0.com/)                                     | [Docs](https://auth0.com/docs/protocols/oidc) / [Discovery](https://demo.auth0.com/.well-known/openid-configuration) / [Keys](https://demo.auth0.com/.well-known/jwks.json)
+[Okta](https://www.okta.com/)                                   | [Docs](https://developer.okta.com/docs/api/resources/oidc.html) / [Discovery](https://demo.oktapreview.com/.well-known/openid-configuration) / [Keys](https://demo.oktapreview.com/oauth2/v1/keys)
 [OneLogin](https://www.onelogin.com/)                           | [Docs](https://developers.onelogin.com/openid-connect) / [Discovery](https://openid-connect.onelogin.com/oidc/.well-known/openid-configuration) / [Keys](https://openid-connect.onelogin.com/oidc/certs)
 [Google](https://www.google.com/)                               | [Docs](https://developers.google.com/identity/protocols/OpenIDConnect) / [Discovery](https://accounts.google.com/.well-known/openid-configuration) / [Keys](https://www.googleapis.com/oauth2/v3/certs)
 [Microsoft](https://www.microsoft.com/) Live Connect            | Docs / [Discovery](https://login.live.com/.well-known/openid-configuration) / [Keys](https://nexus.passport.com/public/partner/discovery/key)
 [Microsoft](https://www.microsoft.com/) Azure AD                | [Docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-oidc) / [Discovery](https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration) / [Keys](https://login.microsoftonline.com/organizations/discovery/v2.0/keys)
 [Yahoo!](https://www.yahoo.com/)                                | [Docs](https://developer.yahoo.com/oauth2/guide/openid_connect/) / [Discovery](https://api.login.yahoo.com/.well-known/openid-configuration) / [Keys](https://login.yahoo.com/openid/v1/certs)
 [Salesforce](https://www.salesforce.com/f)                      | [Docs](https://developer.salesforce.com/page/Inside_OpenID_Connect_on_Force.com) / [Discovery](https://test.salesforce.com/.well-known/openid-configuration) / [Keys](https://test.salesforce.com/id/keys)
-[Paypal](https://www.paypal.com/)                               | [Docs](https://developer.paypal.com/integration/direct/identity/log-in-with-paypal/) / [Discovery](https://www.paypal.com/.well-known/openid-configuration) / Keys
+[Paypal](https://www.paypal.com/)                               | [Docs](https://developer.paypal.com/docs/integration/direct/identity/log-in-with-paypal/) / [Discovery](https://www.paypal.com/.well-known/openid-configuration) / Keys
 
 ### On Premises
 
@@ -1914,8 +1914,8 @@ Provider                                                        | Information
 [Connect2id](https://connect2id.com/)                           | [Docs](https://connect2id.com/products/server) / [Discovery](https://demo.c2id.com/c2id/.well-known/openid-configuration) / [Keys](https://demo.c2id.com/c2id/jwks.json)
 [PingFederate](https://www.pingidentity.com/)                   | [Docs](https://documentation.pingidentity.com/pingfederate/pf84/)
 [IdentityServer4](http://identityserver.io/)                    | [Docs](https://identityserver4.readthedocs.io/) / [Discovery](https://demo.identityserver.io/.well-known/openid-configuration) / [Keys](https://demo.identityserver.io/.well-known/openid-configuration/jwks)
-[OpenAM](https://www.forgerock.com/platform/access-management/) | [Docs](https://backstage.forgerock.com/openam/13.5/admin-guide/chap-openid-connect)
-[Gluu](https://gluu.org/)                                       | [Docs](https://gluu.org/ce/api-guide/openid-connect-api/)
+[OpenAM](https://www.forgerock.com/platform/access-management/) | [Docs](https://backstage.forgerock.com/docs/openam/13.5/admin-guide/chap-openid-connect)
+[Gluu](https://gluu.org/)                                       | [Docs](https://gluu.org/docs/ce/api-guide/openid-connect-api/)
 [Keycloak](http://www.keycloak.org/)                            | [Docs](https://keycloak.gitbooks.io/documentation/securing_apps/topics/oidc/oidc-generic.html)
 [Dex](https://github.com/coreos/dex)                            | [Docs](https://github.com/coreos/dex/blob/master/Documentation/openid-connect.md)
 [WSO2](https://wso2.com/)                                       | [Docs](https://docs.wso2.com/display/IS541/OpenID+Connect)
