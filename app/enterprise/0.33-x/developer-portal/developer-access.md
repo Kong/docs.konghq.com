@@ -6,11 +6,11 @@ chapter: 8
 
 # Granting Access to Developers
 
-Since [Developers][developers] are a type of [Consumer](/docs/latest/getting-started/adding-consumers/), plugins and auth credentials can be similarly applied to them. In this section we will learn how Developers can get access to your routes and services by managing their credentials.
+Since [Developers][developers] are a type of [Consumer](/latest/getting-started/adding-consumers/), plugins and auth credentials can be similarly applied to them. In this section we will learn how Developers can get access to your routes and services by managing their credentials.
 
 ## How to Manage Your Developer Credentials
 
-As a Developer, once you are [approved](/docs/enterprise/{{page.kong_version}}/developer-portal/managing-developers/#developers-statuses), you can login to the Dev Portal Dashboard and [create](#creating-a-credential), [update](#updating-a-credential), or [delete](#deleting-a-credential) credentials. The credential options available will be based on which authentication plugins the Kong admin has enabled.
+As a Developer, once you are [approved](/enterprise/{{page.kong_version}}/developer-portal/managing-developers/#developers-statuses), you can login to the Dev Portal Dashboard and [create](#creating-a-credential), [update](#updating-a-credential), or [delete](#deleting-a-credential) credentials. The credential options available will be based on which authentication plugins the Kong admin has enabled.
 
 Current plugins supported:
 
@@ -40,6 +40,6 @@ In the Dev Portal Dashboard, find the credential you wish to edit. Click "Edit".
 
 In the Dev Portal Dashboard, find the credential you wish to delete. Click the trash icon <svg data-v-1421dd7e="" width="14" height="16" xmlns="http://www.w3.org/2000/svg"><path data-v-1421dd7e="" d="M3 3V2c0-1.1045695.8954305-2 2-2h4c1.1045695 0 2 .8954305 2 2v1h2c.5522847 0 1 .4477153 1 1v1H0V4c0-.5522847.4477152-1 1-1h2zm2 0V2h4v1H5zM1 6h2v8h8V6h2v8c0 1.1045695-.8954305 2-2 2H3c-1.1045695 0-2-.8954305-2-2V6zm5 0v7c-.5522847 0-1-.4477153-1-1V7c0-.5522847.4477153-1 1-1zm2 0c.5522847 0 1 .4477153 1 1v5c0 .5522847-.4477153 1-1 1V6z" fill="#BFBFBF" fill-rule="evenodd"></path></svg>. In the confirmation modal, click "Delete API Credential" to delete. You should see a confirmation that the credential was successfully deleted.
 
-[developers]: /docs/enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans
+[developers]: /enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans
 
 Next: [File Management &rsaquo;]({{page.book.next}})

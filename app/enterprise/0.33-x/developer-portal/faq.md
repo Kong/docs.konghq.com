@@ -61,6 +61,6 @@ served by the File API.
 
 Currently content written in Markdown format is not supported.
 
-[file_types]: /docs/enterprise/{{page.kong_version}}/developer-portal/file-management#file-types
-[property_portal]: /docs/enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
-[configuration_network]: /docs/enterprise/{{page.kong_version}}/developer-portal/configuration/networking
+[file_types]: /enterprise/{{page.kong_version}}/developer-portal/file-management#file-types
+[property_portal]: /enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
+[configuration_network]: /enterprise/{{page.kong_version}}/developer-portal/configuration/networking

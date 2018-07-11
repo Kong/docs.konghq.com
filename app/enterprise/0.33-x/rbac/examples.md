@@ -1033,8 +1033,8 @@ he created.
 
 ---
 
-[rbac-overview]: /docs/enterprise/{{page.kong_version}}/rbac/overview
-[rbac-enforce]: /docs/enterprise/{{page.kong_version}}/rbac/overview#enforcing-rbac
-[rbac-wildcard]: /docs/enterprise/{{page.kong_version}}/rbac/examples/#wildcards-in-permissions
-[rbac-admin]: /docs/enterprise/{{page.kong_version}}/rbac/admin-api
-[workspaces-examples]: /docs/enterprise/{{page.kong_version}}/rbac/examples
+[rbac-overview]: /enterprise/{{page.kong_version}}/rbac/overview
+[rbac-enforce]: /enterprise/{{page.kong_version}}/rbac/overview#enforcing-rbac
+[rbac-wildcard]: /enterprise/{{page.kong_version}}/rbac/examples/#wildcards-in-permissions
+[rbac-admin]: /enterprise/{{page.kong_version}}/rbac/admin-api
+[workspaces-examples]: /enterprise/{{page.kong_version}}/rbac/examples

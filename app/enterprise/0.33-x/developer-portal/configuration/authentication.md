@@ -22,7 +22,7 @@ chapter: 4
 - [How Authentication is Stored in Local Storage](#how-authentication-is-stored-in-local-storage)
 
 
-> Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/docs/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/#getting-started-with-the-kong-developer-portal)
+> Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/#getting-started-with-the-kong-developer-portal)
 
 ## Enable Authentication
 
@@ -43,7 +43,7 @@ The Dev Portal supports other Authentication plugins which are explained in more
 
 ## Developer Registration
 
-Developers are now able to request access to your Dev Portal via the `unauthenticated/register` partial. Any `<input />` field inside this partial will be submitted to the `http://127.0.0.1:8000/_kong/portal/register` endpoint and a Developer credential is created upon registration. The Developer will not be able to use this credential until they are approved. See [Approving Developers](/docs/enterprise/{{page.kong_version}}/developer-portal/managing-developers#approving-developers).
+Developers are now able to request access to your Dev Portal via the `unauthenticated/register` partial. Any `<input />` field inside this partial will be submitted to the `http://127.0.0.1:8000/_kong/portal/register` endpoint and a Developer credential is created upon registration. The Developer will not be able to use this credential until they are approved. See [Approving Developers](/enterprise/{{page.kong_version}}/developer-portal/managing-developers#approving-developers).
 
 Browse to [http://127.0.0.1:8003/register](http://127.0.0.1:8003/register) and fill out the form. Remember your password so that once you are approved, you can use this password to login.
 
@@ -84,18 +84,18 @@ This is helpful if you want to get more information (e.g. "referral source", "ph
 
 ### Login As Your New Developer
 
-After you have [approved](/docs/enterprise/{{page.kong_version}}/developer-portal/managing-developers#approving-developers) a Developer that has [requested access](#developer-registration):
+After you have [approved](/enterprise/{{page.kong_version}}/developer-portal/managing-developers#approving-developers) a Developer that has [requested access](#developer-registration):
 
 1. browse to [http://127.0.0.1:8003] (i.e. `portal_gui_url`)
 1. click the Login button. 
 1. Enter the username and password of your newly registered Developer.
 1. click the Login button
 
-You should now be redirected to [http://127.0.0.1:8003/dashboard] where, as a Developer, you can begin [managing your Developer credentials](/docs/enterprise/{{page.kong_version}}/developer-portal/developer-access)
+You should now be redirected to [http://127.0.0.1:8003/dashboard] where, as a Developer, you can begin [managing your Developer credentials](/enterprise/{{page.kong_version}}/developer-portal/developer-access)
 
 For more information and details on configuring other authentication methods, and [Logging In](#logging-in) keep reading!
 
-> If your Dev Portal does not render after following these steps, check out the <a href="/docs/enterprise/{{page.kong_version}}/developer-portal/FAQ">FAQ</a>.
+> If your Dev Portal does not render after following these steps, check out the <a href="/enterprise/{{page.kong_version}}/developer-portal/FAQ">FAQ</a>.
 
 ## Example configurations
 
@@ -127,7 +127,7 @@ Update the following in your Kong Configuration, then restart Kong:
 portal_auth = openid-connect
 ```
 
-Add the `openid-connect` configuration to `portal_auth_conf` using valid [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON). Here is an example configuration:
+Add the `openid-connect` configuration to `portal_auth_conf` using valid [JSON](https://developer.mozilla.org/en-US/Web/JavaScript/Reference/Global_Objects/JSON). Here is an example configuration:
 
 ```
 portal_auth_conf = {                                               \
@@ -392,9 +392,9 @@ function onRegistrationSuccess() {
 
 ## How Authentication is Stored in Local Storage
 
-The Dev Portal uses the [Local Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Dev Portal File API request based the `auth-store-types` value, until you [logout](#logging-out). 
+The Dev Portal uses the [Local Storage API](https://developer.mozilla.org/en-US/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Dev Portal File API request based the `auth-store-types` value, until you [logout](#logging-out). 
 
-> **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Any javascript executed on the same domain as your Dev Portal can access these values so it advised that you always used SSL/TLS and either use openid-connect to secure your developer portal (as it uses javascript inaccessible HTTP-only encrypted cookies), or limit the amount of third-party javascript injected on your Developer Portal to prevent [XSS vulnerabilities](https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting).
+> **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Any javascript executed on the same domain as your Dev Portal can access these values so it advised that you always used SSL/TLS and either use openid-connect to secure your developer portal (as it uses javascript inaccessible HTTP-only encrypted cookies), or limit the amount of third-party javascript injected on your Developer Portal to prevent [XSS vulnerabilities](https://developer.mozilla.org/en-US/Glossary/Cross-site_scripting).
 
 > **Note:** Openid-connect uses cookies to persist authentication, and therefore does not use Local Storage.
 

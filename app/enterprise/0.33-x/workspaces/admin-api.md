@@ -292,4 +292,4 @@ Next: [Workspaces Examples &rsaquo;]({{page.book.next}})
 
 ---
 
-[Admin API]: /docs/{{page.kong_version}}/admin-api/
+[Admin API]: /{{page.kong_version}}/admin-api/

@@ -78,11 +78,11 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
           -p 8004:8004 \
           kong-ee
 
-10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these [instructions.](/docs/enterprise/{{page.kong_version}}/developer-portal/getting-started/)
+10. Congratulations! You now have Kong Enterprise installed and running. Test it by visiting: http://localhost:8002 (Admin GUI). If you load the Dev Portal (http://localhost:8003) expect a blank page until you follow these [instructions.](/enterprise/{{page.kong_version}}/developer-portal/getting-started/)
 
 ## Enable RBAC
 
-[Role-based Access Control (RBAC)](https://getkong.org/docs/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
+[Role-based Access Control (RBAC)](https://getkong.org/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
 
 1. Create an initial RBAC administrator:
         

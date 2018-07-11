@@ -16,7 +16,7 @@ chapter: 3
 - [Logging Out](#logging-out)
 - [How Authentication is Stored in Local Storage](#how-authentication-is-stored-in-local-storage)
 
-> Before you begin, make sure you have gone through the [Getting Started with the Admin GUI](https://getkong.org/docs/enterprise/{{page.kong_version}}/admin-gui/configuration/getting-started)
+> Before you begin, make sure you have gone through the [Getting Started with the Admin GUI](https://getkong.org/enterprise/{{page.kong_version}}/admin-gui/configuration/getting-started)
 
 ## Enable Authentication
 
@@ -192,6 +192,6 @@ Click the "Logout" button in the top right. This will clear the Local Storage au
 
 ## How Authentication is Stored in Local Storage
 
-The Admin GUI uses the [Local Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Admin GUI API XHR request based on the `auth-store-types` value, until you [logout](#logging-out).
+The Admin GUI uses the [Local Storage API](https://developer.mozilla.org/en-US/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Admin GUI API XHR request based on the `auth-store-types` value, until you [logout](#logging-out).
 
 ⚠️ **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Therefore, it advised that you always used SSL/TLS to encrypt your Admin GUI traffic.

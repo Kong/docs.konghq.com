@@ -22,4 +22,4 @@ Next: [Workspaces Admin API &rsaquo;]({{page.book.next}})
 
 ---
 
-[rbac-overview]: /docs/enterprise/{{page.kong_version}}/rbac/overview
+[rbac-overview]: /enterprise/{{page.kong_version}}/rbac/overview

@@ -832,8 +832,8 @@ HTTP 204 No Content
 ---
 
 
-[Admin API]: /docs/{{page.kong_version}}/admin-api/
-[Admin GUI]: /docs/{{page.kong_version}}/api-admin-gui/
+[Admin API]: /{{page.kong_version}}/admin-api/
+[Admin GUI]: /{{page.kong_version}}/api-admin-gui/
 ### List a User's Permissions
 #### Endpoint
 
