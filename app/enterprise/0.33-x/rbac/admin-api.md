@@ -252,7 +252,9 @@ ___
 
 ### Update or Create a Role
 #### Endpoint
-    <div class="endpoint put">/rbac/roles</div>
+
+<div class="endpoint put">/rbac/roles</div>
+
 #### Request Body
 
 | Attribute             | Description                               |
