@@ -48,6 +48,8 @@ HTTP/1.1 201 Created
 }
 ```
 
+Save the generated `user_token` (`a3cebf9e-820d-4543-b760-2b6986e3bb9d` in the example above) for use later. It must be sent in the `Kong-Admin-Token` header when RBAC is enabled if using a client (e.g. cURL or HTTPie) other than the Admin GUI.
+
 After you have created an admin, you can provision a credential Key for this admin to use to login to the Admin GUI:
 
 ```bash
@@ -62,7 +64,7 @@ HTTP/1.1 201 Created
 }
 ```
 
-Save this `"key": "62eb165c070a41d5c1b58d9d3d725ca1"` for use later. 
+Save this `"key": "62eb165c070a41d5c1b58d9d3d725ca1"` for use later. Note that this key is separate and distinct from the admin's RBAC token. 
 
 Now that you have an Admin with an associated login Key, update the following in your Kong Configuration, then restart Kong:
 
