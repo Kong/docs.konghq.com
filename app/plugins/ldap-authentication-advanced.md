@@ -15,7 +15,7 @@ description: |
 
 #### Consumer Mapping
 
-When authenticating via Kong, it is sometimes advantageous to apply plugin behavior at the consumer level (e.g. rate-limiting)
+When authenticating via Kong, it is sometimes advantageous to apply plugin behavior at the consumer level (e.g. rate-limiting); as such, the following options are provided:
 
 field               | required | default                  | description |
 --------------------|----------|--------------------------|-------------|          
