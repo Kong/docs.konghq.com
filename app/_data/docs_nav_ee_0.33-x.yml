@@ -107,8 +107,8 @@
 
 - title: Guides &amp; References
   items:
-    - text: Kong Implementation Checklist
-      url: /kong-implementation-checklist
+    - text: Kong Deployment Guide
+      url: /deployment-guide
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
