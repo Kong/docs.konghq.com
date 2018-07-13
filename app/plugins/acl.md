@@ -14,7 +14,7 @@ nav:
       - label: Retrieve the Consumer associated with an ACL
 
 description: |
-  Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the Service or the Route (or API).
+  Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](faq-authentication) to have been already enabled on the Service or the Route (or API).
 
 params:
   name: acl
