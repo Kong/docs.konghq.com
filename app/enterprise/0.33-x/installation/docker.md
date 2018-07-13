@@ -93,7 +93,6 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_VITALS=on" \
       -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
       -e "KONG_PORTAL=on" \
-      -e "KONG_PORTAL_GUI_URI=localhost:8003" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
       -p 8000:8000 \
       -p 8443:8443 \
@@ -107,9 +106,9 @@ welcome email. Once you have your license, you can set it in an environment vari
     ```
 
 11. Congratulations! You now have Kong Enterprise installed and running. Test
-it by visiting the Admin GUI at http://localhost:8002. If you load the Dev Portal,
-at http://localhost:8003, expect a blank page until you follow the instructions
-[here](/enterprise/{{page.kong_version}}/developer-portal/getting-started/).
+it by visiting the Admin GUI at http://localhost:8002 (replace localhost with your server IP or hostname when running Kong on 
+a remote system). The Dev Portal should also be accessible
+by visiting http://localhost:8003. 
 
 ## Enable RBAC
 
