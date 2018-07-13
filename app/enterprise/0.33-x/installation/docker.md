@@ -106,7 +106,7 @@ welcome email. Once you have your license, you can set it in an environment vari
     ```
 
 11. Congratulations! You now have Kong Enterprise installed and running. Test
-it by visiting the Admin GUI at http://localhost:8002 (replace localhost with your server IP or hostname when running Kong on 
+it by visiting the Admin GUI at http://localhost:8002 (replace `localhost` with your server IP or hostname when running Kong on 
 a remote system). The Dev Portal should also be accessible
 by visiting http://localhost:8003. 
 
