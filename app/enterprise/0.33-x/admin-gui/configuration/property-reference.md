@@ -9,7 +9,7 @@ chapter: 6
 This document describes configuration options for the Kong Admin GUI.
 
 
-## admin_uri
+## admin_api_uri
 
 **Default:** `NONE` (auto generated)
 
@@ -20,7 +20,7 @@ host and resolved listener port depending on the requested protocol. This
 is where the Admin GUI finds the Admin API when `admin_gui_auth` (see below) 
 is not enabled.
 
-Note that this property accepts a value with or without protocol. If you 
+This property accepts a value with or without protocol. If you 
 specify the protocol, be sure that it is the same as the one you set in 
 `admin_gui_url`, to prevent rendering errors due to mixed content.
 
@@ -32,7 +32,7 @@ on a secure port.
 **Example:**
 
 ```
-admin_uri = https://127.0.0.1:8001
+admin_api_uri = https://127.0.0.1:8444
 ```
 
 
@@ -50,7 +50,7 @@ protocol.
 **Example:**
 
 ```
-proxy_url = https://127.0.0.1:8000
+proxy_url = https://127.0.0.1:8443
 ```
 
 
