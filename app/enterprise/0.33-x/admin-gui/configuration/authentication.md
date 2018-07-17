@@ -197,3 +197,6 @@ Click the "Logout" button in the top right. This will clear the Local Storage au
 The Admin GUI uses the [Local Storage API](https://developer.mozilla.org/en-US/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Admin GUI API XHR request based on the `auth-store-types` value, until you [logout](#logging-out).
 
 ⚠️ **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Therefore, it advised that you always used SSL/TLS to encrypt your Admin GUI traffic.
+
+Next: [Managing Admins &rsaquo;]({{page.book.next}})
+
