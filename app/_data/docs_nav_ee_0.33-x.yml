@@ -74,6 +74,8 @@
           url: /admin-gui/configuration/authentication
         - text: Managing Admins
           url: /admin-gui/configuration/managing-admins
+        - text: Networking
+          url: /admin-gui/configuration/networking
         - text: Property Reference
           url: /admin-gui/configuration/property-reference
 
