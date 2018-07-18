@@ -465,7 +465,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
 
 ---
 
-[rbac-overview]: /docs/enterprise/0.33-x/rbac/overview
-[workspaces-overview]: /docs/enterprise/0.33-x/workspaces/overview
-[statsd-docs]: /docs/enterprise/0.33-x/plugins/statsd-advanced
-[prometheus-docs]: /docs/enterprise/0.33-x/plugins/prometheus
+[rbac-overview]: /enterprise/0.33-x/rbac/overview
+[workspaces-overview]: /enterprise/0.33-x/workspaces/overview
+[statsd-docs]: /enterprise/0.33-x/plugins/statsd-advanced
+[prometheus-docs]: /plugins/prometheus
