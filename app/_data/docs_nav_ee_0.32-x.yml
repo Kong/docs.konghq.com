@@ -101,4 +101,4 @@
     - text: OpenID Connect with Auth0
       url: /oidc-auth0
     - text: Upgrades and Migrations
-    - url: /upgrades-migrations`
+      url: /upgrades-migrations
