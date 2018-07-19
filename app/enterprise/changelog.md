@@ -19,8 +19,8 @@ nav:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.33** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been deprecated, but Kong will still start** - versions beyond 0.32 will not start with Postgres 9.4 or prior
-  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.32 will not start with Cassandra 2.1 or prior
+  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
       - **Vitals** requires Postgres 9.5+
       - **Dev Portal** requires Cassandra 3.0+
@@ -119,8 +119,8 @@ nav:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
 - **Kong EE 0.32** has these notices from **Kong CE 0.13**:
-  - Support for **Postgres 9.4 has been deprecated, but Kong will still start** - versions beyond 0.32 will not start with Postgres 9.4 or prior
-  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.32 will not start with Cassandra 2.1 or prior
+  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise will not start with Postgres 9.4 or prior
+  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
       - **Vitals** requires Postgres 9.5+
       - **Dev Portal** requires Cassandra 3.0+
