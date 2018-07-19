@@ -134,7 +134,7 @@ keep the configuration consistent across all nodes.
 
 This API is designed for internal use and provides full control over Kong, so
 care should be taken when setting up Kong environments to avoid undue public
-exposure of this API. See [this document][secure-admin-api] for a discussion
+exposure of this API. See [this document](secure-admin-api.md) for a discussion
 of methods to secure the Admin API.
 
 ## Supported Content Types
