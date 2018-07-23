@@ -89,6 +89,9 @@
     - name: Datadog
       info: Visualize API metrics on Datadog
 
+    - name: Moesif
+      info: API Analytics and Debugging
+
 - name: Transformations
   info: Transform request and responses on the fly on Kong
   plugins:
