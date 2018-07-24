@@ -1,5 +1,6 @@
 ---
 title: Kong Deployment Guide
+redirect_from: "/enterprise/0.33-x/kong-implementation-checklist/"
 ---
 # Kong Deployment Guide
 
