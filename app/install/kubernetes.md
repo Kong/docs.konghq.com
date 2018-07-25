@@ -20,7 +20,7 @@ You can install Kong CE or EE using our official <a href="https://github.com/Kon
 
 You can learn more by checking out the <a href="https://github.com/Kong/kubernetes-ingress-controller/blob/master/README.md">README.md</a> file in the GitHub repository. To get up and running quickly, you can also follow the <a href="https://github.com/Kong/kubernetes-ingress-controller/tree/master/deploy">Minikube and Minishift tutorials</a> on the same repository.
 
-If you are curious, you can also read the <a href="https://konghq.com/blog/kubernetes-ingress-controller-for-kong/">official announcment</a> on our Blog. Finally, if you experience any problem or have some feedback, please open a new issue on GitHub.
+If you are curious, you can also read the <a href="https://konghq.com/blog/kubernetes-ingress-controller-for-kong/">official announcment</a> on our Blog. Finally, if you experience any problem or have some feedback, please <a href="https://github.com/Kong/kubernetes-ingress-controller/issues">open a new issue</a> on GitHub.
 
 # Kong Community Edition via Helm or Minikube
 
