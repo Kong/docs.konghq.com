@@ -50,6 +50,11 @@ HTTP/1.1 201 Created
 }
 ```
 
+Save the generated `user_token` (`a3cebf9e-820d-4543-b760-2b6986e3bb9d` in the
+example above) for use later. It must be sent in the `Kong-Admin-Token` header
+when RBAC is enabled if using a client (e.g. cURL or HTTPie) other than the
+Admin GUI.
+
 After you have created an admin, you can provision a credential Key for this
 admin to use to login to the Admin GUI:
 
@@ -65,7 +70,7 @@ HTTP/1.1 201 Created
 }
 ```
 
-Save this `"key": "62eb165c070a41d5c1b58d9d3d725ca1"` for use later. 
+Save this `"key": "62eb165c070a41d5c1b58d9d3d725ca1"` for use later. Note that this key is separate and distinct from the admin's RBAC token. 
 
 Now you need an RBAC user to associate to this admin. To add the Super Admin, see 
 "[Bootstrapping the first RBAC user - the Super Admin](/enterprise/{{page.kong_version}}/rbac/examples/#bootstrapping-the-first-rbac-user-the-super-admin)".
@@ -83,12 +88,19 @@ only the Super Admin can login. Browse to the Admin GUI and you will be prompted
 [Login](#logging-in) form. Enter in the key saved from before to gain access to the Admin 
 GUI. You should be able to access all resources.
 
-> Note: Once Kong starts, you will notice that your [Admin API configuration](https://127.0.0.1:8001/) now shows `cors` and `key-auth` plugins are enabled. This is because Kong sets up an internal proxy to the Admin API (e.g. `:8001` -> `:8000/_kong/admin`) and configures the Key Authentication plugin applied only to all routes. These routes &amp; services will not be tracked by Kong Vitals, they will not appear in your proxy traffic, and the internal plugins will not be applied to any other routes or services or be configurable in your Kong instance.
+> Note: Once Kong starts, you will notice that your 
+[Admin API configuration](https://127.0.0.1:8001/) now shows `cors` and `key-auth`
+plugins are enabled. This is because Kong sets up an internal proxy to the Admin
+API (i.e., `:8001` -> `:8000/_kong/admin`) and configures the Key Authentication
+plugin applied only to all routes. These routes &amp; services will not be
+tracked by Kong Vitals, they will not appear in your proxy traffic, and the
+internal plugins will not be applied to any other routes or services or be
+configurable in your Kong instance.
 
 The Admin GUI supports other Authentication plugins which are explained in more detail 
 under [Example configurations](#example-configs):
 
-* LDAP
+* [LDAP Authentication Advanced](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced)
 * [Basic Authentication](https://getkong.org/plugins/basic-authentication)
 
 ## Add a Credential
@@ -101,17 +113,19 @@ to add a credential.
 Set `enforce_rbac = on` in your Kong configuration.
 
 ⚠️ **IMPORTANT**: When RBAC is `off`, any consumer with a valid credential can
-login to the admin gui, so you must enable RBAC if you want to restrict access
-to only Admins.
+log in to the Admin GUI, so you must enable RBAC if you want to restrict access
+only to admins.
 
 ### Key Authentication
 
 Check out the section [Enabling Authentication](#enable-authentication) for a 
-step by step guide on setting up [Key Authentication](https://getkong.org/plugins/key-authentication).
+step by step guide on setting up 
+[Key Authentication](https://getkong.org/plugins/key-authentication).
 
 ### LDAP Authentication
 
-The LDAP Advanced Authentication plugin allows Admins to use their own LDAP server 
+The [LDAP Authentication Advanced plugin](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced)
+allows Admins to use their own LDAP server 
 to bind authentication to the Admin API with username and password protection. 
 Note: You must use `Basic` as your `header_type` in the `admin_gui_auth_config` 
 Kong configuration. Here is an example configuration (update the following in your 
@@ -241,3 +255,5 @@ GUI API XHR request based on the `auth-store-types` value, until you
 ⚠️ **IMPORTANT**: Local Storage Authentication credentials are stored in the 
 browser via base64-encoding, but are not encrypted. Therefore, it advised that 
 you always used SSL/TLS to encrypt your Admin GUI traffic.
+
+Next: [Managing Admins &rsaquo;]({{page.book.next}})

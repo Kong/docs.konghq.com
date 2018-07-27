@@ -26,7 +26,7 @@ Service can have many Routes.
 
 After configuring the Service and the Route, you'll be able to make requests through Kong using them.
 
-Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong is configuration, including adding Services and
+Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and
 Routes, is made via requests on that API.
 
 1. ### Add your Service using the Admin API

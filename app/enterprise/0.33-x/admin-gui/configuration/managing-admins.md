@@ -1,7 +1,7 @@
 ---
 title: Managing Admins
 book: admin_gui
-chapter: 3
+chapter: 4
 ---
 # Managing Admins for the Kong Admin GUI
 
@@ -64,4 +64,7 @@ Now that you have the `<CONSUMER_ID>`, you can use this to create a credential w
 * [Create a Basic Authentication Credential Username/Password](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#enable-authentication)
 * [Create a Key Authentication Credential Key](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#basic-authentication)
 
-Once a user has a credential, they can use the credential to [login via the Kong Admin GUI login form](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#logging-in)
+Once a user has a credential, they can use the credential to [log in](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#logging-in).
+
+Next: [Networking &rsaquo;]({{page.book.next}})
+

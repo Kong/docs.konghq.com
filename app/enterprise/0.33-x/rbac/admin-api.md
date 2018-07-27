@@ -109,7 +109,7 @@ ___
 
 ### Update or Create a User
 #### Endpoint
-    <div class="endpoint put">/rbac/users</div>
+<div class="endpoint put">/rbac/users</div>
 #### Request Body
 
 | Attribute                | Description                                                                                                                         |
@@ -252,7 +252,9 @@ ___
 
 ### Update or Create a Role
 #### Endpoint
-    <div class="endpoint put">/rbac/roles</div>
+
+<div class="endpoint put">/rbac/roles</div>
+
 #### Request Body
 
 | Attribute             | Description                               |
@@ -298,7 +300,7 @@ HTTP 200 OK
  "created_at": 1501395904000,
  "enabled": true,
  "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
- "name": "bob",
+ "name": "bob"
 }
 ```
 ___
@@ -753,9 +755,6 @@ HTTP 200 OK
 HTTP 201 Created
 ```
 ```json
-|           |                                                           |
-|           |                                                           |
-
 {
  "roles": [
   {

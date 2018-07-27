@@ -42,6 +42,8 @@
       url: /plugins/forward-proxy
     - text: StatsD Advanced Plugin
       url: /plugins/statsd-advanced
+    - text: LDAP Auth Advanced Plugin
+      url: /plugins/ldap-authentication-advanced
 
 - title: Workspaces
   items:
@@ -74,6 +76,8 @@
           url: /admin-gui/configuration/authentication
         - text: Managing Admins
           url: /admin-gui/configuration/managing-admins
+        - text: Networking
+          url: /admin-gui/configuration/networking
         - text: Property Reference
           url: /admin-gui/configuration/property-reference
 
@@ -107,8 +111,8 @@
 
 - title: Guides &amp; References
   items:
-    - text: Kong Implementation Checklist
-      url: /kong-implementation-checklist
+    - text: Kong Deployment Guide
+      url: /deployment-guide
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true

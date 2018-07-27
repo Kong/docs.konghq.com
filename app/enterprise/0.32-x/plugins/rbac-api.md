@@ -343,7 +343,7 @@ HTTP 200 OK
 ### Update a Permission
 #### Endpoint
 
-<div class="endpoint path">/rbac/permissions/{name_or_id}</div>
+<div class="endpoint patch">/rbac/permissions/{name_or_id}</div>
 
 #### Request Body
 | Attribute | Description
@@ -392,7 +392,7 @@ HTTP 204 No Content
 ### Add a User to a Role
 #### Endpoint
 
-<div class="endpoint post">/rbac/permissions/{name_or_id}/roles</div>
+<div class="endpoint post">/rbac/users/{name_or_id}/roles</div>
 
 #### Request Body
 | Attribute | Description
@@ -427,7 +427,7 @@ HTTP 201 Created
 ### List a User's Roles
 #### Endpoint
 
-<div class="endpoint get">/rbac/permissions/{name_or_id}/roles</div>
+<div class="endpoint get">/rbac/users/{name_or_id}/roles</div>
 
 #### Response
 ```
@@ -457,7 +457,7 @@ HTTP 200 OK
 ### List a User's Permissions
 #### Endpoint
 
-<div class="endpoint get">/rbac/permissions/{name_or_id}/permissions</div>
+<div class="endpoint get">/rbac/users/{name_or_id}/permissions</div>
 
 #### Response
 ```
@@ -483,7 +483,7 @@ HTTP 200 OK
 ### Delete a Role from a User
 #### Endpoint
 
-<div class="endpoint delete">/rbac/permissions/{name_or_id}/roles</div>
+<div class="endpoint delete">/rbac/users/{name_or_id}/roles</div>
 
 #### Request Body
 | Attribute | Description
@@ -499,7 +499,7 @@ HTTP 204 No Content
 ### Add a Permission to a Role
 #### Endpoint
 
-<div class="endpoint post">/rbac/permissions/{name_or_id}/permissions</div>
+<div class="endpoint post">/rbac/roles/{name_or_id}/permissions</div>
 
 #### Request Body
 | Attribute | Description
@@ -556,7 +556,7 @@ HTTP 201 Created
 ### List a Role's Permissions
 #### Endpoint
 
-<div class="endpoint get">/rbac/permissions/{name_or_id}/permissions</div>
+<div class="endpoint get">/rbac/roles/{name_or_id}/permissions</div>
 
 #### Response 
 ```
@@ -608,7 +608,7 @@ HTTP 201 Created
 ### Delete A Permission from a Role
 #### Endpoint
 
-<div class="endpoint delete">/rbac/permissions/{name_or_id}/permissions</div>
+<div class="endpoint delete">/rbac/roles/{name_or_id}/permissions</div>
 
 #### Request Body
 | Attribute | Description
