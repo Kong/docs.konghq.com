@@ -46,7 +46,7 @@ Here's a list of all the parameters which can be used in this plugin's configura
 Form Parameter | Default | Description
 ---------------|---------|------------
 | `name` | `ldap-auth-advanced` | The name of the plugin.
-| `route_id`<br>*optional* | If present, plugin will be applied to the specified route.
+| `route_id`<br>*optional* | | If present, plugin will be applied to the specified route.
 | `ldap_host` | | Host on which the LDAP server is running.
 | `ldap_port` | | TCP port where the LDAP server is listening.
 | `ldap_password` | | The password to the LDAP server.
