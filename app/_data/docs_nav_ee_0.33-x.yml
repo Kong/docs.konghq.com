@@ -42,6 +42,8 @@
       url: /plugins/forward-proxy
     - text: StatsD Advanced Plugin
       url: /plugins/statsd-advanced
+    - text: LDAP Auth Advanced Plugin
+      url: /plugins/ldap-authentication-advanced
 
 - title: Workspaces
   items:
