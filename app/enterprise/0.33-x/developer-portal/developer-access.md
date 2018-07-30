@@ -21,6 +21,8 @@ Current plugins supported:
 - [HMAC Signature Authentication](/plugins/hmac-authentication/)
 - [JWT](/plugins/jwt/)
 
+> Note: This refers to Developer API credentials, not authentication for access to the Developer Portal. Learn more about which authentication plugins are supported by the Developer Portal on the [Authentication](/enterprise/0.33-x/developer-portal/configuration/authentication) page.
+
 <video width="100%" autoplay loop controls>
   <source src="https://konghq.com/wp-content/uploads/2018/05/May-16-2018-15-44-26_.mp4" type="video/mp4">
   Your browser does not support the video tag.
