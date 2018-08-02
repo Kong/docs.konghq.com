@@ -194,7 +194,7 @@ You can make the Kong node serve this port by adding the following
 entry to your `kong.conf` file:
 
 ```
-nginx_http_include /path/to/your/my-server.kong.conf
+nginx_http_include = /path/to/your/my-server.kong.conf
 ```
 
 or, alternatively, by configuring it via an environment variable:
