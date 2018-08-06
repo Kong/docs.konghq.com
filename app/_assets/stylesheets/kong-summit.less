@@ -1,0 +1,58 @@
+.summit-banner {
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+
+  @media screen and (max-width: 540px) {
+    padding: 1rem 0;
+  }
+
+  p, a {
+    color: #ffffff;
+    font-size: 19px;
+    margin-bottom: 0;
+  }
+
+  .btn {
+    margin-left: .5rem;
+    padding: .5rem 1rem;
+    margin-left: .5rem;
+    background: #ffffff;
+    border-radius: 4px;
+    color: #0070CE;
+    line-height: 1.25;
+    transition: all .2s ease-in-out;
+    @media screen and (max-width: 540px) {
+      margin-left: 0;
+      margin-top: .5rem;
+    }
+  }
+}
+
+
+.bg-summit {
+  position: relative;
+  background-color: #0093A6; // fallback
+  background-image: linear-gradient(-300deg, #002377 0%, #0093A6 100%);
+  overflow: hidden;
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.bg-summit-mask {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  -ms-justify-content: center;
+  justify-content: center;
+  bottom: 0;
+}
+
+.glow {
+  margin: 0 auto;
+}
