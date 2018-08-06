@@ -17,7 +17,7 @@ links:
 # Kubernetes Ingress Controller for Kong
 
 Install Kong Community Edition (CE) or Kong Enterprise Edition (EE) using the official 
-<a href="https://github.com/Kong/kubernetes-ingress-controller"> Kubernetes Ingress Controller</a>.
+<a href="https://github.com/Kong/kubernetes-ingress-controller">Kubernetes Ingress Controller</a>.
 
 Learn more via the <a href="https://github.com/Kong/kubernetes-ingress-controller/blob/master/README.md">README
 </a>. To get up and running quickly, follow the 
