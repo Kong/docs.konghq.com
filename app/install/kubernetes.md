@@ -26,7 +26,7 @@ Learn more via the <a href="https://github.com/Kong/kubernetes-ingress-controlle
 The [Kubernetes Ingress Controller for Kong launch announcement](https://konghq.com/blog/kubernetes-ingress-controller-for-kong/) 
 is on the [Kong Blog](https://konghq.com/blog/). 
 
-For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/). For bug reports, 
+For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes). For bug reports, 
 please [open a new issue on GitHub](https://github.com/Kong/kubernetes-ingress-controller/issues).
 
 # Kong Community Edition via Helm or Minikube
