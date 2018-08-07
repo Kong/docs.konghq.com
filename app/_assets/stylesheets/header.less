@@ -126,8 +126,13 @@
   }
 }
   // Add maring to page while cookie policy is open
-  .page-cookie-policy{
-    margin-top: 50px;
+  .page.page-cookie-policy{
+    // NOTE: Commenting out until summit banner is removed
+    // margin-top: 50px;
+    margin-top: 150px;
+    @media screen and (max-width: 1100px) {
+      margin-top: 0;
+    }
   }
 
 .navbar {
