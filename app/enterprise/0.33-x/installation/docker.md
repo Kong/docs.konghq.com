@@ -19,7 +19,7 @@ key, which you will use in step 3 - or click [here](https://bintray.com/profile/
 3. For **users with existing contracts**, add the Kong Docker repository and
 pull the image:
 
-    ```sh
+    ```
     $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
     $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
     ```
@@ -27,7 +27,7 @@ pull the image:
 4. For **trial users**, run the following, replacing `<your trial image URL>`
 with the URL you received in your welcome email:
 
-    ```sh
+    ```
     curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
     docker load -i /tmp/kong-docker-ee.tar
     ```
@@ -78,6 +78,7 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
       kong-ee kong migrations up
     ```
+    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file
 
 10. Start Kong:
 
@@ -105,6 +106,7 @@ welcome email. Once you have your license, you can set it in an environment vari
       -p 8004:8004 \
       kong-ee
     ```
+    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file
 
 11. Congratulations! You now have Kong Enterprise installed and running. Test
 it by visiting the Admin GUI at http://localhost:8002. If you load the Dev Portal,
@@ -157,33 +159,33 @@ Admin API.
 
 Without a license properly referenced, you’ll get errors running migrations:
 
-```
+​```
 $ docker run -ti --rm ... kong migrations up
 nginx: [alert] Error validating Kong license: license path environment variable not set
-```
+​```
 
 Also, without a license, you will get no output if you do a `docker run` in
 "daemon mode" - the `-d` flag to `docker run`:
 
-```
+​```
 $ docker run -d ... kong start
 26a995171e23e37f89a4263a10bb084120ab0dbed1aa11a71c888c8e0d74a0b6
-```
+​```
 
 When you check the container, it won’t be running. Doing a `docker logs` will
 show you:
 
-```
+​```
 $ docker logs <container name>
 nginx: [alert] Error validating Kong license: license path environment variable not set
-```
+​```
 
 As awareness, another error that can occur due to the vagaries of the interactions
 between text editors and copy & paste changing straight quotes (" or ') into curly
 ones (“ or ” or ’ or ‘) is:
 
-```
+​```
 nginx: [alert] Error validating Kong license: could not decode license json
-```
+​```
 
 Your license data must contain only straight quotes to be considered valid JSON.
