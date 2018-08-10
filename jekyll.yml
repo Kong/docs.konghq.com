@@ -35,6 +35,18 @@ repos:
   cloudformation: https://github.com/Kong/kong-dist-cloudformation
   oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
+collections:
+  catalog:
+    permalink: /catalog/:path
+    layout: plugin
+    id: page-plugin
+    breadcrumbs: null
+    nav:
+      - label: Getting Started
+        items:
+          - label: Installation
+          - label: Configuration
+
 gems:
   - jekyll-redirect-from
 
