@@ -133,7 +133,7 @@ HTTP/1.1 201 Created
 form parameter                 | default         | description
 ---                            | ---             | ---
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
-`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `RS256`, or `ES256`.
+`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, or `ES256`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256` or `ES256`, the public key (in PEM format) to use to verify the token's signature.
 `secret`<br>*optional*         |                 | If `algorithm` is `HS256` or `ES256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
