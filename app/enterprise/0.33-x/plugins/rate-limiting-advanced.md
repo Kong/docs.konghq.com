@@ -33,16 +33,16 @@ $ curl -i -X POST http://kong:8001/plugins \
 |`config.identifier` | `consumer` | How to define the rate limit key. Can be `ip`, `credential`, or `consumer`.
 |`config.dictionary_name`| `kong_rate_limiting_counters` | The shared dictionary where counters will be stored until the next sync cycle.
 |`config.sync_rate` | | How often to sync counter data to the central data store. A value of 0 results in synchronous behavior; a value of -1 ignores sync behavior entirely and only stores counters in node memory. A value greater than 0 will sync the counters in that many number of seconds.
-|`config.namespace(optional)`| `random string`|The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
+|`config.namespace` <br>*optional* | `random string`|The rate limiting library namespace to use for this plugin instance. Counter data and sync configuration is shared in a namespace.
 |`config.strategy`| `cluster` | The sync strategy to use; `cluster` and `redis` are supported.
-|`config.redis.host(semi-optional)` | | Host to use for Redis connection when the `redis` strategy is defined.
-|`config.redis.port(semi-optional)`||Port to use for Redis connection when the `redis` strategy is defined.
-|`config.redis.timeout(semi-optional)`| | Connection timeout to use for Redis connection when the `redis` strategy is defined.
-|`config.redis.password(semi-optional)`|| Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
-|`config.redis.database(semi-optional)`|`0`|Database to use for Redis connection when the redis strategy is defined.
-|`config.redis.sentinel_master(semi-optional)`||Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
-|`config.redis.sentinel_role(semi-optional)`||Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
-|`config.redis.sentinel_addresses(semi-optional)`||Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+|`config.redis.host` <br>*semi-optional* | | Host to use for Redis connection when the `redis` strategy is defined.
+|`config.redis.port` <br>*semi-optional* ||Port to use for Redis connection when the `redis` strategy is defined.
+|`config.redis.timeout` <br>*semi-optional* | | Connection timeout to use for Redis connection when the `redis` strategy is defined.
+|`config.redis.password` <br>*semi-optional* || Password to use for Redis connection when the `redis` strategy is defined. If undefined, no AUTH commands are sent to Redis.
+|`config.redis.database` <br>*semi-optional* |`0`|Database to use for Redis connection when the redis strategy is defined.
+|`config.redis.sentinel_master` <br>*semi-optional* ||Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+|`config.redis.sentinel_role` <br>*semi-optional* ||Sentinel role to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+|`config.redis.sentinel_addresses` <br>*semi-optional* ||Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
 |`config.window_type`| `sliding` | This sets the time window to either `sliding` or `fixed`
 
 **Note:  Redis configuration values are ignored if the "cluster" strategy is used.**
