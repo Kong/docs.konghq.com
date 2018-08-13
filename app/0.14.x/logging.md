@@ -41,7 +41,7 @@ http {
 }
 ```
 
-In order to control what is placed in the logs, we will be using the NGINX map module in our template. For more detailed information abut using the map directive, please see this guide . This will create a new variable whose value depends on values of one or more of the source variables specified in the first parameter. The format is:
+In order to control what is placed in the logs, we will be using the NGINX map module in our template. For more detailed information abut using the map directive, please see [this guide](http://nginx.org/en/docs/http/ngx_http_map_module.html). This will create a new variable whose value depends on values of one or more of the source variables specified in the first parameter. The format is:
 ```
 
 map $paramater_to_look_at $variable_name {
