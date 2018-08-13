@@ -70,6 +70,8 @@ plugins for examples. Fields are:
   is generated, you may not use forward-references in links (e.g. use
   `[example](http://example.com)` and not `[example][example]` pointing to
   an index at the end).
+* `desc` - a short, one-line description of the extension.
+* `type` (required) - what kind of extension this is: `plugin`, `enhancement` (developers portal), or `integration`
 * `params`
   * `name` - name of the plugin in Kong (not always the same spelling as the page name)
   * `api_id` - boolean - whether this plugin can be applied to an API. Affects generation of examples and config table.
