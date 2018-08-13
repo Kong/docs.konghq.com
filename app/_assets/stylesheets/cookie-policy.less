@@ -1,0 +1,38 @@
+.cookie-policy-container {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  padding: 1.75rem;
+  border-radius: 3px;
+  box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+  background: #fff;
+  z-index: 1;
+
+  p {
+    color: rgba(0,0,0,.7);
+    margin: 0;
+  }
+
+  .btn {
+    display: block;
+    font-weight: 600;
+    color: #004B80;
+    border: none;
+    margin-top: .5rem;
+    background: #D2ECFF;
+    transition: all .15s ease;
+    &:hover {
+      background: darken(#D2ECFF, 2%);
+    }
+  }
+
+  &.showing {
+    display: block;
+  }
+
+  @media (min-width: 576px) {
+    width: 375px;
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
