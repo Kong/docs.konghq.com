@@ -37,15 +37,36 @@ repos:
 
 collections:
   catalog:
-    permalink: /catalog/:path
-    layout: plugin
-    id: page-plugin
-    breadcrumbs: null
-    nav:
-      - label: Getting Started
-        items:
-          - label: Installation
-          - label: Configuration
+    output: true
+    permalink: /:collection/:path
+
+# for Kong platform extensions (not Jekyll)
+extensions:
+  categories:
+    - name: Authentication
+      slug: authentication
+      desc: Protect your services with an authentication layer
+    - name: Security
+      slug: security
+      desc: Protect your services with additional security layer
+    - name: Traffic Control
+      slug: traffic-control
+      desc: Manage, throttle and restrict inbound and outbound API traffic
+    - name: Serverless
+      slug: severless
+      desc: Invoke serverless functions in combination with other plugins
+    - name: Analytics & Monitoring
+      slug: analytics-monitoring
+      desc: Visualize, inspect and monitor APIs and microservices traffic
+    - name: Transformations
+      slug: transformations
+      desc: Transform request and responses on the fly on Kong
+    - name: Logging
+      slug: logging
+      desc: Log request and response data using the best transport for your infrastructure
+
+# location vars
+icons_dir: assets/images/icons
 
 gems:
   - jekyll-redirect-from
@@ -74,13 +95,20 @@ defaults:
       breadcrumbs: null
 
   - scope:
-      path: 'plugins'
+      path: catalog
+      type: catalog
     values:
       layout: 'plugin'
-      id: page-plugin
-      breadcrumbs: null
-      nav:
-        - label: Getting Started
-          items:
-            - label: Installation
-            - label: Configuration
+      permalink: /:collection/:name
+
+  # - scope:
+  #     path: 'plugins'
+  #   values:
+  #     layout: 'plugin'
+  #     id: page-plugin
+  #     breadcrumbs: null
+  #     nav:
+  #       - label: Getting Started
+  #         items:
+  #           - label: Installation
+  #           - label: Configuration
