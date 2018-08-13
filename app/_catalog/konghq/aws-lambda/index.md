@@ -16,7 +16,8 @@ description: |
   can be used in combination with other request plugins to secure, manage or extend
   the function.
 
-
+categories:
+  - traffic-control
 
 params:
 

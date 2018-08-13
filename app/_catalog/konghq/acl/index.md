@@ -16,6 +16,9 @@ nav:
 description: |
   Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or the Route (or API).
 
+categories:
+  - traffic-control
+
 params:
   name: acl
   api_id: true
