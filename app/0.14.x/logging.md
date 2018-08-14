@@ -8,7 +8,7 @@ With new regulations surrounding protecting private data like GDPR, there is a c
 
 For this example, let’s say you want to remove any instances of an email address from your kong logs. The emails addresses may come through in different ways, for example something like `/apiname/v2/verify/alice@example.com` or `/v3/verify?alice@example.com`. In order to keep these from being added to the logs, we will need to use a custom NGINX template.
 
-To start using a custom NGINX template, first get a copy of our template. This can be found [https://docs.konghq.com/0.13.x/configuration/#custom-nginx-configuration](https://docs.konghq.com/0.13.x/configuration/#custom-nginx-configuration) or copied from below
+To start using a custom NGINX template, first get a copy of our template. This can be found [https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong](https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong) or copied from below
 ```
 # ---------------------
 # custom_nginx.template
