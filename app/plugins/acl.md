@@ -39,7 +39,7 @@ params:
       default: false
       value_in_examples: true
       description: |
-        Flag to determine whether the `X-Consumer-Groups` header should be hidden with `true` as the value. 
+        Flag which if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the upstream service. 
   extra: |
     Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
 
@@ -68,7 +68,9 @@ You can have more than one group associated to a consumer.
 
 ### Upstream Headers
 
-When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request by default before proxying it to the upstream service, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`. This header can be hidden by setting the `hide_groups_header` flag to true.
+When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream service, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
+
+This header will not be injected in the request to the upstream service if the `hide_groups_header` config flag is set to `true`.
 
 ### Paginate through the ACLs
 
