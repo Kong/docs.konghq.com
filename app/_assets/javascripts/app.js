@@ -40,7 +40,7 @@ $(function () {
   $('.cookie-policy-accept').on('click', function (e) {
     e.preventDefault()
 
-    $('.cookie-policy-container').removeClass('show')
+    $('.cookie-policy-container').removeClass('showing')
     $('.page').removeClass('page-cookie-policy')
     setCookie('cookie-policy', 'agreed')
   })
@@ -68,7 +68,7 @@ $(function () {
 
   var isCookieSet = getCookie('cookie-policy')
   if (isCookieSet === '') {
-    $('.cookie-policy-container').addClass('show')
+    $('.cookie-policy-container').addClass('showing')
     $('.page').addClass('page-cookie-policy')
   }
 
