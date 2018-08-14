@@ -159,26 +159,24 @@ Admin API.
 
 Without a license properly referenced, you’ll get errors running migrations:
 
-​```
-$ docker run -ti --rm ... kong migrations up
-nginx: [alert] Error validating Kong license: license path environment variable not set
-​```
+    $ docker run -ti --rm ... kong migrations up
+    nginx: [alert] Error validating Kong license: license path environment variable not set
 
 Also, without a license, you will get no output if you do a `docker run` in
 "daemon mode" - the `-d` flag to `docker run`:
 
-​```
-$ docker run -d ... kong start
-26a995171e23e37f89a4263a10bb084120ab0dbed1aa11a71c888c8e0d74a0b6
-​```
+    
+    $ docker run -d ... kong start
+    26a995171e23e37f89a4263a10bb084120ab0dbed1aa11a71c888c8e0d74a0b6
+    
 
 When you check the container, it won’t be running. Doing a `docker logs` will
 show you:
 
-​```
-$ docker logs <container name>
-nginx: [alert] Error validating Kong license: license path environment variable not set
-​```
+
+    $ docker logs <container name>
+    nginx: [alert] Error validating Kong license: license path environment variable not set
+
 
 As awareness, another error that can occur due to the vagaries of the interactions
 between text editors and copy & paste changing straight quotes (" or ') into curly
