@@ -8,9 +8,9 @@ breadcrumbs:
 nav:
   - label: Usage
     items:
-      - label: Reading metrics
-      - lable: Available metrics
-      - lable: Accessing the metrics
+      - label: Grafana dashboard
+      - label: Available metrics
+      - label: Accessing the metrics
 description: |
     Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scrapped by a Prometheus Server.
 
@@ -21,8 +21,6 @@ params:
   route_id: true
 
 ---
-
-### Reading metrics
 
 Metrics are available on the Admin API at the `http://localhost:8001/metrics`
 endpoint. Note that the URL to the Admin API will be specific to your
@@ -36,7 +34,12 @@ specifying `admin_listen = off`) will need to use a [custom Nginx
 configuration template](/latest/configuration/#custom-nginx-configuration)
 to expose the metrics data.
 
-#### Available metrics
+### Grafana dashboard
+
+Metrics exported by the plugin can be graphed in Grafana using a drop in
+dashboard: [https://grafana.com/dashboards/7424](https://grafana.com/dashboards/7424).
+
+### Available metrics
 
 - **Status codes**: HTTP status codes returned by upstream services.
   These are available per service and across all services.
