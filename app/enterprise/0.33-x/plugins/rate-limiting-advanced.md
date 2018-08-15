@@ -8,7 +8,7 @@ Method 1: apply it on top of an API by executing the following request on your K
 
 ```
 $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
-  --data name=rate-limiting \
+  --data name=rate-limiting-advanced \
   --data config.limit=10 \
   --data config.sync_rate=10 \
   --data config.window_size=60
@@ -18,7 +18,7 @@ Method 2: apply it globally (on all APIs) by executing the following request on 
 
 ```
 $ curl -i -X POST http://kong:8001/plugins \
-  --data name=rate-limiting \
+  --data name=rate-limiting-advanced \
   --data config.limit=10 \
   --data config.sync_rate=10 \
   --data config.window_size=60
@@ -27,7 +27,7 @@ $ curl -i -X POST http://kong:8001/plugins \
 
 | Form Parameter | default | description
 |----------------|---------|-------------
-| `name`|| The name of the plugin to use, in this case: `rate-limiting`.
+| `name`|| The name of the plugin to use, in this case: `rate-limiting-advanced`.
 |`config.limit`|| one of more request per window to apply
 |`config.window_size`||One more more window sizes to apply (defined in seconds).
 |`config.identifier` | `consumer` | How to define the rate limit key. Can be `ip`, `credential`, or `consumer`.
@@ -58,7 +58,7 @@ An arbitrary number of limits/window sizes can be applied per plugin instance. T
 
 ```
 $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
-  --data name=rate-limiting \
+  --data name=rate-limiting-advanced \
   --data config.limit=10,100 \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10
