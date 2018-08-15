@@ -118,12 +118,4 @@ Kong can keep processing existing consumers even if the datastore is down, since
 
 Upgrades between major versions need to be planned in advance as they involve downtime for new consumers that have not been cached in memory yet, and because the Admin API won’t be available on the old cluster for the entire process.
 
-There are plans in the roadmap to improve this process.
 
-External Links
-
-Kong Homepage: https://docs.konghq.com/<br>
-Kong Installation: https://docs.konghq.com/install/<br>
-Kong Documentation: https://docs.konghq.com/<br>
-Kong Plugin Gallery: https://docs.konghq.com/plugins/<br>
-Kong GitHub: https://github.com/Kong/kong<br>
