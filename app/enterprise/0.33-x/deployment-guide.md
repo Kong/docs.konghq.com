@@ -218,15 +218,6 @@ Upgrades between major versions need to be planned in advance as they involve
 downtime for new consumers that have not been cached in memory yet, and because
 the Admin API won’t be available on the old cluster for the entire process.
 
-There are plans in the roadmap to improve this process.
-
-External Links
-
-Kong Homepage: https://getkong.org/<br>
-Kong Installation: https://getkong.org/install/<br>
-Kong Documentation: https://getkong.org/<br>
-Kong Plugin Gallery: https://getkong.org/plugins/<br>
-Kong GitHub: https://github.com/Mashape/kong<br>
 
 ---
 
