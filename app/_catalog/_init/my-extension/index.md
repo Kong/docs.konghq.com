@@ -118,15 +118,15 @@ kong_legacy_api: false
 
 params: # metadata about your plugin
   name: # name of the plugin in Kong
-  api:
+  api_id:
     # boolean - whether this plugin can be applied to an API [[this needs more]]
-  service:
+  service_id:
     # boolean - whether this plugin can be applied to a Service.
     # Affects generation of examples and config table.
-  consumer:
+  consumer_id:
     # boolean - whether this plugin can be applied to a Consumer.
     # Affects generation of examples and config table.
-  route:
+  route_id:
     # whether this plugin can be applied to a Route.
     # Affects generation of examples and config table.
 
