@@ -58,11 +58,24 @@ scraper to test out config changes.
   * Generate documentation for all the modules in your PDK (where possible) and
     put in a folder inside your version docs
 
-## Writing plugin documentation
+## Listing Your Extension in the Kong Catalog
 
-Plugins are documented under `app/plugins`. They use a YAML-based system to
-generate many of the sections on each plugin page. Please look at the existing
-plugins for examples. Fields are:
+We encourage developers to contribute their custom extensions back to the community, with documentation hosted on the Kong website for ready access.
+In order to contribute docs for an extension:
+
+1. Clone the Kong docs repository at https://github.com/Kong/docs.konghq.com.
+1. Create a publsher directory at`_app/_catalog/`, such as `_app/_catalog/your-name` or `_app/_catalog/company-name`.
+1. Create a subdirectory for your plugin under this publisher directory, such as `_app/_catalog/your-name/your-extension`.
+1. Copy the file at `_init/my-extension/index.md` to your new path.
+1. Edit this new `index.md` template file as directed in the comments.
+
+**Tip:** Refer to existing extensions in filling out the template.
+
+### Writing plugin documentation
+
+Plugins are now documented as extensions under `app/_catalog/` using the same conventions and format, with some additional parameters to fill out.
+Please look at the existing plugins for examples.
+Fields are:
 
 * `description` - text to be added in the Description section. Use YAML's
   [pipe notation](https://stackoverflow.com/questions/15540635/what-is-the-use-of-pipe-symbol-in-yaml)
