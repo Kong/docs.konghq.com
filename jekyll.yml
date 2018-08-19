@@ -38,7 +38,7 @@ repos:
 collections:
   catalog:
     output: true
-    permalink: /:collection/:path
+    layout: plugin
 
 # for Kong platform extensions (not Jekyll)
 extensions:
@@ -95,20 +95,7 @@ defaults:
       breadcrumbs: null
 
   - scope:
-      path: catalog
       type: catalog
     values:
-      layout: 'plugin'
-      permalink: /:collection/:name
-
-  # - scope:
-  #     path: 'plugins'
-  #   values:
-  #     layout: 'plugin'
-  #     id: page-plugin
-  #     breadcrumbs: null
-  #     nav:
-  #       - label: Getting Started
-  #         items:
-  #           - label: Installation
-  #           - label: Configuration
+      layout: plugin
+      permalink: /:collection/:path
