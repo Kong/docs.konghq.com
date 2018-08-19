@@ -135,10 +135,12 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% endif %}
 
 {% if page.kong_version_compatibility.community_edition %}
-  {% assign ce_compat = page.kong_version_compatibility.community_edition %}
+  {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
+  {% assign ce_incompatible = page.kong_version_compatibility.community_edition.incompatible %}
 {% endif %}
 {% if page.kong_version_compatibility.enterprise_edition %}
-  {% assign ee_compat = page.kong_version_compatibility.enterprise_edition %}
+{% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
+{% assign ee_incompatible = page.kong_version_compatibility.enterprise_edition.incompatible %}
 {% endif %}
 
 <!-- BEGIN PAGE OUTPUT -->
@@ -190,33 +192,103 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         {% endfor %}
       {% endif %}
 
+      <table>
+        <tr>
+          <th colspan="2">Kong Version Compatibility</td>
+        </tr>
+        <tr>
+          <th colspan="2" class="edition section-header">
+            Community Edition
+          </th>
+        </tr>
+        {% for v in site.data.kong_versions reversed %}
+          <tr>
+            <td>{{ v.release }}</td>
+            <td>
+              {% if ce_compatible contains v.release %}
+                Yes
+              {% elsif ce_incompatible contains v.release %}
+                No
+              {% else %}
+                Unknown
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <th colspan="2" class="edition section-header">
+            Enterprise Edition
+          </th>
+        </tr>
+        {% for v in site.data.kong_versions_ee reversed %}
+          <tr>
+            <td>{{ v.release }}</td>
+            <td>
+              {% if ee_compatible contains v.release %}
+                Yes
+              {% elsif ee_incompatible contains v.release %}
+                No
+              {% else %}
+                Unknown
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+
     </aside>
 
     <div class="page-content-container">
       <div class="page-content">
         <div class="content">
 
+          <h2>{{ page.name }} ({{ site.extensions.types[0]["name"] | where: "slug", page.type | capitalize }})</h2>
+
           {{ page.description | markdownify }}
 
           <hr>
 
           <table>
-            <th>
-              <td>Kong Version</td>
-              <td>Supported?</td>
-            </th>
+          {% if page.support_url %}
             <tr>
-              <td span="2" class="edition section-header">
-                Community Edition
-              </td>
+              <td>Support Site</td>
+              <td><a href="{{ page.support_url }}">{{ page.support_url }}</a></td>
             </tr>
-            {% for v in site.data.kong_versions %}
-              {% unless v.edition == "enterprise" %}
-                {% if ce_compat contains v.release %}
-                  <li>{{ v.release }}</li>
-                {% endif %}
-              {% endunless %}
-            {% endfor %}
+          {% endif %}
+          {% if page.support_url %}
+            <tr>
+              <td>Source Code</td>
+              <td><a href="{{ page.source_url }}">{{ page.source_url }}</a></td>
+            </tr>
+          {% endif %}
+          {% if page.license_type %}
+            <tr>
+              <td>Licsense Type</td>
+              <td><a href="https://opensource.org/licenses/{{ page.license_type }}">{{ page.license_type }}</a></td>
+            </tr>
+          {% endif %}
+          {% if page.privacy_policy_url %}
+            <tr>
+              <td>Privacy Policy</td>
+              <td><a href="{{ page.privacy_policy_url }}">Full text</a></td>
+            </tr>
+          {% elsif page.privacy_policy %}
+            <tr>
+              <td>Privacy Policy</td>
+              <td><a href="#privacy-policy">See below</a></td>
+            </tr>
+          {% endif %}
+          {% if page.terms_of_service_url %}
+            <tr>
+              <td>Terms of Service</td>
+              <td><a href="{{ page.terms_of_service }}">Full text</a></td>
+            </tr>
+          {% elsif page.terms_of_service %}
+            <tr>
+              <td>Terms of Service</td>
+              <td><a href="#terms-of-service">See below</a></td>
+            </tr>
+          {% endif %}
           </table>
 
           <hr>
@@ -287,6 +359,16 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {{ page.params.extra | markdownify }}
 
           {{ content }}
+
+          {% if page.terms_of_service %}
+            <h3>Terms of Service</h3>
+            {{ page.terms_of_service | markdownify }}
+          {% endif %}
+
+          {% if page.privacy_policy %}
+            <h3>Privacy Policy</h3>
+            {{ page.privacy_policy | markdownify }}
+          {% endif %}
         </div>
       </div>
     </div>
