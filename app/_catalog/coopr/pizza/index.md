@@ -38,17 +38,17 @@ type: plugin # (required) String or Array of strings if multiple fit.
 
 desc: Automatically order 2 pizzas when your API returns a 500 error. # (required) 1-liner description; max 80 chars
 description: |
-When your API returns a 500 error, something has clearly gone wrong.
-You don't want wrongness to increase in the world, so you like to right wrongs right away, right?
-But righting wrongs requires, typically, 2 pizzas - for your 2-pizza Agile software teams.
-Thus, with the assistance of this plugin, you will automatically receive 2 pizzas each
-time your API returns a 500 error.
+  When your API returns a 500 error, something has clearly gone wrong.
+  You don't want wrongness to increase in the world, so you like to right wrongs right away, right?
+  But righting wrongs requires, typically, 2 pizzas - for your 2-pizza Agile software teams.
+  Thus, with the assistance of this plugin, you will automatically receive 2 pizzas each
+  time your API returns a 500 error.
 
-Studies* have shown that applying 2 pizzas to 500 errors tends to clear them right up!
+  Studies* have shown that applying 2 pizzas to 500 errors tends to clear them right up!
 
-*Unpublished studies, not peer reviewed, but hey, pizza helps!#|
-  # (required) extended description.
-  # Use YAML piple notation for extended entries.
+  *Unpublished studies, not peer reviewed, but hey, pizza helps!
+# (required) extended description.
+# Use YAML piple notation for extended entries.
 
 # EXAMPLE long text format (do not use this entry)
 # description: |
@@ -74,9 +74,10 @@ license_type: 0BSD
 #privacy_policy_url:
   # (Optional) Link to a remote privacy policy
 
-terms_of_service: By using this plugin, you agree to pay for all the pizzas the plugin orders.
-Every single one of them. Warning - there may be a lot of pizzas.
-  # (Optional) Text describing your terms of service.
+terms_of_service: |
+  By using this plugin, you agree to pay for all the pizzas the plugin orders.
+  Every single one of them. Warning - there may be a lot of pizzas.
+# (Optional) Text describing your terms of service.
 
 #terms_of_service_url:
   # (Optional) Link to your online TOS.
@@ -88,19 +89,19 @@ Every single one of them. Warning - there may be a lot of pizzas.
 # Uncomment at least one of 'community_edition' or 'enterprise_edition'.
 # Add array-formatted lists of versions under their appropriate subsection.
 
- kong_version_compatibility:
-   community_edition:
-     compatible:
-       - 0.13
-       - 0.14
-     incompatible:
-       - 0.12
-   enterprise_edition:
-     compatible:
-       - 0.33
-       - 0.34
-     incompatible:
-       - 0.32
+kong_version_compatibility:
+  community_edition:
+    compatible:
+      - 0.13.x
+      - 0.14.x
+    incompatible:
+      - 0.12.x
+  enterprise_edition:
+    compatible:
+      - 0.33-x
+      - 0.34-x
+    incompatible:
+      - 0.32-x
 
 
 #########################
@@ -124,20 +125,6 @@ params: # metadata about your plugin
   route_id: true
     # whether this plugin can be applied to a Route.
     # Affects generation of examples and config table.
-
-  config: # Configuration settings for your plugin
-    - name: # setting name
-      required: # string - setting required status
-        # options are 'yes', 'no', or 'semi'
-        # 'semi' means dependent on other settings
-      default: # any type - the default value (non-required settings only)
-      value_in_examples:
-        # If the field is to appear in examples, this is the value to use.
-        # A required field with no value_in_examples entry will resort to
-        # the one in default.
-      description:
-        # Explain what this setting does.
-        # Use YAML's pipe (|) notation for longer entries.
 
   config:
     - name: pizza_key
