@@ -64,6 +64,13 @@ extensions:
     - name: Logging
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
+  types:
+    - name: plugin
+      slug: plugin
+    - name: API integration
+      slug: api-integration
+    - name: dev portal extension
+      slug: dev-mod
 
 # location vars
 icons_dir: assets/images/icons
