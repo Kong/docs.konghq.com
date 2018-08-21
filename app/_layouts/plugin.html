@@ -195,7 +195,17 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         {% endfor %}
       {% endif %}
 
-      <table>
+      <table id="about-extn">
+        <tr>
+          <th colspan="2">ABOUT THIS {{ extn_type | upcase }}</th>
+        </tr>
+        <tr>
+          <td>Made by</td>
+          <td>{{ path_array[1] }}</td>
+        </tr>
+      </table>
+
+      <table id="compatibility">
         <tr>
           <th colspan="2">Kong Version Compatibility</td>
         </tr>
