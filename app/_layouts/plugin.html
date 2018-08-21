@@ -203,6 +203,49 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <td>Made by</td>
           <td>{{ path_array[1] }}</td>
         </tr>
+        <tr>
+
+        </tr>
+        {% if page.support_url %}
+          <tr>
+            <td>Support Site</td>
+            <td><a href="{{ page.support_url }}">{{ page.support_url }}</a></td>
+          </tr>
+        {% endif %}
+        {% if page.support_url %}
+          <tr>
+            <td>Source Code</td>
+            <td><a href="{{ page.source_url }}">{{ page.source_url }}</a></td>
+          </tr>
+        {% endif %}
+        {% if page.license_type %}
+          <tr>
+            <td>Licsense Type</td>
+            <td><a href="https://opensource.org/licenses/{{ page.license_type }}">{{ page.license_type }}</a></td>
+          </tr>
+        {% endif %}
+        {% if page.privacy_policy_url %}
+          <tr>
+            <td>Privacy Policy</td>
+            <td><a href="{{ page.privacy_policy_url }}">Full text</a></td>
+          </tr>
+        {% elsif page.privacy_policy %}
+          <tr>
+            <td>Privacy Policy</td>
+            <td><a href="#privacy-policy">See below</a></td>
+          </tr>
+        {% endif %}
+        {% if page.terms_of_service_url %}
+          <tr>
+            <td>Terms of Service</td>
+            <td><a href="{{ page.terms_of_service_url }}">Full text</a></td>
+          </tr>
+        {% elsif page.terms_of_service %}
+          <tr>
+            <td>Terms of Service</td>
+            <td><a href="#terms-of-service">See below</a></td>
+          </tr>
+        {% endif %}
       </table>
 
       <table id="compatibility">
@@ -257,52 +300,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
           <h2>{{ page.name }} ({{ extn_type }})</h2>
 
+          {% unless path_array contains "konghq" %}
+            <div class="alert alert-info" role="alert">
+              Community {{ extn_type }}: This extension is developed <b>and maintained</b> by a 3rd party contributor.
+            </div>
+          {% endunless %}
+
           {{ page.description | markdownify }}
-
-          <hr>
-
-          <table>
-          {% if page.support_url %}
-            <tr>
-              <td>Support Site</td>
-              <td><a href="{{ page.support_url }}">{{ page.support_url }}</a></td>
-            </tr>
-          {% endif %}
-          {% if page.support_url %}
-            <tr>
-              <td>Source Code</td>
-              <td><a href="{{ page.source_url }}">{{ page.source_url }}</a></td>
-            </tr>
-          {% endif %}
-          {% if page.license_type %}
-            <tr>
-              <td>Licsense Type</td>
-              <td><a href="https://opensource.org/licenses/{{ page.license_type }}">{{ page.license_type }}</a></td>
-            </tr>
-          {% endif %}
-          {% if page.privacy_policy_url %}
-            <tr>
-              <td>Privacy Policy</td>
-              <td><a href="{{ page.privacy_policy_url }}">Full text</a></td>
-            </tr>
-          {% elsif page.privacy_policy %}
-            <tr>
-              <td>Privacy Policy</td>
-              <td><a href="#privacy-policy">See below</a></td>
-            </tr>
-          {% endif %}
-          {% if page.terms_of_service_url %}
-            <tr>
-              <td>Terms of Service</td>
-              <td><a href="{{ page.terms_of_service }}">Full text</a></td>
-            </tr>
-          {% elsif page.terms_of_service %}
-            <tr>
-              <td>Terms of Service</td>
-              <td><a href="#terms-of-service">See below</a></td>
-            </tr>
-          {% endif %}
-          </table>
 
           <hr>
 
