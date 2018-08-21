@@ -28,12 +28,10 @@ categories: # (required) Uncomment all that apply.
 # Array format only; uncomment one or more applicable categories.
 # If you would like to add a category, you may do so here.
 
-type: # (required) String or Array of strings if multiple fit.
-# options:
+type: # (required) String, one of:
   # plugin          | extensions of the core platform
   # api-integration | extensions of the Kong Admin API
   # dev-mod         | enhancements of the Kong dev portal
-# for multiple, list like so: [api-integration,dev-mod]
 
 desc: # (required) 1-liner description; max 80 chars
 description: #|
@@ -41,10 +39,12 @@ description: #|
   # Use YAML piple notation for extended entries.
   # EXAMPLE long text format (do not use this entry)
   # description: |
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-
-#installation: # (Optional)
-
+  #   Maintain an indentation of two (2) spaces after denoting a block with
+  #   YAML pipe notation.
+  #
+  #   Lorem Ipsum is simply dummy text of the printing and typesetting
+  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
+  #   since the 1500s.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
