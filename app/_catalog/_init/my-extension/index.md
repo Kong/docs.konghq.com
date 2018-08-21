@@ -11,8 +11,6 @@
 
 name: # (required) The name of your extension.
   # Use capitals and spaces as needed.
-id: # a slug-formatted string to represent your extension
-  # Use only lowercase letters, numerals, and hyphens (-).
 
 #header_icon: #FIXME # (optional) Uncomment only if you are submitting an icon
   # See icon submission instructions in the README.
@@ -116,7 +114,7 @@ kong_version_compatibility: # required
 # If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
 params: # metadata about your plugin
-  name: # name of the plugin in Kong
+  name: # name of the plugin in Kong (may differ from name: above)
   api_id:
     # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id:
