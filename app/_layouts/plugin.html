@@ -1,8 +1,8 @@
 ---
 layout: default
 sitemap: true
-id: page-plugin
-breadcrumbs: null
+id: "page-plugin"
+type: plugin
 ---
 
 {% if page.type == "plugin" %}
@@ -143,13 +143,22 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% assign ee_incompatible = page.kong_version_compatibility.enterprise_edition.incompatible %}
 {% endif %}
 
-{% assign extn_type = site.extensions.types[0]["name"] | where: "slug", page.type | capitalize %}
+{% assign extn_type = site.extensions.types | where: "slug", page.type %}
+{% assign extn_type = extn_type[0]['name'] %}
 {% assign path_array = page.path | split: "/" %}
+{% assign extn_slug = path_array[2] %}
+{% assign extn_publisher = path_array[1] %}
+{% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
+{% capture extn_icon %}/assets/images/icons/plugins/{{ extn_slug }}.png{% endcapture %}
 
 <!-- BEGIN PAGE OUTPUT -->
 
-<div class="page {{ page.id }}">
-  {% include header.html %}
+<div class="page page-plugin">
+  {% if page.header_icon or page.header_title %}
+    {% include header.html type=extn_type %}
+  {% else %}
+    {% include header.html img=extn_icon name=page.name type=extn_type %}
+  {% endif %}
 
   <div class="container">
     <aside class="page-navigation">
@@ -201,7 +210,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         </tr>
         <tr>
           <td>Made by</td>
-          <td>{{ path_array[1] }}</td>
+          <td>{{ extn_publisher }}</td>
         </tr>
         <tr>
 
@@ -250,7 +259,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
       <table id="compatibility">
         <tr>
-          <th colspan="2">Kong Version Compatibility</td>
+          <th colspan="2">
+            {% if path_array contains "konghq" %}
+              Bundled with...
+            {% else %}
+              Kong Version Compatibility
+            {% endif %}
+          </th>
         </tr>
         <tr>
           <th colspan="2" class="edition section-header">
@@ -298,11 +313,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       <div class="page-content">
         <div class="content">
 
-          <h2>{{ page.name }} ({{ extn_type }})</h2>
-
           {% unless path_array contains "konghq" %}
             <div class="alert alert-info" role="alert">
-              Community {{ extn_type }}: This extension is developed <b>and maintained</b> by a 3rd party contributor.
+              Community {{ extn_type | capitalize }}: This extension is developed <b>and maintained</b> by a 3rd party contributor.
             </div>
           {% endunless %}
 
