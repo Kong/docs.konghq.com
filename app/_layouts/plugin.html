@@ -378,12 +378,12 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {{ content }}
 
           {% if page.terms_of_service %}
-            <h3>Terms of Service</h3>
+            <h3 id="terms-of-service">Terms of Service</h3>
             {{ page.terms_of_service | markdownify }}
           {% endif %}
 
           {% if page.privacy_policy %}
-            <h3>Privacy Policy</h3>
+            <h3 id="privacy-policy">Privacy Policy</h3>
             {{ page.privacy_policy | markdownify }}
           {% endif %}
         </div>
