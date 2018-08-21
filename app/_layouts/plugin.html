@@ -143,6 +143,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% assign ee_incompatible = page.kong_version_compatibility.enterprise_edition.incompatible %}
 {% endif %}
 
+{% assign extn_type = site.extensions.types[0]["name"] | where: "slug", page.type | capitalize %}
+{% assign path_array = page.path | split: "/" %}
+
 <!-- BEGIN PAGE OUTPUT -->
 
 <div class="page {{ page.id }}">
@@ -242,7 +245,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       <div class="page-content">
         <div class="content">
 
-          <h2>{{ page.name }} ({{ site.extensions.types[0]["name"] | where: "slug", page.type | capitalize }})</h2>
+          <h2>{{ page.name }} ({{ extn_type }})</h2>
 
           {{ page.description | markdownify }}
 
