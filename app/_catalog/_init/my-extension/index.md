@@ -115,9 +115,6 @@ kong_version_compatibility: # required
 # If your extension is a plugin, ALL of the following lines must be completed.
 # If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
-kong_legacy_api: false
-  # If your plugin uses the old API, change this to true
-
 params: # metadata about your plugin
   name: # name of the plugin in Kong
   api_id:
