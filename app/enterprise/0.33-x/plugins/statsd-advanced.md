@@ -1,6 +1,9 @@
 ---
 title: StatsD Advanced Plugin
 ---
+# StatsD Advanced Plugin
+
+Log metrics for a Service, Route (or the deprecated API entity) and internal metrics of Kong to a StatsD server. 
 
 ## Configuration Parameters
 

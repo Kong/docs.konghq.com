@@ -3,7 +3,7 @@ id: page-plugin
 layout: plugin-ee
 title: Plugins - StatsD Advanced
 header_title: StatsD Advanced
-header_icon: /assets/images/icons/plugins/statsd.png
+header_icon: /assets/images/icons/plugins/ee-statsd.png
 breadcrumbs:
   Plugins: /plugins
 description: |
