@@ -149,13 +149,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% assign extn_slug = path_array[2] %}
 {% assign extn_publisher = path_array[1] %}
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
-{% capture extn_icon %}/assets/images/icons/plugins/{{ extn_slug }}.png{% endcapture %}
+{% capture extn_icon %}/assets/images/icons/plugins/{{ extn_id }}.png{% endcapture %}
 
 <!-- BEGIN PAGE OUTPUT -->
 
 <div class="page page-plugin">
   {% if page.header_icon or page.header_title %}
-    {% include header.html type=extn_type %}
+    {% include header.html type=extn_type name=page.header_title %}
   {% else %}
     {% include header.html img=extn_icon name=page.name type=extn_type %}
   {% endif %}

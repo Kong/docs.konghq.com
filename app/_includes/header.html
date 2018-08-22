@@ -1,5 +1,5 @@
 {% if include.img %}
-  {% capture header_icon %}/assets/images/icons/plugins{{ include.img }}{% endcapture %}
+  {% assign header_icon = include.img %}
 {% elsif page.header_icon %}
   {% assign header_icon = page.header_icon %}
 {% endif %}
