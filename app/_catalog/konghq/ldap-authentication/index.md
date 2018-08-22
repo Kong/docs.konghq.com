@@ -1,10 +1,5 @@
 ---
-id: page-plugin
-title: Plugins - LDAP Authentication
-header_title: LDAP Authentication
-header_icon: /assets/images/icons/plugins/ldap-authentication.png
-breadcrumbs:
-  Plugins: /plugins
+name: LDAP Authentication
 nav:
   - label: Getting Started
     items:
@@ -13,8 +8,13 @@ nav:
     items:
       - label: Upstream Headers
 
+desc: Integrate Kong with a LDAP server
 description: |
   Add LDAP Bind Authentication to a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+
+type: plugin
+categories:
+  - authentication
 
 params:
   name: ldap-auth

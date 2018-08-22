@@ -1,23 +1,20 @@
 ---
-id: page-plugin
-title: Plugins - AWS Lambda
-header_title: AWS Lambda
-header_icon: /assets/images/icons/plugins/aws-lambda.png
-breadcrumbs:
-  Plugins: /plugins
+name: AWS Lambda
 nav:
   - label: Usage
     items:
       - label: Sending parameters
       - label: Known Issues
 
+desc: Invoke and manage AWS Lambda functions from Kong
 description: |
   Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. It
   can be used in combination with other request plugins to secure, manage or extend
   the function.
 
+type: plugin
 categories:
-  - traffic-control
+  - serverless
 
 params:
 

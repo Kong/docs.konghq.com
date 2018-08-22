@@ -1,17 +1,17 @@
 ---
-id: page-plugin
-title: Plugins - HTTP Log
-header_title: HTTP Log
-header_icon: /assets/images/icons/plugins/http-log.png
-breadcrumbs:
-  Plugins: /plugins
+name: HTTP Log
 nav:
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
 
+desc: Send request and response logs to an HTTP server
 description: Send request and response logs to an HTTP server.
+
+type: plugin
+categories:
+  - logging
 
 params:
   name: http-log

@@ -1,21 +1,23 @@
 ---
-id: page-plugin
-title: Plugins - StatsD
-header_title: StatsD
-header_icon: /assets/images/icons/plugins/statsd.png
-breadcrumbs:
-  Plugins: /plugins
+name: StatsD
 nav:
   - label: Usage
     items:
       - label: Metrics
       - label: Kong Process Errors
+
+desc: Send request and response logs to StatsD
 description: |
   Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
   to a StatsD server.
   It can also be used to log metrics on [Collectd](https://collectd.org/)
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+
+
+type: plugin
+categories:
+  - logging
 
 params:
   name: statsd
@@ -67,7 +69,7 @@ Metric                     | description | namespace
 Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields.
 
 Field         | description                                             | allowed values
----           | ---                                                     | --- 
+---           | ---                                                     | ---
 `name`          | StatsD metric's name                                  | [Metrics](#metrics)          
 `stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
 `sample_rate`<br>*conditional*   | sampling rate                        | `number`                 

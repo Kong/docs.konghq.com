@@ -1,10 +1,5 @@
 ---
-id: page-plugin
-title: Plugins - HMAC Authentication
-header_title: HMAC Authentication
-header_icon: /assets/images/icons/plugins/hmac-authentication.png
-breadcrumbs:
-  Plugins: /plugins
+name: HMAC Authentication
 nav:
   - label: Usage
     items:
@@ -21,6 +16,7 @@ nav:
       - label: Paginate through the HMAC Credentials
       - label: Retrieve the Consumer associated with a Credential
 
+desc: Add HMAC Authentication to your APIs
 description: |
   Add HMAC Signature authentication to a Service or a Route (or the deprecated API entity)
   to establish the integrity of incoming requests. The plugin will validate the
@@ -28,6 +24,11 @@ description: |
   (in this order). This plugin implementation is based off the
   [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
   draft with a slightly different signature scheme.
+
+
+type: plugin
+categories:
+  - authentication
 
 params:
   name: hmac-auth
@@ -171,15 +172,15 @@ header.
 ### Body Validation
 
 User can set `config.validate_request_body` as `true` to validate the request
-body. If it's enabled the plugin will calculate the `SHA-256` HMAC digest of 
-the request body and match it against the value of the `Digest` header. The 
+body. If it's enabled the plugin will calculate the `SHA-256` HMAC digest of
+the request body and match it against the value of the `Digest` header. The
 Digest header needs to be in following format:
 
 ```
 Digest: SHA-256=base64(sha256(<body>))
 ```
 
-If there is no request body, the `Digest` should be set to the digest of a 
+If there is no request body, the `Digest` should be set to the digest of a
 body of 0 length.
 
 Note: In order to create the digest of a request body, the plugin needs to

@@ -1,10 +1,5 @@
 ---
-id: page-plugin
-title: Plugins - OAuth 2.0 Authentication
-header_title: OAuth 2.0 Authentication
-header_icon: /assets/images/icons/plugins/oauth2-authentication.png
-breadcrumbs:
-  Plugins: /plugins
+name: OAuth 2.0 Authentication
 nav:
   - label: Usage
     items:
@@ -18,8 +13,9 @@ nav:
       - label: Client Credentials
       - label: Authorization Code
       - label: Resource Owner Password Credentials
-description: |
 
+desc: Add OAuth 2.0 authentication to your APIs
+description: |
   Add an OAuth 2.0 authentication layer with the [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4),
   [Implicit Grant](https://tools.ietf.org/html/rfc6749#section-4.2) or [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.3) flow.
 
@@ -32,6 +28,11 @@ description: |
     underlying Service to only accept HTTPS traffic (via its `protocols`
     property).
   </div>
+
+
+type: plugin
+categories:
+  - authentication
 
 params:
   name: oauth2

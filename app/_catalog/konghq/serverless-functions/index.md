@@ -1,19 +1,21 @@
 ---
-id: page-plugin
-title: Plugins - Serverless Functions
-header_title: Serverless Functions
-header_icon: https://konghq.com/wp-content/uploads/2018/06/serverless-functions.png
-header_btn_repo_href: https://github.com/Kong/kong-plugin-serverless-functions
-breadcrumbs:
-  Plugins: /plugins
+name: Serverless Functions
+source_url: https://github.com/Kong/kong-plugin-serverless-functions
 nav:
   - label: Usage
     items:
       - label: Plugin Names
       - label: Demonstration
       - label: Notes
+
+desc: Dynamically run Lua code from Kong during the access phase
 description: |
   Dynamically run Lua code from Kong during access phase.
+
+type: plugin
+categories:
+  - serverless
+
 params:
   name: serverless-functions
   api_id: true
@@ -61,7 +63,7 @@ different priority in the plugin chain.
     HTTP/1.1 201 Created
     ...
     ```
-    
+
 1. Create a file named `custom-auth.lua` with the following content:
 
     ```lua
@@ -115,13 +117,13 @@ different priority in the plugin chain.
     ...
     ```
 
-This is just a small demonstration of the power these plugins grant. We were 
-able to dynamically inject Lua code into the plugin access phase to dynamically 
-terminate, or transform the request without creating a custom plugin or 
+This is just a small demonstration of the power these plugins grant. We were
+able to dynamically inject Lua code into the plugin access phase to dynamically
+terminate, or transform the request without creating a custom plugin or
 reloading / redeploying Kong.
 
 In short, serverless functions give you the full capabilities of a custom plugin
-in the access phase without ever redeploying / restarting Kong. 
+in the access phase without ever redeploying / restarting Kong.
 
 ----
 
@@ -130,8 +132,8 @@ in the access phase without ever redeploying / restarting Kong.
 #### Fake Upstreams
 
 Since the [Service][service-url] entity requires defining an upstream you may
-define a fake upstream and take care to terminate the request. See the 
-[`lua-ngx-module`](https://github.com/openresty/lua-nginx-module#ngxexit) 
+define a fake upstream and take care to terminate the request. See the
+[`lua-ngx-module`](https://github.com/openresty/lua-nginx-module#ngxexit)
 documentation for more information.
 
 #### Escaping Commas
@@ -143,7 +145,7 @@ escape commas using the backslash character `\,`.
 #### Minifying Lua
 
 Since we send our code over in a string format, it is advisable to use either
-curl file upload `@file.lua` (see demonstration) or to minify your Lua code 
+curl file upload `@file.lua` (see demonstration) or to minify your Lua code
 using a [minifier][lua-minifier].
 
 

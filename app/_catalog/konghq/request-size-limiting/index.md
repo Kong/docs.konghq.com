@@ -1,17 +1,17 @@
 ---
-id: page-plugin
-title: Plugins - Request Size Limiting
-header_title: Request Size Limiting
-header_icon: /assets/images/icons/plugins/request-size-limiting.png
-breadcrumbs:
-  Plugins: /plugins
+name: Request Size Limiting
 
+desc: Block requests with bodies greater than a specified size
 description: |
   <div class="alert alert-warning">
     For security reasons we suggest enabling this plugin for any API you add to Kong to prevent a DOS (Denial of Service) attack.
   </div>
-  
+
   Block incoming requests whose body is greater than a specific size in megabytes.
+
+type: plugin
+categories:
+  - traffic-control
 
 params:
   name: request-size-limiting

@@ -1,18 +1,19 @@
 ---
-id: page-plugin
-title: Plugins - Correlation ID
-header_title: Correlation ID
-header_icon: /assets/images/icons/plugins/correlation-id.png
-breadcrumbs:
-  Plugins: /plugins
+name: Correlation ID
 nav:
   - label: Documentation
     items:
       - label: How it works
       - label: Generators
       - label: FAQ
+
+desc: Correlate requests and responses using a unique ID
 description: |
   Correlate requests and responses using a unique ID transmitted over an HTTP header.
+
+type: plugin
+categories:
+  - transformations
 
 params:
   name: correlation-id

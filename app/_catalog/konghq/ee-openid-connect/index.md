@@ -1,12 +1,9 @@
 ---
-title: Plugins - OpenID Connect
 layout: plugin-ee
-header_title: OpenID Connect
-header_icon: /assets/images/icons/plugins/ee-openid-connect.png
-breadcrumbs:
-  Plugins: /plugins
-description: |
+name: OpenID Connect
 
+desc: Integrate Kong with a third-party OpenID Connect 1.0 provider
+description: |
   OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
   identity provider (IdP) or [Kong OAuth 2.0 Plugin][oauth2plugin] in a standardized way.
   This plugin can be used to implement Kong as a (proxying) [OAuth 2.0][oauth2] resource
@@ -109,5 +106,10 @@ description: |
   To restrict usage to only some of the authenticated users, also add the
   [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
   blacklist groups of users.
+
+
+type: plugin
+categories:
+  - authentication
 
 ---

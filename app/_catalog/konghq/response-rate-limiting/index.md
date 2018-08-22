@@ -1,10 +1,5 @@
 ---
-id: page-plugin
-title: Plugins - Response Rate Limiting
-header_title: Response Rate Limiting
-header_icon: /assets/images/icons/plugins/response-rate-limiting.png
-breadcrumbs:
-  Plugins: /plugins
+name: Response Rate Limiting
 nav:
   - label: Usage
     items:
@@ -12,10 +7,15 @@ nav:
       - label: Headers sent to the client
       - label: Upstream Headers
 
+desc: Rate-limiting based on a custom response header value
 description: |
   This plugin allows you to limit the number of requests a developer can make based on a custom response header returned by the upstream service. You can arbitrary set as many rate-limiting objects (or quotas) as you want and instruct Kong to increase or decrease them by any number of units. Each custom rate-limiting object can limit the inbound requests per seconds, minutes, hours, days, months or years.
 
   If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+
+type: plugin
+categories:
+  - traffic-control
 
 params:
   name: response-ratelimiting

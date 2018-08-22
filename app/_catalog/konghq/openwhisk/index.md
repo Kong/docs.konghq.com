@@ -1,23 +1,22 @@
 ---
-id: page-plugin
-title: Plugins - OpenWhisk
-header_title: Apache OpenWhisk
-header_icon: /assets/images/icons/plugins/openwhisk.png
-header_btn_repo_href: https://github.com/Kong/kong-plugin-openwhisk
-breadcrumbs:
-  Plugins: /plugins
+name: Apache OpenWhisk
+source_url: https://github.com/Kong/kong-plugin-openwhisk
 nav:
   - label: Usage
     items:
       - label: Demonstration
       - label: Limitations
 
+desc: Invoke and manage OpenWhisk actions from Kong
 description: |
-
   This plugin invokes
   [OpenWhisk Action](https://github.com/openwhisk/openwhisk/blob/master/docs/actions.md).
   It can be used in combination with other request plugins to secure, manage
   or extend the function.
+
+type: plugin
+categories:
+  - serverless
 
 installation: |
 

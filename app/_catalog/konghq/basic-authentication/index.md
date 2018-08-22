@@ -1,7 +1,5 @@
 ---
 name: Basic Authentication
-breadcrumbs:
-  Plugins: /plugins
 nav:
   - label: Usage
     items:
@@ -12,13 +10,13 @@ nav:
       - label: Paginate through the basic-auth Credentials
       - label: Retrieve the Consumer associated with a Credential
 
+desc: Add Basic Authentication to your APIs
 description: |
   Add Basic Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
-desc: Add Basic Authentication to your APIs
+
 type: plugin
 categories:
   - authentication
-
 
 params:
   name: basic-auth

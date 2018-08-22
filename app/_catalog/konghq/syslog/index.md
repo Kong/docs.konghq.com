@@ -1,18 +1,19 @@
 ---
-id: page-plugin
-title: Plugins - Syslog
-header_title: Syslog
-header_icon: /assets/images/icons/plugins/syslog.png
-breadcrumbs:
-  Plugins: /plugins
+name: Syslog
 nav:
   - label: Usage
     items:
       - label: Log Format
       - label: Notes
       - label: Kong Process Errors
+
+desc: Send request and response logs to Syslog
 description: |
   Log request and response data to Syslog.
+
+type: plugin
+categories:
+  - logging
 
 params:
   name: syslog

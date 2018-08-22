@@ -1,19 +1,19 @@
 ---
-id: page-plugin
-title: Plugins - Request Termination
-header_title: Request Termination
-header_icon: /assets/images/icons/plugins/request-termination.png
-breadcrumbs:
-  Plugins: /plugins
+name: Request Termination
 nav:
   - label: Usage
     items:
       - label: Example Use Cases
 
+desc: Terminates all requests with a specific response
 description: |
   This plugin terminates incoming requests with a specified status code and
   message. This allows to (temporarily) stop traffic on a Service or a Route
   (or the deprecated API entity), or even block a Consumer.
+
+type: plugin
+categories:
+  - traffic-control
 
 params:
   name: request-termination

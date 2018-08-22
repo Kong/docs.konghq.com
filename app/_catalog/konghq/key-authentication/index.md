@@ -1,10 +1,5 @@
 ---
-id: page-plugin
-title: Plugins - Key Authentication
-header_title: Key Authentication
-header_icon: /assets/images/icons/plugins/key-authentication.png
-breadcrumbs:
-  Plugins: /plugins
+name: Key Authentication
 nav:
   - label: Usage
     items:
@@ -15,8 +10,15 @@ nav:
     - label: Upstream Headers
     - label: Paginate through keys
     - label: Retrieve the Consumer associated with an key
+
+desc: Add key authentication to your APIs
 description: |
   Add Key Authentication (also sometimes referred to as an API key) to a Service or a Route (or the deprecated API entity). Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
+
+type: plugin
+categories:
+  - authentication
+
 params:
   name: key-auth
   api_id: true

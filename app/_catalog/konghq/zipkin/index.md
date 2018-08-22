@@ -1,19 +1,20 @@
 ---
-id: page-plugin
-title: Plugins - Zipkin
-header_title: Zipkin  
-header_icon: https://konghq.com/wp-content/uploads/2018/05/zipkin.png
-header_btn_repo_href: https://github.com/Kong/kong-plugin-zipkin
-breadcrumbs:
-  Plugins: /plugins
+name: Zipkin  
+source_url: https://github.com/Kong/kong-plugin-zipkin
 nav:
   - label: How it Works
     items:
       - label: Extractor and Injector
       - label: Reporter
   - label: FAQ
+
+desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
   Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
+
+type: plugin
+categories:
+  - analytics-monitoring
 
 params:
   name: zipkin
