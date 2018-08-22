@@ -11,8 +11,6 @@
 
 name: # (required) The name of your extension.
   # Use capitals and spaces as needed.
-id: # a slug-formatted string to represent your extension
-  # Use only lowercase letters, numerals, and hyphens (-).
 
 #header_icon: #FIXME # (optional) Uncomment only if you are submitting an icon
   # See icon submission instructions in the README.
@@ -28,21 +26,23 @@ categories: # (required) Uncomment all that apply.
 # Array format only; uncomment one or more applicable categories.
 # If you would like to add a category, you may do so here.
 
-type: # (required) String or Array of strings if multiple fit.
-# options:
+type: # (required) String, one of:
   # plugin          | extensions of the core platform
   # api-integration | extensions of the Kong Admin API
-  # dev-mod         | enhancements of the Long dev portal
-# for multiple, list like so: [api-integration,dev-mod]
+  # dev-mod         | enhancements of the Kong dev portal
 
 desc: # (required) 1-liner description; max 80 chars
 description: #|
   # (required) extended description.
   # Use YAML piple notation for extended entries.
-
-# EXAMPLE long text format (do not use this entry)
-# description: |
-#   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+  # EXAMPLE long text format (do not use this entry)
+  # description: |
+  #   Maintain an indentation of two (2) spaces after denoting a block with
+  #   YAML pipe notation.
+  #
+  #   Lorem Ipsum is simply dummy text of the printing and typesetting
+  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
+  #   since the 1500s.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
@@ -113,11 +113,8 @@ kong_version_compatibility: # required
 # If your extension is a plugin, ALL of the following lines must be completed.
 # If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
-kong_legacy_api: false
-  # If your plugin uses the old API, change this to true
-
 params: # metadata about your plugin
-  name: # name of the plugin in Kong
+  name: # name of the plugin in Kong (may differ from name: above)
   api_id:
     # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id:

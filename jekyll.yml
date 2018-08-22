@@ -38,7 +38,7 @@ repos:
 collections:
   catalog:
     output: true
-    permalink: /:collection/:path
+    layout: plugin
 
 # for Kong platform extensions (not Jekyll)
 extensions:
@@ -64,6 +64,13 @@ extensions:
     - name: Logging
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
+  types:
+    - name: plugin
+      slug: plugin
+    - name: API integration
+      slug: api-integration
+    - name: dev portal extension
+      slug: dev-mod
 
 # location vars
 icons_dir: assets/images/icons
@@ -95,20 +102,7 @@ defaults:
       breadcrumbs: null
 
   - scope:
-      path: catalog
       type: catalog
     values:
-      layout: 'plugin'
-      permalink: /:collection/:name
-
-  # - scope:
-  #     path: 'plugins'
-  #   values:
-  #     layout: 'plugin'
-  #     id: page-plugin
-  #     breadcrumbs: null
-  #     nav:
-  #       - label: Getting Started
-  #         items:
-  #           - label: Installation
-  #           - label: Configuration
+      layout: plugin
+      permalink: /:collection/:path

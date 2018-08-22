@@ -4,6 +4,7 @@ title: Kong Catalog
 sitemap: true
 id: catalog
 breadcrumbs: null
+permalink: /catalog/
 ---
 
 {% assign catalog = site.catalog %}
@@ -97,7 +98,7 @@ breadcrumbs: null
                         {% if filename == "index.md" and extn.categories contains cat.slug %}
                           <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
                             <div class="card plugin-card align-items-center text-center {{ extn.type }}">
-                              <a href="{{ extn.id }}">
+                              <a href="{{ extn.url | remove: '/index' }}">
                                 <img class="card-img-top" src="{{ extn.header_icon }}" width="64" height="64"/>
                                 <p class="lg mt-1x fw-500">{{ extn.title }}</p>
                                 <p class="sm text-center">{{ extn.desc }}</p>
