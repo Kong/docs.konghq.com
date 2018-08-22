@@ -1,8 +1,5 @@
 ---
-id: page-plugin
-title: Plugins - Basic Authentication
-header_title: Basic Authentication
-header_icon: /assets/images/icons/plugins/basic-authentication.png
+name: Basic Authentication
 breadcrumbs:
   Plugins: /plugins
 nav:
@@ -17,6 +14,11 @@ nav:
 
 description: |
   Add Basic Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+desc: Add Basic Authentication to your APIs
+type: plugin
+categories:
+  - authentication
+
 
 params:
   name: basic-auth
