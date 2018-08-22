@@ -1,13 +1,13 @@
 ---
-id: page-plugin
-title: Plugins - IP Restriction
-header_title: IP Restriction
-header_icon: /assets/images/icons/plugins/ip-restriction.png
-breadcrumbs:
-  Plugins: /plugins
+name: IP Restriction
 
+desc: Whitelist or blacklist IPs that can make API requests
 description: |
   Restrict access to a Service or a Route (or the deprecated API entity) by either whitelisting or blacklisting IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used.
+
+type: plugin
+categories:
+  - security
 
 params:
   name: ip-restriction

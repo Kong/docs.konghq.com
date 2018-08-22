@@ -1,17 +1,18 @@
 ---
-id: page-plugin
-title: Plugins - Datadog
-header_title: Datadog
-header_icon: /assets/images/icons/plugins/datadog.png
-breadcrumbs:
-  Plugins: /plugins
+name: Datadog
 nav:
   - label: Usage
     items:
       - label: Metrics
+
+desc: Visualize API metrics on Datadog
 description: |
   Log [metrics](#metrics) for a Service, Route (or the deprecated API entity) to a local
   [Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
+
+type: plugin
+categories:
+  - analytics-monitoring
 
 params:
   name: datadog

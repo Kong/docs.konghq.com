@@ -1,17 +1,18 @@
 ---
-id: page-plugin
-title: Plugins - UDP Log
-header_title: UDP Log
-header_icon: /assets/images/icons/plugins/udp-log.png
-breadcrumbs:
-  Plugins: /plugins
+name: UDP Log
 nav:
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
+
+desc: Send request and response logs to a UDP server
 description: |
   Log request and response data to an UDP server.
+
+type: plugin
+categories:
+  - logging
 
 params:
   name: udp-log

@@ -1,13 +1,9 @@
 ---
-id: page-plugin
-title: Plugins - OAuth 2.0 Introspection
 layout: plugin-ee
-header_title: OAuth 2.0 Introspection
-header_icon: /assets/images/icons/plugins/ee-oauth2-introspection.png
-breadcrumbs:
-  Plugins: /plugins
-description: |
+name: OAuth 2.0 Introspection
 
+desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
+description: |
   Validate access tokens sent by developers using a third-party OAuth 2.0
   Authorization Server, by leveraging its Introspection Endpoint
   ([RFC 7662](https://tools.ietf.org/html/rfc7662)). This plugin assumes that
@@ -15,4 +11,9 @@ description: |
   third-party OAuth 2.0 server.
 
   * [Detailed documentation for the EE OAuth 2.0 Introspection Plugin](/enterprise/latest/plugins/oauth2-introspection/)
+
+type: plugin
+categories:
+  - authentication
+
 ---

@@ -1,10 +1,5 @@
 ---
-id: page-plugin
-title: Plugins - ACL
-header_title: ACL
-header_icon: /assets/images/icons/plugins/acl.png
-breadcrumbs:
-  Plugins: /plugins
+name: ACL
 nav:
   - label: Usage
     items:
@@ -13,9 +8,11 @@ nav:
       - label: Paginate through the ACLs
       - label: Retrieve the Consumer associated with an ACL
 
+desc: Control which consumers can access APIs
 description: |
   Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or the Route (or API).
 
+type: plugin
 categories:
   - traffic-control
 

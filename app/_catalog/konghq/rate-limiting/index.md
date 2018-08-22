@@ -1,16 +1,17 @@
 ---
-id: page-plugin
-title: Plugins - Rate Limiting
-header_title: Rate Limiting
-header_icon: /assets/images/icons/plugins/rate-limiting.png
-breadcrumbs:
-  Plugins: /plugins
+name: Rate Limiting
 nav:
   - label: Usage
     items:
       - label: Headers sent to the client
+
+desc: Rate-limit how many HTTP requests a developer can make
 description: |
   Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+
+type: plugin
+categories:
+  - traffic-control
 
 params:
   name: rate-limiting

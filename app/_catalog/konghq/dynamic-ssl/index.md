@@ -1,15 +1,12 @@
 ---
-id: page-plugin
-title: Plugins - Dynamic SSL
-header_title: Dynamic SSL
-header_icon: /assets/images/icons/plugins/dynamic-ssl.png
-breadcrumbs:
-  Plugins: /plugins
+name: Dynamic SSL
 nav:
   - label: Usage
     items:
       - label: Creating an SSL certificate
       - label: Propagation
+
+desc: Add an SSL certificate for an underlying service
 description: |
   Dynamically binds a specific SSL certificate to the `request_host` value of a service. In case you want to setup a global SSL certificate for **every API**, take a look at the [Kong SSL configuration options][configuration].
 
@@ -20,6 +17,10 @@ description: |
     <a href="/latest/proxy#configuring-ssl-for-an-api">Proxy</a> and the
     <a href="/latest/admin-api">Admin API</a> references.
   </div>
+
+type: plugin
+categories:
+  - security
 
 params:
   name: ssl

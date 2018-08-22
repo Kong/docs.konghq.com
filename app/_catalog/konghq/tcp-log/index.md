@@ -1,18 +1,19 @@
 ---
-id: page-plugin
-title: Plugins - TCP Log
-header_title: TCP Log
-header_icon: /assets/images/icons/plugins/tcp-log.png
-breadcrumbs:
-  Plugins: /plugins
+name: TCP Log
 nav:
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
+
+desc: Send request and response logs to a TCP server
 description: |
   Log request and response data to a TCP server.
-  
+
+type: plugin
+categories:
+  - logging
+
 params:
   name: tcp-log
   api_id: true

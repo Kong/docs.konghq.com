@@ -1,17 +1,18 @@
 ---
-id: page-plugin
-title: Plugins - Loggly
-header_title: Loggly
-header_icon: /assets/images/icons/plugins/loggly.png
-breadcrumbs:
-  Plugins: /plugins
+name: Loggly
 nav:
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
+
+desc: Send request and response logs to Loggly
 description: |
   Log request and response data over UDP to [Loggly](https://www.loggly.com).
+
+type: plugin
+categories:
+  - logging
 
 params:
   name: loggly

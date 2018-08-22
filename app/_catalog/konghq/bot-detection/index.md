@@ -1,16 +1,17 @@
 ---
-id: page-plugin
-title: Plugins - Bot Detection
-header_title: Bot Detection
-header_icon: /assets/images/icons/plugins/bot-detection.png
-breadcrumbs:
-  Plugins: /plugins
+name: Bot Detection
 nav:
   - label: Usage
     items:
       - label: Default rules
+
+desc: Detect and block bots or custom clients
 description: |
   Protects a Service or a Route (or the deprecated API entity) from most common bots and has the capability of whitelisting and blacklisting custom clients.
+
+type: plugin
+categories:
+  - security
 
 params:
   name: bot-detection

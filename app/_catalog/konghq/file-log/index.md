@@ -1,15 +1,12 @@
 ---
-id: page-plugin
-title: Plugins - File Log
-header_title: File Log
-header_icon: /assets/images/icons/plugins/file-log.png
-breadcrumbs:
-  Plugins: /plugins
+name: File Log
 nav:
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
+
+desc: Append request and response data to a log file on disk
 description: |
   Append request and response data to a log file on disk.
 
@@ -17,6 +14,11 @@ description: |
   use another logging plugin, for example `syslog`, in those cases. Due to system
   limitations this plugin uses blocking file i/o, which will hurt performance,
   and hence is an anti-pattern for Kong installations.
+
+type: plugin
+categories:
+  - logging
+
 params:
   name: file-log
   api_id: true

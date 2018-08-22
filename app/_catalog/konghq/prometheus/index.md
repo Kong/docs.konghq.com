@@ -1,18 +1,19 @@
 ---
-id: page-plugin
-title: Plugins - Prometheus
-header_title: Prometheus
-header_icon: https://konghq.com/wp-content/uploads/2018/06/prometheus.png
-breadcrumbs:
-  Plugins: /plugins
+name: Prometheus
 nav:
   - label: Usage
     items:
       - label: Reading metrics
       - lable: Available metrics
       - lable: Accessing the metrics
+
+desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
 description: |
     Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scrapped by a Prometheus Server.
+
+type: plugin
+categories:
+  - analytics-monitoring
 
 params:
   name: prometheus

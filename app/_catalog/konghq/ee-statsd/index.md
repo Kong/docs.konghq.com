@@ -1,11 +1,8 @@
 ---
-id: page-plugin
 layout: plugin-ee
-title: Plugins - StatsD Advanced
-header_title: StatsD Advanced
-header_icon: /assets/images/icons/plugins/statsd.png
-breadcrumbs:
-  Plugins: /plugins
+name: StatsD Advanced
+
+desc: Send metrics to StatsD with more flexible options
 description: |
   Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
   to a StatsD server.
@@ -14,4 +11,9 @@ description: |
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
   * [Detailed documentation for the StatsD Advanced Plugin](/enterprise/latest/plugins/statsd-advanced/)
+
+type: plugin
+categories:
+  - logging
+
 ---

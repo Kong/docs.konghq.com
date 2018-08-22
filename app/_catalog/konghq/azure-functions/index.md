@@ -1,23 +1,22 @@
 ---
-id: page-plugin
-title: Plugins - Azure Functions
-header_title: Azure Functions
-header_icon: https://konghq.com/wp-content/uploads/2018/05/azure-functions.png
-header_btn_repo_href: https://github.com/Kong/kong-plugin-azure-functions
-breadcrumbs:
-  Plugins: /plugins
+name: Azure Functions
+source_url: https://github.com/Kong/kong-plugin-azure-functions
 nav:
   - label: Usage
     items:
       - label: Demonstration
       - label: Limitations
 
+desc: Invoke and manage Azure functions from Kong
 description: |
-
   This plugin invokes
   [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).
   It can be used in combination with other request plugins to secure, manage
   or extend the function.
+
+type: plugin
+categories:
+  - serverless
 
 installation: |
 

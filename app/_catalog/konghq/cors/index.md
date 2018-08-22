@@ -1,18 +1,18 @@
 ---
-id: page-plugin
-title: Plugins - Cross-origin resource sharing
-header_title: CORS
-header_icon: /assets/images/icons/plugins/cors.png
-breadcrumbs:
-  Plugins: /plugins
+name: CORS
 nav:
   - label: Known Issues
     items:
       - label: CORS Limitations
 
+desc: Allow developers to make requests from the browser
 description: |
   Easily add __Cross-origin resource sharing *(CORS)*__ to a Service, a Route (or the deprecated API entity) by enabling
   this plugin.
+
+type: plugin
+categories:
+  - security
 
 params:
   name: cors
