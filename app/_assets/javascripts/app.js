@@ -264,18 +264,16 @@ $(function () {
 
   analytics.trackLink($('a[href="#comparison"]')[0], 'Clicked Why Kong')
 
-  $(window).scroll(function(){
-    var sticky = $('.site-header'),
-      scroll = $(window).scrollTop();
+  $(window).scroll(function () {
+    var sticky = $('.site-header')
+    var scroll = $(window).scrollTop()
 
     if (scroll >= 50) {
-      sticky.addClass('fixed-top');
-      $('.page').addClass('page-header-fixed');
+      sticky.addClass('fixed-top')
+      $('.page').addClass('page-header-fixed')
+    } else {
+      sticky.removeClass('fixed-top')
+      $('.page').removeClass('page-header-fixed')
     }
-    else {
-      sticky.removeClass('fixed-top');
-      $('.page').removeClass('page-header-fixed');
-    }
-
-  });
+  })
 })
