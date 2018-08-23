@@ -19,7 +19,7 @@ categories: # (required) Uncomment all that apply.
   #- authentication
   #- security
   #- traffic-control
-  #- severless
+  #- serverless
   #- analytics-monitoring
   #- transformations
   #- logging
