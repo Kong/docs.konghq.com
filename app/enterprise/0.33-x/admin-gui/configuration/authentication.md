@@ -72,8 +72,14 @@ HTTP/1.1 201 Created
 
 Save this `"key": "62eb165c070a41d5c1b58d9d3d725ca1"` for use later. Note that this key is separate and distinct from the admin's RBAC token. 
 
-Now you need an RBAC user to associate to this admin. To add the Super Admin, see 
-"[Bootstrapping the first RBAC user - the Super Admin](/enterprise/{{page.kong_version}}/rbac/examples/#bootstrapping-the-first-rbac-user-the-super-admin)".
+When the Admin was created earlier it also created an RBAC user. This user now
+needs to have the RBAC Super Admin role added to it. You might need to create
+an RBAC user to associate to this admin. To add the Super Admin, see 
+"[Bootstrapping the first RBAC user - the Super Admin](/enterprise/{{page.kong_version}}/rbac/examples/#bootstrapping-the-first-rbac-user-the-super-admin)". 
+
+```
+curl -X POST http://kong:8001/rbac/users/{username}/roles/super-admin
+```
 
 Now that you have an Admin with an associated login Key and an RBAC Super-Admin, 
 update the following in your Kong Configuration, then restart Kong.
