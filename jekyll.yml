@@ -53,7 +53,7 @@ extensions:
       slug: traffic-control
       desc: Manage, throttle and restrict inbound and outbound API traffic
     - name: Serverless
-      slug: severless
+      slug: serverless
       desc: Invoke serverless functions in combination with other plugins
     - name: Analytics & Monitoring
       slug: analytics-monitoring
