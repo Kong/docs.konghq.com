@@ -108,10 +108,9 @@ description: |
   blacklist groups of users.
 
 
+enterprise: true
 type: plugin
 categories:
   - authentication
 
 ---
-
-{% include ee_plugin_footer.html %}

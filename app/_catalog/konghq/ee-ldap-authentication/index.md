@@ -8,10 +8,9 @@ description: |
 
   * [Detailed documentation for the EE LDAP Authentication Plugin](/enterprise/latest/plugins/ldap-authentication-advanced/)
 
+enterprise: true
 type: plugin
 categories:
   - authentication
 
 ---
-
-{% include ee_plugin_footer.html %}

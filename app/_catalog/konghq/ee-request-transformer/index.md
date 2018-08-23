@@ -8,10 +8,9 @@ description: |
 
   * [Detailed documentation for the EE Request Transformer Plugin](/enterprise/latest/plugins/request-transformer)
 
+enterprise: true
 type: plugin
 categories:
   - transformations
 
 ---
-
-{% include ee_plugin_footer.html %}

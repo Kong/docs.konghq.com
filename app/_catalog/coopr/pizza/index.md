@@ -16,7 +16,6 @@ id: pizza # a slug-formatted string to represent your extension
 
 #header_icon: #FIXME # (optional) Uncomment only if you are submitting an icon
   # See icon submission instructions in the README.
-
 categories: # (required) Uncomment all that apply.
   #- authentication
   #- security
