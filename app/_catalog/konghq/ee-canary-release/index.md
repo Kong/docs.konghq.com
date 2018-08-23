@@ -8,6 +8,7 @@ description: |
 
   * [Detailed documentation for the EE Canary Release Plugin](/enterprise/latest/plugins/canary-release/)
 
+enterprise: true
 type: plugin
 categories:
   - traffic-control

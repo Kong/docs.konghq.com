@@ -8,6 +8,7 @@ description: |
 
   * [Detailed documentation for the EE Proxy Caching Plugin](/enterprise/latest/plugins/http-proxy-caching/)
 
+enterprise: true
 type: plugin
 categories:
   - traffic-control

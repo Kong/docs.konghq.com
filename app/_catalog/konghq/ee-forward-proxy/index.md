@@ -8,6 +8,7 @@ description: |
 
   * [Detailed documentation for the EE Forward Proxy Plugin](/enterprise/latest/plugins/forward-proxy/)
 
+enterprise: true
 type: plugin
 categories:
   - traffic-control

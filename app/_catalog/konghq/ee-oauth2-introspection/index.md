@@ -12,6 +12,7 @@ description: |
 
   * [Detailed documentation for the EE OAuth 2.0 Introspection Plugin](/enterprise/latest/plugins/oauth2-introspection/)
 
+enterprise: true
 type: plugin
 categories:
   - authentication

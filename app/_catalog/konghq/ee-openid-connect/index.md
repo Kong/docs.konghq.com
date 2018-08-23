@@ -108,6 +108,7 @@ description: |
   blacklist groups of users.
 
 
+enterprise: true
 type: plugin
 categories:
   - authentication

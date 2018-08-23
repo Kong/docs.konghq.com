@@ -12,6 +12,7 @@ description: |
 
   * [Detailed documentation for the StatsD Advanced Plugin](/enterprise/latest/plugins/statsd-advanced/)
 
+enterprise: true
 type: plugin
 categories:
   - logging

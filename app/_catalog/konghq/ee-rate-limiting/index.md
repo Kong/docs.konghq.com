@@ -8,6 +8,7 @@ description: |
 
   * [Detailed documentation for the EE Rate Limiting Plugin](/enterprise/latest/plugins/rate-limiting-advanced/)
 
+enterprise: true
 type: plugin
 categories:
   - traffic-control
