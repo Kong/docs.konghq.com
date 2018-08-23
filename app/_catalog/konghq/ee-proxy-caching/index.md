@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: EE Proxy Caching
 
 desc: Cache and serve commonly requested responses in Kong

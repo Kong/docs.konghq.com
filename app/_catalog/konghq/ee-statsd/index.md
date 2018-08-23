@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: StatsD Advanced
 
 desc: Send metrics to StatsD with more flexible options

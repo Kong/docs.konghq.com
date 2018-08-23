@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: EE LDAP Authentication
 
 desc: Secure Kong clusters, routes and services with username and password protection

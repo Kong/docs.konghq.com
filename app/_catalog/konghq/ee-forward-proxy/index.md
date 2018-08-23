@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: EE Forward Proxy
 
 desc: Allows Kong to connect to intermediary transparent HTTP proxies

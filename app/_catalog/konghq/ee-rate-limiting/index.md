@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: EE Rate Limiting
 
 desc: Upgrades Kong Community Edition rate limiting with more flexibility and higher performance
