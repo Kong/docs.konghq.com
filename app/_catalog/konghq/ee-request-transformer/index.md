@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: EE Request Transformer
 
 desc: Use powerful regular expressions, variables and templates to transform API requests

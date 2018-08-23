@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: OAuth 2.0 Introspection
 
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server

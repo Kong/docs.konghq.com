@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: EE Canary Release
 
 desc: Slowly roll out software changes to a subset of users

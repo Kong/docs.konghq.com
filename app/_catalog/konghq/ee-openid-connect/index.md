@@ -1,5 +1,5 @@
 ---
-layout: plugin-ee
+
 name: OpenID Connect
 
 desc: Integrate Kong with a third-party OpenID Connect 1.0 provider
