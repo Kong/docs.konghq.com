@@ -17,3 +17,5 @@ categories:
   - logging
 
 ---
+
+{% include ee_plugin_footer.html %}

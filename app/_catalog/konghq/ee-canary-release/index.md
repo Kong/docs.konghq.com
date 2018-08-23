@@ -1,5 +1,4 @@
 ---
-layout: plugin-ee
 name: EE Canary Release
 
 desc: Slowly roll out software changes to a subset of users
@@ -13,3 +12,5 @@ categories:
   - traffic-control
 
 ---
+
+{% include ee_plugin_footer.html %}

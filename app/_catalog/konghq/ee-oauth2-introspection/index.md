@@ -17,3 +17,5 @@ categories:
   - authentication
 
 ---
+
+{% include ee_plugin_footer.html %}

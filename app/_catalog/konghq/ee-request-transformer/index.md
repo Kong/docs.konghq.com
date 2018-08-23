@@ -13,3 +13,5 @@ categories:
   - transformations
 
 ---
+
+{% include ee_plugin_footer.html %}

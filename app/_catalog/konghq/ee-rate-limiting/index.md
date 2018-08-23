@@ -13,3 +13,5 @@ categories:
   - traffic-control
 
 ---
+
+{% include ee_plugin_footer.html %}
