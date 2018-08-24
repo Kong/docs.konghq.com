@@ -230,7 +230,7 @@ module will store the miss just as if it was a hit. This means that a
 propagated by Kong so that all nodes that stored the miss can evict it, and
 properly fetch the newly created API key from the datastore.
 
-See the [Clustering Guide](/docs/{{page.kong_version}}/clustering/) to ensure
+See the [Clustering Guide](/{{page.kong_version}}/clustering/) to ensure
 that you have properly configured your cluster for such invalidation events.
 
 #### Manual cache invalidation
@@ -292,5 +292,5 @@ the Admin API]({{page.book.next}}).
 
 Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
 
-[Admin API]: /docs/{{page.kong_version}}/admin-api/
+[Admin API]: /{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /{{page.kong_version}}/pdk
