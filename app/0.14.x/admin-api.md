@@ -2395,9 +2395,9 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
-[clustering]: /docs/{{page.kong_version}}/clustering
-[cli]: /docs/{{page.kong_version}}/cli
-[active]: /docs/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /docs/{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /docs/{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /docs/{{page.kong_version}}/proxy
+[clustering]: /{{page.kong_version}}/clustering
+[cli]: /{{page.kong_version}}/cli
+[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /{{page.kong_version}}/proxy
