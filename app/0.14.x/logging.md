@@ -4,7 +4,7 @@ title: Logging Reference
 
 # Removing Certain Elements From Your Kong Logs
 
-With new regulations surrounding protecting private data like GDPR, there is a chance you may need to change your logging habits. If you use Kong as your API Gateway, this can be done in a single location to take effect on all of your APIs. This guide will walk you through one approach to accomplishing this, but there are always different approaches for different needs. Please not, theese changes will effect the output of the NGINX access logs. This will not have any effect om Kong's logging plugins.
+With new regulations surrounding protecting private data like GDPR, there is a chance you may need to change your logging habits. If you use Kong as your API Gateway, this can be done in a single location to take effect on all of your APIs. This guide will walk you through one approach to accomplishing this, but there are always different approaches for different needs. Please note, these changes will effect the output of the NGINX access logs. This will not have any effect on Kong's logging plugins.
 
 For this example, let’s say you want to remove any instances of an email address from your kong logs. The emails addresses may come through in different ways, for example something like `/apiname/v2/verify/alice@example.com` or `/v3/verify?alice@example.com`. In order to keep these from being added to the logs, we will need to use a custom NGINX template.
 
