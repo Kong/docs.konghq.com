@@ -2,129 +2,62 @@
 layout: default
 title: Kong Catalog
 sitemap: true
-id: catalog
 breadcrumbs: null
 permalink: /catalog/
+body_id: page-catalog
 ---
 
 {% assign catalog = site.catalog %}
 {% assign categories = site.extensions.categories %}
 
-<div class="page {{ page.id }}">
+<div class="page page-catalog">
   {% include header.html %}
 
   <div class="container">
-    <aside class="page-navigation">
 
-      <nav>
-        <h5>Getting Started</h5>
-        <ul>
-          <li><a href="#terminology">Terminology</a></li>
-          {% if page.installation %}
-            <li><a href="#installation">Installation</a></li>
-          {% endif %}
-          <li><a href="#configuration">Configuration</a></li>
-        </ul>
-      </nav>
-
-      {% for nav in page.nav %}
-        <nav>
-          {% if nav.items %}
-            <h5>{{ nav.label }}</h5>
-          {% else %}
-            <a href="#{{ nav.label | slugify }}"><h5>{{ nav.label }}</h5></a>
-          {% endif %}
-
-          <ul>
-            {% for item in nav.items %}
-              <li>
-                <a href="#{{ item.label | slugify }}">{{ item.label }}</a>
-
-                {% if item.items %}
-                  <ul>
-                    {% for subitem in item.items %}
-                      <li><a href="#{{ subitem.label | slugify }}">{{ subitem.label }}</a></li>
-                    {% endfor %}
-                  </ul>
+    <h2 class="text-center">Kong Catalog</h2>
+    <h3 class="text-center">Extend Kong with powerful plugins and integrations.</h3>
+    <div class="kong-plugins">
+      <div class="row">
+        <div class="col-12 col-lg-9 cards-collection" >
+          <div class="row mb-2x">
+            {% for extn in catalog %}
+              {% assign path_array = extn.path | split: "/" %}
+              {% assign filename = path_array | last %}
+              {% assign extn_slug = path_array[2] %}
+              {% assign extn_publisher = path_array[1] %}
+              {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
+              {% if filename == "index.md" and extn.type %}
+                {% if page.header_icon %}
+                  {% assign header_icon = page.header_icon %}
+                {% else %}
+                  {% capture header_icon %}/assets/images/icons/catalog/{{ extn_id }}.png{% endcapture %}
                 {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        </nav>
-      {% endfor %}
-    </aside>
-
-    <div class="page-content-container">
-      <div class="page-content">
-        <div class="content">
-          <h3>Extend Kong with powerful plugins and integrations.</h3>
-          <div class="container kong-plugins bt">
-            <div class="row">
-              <div class="col col-lg-3 hidden-md-down sidebar">
-                <div class="sticky-top" style="top: 106px;">
-                  <h5 class="mb-1x">Plugins</h5>
-                  <ul class="nav flex-column mb-4x plugin-filter">
-                    <li class="nav-item"><a class="nav-link active" data-filter="all">All Plugins</a></li>
-                    <li class="nav-item"><a class="nav-link" data-filter="open-source">Open Source</a></li>
-                    <li class="nav-item"><a class="nav-link" data-filter="enterprise">Enterprise</a></li>
-                  </ul>
-                  <h5 class="my-1x">Categories</h5>
-                  <ul class="nav flex-column" id="scroll-sidebar">
-                    {% for cat in categories %}
-                      <li class="nav-item">
-                        <a class="nav-link" data-link="scroll" href="#{{ cat.slug }}">
-                          {{ cat.name }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                  <hr>
-                  <p class="sm">Psst, looking for something else?</p>
-                  <a class="btn btn-gry" href="https://discuss.konghq.com/" target="_blank">Suggest a Plugin</a>
-                </div>
-              </div>
-              <div class="col-12 col-lg-9" >
-                {% for cat in categories %}
-                  <div class="row" id="{{ cat.slug }}">
-                    <div class="row">
-                      <div class="col">
-                        <h4 class="fw-500">{{ cat.desc }}</h4>
-                        <p></p>
-                      </div><!--/col-->
-                    </div><!--/row-->
-                    <div class="row mb-2x">
-                      {% for extn in catalog %}
-                        {% assign path_array = extn.path | split: "/" %}
-                        {% assign filename = path_array | last %}
-                        {% assign extn_slug = path_array[2] %}
-                        {% assign extn_publisher = path_array[1] %}
-                        {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
-                        {% if filename == "index.md" and extn.categories contains cat.slug %}
-                        {% if page.header_icon %}
-                          {% assign header_icon = page.header_icon %}
-                        {% else %}
-                          {% capture header_icon %}/assets/images/icons/catalog/{{ extn_id }}.png{% endcapture %}
-                        {% endif %}
-                          <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
-                            <div class="card plugin-card align-items-center text-center {{ extn.type }}">
-                              <a href="{{ extn.url | remove: '/index' }}">
-                                <img class="card-img-top" src="{{ header_icon }}" width="64" height="64"/>
-                                <p class="lg mt-1x fw-500">{{ extn.name }}</p>
-                                <p class="sm text-center">{{ extn.desc }}</p>
-                              </a>
-                            </div>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
+                {% assign extn_slug_array = extn_slug | split: "-" %}
+                <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
+                  <div class="card plugin-card align-items-center {{ extn.type }} {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'konghq' %}pub-konghq{% else %}pub-not-konghq{% endif %}">
+                    <div class="name-desc">
+                      <a href="{{ extn.url | remove: '/index' }}">
+                        <img class="card-img-top" src="{{ header_icon }}" width="64" height="64"/>
+                        <p class="lg mt-1x fw-500">{{ extn.name }}</p>
+                        <p class="sm">{{ extn.desc }}</p>
+                      </a>
                     </div>
-                  </div><!--/#section -->
-                {% endfor %}
-              </div>
-            </div>
-          </section>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                    <div class="support-by">
+                      Support by:<br>
+                      {% if extn_publisher == "konghq" %}
+                        {% include svgs.html img='team-kong-icon' %}
+                      {% else %}
+                        {{ extn_publisher }}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div><!-- row mb-2x  -->
+        </div><!-- col-12  -->
+      </div><!-- row -->
+    </div><!-- kong-plugins -->
+  </div><!-- container -->
+</div><!-- page -->
