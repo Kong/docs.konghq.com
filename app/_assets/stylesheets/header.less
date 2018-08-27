@@ -1,14 +1,17 @@
 .site-header {
   &:extend(.u-cf, .u-full-width);
   z-index: 1;
-  position: relative;
   box-shadow: 0 1px rgba(255, 255, 255, 0.1);
 
-  @media (min-width: @navbar-collapse-point) {
+
+  &.fixed-top {
     top: 0;
     left: 0;
-    position: fixed;
     z-index: 1001;
+    position: fixed;
+    @media (max-width: @navbar-collapse-point) {
+      position: relative;
+    }
   }
 
   .enterprise {
