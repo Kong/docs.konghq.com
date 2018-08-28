@@ -1,8 +1,8 @@
 ---
 layout: default
 sitemap: true
-id: "page-plugin"
 type: plugin
+permalink: :path
 ---
 
 {% if page.type == "plugin" %}
@@ -150,6 +150,20 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% assign extn_publisher = path_array[1] %}
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
 {% capture extn_icon %}/assets/images/icons/plugins/{{ extn_id }}.png{% endcapture %}
+{% assign extn_filename = path_array | last %}
+{% assign extn_versions = site.data.extensions[extn_publisher][extn_slug]['versions'] %}
+{% if extn_versions %}
+  {% assign extn_version_latest = extn_versions | first %}
+  {% assign extn_latest = extn_version_latest['release'] %}
+  {% unless extn_filename == "index.md" %}
+    {% assign extn_release = extn_filename | remove: ".md" %}
+    {% assign extn_ver = extn_releases | where: "release", extn_release %}
+    {% assign extn_version = extn_ver[0] %}
+  {% else %}
+    {% assign extn_version = extn_versions | first %}
+    {% assign extn_release = extn_version['release'] %}
+  {% endunless %}
+{% endif %}
 
 <!-- BEGIN PAGE OUTPUT -->
 
@@ -157,10 +171,38 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
   {% if page.header_icon or page.header_title %}
     {% include header.html type=extn_type name=page.header_title %}
   {% else %}
-    {% include header.html img=extn_icon name=page.name type=extn_type %}
+    {% include header.html img=extn_icon name=page.name %}
   {% endif %}
 
+
   <div class="container">
+
+    {% if extn_versions %}
+      <div class="dropdown page-header-right">
+        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Version {{extn_release}}
+          {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+          {% for ver in extn_versions %}
+            {% unless extn_release == ver.release %}
+              {% if ver.release == extn_latest %}
+                {% assign ver_path = "" %}
+              {% else %}
+                {% assign ver_path = ver.release | append: ".html" %}
+              {% endif %}
+              <li>
+                <a href="/catalog/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
+                  {{ver.release}}
+                </a>
+              </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
     <aside class="page-navigation">
 
       {% if page.type == "plugin" %}
@@ -184,7 +226,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
             {% else %}
               <a href="#{{ nav.label | slugify }}"><h5>{{ nav.label }}</h5></a>
             {% endif %}
-
             <ul>
               {% for item in nav.items %}
                 <li>
@@ -211,9 +252,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         <tr>
           <td>Made by</td>
           <td>{{ extn_publisher }}</td>
-        </tr>
-        <tr>
-
         </tr>
         {% if page.support_url %}
           <tr>
@@ -253,6 +291,24 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <tr>
             <td>Terms of Service</td>
             <td><a href="#terms-of-service">See below</a></td>
+          </tr>
+        {% endif %}
+        {% if extn_releases %}
+          <tr>
+            <th colspan="2">Other Versions</th>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <ul class="extn-versions">
+              {% for v in extn_releases %}
+                {% unless extn_version == v.release %}
+                <li>
+                  <a href="{{ v.release }}.html">{{ v.release }} {% if v.date %}({{ v.date }}){% endif %}</a>
+                </li>
+                {% endunless %}
+              {% endfor %}
+              </ul>
+            </td>
           </tr>
         {% endif %}
       </table>

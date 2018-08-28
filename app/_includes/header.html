@@ -8,10 +8,6 @@
 {% elsif page.header_title %}
     {% assign header_title = page.header_title %}
 {% endif %}
-{% if include.type %}
-  {% assign extn_type = include.type %}
-  {% capture header_title %}{{ header_title }} ({{ extn_type | capitalize}}){% endcapture %}
-{% endif %}
 {% if header_icon and header_title %}
   <header class="page-header">
     <div class="container">
