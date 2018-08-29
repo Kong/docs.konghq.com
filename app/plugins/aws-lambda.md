@@ -96,6 +96,11 @@ params:
       default: "`false`"
       description: |
         An optional value that defines whether the original HTTP request URI is to be sent in the `request_uri` field of the JSON-encoded request. Request URI arguments (if any) will be sent in the separate `request_uri_args` field of the JSON body.
+    - name: is_proxy_integration
+      required: false
+      default: "`false`"
+      description: |
+        An optional value that defines whether the response format to receive from the Lambda to [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format). Note that the parameter `isBase64Encoded` is not implemented. So you don't have to specify it
 
   extra: |
     **Reminder**: curl by default sends payloads with an
@@ -167,6 +172,10 @@ from being executed. We are planning to remove this limitation in the future.
     ```python
     import json
     def lambda_handler(event, context):
+        """
+          If is_proxy_integration is set to true :
+          jsonbody='''{"statusCode": 200, "body": {"response": "yes"}}'''
+        """
         jsonbody='''{"response": "yes"}'''
         return json.loads(jsonbody)
     ```
@@ -193,6 +202,8 @@ from being executed. We are planning to remove this limitation in the future.
     --data 'config.aws_secret={KongInvoker user secret}' \
     --data 'config.aws_region=us-east-1' \
     --data 'config.function_name=MyLambda'
+    # If you want to add Lambda proxy integration, add :
+    # --data 'config.is_proxy_integration=true'
     ```
 
     Call the Api and verify the correct invocation, execution and response:
