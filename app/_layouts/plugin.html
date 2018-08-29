@@ -80,7 +80,9 @@ plugin.
 #### Enabling the plugin on an API
 
 If you are using an older version of Kong with the legacy [API
-entity](/0.13.x/admin-api/#api-object) (**deprecated** since 0.13.0), you
+entity](/0.13.x/admin-api/#api-object) (**deprecated** in favor of Services
+since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a>
+and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.), you
 can configure this plugin on top of such an API by making the following
 request:
 
@@ -114,7 +116,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       <tr><td><code>consumer_id</code></td><td></td><td>The id of the Consumer which this plugin will target.</td></tr>
     {% endif %}
     {% if page.params.api_id %}
-    <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated since Kong 0.13.0.</td></tr>
+    <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td></tr>
     {% endif %}
     {% for field in page.params.config %}
       <tr>
