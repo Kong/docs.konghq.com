@@ -171,14 +171,16 @@ header.
 ### Body Validation
 
 User can set `config.validate_request_body` as `true` to validate the request
-body. If it's enabled and if the client sends a `Digest` header in the request,
-the plugin will calculate the `SHA-256` HMAC digest of the request body and
-match it against the value of the `Digest` header. The Digest header needs to
-be in following format:
+body. If it's enabled the plugin will calculate the `SHA-256` HMAC digest of 
+the request body and match it against the value of the `Digest` header. The 
+Digest header needs to be in following format:
 
 ```
 Digest: SHA-256=base64(sha256(<body>))
 ```
+
+If there is no request body, the `Digest` should be set to the digest of a 
+body of 0 length.
 
 Note: In order to create the digest of a request body, the plugin needs to
 retain it in memory, which might cause pressure on the worker's Lua VM when
@@ -447,5 +449,5 @@ for which to get the associated [Consumer][consumer-object].
 Note that `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[consumer-object]: /latest/admin-api/#consumer-object
 [clock-skew]: https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4

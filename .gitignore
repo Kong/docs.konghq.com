@@ -1,4 +1,5 @@
 .DS_Store
+.che
 .vagrant
 .buildpath
 .project
@@ -7,6 +8,7 @@
 .ruby-version
 .ruby-gemset
 *.log
+yarn.lock
 
 # jekyll
 Gemfile.lock

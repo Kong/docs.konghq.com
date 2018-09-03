@@ -3,8 +3,6 @@ title: Plugins - OpenID Connect
 layout: plugin-ee
 header_title: OpenID Connect
 header_icon: /assets/images/icons/plugins/ee-openid-connect.png
-header_btn_text: Report Bug
-header_btn_href: mailto:support@konghq.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
 description: |
@@ -14,6 +12,8 @@ description: |
   This plugin can be used to implement Kong as a (proxying) [OAuth 2.0][oauth2] resource
   server (RS) and / or as an OpenID Connect relying party (RP) between the client
   and the upstream service.
+
+  * [Detailed documentation for the EE OpenID Connect Plugin](/enterprise/latest/plugins/openid-connect/)
 
   The plugin supports several types of credentials, including:
 
@@ -67,7 +67,7 @@ description: |
   - [OpenAM][openam]
   - [Paypal][paypal]
   - [PingFederate][pingfederate]
-  - [Salesfoce][salesforce]
+  - [Salesforce][salesforce]
   - [Yahoo!][yahoo]
 
   As long as your provider supports OpenID Connect standards the plugin should

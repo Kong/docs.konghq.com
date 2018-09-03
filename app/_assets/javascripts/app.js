@@ -36,25 +36,41 @@ $(function () {
     })
   }
 
-  // Cookie Policy
-  // Check for cookie
-  if (!document.cookie.split(';').filter(function (item) {
-    return item.indexOf('cookie-policy=') >= 0
-  }).length) {
-    $('.cookie-policy-container').addClass('show')
-    $('.page').addClass('page-cookie-policy')
-  }
-
   // Hide banner on "I accept" and set cookie
   $('.cookie-policy-accept').on('click', function (e) {
     e.preventDefault()
 
-    $('.cookie-policy-container').removeClass('show')
+    $('.cookie-policy-container').removeClass('showing')
     $('.page').removeClass('page-cookie-policy')
-    var CookieDate = new Date()
-    CookieDate.setFullYear(CookieDate.getFullYear() + 10)
-    document.cookie = 'cookie-policy; expires=' + CookieDate.toGMTString() + ';path=/'
+    setCookie('cookie-policy', 'agreed')
   })
+
+  function getCookie (cname) {
+    var name = cname + '='
+    var ca = document.cookie.split(';')
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i]
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1)
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length)
+      }
+    }
+    return ''
+  }
+
+  function setCookie (cname, cvalue) {
+    var CookieDate = new Date()
+    CookieDate.setFullYear(CookieDate.getFullYear() + 1)
+    document.cookie = cname + '=' + cvalue + '; expires=' + CookieDate.toGMTString() + ';path=/'
+  }
+
+  var isCookieSet = getCookie('cookie-policy')
+  if (isCookieSet === '') {
+    $('.cookie-policy-container').addClass('showing')
+    $('.page').addClass('page-cookie-policy')
+  }
 
   // Page section on contribute page
 
@@ -247,4 +263,17 @@ $(function () {
   })
 
   analytics.trackLink($('a[href="#comparison"]')[0], 'Clicked Why Kong')
+
+  $(window).scroll(function () {
+    var sticky = $('.site-header')
+    var scroll = $(window).scrollTop()
+
+    if (scroll >= 50) {
+      sticky.addClass('fixed-top')
+      $('.page').addClass('page-header-fixed')
+    } else {
+      sticky.removeClass('fixed-top')
+      $('.page').removeClass('page-header-fixed')
+    }
+  })
 })

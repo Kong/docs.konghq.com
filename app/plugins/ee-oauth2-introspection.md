@@ -4,8 +4,6 @@ title: Plugins - OAuth 2.0 Introspection
 layout: plugin-ee
 header_title: OAuth 2.0 Introspection
 header_icon: /assets/images/icons/plugins/ee-oauth2-introspection.png
-header_btn_text: Report Bug
-header_btn_href: mailto:support@konghq.com?subject={{ page.header_title }} Plugin Bug
 breadcrumbs:
   Plugins: /plugins
 description: |
@@ -16,4 +14,5 @@ description: |
   the Consumer already has an access token that will be validated against a
   third-party OAuth 2.0 server.
 
+  * [Detailed documentation for the EE OAuth 2.0 Introspection Plugin](/enterprise/latest/plugins/oauth2-introspection/)
 ---

@@ -1,8 +1,8 @@
-> You are reviewing the contributing guidelines of getkong.org. If you want to
+> You are reviewing the contributing guidelines of docs.konghq.com. If you want to
 > contribute to Kong itself, then please go
 > [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md).
 
-# Contributing to getkong.org 📜 🦍
+# Contributing to docs.konghq.com 📜 🦍
 
 Hello, and welcome! Whether you are looking for help, trying to report a bug,
 thinking about getting involved in the project or about to submit a patch, this
@@ -35,9 +35,9 @@ for an overview of the communication channels at your disposal.
 
 ## Where to report bugs?
 
-If the bug is about the https://getkong.org website itself, please report it
+If the bug is about the https://docs.konghq.com website itself, please report it
 in this [repository's issues
-tracker](https://github.com/kong/getkong.org/issues/new).
+tracker](https://github.com/kong/docs.konghq.com/issues/new).
 
 If the bug is related to Kong itself, please refer to the [Kong Contributing
 Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-report-bugs)
@@ -70,7 +70,7 @@ When contributing, be aware of a few things:
   Example: if you fix a typo in `app/docs/0.10.x/configuration.md`, this typo
   may also be present in `app/docs/0.9.x/configuration.md`.
 - There are enterprise edition documents that live under
-  `app/docs/enterprise/x.x-x` and have a plugins section specific to EE which
+  `app/enterprise/x.x-x` and have a plugins section specific to EE which
   are versioned unlike CE plugins.
 
 [Back to TOC](#table-of-contents)
@@ -106,7 +106,7 @@ you are probably the one in need of it. You must be prepared to apply changes
 to it if necessary.
 
 If your Pull Request was accepted, congratulations! You are now an official
-contributor of getkong.org and member of the Kong community.
+contributor of docs.konghq.com and member of the Kong community.
 
 Your changes will be deployed as soon as a maintainer gets a chance to trigger
 a build, which should generally happen right after your patch was merged.

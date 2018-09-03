@@ -7,6 +7,7 @@ var del = require('del')
 var ghPages = require('gh-pages')
 var gulp = require('gulp')
 var path = require('path')
+var fs = require('fs')
 var sequence = require('run-sequence')
 var dev = false
 
@@ -119,24 +120,112 @@ gulp.task('html', ['jekyll'], function () {
   return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
     // Prefetch static assets
-    .pipe($.resourceHints())
+    // .pipe($.resourceHints())
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
 })
 
-gulp.task('docs', function (cb) {
-  if (process.env.KONG_PATH === undefined) {
+gulp.task('pdk-docs', function (cb) {
+  var KONG_PATH, KONG_VERSION,
+    navFilepath, doc, pdkRegex, newNav, newDoc,
+    cmd, obj, errLog,
+    refDir, modules,
+    gitSha1, confFilepath
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
     return cb('No KONG_PATH environment variable set')
   }
 
-  var command = 'ldoc --quiet -c ./config.ld ' + process.env.KONG_PATH
-  command += ' && rm lua-reference/ldoc.css'
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 0.14.x')
+  }
 
-  childProcess.exec(command, function (err, stdout, stderr) {
-    gutil.log(stdout)
-    gutil.log(stderr)
-    cb(err)
-  })
+  // 1. update nav file
+  // 1.1 Check that nav file exists
+  navFilepath = './app/_data/docs_nav_' + KONG_VERSION + '.yml'
+  try {
+    doc = fs.readFileSync(navFilepath, 'utf8')
+  } catch (err) {
+    return cb('Could not find the file ' + navFilepath + '. Err: ' + err)
+  }
+
+  // 1.2 Check that nav file has the correct yaml entry
+  pdkRegex = /[ ]+- text: Plugin Development Kit[\s\S]+\n-/gm
+  if (!doc.match(pdkRegex)) {
+    return cb('Could not find the appropiate section in ' + navFilepath)
+  }
+
+  // 1.3 Generate new yaml using ldoc
+  cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
+        'ldoc -q -i --filter ldoc/filters.nav ' +
+        KONG_PATH + '/kong/pdk'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  // ignore "unkwnown tag" errors
+  errLog = obj.stderr.toString().replace(/.*unknown tag.*\n/g, '')
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  // 1.4 Replace existing yaml with generated one
+  newNav = obj.stdout.toString()
+  newDoc = doc.replace(pdkRegex, newNav + '\n-')
+  fs.writeFileSync(navFilepath, newDoc)
+  gutil.log('Updated contents of ' + navFilepath + ' with new navigation items')
+
+  // 2. generate markdown docs using custom ldoc templates
+  // 2.1 Prepare ref folder
+  refDir = 'app/' + KONG_VERSION + '/pdk'
+  cmd = 'rm -rf ' + refDir + ' && mkdir ' + refDir
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  // 2.2 obtain the list of modules in json form & parse it
+  cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
+        'ldoc -q -i --filter ldoc/filters.json ' +
+        KONG_PATH + '/kong/pdk'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  // ignore "unkwnown tag" errors
+  errLog = obj.stderr.toString().replace(/.*unknown tag.*\n/g, '')
+  if (errLog.lenth > 0) {
+    return cb(errLog)
+  }
+  modules = JSON.parse(obj.stdout.toString())
+
+  // 2.3 For each module, generate its docs in markdown
+  for (let module of modules) {
+    cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
+          'ldoc -q -c ldoc/config.ld ' +
+          module.file + ' && ' +
+          'mv ./' + module.generated_name + '.md ' + refDir + '/' +
+          module.name + '.md'
+    obj = childProcess.spawnSync(cmd, { shell: true })
+    errLog = obj.stderr.toString()
+    if (errLog.length > 0) {
+      return cb(errLog)
+    }
+  }
+  gutil.log('Re-generated PDK docs in ' + refDir)
+
+  // 3 Write pdk_info yaml file
+  // 3.1 obtain git sha-1 hash of the current git log
+  cmd = 'pushd ' + KONG_PATH + ' > /dev/null; git rev-parse HEAD; popd > /dev/null'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+  gitSha1 = obj.stdout.toString().trim()
+
+  // 3.2 write it into file
+  confFilepath = 'app/_data/pdk_info.yml'
+  fs.writeFileSync(confFilepath, 'sha1: ' + gitSha1 + '\n')
+  gutil.log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
 })
 
 gulp.task('clean', function () {
@@ -179,7 +268,7 @@ gulp.task('cloudflare', function (cb) {
     token: process.env.MASHAPE_CLOUDFLARE_TOKEN
   })
 
-  cloudflare.clearCache('getkong.org', function (err) {
+  cloudflare.clearCache('docs.getkong.com', function (err) {
     if (err) {
       gutil.log(err.message)
     }

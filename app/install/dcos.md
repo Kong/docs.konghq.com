@@ -30,7 +30,7 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
     Download or clone the following repo:
 
     ```bash
-    $ git clone git@github.com:Mashape/kong-dist-dcos.git
+    $ git clone git@github.com:Kong/kong-dist-dcos.git
     $ cd kong-dist-dcos
     ```
 
@@ -306,4 +306,4 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
     ```
  
     Quickly learn how to use Kong with the 
-    [5-minute Quickstart](/docs/latest/getting-started/quickstart/).
+    [5-minute Quickstart](/latest/getting-started/quickstart/).

@@ -170,4 +170,4 @@ looking for the Kong process error file (which is the nginx error file), then
 you can find it at the following path:
 `$KONG_PREFIX/logs/error.log`,
 where `$KONG_PREFIX` means
-[prefix in the configuration](/docs/{{site.data.kong_latest.release}}/configuration/#prefix).
+[prefix in the configuration](/{{site.data.kong_latest.release}}/configuration/#prefix).

@@ -76,6 +76,12 @@ params:
       default: "`true`"
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
+    - name: maximum_expiration
+      required: false
+      default: 0
+      description: |
+        An integer limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime will rejected (HTTP 403). If this valeu is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this value.
+        
   extra: |
     <div class="alert alert-warning">
         <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
@@ -127,7 +133,7 @@ HTTP/1.1 201 Created
 form parameter                 | default         | description
 ---                            | ---             | ---
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
-`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `RS256`, or `ES256`.
+`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, or `ES256`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256` or `ES256`, the public key (in PEM format) to use to verify the token's signature.
 `secret`<br>*optional*         |                 | If `algorithm` is `HS256` or `ES256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
@@ -526,7 +532,7 @@ curl -X GET http://kong:8001/jwts/{key or id}/consumer
 `key or id`: The `id` or `key` property of the JWT for which to get the
 associated [Consumer][consumer-object].
 
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration
+[consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

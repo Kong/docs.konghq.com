@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - Azure Functions
 header_title: Azure Functions
 header_icon: https://konghq.com/wp-content/uploads/2018/05/azure-functions.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-azure-functions
 breadcrumbs:
   Plugins: /plugins
 nav:
@@ -28,7 +29,7 @@ installation: |
 
   or install it from [source](https://github.com/kong/kong-plugin-azure-functions).
   For more infomation on Plugin installation, please see the documentation
-  [Plugin Development - (un)Install your plugin](/docs/latest/plugin-development/distribution/)
+  [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
 
 params:
   name: azure-functions
@@ -94,8 +95,6 @@ params:
     `lua_ssl_trusted_certificate` directive in your Kong configuration.
 
 ---
-
-> **Note**: Azure-Functions plugin is available in Enterprise as of version 0.32 and will soon be available as part of Kong CE 0.14.
 
 ## Demonstration
 
@@ -177,7 +176,7 @@ headers, and body will be passed to the Azure Function if provided.
 
 When using the this plugin, the response will be returned by the plugin itself
 without proxying the request to any upstream service. This means that whatever
-`url` has been set on the [Service](https://getkong.org/docs/latest/admin-api/#service-object)
+`url` has been set on the [Service](https://docs.konghq.com/latest/admin-api/#service-object)
 it will never be used. Although `url` will never be used, it's
 currently a mandatory field in Kong's data model, so feel free to set a fake
 value (ie, `http://dead.end.com` as per the example above) if you are planning to use this plugin.

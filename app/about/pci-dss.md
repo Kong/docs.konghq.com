@@ -2,6 +2,7 @@
 title: PCI DSS Compliance
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: PCI DSS Compliance
+redirect_to: https://konghq.com/about-kong/pci-dss/
 ---
 
 The Payment Card Industry Data Security Standard (PCI DSS) is a set of industry-mandated requirements that apply to any business that handles, processes, or stores credit cards, regardless of the business's size or location.
@@ -25,5 +26,5 @@ You will still need to complete an annual [Self-Assessment Questionnaire (SAQ)](
 ---
 
 <div class="help">
-  <img align="left" src="/assets/images/icons/icn-lifesaver.svg"/> We are always willing to help and assist in answering specific questions about your scope of compliance. <a href="mailto:sales@mashape.com">We're Here to Help!</a>
+  <img align="left" src="/assets/images/icons/icn-lifesaver.svg"/> We are always willing to help and assist in answering specific questions about your scope of compliance. <a href="mailto:sales@konghq.com">We're Here to Help!</a>
 </div>

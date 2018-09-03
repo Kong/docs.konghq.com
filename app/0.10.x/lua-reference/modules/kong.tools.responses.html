@@ -1,0 +1,257 @@
+---
+title: Lua Reference - kong.tools.responses
+layout: default
+---
+
+
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-icon">
+      <img src="/assets/images/icons/icn-documentation.svg" alt="Documentation" />
+    </div>
+    <div class="page-header-title">
+      <h1>Public Lua API Reference</h1>
+      <p>For plugins developers and core contributors</p>
+    </div>
+    {% if site.data.kong_versions.size > 1 %}
+      <div class="dropdown page-header-right">
+        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Version {{page.kong_version}}
+          {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+          {% for ver in site.data.kong_versions %}
+            {% if page.kong_version != ver.release %}
+              <li>
+                {% if ver.lua_doc %}
+                  <a href="/{{ver.release}}/lua-reference/"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                    {{ver.release}}
+                    {% if ver.release == site.data.kong_latest.release %}(latest){% endif %}
+                  </a>
+                {% else %}
+                  <span>Not available for {{ver.release}}</span>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</header>
+
+<div class="container">
+  <aside class="page-navigation">
+    <nav>
+      <ul>
+        <li>
+          <a href="/{{page.kong_version}}"><h5>Back to docs</h5></a>
+        </li>
+        <li>
+          <a href="/{{page.kong_version}}/lua-reference/"><h5>Index</h5></a>
+        </li>
+        <li>
+          <h5>Modules</h5>
+          <ul>
+            <li><a href="../../modules/kong.dao">kong.dao</a></li>
+            <li><a href="../../modules/kong.plugins.basic-auth.crypto">kong.plugins.basic-auth.crypto</a></li>
+            <li><a href="../../modules/kong.plugins.galileo.alf">kong.plugins.galileo.alf</a></li>
+            <li><a href="../../modules/kong.plugins.galileo.buffer">kong.plugins.galileo.buffer</a></li>
+            <li><a href="../../modules/kong.plugins.jwt.jwt_parser">kong.plugins.jwt.jwt_parser</a></li>
+            <li>kong.tools.responses</li>
+            <li><a href="../../modules/kong.tools.timestamp">kong.tools.timestamp</a></li>
+            <li><a href="../../modules/kong.tools.utils">kong.tools.utils</a></li>
+            <li><a href="../../modules/spec.helpers">spec.helpers</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="page-content-container">
+  <div class="page-content">
+    <div class="content">
+<h1><code>kong.tools.responses</code></h1>
+<p>Kong helper methods to send HTTP responses to clients.</p>
+<p>Can be used in the proxy (core/resolver), plugins or Admin API.
+ Most used HTTP status codes and responses are implemented as helper methods.</p>
+
+<h3>Usage:</h3>
+<ul>
+  <li><pre>local responses = require &quot;kong.tools.responses&quot;
+
+-- In an Admin API endpoint handler, or in one of the plugins&apos; phases.
+-- the `return` keyword is optional since the execution will be stopped
+-- anyways. It simply improves code readability.
+return responses.send_HTTP_OK()
+
+-- Or:
+return responses.send_HTTP_NOT_FOUND(&quot;No entity for given id&quot;)
+
+-- Raw send() helper:
+return responses.send(418, &quot;This is a teapot&quot;)
+</pre></li>
+</ul>
+
+<h3>Info:</h3>
+<ul>
+</ul>
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+  <tr>
+    <td class="name"><a href="#send">send (status_code, body, headers)</a></td>
+    <td class="summary">Send a response with any status code or body,
+ Not all status codes are available as sugar methods, this function can be
+ used to send any response.</td>
+  </tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+  <tr>
+    <td class="name"><a href="#status_codes">status_codes</a></td>
+    <td class="summary">Define the most common HTTP status codes for sugar methods.</td>
+  </tr>
+</table>
+
+
+<h2 class="section-header "><a name="Functions">Functions</a></h2>
+
+
+<dl class="function">
+  <hr />
+  <dt>
+    <h4><a name="send">send</a></h4>
+  </dt>
+  <dd>
+    Send a response with any status code or body,
+ Not all status codes are available as sugar methods, this function can be
+ used to send any response.
+ For <code>status_code=5xx</code> the <code>content</code> parameter should be the description of the error that occurred.
+ For <code>status_code=500</code> the content will be logged by ngx.log as an ERR.
+ Will call <a href="https://github.com/openresty/lua-nginx-module#ngxsay">ngx.say</a> and <a href="https://github.com/openresty/lua-nginx-module#ngxexit">ngx.exit</a>, terminating the current context.
+
+    <h5>Parameters:</h5>
+    <ul>
+        <li>
+          <code class="parameter">status_code</code>
+          <span class="types"><span class="type">number</span></span>
+          HTTP status code to send
+        </li>
+        <li>
+          <code class="parameter">body</code>
+          A string or table which will be the body of the sent response. If table, the response will be encoded as a JSON object. If string, the response will be a JSON object and the string will be contained in the <code>message</code> property.
+        </li>
+        <li>
+          <code class="parameter">headers</code>
+          <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+          Response headers to send.
+        </li>
+    </ul>
+
+    <h5>Returns:</h5>
+    <ul>
+      <li>
+        ngx.exit (Exit current context)
+      </li>
+    </ul>
+
+
+    <h5>See also:</h5>
+    <ul>
+      <li><a href="https://github.com/openresty/lua-nginx-module#ngxsay">ngx.say</a></li>
+      <li><a href="https://github.com/openresty/lua-nginx-module#ngxexit">ngx.exit</a></li>
+    </ul>
+
+
+
+  </dd>
+</dl>
+
+<h2 class="section-header "><a name="Tables">Tables</a></h2>
+
+
+<dl class="function">
+  <hr />
+  <dt>
+    <h4><a name="status_codes">status_codes</a></h4>
+  </dt>
+  <dd>
+    Define the most common HTTP status codes for sugar methods.
+ Each of those status will generate a helper method (sugar)
+ attached to this exported module prefixed with <code>send_</code>.
+ Final signature of those methods will be <code>send_&lt;status_code_key&gt;(message, headers)</code>. See <a href="send">send</a> for more details on those parameters.
+
+    <h5>Fields:</h5>
+    <ul>
+        <li>
+          <code class="parameter">HTTP_OK</code>
+          200 OK
+        </li>
+        <li>
+          <code class="parameter">HTTP_CREATED</code>
+          201 Created
+        </li>
+        <li>
+          <code class="parameter">HTTP_NO_CONTENT</code>
+          204 No Content
+        </li>
+        <li>
+          <code class="parameter">HTTP_BAD_REQUEST</code>
+          400 Bad Request
+        </li>
+        <li>
+          <code class="parameter">HTTP_UNAUTHORIZED</code>
+          401 Unauthorized
+        </li>
+        <li>
+          <code class="parameter">HTTP_FORBIDDEN</code>
+          403 Forbidden
+        </li>
+        <li>
+          <code class="parameter">HTTP_NOT_FOUND</code>
+          404 Not Found
+        </li>
+        <li>
+          <code class="parameter">HTTP_METHOD_NOT_ALLOWED</code>
+          405 Method Not Allowed
+        </li>
+        <li>
+          <code class="parameter">HTTP_CONFLICT</code>
+          409 Conflict
+        </li>
+        <li>
+          <code class="parameter">HTTP_UNSUPPORTED_MEDIA_TYPE</code>
+          415 Unsupported Media Type
+        </li>
+        <li>
+          <code class="parameter">HTTP_INTERNAL_SERVER_ERROR</code>
+          Internal Server Error
+        </li>
+        <li>
+          <code class="parameter">HTTP_SERVICE_UNAVAILABLE</code>
+          503 Service Unavailable
+        </li>
+    </ul>
+
+
+
+
+    <h5>Usage:</h5>
+    <ul>
+      <li><pre class="example"><span class="keyword">return</span> responses.send_HTTP_OK()</pre></li>
+      <li><pre class="example"><span class="keyword">return</span> responses.HTTP_CREATED(<span class="string">"Entity created"</span>)</pre></li>
+      <li><pre class="example"><span class="keyword">return</span> responses.HTTP_INTERNAL_SERVER_ERROR()</pre></li>
+    </ul>
+
+
+  </dd>
+</dl>
+
+
+    </div>
+  </div>
+</div>
+</div>

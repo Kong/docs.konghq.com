@@ -7,7 +7,7 @@ note: Check existing issues and pull-requests before submitting new ones, as a c
 **NOTE**: Please read the CONTRIBUTING.md guidelines before submitting your patch,
 and ensure you followed them all:
 
-https://github.com/Kong/getkong.org/blob/master/CONTRIBUTING.md
+https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md
 
 ### Summary
 
@@ -27,7 +27,7 @@ Fix #XXX
 ### Checklist:
 <!-- add "N/A" to the end of each line that's irrelevant to your changes -->
 <!-- to check an item, place an "x" in the box like so: "- [x] Documentation" -->
-- [ ] [Commit message & atomicity](https://github.com/Kong/getkong.org/blob/master/CONTRIBUTING.md#commit-atomicity) checked
+- [ ] [Commit message & atomicity](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#commit-atomicity) checked
 - [ ] Documentation <!-- Adding a new feature? Do you need to document it the README.md or otherwise? -->
 - [ ] Spellchecked my updates
 - [ ] Ready to be merged <!-- In your opinion, is this ready to be merged as soon as it's reviewed? -->

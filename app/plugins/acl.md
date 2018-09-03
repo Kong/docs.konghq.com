@@ -14,7 +14,7 @@ nav:
       - label: Retrieve the Consumer associated with an ACL
 
 description: |
-  Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin][faq-authentication] to have been already enabled on the Service or the Route (or API).
+  Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or the Route (or API).
 
 params:
   name: acl
@@ -34,6 +34,12 @@ params:
       default:
       description: |
         Comma separated list of arbitrary group names that are not allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
+    - name: hide_groups_header
+      required: false
+      default: false
+      value_in_examples: true
+      description: |
+        Flag which if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the upstream service. 
   extra: |
     Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
 
@@ -63,6 +69,8 @@ You can have more than one group associated to a consumer.
 ### Upstream Headers
 
 When a consumer has been validated, the plugin will append a `X-Consumer-Groups` header to the request before proxying it to the upstream service, so that you can identify the groups associated with the consumer. The value of the header is a comma separated list of groups that belong to the consumer, like `admin, pro_user`.
+
+This header will not be injected in the request to the upstream service if the `hide_groups_header` config flag is set to `true`.
 
 ### Paginate through the ACLs
 
@@ -134,7 +142,7 @@ curl -X GET http://kong:8001/acls/{id}/consumer
 [Consumer][consumer-object].
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
-[api-object]: /docs/latest/admin-api/#api-object
-[configuration]: /docs/latest/configuration
-[consumer-object]: /docs/latest/admin-api/#consumer-object
+[api-object]: /latest/admin-api/#api-object
+[configuration]: /latest/configuration
+[consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-authentication-to-a-microservice-api

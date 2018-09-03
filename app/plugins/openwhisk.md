@@ -3,6 +3,7 @@ id: page-plugin
 title: Plugins - OpenWhisk
 header_title: Apache OpenWhisk
 header_icon: /assets/images/icons/plugins/openwhisk.png
+header_btn_repo_href: https://github.com/Kong/kong-plugin-openwhisk
 breadcrumbs:
   Plugins: /plugins
 nav:
@@ -26,9 +27,9 @@ installation: |
   $ luarocks install kong-plugin-openwhisk
   ```
 
-  or install it from [source](https://github.com/Mashape/kong-plugin-openwhisk).
+  or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
   For more infomation on Plugin installation, please see the documentation
-  [Plugin Development - (un)Install your plugin](/docs/latest/plugin-development/distribution/)
+  [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
 
 params:
   name: openwhisk
@@ -298,4 +299,4 @@ it is the `upsream_url` property which must be specified and resolvable as well
 There is a known limitation in the system that prevents some response plugins
 from being executed. We are planning to remove this limitation in the future.
 
-[api-object]: /docs/latest/admin-api/#api-object
+[api-object]: /latest/admin-api/#api-object

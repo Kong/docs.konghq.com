@@ -14,15 +14,24 @@ links:
   gh_repo: "https://github.com/Kong/kong-dist-kubernetes/"
 ---
 
-<div class="alert alert-warning">
-  This documentation covers installing Kong
-  in Kubernetes. Kong can also be installed and used as a <a href="https://konghq.com/blog/kubernetes-ingress-controller-for-kong/">Kubernetes
-  Ingress Controller</a>.
-</div>
+# Kubernetes Ingress Controller for Kong
+
+Install Kong Community Edition (CE) or Kong Enterprise Edition (EE) using the official 
+<a href="https://github.com/Kong/kubernetes-ingress-controller">Kubernetes Ingress Controller</a>.
+
+Learn more via the <a href="https://github.com/Kong/kubernetes-ingress-controller/blob/master/README.md">README
+</a>. To get up and running quickly, follow the 
+<a href="https://github.com/Kong/kubernetes-ingress-controller/tree/master/deploy">Minikube and Minishift tutorials</a>.
+
+The [Kubernetes Ingress Controller for Kong launch announcement](https://konghq.com/blog/kubernetes-ingress-controller-for-kong/) 
+is on the [Kong Blog](https://konghq.com/blog/). 
+
+For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes). For bug reports, 
+please [open a new issue on GitHub](https://github.com/Kong/kubernetes-ingress-controller/issues).
 
 # Kong Community Edition via Helm or Minikube
 
-The easiest way to deploy Kong Community Edition (CE) on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
+The easiest way to deploy Kong CE on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
 
 Kong CE can also be deployed on minikube - please follow the [README]({{ page.links.minikube }})
 and use the manifest files provided in `minikube` directory.
@@ -86,7 +95,7 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
     $ kubectl create -f postgres.yaml
     ```
 
-    **Kong Enterprise Edition trial users** should complete the steps in the
+    **Kong EE trial users** should complete the steps in the
     **Additional Steps for Kong EE Trial Users** section below before proceeding.
 
 4. **Prepare database**
@@ -134,7 +143,7 @@ you may need to make adjustments to deploy to other Kubernetes clusters.
 7. **Get Started with Kong**
 
     Quickly learn how to use Kong with the
-    [5-minute Quickstart](/docs/latest/getting-started/quickstart/).
+    [5-minute Quickstart](/latest/getting-started/quickstart/).
 
 # Additional Steps for Kong EE Trial Users
 

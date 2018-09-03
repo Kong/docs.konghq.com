@@ -1,0 +1,136 @@
+- title: Getting Started
+  items:
+    - text: Introduction
+      url: /getting-started/introduction
+    - text: Five-minute quickstart
+      url: /getting-started/quickstart
+    - text: Adding your API
+      url: /getting-started/adding-your-api
+    - text: Enabling Plugins
+      url: /getting-started/enabling-plugins
+    - text: Adding Consumers
+      url: /getting-started/adding-consumers
+    - text: Licensing
+      url: /getting-started/licensing
+    - text: Accessing Your License
+      url: /getting-started/accessing-your-license
+
+- title: Installation
+  items:
+    - text: Docker
+      url: /installation/docker
+    - text: CentOS
+      url: /installation/centos
+    - text: Amazon Linux
+      url: /installation/amazon-linux
+
+- title: APIs and Plugins
+  items:
+    - text: Canary Release Plugin
+      url: /plugins/canary-release
+    - text: Rate Limiting Plugin
+      url: /plugins/rate-limiting-advanced
+    - text: Request Transformer Plugin
+      url: /plugins/request-transformer
+    - text: OAuth2 Introspection Plugin
+      url: /plugins/oauth2-introspection
+    - text: OpenID Connect Plugin
+      url: /plugins/openid-connect
+    - text: HTTP Proxy Caching
+      url: /plugins/http-proxy-caching
+    - text: Forward Proxy
+      url: /plugins/forward-proxy
+    - text: StatsD Advanced Plugin
+      url: /plugins/statsd-advanced
+    - text: LDAP Auth Advanced Plugin
+      url: /plugins/ldap-authentication-advanced
+
+- title: Workspaces
+  items:
+    - text: Overview
+      url: /workspaces/overview
+    - text: Admin API
+      url: /workspaces/admin-api
+    - text: Examples
+      url: /workspaces/examples
+
+- title: RBAC
+  items:
+    - text: Overview
+      url: /rbac/overview
+    - text: Admin API
+      url: /rbac/admin-api
+    - text: Examples
+      url: /rbac/examples
+
+- title: Kong Admin GUI
+  items:
+    - text: Overview
+      url: /admin-gui/overview
+    - text: Configuration
+      url: /admin-gui/configuration/getting-started
+      items:
+        - text: Getting Started
+          url: /admin-gui/configuration/getting-started
+        - text: Authentication
+          url: /admin-gui/configuration/authentication
+        - text: Managing Admins
+          url: /admin-gui/configuration/managing-admins
+        - text: Networking
+          url: /admin-gui/configuration/networking
+        - text: Property Reference
+          url: /admin-gui/configuration/property-reference
+
+- title: Kong Developer Portal
+  items:
+    - text: Overview
+      url: /developer-portal/overview
+    - text: Glossary
+      url: /developer-portal/glossary
+    - text: Configuration
+      url: /developer-portal/configuration/getting-started
+      items:
+        - text: Getting Started
+          url: /developer-portal/configuration/getting-started
+        - text: Authentication
+          url: /developer-portal/configuration/authentication
+        - text: Networking
+          url: /developer-portal/configuration/networking
+        - text: Property Reference
+          url: /developer-portal/configuration/property-reference
+    - text: Managing Developers
+      url: /developer-portal/managing-developers
+    - text: Developer Access
+      url: /developer-portal/developer-access
+    - text: File Management
+      url: /developer-portal/file-management
+    - text: Customization
+      url: /developer-portal/customization
+    - text: FAQ
+      url: /developer-portal/faq
+
+- title: Guides &amp; References
+  items:
+    - text: Kong Deployment Guide
+      url: /deployment-guide
+    - text: Changelog
+      url: /enterprise/changelog
+      absolute_url: true
+    - text: Architecture Overview
+      url: /kong-architecture-overview
+    - text: Kong Vitals
+      url: /vitals
+    - text: Rate Limiting Library
+      url: /rate-limiting
+    - text: Kong Enterprise Edition Versioning
+      url: /edition-versioning
+    - text: Multiple Authentication Methods
+      url: /allowing-multiple-authentication-methods
+    - text: PostgreSQL on RedHat
+      url: /postgresql-redhat
+    - text: OpenID Connect with Google
+      url: /oidc-google
+    - text: OpenID Connect with Auth0
+      url: /oidc-auth0
+    - text: Upgrades and Migrations
+      url: /upgrades-migrations

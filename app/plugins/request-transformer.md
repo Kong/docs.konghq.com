@@ -88,16 +88,16 @@ params:
 
 ### Dynamic Transformation Based on Request Content
 
-The Request Transformer plugin bundled with Mashape Enterprise Edition allows for
+The Request Transformer plugin bundled with Kong Enterprise Edition allows for
 adding or replacing content in the upstream request based on variable data found
 in the client request, such as request headers, query string parameters, or URI
 parameters as defined by a URI capture group.
 
-If you already are a Mashape Enterprise customer, you can request access to this
+If you already are a Kong Enterprise customer, you can request access to this
 plugin functionality by opening a support ticket using your Enterprise support
 channels.
 
-If you are not a Mashape Enterprise customer, you can inquire about our
+If you are not a Kong Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).
 
 ## Order of execution
@@ -186,7 +186,7 @@ incoming url encoded body | upstream proxied url encoded body:
 p1=v1&p2=v1   | p2=v1 
 p2=v1         | p2=v1 
 
-[api-object]: /docs/latest/admin-api/#api-object
-[consumer-object]: /docs/latest/admin-api/#consumer-object
-[configuration]: /docs/latest/configuration
+[api-object]: /latest/admin-api/#api-object
+[consumer-object]: /latest/admin-api/#consumer-object
+[configuration]: /latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

@@ -13,8 +13,8 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [RHEL 6]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/6/kong-community-edition-{{site.data.kong_latest.version}}.el6.noarch.rpm)
-- [RHEL 7]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/7/kong-community-edition-{{site.data.kong_latest.version}}.el7.noarch.rpm)
+- [RHEL 6]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=rhel/6/kong-community-edition-{{site.data.kong_latest.version}}.rhel6.noarch.rpm)
+- [RHEL 7]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=rhel/7/kong-community-edition-{{site.data.kong_latest.version}}.rhel7.noarch.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
@@ -29,12 +29,12 @@ section on the page below.
 your RHEL version; for instance:
 
 ```
-baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/6
+baseurl=https://kong.bintray.com/kong-community-edition-rpm/rhel/6
 ```
 or
 
 ```
-baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
+baseurl=https://kong.bintray.com/kong-community-edition-rpm/rhel/7
 ```
 
 ----
@@ -91,6 +91,6 @@ baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
 
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration#database
+[configuration]: /{{site.data.kong_latest.release}}/configuration#database

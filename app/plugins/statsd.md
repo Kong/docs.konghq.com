@@ -87,4 +87,4 @@ Field         | description                                             | allowe
 This logging plugin will only log HTTP request and response data. If you are
 looking for the Kong process error file (which is the nginx error file), then
 you can find it at the following path:
-{[prefix](/docs/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log
+{[prefix](/{{site.data.kong_latest.release}}/configuration/#prefix)}/logs/error.log

@@ -64,7 +64,7 @@ redirect_from: /install/compile/
     **Or**:
 
     ```bash
-    $ git clone git@github.com:Mashape/kong.git
+    $ git clone git@github.com:Kong/kong.git
     $ [sudo] make install # this simply runs the `luarocks make kong-*.rockspec` command
     ```
 
@@ -106,6 +106,6 @@ redirect_from: /install/compile/
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
+    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
 
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration#database
+[configuration]: /{{site.data.kong_latest.release}}/configuration#database

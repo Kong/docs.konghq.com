@@ -1,24 +1,23 @@
 .site-header {
   &:extend(.u-cf, .u-full-width);
   z-index: 1;
-  position: relative;
   box-shadow: 0 1px rgba(255, 255, 255, 0.1);
 
-  @media (min-width: @navbar-collapse-point) {
+
+  &.fixed-top {
     top: 0;
     left: 0;
-    position: fixed;
     z-index: 1001;
+    position: fixed;
+    @media (max-width: @navbar-collapse-point) {
+      position: relative;
+    }
   }
 
   .enterprise {
     position: relative;
     box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
     background-color: @navy-darkest;
-
-    @media (max-width: @navbar-collapse-point) {
-      display: none;
-    }
 
     nav ul {
       font-size: 1rem;
@@ -60,6 +59,11 @@
     }
 
     .enterprise-sites {
+      @media (max-width: @navbar-collapse-point) {
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
       li {
         margin-right: 1.1875rem;
 
@@ -71,6 +75,11 @@
 
     .enterprise-contact {
       text-align: right;
+
+      @media (max-width: @navbar-collapse-point) {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
 
       li {
         margin-left: 1.8rem;
@@ -99,30 +108,35 @@
       }
     }
   }
-  .cookie-policy-container {
-    &.show {
-      display: block;
-    }
-    display: none;
-    padding: 8px;
-    color: rgba(255,255,255,.7);
-    .font-source-sans-sc();
-    font-size: 13px;
-    text-align: center;
-    text-transform: uppercase;
-    background-color: black;
-    p {
-      margin-bottom: 0;
-    }
-    button {
-      margin-left: 5px;
-    }
-  }
+  // .cookie-policy-container {
+  //   &.show {
+  //     display: block;
+  //   }
+  //   display: none;
+  //   padding: 8px;
+  //   color: rgba(255,255,255,.7);
+  //   .font-source-sans-sc();
+  //   font-size: 13px;
+  //   text-align: center;
+  //   text-transform: uppercase;
+  //   background-color: black;
+  //   p {
+  //     margin-bottom: 0;
+  //   }
+  //   button {
+  //     margin-left: 5px;
+  //   }
+  // }
 }
   // Add maring to page while cookie policy is open
-  .page-cookie-policy{
-    margin-top: 50px;
-  }
+  // .page.page-cookie-policy{
+  //   // NOTE: Commenting out until summit banner is removed
+  //   // margin-top: 50px;
+  //   margin-top: 150px;
+  //   @media screen and (max-width: 1100px) {
+  //     margin-top: 0;
+  //   }
+  // }
 
 .navbar {
   &:extend(.u-cf, .u-full-width);

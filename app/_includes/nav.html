@@ -1,9 +1,9 @@
+    {% include summit-banner.html %}
 <header class="site-header">
   <div class="enterprise">
-    <div class="cookie-policy-container">
-      <p>In order to give you better service we use cookies. By continuing to use our website, you agree to the use of cookies as described in our <a href=" https://konghq.com/cookie-policy/">Cookie Policy</a>
-      <button class="cookie-policy-accept button button-dark" type="submit">I agree</button>
-    </div>
+
+    <!-- Kong Summit Announcement Banner -->
+
     <div class="container">
       <nav class="enterprise-sites one-half column">
         <ul>
@@ -18,7 +18,7 @@
       <nav class="enterprise-contact one-half column">
         <ul>
           <li>
-            <a href="https://support.mashape.com/">Support</a>
+            <a href="https://support.konghq.com/">Support</a>
           </li>
           <li>
             <a href="https://konghq.com/request-demo">Request Demo</a>
@@ -30,11 +30,10 @@
   <!-- .enterprise -->
   <div class="navbar">
     <div class="container">
-      <a href="/" class="navbar-brand">
-        <!-- <img src="/assets/images/branding.svg" alt="Kong" width="99" height="32"> -->
+      <a href="https://konghq.com" class="navbar-brand">
         <img src="/assets/images/Kogo.svg" alt="Kong">
       </a>
-      <iframe class="header-star" src="https://ghbtns.com/github-btn.html?user=Mashape&amp;repo=kong&amp;type=star" frameborder="0"
+      <iframe class="header-star" src="https://ghbtns.com/github-btn.html?user=Kong&amp;repo=kong&amp;type=star" frameborder="0"
         scrolling="0" width="55" height="20"></iframe>
       <button data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" class="navbar-toggle">
         <span class="icon-bar"></span>
@@ -44,16 +43,16 @@
       <nav id="navbar" class="navbar-nav">
         <ul>
           <li>
-            <a href="https://konghq.com/about-kong-inc/" {% if page.url contains "/about/" %} class="active" {% endif %}>About</a>
+            <a href="/" class="active">Docs</a>
           </li>
           <li>
-            <a href="/docs/" {% if page.url contains "/docs/" %} class="active" {% endif %}>Docs</a>
+            <a href="https://konghq.com/about-kong-inc/">About</a>
           </li>
           <li>
-            <a href="https://konghq.com/plugins" {% if page.url=="/plugins/" %} class="active" {% endif %}>Plugins</a>
+            <a href="https://konghq.com/plugins">Plugins</a>
           </li>
           <li>
-            <a href="/community/" {% if page.url=="/community/" %} class="active" {% endif %}>Community</a>
+            <a href="https://konghq.com/community-resources/">Community</a>
           </li>
           <li>
             <a href="https://konghq.com/kong-enterprise-edition/">Enterprise</a>
@@ -62,7 +61,7 @@
             <a href="{{ site.repos.kong }}" target="_blank">GitHub</a>
           </li>
           <li class="hidden-lg">
-            <a href="https://support.mashape.com/">Support</a>
+            <a href="https://support.konghq.com/">Support</a>
           </li>
           <li>
             <a href="https://konghq.com/install" class="button button-dark{% if page.url == " /install/ " %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Installation</a>
