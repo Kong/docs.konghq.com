@@ -1,10 +1,15 @@
-{% capture page_title %}{{ page.title | escape }}{% if page.kong_version %} - v{{ page.kong_version | escape }}{% endif %}{% if page.title %} | {% endif %}{% endcapture %}
+{% unless page.name and page.path contains '_catalog' %}
+  {% capture page_title %}{{ page.title | escape }}{% if page.kong_version %} - v{{ page.kong_version | escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }} - {{ site.title }}{% endcapture %}
+{% else %}
+  {% capture page_title %}{{ page.name | capitalize }} {{ page.type}} | Kong{% endcapture %}
+{% endunless %}
+
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <title>{{ page_title }}{{ site.name }} - {{ site.title }}</title>
+  <title>{{ page_title }}</title>
   <meta name="description" content="{{ site.description }}">
   <meta name="author" content="KongHQ"/>
   <meta property="og:title" content="{{ site.title }}"/>

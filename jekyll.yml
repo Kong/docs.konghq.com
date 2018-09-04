@@ -38,7 +38,7 @@ repos:
 collections:
   catalog:
     output: true
-    layout: plugin
+    layout: extension
 
 # for Kong platform extensions (not Jekyll)
 extensions:
@@ -64,6 +64,9 @@ extensions:
     - name: Logging
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
+    - name: Agile
+      slug: agile
+      desc: FIXME Support agile devlopment with these tools for your use
   types:
     - name: plugin
       slug: plugin
@@ -104,5 +107,5 @@ defaults:
   - scope:
       type: catalog
     values:
-      layout: plugin
+      layout: extension
       permalink: /:collection/:path

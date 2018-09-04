@@ -1,8 +1,10 @@
 ---
 layout: default
 sitemap: true
-type: plugin
+type: extension-profile
 permalink: :path
+breadcrumbs:
+  Catalog: '/catalog'
 ---
 
 {% if page.type == "plugin" %}
@@ -135,12 +137,14 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% endif %}
 
 {% if page.kong_version_compatibility.community_edition %}
+  {% assign compat = true %}
   {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
   {% assign ce_incompatible = page.kong_version_compatibility.community_edition.incompatible %}
 {% endif %}
 {% if page.kong_version_compatibility.enterprise_edition %}
-{% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
-{% assign ee_incompatible = page.kong_version_compatibility.enterprise_edition.incompatible %}
+  {% assign compat = true %}
+  {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
+  {% assign ee_incompatible = page.kong_version_compatibility.enterprise_edition.incompatible %}
 {% endif %}
 
 {% assign extn_type = site.extensions.types | where: "slug", page.type %}
@@ -167,20 +171,19 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
 <!-- BEGIN PAGE OUTPUT -->
 
-<div class="page page-plugin">
+<div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
     {% include header.html type=extn_type name=page.header_title %}
   {% else %}
     {% include header.html img=extn_icon name=page.name %}
   {% endif %}
 
-
   <div class="container">
 
     {% if extn_versions %}
       <div class="dropdown page-header-right">
         <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Version {{extn_release}}
+          {{extn_type | capitalize }} Version {{extn_release}}
           {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
@@ -227,19 +230,18 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
               <a href="#{{ nav.label | slugify }}"><h5>{{ nav.label }}</h5></a>
             {% endif %}
             <ul>
-              {% for item in nav.items %}
-                <li>
-                  <a href="#{{ item.label | slugify }}">{{ item.label }}</a>
-
-                  {% if item.items %}
-                    <ul>
-                      {% for subitem in item.items %}
-                        <li><a href="#{{ subitem.label | slugify }}">{{ subitem.label }}</a></li>
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-                </li>
-              {% endfor %}
+            {% for item in nav.items %}
+              <li>
+                <a href="#{{ item.label | slugify }}">{{ item.label }}</a>
+                {% if item.items %}
+                  <ul>
+                    {% for subitem in item.items %}
+                      <li><a href="#{{ subitem.label | slugify }}">{{ subitem.label }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
             </ul>
           </nav>
         {% endfor %}
@@ -247,120 +249,163 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
       <table id="about-extn">
         <tr>
-          <th colspan="2">ABOUT THIS {{ extn_type | upcase }}</th>
+          <th colspan="2">about this {{ extn_type }}</th>
         </tr>
-        <tr>
+        <tr class="publisher">
           <td>Made by</td>
-          <td>{{ extn_publisher }}</td>
+          <td>
+          {% unless extn_publisher == "konghq" %}
+            {{ extn_publisher }}
+          {% else %}
+            {% include svgs.html img='team-kong-icon' %}
+          {% endunless %}
+          </td>
+        </tr>
+        <tr class="type">
+          <td>Type</td>
+          <td>
+            {{ extn_type | capitalize }}
+          </td>
+        </tr>
+        <tr class="categories">
+          <td>Categories</td>
+          <td>
+            <ul class="categories">
+            {% for cat in page.categories %}
+              {% assign cat_meta = site.extensions.categories | where: "slug", cat %}
+              <li><a href="/catalog/#{{ cat_meta[0].slug}}">{{ cat_meta[0].name }}</a>{% unless forloop.last %},{% endunless %}</li>
+            {% endfor %}
+            </ul>
+          </td>
         </tr>
         {% if page.support_url %}
+          {% assign support_dom = page.support_url | split: "/" %}
+          {% assign support_dom = support_dom[2] | remove: "www." | remove: "support." | remove: "help." | remove: "docs." %}
+          {% if support_dom.length > 20 %}{% assign support_dom = "Site" %}{% endif %}
           <tr>
-            <td>Support Site</td>
-            <td><a href="{{ page.support_url }}">{{ page.support_url }}</a></td>
+            <td>Support</td>
+            <td><a href="{{ page.support_url }}">{{ support_dom }}</a></td>
           </tr>
         {% endif %}
-        {% if page.support_url %}
-          <tr>
-            <td>Source Code</td>
-            <td><a href="{{ page.source_url }}">{{ page.source_url }}</a></td>
+        {% if page.source_url or page.license_type %}
+          <tr class="source-code">
+            <td>Source</td>
+            <td>
+              <ul>
+              {% if page.source_url %}
+                <li>
+                  <a href="{{ page.source_url }}">Code</a>
+                </li>
+              {% endif %}
+              {% if page.license_type %}
+                <li>
+                  <a href="https://opensource.org/licenses/{{ page.license_type }}">License ({{ page.license_type }})</a>
+                </li>
+              {% endif %}
+              </ul>
+            </td>
           </tr>
         {% endif %}
-        {% if page.license_type %}
-          <tr>
-            <td>Licsense Type</td>
-            <td><a href="https://opensource.org/licenses/{{ page.license_type }}">{{ page.license_type }}</a></td>
+        {% if page.privacy_policy_url or page.privacy_policy or page.terms_of_service or page.terms_of_service_url %}
+          {% if page.privacy_policy_url %}
+            {% assign privacy = page.privacy_policy_url %}
+          {% elsif page.privacy_policy %}
+            {% assign privacy = "#privacy-policy" %}
+          {% endif %}
+          {% if page.terms_of_service_url %}
+            {% assign tos = page.terms_of_service_url %}
+          {% elsif page.terms_of_service %}
+            {% assign tos = "#terms-of-service" %}
+          {% endif %}
+          <tr class="legal">
+            <td>Legal</td>
+            <td>
+              <ul>
+                {% if privacy %}
+                  <li>
+                    <a href="{{privacy}}">Privacy</a>
+                  </li>
+                {% endif %}
+                {% if tos %}
+                  <li>
+                    <a href="{{tos}}">Terms of Service</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </td>
           </tr>
         {% endif %}
-        {% if page.privacy_policy_url %}
-          <tr>
-            <td>Privacy Policy</td>
-            <td><a href="{{ page.privacy_policy_url }}">Full text</a></td>
+        {% if compat %}
+          <tr class="kong-editions">
+            <th colspan="2">
+              {% if path_array contains "konghq" %}
+                bundled with...
+              {% else %}
+                Kong compatibility
+              {% endif %}
+            </th>
           </tr>
-        {% elsif page.privacy_policy %}
-          <tr>
-            <td>Privacy Policy</td>
-            <td><a href="#privacy-policy">See below</a></td>
+          <tr class="kong-compatibility">
+            <td colspan="2">
+              <ul class="compat-list">
+              {% for v in site.data.kong_versions_ee reversed %}
+                {% if ee_compatible contains v.release or ee_incompatible contains v.release %}
+                  {% unless first_ee %}
+                  <h6>Enterprise Edition</h6>{% assign first_ee = true %}
+                  {% endunless %}
+                  <li>
+                  {% if ee_compatible contains v.release %}
+                    <i class="fa fa-check"></i>
+                  {% elsif ee_incompatible contains v.release %}
+                    <i class="fa fa-times"></i>
+                  {% endif %}{{ v.release }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+              </ul><ul class="compat-list">
+              {% for v in site.data.kong_versions reversed %}
+                {% if ce_compatible contains v.release or ce_incompatible contains v.release %}
+                  {% unless first_ce %}
+                  <h6>Community Edition</h6>{% assign first_ce = true %}
+                  {% endunless %}
+                  <li>
+                  {% if ce_compatible contains v.release %}
+                    <i class="fa fa-check"></i>
+                  {% elsif ce_incompatible contains v.release %}
+                    <i class="fa fa-times"></i>
+                  {% endif %}{{ v.release }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+              </ul>
+            </td>
           </tr>
         {% endif %}
-        {% if page.terms_of_service_url %}
-          <tr>
-            <td>Terms of Service</td>
-            <td><a href="{{ page.terms_of_service_url }}">Full text</a></td>
-          </tr>
-        {% elsif page.terms_of_service %}
-          <tr>
-            <td>Terms of Service</td>
-            <td><a href="#terms-of-service">See below</a></td>
-          </tr>
-        {% endif %}
-        {% if extn_releases %}
+        {% if extn_versions %}
           <tr>
             <th colspan="2">Other Versions</th>
           </tr>
           <tr>
             <td colspan="2">
               <ul class="extn-versions">
-              {% for v in extn_releases %}
-                {% unless extn_version == v.release %}
-                <li>
-                  <a href="{{ v.release }}.html">{{ v.release }} {% if v.date %}({{ v.date }}){% endif %}</a>
-                </li>
+              {% for ver in extn_versions %}
+                {% unless extn_release == ver.release %}
+                  {% if ver.release == extn_latest %}
+                    {% assign ver_path = "" %}
+                  {% else %}
+                    {% assign ver_path = ver.release | append: ".html" %}
+                  {% endif %}
+                  <li>
+                    <a href="/catalog/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
+                      {{ver.release}} {% if ver.date %}({{ ver.date }}){% endif %}</a>
+                      {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
+                  </li>
                 {% endunless %}
               {% endfor %}
               </ul>
             </td>
           </tr>
         {% endif %}
-      </table>
-
-      <table id="compatibility">
-        <tr>
-          <th colspan="2">
-            {% if path_array contains "konghq" %}
-              Bundled with...
-            {% else %}
-              Kong Version Compatibility
-            {% endif %}
-          </th>
-        </tr>
-        <tr>
-          <th colspan="2" class="edition section-header">
-            Community Edition
-          </th>
-        </tr>
-        {% for v in site.data.kong_versions reversed %}
-          <tr>
-            <td>{{ v.release }}</td>
-            <td>
-              {% if ce_compatible contains v.release %}
-                Yes
-              {% elsif ce_incompatible contains v.release %}
-                No
-              {% else %}
-                Unknown
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-        <tr>
-          <th colspan="2" class="edition section-header">
-            Enterprise Edition
-          </th>
-        </tr>
-        {% for v in site.data.kong_versions_ee reversed %}
-          <tr>
-            <td>{{ v.release }}</td>
-            <td>
-              {% if ee_compatible contains v.release %}
-                Yes
-              {% elsif ee_incompatible contains v.release %}
-                No
-              {% else %}
-                Unknown
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
       </table>
 
     </aside>
@@ -387,9 +432,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
           {{ page.description | markdownify }}
 
-          <hr>
-
           {% if page.type == "plugin" %}
+            <hr>
             <h2 id="terminology">Terminology</h2>
             <ul>
               <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
@@ -411,9 +455,8 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
             </ul>
           {% endif %}
 
-          <hr>
-
           {% if page.installation %}
+            <hr>
             <h2 id="installation">Installation</h2>
 
             {{ page.installation | markdownify }}
