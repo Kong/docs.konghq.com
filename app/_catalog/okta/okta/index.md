@@ -22,9 +22,9 @@ categories: # (required) Uncomment all that apply.
 # Array format only; uncomment one or more applicable categories.
 # If you would like to add a category, you may do so here.
 
-type: api-integration # (required) String, one of:
+type:  # (required) String, one of:
   # plugin          | extensions of the core platform
-  # api-integration | extensions of the Kong Admin API
+  # integration     | extensions of the Kong Admin API
   # dev-mod         | enhancements of the Kong dev portal
 
 desc: Integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway. # (required) 1-liner description; max 80 chars

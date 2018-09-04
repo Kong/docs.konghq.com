@@ -1,7 +1,7 @@
 ---
 layout: default
 sitemap: true
-type: extension-profile
+type: plugin
 permalink: :path
 breadcrumbs:
   Catalog: '/catalog'
@@ -249,7 +249,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
       <table id="about-extn">
         <tr>
-          <th colspan="2">about this {{ extn_type }}</th>
+          <th colspan="2">About this {{ extn_type | capitalize }}</th>
         </tr>
         <tr class="publisher">
           <td>Made by</td>
@@ -259,12 +259,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {% else %}
             {% include svgs.html img='team-kong-icon' %}
           {% endunless %}
-          </td>
-        </tr>
-        <tr class="type">
-          <td>Type</td>
-          <td>
-            {{ extn_type | capitalize }}
           </td>
         </tr>
         <tr class="categories">
@@ -284,7 +278,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {% if support_dom.length > 20 %}{% assign support_dom = "Site" %}{% endif %}
           <tr>
             <td>Support</td>
-            <td><a href="{{ page.support_url }}">{{ support_dom }}</a></td>
+            <td><a href="{{ page.support_url }}">{{ support_dom | truncate: 15 }}</a></td>
           </tr>
         {% endif %}
         {% if page.source_url or page.license_type %}

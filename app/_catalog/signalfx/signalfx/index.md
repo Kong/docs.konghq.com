@@ -25,7 +25,7 @@ categories: analytics-monitoring # (required) Uncomment all that apply.
 
 type: plugin # (required) String, one of:
   # plugin          | extensions of the core platform
-  # api-integration | extensions of the Kong Admin API
+  # integration     | extensions of the Kong Admin API
   # dev-mod         | enhancements of the Kong dev portal
 
 desc: Monitor and analyze Kong in SignalFx # (required) 1-liner description; max 80 chars

@@ -28,9 +28,8 @@ categories: # (required) Uncomment all that apply.
 type: plugin # (required) String or Array of strings if multiple fit.
  # options:
   # plugin          | extensions of the core platform
-  # api-integration | extensions of the Kong Admin API
+  # integration     | extensions of the Kong Admin API
   # dev-mod         | enhancements of the Long dev portal
-# for multiple, list like so: [api-integration,dev-mod]
 
 desc: AI-powered analytics and monitoring for APIs  # (required) 1-liner description; max 80 chars
 description: |

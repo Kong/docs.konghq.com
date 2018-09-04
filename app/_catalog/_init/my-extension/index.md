@@ -28,7 +28,7 @@ categories: # (required) Uncomment all that apply.
 
 type: # (required) String, one of:
   # plugin          | extensions of the core platform
-  # api-integration | extensions of the Kong Admin API
+  # integration     | extensions of the Kong Admin API
   # dev-mod         | enhancements of the Kong dev portal
 
 desc: # (required) 1-liner description; max 80 chars
