@@ -1040,6 +1040,17 @@ Default: `LAST,SRV,A,CNAME`
 
 ---
 
+##### **dns_valid_ttl**
+
+By default, DNS records are cached using
+the TTL value of a response. If this
+property receives a value (in seconds), it
+will override the TTL for all records.
+
+Default: none
+
+---
+
 ##### **dns_stale_ttl**
 
 Defines, in seconds, how long a record will
