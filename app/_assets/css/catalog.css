@@ -13873,17 +13873,23 @@ section.bg-dkBlue {
 .sidebar a {
     color: rgba(0,0,0,.45);
     transition: color .3s;
-    will-change: color
+    will-change: color;
 }
 
 .sidebar a:hover {
-    color: #062F4D
+    color: #062F4D;
+    font-weight: 500;
+    border-left: 2px solid rgba(0,0,0,.45);
 }
 
 .sidebar a.active {
     color: #062F4D;
     font-weight: 500;
-    border-left: 2px solid #062F4D
+    border-left: 2px solid #062F4D;
+}
+
+.sidebar a {
+  border-left: 2px solid transparent;
 }
 
 .search-input-wrapper {
@@ -15700,8 +15706,8 @@ nav.navigation.posts-navigation {
     color: rgba(0,0,0,.7)
 }
 
-h2 {
-  margin-top: 140px;
+header.page-header {
+  margin: 40px auto;
 }
 
 .kong-plugins .cards-collection {
@@ -15710,6 +15716,19 @@ h2 {
 
 .plugin-filter a:not(.active) {
     color: rgba(0,0,0,.45)
+}
+
+.catalog-cards {
+  margin-top: 10px;
+}
+
+.catalog-cards .row.category {
+  margin-bottom: 60px;
+}
+
+.catalog-cards h5 {
+  border-bottom: 1px solid rgba(0,0,0,.25);
+  width: 100%;
 }
 
 .plugin-card {
@@ -15748,7 +15767,7 @@ h2 {
 }
 
 .plugin-card.fadeOut {
-    opacity: .3
+    opacity: .4
 }
 
 .plugin-card .name-desc {
@@ -15756,7 +15775,7 @@ h2 {
   text-align: left;
 }
 
-.plugin-card .support-by {
+.plugin-card .publisher {
   /* support by:: */
   width: 100%;
   text-align: left;
@@ -15766,10 +15785,21 @@ h2 {
   position: absolute;
   bottom: 15px;
   left: 15px;
+  z-index: 1000;
 }
 
 .plugin-card.enterprise:hover {
     background: rgba(0,112,206,.05)
+}
+
+.card-img-top {
+  height: 64px;
+  width: 65px;
+}
+
+.nav .nav-item {
+  list-style: none;
+  margin-bottom: .3em;
 }
 
 .facet-filters .facet-filter {
