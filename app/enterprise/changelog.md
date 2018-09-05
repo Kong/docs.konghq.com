@@ -3,6 +3,7 @@ title: Kong Enterprise Changelog
 nav:
   - label: Versions
     items:
+      - label: "0.33-1"
       - label: "0.33"
       - label: "0.32"
       - label: "0.31-1"
@@ -10,6 +11,78 @@ nav:
       - label: "0.30"
 ---
 # Kong Enterprise Changelog
+
+## 0.33-1
+
+### Notifications
+
+- **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+  - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
+  - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
+- **Kong EE 0.33** has these notices from **Kong CE 0.13**:
+  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
+      - **Dev Portal** requires Cassandra 3.0+
+  - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
+- **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
+
+### Changes
+
+- **Plugins**
+  - **HMAC Auth**
+      - Attempt signature generation without querystring arguments if the newer signature verification, that includes querystring, fails
+  - **StatsD Advanced**
+      - Improve performance when constructing the metrics key
+      - Allow hostname to be written into the key prefix, based on a boolean plugin config flag
+
+### Fixes
+
+- **Core**
+  - **RBAC**
+      - Fix an issue where entities are not added to the role-entities table when id is not the primary key
+      - Fix an issue where role-entities and role-endpoints relationships are not deleted when role is removed
+      - Fix issue leading to SNI creation failure when RBAC is on
+  - **Workspaces**
+      - Fix an issue where authentication keys prefixed with a workspace name would be considered valid
+    - **DB**
+      - Cassandra
+        - Fix Cassandra unique violation check on update
+    - **Migrations**
+      - Remove dependency on "public" schema or "pg_default" tablespaces in Postgres - such a dependency would cause migrations to fail if such tablespaces weren't being used
+    - **Healthchecks**
+      - Fix Host header in active healthchecks
+      - Fix for connection timeouts on passive healthchecks
+  - **Dev Portal**
+      - Fix issue leading migrations `2018-04-10-094800_dev_portal_consumer_types_statuses` and `2018-05-08-143700_consumer_dev_portal_columns` to fail
+      - Automatically log users in after registering when auto-approve is on
+      - Reduce the size of the mobile breakpoint
+      - Improve performance and file sizes of bundled code
+      - 0.33 Portal shows the name of a spec twice after uploading
+      - Swagger Improvements:
+          - Update Dev Portal Sidebar to support OAS 3.0
+          - Update Swagger2Har to Support OAS3
+          - Update SwaggerUI styling to support OAS 3.0
+          - Ensure that page loading isn't blocked by Swagger UI rendering
+
+- **Plugins**
+  - **LDAP Auth & LDAP Auth Advanced**
+      - Fix an issue where a request would fail when the password field had more than 128 characters in length
+      - Make the password part of the cache key, so that an invalid credential can be cached without blocking valid credentials
+  - **Zipkin**
+      - Fix operation when service and/or route are missing
+      - Fix cause of missing kong.credential field
+      - Support for deprecated Kong "api" entity via kong.api tag
+  - **Rate Limiting Advanced Plugin**
+      - Fix issue preventing the plugin to correctly propagate configuration changes across Kong Nginx workers
+      - Fix issue preventing the plugin to load configuration and create sync timers
+      - Fix plugin name in log messages
+  - **Canary**
+      - Fixed the type attribute for port configuration setting
+  - **Forward Proxy**
+      - Fix Kong core dependency causing the access phase handle to fail
+  - **Proxy Cache**
+      - Fix issue leading to cache key collision in some scenarios - e.g., for requests issued by the same consumer
+      - Fix cache key for Routes and Services: previously, distinct routes/services entities would be given the same cache key
 
 ## 0.33
 
