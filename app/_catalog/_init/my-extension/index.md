@@ -12,9 +12,6 @@
 name: # (required) The name of your extension.
   # Use capitals and spaces as needed.
 
-#header_icon: #FIXME # (optional) Uncomment only if you are submitting an icon
-  # See icon submission instructions in the README.
-
 categories: # (required) Uncomment all that apply.
   #- authentication
   #- security

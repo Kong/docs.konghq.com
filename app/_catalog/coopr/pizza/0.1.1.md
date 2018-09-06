@@ -14,8 +14,6 @@ name: 500 -> 2 Pizza Party # (required) The name of your extension.
 id: pizza # a slug-formatted string to represent your extension
   # Use only lowercase letters, numerals, and hyphens (-).
 
-#header_icon: #FIXME # (optional) Uncomment only if you are submitting an icon
-  # See icon submission instructions in the README.
 categories: # (required) Uncomment all that apply.
   #- authentication
   #- security
@@ -104,9 +102,6 @@ kong_version_compatibility:
 # PLUGIN-ONLY SETTINGS below this line
 # If your extension is a plugin, ALL of the following lines must be completed.
 # If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
-
-kong_legacy_api: false
-  # If your plugin uses the old API, change this to true
 
 params: # metadata about your plugin
   name: pizza # name of the plugin in Kong
