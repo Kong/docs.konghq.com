@@ -57,11 +57,9 @@ nav:
       - Automatically log users in after registering when auto-approve is on
       - Reduce the size of the mobile breakpoint
       - Improve performance and file sizes of bundled code
-      - 0.33 Portal shows the name of a spec twice after uploading
+      - Fix issue causing Portal to list spec files twice
       - Swagger Improvements:
-          - Update Dev Portal Sidebar to support OAS 3.0
-          - Update Swagger2Har to Support OAS3
-          - Update SwaggerUI styling to support OAS 3.0
+          - Fix for rendering OAS 3.0 spec files
           - Ensure that page loading isn't blocked by Swagger UI rendering
 
 - **Plugins**
