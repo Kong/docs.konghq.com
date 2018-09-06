@@ -172,13 +172,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 <!-- BEGIN PAGE OUTPUT -->
 
 <div class="page page-extension-profile">
-  <header class="page-header">
-    <div class="container">
-    {% if page.header_icon or page.header_title %}
-      {% include header.html type=extn_type name=page.header_title %}
-    {% else %}
-      {% include header.html img=extn_icon name=page.name %}
-    {% endif %}
+  {% if page.header_icon or page.header_title %}
+    {% include header.html type=extn_type name=page.header_title %}
+  {% else %}
+    {% include header.html img=extn_icon name=page.name %}
+  {% endif %}
+
+  <div class="container">
 
     {% if extn_versions %}
       <div class="dropdown page-header-right">
@@ -205,10 +205,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         </ul>
       </div>
     {% endif %}
-  </div>
-  </header>
-
-  <div class="container">
 
     <aside class="page-navigation">
 
