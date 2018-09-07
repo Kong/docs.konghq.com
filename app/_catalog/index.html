@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Kong Catalog
+title: Kong Catalog | Plugins and Integrations
 sitemap: true
 breadcrumbs: null
 permalink: /catalog/
@@ -14,21 +14,22 @@ body_id: page-catalog
 <div class="page page-catalog">
   <header class="page-header">
     <h2 class="text-center">Kong Catalog</h2>
-    <h3 class="text-center">Extend Kong with powerful plugins and integrations.</h3>
+    <h3 class="text-center">Extend Kong with Powerful Plugins and Easy Integrations</h3>
   </header>
   <div class="container kong-plugins">
     <div class="row">
       <div class="col col-lg-3 hidden-md-down sidebar">
-        <div class="sticky-top" style="top: 70px;">
+        <div class="sticky-top" style="top: 220px;">
+          <h5 class="my-1x">Availability</h5>
           <ul class="nav flex-column" id="facet-filters">
             <li class="nav-item">
               <a class="nav-link" data-filter="open-source">
-                Bundled with Kong CE
+                Bundled with Kong
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-filter="pub-konghq">
-                Bundled with Kong EE
+                Bundled with Kong Enterprise
               </a>
             </li>
             <li class="nav-item">
@@ -37,7 +38,7 @@ body_id: page-catalog
               </a>
             </li>
           </ul>
-          <h5 class="my-1x">Categories</h5>
+          <h5 class="my-1x">Functionality</h5>
           <ul class="nav flex-column" id="scroll-sidebar">
             {% for cat in categories %}
               <li class="nav-item">
@@ -47,8 +48,8 @@ body_id: page-catalog
               </li>
             {% endfor %}
           </ul>
-          <p class="sm">Learn how to publish your plugin</p>
-          <a class="btn btn-gry" href="https://github.com/kong/docs.konghq.com" target="_blank">Let's go!</a>
+          <p class="sm">Add <i>your</i> extension</p>
+          <a class="btn btn-gry" href="mailto:cooper@konghq.com?subject=Please%20tell%20me%20how%20to%20contribute%20to%20the%20Kong%20Catalog&body=" target="_blank">Tell me how!</a>
         </div>
       </div>
       <div class="col-12 col-lg-9 catalog-cards">
