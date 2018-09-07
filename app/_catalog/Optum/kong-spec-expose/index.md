@@ -11,8 +11,6 @@
 
 name: Kong Spec Expose # (required) The name of your extension.
   # Use capitals and spaces as needed.
-id: kong-spec-expose # a slug-formatted string to represent your extension
-  # Use only lowercase letters, numerals, and hyphens (-).
 
 categories: # (required) Uncomment all that apply.
   #- authentication

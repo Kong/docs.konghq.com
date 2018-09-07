@@ -11,8 +11,6 @@
 
 name: Kong Service Virtualization # (required) The name of your extension.
   # Use capitals and spaces as needed.
-id: kong-service-virtualization # a slug-formatted string to represent your extension
-  # Use only lowercase letters, numerals, and hyphens (-).
 
 categories: # (required) Uncomment all that apply.
   #- authentication
@@ -123,14 +121,19 @@ params: # metadata about your plugin
       required: true
       value_in_examples: [{"name":"TestCase1","requestHttpMethod":"POST","requestHash":"0296217561490155228da9c17fc555cf9db82d159732f3206638c25f04a285c4","responseHttpStatus":"200","responseContentType":"application/json","response":"eyJtZXNzYWdlIjogIkEgQmlnIFN1Y2Nlc3MhIn0="},{"name":"TestCase2","requestHttpMethod":"GET","requestHash":"e2c319e4ef41706e2c0c1b266c62cad607a014c59597ba662bef6d10a0b64a32","responseHttpStatus":"200","responseContentType":"application/json","response":"eyJtZXNzYWdlIjogIkFub3RoZXIgU3VjY2VzcyEifQ=="}]
       urlencode_in_examples: false
-      default: [{"name":"TestCase1","requestHttpMethod":"POST","requestHash":"0296217561490155228da9c17fc555cf9db82d159732f3206638c25f04a285c4","responseHttpStatus":"200","responseContentType":"application/json","response":"eyJtZXNzYWdlIjogIkEgQmlnIFN1Y2Nlc3MhIn0="},{"name":"TestCase2","requestHttpMethod":"GET","requestHash":"e2c319e4ef41706e2c0c1b266c62cad607a014c59597ba662bef6d10a0b64a32","responseHttpStatus":"200","responseContentType":"application/json","response":"eyJtZXNzYWdlIjogIkFub3RoZXIgU3VjY2VzcyEifQ=="}]
+      default:
       description: A JSON array as string representation of the plugin's configurable fields.
   extra: |
       `name` JSON represents a human readable test case name
+
       `requestHttpMethod` JSON represents the HTTP method associated to the virtual request
+
       `requestHash` JSON represents the Sha256 of the HTTP Body or QUERY Parameters of your request
+
       `responseHttpStatus` JSON represents the HTTP response to send consumers after successful virtual match
+
       `responseContentType` JSON represents the Content-Type of the HTTP response after successful virtual request match
+
       `response` JSON represents the Base64 encoded virtual response to send after successful virtual request match
 ###############################################################################
 # END YAML DATA

@@ -11,8 +11,6 @@
 
 name: Moesif API Insights # (required) The name of your extension.
   # Use capitals and spaces as needed.
-id: kong-plugin-moesif # a slug-formatted string to represent your extension
-  # Use only lowercase letters, numerals, and hyphens (-).
 
 categories: # (required) Uncomment all that apply.
   #- authentication
@@ -21,7 +19,7 @@ categories: # (required) Uncomment all that apply.
   #- severless
   - analytics-monitoring
   #- transformations
-  - logging
+  #- logging
 # Array format only; uncomment one or more applicable categories.
 # If you would like to add a category, you may do so here.
 

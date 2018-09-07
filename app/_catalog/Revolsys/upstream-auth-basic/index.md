@@ -11,8 +11,6 @@
 
 name: Upstream HTTP Basic Authentication # (required) The name of your extension.
   # Use capitals and spaces as needed.
-id: upstream-auth-basic # a slug-formatted string to represent your extension
-  # Use only lowercase letters, numerals, and hyphens (-).
 
 categories: # (required) Uncomment all that apply.
   - authentication
@@ -140,15 +138,11 @@ params: # metadata about your plugin
 1. The [LuaRocks](http://luarocks.org) package manager must be [Installed](https://github.com/luarocks/luarocks/wiki/Download).
 2. [Kong](https://konghq.com) must be [Installed](https://konghq.com/install/) and you must be familiar with using and configuring Kong.
 3. Install the module kong-plugin-upstream-auth-basic.
-
 ```
 luarocks install kong-plugin-upstream-auth-basic
 ```
-
 4. Add the custom plugin to the `kong.conf` file (e.g. `/etc/kong/kong.conf`)
-
 ```
 custom_plugins = ...,upstream-auth-basic
 ```
-
 5. Restart kong

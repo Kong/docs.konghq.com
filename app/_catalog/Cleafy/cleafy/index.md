@@ -1,6 +1,5 @@
 ---
 name: Cleafy plugin for Kong
-id: cleafy
 
 categories:
   - security

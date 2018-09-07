@@ -11,8 +11,6 @@
 
 name: Kong Splunk Log # (required) The name of your extension.
   # Use capitals and spaces as needed.
-id: kong-splunk-log # a slug-formatted string to represent your extension
-  # Use only lowercase letters, numerals, and hyphens (-).
 
 categories: # (required) Uncomment all that apply.
   #- authentication
@@ -34,11 +32,7 @@ type: plugin # (required) String or Array of strings if multiple fit.
 
 desc: Log API transactions to Splunk using the Splunk HTTP collector # (required) 1-liner description; max 80 chars
 description: |
-  Kong provides many great logging tools out of the box, this is a modified version of the Kong HTTP logging plugin that has been refactored and tailored to work with Splunk.
-
-  Example Log Transaction:
-
-  [Splunk Sample](https://github.com/Optum/kong-splunk-log/blob/master/SplunkLogSample.png)
+  Kong provides many great logging tools out of the box - this is a modified version of the Kong HTTP logging plugin that has been refactored and tailored to work with Splunk.
 
 # (required) extended description.
 # Use YAML piple notation for extended entries.
@@ -127,8 +121,8 @@ params: # metadata about your plugin
       required: true
       value_in_examples: aaaaaaaa-bbbb-cccc-dddd-ffffffffffff
       urlencode_in_examples: false
-      default: aaaaaaaa-bbbb-cccc-dddd-ffffffffffff
-      description: Passes required Splunk header `Authorization: Splunk aaaaaaaa-bbbb-cccc-dddd-ffffffffffff`
+      default:
+      description: Passes required Splunk header `Authorization Splunk:aaaaaaaa-bbbb-cccc-dddd-ffffffffffff`
     - name: method
       required: false
       value_in_examples: POST
@@ -153,9 +147,8 @@ params: # metadata about your plugin
       urlencode_in_examples: false
       default: 60000
       description: The amount of time to keep plugin connections with Splunk active
-  extra: |
-  We recommend enabling the Splunk Logging plugin at a global level.
-  
+  extra: We recommend enabling the Splunk Logging plugin at a global level.
+
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
@@ -167,6 +160,10 @@ params: # metadata about your plugin
 ###############################################################################
 # BEGIN MARKDOWN CONTENT
 ---
+
+### Example Log in Splunk UI
+
+![Splunk UI screen shot](https://konghq.com/wp-content/uploads/2018/09/SplunkLogSample.png)
 
 ### Installation
 
@@ -190,7 +187,7 @@ The plugin requires an environment variable `SPLUNK_HOST`. This is how we define
 
 #### Example Plugin Configuration
 
-[Splunk Config](https://github.com/Optum/kong-splunk-log/blob/master/SplunkConfig.png)
+![Splunk Config](https://konghq.com/wp-content/uploads/2018/09/SplunkConfig.png)
 
 If not already set, it can be done so as follows:
 

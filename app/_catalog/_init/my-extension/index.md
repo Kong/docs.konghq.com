@@ -20,13 +20,11 @@ categories: # (required) Uncomment all that apply.
   #- analytics-monitoring
   #- transformations
   #- logging
-# Array format only; uncomment one or more applicable categories.
-# If you would like to add a category, you may do so here.
+# Array format only; uncomment the one most-applicable category. Contact cooper@konghq.com to propose a new category, if necessary.
 
 type: # (required) String, one of:
   # plugin          | extensions of the core platform
   # integration     | extensions of the Kong Admin API
-  # dev-mod         | enhancements of the Kong dev portal
 
 desc: # (required) 1-liner description; max 80 chars
 description: #|
@@ -70,7 +68,7 @@ description: #|
 # COMPATIBILITY
 # In the following sections, list Kong versions as array items
 # Versions are categorized by Kong edition and their known compatibility.
-# Unlisted Kong versions will be noted as "unknown" compatibility.
+# Unlisted Kong versions will be considered to have "unknown" compatibility.
 # Uncomment at least one of 'community_edition' or 'enterprise_edition'.
 # Add array-formatted lists of versions under their appropriate subsection.
 
@@ -82,28 +80,48 @@ kong_version_compatibility: # required
     #compatible:
     #incompatible:
 
-# EXAMPLE kong_version_compatibility blocks
-# EXAMPLE 1
-# kong_version_compatibility:
-#   community_edition:
-#     compatible:
-#       - 0.13
-#       - 0.14
-#     incompatible:
-#       - 0.12
-#   enterprise_edition:
-#     compatible:
-#       - 0.33
-#       - 0.34
-#     incompatible:
-#       - 0.32
+# EXAMPLE kong_version_compatibility blocks - these examples show how to indicate various compatibilities. Also see other extension files in _app/_catalog/ for more examples
+# EXAMPLE 1 - in this example, the extension is known to be compatible with recent versions of Kong and Kong Enterprise, and is not known to be incompatible with any versions
+#kong_version_compatibility:
+#  community_edition:
+#    compatible:
+#      - 0.12.x
+#      - 0.13.x
+#      - 0.14.x
+#    incompatible:
+#  enterprise_edition:
+#    compatible:
+#      - 0.32-x
+#      - 0.33-x
+#      - 0.34-x
+#    incompatible:
 #
-# EXAMPLE 2
-#   enterprise_edition:
-#     compatible:
-#       - 0.33
-#       - 0.34
-
+# EXAMPLE 2 - in this example, the extension is known to be compatible only the most recent versions of Kong and Kong Enterprise, and is known to be incompatible with all older versions
+#kong_version_compatibility:
+#  community_edition:
+#    compatible:
+#      - 0.14.x
+#      - 0.13.x
+#    incompatible:
+#      - 0.12.x
+#      - 0.11.x
+#      - 0.10.x
+#      - 0.9.x
+#      - 0.8.x
+#      - 0.7.x
+#      - 0.6.x
+#      - 0.5.x
+#      - 0.3.x
+#      - 0.2.x
+#  enterprise_edition:
+#    compatible:
+#      - 0.34-x
+#      - 0.33-x
+#      - 0.32-x
+#    incompatible:
+#      - 0.31-x
+#      - 0.30-x
+#      - 0.29-x
 
 #########################
 # PLUGIN-ONLY SETTINGS below this line
