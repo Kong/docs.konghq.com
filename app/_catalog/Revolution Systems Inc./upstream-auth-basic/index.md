@@ -21,7 +21,6 @@ categories: # (required) Uncomment all that apply.
   #- transformations
   #- logging
 # Array format only; uncomment one or more applicable categories.
-# If you would like to add a category, you may do so here.
 
 type: plugin # (required) String or Array of strings if multiple fit.
 # options:
