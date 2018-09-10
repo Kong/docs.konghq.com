@@ -277,8 +277,8 @@ a:focus,a:hover {
 }
 
 a:not([href]):not([tabindex]),a:not([href]):not([tabindex]):focus,a:not([href]):not([tabindex]):hover {
-    color: inherit;
-    text-decoration: none
+    /* color: inherit; */
+    text-decoration: none;
 }
 
 a:not([href]):not([tabindex]):focus {
@@ -3813,6 +3813,7 @@ tbody.collapse.show {
 
 .navbar {
     position: relative;
+    box-sizing: initial;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3822,8 +3823,6 @@ tbody.collapse.show {
 
 .navbar-brand {
     display: inline-block;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
     margin-right: 1rem;
     font-size: 1.25rem;
     line-height: inherit;
@@ -4326,6 +4325,22 @@ tbody.collapse.show {
     border-radius: .25rem
 }
 
+.card-link:hover .card-title {
+    text-decoration: underline;
+}
+
+.card-link:hover .card-description {
+    text-decoration: none;
+}
+
+.card-description {
+    margin-bottom: 32px;
+}
+
+.plugin-card:hover {
+    background: #FAFBFC;
+}
+
 .card-block {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
@@ -4551,6 +4566,12 @@ tbody.collapse.show {
         -webkit-box-direction: normal;
         -ms-flex-flow: row wrap;
         flex-flow: row wrap
+    }
+
+    .card-group .card {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 0px;
+        flex: 1 0 0
     }
 
     .card-group .card {
@@ -13876,20 +13897,42 @@ section.bg-dkBlue {
     will-change: color;
 }
 
-.sidebar a:hover {
+.sidebar .nav-item a:hover {
     color: #062F4D;
     font-weight: 500;
     border-left: 2px solid rgba(0,0,0,.45);
 }
 
-.sidebar a.active {
+.sidebar .nav-item a {
+    border-left: 2px solid transparent;
+}
+
+.sidebar .nav-item a.active {
     color: #062F4D;
     font-weight: 500;
     border-left: 2px solid #062F4D;
 }
 
-.sidebar a {
-  border-left: 2px solid transparent;
+.sidebar .btn {
+    padding-left: 42px;
+    padding-right: 42px;
+}
+
+.sidebar .cta-description {
+    font-size: 15px;
+    color: rgba(0,0,0,0.45);
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+.sidebar .cta-container {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+#scroll-sidebar {
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E6E6E6;
 }
 
 .search-input-wrapper {
@@ -15708,6 +15751,8 @@ nav.navigation.posts-navigation {
 
 header.page-header {
   margin: 40px auto;
+  background-color: #ffffff;
+  border-bottom: none;
 }
 
 .kong-plugins .cards-collection {
@@ -15727,8 +15772,12 @@ header.page-header {
 }
 
 .catalog-cards h5 {
-  border-bottom: 1px solid rgba(0,0,0,.25);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 28px;
+  color: rgba(0,0,0,.7);
   width: 100%;
+  margin: 0 16px 16px;
 }
 
 .plugin-card {
@@ -15739,15 +15788,11 @@ header.page-header {
     background-color: #FFF;
     position: relative;
     overflow: hidden;
-    padding: 15px;
+    padding: 25px;
 }
 
 .plugin-card a {
     display: block
-}
-
-.plugin-card:hover {
-    background: #FAFBFC
 }
 
 .plugin-card.enterprise:after {
@@ -15762,12 +15807,14 @@ header.page-header {
     font-size: 12px;
     line-height: 1rem;
     background: #E1EAFF;
-    border: 1px #9DC6E3 solid;
-    padding: 2px 12px;
+    border-bottom: 1px #9DC6E3 solid;
+    border-left:1px #9DC6E3 solid;
+    border-radius: 0 0 0 4px;
+    padding: 3px 12px 2px;
 }
 
 .plugin-card.fadeOut {
-    opacity: .4
+    opacity: .25;
 }
 
 .plugin-card .name-desc {
@@ -15783,18 +15830,23 @@ header.page-header {
   color: rgba(0,0,0,0.45);
   letter-spacing: 0.25px;
   position: absolute;
-  bottom: 15px;
-  left: 15px;
+  bottom: 25px;
+  left: 25px;
   z-index: 1000;
 }
 
-.plugin-card.enterprise:hover {
-    background: rgba(0,112,206,.05)
+.publisher p {
+    margin-bottom: 8px;
+}
+
+.publisher svg {
+    margin-top: 5px;
 }
 
 .card-img-top {
   height: 64px;
   width: 65px;
+  margin-bottom: 8px;
 }
 
 .nav .nav-item {
