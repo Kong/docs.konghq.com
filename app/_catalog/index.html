@@ -19,7 +19,7 @@ body_id: page-catalog
   <div class="container kong-plugins">
     <div class="row">
       <div class="col col-lg-3 hidden-md-down sidebar">
-        <div class="sticky-top" style="top: 250px;">
+        <div class="sticky-top" style="top: 135px;">
           <h5 class="my-1x">Filters</h5>
           <ul class="nav flex-column" id="facet-filters">
             <li class="nav-item">
@@ -87,13 +87,16 @@ body_id: page-catalog
                           <p class="sm card-description">{{ extn.desc }}</p>
                         </div>
                         <div class="publisher">
-                          <a data-filter="pub-{{extn_publisher}}">
-                          Support by:<br>
-                          {% if extn_publisher == "konghq" %}
-                            {% include svgs.html img='team-kong-icon' %}
-                          {% else %}
-                            {{ extn_publisher }}
-                          {% endif %}</a>
+                          <a href="{{ extn.url | remove: '/index' }}">
+                            <span>Support by:</span><br>
+                            <span>
+                              {% if extn_publisher == "konghq" %}
+                                {% include svgs.html img='team-kong-icon' %}
+                              {% else %}
+                                {{ extn_publisher }}
+                              {% endif %}
+                            </span>
+                          </a>
                         </div>
                       </div>
                     </div>

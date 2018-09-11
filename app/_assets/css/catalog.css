@@ -13935,6 +13935,10 @@ section.bg-dkBlue {
     border-bottom: 1px solid #E6E6E6;
 }
 
+#facet-filters {
+    padding-bottom: 32px;
+}
+
 .search-input-wrapper {
     padding: 1rem 0
 }
@@ -15833,6 +15837,14 @@ header.page-header {
   bottom: 25px;
   left: 25px;
   z-index: 1000;
+}
+
+.publisher a {
+    text-decoration: none;
+}
+
+.publisher a:hover {
+    color: #004B80;
 }
 
 .publisher p {
