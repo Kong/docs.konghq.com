@@ -382,8 +382,8 @@ requests will be dropped.
 
 [Back to TOC](#table-of-contents)
 
-[upstream-object-reference]: /docs/{{page.kong_version}}/admin-api#upstream-object
-[target-object-reference]: /docs/{{page.kong_version}}/admin-api#target-object
-[dns-order-config]: /docs/{{page.kong_version}}/configuration/#dns_order
-[real-ip-config]: /docs/{{page.kong_version}}/configuration/#real_ip_header
+[upstream-object-reference]: /{{page.kong_version}}/admin-api#upstream-object
+[target-object-reference]: /{{page.kong_version}}/admin-api#target-object
+[dns-order-config]: /{{page.kong_version}}/configuration/#dns_order
+[real-ip-config]: /{{page.kong_version}}/configuration/#real_ip_header
 [blue-green-canary]: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/

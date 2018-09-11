@@ -119,7 +119,7 @@ snis_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
-    `certificate_id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname.
+    `certificate.id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname. With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
 ---
 
@@ -1482,7 +1482,9 @@ lookup the certificate object based on the SNI associated with the certificate.
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -1509,7 +1511,9 @@ HTTP 201 Created
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -1536,7 +1540,9 @@ HTTP 200 OK
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -1560,13 +1566,17 @@ HTTP 200 OK
         {
             "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
             "name": "example.com",
-            "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+            "certificate": {
+                "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+            },
             "created_at": 1485521710265
         },
         {
             "id": "88c03fcd-9a48-4937-a976-0abd0eb6b60a",
             "name": "example.org",
-            "certificate_id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b",
+            "certificate": {
+                "id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b"
+            },
             "created_at": 1485521710265
         }
     ]
@@ -1593,7 +1603,9 @@ HTTP 200 OK
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -2395,9 +2407,9 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
-[clustering]: /docs/{{page.kong_version}}/clustering
-[cli]: /docs/{{page.kong_version}}/cli
-[active]: /docs/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /docs/{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /docs/{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /docs/{{page.kong_version}}/proxy
+[clustering]: /{{page.kong_version}}/clustering
+[cli]: /{{page.kong_version}}/cli
+[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /{{page.kong_version}}/proxy
