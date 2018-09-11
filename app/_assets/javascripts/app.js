@@ -313,6 +313,8 @@ $(function () {
         link.attr('data-href', $(link).attr('href'))
         link.removeAttr('href')
       })
+    }
+  })
 
   $(window).scroll(function () {
     var sticky = $('.site-header')
