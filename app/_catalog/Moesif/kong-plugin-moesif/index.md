@@ -1,35 +1,13 @@
 ---
-# This file is for profiling an individual Kong extension.
-# Duplicate this file in your own *publisher path* on your own branch.
-# Your publisher path is relative to _app/_catalog/.
-# The path must consist only of alphanumeric characters and hyphens (-).
-#
-# The following YAML data must be filled out as prescribed by the comments
-# on individual parameters. Also see documentation at:
-# https://github.com/Kong/docs.konghq.com
-# Remove inapplicable entries and superfluous comments as needed
+name: Moesif API Insights
 
-name: Moesif API Insights # (required) The name of your extension.
-  # Use capitals and spaces as needed.
-
-categories: # (required) Uncomment all that apply.
-  #- authentication
-  #- security
-  #- traffic-control
-  #- severless
+categories:
   - analytics-monitoring
-  #- transformations
-  #- logging
-# Array format only; uncomment one or more applicable categories.
-# If you would like to add a category, you may do so here.
 
-type: plugin # (required) String or Array of strings if multiple fit.
- # options:
-  # plugin          | extensions of the core platform
-  # integration     | extensions of the Kong Admin API
-  # dev-mod         | enhancements of the Long dev portal
+type: plugin
 
-desc: AI-powered analytics and monitoring for APIs  # (required) 1-liner description; max 80 chars
+desc: AI-powered analytics and monitoring for APIs  
+
 description: |
   Moesif is an AI-powered API insights platform for:
 
@@ -46,31 +24,14 @@ description: |
   * Get Slack and PagerDuty alerts of anomalous API behavior that pings tests don’t catch
 
 support_url: https://www.moesif.com/docs/server-integration/kong-api-gateway/
-  # (Optional) A specific URL of your own for this extension.
-  # Defaults to the url setting in your publisher profile.
 
 source_url: https://github.com/Moesif/kong-plugin-moesif
-  # (Optional) If your extension is open source, provide a link to your code.
-
-# license_type:
-  # (Optional) For open source, use the abbreviations in parentheses at:
-  # https://opensource.org/licenses/alphabetical
 
 license_url: https://raw.githubusercontent.com/Moesif/moesif-express/master/LICENSE
-  # (Optional) Link to your custom license.
 
 privacy_policy_url: https://www.moesif.com/privacy
-  # (Optional) Link to a remote privacy policy
 
 terms_of_service_url: https://www.moesif.com/terms
-  # (Optional) Link to your online TOS.
-
-# COMPATIBILITY
-# In the following sections, list Kong versions as array items
-# Versions are categorized by Kong edition and their known compatibility.
-# Unlisted Kong versions will be noted as "unknown" compatibility.
-# Uncomment at least one of 'community_edition' or 'enterprise_edition'.
-# Add array-formatted lists of versions under their appropriate subsection.
 
 kong_version_compatibility: # required
   community_edition: # optional
@@ -90,25 +51,13 @@ kong_version_compatibility: # required
       - 0.30-x
     #incompatible:
 
-#########################
-# PLUGIN-ONLY SETTINGS below this line
-# If your extension is a plugin, ALL of the following lines must be completed.
-# If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
-
-params: # metadata about your plugin
+params:
   name: kong-plugin-moesif
   api_id: true
-    # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id: true
-    # boolean - whether this plugin can be applied to a Service.
-    # Affects generation of examples and config table.
   consumer_id: true
-    # boolean - whether this plugin can be applied to a Consumer.
-    # Affects generation of examples and config table.
   route_id: true
-    # whether this plugin can be applied to a Route.
-    # Affects generation of examples and config table.
-  config: # Configuration settings for your plugin
+  config:
     - name: application_id
       required: true
       default:

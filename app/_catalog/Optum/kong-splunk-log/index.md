@@ -1,74 +1,21 @@
 ---
-# This file is for profiling an individual Kong extension.
-# Duplicate this file in your own *publisher path* on your own branch.
-# Your publisher path is relative to _app/_catalog/.
-# The path must consist only of alphanumeric characters and hyphens (-).
-#
-# The following YAML data must be filled out as prescribed by the comments
-# on individual parameters. Also see documentation at:
-# https://github.com/Kong/docs.konghq.com
-# Remove inapplicable entries and superfluous comments as needed
+name: Kong Splunk Log
 
-name: Kong Splunk Log # (required) The name of your extension.
-  # Use capitals and spaces as needed.
-
-categories: # (required) Uncomment all that apply.
-  #- authentication
-  #- security
-  #- traffic-control
-  #- serverless
-  #- analytics-monitoring
-  #- transformations
+categories:
   - logging
-# Array format only; uncomment one or more applicable categories.
-# If you would like to add a category, you may do so here.
 
-type: plugin # (required) String or Array of strings if multiple fit.
-# options:
-  # plugin          | extensions of the core platform
-  # api-integration | extensions of the Kong Admin API
-  # dev-mod         | enhancements of the Long dev portal
-# for multiple, list like so: [api-integration,dev-mod]
+type: plugin
 
-desc: Log API transactions to Splunk using the Splunk HTTP collector # (required) 1-liner description; max 80 chars
+desc: Log API transactions to Splunk using the Splunk HTTP collector
+
 description: |
   Kong provides many great logging tools out of the box - this is a modified version of the Kong HTTP logging plugin that has been refactored and tailored to work with Splunk.
 
-# (required) extended description.
-# Use YAML piple notation for extended entries.
-
 support_url: https://github.com/Optum/kong-splunk-log/issues
-  # (Optional) A specific URL of your own for this extension.
-  # Defaults to the url setting in your publisher profile.
 
 source_url: https://github.com/Optum/kong-splunk-log
-  # (Optional) If your extension is open source, provide a link to your code.
 
 license_type: Apache-2.0
-  # (Optional) For open source, use the abbreviations in parentheses at:
-  # https://opensource.org/licenses/alphabetical
-
-#license_url:
-  # (Optional) Link to your custom license.
-
-#privacy_policy:
-  # (Optional) If you have a custom privacy policy, place it here
-
-#privacy_policy_url:
-  # (Optional) Link to a remote privacy policy
-
-#terms_of_service: |
-  #(Optional) Text describing your terms of service.
-
-#terms_of_service_url:
-  # (Optional) Link to your online TOS.
-
-# COMPATIBILITY
-# In the following sections, list Kong versions as array items
-# Versions are categorized by Kong edition and their known compatibility.
-# Unlisted Kong versions will be noted as "unknown" compatibility.
-# Uncomment at least one of 'community_edition' or 'enterprise_edition'.
-# Add array-formatted lists of versions under their appropriate subsection.
 
 kong_version_compatibility:
   community_edition:
@@ -96,25 +43,12 @@ kong_version_compatibility:
     incompatible:
       - 0.29-x
 
-
-#########################
-# PLUGIN-ONLY SETTINGS below this line
-# If your extension is a plugin, ALL of the following lines must be completed.
-# If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
-
-params: # metadata about your plugin
-  name: kong-splunk-log # name of the plugin in Kong
+params:
+  name: kong-splunk-log
   api_id: true
-    # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id: true
-    # boolean - whether this plugin can be applied to a Service.
-    # Affects generation of examples and config table.
   consumer_id: false
-    # boolean - whether this plugin can be applied to a Consumer.
-    # Affects generation of examples and config table.
   route_id: true
-    # whether this plugin can be applied to a Route.
-    # Affects generation of examples and config table.
 
   config:
     - name: splunk_access_token
@@ -122,7 +56,9 @@ params: # metadata about your plugin
       value_in_examples: aaaaaaaa-bbbb-cccc-dddd-ffffffffffff
       urlencode_in_examples: false
       default:
-      description: Passes required Splunk header `Authorization Splunk:aaaaaaaa-bbbb-cccc-dddd-ffffffffffff`
+      description: |
+        Passes required Splunk header `Authorization Splunk:`
+        `aaaaaaaa-bbbb-cccc-dddd-ffffffffffff`
     - name: method
       required: false
       value_in_examples: POST
