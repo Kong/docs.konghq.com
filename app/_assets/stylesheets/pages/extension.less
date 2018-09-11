@@ -1,12 +1,31 @@
-.page-extension-profile {
-  .container {
-    .dropdown.page-header-right {
-      text-align: right;
-      ul {
-        right: 0;
-      }
+.page-extension-profile .container .dropdown.page-header-right {
+  position: absolute;
+  text-align: right;
+  top: -100px;
+  right: 0;
+  z-index: 1000;
+
+  ul {
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-extension-profile .container .dropdown.page-header-right {
+    position: relative;
+    text-align: left;
+    margin-top: 25px;
+    left: 0;
+    right: none;
+    top: 0;
+
+    ul {
+      right: unset;
     }
   }
+}
+
+.page-extension-profile {
   .content {
     padding-top: 35px;
 
