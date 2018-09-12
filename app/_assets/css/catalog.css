@@ -176,10 +176,6 @@ summary {
         page-break-after: avoid
     }
 
-    .navbar {
-        display: none
-    }
-
     .badge {
         border: 1px solid #000
     }
@@ -3811,7 +3807,7 @@ tbody.collapse.show {
     display: block
 }
 
-.navbar {
+/* .navbar {
     position: relative;
     box-sizing: initial;
     display: -webkit-box;
@@ -3819,7 +3815,7 @@ tbody.collapse.show {
     display: flex;
     flex-direction: column;
     padding: .5rem 1rem
-}
+} */
 
 .navbar-brand {
     display: inline-block;
@@ -3953,6 +3949,11 @@ tbody.collapse.show {
 }
 
 @media (max-width: 767px) {
+
+    .navbar-nav {
+        display: none
+    }
+
     .navbar-toggleable-sm .navbar-nav .dropdown-menu {
         position:static;
         float: none
