@@ -18,17 +18,12 @@ type: plugin
 categories:
   - serverless
 
-installation: |
-
-  You can either use the LuaRocks package manager to install the plugin
-
-  ```bash
-  $ luarocks install kong-plugin-azure-functions
-  ```
-
-  or install it from [source](https://github.com/kong/kong-plugin-azure-functions).
-  For more infomation on Plugin installation, please see the documentation
-  [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
+kong_version_compatibility:
+    community_edition:
+      compatible:
+        - 0.14.x
+    enterprise_edition:
+      compatible:
 
 params:
   name: azure-functions

@@ -22,6 +22,20 @@ type: plugin
 categories:
   - security
 
+kong_version_compatibility:
+    community_edition:
+      compatible:
+        - 0.9.x
+        - 0.8.x
+        - 0.7.x
+        - 0.6.x
+        - 0.5.x
+        - 0.4.x
+        - 0.3.x
+        - 0.2.x
+    enterprise_edition:
+      compatible:
+
 params:
   name: ssl
   api_id: true

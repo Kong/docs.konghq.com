@@ -320,9 +320,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <tr class="kong-editions">
             <th colspan="2">
               {% if path_array contains "konghq" %}
-                bundled with...
+                Bundled with...
               {% else %}
-                Kong compatibility
+                Compatibility
               {% endif %}
             </th>
           </tr>
@@ -332,7 +332,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
               {% for v in site.data.kong_versions_ee reversed %}
                 {% if ee_compatible contains v.release or ee_incompatible contains v.release %}
                   {% unless first_ee %}
-                  <h6>Enterprise Edition</h6>{% assign first_ee = true %}
+                  <h6>Kong Enterprise</h6>{% assign first_ee = true %}
                   {% endunless %}
                   <li>
                   {% if ee_compatible contains v.release %}
@@ -347,7 +347,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
               {% for v in site.data.kong_versions reversed %}
                 {% if ce_compatible contains v.release or ce_incompatible contains v.release %}
                   {% unless first_ce %}
-                  <h6>Community Edition</h6>{% assign first_ce = true %}
+                  <h6>Kong</h6>{% assign first_ce = true %}
                   {% endunless %}
                   <li>
                   {% if ce_compatible contains v.release %}

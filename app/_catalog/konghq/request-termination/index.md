@@ -15,6 +15,20 @@ type: plugin
 categories:
   - traffic-control
 
+kong_version_compatibility:
+    community_edition:
+      compatible:
+        - 0.14.x
+        - 0.13.x
+        - 0.12.x
+        - 0.11.x
+    enterprise_edition:
+      compatible:
+        - 0.34-x
+        - 0.33-x
+        - 0.32-x
+        - 0.31-x
+
 params:
   name: request-termination
   api_id: true

@@ -17,4 +17,12 @@ type: plugin
 categories:
   - logging
 
+kong_version_compatibility:
+    community_edition:
+      compatible:
+    enterprise_edition:
+      compatible:
+        - 0.34-x
+        - 0.33-x
+
 ---

@@ -16,6 +16,16 @@ type: plugin
 categories:
   - serverless
 
+kong_version_compatibility:
+    community_edition:
+      compatible:
+        - 0.14.x
+    enterprise_edition:
+      compatible:
+        - 0.34-x
+        - 0.33-x
+        - 0.32-x
+
 params:
   name: serverless-functions
   api_id: true
