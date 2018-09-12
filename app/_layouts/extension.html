@@ -242,7 +242,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <td>Made by</td>
           <td>
           {% unless extn_publisher == "konghq" %}
-            {{ extn_publisher }}
+            {{ page.publisher }}
           {% else %}
             {% include svgs.html img='team-kong-icon' %}
           {% endunless %}

@@ -8,6 +8,8 @@ body_id: page-catalog
 ---
 
 {% assign catalog = site.catalog %}
+{% assign kong_extns = catalog | where: "publisher", "Kong HQ" %}
+{% assign third_extns = catalog | where_exp: "extn", "extn.publisher != 'Kong HQ'" %}
 {% assign categories = site.extensions.categories %}
 {% assign types = site.extensions.types %}
 
@@ -64,44 +66,13 @@ body_id: page-catalog
           {% for cat in categories %}
             <div class="row category" id="{{cat.slug}}">
               <h5>{{ cat.name }}</h5>
-              {% assign extns = catalog | where_exp: "extn","extn.categories contains cat.slug" %}
+              {% assign extns = kong_extns | where_exp: "extn","extn.categories contains cat.slug" %}
               {% for extn in extns  %}
-                {% assign path_array = extn.path | split: "/" %}
-                {% assign filename = path_array | last %}
-                {% assign extn_slug = path_array[2] %}
-                {% assign extn_publisher = path_array[1] %}
-                {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
-                {% if filename == "index.md" and extn.type %}
-                  {% if page.header_icon %}
-                    {% assign header_icon = page.header_icon %}
-                  {% else %}
-                    {% capture header_icon %}/assets/images/icons/catalog/{{ extn_id }}.png{% endcapture %}
-                  {% endif %}
-                  {% assign extn_slug_array = extn_slug | split: "-" %}
-                  <a class="card-link" href="{{ extn.url | remove: '/index' }}">
-                    <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
-                      <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'konghq' %}pub-konghq {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {% else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
-                        <div class="name-desc">
-                          <img class="card-img-top" src="{{ header_icon }}" onerror="this.src='/assets/images/icons/catalog/_default_icon.png'"/>
-                          <p class="card-title lg mt-1x fw-500">{{ extn.name }}</p>
-                          <p class="sm card-description">{{ extn.desc }}</p>
-                        </div>
-                        <div class="publisher">
-                          <a href="{{ extn.url | remove: '/index' }}">
-                            <span>Support by:</span><br>
-                            <span>
-                              {% if extn_publisher == "konghq" %}
-                                {% include svgs.html img='team-kong-icon' %}
-                              {% else %}
-                                {{ extn_publisher }}
-                              {% endif %}
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                {% endif %}
+                {% include catalog_cards.html %}
+              {% endfor %}
+              {% assign extns = third_extns | where_exp: "extn","extn.categories contains cat.slug" %}
+              {% for extn in extns  %}
+                {% include catalog_cards.html %}
               {% endfor %}
             </div>
           {% endfor %}
