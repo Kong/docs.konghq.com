@@ -1,5 +1,7 @@
 ---
 name: UDP Log
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

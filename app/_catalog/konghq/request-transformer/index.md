@@ -1,5 +1,7 @@
 ---
 name: Request Transformer
+publisher: Kong HQ
+
 nav:
   - label: Documentation
     items:

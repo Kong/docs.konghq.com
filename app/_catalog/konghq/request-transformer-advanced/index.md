@@ -1,6 +1,7 @@
 ---
 
 name: EE Request Transformer
+publisher: Kong HQ
 
 desc: Use powerful regular expressions, variables and templates to transform API requests
 description: |

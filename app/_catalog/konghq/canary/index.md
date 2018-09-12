@@ -1,6 +1,7 @@
 ---
 
 name: EE Canary Release
+publisher: Kong HQ
 
 desc: Slowly roll out software changes to a subset of users
 description: |

@@ -1,5 +1,7 @@
 ---
 name: Datadog
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

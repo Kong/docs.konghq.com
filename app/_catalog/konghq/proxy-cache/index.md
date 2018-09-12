@@ -1,6 +1,7 @@
 ---
 
 name: EE Proxy Caching
+publisher: Kong HQ
 
 desc: Cache and serve commonly requested responses in Kong
 description: |

@@ -1,5 +1,7 @@
 ---
 name: Bot Detection
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

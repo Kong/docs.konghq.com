@@ -1,6 +1,7 @@
 ---
 
 name: OAuth 2.0 Introspection
+publisher: Kong HQ
 
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |

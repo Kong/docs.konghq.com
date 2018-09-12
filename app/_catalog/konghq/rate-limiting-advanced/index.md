@@ -1,6 +1,7 @@
 ---
 
 name: EE Rate Limiting
+publisher: Kong HQ
 
 desc: Upgrades Kong Community Edition rate limiting with more flexibility and higher performance
 description: |
@@ -21,5 +22,5 @@ kong_version_compatibility:
         - 0.34-x
         - 0.33-x
         - 0.32-x
-        
+
 ---

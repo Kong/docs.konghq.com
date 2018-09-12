@@ -1,5 +1,7 @@
 ---
 name: Zipkin  
+publisher: Kong HQ
+
 source_url: https://github.com/Kong/kong-plugin-zipkin
 nav:
   - label: How it Works

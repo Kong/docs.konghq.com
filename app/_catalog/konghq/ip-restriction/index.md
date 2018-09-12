@@ -1,5 +1,6 @@
 ---
 name: IP Restriction
+publisher: Kong HQ
 
 desc: Whitelist or blacklist IPs that can make API requests
 description: |

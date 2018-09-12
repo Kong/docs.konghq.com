@@ -1,6 +1,7 @@
 ---
 
 name: StatsD Advanced
+publisher: Kong HQ
 
 desc: Send metrics to StatsD with more flexible options
 description: |

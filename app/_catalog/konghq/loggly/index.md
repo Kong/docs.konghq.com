@@ -1,5 +1,7 @@
 ---
 name: Loggly
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

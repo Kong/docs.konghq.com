@@ -1,5 +1,7 @@
 ---
 name: Correlation ID
+publisher: Kong HQ
+
 nav:
   - label: Documentation
     items:

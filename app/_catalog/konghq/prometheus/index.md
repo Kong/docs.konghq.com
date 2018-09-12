@@ -1,5 +1,7 @@
 ---
 name: Prometheus
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

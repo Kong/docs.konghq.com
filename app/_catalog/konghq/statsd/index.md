@@ -1,5 +1,7 @@
 ---
 name: StatsD
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

@@ -1,5 +1,7 @@
 ---
 name: JWT
+publisher: Kong HQ
+
 nav:
   - label: Getting Started
     items:

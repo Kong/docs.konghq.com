@@ -1,5 +1,7 @@
 ---
 name: Serverless Functions
+publisher: Kong HQ
+
 source_url: https://github.com/Kong/kong-plugin-serverless-functions
 nav:
   - label: Usage

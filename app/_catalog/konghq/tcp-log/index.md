@@ -1,5 +1,7 @@
 ---
 name: TCP Log
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

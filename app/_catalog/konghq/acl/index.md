@@ -1,5 +1,7 @@
 ---
 name: ACL
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

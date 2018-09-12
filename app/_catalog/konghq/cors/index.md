@@ -1,5 +1,7 @@
 ---
 name: CORS
+publisher: Kong HQ
+
 nav:
   - label: Known Issues
     items:

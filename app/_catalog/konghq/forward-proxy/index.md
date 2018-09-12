@@ -1,6 +1,7 @@
 ---
 
 name: EE Forward Proxy
+publisher: Kong HQ
 
 desc: Allows Kong to connect to intermediary transparent HTTP proxies
 description: |

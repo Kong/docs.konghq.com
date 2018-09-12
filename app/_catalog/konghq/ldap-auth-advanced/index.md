@@ -1,6 +1,7 @@
 ---
 
 name: EE LDAP Authentication
+publisher: Kong HQ
 
 desc: Secure Kong clusters, routes and services with username and password protection
 description: |

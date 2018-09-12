@@ -1,5 +1,7 @@
 ---
 name: Dynamic SSL
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

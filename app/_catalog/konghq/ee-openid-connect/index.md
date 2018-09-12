@@ -1,6 +1,7 @@
 ---
 
 name: OpenID Connect
+publisher: Kong HQ
 
 desc: Integrate Kong with a third-party OpenID Connect 1.0 provider
 description: |

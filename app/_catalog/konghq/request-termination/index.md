@@ -1,5 +1,7 @@
 ---
 name: Request Termination
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

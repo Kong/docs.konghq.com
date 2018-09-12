@@ -1,5 +1,7 @@
 ---
 name: Key Authentication
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

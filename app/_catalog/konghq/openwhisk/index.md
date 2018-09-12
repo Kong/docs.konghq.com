@@ -1,5 +1,7 @@
 ---
 name: Apache OpenWhisk
+publisher: Kong HQ
+
 source_url: https://github.com/Kong/kong-plugin-openwhisk
 nav:
   - label: Usage

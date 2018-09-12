@@ -1,5 +1,7 @@
 ---
 name: Rate Limiting
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

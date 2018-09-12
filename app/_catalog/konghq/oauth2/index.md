@@ -1,5 +1,7 @@
 ---
 name: OAuth 2.0 Authentication
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

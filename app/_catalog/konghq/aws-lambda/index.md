@@ -1,5 +1,7 @@
 ---
 name: AWS Lambda
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

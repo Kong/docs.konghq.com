@@ -11,6 +11,8 @@
 
 name: 500 -> 2 Pizza Party # (required) The name of your extension.
   # Use capitals and spaces as needed.
+publisher: coopr
+
 version: 0.2.0
 
 categories: # (required) Uncomment all that apply.

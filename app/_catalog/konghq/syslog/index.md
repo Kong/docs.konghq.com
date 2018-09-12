@@ -1,5 +1,7 @@
 ---
 name: Syslog
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

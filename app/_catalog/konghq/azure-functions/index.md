@@ -1,5 +1,7 @@
 ---
 name: Azure Functions
+publisher: Kong HQ
+
 source_url: https://github.com/Kong/kong-plugin-azure-functions
 nav:
   - label: Usage

@@ -1,5 +1,7 @@
 ---
 name: LDAP Authentication
+publisher: Kong HQ
+
 nav:
   - label: Getting Started
     items:

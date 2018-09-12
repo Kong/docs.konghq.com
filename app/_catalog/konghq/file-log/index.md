@@ -1,5 +1,7 @@
 ---
 name: File Log
+publisher: Kong HQ
+
 nav:
   - label: Usage
     items:

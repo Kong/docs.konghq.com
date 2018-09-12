@@ -1,5 +1,7 @@
 ---
 name: Response Transformer
+publisher: Kong HQ
+
 nav:
   - label: Documentation
     items:

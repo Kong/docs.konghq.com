@@ -1,5 +1,6 @@
 ---
 name: Request Size Limiting
+publisher: Kong HQ
 
 desc: Block requests with bodies greater than a specified size
 description: |
