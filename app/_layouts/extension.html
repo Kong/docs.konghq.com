@@ -241,7 +241,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         <tr class="publisher">
           <td>Made by</td>
           <td>
-          {% unless extn_publisher == "konghq" %}
+          {% unless extn_publisher == "kong-inc" %}
             {{ page.publisher }}
           {% else %}
             {% include svgs.html img='team-kong-icon' %}
@@ -395,7 +395,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       <div class="page-content">
         <div class="content">
 
-          {% unless path_array contains "konghq" %}
+          {% unless path_array contains "kong-inc" %}
             <div class="alert alert-info" role="alert">
               Community {{ extn_type | capitalize }}: This extension is developed <b>and maintained</b> by a 3rd party contributor.
             </div>

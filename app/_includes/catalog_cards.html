@@ -11,7 +11,7 @@
   {% endif %}
   {% assign extn_slug_array = extn_slug | split: "-" %}
   <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
-    <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'konghq' %}pub-konghq {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {% else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
+    <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'kong-inc' %}pub-konghq {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {% else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
       <div class="name-desc">
         <a href="{{ extn.url | remove: '/index' }}">
           <img class="card-img-top" src="{{ header_icon }}" onerror="this.src='/assets/images/icons/catalog/_default_icon.png'"/>
@@ -22,7 +22,7 @@
       <div class="publisher">
         <a data-filter="pub-{{extn_publisher}}">
         Support by:<br>
-        {% if extn_publisher == "konghq" %}
+        {% if extn_publisher == "kong-inc" %}
           {% include svgs.html img='team-kong-icon' %}
         {% else %}
           {{ extn.publisher }}

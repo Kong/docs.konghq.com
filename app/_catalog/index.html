@@ -8,8 +8,8 @@ sitemap: false
 ---
 
 {% assign catalog = site.catalog %}
-{% assign kong_extns = catalog | where: "publisher", "Kong HQ" %}
-{% assign third_extns = catalog | where_exp: "extn", "extn.publisher != 'Kong HQ'" %}
+{% assign kong_extns = catalog | where: "publisher", "Kong Inc." %}
+{% assign third_extns = catalog | where_exp: "extn", "extn.publisher != 'Kong Inc.'" %}
 {% assign categories = site.extensions.categories %}
 {% assign types = site.extensions.types %}
 
