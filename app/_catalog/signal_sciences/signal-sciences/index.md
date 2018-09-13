@@ -15,7 +15,26 @@ type: integration
 
 desc: Secure your web applications and APIs without impacting your business
 description: |
-  Signal Sciences integrates with Kong as a plugin at the API gateway layer to block malicious requests to your APIs including SQLi, XSS, and more. Kong’s fast, autoscaling API gateway provides a powerful and secure enterprise-class platform to front web traffic, where Signal Sciences focuses on Layer 7 application security for that traffic. Without writing or tuning regex signatures, Signal Sciences provides immediate protection over API abuse and misuse in addition to basic OWASP attacks.
+  Signal Sciences integrates with Kong to block malicious requests to your APIs including SQLi, XSS, and more. Kong’s fast, autoscaling API gateway provides a powerful and secure enterprise-class platform to front web traffic, where Signal Sciences focuses on Layer 7 application security for that traffic. Without writing or tuning regex signatures, Signal Sciences provides immediate protection over the following:
+
+  * OWASP Top 10
+  * Application DoS
+  * Brute force attacks
+  * Account abuse and misuse
+  * Request rate limiting
+  * Account takeover attacks
+  * Bad bots
+  * Virtual patching
+
+  Additionally with [Power Rules and Network Learning Exchange](https://labs.signalsciences.com/product-launch-2018-power-rules-and-network-learning-exchange), Signal Sciences provides protections beyond what WAFs have traditionally been able to provide.
+
+  Installation is simple, using a NGINX lua module and a local agent that feed data into Signal Sciences Cloud Engine.
+
+  For a free trial of Signal Sciences, visit: https://info.signalsciences.com/request-a-trial-kong-signal-sciences-0
+
+  "Using the integrated solution from Kong and Signal Sciences gives us the support we need across all applications, including serverless applications, regardless of how or where they are deployed,” said Jonathan Agha, VP Information Security at WeWork. “With Kong and Signal Sciences, we get greater visibility and architectural flexibility than we have had in the past, without sacrificing performance."
+
+  "They give you visibility in to attacks against your applications, and even auto-blocking a bunch of them without that turning into a cascading horror-show." - Patrick Gray, Risky Biz Producer
 
 support_url: https://docs.signalsciences.net/
 
