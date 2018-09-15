@@ -60,40 +60,9 @@ scraper to test out config changes.
 
 ## Listing Your Extension in the Kong Catalog
 
-We encourage developers to contribute their custom extensions back to the community, with documentation hosted on the Kong website for ready access.
-In order to contribute docs for an extension:
+We encourage developers to list their Kong plugins and integrations (which
+we refer to collectively as "extensions") in the
+[Kong Catalog](https://docs.konghq.com/catalog), with documentation hosted
+on the Kong website for ready access.
 
-1. Clone the Kong docs repository at https://github.com/Kong/docs.konghq.com.
-1. Create a publsher directory at`_app/_catalog/`, such as `_app/_catalog/your-name` or `_app/_catalog/company-name`.
-1. Create a subdirectory for your plugin under this publisher directory, such as `_app/_catalog/your-name/your-extension`.
-1. Copy the file at `_init/my-extension/index.md` to your new path.
-1. Edit this new `index.md` template file as directed in the comments.
-
-**Tip:** Refer to existing extensions in filling out the template.
-
-### Writing plugin documentation
-
-Plugins are now documented as extensions under `app/_catalog/` using the same conventions and format, with some additional parameters to fill out.
-Please look at the existing plugins for examples.
-Fields are:
-
-* `description` - text to be added in the Description section. Use YAML's
-  [pipe notation](https://stackoverflow.com/questions/15540635/what-is-the-use-of-pipe-symbol-in-yaml)
-  to write multi-paragraph text. Note that due to the order that data
-  is generated, you may not use forward-references in links (e.g. use
-  `[example](http://example.com)` and not `[example][example]` pointing to
-  an index at the end).
-* `desc` (string, required) - a short, one-line description of the extension.
-* `type` (array, required) - what kind of extension this is: `plugin`, `enhancement` (developers portal), or `integration`; can list multiple
-* `params`
-  * `name` - name of the plugin in Kong (not always the same spelling as the page name)
-  * `api_id` - boolean - whether this plugin can be applied to an API. Affects generation of examples and config table.
-  * `route_id` - boolean - whether this plugin can be applied to a Route. Affects generation of examples and config table.
-  * `service_id` - boolean - whether this plugin can be applied to a Service. Affects generation of examples and config table.
-  * `consumer_id` - boolean - whether this plugin can be applied to a Consumer. Affects generation of examples and config table.
-  * `config` - the configuration table. Each entry is a configuration item with the following fields:
-    * `name` - the field name as read by Kong
-    * `required` - `true` if required, `false` if optional, `semi` if semi-required (required depending on other fields)
-    * `default` - the default value. If using Markdown (e.g. to make values appear type-written), wrap it in double-quotes
-    * `value_in_examples` - if the field is to appear in examples, this is the value to use. A required field with no `value_in_examples` entry will resort to the one in `default`.
-    * `description` - description of the field. Use YAML's pipe notation if writing longer Markdown text.
+See CONTRIBUTING.md for more information.
