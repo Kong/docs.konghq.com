@@ -184,7 +184,7 @@ end
 return CustomHandler
 ```
 
-See [the source code of the Key-Auth plugin] for an example of a real-life
+See [the source code of the Key-Auth plugin](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth) for an example of a real-life
 handler code.
 
 ---
