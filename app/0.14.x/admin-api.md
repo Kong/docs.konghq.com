@@ -796,7 +796,6 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 10,
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
