@@ -249,11 +249,11 @@ Admin API `/cache` endpoint.
 
 #### Inspect a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/cache/{cache_key}</div>
 
-##### Response
+**Response**
 
 If a value with that key is cached:
 
@@ -279,11 +279,11 @@ this process easier.
 
 #### Purge a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache/{cache_key}</div>
 
-##### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -298,11 +298,11 @@ this process easier.
 
 #### Purge a node's cache
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache</div>
 
-##### Response
+**Response**
 
 ```
 HTTP 204 No Content
