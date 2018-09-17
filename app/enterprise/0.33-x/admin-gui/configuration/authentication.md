@@ -78,7 +78,8 @@ an RBAC user to associate to this Admin. To add the Super Admin, see
 "[Bootstrapping the first RBAC user - the Super Admin](/enterprise/{{page.kong_version}}/rbac/examples/#bootstrapping-the-first-rbac-user-the-super-admin)". 
 
 ```
-curl -X POST http://kong:8001/rbac/users/{username}/roles/super-admin
+curl -X POST http://kong:8001/rbac/users/{username}/roles/    \
+    --data "roles=super-admin"
 ```
 
 Now that you have an Admin with an associated login Key and an RBAC Super-Admin, 
