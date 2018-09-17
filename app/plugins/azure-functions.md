@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/azure-functions
+
 id: page-plugin
 title: Plugins - Azure Functions
 header_title: Azure Functions

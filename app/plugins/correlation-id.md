@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/correlation-id
+
 id: page-plugin
 title: Plugins - Correlation ID
 header_title: Correlation ID

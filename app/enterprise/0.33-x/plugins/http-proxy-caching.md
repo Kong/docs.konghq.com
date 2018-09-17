@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/proxy-cache
+
 title: HTTP Proxy Caching
 ---
 # HTTP Proxy Caching
@@ -147,7 +149,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 #### Response
 
-If the cache entity exists 
+If the cache entity exists
 
 ```
 HTTP 204 No Content

@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/openid-connect
+
 title: Plugins - OpenID Connect
 layout: plugin-ee
 header_title: OpenID Connect

@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/tcp-log
+
 id: page-plugin
 title: Plugins - TCP Log
 header_title: TCP Log
@@ -12,7 +14,7 @@ nav:
       - label: Kong Process Errors
 description: |
   Log request and response data to a TCP server.
-  
+
 params:
   name: tcp-log
   api_id: true

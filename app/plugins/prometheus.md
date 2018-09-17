@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/prometheus
+
 id: page-plugin
 title: Plugins - Prometheus
 header_title: Prometheus

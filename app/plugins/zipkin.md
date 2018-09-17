@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/zipkin
+
 id: page-plugin
 title: Plugins - Zipkin
 header_title: Zipkin  

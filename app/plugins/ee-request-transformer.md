@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/request-transformer-advanced
+
 id: page-plugin
 title: Plugins - EE Request Transformer
 layout: plugin-ee

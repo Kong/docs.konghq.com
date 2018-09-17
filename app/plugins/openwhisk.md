@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/openwhisk
+
 id: page-plugin
 title: Plugins - OpenWhisk
 header_title: Apache OpenWhisk

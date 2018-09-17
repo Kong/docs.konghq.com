@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/file-log
+
 id: page-plugin
 title: Plugins - File Log
 header_title: File Log

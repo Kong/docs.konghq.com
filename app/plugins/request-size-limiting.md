@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/request-size-limiting
+
 id: page-plugin
 title: Plugins - Request Size Limiting
 header_title: Request Size Limiting
@@ -10,7 +12,7 @@ description: |
   <div class="alert alert-warning">
     For security reasons we suggest enabling this plugin for any API you add to Kong to prevent a DOS (Denial of Service) attack.
   </div>
-  
+
   Block incoming requests whose body is greater than a specific size in megabytes.
 
 params:

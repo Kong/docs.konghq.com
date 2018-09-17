@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/statsd
+
 id: page-plugin
 title: Plugins - StatsD
 header_title: StatsD
@@ -67,7 +69,7 @@ Metric                     | description | namespace
 Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields.
 
 Field         | description                                             | allowed values
----           | ---                                                     | --- 
+---           | ---                                                     | ---
 `name`          | StatsD metric's name                                  | [Metrics](#metrics)          
 `stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
 `sample_rate`<br>*conditional*   | sampling rate                        | `number`                 
