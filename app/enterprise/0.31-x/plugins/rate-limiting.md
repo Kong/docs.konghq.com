@@ -1,6 +1,4 @@
 ---
-redirect_to: /hub/kong-inc/rate-limiting-advanced/0.31-x.html
-
 title: Rate Limiting Advanced Plugin
 ---
 # Rate Limiting Advanced Plugin
