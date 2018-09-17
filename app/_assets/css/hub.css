@@ -14844,7 +14844,7 @@ header.page-header {
   position: absolute;
   bottom: 25px;
   left: 25px;
-  z-index: 1000;
+  z-index: 5;
 }
 
 .publisher a {
