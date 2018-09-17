@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/oauth2-introspection
+
 title: OAuth2 Introspection
 ---
 # OAuth2 Introspection Plugin
