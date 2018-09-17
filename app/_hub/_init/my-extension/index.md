@@ -1,7 +1,7 @@
 ---
 # This file is for profiling an individual Kong extension.
 # Duplicate this file in your own *publisher path* on your own branch.
-# Your publisher path is relative to _app/_catalog/.
+# Your publisher path is relative to _app/_hub/.
 # The path must consist only of alphanumeric characters and hyphens (-).
 #
 # The following YAML data must be filled out as prescribed by the comments
@@ -85,7 +85,7 @@ kong_version_compatibility: # required
     #compatible:
     #incompatible:
 
-# EXAMPLE kong_version_compatibility blocks - these examples show how to indicate various compatibilities. Also see other extension files in _app/_catalog/ for more examples
+# EXAMPLE kong_version_compatibility blocks - these examples show how to indicate various compatibilities. Also see other extension files in _app/_hub/ for more examples
 # EXAMPLE 1 - in this example, the extension is known to be compatible with recent versions of Kong and Kong Enterprise, and is not known to be incompatible with any versions
 #kong_version_compatibility:
 #  community_edition:

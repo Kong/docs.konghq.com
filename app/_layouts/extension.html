@@ -1,10 +1,10 @@
 ---
 layout: default
-sitemap: false
 type: plugin
 permalink: :path
 breadcrumbs:
-  Catalog: '/catalog'
+  Hub: '/hub'
+
 ---
 
 {% if page.type == "plugin" %}
@@ -153,7 +153,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% assign extn_slug = path_array[2] %}
 {% assign extn_publisher = path_array[1] %}
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
-{% capture extn_icon %}/assets/images/icons/catalog/{{ extn_id }}.png{% endcapture %}
+{% capture extn_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
 {% assign extn_filename = path_array | last %}
 {% assign extn_versions = site.data.extensions[extn_publisher][extn_slug]['versions'] %}
 {% if extn_versions %}
@@ -196,7 +196,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
                 {% assign ver_path = ver.release | append: ".html" %}
               {% endif %}
               <li>
-                <a href="/catalog/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
+                <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
                   {{ver.release}}
                 </a>
               </li>
@@ -254,7 +254,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
             <ul class="categories">
             {% for cat in page.categories %}
               {% assign cat_meta = site.extensions.categories | where: "slug", cat %}
-              <li><a href="/catalog/#{{ cat_meta[0].slug}}">{{ cat_meta[0].name }}</a>{% unless forloop.last %},{% endunless %}</li>
+              <li><a href="/hub/#{{ cat_meta[0].slug}}">{{ cat_meta[0].name }}</a>{% unless forloop.last %},{% endunless %}</li>
             {% endfor %}
             </ul>
           </td>
@@ -377,7 +377,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
                     {% assign ver_path = ver.release | append: ".html" %}
                   {% endif %}
                   <li>
-                    <a href="/catalog/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
+                    <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
                       {{ver.release}} {% if ver.date %}({{ ver.date }}){% endif %}</a>
                       {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
                   </li>

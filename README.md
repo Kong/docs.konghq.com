@@ -58,11 +58,11 @@ scraper to test out config changes.
   * Generate documentation for all the modules in your PDK (where possible) and
     put in a folder inside your version docs
 
-## Listing Your Extension in the Kong Catalog
+## Listing Your Extension in the Kong Hub
 
 We encourage developers to list their Kong plugins and integrations (which
 we refer to collectively as "extensions") in the
-[Kong Catalog](https://docs.konghq.com/catalog), with documentation hosted
+[Kong Hub](https://docs.konghq.com/hub), with documentation hosted
 on the Kong website for ready access.
 
 See CONTRIBUTING.md for more information.

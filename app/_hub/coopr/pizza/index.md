@@ -1,7 +1,7 @@
 ---
 # This file is for profiling an individual Kong extension.
 # Duplicate this file in your own *publisher path* on your own branch.
-# Your publisher path is relative to _app/_catalog/.
+# Your publisher path is relative to _app/_hub/.
 # The path must consist only of alphanumeric characters and hyphens (-).
 #
 # The following YAML data must be filled out as prescribed by the comments
@@ -13,7 +13,7 @@ name: 500 -> 2 Pizza Party # (required) The name of your extension.
   # Use capitals and spaces as needed.
 publisher: coopr
 
-version: 0.1-beta
+version: 0.2.0
 
 categories: # (required) Uncomment all that apply.
   #- authentication

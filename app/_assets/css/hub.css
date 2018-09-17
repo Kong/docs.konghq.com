@@ -14775,15 +14775,15 @@ header.page-header {
     color: rgba(0,0,0,.45)
 }
 
-.catalog-cards {
+.hub-cards {
   margin-top: 10px;
 }
 
-.catalog-cards .row.category {
+.hub-cards .row.category {
   margin-bottom: 60px;
 }
 
-.catalog-cards h5 {
+.hub-cards h5 {
   font-size: 21px;
   font-weight: 500;
   line-height: 28px;
@@ -14887,7 +14887,7 @@ header.page-header {
   padding-left: 5px;
 }
 
-.page-catalog {
+.page-hub {
   h2 {
     margin-top: 130px;
   }

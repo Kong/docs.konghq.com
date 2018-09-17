@@ -1,21 +1,21 @@
 ---
 layout: default
-title: Kong Catalog | Plugins and Integrations
+title: Kong Hub | Plugins and Integrations
 breadcrumbs: null
-permalink: /catalog/
-body_id: page-catalog
-sitemap: false
+permalink: /hub/
+body_id: page-hub
+
 ---
 
-{% assign catalog = site.catalog %}
-{% assign kong_extns = catalog | where: "publisher", "Kong Inc." %}
-{% assign third_extns = catalog | where_exp: "extn", "extn.publisher != 'Kong Inc.'" %}
+{% assign hub = site.hub %}
+{% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
+{% assign third_extns = hub | where_exp: "extn", "extn.publisher != 'Kong Inc.'" %}
 {% assign categories = site.extensions.categories %}
 {% assign types = site.extensions.types %}
 
-<div class="page page-catalog">
+<div class="page page-hub">
   <header class="page-header">
-    <h2 class="text-center">Kong Catalog</h2>
+    <h2 class="text-center">Kong Hub</h2>
     <h3 class="text-center">Extend Kong with Powerful Plugins and Easy Integrations</h3>
   </header>
   <div class="container kong-plugins">
@@ -61,18 +61,18 @@ sitemap: false
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-9 catalog-cards">
+      <div class="col-12 col-lg-9 hub-cards">
         <div class="row mb-2x">
           {% for cat in categories %}
             <div class="row category" id="{{cat.slug}}">
               <h5>{{ cat.name }}</h5>
               {% assign extns = kong_extns | where_exp: "extn","extn.categories contains cat.slug" %}
               {% for extn in extns  %}
-                {% include catalog_cards.html %}
+                {% include hub_cards.html %}
               {% endfor %}
               {% assign extns = third_extns | where_exp: "extn","extn.categories contains cat.slug" %}
               {% for extn in extns  %}
-                {% include catalog_cards.html %}
+                {% include hub_cards.html %}
               {% endfor %}
             </div>
           {% endfor %}

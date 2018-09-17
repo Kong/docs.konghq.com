@@ -291,7 +291,7 @@ gulp.task('watch', function () {
   gulp.watch(sources.styles, ['styles'])
   gulp.watch(sources.images, ['images-watch'])
   gulp.watch(sources.js, ['javascripts'])
-  gulp.watch(paths.assets + 'css/catalog.css', ['copycss'])
+  gulp.watch(paths.assets + 'css/hub.css', ['copycss'])
 })
 
 gulp.task('html-watch', ['html'], function (cb) {

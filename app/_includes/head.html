@@ -1,4 +1,4 @@
-{% unless page.name and page.path contains '_catalog' %}
+{% unless page.name and page.path contains '_hub' %}
   {% capture page_title %}{{ page.title | escape }}{% if page.kong_version %} - v{{ page.kong_version | escape }}{% endif %}{% if page.title %} | {% endif %}{{ site.name }} - {{ site.title }}{% endcapture %}
 {% else %}
   {% capture page_title %}{{ page.name | capitalize }} {{ page.type}} | Kong{% endcapture %}
@@ -57,8 +57,8 @@
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
   <link rel="stylesheet" href="/assets/styles.css?v={{ site.time | date: '%s' }}"/>
-  {% if page.path == "_catalog/index.html" %}
-  <link rel="stylesheet" href="/assets/catalog.css?v={{ site.time | date: '%s' }}"/>
+  {% if page.path == "_hub/index.html" %}
+  <link rel="stylesheet" href="/assets/hub.css?v={{ site.time | date: '%s' }}"/>
   {% endif %}
 </head>
 

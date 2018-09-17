@@ -36,7 +36,7 @@ repos:
   oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
 collections:
-  catalog:
+  hub:
     output: true
     layout: extension
 
@@ -102,7 +102,7 @@ defaults:
       breadcrumbs: null
 
   - scope:
-      type: catalog
+      type: hub
     values:
       layout: extension
       permalink: /:collection/:path

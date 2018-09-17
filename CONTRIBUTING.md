@@ -15,9 +15,9 @@ Consult the Table of Contents below, and jump to the desired section.
 
 - [Where to seek help?](#where-to-seek-help)
 - [Where to report bugs?](#where-to-report-bugs)
-- [Contributing to Kong documentation and the Kong Catalog](#contributing-to-kong-documentation-and-the-kong-catalog)
+- [Contributing to Kong documentation and the Kong Hub](#contributing-to-kong-documentation-and-the-kong-hub)
   - [Submitting a patch](#submitting-a-patch)
-  - [Kong Catalog contributions](#kong-catalog-contributions)
+  - [Kong Hub contributions](#kong-hub-contributions)
   - [Writing plugin documentation](#writing-plugin-documentation)
     - [Git branches](#git-branches)
     - [Commit atomicity](#commit-atomicity)
@@ -48,16 +48,16 @@ instead.
 [Back to TOC](#table-of-contents)
 
 
-## Contributing to Kong documentation and the Kong Catalog
+## Contributing to Kong documentation and the Kong Hub
 
 Improving the documentation is a most welcome form of contribution to the Kong
 community! You are encouraged to suggest edits, improvements, or fix any typo
 you may find on this website. Please read the below section about
 [submitting a patch](#submitting-a-patch).
 
-Adding and improving listings in the Kong Catalog is also encouraged! Please
+Adding and improving listings in the Kong Hub is also encouraged! Please
 read the below section
-about [Kong Catalog contributions](#kong-catalog-contributions)
+about [Kong Hub contributions](#kong-hub-contributions)
 
 If you wish to contribute to Kong itself (as opposed to the documentation
 website), then please consult the [Kong Contributing
@@ -66,8 +66,8 @@ instead.
 
 When contributing, be aware of a few things:
 
-- Documention for Kong Catalog listings, which includes all Kong Inc.-published
-  and community-published plugins and integrations, lives in the `app/_catalog`
+- Documention for Kong Hub listings, which includes all Kong Inc.-published
+  and community-published plugins and integrations, lives in the `app/_hub`
   and `app/_data/extensions` directories. **Versioning is optional, and thus
   potentially inconsistent, for this part of the documentation**.
 - Kong documentation lives in `app/x.x.x` and Kong Enterprise documentation
@@ -118,48 +118,48 @@ a build, which should generally happen right after your patch was merged.
 [Back to TOC](#table-of-contents)
 
 
-### Kong Catalog contributions
+### Kong Hub contributions
 
 If you are planning on producing a new Kong plugin or integration, with the
-intent to list it in the Kong Catalog, you are encouraged to have a quick
+intent to list it in the Kong Hub, you are encouraged to have a quick
 call with Kong's Director of Ecosystem, Cooper Marcus -
 [book a time](http://meetme.so/cooper), or email him at cooper@konghq.com.
 
-Adding a new listing to the Kong Catalog may be proposed by:
+Adding a new listing to the Kong Hub may be proposed by:
 
 1. Clone this repo
-1. Create a publisher directory at`_app/_catalog/`, such as
- `_app/_catalog/your-github-handle` (if you are contributing as an individual)
- or `_app/_catalog/company-name` (if you are contributing as a company). See
- other Kong Catalog listings for examples of publisher names.
+1. Create a publisher directory at`_app/_hub/`, such as
+ `_app/_hub/your-github-handle` (if you are contributing as an individual)
+ or `_app/_hub/company-name` (if you are contributing as a company). See
+ other Kong Hub listings for examples of publisher names.
 1. Create a subdirectory for your extension within your publisher directory -
-such as `_app/_catalog/your-name/your-extension`.
-1. Copy the `/app/_catalog/_init/my-extension/index.md` file into your extension's
+such as `_app/_hub/your-name/your-extension`.
+1. Copy the `/app/_hub/_init/my-extension/index.md` file into your extension's
 subdirectory. If you are publishing a single version of your extension, which is typical to
 start with, then the file name `index.md` should remain.
 1. Edit your `index.md` file based on the guidance in comments in that file -
 you'll find lots of helpful examples in other extension's files. If you are
 documenting a Kong plugin, be sure to see the next section.
 1. If you have a custom logo, add a square-format PNG file to
-`/app/_assets/images/icons/catalog/` - the filename of your image should be
+`/app/_assets/images/icons/hub/` - the filename of your image should be
 `publisher_extension` using the "publisher" and "extension" name from step 2.
 Custom logos are optional.
 1. Be sure to run the docs site locally per the instructions in
-the README - you should find your Catalog contribution listed at
-`localhost:3000/catalog`
+the README - you should find your Hub contribution listed at
+`localhost:3000/hub`
 1. Once you are happy with your listing, make a Pull Request to add it to
-the Kong Catalog. [Having trouble, or have questions?](#where-to-seek-help)
+the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
 
 Kong staff will review your PR, suggest improvements and adjustments as
-necessary, and once approved, will merge and deploy your Kong Catalog addition!
+necessary, and once approved, will merge and deploy your Kong Hub addition!
 
 [Back to TOC](#table-of-contents)
 
 ### Writing plugin documentation
 
-Plugins are documented as extensions under `app/_catalog/` - please look at
+Plugins are documented as extensions under `app/_hub/` - please look at
 the existing plugins for examples, and see additional advice in
-`app/_catalog/_init/my-extension/index.md`.
+`app/_hub/_init/my-extension/index.md`.
 
 * `description` - text to be added in the Description section. Use YAML's
   [pipe notation](https://stackoverflow.com/questions/15540635/what-is-the-use-of-pipe-symbol-in-yaml)
@@ -267,7 +267,7 @@ The type of your commit indicates what type of change this commit is about. The
 accepted types are:
 
 - **docs**: Changes made to any static content files associated with Kong, Kong
-  Enterprise, and Kong Catalog documentation (including typo fixes),
+  Enterprise, and Kong Hub documentation (including typo fixes),
   the README.md or this file
 - **feat**: A new website feature e.g. Ruby, JavaScript, HTML, or CSS changes
   to support a new feature
@@ -294,7 +294,7 @@ it is at your discretion, but here are some of the most frequent ones:
 - **`conf`**: Changes related to the configuration file documentation (new
   values, improvements...)
 - **`<plugin-or-extension-name>`**: A change to any of the listings in the
-  Kong Catalog. This could be `basic-auth`, or `ldap` for example
+  Kong Hub. This could be `basic-auth`, or `ldap` for example
 - **`*`**: When the change affects too many parts of the codebase at once (this
   should be rare and avoided)
 
@@ -327,7 +327,7 @@ $ npm run test
 ### Contributing images, videos, etc
 
 Binary files like images and videos should not be included in your pull request,
-with the exception of custom icons for the Kong Catalog -
+with the exception of custom icons for the Kong Hub -
 any request including them will be rejected.
 
 Instead, please:
