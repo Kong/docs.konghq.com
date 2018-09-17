@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/openid-connect/0.31-x.html
+
 title: OpenID Connect Plugin
 ---
 
@@ -19,7 +21,7 @@ The Kong OpenID Connect plugin provides a general-purpose OpenID Connect toolkit
 
 ## Terminology
 
-Term           | Description 
+Term           | Description
 --------------:|------------
 `OP`           | OpenID Connect Provider
 `RP`           | OpenID Connect Relying Party
@@ -46,7 +48,7 @@ The best method to use here is to use OpenID Connect Authentication using
 *authorization code** flow. Kong sets up a session with the browser. After
 initial authentication the browser will send the cookie automaticalle —
 even when making API requests using Javascript. With authorization code
-flow you can usually utilize stronger authentication methods such as 
+flow you can usually utilize stronger authentication methods such as
 two-factor authentication on your identity provider.
 
 ### Protecting Access to APIs from 1st Party Client
@@ -150,7 +152,7 @@ Parameter ¹                          | Desciption
 `client_secret`                      | The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider.
 `redirect_uri`                       | The `redirect_uri` of the client defined with `client_id` (also used as a redirection uri on authorization code flow).
 `login_redirect_uri`                 | If `login_action` is `redirect`, here you can set up the redirection url for that.
-`logout_redirect_uri`                | On logout this is the url where the client is redirected after logout is done (used also for `post_logout_redirect_uri`) 
+`logout_redirect_uri`                | On logout this is the url where the client is redirected after logout is done (used also for `post_logout_redirect_uri`)
 `scopes`                             | The scopes to be requested from OP.
 `response_mode`                      | The response mode used with authorization endpoint (e.g. authorization code flow)
 `auth_methods`                       | The supported authentication methods you want to enable.
@@ -208,7 +210,7 @@ Parameter ¹                          | Desciption
 `verify_signature`                   | Enables or disables verification of the signature (for debugging).
 `verify_claims`                      | Enables or disables verification of the claims (for debugging).
 `cache_introspection`                | Enables of disables caching of introspection request results.
-`cache_tokens`                       | Enables of disables caching of token endpoint request results. 
+`cache_tokens`                       | Enables of disables caching of token endpoint request results.
 `cache_user_info`                    | Enables of disables caching of user info request results.
 `http_version`                       | The HTTP version to use between Kong and OP.
 `ssl_verify`                         | Whether or not should Kong verify SSL Certificates when communicating to OP.
@@ -251,7 +253,7 @@ Parameter ¹                          | Type      | Required | Default
 `token_headers_client`               | `array`   | `no`     | `—`
 `token_headers_replay`               | `array`   | `no`     | `—`
 `token_headers_prefix`               | `string`  | `no`     | `—`
-`token_headers_grants`               | `array`   | `no`     | `—` 
+`token_headers_grants`               | `array`   | `no`     | `—`
 `upstream_access_token_header`       | `string`  | `no`     | `"authorization:bearer"`
 `downstream_access_token_header`     | `string`  | `no`     | `—`
 `upstream_access_token_jwk_header`   | `string`  | `no`     | `—`
@@ -289,7 +291,7 @@ Parameter ¹                          | Type      | Required | Default
 `cache_introspection`                | `boolean` | `no`     | `true`
 `cache_tokens`                       | `boolean` | `no`     | `true`
 `cache_user_info`                    | `boolean` | `no`     | `true`
-`http_version`                       | `number`  | `no`     | `1.1` 
+`http_version`                       | `number`  | `no`     | `1.1`
 `ssl_verify`                         | `boolean` | `no`     | `true`
 `timeout`                            | `number`  | `no`     | `10000`
 
@@ -376,7 +378,7 @@ Default | Required
 
 **Note:** In many cases you will need to configure this to allow Kong
 to work as a trusted client. If you only do e.g. JWT bearer token
-verification, you won't need to configure this. 
+verification, you won't need to configure this.
 
 #### config.client_secret
 
@@ -390,7 +392,7 @@ Default | Required
 
 **Note:** In many cases you will need to configure this to allow Kong
 to work as a trusted client. If you only do e.g. JWT bearer token
-verification, you won't need to configure this. 
+verification, you won't need to configure this.
 
 #### config.redirect_uri
 
@@ -422,7 +424,7 @@ party initiated logout is used, this logout redirect uri will be used
 as `post_logout_redirect_uri` passed to IdP. It can also be an array,
 so that you can pick up different `logiout_redirect_uri` depending
 on the selected `client`.
- 
+
 #### config.scopes
 
 Scopes requested when authenticating.
@@ -557,7 +559,7 @@ verification. With this parameter you may restrict the use of the API
 with too old id tokens. The `max_age` is specified in seconds.
 
 **Note:** `config.leeway` may affect the calculation as well.
- 
+
 Default | Required
 :------:|:-------:
 `0`     | `no`
@@ -585,7 +587,7 @@ paramter to define one.
 
 When this plugin initiates a session (on successful login) with
 the client it will send a cookie to a client. With this parameter
-you can specify the name of the cookie that client receives. 
+you can specify the name of the cookie that client receives.
 
 Default           | Required
 :----------------:|:-------:
@@ -728,7 +730,7 @@ endpoint post args.
 Values for the extra arguments that you want to include
 in token endpoint post args.
 
-#### config.token_headers_client 
+#### config.token_headers_client
 
 When Kong calls token endpoint, you can specify the headers
 that Kong will pass to token endpoint from client request
@@ -869,7 +871,7 @@ When the authentication is done with a method specified with
 `config.login_methods`, this configuration parameter enables
 you to decide what Kong does next. The possible actions are:
 
-1. `"upstream"` — after authentication, Kong reverse proxies the request to upstream service (this is the default) 
+1. `"upstream"` — after authentication, Kong reverse proxies the request to upstream service (this is the default)
 2. `"response"` — after authentication, Kong returns response that by default contains `id token` (if any)
 3. `"redirect"` — after authentication, Kong sends a redirect response to client with redirection uri taken from `config.login.redirect_uri`
 
@@ -1008,7 +1010,7 @@ providers announce erroneous information in their discovery documents
 (e.g. they don't announce features that they actually do support). This
 parameter turns all the discovery based parameter validations off. It can
 be safely turned off. Please always check Kong error logs, as the plugins
-in this suite usually give very clear information of what went wrong. 
+in this suite usually give very clear information of what went wrong.
 
 #### config.verify_nonce
 
@@ -1060,32 +1062,32 @@ Default | Required
 
 Specifies whether or not the plugin should verify the certificates
 used in SSL/TLS communication.
- 
+
 Default | Required
 :------:|:-------:
 `true`  | `no`
- 
+
 **Examples:**
- 
+
 * `true`
 * `false`
 
 #### config.timeout
- 
+
  Specified the timeouts for HTTP requests used in non-blocking communications
  between `Kong` and `OP`, and between `Kong` and the `Client`. This parameter
  is specified in milliseconds.
- 
+
  Default | Required
  :------:|:-------:
  `10000`  | `no`
- 
+
  **Examples:**
- 
+
  * `10000`
  * `30000`
  * `5000`
- 
+
 ### Authorization
 
 `openid-connect` plugin supports different authentication / authorization
