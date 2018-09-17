@@ -20,13 +20,12 @@
         </a>
       </div>
       <div class="publisher">
-        <a data-filter="pub-{{extn_publisher}}">
         Support by:<br>
         {% if extn_publisher == "kong-inc" %}
           {% include svgs.html img='team-kong-icon' %}
         {% else %}
           {{ extn.publisher }}
-        {% endif %}</a>
+        {% endif %}
       </div>
     </div>
   </div>

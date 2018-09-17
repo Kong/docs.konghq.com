@@ -14847,14 +14847,6 @@ header.page-header {
   z-index: 5;
 }
 
-.publisher a {
-    text-decoration: none;
-}
-
-.publisher a:hover {
-    color: #004B80;
-}
-
 .publisher p {
     margin-bottom: 8px;
 }
