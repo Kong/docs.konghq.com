@@ -14762,9 +14762,15 @@ nav.navigation.posts-navigation {
 }
 
 header.page-header {
-  margin: 40px auto;
+  margin: 100px auto 20px;
   background-color: #ffffff;
   border-bottom: none;
+}
+
+@media (max-width: 1100px) {
+    header.page-header {
+        margin: 50px auto 20px;
+    }
 }
 
 .kong-plugins .cards-collection {
