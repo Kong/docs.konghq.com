@@ -22,7 +22,7 @@ $(function () {
   // Change header download button color
 
   if (!$('body#enterprise').length) {
-    var introSectionHeight = $('.section.intro-section').outerHeight() || 50
+    var introSectionHeight = $('.section.intro-section').outerHeight() || 38
     var $downloadBtn = $('.navbar-nav').find('.button')
 
     $window.on('scroll', function () {
@@ -313,19 +313,6 @@ $(function () {
         link.attr('data-href', $(link).attr('href'))
         link.removeAttr('href')
       })
-    }
-  })
-
-  $(window).scroll(function () {
-    var sticky = $('.site-header')
-    var scroll = $(window).scrollTop()
-
-    if (scroll >= 50) {
-      sticky.addClass('fixed-top')
-      $('.page').addClass('page-header-fixed')
-    } else {
-      sticky.removeClass('fixed-top')
-      $('.page').removeClass('page-header-fixed')
     }
   })
 })
