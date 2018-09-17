@@ -128,7 +128,7 @@ When the plugin is added to an API entity (which is deprecated as of 0.13.0),
 it is the `upsream_url` property which must be specified and resolvable as well
 (but ignored).
 
-**Response** plugins
+#### Response plugins
 
 There is a known limitation in the system that prevents some response plugins
 from being executed. We are planning to remove this limitation in the future.
