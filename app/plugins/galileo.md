@@ -1,4 +1,6 @@
 ---
+redirect_to: https://support.konghq.com/
+
 id: page-plugin
 title: Plugins - Galileo
 header_title: Galileo
@@ -12,7 +14,6 @@ nav:
       - label: Logging bodies
       - label: FAQ
   - label: Kong Process Errors
-redirect_to: https://support.konghq.com/hc/en-us/articles/115004916328-Kong-Integration
 description: |
   Logs request and response data to [Galileo](http://getgalileo.io), the analytics platform for monitoring, visualizing and inspecting API & microservice traffic.
 params:

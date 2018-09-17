@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/oauth2
+
 id: page-plugin
 title: Plugins - OAuth 2.0 Authentication
 header_title: OAuth 2.0 Authentication

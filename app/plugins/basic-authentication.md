@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/basic-auth
+
 id: page-plugin
 title: Plugins - Basic Authentication
 header_title: Basic Authentication

@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/bot-detection
+
 id: page-plugin
 title: Plugins - Bot Detection
 header_title: Bot Detection

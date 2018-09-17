@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/statsd-advanced
+
 id: page-plugin
 layout: plugin-ee
 title: Plugins - StatsD Advanced

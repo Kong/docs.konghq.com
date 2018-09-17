@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/ldap-auth-advanced
+
 id: page-plugin
 title: Plugins - LDAP Authentication Advanced
 layout: plugin-ee

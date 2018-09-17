@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/hmac-auth
+
 id: page-plugin
 title: Plugins - HMAC Authentication
 header_title: HMAC Authentication
@@ -171,15 +173,15 @@ header.
 ### Body Validation
 
 User can set `config.validate_request_body` as `true` to validate the request
-body. If it's enabled the plugin will calculate the `SHA-256` HMAC digest of 
-the request body and match it against the value of the `Digest` header. The 
+body. If it's enabled the plugin will calculate the `SHA-256` HMAC digest of
+the request body and match it against the value of the `Digest` header. The
 Digest header needs to be in following format:
 
 ```
 Digest: SHA-256=base64(sha256(<body>))
 ```
 
-If there is no request body, the `Digest` should be set to the digest of a 
+If there is no request body, the `Digest` should be set to the digest of a
 body of 0 length.
 
 Note: In order to create the digest of a request body, the plugin needs to

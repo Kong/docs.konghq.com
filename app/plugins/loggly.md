@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/loggly
+
 id: page-plugin
 title: Plugins - Loggly
 header_title: Loggly

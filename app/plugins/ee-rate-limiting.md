@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/rate-limiting-advanced
+
 id: page-plugin
 title: Plugins - EE Rate Limiting
 layout: plugin-ee

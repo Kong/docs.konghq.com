@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/ldap-auth
+
 id: page-plugin
 title: Plugins - LDAP Authentication
 header_title: LDAP Authentication

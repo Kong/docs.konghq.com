@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/response-ratelimiting
+
 id: page-plugin
 title: Plugins - Response Rate Limiting
 header_title: Response Rate Limiting

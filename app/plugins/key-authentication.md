@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/key-auth
+
 id: page-plugin
 title: Plugins - Key Authentication
 header_title: Key Authentication

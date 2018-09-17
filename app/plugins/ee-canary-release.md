@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/canary
+
 title: Plugins - EE Canary Release
 layout: plugin-ee
 header_title: EE Canary Release

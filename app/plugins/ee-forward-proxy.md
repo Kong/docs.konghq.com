@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/forward-proxy
+
 id: page-plugin
 title: Plugins - EE Forward Proxy
 layout: plugin-ee
