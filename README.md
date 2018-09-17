@@ -65,4 +65,4 @@ we refer to collectively as "extensions") in the
 [Kong Hub](https://docs.konghq.com/hub), with documentation hosted
 on the Kong website for ready access.
 
-See CONTRIBUTING.md for more information.
+See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.
