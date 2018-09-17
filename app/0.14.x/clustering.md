@@ -256,7 +256,7 @@ Admin API `/cache` endpoint.
 
 #### Inspect a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/cache/{cache_key}</div>
 
@@ -286,7 +286,7 @@ this process easier.
 
 #### Purge a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache/{cache_key}</div>
 
@@ -305,7 +305,7 @@ this process easier.
 
 #### Purge a node's cache
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache</div>
 
