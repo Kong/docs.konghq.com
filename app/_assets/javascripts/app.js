@@ -264,6 +264,58 @@ $(function () {
 
   analytics.trackLink($('a[href="#comparison"]')[0], 'Clicked Why Kong')
 
+  // Add Smooth scroll when link with attr clicked
+  $('a[data-link="scroll"]').click(function () {
+    $('html, body').animate({
+      scrollTop: $($.attr(this, 'href')).offset().top - 220 // Add spacing on top after scroll
+    }, 600) // Adjust scroll speed
+    // Remove any active classes that may already be applied
+    $('a[data-link="scroll"').removeClass('active')
+    // Add active class sidebar a
+    $(this).addClass('active')
+    return false
+  })
+
+  // Smooth scroll if hash in URL
+  if (window.location.hash) {
+    $('html, body').scrollTop(0).show()
+    $('html, body').animate({
+      scrollTop: $(window.location.hash).offset().top - 220 // Add spacing on top after scroll
+    }, 600) // Adjust scroll speed
+  }
+
+  // Plugins filter
+  $('a[data-filter]').click(function () {
+    var target = $(this).data('filter')
+
+    // Remove any active classes that may already be applied
+    $('a[data-filter]').removeClass('active')
+    // Add active class sidebar a
+    $(this).addClass('active')
+
+    // For all faded cards, replace href with data-href target
+    $('.plugin-card.fadeOut').each(function () {
+      var link = $(this).find('a')
+      link.attr('href', $(link).attr('data-href'))
+      link.removeAttr('data-href')
+    })
+
+    // Remove any fade states that may already be applied
+    $('.plugin-card').removeClass('fadeOut')
+
+    // If the target of the li is not all continue
+    if (target !== 'all') {
+      // Fade all cards that don't have matching filter
+      $('.plugin-card').not('.' + target).addClass('fadeOut')
+      // For each faded card, move href to data-href and remove href
+      $('.plugin-card.fadeOut').each(function () {
+        var link = $(this).find('a')
+        link.attr('data-href', $(link).attr('href'))
+        link.removeAttr('href')
+      })
+    }
+  })
+
   $(window).scroll(function () {
     var sticky = $('.site-header')
     var scroll = $(window).scrollTop()

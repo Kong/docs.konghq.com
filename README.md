@@ -58,27 +58,11 @@ scraper to test out config changes.
   * Generate documentation for all the modules in your PDK (where possible) and
     put in a folder inside your version docs
 
-## Writing plugin documentation
+## Listing Your Extension in the Kong Hub
 
-Plugins are documented under `app/plugins`. They use a YAML-based system to
-generate many of the sections on each plugin page. Please look at the existing
-plugins for examples. Fields are:
+We encourage developers to list their Kong plugins and integrations (which
+we refer to collectively as "extensions") in the
+[Kong Hub](https://docs.konghq.com/hub), with documentation hosted
+on the Kong website for ready access.
 
-* `description` - text to be added in the Description section. Use YAML's
-  [pipe notation](https://stackoverflow.com/questions/15540635/what-is-the-use-of-pipe-symbol-in-yaml)
-  to write multi-paragraph text. Note that due to the order that data
-  is generated, you may not use forward-references in links (e.g. use
-  `[example](http://example.com)` and not `[example][example]` pointing to
-  an index at the end).
-* `params`
-  * `name` - name of the plugin in Kong (not always the same spelling as the page name)
-  * `api_id` - boolean - whether this plugin can be applied to an API. Affects generation of examples and config table.
-  * `route_id` - boolean - whether this plugin can be applied to a Route. Affects generation of examples and config table.
-  * `service_id` - boolean - whether this plugin can be applied to a Service. Affects generation of examples and config table.
-  * `consumer_id` - boolean - whether this plugin can be applied to a Consumer. Affects generation of examples and config table.
-  * `config` - the configuration table. Each entry is a configuration item with the following fields:
-    * `name` - the field name as read by Kong
-    * `required` - `true` if required, `false` if optional, `semi` if semi-required (required depending on other fields)
-    * `default` - the default value. If using Markdown (e.g. to make values appear type-written), wrap it in double-quotes
-    * `value_in_examples` - if the field is to appear in examples, this is the value to use. A required field with no `value_in_examples` entry will resort to the one in `default`.
-    * `description` - description of the field. Use YAML's pipe notation if writing longer Markdown text.
+See CONTRIBUTING.md for more information.

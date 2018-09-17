@@ -1,0 +1,26 @@
+all_the_things:
+  versions:
+    - release: D
+      date: 2018-08-25
+    - release: C
+      date: 2018-08-03
+    - release: B
+      date: 2018-07-29
+    - release: A
+      date: 2017-07-29
+
+foobar:
+  versions:
+    - release: black
+    - release: blue
+    - release: green
+    - release: red
+
+ziggy:
+  versions:
+    - release: 4.0
+      date: 2018-08-25
+    - release: 3.0
+      date: 2018-08-03
+    - release: 2.0
+    - release: 1.0

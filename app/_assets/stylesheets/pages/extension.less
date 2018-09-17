@@ -1,0 +1,130 @@
+.page-extension-profile .container .dropdown.page-header-right {
+  position: absolute;
+  text-align: right;
+  top: -100px;
+  right: 0;
+  z-index: 1000;
+
+  ul {
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-extension-profile .container .dropdown.page-header-right {
+    position: relative;
+    text-align: left;
+    margin-top: 25px;
+    left: 0;
+    right: none;
+    top: 0;
+
+    ul {
+      right: unset;
+    }
+  }
+}
+
+.page-extension-profile {
+  .content {
+    padding-top: 35px;
+
+    ol {
+      &:extend(.instructions-steps);
+      padding-left: 19px;
+
+      li {
+        &:extend(.instructions-steps .instructions-step-item all);
+        padding: 7px 0 15px 35px;
+
+        &:last-child {
+          padding-bottom: 15px;
+        }
+
+        &:before {
+          color: @font-color;
+          font-size: 13px;
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+          left: -19px;
+        }
+      }
+    }
+
+    h1.page-extension-test {
+      color: blue
+    }
+
+    h2 {
+      font-size: 26px;
+      margin: 20px 0;
+    }
+
+    h4 {
+      font-size: 17px;
+    }
+
+    table {
+      font-size: 13px;
+
+      th {
+        padding: 8px 15px;
+      }
+
+      th {
+        .font-source-sans-sc();
+      }
+
+      td {
+        padding: 15px;
+      }
+    }
+
+    h2, h4, p, table, .highlight {
+      margin: 0 0 2.5rem 0;
+    }
+  }
+
+  .alert-info {
+    background: #EBF7FF;
+    font-size: 15px;
+    color: #004982;
+    letter-spacing: 0;
+    text-align: left;
+    line-height: 22px;
+  }
+
+  #about-extn {
+    th {
+      font-size: 15px;
+      color: rgba(0,0,0,0.70);
+      letter-spacing: 0.5px;
+      line-height: 20px;
+    }
+    td {
+      padding-top: 1em;
+      &:first-child {
+        vertical-align: text-top;
+      }
+      ul {
+        margin-bottom: 0;
+        padding-left: 0;
+        li {
+          list-style: none;
+        }
+        &.compat-list {
+          li {
+            text-align: center;
+          }
+        }
+        &.categories {
+          li {
+            margin-bottom: 3px;
+            line-height: 1.1em;
+          }
+        }
+      }
+    }
+  }
+}
