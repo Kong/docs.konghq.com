@@ -3,8 +3,7 @@ name: Kong Terraform Module
 publisher: Zillow Group
 
 categories:
-  - traffic-control
-# FIXME - this is the wrong category - the correct category "Deployment" doesn't yet exist
+  - deployment
 
 type: integration
 
