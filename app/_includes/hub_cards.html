@@ -11,22 +11,24 @@
   {% endif %}
   {% assign extn_slug_array = extn_slug | split: "-" %}
   <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
-    <a href="{{ extn.url | remove: '/index' }}">
-      <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'kong-inc' %}pub-konghq {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {% else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
-        <div class="name-desc">
-          <img class="card-img-top" src="{{ header_icon }}" onerror="this.src='/assets/images/icons/hub/_default_icon.png'"/>
-          <p class="lg mt-1x fw-500">{{ extn.name }}</p>
-          <p class="sm">{{ extn.desc }}</p>
+    <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'kong-inc' %}pub-konghq {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {% else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}"> 
+      <a href="{{ extn.url | remove: '/index' }}">
+        <div>
+          <div class="name-desc">
+            <img class="card-img-top" src="{{ header_icon }}" onerror="this.src='/assets/images/icons/hub/_default_icon.png'"/>
+            <p class="lg mt-1x fw-500">{{ extn.name }}</p>
+            <p class="sm">{{ extn.desc }}</p>
+          </div>
+          <div class="publisher">
+            Support by:<br>
+            {% if extn_publisher == "kong-inc" %}
+              {% include svgs.html img='team-kong-icon' %}
+            {% else %}
+              {{ extn.publisher }}
+            {% endif %}
+          </div>
         </div>
-        <div class="publisher">
-          Support by:<br>
-          {% if extn_publisher == "kong-inc" %}
-            {% include svgs.html img='team-kong-icon' %}
-          {% else %}
-            {{ extn.publisher }}
-          {% endif %}
-        </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
 {% endif %}

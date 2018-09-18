@@ -267,7 +267,7 @@ $(function () {
   // Add Smooth scroll when link with attr clicked
   $('a[data-link="scroll"]').click(function () {
     $('html, body').animate({
-      scrollTop: $($.attr(this, 'href')).offset().top - 220 // Add spacing on top after scroll
+      scrollTop: $($.attr(this, 'href')).offset().top - 150 // Add spacing on top after scroll
     }, 600) // Adjust scroll speed
     // Remove any active classes that may already be applied
     $('a[data-link="scroll"').removeClass('active')
