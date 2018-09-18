@@ -13417,6 +13417,7 @@ section.bg-dkBlue {
 .sidebar .cta-container {
     margin-top: 32px;
     margin-bottom: 32px;
+    padding-bottom: 10px;
 }
 
 #scroll-sidebar {
@@ -14834,6 +14835,10 @@ header.page-header {
   text-align: left;
 }
 
+.plugin-card.name-desc p:hover {
+    text-decoration: none;
+}
+
 .plugin-card .publisher {
   /* support by:: */
   width: 100%;
@@ -14845,14 +14850,6 @@ header.page-header {
   bottom: 25px;
   left: 25px;
   z-index: 5;
-}
-
-.publisher a {
-    text-decoration: none;
-}
-
-.publisher a:hover {
-    color: #004B80;
 }
 
 .publisher p {
