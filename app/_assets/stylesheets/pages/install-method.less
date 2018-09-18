@@ -158,7 +158,30 @@
       .update-content {
         display: inline-block;
         margin-left: 20px;
+        width: 400px;
+        input {
+          width: 100%;
+        }
+        .button {
+          background: @green;
+          color: @white-90;
+        }
       }
+      .card {
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        padding: 10px;
+      }
+      .success-message {
+        color: @green;
+        display: block;
+      }
+
+      .error-message {
+        color: @red;
+        display: block;
+      }
+
     }
 
   }
