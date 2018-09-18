@@ -11,7 +11,7 @@
   {% endif %}
   {% assign extn_slug_array = extn_slug | split: "-" %}
   <div class="col-12 col-md-6 col-lg-4 my-1x card-group">
-    <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'kong-inc' %}pub-konghq {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {% else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}"> 
+    <div class="card plugin-card align-items-center {{ extn.type }} {{ extn.categories | join: ' ' }} {% if extn_publisher == 'kong-inc' %}pub-konghq {% if extn.enterprise %}enterprise{% else %}open-source{% endif %} {% else %}pub-not-konghq pub-{{extn_publisher}}{% endif %}">
       <a href="{{ extn.url | remove: '/index' }}">
         <div>
           <div class="name-desc">
