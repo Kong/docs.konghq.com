@@ -106,4 +106,4 @@ HTTP/1.1 200 OK
 
 Success! The request was proxied successfully to the final API.
 
-To go further into mastering Kong and its plugins, refer to the complete [documentation](/), and read carefully each plugin's instruction in the [Plugins Gallery](https://konghq.com/plugins/).
+To go further into mastering Kong and its plugins, refer to the complete [documentation](/), and read carefully each plugin's instruction in the [Kong Hub](https://docs.konghq.com/hub/).

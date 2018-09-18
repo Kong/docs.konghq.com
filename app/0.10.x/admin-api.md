@@ -29,7 +29,7 @@ plugin_configuration_body: |
     ---:| ---
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
-    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](https://konghq.com/plugins/).
+    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `enabled` | Whether the plugin is applied. Default: `true`.
 
 target_body: |
@@ -111,7 +111,7 @@ Retrieve generic details about a node.
 
 <div class="endpoint get">/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -152,7 +152,7 @@ If you want to monitor the Kong process, since Kong is built on top of nginx, ev
 
 <div class="endpoint get">/status</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -206,7 +206,7 @@ Retrieve the cluster status, returning information for each node in the cluster.
 
 <div class="endpoint get">/cluster</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -246,7 +246,7 @@ Attributes | Description
 ---:| ---
 `address` | The node address to add.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -268,7 +268,7 @@ Attributes | Description
 ---:| ---
 `name` | The node name to remove.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -314,7 +314,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
 
 {{ page.api_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -352,7 +352,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -397,7 +397,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -462,7 +462,7 @@ Attributes | Description
 
 {{ page.api_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -502,7 +502,7 @@ HTTP 200 OK
 
 The body needs an `id` parameter to trigger an update on an existing entity.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -522,7 +522,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -552,7 +552,7 @@ The Consumer object represents a consumer - or a user - of an API. You can eithe
 
 {{ page.consumer_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -578,7 +578,7 @@ Attributes | Description
 ---:| ---
 `username or id`<br>**required** | The unique identifier **or** the username of the consumer to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -610,7 +610,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -651,7 +651,7 @@ Attributes | Description
 
 {{ page.consumer_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -679,7 +679,7 @@ HTTP 200 OK
 
 The body needs an `id` parameter to trigger an update on an existing entity.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -699,7 +699,7 @@ Attributes | Description
 ---:| ---
 `username or id`<br>**required** | The unique identifier **or** the name of the consumer to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -713,7 +713,7 @@ A Plugin entity represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
 to APIs that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
-each plugin takes by visiting the [Plugins Gallery](https://konghq.com/plugins/).
+each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
 
 When adding a Plugin Configuration to an API, every request made by a client to
 that API will run said Plugin. If a Plugin needs to be tuned to different
@@ -793,7 +793,7 @@ Attributes | Description
 
 {{ page.plugin_configuration_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -826,7 +826,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the plugin to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -866,7 +866,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -923,7 +923,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -978,7 +978,7 @@ Attributes | Description
 
 {{ page.plugin_configuration_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1017,7 +1017,7 @@ Attributes | Description
 
 The body needs an `id` parameter to trigger an update on an existing entity.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1038,7 +1038,7 @@ Attributes | Description
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
 `plugin id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1054,7 +1054,7 @@ Retrieve a list of all installed plugins on the Kong node.
 
 <div class="endpoint get">/plugins/enabled</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1102,7 +1102,7 @@ Retrieve the schema of a plugin's configuration. This is useful to understand wh
 
 <div class="endpoint get">/plugins/schema/{plugin name}</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1152,7 +1152,7 @@ tie a cert/key pair to one or more hostnames.
 
 {{ page.certificate_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1182,7 +1182,7 @@ Attributes | Description
 ---:| ---
 `SNI or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1207,7 +1207,7 @@ HTTP 200 OK
 
 <div class="endpoint get">/certificates/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1252,7 +1252,7 @@ Attributes | Description
 
 {{ page.certificate_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1282,7 +1282,7 @@ HTTP 200 OK
 
 {{ page.certificate_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1300,7 +1300,7 @@ Attributes | Description
 ---:| ---
 `sni or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1334,7 +1334,7 @@ lookup the certificate object based on the SNI associated with the certificate.
 
 {{ page.snis_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1360,7 +1360,7 @@ Attributes | Description
 ---:| ---
 `name`<br>**required** | The name of the SNI object.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1380,7 +1380,7 @@ HTTP 200 OK
 
 <div class="endpoint get">/snis/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1414,7 +1414,7 @@ Attributes | Description
 ---:| ---
 `name`<br>**required** | The name of the SNI object.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1440,7 +1440,7 @@ HTTP 200 OK
 
 {{ page.snis_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1458,7 +1458,7 @@ Attributes | Description
 ---:| ---
 `name`<br>**required** | The name of the SNI object.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1504,7 +1504,7 @@ Requests for this API would be proxied to the targets defined within the upstrea
 
 {{ page.upstream_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1543,7 +1543,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1588,7 +1588,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1656,7 +1656,7 @@ Attributes | Description
 
 {{ page.upstream_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1697,7 +1697,7 @@ HTTP 200 OK
 
 The body needs an `id` parameter to trigger an update on an existing entity.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1717,7 +1717,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1761,7 +1761,7 @@ Attributes | Description
 
 {{ page.target_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1803,7 +1803,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1857,7 +1857,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1905,7 +1905,7 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to delete the target.
 `target or id`<br>**required** | The host/port combination element of the target to remove, or the `id` of an existing target entry.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content

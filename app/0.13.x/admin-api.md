@@ -87,7 +87,7 @@ plugin_configuration_body: |
     ---:| ---
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
-    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](https://konghq.com/plugins/).
+    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `enabled` | Whether the plugin is applied. Default: `true`.
 
 target_body: |
@@ -189,7 +189,7 @@ Retrieve generic details about a node.
 
 <div class="endpoint get">/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -233,7 +233,7 @@ If you want to monitor the Kong process, since Kong is built on top of nginx, ev
 
 <div class="endpoint get">/status</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -301,7 +301,7 @@ of how Kong proxies traffic.
 
 {{ page.service_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -329,7 +329,7 @@ Attributes | Description
 ---:| ---
 `route id`<br>**required** | The unique identifier of a Route belonging to the Service to be retrieved.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -353,7 +353,7 @@ Attributes | Description
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 `size`<br>*optional, default is __100__ max is __1000__* | A limit on the number of objects to be returned per page.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -414,7 +414,7 @@ Attributes | Description
 
 {{ page.service_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -436,7 +436,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The `id` **or** the `name` attribute of the Service to delete.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -472,7 +472,7 @@ your infrastructure.
 
 {{ page.route_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -492,7 +492,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The `id` attribute of the Route to retrieve.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -517,7 +517,7 @@ Attributes | Description
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 `size`<br>*optional, default is __100__ max is __1000__* | A limit on the number of objects to be returned per page.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -572,7 +572,7 @@ Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The `id` **or** the `name` attribute of the Service whose routes are to be Retrieved. When using this endpoint, only the Routes belonging to the specified Service will be listed.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -630,7 +630,7 @@ Attributes | Description
 
 {{ page.route_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -652,7 +652,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The `id` attribute of the Route to delete.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -703,7 +703,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
 
 {{ page.api_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -741,7 +741,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -786,7 +786,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -851,7 +851,7 @@ Attributes | Description
 
 {{ page.api_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -896,7 +896,7 @@ entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -916,7 +916,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -945,7 +945,7 @@ The Consumer object represents a consumer - or a user - of a Service. You can ei
 
 {{ page.consumer_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -971,7 +971,7 @@ Attributes | Description
 ---:| ---
 `username or id`<br>**required** | The unique identifier **or** the username of the consumer to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1003,7 +1003,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1044,7 +1044,7 @@ Attributes | Description
 
 {{ page.consumer_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1077,7 +1077,7 @@ entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1097,7 +1097,7 @@ Attributes | Description
 ---:| ---
 `username or id`<br>**required** | The unique identifier **or** the name of the consumer to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1111,7 +1111,7 @@ A Plugin entity represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
 to Services that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
-each plugin takes by visiting the [Plugins Gallery](https://konghq.com/plugins/).
+each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
 
 When adding a Plugin Configuration to a Service, every request made by a client to
 that Service will run said Plugin. If a Plugin needs to be tuned to different
@@ -1197,7 +1197,7 @@ Note that not all plugins allow to specify `consumer_id`. Check the plugin docum
 
 {{ page.plugin_configuration_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1230,7 +1230,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the plugin to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1271,7 +1271,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1325,7 +1325,7 @@ Attributes | Description
 
 {{ page.plugin_configuration_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1365,7 +1365,7 @@ an entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1385,7 +1385,7 @@ Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the plugin configuration to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1401,7 +1401,7 @@ Retrieve a list of all installed plugins on the Kong node.
 
 <div class="endpoint get">/plugins/enabled</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1449,7 +1449,7 @@ Retrieve the schema of a plugin's configuration. This is useful to understand wh
 
 <div class="endpoint get">/plugins/schema/{plugin name}</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1499,7 +1499,7 @@ tie a cert/key pair to one or more hostnames.
 
 {{ page.certificate_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1529,7 +1529,7 @@ Attributes | Description
 ---:| ---
 `SNI or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1554,7 +1554,7 @@ HTTP 200 OK
 
 <div class="endpoint get">/certificates/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1599,7 +1599,7 @@ Attributes | Description
 
 {{ page.certificate_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1636,7 +1636,7 @@ entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1654,7 +1654,7 @@ Attributes | Description
 ---:| ---
 `sni or id`<br>**required** | The unique identifier **or** an SNI name associated with this certificate.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1688,7 +1688,7 @@ lookup the certificate object based on the SNI associated with the certificate.
 
 {{ page.snis_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1714,7 +1714,7 @@ Attributes | Description
 ---:| ---
 `name`<br>**required** | The name of the SNI object.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1734,7 +1734,7 @@ HTTP 200 OK
 
 <div class="endpoint get">/snis/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1768,7 +1768,7 @@ Attributes | Description
 ---:| ---
 `name`<br>**required** | The name of the SNI object.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -1801,7 +1801,7 @@ entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1819,7 +1819,7 @@ Attributes | Description
 ---:| ---
 `name`<br>**required** | The name of the SNI object.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -1896,7 +1896,7 @@ object, and applies to all of its targets.
 
 {{ page.upstream_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -1961,7 +1961,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -2036,7 +2036,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -2156,7 +2156,7 @@ Attributes | Description
 
 {{ page.upstream_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -2228,7 +2228,7 @@ entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -2248,7 +2248,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -2293,7 +2293,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream for which to display Target health.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -2362,7 +2362,7 @@ Attributes | Description
 
 {{ page.target_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -2409,7 +2409,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -2464,7 +2464,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -2512,7 +2512,7 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to delete the target.
 `target or id`<br>**required** | The host/port combination element of the target to remove, or the `id` of an existing target entry.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -2543,7 +2543,7 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
 `target or id`<br>**required** | The host/port combination element of the target to set as healthy, or the `id` of an existing target entry.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -2580,7 +2580,7 @@ Attributes | Description
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
 `target or id`<br>**required** | The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content

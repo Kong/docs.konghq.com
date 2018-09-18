@@ -184,7 +184,7 @@ authentication with a third-party enterprise security system, that would be
 implemented in a dedicated plugin that is run on every request targeting that
 given API.
 
-Feel free to explore the [Plugins Gallery](https://konghq.com/plugins/) and the [Plugin
+Feel free to explore the [Kong Hub](https://docs.konghq.com/hub/) and the [Plugin
 development guide](/latest/plugin-development). Learn how
 to [enable plugins](/latest/getting-started/enabling-plugins) with the
 [plugin configuration
@@ -207,7 +207,7 @@ adding more Kong servers to your cluster.
 ## How can I add authentication to a microservice/API?
 
 To add an authentication layer on top of a service you can choose between the
-authentication plugins currently available in the [Plugins Gallery](https://konghq.com/plugins/),
+authentication plugins currently available in the [Kong Hub](https://docs.konghq.com/hub/),
 like the [Basic Authentication](/plugins/basic-authentication/), [Key
 Authentication](/plugins/key-authentication/) and [OAuth
 2.0](/plugins/oauth2-authentication/) plugins.
