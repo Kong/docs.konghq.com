@@ -16,12 +16,13 @@ type: integration
 desc: Wallarm is AI-Powered Security Platform for protecting microservices and APIs
 
 description: |
-  Wallarm AI-powered security platform automates application protection and security testing. Hundreds of customers already rely on Wallarm to secure websites, microservices and APIs running on private and public clouds. Wallarm AI enables application-specific dynamic WAF rules, proactively tests for vulnerabilities, and creates feedback loop to improve detection accuracy.
+  Wallarm AI-Powered Security Platform automates application protection and security testing. Its NG WAF module seamlessly integrates with API gateway and protects APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
 
-  * Detects the microservice’s logic and payload boundary from stateless http traffic analysis — without access to the code inside the container
-  * Discovers new containers as they come on-line and uses machine learning to create dynamic security rules, instead of ACLs and signatures
-  * Works well with CI/CD by updating security rules automatically and using vulnerability verification to cut down on the noise and false positives
-  * Learns and decodes all the data formats including nested and encoded custom API protocols, such as JSON inside base64 encoding.
+  * Protects all types of REST, XML, SOAP and other HTTP APIs from XSS, XXE, SQL Injections, RCE and other OWASP Top 10 threats
+  * Detects the microservice’s logic and payload boundary from stateless HTTP traffic analysis — without access to the code inside the container
+  * Works well with CI/CD by updating security rules automatically
+  * Provides visibility on malicious requests and uses vulnerability verification to cut down on the noise and false positives
+  * Learns and decodes all the data formats including nested and encoded custom API protocols, such as JSON inside Base64 encoding.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
@@ -70,6 +71,14 @@ kong_version_compatibility:
 # BEGIN MARKDOWN CONTENT
 ---
 
+More details on Wallarm NG WAF: https://wallarm.com/products/ng-waf.
+
+Free Wallarm trial license is available at https://my.wallarm.com/signup?utm_source=konghub.
+
+“Wallarm implementation was one of many steps to migrate our application iMedNet to AWS. Ensuring the ability to monitor and secure our web-based APIs and to meet HIPAA guidelines for PHI compliance were important in the decision to go with Wallarm”, said Gary Johnson, Infrastructure Architect at MedNetStudy.
+
+“Wallarm offers an adaptive security platform including an integrated Web vulnerability scanner and NG-WAF solution with automatically generated security rules based on AI”, said Chris Rodriguez, Senior Security Analyst, Frost & Sullivan
+
 ### Installation
 
-Wallarm module is available on http://repo.wallarm.com.  Specific module installation instructions with complete OS-specific installation instructions provided here: https://docs.wallarm.com/en/admin-en/installation-kong-en.html
+Wallarm is easy to deploy as a Kong module. Specific module installation instructions with complete OS-specific installation instructions provided here: https://docs.wallarm.com/en/admin-en/installation-kong-en.html
