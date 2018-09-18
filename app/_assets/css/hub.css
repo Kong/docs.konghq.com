@@ -14834,6 +14834,10 @@ header.page-header {
   text-align: left;
 }
 
+.plugin-card.name-desc p:hover {
+    text-decoration: none;
+}
+
 .plugin-card .publisher {
   /* support by:: */
   width: 100%;
