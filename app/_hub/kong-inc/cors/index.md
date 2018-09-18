@@ -52,6 +52,12 @@ params:
       value_in_examples: http://mockbin.com
       description: |
         A comma-separated list of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
+    - name: override_origins
+      required: false
+      default: "`true`"
+      value_in_examples: false
+      description: |
+        A boolean value that instructs the plugin to set the config.origins from request headers `Origin` as the value when config.credentials is true.
     - name: methods
       required: false
       default: "`GET, HEAD, PUT, PATCH, POST`"
