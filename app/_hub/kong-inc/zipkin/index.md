@@ -4,6 +4,8 @@ publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: How it Works
     items:
       - label: Extractor and Injector

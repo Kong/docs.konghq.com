@@ -3,6 +3,8 @@ name: StatsD
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Metrics

@@ -3,6 +3,8 @@ name: ACL
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Associating Consumers

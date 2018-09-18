@@ -3,6 +3,8 @@ name: JWT
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Getting Started
     items:
       - label: Terminology

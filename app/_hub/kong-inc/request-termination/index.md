@@ -3,6 +3,8 @@ name: Request Termination
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Example Use Cases

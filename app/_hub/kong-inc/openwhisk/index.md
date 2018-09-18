@@ -4,6 +4,8 @@ publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-openwhisk
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Demonstration
