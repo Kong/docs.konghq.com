@@ -104,7 +104,7 @@ params:
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
     decoded by Kong. To ensure special characters that are likely to appear in your
     AWS key or secret (like `+`) are correctly decoded, you must URL-encode them,
-    hence use `--date-urlencode` if you are using curl. Alternatives to this
+    hence use `--data-urlencode` if you are using curl. Alternatives to this
     approach would be to send your payload with a different MIME type (like
     `application/json`), or to use a different HTTP client.
 
@@ -191,8 +191,8 @@ from being executed. We are planning to remove this limitation in the future.
     ```bash
     curl -i -X POST http://{kong_hostname}:8001/apis/lambda1/plugins \
     --data 'name=aws-lambda' \
-    --data 'config.aws_key={KongInvoker user key}' \
-    --data 'config.aws_secret={KongInvoker user secret}' \
+    --data-urlencode 'config.aws_key={KongInvoker user key}' \
+    --data-urlencode 'config.aws_secret={KongInvoker user secret}' \
     --data 'config.aws_region=us-east-1' \
     --data 'config.function_name=MyLambda'
     ```
