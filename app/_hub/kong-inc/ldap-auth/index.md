@@ -3,6 +3,8 @@ name: LDAP Authentication
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Getting Started
     items:
       - label: Configuration

@@ -3,6 +3,8 @@ name: OAuth 2.0 Authentication
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Endpoints

@@ -3,6 +3,8 @@ name: Key Authentication
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
     - label: Create a Consumer

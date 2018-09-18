@@ -3,6 +3,8 @@ name: Dynamic SSL
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Creating an SSL certificate

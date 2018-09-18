@@ -3,6 +3,8 @@ name: CORS
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Known Issues
     items:
       - label: CORS Limitations

@@ -4,6 +4,8 @@ publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-serverless-functions
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Plugin Names

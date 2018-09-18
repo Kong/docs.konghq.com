@@ -3,6 +3,8 @@ name: Prometheus
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Grafana dashboard
