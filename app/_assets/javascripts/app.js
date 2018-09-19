@@ -115,7 +115,7 @@ $(function () {
 
   // Subscribe form
 
-  $('.pardot-form1, .pardot-form2').on('submit', function (e) {
+  $('#subscription_form, #follow_up_subscription_form').on('submit', function (e) {
     e.preventDefault()
 
     var form = $(this)
