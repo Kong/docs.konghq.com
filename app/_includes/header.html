@@ -13,7 +13,7 @@
     <div class="container">
       {% if header_icon %}
         <div class="page-header-icon">
-          <img src="{{ header_icon }}" />
+          <img src="{{ header_icon }}" onerror="this.src='/assets/images/icons/hub/default_icon.png'" />
         </div>
       {% endif %}
 
