@@ -1,0 +1,29 @@
+
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0,8 C0,3.581722 3.581722,0 8,0 L112,0 C116.418278,0 120,3.581722 120,8 L120,112 C120,116.418278 116.418278,120 112,120 L8,120 C3.581722,120 0,116.418278 0,112 L0,8 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-1130.000000, -661.000000)">
+            <g id="Group-6" transform="translate(1130.000000, 661.000000)">
+                <g id="forward-proxy">
+                    <g id="bg">
+                        <use fill="#F0F6FA" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <path stroke="#E1E7EB" stroke-width="4" d="M2,8 L2,112 C2,115.313708 4.6862915,118 8,118 L112,118 C115.313708,118 118,115.313708 118,112 L118,8 C118,4.6862915 115.313708,2 112,2 L8,2 C4.6862915,2 2,4.6862915 2,8 Z"></path>
+                    </g>
+                </g>
+                <g id="lego-block" transform="translate(35.000000, 35.000000)">
+                    <rect id="Rectangle-6" fill="#FFFFFF" x="6" y="4" width="12" height="6"></rect>
+                    <rect id="Rectangle-6" fill="#FFFFFF" x="31" y="4" width="12" height="6"></rect>
+                    <rect id="Rectangle-6" fill="#FFFFFF" x="3" y="10" width="42" height="39"></rect>
+                    <path d="M49,30 L0,30 L0,8 L49,8 L49,30 Z M4.08333333,26 L44.9166667,26 L44.9166667,12 L4.08333333,12 L4.08333333,26 Z" id="Shape" fill="#9CA5AA" fill-rule="nonzero"></path>
+                    <path d="M20,12 L4,12 L4,0 L20,0 L20,12 Z M8,8 L16,8 L16,4 L8,4 L8,8 Z" id="Shape" fill="#9CA5AA" fill-rule="nonzero"></path>
+                    <path d="M45,12 L29,12 L29,0 L45,0 L45,12 Z M33,8 L41,8 L41,4 L33,4 L33,8 Z" id="Shape" fill="#9CA5AA" fill-rule="nonzero"></path>
+                    <path d="M49,49 L0,49 L0,27 L49,27 L49,49 Z M4.08333333,45 L44.9166667,45 L44.9166667,31 L4.08333333,31 L4.08333333,45 Z" id="Shape" fill="#9CA5AA" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
