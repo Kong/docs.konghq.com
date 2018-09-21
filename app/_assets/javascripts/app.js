@@ -120,85 +120,78 @@ $(function () {
 
     var form = $(this)
     var email = form.find('[name="email"]').val()
-    var time = new Date().toString()
 
-    $(this).find('.message').removeClass('error-message');
-    if(!email || !isEmail(email)) {
-      $(this).find('.message').addClass('error-message').html("Please enter valid Email.");
-      return false;
-    }
-
-    var traits = {
-      email: email,
-      environment: 'kong',
-      newsletter_updates: true,
-      created_at: time
+    form.find('.message').html('')
+    form.find('[name="email"]').removeClass('error')
+    if (!email || !isEmail(email)) {
+      $(this).find('.error-message').html('The e-mail address entered is invalid.')
+      form.find('[name="email"]').addClass('error')
+      return false
     }
 
     form.addClass('loading')
 
-    jQuery.ajax({
+    $.ajax({
       url: form.attr('action'),
-      type: "POST",
+      type: 'POST',
       async: false,
       data: form.serialize(),
       xhrFields: {
         withCredentials: true
       },
-      success: function() {
-        console.log("Success");
+      success: function () {
+        console.log('Success')
       }
-    });
+    })
 
-    form.find('[name="email"]').val();
-    $(this).find('.message').addClass('success-message').text("Thank you for Subscribing.");
-    return false;
+    form.find('[name="email"]').val()
+    $(this).find('.success-message').text('Thank you for signing up!')
+    return false
   })
 
   // set utm_ values from query parameter
 
-  var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-      sURLVariables = sPageURL.split('&'),
-      sParameterName,
-      i,
-      x;
-    var status = false;
-    var urlParams = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term'];
-    var paramValues = [];
+  var getUrlParameter = function getUrlParameter (sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1))
+    var sURLVariables = sPageURL.split('&')
+    var sParameterName
+    var i
+    var x
+    var status = false
+    var urlParams = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term']
+    var paramValues = []
     for (i = 0; i < sURLVariables.length; i++) {
-      sParameterName = sURLVariables[i].split('=');
+      sParameterName = sURLVariables[i].split('=')
 
-      if(jQuery.inArray(sParameterName[0], urlParams) >= 0) {
-        setCookie(sParameterName[0], sParameterName[1], 30);
-        paramValues.push(sParameterName[0]);
-        status = true;
+      if ($.inArray(sParameterName[0], urlParams) >= 0) {
+        setCookie(sParameterName[0], sParameterName[1], 30)
+        paramValues.push(sParameterName[0])
+        status = true
       }
     }
 
-    if(status == true) {
+    if (status === true) {
       for (i = 0; i < urlParams.length; i++) {
-        if(jQuery.inArray(urlParams[i], paramValues) < 0) {
-          setCookie(urlParams[i], ' ', 30);
+        if ($.inArray(urlParams[i], paramValues) < 0) {
+          setCookie(urlParams[i], ' ', 30)
         }
       }
     }
 
-    for(x = 0; x < urlParams.length; x++) {
-      if(getCookie(urlParams[x])) {
-        jQuery('input[name="'+urlParams[x]+'"]').val(getCookie(urlParams[x]));
+    for (x = 0; x < urlParams.length; x++) {
+      if (getCookie(urlParams[x])) {
+        $('input[name="' + urlParams[x] + '"]').val(getCookie(urlParams[x]))
       }
     }
+  }
 
-  };
-
-  getUrlParameter();
+  getUrlParameter()
 
   // Check for email validation
 
-  function isEmail(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
+  function isEmail (email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+    return regex.test(email)
   }
 
   // Enterprise page demo request form
