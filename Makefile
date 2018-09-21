@@ -12,7 +12,7 @@ install:
 	bundle install
 	gulp clean
 
-$(node_modules): install
+node_modules: install
 
 run: $(NODE_MODULES)
 	gulp dev
@@ -27,7 +27,7 @@ docker-build:
 	docker build -t kongdocs .
 
 docker-run: docker-build
-	DOCKER_COMMAND
+	$(DOCKER_COMMAND)
 
 docker-test: docker-build
 	DOCKER_COMMAND make test
@@ -37,3 +37,4 @@ docker-deploy: docker-build
 
 docker-bash: docker-build
 	DOCKER_COMMAND bash
+
