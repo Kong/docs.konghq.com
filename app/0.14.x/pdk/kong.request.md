@@ -520,7 +520,7 @@ Returns the plain request body.
 ``` lua
 -- Given a body with payload "Hello, Earth!":
 
-kong.request.get_raw_body():gsub("Earth", Mars") -- "Hello, Mars!"
+kong.request.get_raw_body():gsub("Earth", "Mars") -- "Hello, Mars!"
 ```
 
 [Back to TOC](#table-of-contents)
