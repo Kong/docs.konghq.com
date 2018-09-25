@@ -30,7 +30,7 @@ You can also apply it for every API using the `http://kong:8001/plugins/` endpoi
 |`config.vary_headers` || Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
 |`config.vary_query_params` || Relevant query parameters considered for the cache key. If undefined, all params are taken into consideration.
 |`config.cache_ttl`|	`300` |	TTL, in seconds, of cache entities.
-|`config.cache_control`| `false` | When enabled, respect the Cache-Control behaviors defined in RFC 7234.
+|`config.cache_control`| `false` | When enabled, respect the Cache-Control behaviors defined in [RFC 7234](https://tools.ietf.org/html/rfc7234#section-5.2).
 |`config.storage_ttl`| || Number of seconds to keep resources in the storage backend. This value is independent of cache_ttl or resource TTLs defined by Cache-Control behaviors.
 |`config.strategy`|	|| The backing data store in which to hold cache entities.
 |`config.memory.dictionary_name` |	`kong_cache` |	The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
