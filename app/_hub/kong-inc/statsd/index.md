@@ -18,6 +18,13 @@ description: |
   daemon by enabling its [Statsd
   plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
 
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.11.0
+    differs from what is documented herein. Refer to the 
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
 
 type: plugin
 categories:

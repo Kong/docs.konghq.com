@@ -14,6 +14,14 @@ description: |
   Easily add __Cross-origin resource sharing *(CORS)*__ to a Service, a Route (or the deprecated API entity) by enabling
   this plugin.
 
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.10.3 differs from what is documented herein.
+    Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
+
 type: plugin
 categories:
   - security

@@ -36,6 +36,14 @@ description: |
 
   Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
+    differs from what is documented herein. Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a> 
+    for details.
+  </div>
+
 
 type: plugin
 categories:

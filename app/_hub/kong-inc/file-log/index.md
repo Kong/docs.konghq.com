@@ -19,6 +19,15 @@ description: |
   limitations this plugin uses blocking file i/o, which will hurt performance,
   and hence is an anti-pattern for Kong installations.
 
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.10.2 differs from what is documented herein.
+    Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
+
+
 type: plugin
 categories:
   - logging
