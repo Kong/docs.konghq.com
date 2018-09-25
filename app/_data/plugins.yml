@@ -39,9 +39,6 @@
     - name: CORS
       info: Allow developers to make requests from the browser
 
-    - name: Dynamic SSL
-      info: Add an SSL certificate for an underlying service
-
     - name: IP Restriction
       info: Whitelist or blacklist IPs that can make requests
 
