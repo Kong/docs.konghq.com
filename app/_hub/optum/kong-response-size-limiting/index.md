@@ -6,8 +6,8 @@ desc: Block responses with bodies greater than a specified size
 description: |
 
   Block upstream responses whose body is greater than a specific size in megabytes.
-  
-  Proxy consumers will receive an HTTP Status of 413 and message body "Response size limit exceeded" in the event the body is greater than configured size. 
+
+  Proxy consumers will receive an HTTP Status of 413 and message body "Response size limit exceeded" in the event the body is greater than configured size.
 
 type: plugin
 categories:
@@ -18,7 +18,7 @@ support_url: https://github.com/Optum/kong-response-size-limiting/issues
 source_url: https://github.com/Optum/kong-response-size-limiting/
 
 license_type: Apache-2.0
-  
+
 kong_version_compatibility:
   community_edition:
     compatible:
@@ -71,7 +71,7 @@ params:
 ---
 
 ### Caveat
-This plugin currently accomplishes response limiting by validating the Content-Length header on upstream responses. 
+This plugin currently accomplishes response limiting by validating the Content-Length header on upstream responses.
 If the upstream lacks the response header, then this plugin will allow the response to pass.
 
 ### Installation
