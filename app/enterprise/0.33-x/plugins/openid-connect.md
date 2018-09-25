@@ -799,8 +799,8 @@ in keys prefixed with `sessions:<session-id>`.
 
 #### config.session_memcache_socket
 
-Redis `unix` socket path. If this is defined, it will override whatever
-is put in `config.session_redis_host` or `config.session_redis_port`.
+Memcache `unix` socket path. If this is defined, it will override whatever
+is put in `config.session_memcache_host` or `config.session_memcache_port`.
 
 #### config.session_memcache_host
 
