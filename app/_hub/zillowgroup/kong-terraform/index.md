@@ -1,5 +1,5 @@
 ---
-name: Kong Terraform Module
+name: Kong on AWS with Terraform
 publisher: Zillow Group
 
 categories:
@@ -7,10 +7,10 @@ categories:
 
 type: integration
 
-desc: Terraform module to provision Kong and Kong Enterprise clusters
+desc: Terraform module to provision Kong and Kong Enterprise clusters on Amazon Web Services
 
 description: |
-  This is the terraform module used to provision Kong clusters at Zillow Group, available under the Apache License 2.0 license. Both Kong and Kong Enterprise are supported.
+  This is the terraform module used to provision Kong clusters to Amazon Web Services (VPC, EC2, RDS, Elasticache, KMS) at Zillow Group, available under the Apache License 2.0 license. Both Kong and Kong Enterprise are supported.
 
 support_url: https://github.com/zillowgroup/kong-terraform/issues
 
