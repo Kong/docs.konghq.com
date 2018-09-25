@@ -235,4 +235,4 @@ Previously we created `example.hbs`, let's add it to the Developer Portal naviga
 
 The Dev Portal File API serves only **Pages**, **Partials**, and **Specifications**. To add images, videos, and other file types to your pages, you must either add them inline (e.g. inline SVG) or link to the files being served by some other web server.
 
-Next: [Fequently Asked Questions &rsaquo;]({{page.book.next}})
+Next: [Frequently Asked Questions &rsaquo;]({{page.book.next}})

@@ -1,10 +1,12 @@
 ---
+redirect_to: /hub/kong-inc/ldap-auth-advanced
+
 title: Plugins - LDAP Authentication Advanced
 ---
 # LDAP Authentication Advanced Plugin
 
-Add LDAP Bind Authentication with username and password protection. 
-The plugin will check for valid credentials in the `Proxy-Authorization` 
+Add LDAP Bind Authentication with username and password protection.
+The plugin will check for valid credentials in the `Proxy-Authorization`
 and `Authorization` header (in this order).
 
 ## Configuration
@@ -35,7 +37,7 @@ All plugins can be configured using the `http://kong:8001/plugins/`
 endpoint. A plugin which is not associated to any Service, Route or Consumer
 (or API, if you are using an older version of Kong) is considered "global", and
 will be run on every request. Read the <a href="/latest/admin-api/#add-plugin">
-Plugin Reference</a> and the <a href="/latest/admin-api/#precedence">Plugin 
+Plugin Reference</a> and the <a href="/latest/admin-api/#precedence">Plugin
 Precedence</a> sections for more information.
 
 

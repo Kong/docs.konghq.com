@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/dynamic-ssl
+
 id: page-plugin
 title: Plugins - Dynamic SSL
 header_title: Dynamic SSL

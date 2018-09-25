@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/proxy-cache/0.32-x.html
+
 title: HTTP Proxy Caching
 ---
 # HTTP Proxy Caching
@@ -93,7 +95,7 @@ The following endpoints are provided on the Admin API to examine and purge cache
 
 Two separate endpoints are available: one to look up a known plugin instance, and another that searches all proxy-cache plugins data stores for the given cache key. Both endpoints have the same return value.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
 
@@ -102,7 +104,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 |`plugin_id` | The UUID of the proxy-cache plugin
 | `cache_id` | The cache entity key as reported by the X-Cache-Key response header
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
 
@@ -110,7 +112,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 | -------------- | -------
 |`cache_id` | The cache entity key as reported by the X-Cache-Key response header
 
-#### Response
+**Response**
 
 If the cache entity exists
 
@@ -128,7 +130,7 @@ HTTP 400 Not Found
 
 Two separate endpoints are available: one to look up a known plugin instance, and another that searches all proxy-cache plugins data stores for the given cache key. Both endpoints have the same return value.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/proxy-cache/:plugin_id/caches/:cache_id</div>
 
@@ -137,7 +139,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 |`plugin_id` | The UUID of the proxy-cache plugin
 |`cache_id` | The cache entity key as reported by the `X-Cache-Key` response header
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/proxy-cache/:cache_id</div>
 
@@ -145,9 +147,9 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 | -------------- | -------
 |`cache_id` | he cache entity key as reported by the `X-Cache-Key` response header
 
-#### Response
+**Response**
 
-If the cache entity exists 
+If the cache entity exists
 
 ```
 HTTP 204 No Content
@@ -160,11 +162,11 @@ HTTP 400 Not Found
 ```
 
 ### Purge All Cache Entities
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/proxy-cache/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content

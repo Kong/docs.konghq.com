@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/datadog
+
 id: page-plugin
 title: Plugins - Datadog
 header_title: Datadog

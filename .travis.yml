@@ -9,8 +9,6 @@ notifications:
 cache:
   bundler: true
   yarn: true
-  directories:
-    - node_modules
 
 before_install:
   - rvm install 2.3.3
@@ -18,7 +16,6 @@ before_install:
 install:
   - bundle install
   - yarn
-
 before_script:
   - npm test
 script:

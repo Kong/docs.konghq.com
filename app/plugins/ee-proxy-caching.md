@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/proxy-cache
+
 id: page-plugin
 title: Plugins - EE Proxy Caching
 layout: plugin-ee

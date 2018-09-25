@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/oauth2-introspection
+
 id: page-plugin
 title: Plugins - OAuth 2.0 Introspection
 layout: plugin-ee

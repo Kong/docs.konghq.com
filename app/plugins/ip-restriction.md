@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/ip-restriction
+
 id: page-plugin
 title: Plugins - IP Restriction
 header_title: IP Restriction

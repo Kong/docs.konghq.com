@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/rate-limiting
+
 id: page-plugin
 title: Plugins - Rate Limiting
 header_title: Rate Limiting

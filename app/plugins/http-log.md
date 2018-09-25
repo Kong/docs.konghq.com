@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/http-log
+
 id: page-plugin
 title: Plugins - HTTP Log
 header_title: HTTP Log

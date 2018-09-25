@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/syslog
+
 id: page-plugin
 title: Plugins - Syslog
 header_title: Syslog

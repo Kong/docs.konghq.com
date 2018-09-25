@@ -1,9 +1,11 @@
 ---
+redirect_to: /hub/kong-inc/statsd-advanced
+
 title: StatsD Advanced Plugin
 ---
 # StatsD Advanced Plugin
 
-Log metrics for a Service, Route (or the deprecated API entity) and internal metrics of Kong to a StatsD server. 
+Log metrics for a Service, Route (or the deprecated API entity) and internal metrics of Kong to a StatsD server.
 
 ## Configuration Parameters
 
@@ -55,7 +57,7 @@ Metric                     | description | namespace
 Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields:
 
 Field         | description                                             | allowed values
----           | ---                                                     | --- 
+---           | ---                                                     | ---
 `name`          | StatsD metric's name                                  | [Metrics](#metrics)          
 `stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
 `sample_rate`<br>*conditional*   | sampling rate                        | `number`                 

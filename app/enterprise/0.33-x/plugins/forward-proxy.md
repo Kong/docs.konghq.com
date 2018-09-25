@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/forward-proxy
+
 title: Forward Proxy
 ---
 # Forward Proxy Plugin

@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/udp-log
+
 id: page-plugin
 title: Plugins - UDP Log
 header_title: UDP Log

@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/request-termination
+
 id: page-plugin
 title: Plugins - Request Termination
 header_title: Request Termination

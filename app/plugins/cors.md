@@ -1,4 +1,6 @@
 ---
+redirect_to: /hub/kong-inc/cors
+
 id: page-plugin
 title: Plugins - Cross-origin resource sharing
 header_title: CORS
