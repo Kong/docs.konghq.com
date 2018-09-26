@@ -62,7 +62,7 @@ Where `method` is defined via the OpenResty `ngx.req.get_method()` call, and `re
 
 ### Cache Control
 
-When the `cache_control` configuration option is enabled, Kong will respect request and response Cache-Control headers as defined by RFC7234, with a few exceptions:
+When the `cache_control` configuration option is enabled, Kong will respect request and response Cache-Control headers as defined by [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2](https://tools.ietf.org/html/rfc7234#section-5.2), with a few exceptions:
 
 - Cache revalidation is not yet supported, and so directives such as `proxy-revalidate` are ignored.
 - Similarly, the behavior of `no-cache` is simplified to exclude the entity from being cached entirely.
