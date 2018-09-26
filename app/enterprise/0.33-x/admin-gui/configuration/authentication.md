@@ -27,22 +27,23 @@ There are a couple of pieces of information that are important to understand whe
 - For locking down the GUI, a private endpoint is configured on the proxy side, and an auth plugin is enabled
 - The Admin GUI javascript application uses this proxy side endpoint to talk to the Admin API
 - Two pieces of authentication need to be enabled in order for the Admin GUI to talk to the Admin API in this setup
-- The "Admin user" is a combination of a rbac user and a hidden consumer
+- The "Admin user" is a combination of a rbac user and a consumer of type 'admin' that only appears on the `/admins` endpoint and is filtered out from `/consumers` endpoints. Admins as consumers allows Kong to use plugins on an admin to authenticate
 - This Admin needs to be in an RBAC group with access to the Admin API
-- This Admin needs to have access to the auth plugin
+- This Admin needs to have access to the `admin_gui_auth` specified plugin
 
 Knowing that we will follow these steps:
 
-1. Create a new Admin user
-2. Add the Admin user's "rbac user" to the rbac `super-user` group
-3. Add a key-auth key to the Admin user's "hidden consumer"
-4. Enable RBAC and the Admin GUI Auth method in the config
-5. Restart Kong
+1. [Create a new Admin user](#first)
+2. [Add the Admin user's "rbac user" to the rbac `super-user` group](#second)
+3. [Add a key-auth key to the Admin user's "hidden consumer"](#third)
+4. [Enable RBAC and the Admin GUI Auth method in the config](#fourth)
+5. [Restart Kong](#fifth)
 
 
 In this example we will configure authentication on the Admin GUI using [Key Authentication](https://getkong.org/plugins/key-authentication). 
 
-First, we will add an Admin entity using the Admin API:
+<a name="first"></a>
+**First, we will add an Admin entity using the Admin API:**
 
 ```bash
 curl -X POST http://localhost:8001/admins -d 'username=myadmin'
@@ -71,7 +72,7 @@ example above) for use later. It must be sent in the `Kong-Admin-Token` header
 when RBAC is enabled if using a client (e.g. cURL or HTTPie) other than the
 Admin GUI.
 
-We can test that the consumer that was created (id `94110df6-211a-4f89-b4f3-0a994753ddf9`) is in fact hidden.
+We can test that the consumer that was created (id `94110df6-211a-4f89-b4f3-0a994753ddf9`) is in fact filtered from the `/consumers` endpoint.
 
 ```bash
 curl -X GET http://localhost:8001/consumers/ 
@@ -82,7 +83,8 @@ curl -X GET http://localhost:8001/consumers/
 }
 ```
 
-Second, we will add the Admin user's "rbac user" to the super-admin group:
+<a name="second"></a>
+**Second, we will add the Admin user's "rbac user" to the super-admin group:**
 
 In this example we are using the `super-admin` group for simplicity, however
 you may want to use a different group that you have configured with limited
@@ -117,7 +119,8 @@ curl -X POST http://localhost:8001/rbac/users/98af4bda-8525-44a6-a745-0c503b1466
 }
 ```
 
-Third, you must provision a Key-Auth api key for the Admin user's "hidden consumer":
+<a name="third"></a>
+**Third, you must provision a Key-Auth api key for the Admin user's "hidden consumer":**
 
 Note, in this example we are using key-auth; for other auth methods you will
 need to provisions the approprate key/password needed for that method.
@@ -138,7 +141,8 @@ Admin GUI login prompt. Note that this key is separate and distinct from the
 admin's RBAC token. 
 
 
-Forth, update the config to enable RBAC and the Admin GUI auth method:
+<a name="fourth"></a>
+**Fourth, update the config to enable RBAC and the Admin GUI auth method:**
 
 Using the kong.conf file:
 
@@ -154,7 +158,8 @@ KONG_ENFORCE_RBAC = on
 KONG_ADMIN_GUI_AUTH = key-auth
 ```
 
-Fifth, restart Kong.
+<a name="fifth"></a>
+**Fifth, restart Kong.**
 
 The Admin GUI is now aware that authentication is enabled and will restrict
 access so that only the Admin users with an api key and in the RBAC
