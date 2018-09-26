@@ -9,6 +9,7 @@ With new regulations surrounding protecting private data like GDPR, there is a c
 For this example, let’s say you want to remove any instances of an email address from your kong logs. The emails addresses may come through in different ways, for example something like `/apiname/v2/verify/alice@example.com` or `/v3/verify?alice@example.com`. In order to keep these from being added to the logs, we will need to use a custom NGINX template.
 
 To start using a custom NGINX template, first get a copy of our template. This can be found [https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong](https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong) or copied from below
+
 ```
 # ---------------------
 # custom_nginx.template
@@ -42,6 +43,7 @@ http {
 ```
 
 In order to control what is placed in the logs, we will be using the NGINX map module in our template. For more detailed information abut using the map directive, please see [this guide](http://nginx.org/en/docs/http/ngx_http_map_module.html). This will create a new variable whose value depends on values of one or more of the source variables specified in the first parameter. The format is:
+
 ```
 
 map $paramater_to_look_at $variable_name {
@@ -53,6 +55,7 @@ map $paramater_to_look_at $variable_name {
 ```
 
 For this example, we will be mapping a new variable called `keeplog` which is dependent on certain values appearing in the `$request_uri`. We will be placing our map directive right at the start of the http block, this must be before `include 'nginx-kong.conf';`. So, for our example, we will add something along the lines of:
+
 ```
 map $request_uri $keeplog {
     ~.+\@.+\..+ 0;
@@ -71,6 +74,7 @@ You’ll probably notice that each of those lines start with a tilde. This is wh
 Because all of those have a value of something other than 0, if a request has one of those elements, it will not be added to the log.
 
 Now, we need to set the log format for what we will keep in the logs. We will use the `log_format` module and assign our new logs a name of show_everything. The contents of the log can be customized for you needs, but for this example, I will simply change everything back to the Kong standards. To see the full list of options you can use, please refer to [this guide](https://nginx.org/en/docs/http/ngx_http_core_module.html#variables).
+
 ```
 log_format show_everything '$remote_addr - $remote_user [$time_local] '
     '$request_uri $status $body_bytes_sent '
@@ -78,6 +82,7 @@ log_format show_everything '$remote_addr - $remote_user [$time_local] '
 ```
 
 Now, our custom NGINX template is all ready to be used. If you have been following along, your file should now be look like this:
+
 ```
 # ---------------------
 # custom_nginx.template
@@ -116,10 +121,11 @@ http {
 ```
 
 The last thing we need to do is tell Kong to use the newly created log, `show_everything`. To do this, we will be altering the Kong variable `prpxy_access_log`. Either by opening and editing `etc/kong/kong.conf` or by using an environmental variable `KONG_PROXY_ACCESS_LOG=` you will want to mend the default location to show
+
 ```
 proxy_access_log=logs/access.log show_everything if=$keeplog
 ```
+
 The final step in the process to make all the changes take effect is to restart kong. you can use the `kong restart` command to do so.
 
 Now, any requests made with an email address in it will no longer be logged. Of course, we can use this logic to remove anything we want from the logs on a conditional manner.
-
