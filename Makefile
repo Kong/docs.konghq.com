@@ -1,6 +1,6 @@
 .PHONY: clean install run test deploy docker-run docker-test docker-bash
 
-DOCKER_COMMAND=docker run -it --rm --user=`id -u`:`id -g` -v $$PWD:/srv/jekyll kongdocs
+DOCKER_COMMAND=docker run -it -p 3000:3000 -p 3001:3001 --rm --user=`id -u`:`id -g` -v $$PWD:/srv/jekyll kongdocs
 NODE_MODULES=node_modules
 
 clean:
