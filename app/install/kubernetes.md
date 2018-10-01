@@ -1,7 +1,7 @@
 ---
 id: page-install-method
 title: Install - Kong on Kubernetes
-header_title: Kong CE or EE on Kubernetes
+header_title: Kong and Kong Enterprise on Kubernetes
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
@@ -15,31 +15,54 @@ links:
   az: "https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest"
 ---
 
+## Table of Contents
+
+- [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
+- [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
+- [Kong via Helm or Minikube](#kong-via-helm-or-minikube)
+- [Kong via Manifest Files](#kong-via-manifest-files)
+- [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users)
+
 # Kubernetes Ingress Controller for Kong
 
-Install Kong Community Edition (CE) or Kong Enterprise Edition (EE) using the official 
+Install Kong or Kong Enterprise using the official
 <a href="https://github.com/Kong/kubernetes-ingress-controller">Kubernetes Ingress Controller</a>.
 
 Learn more via the <a href="https://github.com/Kong/kubernetes-ingress-controller/blob/master/README.md">README
-</a>. To get up and running quickly, follow the 
+</a>. To get up and running quickly, follow the
 <a href="https://github.com/Kong/kubernetes-ingress-controller/tree/master/deploy">Minikube and Minishift tutorials</a>.
 
-The [Kubernetes Ingress Controller for Kong launch announcement](https://konghq.com/blog/kubernetes-ingress-controller-for-kong/) 
-is on the [Kong Blog](https://konghq.com/blog/). 
+The [Kubernetes Ingress Controller for Kong launch announcement](https://konghq.com/blog/kubernetes-ingress-controller-for-kong/)
+is on the [Kong Blog](https://konghq.com/blog/).
 
-For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes). For bug reports, 
+For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes). For bug reports,
 please [open a new issue on GitHub](https://github.com/Kong/kubernetes-ingress-controller/issues).
 
-# Kong Community Edition via Helm or Minikube
+# Kong via Google Cloud Platform Marketplace
 
-The easiest way to deploy Kong CE on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
+Perhaps the fastest way to try Kong on Kubernetes is via the Google Cloud
+Platform Marketplace and [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) -
+plus, with Google Cloud Platform's [Free Tier and credit](https://cloud.google.com/free/),
+it will likely be free for you to get started.
 
-Kong CE can also be deployed on minikube - please follow the [README]({{ page.links.minikube }})
+1. Visit https://console.cloud.google.com/marketplace/details/kong/kong
+1. Click "Configure" and follow the on-screen prompts
+1. Be sure to refer to https://github.com/Kong/google-marketplace-kong-app/blob/master/README.md
+for important details regarding exposing the Admin API so that you can configure Kong.
+
+If you were only experimenting, be sure to delete your Google Cloud resources
+once you've completed your experiment to avoid on-going Google Cloud usage charges. 
+
+# Kong via Helm or Minikube
+
+An easy way to deploy Kong on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
+
+Kong can also be deployed on minikube - please follow the [README]({{ page.links.minikube }})
 and use the manifest files provided in `minikube` directory.
 
-# Kong Community Edition or Enterprise Edition via Manifest Files
+# Kong via Manifest Files
 
-Kong CE, or the trial version of Kong Enterprise Edition (EE), can be provisioned
+Kong, or the trial version of Kong Enterprise, can be provisioned
 on a Kubernetes cluster via the manifest files provided
 in the [repo]({{ page.links.gh_repo }}).
 
@@ -120,8 +143,8 @@ cluster:
 $ kubectl create -f postgres.yaml
 ```
 
-**Kong EE trial users** should complete the steps in the
-**Additional Steps for Kong EE Trial Users** section below before proceeding.
+**Kong Enterprise trial users** should complete the steps in the
+**Additional Steps for Kong Enterprise Trial Users** section below before proceeding.
 
 ## 4. **Prepare database**
 
@@ -170,11 +193,11 @@ $ curl https://<kong-proxy-ssl-ip-address>:8443
 Quickly learn how to use Kong with the
 [5-minute Quickstart](/latest/getting-started/quickstart/).
 
-# Additional Steps for Kong EE Trial Users
+# Additional Steps for Kong Enterprise Trial Users
 
-1. **Publish a Kong EE Docker image to your container registry**
+1. **Publish a Kong Enterprise Docker image to your container registry**
 
-    Because the Kong EE image is not available on the public Docker container registry,
+    Because the Kong Enterprise image is not available on the public Docker container registry,
     you must publish it to a private repository for use with Kubernetes. While any private
     repository will work, this example uses the
     [Google Cloud Platform Container Registry](https://cloud.google.com/container-registry/),
@@ -189,25 +212,25 @@ Quickly learn how to use Kong with the
     $ docker tag <image ID> gcr.io/<project ID>/kong-ee
     $ gcloud docker -- push gcr.io/demo-cs-lab/kong-ee:latest
     ```
-2. **Add your Kong EE License File**
+2. **Add your Kong Enterprise License File**
 
     Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` to replace
-    `YOUR_LICENSE_HERE` with your Kong EE License File string - it should look like:
+    `YOUR_LICENSE_HERE` with your Kong Enterprise License File string - it should look like:
 
     ```yaml
     - name: KONG_LICENSE_DATA
     value: '{"license":{"signature":"alongstringofcharacters","payload":{"customer":"Test Company","license_creation_date":"2018-03-06","product_subscription":"Kong Only","admin_seats":"5","support_plan":"Premier","license_expiration_date":"2018-06-04","license_key":"anotherstringofcharacters"},"version":1}}'
     ```
 
-3. **Use the Kong EE image**
+3. **Use the Kong Enterprise image**
 
     Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` and replace
     `image: kong` with `image: gcr.io/<project ID>/kong-ee`, using the same project ID as above.
 
-4. **Deploy Kong EE**
+4. **Deploy Kong Enterprise**
 
-    Continue from step 4 in the **Kong Community Edition or Enterprise Edition via Manifest Files**
+    Continue from step 4 in the **Kong or Kong Enterprise via Manifest Files**
     instruction above, using the `kong_trial_*` YAML files in the
-    [EE Trial directory](https://github.com/Kong/kong-dist-kubernetes/tree/master/ee-trial).
-    Once Kong EE is running, you should be able to access the Kong Admin GUI
+    [Kong Enterprise Trial directory](https://github.com/Kong/kong-dist-kubernetes/tree/master/ee-trial).
+    Once Kong Enterprise is running, you should be able to access the Kong Admin GUI
     at `<kong-admin-ip-address>:8002` or `https://<kong-ssl-admin-ip-address>:8445`.
