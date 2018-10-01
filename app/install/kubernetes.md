@@ -47,11 +47,11 @@ it will likely be free for you to get started.
 
 1. Visit https://console.cloud.google.com/marketplace/details/kong/kong
 1. Click "Configure" and follow the on-screen prompts
-1. Be sure to refer to https://github.com/Kong/google-marketplace-kong-app/blob/master/README.md
+1. Refer to https://github.com/Kong/google-marketplace-kong-app/blob/master/README.md
 for important details regarding exposing the Admin API so that you can configure Kong.
 
-If you were only experimenting, be sure to delete your Google Cloud resources
-once you've completed your experiment to avoid on-going Google Cloud usage charges. 
+If you were only experimenting, consider deleting your Google Cloud resources
+once you've completed your experiment to avoid on-going Google Cloud usage charges.
 
 # Kong via Helm or Minikube
 
