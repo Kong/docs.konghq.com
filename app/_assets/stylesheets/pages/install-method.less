@@ -59,63 +59,7 @@
       margin: 1em 0;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        margin-right: 10px;
-
-        display: inline-flex;
-        align-items: center;
-
-        a {
-          display: flex;
-          align-items: center;
-
-          &:extend(.button all);
-          border-color: #d4d7d9;
-          background-image: linear-gradient(to top, #f7f9fa, #fcfcfc);
-          color: @gray-dark;
-          font-size: 14px;
-          line-height: 39px;
-          height: 40px;
-
-          em {
-            margin-left: 5px;
-            font-style: normal;
-            color: #aab0b2;
-          }
-
-          &:active {
-            background: #f7f9fa;
-          }
-
-          &:before {
-            content: '';
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background-image: url('/assets/images/icons/icn-download.svg');
-            background-size: 16px;
-            background-repeat: no-repeat;
-            margin-right: 5px;
-          }
-        }
-
-        &:not(:last-of-type):after {
-          content: '';
-          display: inline-block;
-          width: 1px;
-          height: 30px;
-          margin-left: 10px;
-
-          border-right: 1px solid #d4d7d9;
-        }
-      }
-    }
-
+   
     ol {
       &:extend(.instructions-steps);
       padding-left: 19px;
