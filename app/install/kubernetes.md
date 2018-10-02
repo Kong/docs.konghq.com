@@ -17,11 +17,17 @@ links:
 
 ## Table of Contents
 
-- [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
-- [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
-- [Kong via Helm or Minikube](#kong-via-helm-or-minikube)
-- [Kong via Manifest Files](#kong-via-manifest-files)
-- [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users)
+- [foo](http://www.konghq.com)
+- [bar](http://www.konghq.com)
+- [bang](http://www.konghq.com)
+
+
+
+1. [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
+1. [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
+1. [Kong via Helm or Minikube](#kong-via-helm-or-minikube)
+1. [Kong via Manifest Files](#kong-via-manifest-files)
+1. [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users)
 
 # Kubernetes Ingress Controller for Kong
 
