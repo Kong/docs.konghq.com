@@ -70,7 +70,7 @@ plugin_configuration_body: |
     ---:| ---
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
-    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `enabled` | Whether the plugin is applied. Default: `true`.
 
 target_body: |
@@ -796,7 +796,6 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 10,
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -907,7 +906,7 @@ A Plugin entity represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
 to Services that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
-each plugin takes by visiting the [Plugins Gallery](/plugins).
+each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
 
 When adding a Plugin Configuration to a Service, every request made by a client to
 that Service will run said Plugin. If a Plugin needs to be tuned to different

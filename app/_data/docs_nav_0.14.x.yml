@@ -38,6 +38,9 @@
     - text: Clustering reference
       url: /clustering
 
+    - text: Logging reference
+      url: /logging
+
     - text: Network &amp; Firewall
       url: /network
 

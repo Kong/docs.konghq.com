@@ -3,6 +3,8 @@ name: Response Transformer
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Documentation
     items:
       - label: Order of execution

@@ -3,6 +3,8 @@ name: Key Authentication
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
     - label: Create a Consumer
@@ -16,6 +18,14 @@ nav:
 desc: Add key authentication to your APIs
 description: |
   Add Key Authentication (also sometimes referred to as an API key) to a Service or a Route (or the deprecated API entity). Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.11.2
+    differs from what is documented herein. Refer to the 
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
 
 type: plugin
 categories:

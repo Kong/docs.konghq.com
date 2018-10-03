@@ -3,6 +3,8 @@ name: Correlation ID
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Documentation
     items:
       - label: How it works

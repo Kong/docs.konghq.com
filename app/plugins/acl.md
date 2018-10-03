@@ -1,4 +1,19 @@
 ---
+redirect_to: /hub/kong-inc/acl
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 id: page-plugin
 title: Plugins - ACL
 header_title: ACL
@@ -39,7 +54,7 @@ params:
       default: false
       value_in_examples: true
       description: |
-        Flag which if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the upstream service. 
+        Flag which if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the upstream service.
   extra: |
     Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
 

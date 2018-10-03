@@ -1,4 +1,19 @@
 ---
+redirect_to: /hub/kong-inc/jwt
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 id: page-plugin
 title: Plugins - JWT
 header_title: JWT
@@ -81,7 +96,7 @@ params:
       default: 0
       description: |
         An integer limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime will rejected (HTTP 403). If this valeu is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this value.
-        
+
   extra: |
     <div class="alert alert-warning">
         <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
@@ -249,7 +264,7 @@ valid signature, invalid verified claim (**option**) | no                       
 
 Kong can also perform verification on registered claims, as defined in [RFC 7519](https://tools.ietf.org/html/rfc7519). To perform verification on a claim, add it to the `config.claims_to_verify` property:
 
-You can patch an existing jwt plugin: 
+You can patch an existing jwt plugin:
 
 ```bash
 # This adds verification for both nbf and exp claims:
@@ -275,7 +290,7 @@ $ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
     --data "config.secret_is_base64=true"
 ```
 
-or patch an existing API: 
+or patch an existing API:
 
 ```bash
 $ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
@@ -398,7 +413,7 @@ $ curl -X POST http://localhost:8001/route/{route id}/plugins \
     --data "name=jwt"
 ```
 
-Add the plugin to your API: 
+Add the plugin to your API:
 
 ```bash
 $ curl -X POST http://localhost:8001/apis/{api}/plugins \

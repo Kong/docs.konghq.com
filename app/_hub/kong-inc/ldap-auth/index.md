@@ -3,6 +3,8 @@ name: LDAP Authentication
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Getting Started
     items:
       - label: Configuration
@@ -13,6 +15,14 @@ nav:
 desc: Integrate Kong with a LDAP server
 description: |
   Add LDAP Bind Authentication to a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
+    differs from what is documented herein. Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
 
 type: plugin
 categories:

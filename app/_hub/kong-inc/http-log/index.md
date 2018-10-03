@@ -3,13 +3,24 @@ name: HTTP Log
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Log Format
       - label: Kong Process Errors
 
 desc: Send request and response logs to an HTTP server
-description: Send request and response logs to an HTTP server.
+description: |
+  Send request and response logs to an HTTP server.
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.10.2 differs from
+    what is documented herein. Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a> 
+    for details.
+  </div>
 
 type: plugin
 categories:

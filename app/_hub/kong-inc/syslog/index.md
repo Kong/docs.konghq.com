@@ -3,6 +3,8 @@ name: Syslog
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Log Format

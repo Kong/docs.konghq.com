@@ -1,5 +1,6 @@
 ---
 title: RBAC API
+
 ---
 # RBAC API Reference
 
@@ -28,17 +29,17 @@ HTTP 201 Created
 
 ```json
 {
- "created_at": 1501395904000, 
- "enabled": true, 
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245", 
- "name": "bob", 
+ "created_at": 1501395904000,
+ "enabled": true,
+ "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
+ "name": "bob",
  "user_token": "9CiAvvgnqCQmarplngmT3rJImEujOw7m"
 }
 ```
 ___
 
 ### Retrieve A User
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint get">/rbac/users/{name_or_id}</div>
 
@@ -53,17 +54,17 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000, 
- "enabled": true, 
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245", 
- "name": "bob", 
+ "created_at": 1501395904000,
+ "enabled": true,
+ "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
+ "name": "bob",
  "user_token": "9CiAvvgnqCQmarplngmT3rJImEujOw7m"
 }
 ```
 ___
 
 ### List Users
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint get">/rbac/users/</div>
 
@@ -76,20 +77,20 @@ HTTP 200 OK
 {
  "data": [
   {
-   "created_at": 1501524409000, 
-   "enabled": true, 
-   "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e", 
-   "name": "bob", 
+   "created_at": 1501524409000,
+   "enabled": true,
+   "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e",
+   "name": "bob",
    "user_token": "1VHzdFqU24GmoeAlsoE7V95gWn1OoPjS"
   }
- ], 
+ ],
  "total": 1
 }
 ```
 ___
 
 ### Update A User
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint patch">/rbac/users/{name_or_id}</div>
 
@@ -107,17 +108,17 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000, 
- "enabled": true, 
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245", 
- "name": "bob", 
+ "created_at": 1501395904000,
+ "enabled": true,
+ "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
+ "name": "bob",
  "user_token": "9CiAvvgnqCQmarplngmT3rJImEujOw7m"
-} 
+}
 ```
 ___
 
 ### Delete a User
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint delete">/rbac/users/{name_or_id}</div>
 
@@ -128,7 +129,7 @@ HTTP 204 No Content
 ___
 
 ### Add a Role
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint post">/rbac/roles</div>
 
@@ -144,15 +145,15 @@ HTTP 201 Created
 
 ```json
 {
- "created_at": 1501395904000, 
- "id": "8ddc36ee-dde0-4daa-baae-6868f4514256", 
+ "created_at": 1501395904000,
+ "id": "8ddc36ee-dde0-4daa-baae-6868f4514256",
  "name": "read-only"
-} 
+}
 ```
 ___
 
 ### Retrieve a Role
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint get">/rbac/role{name_or_id}</div>
 
@@ -167,15 +168,15 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000, 
- "id": "8ddc36ee-dde0-4daa-baae-6868f4514256", 
+ "created_at": 1501395904000,
+ "id": "8ddc36ee-dde0-4daa-baae-6868f4514256",
  "name": "read-only"
-} 
+}
 ```
 ___
 
 ### List Roles
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint get">/rbac/roles</div>
 
@@ -188,18 +189,18 @@ HTTP 200 OK
 {
  "data": [
   {
-   "created_at": 1501524270000, 
-   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676", 
+   "created_at": 1501524270000,
+   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676",
    "name": "read-only"
   }
- ], 
+ ],
  "total": 3
-} 
+}
 ```
 ___
 
 ### Update A Role
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}</div>
 
@@ -215,17 +216,17 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000, 
- "enabled": true, 
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245", 
- "name": "bob", 
+ "created_at": 1501395904000,
+ "enabled": true,
+ "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
+ "name": "bob",
  "user_token": "9CiAvvgnqCQmarplngmT3rJImEujOw7m"
-} 
+}
 ```
 ___
 
 ### Delete A Role
-#### Endpoint 
+#### Endpoint
 
 <div class="endpoint delete">/rbac/role/{name_or_id}</div>
 
@@ -258,19 +259,19 @@ HTTP 201 Created
 ```json
 {
  "actions": [
-  "read", 
-  "delete", 
-  "create", 
+  "read",
+  "delete",
+  "create",
   "update"
- ], 
- "created_at": 1501524737000, 
- "id": "d881bd36-00ca-404f-b428-427b2eab0184", 
- "name": "apis-all", 
- "negative": false, 
+ ],
+ "created_at": 1501524737000,
+ "id": "d881bd36-00ca-404f-b428-427b2eab0184",
+ "name": "apis-all",
+ "negative": false,
  "resources": [
   "apis"
  ]
-} 
+}
 ```
 ---
 
@@ -291,19 +292,19 @@ HTTP 200 OK
 ```json
 {
  "actions": [
-  "read", 
-  "delete", 
-  "create", 
+  "read",
+  "delete",
+  "create",
   "update"
- ], 
- "created_at": 1501524737000, 
- "id": "d881bd36-00ca-404f-b428-427b2eab0184", 
- "name": "apis-all", 
- "negative": false, 
+ ],
+ "created_at": 1501524737000,
+ "id": "d881bd36-00ca-404f-b428-427b2eab0184",
+ "name": "apis-all",
+ "negative": false,
  "resources": [
   "apis"
  ]
-} 
+}
 ```
 ---
 
@@ -321,20 +322,20 @@ HTTP 200 OK
  "data": [
   {
    "actions": [
-    "read", 
-    "delete", 
-    "create", 
+    "read",
+    "delete",
+    "create",
     "update"
-   ], 
-   "created_at": 1501524737000, 
-   "id": "d881bd36-00ca-404f-b428-427b2eab0184", 
-   "name": "apis-all", 
-   "negative": false, 
+   ],
+   "created_at": 1501524737000,
+   "id": "d881bd36-00ca-404f-b428-427b2eab0184",
+   "name": "apis-all",
+   "negative": false,
    "resources": [
     "apis"
    ]
-  }, 
- ], 
+  },
+ ],
  "total": 6
 }
 ```
@@ -362,15 +363,15 @@ HTTP 200 OK
 ```json
 {
  "actions": [
-  "read", 
-  "delete", 
-  "create", 
+  "read",
+  "delete",
+  "create",
   "update"
- ], 
- "created_at": 1501524737000, 
- "id": "d881bd36-00ca-404f-b428-427b2eab0184", 
- "name": "apis-all", 
- "negative": false, 
+ ],
+ "created_at": 1501524737000,
+ "id": "d881bd36-00ca-404f-b428-427b2eab0184",
+ "name": "apis-all",
+ "negative": false,
  "resources": [
   "apis"
  ]
@@ -407,17 +408,17 @@ HTTP 201 Created
 {
  "roles": [
   {
-   "comment": "Read-only access across all initial RBAC resources", 
-   "created_at": 1501524270000, 
-   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676", 
+   "comment": "Read-only access across all initial RBAC resources",
+   "created_at": 1501524270000,
+   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676",
    "name": "read-only"
   }
- ], 
+ ],
  "user": {
-  "created_at": 1501524409000, 
-  "enabled": true, 
-  "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e", 
-  "name": "bob", 
+  "created_at": 1501524409000,
+  "enabled": true,
+  "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e",
+  "name": "bob",
   "user_token": "1VHzdFqU24GmoeAlsoE7V95gWn1OoPjS"
  }
 }
@@ -437,17 +438,17 @@ HTTP 200 OK
 {
  "roles": [
   {
-   "comment": "Read-only access across all initial RBAC resources", 
-   "created_at": 1501524270000, 
-   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676", 
+   "comment": "Read-only access across all initial RBAC resources",
+   "created_at": 1501524270000,
+   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676",
    "name": "read-only"
   }
- ], 
+ ],
  "user": {
-  "created_at": 1501524409000, 
-  "enabled": true, 
-  "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e", 
-  "name": "bob", 
+  "created_at": 1501524409000,
+  "enabled": true,
+  "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e",
+  "name": "bob",
   "user_token": "1VHzdFqU24GmoeAlsoE7V95gWn1OoPjS"
  }
 }
@@ -467,7 +468,7 @@ HTTP 200 OK
 {
  "apis": [
   "read"
- ], 
+ ],
  "plugins": [
   "read",
   "create",
@@ -516,37 +517,37 @@ HTTP 201 Created
   {
    "actions": [
     "read"
-   ], 
-   "comment": "Read-only permissions across all initial RBAC resources", 
-   "created_at": 1501524270000, 
-   "id": "6f835b92-86b1-4b9d-8a91-f9a66c1940ce", 
-   "name": "read-only", 
-   "negative": false, 
+   ],
+   "comment": "Read-only permissions across all initial RBAC resources",
+   "created_at": 1501524270000,
+   "id": "6f835b92-86b1-4b9d-8a91-f9a66c1940ce",
+   "name": "read-only",
+   "negative": false,
    "resources": [
-    "default", 
-    "kong", 
-    "status", 
-    "apis", 
-    "plugins", 
-    "cache", 
-    "certificates", 
-    "consumers", 
-    "snis", 
-    "upstreams", 
-    "targets", 
-    "rbac", 
-    "key-auth", 
-    "jwt", 
-    "acls", 
-    "basic-auth", 
-    "oauth2", 
+    "default",
+    "kong",
+    "status",
+    "apis",
+    "plugins",
+    "cache",
+    "certificates",
+    "consumers",
+    "snis",
+    "upstreams",
+    "targets",
+    "rbac",
+    "key-auth",
+    "jwt",
+    "acls",
+    "basic-auth",
+    "oauth2",
     "hmac-auth"
    ]
   }
- ], 
+ ],
  "role": {
-  "created_at": 1501524295000, 
-  "id": "8ddc36ee-dde0-4daa-baae-6868f4514256", 
+  "created_at": 1501524295000,
+  "id": "8ddc36ee-dde0-4daa-baae-6868f4514256",
   "name": "read-only"
  }
 }
@@ -558,7 +559,7 @@ HTTP 201 Created
 
 <div class="endpoint get">/rbac/roles/{name_or_id}/permissions</div>
 
-#### Response 
+#### Response
 ```
 200 OK
 ```
@@ -568,37 +569,37 @@ HTTP 201 Created
   {
    "actions": [
     "read"
-   ], 
-   "comment": "Read-only permissions across all initial RBAC resources", 
-   "created_at": 1501524270000, 
-   "id": "6f835b92-86b1-4b9d-8a91-f9a66c1940ce", 
-   "name": "read-only", 
-   "negative": false, 
+   ],
+   "comment": "Read-only permissions across all initial RBAC resources",
+   "created_at": 1501524270000,
+   "id": "6f835b92-86b1-4b9d-8a91-f9a66c1940ce",
+   "name": "read-only",
+   "negative": false,
    "resources": [
-    "default", 
-    "kong", 
-    "status", 
-    "apis", 
-    "plugins", 
-    "cache", 
-    "certificates", 
-    "consumers", 
-    "snis", 
-    "upstreams", 
-    "targets", 
-    "rbac", 
-    "key-auth", 
-    "jwt", 
-    "acls", 
-    "basic-auth", 
-    "oauth2", 
+    "default",
+    "kong",
+    "status",
+    "apis",
+    "plugins",
+    "cache",
+    "certificates",
+    "consumers",
+    "snis",
+    "upstreams",
+    "targets",
+    "rbac",
+    "key-auth",
+    "jwt",
+    "acls",
+    "basic-auth",
+    "oauth2",
     "hmac-auth"
    ]
   }
- ], 
+ ],
  "role": {
-  "created_at": 1501524295000, 
-  "id": "8ddc36ee-dde0-4daa-baae-6868f4514256", 
+  "created_at": 1501524295000,
+  "id": "8ddc36ee-dde0-4daa-baae-6868f4514256",
   "name": "read-only"
  }
 }
@@ -632,22 +633,22 @@ HTTP 201 Created
 ```
 ```json
 [
- "plugins", 
- "cache", 
- "targets", 
- "basic-auth", 
- "key-auth", 
- "hmac-auth", 
- "snis", 
- "certificates", 
- "kong", 
- "acls", 
- "status", 
- "jwt", 
- "rbac", 
- "apis", 
- "upstreams", 
- "consumers", 
+ "plugins",
+ "cache",
+ "targets",
+ "basic-auth",
+ "key-auth",
+ "hmac-auth",
+ "snis",
+ "certificates",
+ "kong",
+ "acls",
+ "status",
+ "jwt",
+ "rbac",
+ "apis",
+ "upstreams",
+ "consumers",
  "oauth2"
 ]
 ```

@@ -1,4 +1,19 @@
 ---
+redirect_to: /hub/kong-inc/request-transformer
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 id: page-plugin
 title: Plugins - Request Transformer
 header_title: Request Transformer
@@ -37,7 +52,7 @@ params:
       description: List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
     - name: replace.headers
       required: false
-      description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set. 
+      description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
     - name: replace.querystring
       required: false
       description: List of queryname:value pairs. If and only if the field name is already set, replace its old value with the new one. Ignored if the field name is not already set.
@@ -63,7 +78,7 @@ params:
     - name: add.headers
       required: false
       value_in_examples: "x-new-header:value,x-another-header:something"
-      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set. 
+      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.querystring
       required: false
       value_in_examples: "new-param:some_value, another-param:some_value"
@@ -165,8 +180,8 @@ h3: v1        | <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
 
 incoming request querystring | upstream proxied querystring
 ---           | ---          
-\?q1=v1       | \?q1=v1&q2=v1 
--             | \?q1=v2&q2=v1 
+\?q1=v1       | \?q1=v1&q2=v1
+-             | \?q1=v2&q2=v1
 ---
 
 - Append multiple headers and remove a body parameter:
@@ -183,8 +198,8 @@ h1: v1        | <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
 
 incoming url encoded body | upstream proxied url encoded body:
 ---           | ---          
-p1=v1&p2=v1   | p2=v1 
-p2=v1         | p2=v1 
+p1=v1&p2=v1   | p2=v1
+p2=v1         | p2=v1
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object

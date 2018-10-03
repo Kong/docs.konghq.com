@@ -1,4 +1,19 @@
 ---
+redirect_to: /hub/kong-inc/request-transformer-advanced/0.32-x.html
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 title: Request Transformer Plugin
 ---
 # Request Transformer Plugin
@@ -7,7 +22,7 @@ Transform the request sent by a client on the fly on Kong, before hitting the up
 
 ## Configuration
 
-Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API](/latest/admin-api/#api-object) 
+Configuring the plugin is as simple as a single API call, you can configure and enable it for your [API](/latest/admin-api/#api-object)
 (or [Consumer](/latest/admin-api/#consumer-object)) by executing the following request on your Kong server:
 
 ```
@@ -76,7 +91,7 @@ $ curl -X POST http://localhost:8001/apis \
 ```
 
 Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
-and its value is being set with the value sent with header `x-user-id` or 
+and its value is being set with the value sent with header `x-user-id` or
 with the default value alice is `header` is missing.
 
 ```
@@ -92,7 +107,7 @@ Now send a request without setting header `x-user-id`
 $ curl -i -X GET localhost:8000/requests/user/foo
 ```
 
-Plugin will add a new header `x-consumer-id` with value alice before proxying 
+Plugin will add a new header `x-consumer-id` with value alice before proxying
 request upstream. Now try sending request with header `x-user-id` set
 
 ```
@@ -100,7 +115,7 @@ $ curl -i -X GET localhost:8000/requests/user/foo \
   -H "X-User-Id:bob"
 ```
 
-This time plugin will add a new header `x-consumer-id` with value sent along 
+This time plugin will add a new header `x-consumer-id` with value sent along
 with header `x-user-id`, i.e.`bob`
 
 ## Order of execution
@@ -146,7 +161,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 
 | Incoming Request Headers | Upstream Proxied Headers
 | --------- | -----------
-| h1: v1 | h1: v1, h2: v1 
+| h1: v1 | h1: v1, h2: v1
 
 Add a querystring and a header:
 
@@ -160,7 +175,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 
 | Incoming Request Headers | Upstream Proxied Headers
 | --------- | -----------
-| h1: v1 | h1: v1, h2: v1 
+| h1: v1 | h1: v1, h2: v1
 | h3: v1 | h1: v1, h2: v1, h3: v1
 
 | Incoming Request Querystring | Upstream Proxied Querystring

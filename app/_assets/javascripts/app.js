@@ -22,7 +22,7 @@ $(function () {
   // Change header download button color
 
   if (!$('body#enterprise').length) {
-    var introSectionHeight = $('.section.intro-section').outerHeight() || 50
+    var introSectionHeight = $('.section.intro-section').outerHeight() || 38
     var $downloadBtn = $('.navbar-nav').find('.button')
 
     $window.on('scroll', function () {
@@ -267,7 +267,7 @@ $(function () {
   // Add Smooth scroll when link with attr clicked
   $('a[data-link="scroll"]').click(function () {
     $('html, body').animate({
-      scrollTop: $($.attr(this, 'href')).offset().top - 220 // Add spacing on top after scroll
+      scrollTop: $($.attr(this, 'href')).offset().top - 150 // Add spacing on top after scroll
     }, 600) // Adjust scroll speed
     // Remove any active classes that may already be applied
     $('a[data-link="scroll"').removeClass('active')
@@ -313,19 +313,6 @@ $(function () {
         link.attr('data-href', $(link).attr('href'))
         link.removeAttr('href')
       })
-    }
-  })
-
-  $(window).scroll(function () {
-    var sticky = $('.site-header')
-    var scroll = $(window).scrollTop()
-
-    if (scroll >= 50) {
-      sticky.addClass('fixed-top')
-      $('.page').addClass('page-header-fixed')
-    } else {
-      sticky.removeClass('fixed-top')
-      $('.page').removeClass('page-header-fixed')
     }
   })
 })

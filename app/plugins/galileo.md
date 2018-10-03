@@ -1,4 +1,19 @@
 ---
+redirect_to: https://support.konghq.com/
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 id: page-plugin
 title: Plugins - Galileo
 header_title: Galileo
@@ -12,7 +27,6 @@ nav:
       - label: Logging bodies
       - label: FAQ
   - label: Kong Process Errors
-redirect_to: https://support.konghq.com/hc/en-us/articles/115004916328-Kong-Integration
 description: |
   Logs request and response data to [Galileo](http://getgalileo.io), the analytics platform for monitoring, visualizing and inspecting API & microservice traffic.
 params:

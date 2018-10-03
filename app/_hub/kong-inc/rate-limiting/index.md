@@ -3,6 +3,8 @@ name: Rate Limiting
 publisher: Kong Inc.
 
 nav:
+  - label: Terminology
+  - label: Configuration
   - label: Usage
     items:
       - label: Headers sent to the client
@@ -10,6 +12,14 @@ nav:
 desc: Rate-limit how many HTTP requests a developer can make
 description: |
   Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled 
+    with versions of Kong prior to 0.13.1 and Kong Enterprise prior to 0.32
+    differs from what is documented herein. Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
 
 type: plugin
 categories:
