@@ -120,6 +120,14 @@ $(function () {
 
     var form = $(this)
     var email = form.find('[name="email"]').val()
+    var time = new Date().toString()
+
+    var traits = {
+      email: email,
+      environment: 'kong',
+      newsletter_updates: true,
+      created_at: time
+    }
 
     form.find('.message').html('')
     form.find('[name="email"]').removeClass('error')
@@ -143,6 +151,15 @@ $(function () {
         console.log('Success')
       }
     })
+
+    var track = function () {
+      analytics.track('request_newsletter_updates', {
+        email: email,
+        request_date: time
+      })
+    }
+
+    analytics.identify(email, traits, track)
 
     form.find('[name="email"]').val()
     $(this).find('.success-message').text('Thank you for signing up!')
