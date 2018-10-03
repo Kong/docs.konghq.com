@@ -54,6 +54,8 @@ for important details regarding exposing the Admin API so that you can configure
 If you were only experimenting, consider deleting your Google Cloud resources
 once you've completed your experiment to avoid on-going Google Cloud usage charges.
 
+<!-- FIXME add install walkthrough video here  -->
+
 # Kong via Helm or Minikube
 
 An easy way to deploy Kong on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
