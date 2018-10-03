@@ -1,4 +1,19 @@
 ---
+redirect_to: /hub/kong-inc/aws-lambda
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 id: page-plugin
 title: Plugins - AWS Lambda
 header_title: AWS Lambda
@@ -102,7 +117,7 @@ params:
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
     decoded by Kong. To ensure special characters that are likely to appear in your
     AWS key or secret (like `+`) are correctly decoded, you must URL-encode them,
-    hence use `--date-urlencode` if you are using curl. Alternatives to this
+    hence use `--data-urlencode` if you are using curl. Alternatives to this
     approach would be to send your payload with a different MIME type (like
     `application/json`), or to use a different HTTP client.
 
@@ -147,19 +162,19 @@ from being executed. We are planning to remove this limitation in the future.
 2. Create an Execution role in AWS
 3. Create an user which will be invoke the function via Kong, test it.
 4. Create an API in Kong, add the aws-lambda plugin linked to our aws function and execute it.
- 
+
 ## Configure:
 
 1. First, let's create an execution role called `LambdaExecutor` for our lambda function.
-    
+
     In IAM Console create a new Role choosing the AWS Lambda service, there will be no policies as our function in this example will simply execute itself giving us back an hardcoded JSON as response without accessing other AWS resources.
 
 2. Now let's create a user named KongInvoker, used by our Kong API gateway to invoke the function.
-    
+
     In IAM Console create a new user, must be provided to it programmatic access via Access and Secret keys; then will attach existing policies directly particularly the AWSLambdaRole predefined. Once the user creation is confirmed, store Access Key and Secret Key in a safe place.
 
 3. Now we need to create the lambda function itself, will do so in N.Virginia Region (code us-east-1).
-    
+
     In Lambda Management, create a new function Mylambda, there will be no blueprint as we are going to paste the code below; for the execution role let's choose an existing role specifically LambdaExecutor created previously
 
     Use the inline code below to have a simple JSON response in return, note this is code for Python 3.6 interpreter.
@@ -171,7 +186,7 @@ from being executed. We are planning to remove this limitation in the future.
         return json.loads(jsonbody)
     ```
 
-    Test the lambda function from the AWS console and make sure the execution succeeds. 
+    Test the lambda function from the AWS console and make sure the execution succeeds.
 
 4. Finally we setup the api in Kong and link it to the function just created.
 
@@ -189,8 +204,8 @@ from being executed. We are planning to remove this limitation in the future.
     ```bash
     curl -i -X POST http://{kong_hostname}:8001/apis/lambda1/plugins \
     --data 'name=aws-lambda' \
-    --data 'config.aws_key={KongInvoker user key}' \
-    --data 'config.aws_secret={KongInvoker user secret}' \
+    --data-urlencode 'config.aws_key={KongInvoker user key}' \
+    --data-urlencode 'config.aws_secret={KongInvoker user secret}' \
     --data 'config.aws_region=us-east-1' \
     --data 'config.function_name=MyLambda'
     ```

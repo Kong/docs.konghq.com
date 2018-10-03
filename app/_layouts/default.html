@@ -2,7 +2,7 @@
 <html lang="en" itemscope itemtype="http://schema.org/Article">
   {% include head.html %}
 
-  <body id="{{ page.id }}" {% if page.hide_subscribe %} class="no-subscribe-section"{% endif %}>
+  <body id="{{ page.id }}" {% if page.hide_subscribe %} class="no-subscribe-section"{% endif %} data-spy="scroll" data-target="#scroll-sidebar" data-offset="350">
     {% include nav.html %}
 
     {{ content }}
@@ -13,6 +13,8 @@
     <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
 
     <div id="fb-root"></div>
+
+    <script src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/js/vendor/bootstrap.min.js" async defer></script>
 
     <script id="github-bjs" src="https://buttons.github.io/buttons.js" async defer></script>
     <script id="twitter-wjs" type="text/javascript" src="https://platform.twitter.com/widgets.js" async defer></script>

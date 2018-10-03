@@ -1,7 +1,11 @@
 .page-header {
   background-color: #fdfdfd;
   border-bottom: 1px solid @gray;
-  padding: 50px 0;
+  padding: 145px 0 20px;
+
+  @media (max-width: 1100px) {
+    padding: 50px 0 10px;
+  }
 
   // Needs to be above page-content header margins
   .container {
@@ -12,7 +16,7 @@
     padding: 25px 0;
   }
 
-  h1, p {
+  h1, p, .page-header-section-title {
     margin: 0;
   }
 

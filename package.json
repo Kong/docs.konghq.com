@@ -21,6 +21,7 @@
   },
   "echint": {
     "ignore": [
+      "Makefile",
       "dist/**",
       "app/0*/**",
       "app/enterprise/**/*",

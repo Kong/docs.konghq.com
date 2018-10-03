@@ -1,4 +1,19 @@
 ---
+redirect_to: /hub/kong-inc/response-transformer
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 id: page-plugin
 title: Plugins - Response Transformer
 header_title: Response Transformer
@@ -13,7 +28,7 @@ nav:
 
 description: |
   Transform the response sent by the upstream server on the fly on Kong, before returning the response to the client.
-  
+
   <div class="alert alert-warning">
     <strong>Note on transforming bodies:</strong> Be aware of the performamce of transformations on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory, which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs). Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
   </div>
@@ -35,14 +50,14 @@ params:
       description: List of property names. Remove the property from the JSON body if it is present.
     - name: replace.headers
       required: false
-      description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set. 
+      description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
     - name: replace.json
       required: false
       description: List of property:value pairs. If and only if the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: add.headers
       required: false
       value_in_examples: "x-new-header:value,x-another-header:something"
-      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set. 
+      description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.json
       required: false
       value_in_examples: "new-json-key:some_value, another-json-key:some_value"

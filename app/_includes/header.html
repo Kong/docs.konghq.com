@@ -1,9 +1,19 @@
-{% if page.header_icon and page.header_title %}
+{% if include.img %}
+  {% assign header_icon = include.img %}
+{% elsif page.header_icon %}
+  {% assign header_icon = page.header_icon %}
+{% endif %}
+{% if include.name %}
+  {% assign header_title = include.name %}
+{% elsif page.header_title %}
+    {% assign header_title = page.header_title %}
+{% endif %}
+{% if header_icon and header_title %}
   <header class="page-header">
     <div class="container">
-      {% if page.header_icon %}
+      {% if header_icon %}
         <div class="page-header-icon">
-          <img src="{{ page.header_icon }}" alt="" />
+          <img src="{{ header_icon }}" />
         </div>
       {% endif %}
 
@@ -22,7 +32,7 @@
           </ul>
         {% endif %}
 
-        <h1>{{ page.header_title }}</h1>
+        <h1>{{ header_title }}</h1>
 
         {% if page.header_caption or include.header_caption%}
           <p>{{ page.header_caption }}{{ include.header_caption }}</p>

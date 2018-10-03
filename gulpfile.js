@@ -43,6 +43,11 @@ var dest = {
   js: paths.dist + 'assets/app.js'
 }
 
+gulp.task('copycss', function () {
+  gulp.src(paths.assets + 'css/*.css')
+    .pipe(gulp.dest(paths.dist + 'assets'))
+})
+
 gulp.task('styles', function () {
   return gulp.src(paths.assets + 'stylesheets/index.less')
     .pipe($.plumber())
@@ -286,6 +291,7 @@ gulp.task('watch', function () {
   gulp.watch(sources.styles, ['styles'])
   gulp.watch(sources.images, ['images-watch'])
   gulp.watch(sources.js, ['javascripts'])
+  gulp.watch(paths.assets + 'css/hub.css', ['copycss'])
 })
 
 gulp.task('html-watch', ['html'], function (cb) {
@@ -299,7 +305,7 @@ gulp.task('images-watch', ['images'], function (cb) {
 })
 
 gulp.task('default', ['clean'], function (cb) {
-  sequence('build', 'browser-sync', 'watch', cb)
+  sequence('build', 'browser-sync', 'copycss', 'watch', cb)
 })
 
 gulp.task('setdev', function (cb) {

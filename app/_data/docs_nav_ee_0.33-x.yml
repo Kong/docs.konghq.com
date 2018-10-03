@@ -118,6 +118,8 @@
       absolute_url: true
     - text: Architecture Overview
       url: /kong-architecture-overview
+    - text: Architecture Patterns
+      url: /kong-architecture-patterns
     - text: Kong Vitals
       url: /vitals
     - text: Rate Limiting Library
@@ -132,3 +134,5 @@
       url: /oidc-google
     - text: OpenID Connect with Auth0
       url: /oidc-auth0
+    - text: Upgrades and Migrations
+      url: /upgrades-migrations

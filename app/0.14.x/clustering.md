@@ -256,7 +256,7 @@ Admin API `/cache` endpoint.
 
 #### Inspect a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/cache/{cache_key}</div>
 
@@ -286,7 +286,7 @@ this process easier.
 
 #### Purge a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache/{cache_key}</div>
 
@@ -305,7 +305,7 @@ this process easier.
 
 #### Purge a node's cache
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache</div>
 
@@ -322,6 +322,6 @@ will trigger many requests to your database, and could cause a
 
 [Back to TOC](#table-of-contents)
 
-[db_update_frequency]: /docs/{{page.kong_version}}/configuration/#db_update_frequency
-[db_update_propagation]: /docs/{{page.kong_version}}/configuration/#db_update_propagation
-[db_cache_ttl]: /docs/{{page.kong_version}}/configuration/#db_cache_ttl
+[db_update_frequency]: /{{page.kong_version}}/configuration/#db_update_frequency
+[db_update_propagation]: /{{page.kong_version}}/configuration/#db_update_propagation
+[db_cache_ttl]: /{{page.kong_version}}/configuration/#db_cache_ttl

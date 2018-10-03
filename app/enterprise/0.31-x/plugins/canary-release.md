@@ -1,4 +1,19 @@
 ---
+redirect_to: /hub/kong-inc/canary/0.31-x.html
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 title: Canary Release
 ---
 # Canary Release Plugin
@@ -21,7 +36,7 @@ You can also apply it for every API using the `http://kong:8001/plugins/` endpoi
 
 | Form Parameter | Default | Description
 | -------------- | ------- | -----------
-| name | canary |	The name of the plugin to use, in this case: `canary` 
+| name | canary |	The name of the plugin to use, in this case: `canary`
 | config.start | | 	Future time in seconds since epoch, when the release will start (ignored when `percentage` is set)
 | config.duration | `3600` |	How long, in seconds, should the transition take (ignored when `percentage` is set)
 | config.percentage |	| Fixed % of traffic to be routed to new target, if given overrides `start` and `duration`

@@ -137,4 +137,4 @@ for an extended version of this example.
 
 Next: [Write tests for your plugin]({{page.book.next}})
 
-[Admin API]: /docs/{{page.kong_version}}/admin-api/
+[Admin API]: /{{page.kong_version}}/admin-api/

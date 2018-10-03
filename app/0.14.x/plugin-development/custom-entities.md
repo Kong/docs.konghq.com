@@ -225,5 +225,5 @@ entities]({{page.book.next}}).
 
 Next: [Caching custom entities &rsaquo;]({{page.book.next}})
 
-[Admin API]: /docs/{{page.kong_version}}/admin-api/
+[Admin API]: /{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /{{page.kong_version}}/pdk

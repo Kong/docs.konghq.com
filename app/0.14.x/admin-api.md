@@ -70,7 +70,7 @@ plugin_configuration_body: |
     ---:| ---
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
-    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](/plugins).
+    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `enabled` | Whether the plugin is applied. Default: `true`.
 
 target_body: |
@@ -119,7 +119,7 @@ snis_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
-    `certificate_id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname.
+    `certificate.id` | The `id` (a UUID) of the certificate with which to associate the SNI hostname. With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
 ---
 
@@ -796,7 +796,6 @@ HTTP 200 OK
 
 ```json
 {
-    "total": 10,
     "data": [
         {
             "id": "4d924084-1adb-40a5-c042-63b19db421d1",
@@ -907,7 +906,7 @@ A Plugin entity represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
 to Services that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
-each plugin takes by visiting the [Plugins Gallery](/plugins).
+each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
 
 When adding a Plugin Configuration to a Service, every request made by a client to
 that Service will run said Plugin. If a Plugin needs to be tuned to different
@@ -1482,7 +1481,9 @@ lookup the certificate object based on the SNI associated with the certificate.
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -1509,7 +1510,9 @@ HTTP 201 Created
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -1536,7 +1539,9 @@ HTTP 200 OK
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -1560,13 +1565,17 @@ HTTP 200 OK
         {
             "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
             "name": "example.com",
-            "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+            "certificate": {
+                "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+            },
             "created_at": 1485521710265
         },
         {
             "id": "88c03fcd-9a48-4937-a976-0abd0eb6b60a",
             "name": "example.org",
-            "certificate_id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b",
+            "certificate": {
+                "id": "6b5b6f71-c0b3-426d-8f3b-8de2c67c816b"
+            },
             "created_at": 1485521710265
         }
     ]
@@ -1593,7 +1602,9 @@ HTTP 200 OK
 {
     "id": "daa105c8-9208-49e7-83fa-2fc0da28c6bd",
     "name": "example.com",
-    "certificate_id": "21b69eab-09d9-40f9-a55e-c4ee47fada68",
+    "certificate": {
+        "id": "21b69eab-09d9-40f9-a55e-c4ee47fada68"
+    },
     "created_at": 1485521710265
 }
 ```
@@ -2395,9 +2406,9 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
-[clustering]: /docs/{{page.kong_version}}/clustering
-[cli]: /docs/{{page.kong_version}}/cli
-[active]: /docs/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /docs/{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /docs/{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /docs/{{page.kong_version}}/proxy
+[clustering]: /{{page.kong_version}}/clustering
+[cli]: /{{page.kong_version}}/cli
+[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /{{page.kong_version}}/proxy
