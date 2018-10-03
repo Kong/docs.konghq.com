@@ -17,12 +17,7 @@ links:
 
 ## Table of Contents
 
-- [foo](http://www.konghq.com)
-- [bar](http://www.konghq.com)
-- [bang](http://www.konghq.com)
-
-
-
+<!-- FIXME the list below should be an unordered list, but currently those do not render correctly in this section of the Docs site - depends on https://github.com/Kong/docs.konghq.com/issues/917 -->
 1. [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
 1. [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
 1. [Kong via Helm or Minikube](#kong-via-helm-or-minikube)
