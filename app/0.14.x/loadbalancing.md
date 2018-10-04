@@ -49,6 +49,9 @@ Because there is no `weight` information, all entries will be treated as equally
 weighted in the load balancer, and the balancer will do a straight forward
 round-robin.
 
+Note that A records do not carry port information, so if you need Kong to route
+requests to specific port numbers, be sure to [configure Kong to ignore A records][dns-order-config].  
+
 [Back to TOC](#table-of-contents)
 
 #### **SRV records**
@@ -91,14 +94,16 @@ with 527 entries, whereas weights 16 and 32 (or their smallest relative
 counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
 
-- Some nameservers do not return all entries (due to UDP packet size) in those
-cases (for example Consul returns a maximum of 3) a given Kong node will only
+- Some nameservers do not return all entries due to UDP packet size
+(for example Consul returns a maximum of 3 DNS entries). In those
+cases, a given Kong worker (by default
+there is 1 Kong worker per CPU core) will only
 use the few upstream service instances provided by the nameserver. In this
 scenario, it is possible that the pool of upstream instances will be loaded
-inconsistently, because the Kong node is effectively unaware of some of the
-instances, due to the limited information provided by the nameserver.
+inconsistently, because the Kong worker is effectively unaware of some of the
+upstream instances, due to the limited information provided by the nameserver.
 To mitigate this use a different nameserver, use IP
-addresses instead of names, or make sure you use enough Kong nodes to still
+addresses instead of names, or make sure you use enough Kong workers to still
 have all upstream services being used.
 
 - When the nameserver returns a `3 name error`, then that is a valid response
