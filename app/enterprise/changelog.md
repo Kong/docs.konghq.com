@@ -12,7 +12,7 @@ nav:
 ---
 # Kong Enterprise Changelog
 
-## 0.33-1
+## 0.33-1 - 2018/09/05
 
 ### Notifications
 
@@ -82,7 +82,7 @@ nav:
       - Fix issue leading to cache key collision in some scenarios - e.g., for requests issued by the same consumer
       - Fix cache key for Routes and Services: previously, distinct routes/services entities would be given the same cache key
 
-## 0.33
+## 0.33 - 2018/07/24
 
 ### Notifications
 
@@ -182,7 +182,7 @@ nav:
     lua_shared_dict kong_rate_limiting_counters 12m;
     ```
 
-## 0.32
+## 0.32 - 2018/05/24
 
 ### Notifications
 
@@ -337,7 +337,7 @@ nav:
   - Fix `config.scopes` when set to `null` or `""` so that it doesn't add an OpenID scope forcibly, as the plugin is not only OpenID Connect only, but also OAuth2
 
 
-## 0.31-1
+## 0.31-1 - 2018/04/25
 
 ### Changes
 
@@ -369,7 +369,7 @@ index 15682975..653a7ddd 100644
 - Fixes an issue where boolean values (and boolean values as strings) were not correctly marshalled when using Cassandra
 - Fixes an issue in Redis Sentinel configuration parsing
 
-## 0.31
+## 0.31 - 2018/03/16
 
 Kong Enterprise 0.31 is shipped with all the changes present in Kong Community Edition 0.12.3, as well as with the following additions:
 
@@ -428,7 +428,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
     - "Public only" Portal - no authentication (eg. the portal is fully accessible to anyone who can access it)
     - Authenticated Portal - Developers must log in, and then they can see what they are entitled to see
 
-## 0.30
+## 0.30 - 2018/01/24
 
 Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community Edition 0.12.1](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0121---20180118), as well as with the following additions:
 
