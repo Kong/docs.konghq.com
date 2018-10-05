@@ -428,7 +428,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
     - "Public only" Portal - no authentication (eg. the portal is fully accessible to anyone who can access it)
     - Authenticated Portal - Developers must log in, and then they can see what they are entitled to see
 
-## 0.30 - 2017/11/14
+## 0.30 - 2018/01/24
 
 Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community Edition 0.12.1](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0121---20180118), as well as with the following additions:
 
