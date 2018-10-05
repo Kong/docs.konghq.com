@@ -54,7 +54,7 @@ for important details regarding exposing the Admin API so that you can configure
 If you were only experimenting, consider deleting your Google Cloud resources
 once you've completed your experiment to avoid on-going Google Cloud usage charges.
 
-<!-- FIXME add install walkthrough video here  -->
+<iframe width="660" height="400" src="https://www.youtube-nocookie.com/embed/MPlSyWDAOpw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 # Kong via Helm or Minikube
 
