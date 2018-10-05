@@ -12,7 +12,7 @@ nav:
 ---
 # Kong Enterprise Changelog
 
-## 0.33-1 2018/09/05
+## 0.33-1 - 2018/09/05
 
 ### Notifications
 
@@ -369,7 +369,7 @@ index 15682975..653a7ddd 100644
 - Fixes an issue where boolean values (and boolean values as strings) were not correctly marshalled when using Cassandra
 - Fixes an issue in Redis Sentinel configuration parsing
 
-## 0.31 2018/03/16
+## 0.31 - 2018/03/16
 
 Kong Enterprise 0.31 is shipped with all the changes present in Kong Community Edition 0.12.3, as well as with the following additions:
 
