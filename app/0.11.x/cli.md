@@ -10,22 +10,6 @@ current machine).
 
 If you haven't yet, we recommend you read the [configuration reference][configuration-reference].
 
-### Table of Contents
-
-- [Global flags](#global-flags)
-- [Available commands](#available-commands)
-  - [kong check](#kong-check)
-  - [kong compile (deprecated)](#kong-compile)
-  - [kong prepare](#kong-prepare)
-  - [kong health](#kong-health)
-  - [kong migrations](#kong-migrations)
-  - [kong quit](#kong-quit)
-  - [kong reload](#kong-reload)
-  - [kong restart](#kong-restart)
-  - [kong start](#kong-start)
-  - [kong stop](#kong-stop)
-  - [kong version](#kong-version)
-
 ### Global flags
 
 All commands take a set of special, optional flags as arguments:

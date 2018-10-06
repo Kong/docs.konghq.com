@@ -12,17 +12,7 @@ Client information module
  See also:
  [nginx.org/en/docs/http/ngx_http_realip_module.html](http://nginx.org/en/docs/http/ngx_http_realip_module.html)
 
-## Table of Contents
-
-* [kong.client.get_ip()](#kong_client_get_ip)
-* [kong.client.get_forwarded_ip()](#kong_client_get_forwarded_ip)
-* [kong.client.get_port()](#kong_client_get_port)
-* [kong.client.get_forwarded_port()](#kong_client_get_forwarded_port)
-
-
-
-
-### <a name="kong_client_get_ip"></a>kong.client.get_ip()
+## kong.client.get_ip()
 
 Returns the remote address of the client making the request.  This will
  **always** return the address of the client directly connecting to Kong.
@@ -52,7 +42,7 @@ kong.client.get_ip() -- "10.0.0.1"
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_client_get_forwarded_ip"></a>kong.client.get_forwarded_ip()
+## kong.client.get_forwarded_ip()
 
 Returns the remote address of the client making the request.  Unlike
  `kong.client.get_ip`, this function will consider forwarded addresses in
@@ -93,7 +83,7 @@ kong.request.get_forwarded_ip() -- "127.0.0.1"
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_client_get_port"></a>kong.client.get_port()
+## kong.client.get_port()
 
 Returns the remote port of the client making the request.  This will
  **always** return the port of the client directly connecting to Kong. That
@@ -119,7 +109,7 @@ kong.client.get_port() -- 30000
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_client_get_forwarded_port"></a>kong.client.get_forwarded_port()
+## kong.client.get_forwarded_port()
 
 Returns the remote port of the client making the request.  Unlike
  `kong.client.get_port`, this function will consider forwarded ports in cases

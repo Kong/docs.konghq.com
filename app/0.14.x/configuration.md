@@ -4,26 +4,6 @@ title: Configuration Reference
 
 # Configuration Reference
 
-### Table of Contents
-
-- [Configuration loading](#configuration-loading)
-- [Verifying your configuration](#verifying-your-configuration)
-- [Environment variables](#environment-variables)
-- [Injecting Nginx directives](#injecting-nginx-directives)
-  - [Injecting individual Nginx directives](#injecting-individual-nginx-directives)
-  - [Including files via injected Nginx directives](#including-files-via-injected-nginx-directives)
-- [Custom Nginx templates & embedding Kong](#custom-nginx-templates-embedding-kong)
-  - [Custom Nginx templates](#custom-nginx-templates)
-  - [Embedding Kong in OpenResty](#embedding-kong-in-openresty)
-  - [Serving both a website and your APIs from Kong](#serving-both-a-website-and-your-apis-from-kong)
-- [Properties reference](#properties-reference)
-  - [General section](#general-section)
-  - [Nginx section](#nginx-section)
-  - [Datastore section](#datastore-section)
-  - [Datastore cache section](#datastore-cache-section)
-  - [DNS resolver section](#dns-resolver-section)
-  - [Development & miscellaneous section](#development-miscellaneous-section)
-
 ### Configuration loading
 
 Kong comes with a default configuration file that can be found at

@@ -18,28 +18,6 @@ As you might already know, Kong uses two ports to communicate. By default they a
 
 This guide will cover all proxying capabilities of Kong by explaining in detail how the proxying (`8000`) port works under the hood.
 
-## Summary
-
-- 1. [How does Kong route a request to an API][1]
-- 2. [Reminder: how to add an API to Kong][2]
-- 3. [Proxy an API by its DNS value][3]
-  - [Using the "Host" header][3a]
-  - [Using the "X-Host-Override" header][3b]
-  - [Using a wildcard DNS][3c]
-- 4. [Proxy an API by its request_path value][4]
-  - [Using the "strip_request_path" property][4a]
-- 5. [Plugins execution][5]
-
-[1]: #1.-how-does-kong-route-a-request-to-an-api
-[2]: #2.-reminder-how-to-add-an-api-to-kong
-[3]: #3.-proxy-an-api-by-its-dns-value
-[3a]: #using-the-quot-host-quot-header
-[3b]: #using-the-quot-x-host-override-quot-header
-[3c]: #using-a-wildcard-dns
-[4]: #4.-proxy-an-api-by-its-request_path-value
-[4a]: #using-the-quot-strip_request_path-quot-property
-[5]: #5.-plugins-execution
-
 ---
 
 ## 1. How does Kong route a request to an API

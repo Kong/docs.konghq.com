@@ -8,18 +8,6 @@ Kong provides multiple ways of load balancing requests to multiple backend servi
 a straightforward DNS-based method, and a more dynamic ring-balancer that also
 allows for service registry without needing a DNS server.
 
-### Table of Contents
-
-- [DNS-based loadbalancing](#dns-based-loadbalancing)
-  - [A records](#a-records)
-  - [SRV records](#srv-records)
-  - [DNS priorities](#dns-priorities)
-- [Ring-balancer](#ring-balancer)
-  - [Upstream](#upstream)
-  - [Target](#target)
-- [Blue-green Deployments](#blue-green-deployments)
-- [Canary Releases](#canary-releases)
-
 ### DNS-based loadbalancing
 
 When using DNS based load balancing the registration of the backend services is

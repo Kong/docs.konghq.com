@@ -10,15 +10,6 @@ API allows full control of Kong, it is important to secure this API against
 unwanted access. This document describes a few possible approaches to securing
 the Admin API.
 
-## Table of Contents
-
-- [Network Layer Access Restrictions](#network-layer-access-restrictions)
-  - [Minimal Listening Footprint](#minimal-listening-footprint)
-  - [Layer 3/4 Network Controls](#layer-3-4-network-controls)
-- [Kong API Loopback](#kong-api-loopback)
-- [Custom Nginx Configuration](#custom-nginx-configuration)
-- [Role Based Access Control (RBAC)](#role-based-access-control)
-
 ## Network Layer Access Restrictions
 
 ### Minimal Listening Footprint

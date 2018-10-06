@@ -7,15 +7,7 @@ pdk: true
 
 Utilities for Lua tables
 
-## Table of Contents
-
-* [kong.table.new([narr[, nrec]])](#kong_table_new)
-* [kong.table.clear(tab)](#kong_table_clear)
-
-
-
-
-### <a name="kong_table_new"></a>kong.table.new([narr[, nrec]])
+## kong.table.new([narr[, nrec]])
 
 Returns a table with pre-allocated number of slots in its array and hash
  parts.
@@ -41,7 +33,7 @@ local tab = kong.table.new(4, 4)
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_table_clear"></a>kong.table.clear(tab)
+## kong.table.clear(tab)
 
 Clears a table from all of its array and hash parts entries.
 

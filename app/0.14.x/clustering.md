@@ -12,36 +12,6 @@ configuration since they point to the same database. Kong nodes pointing to the
 You need a load-balancer in front of your Kong cluster to distribute traffic
 across your available nodes.
 
-### Table of Contents
-
-- [What a Kong cluster does and doesn't do][1]
-- [Single node Kong clusters][2]
-- [Multiple nodes Kong clusters][3]
-- [What is being cached?][4]
-- [How to configure database caching?][5]
-    - 1. [db_update_frequency][5-1]
-    - 2. [db_update_propagation][5-2]
-    - 3. [db_cache_ttl][5-3]
-    - 4. [When using Cassandra][5-4]
-- [Interacting with the cache via the Admin API][6]
-    - [Inspect a cached value][6-1]
-    - [Purge a cached value][6-2]
-    - [Purge a node's cache][6-3]
-
-[1]: #what-a-kong-cluster-does-and-doesnt-do
-[2]: #single-node-kong-clusters
-[3]: #multiple-nodes-kong-clusters
-[4]: #what-is-being-cached
-[5]: #how-to-configure-database-caching
-[5-1]: #1-db_update_frequency-default-5s
-[5-2]: #2-db_update_propagation-default-0s
-[5-3]: #3-db_cache_ttl-default-0s
-[5-4]: #4-when-using-cassandra
-[6]: #interacting-with-the-cache-via-the-admin-api
-[6-1]: #inspect-a-cached-value
-[6-2]: #purge-a-cached-value
-[6-3]: #purge-a-nodes-cache
-
 ### What a Kong cluster does and doesn't do
 
 **Having a Kong cluster does not mean that your clients traffic will be
