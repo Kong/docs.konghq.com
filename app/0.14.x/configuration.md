@@ -1035,7 +1035,6 @@ record types. The `LAST` type means the
 type of the last successful lookup (for the
 specified name). The format is a (case
 insensitive) comma separated list.
-Remove any record types that Kong should ignore. 
 
 Default: `LAST,SRV,A,CNAME`
 
