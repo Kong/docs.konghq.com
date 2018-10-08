@@ -49,9 +49,6 @@ Because there is no `weight` information, all entries will be treated as equally
 weighted in the load balancer, and the balancer will do a straight forward
 round-robin.
 
-Note that A records do not carry port information, so if you need Kong to route
-requests to specific port numbers, be sure to [configure Kong to ignore A records][dns-order-config].  
-
 [Back to TOC](#table-of-contents)
 
 #### **SRV records**
@@ -100,7 +97,7 @@ cases, a given Kong worker (by default
 there is 1 Kong worker per CPU core) will only
 use the few upstream service instances provided by the nameserver. In this
 scenario, it is possible that the pool of upstream instances will be loaded
-inconsistently, because the Kong worker is effectively unaware of some of the
+inconsistently, because each Kong worker is effectively unaware of some of the
 upstream instances, due to the limited information provided by the nameserver.
 To mitigate this use a different nameserver, use IP
 addresses instead of names, or make sure you use enough Kong workers to still
