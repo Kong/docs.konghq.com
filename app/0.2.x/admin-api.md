@@ -26,7 +26,7 @@ The API object describes an API that's being exposed by Kong. In order to do tha
 
 ### Add API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/apis/</div>
 
@@ -38,7 +38,7 @@ Attributes | Description
 `public_dns` | The public DNS address that points to your API. For example, `mockbin.com`.
 `target_url` | The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -58,7 +58,7 @@ HTTP 201 Created
 
 ### Retrieve API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/{id}</div>
 
@@ -66,7 +66,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the API to be retrieved
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -86,7 +86,7 @@ HTTP 200 OK
 
 ### List APIs
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/</div>
 
@@ -101,7 +101,7 @@ Attributes | Description
 `size`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -134,7 +134,7 @@ HTTP 200 OK
 
 ### Update API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/apis/{id}</div>
 
@@ -154,7 +154,7 @@ Attributes | Description
 }
 ```
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -174,7 +174,7 @@ HTTP 200 OK
 
 ### Delete API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/apis/{id}</div>
 
@@ -182,7 +182,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the API to be deleted
 
-#### Response
+**Response**
 
 ```
 HTTP 204 NO CONTENT
@@ -204,7 +204,7 @@ The Consumer object represents a consumer, or a user, of an API. You can either 
 
 ### Create Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/consumers/</div>
 
@@ -215,7 +215,7 @@ Attributes | Description
 `username`<br>**semi-optional** | The username of the consumer. You must send either this field or `custom_id` with the request.
 `custom_id`<br>**semi-optional** | Field for storing an existing ID for the consumer, useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -233,7 +233,7 @@ HTTP 201 Created
 
 ### Retrieve Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/{id}</div>
 
@@ -241,7 +241,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the consumer to be retrieved
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -259,7 +259,7 @@ HTTP 200 OK
 
 ### List Consumers
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/</div>
 
@@ -273,7 +273,7 @@ Attributes | Description
 `size`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -302,7 +302,7 @@ HTTP 200 OK
 
 ### Update Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/consumers/{id}</div>
 
@@ -318,7 +318,7 @@ Attributes | Description
 }
 ```
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -336,7 +336,7 @@ HTTP 200 OK
 
 ### Delete Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/consumers/{id}</div>
 
@@ -344,7 +344,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the consumer to be deleted
 
-#### Response
+**Response**
 
 ```
 HTTP 204 NO CONTENT
@@ -376,7 +376,7 @@ When creating a Plugin Configuration on top of an API, every request made by a c
 
 ### Create Plugin Configuration
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/plugins_configurations/</div>
 
@@ -389,7 +389,7 @@ Attributes | Description
 `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
 `value.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -413,7 +413,7 @@ HTTP 201 Created
 
 ### Retrieve Plugin Configuration
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins_configurations/{id}</div>
 
@@ -421,7 +421,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the plugin configuration to be retrieved
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -445,7 +445,7 @@ HTTP 200 OK
 
 ### List Plugin Configurations
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins_configurations/</div>
 
@@ -460,7 +460,7 @@ Attributes | Description
 `size`<br>*optional, default is __10__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -500,7 +500,7 @@ HTTP 200 OK
 
 ### Update Plugin Configuration
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/plugins_configurations/{id}</div>
 
@@ -524,7 +524,7 @@ Attributes | Description
 }
 ```
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -548,7 +548,7 @@ HTTP 200 OK
 
 ### Delete Plugin Configuration
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/plugins_configurations/{id}</div>
 
@@ -556,7 +556,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the plugin configuration to be deleted
 
-#### Response
+**Response**
 
 ```
 HTTP 204 NO CONTENT
