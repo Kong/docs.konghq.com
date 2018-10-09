@@ -3,6 +3,7 @@ title: Kong Enterprise Changelog
 nav:
   - label: Versions
     items:
+      - label: "0.33-2"
       - label: "0.33-1"
       - label: "0.33"
       - label: "0.32"
@@ -11,6 +12,49 @@ nav:
       - label: "0.30"
 ---
 # Kong Enterprise Changelog
+
+## 0.33-2 - 2018/10/09
+
+### Notifications
+
+- **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+  - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
+  - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
+- **Kong EE 0.33** has these notices from **Kong CE 0.13**:
+  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
+      - **Dev Portal** requires Cassandra 3.0+
+  - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
+- **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
+  
+### Fixes
+
+- **Core**
+  - **DB**
+      - [lua-cassandra](https://github.com/thibaultcha/lua-cassandra/blob/master/CHANGELOG.md#132) version bumped to 1.3.2
+          - Fix an issue encountered in environments with DNS load-balancing in effect for contact_points provided as hostnames (e.g.Kubernetes with `contact_points = { "cassandra" }`).
+
+  - **Plugin Runloop**
+      - Plugin runloop performance optimizations
+        - Reduce the number of invocations of the plugins iterator by attempting to load configurations only for plugins we know are configured on the cluster
+        - Pre-calculate plugins cache key
+        - Avoid unnecessary L2 cache deserialization
+
+  - **Balancer**
+      - Fix issue where Upstream for different workspace getting cached to same key
+      - Fix an issue where Balancer are not run into limited workspace scope
+
+  - **Dev Portal**
+      - Fix an issue which may expose information on the URL query string
+      - **Breaking**: If you are updating from a previous version (not a clean install), you will need to update the files below in order to take advantage of security and performance updates.
+          - unauthenticated/login (page)
+          - unauthenticated/register (page)
+          - unauthenticated/custom-css (partial)
+
+- **Plugins**
+  - **LDAP Auth Advanced**
+      - Fix an issue where the plugin fails to authenticate a user when the LDAP server doesn't return the user's password as part of the search result
+      - Fix issue where the username field wasn't allowed to contain non-alaphanumeric characters
 
 ## 0.33-1 - 2018/09/05
 
