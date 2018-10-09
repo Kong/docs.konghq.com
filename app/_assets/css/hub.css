@@ -11344,7 +11344,7 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
     text-decoration: underline
 }
 
-.bg-summit a:hover,.kong-post a:hover,.kong-sidebar .featured-post a,.nav-next a,.nav-previous a,.post-type-archive-plugins .kong-main .plugin-card a:active,.post-type-archive-plugins .kong-main .plugin-card a:hover,a.btn-gh,a.no-decoration {
+.plugin-card a:hover,.bg-summit a:hover,.kong-post a:hover,.kong-sidebar .featured-post a,.nav-next a,.nav-previous a,.post-type-archive-plugins .kong-main .plugin-card a:active,.post-type-archive-plugins .kong-main .plugin-card a:hover,a.btn-gh,a.no-decoration {
     text-decoration: none
 }
 
