@@ -40,7 +40,7 @@ description: |
     <strong>Note:</strong> The functionality of this plugin as bundled
     with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
     differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a> 
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>
 
@@ -278,7 +278,7 @@ valid signature, invalid verified claim (**option**) | no                       
   <strong>Note:</strong> When the JWT is valid and proxied to the upstream service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
 </div>
 
-### (**Optional**) Verified claims
+### (Optional) Verified claims
 
 Kong can also perform verification on registered claims, as defined in [RFC 7519](https://tools.ietf.org/html/rfc7519). To perform verification on a claim, add it to the `config.claims_to_verify` property:
 
@@ -297,7 +297,7 @@ claim name | verification
 `exp`      | identifies the expiration time on or after which the JWT must not be accepted for processing.
 `nbf`      | identifies the time before which the JWT must not be accepted for processing.
 
-### (**Optional**) Base64 encoded secret
+### (Optional) Base64 encoded secret
 
 If your secret contains binary data, you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 

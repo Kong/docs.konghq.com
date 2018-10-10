@@ -41,7 +41,7 @@ If you browse the default configuration, you'll notice that all properties are c
 
 ----
 
-### **custom_plugins**
+### custom_plugins
 
 
 Additional plugins that this node needs to load. If you want to load custom plugins that are not supported by Kong, uncomment and update this property with the names of the plugins to load. Plugins will be loaded from the `kong.plugins.{name}.*` namespace. See the [Plugin development guide](/{{page.kong_version}}/plugin-development) for how to build your own plugins.
@@ -58,7 +58,7 @@ custom_plugins:
 
 ----
 
-### **nginx_working_dir**
+### nginx_working_dir
 
 The Kong working directory. Equivalent to nginx's prefix path. This is where this running nginx instance will keep server files including logs. Make sure it has the appropriate permissions.
 
@@ -70,7 +70,7 @@ nginx_working_dir: /usr/local/kong/
 
 ----
 
-### **proxy_listen**
+### proxy_listen
 
 Address and port on which the server will accept HTTP requests, consumers will make requests on this port.
 
@@ -86,7 +86,7 @@ proxy_listen: "0.0.0.0:8000"
 
 ----
 
-### **proxy_listen_ssl**
+### proxy_listen_ssl
 
 Same as proxy_listen, but for HTTPS requests.
 
@@ -102,7 +102,7 @@ proxy_listen_ssl: "0.0.0.0:8443"
 
 ----
 
-### **admin_api_listen**
+### admin_api_listen
 
 Address and port on which the [RESTful Admin API](/{{page.kong_version}}/admin-api/) will listen to. The admin API is a private API which lets you manage your Kong infrastructure. It needs to be secured appropriately.
 
@@ -119,7 +119,7 @@ or closed off network to ensure security.
 
 ----
 
-### **cluster_listen**
+### cluster_listen
 
 Address and port used by the node to communicate with other Kong nodes in the cluster with both UDP and TCP messages. All the nodes in the cluster must be able to communicate with this node on this address. Only IPv4 addresses are allowed (no hostnames).
 
@@ -137,7 +137,7 @@ cluster_listen: "0.0.0.0:7946"
 
 ----
 
-### **cluster_listen_rpc**
+### cluster_listen_rpc
 
 Address and port used by the node to communicate with the local clustering agent (TCP only, and local only). Used internally by this Kong node. Only IPv4 addresses are allowed (no hostnames).
 
@@ -155,7 +155,7 @@ cluster_listen_rpc: "127.0.0.1:7373"
 
 ----
 
-### **ssl_cert_path**
+### ssl_cert_path
 
 The path to the SSL certificate that Kong will use when listening on the `https` port.
 
@@ -169,7 +169,7 @@ By default this property is commented out, which will force Kong to use an auto-
 
 ----
 
-### **ssl_key_path**
+### ssl_key_path
 
 The path to the SSL certificate key that Kong will use when listening on the `https` port.
 
@@ -183,7 +183,7 @@ By default this property is commented out, which will force Kong to use an auto-
 
 ----
 
-### **dns_resolver**
+### dns_resolver
 
 The desired DNS resolver to use for this Kong instance as a string, matching one of the DNS resolvers defined under [`dns_resolvers_available`](#dns_resolvers_available).
 
@@ -195,7 +195,7 @@ dns_resolver: dnsmasq
 
 ----
 
-### **dns_resolvers_available**
+### dns_resolvers_available
 
 A dictionary of DNS resolvers Kong can use, and their respective properties. Currently [`dnsmasq`](http://www.thekelleys.org.uk/dnsmasq/doc.html) (default) and `server` are supported.
 
@@ -225,7 +225,7 @@ dns_resolvers_available:
 
 ----
 
-### **cluster**
+### cluster
 
 Cluster settings between Kong nodes. For more information take a look at the [Clustering Reference][clustering-reference].
 
@@ -260,7 +260,7 @@ ttl_on_failure: 3600
 
 ----
 
-### **database**
+### database
 
 The name of the desired database to use. Currently, Kong supports [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/).
 
@@ -274,7 +274,7 @@ database: cassandra
 
 ----
 
-### **cassandra**
+### cassandra
 
 A dictionary holding the properties for Kong to connect to your Cassandra cluster.
 
@@ -428,7 +428,7 @@ password: cassandra
 
 ----
 
-### **postgres**
+### postgres
 
 A dictionary holding the properties for Kong to connect to a PostgreSQL server.
 
@@ -465,7 +465,7 @@ postgres:
 
 ----
 
-### **send_anonymous_reports**
+### send_anonymous_reports
 
 If set to `true`, Kong will collect anonymous error reports which helps us maintain and improve Kong.
 
@@ -477,7 +477,7 @@ send_anonymous_reports: true
 
 ----
 
-### **memory_cache_size**
+### memory_cache_size
 
 A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore. This value may not be smaller than 32MB.
 
@@ -489,7 +489,7 @@ memory_cache_size: 128 # in megabytes
 
 ----
 
-### **nginx**
+### nginx
 
 The NGINX configuration (or `nginx.conf`) that will be used for this instance. The placeholders will be computed and this property will be written as a file by Kong at `<nginx_working_dir>/nginx.conf` during startup.
 

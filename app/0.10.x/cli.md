@@ -22,7 +22,7 @@ All commands take a set of special, optional flags as arguments:
 
 ### Available commands
 
-#### **kong check**
+#### kong check
 
 ```
 Usage: kong check <conf>
@@ -36,7 +36,7 @@ Check the validity of a given Kong configuration file.
 
 ---
 
-#### **kong cluster**
+#### kong cluster
 
 ```
 Usage: kong cluster COMMAND [OPTIONS]
@@ -74,7 +74,7 @@ Options:
 
 ---
 
-#### **kong compile**
+#### kong compile
 
 For a detailed example of this command, see the
 [Embedding Kong](/{{page.kong_version}}/configuration#embedding-kong)
@@ -108,7 +108,7 @@ Options:
 
 ---
 
-#### **kong health**
+#### kong health
 
 ```
 Usage: kong health [OPTIONS]
@@ -123,7 +123,7 @@ Options:
 
 ---
 
-#### **kong migrations**
+#### kong migrations
 
 ```
 Usage: kong migrations COMMAND [OPTIONS]
@@ -143,7 +143,7 @@ Options:
 
 ---
 
-#### **kong quit**
+#### kong quit
 
 ```
 Usage: kong quit [OPTIONS]
@@ -165,7 +165,7 @@ Options:
 
 ---
 
-#### **kong reload**
+#### kong reload
 
 ```
 Usage: kong reload [OPTIONS]
@@ -188,7 +188,7 @@ Options:
 
 ---
 
-#### **kong restart**
+#### kong restart
 
 ```
 Usage: kong restart [OPTIONS]
@@ -209,7 +209,7 @@ Options:
 
 ---
 
-#### **kong start**
+#### kong start
 
 ```
 Usage: kong start [OPTIONS]
@@ -227,7 +227,7 @@ Options:
 
 ---
 
-#### **kong stop**
+#### kong stop
 
 ```
 Usage: kong stop [OPTIONS]
@@ -245,7 +245,7 @@ Options:
 
 ---
 
-#### **kong version**
+#### kong version
 
 ```
 Usage: kong version [OPTIONS]

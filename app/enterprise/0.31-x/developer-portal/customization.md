@@ -55,7 +55,7 @@ Now let's update **pages/documentation/api1.hbs** to render our newly added Spec
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-petstore.png "Screen Petstore")
 
-## **Customizing the look and feel of your Dev Portal**
+## Customizing the look and feel of your Dev Portal
 
 The Dev Portal default theme is shipped with two CSS file partials:
 
@@ -70,7 +70,7 @@ For this example, this is what we're going to do:
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-nav3.png "Navbar Edited")
 
-### **Structure**
+### Structure
 
 1. Find and open the `partials/header.hbs` file from the Example Dev Files archive you downloaded earlier.
 2. Change the content inside of the `.logo` element to `Dev Portal`
@@ -96,7 +96,7 @@ For this example, this is what we're going to do:
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-nav4.png "Navbar Edited")
 
-### **Style**
+### Style
 
 1. Find and open `partials/unauthenticated/custom-css.hbs` in the Example Dev Files directory.
 2. Let's start by changing the header background, and text colors by adding:

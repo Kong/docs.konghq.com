@@ -21,7 +21,7 @@ They are all **required**.
 
 ----
 
-### **proxy_port**
+### proxy_port
 
 Port which Kong proxies requests through, developers using your API will make requests against this port.
 
@@ -33,7 +33,7 @@ proxy_port: 8000
 
 ----
 
-### **proxy_ssl_port**
+### proxy_ssl_port
 
 Port which Kong proxies requests through under `https`, developers using your API will make requests against this port.
 
@@ -45,7 +45,7 @@ proxy_ssl_port: 8443
 
 ----
 
-### **admin_api_port**
+### admin_api_port
 
 Port which the [RESTful Admin API](/{{page.kong_version}}/admin-api/) is served through.
 
@@ -60,7 +60,7 @@ admin_api_port: 8001
 
 ----
 
-### **dnsmasq_port**
+### dnsmasq_port
 
 Port where [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) will listen to.
 
@@ -74,7 +74,7 @@ dnsmasq_port: 8053
 
 ----
 
-### **nginx_working_dir**
+### nginx_working_dir
 
 Similar to the NGINX `--prefix` option, it defines a directory that will contain server files, such as access and error logs, or the Kong pid file.
 
@@ -86,7 +86,7 @@ nginx_working_dir: /usr/local/kong/
 
 ----
 
-### **plugins_available**
+### plugins_available
 
 
 A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
@@ -109,7 +109,7 @@ plugins_available:
 
 ----
 
-### **send_anonymous_reports**
+### send_anonymous_reports
 
 If set to `true`, Kong will collect anonymous error reports which helps us maintain and improve Kong.
 
@@ -121,7 +121,7 @@ send_anonymous_reports: true
 
 ----
 
-### **databases_available**
+### databases_available
 
 A dictionary of databases Kong can connect to, and their respective properties.
 
@@ -243,7 +243,7 @@ keepalive: 60000
 
 ----
 
-### **database**
+### database
 
 The desired database to use for this Kong instance as a string, matching one of the databases defined under [`databases_available`](#databases_available).
 
@@ -255,7 +255,7 @@ database: cassandra
 
 ----
 
-### **database_cache_expiration**
+### database_cache_expiration
 
 A value specifying (in seconds) how long Kong will keep database entities in memory. Setting this to a high value will cause Kong to avoid making multiple queries to the database in order to retrieve an API's target URL. However, this also means you may be required to wait a while before the
 cached value is flushed and reflects any potential changes made during that time.
@@ -268,7 +268,7 @@ database_cache_expiration: 5 # in seconds
 
 ----
 
-### **ssl_cert_path**
+### ssl_cert_path
 
 The path to the SSL certificate that Kong will use when listening on the `https` port.
 
@@ -282,7 +282,7 @@ By default this property is commented out, which will force Kong to use an auto-
 
 ----
 
-### **ssl_key_path**
+### ssl_key_path
 
 The path to the SSL certificate key that Kong will use when listening on the `https` port.
 
@@ -296,7 +296,7 @@ By default this property is commented out, which will force Kong to use an auto-
 
 ----
 
-### **memory_cache_size**
+### memory_cache_size
 
 A value specifying (in MB) the size of the internal preallocated in-memory cache. Kong uses an in-memory cache to store database entities in order to optimize access to the underlying datastore. The cache size needs to be as big as the size of the entities being used by Kong at any given time. The default value is `128`, and the potential maximum value is the total size of the datastore.
 
@@ -308,7 +308,7 @@ memory_cache_size: 128 # in megabytes
 
 ----
 
-### **nginx**
+### nginx
 
 The NGINX configuration (or `nginx.conf`) that will be used for this instance.
 
