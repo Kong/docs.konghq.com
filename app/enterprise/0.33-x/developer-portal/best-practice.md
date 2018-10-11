@@ -6,7 +6,7 @@ chapter: 12
 
 # Kong Developer Portal Best Practices
 
-The Kong Developer Portal is a powerful tool. It's part static website and part interactive API. With a tool of this magnitude, there are countless ways to configure and host that will vary greatly depending on your needs. The following article is a group of recommendations we have found to lead which lead to  easy administrative and top performance. This list is not all inclusive, so if you have a trick you like to use and want to share it with others, please feel free to make a PR on the page, or send us an email at <support@konghq.com> and we can add it for you.
+The Kong Developer Portal is a powerful tool. It's part static website and part interactive API. With a tool of this magnitude, there are countless ways to configure and host that will vary greatly depending on your needs. The following article is a group of recommendations we have found which lead to  easy administrative and top performance. This list is not exhaustive, so if you have a trick you like to use and want to share it with others, please feel free to make a PR on the page, or send us an email at <support@konghq.com> and we can add it for you.
 
 ___
 
@@ -20,7 +20,7 @@ ___
 
 ## Basic System Requirements and Initial Configuration
 
-When deciding what type of system to host Kong on, you should take into consideration into the amount of traffic you expect the portal to see. If you are using your portal only for internal APIs shared between 2 teams, you'll need a much smaller instance than someone with a public facing, heavily trafficked API. By default, I suggest starting with a more powerful machine than you need and scaling back. if you have a bit more power than you need, none of your end users will notice a difference. However, if you start too small, it could potentially lead to a slower performance of the portal. This section is going to assume your portal gets about 1000 concurrent visitors on average.
+When deciding what type of system to host Kong on, you should take into consideration into the amount of traffic you expect the portal to see. If you are using your portal only for internal APIs shared between 2 teams, you'll need a much smaller instance than someone with a public facing, heavily trafficked API. By default, I suggest starting with a more powerful machine than you need and scaling back. If you have a bit more power than you need, none of your end users will notice a difference. However, if you start too small, it could potentially lead to a slower performance of the portal. This section is going to assume your portal gets about 1000 concurrent visitors on average.
 
 If you are using AWS for you hosting, a [t2.large](https://aws.amazon.com/ec2/instance-types/t2/) is a starting place. This is a solid base and should be able to handle expectations without any issue. If you use Google Cloud (GCE), try starting with a [n1-standard-2](https://cloud.google.com/compute/pricing#standard_machine_types) and if you are using the Azure cloud, start with a [Standard_D2_v3](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general#dv3-series-sup1sup).
 
@@ -65,7 +65,7 @@ Use this command to get the JSON object that represents the `custom-js` file
 curl http://localhost:8001/files/custom-js
 ```
 
-Once you have this, save the value of the `contents` field to a file. This is the file we will use to add custom javascript. Once the file has been edited it will need to be uploaded to the `custom-js` file. Use this command to upload your changes. This command assumes the name of the file is `custom-js`<br />
+Once you have this, save the value of the `contents` field to a file. This is the file we will use to add custom JavaScript. Once the file has been edited it will need to be uploaded to the `custom-js` file. Use this command to upload your changes. This command assumes the name of the file is `custom-js`<br />
 ```
 curl -X PATCH \
    -- url http://localhost:8001/files/custom-js \
