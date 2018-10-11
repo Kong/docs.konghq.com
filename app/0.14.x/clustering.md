@@ -260,7 +260,7 @@ Admin API `/cache` endpoint.
 
 <div class="endpoint get">/cache/{cache_key}</div>
 
-##### Response
+**Response**
 
 If a value with that key is cached:
 
@@ -290,7 +290,7 @@ this process easier.
 
 <div class="endpoint delete">/cache/{cache_key}</div>
 
-##### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -309,7 +309,7 @@ this process easier.
 
 <div class="endpoint delete">/cache</div>
 
-##### Response
+**Response**
 
 ```
 HTTP 204 No Content
