@@ -29,15 +29,18 @@ If you look at those recommendations, you'll see they all have similar starts:
   - Around 8 GiB System memory
 
 If possible, it's best practice to have this Kong instance be used to only serve the dev portal, and not do any Kong administrative work. To do this, in your kong.conf file, set the following values
+
 ```
 admin_listen=off
 portal=on
 ```
+
 We will also want to ensure all other instances of Kong have the portal boolean set to off. This ensures your portal is only being served by a single Kong instance.
 
 ## Customizing The Portal Design with CSS
 
 The Developer Portal has two files that contain CSS and are used to control the design. The main CSS file is `unauthenticated/theme-css` which contains the bulk of the CSS styles for the default layout. The second file is `unauthenticated/custom-css` where owners add and edit their own custom css. Both of these files can be accessed by non authenticated pages. You can access the custom-css file by using the Admin API
+
 ```
 curl http://localhost:8001/files/unauthenticated/custom-css
 ```
@@ -45,6 +48,7 @@ curl http://localhost:8001/files/unauthenticated/custom-css
 This will return a JSON object that represents the custom-css file. It contains metadata about the file, and the `contents` field contains the actual CSS data. You should save the `contents` to a file, and edit it to your liking. Edit the CSS to customize the look of your portal.
 
 When you have customized the CSS, you will then upload it to the Files API. This will make the Dev Portal use the CSS for when it serves content, and show your custom design.
+
 ```
 curl -X PATCH \
    -- url http://localhost:8001/files/unauthenticated/custom-css \
@@ -61,11 +65,13 @@ Including custom javascript is similar to customizing CSS.
 To use custom javascript we need to download the `custom-js` file, make our custom changes, and then upload those changes to the `custom-js` file.
 
 Use this command to get the JSON object that represents the `custom-js` file
+
 ```
 curl http://localhost:8001/files/custom-js
 ```
 
 Once you have this, save the value of the `contents` field to a file. This is the file we will use to add custom JavaScript. Once the file has been edited it will need to be uploaded to the `custom-js` file. Use this command to upload your changes. This command assumes the name of the file is `custom-js`<br />
+
 ```
 curl -X PATCH \
    -- url http://localhost:8001/files/custom-js \
@@ -80,6 +86,7 @@ Once uploaded your changes will be served on each page request.
 Kong gives you the ability to edit files directly in the Kong GUI. While this may be easy, it will not maintain a history of the changes you've made. Each file will only exist in it's most current form. We have found the best approach is to have a dedicated repo for your portal.
 
 In a new repository, recreate all of the files in your portal there. The general layout of files (pages, partials and specs). The default structure is:
+
 ```
 ├── assets
 │   ├── fonts
@@ -209,7 +216,6 @@ Partials in the portal allow you to create reusable elements of a page. A page w
 Partials allow you to control what is on every page. In order for your portal to load quickly, it is vital to keep these files as small as possible. The general rule is partials should be around 500 kB. They should never be larger than 1 MB.
 
 In order to achieve this, make sure to not do more than what is necessary for every partial. If something is not needed on every page, avoid placing it in a global file and instead, pull it into its own partial.
-
 
 ## Practices to Avoid
 
