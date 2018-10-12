@@ -118,8 +118,11 @@ id: documentation
           </div>
           {% endif %}
 
-          <h2 id="table-of-contents">Table of Contents</h2>
-          {% include toc.html html=content %}
+          {% assign filename = page.path | split: '/' | last %}
+          {% unless filename == "index.md" or page.toc == false %}
+            <h2 id="table-of-contents">Table of Contents</h2>
+            {% include toc.html html=content %}
+          {% endunless %}
 
           {{ content }}
 

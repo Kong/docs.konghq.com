@@ -306,9 +306,11 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
     <aside class="page-navigation">
 
-      <nav>
-        {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
-      </nav>
+      {% unless page.toc == false %}
+        <nav>
+          {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
+        </nav>
+      {% endunless %}
 
       <table id="about-extn">
         <tr>
