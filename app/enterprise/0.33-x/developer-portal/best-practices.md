@@ -16,7 +16,7 @@ ___
 - [Using Source Control with Git](#using-source-control-with-git)
 - [Effective Partial Usage](#effective-partial-usage)
 - [Practices to Avoid](#practices-to-avoid)
-___
+
 
 ## Basic System Requirements and Initial Configuration
 
