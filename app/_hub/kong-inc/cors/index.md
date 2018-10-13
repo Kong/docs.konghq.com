@@ -2,13 +2,6 @@
 name: CORS
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Known Issues
-    items:
-      - label: CORS Limitations
-
 desc: Allow developers to make requests from the browser
 description: |
   Easily add __Cross-origin resource sharing *(CORS)*__ to a Service, a Route (or the deprecated API entity) by enabling

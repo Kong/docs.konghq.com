@@ -2,13 +2,6 @@
 name: Bot Detection
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Default rules
-
 desc: Detect and block bots or custom clients
 description: |
   Protects a Service or a Route (or the deprecated API entity) from most common bots and has the capability of whitelisting and blacklisting custom clients.

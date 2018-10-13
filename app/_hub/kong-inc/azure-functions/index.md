@@ -3,13 +3,6 @@ name: Azure Functions
 publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-azure-functions
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Demonstration
-      - label: Limitations
 
 desc: Invoke and manage Azure functions from Kong
 description: |

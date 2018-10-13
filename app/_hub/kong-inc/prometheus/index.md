@@ -2,15 +2,6 @@
 name: Prometheus
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Grafana dashboard
-      - label: Available metrics
-      - label: Accessing the metrics
-
 desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
 description: |
     Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scrapped by a Prometheus Server.

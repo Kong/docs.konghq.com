@@ -2,14 +2,6 @@
 name: Loggly
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Log Format
-      - label: Kong Process Errors
-
 desc: Send request and response logs to Loggly
 description: |
   Log request and response data over UDP to [Loggly](https://www.loggly.com).

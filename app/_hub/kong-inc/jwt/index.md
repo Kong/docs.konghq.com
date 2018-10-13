@@ -2,30 +2,6 @@
 name: JWT
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Getting Started
-    items:
-      - label: Terminology
-      - label: Configuration
-  - label: Documentation
-    items:
-      - label: Create a Consumer
-      - label: Create a JWT credential
-      - label: Delete a JWT credential
-      - label: List JWT credentials
-      - label: Craft a JWT with a secret (HS256)
-      - label: Send a request with the JWT
-      - label: (Optional) Verified claims
-      - label: (Optional) Base64 encoded secret
-      - label: Craft a JWT with public/private keys (RS256)
-      - label: Generate public/private keys
-      - label: Using the JWT plugin with Auth0
-      - label: Upstream Headers
-      - label: Paginate through the JWTs
-      - label: Retrieve the Consumer associated with a JWT
-
 desc: Verify and authenticate JSON Web Tokens
 description: |
   Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519](https://tools.ietf.org/html/rfc7519)). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through:

@@ -2,14 +2,6 @@
 name: Response Transformer
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Documentation
-    items:
-      - label: Order of execution
-      - label: Examples
-
 desc: Modify the upstream response before returning it to the client
 description: |
   Transform the response sent by the upstream server on the fly on Kong, before returning the response to the client.

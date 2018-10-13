@@ -3,14 +3,6 @@ name: Zipkin
 publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: How it Works
-    items:
-      - label: Extractor and Injector
-      - label: Reporter
-  - label: FAQ
 
 desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
@@ -19,7 +11,7 @@ description: |
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
     with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
-    differs from what is documented herein. Refer to the 
+    differs from what is documented herein. Refer to the
     <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>

@@ -2,14 +2,6 @@
 name: AWS Lambda
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Sending parameters
-      - label: Known Issues
-
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
   Invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from Kong. It
@@ -20,7 +12,7 @@ description: |
     <strong>Note:</strong> The functionality of this plugin as bundled
     with versions of Kong prior to 0.14.0 and Kong Enterprise prior to 0.34
     differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a> 
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>
 
@@ -169,13 +161,13 @@ from being executed. We are planning to remove this limitation in the future.
 ---
 ### Step By Step Guide
 
-## The Steps
+#### The Steps
 1. Access to AWS Console as user allowed to operate with lambda functions and create user and roles.
 2. Create an Execution role in AWS
 3. Create an user which will be invoke the function via Kong, test it.
 4. Create an API in Kong, add the aws-lambda plugin linked to our aws function and execute it.
 
-## Configure:
+#### Configure
 
 1. First, let's create an execution role called `LambdaExecutor` for our lambda function.
 

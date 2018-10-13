@@ -2,15 +2,6 @@
 name: Correlation ID
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Documentation
-    items:
-      - label: How it works
-      - label: Generators
-      - label: FAQ
-
 desc: Correlate requests and responses using a unique ID
 description: |
   Correlate requests and responses using a unique ID transmitted over an HTTP header.

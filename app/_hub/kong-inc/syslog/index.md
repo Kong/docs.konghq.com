@@ -2,15 +2,6 @@
 name: Syslog
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Log Format
-      - label: Notes
-      - label: Kong Process Errors
-
 desc: Send request and response logs to Syslog
 description: |
   Log request and response data to Syslog.
