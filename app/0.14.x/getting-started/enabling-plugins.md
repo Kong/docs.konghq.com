@@ -26,9 +26,10 @@ other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
 
-1. ### Configure the key-auth plugin for the Service you <a href="/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>.
+## 1. Configure the key-auth plugin
 
-    Issue the following cURL request:
+To configure the key-auth plugin for the Service you <a href="/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>,
+issue the following cURL request:
 
     ```bash
     $ curl -i -X POST \
@@ -40,7 +41,7 @@ from unauthorized use.
     defaults to `['apikey']`. It is a list of headers and parameters names (both
     are supported) that are supposed to contain the apikey during a request.
 
-2. ### Verify that the plugin is properly configured
+## 2. Verify that the plugin is properly configured
 
     Issue the following cURL request to verify that the [key-auth][key-auth]
     plugin was properly configured on the Service:
@@ -63,7 +64,7 @@ from unauthorized use.
     }
     ```
 
-### Next Steps
+## Next Steps
 
 Now that you've configured the **key-auth** plugin lets learn how to add
 consumers to your Service so we can continue proxying requests through Kong.

@@ -29,7 +29,7 @@ After configuring the Service and the Route, you'll be able to make requests thr
 Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and
 Routes, is made via requests on that API.
 
-1. ### Add your Service using the Admin API
+## 1. Add your Service using the Admin API
 
     Issue the following cURL request to add your first Service (pointing to the [Mockbin API][mockbin])
     to Kong:
@@ -65,7 +65,7 @@ Routes, is made via requests on that API.
     ```
 
 
-2. ### Add a Route for the Service
+## 2. Add a Route for the Service
 
     ```bash
     $ curl -i -X POST \
@@ -104,7 +104,7 @@ Routes, is made via requests on that API.
 
     Kong is now aware of your Service and ready to proxy requests.
 
-3. ### Forward your requests through Kong
+## 3. Forward your requests through Kong
 
     Issue the following cURL request to verify that Kong is properly forwarding
     requests to your Service. Note that [by default][proxy-port] Kong handles proxy
