@@ -24,7 +24,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Commit message format](#commit-message-format)
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
-  - [Table of Contents Generator](#table-of-contents-generator)
+  - [Table of Contents generator](#table-of-contents-generator)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 ## Where to seek help?
@@ -345,7 +345,7 @@ Instead, please:
 
 [Back to TOC](#table-of-contents)
 
-### Table of Contents Generator
+### Table of Contents generator
 
 Almost all pages have an automatic Table of Contents (ToC) added to the top of
 the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
