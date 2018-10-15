@@ -1,6 +1,6 @@
 ---
 title: CentOS
-class: page-install-method
+toc: false
 ---
 
 # Installing Kong Enterprise on CentOS

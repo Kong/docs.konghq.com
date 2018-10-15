@@ -6,22 +6,6 @@ chapter: 4
 
 # Authenticating the Kong Developer Portal
 
-- [Enable Authentication](#enable-authentication)
-- [Developer Registration](#developer-registration)
-  - [Login as Your New Developer](#login-as-your-new-developer)
-- [Example configurations](#example-configurations)
-  - [Basic Authentication](#basic-authentication)
-  - [Key Authentication](#key-authentication)
-  - [OpenID Connect](#open-id-connect-plugin)
-- [Logging In](#logging-in)
-  - [Customize Your Login Form](#customize-your-login-form)
-- [Logging Out](#logging-out)
-- [Files](#files)
-- [Understanding Dev Portal Routing & Authentication](#understanding-dev-portal-routing-authentication)
-- [JavaScript hooks](#javascript-hooks)
-- [How Authentication is Stored in Local Storage](#how-authentication-is-stored-in-local-storage)
-
-
 > Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/#getting-started-with-the-kong-developer-portal)
 
 ## Enable Authentication
@@ -32,7 +16,7 @@ First, we will configure the portal using [Basic Authentication](https://getkong
 portal_auth = basic-auth
 ```
 
-The Dev Portal templates are now aware that the Dev Portal is authenticated. Browse to the Dev Portal and you should see [Login](#developer-login) and [Sign Up](#developer-registration) links in the top right navigation. 
+The Dev Portal templates are now aware that the Dev Portal is authenticated. Browse to the Dev Portal and you should see [Login](#developer-login) and [Sign Up](#developer-registration) links in the top right navigation.
 
 > Note: Once Kong starts, you will notice that your [Admin API configuration](https://127.0.0.1:8001/) now shows `cors` and `basic-auth` plugins are enabled. This is because Kong sets up an internal proxy to the Portal API (e.g. `:8004` -> `:8000/_kong/portal`) and configures a Basic Authentication plugin applied only to the `/files` route. These routes &amp; services will be tracked by Kong Vitals and appear in your proxy traffic, but the internal plugins will not be applied to any other routes or services or be configurable in your Kong instance.
 
@@ -49,14 +33,14 @@ Browse to [http://127.0.0.1:8003/register](http://127.0.0.1:8003/register) and f
 
 Required Registration fields by Authentication plugin:
 
-  - Basic Authentication: 
+  - Basic Authentication:
 
       ```html
       <input type="text" name="email" required />
       <input type="password" name="password" required />
       ```
 
-  - Key Authentication: 
+  - Key Authentication:
 
       ```html
       <input type="text" name="email" required />
@@ -72,9 +56,9 @@ Required Registration fields by Authentication plugin:
 
 ### Collecting More Data on Registration
 
-Additional information can be stored for the Developer inside the `meta` data attribute. This field is stored in the Kong datastore on the Developer entity and will be visible to you, a Kong Admin. 
+Additional information can be stored for the Developer inside the `meta` data attribute. This field is stored in the Kong datastore on the Developer entity and will be visible to you, a Kong Admin.
 
-The default Dev Portal theme demonstrates this through the "full_name" input: 
+The default Dev Portal theme demonstrates this through the "full_name" input:
 
 ```html
 <input type="text" name="full_name" required />
@@ -87,7 +71,7 @@ This is helpful if you want to get more information (e.g. "referral source", "ph
 After you have [approved](/enterprise/{{page.kong_version}}/developer-portal/managing-developers#approving-developers) a Developer that has [requested access](#developer-registration):
 
 1. browse to [http://127.0.0.1:8003] (i.e. `portal_gui_url`)
-1. click the Login button. 
+1. click the Login button.
 1. Enter the username and password of your newly registered Developer.
 1. click the Login button
 
@@ -117,7 +101,7 @@ Browse to the Dev Portal and you should now see [Login](#developer-login) and [S
 
 ### Open-ID Connect Plugin
 
-The [OpenID Connect Plugin](/plugins/ee-openid-connect/) allows you to hook into existing authentication setups using third-party *Identity Providers* (**IdP**) such as Google, Yahoo, Microsoft Azure AD, etc. 
+The [OpenID Connect Plugin](/plugins/ee-openid-connect/) allows you to hook into existing authentication setups using third-party *Identity Providers* (**IdP**) such as Google, Yahoo, Microsoft Azure AD, etc.
 
 [OIDC](/plugins/ee-openid-connect/) must be used with the `session` method, utilizing cookies for Dev Portal File API requests.
 
@@ -166,7 +150,7 @@ Browse to the login page (see section [Logging In](#logging-in)). Click "Sign in
 
 ## Logging In
 
-Ensure you are logged out (see section [Logging Out](#logging-out)). Visit an authenticated page on the Dev Portal. You should see a login form, which is rendered from the `unauthenticated/login` partial. 
+Ensure you are logged out (see section [Logging Out](#logging-out)). Visit an authenticated page on the Dev Portal. You should see a login form, which is rendered from the `unauthenticated/login` partial.
 
 When a Developer submits an HTML form with an attribute `id="login"` the Dev Portal will make a request against the Dev Portal File API using the specified `portal_auth` with the data in the form. For instance, if you have `basic-auth` enabled, then the form will submit with the Authorization header e.g. `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. If the Login returns a response with a status code that is not `200`, then it runs `onLoginError`.
 
@@ -190,18 +174,18 @@ Any element with `id="logout"` on click will clear the Local Storage authenticat
 ### Unauthenticated Pages
 
 When authentication is enabled, these pages are served to developers who are not authenticated.
-  
+
 **pages/user.hbs**
 
   - Page which displays current users data such as their picture, name, and email.
 
 **pages/unauthenticated/404.hbs**
-  
+
   - The page visitors get when they navigate to a non-existent URL and are not logged in.
 
 **pages/unauthenticated/index.hbs**
-  
-  - The page that is served when visitors access the root URL of your Dev Portal and are not logged in. 
+
+  - The page that is served when visitors access the root URL of your Dev Portal and are not logged in.
 
 **pages/unauthenticated/login.hbs**
 
@@ -215,12 +199,12 @@ When authentication is enabled, these pages are served to developers who are not
   - See **Customizing the Kong Dev Portal** section for more details.
 
 **partials/unauthenticated/custom-css.hbs**
-  
-  - This partial defines override styling for the Dev Portal.  Use this to modify the underlying theme without compromising its content, or feel free to remove if not needed. 
+
+  - This partial defines override styling for the Dev Portal.  Use this to modify the underlying theme without compromising its content, or feel free to remove if not needed.
   - See **Customizing the Kong Dev Portal** section for more details.
 
 **partials/unauthenticated/layout.hbs**
-  
+
   - Base layout template for the Developer Portal which contains references to the `header`, `footer`, `theme-css`, `custom-css`, and `title` partials. The base layout can be extended using inline partial references inside of **Pages**. An example is the `unauthenticated/login.hbs` page.
 
 **partials/unauthenticated/login-actions.hbs**
@@ -228,7 +212,7 @@ When authentication is enabled, these pages are served to developers who are not
   - Partial that displays login/logout functionality based off of authentication status, as well as a user avatar if the `openid-connect` plugin is being used.
 
 **partials/unauthenticated/footer.hbs**
-  
+
   - The default Dev Portal footer partial for both unauthenticated & authenticated users.
 
 **partials/unauthenticated/header.hbs**
@@ -265,7 +249,7 @@ Lets first create two test pages that will simply illustrate whether we are view
         ```
 
     3. Upload `pages/test.hbs` to the Dev Portal File API with the following command:
-       
+
         ```bash
         curl -X POST http://127.0.0.1:8001/files \
              -F "name=test" \
@@ -275,7 +259,7 @@ Lets first create two test pages that will simply illustrate whether we are view
         ```
 
     4. Navigate to [`:8003/test`](http://127.0.0.1:8003/test) and ensure that the browser looks like this:
-    
+
     ![alt text](https://konghq.com/wp-content/uploads/2018/05/unauthed-message.png "Authenticated Page")
 
 2. `pages/unauthenticated/test.hbs`
@@ -285,7 +269,7 @@ Lets first create two test pages that will simply illustrate whether we are view
    <h1>This is an unauthenticated test page</h1>
    ```
    3. Upload `pages/unauthenticated/test.hbs` to the Dev Portal File API with the following command:
-      
+
         ```bash
         curl -X POST http://127.0.0.1:8001/files \
               -F "name=unauthenticated/test" \
@@ -295,7 +279,7 @@ Lets first create two test pages that will simply illustrate whether we are view
         ```
 
     4. Navigate to [`:8003/unauthenticated`](http://127.0.0.1:8003/unauthenticated/test) test and ensure that the browser looks like this:
-    
+
      ![alt text](https://konghq.com/wp-content/uploads/2018/05/unauthed-message2.png "Unauthenticated Page")
 
 Now that we have created our two test pages, let's take a look at how the Dev Portal deals with authenticated/unauthenticated routes.
@@ -362,17 +346,17 @@ function onLoginError(error) {
       message: "This account has been revoked."
     }
   }
-  
+
   /**
    *  Parse error response and utilize Kong function getMessageFromError helper
    */
-  var errorMessage = errorMessages[resp.data.status] 
-                       && errorMessages[resp.data.status].message 
+  var errorMessage = errorMessages[resp.data.status]
+                       && errorMessages[resp.data.status].message
                        || window.getMessageFromError(error)
   alert('Login failed. ' + errorMessage)
 }
 
-/* 
+/*
  * When a user attempts to register, but registration fails.
  */
 function onRegistrationError(error) {
@@ -392,7 +376,7 @@ function onRegistrationSuccess() {
 
 ## How Authentication is Stored in Local Storage
 
-The Dev Portal uses the [Local Storage API](https://developer.mozilla.org/en-US/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Dev Portal File API request based the `auth-store-types` value, until you [logout](#logging-out). 
+The Dev Portal uses the [Local Storage API](https://developer.mozilla.org/en-US/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Dev Portal File API request based the `auth-store-types` value, until you [logout](#logging-out).
 
 > **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Any javascript executed on the same domain as your Dev Portal can access these values so it advised that you always used SSL/TLS and either use openid-connect to secure your developer portal (as it uses javascript inaccessible HTTP-only encrypted cookies), or limit the amount of third-party javascript injected on your Developer Portal to prevent [XSS vulnerabilities](https://developer.mozilla.org/en-US/Glossary/Cross-site_scripting).
 

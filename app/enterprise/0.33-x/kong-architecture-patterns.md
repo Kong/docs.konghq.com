@@ -7,7 +7,7 @@ An important part of setting up a new Kong cluster is choosing the right archite
 
 ## Kong between client and upstream
 
-The classic architectural pattern we see customers setting up is adding Kong in between some, or all, of their API traffic. Kong is installed in your prefered hosting provider, and configured to proxy traffic to the existing APIs. Note that in this pattern the APIs are still accessible directly, that is both through the proxy and also without being routed through the API Gateway. We see this during initial testing, and migration phases, before customers eventually route all traffic through Kong. 
+The classic architectural pattern we see customers setting up is adding Kong in between some, or all, of their API traffic. Kong is installed in your prefered hosting provider, and configured to proxy traffic to the existing APIs. Note that in this pattern the APIs are still accessible directly, that is both through the proxy and also without being routed through the API Gateway. We see this during initial testing, and migration phases, before customers eventually route all traffic through Kong.
 
 ![Basic Kong pattern](https://konghq.com/wp-content/uploads/2018/06/comp-1-basic-kong.png "Basic Kong pattern")
 
@@ -21,7 +21,7 @@ Often we see this initial Kong configuration morph into one where the APIs are w
 
 The next pattern we see, and the next step for security, is to setup [API servers behind a firewall](https://docs.konghq.com/latest/network/) and only allow the Kong API Gateway be accessible to the public.
 
-This is a popular architecture pattern that we see with customers who have publicly available APIs. Either they are migrating from the initial pattern, improving security by cordoning off direct access to the APIs, or choosing it for their general use. 
+This is a popular architecture pattern that we see with customers who have publicly available APIs. Either they are migrating from the initial pattern, improving security by cordoning off direct access to the APIs, or choosing it for their general use.
 
 This architecture pattern is the one we recommend for most customers. It is straightforward to setup, and offers security and control over API access.
 
@@ -40,19 +40,18 @@ Application availability is important, and high availability can be achieved by 
 
 The minimum number of Kong nodes per data center needed for high availability is three. This will ensure that in the unlikely event of a node failure there will still be a node and a backup. Cassandra would be configured in an optimal way; you can use the [Cassandra Calculator](https://www.ecyrd.com/cassandracalculator/) to determine how many Cassandra nodes are needed per data center to ensure high availability, and  performance for your specific needs.
 
-Logically Kong will act as a single cluster, and in a multi-datacenter strategy, can be configured similar to the previous architecture patterns. We recommending having the upstream services behind a firewall (or in a VPC in AWS) and only allow Kong nodes direct access to the APIs. 
+Logically Kong will act as a single cluster, and in a multi-datacenter strategy, can be configured similar to the previous architecture patterns. We recommending having the upstream services behind a firewall (or in a VPC in AWS) and only allow Kong nodes direct access to the APIs.
 
 ![Cassandra Kong pattern](https://konghq.com/wp-content/uploads/2018/06/comp-3-multi-data-center-w-cassandra.png "Cassandra Kong pattern")
 
 ## Separate Kong Admin node
 
-For security conscious customers we recommend a pattern of having a single node in a Kong cluster allow access to the Admin API. 
+For security conscious customers we recommend a pattern of having a single node in a Kong cluster allow access to the Admin API.
 
 Each node in Kong cluster can be configured using its kong.conf file. Two separate configurations can be created, one for a proxy only node, and the other for an admin only node. The proxy only nodes would be accessible from the outside world. They would connect to the database and the upstream APIs that are behind the firewall. The admin only node would be inside the firewall, or a separate firewall (or VPC on AWS), and it would connect to the database that the proxy nodes connects to.
 
 So long as the proxy nodes and admin nodes use the same database they will be part of the same cluster. The admin node itself can be located anywhere. There are a few different ways to achieve this. Read [securing the Kong Admin API](https://docs.konghq.com/latest/secure-admin-api/) for details.
 
-### Unlimited options
+## Unlimited options
 
 Kong as a tool is flexible, and offers many possibilities for incorporating it into your existing infrastructure. These patterns we touch upon are the ones we commonly see and recommend. Every situation is unique, and we are happy to assist you with your specific needs.
-

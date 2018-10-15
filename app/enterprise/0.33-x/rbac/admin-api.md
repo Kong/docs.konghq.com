@@ -26,7 +26,7 @@ There are 4 basic entities involving RBAC.
   `entity`. Example: Role `developer` has 1 role_entity: `read & write
   & delete` to entity `283fccff-2d4f-49a9-8730-dc8b71ec2245`.
 
-### Add a User
+## Add a User
  **Endpoint**
 
 <div class="endpoint post">/rbac/users</div>
@@ -56,7 +56,7 @@ HTTP 201 Created
 ```
 ___
 
-### Retrieve a User
+## Retrieve a User
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}</div>
@@ -81,7 +81,7 @@ HTTP 200 OK
 ```
 ___
 
-### List Users
+## List Users
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/</div>
@@ -107,7 +107,7 @@ HTTP 200 OK
 ```
 ___
 
-### Update or Create a User
+## Update or Create a User
 **Endpoint**
 <div class="endpoint put">/rbac/users</div>
 **Request Body**
@@ -132,7 +132,7 @@ NOT FOUND` will be returned.
 HTTP 201 Created or HTTP 200 OK
 ```
 
-### Update a User
+## Update a User
 **Endpoint**
 
 <div class="endpoint patch">/rbac/users/{name_or_id}</div>
@@ -164,7 +164,7 @@ HTTP 200 OK
 ```
 ___
 
-### Delete a User
+## Delete a User
 **Endpoint**
 
 <div class="endpoint delete">/rbac/users/{name_or_id}</div>
@@ -179,7 +179,7 @@ HTTP 204 No Content
 ```
 ___
 
-### Add a Role
+## Add a Role
 **Endpoint**
 
 <div class="endpoint post">/rbac/roles</div>
@@ -203,7 +203,7 @@ HTTP 201 Created
 ```
 ___
 
-### Retrieve a Role
+## Retrieve a Role
 Endpoint
 
 <div class="endpoint get">/rbac/roles/{name_or_id}</div>
@@ -226,7 +226,7 @@ HTTP 200 OK
 ```
 ___
 
-### List Roles
+## List Roles
 **Endpoint**
 
 <div class="endpoint get">/rbac/roles</div>
@@ -250,7 +250,7 @@ HTTP 200 OK
 ```
 ___
 
-### Update or Create a Role
+## Update or Create a Role
 **Endpoint**
 
 <div class="endpoint put">/rbac/roles</div>
@@ -276,7 +276,7 @@ HTTP 201 Created or HTTP 200 OK
 ```
 
 
-### Update a Role
+## Update a Role
 **Endpoint**
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}</div>
@@ -305,7 +305,7 @@ HTTP 200 OK
 ```
 ___
 
-### Delete a Role
+## Delete a Role
 **Endpoint**
 
 <div class="endpoint delete">/rbac/role/{name_or_id}</div>
@@ -320,7 +320,7 @@ HTTP 204 No Content
 ```
 ___
 
-### Add a Role Endpoint Permission
+## Add a Role Endpoint Permission
 **Endpoint**
 
 <div class="endpoint post">/rbac/roles/{name_or_id}/endpoints</div>
@@ -379,7 +379,7 @@ HTTP 201 Created
 
 ---
 
-### Retrieve a Role Endpoint Permission
+## Retrieve a Role Endpoint Permission
 **Endpoint**
 
 <div class="endpoint get">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
@@ -414,7 +414,7 @@ HTTP 200 OK
 
 
 
-### List Role Endpoints Permissions
+## List Role Endpoints Permissions
 **Endpoint**
 
 <div class="endpoint get">/rbac/roles/{role_name_or_id}/endpoints</div>
@@ -459,7 +459,7 @@ HTTP 200 OK
 
 ---
 
-### Update a Role Endpoint Permission
+## Update a Role Endpoint Permission
 **Endpoint**
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
@@ -500,7 +500,7 @@ HTTP 200 OK
 
 
 
-### Delete a Role Endpoint Permission
+## Delete a Role Endpoint Permission
 **Endpoint**
 
 <div class="endpoint delete">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
@@ -535,7 +535,7 @@ HTTP 200 OK
 
 
 
-### Add a Role Entity Permisson
+## Add a Role Entity Permisson
 **Endpoint**
 <div class="endpoint post">/rbac/roles/{name_or_id}/entities</div>
 | Attribute    | Description                 |
@@ -581,7 +581,7 @@ HTTP 201 Created
 
 ---
 
-### Retrieve a Role Entity Permisson
+## Retrieve a Role Entity Permisson
 **Endpoint**
 <div class="endpoint get">/rbac/roles/{name_or_id}/entities/{entity_id}</div>
 
@@ -614,7 +614,7 @@ HTTP 200 Ok
 
 ---
 
-### List Entity Permissons
+## List Entity Permissons
 **Endpoint**
 <div class="endpoint get">/rbac/roles/{name_or_id}/entities</div>
 
@@ -649,7 +649,7 @@ HTTP 200 Ok
 ```
 
 ---
-### Update an Entity Permission
+## Update an Entity Permission
 **Endpoint**
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}/entities/{entity_id}</div>
@@ -686,7 +686,7 @@ HTTP 200 OK
 
 ---
 
-### Delete an Entity Permission
+## Delete an Entity Permission
 **Endpoint**
 
 <div class="endpoint delete">/rbac/roles/{name_or_id}/entities/{entity_id}</div>
@@ -703,7 +703,7 @@ HTTP 204 No Content
 
 ---
 
-### List Role Permissions
+## List Role Permissions
 **Endpoint**
 <div class="endpoint get">/rbac/roles/{name_or_id}/permissions/</div>
 
@@ -735,7 +735,8 @@ HTTP 200 OK
   }
 }
 ```
-### Add a User to a Role
+
+## Add a User to a Role
 **Endpoint**
 
 <div class="endpoint post">/rbac/users/{name_or_id}/roles</div>
@@ -774,7 +775,7 @@ HTTP 201 Created
 ```
 
 ---
-### List a User's Roles
+## List a User's Roles
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}/roles</div>
@@ -808,7 +809,7 @@ HTTP 200 OK
 ```
 
 ---
-### Delete a Role from a User
+## Delete a Role from a User
 **Endpoint**
 
 <div class="endpoint delete">/rbac/users/{name_or_id}/roles</div>

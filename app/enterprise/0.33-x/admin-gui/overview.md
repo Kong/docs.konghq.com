@@ -2,6 +2,7 @@
 title: Welcome to the Kong Admin GUI
 book: admin_gui
 chapter: 1
+toc: false
 ---
 
 # {{page.title}}

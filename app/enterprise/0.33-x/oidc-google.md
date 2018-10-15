@@ -1,6 +1,5 @@
 ---
 title: OpenID Connect with Google
-class: page-install-method
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using Google's identity provider.

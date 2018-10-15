@@ -2,6 +2,7 @@
 title: Overview
 book: workspaces
 chapter: 1
+toc: false
 ---
 
 # {{page.title}}
