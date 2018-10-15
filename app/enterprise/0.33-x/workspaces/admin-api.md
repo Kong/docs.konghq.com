@@ -27,7 +27,7 @@ and a name.
 
 ### Add Workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/workspaces/</div>
 
@@ -35,7 +35,7 @@ and a name.
 
 {{ page.workspace_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -51,11 +51,11 @@ HTTP 201 Created
 
 ### List Workspaces
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/workspaces/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -76,7 +76,7 @@ HTTP 200 OK
 
 ### Update or Create a Workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/workspaces/</div>
 
@@ -91,7 +91,7 @@ entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -99,7 +99,7 @@ HTTP 201 Created or HTTP 200 OK
 
 ### Retrieve a Workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/workspaces/{name or id}</div>
 
@@ -107,7 +107,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Workspace to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -123,7 +123,7 @@ HTTP 200 OK
 
 ### Delete a Workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/workspaces/{name or id}</div>
 
@@ -131,7 +131,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Workspace to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -139,7 +139,7 @@ HTTP 204 No Content
 
 ### Update a Workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/workspaces/{name or id}</div>
 
@@ -151,7 +151,7 @@ Attributes | Description
 
 {{ page.workspace_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -170,7 +170,7 @@ HTTP 200 OK
 Workspaces are groups of entities - including workspaces. This endpoint allows
 one to add an entity, identified by its unique identifier, to a workspace.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/workspaces/{name or id}/entities</div>
 
@@ -178,7 +178,7 @@ one to add an entity, identified by its unique identifier, to a workspace.
 
 {{ page.workspace_entities_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 No Content
@@ -206,11 +206,11 @@ workspace - in this case, a Service.
 
 ### List entities that are part of a Workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/workspaces/{name or id}/entities</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -239,7 +239,7 @@ In this case, the workspace references two entities: a Service and a Workspace
 
 ### Delete entities from a Workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/workspaces/{name or id}/entities</div>
 
@@ -247,7 +247,7 @@ In this case, the workspace references two entities: a Service and a Workspace
 
 {{ page.workspace_entities_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -258,11 +258,11 @@ HTTP 204 No Content
 This endpoint allows one to retrieve an entity from a workspace - useful, say,
 for checking if a given entity is part of a given workspace.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/workspaces/{name or id}/entities/{name or id}</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -278,11 +278,11 @@ HTTP 200 OK
 
 ### Delete a particular entity from a workspace
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/workspaces/{name or id}/entities/{name or id}</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Response

@@ -123,7 +123,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 | -------------- | -------
 |`cache_id` | The cache entity key as reported by the X-Cache-Key response header
 
-#### Response
+**Response**
 
 If the cache entity exists
 
@@ -158,7 +158,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 | -------------- | -------
 |`cache_id` | he cache entity key as reported by the `X-Cache-Key` response header
 
-#### Response
+**Response**
 
 If the cache entity exists
 
@@ -177,7 +177,7 @@ HTTP 400 Not Found
 
 <div class="endpoint delete">/proxy-cache/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content

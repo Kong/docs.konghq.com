@@ -28,7 +28,7 @@ with the URL you received in your welcome email:
 
     ```
     curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
-    docker load -i /tmp/kong-docker-ee.tar
+    docker load -i /tmp/kong-docker-ee.tar.gz
     ```
 
 You should now have your Kong Enterprise Free Trial image locally. Run

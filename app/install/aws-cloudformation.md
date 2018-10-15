@@ -116,7 +116,7 @@ on AWS RDS for you.
 
 5. **Template Documentation**
 
-    For more details on parameters and futher configuration options, please consult the [templates documentation on Github]({{ site.repos.cloudformation }})
+    For more details on parameters and further configuration options, please consult the [templates documentation on Github]({{ site.repos.cloudformation }})
 
 6. **Grab a Coffee!**
 

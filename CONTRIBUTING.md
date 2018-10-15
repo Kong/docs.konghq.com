@@ -24,7 +24,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Commit message format](#commit-message-format)
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
-
+  - [Contributor T-shirt](#contributor-t-shirt)
 
 ## Where to seek help?
 
@@ -324,18 +324,38 @@ can run the linter like so:
 $ npm run test
 ```
 
+[Back to TOC](#table-of-contents)
+
+
 ### Contributing images, videos, etc
 
-Binary files like images and videos should not be included in your pull request,
-with the exception of custom icons for the Kong Hub -
-any request including them will be rejected.
+Binary files like images and videos should not be included in your pull
+request, with the exception of custom icons for the Kong Hub - any request
+including them will be rejected.
 
 Instead, please:
 
 1. Include the HTML necessary to display your binary file in your code
 1. In place of the link to the binary file, use `FIXME`
-1. Email your binary files to support@konghq.com, and include a link to your pull request
-1. Kong staff will host your binary files on our CDN, and will replace the `FIXME`s in your code
-with URLs of the binaries
+1. Email your binary files to support@konghq.com, and include a link to your
+   pull request
+1. Kong staff will host your binary files on our CDN, and will replace the
+   `FIXME`s in your code with URLs of the binaries
+
+[Back to TOC](#table-of-contents)
+
+
+### Contributor T-shirt
+
+If your Pull Request to
+[Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com) was accepted,
+congratulations, you are eligible to receive the very special Contributor
+T-shirt! Go ahead and fill-out the [Contributors Submissions
+form](https://goo.gl/forms/5w6mxLaE4tz2YM0L2).
+
+Proudly wear your T-shirt and show it to us by tagging
+[@thekonginc](https://twitter.com/thekonginc) on Twitter!
+
+![Kong Contributor T-shirt](https://konghq.com/wp-content/uploads/2018/04/100-contributor-t-shirt-1024x768.jpg)
 
 [Back to TOC](#table-of-contents)

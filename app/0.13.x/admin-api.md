@@ -185,7 +185,7 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 Retrieve generic details about a node.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/</div>
 
@@ -229,7 +229,7 @@ Retrieve usage information about a node, with some basic information about the c
 
 If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/status</div>
 
@@ -293,7 +293,7 @@ of how Kong proxies traffic.
 
 ### Add Service
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/services/</div>
 
@@ -315,7 +315,7 @@ HTTP 201 Created
 
 ### Retrieve Service
 
-#### Endpoints
+**Endpoints**
 
 <div class="endpoint get">/services/{name or id}</div>
 
@@ -342,7 +342,7 @@ HTTP 200 OK
 
 ### List Services
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/services/</div>
 
@@ -396,7 +396,7 @@ HTTP 200 OK
 
 ### Update Service
 
-#### Endpoints
+**Endpoints**
 
 <div class="endpoint patch">/services/{name or id}</div>
 
@@ -428,7 +428,7 @@ HTTP 200 OK
 
 ### Delete Service
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/services/{name or id}</div>
 
@@ -464,7 +464,7 @@ your infrastructure.
 
 ### Add Route
 
-#### Endpoints
+**Endpoints**
 
 <div class="endpoint post">/routes/</div>
 
@@ -484,7 +484,7 @@ HTTP 201 Created
 
 ### Retrieve Route
 
-#### Endpoints
+**Endpoints**
 
 <div class="endpoint get">/routes/{id}</div>
 
@@ -506,7 +506,7 @@ HTTP 200 OK
 
 ### List Routes
 
-#### Endpoints
+**Endpoints**
 
 <div class="endpoint get">/routes</div>
 
@@ -562,7 +562,7 @@ HTTP 200 OK
 
 ### List Routes associated to a Service
 
-#### Endpoints
+**Endpoints**
 
 <div class="endpoint get">/services/{service name or id}/routes</div>
 
@@ -618,7 +618,7 @@ HTTP 200 OK
 
 ### Update Route
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/routes/{id}</div>
 
@@ -644,7 +644,7 @@ HTTP 200 OK
 
 ### Delete Route
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/routes/{id}</div>
 
@@ -695,7 +695,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
 
 ### Add API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/apis/</div>
 
@@ -733,7 +733,7 @@ HTTP 201 Created
 
 ### Retrieve API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/{name or id}</div>
 
@@ -771,7 +771,7 @@ HTTP 200 OK
 
 ### List APIs
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/</div>
 
@@ -839,7 +839,7 @@ HTTP 200 OK
 
 ### Update API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/apis/{name or id}</div>
 
@@ -881,7 +881,7 @@ HTTP 200 OK
 
 ### Update Or Create API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/apis/</div>
 
@@ -908,7 +908,7 @@ See POST and PATCH responses.
 
 ### Delete API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/apis/{name or id}</div>
 
@@ -937,7 +937,7 @@ The Consumer object represents a consumer - or a user - of a Service. You can ei
 
 ### Create Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/consumers/</div>
 
@@ -963,7 +963,7 @@ HTTP 201 Created
 
 ### Retrieve Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/{username or id}</div>
 
@@ -989,7 +989,7 @@ HTTP 200 OK
 
 ### List Consumers
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/</div>
 
@@ -1032,7 +1032,7 @@ HTTP 200 OK
 
 ### Update Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/consumers/{username or id}</div>
 
@@ -1062,7 +1062,7 @@ HTTP 200 OK
 
 ### Update Or Create Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/consumers/</div>
 
@@ -1089,7 +1089,7 @@ See POST and PATCH responses.
 
 ### Delete Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/consumers/{username or id}</div>
 
@@ -1189,7 +1189,7 @@ You can add a plugin in four different ways:
 
 Note that not all plugins allow to specify `consumer_id`. Check the plugin documentation.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/plugins/</div>
 
@@ -1255,7 +1255,7 @@ HTTP 200 OK
 
 ### List All Plugins
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins/</div>
 
@@ -1313,7 +1313,7 @@ HTTP 200 OK
 
 ### Update Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/plugins/{plugin id}</div>
 
@@ -1350,7 +1350,7 @@ HTTP 200 OK
 
 ### Update or Add Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/plugins/</div>
 
@@ -1377,7 +1377,7 @@ See POST and PATCH responses.
 
 ### Delete Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/plugins/{plugin id}</div>
 
@@ -1397,7 +1397,7 @@ HTTP 204 No Content
 
 Retrieve a list of all installed plugins on the Kong node.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins/enabled</div>
 
@@ -1491,7 +1491,7 @@ tie a cert/key pair to one or more hostnames.
 
 ### Add Certificate
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/certificates/</div>
 
@@ -1521,7 +1521,7 @@ HTTP 201 Created
 
 ### Retrieve Certificate
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/certificates/{sni or id}</div>
 
@@ -1550,7 +1550,7 @@ HTTP 200 OK
 
 ### List Certificates
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/certificates/</div>
 
@@ -1621,7 +1621,7 @@ HTTP 200 OK
 
 ### Update or Create Certificate
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/certificates/</div>
 
@@ -1680,7 +1680,7 @@ lookup the certificate object based on the SNI associated with the certificate.
 
 ### Add SNI
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/snis/</div>
 
@@ -1706,7 +1706,7 @@ HTTP 201 Created
 
 ### Retrieve SNI
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/snis/{name}</div>
 
@@ -1730,7 +1730,7 @@ HTTP 200 OK
 
 ### List SNIs
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/snis/</div>
 
@@ -1786,7 +1786,7 @@ HTTP 200 OK
 
 ### Update or Create SNI
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/snis/</div>
 
@@ -1888,7 +1888,7 @@ object, and applies to all of its targets.
 
 ### Add upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/upstreams/</div>
 
@@ -1953,7 +1953,7 @@ HTTP 201 Created
 
 ### Retrieve upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/upstreams/{name or id}</div>
 
@@ -2018,7 +2018,7 @@ HTTP 200 OK
 
 ### List upstreams
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/upstreams/</div>
 
@@ -2144,7 +2144,7 @@ HTTP 200 OK
 
 ### Update upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/upstreams/{name or id}</div>
 
@@ -2213,7 +2213,7 @@ HTTP 200 OK
 
 ### Update Or create Upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/upstreams/</div>
 
@@ -2240,7 +2240,7 @@ See POST and PATCH responses.
 
 ### Delete upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/upstreams/{name or id}</div>
 
@@ -2350,7 +2350,7 @@ The current target object definition is the one with the latest `created_at`.
 
 ### Add target
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/upstreams/{name or id}/targets</div>
 
@@ -2391,7 +2391,7 @@ Lists all targets currently active on the upstream's load balancing wheel.
   was moved to [List all targets](#list-all-targets).
 </div>
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/upstreams/{name or id}/targets</div>
 
@@ -2503,7 +2503,7 @@ a new entry for the given target definition with a `weight` of 0.
   <strong>Note:</strong> This endpoint is only available with Kong 0.10.1+
 </div>
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/upstreams/{upstream name or id}/targets/{target or id}</div>
 
@@ -2534,7 +2534,7 @@ This resets the health counters of the health checkers running in all workers
 of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
 
@@ -2571,7 +2571,7 @@ that the target is actually healthy, it will automatically re-enable it again.
 To permanently remove a target from the ring-balancer, you should [delete a
 target](#delete-target) instead.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 

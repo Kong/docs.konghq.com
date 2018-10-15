@@ -103,7 +103,7 @@ end
 its proxy listening on port 9000 (HTTP), 9443 (HTTPS)
 and Admin API on port 9001.
 
-If you cant to see a real-world example, give a look at the
+If you want to see a real-world example, give a look at the
 [Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/10-key-auth)
 
 ---

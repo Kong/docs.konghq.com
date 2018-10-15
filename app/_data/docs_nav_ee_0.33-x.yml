@@ -87,6 +87,8 @@
       url: /developer-portal/overview
     - text: Glossary
       url: /developer-portal/glossary
+    - text: Best Practices
+      url: /developer-portal/best-practices
     - text: Configuration
       url: /developer-portal/configuration/getting-started
       items:
