@@ -730,7 +730,7 @@ name                            | description
 
 #### Datastore cache section
 
-In order to avoid unecessary communication with the datastore, Kong caches
+In order to avoid unnecessary communication with the datastore, Kong caches
 entities (such as APIs, Consumers, Credentials, etc...) for a configurable
 period of time. It also handles invalidations if such an entity is updated.
 
@@ -893,7 +893,7 @@ Default: off
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
 
-See the lua-nginx-module documentation for more informations:
+See the lua-nginx-module documentation for more information:
 https://github.com/openresty/lua-nginx-module
 
 ---

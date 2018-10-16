@@ -659,7 +659,7 @@ Previous to Kong 0.10, Ordinarily, Kong would send proxied requests to the
 `upstream_url`, and load balancing across multiple upstream instances required
 an external load balancer.
 
-You can find more informations about adding load balancing to your APIs by
+You can find more information about adding load balancing to your APIs by
 consulting the [Load Balancing Reference][load-balancing-reference].
 
 [Back to TOC](#table-of-contents)
@@ -679,7 +679,7 @@ When a plugin is configured for a given API, and the API has been matched from
 an incoming request, Kong will execute the configured plugin(s) for this
 request before proxying it to your upstream service. This includes, among
 others, the `access` phase of the plugin, on which you can find more
-informations about in the [Plugin development guide][plugin-development-guide].
+information about in the [Plugin development guide][plugin-development-guide].
 
 [Back to TOC](#table-of-contents)
 
@@ -756,7 +756,7 @@ There are two configurable elements here:
    details on this.
 
 2. What exactly constitutes an error: here Kong uses the Nginx defaults, which
-   means an error or timeout occuring while establishing a connection with the
+   means an error or timeout occurring while establishing a connection with the
    server, passing a request to it, or reading the response header.
 
 The second option is based on Nginx's
@@ -790,7 +790,7 @@ Once the headers are sent to the client, Kong will start executing
 registered plugins for that API that implement the `body_filter` hook. This
 hook may be called multiple times, due to the streaming nature of Nginx itself.
 Each chunk of the upstream response that is successfully processed by such
-`body_filter` hooks is sent back to the client. You can find more informations
+`body_filter` hooks is sent back to the client. You can find more information
 about the `body_filter` hook in the [Plugin development
 guide][plugin-development-guide].
 
@@ -894,7 +894,7 @@ HTTP/1.1 201 Created
 ```
 
 By configuring your API like so, Kong will refuse to proxy traffic for it
-without HTTPS. A request to Kong over plain HTTP targetting this API would
+without HTTPS. A request to Kong over plain HTTP targeting this API would
 instruct your clients to upgrade to HTTPS:
 
 ```bash

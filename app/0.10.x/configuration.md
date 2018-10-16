@@ -647,7 +647,7 @@ datacenters.
 A common pattern is to create a VPN between the two datacenters such that
 the flat network assumption is not violated.
 
-See the clustering reference for more informations:
+See the clustering reference for more information:
 https://docs.konghq.com/latest/clustering/
 
 ---
@@ -775,7 +775,7 @@ Default: `/etc/hosts`
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
 
-See the lua-nginx-module documentation for more informations:
+See the lua-nginx-module documentation for more information:
 https://github.com/openresty/lua-nginx-module
 
 ---

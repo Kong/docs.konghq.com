@@ -24,7 +24,7 @@ load your plugin's modules if their names follow this convention:
 > [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
 > variable, which can be tweaked to your needs by the
 > [lua-package-path](https://github.com/openresty/lua-nginx-module#lua_package_path)
-> directive in your Nginx configuration. However, the prefered way of
+> directive in your Nginx configuration. However, the preferred way of
 > installing plugins is through [Luarocks](https://luarocks.org/). More on that
 > later in this guide.
 

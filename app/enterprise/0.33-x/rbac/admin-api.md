@@ -18,11 +18,11 @@ There are 4 basic entities involving RBAC.
   more permissions. Example: user bob is associated with role
   `developer`.
 - **role_endpoint**: A set of enabled or disabled (see `negative`
-  paramter) actions (`read`, `create`, `update`, `delete`)
+  parameter) actions (`read`, `create`, `update`, `delete`)
   `endpoint`. Example: Role `developer` has 1 role_endpoint: `read &
   write` to endpoint `/routes`
 - **role_entity**: A set of enabled or disabled (see `negative`
-  paramter) actions (`read`, `create`, `update`, `delete`)
+  parameter) actions (`read`, `create`, `update`, `delete`)
   `entity`. Example: Role `developer` has 1 role_entity: `read & write
   & delete` to entity `283fccff-2d4f-49a9-8730-dc8b71ec2245`.
 
@@ -615,6 +615,7 @@ HTTP 200 Ok
 ---
 
 ## List Entity Permissons
+
 **Endpoint**
 <div class="endpoint get">/rbac/roles/{name_or_id}/entities</div>
 

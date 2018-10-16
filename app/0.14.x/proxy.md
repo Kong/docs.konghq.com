@@ -799,7 +799,7 @@ There are two configurable elements here:
    `retries` property. See the [Admin API][API] for more details on this.
 
 2. What exactly constitutes an error: here Kong uses the Nginx defaults, which
-   means an error or timeout occuring while establishing a connection with the
+   means an error or timeout occurring while establishing a connection with the
    server, passing a request to it, or reading the response headers.
 
 The second option is based on Nginx's
@@ -834,7 +834,7 @@ registered plugins for the Route and/or Service that implement the
 `body_filter` hook. This hook may be called multiple times, due to the
 streaming nature of Nginx. Each chunk of the upstream response that is
 successfully processed by such `body_filter` hooks is sent back to the client.
-You can find more informations about the `body_filter` hook in the [Plugin
+You can find more information about the `body_filter` hook in the [Plugin
 development guide][plugin-development-guide].
 
 [Back to TOC](#table-of-contents)

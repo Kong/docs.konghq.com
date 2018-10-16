@@ -365,7 +365,7 @@ If you run the commands above, the public key will be written in `public.pem`, w
 ### Using the JWT plugin with Auth0
 
 [Auth0](https://auth0.com/) is a popular solution for Authorization, and relies
-heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publically
+heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publicly
 hosts the public key certificate used to sign tokens. Account name is referred
 to "COMPANYNAME" for the sake of the guide.
 

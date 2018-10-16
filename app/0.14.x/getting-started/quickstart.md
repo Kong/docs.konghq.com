@@ -24,7 +24,7 @@ supports PostgreSQL and Cassandra).
     $ kong migrations up [-c /path/to/kong.conf]
     ```
 
-    You should see a message that tells you Kong has sucessfully migrated your
+    You should see a message that tells you Kong has successfully migrated your
     database. If not, you probably incorrectly configured your database
     connection settings in your configuration file.
 

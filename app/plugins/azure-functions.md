@@ -43,7 +43,7 @@ installation: |
   ```
 
   or install it from [source](https://github.com/kong/kong-plugin-azure-functions).
-  For more infomation on Plugin installation, please see the documentation
+  For more information on Plugin installation, please see the documentation
   [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
 
 params:

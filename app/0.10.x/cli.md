@@ -57,7 +57,7 @@ The available commands are:
   keys use <key>              Change the primary key used for encrypting messages.
                               All nodes in the cluster must already have this key
                               installed if they are to continue communicating with
-                              eachother.
+                              each other.
   keys remove <key>           Remove a key from Kong's internal keyring. The key
                               being removed may not be the current primary key.
   keys list                   List all currently known keys in the cluster. This

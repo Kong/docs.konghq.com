@@ -67,7 +67,7 @@ instead.
 
 When contributing, be aware of a few things:
 
-- Documention for Kong Hub listings, which includes all Kong Inc.-published
+- Documentation for Kong Hub listings, which includes all Kong Inc.-published
   and community-published plugins and integrations, lives in the `app/_hub`
   and `app/_data/extensions` directories. **Versioning is optional, and thus
   potentially inconsistent, for this part of the documentation**.

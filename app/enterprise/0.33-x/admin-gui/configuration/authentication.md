@@ -13,9 +13,9 @@ chapter: 3
 
 There are a couple of pieces of information that are important to understand when using authentication for the Admin GUI:
 
-- The Admin GUI is a javascript application that runs in the browser, and makes calls to the Admin API
+- The Admin GUI is a JavaScript application that runs in the browser, and makes calls to the Admin API
 - For locking down the GUI, a private endpoint is configured on the proxy side, and an auth plugin is enabled
-- The Admin GUI javascript application uses this proxy side endpoint to talk to the Admin API
+- The Admin GUI JavaScript application uses this proxy side endpoint to talk to the Admin API
 - Two pieces of authentication need to be enabled in order for the Admin GUI to talk to the Admin API in this setup
 - The "Admin user" is a combination of a rbac user and a consumer of type 'admin' that only appears on the `/admins` endpoint and is filtered out from `/consumers` endpoints. Admins as consumers allows Kong to use plugins on an admin to authenticate
 - This Admin needs to be in an RBAC group with access to the Admin API

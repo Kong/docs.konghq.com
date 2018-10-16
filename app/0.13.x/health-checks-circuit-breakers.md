@@ -53,7 +53,7 @@ increment the "HTTP failures" counter for the target and clear the "Successes" c
 If any of the "TCP failures", "HTTP failures" or "timeouts" counters reaches
 their configured threshold, the target will be marked as unhealthy.
 
-If the "Sucesses" counter reaches its configured threshold, the target will be
+If the "Successes" counter reaches its configured threshold, the target will be
 marked as healthy.
 
 The list of which HTTP status codes are "healthy" or "unhealthy", and the

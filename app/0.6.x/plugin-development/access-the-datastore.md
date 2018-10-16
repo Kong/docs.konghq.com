@@ -58,7 +58,7 @@ local inserted_api, err = dao.apis:insert({
 
 ### Custom DAOs
 
-Because Kong needs to deal with more than the three core entities, the [kong.dao.cassandra.base_dao][kong.dao.cassandra.base_dao] can be inherited to support any entity. Plugins make heavy use of this feature, and every exising plugin implements their own DAO, loaded by the DAO Factory and made available everywhere the factory is, just like the core entities.
+Because Kong needs to deal with more than the three core entities, the [kong.dao.cassandra.base_dao][kong.dao.cassandra.base_dao] can be inherited to support any entity. Plugins make heavy use of this feature, and every existing plugin implements their own DAO, loaded by the DAO Factory and made available everywhere the factory is, just like the core entities.
 
 Now, let's see how to create your own DAO for your plugin in the next chapter: [Custom Entities]({{page.book.next}}).
 

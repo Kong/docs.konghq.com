@@ -66,7 +66,7 @@ When a node is `failed`, you need to manually remove it from the cluster.
 
 ## 5. Removing a failed node
 
-Everytime a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions from `alive` to `left`.
+Every time a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions from `alive` to `left`.
 
 To gracefully stop and remove a node from the cluster just execute the `kong quit` or `kong stop` CLI commands.
 

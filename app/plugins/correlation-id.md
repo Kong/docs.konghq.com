@@ -83,9 +83,9 @@ Format:
 xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx#counter
 ```
 
-In this format, a single UUID is generated on a per-worker basis, and further requests simply append a counter to the UUID after a `#` character. The `counter` value starts at `0` for each worker, and gets incremented independantly of the others.
+In this format, a single UUID is generated on a per-worker basis, and further requests simply append a counter to the UUID after a `#` character. The `counter` value starts at `0` for each worker, and gets incremented independently of the others.
 
-This format provides a better performance, but might be harder to store or process for analizing (due to its format and low cardinality).
+This format provides a better performance, but might be harder to store or process for analyzing (due to its format and low cardinality).
 
 #### tracker
 

@@ -143,7 +143,7 @@ The entities being transmitted in the `entity` and `old_entity` properties do no
 
 #### marshall_event
 
-This function serializes the custom entity to a minimal version that only includes the fields we will later need to use in `hooks.lua`. If `marshall_event` is not implememented, by default Kong does not send any entity field value along with the event.
+This function serializes the custom entity to a minimal version that only includes the fields we will later need to use in `hooks.lua`. If `marshall_event` is not implemented, by default Kong does not send any entity field value along with the event.
 
 For example:
 
@@ -168,7 +168,7 @@ local SCHEMA = {
 In the example above the custom entity provides a `marshall_event` function that returns an object with its `id`, `consumer_id` and `apikey` fields. In our hooks we don't need `creation_date` to invalidate the entity, so we don't care to propagate it in the event. The `t` table in the arguments is the original object with all its fields.
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> The JSON serialization of the Lua table that's being returned must not exceed 512 bytes, in order to fit the entire event in one UDP packet. Failure to meet this contraints will prevent invalidation events from being propagated, thus creating inconsistencies.
+  <strong>Note:</strong> The JSON serialization of the Lua table that's being returned must not exceed 512 bytes, in order to fit the entire event in one UDP packet. Failure to meet this constraints will prevent invalidation events from being propagated, thus creating inconsistencies.
 </div>
 
 ---
