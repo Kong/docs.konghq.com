@@ -2,22 +2,6 @@
 name: OAuth 2.0 Authentication
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Endpoints
-      - label: Create a Consumer
-      - label: Create an Application
-      - label: Migrating Access Tokens
-      - label: Upstream Headers
-  - label: oAuth 2.0 Flows
-    items:
-      - label: Client Credentials
-      - label: Authorization Code
-      - label: Resource Owner Password Credentials
-
 desc: Add OAuth 2.0 authentication to your APIs
 description: |
   Add an OAuth 2.0 authentication layer with the [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4),
@@ -36,7 +20,7 @@ description: |
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
     with versions of Kong prior to 0.12.0
-    differs from what is documented herein. Refer to the 
+    differs from what is documented herein. Refer to the
     <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>

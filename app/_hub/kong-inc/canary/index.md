@@ -111,4 +111,3 @@ This takes 2 steps:
 2. Since now the location A and B are the same, the canary plugin can now be removed from the system with a `DELETE` request.
 
 If the canary was not complete yet, then executing those steps prematurely, will instantly switch 100% of traffic to the new location (B).
----

@@ -1,6 +1,5 @@
 ---
 title: Kong Vitals
-class: page-install-method
 ---
 
 # Kong Vitals

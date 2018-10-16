@@ -3,14 +3,6 @@ name: Serverless Functions
 publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-serverless-functions
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Plugin Names
-      - label: Demonstration
-      - label: Notes
 
 desc: Dynamically run Lua code from Kong during the access phase
 description: |

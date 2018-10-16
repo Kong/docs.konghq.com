@@ -23,18 +23,6 @@ response;
 the ongoing traffic being proxied and determines the health of targets based
 on their behavior responding requests.
 
-### Table of Contents
-
-- [Healthy and unhealthy targets](#healthy-and-unhealthy-targets)
-- [Types of health checks](#types-of-health-checks)
-  - [Active health checks](#active-health-checks)
-  - [Passive health checks (circuit breakers)](#passive-health-checks-circuit-breakers)
-  - [Summary of pros and cons](#summary-of-pros-and-cons)
-- [Enabling and disabling health checks](#enabling-and-disabling-health-checks)
-  - [Enabling active health checks](#enabling-active-health-checks)
-  - [Enabling passive health checks](#enabling-passive-health-checks)
-  - [Disabling health checks](#disabling-health-checks)
-
 ### Healthy and unhealthy targets
 
 The objective of the health checks functionality is to dynamically mark

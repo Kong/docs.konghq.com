@@ -14,28 +14,6 @@ A Kong cluster can be created in one datacenter, or in multiple datacenters, in 
   Failure to proper cluster together Kong nodes that are using the same datastore will result in out-of-sync data on Kong nodes, and therefore consistency problems will occur.
 </div>
 
-## Summary
-
-- 1. [Getting Started][1]
-- 2. [Node Discovery][2]
-- 3. [Network Requirements][3]
-- 4. [Node Health States][4]
-- 5. [Removing a failed node][5]
-- 6. [Edge-case scenarios][6]
-  - [Asynchronous join on concurrent node starts][6a]
-  - [Automatic cache purge on join][6b]
-  - [Node failures][6c]
-
-[1]: #1-getting-started
-[2]: #2-node-discovery
-[3]: #3-network-requirements
-[4]: #4-node-health-states
-[5]: #5-removing-a-failed-node
-[6]: #6-edge-case-scenarios
-[6a]: #asynchronous-join-on-concurrent-node-starts
-[6b]: #automatic-cache-purge-on-join
-[6c]: #node-failures
-
 ## 1. Getting Started
 
 Kong nodes pointing to the same datastore must join together in a Kong cluster. Kong nodes in the same cluster need to be able to talk together on **both** TCP and UDP on the [cluster_listen][cluster_listen] address and port.
@@ -103,19 +81,19 @@ Check the [Node Failures](#node-failures) paragraph for more info.
 
 The implementation of the clustering feature of Kong is rather complex and may involve some edge case scenarios.
 
-#### Asynchronous join on concurrent node starts
+### Asynchronous join on concurrent node starts
 
 When multiple nodes are all being started simultaneously, a node may not be aware of the other nodes yet because the other nodes didn't have time to write their data to the datastore. To prevent this situation Kong implements by default a feature called "asynchronous auto-join".
 
 Asynchronous auto-join will check the datastore every 3 seconds for 60 seconds after a Kong node starts, and will join any node that may appear in those 60 seconds. This means that concurrent environments where multiple nodes are started simultaneously it could take up to 60 seconds for them to auto-join the cluster.
 
-#### Automatic cache purge on join
+### Automatic cache purge on join
 
 Every time a new node joins the cluster, or a failed node re-joins the cluster, the in-memory cache for every node is purged and all the data is forced to be re-fetched from the datastore. This is to avoid inconsistencies between the data that has already been invalidated in the cluster, and the data stored on the node.
 
 This also means that after joining the cluster the new node's performance will be slower until the data has been re-cached into the local memory.
 
-#### Node failures
+### Node failures
 
 A node in the cluster can fail more multiple reasons, including networking problems or crashes. A node failure will also occur if Kong is not properly terminated by running `kong stop` or `kong quit`.
 

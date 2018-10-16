@@ -2,14 +2,6 @@
 name: File Log
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Log Format
-      - label: Kong Process Errors
-
 desc: Append request and response data to a log file on disk
 description: |
   Append request and response data to a log file on disk.

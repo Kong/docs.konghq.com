@@ -1,21 +1,11 @@
 ---
 title: Kong Enterprise Changelog
-nav:
-  - label: Versions
-    items:
-      - label: "0.33-2"
-      - label: "0.33-1"
-      - label: "0.33"
-      - label: "0.32"
-      - label: "0.31-1"
-      - label: "0.31"
-      - label: "0.30"
 ---
 # Kong Enterprise Changelog
 
 ## 0.33-2 - 2018/10/09
 
-### Notifications
+**Notifications**
 
 - **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -26,8 +16,8 @@ nav:
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
-  
-### Fixes
+
+**Fixes**
 
 - **Core**
   - **DB**
@@ -76,7 +66,7 @@ nav:
           <input id="key" type="text" name="key" required />
           <button id="login-button" class="button button-primary" type="submit">Login</button>
         {{/if}}
-      
+
         {{#if (eq authData.authType 'openid-connect')}}
         <a href="{{config.PROXY_URL}}" class="button button-outline">
           <svg class="google-button-icon" viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335"/><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05"/><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4"/><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853"/></svg>
@@ -100,7 +90,7 @@ nav:
 {% raw %}
 ```html
 {{#> unauthenticated/layout pageTitle="Register" }}
- 
+
     {{#*inline "content-block"}}
     <div class="authentication">
       <h1>Request Access</h1>
@@ -130,7 +120,7 @@ nav:
       </form>
     </div>
     {{/inline}}
- 
+
 {{/unauthenticated/layout}}
 ```
 {% endraw %}
@@ -159,11 +149,11 @@ nav:
     |--------------------------------------------------------------------------
     |
     --}}
- 
+
     {{!-- Custom fonts --}}
     {{!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet"> --}}
- 
+
     <style>
     /*
     |--------------------------------------------------------------------------
@@ -172,33 +162,33 @@ nav:
     |--------------------------------------------------------------------------
     |
     */
- 
+
     h1 {}
- 
+
     h2 {}
- 
+
     h3 {}
- 
+
     h4 {}
- 
+
     h5 {}
- 
+
     h6 {}
- 
+
     p {}
- 
+
     /* Header */
     #header {}
- 
+
     /* Sidebar */
     #sidebar {}
- 
+
     /* Footer */
     #footer {}
- 
+
     /* Swagger UI */
     .swagger-ui .side-panel {}
- 
+
     /*
     |--------------------------------------------------------------------------
     | Code block prismjs theme.
@@ -206,7 +196,7 @@ nav:
     |--------------------------------------------------------------------------
     |
     */
- 
+
     .token.block-comment,
     .token.cdata,
     .token.comment,
@@ -214,35 +204,35 @@ nav:
     .token.prolog {
       color: #999
     }
- 
+
     .token.punctuation {
       color: #ccc
     }
- 
+
     .token.attr-name,
     .token.deleted,
     .token.namespace,
     .token.tag {
       color: #e2777a
     }
- 
+
     .token.function-name {
       color: #6196cc
     }
- 
+
     .token.boolean,
     .token.function,
     .token.number {
       color: #f08d49
     }
- 
+
     .token.class-name,
     .token.constant,
     .token.property,
     .token.symbol {
       color: #f8c555
     }
- 
+
     .token.atrule,
     .token.builtin,
     .token.important,
@@ -250,7 +240,7 @@ nav:
     .token.selector {
       color: #cc99cd
     }
- 
+
     .token.attr-value,
     .token.char,
     .token.regex,
@@ -258,30 +248,30 @@ nav:
     .token.variable {
       color: #7ec699
     }
- 
+
     .token.entity,
     .token.operator,
     .token.url {
       color: #67cdcc
     }
- 
+
     .token.bold,
     .token.important {
       font-weight: 700
     }
- 
+
     .token.italic {
       font-style: italic
     }
- 
+
     .token.entity {
       cursor: help
     }
- 
+
     .token.inserted {
       color: green
     }
- 
+
 </style>
 ```
 {% endraw %}
@@ -294,7 +284,7 @@ nav:
 
 ## 0.33-1 - 2018/09/05
 
-### Notifications
+**Notifications**
 
 - **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -306,7 +296,7 @@ nav:
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
 
-### Changes
+**Changes**
 
 - **Plugins**
   - **HMAC Auth**
@@ -315,7 +305,7 @@ nav:
       - Improve performance when constructing the metrics key
       - Allow hostname to be written into the key prefix, based on a boolean plugin config flag
 
-### Fixes
+**Fixes**
 
 - **Core**
   - **RBAC**
@@ -364,7 +354,7 @@ nav:
 
 ## 0.33 - 2018/07/24
 
-### Notifications
+**Notifications**
 
 - **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -378,7 +368,7 @@ nav:
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
 
-### Changes
+**Changes**
 
 - **Vitals**
   - Internal proxies are no longer tracked
@@ -392,7 +382,7 @@ nav:
 - **OpenID Connect Plugin**
   - Change `config_consumer_claim` from string to array
 
-### Features
+**Features**
 
 - **Core**
   - **New RBAC implementation**, supporting both endpoint and entity-level
@@ -430,7 +420,7 @@ nav:
 - **Prometheus Plugin**
   - New plugin; see documentation [here][prometheus-docs]
 
-### Fixes
+**Fixes**
 
 - **Core**
   - **Healthchecks**: health status no longer resets when a Target is added to an Upstream
@@ -464,7 +454,7 @@ nav:
 
 ## 0.32 - 2018/05/24
 
-### Notifications
+**Notifications**
 
 - **Kong EE 0.32** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -483,7 +473,7 @@ nav:
       - `openid-connect-protection`
       - `openid-connect-verification`
 
-### Changes
+**Changes**
 
 - **New Data Model** - Kong EE 0.32 is the first Enterprise version including the [**new model**](https://github.com/Kong/kong/blob/master/CHANGELOG.md#core-2), released with Kong CE 0.13, which includes Routes and Services
 - **Rate Limiting Advanced**
@@ -505,7 +495,7 @@ nav:
   - Remove multipart parsing of ID tokens - they were not proxy safe
   - Change expired or non-active access tokens to give `401` instead of `403`
 
-### Features
+**Features**
 
 - **Admin GUI**
   - New Listeners (Admin GUI + Developer Portal)
@@ -585,7 +575,7 @@ nav:
       - `config.downstream_headers_claims`
       - `config.downstream_headers_names`
 
-### Fixes
+**Fixes**
 
 - **Core**
   - **Healthchecks**
@@ -619,7 +609,7 @@ nav:
 
 ## 0.31-1 - 2018/04/25
 
-### Changes
+**Changes**
 
 - New shared dictionaries named `kong_rl_counters` and `kong_db_cache_miss` were defined in Kong’s default template - customers using custom templates are encouraged to update them to include those, as they avoid the reuse of the `kong_cache` shared dict; such a reuse is known to be one of the culprits behind `no memory` errors - see diff below
 - The rate-limiting plugin now accepts a `dictionary_name` argument, which is used for temporarily storing rate-limiting counters
@@ -643,7 +633,7 @@ index 15682975..653a7ddd 100644
  lua_shared_dict kong_vitals_requests_consumers 50m;
 ```
 
-### Fixes
+**Fixes**
 
 - Bump mlcache to 2.0.2 and mitigates a number of issues known to be causing `no memory` errors
 - Fixes an issue where boolean values (and boolean values as strings) were not correctly marshalled when using Cassandra
@@ -653,7 +643,7 @@ index 15682975..653a7ddd 100644
 
 Kong Enterprise 0.31 is shipped with all the changes present in Kong Community Edition 0.12.3, as well as with the following additions:
 
-### Changes
+**Changes**
 - Galileo plugin is disabled by default in this version, needing to be explicitly enabled via the custom_plugins configuration
   - *NOTE*: If a user had the Galileo plugin applied in an older version and migrate to 0.31, Kong will fail to restart unless the user enables it via the [custom_plugins](/latest/configuration/#custom_plugins) configuration; however, it is still possible to enable the plugin per API or globally without adding it to custom_plugins
 - OpenID Connect plugin:
@@ -664,7 +654,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
 - Anonymous consumer now uses a simple cache key that is used in other plugins
 - In case of auth plugins concatenation, the OpenID Connect plugin now removes remnants of anonymous
 
-### Fixes
+**Fixes**
 - **Admin GUI**
   - Remove deprecated orderlist field from Admin GUI Upstreams entity settings
   - Fix issue where Admin GUI would break when running Kong in a custom prefix
@@ -693,7 +683,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
   - Fix issue that prevented cached requests from showing up in Vitals or Total Requests graphs
   - Fixes inherited from Kong Community Edition 0.12.3.
 
-### Features
+**Features**
 - Admin GUI
   - Add notification bar alerting users that their license is about to expire, and has expired.
   - Add new design to vitals overview, table breakdown, and a new tabbed chart interface.
@@ -712,14 +702,14 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
 
 Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community Edition 0.12.1](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0121---20180118), as well as with the following additions:
 
-### Notifications
+**Notifications**
 
 - EE 0.30 inherits dependency **deprecation** notices from CE 0.12. See the "Deprecation Notes" section of Kong 0.12.0 changelog
 - ⚠️ By default, the Admin API now only listens on the local interface. We consider this change to be an improvement in the default security policy of Kong. If you are already using Kong, and your Admin API still binds to all interfaces, consider updating it as well. You can do so by updating the `admin_listen` configuration value, like so: `admin_listen = 127.0.0.1:8001`.
 
 - 🔴 Note to Docker users: Beware of this change as you may have to ensure that your Admin API is reachable via the host's interface. You can use the `-e KONG_ADMIN_LISTEN` argument when provisioning your container(s) to update this value; for example, `-e KONG_ADMIN_LISTEN=0.0.0.0:8001`.
 
-### Changes
+**Changes**
 - **Renaming of Enterprise plugin**
   - `request-transformer` becomes `request-transformer-advanced`
 
@@ -754,7 +744,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
   - Function `authorization:basic` now return as a third parameter, the grant type if one was found - previously, it returned parameter location in HTTP request
   - Issuer is no longer verified on discovery as some IdPs report different value (it is still verified with claims verification)
 
-### Added
+**Added**
 
 - New **Canary Release plugin**
 
@@ -776,7 +766,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
   - **Enterprise Rate Limiting**
     - Provide **fixed-window** quota rate limiting (which is essentially what the CE rate-limiting plugin does) in addition to the current sliding window rate limiting
     - Add *hide_client_headers* configuration to disable response headers returned by the rate limiting plugin
-  
+
   - **Admin GUI**
     - Addition of **"Form Control Grouping"** for the new Upstream health-check configuration options.
     - Add **Healthy** or **Unhealthy** buttons for the new health-check functionality on Upstream Targets table.
@@ -786,7 +776,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
     - Add information dialogs for vital charts next to chart titles.
     - Introduced **Total Requests** chart on Dashboard.
     - Automatically saves chart preferences and restores on reload.
-  
+
   - **OpenID Connect plugins**
     - Support passing dynamic arguments to authorization endpoint from client
     - Support logout with optional revocation and RP-initiated logout
@@ -797,7 +787,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
     - Logging plugins track unauthorized and rate-limited requests
     - And more...
 
-### Fixed
+**Fixes**
 - **Proxy Cache**
   - Better handling of input configuration data types. In some cases configuration sent from the GUI would case requests to be bypassed when they should have been cached.
 

@@ -4,23 +4,6 @@ title: Configuration Reference
 
 # Configuration Reference
 
-### Table of Contents
-
-- [Configuration loading](#configuration-loading)
-- [Verifying your configuration](#verifying-your-configuration)
-- [Environment variables](#environment-variables)
-- [Custom Nginx configuration & embedding Kong](#custom-nginx-configuration-embedding-kong)
-  - [Custom Nginx configuration](#custom-nginx-configuration)
-  - [Embedding Kong](#embedding-kong)
-  - [Serving both a website and your APIs from Kong](#serving-both-a-website-and-your-apis-from-kong)
-- [Properties reference](#properties-reference)
-  - [General section](#general-section)
-  - [Nginx section](#nginx-section)
-  - [Datastore section](#datastore-section)
-  - [Clustering section](#clustering-section)
-  - [DNS resolver section](#dns-resolver-section)
-  - [Development & miscellaneous section](#development-miscellaneous-section)
-
 ### Configuration loading
 
 Kong comes with a default configuration file that can be found at
@@ -296,7 +279,7 @@ $ nginx -c /usr/local/openresty/conf/nginx.conf
 
 #### General section
 
-##### **prefix**
+##### prefix
 
 Working directory. Equivalent to Nginx's prefix path, containing temporary files
 and logs. Each Kong process must have a separate working directory.
@@ -305,7 +288,7 @@ Default: `/usr/local/kong`
 
 ---
 
-##### **log_level**
+##### log_level
 
 Log level of the Nginx server. Logs can be found at `<prefix>/logs/error.log`
 
@@ -316,7 +299,7 @@ Default: `notice`
 
 ---
 
-##### **proxy_access_log**
+##### proxy_access_log
 
 Path for proxy port request access logs. Set this value to `off` to disable
 logging proxy requests. If this value is a relative path, it will be placed
@@ -326,7 +309,7 @@ Default: `logs/access.log`
 
 ---
 
-##### **proxy_error_log**
+##### proxy_error_log
 
 Path for proxy port request error logs. Granularity of these logs is adjusted
 by the `log_level` directive.
@@ -335,7 +318,7 @@ Default: `logs/error.log`
 
 ---
 
-##### **admin_access_log**
+##### admin_access_log
 
 Path for Admin API request access logs. Set this value to `off` to disable
 logging Admin API requests. If this value is a relative path, it will be placed
@@ -345,7 +328,7 @@ Default: `logs/admin_access.log`
 
 ---
 
-##### **admin_error_log**
+##### admin_error_log
 
 Path for Admin API request error logs. Granularity of these logs is adjusted by
 the `log_level` directive.
@@ -354,7 +337,7 @@ Default: `logs/error.log`
 
 ---
 
-##### **custom_plugins**
+##### custom_plugins
 
 Comma-separated list of additional plugins this node should load. Use this
 property to load custom plugins that are not bundled with Kong. Plugins will
@@ -366,7 +349,7 @@ Example: `my-plugin,hello-world,custom-rate-limiting`
 
 ---
 
-##### **anonymous_reports**
+##### anonymous_reports
 
 Send anonymous usage data such as error stack traces to help improve Kong.
 
@@ -378,7 +361,7 @@ Default: `on`
 
 #### Nginx section
 
-##### **proxy_listen**
+##### proxy_listen
 
 Address and port on which Kong will accept HTTP requests. This is the
 public-facing entrypoint of Kong, to which your consumers will make
@@ -393,7 +376,7 @@ Example: `0.0.0.0:80`
 
 ---
 
-##### **proxy_listen_ssl**
+##### proxy_listen_ssl
 
 Address and port on which Kong will accept HTTPS requests if `ssl` is enabled.
 
@@ -403,7 +386,7 @@ Example: `0.0.0.0:443`
 
 ---
 
-##### **admin_listen**
+##### admin_listen
 
 Address and port on which Kong will expose an entrypoint to the Admin API.
 This API lets you configure and manage Kong, and should be kept private
@@ -415,7 +398,7 @@ Example: `127.0.0.1:8001`
 
 ---
 
-##### **admin_listen_ssl**
+##### admin_listen_ssl
 
 Address and port on which Kong will accept HTTPS requests to the Admin API if
 `admin_ssl` is enabled.
@@ -426,7 +409,7 @@ Example: `127.0.0.1:8444`
 
 ---
 
-##### **nginx_worker_processes**
+##### nginx_worker_processes
 
 Determines the number of worker processes spawned by Nginx.
 See http://nginx.org/en/docs/ngx_core_module.html#worker_processes for detailed
@@ -436,7 +419,7 @@ Default: `auto`
 
 ---
 
-##### **nginx_daemon**
+##### nginx_daemon
 
 Determines whether Nginx will run as a daemon or as a foreground process.
 Mainly useful for development or when running Kong inside a Docker environment.
@@ -447,7 +430,7 @@ Default: `on`
 
 ---
 
-##### **mem_cache_size**
+##### mem_cache_size
 
 Size of the in-memory cache for database entities. The accepted units are `k` and
 `m`, with a minimum recommended value of a few MBs.
@@ -456,7 +439,7 @@ Default: `128m`
 
 ---
 
-##### **ssl**
+##### ssl
 
 Determines if Nginx should be listening for HTTPS traffic on the
 `proxy_listen_ssl` address. If disabled, Nginx will only bind itself
@@ -466,7 +449,7 @@ Default: `on`
 
 ---
 
-##### **ssl_cipher_suite**
+##### ssl_cipher_suite
 
 Defines the TLS ciphers served by Nginx. Accepted values are `modern`,
 `intermediate`, `old`, or `custom`.
@@ -477,7 +460,7 @@ Default: `modern`
 
 ---
 
-##### **ssl_ciphers**
+##### ssl_ciphers
 
 Defines a custom list of TLS ciphers to be served by Nginx. This list must
 conform to the pattern defined by `openssl ciphers`. This value is ignored if
@@ -487,7 +470,7 @@ Default: none
 
 ---
 
-##### **ssl_cert**
+##### ssl_cert
 
 If `ssl` is enabled, the absolute path to the SSL certificate for the
 `proxy_listen_ssl` address. If none is specified and `ssl` is enabled, Kong will
@@ -497,7 +480,7 @@ Default: none
 
 ---
 
-##### **ssl_cert_key**
+##### ssl_cert_key
 
 If `ssl` is enabled, the absolute path to the SSL key for the
 `proxy_listen_ssl` address.
@@ -506,7 +489,7 @@ Default: none
 
 ---
 
-##### **client_ssl**
+##### client_ssl
 
 Determines if Nginx should send client-side SSL certificates when proxying
 requests.
@@ -515,7 +498,7 @@ Default: `off`
 
 ---
 
-##### **client_ssl_cert**
+##### client_ssl_cert
 
 If `client_ssl` is enabled, the absolute path to the client SSL certificate for
 the `proxy_ssl_certificate` directive. Note that this value is statically
@@ -525,7 +508,7 @@ Default: none
 
 ---
 
-##### **client_ssl_cert_key**
+##### client_ssl_cert_key
 
 If `client_ssl` is enabled, the absolute path to the client SSL key for the
 `proxy_ssl_certificate_key` address. Note this value is statically defined on
@@ -535,7 +518,7 @@ Default: none
 
 ---
 
-##### **admin_ssl**
+##### admin_ssl
 
 Determines if Nginx should be listening for HTTPS traffic on the
 `admin_listen_ssl` address. If disabled, Nginx will only bind itself on
@@ -545,7 +528,7 @@ Default: `on`
 
 ---
 
-##### **admin_ssl_cert**
+##### admin_ssl_cert
 
 If `admin_ssl` is enabled, the absolute path to the SSL certificate for the
 `admin_listen_ssl` address. If none is specified and `admin_ssl` is enabled,
@@ -555,7 +538,7 @@ Default: none
 
 ---
 
-##### **admin_ssl_cert_key**
+##### admin_ssl_cert_key
 
 If `admin_ssl` is enabled, the absolute path to the SSL key for the
 `admin_listen_ssl` address.
@@ -564,7 +547,7 @@ Default: none
 
 ---
 
-##### **upstream_keepalive**
+##### upstream_keepalive
 
 Sets the maximum number of idle keepalive connections to upstream servers that
 are preserved in the cache of each worker process. When this number is
@@ -574,7 +557,7 @@ Default: `60`
 
 ---
 
-##### **server_tokens**
+##### server_tokens
 
 Enables or disables emitting Kong version on error pages and in the `Server`
 or `Via` (in case the request was proxied) response header field.
@@ -583,7 +566,7 @@ Default: `on`
 
 ---
 
-##### **latency_tokens**
+##### latency_tokens
 
 Enables or disables emitting Kong latency information in the `X-Kong-Proxy-Latency` 
 and `X-Kong-Upstream-Latency` response header fields.
@@ -604,7 +587,7 @@ same database.
 
 ---
 
-##### **database**
+##### database
 
 Determines which of PostgreSQL or Cassandra this node will use as its
 datastore. Accepted values are `postgres` and `cassandra`.
@@ -613,7 +596,7 @@ Default: `postgres`
 
 ---
 
-##### **Postgres settings**
+##### Postgres settings
 
 name                  |  description
 ----------------------|-------------------
@@ -627,7 +610,7 @@ name                  |  description
 
 ---
 
-##### **Cassandra settings**
+##### Cassandra settings
 
 name                            | description
 --------------------------------|------------------
@@ -669,7 +652,7 @@ https://docs.konghq.com/latest/clustering/
 
 ---
 
-##### **cluster_listen**
+##### cluster_listen
 
 Address and port used to communicate with other nodes in the cluster.
 All other Kong nodes in the same cluster must be able to communicate over both
@@ -679,7 +662,7 @@ Default: `0.0.0.0:7946`
 
 ---
 
-##### **cluster_listen_rpc**
+##### cluster_listen_rpc
 
 Address and port used to communicate with the cluster through the agent
 running on this node. Only contains TCP traffic local to this node.
@@ -688,7 +671,7 @@ Default: `127.0.0.1:7373`
 
 ---
 
-##### **cluster_advertise**
+##### cluster_advertise
 
 By default, the `cluster_listen` address is advertised over the cluster.
 If the `cluster_listen` host is '0.0.0.0', then the first local, non-loopback
@@ -701,7 +684,7 @@ Default: none
 
 ---
 
-##### **cluster_encrypt_key**
+##### cluster_encrypt_key
 
 Base64-encoded 16-bytes key to encrypt cluster traffic with.
 
@@ -709,7 +692,7 @@ Default: none
 
 ---
 
-##### **cluster_keyring_file**
+##### cluster_keyring_file
 
 Specifies a file to load keyring data from.
 Kong is able to keep encryption keys in sync
@@ -723,7 +706,7 @@ Default: none
 
 ---
 
-##### **cluster_ttl_on_failure**
+##### cluster_ttl_on_failure
 
 Time to live (in seconds) of a node in the cluster when it stops sending
 healthcheck pings, possibly caused by a node or network failure.
@@ -736,7 +719,7 @@ Default: `3600`
 
 ---
 
-##### **cluster_profile**
+##### cluster_profile
 
 The timing profile for inter-cluster pings and timeouts. If a `lan` or `local`
 profile is used over the Internet, a high rate of failures is risked as the
@@ -764,7 +747,7 @@ field entries in the record.
 
 ---
 
-##### **dns_resolver**
+##### dns_resolver
 
 Comma separated list of nameservers, each
 entry in `ipv4[:port]` format to be used by
@@ -776,7 +759,7 @@ Default: none
 
 ---
 
-##### **dns_hostsfile**
+##### dns_hostsfile
 
 The hosts file to use. This file is read once and its content is static
 in memory. To read the file again after modifying it, Kong must be reloaded.
@@ -797,7 +780,7 @@ https://github.com/openresty/lua-nginx-module
 
 ---
 
-##### **lua_ssl_trusted_certificate**
+##### lua_ssl_trusted_certificate
 
 Absolute path to the certificate authority file for Lua cosockets in PEM
 format. This certificate will be the one used for verifying Kong's database
@@ -809,7 +792,7 @@ Default: none
 
 ---
 
-##### **lua_ssl_verify_depth**
+##### lua_ssl_verify_depth
 
 Sets the verification depth in the server certificates chain used by Lua
 cosockets, set by `lua_ssl_trusted_certificate`.
@@ -822,7 +805,7 @@ Default: `1`
 
 ---
 
-##### **lua_code_cache**
+##### lua_code_cache
 
 When disabled, every request will run in a separate Lua VM instance: all Lua
 modules will be loaded from scratch. Useful for adopting an edit-and-refresh
@@ -836,7 +819,7 @@ Default: `on`
 
 ---
 
-##### **lua_package_path**
+##### lua_package_path
 
 Sets the Lua module search path (LUA_PATH). Useful when developing or using
 custom plugins not stored in the default search path.
@@ -847,7 +830,7 @@ Default: none
 
 ---
 
-##### **lua_package_cpath**
+##### lua_package_cpath
 
 Sets the Lua C module search path (LUA_CPATH).
 
@@ -857,7 +840,7 @@ Default: none
 
 ---
 
-##### **lua_socket_pool_size**
+##### lua_socket_pool_size
 
 Specifies the size limit for every cosocket connection pool associated with
 every remote server.

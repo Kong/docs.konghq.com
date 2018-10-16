@@ -8,34 +8,6 @@ Multiple Kong nodes pointing to the same datastore **must** belong to the same "
 
 A Kong cluster can be created in one datacenter, or in multiple datacenters, in both cloud or on-premise environments. Kong will take care of joining and leaving a node automatically in a cluster, as long as the node is configured properly.
 
-## Summary
-
-- 1. [Introduction][1]
-- 2. [How does Kong clustering work?][2]
-  - [Why do we need Kong Clustering?][2a]
-- 3. [Adding new nodes to a cluster][3]
-- 4. [Removing nodes from a cluster][4]
-- 5. [Checking the cluster state][5]
-- 6. [Network Assumptions][6]
-- 7. [Edge-case scenarios][7]
-  - [Asynchronous join on concurrent node starts][7a]
-  - [Automatic cache purge on join][7b]
-  - [Node failures][7c]
-- 8. [Problems and bug reports][8]
-
-[1]: #1-introduction
-[2]: #2-how-does-kong-clustering-work
-[2a]: #why-do-we-need-kong-clustering
-[3]: #3-adding-new-nodes-to-a-cluster
-[4]: #4-removing-nodes-from-a-cluster
-[5]: #5-checking-the-cluster-state
-[6]: #6-network-assumptions
-[7]: #7-edge-case-scenarios
-[7a]: #asynchronous-join-on-concurrent-node-starts
-[7b]: #automatic-cache-purge-on-join
-[7c]: #node-failures
-[8]: #8-problems-and-bug-reports
-
 ## 1. Introduction
 
 Generally speaking having multiple Kong nodes is a good practice for a number of reasons, including:

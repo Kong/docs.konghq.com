@@ -130,7 +130,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         </td>
         <td>{% if field.default != nil %}{{ field.default | markdownify }}{% endif %}</td>
         <td>{{ field.description | markdownify }}</td>
-      </td>
+      </tr>
     {% endfor %}
   </tbody>
 </table>
@@ -208,33 +208,109 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       </div>
     {% endif %}
 
+    {% capture full_content %}
+      {% unless path_array contains "kong-inc" %}
+        <div class="alert alert-info" role="alert">
+          Community {{ extn_type | capitalize }}: This extension is developed <b>and maintained</b> by a 3rd party contributor.
+        </div>
+      {% endunless %}
+
+      {% if page.enterprise %}
+        <div class="alert alert-warning">
+          <strong>Kong Enterprise Edition (EE) only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong EE subscription</a>.
+        </div>
+
+        Please inquire about Kong EE by <a href="https://konghq.com/request-demo">contacting us</a> - or start a <a href="https://konghq.com/free-trial/">free trial</a> today.
+        <hr>
+      {% endif %}
+
+      {{ page.description | markdownify }}
+
+      {% if page.type == "plugin" %}
+        <hr>
+        <h2 id="terminology">Terminology</h2>
+        <ul>
+          <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
+
+          {% if page.params.service_id or page.params.route_id %}
+            <li><code>Service</code>: the Kong entity representing an external <em>upstream</em> API or microservice.</li>
+          {% endif %}
+          {% if page.params.route_id %}
+            <li><code>Route</code>: the Kong entity representing a way to map downstream requests to upstream services.</li>
+          {% endif %}
+          {% if page.params.consumer_id %}
+            <li><code>Consumer</code>: the Kong entity representing a developer or machine using the API. When using Kong, a Consumer only communicates with Kong which proxies every call to the said upstream API.</li>
+            <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
+          {% endif %}
+            <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
+          {% if page.params.api_id %}
+          <li><code>API</code>: a legacy entity used to represent your upstream services. <strong>Deprecated</strong> in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      {% if page.installation %}
+        <hr>
+        <h2 id="installation">Installation</h2>
+
+        {{ page.installation | markdownify }}
+
+        <hr>
+      {% endif %}
+
+      {% if page.type == "plugin" %}
+        <h2 id="configuration">Configuration</h2>
+        {% if page.params.service_id %}
+          {{ plugin_config_for_service | markdownify }}
+        {% endif %}
+        {% if page.params.route_id %}
+          {{ plugin_config_for_route | markdownify }}
+        {% endif %}
+        {% if page.params.consumer_id %}
+          {{ plugin_config_for_consumer | markdownify }}
+        {% endif %}
+        {% if page.params.api_id %}
+          {{ plugin_config_for_api | markdownify }}
+        {% endif %}
+
+        <h4>Global plugins</h4>
+
+        <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
+          Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
+          Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
+          <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
+        </p>
+
+        <h4>Parameters</h4>
+
+        <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
+
+        {{ params_table | markdownify }}
+
+      {% endif %}
+
+      {{ page.params.extra | markdownify }}
+
+      {{ content }}
+
+      {% if page.terms_of_service %}
+        <h3 id="terms-of-service">Terms of Service</h3>
+        {{ page.terms_of_service | markdownify }}
+      {% endif %}
+
+      {% if page.privacy_policy %}
+        <h3 id="privacy-policy">Privacy Policy</h3>
+        {{ page.privacy_policy | markdownify }}
+      {% endif %}
+    {% endcapture %}
+
     <aside class="page-navigation">
 
-      {% if page.nav %}
-        {% for nav in page.nav %}
-          <nav>
-            {% if nav.items %}
-              <h5>{{ nav.label }}</h5>
-            {% else %}
-              <a href="#{{ nav.label | slugify }}"><h5>{{ nav.label }}</h5></a>
-            {% endif %}
-            <ul>
-            {% for item in nav.items %}
-              <li>
-                <a href="#{{ item.label | slugify }}">{{ item.label }}</a>
-                {% if item.items %}
-                  <ul>
-                    {% for subitem in item.items %}
-                      <li><a href="#{{ subitem.label | slugify }}">{{ subitem.label }}</a></li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </li>
-            {% endfor %}
-            </ul>
-          </nav>
-        {% endfor %}
-      {% endif %}
+      {% unless page.toc == false %}
+        <nav>
+          {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
+        </nav>
+      {% endunless %}
 
       <table id="about-extn">
         <tr>
@@ -396,101 +472,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     <div class="page-content-container">
       <div class="page-content">
         <div class="content">
-
-          {% unless path_array contains "kong-inc" %}
-            <div class="alert alert-info" role="alert">
-              Community {{ extn_type | capitalize }}: This extension is developed <b>and maintained</b> by a 3rd party contributor.
-            </div>
-          {% endunless %}
-
-          {% if page.enterprise %}
-            <div class="alert alert-warning">
-              <strong>Kong Enterprise Edition (EE) only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong EE subscription</a>.
-            </div>
-
-            Please inquire about Kong EE by <a href="https://konghq.com/request-demo">contacting us</a> - or start a <a href="https://konghq.com/free-trial/">free trial</a> today.
-            <hr>
-          {% endif %}
-
-
-          {{ page.description | markdownify }}
-
-          {% if page.type == "plugin" %}
-            <hr>
-            <h2 id="terminology">Terminology</h2>
-            <ul>
-              <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
-
-              {% if page.params.service_id or page.params.route_id %}
-                <li><code>Service</code>: the Kong entity representing an external <em>upstream</em> API or microservice.</li>
-              {% endif %}
-              {% if page.params.route_id %}
-                <li><code>Route</code>: the Kong entity representing a way to map downstream requests to upstream services.</li>
-              {% endif %}
-              {% if page.params.consumer_id %}
-                <li><code>Consumer</code>: the Kong entity representing a developer or machine using the API. When using Kong, a Consumer only communicates with Kong which proxies every call to the said upstream API.</li>
-                <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
-              {% endif %}
-                <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
-              {% if page.params.api_id %}
-              <li><code>API</code>: a legacy entity used to represent your upstream services. <strong>Deprecated</strong> in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</li>
-              {% endif %}
-            </ul>
-          {% endif %}
-
-          {% if page.installation %}
-            <hr>
-            <h2 id="installation">Installation</h2>
-
-            {{ page.installation | markdownify }}
-
-            <hr>
-          {% endif %}
-
-          {% if page.type == "plugin" %}
-            <h2 id="configuration">Configuration</h2>
-            {% if page.params.service_id %}
-              {{ plugin_config_for_service | markdownify }}
-            {% endif %}
-            {% if page.params.route_id %}
-              {{ plugin_config_for_route | markdownify }}
-            {% endif %}
-            {% if page.params.consumer_id %}
-              {{ plugin_config_for_consumer | markdownify }}
-            {% endif %}
-            {% if page.params.api_id %}
-              {{ plugin_config_for_api | markdownify }}
-            {% endif %}
-
-            <h4>Global plugins</h4>
-
-            <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
-              Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
-              Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
-              <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
-            </p>
-
-            <h4>Parameters</h4>
-
-            <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
-
-            {{ params_table | markdownify }}
-
-          {% endif %}
-
-          {{ page.params.extra | markdownify }}
-
-          {{ content }}
-
-          {% if page.terms_of_service %}
-            <h3 id="terms-of-service">Terms of Service</h3>
-            {{ page.terms_of_service | markdownify }}
-          {% endif %}
-
-          {% if page.privacy_policy %}
-            <h3 id="privacy-policy">Privacy Policy</h3>
-            {{ page.privacy_policy | markdownify }}
-          {% endif %}
+          {{ full_content }}
         </div>
       </div>
     </div>

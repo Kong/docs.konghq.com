@@ -24,6 +24,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Commit message format](#commit-message-format)
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
+  - [Table of Contents generator](#table-of-contents-generator)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 ## Where to seek help?
@@ -344,6 +345,31 @@ Instead, please:
 
 [Back to TOC](#table-of-contents)
 
+### Table of Contents generator
+
+Almost all pages have an automatic Table of Contents (ToC) added to the top of
+the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
+
+To inhibit the automatic addition of ToC, add the following to the front-matter
+`toc: false`
+
+This ToC generator depends on headings being correctly coded in the markdown
+portion of the doc site files. If a page has an incorrectly-formatted ToC, be
+sure to check:
+
+- Heading levels must be correctly nested. Thus, heading levels like this:
+```
+# Heading
+## Sub-heading
+#### Sub-sub-sub-heading
+```
+will cause a broken ToC, and should be corrected to:
+```
+# Heading
+## Sub-heading
+### Sub-sub-heading
+```
+- Heading levels 5 and beyond are not supported - see https://github.com/Kong/docs.konghq.com/issues/942
 
 ### Contributor T-shirt
 

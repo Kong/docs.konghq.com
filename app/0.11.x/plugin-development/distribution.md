@@ -14,17 +14,6 @@ plugin(s).
 These steps should be applied to each node in your Kong cluster, to ensure the
 custom plugin(s) are available on each one of them.
 
-
-### Table of Contents
-
-- [Packaging sources](#packaging-sources)
-- [Installing the plugin](#installing-the-plugin)
-- [Load the plugin](#load-the-plugin)
-- [Verify loading the plugin](#verify-loading-the-plugin)
-- [Removing a plugin](#removing-a-plugin)
-- [Distribute your plugin](#distribute-your-plugin)
-- [Troubleshooting](#troubleshooting)
-
 ### Packaging sources
 
 You can either use a regular packing strategy (eg. `tar`), or use the LuaRocks

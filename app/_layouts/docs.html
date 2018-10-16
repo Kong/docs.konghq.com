@@ -73,31 +73,6 @@ id: documentation
         {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
       {% endif %}
 
-      {% for nav in page.nav %}
-      <nav>
-        {% if nav.items %}
-          <h5>{{ nav.label }}</h5>
-        {% else %}
-          <a href="#{{ nav.label | slugify }}"><h5>{{ nav.label }}</h5></a>
-        {% endif %}
-        <ul>
-            {% for item in nav.items %}
-              <li>
-                <a href="#{{ item.label | slugify }}">{{ item.label }}</a>
-
-                {% if item.items %}
-                  <ul>
-                    {% for subitem in item.items %}
-                      <li><a href="#{{ subitem.label | slugify }}">{{ subitem.label }}</a></li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-      </nav>
-      {% endfor %}
-
       {% for nav in page.nav_items %}
       <nav>
         {% if nav.url %}
@@ -142,6 +117,12 @@ id: documentation
             <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/latest">here</a> to browse the documentation for the latest version.
           </div>
           {% endif %}
+
+          {% assign filename = page.path | split: '/' | last %}
+          {% unless filename == "index.md" or page.toc == false %}
+            <h2 id="table-of-contents">Table of Contents</h2>
+            {% include toc.html html=content %}
+          {% endunless %}
 
           {{ content }}
 

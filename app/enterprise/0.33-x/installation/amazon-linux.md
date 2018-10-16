@@ -29,7 +29,7 @@ Create `kong` user
 
 ```bash
 $ psql
-> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong'; 
+> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 > \q
 ```
 
@@ -49,7 +49,7 @@ $ kong migrations up -c /etc/kong/kong.conf.default
 $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
 ```
 
-### Setup HTTPie to make commands easier
+## Setup HTTPie to make commands easier
 
 ```bash
 $ sudo yum install python-pip
@@ -68,13 +68,13 @@ $ http :8000/ip
 
 ```bash
 # Get the local IP address
-$ ifconfig 
+$ ifconfig
 
 # Uncomment the admin_listen setting, and update to something like this `admin_listen = 172.31.3.8:8001`
-$ sudo vi /etc/kong/kong.conf.default 
+$ sudo vi /etc/kong/kong.conf.default
 
 # Restart kong
-$ sudo /usr/local/bin/kong stop 
+$ sudo /usr/local/bin/kong stop
 $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
 ```
 

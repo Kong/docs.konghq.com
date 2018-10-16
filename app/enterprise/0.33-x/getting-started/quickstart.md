@@ -10,11 +10,11 @@ Admin GUI, through which you'll manage your APIs, consumers, and more. Configura
 through the Admin API and GUI is stored in Kong's [datastore][datastore-section]
 (Kong supports PostgreSQL and Cassandra).
 
-The easiest way to start using Kong EE is by following our [Docker installation][docker] instructions. 
-Alternately, you can install and run without containers by following our [CentOS][centos] or 
+The easiest way to start using Kong EE is by following our [Docker installation][docker] instructions.
+Alternately, you can install and run without containers by following our [CentOS][centos] or
 [Amazon Linux][amazonlinux] instructions.
 
-### 1. Start Kong EE
+## 1. Start Kong EE
 
 Issue the following command to prepare your datastore by running the Kong
 migrations:
@@ -36,7 +36,7 @@ $ kong start [-c /path/to/kong.conf]
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
 allowing you to point to your own configuration.
 
-### 2. Verify that Kong EE has started successfully
+## 2. Verify that Kong EE has started successfully
 
 If everything went well, you should see a message (`Kong started`)
 informing you that Kong is running.
@@ -56,7 +56,7 @@ By default Kong listens on the following ports:
 - `:8445` on which the [Admin GUI][GUI] listens for HTTPS traffic.
 
 
-### 3. Stop Kong EE
+## 3. Stop Kong EE
 
 As needed you can stop the Kong process by issuing the following [command][CLI]:
 
@@ -64,7 +64,7 @@ As needed you can stop the Kong process by issuing the following [command][CLI]:
 $ kong stop
 ```
 
-### 4. Reload Kong EE
+## 4. Reload Kong EE
 
 Issue the following command to [reload][CLI] Kong without downtime:
 

@@ -2,30 +2,6 @@
 name: JWT
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Getting Started
-    items:
-      - label: Terminology
-      - label: Configuration
-  - label: Documentation
-    items:
-      - label: Create a Consumer
-      - label: Create a JWT credential
-      - label: Delete a JWT credential
-      - label: List JWT credentials
-      - label: Craft a JWT with a secret (HS256)
-      - label: Send a request with the JWT
-      - label: (Optional) Verified claims
-      - label: (Optional) Base64 encoded secret
-      - label: Craft a JWT with public/private keys (RS256)
-      - label: Generate public/private keys
-      - label: Using the JWT plugin with Auth0
-      - label: Upstream Headers
-      - label: Paginate through the JWTs
-      - label: Retrieve the Consumer associated with a JWT
-
 desc: Verify and authenticate JSON Web Tokens
 description: |
   Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in [RFC 7519](https://tools.ietf.org/html/rfc7519)). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through:
@@ -40,7 +16,7 @@ description: |
     <strong>Note:</strong> The functionality of this plugin as bundled
     with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
     differs from what is documented herein. Refer to the
-    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a> 
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>
 
@@ -278,7 +254,7 @@ valid signature, invalid verified claim (**option**) | no                       
   <strong>Note:</strong> When the JWT is valid and proxied to the upstream service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
 </div>
 
-### (**Optional**) Verified claims
+### (Optional) Verified claims
 
 Kong can also perform verification on registered claims, as defined in [RFC 7519](https://tools.ietf.org/html/rfc7519). To perform verification on a claim, add it to the `config.claims_to_verify` property:
 
@@ -297,7 +273,7 @@ claim name | verification
 `exp`      | identifies the expiration time on or after which the JWT must not be accepted for processing.
 `nbf`      | identifies the time before which the JWT must not be accepted for processing.
 
-### (**Optional**) Base64 encoded secret
+### (Optional) Base64 encoded secret
 
 If your secret contains binary data, you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 
