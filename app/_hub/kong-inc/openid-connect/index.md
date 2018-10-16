@@ -166,7 +166,7 @@ say password credentials without affecting too many things.
 The best method to use here is to use OpenID Connect Authentication using
 *authorization code** flow. Kong sets up a session with the browser. After
 initial authentication the browser will send the cookie automatically —
-even when making API requests using Javascript. With authorization code
+even when making API requests using JavaScript. With authorization code
 flow you can usually utilize stronger authentication methods such as
 two-factor authentication on your identity provider.
 

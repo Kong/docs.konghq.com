@@ -330,7 +330,7 @@ Now that we have created our two test pages, let's take a look at how the Dev Po
 
 ## JavaScript hooks
 
-You can find these functions in the `unauthenticated/auth-js` partial in the Example Dev Portal. They allow you to hook into the Dev Portal authentication behavior through javascript functions.
+You can find these functions in the `unauthenticated/auth-js` partial in the Example Dev Portal. They allow you to hook into the Dev Portal authentication behavior through JavaScript functions.
 
 **onLoginError**
 
@@ -394,7 +394,7 @@ function onRegistrationSuccess() {
 
 The Dev Portal uses the [Local Storage API](https://developer.mozilla.org/en-US/Web/API/Window/localStorage) to store and retrieve Authentication credentials, parameters, and headers. Local Storage is saved on every successful login, and it is retrieved on every Dev Portal File API request based the `auth-store-types` value, until you [logout](#logging-out). 
 
-> **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Any javascript executed on the same domain as your Dev Portal can access these values so it advised that you always used SSL/TLS and either use openid-connect to secure your developer portal (as it uses javascript inaccessible HTTP-only encrypted cookies), or limit the amount of third-party javascript injected on your Developer Portal to prevent [XSS vulnerabilities](https://developer.mozilla.org/en-US/Glossary/Cross-site_scripting).
+> **IMPORTANT**: Local Storage Authentication credentials are stored in the browser via base64-encoding, but are not encrypted. Any JavaScript executed on the same domain as your Dev Portal can access these values so it advised that you always used SSL/TLS and either use openid-connect to secure your developer portal (as it uses JavaScript inaccessible HTTP-only encrypted cookies), or limit the amount of third-party JavaScript injected on your Developer Portal to prevent [XSS vulnerabilities](https://developer.mozilla.org/en-US/Glossary/Cross-site_scripting).
 
 > **Note:** Openid-connect uses cookies to persist authentication, and therefore does not use Local Storage.
 

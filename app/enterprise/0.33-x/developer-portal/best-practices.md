@@ -60,9 +60,9 @@ In this example the name of the file on disk is `custom.css`. You are free to na
 
 ## Customizing Front End Behavior with JavaScript
 
-Including custom javascript is similar to customizing CSS.
+Including custom JavaScript is similar to customizing CSS.
 
-To use custom javascript we need to download the `custom-js` file, make our custom changes, and then upload those changes to the `custom-js` file.
+To use custom JavaScript we need to download the `custom-js` file, make our custom changes, and then upload those changes to the `custom-js` file.
 
 Use this command to get the JSON object that represents the `custom-js` file
 
