@@ -80,7 +80,7 @@ local BasePlugin = require "kong.plugins.base_plugin"
 local CustomHandler = BasePlugin:extend()
 
 -- Your plugin handler's constructor. If you are extending the
--- Base Plugin handler, it's only role is to instanciate itself
+-- Base Plugin handler, it's only role is to instantiate itself
 -- with a name. The name is your plugin name as it will be printed in the logs.
 function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")

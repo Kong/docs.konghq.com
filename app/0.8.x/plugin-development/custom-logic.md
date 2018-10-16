@@ -51,7 +51,7 @@ All of those functions take one parameter given by Kong: the configuration of yo
 The `handler.lua` file must return a table implementing the functions you wish to be executed. In favor of brevity, here is a commented example module implementing all the available methods:
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
+  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritance pattern.
 </div>
 
 ```lua
@@ -63,7 +63,7 @@ local BasePlugin = require "kong.plugins.base_plugin"
 local CustomHandler = BasePlugin:extend()
 
 -- Your plugin handler's constructor. If you are extending the
--- Base Plugin handler, it's only role is to instanciate itself
+-- Base Plugin handler, it's only role is to instantiate itself
 -- with a name. The name is your plugin name as it will be printed in the logs.
 function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")

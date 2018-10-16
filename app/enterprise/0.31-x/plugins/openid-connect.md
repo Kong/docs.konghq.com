@@ -157,7 +157,7 @@ requirements will vary depending on your use case and identity provider.
 
 #### Descriptions
 
-Parameter ¹                          | Desciption  
+Parameter ¹                          | Description  
 ------------------------------------:|-----------
 `issuer`                             | The issuer `url` from which OpenID Connect configuration can be discovered.
 `client_arg`                         | Allows you to define client argument name used to pick up the right client configuration.
@@ -372,7 +372,7 @@ that is used to pick up correct parameters by index from the following:
 
 Indexing starts from `1`. If no such index is found, then the index of `1`
 is used. You can also you the actual `client_id` and then we use the index
-of the `config.client_id` to rest of the paramters (and fallback to `1` if
+of the `config.client_id` to rest of the parameters (and fallback to `1` if
 not found in specified index).
 
 #### config.client_id
@@ -594,7 +594,7 @@ Default           | Required
 `"authorization"` | `no`
 
 If you want to use different name for the cookie, you can use this
-paramter to define one.
+parameter to define one.
 
 #### config.session_cookie_name
 
@@ -709,7 +709,7 @@ Value         | Enabled by Default | Description
 :------------:|:------------------:|------------
 `"query"`     | `yes`              | If specified, tries to find id token from the URL's query string.
 `"header"`    | `yes`              | If specified, tries to find id token from the HTTP header.
-`"body"`      | `yes`              | If specified, tries to find id token from the HTTP request body (according to the possiblities defined above).
+`"body"`      | `yes`              | If specified, tries to find id token from the HTTP request body (according to the possibilities defined above).
 
 Here are the unconfigured defaults:
 
@@ -928,7 +928,7 @@ define the suffix.
 
 #### config.logout_methods
 
-Specify HTTP methods that are allowd for logout. You can use these
+Specify HTTP methods that are allowed for logout. You can use these
 methods:
 
 * `"POST"`
@@ -960,7 +960,7 @@ on logout, redirect client to here.
 Define the name of the claim that you want to use for consumer mapping.
 Setting this value will also make it possible to limit access to only
 those tokens that have a matching consumer in Kong. A good value for
-this settting is `"sub"`. The claim value will be loaded from ID token,
+this setting is `"sub"`. The claim value will be loaded from ID token,
 if provided or access token or introspection results. If no match is
 found a `403` error is returned. In case you have defined `config.anonymous`
 the anonymous consumer will be searched as well, and will be used as a

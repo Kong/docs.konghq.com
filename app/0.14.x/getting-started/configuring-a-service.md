@@ -17,7 +17,7 @@ first need to add a _Service_; that is the name Kong uses to refer to the upstre
 it manages.
 
 For the purpose of this guide, we'll create a Service pointing to the [Mockbin API][mockbin]. Mockbin is
-an "echo" type public website which returns the requests it gets back to the requester, as reponses. This
+an "echo" type public website which returns the requests it gets back to the requester, as responses. This
 makes it helpful for learning how Kong proxies your API requests.
 
 Before you can start making requests against the Service, you will need to add a _Route_ to it.

@@ -221,7 +221,7 @@ kong.service.request.set_header("X-Foo", "value")
 
 Adds a request header with the given value to the request to the Service.  Unlike
  `kong.service.request.set_header()`, this function will not remove any existing
- headers with the same name. Instead, several occurences of the header will be
+ headers with the same name. Instead, several occurrences of the header will be
  present in the request. The order in which headers are added is retained.
 
 

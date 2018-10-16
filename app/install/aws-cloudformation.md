@@ -106,7 +106,7 @@ on AWS RDS for you.
     instance. Check the description of each field and provide the appropriate
     values.
 
-    **Note**: *consult the [templates documentation on Github]({{ site.repos.cloudformation }}) for detailed description of parameters*
+    **Note**: *consult the [templates documentation on GitHub]({{ site.repos.cloudformation }}) for detailed description of parameters*
 
 5. **Option page**
 
@@ -116,7 +116,7 @@ on AWS RDS for you.
 
 5. **Template Documentation**
 
-    For more details on parameters and further configuration options, please consult the [templates documentation on Github]({{ site.repos.cloudformation }})
+    For more details on parameters and further configuration options, please consult the [templates documentation on GitHub]({{ site.repos.cloudformation }})
 
 6. **Grab a Coffee!**
 

@@ -678,7 +678,7 @@ An http-client class to perform requests.
     <h5>Usage:</h5>
     <ul>
       <li><pre class="example"><span class="keyword">local</span> res = <span class="global">assert</span>(client:send { .. your request params here .. })
-<span class="keyword">local</span> body = <span class="global">assert</span>.has.status(<span class="number">200</span>, res)             <span class="comment">-- or alternativly
+<span class="keyword">local</span> body = <span class="global">assert</span>.has.status(<span class="number">200</span>, res)             <span class="comment">-- or alternatively
 </span><span class="keyword">local</span> body = <span class="global">assert</span>.response(res).has.status(<span class="number">200</span>)    <span class="comment">-- does the same</span></pre></li>
     </ul>
 

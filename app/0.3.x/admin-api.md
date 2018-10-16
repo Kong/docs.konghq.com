@@ -542,7 +542,7 @@ HTTP 200 OK
 
 ### List All Plugin Configurations
 
-You can use the `/plugins_configuration` endpoint to acces a global list of all the configured plugins on your cluster.
+You can use the `/plugins_configuration` endpoint to access a global list of all the configured plugins on your cluster.
 
 **Endpoint**
 

@@ -160,7 +160,7 @@ gulp.task('pdk-docs', function (cb) {
   // 1.2 Check that nav file has the correct yaml entry
   pdkRegex = /[ ]+- text: Plugin Development Kit[\s\S]+\n-/gm
   if (!doc.match(pdkRegex)) {
-    return cb('Could not find the appropiate section in ' + navFilepath)
+    return cb('Could not find the appropriate section in ' + navFilepath)
   }
 
   // 1.3 Generate new yaml using ldoc
@@ -197,7 +197,7 @@ gulp.task('pdk-docs', function (cb) {
   obj = childProcess.spawnSync(cmd, { shell: true })
   // ignore "unkwnown tag" errors
   errLog = obj.stderr.toString().replace(/.*unknown tag.*\n/g, '')
-  if (errLog.lenth > 0) {
+  if (errLog.length > 0) {
     return cb(errLog)
   }
   modules = JSON.parse(obj.stdout.toString())

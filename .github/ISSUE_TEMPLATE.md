@@ -1,5 +1,5 @@
 <!-- 
-Did you spot a typo or do you want to contribute to documentation? Instead of a github issue, we encourage you to submit a pull-request (https://help.github.com/articles/creating-a-pull-request/) and we will review your changes!
+Did you spot a typo or do you want to contribute to documentation? Instead of a GitHub issue, we encourage you to submit a pull-request (https://help.github.com/articles/creating-a-pull-request/) and we will review your changes!
 
 For all other issues, please fill in the sections below.
 

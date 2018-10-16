@@ -82,7 +82,7 @@ Setting [`portal_gui_url`][portal_gui_url] to `http://dev-portal.company.com` wi
   - Give context to Admin GUI and Dev Portal.
   - Update [CORS][CORS] in the Kong Proxy to only accept Dev Portal requests from the [`portal_gui_url`][portal_gui_url].
 
-Next: Learn more about our [Property Referrences &rsaquo;]({{page.book.next}})
+Next: Learn more about our [Property References &rsaquo;]({{page.book.next}})
 
 [portal_gui_url]: /enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#portal_gui_url
 [proxy_url]: /enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#proxy_url

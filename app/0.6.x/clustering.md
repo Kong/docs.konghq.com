@@ -86,7 +86,7 @@ A Kong node only needs to join one another node in a cluster, and it will automa
 
 ## 4. Removing nodes from a cluster
 
-Everytime a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions from `alive` to `left`.
+Every time a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions from `alive` to `left`.
 
 To gracefully stop and remove a node from the cluster just execute the `kong quit` or `kong stop` CLI commands.
 

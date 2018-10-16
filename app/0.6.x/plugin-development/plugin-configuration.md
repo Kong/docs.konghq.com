@@ -51,7 +51,7 @@ The `self_check` function must be implemented as follows:
 -- @param `schema` A table describing the schema (rules) of your plugin configuration.
 -- @param `config` A key/value table of the current plugin's configuration.
 -- @param `dao` An instance of the DAO (see DAO chapter).
--- @param `is_updating` A boolean indicating wether or not this check is performed in the context of an update.
+-- @param `is_updating` A boolean indicating whether or not this check is performed in the context of an update.
 -- @return `valid` A boolean indicating if the plugin's configuration is valid or not.
 -- @return `error` A DAO error (see DAO chapter)
 ```

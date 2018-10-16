@@ -1033,7 +1033,7 @@ Value         | Enabled by Default | Description
 :------------:|:------------------:|------------
 `"header"`    | `yes`              | If specified, tries to find id token from the HTTP header.
 `"query"`     | `yes`              | If specified, tries to find id token from the URL's query string.
-`"body"`      | `yes`              | If specified, tries to find id token from the HTTP request body (according to the possiblities defined above).
+`"body"`      | `yes`              | If specified, tries to find id token from the HTTP request body (according to the possibilities defined above).
 
 Here are the unconfigured defaults:
 
@@ -1335,7 +1335,7 @@ on logout, redirect client to here.
 
 #### config.token_exchange_endpoint
 
-Whe you specify this parameter, the plugin will call the token exchange
+When you specify this parameter, the plugin will call the token exchange
 endpoint to exchange the access token with a new one before proxying to
 upstream.
 

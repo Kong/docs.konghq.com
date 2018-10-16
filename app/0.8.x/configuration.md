@@ -81,7 +81,7 @@ proxy_listen: "0.0.0.0:8000"
 ```
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you dont't want to expose Kong externally.
+  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you don't want to expose Kong externally.
 </div>
 
 ----
@@ -97,7 +97,7 @@ proxy_listen_ssl: "0.0.0.0:8443"
 ```
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you dont't want to expose Kong externally.
+  <strong>Note:</strong> This port is used to consume APIs through Kong. Set the appropriate firewall settings if you don't want to expose Kong externally.
 </div>
 
 ----
