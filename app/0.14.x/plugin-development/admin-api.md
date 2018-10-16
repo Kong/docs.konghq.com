@@ -15,7 +15,7 @@ kong.plugins.<plugin_name>.api
 ---
 
 Kong can be configured using a REST interface referred to as the [Admin API].
-Plugins can extend it by adding their own endpoints to accomodate custom
+Plugins can extend it by adding their own endpoints to accommodate custom
 entities or other personalized management needs. A typical example of this is
 the creation, retrieval, and deletion (commonly referred to as "CRUD
 operations") of API keys.

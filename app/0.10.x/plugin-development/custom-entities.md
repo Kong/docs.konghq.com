@@ -17,7 +17,7 @@ chapter: 6
 
 Your plugin might need to store more than its configuration in the database. In that case, Kong provides you with an abstraction on top of its primary datastores which allows you to store custom entities.
 
-As explained in the [previous chapter]({{page.book.previous}}), Kong interacts with the model layer through classes we refer to as "DAOs", and available on a singleton often refered to as the "DAO Factory". This chapter will explain how to to provide an abstraction for your own entities.
+As explained in the [previous chapter]({{page.book.previous}}), Kong interacts with the model layer through classes we refer to as "DAOs", and available on a singleton often referred to as the "DAO Factory". This chapter will explain how to to provide an abstraction for your own entities.
 
 ---
 
@@ -113,7 +113,7 @@ This schema is to be defined in a module named:
 "kong.plugins.<plugin_name>.daos"
 ```
 
-Once that module returns your entity's schema, and assuming your plugin is loaded by Kong (see the `custom_plugins` property in `kong.yml`), the DAO Factory will use it to instanciate a DAO object.
+Once that module returns your entity's schema, and assuming your plugin is loaded by Kong (see the `custom_plugins` property in `kong.yml`), the DAO Factory will use it to instantiate a DAO object.
 
 Here is an example of how one would define a schema to store API keys in a his or her database:
 

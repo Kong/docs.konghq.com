@@ -203,7 +203,7 @@ Returns the port component of the request's URL, but also considers
 
 **Returns**
 
-* `number` the forwared port
+* `number` the forwarded port
 
 
 **Usage**

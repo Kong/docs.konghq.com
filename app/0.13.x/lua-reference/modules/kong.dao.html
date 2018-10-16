@@ -75,10 +75,10 @@ layout: default
     <div class="content">
 <h1><code>kong.dao</code></h1>
 <p>Operates over entities of a given type in a database table.</p>
-<p>An instance of this class is to be instanciated for each entity, and can interact
+<p>An instance of this class is to be instantiated for each entity, and can interact
  with the table representing the entity in the database.</p>
 
-<p> Instanciations of this class are managed by the DAO Factory.</p>
+<p> Instantiations of this class are managed by the DAO Factory.</p>
 
 <p> This class provides an abstraction for various databases (PostgreSQL, Cassandra)
  and is responsible for propagating clustering events related to data invalidation,
@@ -118,7 +118,7 @@ layout: default
   </tr>
   <tr>
     <td class="name"><a href="#DAO:new">DAO:new (db, model_mt, schema, constraints)</a></td>
-    <td class="summary">Instanciate a DAO.</td>
+    <td class="summary">Instantiate a DAO.</td>
   </tr>
   <tr>
     <td class="name"><a href="#DAO:update">DAO:update (tbl, filter_keys, options)</a></td>
@@ -156,7 +156,7 @@ layout: default
       </li>
       <li>
         <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        err If an error occured, a table describing the issue.
+        err If an error occurred, a table describing the issue.
       </li>
     </ul>
 
@@ -193,7 +193,7 @@ layout: default
       </li>
       <li>
         <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        err If an error occured, a table describing the issue.
+        err If an error occurred, a table describing the issue.
       </li>
     </ul>
 
@@ -227,7 +227,7 @@ layout: default
       </li>
       <li>
         <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        err If an error occured, a table describing the issue.
+        err If an error occurred, a table describing the issue.
       </li>
     </ul>
 
@@ -261,7 +261,7 @@ layout: default
       </li>
       <li>
         <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        err If an error occured, a table describing the issue.
+        err If an error occurred, a table describing the issue.
       </li>
     </ul>
 
@@ -303,7 +303,7 @@ layout: default
       </li>
       <li>
         <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        err If an error occured, a table describing the issue.
+        err If an error occurred, a table describing the issue.
       </li>
     </ul>
 
@@ -342,7 +342,7 @@ layout: default
       </li>
       <li>
         <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        err If an error occured, a table describing the issue.
+        err If an error occurred, a table describing the issue.
       </li>
     </ul>
 
@@ -356,8 +356,8 @@ layout: default
     <h4><a name="DAO:new">DAO:new</a></h4>
   </dt>
   <dd>
-    Instanciate a DAO.
- The DAO Factory is responsible for instanciating DAOs for each entity.
+    Instantiate a DAO.
+ The DAO Factory is responsible for instantiating DAOs for each entity.
  This method is only documented for clarity.
 
     <h5>Parameters:</h5>
@@ -372,11 +372,11 @@ layout: default
         </li>
         <li>
           <code class="parameter">schema</code>
-          The schema of the entity for which this DAO is instanciated. The schema contains crucial informations about how to interact with the database (fields type, table name, etc...)
+          The schema of the entity for which this DAO is instantiated. The schema contains crucial information about how to interact with the database (fields type, table name, etc...)
         </li>
         <li>
           <code class="parameter">constraints</code>
-          A table of contraints built by the DAO Factory. Such constraints are mostly useful for databases without support for foreign keys. SQL databases handle those contraints natively.
+          A table of constraints built by the DAO Factory. Such constraints are mostly useful for databases without support for foreign keys. SQL databases handle those constraints natively.
         </li>
     </ul>
 
@@ -429,7 +429,7 @@ layout: default
       </li>
       <li>
         <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        err If an error occured, a table describing the issue.
+        err If an error occurred, a table describing the issue.
       </li>
     </ul>
 

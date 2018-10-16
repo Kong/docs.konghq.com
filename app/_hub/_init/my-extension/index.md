@@ -13,7 +13,7 @@ name: # (required) The name of your extension.
   # Use capitals and spaces as needed.
 publisher: # (required) The name of the entity publishing this extension.
   # Use capitals and spaces as needed.
-  # If you are an individual, you might choose to use your Github handle, or your name.
+  # If you are an individual, you might choose to use your GitHub handle, or your name.
   # If this is being published and supported by a company, please use your company name.
   # Note that every extension by a given publisher must have the exact same value
 

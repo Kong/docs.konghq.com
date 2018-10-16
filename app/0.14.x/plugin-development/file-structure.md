@@ -25,7 +25,7 @@ kong.plugins.<plugin_name>.<module_name>
 > variable, which can be tweaked to your needs via the
 > [lua_package_path](/{{page.kong_version}}/configuration/#development-miscellaneous-section)
 > configuration property.
-> However, the prefered way of installing plugins is through
+> However, the preferred way of installing plugins is through
 > [LuaRocks](https://luarocks.org/), which Kong natively integrates with.
 > More on LuaRocks-installed plugins later in this guide.
 

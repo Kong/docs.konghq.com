@@ -306,7 +306,7 @@ A diagram representing this flow:
 
 9. Once the Access Token has been retrieved, the client application will make requests on behalf of the user to your upstream service.
 
-10. Access Tokens can expire, and when that happens the client application needs to renew the Access Token with Kong and retreive a new one.
+10. Access Tokens can expire, and when that happens the client application needs to renew the Access Token with Kong and retrieve a new one.
 
 In this flow, the steps that you need to implement are:
 

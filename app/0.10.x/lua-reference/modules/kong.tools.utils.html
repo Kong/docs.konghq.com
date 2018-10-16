@@ -76,7 +76,7 @@ layout: default
 <h1><code>kong.tools.utils</code></h1>
 <p>Module containing some general utility functions used in many places in Kong.</p>
 <p>NOTE: Before implementing a function here, consider if it will be used in many places
- across Kong. If not, a local function in the appropriate module is prefered.</p>
+ across Kong. If not, a local function in the appropriate module is preferred.</p>
 
 
 <h3>Info:</h3>
@@ -132,7 +132,7 @@ layout: default
   </tr>
   <tr>
     <td class="name"><a href="#normalize_ip">normalize_ip (address)</a></td>
-    <td class="summary">verifies and normalizes ip adresses and hostnames.</td>
+    <td class="summary">verifies and normalizes ip addresses and hostnames.</td>
   </tr>
   <tr>
     <td class="name"><a href="#normalize_ipv4">normalize_ipv4 (address)</a></td>
@@ -378,7 +378,7 @@ layout: default
     Formats an ip address or hostname with an (optional) port for use in urls.
  Supports ipv4, ipv6 and names.</p>
 
-<p> Explictly accepts 'nil+error' as input, to pass through any errors from the normalizing and name checking functions.
+<p> Explicitly accepts 'nil+error' as input, to pass through any errors from the normalizing and name checking functions.
 
     <h5>Parameters:</h5>
     <ul>
@@ -514,7 +514,7 @@ layout: default
     <h5>Returns:</h5>
     <ul>
       <li>
-        success A boolean indicating wether the module was found.
+        success A boolean indicating whether the module was found.
       </li>
       <li>
         module The retrieved module, or the error in case of a failure
@@ -531,7 +531,7 @@ layout: default
     <h4><a name="normalize_ip">normalize_ip</a></h4>
   </dt>
   <dd>
-    verifies and normalizes ip adresses and hostnames.  Supports ipv4, ipv4:port, ipv6, [ipv6]:port, name, name:port.
+    verifies and normalizes ip addresses and hostnames.  Supports ipv4, ipv4:port, ipv6, [ipv6]:port, name, name:port.
  Returned ipv4 addresses will have no leading zero's, ipv6 will be fully expanded without brackets.
  Note: a name will not be normalized!
 
