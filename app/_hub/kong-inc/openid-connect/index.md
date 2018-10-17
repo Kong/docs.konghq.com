@@ -109,7 +109,7 @@ description: |
 
 
 enterprise: true
-type: integration
+type: plugin
 categories:
   - authentication
 
