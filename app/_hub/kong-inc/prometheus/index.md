@@ -4,7 +4,7 @@ publisher: Kong Inc.
 
 desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
 description: |
-    Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scrapped by a Prometheus Server.
+    Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.
 
 type: plugin
 categories:
@@ -152,25 +152,25 @@ kong_nginx_metric_errors_total 0
 
 ### Accessing the metrics
 
-In most configurations the Kong Admin API will be behind a firewall or would
-need to be setup to require authentication, here are a couple of options to
+In most configurations, the Kong Admin API will be behind a firewall or would
+need to be set up to require authentication, here are a couple of options to
 allow access to the `/metrics` endpoint to Prometheus.
 
 
 1. Kong Enterprise users can protect the admin `/metrics` endpoint with an
    [RBAC user](/enterprise/latest/setting-up-admin-api-rbac) that the
-   Prometheus servers uses to access the metric data. Access through any
+   Prometheus servers use to access the metric data. Access through any
    firewalls would also need to be configured.
 
 2. You can proxy the Admin API through Kong itself then use plugins to limit
-   access. For example you can create a route `/metrics` endpoint and have
-   Prometheus access this endpoint to slurp in the metrics, while preventing
+   access. For example, you can create a route `/metrics` endpoint and have
+   Prometheus access this endpoint to slurp in the metrics while preventing
    others from access it. The specifics of how this is configured will depend
    on your specific setup. Read the docs [Securing the Admin
    API](https://docs.konghq.com/latest/secure-admin-api/#kong-api-loopback) for
    details.
 
-3. Lastly you could serve the content on a different port with a custom server
+3. Finally, you could serve the content on a different port with a custom server
    block using a [custom Nginx
    template](/latest/configuration/#custom-nginx-configuration) with Kong.
 
