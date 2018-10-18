@@ -277,7 +277,7 @@ claim name | verification
 
 If your secret contains binary data, you can store them as base64 encoded in Kong. Enable this option in the plugin's configuration:
 
-You can patch an existing1 Route:
+You can patch an existing Route:
 
 ```bash
 $ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
