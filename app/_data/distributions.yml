@@ -42,7 +42,7 @@
   name: Ubuntu
   type: package
 
-- id: osx
+- id: macos
   name: macOS
   type: package
 
