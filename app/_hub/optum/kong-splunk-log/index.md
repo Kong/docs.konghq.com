@@ -64,43 +64,43 @@ params:
       required: false
       value_in_examples: POST
       urlencode_in_examples: false
-      default: POST
+      default: "`POST`"
       description: HTTP Method to send to Splunk
     - name: content_type
       required: false
       value_in_examples: application/json
       urlencode_in_examples: false
-      default: application/json
+      default: "`application/json`"
       description: Defines the Content-Type header to send to Splunk
     - name: timeout
       required: false
       value_in_examples: 10000
       urlencode_in_examples: false
-      default: 10000
+      default: "`10000`"
       description: The amount of time to wait on a Splunk transaction before timing out
     - name: retry_count
       required: false
       value_in_examples: 5
       urlencode_in_examples: false
-      default: 5
+      default: "`5`"
       description: The number of attempts to retry logging an event on splunk connection errors
     - name: queue_size
       required: false
       value_in_examples: 20
       urlencode_in_examples: false
-      default: 20
+      default: "`20`"
       description: The max number of event logs the plugin may send in a single request
     - name: flush_timeout
       required: false
       value_in_examples: 30
       urlencode_in_examples: false
-      default: 30
+      default: "`30`"
       description: The time taken in seconds before flushing a queue of transactions to splunk that has not reached its max `queue_size`
     - name: keepalive
       required: false
       value_in_examples: 60000
       urlencode_in_examples: false
-      default: 60000
+      default: "`60000`"
       description: The amount of time to keep plugin connections with Splunk active
   extra: We recommend enabling the Splunk Logging plugin at a global level.
 
