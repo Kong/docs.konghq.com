@@ -104,7 +104,7 @@ params:
       required: false
       default: "`false`"
       description: |
-        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the header containing the client crentials) before proxying it.
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the header containing the client credentials) before proxying it.
     - name: accept_http_if_already_terminated
       required: false
       default: "`false`"
@@ -306,7 +306,7 @@ A diagram representing this flow:
     With either a `200 OK` or `400 Bad Request` response code depending if the request was successful or not.
 7. In **both** cases, ignore the response status code and just redirect the user to whatever URI is being returned in the `redirect_uri` property.
 
-8. The client appication will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchaging the authorization code for an access token if it's an Authorization Code Grant flow.
+8. The client application will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchanging the authorization code for an access token if it's an Authorization Code Grant flow.
 
 9. Once the Access Token has been retrieved, the client application will make requests on behalf of the user to your upstream service.
 

@@ -28,7 +28,7 @@ description: |
   server (RS) and / or as an OpenID Connect relying party (RP) between the client
   and the upstream service.
 
-  * [Detailed documentation for the EE OpenID Connect Plugin](/enterprise/latest/plugins/openid-connect/)
+  * [Detailed documentation for the Kong Enterprise OpenID Connect Plugin](/enterprise/latest/plugins/openid-connect/)
 
   The plugin supports several types of credentials, including:
 

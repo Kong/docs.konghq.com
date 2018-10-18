@@ -142,6 +142,7 @@ HTTP 201 Created or HTTP 200 OK
 | `name_or_id` | The RBAC user name or UUID. |
 
 **Request Body**
+
 | Attribute                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
 | `user_token`<br>optional | The authentication token to be presented to the Admin API. If this value is not present, the token will automatically be generated. |
@@ -286,6 +287,7 @@ HTTP 201 Created or HTTP 200 OK
 | `name_or_id` | The RBAC role or UUID. |
 
 **Request Body**
+
 | Attribute             | Description                               |
 | ---------             | -----------                               |
 | `comment`<br>optional | A string describing the RBAC role object. |
@@ -538,11 +540,13 @@ HTTP 200 OK
 ## Add a Role Entity Permisson
 **Endpoint**
 <div class="endpoint post">/rbac/roles/{name_or_id}/entities</div>
+
 | Attribute    | Description                 |
 | ---------    | -----------                 |
 | `name_or_id` | The RBAC role name or UUID. |
 
 **Request Body**
+
 | Attribute             | Description                                                                                                                     |
 | ---------             | -----------                                                                                                                     |
 | `negative`            | If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false. |
@@ -661,6 +665,7 @@ HTTP 200 Ok
 | `entity_id`           | The entity name or UUID.                                                                                                        |
 
 **Request Body**
+
 | Attribute             | Description                                                                                                                     |
 | ---------             | -----------                                                                                                                     |
 | `negative`            | If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false. |

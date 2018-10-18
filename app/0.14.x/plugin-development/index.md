@@ -22,13 +22,13 @@ Hence, Kong is a Lua application designed to load and execute Lua modules
 development environment for them, including an SDK, database abstractions,
 migrations, and more...
 
-Plugins consists of Lua modules interacting with the request/response objects
+Plugins consist of Lua modules interacting with the request/response objects
 (among other things) via the **Plugin Development Kit** (or "PDK") to implement
 arbitrary logic. The PDK is a set of Lua functions that a plugin can use to
 facilitate interactions between plugins and the core (or other components) of
 Kong.
 
-This guide will explore in details the structure of plugins, what they can
+This guide will explore in detail the structure of plugins, what they can
 extend, and how to distribute and install them. For a complete reference of the
 PDK, see the [Plugin Development Kit] reference.
 

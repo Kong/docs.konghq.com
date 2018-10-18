@@ -68,7 +68,7 @@
       enterprise: true
 
     - name: Rate Limiting
-      info: Upgrades Kong Community Edition rate limiting with more flexibility and higher performance.
+      info: Upgrades Kong's rate limiting with more flexibility and higher performance.
       enterprise: true
 
     - name: Rate Limiting

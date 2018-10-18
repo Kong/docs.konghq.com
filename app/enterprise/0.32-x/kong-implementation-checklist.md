@@ -59,9 +59,9 @@ In this section, you will find a summary about the recommended network and firew
 
 ### Ports
 
-These are the port settings in order for Kong to work: 
+These are the port settings in order for Kong to work:
 
-- Allow HTTP traffic to [proxy_listen](/latest/configuration/#proxy_listen). By default  8000. 
+- Allow HTTP traffic to [proxy_listen](/latest/configuration/#proxy_listen). By default  8000.
 - Allow HTTPS traffic to [proxy_listen_ssl](/latest/configuration/#proxy_listen_ssl). By default 8443.
 - Allow HTTP traffic to [admin_listen](/latest/configuration/#admin_listen). By default 8001.
 - Allow HTTPS traffic to [admin_listen_ssl](/latest/configuration/#admin_listen_ssl). By default 8444.
@@ -105,11 +105,11 @@ This process can be done without any down-time.
 
 Upgrading to different major versions (ie, from v0.8.0 to v0.9.1, or from 0.9.0 to 0.10.0) is a more elaborate process that cannot be done on the fly. Newer major versions provide database schema migrations that are not necessarily compatible with the previous version of Kong. Administrators should follow the instructions below carefully to avoid any issues.
 
-Prior to Kong CE 0.11 and Kong EE 0.29, nodes automatically ran migrations when started. On later versions, administrators should run migrations manually before starting nodes.
+Prior to Kong 0.11 and Kong Enterprise 0.29, nodes automatically ran migrations when started. On later versions, administrators should run migrations manually before starting nodes.
 
 Kong can keep processing existing consumers even if the datastore is down, since it caches the used datastore entities in memory. To upgrade between major versions:
 
-1. Disconnect the datastore from the current Kong cluster by setting up the appropriate firewall setting or updating the appropriate security group. 
+1. Disconnect the datastore from the current Kong cluster by setting up the appropriate firewall setting or updating the appropriate security group.
 2. Kong will now rely on its internal cache to serve existing requests.
 3. Create a node in a new Kong cluster and run "kong migrations up" to process migrations. Once the node has completed the migration, start it with "kong start". Confirm that it can process requests and configuration changes (creating and deleting a test API will suffice to confirm Kong can communicate with the datastore).
 4. Start additional nodes in the new cluster until its node count matches the old cluster size.
@@ -117,5 +117,3 @@ Kong can keep processing existing consumers even if the datastore is down, since
 6. Terminate the old cluster.
 
 Upgrades between major versions need to be planned in advance as they involve downtime for new consumers that have not been cached in memory yet, and because the Admin API won’t be available on the old cluster for the entire process.
-
-

@@ -4,22 +4,22 @@ title: Adding your API
 
 # Adding your API
 
-In this section, you'll be adding your API to Kong Enterprise Edition (EE).
+In this section, you'll be adding your API to Kong Enterprise.
 This is the first
-step to having Kong EE manage your API. For purposes of this Getting Started
+step to having Kong Enterprise manage your API. For purposes of this Getting Started
 guide, we suggest adding the [Mockbin API][mockbin] to Kong, as Mockbin is
-helpful for learning how Kong EE proxies your API requests.
+helpful for learning how Kong Enterprise proxies your API requests.
 
 Kong exposes a [RESTful Admin API][API] on ports `:8001` and `:8444` and an
 Admin GUI on ports `:8002` and `:8445` for managing the
 configuration of your Kong instance or cluster. The Admin GUI makes
 requests to the Admin API, and you can use either interface for configuring
-and managing Kong EE.
+and managing Kong Enterprise.
 
 ## 1. Add your API using the Admin API or GUI
 
 If you'd like to use the Admin API, issue the following cURL request to add
-your first API ([Mockbin][mockbin]) to Kong EE:
+your first API ([Mockbin][mockbin]) to Kong Enterprise:
 
 ```bash
 $ curl -i -X POST \
@@ -68,7 +68,7 @@ Connection: keep-alive
 
 Kong is now aware of your API and ready to proxy requests.
 
-## 3. Forward your requests through Kong EE
+## 3. Forward your requests through Kong Enterprise
 
 Issue the following cURL request to verify that Kong is properly forwarding
 requests to your API. Note that [by default][proxy-port] Kong handles proxy
@@ -89,7 +89,7 @@ the header defined in the above cURL request `Host: example.com`
 
 ## Next Steps
 
-Now that you've added your API to Kong EE, let's learn how to enable plugins.
+Now that you've added your API to Kong Enterprise, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 

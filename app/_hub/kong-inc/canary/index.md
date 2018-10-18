@@ -8,7 +8,7 @@ desc: Slowly roll out software changes to a subset of users
 description: |
   Reduce the risk of introducing a new software version in production by slowly rolling out the change to a small subset of users. This plugin also enables roll back to your original upstream service, or shift all traffic to the new version.
 
-  * [Detailed documentation for the EE Canary Release Plugin](/enterprise/latest/plugins/canary-release/)
+  * [Detailed documentation for the Kong Enterprise Canary Release Plugin](/enterprise/latest/plugins/canary-release/)
 
 enterprise: true
 type: plugin
@@ -87,13 +87,13 @@ The plugin will route traffic to 2 different upstream services, referred to as A
 There are 2 modes of operation:
 
 1. Set a fixed percentage to be routed to destination B. See parameter `config.percentage`.
-2. Set a period over which (in lineair time) the traffic will be moved over from destination A to B. See parameters `config.start` and `config.duration`.
+2. Set a period over which (in linear time) the traffic will be moved over from destination A to B. See parameters `config.start` and `config.duration`.
 
 ### Determining where to route a request
 
-The plugin defines a number of "buckets" (`config.steps`). Each of those can be routed to either A or B. For example: 100 steps, and `precentage` at 10%. Then 100 buckets will be created, of which 10 will be routed to upstream B, and 90 will remain at A.
+The plugin defines a number of "buckets" (`config.steps`). Each of those can be routed to either A or B. For example: 100 steps, and `percentage` at 10%. Then 100 buckets will be created, of which 10 will be routed to upstream B, and 90 will remain at A.
 
-Which requests end up in a specific bucket is determined by the `config.hash` parameter. When set to consumerthen it is made sure that each consumer will consistently end up in the same bucket. The effect being that once a bucket a consumer belongs to is switched to B, it will then always go to B, and a `consumer` will not "flip-flop" between A and B. Alternatively if it is set to `ip` then the same concept applies, but based on the originating ip address.
+Which requests end up in a specific bucket is determined by the `config.hash` parameter. When set to consumer then it is made sure that each consumer will consistently end up in the same bucket. The effect being that once a bucket a consumer belongs to is switched to B, it will then always go to B, and a `consumer` will not "flip-flop" between A and B. Alternatively if it is set to `ip` then the same concept applies, but based on the originating ip address.
 
 The downside of `consumer` and `ip` is that if any specific consumer or ip is responsible for a more than average part of the load, the migration is not nicely distributed. Eg. with percentage set to 50%, then 50% of either the consumers or ips are rerouted, but not necessarily 50% of the requests.
 

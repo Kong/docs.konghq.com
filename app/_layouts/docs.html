@@ -11,8 +11,8 @@ id: documentation
             <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i> Edit this Page</a>
           </div>
       <nav class="docs-navigation">
-        <a href="/" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
-        <a href="/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>
+        <a href="/" {% if page.edition == 'community' %} class="active"{% endif %}>Kong</a>
+        <a href="/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise</a>
       </nav>
       <div class="page-header-icon">
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg" alt="Documentation" />
@@ -109,7 +109,7 @@ id: documentation
         <div class="content">
           {% if page.edition == 'community' %}
             <div class="alert alert-ee">
-              Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
+              Maybe you were looking for the <a href="/enterprise"><strong>Kong Enterprise Documentation</strong></a> instead?
             </div>
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.has_version %}

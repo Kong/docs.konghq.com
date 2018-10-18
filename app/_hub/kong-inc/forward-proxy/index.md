@@ -1,6 +1,6 @@
 ---
 
-name: EE Forward Proxy
+name: Kong Enterprise Forward Proxy
 publisher: Kong Inc.
 version: 0.33-x
 

@@ -126,7 +126,7 @@
       url: /vitals
     - text: Rate Limiting Library
       url: /rate-limiting
-    - text: Kong Enterprise Edition Versioning
+    - text: Kong Enterprise Versioning
       url: /edition-versioning
     - text: Multiple Authentication Methods
       url: /allowing-multiple-authentication-methods

@@ -347,6 +347,7 @@ HTTP 200 OK
 <div class="endpoint patch">/rbac/permissions/{name_or_id}</div>
 
 #### Request Body
+
 | Attribute | Description
 | --------- | -----------
 | `name_or_id` | The RBAC permisson name or UUID.
@@ -396,6 +397,7 @@ HTTP 204 No Content
 <div class="endpoint post">/rbac/users/{name_or_id}/roles</div>
 
 #### Request Body
+
 | Attribute | Description
 | --------- | -----------
 | `roles` | Comma-separated list of role names to assign to the user.
@@ -487,6 +489,7 @@ HTTP 200 OK
 <div class="endpoint delete">/rbac/users/{name_or_id}/roles</div>
 
 #### Request Body
+
 | Attribute | Description
 | --------- | -----------
 | `roles` | Comma-separated list of role names to assign to the user.
