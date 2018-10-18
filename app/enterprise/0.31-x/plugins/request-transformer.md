@@ -21,9 +21,9 @@ title: Request Transformer Advanced Plugin
 Transform the request sent by a client in Kong, before forwarding the request to the upstream service.
 
 Request transforming functionality is available in two plugins - one is
-[bundled with Kong Community Edition (CE)](/plugins/request-transformer/),
-and the other is bundled with Kong Enterprise Edition (EE). This page documents the Kong EE version of
-the Request Transformer plugin, which has greater functionality than the CE version.
+[bundled with Kong](/plugins/request-transformer/),
+and the other is bundled with Kong Enterprise. This page documents the Kong Enterprise version of
+the Request Transformer plugin, which has greater functionality than the Kong version.
 
 ## Configuration
 

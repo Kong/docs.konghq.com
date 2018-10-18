@@ -29,5 +29,5 @@ description: |
   the Consumer already has an access token that will be validated against a
   third-party OAuth 2.0 server.
 
-  * [Detailed documentation for the EE OAuth 2.0 Introspection Plugin](/enterprise/latest/plugins/oauth2-introspection/)
+  * [Detailed documentation for the Kong Enterprise OAuth 2.0 Introspection Plugin](/enterprise/latest/plugins/oauth2-introspection/)
 ---

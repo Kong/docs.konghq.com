@@ -124,7 +124,7 @@ For the Admin GUI:
 - Allow HTTP traffic to admin_gui_listen. By default 8002.
 - Allow HTTPS traffic to admin_gui_listen_ssl. By default 8445.
 
-**Note**: since Kong CE 0.13.0 - and EE 0.32 - listen directives have a new
+**Note**: since Kong 0.13.0 - and Kong Enterprise 0.32 - listen directives have a new
 format, described [here](/latest/configuration/#proxy_listen), where instead of
 specifying SSL and non-SSL ports in different configuration directives - e.g.,
 `admin_listen` and `admin_listen_ssl` - only one is required: for example, the
@@ -192,7 +192,7 @@ Newer major versions provide database schema migrations that are not necessarily
 compatible with the previous version of Kong. Administrators should follow the
 instructions below carefully to avoid any issues.
 
-Prior to Kong CE 0.11 and Kong EE 0.29, nodes automatically ran migrations when
+Prior to Kong 0.11 and Kong Enterprise 0.29, nodes automatically ran migrations when
 started. On later versions, administrators should run migrations manually before
 starting nodes.
 

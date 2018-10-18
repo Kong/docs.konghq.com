@@ -15,14 +15,14 @@ redirect_to: /hub/kong-inc/rate-limiting-advanced
 
 
 id: page-plugin
-title: Plugins - EE Rate Limiting
+title: Plugins - Kong Enterprise Rate Limiting
 layout: plugin-ee
-header_title: EE Rate Limiting
+header_title: Kong Enterprise Rate Limiting
 header_icon: /assets/images/icons/plugins/rate-limiting.png
 breadcrumbs:
   Plugins: /plugins
 description: |
-  The Rate Limiting plugin for Kong Enterprise Edition is a re-engineered version of the incredibly popular Community Edition Rate Limiting plugin, with greatly enhanced configuration options and performance.
+  The Rate Limiting plugin for Kong Enterprise is a re-engineered version of the incredibly popular Kong Rate Limiting plugin, with greatly enhanced configuration options and performance.
 
-  * [Detailed documentation for the EE Rate Limiting Plugin](/enterprise/latest/plugins/rate-limiting-advanced/)
+  * [Detailed documentation for the Kong Enterprise Rate Limiting Plugin](/enterprise/latest/plugins/rate-limiting-advanced/)
 ---

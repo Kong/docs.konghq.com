@@ -87,8 +87,8 @@ plugin.
 If you are using an older version of Kong with the legacy [API
 entity](/0.13.x/admin-api/#api-object) (**deprecated** in favor of Services
 since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">
-CE 0.13.0</a> and
-<a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.), you
+Kong 0.13.0</a> and
+<a href="https://docs.konghq.com/enterprise/changelog/#0-32">Kong Enterprise 0.32</a>.), you
 can configure this plugin on top of such an API by making the following request:
 
 ```bash
@@ -120,7 +120,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       <tr><td><code>consumer_id</code></td><td></td><td>The id of the Consumer which this plugin will target.</td></tr>
     {% endif %}
     {% if page.params.api_id %}
-    <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td></tr>
+    <tr><td><code>api_id</code></td><td></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">Kong 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">Kong Enterprise 0.32</a>.</td></tr>
     {% endif %}
     {% for field in page.params.config %}
       <tr>
@@ -217,10 +217,10 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
       {% if page.enterprise %}
         <div class="alert alert-warning">
-          <strong>Kong Enterprise Edition (EE) only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong EE subscription</a>.
+          <strong>Kong Enterprise only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong Enterprise subscription</a>.
         </div>
 
-        Please inquire about Kong EE by <a href="https://konghq.com/request-demo">contacting us</a> - or start a <a href="https://konghq.com/free-trial/">free trial</a> today.
+        Please inquire about Kong Enterprise by <a href="https://konghq.com/request-demo">contacting us</a> - or start a <a href="https://konghq.com/free-trial/">free trial</a> today.
         <hr>
       {% endif %}
 
@@ -244,7 +244,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {% endif %}
             <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
           {% if page.params.api_id %}
-          <li><code>API</code>: a legacy entity used to represent your upstream services. <strong>Deprecated</strong> in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</li>
+          <li><code>API</code>: a legacy entity used to represent your upstream services. <strong>Deprecated</strong> in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">Kong 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">Kong Enterprise 0.32</a>.</li>
           {% endif %}
         </ul>
       {% endif %}
