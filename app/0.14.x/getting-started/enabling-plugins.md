@@ -31,38 +31,38 @@ from unauthorized use.
 To configure the key-auth plugin for the Service you <a href="/{{page.kong_version}}/getting-started/configuring-a-service">configured in Kong</a>,
 issue the following cURL request:
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/services/example-service/plugins/ \
-      --data 'name=key-auth'
-    ```
+```bash
+$ curl -i -X POST \
+  --url http://localhost:8001/services/example-service/plugins/ \
+  --data 'name=key-auth'
+```
 
-    **Note:** This plugin also accepts a `config.key_names` parameter, which
-    defaults to `['apikey']`. It is a list of headers and parameters names (both
-    are supported) that are supposed to contain the apikey during a request.
+**Note:** This plugin also accepts a `config.key_names` parameter, which
+defaults to `['apikey']`. It is a list of headers and parameters names (both
+are supported) that are supposed to contain the apikey during a request.
 
 ## 2. Verify that the plugin is properly configured
 
-    Issue the following cURL request to verify that the [key-auth][key-auth]
-    plugin was properly configured on the Service:
+Issue the following cURL request to verify that the [key-auth][key-auth]
+plugin was properly configured on the Service:
 
-    ```bash
-    $ curl -i -X GET \
-      --url http://localhost:8000/ \
-      --header 'Host: example.com'
-    ```
+```bash
+$ curl -i -X GET \
+  --url http://localhost:8000/ \
+  --header 'Host: example.com'
+```
 
-    Since you did not specify the required `apikey` header or parameter, the
-    response should be `401 Unauthorized`:
+Since you did not specify the required `apikey` header or parameter, the
+response should be `401 Unauthorized`:
 
-    ```http
-    HTTP/1.1 401 Unauthorized
-    ...
+```http
+HTTP/1.1 401 Unauthorized
+...
 
-    {
-      "message": "No API key found in request"
-    }
-    ```
+{
+  "message": "No API key found in request"
+}
+```
 
 ## Next Steps
 
