@@ -38,8 +38,8 @@ kong_version_compatibility:
     compatible:
       - 0.34-x
       - 0.33-x
-    incompatible:
       - 0.32-x
+    incompatible:
       - 0.31-x
       - 0.30-x
       - 0.29-x
