@@ -42,8 +42,8 @@
   name: Ubuntu
   type: package
 
-- id: osx
-  name: OS X
+- id: macos
+  name: macOS
   type: package
 
 - id: vagrant

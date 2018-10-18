@@ -1,7 +1,7 @@
 ---
 id: page-install-method
-title: Install - OS X
-header_title: OS X Installation
+title: Install - macOS
+header_title: macOS Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
