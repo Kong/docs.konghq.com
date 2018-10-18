@@ -41,7 +41,7 @@ description: |
   - [ID Token][idtoken] verification
   - [UserInfo][userinfo] endpoint data injecting
   - [RP-Initiated Logout][rplogout]
-  - [OAuth 2.0 Token Revovation][revocation] during the logout (optionally)
+  - [OAuth 2.0 Token Revocation][revocation] during the logout (optionally)
   - [OAuth 2.0 Token Introspection][introspection] support
   - [OAuth 2.0 Proof Key for Code Exchange][pkce] (PKCE) support
   - Standard and configurable claims verification

@@ -46,7 +46,7 @@ below.</p>
 
 ## Overview
 
-From a high-level perspective, Kong listens for HTTP traffc on its configured
+From a high-level perspective, Kong listens for HTTP traffic on its configured
 proxy port(s) (`8000` and `8443` by default). Kong will evaluate any incoming
 HTTP request against the Routes you have configured and try to find a matching
 one. If a given request matches the rules of a specific Route, Kong will

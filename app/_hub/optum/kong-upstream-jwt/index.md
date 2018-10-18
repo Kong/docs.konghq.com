@@ -99,7 +99,7 @@ $ export KONG_SSL_CERT_KEY="/path/to/kong/ssl/privatekey.key"
 $ export KONG_SSL_CERT_DER="/path/to/kong/ssl/kongpublickey.cer"
 ```
 
-**One last step** is to make the environment variables accessible by an nginx worker. To do this, simply add these line to your _nginx.conf_
+**One last step** is to make the environment variables accessible by a nginx worker. To do this, simply add these line to your _nginx.conf_
 
 ```
 env KONG_SSL_CERT_KEY;
