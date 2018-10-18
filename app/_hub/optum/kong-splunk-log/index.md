@@ -23,8 +23,8 @@ kong_version_compatibility:
     compatible:
       - 0.14.x
       - 0.13.x
-      - 0.12.x
     incompatible:
+      - 0.12.x
       - 0.11.x
       - 0.10.x
       - 0.9.x
@@ -38,15 +38,15 @@ kong_version_compatibility:
     compatible:
       - 0.34-x
       - 0.33-x
+    incompatible:
       - 0.32-x
       - 0.31-x
       - 0.30-x
-    incompatible:
       - 0.29-x
 
 params:
   name: kong-splunk-log
-  api_id: true
+  api_id: false
   service_id: true
   consumer_id: false
   route_id: true
@@ -78,6 +78,24 @@ params:
       urlencode_in_examples: false
       default: 10000
       description: The amount of time to wait on a Splunk transaction before timing out
+    - name: retry_count
+      required: false
+      value_in_examples: 5
+      urlencode_in_examples: false
+      default: 5
+      description: The number of attempts to retry logging an event on splunk connection errors
+    - name: queue_size
+      required: false
+      value_in_examples: 20
+      urlencode_in_examples: false
+      default: 20
+      description: The max number of event logs the plugin may send in a single request
+    - name: flush_timeout
+      required: false
+      value_in_examples: 30
+      urlencode_in_examples: false
+      default: 30
+      description: The time taken in seconds before flushing a queue of transactions to splunk that has not reached its max `queue_size`
     - name: keepalive
       required: false
       value_in_examples: 60000
