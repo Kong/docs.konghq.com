@@ -11,6 +11,13 @@ This repository is the source code for [Kong](https://github.com/Kong/kong)'s we
 make docker-run
 ```
 
+The site will be available after the docker container finishes compiling some required binaries. After you see
+```
+  ℹ compiling from source
+  ✔ xxxxx built successfully
+```
+Try loading `http://localhost:3000`
+
 ### Test
 
 >
