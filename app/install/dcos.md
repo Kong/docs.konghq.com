@@ -6,7 +6,7 @@ header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
 links:
-  mesos-aws: "https://dcos.io/docs/1.9/installing/cloud/aws/"
+  mesos-aws: "https://dcos.io/docs/1.9/installing/oss/cloud/aws/"
   mesos-cli: "https://dcos.io/docs/1.9/cli/"
   mesos-gui: "https://dcos.io/docs/1.9/gui/"
   marathon: "https://mesosphere.github.io/marathon/"
