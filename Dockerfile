@@ -18,5 +18,5 @@ RUN apk update && apk upgrade && apk add \
 
 RUN npm install -g gulp
 
-ENTRYPOINT ["/bin/bash", "-c"]
+ENTRYPOINT ["/srv/jekyll/entrypoint.sh"]
 CMD ["make run"]
