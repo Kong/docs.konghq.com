@@ -12,7 +12,7 @@ Start Kong.
 
 `kong start -c kong.conf.default`
 
-> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://getkong.org/latest/configuration/) in order to implement this step.
+> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](/enterprise/0.33-x/developer-portal/configuration/getting-started/) in order to implement this step.
 
 Visit the Admin GUI:
 
