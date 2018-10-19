@@ -1914,3 +1914,6 @@ HTTP 204 No Content
 [clustering]: /{{page.kong_version}}/clustering
 [cli]: /{{page.kong_version}}/cli
 [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+
+
+Notice that when matching a request against an api's hosts field, the match is case sensitive.

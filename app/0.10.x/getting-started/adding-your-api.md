@@ -20,6 +20,8 @@ helpful for learning how Kong proxies your API requests.
 Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
 configuration of your Kong instance or cluster.
 
+When matching a request against an api's hosts field, the match is case sensitive.
+
 1. ### Add your API using the Admin API
 
     Issue the following cURL request to add your first API ([Mockbin][mockbin])
