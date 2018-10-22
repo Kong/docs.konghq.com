@@ -28,7 +28,7 @@ id: documentation
             {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
             <span class="caret"></span>
           </button>
-           <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
             {% for ver in page.kong_versions reversed %}
               {% unless page.kong_version == ver.release %}
                 <li>
