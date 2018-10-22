@@ -13504,9 +13504,9 @@ section.bg-dkBlue {
     counter-increment: step;
     content: counter(step);
     box-sizing: border-box;
-    width: 50px;
-    height: 50px;
-    line-height: 48px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
     text-align: center;
     border-radius: 50%;
     border: 1px solid #E0E1E2;
