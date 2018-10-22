@@ -11,6 +11,7 @@ id: documentation
             <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i> Edit this Page</a>
           </div>
       <nav class="docs-navigation">
+        <a href="/" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
         <a href="/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>
       </nav>
       <div class="page-header-icon">
@@ -22,6 +23,22 @@ id: documentation
 
       {% if page.kong_versions.size > 1 %}
         <div class="dropdown page-header-right">
+          <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Version {{page.kong_version}}
+            {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+            <span class="caret"></span>
+          </button>
+           <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+            {% for ver in page.kong_versions reversed %}
+              {% unless page.kong_version == ver.release %}
+                <li>
+                  <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                    {{ver.release}}
+                  </a>
+                </li>
+              {% endunless %}
+            {% endfor %}
+          </ul>
           {% if page.edition == 'community' %}
           <div id="getkong-algolia-search" class="search-input">
             <i class="fa fa-search"></i>
