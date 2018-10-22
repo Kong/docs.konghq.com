@@ -5,7 +5,7 @@ title: Accessing Your Kong License File
 
 # Accessing your License File
 
-Your license file can be found along with your Kong EE installation package in Bintray. To access Bintray, login here:
+Your license file can be found along with your Kong Enterprise installation package in Bintray. To access Bintray, login here:
 (https://bintray.com/login?forwardedFrom=%2Fkong%2F)
 
 > If you are unsure of your Bintray credentials please reach out to your CSE for assistance or contact <support@konghq.com>

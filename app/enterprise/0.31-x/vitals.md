@@ -13,7 +13,7 @@ The Vitals feature in Kong's Admin API and GUI provides useful metrics about the
 - Vitals must also be enabled in Kong configuration. See below for details.
 
 ## Enabling and Disabling Vitals
-Kong Enterprise Edition ships with Vitals turned off. You can change this in your configuration:
+Kong Enterprise ships with Vitals turned off. You can change this in your configuration:
 
 ```bash
 # via your Kong configuration file; e.g., kong.conf

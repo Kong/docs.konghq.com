@@ -192,7 +192,7 @@ Newer major versions provide database schema migrations that are not necessarily
 compatible with the previous version of Kong. Administrators should follow the
 instructions below carefully to avoid any issues.
 
-Prior to Kong 0.11 and Kong EE 0.29, nodes automatically ran migrations when
+Prior to Kong 0.11 and Kong Enterprise 0.29, nodes automatically ran migrations when
 started. On later versions, administrators should run migrations manually before
 starting nodes.
 

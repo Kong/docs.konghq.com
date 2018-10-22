@@ -1,13 +1,13 @@
 ---
-title: Kong Enterprise Edition Licensing
+title: Kong Enterprise Licensing
 ---
 
-# Kong Enterprise Edition Licensing
+# Kong Enterprise Licensing
 
 ## Overview
-Kong Enterprise Edition enforces the presence and validity of a license file. 
+Kong Enterprise enforces the presence and validity of a license file. 
 
-License files must be deployed to each node running Kong EE. License file checking is done independently by each node as the Kong process starts; no network connectivity is necessary to execute the license validation process.
+License files must be deployed to each node running Kong Enterprise. License file checking is done independently by each node as the Kong process starts; no network connectivity is necessary to execute the license validation process.
 
 ## Deploying the License File
 There are three possible ways to configure a license file on a Kong node. These are defined below, in the order in which they are checked by Kong:
@@ -44,7 +44,7 @@ When a valid license file is properly deployed, license file validation is a tra
   - The attempt to verify the payload of the license with the license's signature failed. Confirm that the file is not corrupt and has not been altered since you received it from Kong Inc. Try re-downloading and installing your license file from Kong Inc. 
     - if you still receive this error, contact Kong support.
 - "license expired"
-  - The system time is past the license's license_expiration_date. Note that Kong EE provides 1-2 days worth of slack time past the license expiration date before failing to validate with this error, to account for timezone discrepancies, human error, etc.
+  - The system time is past the license's license_expiration_date. Note that Kong Enterprise provides 1-2 days worth of slack time past the license expiration date before failing to validate with this error, to account for timezone discrepancies, human error, etc.
 - "invalid license expiration date"
   - The data in the license_expiration_date field is incorrectly formatted. Try re-downloading and installing your license file from Kong Inc. 
     - if you still receive this error, contact Kong support.

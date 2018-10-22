@@ -14,7 +14,7 @@ Vitals requires PostgreSQL 9.5+ or Cassandra 2.1+.
 Vitals must also be enabled in Kong configuration. See below for details.
 
 ## Enabling and Disabling Vitals
-Kong Enterprise Edition ships with Vitals turned off. You can change this in your configuration:
+Kong Enterprise ships with Vitals turned off. You can change this in your configuration:
 
 ```bash
 # via your Kong configuration file; e.g., kong.conf

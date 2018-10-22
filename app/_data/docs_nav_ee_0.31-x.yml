@@ -81,7 +81,7 @@
       url: /rate-limiting
     - text: Setting Up Admin API RBAC
       url: /setting-up-admin-api-rbac
-    - text: Kong Enterprise Edition Versioning
+    - text: Kong Enterprise Versioning
       url: /edition-versioning
     - text: Multiple Authentication Methods
       url: /allowing-multiple-authentication-methods

@@ -7,10 +7,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong Enterprise 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.33** has these notices from **Kong 0.13**:
+- **Kong Enterprise 0.33** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
@@ -286,10 +286,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong Enterprise 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.33** has these notices from **Kong 0.13**:
+- **Kong Enterprise 0.33** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
@@ -356,10 +356,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong Enterprise 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.33** has these notices from **Kong 0.13**:
+- **Kong Enterprise 0.33** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
@@ -456,10 +456,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.32** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong Enterprise 0.32** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.32** has these notices from **Kong 0.13**:
+- **Kong Enterprise 0.32** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise will not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
@@ -475,9 +475,9 @@ title: Kong Enterprise Changelog
 
 **Changes**
 
-- **New Data Model** - Kong EE 0.32 is the first Enterprise version including the [**new model**](https://github.com/Kong/kong/blob/master/CHANGELOG.md#core-2), released with Kong 0.13, which includes Routes and Services
+- **New Data Model** - Kong Enterprise 0.32 is the first Enterprise version including the [**new model**](https://github.com/Kong/kong/blob/master/CHANGELOG.md#core-2), released with Kong 0.13, which includes Routes and Services
 - **Rate Limiting Advanced**
-  - **Breaking** - the Enterprise Rate Limiting plugin, named `rate-limiting` up to EE 0.31, was renamed `rate-limiting-advanced` and CE Rate Limiting was imported as `rate-limiting`. Any Admin API calls that were previously targeting the Enterprise Rate Limiting plugin in Kong EE up to 0.31 need to be updated to target `rate-limiting-advanced`
+  - **Breaking** - the Enterprise Rate Limiting plugin, named `rate-limiting` up to EE 0.31, was renamed `rate-limiting-advanced` and CE Rate Limiting was imported as `rate-limiting`. Any Admin API calls that were previously targeting the Enterprise Rate Limiting plugin in Kong Enterprise up to 0.31 need to be updated to target `rate-limiting-advanced`
   - Rate Limiting Advanced, similarly to CE rate-limiting, now uses a dedicated shared dictionary named `kong_rate_limiting_counters` for its counters; if you are using a custom template, make sure to define the following shared memory zones:
 
     ```
@@ -719,7 +719,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong 0.12.1](ht
 - **Vitals**
   - Aggregate minutes data at the same time as seconds data
   - **Breaking Change:** Replace previous Vitals API (part of the Admin API) with new version. **Not backwards compatible.**
-  - **Upgrading from Kong EE (0.29) will result in the loss of previous Vitals data**
+  - **Upgrading from Kong Enterprise (0.29) will result in the loss of previous Vitals data**
 
 - **Admin GUI**
   - Vitals chart settings stored in local storage
@@ -757,7 +757,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong 0.12.1](ht
   - All new metrics and dimensions accessible in **Admin GUI and API**
   - **Important limitations and notifications:**
     - PostgreSQL 9.5+ only - no Cassandra support yet
-    - Upgrading from the previous version of Kong EE will result in all historic Vitals data being dropped
+    - Upgrading from the previous version of Kong Enterprise will result in all historic Vitals data being dropped
     - The previous Vitals API (which is part of the Admin API) is replaced with a new, better one (the old API disappears, and there is no backwards compatibility)
 
   - **Proxy Cache**

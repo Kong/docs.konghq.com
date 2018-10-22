@@ -4,7 +4,7 @@ title: Adding Consumers
 
 # Adding Consumers
 
-In the last section, we learned how to add plugins to Kong Enterprise Edition
+In the last section, we learned how to add plugins to Kong Enterprise
 (EE) - in this section
 we're going to learn how to add [Consumers][consumers] to Kong. Consumers are
 associated to individuals or applications using your API, and can be used

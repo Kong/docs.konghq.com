@@ -105,7 +105,7 @@ This process can be done without any down-time.
 
 Upgrading to different major versions (ie, from v0.8.0 to v0.9.1, or from 0.9.0 to 0.10.0) is a more elaborate process that cannot be done on the fly. Newer major versions provide database schema migrations that are not necessarily compatible with the previous version of Kong. Administrators should follow the instructions below carefully to avoid any issues.
 
-Prior to Kong 0.11 and Kong EE 0.29, nodes automatically ran migrations when started. On later versions, administrators should run migrations manually before starting nodes.
+Prior to Kong 0.11 and Kong Enterprise 0.29, nodes automatically ran migrations when started. On later versions, administrators should run migrations manually before starting nodes.
 
 Kong can keep processing existing consumers even if the datastore is down, since it caches the used datastore entities in memory. To upgrade between major versions:
 
