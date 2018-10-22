@@ -148,7 +148,7 @@ gulp.task('pdk-docs', function (cb) {
     return cb('No KONG_VERSION environment variable set. Example: 0.14.x')
   }
 
-  // 1. update nav file
+  // 1. Update nav file
   // 1.1 Check that nav file exists
   navFilepath = './app/_data/docs_nav_' + KONG_VERSION + '.yml'
   try {
@@ -180,7 +180,7 @@ gulp.task('pdk-docs', function (cb) {
   fs.writeFileSync(navFilepath, newDoc)
   gutil.log('Updated contents of ' + navFilepath + ' with new navigation items')
 
-  // 2. generate markdown docs using custom ldoc templates
+  // 2. Generate markdown docs using custom ldoc templates
   // 2.1 Prepare ref folder
   refDir = 'app/' + KONG_VERSION + '/pdk'
   cmd = 'rm -rf ' + refDir + ' && mkdir ' + refDir
@@ -190,7 +190,7 @@ gulp.task('pdk-docs', function (cb) {
     return cb(errLog)
   }
 
-  // 2.2 obtain the list of modules in json form & parse it
+  // 2.2 Obtain the list of modules in json form & parse it
   cmd = 'LUA_PATH="$LUA_PATH;./?.lua" ' +
         'ldoc -q -i --filter ldoc/filters.json ' +
         KONG_PATH + '/kong/pdk'
@@ -218,7 +218,7 @@ gulp.task('pdk-docs', function (cb) {
   gutil.log('Re-generated PDK docs in ' + refDir)
 
   // 3 Write pdk_info yaml file
-  // 3.1 obtain git sha-1 hash of the current git log
+  // 3.1 Obtain git sha-1 hash of the current git log
   cmd = 'pushd ' + KONG_PATH + ' > /dev/null; git rev-parse HEAD; popd > /dev/null'
   obj = childProcess.spawnSync(cmd, { shell: true })
   errLog = obj.stderr.toString()
@@ -227,7 +227,7 @@ gulp.task('pdk-docs', function (cb) {
   }
   gitSha1 = obj.stdout.toString().trim()
 
-  // 3.2 write it into file
+  // 3.2 Write it into file
   confFilepath = 'app/_data/pdk_info.yml'
   fs.writeFileSync(confFilepath, 'sha1: ' + gitSha1 + '\n')
   gutil.log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
