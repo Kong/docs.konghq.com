@@ -144,7 +144,7 @@ There are 2 use cases that are most common:
 **NOTE**:
 
 <div class="alert alert-warning">
-  <strong>Enterprise-Only</strong> The Kong Community Edition of this Rate Limiting plugin does not
+  <strong>Enterprise-Only</strong> The Kong of this Rate Limiting plugin does not
 include <a href="https://redis.io/topics/sentinel">Redis Sentinel</a> support.
 <a href="https://www.konghq.com/enterprise/">Kong Enterprise Subscription</a> customers have the option
 of using Redis Sentinel with Kong Rate Limiting to deliver highly available master-slave deployments.

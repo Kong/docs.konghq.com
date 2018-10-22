@@ -7,10 +7,10 @@ categories:
 
 type: integration
 
-desc: Deploy Kong CE clusters to Heroku Common Runtime or Private Spaces
+desc: Deploy Kong clusters to Heroku Common Runtime or Private Spaces
 
 description: |
-  Easily deploy Kong Community Edition as a Heroku app. Supports both
+  Easily deploy Kong as a Heroku app. Supports both
   Heroku Common Runtime and Private Spaces. Includes a preset secure-by-default
   loopback proxy to Kong's Admin API.
 

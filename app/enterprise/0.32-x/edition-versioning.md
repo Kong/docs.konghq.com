@@ -4,7 +4,7 @@ title: Kong Enterprise Edition Versioning
 
 Kong Enterprise Edition is distributed as a bundle of elements, including:
 
-- **Kong Core**, built from Kong Community Edition
+- **Kong Core**, built from Kong
 - **Admin GUI**, a native graphical interface to manage Kong
 - **Enterprise Core Features**, such as [Admin RBAC](https://support.konghq.com/hc/en-us/articles/115001049953-Setting-Up-Admin-API-RBAC), Vitals, etc
 - **Enterprise Plugins**, such as OAuth2 Introspection, OpenID Connect, and Enterprise Rate Limiting

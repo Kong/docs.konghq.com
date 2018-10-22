@@ -7,10 +7,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong EE 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.33** has these notices from **Kong CE 0.13**:
+- **Kong EE 0.33** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
@@ -286,10 +286,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong EE 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.33** has these notices from **Kong CE 0.13**:
+- **Kong EE 0.33** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
       - **Dev Portal** requires Cassandra 3.0+
@@ -356,10 +356,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong EE 0.33** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.33** has these notices from **Kong CE 0.13**:
+- **Kong EE 0.33** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
@@ -441,7 +441,7 @@ title: Kong Enterprise Changelog
 - **Zipkin Plugin**
   - Fix an issue with how timestamps can sometimes be encoded with scientific notation, causing the Zipkin collector to refuse some traces
 - **LDAP Auth Advanced Plugin**
-  - Fix require statements pointing to Kong CE's version of the plugin
+  - Fix require statements pointing to Kong's version of the plugin
   - Fix usage of the LuaJIT FFI, where an external symbol was not accessed properly, resulting in an Internal Server Error
 - **Rate Limiting Advanced Plugin**
   - Fix an issue in Cassandra migrations that would stop the migration process
@@ -456,10 +456,10 @@ title: Kong Enterprise Changelog
 
 **Notifications**
 
-- **Kong EE 0.32** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+- **Kong EE 0.32** inherits from **Kong 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
-- **Kong EE 0.32** has these notices from **Kong CE 0.13**:
+- **Kong EE 0.32** has these notices from **Kong 0.13**:
   - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise will not start with Postgres 9.4 or prior
   - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
   - Additional requirements:
@@ -475,7 +475,7 @@ title: Kong Enterprise Changelog
 
 **Changes**
 
-- **New Data Model** - Kong EE 0.32 is the first Enterprise version including the [**new model**](https://github.com/Kong/kong/blob/master/CHANGELOG.md#core-2), released with Kong CE 0.13, which includes Routes and Services
+- **New Data Model** - Kong EE 0.32 is the first Enterprise version including the [**new model**](https://github.com/Kong/kong/blob/master/CHANGELOG.md#core-2), released with Kong 0.13, which includes Routes and Services
 - **Rate Limiting Advanced**
   - **Breaking** - the Enterprise Rate Limiting plugin, named `rate-limiting` up to EE 0.31, was renamed `rate-limiting-advanced` and CE Rate Limiting was imported as `rate-limiting`. Any Admin API calls that were previously targeting the Enterprise Rate Limiting plugin in Kong EE up to 0.31 need to be updated to target `rate-limiting-advanced`
   - Rate Limiting Advanced, similarly to CE rate-limiting, now uses a dedicated shared dictionary named `kong_rate_limiting_counters` for its counters; if you are using a custom template, make sure to define the following shared memory zones:
@@ -641,7 +641,7 @@ index 15682975..653a7ddd 100644
 
 ## 0.31 - 2018/03/16
 
-Kong Enterprise 0.31 is shipped with all the changes present in Kong Community Edition 0.12.3, as well as with the following additions:
+Kong Enterprise 0.31 is shipped with all the changes present in Kong 0.12.3, as well as with the following additions:
 
 **Changes**
 - Galileo plugin is disabled by default in this version, needing to be explicitly enabled via the custom_plugins configuration
@@ -681,7 +681,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
 
 - **Proxy Cache**
   - Fix issue that prevented cached requests from showing up in Vitals or Total Requests graphs
-  - Fixes inherited from Kong Community Edition 0.12.3.
+  - Fixes inherited from Kong 0.12.3.
 
 **Features**
 - Admin GUI
@@ -700,7 +700,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
 
 ## 0.30 - 2018/01/24
 
-Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community Edition 0.12.1](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0121---20180118), as well as with the following additions:
+Kong Enterprise 0.30 is shipped with all the changes present in [Kong 0.12.1](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0121---20180118), as well as with the following additions:
 
 **Notifications**
 
@@ -781,7 +781,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
     - Support passing dynamic arguments to authorization endpoint from client
     - Support logout with optional revocation and RP-initiated logout
 
-  - Features inherited from [Kong Community Edition 0.12.0](https://github.com/Kong/kong/blob/master/CHANGELOG.md#added) - includes:
+  - Features inherited from [Kong 0.12.0](https://github.com/Kong/kong/blob/master/CHANGELOG.md#added) - includes:
     - Health checks
     - Hash-based load balancing
     - Logging plugins track unauthorized and rate-limited requests
@@ -802,7 +802,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
   - Input type for Certificates is now a text area box.
   - Infer types based on default values and object type from the API Schema for Plugins.
 
-- Fixes inherited from Kong Community Edition 0.12.0.
+- Fixes inherited from Kong 0.12.0.
 
 ---
 

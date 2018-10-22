@@ -9,7 +9,7 @@ title: Kong Enterprise Edition (EE) Documentation
     <div class="left">
       <img src="/assets/images/icons/icn-buildings.svg" />
     </div>
-    <p>Kong Enterprise Edition (EE) adds features, functionality, and performance to Kong Community Edition (CE). This documentation doesn’t cover the general practices of using Kong that are common to both Kong CE and EE - learn the <a href="">basics in Kong CE documentation</a>.</p>
+    <p>Kong Enterprise Edition (EE) adds features, functionality, and performance to Kong (CE). This documentation doesn’t cover the general practices of using Kong that are common to both Kong and EE - learn the <a href="">basics in Kong documentation</a>.</p>
   </div>
 </div>
 {% endif %}
