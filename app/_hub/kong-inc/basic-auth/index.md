@@ -91,8 +91,6 @@ If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
 service, you must add the new consumer to a whitelisted group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
-[Back to TOC](#table-of-contents)
-
 ### Create a Credential
 
 You can provision new username/password credentials by making the following HTTP request:
@@ -110,7 +108,6 @@ form parameter             | default | description
 `username`                 |         | The username to use in the Basic Authentication
 `password`<br>*optional*   |         | The password to use in the Basic Authentication
 
-[Back to TOC](#table-of-contents)
 
 ### Using the Credential
 
@@ -131,7 +128,6 @@ $ curl http://kong:8000/{path matching a configured Route} \
     -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
 ```
 
-[Back to TOC](#table-of-contents)
 
 ### Upstream Headers
 
@@ -145,7 +141,6 @@ When a client has been authenticated, the plugin will append some headers to the
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
-[Back to TOC](#table-of-contents)
 
 ### Paginate through the basic-auth Credentials
 
@@ -197,7 +192,6 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-[Back to TOC](#table-of-contents)
 
 ### Retrieve the Consumer associated with a Credential
 
@@ -229,4 +223,3 @@ Consumer.
 [acl-associating]: /plugins/acl/#associating-consumers
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
-[Back to TOC](#table-of-contents)

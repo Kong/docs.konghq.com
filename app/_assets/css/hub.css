@@ -15075,3 +15075,33 @@ header.page-header {
     padding: 7px;
     width: 0
 }
+
+#documentation {
+    .content {
+        // anchor links for titles
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            a.header-link {
+                margin-left: -.9em;
+                padding-right: .2em;
+                color: inherit;
+                
+                i {
+                    font-size: 70%;
+                    visibility: hidden;
+                }
+            }
+            
+            &:hover {
+                .header-link i {
+                    visibility: visible;
+                }
+            }
+        }
+        
+    }
+}
