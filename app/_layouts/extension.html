@@ -228,8 +228,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
       {% if page.type == "plugin" %}
         <hr>
-        <h2 id="terminology">
-        <a class="header-link" href="#terminology" title="Permalink"><span class="sr-only">Permalink</span><i class="fa fa-link"></i></a>Terminology</h2>
+        <h2 id="terminology">Terminology</h2>
         <ul>
           <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
 
@@ -260,7 +259,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       {% endif %}
 
       {% if page.type == "plugin" %}
-        <h2 id="configuration"><a class="header-link" href="#configuration" title="Permalink"><span class="sr-only">Permalink</span><i class="fa fa-link"></i></a>Configuration</h2>
+        <h2 id="configuration">Configuration</h2>
         {% if page.params.service_id %}
           {{ plugin_config_for_service | markdownify }}
         {% endif %}
