@@ -136,7 +136,7 @@ params:
 
 ### Template as Value
 
-User can use any of the the current request headers, query params, and captured URI named groups as template to populate above supported config fields.
+Users can use any of the the current request headers, query params, and captured URI named groups as template to populate above supported config fields.
 
 | Request Param | Template
 | --------- | -----------
@@ -163,7 +163,7 @@ $ curl -X POST http://localhost:8001/apis \
 
 Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
 and its value is being set with the value sent with header `x-user-id` or
-with the default value alice is `header` is missing.
+with the default value alice `header` is missing.
 
 ```
 $ curl -X POST http://localhost:8001/apis/test/plugins \

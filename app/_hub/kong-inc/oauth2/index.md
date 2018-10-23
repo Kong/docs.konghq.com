@@ -228,7 +228,7 @@ When a client has been authenticated and authorized, the plugin will append some
 * `X-Authenticated-Userid`, the logged-in user ID who has granted permission to the client (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
-You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
+You can use this information on your side to implement additional logic. For example, you can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
 ----
 
