@@ -9,7 +9,7 @@ title: 5-minute Quickstart
   <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First we'll
+In this section, you'll learn how to manage your Kong instance. First, we'll
 have you start Kong giving in order to give you access to the RESTful Admin
 interface, through which you manage your Services, Routes, Consumers, and more. Data sent
 through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
