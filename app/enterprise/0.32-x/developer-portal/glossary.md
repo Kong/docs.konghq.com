@@ -3,7 +3,7 @@ title: Glossary
 book: portal
 chapter: 2
 ---
-# {{page.title}}
+## Introduction
 
 ### Key Terms
 

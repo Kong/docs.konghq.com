@@ -4,7 +4,7 @@ book: portal
 chapter: 12
 ---
 
-# Kong Developer Portal Best Practices
+## Introduction
 
 The Kong Developer Portal is a powerful tool. It's part static website and part interactive API. With a tool of this magnitude, there are countless ways to configure and host that will vary greatly depending on your needs. The following article is a group of recommendations we have found which lead to  easy administration and top performance. This list is not exhaustive, so if you have a trick you like to use and want to share it with others, please feel free to make a PR on the page, or send us an email at <support@konghq.com> and we can add it for you.
 

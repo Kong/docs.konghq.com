@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 10
 ---
 
-# {{page.title}}
+## Introduction
 
 As mentioned many times in this guide, Kong heavily relies on your modules being available in your `LUA_PATH` under specific names.
 

@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 9
 ---
 
-# {{page.title}}
+## Introduction
 
 ---
 

@@ -3,7 +3,7 @@ title: Managing Developers
 book: portal
 chapter: 7
 ---
-# Managing Developers for your Developer Portal
+## Introduction
 
 In this section you will learn how to manage [developers](/enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/) guide.
 
@@ -46,7 +46,7 @@ curl -svX PATCH \
 You can choose to have developers automatically approved and skip the requested state. To enable follow these steps:
 
 1. Navigate to the `DEVELOPER PORTAL AUTHENTICATION` section in `kong.conf`
-2. Find and change the `portal_auto_approve` configuration option to `on`. Don't forget to remove the `#` from the beginning of the line. 
+2. Find and change the `portal_auto_approve` configuration option to `on`. Don't forget to remove the `#` from the beginning of the line.
 It should now look like:
 `portal_auto_approve = on`
 3. Restart kong (`kong restart`)
@@ -94,7 +94,7 @@ Each developer is bcc'd by default for privacy. You may choose to edit the messa
 
 ### Sending Approved Email
 
-To notify a developer they have been approved click the **Email Developer** action from their table row on the **Approved** tab. 
+To notify a developer they have been approved click the **Email Developer** action from their table row on the **Approved** tab.
 
 This link will open a pre-filled email in your default email client with a link to the login page &amp; their login email address for your Developer Portal. You may choose to edit the message or send as is.
 

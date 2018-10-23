@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 10
 ---
 
-# {{page.title}}
+## Introduction
 
 Custom plugins for Kong consist of Lua source files that need to be in the file
 system of each of your Kong nodes. This guide will provide you with

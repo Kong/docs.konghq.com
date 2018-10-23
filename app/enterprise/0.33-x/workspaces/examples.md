@@ -1,10 +1,10 @@
 ---
-title: Examples
+title: Workspace Examples
 book: workspaces
 chapter: 3
 ---
 
-# Workspaces Examples
+## Introduction
 
 This chapter aims to provide a step-by-step tutorial on how to set up
 workspaces, entities, and see it in action.

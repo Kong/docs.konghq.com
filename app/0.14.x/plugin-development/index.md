@@ -4,9 +4,7 @@ book: plugin_dev
 chapter: 1
 ---
 
-# Plugin development - Introduction
-
-### What are plugins and how do they integrate with Kong?
+# What are plugins and how do they integrate with Kong?
 
 Before going further, it is necessary to briefly explain how Kong is built,
 especially how it integrates with Nginx and what Lua has to do with it.

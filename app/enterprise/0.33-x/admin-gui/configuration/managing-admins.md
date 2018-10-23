@@ -3,11 +3,11 @@ title: Managing Admins
 book: admin_gui
 chapter: 4
 ---
-# Managing Admins for the Kong Admin GUI
+## Introduction
 
 ![Managing Admins in the Kong Admin GUI](https://konghq.com/wp-content/uploads/2018/07/admins1.png)
 
-In this section you will learn how to manage Kong Admins in the Kong Admin GUI. 
+In this section you will learn how to manage Kong Admins in the Kong Admin GUI.
 
 Prerequisites:
 * You have enabled authentication, following the [Getting Started](/enterprise/{{page.kong_version}}/admin-gui/configuration/getting-started/) guide.
@@ -67,4 +67,3 @@ Now that you have the `<CONSUMER_ID>`, you can use this to create a credential w
 Once a user has a credential, they can use the credential to [log in](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#logging-in).
 
 Next: [Networking &rsaquo;]({{page.book.next}})
-

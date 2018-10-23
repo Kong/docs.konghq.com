@@ -4,16 +4,7 @@ book: plugin_dev
 chapter: 6
 ---
 
-# {{page.title}}
-
-#### Modules
-
-```
-kong.plugins.<plugin_name>.schema.migrations
-kong.plugins.<plugin_name>.daos
-```
-
----
+## Introduction
 
 Your plugin might need to store more than its configuration in the database. In
 that case, Kong provides you with an abstraction on top of its primary
@@ -24,9 +15,14 @@ with the model layer through classes we refer to as "DAOs", and available on a
 singleton often referred to as the "DAO Factory". This chapter will explain how
 to to provide an abstraction for your own entities.
 
----
+## Modules
 
-### Create a migration file
+```
+kong.plugins.<plugin_name>.schema.migrations
+kong.plugins.<plugin_name>.daos
+```
+
+## Create a migration file
 
 Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
@@ -133,7 +129,7 @@ To see a real-life example, give a look at the [Key-Auth plugin migrations](http
 
 ---
 
-### Retrieve your custom DAO from the DAO Factory
+## Retrieve your custom DAO from the DAO Factory
 
 To make the DAO Factory load your custom DAO(s), you will need to define your
 entity's schema (just like the schemas describing your [plugin
@@ -206,7 +202,7 @@ You can see an example of this in the [Key-Auth `daos.lua` file](https://github.
 
 ---
 
-### Caching custom entities
+## Caching custom entities
 
 Sometimes custom entities are required on every request/response, which in turn
 triggers a query on the datastore every time. This is very inefficient because

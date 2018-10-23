@@ -2,20 +2,17 @@
 title: Plugin Development - Writing tests
 book: plugin_dev
 chapter: 9
+toc: false
 ---
 
-# {{page.title}}
-
----
+## Introduction
 
 If you are serious about your plugins, you probably want to write tests for it.
 Unit testing Lua is easy, and [many testing
 frameworks](http://lua-users.org/wiki/UnitTesting) are available. However, you
 might also want to write integration tests. Again, Kong has your back.
 
----
-
-### Write integration tests
+## Write integration tests
 
 The preferred testing framework for Kong is
 [busted](http://olivinelabs.com/busted/) running with the

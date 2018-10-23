@@ -1,7 +1,6 @@
 ---
 title: Kong Enterprise Changelog
 ---
-# Kong Enterprise Changelog
 
 ## 0.33-2 - 2018/10/09
 

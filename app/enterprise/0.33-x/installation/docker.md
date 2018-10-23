@@ -2,9 +2,9 @@
 title: Installing Kong EE Docker Image
 ---
 
-# Installing Kong EE from Docker Image
-
 <img src="/assets/images/distributions/docker.svg"/>
+
+## Installation Steps
 
 A guide to installing Kong Enterprise Edition - and its license file - using
 Docker. **Trial users should skip directly to step 4**.
