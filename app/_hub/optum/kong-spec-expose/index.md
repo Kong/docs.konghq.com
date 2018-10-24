@@ -81,13 +81,13 @@ params:
 
 Recommended:
 
-```
+```bash
 $ luarocks install kong-spec-expose
 ```
 
 Other:
 
-```
+```bash
 $ git clone https://github.com/Optum/kong-spec-expose.git /path/to/kong/plugins/kong-spec-expose
 $ cd /path/to/kong/plugins/kong-spec-expose
 $ luarocks make *.rockspec

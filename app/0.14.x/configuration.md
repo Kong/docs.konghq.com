@@ -10,7 +10,7 @@ Kong comes with a default configuration file that can be found at
 `/etc/kong/kong.conf.default` if you installed Kong via one of the official
 packages. To start configuring Kong, you can copy this file:
 
-```
+```bash
 $ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 ```
 
@@ -26,7 +26,7 @@ default locations that might contain a configuration file:
 You can override this behavior by specifying a custom path for your
 configuration file using the `-c / --conf` argument in the CLI:
 
-```
+```bash
 $ kong start --conf /path/to/kong.conf
 ```
 
@@ -40,7 +40,7 @@ Boolean values can be specified as `on`/`off` or `true`/`false` for convenience.
 
 You can verify the integrity of your settings with the `check` command:
 
-```
+```bash
 $ kong check <path/to/kong.conf>
 configuration at <path/to/kong.conf> is valid
 ```
@@ -51,7 +51,7 @@ currently set, and will error out in case your settings are invalid.
 Additionally, you can also use the CLI in debug mode to have more insight
 as to what properties Kong is being started with:
 
-```
+```bash
 $ kong start -c <kong.conf> --vv
 2016/08/11 14:53:36 [verbose] no config file found at /etc/kong.conf
 2016/08/11 14:53:36 [verbose] no config file found at /etc/kong/kong.conf
@@ -81,7 +81,7 @@ log_level = debug # in kong.conf
 
 can be overridden with:
 
-```
+```bash
 $ export KONG_LOG_LEVEL=error
 ```
 
@@ -128,7 +128,7 @@ Like any other entry in `kong.conf`, these directives can also be specified
 using [environment variables](#environment-variables) as shown above. For
 example, if you declare an environment variable like this:
 
-```
+```bash
 $ export KONG_NGINX_HTTP_OUTPUT_BUFFERS="4 64k"
 ```
 
@@ -179,7 +179,7 @@ nginx_http_include = /path/to/your/my-server.kong.conf
 
 or, alternatively, by configuring it via an environment variable:
 
-```
+```bash
 $ export KONG_NGINX_HTTP_INCLUDE="/path/to/your/my-server.kong.conf"
 ```
 
@@ -187,7 +187,7 @@ Now, when you start Kong, the `server` section from that file will be added to
 that file, meaning that the custom server defined in it will be responding,
 alongside the regular Kong ports:
 
-```
+```bash
 $ curl -I http://127.0.0.1:2112
 HTTP/1.1 200 OK
 ...
@@ -275,7 +275,7 @@ http {
 
 You can then start Kong with:
 
-```
+```bash
 $ kong start -c kong.conf --nginx-conf custom_nginx.template
 ```
 
@@ -303,7 +303,7 @@ http {
 
 You can then start your Nginx instance like so:
 
-```
+```bash
 $ nginx -p /usr/local/openresty -c my_nginx.conf
 ```
 

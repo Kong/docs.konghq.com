@@ -99,7 +99,7 @@ kong restart
 
 RBAC policies will now be enforced by Kong, based on the user token presented to the request. By default, this user token should be presented via the Kong-Admin-Token request header; the name of this header is configurable via the Kong configuration file. In order to test our setup, we can send a request to the Admin API without sending an authentication. Because Kong does not recognize a user associated with the requesting client, it will reject the request:
 
-```
+```bash
 $ curl -i http://localhost:8001/status
 HTTP/1.1 401 Unauthorized
 Date: Fri, 04 Aug 2017 22:06:00 GMT
@@ -114,7 +114,7 @@ Server: kong/0.11.0
 
 By sending a request with our user's token, we will be granted read access to the resource in question.
 
-```
+```bash
 $ curl -H "Kong-Admin-Token: 12345" -i http://localhost:8001/status
 HTTP/1.1 200 OK
 Date: Fri, 04 Aug 2017 22:09:25 GMT
@@ -127,7 +127,7 @@ Server: kong/0.11.0
 
 We can also see that attempting to create a new resource with our RBAC user is not permitted, as they are not assigned any roles that have permissions with create access:
 
-```
+```bash
 $ curl -H "Kong-Admin-Token: 12345" -i http://localhost:8001/consumers -d name=alic
 HTTP/1.1 401 Unauthorized
 Date: Fri, 04 Aug 2017 22:15:47 GMT

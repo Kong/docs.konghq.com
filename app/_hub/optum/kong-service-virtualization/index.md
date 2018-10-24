@@ -162,13 +162,13 @@ Content-Type: application/json; charset=utf-8
 ### Installation
 Recommended:
 
-```
+```bash
 $ luarocks install kong-service-virtualization
 ```
 
 Optional:
 
-```
+```bash
 $ git clone https://github.com/Optum/kong-service-virtualization
 $ cd /path/to/kong/plugins/kong-service-virtualization
 $ luarocks make *.rockspec

@@ -139,7 +139,7 @@ similarly for Routes, or the depreciated API entity.
 
 - Add multiple headers by passing each header:value pair separately:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers[1]=h1:v1" \
@@ -152,7 +152,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 
 - Add multiple headers by passing comma separated header:value pair:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
@@ -164,7 +164,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 
 - Add multiple headers passing config as JSON body:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
@@ -177,7 +177,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 
 - Add a querystring and a header:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.querystring=q1:v2,q2=v1" \
@@ -197,7 +197,7 @@ incoming request querystring | upstream proxied querystring
 
 - Append multiple headers and remove a body parameter:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'

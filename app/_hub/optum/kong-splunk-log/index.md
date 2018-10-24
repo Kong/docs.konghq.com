@@ -124,13 +124,13 @@ params:
 
 Recommended:
 
-```
+```bash
 $ luarocks install kong-splunk-log
 ```
 
 Other:
 
-```
+```bash
 $ git clone https://github.com/Optum/kong-splunk-log.git /path/to/kong/plugins/kong-splunk-log
 $ cd /path/to/kong/plugins/kong-splunk-log
 $ luarocks make *.rockspec
@@ -146,7 +146,7 @@ The plugin requires an environment variable `SPLUNK_HOST`. This is how we define
 
 If not already set, it can be done so as follows:
 
-```
+```bash
 $ export SPLUNK_HOST="gateway.company.com"
 ```
 
