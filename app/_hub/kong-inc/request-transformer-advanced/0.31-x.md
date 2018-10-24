@@ -153,7 +153,7 @@ Note: Plugin creates a non mutable table of request headers, querystrings, and c
 
 Add an API `test` with `uris` configured with a named capture group `user_id`
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis \
     --data 'name=test' \
     --data 'upstream_url=http://mockbin.com' \
@@ -165,7 +165,7 @@ Enable the ‘request-transformer-advanced’ plugin to add a new header `x-cons
 and its value is being set with the value sent with header `x-user-id` or
 with the default value alice is `header` is missing.
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis/test/plugins \
     --data "name=request-transformer-advanced" \
     --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
@@ -174,14 +174,14 @@ $ curl -X POST http://localhost:8001/apis/test/plugins \
 
 Now send a request without setting header `x-user-id`
 
-```
+```bash
 $ curl -i -X GET localhost:8000/requests/user/foo
 ```
 
 Plugin will add a new header `x-consumer-id` with value alice before proxying
 request upstream. Now try sending request with header `x-user-id` set
 
-```
+```bash
 $ curl -i -X GET localhost:8000/requests/user/foo \
   -H "X-User-Id:bob"
 ```
@@ -199,7 +199,7 @@ remove –> replace –> add –> append
 
 Add multiple headers by passing each header:value pair separately:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers[1]=h1:v1" \
@@ -212,7 +212,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 
 Add multiple headers by passing comma separated header:value pair:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v2"
@@ -224,7 +224,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 
 Add multiple headers passing config as JSON body:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
@@ -236,7 +236,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 
 Add a querystring and a header:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.querystring=q1:v2,q2=v1" \
@@ -256,7 +256,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 
 Append multiple headers and remove a body parameter:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v2,h2:v1" \
@@ -275,7 +275,7 @@ $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
 
 Add multiple headers and querystring parameters if not already set:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/apis/mockbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v1" \

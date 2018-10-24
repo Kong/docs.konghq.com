@@ -77,13 +77,13 @@ If the upstream lacks the response header, then this plugin will allow the respo
 ### Installation
 Recommended:
 
-```
+```bash
 $ luarocks install kong-response-size-limiting
 ```
 
 Other:
 
-```
+```bash
 $ git clone https://github.com/Optum/kong-response-size-limiting.git /path/to/kong/plugins/kong-response-size-limiting
 $ cd /path/to/kong/plugins/kong-response-size-limiting
 $ luarocks make *.rockspec

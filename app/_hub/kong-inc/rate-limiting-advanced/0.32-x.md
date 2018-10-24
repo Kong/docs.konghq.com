@@ -136,7 +136,7 @@ params:
 
 An arbitrary number of limits/window sizes can be applied per plugin instance. This allows users to create multiple rate limiting windows (e.g., rate limit per minute and per hour, and/or per any arbitrary window size); because of limitation with Kong's plugin configuration interface, each *nth* limit will apply to each *nth* window size. For example:
 
-```
+```bash
 $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
   --data name=rate-limiting-advanced \
   --data config.limit=10,100 \
