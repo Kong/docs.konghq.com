@@ -198,6 +198,8 @@ path will be interpreted relative to the value of the `prefix` property of
 your `kong.conf` file (or the value of the `-p` flag of `kong start` if you
 used it to override the prefix when starting Kong).
 
+[Back to TOC](#table-of-contents)
+
 ## Custom Nginx templates & embedding Kong
 
 For the vast majority of use-cases, using the Nginx directive injection system
