@@ -128,7 +128,7 @@ have basic knowledge of [DC/OS]({{ page.links.dcos }}),
 5. **Deploy Kong**
 
     Now we have an external load balancer and Kong-supported database
-    running. Using the [kong package]{{ page.links.universe }} from Universe repo, deploy Kong
+    running. Using the [kong package]({{ page.links.universe }}) from Universe repo, deploy Kong
     with the following options:
 
     ```json

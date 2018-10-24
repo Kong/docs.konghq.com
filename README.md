@@ -1,6 +1,6 @@
 # KONG Website
 
-This repository is the source code for [Kong](https://github.com/Kong/kong)'s website. It is a [Jekyll](http://jekyllrb.com/) website hosted on GitHub pages.
+This repository is the source code for [Kong](https://github.com/Kong/kong)'s website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
 
 ## Develop Locally With Docker
 
@@ -14,7 +14,7 @@ make develop
 ### Prerequisites
 
 - [npm](https://www.npmjs.com/)
-- [Bundler](http://bundler.io/)
+- [Bundler](https://bundler.io/)
 - [Ruby](https://www.ruby-lang.org) (>= 2.0, < 2.3)
 - [Python](https://www.python.org) (>= 2.7.X, < 3)
 
