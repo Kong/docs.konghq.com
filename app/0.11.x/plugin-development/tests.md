@@ -12,7 +12,7 @@ If you are serious about your plugins, you probably want to write tests for it. 
 
 ---
 
-### Write integration tests
+## Write integration tests
 
 The preferred testing framework for Kong is [busted](http://olivinelabs.com/busted/) running with the [resty-cli](https://github.com/openresty/resty-cli) interpreter, though you are free to use another one if you wish. In the Kong repository, the busted executable can be found at `bin/busted`.
 

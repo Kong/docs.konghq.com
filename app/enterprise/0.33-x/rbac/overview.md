@@ -103,7 +103,7 @@ Transfer-Encoding: chunked
 }
 ```
 
-#### User
+### User
 
 A user identifies the actor sending the current request. Users are identified
 by Kong via the `user_token` element, sent to the Admin API as a request header.
@@ -113,7 +113,7 @@ the `enabled` flag on the User entity in the Admin API; this allows Kong
 administrators to quickly enable and disable users without removing their
 tokens or metadata.
 
-#### Role
+### Role
 
 Roles tie together users and permissions, effectively assignment permissions to
 a user based on the assignment of permissions to the roles. Roles have a

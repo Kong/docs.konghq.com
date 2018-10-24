@@ -49,7 +49,7 @@ $ kong migrations up -c /etc/kong/kong.conf.default
 $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
 ```
 
-### Setup HTTPie to make commands easier
+## Setup HTTPie to make commands easier
 
 ```bash
 $ sudo yum install python-pip

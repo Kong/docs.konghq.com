@@ -13,7 +13,7 @@ how to use Kong and perform basic operations such as:
 - [Adding and consuming APIs][adding-your-api].
 - [Installing plugins on Kong][enabling-plugins].
 
-### What is Kong, technically?
+## What is Kong, technically?
 
 You’ve probably heard that Kong is built on NGINX, leveraging its stability and
 efficiency. But how is this possible exactly?
@@ -32,7 +32,7 @@ architecture**: at its core, it implements database abstraction, routing and
 plugin management. Plugins can live in separate code bases and be injected
 anywhere into the request lifecycle, all in a few lines of code.
 
-### Next Steps
+## Next Steps
 
 Now, lets get familiar with learning how to "start" and "stop" Kong EE.
 

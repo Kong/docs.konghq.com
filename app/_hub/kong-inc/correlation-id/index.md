@@ -65,7 +65,7 @@ If a header bearing the same name is already present in the client request, it i
 
 ## Generators
 
-#### uuid
+### uuid
 
 Format:
 ```
@@ -74,7 +74,7 @@ xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 Using this format, a UUID is generated in its hexadecimal form for each request.
 
-#### uuid#counter
+### uuid#counter
 
 Format:
 ```
@@ -85,7 +85,7 @@ In this format, a single UUID is generated on a per-worker basis, and further re
 
 This format provides a better performance, but might be harder to store or process for analyzing (due to its format and low cardinality).
 
-#### tracker
+### tracker
 
 Format:
 ```
@@ -107,6 +107,6 @@ form parameter      | description
 
 ## FAQ
 
-#### Can I see my correlation ids in my Kong logs?
+### Can I see my correlation ids in my Kong logs?
 
 The correlation id will not show up in the Nginx access or error logs. As such, we suggest you use this plugin alongside one of the Logging plugins, or store this id on your backend-side.
