@@ -415,7 +415,7 @@ URI prefixes are always evaluated first. Then, `api-1` is defined before
 
 As usual, a request must still match an API's `hosts` and `methods` properties
 as well, and Kong will traverse your APIs until it finds one that matches
-the most rules (see [Routing priorities][proxy-routing-priorities]).
+the most rules (see [Matching priorities](#matching-priorities)).
 
 [Back to TOC](#table-of-contents)
 
@@ -760,7 +760,7 @@ There are two configurable elements here:
    server, passing a request to it, or reading the response header.
 
 The second option is based on Nginx's
-[proxy_next_upstream][proxy_next_upstream] directive. This option is not
+[proxy_next_upstream](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive. This option is not
 directly configurable through Kong, but can be added using a custom Nginx
 configuration. See the [configuration reference][configuration-reference] for
 more details.
