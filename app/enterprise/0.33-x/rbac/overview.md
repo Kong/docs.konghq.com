@@ -1,10 +1,10 @@
 ---
-title: Overview
+title: RBAC Overview
 book: rbac
 chapter: 1
 ---
 
-## Overview
+## Introduction
 
 Kong Enterprise provides an additional layer of security for the Admin API in
 the form of Role-Based Access Control (RBAC). RBAC allows for fine-grained

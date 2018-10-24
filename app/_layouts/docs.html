@@ -18,21 +18,7 @@ id: documentation
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg" alt="Documentation" />
       </div>
       <div class="page-header-title">
-        <p>Documentation</p>
-        {% assign pathParts = page.path | split: "/" %}
-        {% if pathParts.size < 2 or pathParts[0] == 'enterprise' and pathParts[2] == 'index.md' and pathParts.size == 3 or pathParts[1] == 'index.md' and pathParts.size == 2 %}
-          {% if page.edition %}
-          <h1>
-            {% if page.edition == 'enterprise' %}Enterprise Edition {% if page.has_version %}({{page.kong_version}}){% endif %}{% endif %}
-            {% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}
-          </h1>
-          {% endif %}
-        {% else %}
-        <div class="page-header-section-title">
-            {% if page.edition == 'enterprise' %}Enterprise Edition {% if page.has_version %}({{page.kong_version}}){% endif %}{% endif %}
-            {% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}
-        </div>
-        {% endif %}
+        <h1>{{page.title}}</h1>
       </div>
 
       {% if page.kong_versions.size > 1 %}
@@ -42,8 +28,7 @@ id: documentation
             {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
             <span class="caret"></span>
           </button>
-
-          <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
             {% for ver in page.kong_versions reversed %}
               {% unless page.kong_version == ver.release %}
                 <li>

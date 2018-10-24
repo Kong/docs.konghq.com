@@ -4,12 +4,6 @@ book: portal
 chapter: 9
 ---
 
-# File Management
-- [File Types](#file-types)
-- [Example Files](#example-files)
-- [File Paths](#file-paths)
-- [Adding Files](#adding-files)
-
 ## File Types
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/diagram-partials-02.png "File types diagram")
@@ -21,7 +15,7 @@ Dev Portals served by Kong are comprised of three primary file types; **Pages**,
     * Handlebars file.
     * Pages can be accessed by appending the Page name to your Dev Portal URL: `:8003/<page_name>`
     * Pages are indicated by `type=page` in Dev Portal File API.
-* **Partial** 
+* **Partial**
     * Handlebars partial registered by name for use within a Pages and other Partials.
     * Partials can be re-used and shared between all pages using the Handlebars import statement:
         *  {% raw %} `{{> partial_name}}`{% endraw %}

@@ -1,11 +1,10 @@
 ---
-title: Glossary
+title: Kong Dev Portal Glossary
 book: portal
 chapter: 2
 ---
-# {{page.title}}
 
-# Key Terms
+## Key Terms
 
 * **Example Dev Portal** = The set of pages, partials, and specs that are provided in the example Dev Portal files.
 * **Handlebars** = [Handlebars](https://handlebarsjs.com/) is a semantic JavaScript templating language.

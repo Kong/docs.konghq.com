@@ -4,7 +4,7 @@ book: portal
 chapter: 4
 ---
 
-# Authenticating the Kong Developer Portal
+## Introduction
 
 > Before you begin, make sure you have gone through the [Getting Started with the Dev Portal](https://getkong.org/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/#getting-started-with-the-kong-developer-portal)
 

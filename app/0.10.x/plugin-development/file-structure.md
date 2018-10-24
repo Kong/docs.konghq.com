@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 2
 ---
 
-# {{page.title}}
+## Introduction
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a>.

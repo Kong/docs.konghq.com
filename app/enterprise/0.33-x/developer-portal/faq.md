@@ -1,10 +1,8 @@
 ---
-title: FAQ Kong Developer Portal
+title: Kong Developer Portal FAQ
 book: portal
 chapter: 11
 ---
-
-# FAQ
 
 ## Why do I get `{"message":"not found"}` when I visit my Developer Portal?
 

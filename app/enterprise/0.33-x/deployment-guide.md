@@ -2,7 +2,7 @@
 title: Kong Deployment Guide
 redirect_from: "/enterprise/0.33-x/kong-implementation-checklist/"
 ---
-# Kong Deployment Guide
+## Introduction
 
 - Kong can run on instances of any size with any resources. While the system
 requirements vary significantly depending on the use-case, generally speaking,

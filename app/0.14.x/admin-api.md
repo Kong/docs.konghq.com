@@ -125,7 +125,7 @@ snis_body: |
 
 ---
 
-# Kong Admin API
+## Introduction
 
 Kong comes with an **internal** RESTful Admin API for administration purposes.
 Requests to the Admin API can be sent to any node in the cluster, and Kong will

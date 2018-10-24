@@ -5,7 +5,7 @@ chapter: 1
 toc: false
 ---
 
-# {{page.title}}
+## Introduction
 
 ![Welcome to the Kong Admin GUI](https://konghq.com/wp-content/uploads/2018/04/dashboard-cluster-management-2.png)
 

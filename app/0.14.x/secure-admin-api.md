@@ -2,7 +2,7 @@
 title: Securing the Admin API
 ---
 
-# Securing the Admin API
+## Introduction
 
 Kong's Admin API provides a RESTful interface for administration and
 configuration of Services, Routes, Plugins, Consumers, and Credentials. Because this
@@ -82,7 +82,7 @@ $ curl -X POST http://localhost:8001/services \
 
 $ curl -X POST http://localhost:8001/services/admin-api/routes \
   --data paths[]=/admin-api
-  
+
 # we can now transparently reach the Admin API through the proxy server
 $ curl localhost:8000/admin-api/apis
 {

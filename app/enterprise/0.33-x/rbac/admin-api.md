@@ -1,10 +1,10 @@
 ---
-title: Admin API Reference
+title: RBAC - Admin API Reference
 book: rbac
 chapter: 2
 ---
 
-# {{page.title}}
+## Introduction
 
 Kong Enterprise's RBAC feature is configurable through Kong's [Admin
 API] or via the [Admin GUI].
