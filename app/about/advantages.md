@@ -3,6 +3,18 @@ title: Advantages & Use Cases
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: Advantages & Use Cases
 redirect_to: https://konghq.com/about-kong/advantages/
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ---
 
 ## Advantages
