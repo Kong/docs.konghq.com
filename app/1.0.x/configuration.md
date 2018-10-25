@@ -510,6 +510,12 @@ Example: `0.0.0.0:80, 0.0.0.0:81 http2, 0.0.0.0:443 ssl, 0.0.0.0:444 http2 ssl`
 
 ---
 
+#### stream_listen
+
+FIXME Port from https://github.com/Kong/kong-private/pull/128
+
+---
+
 #### admin_listen
 
 Comma-separated list of addresses and ports on which the Admin interface
@@ -1135,3 +1141,34 @@ Default: `30`
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
 [pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
+
+---
+
+### Additional Configuration
+
+#### origins
+
+The origins configuration can be useful in complex networking configurations, and is typically required when Kong is used in a service mesh.
+
+`origins` is a comma-separated list of pairs of origins, with each half of the pair separated by an `=` symbol. The origin on the left of each pair is overridden by the origin on the right.
+
+The term origin (singular) refers to a particular scheme/host or IP address/port triple, as described in RFC 6454 (https://tools.ietf.org/html/rfc6454#section-3.2). In Kong's `origins` configuration, the scheme *must* be one of `http`, `https`, `tcp`, or `tls`. In each pair of origins, the scheme *must* be of similar type - thus `http` can pair with `https`, and `tcp` can pair with `tls`, but `http` and `https` cannot pair with `tcp` and `tls`.
+
+Like all Kong configuration settings, the `origins` setting *can* be declared in the `Kong.conf` file - however **it is recommended that Kong administrators avoid doing so**. Instead, `origins` should be set on a per-node basis using [environment variables](https://docs.konghq.com/0.14.x/configuration/#environment-variables). As such, `origins` is not present in [`kong.conf.default`](https://github.com/Kong/kong/blob/master/kong.conf.default).  
+
+Default: none
+
+##### Examples
+If a given Kong node has the following configuration for `origins`:
+
+```
+http://upstream-foo-bar:1234=http://localhost:5678
+```
+
+That Kong node will not attempt to resolve `upstream-foo-bar` - instead, that Kong node will route traffic to `localhost:5678`. In a service mesh deployment of Kong, this override would be necessary to cause a Kong sidecar adjacent to an instance of the `upstream-foo-bar` application to route traffic to that local instance, rather than trying to route traffic back across the network to a non-local instance of `upstream-foo-bar`.
+
+Following is an example consisting of three pairs:
+
+```
+https://foo.bar.com:443=http://localhost:80,tcp://alpha:1234=tcp://localhost:5678,tls://dog.cat.org:9999=tls://localhost:8888
+```
