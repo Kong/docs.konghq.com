@@ -102,7 +102,6 @@ Next: [Write custom logic &rsaquo;]({{page.book.next}})
 
 [api.lua]: {{page.book.chapters.admin-api}}
 [daos.lua]: {{page.book.chapters.custom-entities}}
-[hooks.lua]: {{page.book.chapters.plugin-configuration}}
 [handler.lua]: {{page.book.chapters.custom-logic}}
 [schema.lua]: {{page.book.chapters.plugin-configuration}}
 [migrations/*.lua]: {{page.book.chapters.custom-entities}}

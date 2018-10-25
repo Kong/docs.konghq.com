@@ -10,7 +10,6 @@ chapter: 7
 
 ```
 "kong.plugins.<plugin_name>.daos"
-"kong.plugins.<plugin_name>.hooks"
 ```
 
 ---
@@ -238,8 +237,7 @@ somehow abusing the caching mechanism.
 
 In those cases, you can manually setup your own subscriber to the same
 invalidation channels Kong is listening to, and perform your own, custom
-invalidation work. This process is similar to the old `hooks.lua` module that
-was required in < 0.11.0 for cache invalidations.
+invalidation work.
 
 To listen on invalidation channels inside of Kong, implement the following in
 your plugin's `init_worker` handler:

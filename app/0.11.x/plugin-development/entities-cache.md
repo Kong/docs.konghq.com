@@ -10,7 +10,6 @@ chapter: 7
 
 ```
 "kong.plugins.<plugin_name>.daos"
-"kong.plugins.<plugin_name>.hooks"
 ```
 
 ---
