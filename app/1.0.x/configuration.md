@@ -1159,6 +1159,7 @@ Like all Kong configuration settings, the `origins` setting *can* be declared in
 Default: none
 
 ##### Examples
+
 If a given Kong node has the following configuration for `origins`:
 
 ```
