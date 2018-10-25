@@ -117,7 +117,7 @@ An example Specification Loader is as follows:
 
 ## Adding Files
 
-#### File Requirements
+### File Requirements
 
 * File names **must not** include the file extension, unless you wish your pages and partials to be referenced with them.
     * A **Page** with `name=guides.hbs` would be accessible at: `http://127.0.0.1:8003/guides.hbs`
@@ -130,7 +130,7 @@ An example Specification Loader is as follows:
     * Files with the `.hbs` extension may contain HTML or [Handlebars](https://handlebarsjs.com/) code
 * Specification files **must** be in `yaml` or `json` format
 
-#### Uploading a new page or partial
+### Uploading a new page or partial
 
 Create a new file with the name `example.hbs` in your Example Dev Portal files directory under the `pages/` directory.
 

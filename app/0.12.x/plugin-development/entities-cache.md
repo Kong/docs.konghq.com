@@ -6,7 +6,7 @@ chapter: 7
 
 ## Introduction
 
-#### Modules
+## Modules
 
 ```
 "kong.plugins.<plugin_name>.daos"
@@ -41,7 +41,7 @@ under heavy load).
 
 ---
 
-### Caching custom entities
+## Caching custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in
 your code by using the `singletons.cache` module provided by Kong:
@@ -126,7 +126,7 @@ With the above mechanism in place, once a Consumer has made a request with
 their API key, the cache will be considered warm and subsequent requests
 won't result in a database query.
 
-#### Updating or deleting a custom entity
+### Updating or deleting a custom entity
 
 Every time a cached custom entity is updated or deleted in the datastore (i.e.
 using the Admin API), it creates an inconsistency between the data in
@@ -137,7 +137,7 @@ cache invalidation.
 
 ---
 
-### Cache invalidation for your entities
+## Cache invalidation for your entities
 
 If you wish that your cached entities be invalidated upon a CRUD operation
 rather than having to wait for them to reach their TTL, you have to follow
@@ -145,7 +145,7 @@ a few steps. This process can be automated since 0.11.0 for most entities,
 but manually subscribing to some CRUD events might be required to invalidate
 some entities with more complex relationships.
 
-#### Automatic cache invalidation
+### Automatic cache invalidation
 
 Cache invalidation can be provided out of the box for your entities if you
 rely on the `cache_key` property of your entity's schema. For example, in the
@@ -226,7 +226,7 @@ properly fetch the newly created API key from the datastore.
 See the [Clustering Guide](/{{page.kong_version}}/clustering/) to ensure
 that you have properly configured your cluster for such invalidation events.
 
-#### Manual cache invalidation
+### Manual cache invalidation
 
 In some cases, the `cache_key` property of an entity's schema is not flexible
 enough, and one must manually invalidate its cache. Reasons for this could be
@@ -275,7 +275,7 @@ singletons.worker_events.register(function(data)
 end, "crud", "consumers")
 ```
 
-### Extending the Admin API
+## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with
 Kong to setup their APIs and plugins. It is likely that they also need to be

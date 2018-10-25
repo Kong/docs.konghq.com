@@ -113,7 +113,7 @@ params:
 
 ## Installation
 
-#### Sodium Crypto Library
+### Sodium Crypto Library
 
 This plugin uses the [PASETO for Lua](https://github.com/peter-evans/paseto-lua) library, which in turn depends on the [Sodium crypto library (libsodium)](https://github.com/jedisct1/libsodium).
 The following is a convenient way to install libsodium via LuaRocks.
@@ -125,7 +125,7 @@ luarocks install libsodium
 
 Note: The Sodium Crypto Library must be installed on each node in your Kong cluster.
 
-#### PASETO Kong Plugin
+### PASETO Kong Plugin
 Install the plugin on each node in your Kong cluster via luarocks:
 
 ```
@@ -142,7 +142,7 @@ custom_plugins = paseto
 
 In order to use the plugin, you first need to create a Consumer and associate one or more PASETO credentials (holding the public key used to verify the token) to it. The Consumer represents a developer using the final service.
 
-#### Create a Consumer
+### Create a Consumer
 
 You need to associate a credential to an existing Consumer object. To create a Consumer, you can execute the following request:
 
@@ -160,7 +160,7 @@ HTTP/1.1 201 Created
 
 A Consumer can have many PASETO credentials.
 
-#### Create a PASETO credential
+### Create a PASETO credential
 
 You can provision a new PASETO credential by issuing the following HTTP request:
 
@@ -188,7 +188,7 @@ HTTP/1.1 201 Created
 
 If neither `secret_key` or `public_key` are supplied the plugin will generate a new key pair.
 
-#### Delete a PASETO credential
+### Delete a PASETO credential
 
 You can remove a Consumer's PASETO credential by issuing the following HTTP
 request:
@@ -201,7 +201,7 @@ HTTP/1.1 204 No Content
 - `consumer`: The `id` or `username` property of the Consumer entity to associate the credentials to.
 - `id`: The `id` of the PASETO credential.
 
-#### List PASETO credentials
+### List PASETO credentials
 
 You can list a Consumer's PASETO credentials by issuing the following HTTP
 request:
@@ -229,7 +229,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-#### Send a request with a PASETO
+### Send a request with a PASETO
 
 PASETOs can now be included in a request to Kong by adding it to the `Authorization` header:
 

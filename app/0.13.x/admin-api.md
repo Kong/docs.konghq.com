@@ -1135,7 +1135,7 @@ values for some specific Consumers, you can do so by specifying the
 
 See the [Precedence](#precedence) section below for more details.
 
-#### Precedence
+### Precedence
 
 A plugin will always be run once and only once per request. But the
 configuration with which it will run depends on the entities it has been
@@ -1220,7 +1220,7 @@ HTTP 201 Created
 
 ---
 
-## Retrieve Plugin
+### Retrieve Plugin
 
 <div class="endpoint get">/plugins/{id}</div>
 

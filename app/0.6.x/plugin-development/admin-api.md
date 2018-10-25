@@ -6,7 +6,7 @@ chapter: 8
 
 ## Introduction
 
-#### Module
+## Module
 
 ```
 "kong.plugins.<plugin_name>.api"
@@ -24,7 +24,7 @@ The Admin API is a [Lapis](http://leafo.net/lapis/) application, and Kong's leve
 
 ---
 
-### Adding endpoints to the Admin API
+## Adding endpoints to the Admin API
 
 Kong will detect and load your endpoints if they are defined in a module named:
 
@@ -59,14 +59,14 @@ In addition to the HTTPS verbs it supports, a route table can also contain two o
 
 ---
 
-### Helpers
+## Helpers
 
 When handling a request on the Admin API, there are times when you want to send back responses and handle errors, to help you do so the third parameter `helpers` is a table with the following properties:
 
 - `responses`: a module with helper functions to send HTTP responses. See [kong.tools.responses](/{{page.kong_version}}/lua-reference/modules/kong.tools.responses).
 - `yield_error`: the [yield_error](http://leafo.net/lapis/reference/exception_handling.html#capturing-recoverable-errors) function from Lapis. To call when your handler encounters an error (from a DAO, for example). Since all Kong errors are tables with context, it can send the appropriate response code depending on the error (Internal Server Error, Bad Request, etc...).
 
-#### crud_helpers
+### crud_helpers
 
 Since most of the operations you will perform in your endpoints will be CRUD operations, you can also use the `kong.api.crud_helpers` module. This module provides you with helpers for any insert, retrieve, update or delete operations and performs the necessary DAO operations and replies with the appropriate HTTP status codes. It also provides you with functions to retrieve parameters from the path, such as an API's name or id, or a Consumer's username or id.
 

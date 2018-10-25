@@ -12,7 +12,7 @@ As of `0.8.0`, Kong supports two primary datastores: [Cassandra {{site.data.kong
 
 ---
 
-### The DAO Factory
+## The DAO Factory
 
 All entities in Kong are represented by:
 
@@ -34,7 +34,7 @@ local plugins_dao = singletons.dao.plugins
 
 ---
 
-### The DAO Lua API
+## The DAO Lua API
 
 The DAO class is responsible for the operations executed on a given table in the datastore, generally mapping to an entity in Kong. All the underlying supported databases (currently Cassandra and PostgreSQL) comply to the same interface, thus making the DAO compatible with all of them.
 

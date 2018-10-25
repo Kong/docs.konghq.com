@@ -80,6 +80,6 @@ The `http_endpoint` configuration variable must contain the full uri including s
 
 ## FAQ
 
-#### Can I use this plugin with other tracing systems, like Jaeger?
+### Can I use this plugin with other tracing systems, like Jaeger?
 
 Probably! Jaeger accepts spans in Zipkin format - see https://www.jaegertracing.io/docs/features/#backwards-compatibility-with-zipkin for more information.

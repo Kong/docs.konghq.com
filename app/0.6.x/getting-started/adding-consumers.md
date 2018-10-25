@@ -17,7 +17,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
 **Note:** This section assumes you have [enabled][enabling-plugins] the [key-auth][key-auth] plugin. If you haven't, you can either [enable the plugin][enabling-plugins] or skip steps two and three.
 
-1. ### Create a Consumer through the RESTful API
+## 1. Create a Consumer through the RESTful API
 
     Lets create a user named `Jason` by issuing the following request:
 
@@ -45,7 +45,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
 
     **Note:** Kong also accepts a `custom_id` parameter when [creating consumers][API-consumers] to associate a consumer with your existing user database.
 
-2. ### Provision key credentials for your Consumer
+## 2. Provision key credentials for your Consumer
 
     Now, we can create a key for our recently created consumer `Jason` by issuing the following request:
 
@@ -55,7 +55,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
       --data 'key=ENTER_KEY_HERE'
     ```
 
-3. ### Verify that your Consumer credentials are valid
+## 3. Verify that your Consumer credentials are valid
 
     We can now issue the following request to verify that the credentials of our `Jason` Consumer is valid:
 
@@ -66,7 +66,7 @@ In the last section, we learned how to add plugins to Kong, in this section we'r
       --header "apikey: ENTER_KEY_HERE"
     ```
 
-### Next Steps
+## Next Steps
 
 Now that we've covered the basics of creating consumers, enabling plugins, and adding apis you can start giving out access and sharing your API.
 

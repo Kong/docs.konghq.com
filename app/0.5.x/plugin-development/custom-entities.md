@@ -6,7 +6,7 @@ chapter: 6
 
 ## Introduction
 
-#### Modules
+## Modules
 
 ```
 "kong.plugins.<plugin_name>.migrations.cassandra"
@@ -25,7 +25,7 @@ As explained in the [previous chapter]({{page.book.previous}}), Kong interacts w
 
 ---
 
-### Create a migration file
+## Create a migration file
 
 Once you have defined your model, you must create a migration file which will be executed by Kong to create your column family. A migration file simply holds an array of migrations, and returns them.
 
@@ -78,7 +78,7 @@ Cassandra does not support constraints such as "must be unique" or "is a foreign
 
 ---
 
-### Extending the Base DAO
+## Extending the Base DAO
 
 To make the DAO Factory load your custom DAO(s), you will need:
 
@@ -151,7 +151,7 @@ The property name depends on the key with which you exported your DAO in the ret
 
 ---
 
-### Extending the Admin API
+## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with Kong to setup their APIs and plugins. It is likely that they also need to be able to interact with the custom entities you implemented for your plugin (for example, creating and deleting API keys). The way you would do this is by extending the Admin API, which we will detail in the next chapter: [Extending the Admin API]({{page.book.next}}).
 
