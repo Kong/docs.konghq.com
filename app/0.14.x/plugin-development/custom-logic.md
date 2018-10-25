@@ -41,7 +41,7 @@ of the execution life-cycle of Kong:
 
 All of those functions take one parameter which is given by Kong upon its
 invocation: the configuration of your plugin. This parameter is a Lua table,
-and contains values derined by your users, according to your plugin's schema
+and contains values defined by your users, according to your plugin's schema
 (described in the `schema.lua` module). More on plugins schemas in the [next
 chapter]({{page.book.next}}).
 
