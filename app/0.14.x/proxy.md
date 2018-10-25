@@ -479,7 +479,7 @@ Prefix paths are always evaluated first.
 
 As usual, a request must still match a Route's `hosts` and `methods` properties
 as well, and Kong will traverse your Routes until it finds one that matches
-the most rules (see [Matching priorities](#matching-priorities)).
+the most rules (see [Routing priorities][proxy-routing-priorities]).
 
 [Back to TOC](#table-of-contents)
 
@@ -783,7 +783,7 @@ client and your upstream services:
 - `Upgrade: websocket`
 
 More information on this topic is covered in the
-[Proxy WebSocket traffic](#proxy-websocket-traffic) section.
+[Proxy WebSocket traffic][proxy-websocket] section.
 
 [Back to TOC](#table-of-contents)
 
@@ -803,7 +803,7 @@ There are two configurable elements here:
    server, passing a request to it, or reading the response headers.
 
 The second option is based on Nginx's
-[proxy_next_upstream](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive. This option is not
+[proxy_next_upstream][proxy_next_upstream] directive. This option is not
 directly configurable through Kong, but can be added using a custom Nginx
 configuration. See the [configuration reference][configuration-reference] for
 more details.
@@ -861,7 +861,7 @@ Here is an example of such a fallback Route:
 
 As you can guess, any HTTP request made to Kong would actually match this
 Route, since all URIs are prefixed by the root character `/`. As we know from
-the [Request path](#request-path) section, the longest URL paths are
+the [Request path][proxy-request-path] section, the longest URL paths are
 evaluated first by Kong, so the `/` path will eventually be evaluated last by
 Kong, and effectively provide a "fallback" Route, only matched as a last
 resort. You can then send traffic to a special Service or apply any plugin you
@@ -1058,7 +1058,7 @@ just covered.
 [plugin-development-guide]: /{{page.kong_version}}/plugin-development
 [plugin-association-rules]: /{{page.kong_version}}/admin-api/#precedence
 [load-balancing-reference]: /{{page.kong_version}}/loadbalancing
-[configuration-reference]: /{{page.kong_version}}/configuration
+[configuration-reference]: /{{page.kong_version}}/configuration-reference
 [configuration-trusted-ips]: /{{page.kong_version}}/configuration/#trusted_ips
 [configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
 [API]: /{{page.kong_version}}/admin-api
