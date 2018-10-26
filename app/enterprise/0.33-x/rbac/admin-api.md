@@ -1,10 +1,10 @@
 ---
-title: Admin API Reference
+title: RBAC - Admin API Reference
 book: rbac
 chapter: 2
 ---
 
-# {{page.title}}
+## Introduction
 
 Kong Enterprise's RBAC feature is configurable through Kong's [Admin
 API] or via the [Admin GUI].
@@ -41,6 +41,7 @@ There are 4 basic entities involving RBAC.
 | `comment`<br>optional    | A string describing the RBAC user object.                                                                                           |
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -66,6 +67,7 @@ ___
 | `name_or_id` | The RBAC user name or UUID. |
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -87,6 +89,7 @@ ___
 <div class="endpoint get">/rbac/users/</div>
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -150,6 +153,7 @@ HTTP 201 Created or HTTP 200 OK
 | `comment`<br>optional    | A string describing the RBAC user object.                                                                                           |
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -175,6 +179,7 @@ ___
 | `name_or_id` | The RBAC user name or UUID. |
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
@@ -191,6 +196,7 @@ ___
 | `comment`<br>optional | A string describing the RBAC user object. |
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -214,6 +220,7 @@ Endpoint
 | `name_or_id` | The RBAC role name or UUID. |
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -233,6 +240,7 @@ ___
 <div class="endpoint get">/rbac/roles</div>
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -293,6 +301,7 @@ HTTP 201 Created or HTTP 200 OK
 | `comment`<br>optional | A string describing the RBAC role object. |
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -317,6 +326,7 @@ ___
 | `name`                | The RBAC role name.                       |
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
@@ -426,6 +436,7 @@ HTTP 200 OK
 | `role_name_or_id` | The RBAC role name or UUID. |
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -562,6 +573,7 @@ entities** in the system.
 
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -595,6 +607,7 @@ HTTP 201 Created
 | `entity_id`           | id of the entity associated with this permission.                                                                               |
 
 **Response**
+
 ```
 HTTP 200 Ok
 ```
@@ -628,6 +641,7 @@ HTTP 200 Ok
 | `name_or_id`          | The RBAC permisson name or UUID.                                                                                                |
 
 **Response**
+
 ```
 HTTP 200 Ok
 ```
@@ -703,6 +717,7 @@ HTTP 200 OK
 | `entity_id`  | The entity name or UUID.    |
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
@@ -719,6 +734,7 @@ HTTP 204 No Content
 
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -758,6 +774,7 @@ HTTP 200 OK
 | `roles`   | Comma-separated list of role names to assign to the user. |
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -792,6 +809,7 @@ HTTP 201 Created
 
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -831,6 +849,7 @@ HTTP 200 OK
 | `roles`   | Comma-separated list of role names to assign to the user. |
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
@@ -850,6 +869,7 @@ HTTP 204 No Content
 | `name_or_id`          | The RBAC user name or UUID.                                                                                                     |
 
 **Response**
+
 ```
 HTTP 200 OK
 ```

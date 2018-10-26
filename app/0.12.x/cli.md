@@ -10,7 +10,7 @@ current machine).
 
 If you haven't yet, we recommend you read the [configuration reference][configuration-reference].
 
-### Global flags
+## Global flags
 
 All commands take a set of special, optional flags as arguments:
 
@@ -20,9 +20,9 @@ All commands take a set of special, optional flags as arguments:
 
 [Back to TOC](#table-of-contents)
 
-### Available commands
+## Available commands
 
-#### kong check
+### kong check
 
 ```
 Usage: kong check <conf>
@@ -36,7 +36,7 @@ Check the validity of a given Kong configuration file.
 
 ---
 
-#### kong prepare
+### kong prepare
 
 This command prepares the Kong prefix folder, with its sub-folders and files.
 
@@ -61,7 +61,7 @@ Options:
 
 ---
 
-#### kong health
+### kong health
 
 ```
 Usage: kong health [OPTIONS]
@@ -76,7 +76,7 @@ Options:
 
 ---
 
-#### kong migrations
+### kong migrations
 
 ```
 Usage: kong migrations COMMAND [OPTIONS]
@@ -96,7 +96,7 @@ Options:
 
 ---
 
-#### kong quit
+### kong quit
 
 ```
 Usage: kong quit [OPTIONS]
@@ -118,7 +118,7 @@ Options:
 
 ---
 
-#### kong reload
+### kong reload
 
 ```
 Usage: kong reload [OPTIONS]
@@ -141,7 +141,7 @@ Options:
 
 ---
 
-#### kong restart
+### kong restart
 
 ```
 Usage: kong restart [OPTIONS]
@@ -162,7 +162,7 @@ Options:
 
 ---
 
-#### kong start
+### kong start
 
 ```
 Usage: kong start [OPTIONS]
@@ -181,7 +181,7 @@ Options:
 
 ---
 
-#### kong stop
+### kong stop
 
 ```
 Usage: kong stop [OPTIONS]
@@ -199,7 +199,7 @@ Options:
 
 ---
 
-#### kong version
+### kong version
 
 ```
 Usage: kong version [OPTIONS]

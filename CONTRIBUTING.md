@@ -321,7 +321,7 @@ From #623
 As mentioned in the guidelines, to submit a patch, the linter must succeed. You
 can run the linter like so:
 
-```
+```bash
 $ npm run test
 ```
 

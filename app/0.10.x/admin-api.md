@@ -737,7 +737,7 @@ values for some specific Consumers, you can do so by specifying the
 
 See the [Precedence](#precedence) section below for more details.
 
-#### Precedence
+### Precedence
 
 Plugins can be added globally (all APIs), on a single API, single Consumer,
 or a combination of both an API and a Consumer. Additionally, a given plugin
@@ -816,7 +816,7 @@ HTTP 201 Created
 
 ---
 
-## Retrieve Plugin
+### Retrieve Plugin
 
 <div class="endpoint get">/plugins/{id}</div>
 

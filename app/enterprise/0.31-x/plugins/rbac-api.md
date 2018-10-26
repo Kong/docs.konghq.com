@@ -8,12 +8,12 @@ title: RBAC API
   Be sure to review the <a href="/enterprise/latest/setting-up-admin-api-rbac">RBAC overview</a> before exploring the RBAC API below.
 </div>
 
-### Add A User
+## Add A User
 **Endpoint**
 
 <div class="endpoint post">/rbac/users</div>
 
-#### Request Body
+### Request Body
 
 | Attribute | Description
 | --------- | -----------
@@ -23,6 +23,7 @@ title: RBAC API
 | `comment`<br>optional | A string describing the RBAC user object.
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -38,7 +39,7 @@ HTTP 201 Created
 ```
 ___
 
-### Retrieve A User
+## Retrieve A User
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}</div>
@@ -48,6 +49,7 @@ ___
 | `name_or_id` | The RBAC user name or UUID.
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -63,12 +65,13 @@ HTTP 200 OK
 ```
 ___
 
-### List Users
+## List Users
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/</div>
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -89,7 +92,7 @@ HTTP 200 OK
 ```
 ___
 
-### Update A User
+## Update A User
 **Endpoint**
 
 <div class="endpoint patch">/rbac/users/{name_or_id}</div>
@@ -102,6 +105,7 @@ ___
 | `comment`<br>optional | A string describing the RBAC user object.
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -117,18 +121,19 @@ HTTP 200 OK
 ```
 ___
 
-### Delete a User
+## Delete a User
 **Endpoint**
 
 <div class="endpoint delete">/rbac/users/{name_or_id}</div>
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
 ___
 
-### Add a Role
+## Add a Role
 **Endpoint**
 
 <div class="endpoint post">/rbac/roles</div>
@@ -139,6 +144,7 @@ ___
 | `comment`<br>optional | A string describing the RBAC user object.
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -152,7 +158,7 @@ HTTP 201 Created
 ```
 ___
 
-### Retrieve a Role
+## Retrieve a Role
 **Endpoint**
 
 <div class="endpoint get">/rbac/role{name_or_id}</div>
@@ -162,6 +168,7 @@ ___
 | `name_or_id` | The RBAC role name or UUID.
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -175,12 +182,13 @@ HTTP 200 OK
 ```
 ___
 
-### List Roles
+## List Roles
 **Endpoint**
 
 <div class="endpoint get">/rbac/roles</div>
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -199,7 +207,7 @@ HTTP 200 OK
 ```
 ___
 
-### Update A Role
+## Update A Role
 **Endpoint**
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}</div>
@@ -210,6 +218,7 @@ ___
 | `comment`<br>optional | A string describing the RBAC role object.
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -225,23 +234,24 @@ HTTP 200 OK
 ```
 ___
 
-### Delete A Role
+## Delete A Role
 **Endpoint**
 
 <div class="endpoint delete">/rbac/role/{name_or_id}</div>
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
 ___
 
-### Add A Permission
+## Add A Permission
 **Endpoint**
 
 <div class="endpoint post">/rbac/permissions</div>
 
-#### Request Body
+### Request Body
 
 | Attribute | Description
 | --------- | -----------
@@ -275,7 +285,7 @@ HTTP 201 Created
 ```
 ---
 
-### Retrieve A Permission
+## Retrieve A Permission
 **Endpoint**
 
 <div class="endpoint get">/rbac/permissions/{name_or_id}</div>
@@ -308,12 +318,13 @@ HTTP 200 OK
 ```
 ---
 
-### List Permissions
+## List Permissions
 **Endpoint**
 
 <div class="endpoint get">/rbac/permissions/</div>
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -341,12 +352,12 @@ HTTP 200 OK
 ```
 ---
 
-### Update a Permission
+## Update a Permission
 **Endpoint**
 
 <div class="endpoint patch">/rbac/permissions/{name_or_id}</div>
 
-#### Request Body
+### Request Body
 
 | Attribute | Description
 | --------- | -----------
@@ -380,29 +391,31 @@ HTTP 200 OK
 ```
 ---
 
-### Delete A Permission
+## Delete A Permission
 **Endpoint**
 
 <div class="endpoint delete">/rbac/permissions/{name_or_id}</div>
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
 ---
 
-### Add a User to a Role
+## Add a User to a Role
 **Endpoint**
 
 <div class="endpoint post">/rbac/users/{name_or_id}/roles</div>
 
-#### Request Body
+### Request Body
 
 | Attribute | Description
 | --------- | -----------
 | `roles` | Comma-separated list of role names to assign to the user.
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -427,12 +440,13 @@ HTTP 201 Created
 ```
 ---
 
-### List a User's Roles
+## List a User's Roles
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}/roles</div>
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -457,12 +471,13 @@ HTTP 200 OK
 ```
 ---
 
-### List a User's Permissions
+## List a User's Permissions
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}/permissions</div>
 
 **Response**
+
 ```
 HTTP 200 OK
 ```
@@ -483,34 +498,36 @@ HTTP 200 OK
 ```
 ---
 
-### Delete a Role from a User
+## Delete a Role from a User
 **Endpoint**
 
 <div class="endpoint delete">/rbac/users/{name_or_id}/roles</div>
 
-#### Request Body
+### Request Body
 
 | Attribute | Description
 | --------- | -----------
 | `roles` | Comma-separated list of role names to assign to the user.
 
 **Response**
+
 ```
 HTTP 204 No Content
 ```
 ---
 
-### Add a Permission to a Role
+## Add a Permission to a Role
 **Endpoint**
 
 <div class="endpoint post">/rbac/roles/{name_or_id}/permissions</div>
 
-#### Request Body
+### Request Body
 | Attribute | Description
 | --------- | -----------
 | `permissions` | Comma-separated list of permission names to assign to the role.
 
 **Response**
+
 ```
 HTTP 201 Created
 ```
@@ -557,12 +574,13 @@ HTTP 201 Created
 ```
 ---
 
-### List a Role's Permissions
+## List a Role's Permissions
 **Endpoint**
 
 <div class="endpoint get">/rbac/roles/{name_or_id}/permissions</div>
 
 **Response**
+
 ```
 200 OK
 ```
@@ -609,28 +627,30 @@ HTTP 201 Created
 ```
 ---
 
-### Delete A Permission from a Role
+## Delete A Permission from a Role
 **Endpoint**
 
 <div class="endpoint delete">/rbac/roles/{name_or_id}/permissions</div>
 
-#### Request Body
+### Request Body
 | Attribute | Description
 | --------- | -----------
 | `permissions` | Comma-separated list of permission names to remove from the user.
 
 **Response**
+
 ```
 204 No Content
 ```
 ---
 
-### List Available RBAC Resources
+## List Available RBAC Resources
 **Endpoint**
 
 <div class="endpoint get">/rbac/resources</div>
 
 **Response**
+
 ```
 200 OK
 ```

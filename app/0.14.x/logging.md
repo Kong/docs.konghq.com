@@ -1,8 +1,9 @@
 ---
 title: Logging Reference
+toc: false
 ---
 
-# Removing Certain Elements From Your Kong Logs
+## Removing Certain Elements From Your Kong Logs
 
 With new regulations surrounding protecting private data like GDPR, there is a chance you may need to change your logging habits. If you use Kong as your API Gateway, this can be done in a single location to take effect on all of your APIs. This guide will walk you through one approach to accomplishing this, but there are always different approaches for different needs. Please note, these changes will effect the output of the NGINX access logs. This will not have any effect on Kong's logging plugins.
 
@@ -14,27 +15,27 @@ To start using a custom NGINX template, first get a copy of our template. This c
 # ---------------------
 # custom_nginx.template
 # ---------------------
- 
+
 worker_processes ${{NGINX_WORKER_PROCESSES}}; # can be set by kong.conf
 daemon ${{NGINX_DAEMON}};                     # can be set by kong.conf
- 
+
 pid pids/nginx.pid;                      # this setting is mandatory
 error_log logs/error.log ${{LOG_LEVEL}}; # can be set by kong.conf
- 
+
 events {
     use epoll; # custom setting
     multi_accept on;
 }
- 
+
 http {
     # include default Kong Nginx config
     include 'nginx-kong.conf';
- 
+
     # custom server
     server {
         listen 8888;
         server_name custom_server;
- 
+
         location / {
           ... # etc
         }
@@ -48,8 +49,8 @@ In order to control what is placed in the logs, we will be using the NGINX map m
 
 map $paramater_to_look_at $variable_name {
     pattern_to_look_for 0;
-    second_pattern_to_look_for 0; 
-     
+    second_pattern_to_look_for 0;
+
     default 1;
 }
 ```
@@ -61,7 +62,7 @@ map $request_uri $keeplog {
     ~.+\@.+\..+ 0;
     ~/apiname/v2/verify 0;
     ~/v3/verify 0;
-     
+
     default 1;
 }
 ```
@@ -87,35 +88,35 @@ Now, our custom NGINX template is all ready to be used. If you have been followi
 # ---------------------
 # custom_nginx.template
 # ---------------------
- 
+
 worker_processes ${{NGINX_WORKER_PROCESSES}}; # can be set by kong.conf
 daemon ${{NGINX_DAEMON}};                     # can be set by kong.conf
- 
+
 pid pids/nginx.pid;                      # this setting is mandatory
 error_log stderr ${{LOG_LEVEL}}; # can be set by kong.conf
- 
- 
- 
+
+
+
 events {
     use epoll; # custom setting
     multi_accept on;
 }
- 
+
 http {
-     
-     
+
+
     map $request_uri $keeplog {
         ~.+\@.+\..+ 0;
         ~/v1/invitation/ 0;
         ~/reset/v1/customer/password/token 0;
         ~/v2/verify 0;
-         
+
         default 1;
     }
     log_format show_everything '$remote_addr - $remote_user [$time_local] '
         '$request_uri $status $body_bytes_sent '
         '"$http_referer" "$http_user_agent"';
-     
+
     include 'nginx-kong.conf';  
 }
 ```

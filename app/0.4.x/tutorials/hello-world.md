@@ -6,7 +6,7 @@ title: Tutorials - Hello World
 
 Kong sits in front of any configured API, and it's the main entry point of any HTTP request. For example, let's configure Kong to support [mockbin](http://mockbin.com/) as an API:
 
-```
+```bash
 $ curl -i -X POST \
   --url http://127.0.0.1:8001/apis/ \
   --data 'name=mockbin&target_url=http://mockbin.com&public_dns=api.mockbin.com'
@@ -17,7 +17,7 @@ We used the `8001` port, which the RESTful Admin API of Kong listens on.
 
 We can now make our first HTTP requests through Kong by using the `8000` port, which is the port that API consumers will use to consume any API behind Kong:
 
-```
+```bash
 $ curl -i -X GET \
   --url http://127.0.0.1:8000/ \
   --header 'Host: api.mockbin.com'

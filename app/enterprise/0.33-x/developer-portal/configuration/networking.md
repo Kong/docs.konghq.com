@@ -1,10 +1,10 @@
 ---
-title: Networking
+title: Kong Dev Portal Networking
 book: portal
 chapter: 5
 ---
 
-# Networking
+## Introduction
 
 This document reviews how the [`proxy_url`][proxy_url]
 and [`portal_gui_url`][portal_gui_url] config variables are utilized within the Kong proxy, Dev Portal, and Admin GUI. Below you find a summary of these config variables and their default settings.
@@ -12,7 +12,7 @@ and [`portal_gui_url`][portal_gui_url] config variables are utilized within the 
 ## Summary
 
 ### proxy_url
-  
+
 **Description:**  
 The Dev Portal will use this information to build the API endpoint for requests to Kong. By default, the Kong Portal will use the window request host and append the resolved listener port depending on the requested protocol.
 
@@ -87,4 +87,3 @@ Next: Learn more about our [Property References &rsaquo;]({{page.book.next}})
 [portal_gui_url]: /enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#portal_gui_url
 [proxy_url]: /enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference/#proxy_url
 [CORS]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-

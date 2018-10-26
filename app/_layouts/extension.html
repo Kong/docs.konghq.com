@@ -20,7 +20,7 @@ breadcrumbs:
 
 {% if page.params.service_id %}
 {% capture plugin_config_for_service %}
-#### Enabling the plugin on a Service
+### Enabling the plugin on a Service
 
 Configure this plugin on a [Service](/latest/admin-api/#service-object) by
 making the following request:
@@ -37,7 +37,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 
 {% if page.params.route_id %}
 {% capture plugin_config_for_route %}
-#### Enabling the plugin on a Route
+### Enabling the plugin on a Route
 
 Configure this plugin on a [Route](/latest/admin-api/#Route-object) with:
 
@@ -52,7 +52,7 @@ $ curl -X POST http://kong:8001/routes/{route_id}/plugins \
 
 {% if page.params.consumer_id %}
 {% capture plugin_config_for_consumer %}
-#### Enabling the plugin on a Consumer
+### Enabling the plugin on a Consumer
 
 You can use the `http://localhost:8001/plugins` endpoint to enable this plugin
 on specific [Consumers](/latest/admin-api/#Consumer-object):
@@ -82,7 +82,7 @@ plugin.
 
 {% if page.params.api_id %}
 {% capture plugin_config_for_api %}
-#### Enabling the plugin on an API
+### Enabling the plugin on an API
 
 If you are using an older version of Kong with the legacy [API
 entity](/0.13.x/admin-api/#api-object) (**deprecated** in favor of Services
@@ -273,7 +273,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {{ plugin_config_for_api | markdownify }}
         {% endif %}
 
-        <h4>Global plugins</h4>
+        <h3>Global plugins</h3>
 
         <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
           Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
@@ -281,7 +281,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
         </p>
 
-        <h4>Parameters</h4>
+        <h3>Parameters</h3>
 
         <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
 

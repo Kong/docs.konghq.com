@@ -45,9 +45,18 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 20px;
+    max-width:calc(~"100% - 460px");
+    @media screen and (max-width:1080px){
+      max-width:100%;
+    }
   }
 
   .page-header-btn {
+    &#version-dropdown{
+      @media screen and (max-width:476px){
+        float:left;
+      }
+    }
     &:extend(.button all);
     border-color: #d4d7d9;
     background-image: linear-gradient(to top, #f7f9fa, #fcfcfc);
@@ -83,9 +92,10 @@
     position: absolute;
     right: 0;
     top: 75%;
-    margin-top: -20px;
+    margin-top: 0px;
+    min-width:360px;
 
-    @media (max-width: 800px) {
+    @media (max-width: 1080px) {
       position: static;
       margin-top: 20px;
       display: inline-block;
@@ -94,8 +104,10 @@
   }
 
   .dropdown .dropdown-menu {
-    @media (max-width: 800px) {
+    @media (max-width: 476px) {
       right: auto;
+      float:left;
+      top:90%;
     }
   }
 }
@@ -252,7 +264,26 @@
   }
 
   ol {
-    list-style: decimal outside;
+    &:extend(.instructions-steps);
+    padding-left: 19px;
+
+    li {
+      &:extend(.instructions-steps .instructions-step-item all);
+      padding: 7px 0 15px 35px;
+
+      &:last-child {
+        padding-bottom: 15px;
+      }
+
+      &:before {
+        color: @font-color;
+        font-size: 13px;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        left: -19px;
+      }
+    }
   }
 
   p, figure {
@@ -375,7 +406,7 @@
     }
 
     ol {
-      list-style: decimal inside;
+      list-style: none;
       margin-bottom: 0;
       margin-top: 1em;
 
@@ -518,7 +549,7 @@
 
   .instructions-step-item {
     position: relative;
-    padding: 10px 0 20px 44px;
+    padding: 6px 0 20px 44px;
     border-left: 1px solid @gray;
     margin: 0;
 
@@ -531,16 +562,15 @@
       counter-increment: step;
       content: counter(step);
       box-sizing: border-box;
-      width: 50px;
-      height: 50px;
-      line-height: 48px;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
       text-align: center;
       border-radius: 50%;
       border: 1px solid @gray;
       background-color: #fff;
       font-weight: 600;
       position: absolute;
-      left: -26px;
       top: 0;
     }
   }

@@ -4,15 +4,7 @@ book: plugin_dev
 chapter: 4
 ---
 
-# {{page.title}}
-
-#### Module
-
-```
-kong.plugins.<plugin_name>.schema
-```
-
----
+## Introduction
 
 Most of the time, it makes sense for your plugin to be configurable to answer
 all of your user's needs. Your plugin's configuration is stored in the
@@ -43,11 +35,16 @@ database along with its configuration (`{foo = "bar"}` in this case). If the
 configuration is not valid, the Admin API would return `400 Bad Request` and
 the appropriate error messages.
 
+## Module
+
+```
+kong.plugins.<plugin_name>.schema
+```
 [Back to TOC](#table-of-contents)
 
 ---
 
-### schema.lua specifications
+## schema.lua specifications
 
 This module is to return a Lua table with properties that will define how your plugins can later be configured by users. Available properties are:
 
@@ -86,7 +83,7 @@ return {
 
 ---
 
-### Describing your configuration schema
+## Describing your configuration schema
 
 The `fields` property of your `schema.lua` file described the schema of your
 plugin's configuration. It is a flexible key/value table where each key will be
@@ -134,7 +131,7 @@ Here is the list of accepted rules for a property:
 
 ---
 
-#### Examples:
+### Examples
 
 This `schema.lua` file for the [key-auth](/plugins/key-authentication/) plugin
 defines a default list of accepted parameter names for an API key, and a

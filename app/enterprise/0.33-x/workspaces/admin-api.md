@@ -15,7 +15,7 @@ workspace_entities_body: |
 chapter: 2
 ---
 
-# {{page.title}}
+## Introduction
 
 Kong Enterprise's Workspaces feature is configurable through Kong's
 [Admin API].

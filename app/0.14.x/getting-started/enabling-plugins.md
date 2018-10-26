@@ -2,8 +2,6 @@
 title: Enabling Plugins
 ---
 
-# Enabling Plugins
-
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>

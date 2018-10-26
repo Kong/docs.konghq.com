@@ -3,6 +3,18 @@ title: PCI DSS Compliance
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: PCI DSS Compliance
 redirect_to: https://konghq.com/about-kong/pci-dss/
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ---
 
 The Payment Card Industry Data Security Standard (PCI DSS) is a set of industry-mandated requirements that apply to any business that handles, processes, or stores credit cards, regardless of the business's size or location.
@@ -21,7 +33,7 @@ With a payment processing API served through Kong, depending on your setup, you 
   <center>PCI DSS compliance is dependent on the configuration and usage of your Kong installation</center>
 </div>
 
-You will still need to complete an annual [Self-Assessment Questionnaire (SAQ)](https://www.pcisecuritystandards.org/merchants/self_assessment_form.php) in order to be PCI compliant. There are several different types of SAQs, and a Qualified Security Assessor (QSA) can help you choose the right one for your business and achieve compliance. 
+You will still need to complete an annual [Self-Assessment Questionnaire (SAQ)](https://www.pcisecuritystandards.org/merchants/self_assessment_form.php) in order to be PCI compliant. There are several different types of SAQs, and a Qualified Security Assessor (QSA) can help you choose the right one for your business and achieve compliance.
 
 ---
 

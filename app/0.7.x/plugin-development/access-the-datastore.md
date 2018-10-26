@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 5
 ---
 
-# {{page.title}}
+## Introduction
 
 Kong interacts with the model layer through classes we refer to as "DAOs". This chapter will detail the available API to interact with the datastore.
 
@@ -14,7 +14,7 @@ Kong interacts with the model layer through classes we refer to as "DAOs". This 
 
 ---
 
-### The DAO Factory
+## The DAO Factory
 
 All entities in Kong are represented by:
 
@@ -38,7 +38,7 @@ For [performance](http://lua-users.org/wiki/OptimisingUsingLocalVariables) [reas
 
 ---
 
-### DAOs Lua API
+## DAOs Lua API
 
 All methods available on DAOs are documented in the [kong.dao.cassandra.base_dao] module in Kong's Public Lua API Reference. See the [public interface] and [children DAOs interface] sections of the base_dao module.
 
@@ -56,7 +56,7 @@ local inserted_api, err = dao.apis:insert({
 
 ---
 
-### Custom DAOs
+## Custom DAOs
 
 Because Kong needs to deal with more than the three core entities, the [kong.dao.cassandra.base_dao][kong.dao.cassandra.base_dao] can be inherited to support any entity. Plugins make heavy use of this feature, and every existing plugin implements their own DAO, loaded by the DAO Factory and made available everywhere the factory is, just like the core entities.
 

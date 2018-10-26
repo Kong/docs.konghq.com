@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 2
 ---
 
-# {{page.title}}
+## Introduction
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This chapter assumes that you are familiar with <a href="http://www.lua.org/">Lua</a>.
@@ -33,7 +33,7 @@ Now let's describe what are the modules you can implement and what their purpose
 
 ---
 
-### Basic plugin modules
+## Basic plugin modules
 
 In its purest form, a plugin consists of two mandatory modules:
 
@@ -48,7 +48,7 @@ simple-plugin
 
 ---
 
-### Advanced plugin modules
+## Advanced plugin modules
 
 Some plugins might have to integrate deeper with Kong: have their own table in the database, expose endpoints in the Admin API, etc... Each of those can be done by adding a new module to your plugin. Here is what the structure of a plugin would look like if it was implementing all of the optional modules:
 

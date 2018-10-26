@@ -4,12 +4,12 @@ book: plugin_dev
 chapter: 2
 ---
 
-# {{page.title}}
-
 <div class="alert alert-warning">
   <strong>Note:</strong> This chapter assumes that you are familiar with
   <a href="http://www.lua.org/">Lua</a>.
 </div>
+
+## Introduction
 
 Consider your plugin as a set of [Lua
 modules](http://www.lua.org/manual/5.1/manual.html#6.3). Each file described in
@@ -61,7 +61,7 @@ their purpose is.
 
 ---
 
-### Basic plugin modules
+## Basic plugin modules
 
 In its purest form, a plugin consists of two mandatory modules:
 
@@ -82,7 +82,7 @@ simple-plugin
 
 ---
 
-### Advanced plugin modules
+## Advanced plugin modules
 
 Some plugins might have to integrate deeper with Kong: have their own table in
 the database, expose endpoints in the Admin API, etc... Each of those can be
@@ -123,7 +123,6 @@ Next: [Write custom logic &rsaquo;]({{page.book.next}})
 
 [api.lua]: {{page.book.chapters.admin-api}}
 [daos.lua]: {{page.book.chapters.custom-entities}}
-[hooks.lua]: {{page.book.chapters.plugin-configuration}}
 [handler.lua]: {{page.book.chapters.custom-logic}}
 [schema.lua]: {{page.book.chapters.plugin-configuration}}
 [migrations/*.lua]: {{page.book.chapters.custom-entities}}

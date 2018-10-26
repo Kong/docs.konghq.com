@@ -3,6 +3,18 @@ title: FAQ
 header_icon: /assets/images/icons/icn-documentation.svg
 header_title: Frequently Asked Questions
 redirect_to: https://konghq.com/faqs/
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ---
 
 * [How does it work?](#how-does-it-work)
@@ -230,10 +242,10 @@ to Kong to provision APIs, Consumers and Plugins.
 
 2) Migrate the network settings. Once the data has been migrated and Kong has
 been configured, you will need to check in a staging environment that everything
-works well. Once you are ready to switch your users into Production over Kong, 
+works well. Once you are ready to switch your users into Production over Kong,
 you will then need to adjust your network settings to point to your Kong cluster
 (most likely by updating the DNS configuration).
 
-If you are a 
+If you are a
 [Kong Enterprise](https://konghq.com/kong-enterprise-edition/) customer, we can help
 with the migration.

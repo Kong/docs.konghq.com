@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 7
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Modules
+## Modules
 
 ```
 "kong.plugins.<plugin_name>.daos"
@@ -30,7 +30,7 @@ To avoid querying the datastore every time, we can cache custom entities in-memo
 
 ---
 
-### Caching custom entities
+## Caching custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in your code by requiring the `database_cache` dependency:
 
@@ -108,13 +108,13 @@ end
 
 By doing so it doesn't matter how many requests the client makes with that particular api-key, after the first request every lookup will be done in-memory without querying the datastore.
 
-#### Updating or deleting a custom entity
+### Updating or deleting a custom entity
 
 Every time a cached custom entity is updated or deleted on the datastore, for example using the Admin API, it creates an inconsistency between the data in the datastore, and the data cached in-memory in the Kong node. To avoid this inconsistency, we need to delete the cached entity from the in-memory store and force Kong to request it again from the datastore. In order to do so we must implement an invalidation hook.
 
 ---
 
-### Invalidating custom entities
+## Invalidating custom entities
 
 Every time an entity is being created/updated/deleted in the datastore, Kong notifies the datastore operation across all the nodes telling what command has been executed and what entity has been affected by it. This happens for APIs, Plugins and Consumers, but also for custom entities.
 
@@ -169,7 +169,7 @@ In the example above the plugin is listening to the `ENTITY_UPDATED` and `ENTITY
 
 The entities being transmitted in the `entity` and `old_entity` properties do not have all the fields defined in the schema, but only a subset. This is required because every event is sent in a UDP packet with a payload size limit of 512 bytes. This subset is being returned by the `marshall_event` function in the schema, that you can optionally implement.
 
-#### marshall_event
+### marshall_event
 
 This function serializes the custom entity to a minimal version that only includes the fields we will later need to use in `hooks.lua`. If `marshall_event` is not implemented, by default Kong does not send any entity field value along with the event.
 
@@ -201,7 +201,7 @@ In the example above the custom entity provides a `marshall_event` function that
 
 ---
 
-### Extending the Admin API
+## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with Kong to setup their APIs and plugins. It is likely that they also need to be able to interact with the custom entities you implemented for your plugin (for example, creating and deleting API keys). The way you would do this is by extending the Admin API, which we will detail in the next chapter: [Extending the Admin API]({{page.book.next}}).
 

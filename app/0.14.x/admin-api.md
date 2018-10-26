@@ -38,6 +38,7 @@ route_body: |
     `methods`<br>*semi-optional*   | A list of HTTP methods that match this Route. For example: `["GET", "POST"]`. At least one of `hosts`, `paths`, or `methods` must be set. With form-encoded, the notation is `methods[]=GET&methods[]=OPTIONS`. With JSON, use an Array.
     `hosts`<br>*semi-optional*     | A list of domain names that match this Route. For example: `example.com`. At least one of `hosts`, `paths`, or `methods` must be set. With form-encoded, the notation is `hosts[]=foo.com&hosts[]=bar.com`. With JSON, use an Array.
     `paths`<br>*semi-optional*     | A list of paths that match this Route. For example: `/my-path`. At least one of `hosts`, `paths`, or `methods` must be set. With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
+    `regex_priority`<br>*optional* | Determines the relative order of this Route against others when evaluating regex paths. Routes with higher numbers will have their regex paths evaluated first. Defaults to `0`.
     `strip_path`<br>*optional*     | When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL. Defaults to `true`.
     `preserve_host`<br>*optional*  | When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. By default set to `false`, and the upstream `Host` header will be that of the Service's `host`.
     `service`                      | The Service this Route is associated to. This is where the Route proxies traffic to. With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
@@ -125,7 +126,7 @@ snis_body: |
 
 ---
 
-# Kong Admin API
+## Introduction
 
 Kong comes with an **internal** RESTful Admin API for administration purposes.
 Requests to the Admin API can be sent to any node in the cluster, and Kong will
@@ -980,7 +981,7 @@ values for some specific Consumers, you can do so by specifying the
 
 See the [Precedence](#precedence) section below for more details.
 
-#### Precedence
+### Precedence
 
 A plugin will always be run once and only once per request. But the
 configuration with which it will run depends on the entities it has been
@@ -1068,7 +1069,7 @@ HTTP 201 Created
 
 ---
 
-## Retrieve Plugin
+### Retrieve Plugin
 
 <div class="endpoint get">/plugins/{id}</div>
 

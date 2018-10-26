@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 6
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Modules
+## Modules
 
 ```
 "kong.plugins.<plugin_name>.schema.migrations"
@@ -21,7 +21,7 @@ As explained in the [previous chapter]({{page.book.previous}}), Kong interacts w
 
 ---
 
-### Create a migration file
+## Create a migration file
 
 Once you have defined your model, you must create your migration modules which will be executed by Kong to create the table in which your records of your entity will be stored. A migration file simply holds an array of migrations, and returns them.
 
@@ -105,7 +105,7 @@ While Postgres does, Cassandra does not support constraints such as "NOT NULL", 
 
 ---
 
-### Retrieve your custom DAO from the Dao Factory
+## Retrieve your custom DAO from the Dao Factory
 
 To make the DAO Factory load your custom DAO(s), you will simply need to define your entity's schema (just like the schemas describing your [plugin configuration]({{page.book.chapters.plugin-configuration}})). This schema contains a few more values since it must describes which table the entity relates to in the datastore, constraints on its fields such as foreign keys, non-null constraints and such.
 
@@ -164,7 +164,7 @@ The DAO name (`keyauth_credentials`) with which it is accessible from the DAO Fa
 
 ---
 
-### Caching custom entities
+## Caching custom entities
 
 Sometimes custom entities are required on every request/response, which in turn triggers a query on the datastore every time. This is very inefficient because querying the datastore adds latency and slows the request/response down, and the resulting increased load on the datastore could affect the datastore performance itself and, in turn, other Kong nodes.
 

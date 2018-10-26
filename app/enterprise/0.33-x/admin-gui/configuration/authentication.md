@@ -4,8 +4,6 @@ book: admin_gui
 chapter: 3
 ---
 
-# {{page.title}}
-
 > Before you begin, make sure you have gone through the
 [Getting Started with the Admin GUI](https://getkong.org/enterprise/{{page.kong_version}}/admin-gui/configuration/getting-started)
 

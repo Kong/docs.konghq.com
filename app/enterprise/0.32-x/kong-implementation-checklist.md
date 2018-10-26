@@ -6,17 +6,17 @@ title: Kong Implementation Checklist
 - Kong can run on instances of any size with any resources. While the system requirements vary significantly depending on the use-case, generally speaking, we recommend to start big and then gradually reduce the instances to the appropriate number and size.
 - When allocating resources to a Kong cluster, slightly over-provision the cluster to make room for request spikes. Kong requires a database to run and you can choose either Cassandra or PostgreSQL.
 
-### PostgreSQL
+## PostgreSQL
 
 - Generally speaking, PostgreSQL works well for most of the use-cases, and it’s usually easier to setup. We recommend setting up a master-slave replication with servers located in different racks, data centers or availability zones to account for infrastructure failures.
 - In multi-DC environments, PostgreSQL may not be the right fit, since a Kong node located in a different datacenter will have to send write requests all the way to the PostgreSQL data-center, adding increased latency to the system.
 
-### Cassandra
+## Cassandra
 
 - We recommend using Cassandra in multi-DC environments because it supports native replication and availability capabilities of the system. When starting a Cassandra cluster for Kong, we recommend starting at least 3 nodes in every datacenter with a replication setting of 2.
 - Cassandra is an eventually consistent datastore, which means that over time the data will be the same across the cluster, so please account for inconsistencies in the system.
 
-### Kong Cluster
+## Kong Cluster
 
 - Regardless of the datastore being adopted with Kong, the Kong nodes themselves need to join in a cluster. The Kong nodes will talk to each other via their connections to the database (PostgreSQL or Cassandra). Please refer to the [clustering reference](/latest/clustering/) for more details.
 

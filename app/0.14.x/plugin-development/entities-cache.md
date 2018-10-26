@@ -4,15 +4,7 @@ book: plugin_dev
 chapter: 7
 ---
 
-# {{page.title}}
-
-#### Modules
-
-```
-kong.plugins.<plugin_name>.daos
-```
-
----
+## Introduction
 
 Your plugin may need to frequently access custom entities (explained in the
 [previous chapter]({{page.book.previous}})) on every request and/or response.
@@ -39,11 +31,16 @@ datastore query every time (only the first time), but happen in-memory, which
 is much faster and reliable that querying it from the datastore (especially
 under heavy load).
 
+## Modules
+
+```
+kong.plugins.<plugin_name>.daos
+```
 [Back to TOC](#table-of-contents)
 
 ---
 
-### Caching custom entities
+## Caching custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in
 your code by using the [kong.cache](/{{page.kong_version}}/pdk/#kong-cache)
@@ -135,7 +132,7 @@ result in a database query.
 The cache is used in several places in the [Key-Auth plugin handler](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua).
 Give that file a look in order to see how an official plugin uses the cache.
 
-#### Updating or deleting a custom entity
+### Updating or deleting a custom entity
 
 Every time a cached custom entity is updated or deleted in the datastore (i.e.
 using the Admin API), it creates an inconsistency between the data in
@@ -148,7 +145,7 @@ cache invalidation.
 
 ---
 
-### Cache invalidation for your entities
+## Cache invalidation for your entities
 
 If you wish that your cached entities be invalidated upon a CRUD operation
 rather than having to wait for them to reach their TTL, you have to follow a
@@ -156,7 +153,7 @@ few steps. This process can be automated for most entities, but manually
 subscribing to some CRUD events might be required to invalidate some entities
 with more complex relationships.
 
-#### Automatic cache invalidation
+### Automatic cache invalidation
 
 Cache invalidation can be provided out of the box for your entities if you rely
 on the `cache_key` property of your entity's schema. For example, in the
@@ -237,7 +234,7 @@ properly fetch the newly created API key from the datastore.
 See the [Clustering Guide](/{{page.kong_version}}/clustering/) to ensure
 that you have properly configured your cluster for such invalidation events.
 
-#### Manual cache invalidation
+### Manual cache invalidation
 
 In some cases, the `cache_key` property of an entity's schema is not flexible
 enough, and one must manually invalidate its cache. Reasons for this could be
@@ -286,7 +283,7 @@ end, "crud", "consumers")
 
 ---
 
-### Extending the Admin API
+## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with
 Kong to setup their APIs and plugins. It is likely that they also need to be

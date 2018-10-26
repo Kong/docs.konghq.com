@@ -17,7 +17,7 @@ In this section, you'll learn how to configure plugins. One of the core principa
 
 As an example, we'll have you configure the [key-auth][key-auth] plugin to add authentication to your API.
 
-1. ### Configure the plugin for your API
+## 1. Configure the plugin for your API
 
     Issue the following cURL request on the previously created API named `mockbin`:
 
@@ -29,7 +29,7 @@ As an example, we'll have you configure the [key-auth][key-auth] plugin to add a
 
     **Note:** This plugin also accepts a `config.key_names` parameter, which defaults to `[apikey]`. It is a list of headers and parameters names (both are supported) that are supposed to contain the API key during a request.
 
-2. ### Verify that the plugin is properly configured
+## 2. Verify that the plugin is properly configured
 
     Issue the following cURL request to verify that the [key-auth][key-auth] plugin was properly configured on the API:
 
@@ -50,7 +50,7 @@ As an example, we'll have you configure the [key-auth][key-auth] plugin to add a
     }
     ```
 
-### Next Steps
+## Next Steps
 
 Now that you've configured the **key-auth** plugin lets learn how to add consumers to your API so we can continue proxying requests through Kong.
 

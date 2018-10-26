@@ -2,7 +2,7 @@
 
 var browserSync = require('browser-sync').create()
 var childProcess = require('child_process')
-var gutil = require('gulp-util')
+var log = require('fancy-log')
 var del = require('del')
 var ghPages = require('gh-pages')
 var gulp = require('gulp')
@@ -115,8 +115,8 @@ gulp.task('jekyll', function (cb) {
   var command = 'bundle exec jekyll build --config jekyll.yml --destination ' + paths.dist
 
   childProcess.exec(command, function (err, stdout, stderr) {
-    gutil.log(stdout)
-    gutil.log(stderr)
+    log(stdout)
+    log(stderr)
     cb(err)
   })
 })
@@ -178,7 +178,7 @@ gulp.task('pdk-docs', function (cb) {
   newNav = obj.stdout.toString()
   newDoc = doc.replace(pdkRegex, newNav + '\n-')
   fs.writeFileSync(navFilepath, newDoc)
-  gutil.log('Updated contents of ' + navFilepath + ' with new navigation items')
+  log('Updated contents of ' + navFilepath + ' with new navigation items')
 
   // 2. Generate markdown docs using custom ldoc templates
   // 2.1 Prepare ref folder
@@ -215,7 +215,7 @@ gulp.task('pdk-docs', function (cb) {
       return cb(errLog)
     }
   }
-  gutil.log('Re-generated PDK docs in ' + refDir)
+  log('Re-generated PDK docs in ' + refDir)
 
   // 3 Write pdk_info yaml file
   // 3.1 Obtain git sha-1 hash of the current git log
@@ -230,7 +230,7 @@ gulp.task('pdk-docs', function (cb) {
   // 3.2 Write it into file
   confFilepath = 'app/_data/pdk_info.yml'
   fs.writeFileSync(confFilepath, 'sha1: ' + gitSha1 + '\n')
-  gutil.log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
+  log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
 })
 
 gulp.task('clean', function () {
@@ -275,7 +275,7 @@ gulp.task('cloudflare', function (cb) {
 
   cloudflare.clearCache('docs.getkong.com', function (err) {
     if (err) {
-      gutil.log(err.message)
+      log(err.message)
     }
 
     cb()

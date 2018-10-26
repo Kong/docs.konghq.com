@@ -2,7 +2,7 @@
 title: Network & Firewall
 ---
 
-# Network & Firewall
+## Introduction
 
 In this section you will find a summary about the recommended network and firewall settings for Kong.
 
@@ -10,9 +10,8 @@ In this section you will find a summary about the recommended network and firewa
 
 Kong uses multiple connections for different purposes.
 
-* proxy 
+* proxy
 * management api
-
 
 ### Proxy
 

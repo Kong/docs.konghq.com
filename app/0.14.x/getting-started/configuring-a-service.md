@@ -2,8 +2,6 @@
 title: Configuring a Service
 ---
 
-# Configuring a Service
-
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>

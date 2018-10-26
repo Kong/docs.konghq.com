@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 3
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Module
+## Module
 
 ```
 "kong.plugins.<plugin_name>.handler"
@@ -27,7 +27,7 @@ at: `"kong.plugins.<plugin_name>.handler"`
 
 ---
 
-### Available request contexts
+## Available request contexts
 
 Kong allows you to write your code in all of the lua-nginx-module contexts.
 Each function to implement in your `handler.lua` file will be executed when the
@@ -55,7 +55,7 @@ All of those functions take one parameter given by Kong: the configuration of yo
 
 ---
 
-### handler.lua specifications
+## handler.lua specifications
 
 The `handler.lua` file must return a table implementing the functions you wish
 to be executed. In favor of brevity, here is a commented example module
@@ -182,7 +182,7 @@ return CustomHandler
 
 ---
 
-### Plugins execution order
+## Plugins execution order
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This is still a work-in-progress API. For thoughts on

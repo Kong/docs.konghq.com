@@ -83,7 +83,7 @@ how Kong is configured via the [Admin API][API].
 
 Adding a Service to Kong is done by sending an HTTP request to the Admin API:
 
-```
+```bash
 $ curl -i -X POST http://localhost:8001/services/ \
     -d 'name=foo-service' \
     -d 'url=http://foo-service.com'
@@ -115,7 +115,7 @@ points to `http://foo-service.com` (your upstream).
 Now, in order to send traffic to this Service through Kong, we need to specify
 a Route, which acts as an entrypoint to Kong:
 
-```
+```bash
 $ curl -i -X POST http://localhost:8001/routes/ \
     -d 'hosts[]=example.com' \
     -d 'paths[]=/foo' \

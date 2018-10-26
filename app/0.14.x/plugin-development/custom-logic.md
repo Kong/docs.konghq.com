@@ -4,20 +4,12 @@ book: plugin_dev
 chapter: 3
 ---
 
-# {{page.title}}
-
-#### Module
-
-```
-kong.plugins.<plugin_name>.handler
-```
-
----
-
 <div class="alert alert-warning">
   <strong>Note:</strong> This chapter assumes that you are familiar with
   <a href="http://www.lua.org/">Lua</a>.
 </div>
+
+## Introduction
 
 A Kong plugin allows you to inject custom logic (in Lua) at several
 entry-points in the life-cycle of a request/response as it is proxied by Kong.
@@ -25,11 +17,16 @@ To do so, one must implement one or several of the methods of the
 `base_plugin.lua` interface. Those methods are to be implemented in a module
 namespaced under: `kong.plugins.<plugin_name>.handler`
 
+## Module
+
+```
+kong.plugins.<plugin_name>.handler
+```
 [Back to TOC](#table-of-contents)
 
 ---
 
-### Available request contexts
+## Available request contexts
 
 The plugins interface allows you to override any of the following methods in
 your `handler.lua` file to implement custom logic at various entry-points
@@ -63,7 +60,7 @@ chapter]({{page.book.next}}).
 
 ---
 
-### handler.lua specifications
+## handler.lua specifications
 
 The `handler.lua` file must return a table implementing the functions you wish
 to be executed. In favor of brevity, here is a commented example module
@@ -195,7 +192,7 @@ handler code.
 
 ---
 
-### Plugin Development Kit
+## Plugin Development Kit
 
 Logic implemented in those phases will most likely have to interact with the
 request/response objects or core components (e.g. access the cache,
@@ -213,7 +210,7 @@ Kit Reference][pdk].
 
 ---
 
-### Plugins execution order
+## Plugins execution order
 
 Some plugins might depend on the execution of others to perform some
 operations. For example, plugins relying on the identity of the consumer have

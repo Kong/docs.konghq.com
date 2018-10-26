@@ -74,7 +74,7 @@ Once this request is processed by Kong, the API is stored in the database and a 
 
 ## 3. Proxy an API by its DNS values
 
-#### Using the "**Host**" header
+### Using the "**Host**" header
 
 Now that we added an API to Kong (via the Admin API), Kong can proxy it via the `8000` port. One way to do so is to specify the API's `request_host` value in the `Host` header of your request:
 
@@ -90,7 +90,7 @@ By doing so, Kong recognizes the `Host` value as being the `request_host` of the
   <strong>Going to production:</strong> If you're planning to go into production with your setup, you'll most likely not want your consumers to manually set the "<strong>Host</strong>" header on each request. You can let Kong and DNS take care of it by simply setting an A or CNAME record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
 </div>
 
-#### Using the "**X-Host-Override**" header
+### Using the "**X-Host-Override**" header
 
 When performing a request from a browser, you might not be able to set the `Host` header. Thus, Kong also checks a request for a header named `X-Host-Override` and treats it exactly like the `Host` header:
 
@@ -102,7 +102,7 @@ $ curl -i -X GET \
 
 This request will be proxied just as well by Kong.
 
-#### Using a wildcard DNS
+### Using a wildcard DNS
 
 Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. A "**request_host**" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
 
@@ -125,7 +125,7 @@ $ curl -i -X GET \
 
 You will notice this command makes a request to `KONG_URL:PROXY_PORT/status/200`. Since the configured `upstream_url` is `http://mockbin.com/`, the request will hit the upstream service at `http://mockbin.com/status/200`.
 
-#### Using the "**strip_request_path**" property
+### Using the "**strip_request_path**" property
 
 By enabling the `strip_request_path` property on an API, the requests will be proxied without the `request_path` property being included in the upstream request. Let's enable this option by making a request to the Admin API:
 
