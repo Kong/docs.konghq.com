@@ -32,7 +32,7 @@ id: documentation
             {% for ver in page.kong_versions reversed %}
               <li {% if page.kong_version == ver.release %} class="active" {% endif %}>
                 <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                  {{ver.release}}
+                  {{ver.release}} {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
                 </a>
               </li>
             {% endfor %}

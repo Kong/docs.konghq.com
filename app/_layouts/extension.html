@@ -198,7 +198,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
               {% assign ver_path = ver.release | append: ".html" %}
             {% endif %}
             <li {% if extn_release == ver.release %} class="active" {% endif %}>
-              <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">{{ver.release}}</a>
+              <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
+                {{ver.release}} {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
+              </a>
             </li>
           {% endfor %}
         </ul>
