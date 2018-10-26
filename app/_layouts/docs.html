@@ -22,7 +22,7 @@ id: documentation
       </div>
 
       {% if page.kong_versions.size > 1 %}
-        <div class="dropdown page-header-right">
+        <div class="versions-dropdown dropdown page-header-right">
           <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Version {{page.kong_version}}
             {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
@@ -30,13 +30,11 @@ id: documentation
           </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
             {% for ver in page.kong_versions reversed %}
-              {% unless page.kong_version == ver.release %}
-                <li>
-                  <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                    {{ver.release}}
-                  </a>
-                </li>
-              {% endunless %}
+              <li {% if page.kong_version == ver.release %} class="active" {% endif %}>
+                <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                  {{ver.release}}
+                </a>
+              </li>
             {% endfor %}
           </ul>
           {% if page.edition == 'community' %}
