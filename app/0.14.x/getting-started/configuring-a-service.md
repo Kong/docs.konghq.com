@@ -64,6 +64,7 @@ Connection: keep-alive
 }
 ```
 
+[Back to TOC](#table-of-contents)
 
 ## 2. Add a Route for the Service
 
@@ -104,6 +105,8 @@ Connection: keep-alive
 
 Kong is now aware of your Service and ready to proxy requests.
 
+[Back to TOC](#table-of-contents)
+
 ## 3. Forward your requests through Kong
 
 Issue the following cURL request to verify that Kong is properly forwarding
@@ -127,6 +130,8 @@ the header defined in the above cURL request:
 
 <hr>
 
+[Back to TOC](#table-of-contents)
+
 ## Next Steps
 
 Now that you've added your Service to Kong, let's learn how to enable plugins.
@@ -137,3 +142,5 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
 [proxy-port]: /{{page.kong_version}}/configuration/#nginx-section
 [mockbin]: https://mockbin.com/
+
+[Back to TOC](#table-of-contents)

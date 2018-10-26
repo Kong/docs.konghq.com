@@ -41,6 +41,8 @@ $ curl -i -X POST \
 defaults to `['apikey']`. It is a list of headers and parameters names (both
 are supported) that are supposed to contain the apikey during a request.
 
+[Back to TOC](#table-of-contents)
+
 ## 2. Verify that the plugin is properly configured
 
 Issue the following cURL request to verify that the [key-auth][key-auth]
@@ -64,12 +66,16 @@ HTTP/1.1 401 Unauthorized
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ## Next Steps
 
 Now that you've configured the **key-auth** plugin lets learn how to add
 consumers to your Service so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
+
+[Back to TOC](#table-of-contents)
 
 [key-auth]: /plugins/key-authentication
 [plugins]: /plugins

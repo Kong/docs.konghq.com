@@ -39,6 +39,8 @@ datastore query every time (only the first time), but happen in-memory, which
 is much faster and reliable that querying it from the datastore (especially
 under heavy load).
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Caching custom entities
@@ -141,6 +143,8 @@ the datastore, and the data cached in the Kong nodes' memory. To avoid this
 inconsistency, we need to evict the cached entity from the in-memory store and
 force Kong to request it again from the datastore. We refer to this process as
 cache invalidation.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -278,6 +282,9 @@ kong.worker_events.register(function(data)
   end
 end, "crud", "consumers")
 ```
+[Back to TOC](#table-of-contents)
+
+---
 
 ### Extending the Admin API
 
@@ -291,6 +298,8 @@ the Admin API]({{page.book.next}}).
 ---
 
 Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
+
+[Back to TOC](#table-of-contents)
 
 [Admin API]: /{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /{{page.kong_version}}/pdk

@@ -28,6 +28,8 @@ level of abstraction makes it easy for you to add endpoints.
   knowledge of <a href="http://leafo.net/lapis/">Lapis</a>.
 </div>
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Adding endpoints to the Admin API
@@ -77,6 +79,8 @@ other keys:
   by Kong. See Lapis' [capturing recoverable
   errors](http://leafo.net/lapis/reference/exception_handling.html#capturing-recoverable-errors)
   documentation.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -132,6 +136,8 @@ return {
 
 See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua)
 for an extended version of this example.
+
+[Back to TOC](#table-of-contents)
 
 ---
 

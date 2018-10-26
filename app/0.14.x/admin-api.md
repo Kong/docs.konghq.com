@@ -164,6 +164,8 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Information routes
@@ -207,6 +209,8 @@ HTTP 200 OK
   time it is restarted.
 * `available_on_server`: Names of plugins that are installed on the node.
 * `enabled_in_cluster`: Names of plugins that are enabled/configured. That is, the plugins configurations currently in the datastore shared by all Kong nodes.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -254,6 +258,8 @@ HTTP 200 OK
 * `database`: Metrics about the database.
     * `reachable`: A boolean value reflecting the state of the database connection. Please note that this flag **does not** reflect the health of the database itself.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Service Object
@@ -275,6 +281,7 @@ of how Kong proxies traffic.
 ```json
 {{ page.service_json }}
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -297,6 +304,8 @@ HTTP 201 Created
 ```json
 {{ page.service_json }}
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -325,7 +334,10 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+[Back to TOC](#table-of-contents)
+
 ---
+
 
 ### List Services
 
@@ -378,6 +390,7 @@ HTTP 200 OK
     "next": "http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -410,6 +423,7 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -449,6 +463,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Service
@@ -467,6 +483,8 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Route Object
@@ -484,6 +502,8 @@ your infrastructure.
 ```json
 {{ page.route_json }}
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -507,6 +527,10 @@ HTTP 201 Created
 {{ page.route_json }}
 ```
 
+[Back to TOC](#table-of-contents)
+
+---
+
 ### Retrieve Route
 
 **Endpoints**
@@ -526,6 +550,7 @@ HTTP 200 OK
 ```json
 {{ page.route_json }}
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -582,8 +607,10 @@ HTTP 200 OK
     "next": "http://localhost:8001/services/foo/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
+
 
 ### List Routes associated to a Service
 
@@ -639,6 +666,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Route
@@ -664,7 +693,10 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+[Back to TOC](#table-of-contents)
+
 ---
+
 
 ### Update or create Route
 
@@ -694,7 +726,10 @@ HTTP 201 Created or HTTP 200 OK
 ```json
 {{ page.route_json }}
 ```
+[Back to TOC](#table-of-contents)
+
 ---
+
 
 ### Delete Route
 
@@ -711,6 +746,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -723,6 +759,8 @@ The Consumer object represents a consumer - or a user - of a Service. You can ei
     "custom_id": "abc123"
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -749,6 +787,7 @@ HTTP 201 Created
     "created_at": 1422386534
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -775,6 +814,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -814,6 +854,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Consumer
@@ -843,6 +885,8 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -882,6 +926,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Consumer
@@ -899,6 +945,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -972,6 +1020,8 @@ fallback to running Plugin config A. Note that if config B is disabled
 (its `enabled` flag is set to `false`), config A will apply to requests that
 would have otherwise matched config B.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Add Plugin
@@ -1014,6 +1064,7 @@ HTTP 201 Created
     "created_at": 1422386534
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1047,6 +1098,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1105,6 +1157,7 @@ HTTP 200 OK
     "next": "http://localhost:8001/plugins?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1142,6 +1195,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1170,6 +1224,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Plugin
@@ -1187,6 +1243,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1236,6 +1293,7 @@ HTTP 200 OK
     ]
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1266,6 +1324,7 @@ HTTP 200 OK
     }
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1312,6 +1371,7 @@ HTTP 201 Created
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1342,6 +1402,8 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### List Certificates
@@ -1381,6 +1443,8 @@ HTTP 200 OK
     ]
 }
 ```
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Certificate
@@ -1412,6 +1476,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1454,6 +1519,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Certificate
@@ -1469,6 +1536,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1489,6 +1557,7 @@ lookup the certificate object based on the SNI associated with the certificate.
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1518,6 +1587,7 @@ HTTP 201 Created
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1547,6 +1617,9 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
+
+---
 
 ### List SNIs
 
@@ -1583,6 +1656,7 @@ HTTP 200 OK
     ]
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1610,6 +1684,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1647,6 +1722,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete SNI
@@ -1662,6 +1739,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Upstream Objects
@@ -1720,6 +1799,7 @@ object, and applies to all of its targets.
     "slots": 10
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1785,6 +1865,7 @@ HTTP 201 Created
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1850,6 +1931,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1976,6 +2058,7 @@ HTTP 200 OK
     "offset": "Mg=="
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2045,6 +2128,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2073,6 +2157,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete upstream
@@ -2090,6 +2176,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2121,6 +2209,10 @@ The health for each Target is returned in its `health` field:
   (circuit breakers) or [manually](#set-target-as-unhealthy),
   its status is displayed as `UNHEALTHY`. The load balancer is not directing
   any traffic to this Target via this Upstream.
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ### Endpoint
 
@@ -2160,6 +2252,7 @@ HTTP 200 OK
     ]
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2182,6 +2275,7 @@ The current target object definition is the one with the latest `created_at`.
     "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432"
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2214,6 +2308,7 @@ HTTP 201 Created
     "created_at": 1485523507446
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2273,6 +2368,7 @@ HTTP 200 OK
     ]
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2281,6 +2377,10 @@ HTTP 200 OK
 Lists all targets of the upstream. Multiple target objects for the same
 target may be returned, showing the history of changes for a specific target.
 The target object with the latest `created_at` is the current definition.
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ### Endpoint
 
@@ -2317,6 +2417,7 @@ HTTP 200 OK
     ]
 }
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2339,6 +2440,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2370,6 +2472,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2407,6 +2510,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+[Back to TOC](#table-of-contents)
 
 [clustering]: /{{page.kong_version}}/clustering
 [cli]: /{{page.kong_version}}/cli

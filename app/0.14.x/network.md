@@ -23,6 +23,8 @@ The proxy ports is where Kong receives its incoming traffic. There are two ports
 
 These are the **only ports** that should be made available to your clients.
 
+[Back to TOC](#table-of-contents)
+
 ### Management api
 
 This is the port where Kong exposes its management api. Hence in production this port should be firewalled to protect
@@ -30,6 +32,8 @@ it from unauthorized access.
 
 * `8001` provides Kong's **Admin API** that you can use to operate Kong. See [admin_listen].
 * `8444` provides the same Kong **Admin API** but using HTTPS. See [admin_listen] and the `ssl` suffix.
+
+[Back to TOC](#table-of-contents)
 
 ## Firewall
 
@@ -40,6 +44,7 @@ Below are the recommended firewall settings:
 * If you are binding the Admin API to a public-facing interface (via [admin_listen]), then **protect** it to only allow trusted clients to access the Admin API.
   See also [Securing the Admin API][secure_admin_api].
 
+[Back to TOC](#table-of-contents)
 
 [proxy_listen]: /{{page.kong_version}}/configuration/#proxy_listen
 [admin_listen]: /{{page.kong_version}}/configuration/#admin_listen

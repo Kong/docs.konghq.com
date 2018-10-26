@@ -24,6 +24,8 @@ with the model layer through classes we refer to as "DAOs", and available on a
 singleton often referred to as the "DAO Factory". This chapter will explain how
 to to provide an abstraction for your own entities.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Create a migration file
@@ -131,6 +133,8 @@ the `migrations` file.
 
 To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations)
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Retrieve your custom DAO from the DAO Factory
@@ -204,6 +208,8 @@ table of `daos.lua`.
 
 You can see an example of this in the [Key-Auth `daos.lua` file](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/daos.lua).
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Caching custom entities
@@ -220,6 +226,8 @@ to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 The next chapter will focus on caching custom entities, and invalidating them
 when they change in the datastore: [Caching custom
 entities]({{page.book.next}}).
+
+[Back to TOC](#table-of-contents)
 
 ---
 

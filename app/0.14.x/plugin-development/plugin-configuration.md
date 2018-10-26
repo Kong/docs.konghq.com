@@ -43,6 +43,8 @@ database along with its configuration (`{foo = "bar"}` in this case). If the
 configuration is not valid, the Admin API would return `400 Bad Request` and
 the appropriate error messages.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### schema.lua specifications
@@ -80,6 +82,9 @@ return {
   end
 }
 ```
+[Back to TOC](#table-of-contents)
+
+---
 
 ### Describing your configuration schema
 
@@ -243,6 +248,8 @@ return CustomHandler
 ```
 
 You can also see a real-world example of schema in [the Key-Auth plugin source code].
+
+[Back to TOC](#table-of-contents)
 
 ---
 

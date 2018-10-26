@@ -25,6 +25,8 @@ To do so, one must implement one or several of the methods of the
 `base_plugin.lua` interface. Those methods are to be implemented in a module
 namespaced under: `kong.plugins.<plugin_name>.handler`
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Available request contexts
@@ -56,6 +58,8 @@ chapter]({{page.book.next}}).
 [header_filter_by_lua]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua
 [body_filter_by_lua]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua
 [log_by_lua]: https://github.com/openresty/lua-nginx-module#log_by_lua
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -187,6 +191,8 @@ return CustomHandler
 See [the source code of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua) for an example of a real-life
 handler code.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Plugin Development Kit
@@ -202,6 +208,8 @@ When you are trying to implement some logic that needs to interact with Kong
 (e.g. retrieving request headers, producing a response from a plugin, logging
 some error or debug information...), you should consult the [Plugin Development
 Kit Reference][pdk].
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -258,6 +266,8 @@ galileo                   | 3
 request-termination       | 2
 correlation-id            | 1
 post-function             | -1000
+
+[Back to TOC](#table-of-contents)
 
 ---
 

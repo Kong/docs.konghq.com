@@ -37,6 +37,8 @@ $ kong start [-c /path/to/kong.conf]
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
 allowing you to point to your own configuration.
 
+[Back to TOC](#table-of-contents)
+
 ## 2. Verify that Kong has started successfully
 
 If everything went well, you should see a message (`Kong started`)
@@ -52,6 +54,8 @@ By default Kong listens on the following ports:
 - `:8001` on which the [Admin API][API] used to configure Kong listens.
 - `:8444` on which the Admin API listens for HTTPS traffic.
 
+[Back to TOC](#table-of-contents)
+
 ## 3. Stop Kong
 
 As needed you can stop the Kong process by issuing the following
@@ -61,6 +65,8 @@ As needed you can stop the Kong process by issuing the following
 $ kong stop
 ```
 
+[Back to TOC](#table-of-contents)
+
 ## 4. Reload Kong
 
 Issue the following command to [reload][CLI] Kong without downtime:
@@ -69,11 +75,15 @@ Issue the following command to [reload][CLI] Kong without downtime:
 $ kong reload
 ```
 
+[Back to TOC](#table-of-contents)
+
 ## Next Steps
 
 Now that you have Kong running you can interact with the Admin API.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
+
+[Back to TOC](#table-of-contents)
 
 [CLI]: /{{page.kong_version}}/cli
 [API]: /{{page.kong_version}}/admin-api

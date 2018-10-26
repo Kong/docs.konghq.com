@@ -149,6 +149,8 @@ For a list of Nginx directives, see https://nginx.org/en/docs/dirindex.html.
 Note however that some directives are dependent of specific Nginx modules,
 some of which may not be included with the official builds of Kong.
 
+[Back to TOC](#table-of-contents)
+
 ### Including files via injected Nginx directives
 
 For more complex configuration scenarios, such as adding entire new
@@ -198,6 +200,8 @@ path will be interpreted relative to the value of the `prefix` property of
 your `kong.conf` file (or the value of the `-p` flag of `kong start` if you
 used it to override the prefix when starting Kong).
 
+[Back to TOC](#table-of-contents)
+
 ## Custom Nginx templates & embedding Kong
 
 For the vast majority of use-cases, using the Nginx directive injection system
@@ -217,6 +221,8 @@ Nginx configuration and launch Kong using your customized template.
 * If you need to embed Kong in an already running OpenResty instance, you
 can reuse Kong's generated configuration and include it in your existing
 configuration.
+
+[Back to TOC](#table-of-contents)
 
 ### Custom Nginx templates
 
