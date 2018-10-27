@@ -93,8 +93,6 @@ Plugins, feel free to read more on Kong in one of the following documents:
 Questions? Issues? Contact us on one of the [Community Channels](/community)
 for help!
 
-[Back to TOC](#table-of-contents)
-
 [key-auth]: /plugins/key-authentication
 [API-consumers]: /{{page.kong_version}}/admin-api#create-consumer
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins

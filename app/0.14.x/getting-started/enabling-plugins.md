@@ -73,8 +73,6 @@ consumers to your Service so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
-[Back to TOC](#table-of-contents)
-
 [key-auth]: /plugins/key-authentication
 [plugins]: /plugins
 [adding-consumers]: /{{page.kong_version}}/getting-started/adding-consumers

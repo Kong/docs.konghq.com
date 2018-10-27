@@ -40,6 +40,7 @@ the appropriate error messages.
 ```
 kong.plugins.<plugin_name>.schema
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -79,6 +80,7 @@ return {
   end
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---

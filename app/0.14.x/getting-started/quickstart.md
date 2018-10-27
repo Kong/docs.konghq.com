@@ -81,8 +81,6 @@ Now that you have Kong running you can interact with the Admin API.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
-[Back to TOC](#table-of-contents)
-
 [CLI]: /{{page.kong_version}}/cli
 [API]: /{{page.kong_version}}/admin-api
 [datastore-section]: /{{page.kong_version}}/configuration/#datastore-section

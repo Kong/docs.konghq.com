@@ -36,6 +36,7 @@ under heavy load).
 ```
 kong.plugins.<plugin_name>.daos
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -279,6 +280,7 @@ kong.worker_events.register(function(data)
   end
 end, "crud", "consumers")
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -292,11 +294,11 @@ example, creating and deleting API keys). The way you would do this is by
 extending the Admin API, which we will detail in the next chapter: [Extending
 the Admin API]({{page.book.next}}).
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
-
-[Back to TOC](#table-of-contents)
 
 [Admin API]: /{{page.kong_version}}/admin-api/
 [Plugin Development Kit]: /{{page.kong_version}}/pdk

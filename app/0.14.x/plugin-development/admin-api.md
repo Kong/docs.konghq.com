@@ -25,6 +25,7 @@ level of abstraction makes it easy for you to add endpoints.
 ```
 kong.plugins.<plugin_name>.api
 ```
+
 [Back to TOC](#table-of-contents)
 
 ## Adding endpoints to the Admin API

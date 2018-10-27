@@ -22,6 +22,7 @@ namespaced under: `kong.plugins.<plugin_name>.handler`
 ```
 kong.plugins.<plugin_name>.handler
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---

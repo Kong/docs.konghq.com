@@ -282,6 +282,7 @@ of how Kong proxies traffic.
 ```json
 {{ page.service_json }}
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -335,6 +336,7 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -391,6 +393,7 @@ HTTP 200 OK
     "next": "http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -424,6 +427,7 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -551,6 +555,7 @@ HTTP 200 OK
 ```json
 {{ page.route_json }}
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -608,6 +613,7 @@ HTTP 200 OK
     "next": "http://localhost:8001/services/foo/routes?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -694,6 +700,7 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -727,6 +734,7 @@ HTTP 201 Created or HTTP 200 OK
 ```json
 {{ page.route_json }}
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -747,6 +755,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -788,6 +797,7 @@ HTTP 201 Created
     "created_at": 1422386534
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -815,6 +825,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1065,6 +1076,7 @@ HTTP 201 Created
     "created_at": 1422386534
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1099,6 +1111,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1158,6 +1171,7 @@ HTTP 200 OK
     "next": "http://localhost:8001/plugins?size=2&offset=4d924084-1adb-40a5-c042-63b19db421d1"
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1196,6 +1210,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1244,6 +1259,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1294,6 +1310,7 @@ HTTP 200 OK
     ]
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1325,6 +1342,7 @@ HTTP 200 OK
     }
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1372,6 +1390,7 @@ HTTP 201 Created
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1403,6 +1422,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1444,6 +1464,7 @@ HTTP 200 OK
     ]
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1477,6 +1498,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1537,6 +1559,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1558,6 +1581,7 @@ lookup the certificate object based on the SNI associated with the certificate.
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1588,6 +1612,7 @@ HTTP 201 Created
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1618,6 +1643,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1657,6 +1683,7 @@ HTTP 200 OK
     ]
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1685,6 +1712,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1740,6 +1768,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1800,6 +1829,7 @@ object, and applies to all of its targets.
     "slots": 10
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1866,6 +1896,7 @@ HTTP 201 Created
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -1932,6 +1963,7 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2059,6 +2091,7 @@ HTTP 200 OK
     "offset": "Mg=="
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2129,6 +2162,7 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2253,6 +2287,7 @@ HTTP 200 OK
     ]
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2276,6 +2311,7 @@ The current target object definition is the one with the latest `created_at`.
     "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432"
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2309,6 +2345,7 @@ HTTP 201 Created
     "created_at": 1485523507446
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2369,6 +2406,7 @@ HTTP 200 OK
     ]
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2418,6 +2456,7 @@ HTTP 200 OK
     ]
 }
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2441,6 +2480,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2473,6 +2513,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
@@ -2511,6 +2552,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
 [Back to TOC](#table-of-contents)
 
 [clustering]: /{{page.kong_version}}/clustering

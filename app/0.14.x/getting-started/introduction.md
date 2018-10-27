@@ -28,8 +28,6 @@ Now, lets get familiar with learning how to "start" and "stop" Kong.
 
 Go to [5-minute quickstart with Kong &rsaquo;][quickstart]
 
-[Back to TOC](#table-of-contents)
-
 [quickstart]: /{{page.kong_version}}/getting-started/quickstart
 [configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins

@@ -140,5 +140,3 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
 [proxy-port]: /{{page.kong_version}}/configuration/#nginx-section
 [mockbin]: https://mockbin.com/
-
-[Back to TOC](#table-of-contents)

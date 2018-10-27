@@ -21,6 +21,7 @@ to to provide an abstraction for your own entities.
 kong.plugins.<plugin_name>.schema.migrations
 kong.plugins.<plugin_name>.daos
 ```
+
 [Back to TOC](#table-of-contents)
 
 ---
