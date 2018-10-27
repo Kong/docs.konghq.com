@@ -72,7 +72,7 @@ params:
 
 In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer or an application consuming the upstream service.
 
-### Create a Consumer
+## Create a Consumer
 
 You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
@@ -91,7 +91,7 @@ If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
 service, you must add the new consumer to a whitelisted group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
-### Create a Credential
+## Create a Credential
 
 You can provision new username/password credentials by making the following HTTP request:
 
@@ -108,7 +108,7 @@ form parameter             | default | description
 `username`                 |         | The username to use in the Basic Authentication
 `password`<br>*optional*   |         | The password to use in the Basic Authentication
 
-### Using the Credential
+## Using the Credential
 
 The authorization header must be base64 encoded. For example, if the credential
 uses `Aladdin` as the username and `OpenSesame` as the password, then the field's
@@ -127,7 +127,7 @@ $ curl http://kong:8000/{path matching a configured Route} \
     -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
 ```
 
-### Upstream Headers
+## Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the Consumer in your code:
 
@@ -139,7 +139,7 @@ When a client has been authenticated, the plugin will append some headers to the
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.
 
-### Paginate through the basic-auth Credentials
+## Paginate through the basic-auth Credentials
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
@@ -189,7 +189,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-### Retrieve the Consumer associated with a Credential
+## Retrieve the Consumer associated with a Credential
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
