@@ -22,6 +22,15 @@ module Jekyll
 
       site.data["kong_latest"] = latestVersion
 
+      # Collate version history for articles
+      docs_version_history = {}
+      site.data["docs_version_timeline"].map { |doc|
+        docs_version_history[doc["slug"]] = doc
+        unless doc["aliases"].nil?
+          doc["aliases"].map { |a| docs_version_history[a] = doc }
+        end
+      }
+
       # Add a `version` property to every versioned page
       # Also create aliases under /latest/ for all x.x.x doc pages
       site.pages.each do |page|
@@ -36,6 +45,7 @@ module Jekyll
             page.data["kong_latest"] = latestVersionEE
             page.data["nav_items"] = site.data['docs_nav_ee_' + parts[1].gsub(/\./, '')]
             createAliases(page, '/enterprise', 1, parts, latestVersionEE["release"])
+            doc_slug = parts[2..-1].join("/").sub(/\.(md)$/, "").sub(/\/?index$/, "")
           else
             page.data["edition"] = "community"
             page.data["kong_version"] = parts[0]
@@ -43,7 +53,11 @@ module Jekyll
             page.data["kong_latest"] = latestVersion
             page.data["nav_items"] = site.data['docs_nav_' + parts[0].gsub(/\./, '')]
             createAliases(page, '', 0, parts, latestVersion["release"])
+            doc_slug = parts[1..-1].join("/").sub(/\.(md)$/, "").sub(/\/?index$/, "")
           end
+
+          # create page's version history
+          page.data["version_slugs"] = createVersionHistory(doc_slug, parts[0] == 'enterprise' ? eeVersions : ceVersions, docs_version_history[doc_slug])
 
           # Helpful boolean in templates. If version has .md, then it is not versioned
           if page.data["kong_version"].include? ".md"
@@ -70,6 +84,33 @@ module Jekyll
           page.data["alias"] = page.data["alias"].sub(/index/, "")
         end
       end
+    end
+
+    def createVersionHistory(slug, all_versions, doc_history)
+      timeline = doc_history && doc_history["timeline"]
+      is_alias = doc_history["aliases"].include?(slug) unless doc_history.nil? || doc_history["aliases"].nil?
+      history = {}
+      previous = nil
+
+      for version in all_versions.reverse
+        # get override value if present in page timeline
+        slug_override = timeline && timeline[version["release"]]
+
+        if slug_override.nil?
+          # no override provided, assume this version uses unchanged article slug
+          history[version["release"]] = previous = previous || (is_alias ? doc_history["slug"] : slug)
+        elsif slug_override == "PAGE_CREATED"
+          # article was created in this version
+          history[version["release"]] = previous || (is_alias ? doc_history["slug"] : slug)
+          # set all versions below this to redirect to index("/")
+          previous = ""
+        else
+          # use provided override value (in case of article renames etc.)
+          history[version["release"]] = previous = slug_override
+        end
+      end
+
+      history
     end
   end
 end
