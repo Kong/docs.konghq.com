@@ -29,7 +29,8 @@ As indicated above, Kong operates this Website from offices in San Francisco, CA
 * Trademarks: All trademarks, service marks and logos included on the Website ("Marks") are the property of Kong or third parties, and you may not use such Marks without the express, prior written consent of Kong or the applicable third party.
 
 * Monitoring: Kong may, but is not obligated to, monitor Website Content, User Content and your use of the Website.  Kong reserves the right to accept, reject or modify any Website Content or User Content, but assumes no liability based on its acceptance, rejection, modification or failure to modify any Website Content or User Content.
-###Your Use of the Website
+
+### Your Use of the Website
 * Submission of User Content: In connection with your use of the Website, you agree not to submit any User Content which (i) is unlawful, (ii) violates any right of publicity or invades the privacy of others, (iii) constitutes obscene, pornographic, indecent, profane or otherwise objectionable material, (iv) is discriminatory, hateful or bigoted toward, or abusive of, any group or individual, (v) is libelous or defamatory or (vi) violates any applicable law or government regulation.
 
 * Prohibited Conduct: You may not use the Website to post, transmit or link to (i) any advertisement, promotional materials or solicitation related to any product or service that is competitive with Kong products or services or (ii) software or programs which contain any harmful code, including, but not limited to, viruses, worms, time bombs or Trojan horses.  You may not deploy to the Website any robot, spider, website search/retrieval application, or other application designed to retrieve, index, "data mine," information from the Website.
@@ -60,14 +61,14 @@ Registration for an account is void where the user lacks the eligibility for reg
 ### Privacy
 Kong's Privacy Policy applies to the use of this Website and its terms are incorporated into these Terms of Use by reference.
 
-###Linked Website
+### Linked Website
 The Website may contain links to other websites that are not owned or operated by Kong.   Kong provides links to such websites solely as a convenience and has no responsibility for the content or availability of such websites.  Kong does not endorse such websites or any products or services associated therewith.  Your use of such websites will be subject to the terms of use applicable to each such website.
 
-###Disclaimer of Warranties and Limitation of Liability
+### Disclaimer of Warranties and Limitation of Liability
 
 * Warranty Disclaimer: THE WEBSITE AND THE WEBSITE CONTENT ARE PROVIDED STRICTLY ON AN "AS IS" AND "AS AVAILABLE" BASIS, AND Kong MAKES NO WARRANTY THAT THE WEBSITE OR THE WEBSITE CONTENT ARE COMPLETE, SUITABLE FOR YOUR PURPOSE, OR ACCURATE. ON BEHALF OF ITSELF AND ITS LICENSORS, KONG HEREBY EXPRESSLY DISCLAIMS ANY AND ALL IMPLIED, STATUTORY OR OTHER WARRANTIES WITH RESPECT TO THE WEBSITE, AVAILABILITY OF THE WEBSITE AND THE WEBSITE CONTENT, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  THE ENTIRE RISK AS TO RESULTS OBTAINED THROUGH USE OF THE WEBSITE AND/OR THE WEBSITE CONTENT RESTS WITH YOU AND KONG MAKES NO REPRESENTATION OR WARRANTY THAT THE AVAILABILITY OF THE WEBSITE WILL BE UNINTERRUPTED, OR THE WEBSITE AND/OR THE WEBSITE CONTENT WILL BE ERROR FREE.
 
-* Limitation of Liability: TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, YOU AGREE THAT KONG SHALL NOT BE LIABLE TO YOU FOR ANY DAMAGES ARISING OUT OF OR CONNECTED TO YOUR USE OF, OR INABILITY TO USE, THE WEBSITE, INCLUDING, WITHOUT LIMITATION, ANY AND ALL DIRECT, INDIRECT, INCIDENTAL,CONSEQUENTIAL, PUNITIVE, SPECIAL, EXEMPLARY OR STATUTORY DAMAGES (INCLUDING, WITHOUT LIMITATION, LOSS OF BUSINESS, LOSS OR PROFITS, LOSS OF REVENUE, LOSS OF DATA, LOSS OF GOODWILL OR FOR ANY COST OF COVER OR COST OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES), EVEN IF KONG HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, AND REGARDLESS OF THE LEGAL THEORY UNDER WHICH DAMAGES ARE SOUGHT, WHETHER IN BREACH OF CONTRACT OR IN TORT, INCLUDING NEGLIGENCE.
+* Limitation of Liability: TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, YOU AGREE THAT KONG SHALL NOT BE LIABLE TO YOU FOR ANY DAMAGES ARISING OUT OF OR CONNECTED TO YOUR USE OF, OR INABILITY TO USE, THE WEBSITE, INCLUDING, WITHOUT LIMITATION, ANY AND ALL DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE, SPECIAL, EXEMPLARY OR STATUTORY DAMAGES (INCLUDING, WITHOUT LIMITATION, LOSS OF BUSINESS, LOSS OR PROFITS, LOSS OF REVENUE, LOSS OF DATA, LOSS OF GOODWILL OR FOR ANY COST OF COVER OR COST OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES), EVEN IF KONG HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, AND REGARDLESS OF THE LEGAL THEORY UNDER WHICH DAMAGES ARE SOUGHT, WHETHER IN BREACH OF CONTRACT OR IN TORT, INCLUDING NEGLIGENCE.
 
 * The above does not affect our liability arising from gross negligence, or willful intent, nor any other liability which cannot be excluded or limited under applicable law.
 
