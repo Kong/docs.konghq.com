@@ -1,7 +1,19 @@
 ---
 title: Terms
-header_title: Terms of service
-header_caption: "Last Revised: March 2, 2015"
+
+redirect_to: https://konghq.com/terms/
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+##
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ---
 
 # Welcome to Kong.
