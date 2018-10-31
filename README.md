@@ -1,5 +1,8 @@
 # KONG Website
 
+[![Build Status](https://api.travis-ci.org/Kong/docs.konghq.com.svg?branch=master)](https://travis-ci.org/Kong/docs.konghq.com/)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 This repository is the source code for [Kong](https://github.com/Kong/kong)'s website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
 
 ## Develop Locally With Docker
@@ -74,4 +77,5 @@ we refer to collectively as "extensions") in the
 [Kong Hub](https://docs.konghq.com/hub), with documentation hosted
 on the Kong website for ready access.
 
-See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.
+## Contributing 
+We :heart: contributions from everyone! We welcome [bug reports](https://github.com/Kong/docs.konghq.com/issues/), [bug fixes](https://github.com/Kong/docs.konghq.com/pulls) and feedback. Look at the [CONTRIBUTING](CONTRIBUTING.md) for more information.
