@@ -275,7 +275,7 @@ accepted types are:
 - **fix**: A website bug fix (related to the Ruby, JavaScript, HTML, or CSS
   assets). Typos and other fixes to the _contents_ of the documentation
   (markdown files) are not included in this scope
-- **style**: CSS fixes, formatting, missing semi colons, :nail_care:
+- **style**: CSS fixes, formatting, missing semi colons :nail_care:
 - **refactor**: A code change that neither fixes a bug nor adds a feature, and
   is too big to be considered `chore`
 - **chore**: Maintenance changes related to code cleaning that isn't considered
