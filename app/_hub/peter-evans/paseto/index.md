@@ -154,7 +154,7 @@ HTTP/1.1 201 Created
 ```
 
 Parameter | Default | Description
-:---: | :---: | :---:
+---: | :--- | :---
 `username` | semi-optional | The username for this Consumer. Either this field or `custom_id` must be specified.
 `custom_id` | semi-optional | A custom identifier used to map the Consumer to an external database. Either this field or `username` must be specified.
 
@@ -181,7 +181,7 @@ HTTP/1.1 201 Created
 - `consumer`: The `id` or `username` property of the Consumer entity to associate the credentials to.
 
 Parameter |  Default | Description
-:---: | :---: | :---:
+---: | :--- | :---
 `kid` | optional | A unique string identifying the credential. If left out, it will be auto-generated.
 `secret_key` | optional |  The 64 byte secret key base64 encoded.
 `public_key` | optional |  The 32 byte public key base64 encoded. If left out and a `secret_key` is supplied, the `public_key` is assumed to be the last 32 bytes of the `secret_key`.
