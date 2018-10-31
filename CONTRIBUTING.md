@@ -144,7 +144,8 @@ documenting a Kong plugin, be sure to see the next section.
 1. If you have a custom logo, add a square-format PNG file to
 `/app/_assets/images/icons/hub/` - the filename of your image should be
 `publisher_extension` using the "publisher" and "extension" name from step 2.
-Custom logos are optional.
+Custom logos are optional. If you don't have a custom logo, please duplicate
+an existing default logo file, and rename it as noted above. 
 1. Be sure to run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
 `localhost:3000/hub`
@@ -358,18 +359,20 @@ portion of the doc site files. If a page has an incorrectly-formatted ToC, be
 sure to check:
 
 - Heading levels must be correctly nested. Thus, heading levels like this:
+
 ```
-# Heading
-## Sub-heading
-#### Sub-sub-sub-heading
+# Heading Level 1
+## Sub-heading Level 2
+#### Sub-sub-sub-heading Level 4
 ```
+
 will cause a broken ToC, and should be corrected to:
+
 ```
-# Heading
-## Sub-heading
-### Sub-sub-heading
+# Heading Level 1
+## Sub-heading Level 2
+### Sub-sub-heading Level 3
 ```
-- Heading levels 5 and beyond are not supported - see https://github.com/Kong/docs.konghq.com/issues/942
 
 ### Contributor T-shirt
 
