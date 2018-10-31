@@ -1,19 +1,7 @@
 ---
 title: Privacy
-
-redirect_to: https://konghq.com/privacy/
-
-
-# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#
-# FIXME This file is dead code - it is no longer being rendered or utilized,
-# and updates to this file will have no effect.
-#
-# The remaining contents of this file (below) will be deleted soon.
-##
-# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
+header_title: Privacy
+header_caption: Privacy and cookie policy
 ---
 
 # Overview
