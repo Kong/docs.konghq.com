@@ -369,7 +369,6 @@ will cause a broken ToC, and should be corrected to:
 ## Sub-heading
 ### Sub-sub-heading
 ```
-- Heading levels 5 and beyond are not supported - see https://github.com/Kong/docs.konghq.com/issues/942
 
 ### Contributor T-shirt
 
