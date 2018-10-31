@@ -71,7 +71,7 @@ description: #|
   # (Optional) Link to your online TOS.
 
 # COMPATIBILITY
-# In the following sections, list Kong versions as array items
+# In the following sections, list Kong versions as array items.
 # Versions are categorized by Kong edition and their known compatibility.
 # Unlisted Kong versions will be considered to have "unknown" compatibility.
 # Uncomment at least one of 'community_edition' or 'enterprise_edition'.
