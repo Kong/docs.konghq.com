@@ -391,6 +391,8 @@ Default: `/usr/local/kong`
 
 Log level of the Nginx server. Logs can be found at `<prefix>/logs/error.log`
 
+See [Log Levels](/{{page.kong_version}}/logging/#log-levels) for
+details of how Kong utilizes the various log levels.
 See http://nginx.org/en/docs/ngx_core_module.html#error_log for a list of
 accepted values.
 
