@@ -183,26 +183,25 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
   <div class="container">
 
     {% if extn_versions %}
-      <div class="dropdown page-header-right">
-        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="versions-dropdown dropdown page-header-right">
+        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
           {{extn_type | capitalize }} Version {{extn_release}}
           {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
           {% for ver in extn_versions %}
-            {% unless extn_release == ver.release %}
-              {% if ver.release == extn_latest %}
-                {% assign ver_path = "" %}
-              {% else %}
-                {% assign ver_path = ver.release | append: ".html" %}
-              {% endif %}
-              <li>
-                <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
-                  {{ver.release}}
-                </a>
-              </li>
-            {% endunless %}
+            {% if ver.release == extn_latest %}
+              {% assign ver_path = "" %}
+            {% else %}
+              {% assign ver_path = ver.release | append: ".html" %}
+            {% endif %}
+            <li {% if extn_release == ver.release %} class="active" {% endif %}>
+              <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
+                {{ver.release}} {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
+              </a>
+            </li>
           {% endfor %}
         </ul>
       </div>
