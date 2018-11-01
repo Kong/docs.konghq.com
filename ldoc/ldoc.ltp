@@ -75,16 +75,6 @@ pdk: true
 
 $(module.summary) $(module.description)
 
-## Table of Contents
-
-> for kind, items in module.kinds() do
->  for item in items() do
-* [$(display_name(item))]($(href(item, "#")))
->  end -- for items
-> end -- for kinds
->
-> -- Content
-
 > for kind, items in module.kinds() do
 >
 >   if has_content(items) then
@@ -93,7 +83,7 @@ $(module.kinds:get_section_description(kind))
 >     for item in items() do
 >       if not item.tags.redirect then -- skip redirects
 
-### <a name="$(href(item))"></a>$(display_name(item))
+### $(display_name(item))
 
 $(ldoc.descript(item))
 >         if ldoc.custom_tags then
