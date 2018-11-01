@@ -8,7 +8,7 @@ title: 5-minute Quickstart
 </div>
 
 In this section, you'll learn how to manage your Kong instance. First we'll
-have you start Kong giving in order to give you access to the RESTful Admin
+have you start Kong in order to give you access to the RESTful Admin
 interface, through which you manage your Services, Routes, Consumers, and more. Data sent
 through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
 supports PostgreSQL and Cassandra).
