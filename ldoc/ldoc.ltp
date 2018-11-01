@@ -69,9 +69,10 @@
 ---
 title: $(module.name)
 pdk: true
+toc: true
 ---
 
-# $(module.name == "PDK" and ldoc.title or module.name)
+## $(module.name == "PDK" and ldoc.title or module.name)
 
 $(module.summary) $(module.description)
 > for kind, items in module.kinds() do
