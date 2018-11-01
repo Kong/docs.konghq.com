@@ -75,3 +75,9 @@ we refer to collectively as "extensions") in the
 on the Kong website for ready access.
 
 See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.
+
+## License
+
+MIT Licensed
+
+See [LICENSE](LICENSE) for details.
