@@ -9,14 +9,14 @@ type: integration
 
 desc: A Desired State Configuration tool for Kong.
 
-description: | 
+description: |
   Kongverge is a command-line tool written in .NET Core 2.1. It is used to configure a kong server by moving its state into sync with the “desired state” given in configuration files.
 
   Kongverge uses several ‘data transfer objects’ to read from files and write to Kong (and vice versa). For simplicity, the field names on these objects generally match what is present in Kong:
 
   * KongConfiguration
-  * KongRoute 
-  * KongService 
+  * KongRoute
+  * KongService
   * KongPlugin
 
   These objects also handle matching - i.e. reconciling the state described by files with the state in Kong, and performing actions in Kong as needed to make them the same. The possible cases for these objects are:
@@ -38,26 +38,26 @@ kong_version_compatibility:
     community_edition:
       compatible:
         - 0.14.x
-#      incompatible:
-#        - 0.13.x
-#        - 0.12.x
-#        - 0.11.x
-#        - 0.10.x
-#        - 0.9.x
-#        - 0.8.x
-#        - 0.7.x
-#        - 0.6.x
-#        - 0.5.x
-#        - 0.4.x
-#        - 0.3.x
-#        - 0.2.x
-#   enterprise_edition: # optional
-#     compatible:
-#     incompatible:
-#        - 0.33-x
-#        - 0.32-x
-#        - 0.31-x
-#        - 0.30-x
+      incompatible:
+        - 0.13.x
+        - 0.12.x
+        - 0.11.x
+        - 0.10.x
+        - 0.9.x
+        - 0.8.x
+        - 0.7.x
+        - 0.6.x
+        - 0.5.x
+        - 0.4.x
+        - 0.3.x
+        - 0.2.x
+   enterprise_edition:
+     compatible:
+     incompatible:
+        - 0.33-x
+        - 0.32-x
+        - 0.31-x
+        - 0.30-x
 
 ###############################################################################
 # END YAML DATA
@@ -65,8 +65,6 @@ kong_version_compatibility:
 #
 # The remainder of this file is for free-form description, instruction, and
 # reference matter.
-# Your headers must be Level 3 or 4 (parsing to h3 or h4 tags in HTML).
-# This is represented by ### or #### notation preceding the header text.
 ###############################################################################
 # BEGIN MARKDOWN CONTENT
 ---
