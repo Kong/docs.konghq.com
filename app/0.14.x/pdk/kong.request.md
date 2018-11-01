@@ -1,15 +1,18 @@
 ---
 title: kong.request
 pdk: true
+toc: true
 ---
 
-# kong.request
+## kong.request
 
 Client request module
  A set of functions to retrieve information about the incoming requests made
  by clients.
 
-## kong.request.get_scheme()
+
+
+### kong.request.get_scheme()
 
 Returns the scheme component of the request's URL.  The returned value is
  normalized to lower-case form.
@@ -35,7 +38,7 @@ kong.request.get_scheme() -- "https"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_host()
+### kong.request.get_host()
 
 Returns the host component of the request's URL, or the value of the
  "Host" header.  The returned value is normalized to lower-case form.
@@ -61,7 +64,7 @@ kong.request.get_host() -- "example.com"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_port()
+### kong.request.get_port()
 
 Returns the port component of the request's URL.  The value is returned
  as a Lua number.
@@ -87,7 +90,7 @@ kong.request.get_port() -- 1234
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_forwarded_scheme()
+### kong.request.get_forwarded_scheme()
 
 Returns the scheme component of the request's URL, but also considers
  `X-Forwarded-Proto` if it comes from a trusted source.  The returned
@@ -122,7 +125,7 @@ kong.request.get_forwarded_scheme() -- "https"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_forwarded_host()
+### kong.request.get_forwarded_host()
 
 Returns the host component of the request's URL or the value of the "host"
  header.  Unlike `kong.request.get_host()`, this function will also consider
@@ -158,7 +161,7 @@ kong.request.get_forwarded_host() -- "example.com"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_forwareded_port()
+### kong.request.get_forwareded_port()
 
 Returns the port component of the request's URL, but also considers
  `X-Forwarded-Host` if it comes from a trusted source.  The value
@@ -181,7 +184,7 @@ Returns the port component of the request's URL, but also considers
 
 **Returns**
 
-* `number` the forwarded port
+* `number` the forwared port
 
 
 **Usage**
@@ -193,7 +196,7 @@ kong.request.get_forwarded_port() -- 1234
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_http_version()
+### kong.request.get_http_version()
 
 Returns the HTTP version used by the client in the request as a Lua
  number, returning values such as `"1.1"` and `"2.0."`, or `nil` for
@@ -217,7 +220,7 @@ kong.request.get_http_version() -- "1.1"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_method()
+### kong.request.get_method()
 
 Returns the HTTP method of the request.  The value is normalized to
  upper-case.
@@ -241,7 +244,7 @@ kong.request.get_method() -- "GET"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_path()
+### kong.request.get_path()
 
 Returns the path component of the request's URL.  It is not normalized in
  any way and does not include the querystring.
@@ -267,7 +270,7 @@ kong.request.get_path() -- "/v1/movies"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_raw_query()
+### kong.request.get_raw_query()
 
 Returns the query component of the request's URL.  It is not normalized in
  any way (not even URL-decoding of special characters) and does not
@@ -294,7 +297,7 @@ kong.request.get_raw_query() -- "msg=hello%20world&bla=&bar"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_query_arg()
+### kong.request.set_query_arg()
 
 Returns the value of the specified argument, obtained from the query
  arguments of the current request.
@@ -330,7 +333,7 @@ kong.request.get_query_arg("blo") -- ""
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_query([max_args])
+### kong.request.get_query([max_args])
 
 Returns the table of query arguments obtained from the querystring.  Keys
  are query argument names. Values are either a string with the argument
@@ -380,7 +383,7 @@ end
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_header(name)
+### kong.request.get_header(name)
 
 Returns the value of the specified request header.
 
@@ -425,7 +428,7 @@ kong.request.get_header("X-Another")       -- "foo bar"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_headers([max_headers])
+### kong.request.get_headers([max_headers])
 
 Returns a Lua table holding the request headers.  Keys are header names.
  Values are either a string with the header value, or an array of strings
@@ -473,7 +476,7 @@ headers["X-Another"][2] -- "baz"
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_raw_body()
+### kong.request.get_raw_body()
 
 Returns the plain request body.
 
@@ -498,13 +501,13 @@ Returns the plain request body.
 ``` lua
 -- Given a body with payload "Hello, Earth!":
 
-kong.request.get_raw_body():gsub("Earth", "Mars") -- "Hello, Mars!"
+kong.request.get_raw_body():gsub("Earth", Mars") -- "Hello, Mars!"
 ```
 
 [Back to TOC](#table-of-contents)
 
 
-## kong.request.get_body([mimetype[, max_args]])
+### kong.request.get_body([mimetype[, max_args]])
 
 Returns the request data as a key/value table.
  A high-level convenience function.
