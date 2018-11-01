@@ -54,10 +54,12 @@ kong_version_compatibility:
     enterprise_edition:
 #     compatible:
       incompatible:
-        - 0.34-x
         - 0.33-x
         - 0.32-x
         - 0.31-x
+        - 0.30-x
+        - 0.29-x
+
 
 ###############################################################################
 # END YAML DATA
