@@ -74,7 +74,6 @@ pdk: true
 # $(module.name == "PDK" and ldoc.title or module.name)
 
 $(module.summary) $(module.description)
-
 > for kind, items in module.kinds() do
 >
 >   if has_content(items) then
