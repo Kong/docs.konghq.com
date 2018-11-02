@@ -77,20 +77,19 @@ Running Kong on Azure Container Instances is super easy:
 ## Deploying Kong via the Azure Marketplace
 The Azure Marketplace provides quickstart templates that allow you to very easily install certain technologies.
 
-It currenly also provides some templates to deploy Kong on Azure VMs:
+You can deploy one of the following Kong templates from the marketplace:
 
-1. **Kong Certified by Bitnami** templates
+1. **Kong Certified by Bitnami**
 
     Developer Tools software from the leading publisher
 
-    You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong)
+    *You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong).*
 
-1. **Kong Cluster** template
+1. **Kong Cluster**
 
-    Kong Cluster for production environments.
-    This solution configures a load-balanced Kong cluster with an additional Cassandra cluster for data storage.
+    Kong Cluster for production environments - This solution configures a load-balanced Kong cluster with an additional Cassandra cluster for data storage.
 
-    You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong-cluster)
+    *You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong-cluster).*
 
 ## Running PostgreSQL on Azure with Azure Database for PostgreSQL
 Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
