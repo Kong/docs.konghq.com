@@ -7,7 +7,7 @@
   {% if page.header_icon %}
     {% assign header_icon = page.header_icon %}
   {% else %}
-    {% capture header_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
+    {% capture header_icon %}/_assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
   {% endif %}
   {% assign extn_slug_array = extn_slug | split: "-" %}
   <div class="col-12 col-md-6 col-lg-4 my-1x card-group">

@@ -155,7 +155,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 {% assign extn_slug = path_array[2] %}
 {% assign extn_publisher = path_array[1] %}
 {% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
-{% capture extn_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
+{% capture extn_icon %}/_assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
 {% assign extn_filename = path_array | last %}
 {% assign extn_versions = site.data.extensions[extn_publisher][extn_slug]['versions'] %}
 {% if extn_versions %}

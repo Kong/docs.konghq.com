@@ -2,7 +2,7 @@
 title: Kong Installation
 layout: default
 header_title: Kong Installation
-header_icon: /assets/images/icons/icn-download.svg
+header_icon: /_assets/images/icons/icn-download.svg
 redirect_to: https://konghq.com/install/
 ---
 
@@ -14,7 +14,7 @@ redirect_to: https://konghq.com/install/
       <div class="distributions">
         {% for method in site.data.distributions %}
           <a href="{% if method.soon %}#{% else %}/install/{{ method.id }}/{% endif %}" class="box {% if method.soon %}soon{% endif %}" title="{{ method.name }}">
-            <img src="/assets/images/distributions/{{ method.id }}.{% if method.png %}png{% else %}svg{% endif %}" alt="{{ method.name }}"/>
+            <img src="/_assets/images/distributions/{{ method.id }}.{% if method.png %}png{% else %}svg{% endif %}" alt="{{ method.name }}"/>
           </a>
         {% endfor %}
       </div>
