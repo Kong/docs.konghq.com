@@ -18,11 +18,11 @@ links:
 ## Table of Contents
 
 <!-- FIXME the list below should be an unordered list, but currently those do not render correctly in this section of the Docs site - depends on https://github.com/Kong/docs.konghq.com/issues/917 -->
-1. [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
-1. [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
-1. [Kong via Helm or Minikube](#kong-via-helm-or-minikube)
-1. [Kong via Manifest Files](#kong-via-manifest-files)
-1. [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users)
+* [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
+* [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
+* [Kong via Helm or Minikube](#kong-via-helm-or-minikube)
+* [Kong via Manifest Files](#kong-via-manifest-files)
+* [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users)
 
 # Kubernetes Ingress Controller for Kong
 
@@ -46,9 +46,9 @@ Platform Marketplace and [Google Kubernetes Engine](https://cloud.google.com/kub
 plus, with Google Cloud Platform's [Free Tier and credit](https://cloud.google.com/free/),
 it will likely be free for you to get started.
 
-1. Visit https://console.cloud.google.com/marketplace/details/kong/kong
-1. Click "Configure" and follow the on-screen prompts
-1. Refer to https://github.com/Kong/google-marketplace-kong-app/blob/master/README.md
+* Visit https://console.cloud.google.com/marketplace/details/kong/kong
+* Click "Configure" and follow the on-screen prompts
+* Refer to https://github.com/Kong/google-marketplace-kong-app/blob/master/README.md
 for important details regarding exposing the Admin API so that you can configure Kong.
 
 If you were only experimenting, consider deleting your Google Cloud resources
