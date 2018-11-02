@@ -14,7 +14,7 @@ breadcrumbs:
 1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](#running-postgresql-on-azure-with-azure-database-for-postgresql)
 1. [Running Cassandra on Azure with Azure Cosmos Db](#running-cassandra-on-azure-with-azure-cosmos-db)
 
-# Running Kong on Azure Container Instances
+## Running Kong on Azure Container Instances
 <a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview" target="blank">Azure Container Instances</a> is a great way to run lightweight containers in a serverless fashion.
 
 Running Kong on Azure Container Instances is super easy:
@@ -73,7 +73,7 @@ Running Kong on Azure Container Instances is super easy:
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
 
-# Running PostgreSQL on Azure with Azure Database for PostgreSQL
+## Running PostgreSQL on Azure with Azure Database for PostgreSQL
 Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
 
 Here are the simple steps to provision one:
@@ -89,7 +89,7 @@ Here are the simple steps to provision one:
   </div>
 </div>
 
-# Running Cassandra on Azure with Azure Cosmos Db
+## Running Cassandra on Azure with Azure Cosmos Db
 Currently, Azure Cosmos Db is not supported as a Cassandra data store.
 
 <div class="alert alert-info">
