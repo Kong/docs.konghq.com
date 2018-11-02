@@ -11,6 +11,7 @@ breadcrumbs:
 
 <!-- FIXME the list below should be an unordered list, but currently those do not render correctly in this section of the Docs site - depends on https://github.com/Kong/docs.konghq.com/issues/917 -->
 1. [Running Kong on Azure Container Instances](#running-kong-on-azure-container-instances)
+1. [Deploying Kong via the Azure Marketplace](#deploying-kong-via-the-azure-marketplace)
 1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](#running-postgresql-on-azure-with-azure-database-for-postgresql)
 1. [Running Cassandra on Azure with Azure Cosmos Db](#running-cassandra-on-azure-with-azure-cosmos-db)
 
@@ -72,6 +73,24 @@ Running Kong on Azure Container Instances is super easy:
     That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io`.
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+
+## Deploying Kong via the Azure Marketplace
+The Azure Marketplace provides quickstart templates that allow you to very easily install certain technologies.
+
+It currenly also provides some templates to deploy Kong on Azure VMs:
+
+1. **Kong Certified by Bitnami** templates
+
+    Developer Tools software from the leading publisher
+
+    You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong)
+
+1. **Kong Cluster** template
+
+    Kong Cluster for production environments.
+    This solution configures a load-balanced Kong cluster with an additional Cassandra cluster for data storage.
+
+    You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong-cluster)
 
 ## Running PostgreSQL on Azure with Azure Database for PostgreSQL
 Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
