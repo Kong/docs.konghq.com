@@ -10,10 +10,6 @@
   name: Kubernetes
   type: cloud
 
-- id: microsoft-azure
-  name: Microsoft Azure
-  type: cloud
-
 - id: google-cloud
   name: Google Cloud
   type: cloud
