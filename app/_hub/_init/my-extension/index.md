@@ -25,6 +25,7 @@ categories: # (required) Uncomment all that apply.
   #- analytics-monitoring
   #- transformations
   #- logging
+  #- deployment
 # Array format only; uncomment the one most-applicable category. Contact cooper@konghq.com to propose a new category, if necessary.
 
 type: # (required) String, one of:
@@ -180,4 +181,4 @@ params: # metadata about your plugin
 # BEGIN MARKDOWN CONTENT
 ---
 
-### Your first heading will go here
+## Your first heading will go here
