@@ -40,6 +40,10 @@ allowing you to point to your own configuration.
 If everything went well, you should see a message (`Kong started`)
 informing you that Kong is running.
 
+If you see no output and the exit code is 132, it is likely your CPU
+does not support SSE4.2 CPU instructions. You will need to install Kong
+on a different computer with a CPU from roughly 2011 onwards.
+
 By default Kong listens on the following ports:
 
 - `:8000` on which Kong listens for incoming HTTP traffic from your
