@@ -7,7 +7,7 @@ categories:
 
 type: integration
 
-desc: Deploy Kong with a template from the Azure Marketplace # (required) 1-liner description; max 80 chars
+desc: Deploy Kong on Microsoft Azure # (required) 1-liner description; max 80 chars
 description: #|
   This guide walks you through the options to run Kong on Microsoft Azure.
   # (required) extended description.
@@ -21,8 +21,7 @@ description: #|
   #   industry. Lorem Ipsum has been the industry's standard dummy text ever
   #   since the 1500s.
 
-support_url: https://github.com/tomkerkhove/kong-deployment-on-azure
-  # (Optional) A specific URL of your own for this extension.
+support_url: # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
 source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
