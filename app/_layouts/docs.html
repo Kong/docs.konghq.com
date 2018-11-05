@@ -102,10 +102,11 @@ id: documentation
           {% endif %}
 
           {% assign filename = page.path | split: '/' | last %}
-          {% unless filename == "index.md" or page.toc == false %}
+          {% if page.toc == true or
+            page.toc != false and filename != "index.md" %}
             <h2 id="table-of-contents">Table of Contents</h2>
             {% include toc.html html=content %}
-          {% endunless %}
+          {% endif %}
 
           {{ content }}
 
