@@ -1,0 +1,54 @@
+---
+id: page-plugin
+layout: default
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# FIXME This file is dead code - it is no longer being rendered or utilized,
+# and updates to this file will have no effect.
+#
+# The remaining contents of this file (below) will be deleted soon.
+#
+# Updates to the content below should instead be made to the file(s) in /app/_hub/
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+---
+
+<div class="page {{ page.id }}">
+  {% include header.html %}
+
+  <div class="container">
+    <aside class="page-navigation">
+      <nav>
+        <h5>Getting Started</h5>
+        <ul>
+          <li><a href="#kong-enterprise">Kong Enterprise</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="page-content-container">
+      <div class="page-content">
+        <div class="content">
+          <div class="alert alert-warning">
+            <strong>Enterprise only</strong>: This plugin is only available with an <a href="#kong-enterprise">Enterprise subscription</a>.
+          </div>
+
+          {{ page.description | markdownify }}
+
+          <hr>
+
+          <h2 id="kong-enterprise">Kong Enterprise</h2>
+
+          <p>This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong Enterprise</a> subscription.</p>
+          <p>If you are not a Kong Enterprise customer, you can inquire about our Enterprise offering by <a href="https://konghq.com/request-demo">contacting us</a>.
+
+          {{ content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
