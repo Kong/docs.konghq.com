@@ -3,7 +3,17 @@ source: app
 destination: dist
 permalink: pretty
 timezone: America/San_Francisco
-markdown: kramdown
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - fenced_code_blocks
+    - no_intra_emphasis
+    - autolink
+    - with_toc_data
+    - strikethrough
+    - lax_html_blocks
+    - superscript
+    - tables
 
 keep_files:
   - assets
