@@ -1,9 +1,10 @@
 ---
 title: kong.ip
 pdk: true
+toc: true
 ---
 
-# kong.ip
+## kong.ip
 
 Trusted IPs module
 
@@ -16,7 +17,10 @@ Trusted IPs module
 
  See [docs.konghq.com/latest/configuration/#trusted_ips](https://docs.konghq.com/latest/configuration/#trusted_ips)
 
-## kong.ip.is_trusted(address)
+
+
+
+### kong.ip.is_trusted(address)
 
 Depending on the `trusted_ips` configuration property,
  this function will return whether a given ip is trusted or not  Both ipv4 and ipv6 are supported.

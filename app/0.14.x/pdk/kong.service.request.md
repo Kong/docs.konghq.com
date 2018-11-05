@@ -1,13 +1,16 @@
 ---
 title: kong.service.request
 pdk: true
+toc: true
 ---
 
-# kong.service.request
+## kong.service.request
 
 Manipulation of the request to the Service
 
-## kong.service.request.set_scheme(scheme)
+
+
+### kong.service.request.set_scheme(scheme)
 
 Sets the protocol to use when proxying the request to the Service.
 
@@ -33,7 +36,7 @@ kong.service.request.set_scheme("https")
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_path(path)
+### kong.service.request.set_path(path)
 
 Sets the path component for the request to the service.  It is not
  normalized in any way and should **not** include the querystring.
@@ -60,7 +63,7 @@ kong.service.request.set_path("/v2/movies")
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_raw_query(query)
+### kong.service.request.set_raw_query(query)
 
 Sets the querystring of the request to the Service.  The `query` argument is a
  string (without the leading `?` character), and will not be processed in any
@@ -91,7 +94,7 @@ kong.service.request.set_raw_query("zzz&bar=baz&bar=bla&bar&blo=&foo=hello%20wor
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_method(method)
+### kong.service.request.set_method(method)
 
 Sets the HTTP method for the request to the service.
 
@@ -120,7 +123,7 @@ kong.service.request.set_method("DELETE")
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_query(args)
+### kong.service.request.set_query(args)
 
 Set the querystring of the request to the Service.
 
@@ -168,7 +171,7 @@ kong.service.request.set_query({
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_header(header, value)
+### kong.service.request.set_header(header, value)
 
 Sets a header in the request to the Service with the given value.  Any existing header
  with the same name will be overridden.
@@ -200,11 +203,11 @@ kong.service.request.set_header("X-Foo", "value")
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.add_header(header, value)
+### kong.service.request.add_header(header, value)
 
 Adds a request header with the given value to the request to the Service.  Unlike
  `kong.service.request.set_header()`, this function will not remove any existing
- headers with the same name. Instead, several occurrences of the header will be
+ headers with the same name. Instead, several occurences of the header will be
  present in the request. The order in which headers are added is retained.
 
 
@@ -232,7 +235,7 @@ kong.service.request.add_header("Cache-Control", "no-store")
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.clear_header(header)
+### kong.service.request.clear_header(header)
 
 Removes all occurrences of the specified header in the request to the Service.
 
@@ -262,7 +265,7 @@ kong.service.request.clear_header("X-Foo")
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_headers(headers)
+### kong.service.request.set_headers(headers)
 
 Sets the headers of the request to the Service.  Unlike
  `kong.service.request.set_header()`, the `headers` argument must be a table in
@@ -315,7 +318,7 @@ kong.service.request.set_headers({
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_raw_body(body)
+### kong.service.request.set_raw_body(body)
 
 Sets the body of the request to the Service.
 
@@ -348,7 +351,7 @@ kong.service.request.set_raw_body("Hello, world!")
 [Back to TOC](#table-of-contents)
 
 
-## kong.service.request.set_body(args[, mimetype])
+### kong.service.request.set_body(args[, mimetype])
 
 Sets the body of the request to the Service.  Unlike
  `kong.service.request.set_raw_body()`, the `args` argument must be a table, and
