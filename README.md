@@ -78,10 +78,8 @@ we refer to collectively as "extensions") in the
 on the Kong website for ready access.
 
 ## Contributing 
-We :heart: contributions from everyone! We welcome bug reports, bug fixes and [Feedback](https://discuss.konghq.com/) is always welcome and appreciated.
-Look at the [Contributor Guidelines](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) or visit [where-to-seek-for-help](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-seek-for-help) for more detailed information about contributing to Kong.
-
-## [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Kong/docs.konghq.com/issues) [![GitHub contributors](https://img.shields.io/github/contributors/Kong/docs.konghq.com.svg)](https://GitHub.com/Kong/docs.konghq.com/graphs/contributors/)
+We :heart: contributions from everyone! We welcome bug reports, bug fixes and [Feedback](https://discuss.konghq.com/) is always welcome and appreciated. See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.
+Visit [where-to-seek-for-help](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#where-to-seek-for-help) for more detailed information about contributing to Kong.
 
 ## License
 
