@@ -22,7 +22,7 @@ description: |
   This guide walks you through deploying and running Kong on Microsoft Azure Container Instances.
 
   We will be using either Azure Database for PostgreSQL or Cosmos Db to store the gateway configuration.
-support_url: # (Optional) A specific URL of your own for this extension.
+support_url: https://github.com/tomkerkhove/kong-deployment-on-azure/issues
   # Defaults to the url setting in your publisher profile.
 
 source_url: https://github.com/tomkerkhove/kong-deployment-on-azure

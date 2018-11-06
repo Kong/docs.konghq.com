@@ -21,7 +21,7 @@ description: #|
   #   industry. Lorem Ipsum has been the industry's standard dummy text ever
   #   since the 1500s.
 
-support_url: # (Optional) A specific URL of your own for this extension.
+support_url: https://github.com/tomkerkhove/kong-deployment-on-azure/issues
   # Defaults to the url setting in your publisher profile.
 
 source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
