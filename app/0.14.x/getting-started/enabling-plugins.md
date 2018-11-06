@@ -39,6 +39,8 @@ $ curl -i -X POST \
 defaults to `['apikey']`. It is a list of headers and parameters names (both
 are supported) that are supposed to contain the apikey during a request.
 
+[Back to TOC](#table-of-contents)
+
 ## 2. Verify that the plugin is properly configured
 
 Issue the following cURL request to verify that the [key-auth][key-auth]
@@ -61,6 +63,8 @@ HTTP/1.1 401 Unauthorized
   "message": "No API key found in request"
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ## Next Steps
 

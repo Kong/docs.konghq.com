@@ -142,3 +142,5 @@ proxy_access_log=logs/access.log show_everything if=$keeplog
 The final step in the process to make all the changes take effect is to restart kong. you can use the `kong restart` command to do so.
 
 Now, any requests made with an email address in it will no longer be logged. Of course, we can use this logic to remove anything we want from the logs on a conditional manner.
+
+[Back to TOC](#table-of-contents)

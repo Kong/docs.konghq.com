@@ -50,6 +50,8 @@ Congratulations! You've just added your first consumer to Kong.
 consumers][API-consumers] to associate a consumer with your existing user
 database.
 
+[Back to TOC](#table-of-contents)
+
 ## 2. Provision key credentials for your Consumer
 
 Now, we can create a key for our recently created consumer `Jason` by
@@ -60,6 +62,8 @@ $ curl -i -X POST \
   --url http://localhost:8001/consumers/Jason/key-auth/ \
   --data 'key=ENTER_KEY_HERE'
 ```
+
+[Back to TOC](#table-of-contents)
 
 ## 3. Verify that your Consumer credentials are valid
 
@@ -72,6 +76,8 @@ $ curl -i -X GET \
   --header "Host: example.com" \
   --header "apikey: ENTER_KEY_HERE"
 ```
+
+[Back to TOC](#table-of-contents)
 
 ## Next Steps
 

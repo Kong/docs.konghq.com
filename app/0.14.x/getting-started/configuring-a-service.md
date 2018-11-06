@@ -62,6 +62,7 @@ Connection: keep-alive
 }
 ```
 
+[Back to TOC](#table-of-contents)
 
 ## 2. Add a Route for the Service
 
@@ -102,6 +103,8 @@ Connection: keep-alive
 
 Kong is now aware of your Service and ready to proxy requests.
 
+[Back to TOC](#table-of-contents)
+
 ## 3. Forward your requests through Kong
 
 Issue the following cURL request to verify that Kong is properly forwarding
@@ -124,6 +127,8 @@ the header defined in the above cURL request:
 </ul>
 
 <hr>
+
+[Back to TOC](#table-of-contents)
 
 ## Next Steps
 
