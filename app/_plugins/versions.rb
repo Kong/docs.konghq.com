@@ -28,7 +28,7 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         page.data["has_version"] = true
         # Only apply those rules to documentation pages
-        if (parts[0] == "enterprise" || parts[0].match?(/[0-3]\.[0-9]{1,2}.*$/))
+        if (parts[0] == "enterprise" || parts[0].match?(/[0-3]\.[0-9]{1,2}(\..*)?$/))
           if(parts[0] == 'enterprise')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
