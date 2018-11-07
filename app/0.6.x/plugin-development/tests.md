@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 9
 ---
 
-# {{page.title}}
+## Introduction
 
 ---
 
@@ -12,7 +12,7 @@ If you are serious about your plugins, you probably want to write tests for it. 
 
 ---
 
-### Write integration tests
+## Write integration tests
 
 The preferred testing framework for Kong is [busted](http://olivinelabs.com/busted/), though you are free to use another one if you wish.
 

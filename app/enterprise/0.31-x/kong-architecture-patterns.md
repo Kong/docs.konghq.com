@@ -7,7 +7,7 @@ An important part of setting up a new Kong cluster is choosing the right archite
 
 ## Kong between client and upstream
 
-The classic architectural pattern we see customers setting up is adding Kong in between some, or all, of their API traffic. Kong is installed in your prefered hosting provider, and configured to proxy traffic to the existing APIs. Note that in this pattern the APIs are still accessible directly, that is both through the proxy and also without being routed through the API Gateway. We see this during initial testing, and migration phases, before customers eventually route all traffic through Kong. 
+The classic architectural pattern we see customers setting up is adding Kong in between some, or all, of their API traffic. Kong is installed in your preferred hosting provider, and configured to proxy traffic to the existing APIs. Note that in this pattern the APIs are still accessible directly, that is both through the proxy and also without being routed through the API Gateway. We see this during initial testing, and migration phases, before customers eventually route all traffic through Kong. 
 
 ![Basic Kong pattern](https://konghq.com/wp-content/uploads/2018/06/comp-1-basic-kong.png "Basic Kong pattern")
 

@@ -121,7 +121,7 @@ or
 The `requestHash` arg is a Sha256(HTTP Request as query parameters or HTTP Body).
 The `response` arg is a Base64 encoded format of the response HTTP Body.
 
-So the above plugin equates to these psuedo requests:
+So the above plugin equates to these pseudo requests:
 
 ```
 https://gateway.company.com/virtualtest
@@ -145,7 +145,7 @@ Status Code: 404 Not Found
 Content-Length: 207
 Content-Type: application/json; charset=utf-8
 
-{"message":"No virtual request match found, your request yeilded: 46c4b4caf0cc3a5a589cbc4e0f3cd0492985d5b889f19ebc11e5a5bd6454d20f expected 0296217561490155228da9c17fc555cf9db82d159732f3206638c25f04a285c4"}
+{"message":"No virtual request match found, your request yielded: 46c4b4caf0cc3a5a589cbc4e0f3cd0492985d5b889f19ebc11e5a5bd6454d20f expected 0296217561490155228da9c17fc555cf9db82d159732f3206638c25f04a285c4"}
 ```
 
 If the test case specified in the header does not match anything found stored within the plugin your error would be like so:
@@ -162,13 +162,13 @@ Content-Type: application/json; charset=utf-8
 ### Installation
 Recommended:
 
-```
+```bash
 $ luarocks install kong-service-virtualization
 ```
 
 Optional:
 
-```
+```bash
 $ git clone https://github.com/Optum/kong-service-virtualization
 $ cd /path/to/kong/plugins/kong-service-virtualization
 $ luarocks make *.rockspec

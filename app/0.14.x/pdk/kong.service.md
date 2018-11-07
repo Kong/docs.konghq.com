@@ -1,24 +1,19 @@
 ---
 title: kong.service
 pdk: true
+toc: true
 ---
 
-# kong.service
+## kong.service
 
 The service module contains a set of functions to manipulate the connection
  aspect of the request to the Service, such as connecting to a given host, IP
  address/port, or choosing a given Upstream entity for load-balancing and
  healthchecking.
 
-## Table of Contents
-
-* [kong.service.set_upstream(host)](#kong_service_set_upstream)
-* [kong.service.set_target(host, port)](#kong_service_set_target)
 
 
-
-
-### <a name="kong_service_set_upstream"></a>kong.service.set_upstream(host)
+### kong.service.set_upstream(host)
 
 Sets the desired Upstream entity to handle the load-balancing step for
  this request.  Using this method is equivalent to creating a Service with a
@@ -61,7 +56,7 @@ end
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_service_set_target"></a>kong.service.set_target(host, port)
+### kong.service.set_target(host, port)
 
 Sets the host and port on which to connect to for proxying the request.  ]]
  Using this method is equivalent to ask Kong to not run the load-balancing

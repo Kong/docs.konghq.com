@@ -1,5 +1,6 @@
 ---
 title: Kong Enterprise Edition Versioning
+toc: false
 ---
 
 Kong Enterprise Edition is distributed as a bundle of elements, including:

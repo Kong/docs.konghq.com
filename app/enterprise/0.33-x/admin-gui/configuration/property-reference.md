@@ -1,32 +1,31 @@
 ---
-title: Property Reference
+title: Admin GUI - Property Reference
 book: admin_gui
 chapter: 6
 ---
 
-# Admin GUI Property Reference
+## Introduction
 
 This document describes configuration options for the Kong Admin GUI.
-
 
 ## admin_api_uri
 
 **Default:** `NONE` (auto generated)
 
 **Description:**  
-The URL on which the Admin API is accessible. By default the Admin GUI 
-assumes the Admin API is on the same host, and will use the window request 
-host and resolved listener port depending on the requested protocol. This 
-is where the Admin GUI finds the Admin API when `admin_gui_auth` (see below) 
+The URL on which the Admin API is accessible. By default the Admin GUI
+assumes the Admin API is on the same host, and will use the window request
+host and resolved listener port depending on the requested protocol. This
+is where the Admin GUI finds the Admin API when `admin_gui_auth` (see below)
 is not enabled.
 
-This property accepts a value with or without protocol. If you 
-specify the protocol, be sure that it is the same as the one you set in 
+This property accepts a value with or without protocol. If you
+specify the protocol, be sure that it is the same as the one you set in
 `admin_gui_url`, to prevent rendering errors due to mixed content.
 
-Note: This property will be renamed `admin_url` in a future release, to be 
-consistent with other URL properties in `kong.conf`. Protocol will be 
-required at that time. It is strongly recommended that your Admin API be 
+Note: This property will be renamed `admin_url` in a future release, to be
+consistent with other URL properties in `kong.conf`. Protocol will be
+required at that time. It is strongly recommended that your Admin API be
 on a secure port.
 
 **Example:**
@@ -35,16 +34,15 @@ on a secure port.
 admin_api_uri = https://127.0.0.1:8444
 ```
 
-
 ## proxy_url
 
 **Default:** `NONE` (auto generated)
 
 **Description:**  
-The URL on which Kong is accessible. When `admin_gui_auth` is enabled, the Admin 
-GUI makes Admin API requests via the Kong proxy. With no other configuration 
-changes, the Admin GUI assumes the proxy is on the same host, and will use the 
-window request host and resolved listener port depending on the requested 
+The URL on which Kong is accessible. When `admin_gui_auth` is enabled, the Admin
+GUI makes Admin API requests via the Kong proxy. With no other configuration
+changes, the Admin GUI assumes the proxy is on the same host, and will use the
+window request host and resolved listener port depending on the requested
 protocol.
 
 **Example:**
@@ -52,7 +50,6 @@ protocol.
 ```
 proxy_url = https://127.0.0.1:8443
 ```
-
 
 ## admin_gui_listen
 
@@ -70,7 +67,6 @@ specified for each pair, similarly to the `admin_listen` directive.
 ```
 admin_gui_listen = 0.0.0.0:8002, 0.0.0.0:8445 ssl
 ```
-
 
 ## admin_gui_url
 
@@ -92,7 +88,6 @@ accessed `host`has exposed the ports defined on the `admin_gui_listener`
 admin_gui_url = https://kong-admin.test
 ```
 
-
 ## admin_gui_ssl_cert
 
 **Default:** `NONE` (auto generated)
@@ -105,7 +100,6 @@ The absolute path to the SSL certificate for `admin_gui_listen` values with SSL 
 ```
 admin_gui_ssl_cert = /path/to/admin_gui_ssl.cert
 ```
-
 
 ## admin_gui_ssl_cert_key
 
@@ -121,7 +115,6 @@ enabled.
 admin_gui_ssl_key = /path/to/admin_gui_ssl.key
 ```
 
-
 ## admin_gui_access_log
 
 **Default:** `logs/admin_gui_access.log`
@@ -135,7 +128,6 @@ logs are placed in the `prefix` location.
 
 Setting this value to `off` disables access logs
 for the Admin GUI.
-
 
 ## admin_gui_error_log
 
@@ -151,7 +143,6 @@ logs are placed in the `prefix` location.
 Setting this value to `off` disables error logs for
 the Admin GUI. Granularity can be adjusted through the `log_level`
 directive.
-
 
 ## admin_gui_auth
 

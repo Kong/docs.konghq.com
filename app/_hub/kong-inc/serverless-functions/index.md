@@ -3,14 +3,6 @@ name: Serverless Functions
 publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-serverless-functions
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Plugin Names
-      - label: Demonstration
-      - label: Notes
 
 desc: Dynamically run Lua code from Kong during the access phase
 description: |
@@ -111,7 +103,7 @@ different priority in the plugin chain.
     ...
     ```
 
-6. Test that our lua code will terminate the request when no header is passed:
+6. Test that our Lua code will terminate the request when no header is passed:
 
     ```bash
     curl -i -X GET http://localhost:8000/test

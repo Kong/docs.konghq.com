@@ -29,7 +29,7 @@ A status represents the state of a developer and the access they have to your AP
 Developers who have requested access to your **Kong Developer Portal** will appear under the **Requested Access** tab.
 From this tab you can choose to *Accept* or *Reject* the developer from the actions in the table row. After selecting an action the corresponding tab will update.
 
-#### Enabling Auto Approval
+### Enabling Auto Approval
 
 You can choose to have developers automatically approved and skip the requested state. To enable follow these steps:
 

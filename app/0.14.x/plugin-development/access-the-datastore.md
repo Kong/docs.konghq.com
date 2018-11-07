@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 5
 ---
 
-# {{page.title}}
+## Introduction
 
 Kong interacts with the model layer through classes we refer to as "DAOs". This
 chapter will detail the available API to interact with the datastore.
@@ -21,7 +21,7 @@ and [PostgreSQL
 </div>
 ---
 
-### kong.db and kong.dao
+## kong.db and kong.dao
 
 All entities in Kong are represented by:
 
@@ -53,9 +53,11 @@ local plugins_dao = kong.dao.plugins
 The `kong` global exposes the [Plugin Development Kit], and its `kong.dao` and
 `kong.db` properties are instances of the DAO and DB singletons.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
-### The DAO Lua API
+## The DAO Lua API
 
 The DAO class is responsible for the operations executed on a given table in
 the datastore, generally mapping to an entity in Kong. All the underlying
@@ -79,6 +81,8 @@ local inserted_plugin, err = kong.dao.plugins:insert({
 
 For a real-life example of the DAO being used in a plugin, see the
 [Key-Auth plugin source code](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua).
+
+[Back to TOC](#table-of-contents)
 
 ---
 

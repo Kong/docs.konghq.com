@@ -2,15 +2,6 @@
 name: Correlation ID
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Documentation
-    items:
-      - label: How it works
-      - label: Generators
-      - label: FAQ
-
 desc: Correlate requests and responses using a unique ID
 description: |
   Correlate requests and responses using a unique ID transmitted over an HTTP header.
@@ -74,7 +65,7 @@ If a header bearing the same name is already present in the client request, it i
 
 ## Generators
 
-#### uuid
+### uuid
 
 Format:
 ```
@@ -83,18 +74,18 @@ xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 Using this format, a UUID is generated in its hexadecimal form for each request.
 
-#### uuid#counter
+### uuid#counter
 
 Format:
 ```
 xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx#counter
 ```
 
-In this format, a single UUID is generated on a per-worker basis, and further requests simply append a counter to the UUID after a `#` character. The `counter` value starts at `0` for each worker, and gets incremented independantly of the others.
+In this format, a single UUID is generated on a per-worker basis, and further requests simply append a counter to the UUID after a `#` character. The `counter` value starts at `0` for each worker, and gets incremented independently of the others.
 
-This format provides a better performance, but might be harder to store or process for analizing (due to its format and low cardinality).
+This format provides a better performance, but might be harder to store or process for analyzing (due to its format and low cardinality).
 
-#### tracker
+### tracker
 
 Format:
 ```
@@ -116,6 +107,6 @@ form parameter      | description
 
 ## FAQ
 
-#### Can I see my correlation ids in my Kong logs?
+### Can I see my correlation ids in my Kong logs?
 
 The correlation id will not show up in the Nginx access or error logs. As such, we suggest you use this plugin alongside one of the Logging plugins, or store this id on your backend-side.

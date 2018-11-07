@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 9
 ---
 
-# {{page.title}}
+## Introduction
 
 As mentioned many times in this guide, Kong heavily relies on your modules being available in your `LUA_PATH` under specific names.
 
@@ -31,7 +31,7 @@ You need to make these modules available in your LUA_PATH.
 
 ---
 
-### Distribute your modules
+## Distribute your modules
 
 The preferred way to do so is to use [Luarocks](https://luarocks.org/), a package manager for Lua modules. It calls such modules "rocks". **Your module does not have to live inside the Kong repository!**, but it can be if that's how you'd like to maintain your Kong setup.
 

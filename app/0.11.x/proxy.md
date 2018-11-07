@@ -19,66 +19,6 @@ In this document we cover routing capabilities of Kong by explaining in detail
 how incoming requests on port `:8000` are proxied to a configured upstream
 service depending on their headers, URI, and HTTP method.
 
-## Table of Contents
-
-- [Terminology][proxy-terminology]
-- [Overview][proxy-overview]
-- [Reminder: How to add an API to Kong][proxy-reminder]
-- [Routing capabilities][proxy-routing-capabilities]
-    - [Request Host header][proxy-request-host-header]
-        - [Using wildcard hostnames][proxy-using-wildcard-hostnames]
-        - [The `preserve_host` property][proxy-preserve-host-property]
-    - [Request URI][proxy-request-uri]
-        - [Using regexes in URIs][proxy-using-regexes-in-uris]
-            - [Evaluation order][proxy-evaluation-order]
-            - [Capturing groups][proxy-capturing-groups]
-            - [Escaping special characters][proxy-escaping-special-characters]
-        - [The `strip_uri` property][proxy-strip-uri-property]
-    - [Request HTTP method][proxy-request-http-method]
-- [Routing priorities][proxy-routing-priorities]
-- [Proxying behavior][proxy-proxying-behavior]
-    - [1. Load balancing][proxy-load-balancing]
-    - [2. Plugins execution][proxy-plugins-execution]
-    - [3. Proxying & upstream timeouts][proxy-proxying-upstream-timeouts]
-    - [4. Errors & retries][proxy-retries]
-    - [5. Response][proxy-response]
-- [Configuring a fallback API][proxy-configuring-a-fallback-api]
-- [Configuring SSL for an API][proxy-configuring-ssl-for-an-api]
-    - [The `https_only` property][proxy-the-https-only-property]
-    - [The `http_if_terminated` property][proxy-the-http-if-terminated-property]
-- [Proxy WebSocket traffic][proxy-websocket]
-    - [WebSocket and TLS][proxy-websocket-tls]
-- [Conclusion][proxy-conclusion]
-
-[proxy-terminology]: #terminology
-[proxy-overview]: #overview
-[proxy-reminder]: #reminder-how-to-add-an-api-to-kong
-[proxy-routing-capabilities]: #routing-capabilities
-[proxy-request-host-header]: #request-host-header
-[proxy-using-wildcard-hostnames]: #using-wildcard-hostnames
-[proxy-preserve-host-property]: #the-preserve_host-property
-[proxy-request-uri]: #request-uri
-[proxy-using-regexes-in-uris]: #using-regexes-in-uris
-[proxy-evaluation-order]: #evaluation-order
-[proxy-capturing-groups]: #capturing-groups
-[proxy-escaping-special-characters]: #escaping-special-characters
-[proxy-strip-uri-property]: #the-strip_uri-property
-[proxy-request-http-method]: #request-http-method
-[proxy-routing-priorities]: #routing-priorities
-[proxy-proxying-behavior]: #proxying-behavior
-[proxy-load-balancing]: #1-load-balancing
-[proxy-plugins-execution]: #2-plugins-execution
-[proxy-proxying-upstream-timeouts]: #3-proxying-upstream-timeouts
-[proxy-retries]: #4-errors-retries
-[proxy-response]: #5-response
-[proxy-configuring-a-fallback-api]: #configuring-a-fallback-api
-[proxy-configuring-ssl-for-an-api]: #configuring-ssl-for-an-api
-[proxy-the-https-only-property]: #the-https_only-property
-[proxy-the-http-if-terminated-property]: #the-http_if_terminated-property
-[proxy-websocket]: #proxy-websocket-traffic
-[proxy-websocket-tls]: #websocket-and-tls
-[proxy-conclusion]: #conclusion
-
 ## Terminology
 
 - `API`: This term refers to the API entity of Kong. You configure your APIs,
@@ -719,7 +659,7 @@ Previous to Kong 0.10, Ordinarily, Kong would send proxied requests to the
 `upstream_url`, and load balancing across multiple upstream instances required
 an external load balancer.
 
-You can find more informations about adding load balancing to your APIs by
+You can find more information about adding load balancing to your APIs by
 consulting the [Load Balancing Reference][load-balancing-reference].
 
 [Back to TOC](#table-of-contents)
@@ -739,7 +679,7 @@ When a plugin is configured for a given API, and the API has been matched from
 an incoming request, Kong will execute the configured plugin(s) for this
 request before proxying it to your upstream service. This includes, among
 others, the `access` phase of the plugin, on which you can find more
-informations about in the [Plugin development guide][plugin-development-guide].
+information about in the [Plugin development guide][plugin-development-guide].
 
 [Back to TOC](#table-of-contents)
 
@@ -816,7 +756,7 @@ There are two configurable elements here:
    details on this.
 
 2. What exactly constitutes an error: here Kong uses the Nginx defaults, which
-   means an error or timeout occuring while establishing a connection with the
+   means an error or timeout occurring while establishing a connection with the
    server, passing a request to it, or reading the response header.
 
 The second option is based on Nginx's
@@ -850,7 +790,7 @@ Once the headers are sent to the client, Kong will start executing
 registered plugins for that API that implement the `body_filter` hook. This
 hook may be called multiple times, due to the streaming nature of Nginx itself.
 Each chunk of the upstream response that is successfully processed by such
-`body_filter` hooks is sent back to the client. You can find more informations
+`body_filter` hooks is sent back to the client. You can find more information
 about the `body_filter` hook in the [Plugin development
 guide][plugin-development-guide].
 
@@ -954,7 +894,7 @@ HTTP/1.1 201 Created
 ```
 
 By configuring your API like so, Kong will refuse to proxy traffic for it
-without HTTPS. A request to Kong over plain HTTP targetting this API would
+without HTTPS. A request to Kong over plain HTTP targeting this API would
 instruct your clients to upgrade to HTTPS:
 
 ```bash

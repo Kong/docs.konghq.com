@@ -107,7 +107,7 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 Retrieve generic details about a node.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/</div>
 
@@ -148,7 +148,7 @@ Retrieve usage information about a node, with some basic information about the c
 
 If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/status</div>
 
@@ -202,7 +202,7 @@ You can see the Kong cluster members, add a node to the cluster and forcibly rem
 
 Retrieve the cluster status, returning information for each node in the cluster.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/cluster</div>
 
@@ -236,7 +236,7 @@ HTTP 200 OK
 
 Add a node to the cluster.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/cluster</div>
 
@@ -258,7 +258,7 @@ HTTP 200 OK
 
 Forcibly remove a node from the cluster.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cluster</div>
 
@@ -306,7 +306,7 @@ of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to th
 
 ### Add API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/apis/</div>
 
@@ -344,7 +344,7 @@ HTTP 201 Created
 
 ### Retrieve API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/{name or id}</div>
 
@@ -382,7 +382,7 @@ HTTP 200 OK
 
 ### List APIs
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/</div>
 
@@ -450,7 +450,7 @@ HTTP 200 OK
 
 ### Update API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/apis/{name or id}</div>
 
@@ -492,7 +492,7 @@ HTTP 200 OK
 
 ### Update Or Create API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/apis/</div>
 
@@ -514,7 +514,7 @@ See POST and PATCH responses.
 
 ### Delete API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/apis/{name or id}</div>
 
@@ -544,7 +544,7 @@ The Consumer object represents a consumer - or a user - of an API. You can eithe
 
 ### Create Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/consumers/</div>
 
@@ -570,7 +570,7 @@ HTTP 201 Created
 
 ### Retrieve Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/{username or id}</div>
 
@@ -596,7 +596,7 @@ HTTP 200 OK
 
 ### List Consumers
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/</div>
 
@@ -639,7 +639,7 @@ HTTP 200 OK
 
 ### Update Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/consumers/{username or id}</div>
 
@@ -669,7 +669,7 @@ HTTP 200 OK
 
 ### Update Or Create Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/consumers/</div>
 
@@ -691,7 +691,7 @@ See POST and PATCH responses.
 
 ### Delete Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/consumers/{username or id}</div>
 
@@ -737,7 +737,7 @@ values for some specific Consumers, you can do so by specifying the
 
 See the [Precedence](#precedence) section below for more details.
 
-#### Precedence
+### Precedence
 
 Plugins can be added globally (all APIs), on a single API, single Consumer,
 or a combination of both an API and a Consumer. Additionally, a given plugin
@@ -781,7 +781,7 @@ You can add a plugin in four different ways:
 
 Note that not all plugins allow to specify `consumer_id`. Check the plugin documentation.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/apis/{name or id}/plugins/</div>
 
@@ -816,7 +816,7 @@ HTTP 201 Created
 
 ---
 
-## Retrieve Plugin
+### Retrieve Plugin
 
 <div class="endpoint get">/plugins/{id}</div>
 
@@ -851,7 +851,7 @@ HTTP 200 OK
 
 ### List All Plugins
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins/</div>
 
@@ -908,7 +908,7 @@ HTTP 200 OK
 
 ### List Plugins per API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/{api name or id}/plugins/</div>
 
@@ -965,7 +965,7 @@ HTTP 200 OK
 
 ### Update Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/apis/{api name or id}/plugins/{plugin id}</div>
 
@@ -1003,7 +1003,7 @@ HTTP 200 OK
 
 ### Update or Add Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/apis/{api name or id}/plugins/</div>
 
@@ -1029,7 +1029,7 @@ See POST and PATCH responses.
 
 ### Delete Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/apis/{api name or id}/plugins/{plugin id}</div>
 
@@ -1050,7 +1050,7 @@ HTTP 204 No Content
 
 Retrieve a list of all installed plugins on the Kong node.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins/enabled</div>
 
@@ -1144,7 +1144,7 @@ tie a cert/key pair to one or more hostnames.
 
 ### Add Certificate
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/certificates/</div>
 
@@ -1174,7 +1174,7 @@ HTTP 201 Created
 
 ### Retrieve Certificate
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/certificates/{sni or id}</div>
 
@@ -1203,7 +1203,7 @@ HTTP 200 OK
 
 ### List Certificates
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/certificates/</div>
 
@@ -1274,7 +1274,7 @@ HTTP 200 OK
 
 ### Update or Create Certificate
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/certificates/</div>
 
@@ -1326,7 +1326,7 @@ lookup the certificate object based on the SNI associated with the certificate.
 
 ### Add SNI
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/snis/</div>
 
@@ -1352,7 +1352,7 @@ HTTP 201 Created
 
 ### Retrieve SNI
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/snis/{name}</div>
 
@@ -1376,7 +1376,7 @@ HTTP 200 OK
 
 ### List SNIs
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/snis/</div>
 
@@ -1432,7 +1432,7 @@ HTTP 200 OK
 
 ### Update or Create SNI
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/snis/</div>
 
@@ -1496,7 +1496,7 @@ Requests for this API would be proxied to the targets defined within the upstrea
 
 ### Add upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/upstreams/</div>
 
@@ -1535,7 +1535,7 @@ HTTP 201 Created
 
 ### Retrieve upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/upstreams/{name or id}</div>
 
@@ -1574,7 +1574,7 @@ HTTP 200 OK
 
 ### List upstreams
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/upstreams/</div>
 
@@ -1644,7 +1644,7 @@ HTTP 200 OK
 
 ### Update upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/upstreams/{name or id}</div>
 
@@ -1687,7 +1687,7 @@ HTTP 200 OK
 
 ### Update Or create Upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/upstreams/</div>
 
@@ -1709,7 +1709,7 @@ See POST and PATCH responses.
 
 ### Delete upstream
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/upstreams/{name or id}</div>
 
@@ -1749,7 +1749,7 @@ The current target object definition is the one with the latest `created_at`.
 
 ### Add target
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/upstreams/{name or id}/targets</div>
 
@@ -1785,7 +1785,7 @@ Lists all targets of the upstream. Multiple target objects for the same
 target may be returned, showing the history of changes for a specific target.
 The target object with the latest `created_at` is the current definition.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/upstreams/{name or id}/targets</div>
 
@@ -1896,7 +1896,7 @@ a new entry for the given target definition with a `weight` of 0.
   <strong>Note:</strong> This endpoint is only available with Kong 0.10.1+
 </div>
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/upstreams/{upstream name or id}/targets/{target or id}</div>
 

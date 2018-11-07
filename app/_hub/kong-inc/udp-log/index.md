@@ -2,14 +2,6 @@
 name: UDP Log
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Log Format
-      - label: Kong Process Errors
-
 desc: Send request and response logs to a UDP server
 description: |
   Log request and response data to an UDP server.

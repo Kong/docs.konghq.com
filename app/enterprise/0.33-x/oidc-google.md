@@ -1,26 +1,27 @@
 ---
 title: OpenID Connect with Google
-class: page-install-method
 ---
+
+## Introduction
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using Google's identity provider.
 
-# Prerequisites
+## Prerequisites
 
 Because OpenID Connect deals with user credentials, all transactions should take place over HTTPS. Although user passwords for third party identity providers are only submitted to those providers and not Kong, authentication tokens do grant access to a subset of user account data and protected APIs, and should be secured. As such, you should make Kong's proxy available via a fully-qualified domain name and [add a certificate][add-certificate] for it.
 
-# Google IDP configuration
+## Google IDP configuration
 
 Before configuring Kong, you'll need to set up a Google APIs project and create a credential set. Following [Google's instructions][google-oidc], [create a new set of OAuth client ID credentials][google-create-credentials] with the Web application class. Add an authorized redirect URI for part of the API you wish to protect (more complex applications may redirect to a resource that sets additional
 application-specific state on the client, but for our purposes, any protected URI will work). Authorized JavaScript origins can be left blank.
 
 You can optionally customize the consent screen to inform clients who/what application is requesting authentication, but this is not required for testing. All steps after can be ignored, as Kong handles the server-side authentication request and token validation.
 
-# Kong configuration
+## Kong configuration
 
 If you have not yet [added an API][add-api], go ahead and do so. Again, note that you should be able to secure this API with HTTPS, so if you are configuring a host, use a hostname you have a certificate for.
 
-## Basic plugin configuration
+### Basic plugin configuration
 
 Add a plugin with the configuration below to your API using an HTTP client or the Admin GUI. Make sure to use the same redirect URI as configured earlier:
 
@@ -38,7 +39,7 @@ users have a Google account, but doesn't do anything with that information.
 
 Depending on your needs, it may not be necessary to associate clients with a consumer. You can, for example, configure the `domains` parameter to limit access to a internal users if you have a G Suite hosted domain, or configure `upstream_headers_claims` to send information about the user upstream (e.g. their email, a profile picture, their name, etc.) for use in your applications or for analytics.
 
-## Consumer mapping
+### Consumer mapping
 
 If you need to interact with other Kong plugins using consumer information, you must add configuration that maps account data received from the identity provider to a Kong consumer. For this example, we'll map the user's Google account email by setting a `custom_id` on their consumer, e.g.
 

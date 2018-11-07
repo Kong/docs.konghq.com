@@ -2,28 +2,13 @@
 title: Loadbalancing reference
 ---
 
-# Load Balancing Reference
+## Introduction
 
 Kong provides multiple ways of load balancing requests to multiple backend
 services: a straightforward DNS-based method, and a more dynamic ring-balancer
 that also allows for service registry without needing a DNS server.
 
-### Table of Contents
-
-- [DNS-based loadbalancing](#dns-based-loadbalancing)
-  - [A records](#a-records)
-  - [SRV records](#srv-records)
-  - [DNS priorities](#dns-priorities)
-  - [DNS caveats](#dns-caveats)
-- [Ring-balancer](#ring-balancer)
-  - [Upstream](#upstream)
-  - [Target](#target)
-  - [Balancing algorithms](#balancing-algorithms)
-  - [Balancing caveats](#balancing-caveats)
-- [Blue-green Deployments](#blue-green-deployments)
-- [Canary Releases](#canary-releases)
-
-### DNS-based loadbalancing
+## DNS-based loadbalancing
 
 When using DNS-based load balancing, the registration of the backend services
 is done outside of Kong, and Kong only receives updates from the DNS server.
@@ -40,7 +25,7 @@ updates/changes will be very low.
 
 [Back to TOC](#table-of-contents)
 
-#### **A records**
+### A records
 
 An A record contains one or more IP addresses. Hence, when a hostname
 resolves to an A record, each backend service must have its own IP address.
@@ -51,7 +36,7 @@ round-robin.
 
 [Back to TOC](#table-of-contents)
 
-#### **SRV records**
+### SRV records
 
 An SRV record contains weight and port information for all of its IP addresses.
 A backend service can be identified by a unique combination of IP address
@@ -69,7 +54,7 @@ overridden by `456`.
 
 [Back to TOC](#table-of-contents)
 
-#### **DNS priorities**
+### DNS priorities
 
 The DNS resolver will start resolving the following record types in order:
 
@@ -82,7 +67,7 @@ This order is configurable through the [`dns_order` configuration property][dns-
 
 [Back to TOC](#table-of-contents)
 
-#### **DNS caveats**
+### DNS caveats
 
 - Whenever the DNS record is refreshed a list is generated to handle the
 weighting properly. Try to keep the weights as multiples of each other to keep
@@ -91,14 +76,16 @@ with 527 entries, whereas weights 16 and 32 (or their smallest relative
 counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
 
-- Some nameservers do not return all entries (due to UDP packet size) in those
-cases (for example Consul returns a maximum of 3) a given Kong node will only
+- Some nameservers do not return all entries due to UDP packet size
+(for example Consul returns a maximum of 3 DNS entries). In those
+cases, a given Kong worker (by default
+there is 1 Kong worker per CPU core) will only
 use the few upstream service instances provided by the nameserver. In this
 scenario, it is possible that the pool of upstream instances will be loaded
-inconsistently, because the Kong node is effectively unaware of some of the
-instances, due to the limited information provided by the nameserver.
+inconsistently, because each Kong worker is effectively unaware of some of the
+upstream instances, due to the limited information provided by the nameserver.
 To mitigate this use a different nameserver, use IP
-addresses instead of names, or make sure you use enough Kong nodes to still
+addresses instead of names, or make sure you use enough Kong workers to still
 have all upstream services being used.
 
 - When the nameserver returns a `3 name error`, then that is a valid response
@@ -111,7 +98,7 @@ expected to randomize the record entries.
 
 [Back to TOC](#table-of-contents)
 
-### **Ring-balancer**
+## Ring-balancer
 
 When using the ring-balancer, the adding and removing of backend services will
 be handled by Kong, and no DNS updates will be necessary. Kong will act as the
@@ -131,7 +118,7 @@ entities.
 
 [Back to TOC](#table-of-contents)
 
-#### **Upstream**
+### Upstream
 
 Each upstream gets its own ring-balancer. Each `upstream` can have many
 `target` entries attached to it, and requests proxied to the 'virtual hostname'
@@ -168,7 +155,7 @@ upstreams is available in the `upstream` section of the
 
 [Back to TOC](#table-of-contents)
 
-#### **Target**
+### Target
 
 Because the `upstream` maintains a history of changes, targets can only be
 added, not modified nor deleted. To change a target, just add a new entry for
@@ -202,7 +189,7 @@ to this target it will query the nameserver again.
 
 [Back to TOC](#table-of-contents)
 
-#### **Balancing algorithms**
+### Balancing algorithms
 
 By default a ring-balancer will use a weighted-round-robin scheme. The alternative
 would be to use the hash-based algorithm. The input for the hash can be either
@@ -243,7 +230,7 @@ For more information on the exact settings see the `upstream` section of the
 
 [Back to TOC](#table-of-contents)
 
-#### **Balancing caveats**
+### Balancing caveats
 
 The ring-balancer is designed to work both with a single node as well as in a cluster.
 For the weighted-round-robin algorithm there isn't much difference, but when using
@@ -269,7 +256,7 @@ call center), `cookie` will provide a better distribution than `ip`.
 
 [Back to TOC](#table-of-contents)
 
-### **Blue-Green Deployments**
+# Blue-Green Deployments
 
 Using the ring-balancer a [blue-green deployment][blue-green-canary] can be easily orchestrated for
 a Service. Switching target infrastructure only requires a `PATCH` request on a
@@ -342,7 +329,7 @@ requests will be dropped.
 
 [Back to TOC](#table-of-contents)
 
-### **Canary Releases**
+# Canary Releases
 
 Using the ring-balancer, target weights can be adjusted granularly, allowing
 for a smooth, controlled [canary release][blue-green-canary].

@@ -2,19 +2,17 @@
 name: ACL
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Associating Consumers
-      - label: Upstream Headers
-      - label: Paginate through the ACLs
-      - label: Retrieve the Consumer associated with an ACL
-
 desc: Control which consumers can access APIs
 description: |
   Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or the Route (or API).
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
+    differs from what is documented herein. Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
 
 type: plugin
 categories:

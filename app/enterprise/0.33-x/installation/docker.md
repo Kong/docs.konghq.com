@@ -1,11 +1,10 @@
 ---
 title: Installing Kong EE Docker Image
-class: page-install-method
 ---
 
-# Installing Kong EE from Docker Image
-
 <img src="/assets/images/distributions/docker.svg"/>
+
+## Installation Steps
 
 A guide to installing Kong Enterprise Edition - and its license file - using
 Docker. **Trial users should skip directly to step 4**.
@@ -29,7 +28,7 @@ with the URL you received in your welcome email:
 
     ```
     curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
-    docker load -i /tmp/kong-docker-ee.tar
+    docker load -i /tmp/kong-docker-ee.tar.gz
     ```
 
 You should now have your Kong Enterprise Free Trial image locally. Run
@@ -108,9 +107,9 @@ welcome email. Once you have your license, you can set it in an environment vari
     **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file
 
 11. Congratulations! You now have Kong Enterprise installed and running. Test
-it by visiting the Admin GUI at http://localhost:8002 (replace `localhost` with your server IP or hostname when running Kong on 
+it by visiting the Admin GUI at http://localhost:8002 (replace `localhost` with your server IP or hostname when running Kong on
 a remote system). The Dev Portal should also be accessible
-by visiting http://localhost:8003. 
+by visiting http://localhost:8003.
 
 ## Enable RBAC
 
@@ -164,10 +163,10 @@ Without a license properly referenced, you’ll get errors running migrations:
 Also, without a license, you will get no output if you do a `docker run` in
 "daemon mode" - the `-d` flag to `docker run`:
 
-    
+
     $ docker run -d ... kong start
     26a995171e23e37f89a4263a10bb084120ab0dbed1aa11a71c888c8e0d74a0b6
-    
+
 
 When you check the container, it won’t be running. Doing a `docker logs` will
 show you:

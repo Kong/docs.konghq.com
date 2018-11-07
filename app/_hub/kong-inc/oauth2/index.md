@@ -2,22 +2,6 @@
 name: OAuth 2.0 Authentication
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Endpoints
-      - label: Create a Consumer
-      - label: Create an Application
-      - label: Migrating Access Tokens
-      - label: Upstream Headers
-  - label: oAuth 2.0 Flows
-    items:
-      - label: Client Credentials
-      - label: Authorization Code
-      - label: Resource Owner Password Credentials
-
 desc: Add OAuth 2.0 authentication to your APIs
 description: |
   Add an OAuth 2.0 authentication layer with the [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1), [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4),
@@ -32,6 +16,15 @@ description: |
     underlying Service to only accept HTTPS traffic (via its `protocols`
     property).
   </div>
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.12.0
+    differs from what is documented herein. Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
+
 
 
 type: plugin
@@ -111,7 +104,7 @@ params:
       required: false
       default: "`false`"
       description: |
-        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the header containing the client crentials) before proxying it.
+        An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin will strip the credential from the request (i.e. the header containing the client credentials) before proxying it.
     - name: accept_http_if_already_terminated
       required: false
       default: "`false`"
@@ -313,11 +306,11 @@ A diagram representing this flow:
     With either a `200 OK` or `400 Bad Request` response code depending if the request was successful or not.
 7. In **both** cases, ignore the response status code and just redirect the user to whatever URI is being returned in the `redirect_uri` property.
 
-8. The client appication will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchaging the authorization code for an access token if it's an Authorization Code Grant flow.
+8. The client application will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchanging the authorization code for an access token if it's an Authorization Code Grant flow.
 
 9. Once the Access Token has been retrieved, the client application will make requests on behalf of the user to your upstream service.
 
-10. Access Tokens can expire, and when that happens the client application needs to renew the Access Token with Kong and retreive a new one.
+10. Access Tokens can expire, and when that happens the client application needs to renew the Access Token with Kong and retrieve a new one.
 
 In this flow, the steps that you need to implement are:
 

@@ -3,18 +3,18 @@ name: Zipkin
 publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: How it Works
-    items:
-      - label: Extractor and Injector
-      - label: Reporter
-  - label: FAQ
 
 desc: Propagate Zipkin spans and report space to a Zipkin server
 description: |
   Propagate Zipkin distributed tracing spans, and report spans to a Zipkin server.
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> The functionality of this plugin as bundled
+    with versions of Kong prior to 0.14.1 and Kong Enterprise prior to 0.34
+    differs from what is documented herein. Refer to the
+    <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
+    for details.
+  </div>
 
 type: plugin
 categories:
@@ -80,6 +80,6 @@ The `http_endpoint` configuration variable must contain the full uri including s
 
 ## FAQ
 
-#### Can I use this plugin with other tracing systems, like Jaeger?
+### Can I use this plugin with other tracing systems, like Jaeger?
 
 Probably! Jaeger accepts spans in Zipkin format - see https://www.jaegertracing.io/docs/features/#backwards-compatibility-with-zipkin for more information.

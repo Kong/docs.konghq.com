@@ -24,7 +24,8 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Commit message format](#commit-message-format)
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
-
+  - [Table of Contents generator](#table-of-contents-generator)
+  - [Contributor T-shirt](#contributor-t-shirt)
 
 ## Where to seek help?
 
@@ -66,7 +67,7 @@ instead.
 
 When contributing, be aware of a few things:
 
-- Documention for Kong Hub listings, which includes all Kong Inc.-published
+- Documentation for Kong Hub listings, which includes all Kong Inc.-published
   and community-published plugins and integrations, lives in the `app/_hub`
   and `app/_data/extensions` directories. **Versioning is optional, and thus
   potentially inconsistent, for this part of the documentation**.
@@ -143,7 +144,8 @@ documenting a Kong plugin, be sure to see the next section.
 1. If you have a custom logo, add a square-format PNG file to
 `/app/_assets/images/icons/hub/` - the filename of your image should be
 `publisher_extension` using the "publisher" and "extension" name from step 2.
-Custom logos are optional.
+Custom logos are optional. If you don't have a custom logo, please duplicate
+an existing default logo file, and rename it as noted above. 
 1. Be sure to run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
 `localhost:3000/hub`
@@ -320,22 +322,69 @@ From #623
 As mentioned in the guidelines, to submit a patch, the linter must succeed. You
 can run the linter like so:
 
-```
+```bash
 $ npm run test
 ```
 
+[Back to TOC](#table-of-contents)
+
+
 ### Contributing images, videos, etc
 
-Binary files like images and videos should not be included in your pull request,
-with the exception of custom icons for the Kong Hub -
-any request including them will be rejected.
+Binary files like images and videos should not be included in your pull
+request, with the exception of custom icons for the Kong Hub - any request
+including them will be rejected.
 
 Instead, please:
 
 1. Include the HTML necessary to display your binary file in your code
 1. In place of the link to the binary file, use `FIXME`
-1. Email your binary files to support@konghq.com, and include a link to your pull request
-1. Kong staff will host your binary files on our CDN, and will replace the `FIXME`s in your code
-with URLs of the binaries
+1. Email your binary files to support@konghq.com, and include a link to your
+   pull request
+1. Kong staff will host your binary files on our CDN, and will replace the
+   `FIXME`s in your code with URLs of the binaries
+
+[Back to TOC](#table-of-contents)
+
+### Table of Contents generator
+
+Almost all pages have an automatic Table of Contents (ToC) added to the top of
+the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
+
+To inhibit the automatic addition of ToC, add the following to the front-matter
+`toc: false`
+
+This ToC generator depends on headings being correctly coded in the markdown
+portion of the doc site files. If a page has an incorrectly-formatted ToC, be
+sure to check:
+
+- Heading levels must be correctly nested. Thus, heading levels like this:
+
+```
+# Heading Level 1
+## Sub-heading Level 2
+#### Sub-sub-sub-heading Level 4
+```
+
+will cause a broken ToC, and should be corrected to:
+
+```
+# Heading Level 1
+## Sub-heading Level 2
+### Sub-sub-heading Level 3
+```
+
+### Contributor T-shirt
+
+If your Pull Request to
+[Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com) was accepted,
+congratulations, you are eligible to receive the very special Contributor
+T-shirt! Go ahead and fill-out the [Contributors Submissions
+form](https://goo.gl/forms/5w6mxLaE4tz2YM0L2).
+
+Proudly wear your T-shirt and show it to us by tagging
+[@thekonginc](https://twitter.com/thekonginc) on Twitter!
+
+![Kong Contributor T-shirt](https://konghq.com/wp-content/uploads/2018/04/100-contributor-t-shirt-1024x768.jpg)
 
 [Back to TOC](#table-of-contents)

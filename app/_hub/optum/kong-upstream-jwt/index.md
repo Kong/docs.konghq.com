@@ -76,13 +76,13 @@ extra: |
 
 Recommended:
 
-```
+```bash
 $ luarocks install kong-upstream-jwt
 ```
 
 Other:
 
-```
+```bash
 $ git clone https://github.com/Optum/kong-upstream-jwt.git /path/to/kong/plugins/kong-upstream-jwt
 $ cd /path/to/kong/plugins/kong-upstream-jwt
 $ luarocks make *.rockspec
@@ -94,12 +94,12 @@ The plugin requires that Kong's private key be accessible in order to sign the J
 
 If not already set, these can be done so as follows:
 
-```
+```bash
 $ export KONG_SSL_CERT_KEY="/path/to/kong/ssl/privatekey.key"
 $ export KONG_SSL_CERT_DER="/path/to/kong/ssl/kongpublickey.cer"
 ```
 
-**One last step** is to make the environment variables accessible by an nginx worker. To do this, simply add these line to your _nginx.conf_
+**One last step** is to make the environment variables accessible by a nginx worker. To do this, simply add these line to your _nginx.conf_
 
 ```
 env KONG_SSL_CERT_KEY;

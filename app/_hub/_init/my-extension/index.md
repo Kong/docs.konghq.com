@@ -13,7 +13,7 @@ name: # (required) The name of your extension.
   # Use capitals and spaces as needed.
 publisher: # (required) The name of the entity publishing this extension.
   # Use capitals and spaces as needed.
-  # If you are an individual, you might choose to use your Github handle, or your name.
+  # If you are an individual, you might choose to use your GitHub handle, or your name.
   # If this is being published and supported by a company, please use your company name.
   # Note that every extension by a given publisher must have the exact same value
 
@@ -25,6 +25,7 @@ categories: # (required) Uncomment all that apply.
   #- analytics-monitoring
   #- transformations
   #- logging
+  #- deployment
 # Array format only; uncomment the one most-applicable category. Contact cooper@konghq.com to propose a new category, if necessary.
 
 type: # (required) String, one of:
@@ -71,7 +72,7 @@ description: #|
   # (Optional) Link to your online TOS.
 
 # COMPATIBILITY
-# In the following sections, list Kong versions as array items
+# In the following sections, list Kong versions as array items.
 # Versions are categorized by Kong edition and their known compatibility.
 # Unlisted Kong versions will be considered to have "unknown" compatibility.
 # Uncomment at least one of 'community_edition' or 'enterprise_edition'.
@@ -170,10 +171,14 @@ params: # metadata about your plugin
 #
 # The remainder of this file is for free-form description, instruction, and
 # reference matter.
-# Your headers must be Level 3 or 4 (parsing to h3 or h4 tags in HTML).
-# This is represented by ### or #### notation preceding the header text.
+# If you include headers, your headers MUST start at Level 2 (parsing to
+# h2 tag in HTML). Heading Level 2 is represented by ## notation
+# preceding the header text. Subsequent headings,
+# if you choose to use them, must be properly nested (eg. heading level 2 may
+# be followed by another heading level 2, or by heading level 3, but must NOT be
+# followed by heading level 4)
 ###############################################################################
 # BEGIN MARKDOWN CONTENT
 ---
 
-### Your first heading will go here
+## Your first heading will go here

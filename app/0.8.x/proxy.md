@@ -18,28 +18,6 @@ As you might already know, Kong uses two ports to communicate. By default they a
 
 This guide will cover all proxying capabilities of Kong by explaining in detail how the proxying (`8000`) port works under the hood.
 
-## Summary
-
-- 1. [How does Kong route a request to an API][1]
-- 2. [Reminder: how to add an API to Kong][2]
-- 3. [Proxy an API by its DNS value][3]
-  - [Using the "Host" header][3a]
-  - [Using the "X-Host-Override" header][3b]
-  - [Using a wildcard DNS][3c]
-- 4. [Proxy an API by its request_path value][4]
-  - [Using the "strip_request_path" property][4a]
-- 5. [Plugins execution][5]
-
-[1]: #1-how-does-kong-route-a-request-to-an-api
-[2]: #2-reminder-how-to-add-an-api-to-kong
-[3]: #3-proxy-an-api-by-its-dns-value
-[3a]: #using-the-quot-host-quot-header
-[3b]: #using-the-quot-x-host-override-quot-header
-[3c]: #using-a-wildcard-dns
-[4]: #4-proxy-an-api-by-its-request_path-value
-[4a]: #using-the-quot-strip_request_path-quot-property
-[5]: #5-plugins-execution
-
 ---
 
 ## 1. How does Kong route a request to an API
@@ -74,7 +52,7 @@ Once this request is processed by Kong, the API is stored in the database and a 
 
 ## 3. Proxy an API by its DNS values
 
-#### Using the "**Host**" header
+### Using the "**Host**" header
 
 Now that we added an API to Kong (via the Admin API), Kong can proxy it via the `8000` port. One way to do so is to specify the API's `request_host` value in the `Host` header of your request:
 
@@ -90,7 +68,7 @@ By doing so, Kong recognizes the `Host` value as being the `request_host` of the
   <strong>Going to production:</strong> If you're planning to go into production with your setup, you'll most likely not want your consumers to manually set the "<strong>Host</strong>" header on each request. You can let Kong and DNS take care of it by simply setting an A or CNAME record on your domain pointing to your Kong installation. Hence, any request made to `example.org` will already contain a `Host: example.org` header.
 </div>
 
-#### Using the "**X-Host-Override**" header
+### Using the "**X-Host-Override**" header
 
 When performing a request from a browser, you might not be able to set the `Host` header. Thus, Kong also checks a request for a header named `X-Host-Override` and treats it exactly like the `Host` header:
 
@@ -102,7 +80,7 @@ $ curl -i -X GET \
 
 This request will be proxied just as well by Kong.
 
-#### Using a wildcard DNS
+### Using a wildcard DNS
 
 Sometimes you might want to route all requests matching a wildcard DNS to your upstream services. A "**request_host**" wildcard name may contain an asterisk only on the name’s start or end, and only on a dot border.
 
@@ -125,7 +103,7 @@ $ curl -i -X GET \
 
 You will notice this command makes a request to `KONG_URL:PROXY_PORT/status/200`. Since the configured `upstream_url` is `http://mockbin.com/`, the request will hit the upstream service at `http://mockbin.com/status/200`.
 
-#### Using the "**strip_request_path**" property
+### Using the "**strip_request_path**" property
 
 By enabling the `strip_request_path` property on an API, the requests will be proxied without the `request_path` property being included in the upstream request. Let's enable this option by making a request to the Admin API:
 

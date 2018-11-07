@@ -12,7 +12,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
 **Note:** If you haven't already, go ahead and make sure that you have a Kong configuration file located under `/etc/kong/kong.yml` and points to your Cassandra instance or cluster. If you haven't, consult the [configuration reference][configuration] before starting.
 
-1. ### Start Kong.
+## 1. Start Kong.
 
     Issue the following command to [start][CLI] Kong:
 
@@ -22,7 +22,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
     **Note:** The CLI also accepts a configuration (`-c <path_to_config>`) option allowing you to point to different configurations.
 
-2. ### Verify that Kong has started successfully
+## 2. Verify that Kong has started successfully
 
     The previous step runs migrations to prepare the Cassandra keyspace.
     Once these have finished you should see a message (`[OK] Started`) informing you that Kong is running.
@@ -33,7 +33,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
 
     `:8001` - [RESTful Admin API][API] for configuration
 
-3. ### Stop Kong.
+## 3. Stop Kong.
 
     As needed you can stop the Kong process by issuing the following [command][CLI]:
 
@@ -41,7 +41,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
     $ kong stop
     ```
 
-4. ### Reload Kong.
+## 4. Reload Kong.
 
     Issue the following command to [reload][CLI] Kong without downtime:
 
@@ -49,7 +49,7 @@ In this section, you'll learn how to manage your Kong instance. First we'll have
     $ kong reload
     ```
 
-### Next Steps
+## Next Steps
 
 Now that you have Kong running you can interact with the Admin API.
 

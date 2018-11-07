@@ -18,28 +18,23 @@ id: documentation
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg" alt="Documentation" />
       </div>
       <div class="page-header-title">
-        <p>Documentation</p>
-        <h1>{% if page.edition == 'enterprise' %}Enterprise Edition {% if page.has_version %}({{page.kong_version}}){% endif %}{% endif %}</h1>
-        <h1>{% if page.edition == 'community' %}Community Edition ({{page.kong_version}}){% endif %}</h1>
+        <h1>{{page.title}}</h1>
       </div>
 
       {% if page.kong_versions.size > 1 %}
-        <div class="dropdown page-header-right">
+        <div class="versions-dropdown dropdown page-header-right">
           <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Version {{page.kong_version}}
             {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
             <span class="caret"></span>
           </button>
-
-          <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
             {% for ver in page.kong_versions reversed %}
-              {% unless page.kong_version == ver.release %}
-                <li>
-                  <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                    {{ver.release}}
-                  </a>
-                </li>
-              {% endunless %}
+              <li {% if page.kong_version == ver.release %} class="active" {% endif %}>
+                <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                  {{ver.release}} {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                </a>
+              </li>
             {% endfor %}
           </ul>
           {% if page.edition == 'community' %}
@@ -60,31 +55,6 @@ id: documentation
       {% else %}
         {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
       {% endif %}
-
-      {% for nav in page.nav %}
-      <nav>
-        {% if nav.items %}
-          <h5>{{ nav.label }}</h5>
-        {% else %}
-          <a href="#{{ nav.label | slugify }}"><h5>{{ nav.label }}</h5></a>
-        {% endif %}
-        <ul>
-            {% for item in nav.items %}
-              <li>
-                <a href="#{{ item.label | slugify }}">{{ item.label }}</a>
-
-                {% if item.items %}
-                  <ul>
-                    {% for subitem in item.items %}
-                      <li><a href="#{{ subitem.label | slugify }}">{{ subitem.label }}</a></li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-      </nav>
-      {% endfor %}
 
       {% for nav in page.nav_items %}
       <nav>
@@ -129,6 +99,13 @@ id: documentation
           <div class="alert alert-warning">
             <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/latest">here</a> to browse the documentation for the latest version.
           </div>
+          {% endif %}
+
+          {% assign filename = page.path | split: '/' | last %}
+          {% if page.toc == true or
+            page.toc != false and filename != "index.md" %}
+            <h2 id="table-of-contents">Table of Contents</h2>
+            {% include toc.html html=content %}
           {% endif %}
 
           {{ content }}

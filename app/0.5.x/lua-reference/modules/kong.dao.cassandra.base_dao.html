@@ -14,30 +14,10 @@ layout: default
       <p>For plugins developers and core contributors</p>
     </div>
     {% if site.data.kong_versions.size > 1 %}
-      <div class="dropdown page-header-right">
-        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Version {{page.kong_version}}
-          {% if page.kong_version == site.data.kong_latest.release %}<em>(latest)</em>{% endif %}
-          <span class="caret"></span>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-          {% for ver in site.data.kong_versions %}
-            {% if page.kong_version != ver.release %}
-              <li>
-                {% if ver.lua_doc %}
-                  <a href="/{{ver.release}}/lua-reference/"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                    {{ver.release}}
-                    {% if ver.release == site.data.kong_latest.release %}(latest){% endif %}
-                  </a>
-                {% else %}
-                  <span>Not available for {{ver.release}}</span>
-                {% endif %}
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
+      {% include lua-reference-dropdown.html
+        page=page
+        site=site
+      %}
     {% endif %}
   </div>
 </header>
@@ -533,7 +513,7 @@ Those methds are to be used in any child DAO and will perform the named operatio
 <h2 class="section-header has-description"><a name="Optional_overrides">Optional overrides </a></h2>
 
 <div class="section-description">
-Can be optionally overriden by a child DAO.
+Can be optionally overridden by a child DAO.
 </div>
 
 <dl class="function">
@@ -545,7 +525,7 @@ Can be optionally overriden by a child DAO.
     Marshall an entity.
  Executed on each entity insertion to serialize
  eventual properties for Cassandra storage.
- Does nothing by default, must be overriden for entities where marshalling applies.
+ Does nothing by default, must be overridden for entities where marshalling applies.
 
     <h5>Parameters:</h5>
     <ul>
@@ -581,7 +561,7 @@ Can be optionally overriden by a child DAO.
     Unmarshall an entity.
  Executed each time an entity is being retrieved from Cassandra
  to deserialize properties serialized by <code>:_mashall()</code>,
- Does nothing by default, must be overriden for entities where marshalling applies.
+ Does nothing by default, must be overridden for entities where marshalling applies.
 
     <h5>Parameters:</h5>
     <ul>
@@ -615,7 +595,7 @@ Can be optionally overriden by a child DAO.
   </dt>
   <dd>
     Constructor.
- Instanciate a new Cassandra DAO. This method is to be overriden from the
+ Instantiate a new Cassandra DAO. This method is to be overridden from the
  child class and called once the child class has a schema set.
 
     <h5>Parameters:</h5>
@@ -630,7 +610,7 @@ Can be optionally overriden by a child DAO.
     <ul>
       <li>
         <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Instanciated DAO.
+        Instantiated DAO.
       </li>
     </ul>
 

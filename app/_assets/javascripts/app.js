@@ -115,7 +115,7 @@ $(function () {
 
   // Subscribe form
 
-  $('.subscribe-form').on('submit', function (e) {
+  $('#subscription_form, #follow_up_subscription_form').on('submit', function (e) {
     e.preventDefault()
 
     var form = $(this)
@@ -129,11 +129,30 @@ $(function () {
       created_at: time
     }
 
+    form.find('.message').html('')
+    form.find('[name="email"]').removeClass('error')
+    if (!email || !isEmail(email)) {
+      $(this).find('.error-message').html('The e-mail address entered is invalid.')
+      form.find('[name="email"]').addClass('error')
+      return false
+    }
+
     form.addClass('loading')
 
-    var track = function () {
-      form.addClass('complete')
+    $.ajax({
+      url: form.attr('action'),
+      type: 'POST',
+      async: false,
+      data: form.serialize(),
+      xhrFields: {
+        withCredentials: true
+      },
+      success: function () {
+        console.log('Success')
+      }
+    })
 
+    var track = function () {
       analytics.track('request_newsletter_updates', {
         email: email,
         request_date: time
@@ -141,7 +160,56 @@ $(function () {
     }
 
     analytics.identify(email, traits, track)
+
+    form.find('[name="email"]').val()
+    $(this).find('.success-message').text('Thank you for signing up!')
+    return false
   })
+
+  // set utm_ values from query parameter
+
+  var getUrlParameter = function getUrlParameter (sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1))
+    var sURLVariables = sPageURL.split('&')
+    var sParameterName
+    var i
+    var x
+    var status = false
+    var urlParams = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term']
+    var paramValues = []
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=')
+
+      if ($.inArray(sParameterName[0], urlParams) >= 0) {
+        setCookie(sParameterName[0], sParameterName[1], 30)
+        paramValues.push(sParameterName[0])
+        status = true
+      }
+    }
+
+    if (status === true) {
+      for (i = 0; i < urlParams.length; i++) {
+        if ($.inArray(urlParams[i], paramValues) < 0) {
+          setCookie(urlParams[i], ' ', 30)
+        }
+      }
+    }
+
+    for (x = 0; x < urlParams.length; x++) {
+      if (getCookie(urlParams[x])) {
+        $('input[name="' + urlParams[x] + '"]').val(getCookie(urlParams[x]))
+      }
+    }
+  }
+
+  getUrlParameter()
+
+  // Check for email validation
+
+  function isEmail (email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+    return regex.test(email)
+  }
 
   // Enterprise page demo request form
 

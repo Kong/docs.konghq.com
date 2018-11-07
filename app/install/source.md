@@ -24,9 +24,8 @@ redirect_from: /install/compile/
     ```bash
     $ ./configure \
       --with-pcre-jit \
-      --with-ipv6 \
-      --with-http_realip_module \
       --with-http_ssl_module \
+      --with-http_realip_module \
       --with-http_stub_status_module \
       --with-http_v2_module
     ```

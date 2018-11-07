@@ -2,13 +2,6 @@
 name: Request Termination
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Example Use Cases
-
 desc: Terminates all requests with a specific response
 description: |
   This plugin terminates incoming requests with a specified status code and

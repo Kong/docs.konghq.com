@@ -1,7 +1,7 @@
 ---
 title: Enterprise Rate Limiting Library
 ---
-# Rate Limiting Library
+
 ## Overview
 This library is designed to provide an efficient, scalable, eventually-consistent sliding window rate limiting library. It relies on atomic operations in shared ngx memory zones to track window counters within a given node, periodically syncing this data to a central data store (current Cassandra, Postgres, and Redis).
 
@@ -79,7 +79,7 @@ Sync all currently stored key diffs in this worker with the storage server, and 
 
 _syntax: ratelimiting.fetch(premature, namespace, time, timeout?)_
 
-Retrieve all relevent counters for the given namespace at the given time. This function establishes a shm mutex such that only one worker will fetch and populate the shm per execution. If timeout is defined, the mutex will expire based on the given timeout value; otherwise, the mutex is unlocked immediately following the dictionary update. This function can be called in an `ngx.timer` context; hence, the first variable represents the injected `premature` param.
+Retrieve all relevant counters for the given namespace at the given time. This function establishes a shm mutex such that only one worker will fetch and populate the shm per execution. If timeout is defined, the mutex will expire based on the given timeout value; otherwise, the mutex is unlocked immediately following the dictionary update. This function can be called in an `ngx.timer` context; hence, the first variable represents the injected `premature` param.
 
 ### Strategy Functions
 

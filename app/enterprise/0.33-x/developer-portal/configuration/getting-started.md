@@ -4,8 +4,6 @@ book: portal
 chapter: 3
 ---
 
-# Getting Started with the Kong Developer Portal
-
 ## Enable the Dev Portal
 
 1. Open the Kong configuration file in your editor of choice (`kong.conf`)
@@ -27,10 +25,10 @@ You should now see the Default Dev Portal Homepage, and be able to navigate thro
 
 ## Next Steps
 
-#### Adding Authentication
+### Adding Authentication
 To add Authentication, head on over to [Authenticating the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication).
 
-#### Customizing
+### Customizing
 To begin customizing your Dev Portal, jump to [Customizing the Kong Developer Portal](/enterprise/{{page.kong_version}}/developer-portal/customization).
 
 Next: [Authentication &rsaquo;]({{page.book.next}})

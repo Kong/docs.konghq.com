@@ -41,7 +41,7 @@ description: |
   - [ID Token][idtoken] verification
   - [UserInfo][userinfo] endpoint data injecting
   - [RP-Initiated Logout][rplogout]
-  - [OAuth 2.0 Token Revovation][revocation] during the logout (optionally)
+  - [OAuth 2.0 Token Revocation][revocation] during the logout (optionally)
   - [OAuth 2.0 Token Introspection][introspection] support
   - [OAuth 2.0 Proof Key for Code Exchange][pkce] (PKCE) support
   - Standard and configurable claims verification
@@ -109,7 +109,7 @@ description: |
 
 
 enterprise: true
-type: integration
+type: plugin
 categories:
   - authentication
 
@@ -166,7 +166,7 @@ say password credentials without affecting too many things.
 The best method to use here is to use OpenID Connect Authentication using
 *authorization code** flow. Kong sets up a session with the browser. After
 initial authentication the browser will send the cookie automatically —
-even when making API requests using Javascript. With authorization code
+even when making API requests using JavaScript. With authorization code
 flow you can usually utilize stronger authentication methods such as
 two-factor authentication on your identity provider.
 
@@ -1138,7 +1138,7 @@ Value         | Enabled by Default | Description
 :------------:|:------------------:|------------
 `"header"`    | `yes`              | If specified, tries to find id token from the HTTP header.
 `"query"`     | `yes`              | If specified, tries to find id token from the URL's query string.
-`"body"`      | `yes`              | If specified, tries to find id token from the HTTP request body (according to the possiblities defined above).
+`"body"`      | `yes`              | If specified, tries to find id token from the HTTP request body (according to the possibilities defined above).
 
 Here are the unconfigured defaults:
 
@@ -1440,7 +1440,7 @@ on logout, redirect client to here.
 
 ##### config.token_exchange_endpoint
 
-Whe you specify this parameter, the plugin will call the token exchange
+When you specify this parameter, the plugin will call the token exchange
 endpoint to exchange the access token with a new one before proxying to
 upstream.
 

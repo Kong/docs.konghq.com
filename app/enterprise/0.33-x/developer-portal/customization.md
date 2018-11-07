@@ -1,11 +1,10 @@
 ---
 title: Customizing the Kong Developer Portal
-class: page-install-method
 book: portal
 chapter: 10
 ---
 
-# Customizing the Kong Developer Portal
+## Introduction
 
 The Dev Portal default theme is shipped with two CSS file partials:
 

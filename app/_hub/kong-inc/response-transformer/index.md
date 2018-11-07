@@ -2,20 +2,12 @@
 name: Response Transformer
 publisher: Kong Inc.
 
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Documentation
-    items:
-      - label: Order of execution
-      - label: Examples
-
 desc: Modify the upstream response before returning it to the client
 description: |
   Transform the response sent by the upstream server on the fly on Kong, before returning the response to the client.
 
   <div class="alert alert-warning">
-    <strong>Note on transforming bodies:</strong> Be aware of the performamce of transformations on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory, which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs). Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
+    <strong>Note on transforming bodies:</strong> Be aware of the performance of transformations on the response body. In order to parse and modify a JSON body, the plugin needs to retain it in memory, which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs). Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
   </div>
 
 type: plugin
@@ -96,7 +88,7 @@ similar for Services, or the depreciated API entity.
 
 - Add multiple headers by passing each header:value pair separately:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
@@ -109,7 +101,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 
 - Add multiple headers by passing comma separated header:value pair:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
@@ -121,7 +113,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 
 - Add multiple headers passing config as JSON body:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
@@ -134,7 +126,7 @@ h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 
 - Add a body property and a header:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
@@ -154,7 +146,7 @@ upstream response JSON body | proxied response body
 
 - Append multiple headers and remove a body property:
 
-```
+```bash
 $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'

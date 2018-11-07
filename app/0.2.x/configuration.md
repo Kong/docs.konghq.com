@@ -19,20 +19,6 @@ This reference describes every property defined in a typical configuration file 
 
 They are all **required**.
 
-### Summary
-
-- [**proxy_port**](#proxy_port)
-- [**admin_api_port**](#admin_api_port)
-- [**dnsmasq_port**](#dnsmasq_port)
-- [**nginx_working_dir**](#nginx_working_dir)
-- [**plugins_available**](#plugins_available)
-- [**send_anonymous_reports**](#send_anonymous_reports)
-- [**databases_available**](#databases_available)
-- [**database**](#database)
-- [**database_cache_expiration**](#database_cache_expiration)
-- [**memory_cache_size**](#memory_cache_size)
-- [**nginx**](#nginx)
-
 ---
 
 ### `proxy_port`

@@ -3,13 +3,6 @@ name: Apache OpenWhisk
 publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-openwhisk
-nav:
-  - label: Terminology
-  - label: Configuration
-  - label: Usage
-    items:
-      - label: Demonstration
-      - label: Limitations
 
 desc: Invoke and manage OpenWhisk actions from Kong
 description: |
@@ -31,7 +24,7 @@ installation: |
   ```
 
   or install it from [source](https://github.com/Kong/kong-plugin-openwhisk).
-  For more infomation on Plugin installation, please see the documentation
+  For more information on Plugin installation, please see the documentation
   [Plugin Development - (un)Install your plugin](/latest/plugin-development/distribution/)
 
 params:

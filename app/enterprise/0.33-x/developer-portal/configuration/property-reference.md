@@ -4,7 +4,7 @@ book: portal
 chapter: 6
 ---
 
-# Property Reference
+## Introduction
 
 This document describes the configuration directives for the Kong Developer
 Portal.
@@ -46,7 +46,7 @@ portal = on
 **Description:**  
 Comma-separated list of addresses on which Kong will
 expose the Kong Dev Portal GUI. Suffixes can be
-specified for each pair, similar to the `admin_listen` 
+specified for each pair, similar to the `admin_listen`
 directive.
 
 **Example:**
@@ -61,9 +61,9 @@ portal_gui_listen = 0.0.0.0:8003, 0.0.0.0:8446 ssl
 **Default:** `NONE` (auto generated)
 
 **Description:**  
-The URL on which your Kong Dev Portal is accessible. 
+The URL on which your Kong Dev Portal is accessible.
 
-When not provided, The Kong Dev Portal GUI will attempt to determine the 
+When not provided, The Kong Dev Portal GUI will attempt to determine the
 `port` and `host` based on the browsers `window.location`, this assumes that the
 accessed `host` has exposed the ports defined on the `portal_gui_listener`
 directive.
@@ -96,7 +96,7 @@ portal_gui_ssl_cert = /path/to/portal_gui_ssl.cert
 **Default:** `NONE` (auto-generated)
 
 **Description:**  
-The absolute path to the SSL key for `portal_gui_listen` values with SSL 
+The absolute path to the SSL key for `portal_gui_listen` values with SSL
 enabled.
 
 **Example:**
@@ -128,7 +128,7 @@ portal_api_listen = 0.0.0.0:8004, 0.0.0.0:8447 ssl
 The address on which your Kong Dev Portal API is accessible by Kong. You
 should **only** set this value if your Kong Dev Portal API lives on a different node than your Kong Proxy.
 
-When not provided, Kong will use the listeners defined on `portal_api_listen` as 
+When not provided, Kong will use the listeners defined on `portal_api_listen` as
 the value.
 
 **Example:**
