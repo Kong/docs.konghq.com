@@ -147,7 +147,14 @@ params: # metadata about your plugin
   route_id:
     # whether this plugin can be applied to a Route.
     # Affects generation of examples and config table.
-
+  protocol:
+    # what transport protocols are supported by this plugin
+    # one of: http, stream, http+stream
+    # FIXME correct this before publication
+  layer:
+    # at what mesh layers this plugin can be triggered
+    # one of: inner, outer, any
+    # FIXME correct this before publication
   config: # Configuration settings for your plugin
     - name: # setting name
       required: # string - setting required status
