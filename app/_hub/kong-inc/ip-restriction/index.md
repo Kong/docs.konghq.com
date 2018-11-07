@@ -37,6 +37,8 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocol: http+stream # FIXME remove or correct this value before publication
+  layer: any # FIXME remove or correct this value before publication
   config:
     - name: whitelist
       required: semi

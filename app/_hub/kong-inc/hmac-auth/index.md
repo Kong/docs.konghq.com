@@ -49,8 +49,8 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
-  protocol: HTTP # FIXME remove or correct this value before publication
-  layer: Outer # FIXME remove or correct this value before publication
+  protocol: http # FIXME remove or correct this value before publication
+  layer: outer # FIXME remove or correct this value before publication
   config:
     - name: hide_credentials
       required: false
