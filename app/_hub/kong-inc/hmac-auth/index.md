@@ -3,6 +3,8 @@ name: HMAC Authentication
 publisher: Kong Inc.
 
 desc: Add HMAC Authentication to your APIs
+protocol: HTTP
+layer: Outer
 description: |
   Add HMAC Signature authentication to a Service or a Route (or the deprecated API entity)
   to establish the integrity of incoming requests. The plugin will validate the

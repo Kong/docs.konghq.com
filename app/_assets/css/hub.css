@@ -11470,6 +11470,14 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
     color: rgba(0,0,0,.7)
 }
 
+p.sm.protocol{
+    font-size:13px;
+}
+
+p.sm.protocol span{
+    color:#026FC2;
+}
+
 .page-subscriptions table thead th.mini,p.mini {
     font-size: 13px;
     line-height: 17px;
