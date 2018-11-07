@@ -1,4 +1,4 @@
-FROM jekyll/jekyll:3.1.0
+FROM jekyll/builder:3.1.0
 
 WORKDIR /srv/jekyll
 
@@ -16,7 +16,12 @@ RUN apk update && apk upgrade && apk add \
   pkgconfig \
   automake
 
-RUN npm install -g gulp
+COPY . /tmp/jekyll
 
-ENTRYPOINT ["/srv/jekyll/entrypoint.sh"]
-CMD ["make run"]
+RUN cd /tmp/jekyll \
+  && npm install -g gulp \
+  && npm install -f \
+	&& bundle install \
+	&& chmod -R 777 /usr/local/bundle/
+
+CMD ["make", "run"]

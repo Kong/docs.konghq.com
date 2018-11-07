@@ -22,7 +22,6 @@
   "echint": {
     "ignore": [
       "Makefile",
-      "entrypoint.sh",
       "dist/**",
       "app/0*/**",
       "app/enterprise/**/*",
