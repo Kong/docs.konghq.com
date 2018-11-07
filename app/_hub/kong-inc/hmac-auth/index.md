@@ -3,8 +3,6 @@ name: HMAC Authentication
 publisher: Kong Inc.
 
 desc: Add HMAC Authentication to your APIs
-protocol: HTTP
-layer: Outer
 description: |
   Add HMAC Signature authentication to a Service or a Route (or the deprecated API entity)
   to establish the integrity of incoming requests. The plugin will validate the
@@ -20,7 +18,6 @@ description: |
     <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>
-
 
 type: plugin
 categories:
@@ -52,6 +49,8 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocol: HTTP # FIXME remove or correct this value before publication
+  layer: Outer # FIXME remove or correct this value before publication
   config:
     - name: hide_credentials
       required: false
