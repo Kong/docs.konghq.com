@@ -30,7 +30,7 @@ Login to the Kong Admin GUI as the Super Admin. Click "Admins" in the sidebar. C
 
 ## Grant Admin Access
 
-Now that you have created an Admin and assigned them roles, you will need to give them access to login to the Admin GUI. If not using the [LDAP Auth Advanced plugin](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#ldap-authentication), you will need to create Credentials via the API, as it is not currently supported in the Admin GUI.
+Now that you have created an Admin and assigned them roles, you will need to give them access to login to the Admin GUI. If not using the [LDAP Auth Advanced plugin](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#ldap-authentication), you will need to create Credentials via the API, as it is not currently supported in the Admin GUI.
 
 If you are using LDAP Auth Advanced Plugin, then you can skip credential creation and utilize the Consumer mapping feature, which allows you to map a LDAP user's `username` to a consumer's `username` or `custom_id`.
 
@@ -61,9 +61,9 @@ HTTP/1.1 200 OK
 
 Now that you have the `<CONSUMER_ID>`, you can use this to create a credential with your associated `admin_gui_auth` plugin:
 
-* [Create a Basic Authentication Credential Username/Password](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#enable-authentication)
-* [Create a Key Authentication Credential Key](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#basic-authentication)
+* [Create a Basic Authentication Credential Username/Password](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#basic-authentication)
+* [Create a Key Authentication Credential Key](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#enable-authentication)
 
-Once a user has a credential, they can use the credential to [log in](/enterprise/{{page.kong_versions}}/admin-gui/configuration/authentication/#logging-in).
+Once a user has a credential, they can use the credential to [log in](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#logging-in).
 
 Next: [Networking &rsaquo;]({{page.book.next}})
