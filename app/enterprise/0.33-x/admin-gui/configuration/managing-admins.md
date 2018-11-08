@@ -61,8 +61,8 @@ HTTP/1.1 200 OK
 
 Now that you have the `<CONSUMER_ID>`, you can use this to create a credential with your associated `admin_gui_auth` plugin:
 
-* [Create a Basic Authentication Credential Username/Password](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#enable-authentication)
-* [Create a Key Authentication Credential Key](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#basic-authentication)
+* [Create a Basic Authentication Credential Username/Password](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#basic-authentication)
+* [Create a Key Authentication Credential Key](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#enable-authentication)
 
 Once a user has a credential, they can use the credential to [log in](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication/#logging-in).
 
