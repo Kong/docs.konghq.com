@@ -46,8 +46,8 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
-  protocol: stream # FIXME remove or correct this value before publication
-  layer: inner # FIXME remove or correct this value before publication
+  protocol: stream
+  layer: inner
   config:
     - name: http_endpoint
       required: true

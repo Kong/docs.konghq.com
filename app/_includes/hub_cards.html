@@ -18,7 +18,7 @@
             <img class="card-img-top" src="{{ header_icon }}" />
             <p class="lg mt-1x fw-500">{{ extn.name }}</p>
             <p class="sm">{{ extn.desc }}</p>
-            {% if extn.protocol %}<p class="sm protocol">Protocol: <span>{{extn.protocol}}</span></p>{% endif %}
+            {% if extn.params.protocol %}<p class="sm protocol">Protocol: <span>{{ extn.params.protocol }}</span></p>{% endif %}
           </div>
           <div class="publisher">
             Support by:<br>

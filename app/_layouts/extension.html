@@ -325,16 +325,16 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {% endunless %}
           </td>
         </tr>
-        {% if page.protocol %}
+        {% if page.params.protocol %}
         <tr class="protocol">
           <td>Protocol:</td>
-          <td><span>{{ page.protocol }}</span></td>
+          <td><span>{{ page.params.protocol }}</span></td>
         </tr>
         {% endif %}
-        {% if page.layer %}
+        {% if page.params.layer %}
         <tr class="layer">
           <td>Layer:</td>
-          <td><span>{{ page.layer }}</span></td>
+          <td><span>{{ page.params.layer }}</span></td>
         </tr>
         {% endif %}
         <tr class="categories">
