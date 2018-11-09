@@ -25,6 +25,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
   - [Table of Contents generator](#table-of-contents-generator)
+  - [Versioning Configuration](#versioning-configuration)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 ## Where to seek help?
@@ -373,6 +374,55 @@ will cause a broken ToC, and should be corrected to:
 ## Sub-heading Level 2
 ### Sub-sub-heading Level 3
 ```
+
+### Versioning Configuration
+
+Kong documentation and enterprise pages are versioned, and include a dropdown to allow easy switching between different versions of a page. To facilitate this, the configuration for such a page needs to be updated if:
+
+- [A new doc page is created](#a-new-doc-page-is-created)
+- [An existing doc page is removed](#an-existing-doc-page-is-removed)
+- [An existing doc page is renamed](#an-existing-doc-page-is-renamed)
+
+If your contribution includes any of the above changes, then an update to [docs_version_timeline.yml](https://github.com/Kong/docs.konghq.com/blob/master/app/_data/docs_version_timeline.yml) is required.
+
+Configuration format:
+```yml
+slug: <article's slug>
+aliases: list of article's renamed slugs (if any)
+timeline: (specify versions in reverse order)
+  <release_version>: <slug_override>
+  ...
+  ...
+```
+
+#### A new doc page is created
+If a new doc page (e.g. [Proxy Reference](https://docs.konghq.com/0.14.x/proxy)) is added in a version (e.g. `0.4.x`), then it must be configured as such:
+```yml
+-
+  slug: "proxy"
+  timeline:
+    0.4.x:  "PAGE_CREATED"
+```
+
+#### An existing doc page is removed
+If a doc page (e.g. [Authenticating the Developer Portal](https://docs.konghq.com/enterprise/0.31-x/developer-portal/authentication/)) is deleted in a version (e.g. `0.32-x`), then it must be configured as such:
+```yml
+-
+  slug: "developer-portal/authentication"
+  timeline:
+    0.32-x:  "PAGE_DELETED"
+```
+
+#### An existing doc page is renamed
+If a doc page (e.g. [Adding your API](https://docs.konghq.com/getting-started/adding-your-api/)) is renamed in a version (e.g. `0.12.x`), then it must be configured as such:
+```yml
+-
+  slug: "getting-started/configuring-a-service"
+  aliases: ["getting-started/adding-your-api"]
+  timeline:
+    0.12.x: "getting-started/adding-your-api"
+```
+> Note: For a renamed article, specify the latest slug under `slug`, and other slugs under `aliases`.
 
 ### Contributor T-shirt
 
