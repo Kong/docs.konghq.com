@@ -1,5 +1,5 @@
 ---
-name: kong-plugin-template-transformer
+name: Template Transformer
 publisher: stone-payments
 categories:
   - transformations
@@ -29,21 +29,21 @@ params:
     - name: request_template
       required: 'no'
       default: nil
-      value_in_examples: '{ "email": "{{body.user}}", "password": "{{body.password}}" }'
+      value_in_examples: '''{ "email": "{{body.user}}", "password": "{{body.password}}" }'''
       description: |
         Describes the template to be used for the transformation. 
         Available nginx variables: headers, body, custom_data, route_groups, query_string.
     - name: response_template
       required: 'no'
       default: nil
-      value_in_examples: '{ "status": "{{status}}", "message": "{{body.message}}" }'
+      value_in_examples: '''{ "status": "{{status}}", "message": "{{body.message}}" }'''
       description: |
         Describes the template to be used for the transformation. 
         Available nginx variables: headers, body, status.
     - name: hidden_fields
       required: 'no'
       default: nil
-      value_in_examples: ["password"]
+      value_in_examples: '''["password"]'''
       description: |
         Fields to hide in the nginx logs.
 ---
