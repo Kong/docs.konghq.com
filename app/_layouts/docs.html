@@ -31,9 +31,13 @@ id: documentation
             <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
             {% for ver in page.kong_versions reversed %}
               <li {% if page.kong_version == ver.release %} class="active" {% endif %}>
-                <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}/{{page.version_slugs[ver.release]}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                  {{ver.release}} {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-                </a>
+                {% if page.version_slugs[ver.release] %}
+                  <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}/{{page.version_slugs[ver.release]}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
+                    {{ver.release}} {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                  </a>
+                {% else %}
+                  <span>Not available for {{ver.release}}</span>
+                {% endif %}
               </li>
             {% endfor %}
           </ul>
