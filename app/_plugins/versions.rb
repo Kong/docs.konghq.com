@@ -89,8 +89,9 @@ module Jekyll
     def createVersionHistory(slug, all_versions, doc_history)
       timeline = doc_history && doc_history["timeline"]
       is_alias = doc_history["aliases"].include?(slug) unless doc_history.nil? || doc_history["aliases"].nil?
+      canonical_slug = is_alias ? doc_history["slug"] : slug
+      previous = canonical_slug
       history = {}
-      previous = nil
 
       for version in all_versions.reverse
         # get override value if present in page timeline
@@ -98,19 +99,21 @@ module Jekyll
 
         if slug_override.nil?
           # no override provided, assume this version uses unchanged article slug
-          history[version["release"]] = previous = previous || (is_alias ? doc_history["slug"] : slug)
+          history[version["release"]] = previous
         elsif slug_override == "PAGE_CREATED"
-          # article was created in this version
-          history[version["release"]] = previous || (is_alias ? doc_history["slug"] : slug)
-          # set all versions below this to redirect to index("/")
-          previous = ""
+          # article was created in this version, set all version slugs below this to nil
+          history[version["release"]] = previous
+          previous = nil
+        elsif slug_override == "PAGE_DELETED"
+          # article was deleted in this version, start from scratch; nullify previous history
+          history = {} if previous == canonical_slug
         else
-          # use provided override value (in case of article renames etc.)
+          # use provided override value
           history[version["release"]] = previous = slug_override
         end
       end
 
-      history
+      return history
     end
   end
 end
