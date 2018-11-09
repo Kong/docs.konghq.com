@@ -16,4 +16,12 @@
 -
   slug: "clustering"
   timeline:
-    0.6.x: "PAGE_CREATED"
+    0.6.x:  "PAGE_CREATED"
+-
+  slug: "proxy"
+  timeline:
+    0.4.x:  "PAGE_CREATED"
+-
+  slug: "developer-portal/authentication"
+  timeline:
+    0.32-x:  "PAGE_DELETED"
