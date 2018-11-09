@@ -414,7 +414,7 @@ If a doc page (e.g. [Authenticating the Developer Portal](https://docs.konghq.co
 ```
 
 #### An existing doc page is renamed
-If a doc page (e.g. [Adding your API](https://docs.konghq.com/getting-started/adding-your-api/)) is renamed in a version (e.g. `0.12.x`), then it must be configured as such:
+If a doc page (e.g. [Adding your API](https://docs.konghq.com/0.11.x/getting-started/adding-your-api/)) is renamed in a version (e.g. `0.12.x`), then it must be configured as such:
 ```yml
 -
   slug: "getting-started/configuring-a-service"
