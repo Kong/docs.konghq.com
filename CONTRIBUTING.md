@@ -422,7 +422,10 @@ If a doc page (e.g. [Adding your API](https://docs.konghq.com/getting-started/ad
   timeline:
     0.12.x: "getting-started/adding-your-api"
 ```
+_**The versions are iterated in reverse order**_, so for all versions below `0.12.x`, the _Configuring Your Service_ page will be correctly pointed to _Adding Your API_.
+
 > Note: For a renamed article, specify the latest slug under `slug`, and other slugs under `aliases`.
+> Specify the old renamed slug under the latest version that it existed in.
 
 ### Contributor T-shirt
 
