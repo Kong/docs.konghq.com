@@ -383,7 +383,7 @@ Kong documentation and enterprise pages are versioned, and include a dropdown to
 - [An existing page is removed](#an-existing-page-is-removed)
 - [An existing page is renamed](#an-existing-page-is-renamed)
 
-If your contribution includes any of the above changes, then an update to [docs_version_timeline.yml](https://github.com/Kong/docs.konghq.com/blob/master/app/_data/docs_version_timeline.yml) is required.
+If your contribution includes any of the above changes, then an update to [ce_docs_version_timeline.yml](https://github.com/Kong/docs.konghq.com/blob/master/app/_data/ce_docs_version_timeline.yml) / [ee_docs_version_timeline.yml](https://github.com/Kong/docs.konghq.com/blob/master/app/_data/ee_docs_version_timeline.yml) is required.
 
 Configuration format:
 ```yml

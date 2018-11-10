@@ -9,19 +9,6 @@
 # if override value is PAGE_DELETED, all versions above that will be set to "unavailable"
 
 -
-  slug: "getting-started/configuring-a-service"
-  aliases: ["getting-started/adding-your-api"]
-  timeline:
-    0.12.x: "getting-started/adding-your-api"
--
-  slug: "clustering"
-  timeline:
-    0.6.x:  "PAGE_CREATED"
--
-  slug: "proxy"
-  timeline:
-    0.4.x:  "PAGE_CREATED"
--
   slug: "developer-portal/authentication"
   timeline:
     0.32-x:  "PAGE_DELETED"

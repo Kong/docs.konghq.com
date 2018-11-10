@@ -22,12 +22,18 @@ module Jekyll
 
       site.data["kong_latest"] = latestVersion
 
-      # Collate version history for articles
-      docs_version_history = {}
-      site.data["docs_version_timeline"].map { |doc|
-        docs_version_history[doc["slug"]] = doc
+      # Collate version history for ce/ee articles
+      docs_version_history = { ce: {}, ee: {} }
+      site.data["ce_docs_version_timeline"].map { |doc|
+        docs_version_history[:ce][doc["slug"]] = doc
         unless doc["aliases"].nil?
-          doc["aliases"].map { |a| docs_version_history[a] = doc }
+          doc["aliases"].map { |a| docs_version_history[:ce][a] = doc }
+        end
+      }
+      site.data["ee_docs_version_timeline"].map { |doc|
+        docs_version_history[:ee][doc["slug"]] = doc
+        unless doc["aliases"].nil?
+          doc["aliases"].map { |a| docs_version_history[:ee][a] = doc }
         end
       }
 
@@ -57,7 +63,11 @@ module Jekyll
           end
 
           # create page's version history
-          page.data["version_slugs"] = createVersionHistory(doc_slug, parts[0] == 'enterprise' ? eeVersions : ceVersions, docs_version_history[doc_slug])
+          page.data["version_slugs"] = createVersionHistory(
+            doc_slug,
+            parts[0] == 'enterprise' ? eeVersions : ceVersions,
+            docs_version_history[parts[0] == 'enterprise' ? :ee : :ce][doc_slug]
+          )
 
           # Helpful boolean in templates. If version has .md, then it is not versioned
           if page.data["kong_version"].include? ".md"
