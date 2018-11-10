@@ -11,4 +11,119 @@
 -
   slug: "developer-portal/authentication"
   timeline:
-    0.32-x:  "PAGE_DELETED"
+    0.32-x: "PAGE_DELETED"
+-
+  slug: "installation/ubuntu"
+  timeline:
+    0.33-x: "PAGE_DELETED"
+-
+  slug: "plugins/rate-limiting"
+  timeline:
+    0.32-x: "PAGE_DELETED"
+-
+  slug: "rbac/overview"
+  aliases: ["setting-up-admin-api-rbac"]
+  timeline:
+    0.32-x: "setting-up-admin-api-rbac"
+-
+  slug: "rbac/admin-api"
+  aliases: ["plugins/rbac-api"]
+  timeline:
+    0.32-x: "plugins/rbac-api"
+-
+  slug: "rbac/examples"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "workspaces/overview"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "workspaces/admin-api"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "workspaces/examples"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "admin-gui/overview"
+  aliases: ["admin-gui"]
+  timeline:
+    0.32-x: "admin-gui"
+-
+  slug: "admin-gui/configuration/getting-started"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "admin-gui/configuration/authentication"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "admin-gui/configuration/managing-admins"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "admin-gui/configuration/networking"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "admin-gui/configuration/property-reference"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "developer-portal/overview"
+  aliases: ["developer-portal/introduction"]
+  timeline:
+    0.31-x: "developer-portal/introduction"
+-
+  slug: "developer-portal/glossary"
+  timeline:
+    0.31-x: "developer-portal/introduction/#glossary"
+-
+  slug: "developer-portal/configuration/getting-started"
+  aliases: ["developer-portal/getting-started"]
+  timeline:
+    0.31-x: "developer-portal/getting-started"
+-
+  slug: "developer-portal/file-management"
+  aliases: ["developer-portal/understanding"]
+  timeline:
+    0.31-x: "developer-portal/understanding"
+-
+  slug: "developer-portal/configuration/authentication"
+  aliases: ["developer-portal/authentication"]
+  timeline:
+    0.31-x: "developer-portal/authentication"
+-
+  slug: "developer-portal/known-limitations"
+  timeline:
+    0.32-x: "PAGE_DELETED"
+-
+  slug: "developer-portal/configuration/networking"
+  timeline:
+    0.32-x: "PAGE_CREATED"
+-
+  slug: "developer-portal/configuration/property-reference"
+  timeline:
+    0.32-x: "PAGE_CREATED"
+-
+  slug: "developer-portal/managing-developers"
+  timeline:
+    0.32-x: "PAGE_CREATED"
+-
+  slug: "developer-portal/developer-access"
+  timeline:
+    0.32-x: "PAGE_CREATED"
+-
+  slug: "developer-portal/best-practices"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "deployment-guide"
+  timeline:
+    0.33-x: "PAGE_CREATED"
+-
+  slug: "upgrades-migrations"
+  timeline:
+    0.32-x: "PAGE_CREATED"
