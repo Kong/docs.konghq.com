@@ -107,6 +107,7 @@ module Jekyll
         elsif slug_override == "PAGE_DELETED"
           # article was deleted in this version, start from scratch; nullify previous history
           history = {} if previous == canonical_slug
+          previous = canonical_slug # set all version slugs below to canonical_slug
         else
           # use provided override value
           history[version["release"]] = previous = slug_override
