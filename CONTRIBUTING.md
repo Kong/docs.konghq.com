@@ -379,9 +379,9 @@ will cause a broken ToC, and should be corrected to:
 
 Kong documentation and enterprise pages are versioned, and include a dropdown to allow easy switching between different versions of a page. To facilitate this, the configuration for such a page needs to be updated if:
 
-- [A new doc page is created](#a-new-doc-page-is-created)
-- [An existing doc page is removed](#an-existing-doc-page-is-removed)
-- [An existing doc page is renamed](#an-existing-doc-page-is-renamed)
+- [A new page is created](#a-new-page-is-created)
+- [An existing page is removed](#an-existing-page-is-removed)
+- [An existing page is renamed](#an-existing-page-is-renamed)
 
 If your contribution includes any of the above changes, then an update to [docs_version_timeline.yml](https://github.com/Kong/docs.konghq.com/blob/master/app/_data/docs_version_timeline.yml) is required.
 
@@ -395,8 +395,8 @@ timeline: (specify versions in reverse order)
   ...
 ```
 
-#### A new doc page is created
-If a new doc page (e.g. [Proxy Reference](https://docs.konghq.com/0.14.x/proxy)) is added in a version (e.g. `0.4.x`), then it must be configured as such:
+#### A new page is created
+If a new documentation page (e.g. [Proxy Reference](https://docs.konghq.com/0.14.x/proxy)) is added in a version (e.g. `0.4.x`), then its timeline must be specified as such:
 ```yml
 -
   slug: "proxy"
@@ -404,8 +404,8 @@ If a new doc page (e.g. [Proxy Reference](https://docs.konghq.com/0.14.x/proxy))
     0.4.x:  "PAGE_CREATED"
 ```
 
-#### An existing doc page is removed
-If a doc page (e.g. [Authenticating the Developer Portal](https://docs.konghq.com/enterprise/0.31-x/developer-portal/authentication/)) is deleted in a version (e.g. `0.32-x`), then it must be configured as such:
+#### An existing page is removed
+If a documentation page (e.g. [Authenticating the Developer Portal in 0.31-x](https://docs.konghq.com/enterprise/0.31-x/developer-portal/authentication/)) is deleted in a subsequent version (e.g. `0.32-x`), then its timeline must be specified as such:
 ```yml
 -
   slug: "developer-portal/authentication"
@@ -413,8 +413,8 @@ If a doc page (e.g. [Authenticating the Developer Portal](https://docs.konghq.co
     0.32-x:  "PAGE_DELETED"
 ```
 
-#### An existing doc page is renamed
-If a doc page (e.g. [Adding your API](https://docs.konghq.com/0.11.x/getting-started/adding-your-api/)) is renamed in a version (e.g. `0.13.x`), then it must be configured as such:
+#### An existing page is renamed
+If a documentation page (e.g. [Adding your API in 0.11.x](https://docs.konghq.com/0.11.x/getting-started/adding-your-api/)) is renamed in a subsequent version (e.g. `0.13.x`), then its timeline must be specified as such:
 ```yml
 -
   slug: "getting-started/configuring-a-service"
