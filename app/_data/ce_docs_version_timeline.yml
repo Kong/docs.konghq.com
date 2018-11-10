@@ -16,8 +16,116 @@
 -
   slug: "clustering"
   timeline:
-    0.6.x:  "PAGE_CREATED"
+    0.6.x: "PAGE_CREATED"
 -
   slug: "proxy"
   timeline:
-    0.4.x:  "PAGE_CREATED"
+    0.4.x: "PAGE_CREATED"
+-
+  slug: "auth"
+  timeline:
+    0.10.x: "PAGE_CREATED"
+-
+  slug: "health-checks-circuit-breakers"
+  timeline:
+    0.12.x: "PAGE_CREATED"
+-
+  slug: "loadbalancing"
+  timeline:
+    0.10.x: "PAGE_CREATED"
+-
+  slug: "logging"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "network"
+  timeline:
+    0.7.x: "PAGE_CREATED"
+-
+  slug: "secure-admin-api"
+  timeline:
+    0.10.x: "PAGE_CREATED"
+-
+  slug: "plugin-development"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/file-structure"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/custom-logic"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/plugin-configuration"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/access-the-datastore"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/custom-entities"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/entities-cache"
+  timeline:
+    0.6.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/admin-api"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/tests"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "plugin-development/distribution"
+  timeline:
+    0.5.x: "PAGE_CREATED"
+-
+  slug: "pdk"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.client"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.ctx"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.ip"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.log"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.request"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.response"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.service"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.service.request"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.service.response"
+  timeline:
+    0.14.x: "PAGE_CREATED"
+-
+  slug: "pdk/kong.table"
+  timeline:
+    0.14.x: "PAGE_CREATED"
