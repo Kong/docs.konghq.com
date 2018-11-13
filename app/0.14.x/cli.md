@@ -213,4 +213,160 @@ Options:
 
 [Back to TOC](#table-of-contents)
 
+---
+
+## Stopping Kong gracefully
+
+Stopping kong can be achieved with a simple `kong stop` command. Yet, depending
+on the environment Kong is running in, a more controlled shutdown might be
+desired. To understand the differences in the many ways you can shut down Kong
+we need to have a look at how the mechanism works.
+
+The related Kong CLI commands operate by sending Unix signals to the Kong
+master process (generally there is no need to interact with the worker processes
+in this way). The signals used are:
+
+  - `SIGTERM` will gracefully exit the master process, but master will in turn
+    forcefully shut down the workers. So workers will abruptly close any open
+    connections and exit. Yet master will properly clean up (PID files etc.).
+  - `SIGQUIT` for a graceful shutdown of both the workers and master, the
+    workers will finish their active connections and timers before exiting.
+    Note: while exiting the workers will no longer accept new connections.
+  - `SIGKILL` will forcefully exit the master process (workers may remain). None
+    of the kong CLI commands will actually use this signal.
+
+The Kong CLI commands will:
+
+  - [`stop`](#kong-stop) will send `SIGTERM`, and hence will be forcefully
+    closing active connections.
+  - [`quit`](#kong-quit) will send `SIGQUIT`, and after a timeout, it will send
+    `SIGTERM`. So it will complete active connections, but forcefully close (too)
+    long running ones.
+  - [`restart`](#kong-restart) is a combination of [`stop`](#kong-stop) and
+    [`start`](#kong-start), and hence will have the [`stop`](#kong-stop)
+    behavior of forcefully closing active connections.
+
+To stop Kong without dropping any connections the following sequence can be used:
+
+  1. Update any load balancers to no longer send any traffic to the Kong node to
+     tear down.
+  2. Wait for the change to be effectuated.
+  3. Send a `SIGQUIT` signal to the Kong master process.
+  4. Wait for Kong to exit.
+  5. If step 4 takes too long to complete, send a `SIGTERM` signal to force an
+     exit (this will drop the remaining active connections).
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### Controlled stop using the Kong CLI
+
+When controlling Kong through the CLI, make sure you have stopped traffic from
+being routed to the Kong node to tear down (steps 1 and 2 above).
+
+Now to actually stop the Kong node steps 3 to 5 can be executed at once by the
+`kong quit` command. Assuming a 10-second wait for connections to close,
+execute:
+
+```
+kong quit --timeout=10
+```
+
+The output will be either `Kong stopped (gracefully)` or
+`Timeout, Kong stopped forcefully`, depending on whether the timeout was hit.
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### Controlled stop using Docker commands
+
+Similar to working with the CLI, make sure you have stopped traffic from
+being routed to the Kong container to tear down (steps 1 and 2 above).
+
+When using `docker stop` to stop a container, Docker will by default use the
+`SIGTERM` signal, and an addition `SIGKILL` after a timeout. Since this will drop
+active connections when used with Kong we have
+to use a different way to send `SIGQUIT` (step 3). This can be done with the
+`docker kill` command:
+
+```
+docker kill ----signal=SIGQUIT [container id]
+```
+
+Now, if after the timeout (step 4), the container hasn't exited yet, use the
+following command to forcefully shut it down:
+
+```
+docker kill [container id]
+```
+
+Note: You can also execute the Kong CLI commands inside the docker container of
+course. Execute `docker exec -it [container id] kong quit --timeout=10`. See
+[Controlled stop using the Kong CLI](#controlled-stop-using-the-kong-cli).
+
+[Back to TOC](#table-of-contents)
+
+---
+
+### Controlled stop using orchestration tools (eg. Kubernetes)
+
+For the purpose of explaining it, we'll assume Kubernetes as the orchestration
+tool, but other tools act similarly.
+
+The first problem is that Kubernetes will send a `SIGTERM` signal to the
+container to instruct it to exit. This will cause workers to forcefully exit
+and drop connections.
+
+An additional problem is that when removing a workload (Pod) from a Kubernetes
+cluster, we do not control the load balancers. So when we delete a Pod,
+Kubernetes will update it datastore and start tearing down the Pod right away.
+Because of the eventual-consistent nature of Kubernetes, chances are pretty high
+the Pod gets torn down before the load balancers, services, etc. have been
+updated. Hence this might lead to dropped connections, as Kong will not accept
+those last connections send its way (after it received the `SIGTERM` or
+`SIGQUIT` signal).
+
+Here's what we have to work with:
+
+  - the [`terminationGracePeriodSeconds`](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
+    property contains the Kubernetes timeout
+    after which it will forcefully tear down the container.
+  - Kubernetes will send a `SIGTERM` to the container to instruct it to exit.
+  - Before sending `SIGTERM` it will run the [`PreStop`](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
+    hook (synchronously, so the signal will be sent after the `PreStop` hook
+    completed) 
+
+In the `PreStop` hook, we can inject the additional required delay (step 2) as
+well as send the `SIGQUIT` signal (or run `kong quit`) to gracefully exit Kong.
+
+So add a simple script like this (`/graceful-exit.sh`) to the container:
+
+```
+#!/bin/sh
+
+sleep 3
+kong quit --timeout=10
+```
+
+With this in place we can define a `PreStop` hook for our container like this:
+
+```
+            preStop:
+              exec:
+                command: ["/graceful-exit.sh"]
+```
+
+This will now wait for 3 seconds for the Kubernetes load balancers and services
+to catch up, and then do a graceful shutdown for 10 seconds before forcefully
+stopping Kong.
+
+One thing to keep in mind here is that the combined timeout (13 seconds in the
+example above), should be less than the Kubernetes timeout defined in
+`terminationGracePeriodSeconds`. If not, Kubernetes will forcefully tear down
+the container, and hence close the last active connections earlier than expected.
+
+[Back to TOC](#table-of-contents)
+
 [configuration-reference]: /{{page.kong_version}}/configuration
