@@ -50,7 +50,7 @@ params:
   route_id: true
   consumer_id: false
   protocol: http # FIXME remove or correct this value before publication
-  layer: outer # FIXME remove or correct this value before publication
+  run_on: first # FIXME remove or correct this value before publication
   config:
     - name: hide_credentials
       required: false

@@ -331,10 +331,11 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <td><span>{{ page.params.protocol }}</span></td>
         </tr>
         {% endif %}
-        {% if page.params.layer %}
+        {% if page.params.run_on %}
         <tr class="layer">
-          <td>Layer:</td>
-          <td><span>{{ page.params.layer }}</span></td>
+          <td>Run On:</td>
+          <!-- FIXME double-check this prior to publication-->
+          <td><span>{{ page.params.run_on }}</span></td>
         </tr>
         {% endif %}
         <tr class="categories">

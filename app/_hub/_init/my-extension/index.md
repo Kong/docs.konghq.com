@@ -151,9 +151,9 @@ params: # metadata about your plugin
     # what transport protocols are supported by this plugin
     # one of: http, stream, http+stream
     # FIXME correct this before publication
-  layer:
-    # at what mesh layers this plugin can be triggered
-    # one of: inner, outer, any
+  run_on:
+    # at what kong node this plugin can be triggered
+    # one of: first, second, all
     # FIXME correct this before publication
   config: # Configuration settings for your plugin
     - name: # setting name
