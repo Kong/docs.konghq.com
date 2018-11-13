@@ -8,7 +8,7 @@ Kong provides multiple ways of load balancing requests to multiple backend servi
 a straightforward DNS-based method, and a more dynamic ring-balancer that also
 allows for service registry without needing a DNS server.
 
-### DNS-based loadbalancing
+## DNS-based loadbalancing
 
 When using DNS based load balancing the registration of the backend services is
 done outside of Kong, and Kong only receives updates from the DNS server.
@@ -25,7 +25,7 @@ updates/changes will be very low.
 
 [Back to TOC](#table-of-contents)
 
-#### A records
+### A records
 
 An A record contains one or more IP addresses. Hence, when a hostname
 resolves to an A record, each backend service must have its own IP address.
@@ -39,7 +39,7 @@ make sure that even with a `ttl` of 0 the load is properly distributed.
 
 [Back to TOC](#table-of-contents)
 
-#### SRV records
+### SRV records
 
 An SRV record contains weight and port information for all of its IP addresses.
 A backend service can be identified by a unique combination of IP address 
@@ -67,7 +67,7 @@ especially with a very small (or even 0) `ttl` value.
 
 [Back to TOC](#table-of-contents)
 
-#### DNS priorities
+### DNS priorities
 
 The DNS resolver will start resolving the following record types in order:
 
@@ -83,7 +83,7 @@ it will fallback on an A query, etc.
 
 [Back to TOC](#table-of-contents)
 
-### Ring-balancer
+## Ring-balancer
 
 When using the ring-balancer, the adding and removing of backend services will
 be handled by Kong, and no DNS updates will be necessary. Kong will act as the
@@ -102,7 +102,7 @@ entities.
 
 [Back to TOC](#table-of-contents)
 
-#### Upstream
+### Upstream
 
 Each upstream gets its own ring-balancer. Each `upstream` can have many 
 `target` entries attached to it, and requests proxied to the 'virtual hostname' 
@@ -139,7 +139,7 @@ distribution, but the more expensive the changes are (add/removing targets)
 
 [Back to TOC](#table-of-contents)
 
-#### Target
+### Target
 
 Because the `upstream` maintains a history of changes, targets can only be 
 added, not modified nor deleted. To change a target, just add a new entry for
@@ -172,7 +172,7 @@ to this target it will query the nameserver again.
 
 [Back to TOC](#table-of-contents)
 
-### Blue-Green Deployments
+## Blue-Green Deployments
 
 Using the ring-balancer a [blue-green deployment][blue-green-canary] can be easily orchestrated for 
 an API. Switching target infrastructure only requires a `PATCH` request on an
@@ -241,7 +241,7 @@ requests will be dropped.
 
 [Back to TOC](#table-of-contents)
 
-### Canary Releases
+## Canary Releases
 
 Using the ring-balancer, target weights can be adjusted granularly, allowing
 for a smooth, controlled [canary release][blue-green-canary].

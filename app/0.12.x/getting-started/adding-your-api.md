@@ -20,7 +20,7 @@ helpful for learning how Kong proxies your API requests.
 Kong exposes a [RESTful Admin API][API] on port `:8001` for managing the
 configuration of your Kong instance or cluster.
 
-### 1. Add your API using the Admin API
+## 1. Add your API using the Admin API
 
 Issue the following cURL request to add your first API ([Mockbin][mockbin])
 to Kong:
@@ -33,7 +33,7 @@ $ curl -i -X POST \
   --data 'upstream_url=http://mockbin.org'
 ```
 
-### 2. Verify that your API has been added
+## 2. Verify that your API has been added
 
 You should see a similar response from that request:
 
@@ -63,7 +63,7 @@ Connection: keep-alive
 
 Kong is now aware of your API and ready to proxy requests.
 
-### 3. Forward your requests through Kong
+## 3. Forward your requests through Kong
 
 Issue the following cURL request to verify that Kong is properly forwarding
 requests to your API. Note that [by default][proxy-port] Kong handles proxy

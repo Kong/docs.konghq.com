@@ -41,7 +41,7 @@ curl -svX PATCH \
   --data 'status=0'
 ```
 
-#### Enabling Auto Approval
+### Enabling Auto Approval
 
 You can choose to have developers automatically approved and skip the requested state. To enable follow these steps:
 

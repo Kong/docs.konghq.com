@@ -1,9 +1,10 @@
 ---
 title: kong.response
 pdk: true
+toc: true
 ---
 
-# kong.response
+## kong.response
 
 Client response module
 
@@ -15,7 +16,10 @@ Client response module
  Unlike `kong.service.response`, this module allows mutating the response
  before sending it back to the client.
 
-## kong.response.get_status()
+
+
+
+### kong.response.get_status()
 
 Returns the HTTP status code currently set for the downstream response (as
  a Lua number).
@@ -48,7 +52,7 @@ kong.response.get_status() -- 200
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.get_header(name)
+### kong.response.get_header(name)
 
 Returns the value of the specified response header, as would be seen by
  the client once received.
@@ -97,7 +101,7 @@ kong.response.get_header("X-None")          -- nil
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.get_headers([max_headers])
+### kong.response.get_headers([max_headers])
 
 Returns a Lua table holding the response headers.  Keys are header names.
  Values are either a string with the header value, or an array of strings
@@ -156,7 +160,7 @@ headers["X-Another"][2] -- "baz"
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.get_source()
+### kong.response.get_source()
 
 This function helps determining where the current response originated
  from.   Kong being a reverse proxy, it can short-circuit a request and
@@ -200,7 +204,7 @@ end
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.set_status(status)
+### kong.response.set_status(status)
 
 Allows changing the downstream response HTTP status code before sending it
  to the client.
@@ -231,7 +235,7 @@ kong.response.set_status(404)
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.set_header(name, value)
+### kong.response.set_header(name, value)
 
 Sets a response header with the given value.  This function overrides any
  existing header with the same name.
@@ -262,7 +266,7 @@ kong.response.set_header("X-Foo", "value")
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.add_header(name, value)
+### kong.response.add_header(name, value)
 
 Adds a response header with the given value.  Unlike
  `kong.response.set_header()`, this function does not remove any existing
@@ -298,7 +302,7 @@ kong.response.add_header("Cache-Control", "no-store")
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.clear_header(name)
+### kong.response.clear_header(name)
 
 Removes all occurrences of the specified header in the response sent to
  the client.
@@ -333,7 +337,7 @@ kong.response.clear_header("X-Foo")
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.set_headers(headers)
+### kong.response.set_headers(headers)
 
 Sets the headers for the response.  Unlike `kong.response.set_header()`,
  the `headers` argument must be a table in which each key is a string
@@ -384,7 +388,7 @@ kong.response.set_headers({
 [Back to TOC](#table-of-contents)
 
 
-## kong.response.exit(status[, body[, headers]])
+### kong.response.exit(status[, body[, headers]])
 
 This function interrupts the current processing and produces a response.
  It is typical to see plugins using it to produce a response before Kong

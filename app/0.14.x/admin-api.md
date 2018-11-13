@@ -38,6 +38,7 @@ route_body: |
     `methods`<br>*semi-optional*   | A list of HTTP methods that match this Route. For example: `["GET", "POST"]`. At least one of `hosts`, `paths`, or `methods` must be set. With form-encoded, the notation is `methods[]=GET&methods[]=OPTIONS`. With JSON, use an Array.
     `hosts`<br>*semi-optional*     | A list of domain names that match this Route. For example: `example.com`. At least one of `hosts`, `paths`, or `methods` must be set. With form-encoded, the notation is `hosts[]=foo.com&hosts[]=bar.com`. With JSON, use an Array.
     `paths`<br>*semi-optional*     | A list of paths that match this Route. For example: `/my-path`. At least one of `hosts`, `paths`, or `methods` must be set. With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
+    `regex_priority`<br>*optional* | Determines the relative order of this Route against others when evaluating regex paths. Routes with higher numbers will have their regex paths evaluated first. Defaults to `0`.
     `strip_path`<br>*optional*     | When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL. Defaults to `true`.
     `preserve_host`<br>*optional*  | When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. By default set to `false`, and the upstream `Host` header will be that of the Service's `host`.
     `service`                      | The Service this Route is associated to. This is where the Route proxies traffic to. With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
@@ -164,6 +165,8 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Information routes
@@ -207,6 +210,8 @@ HTTP 200 OK
   time it is restarted.
 * `available_on_server`: Names of plugins that are installed on the node.
 * `enabled_in_cluster`: Names of plugins that are enabled/configured. That is, the plugins configurations currently in the datastore shared by all Kong nodes.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -254,6 +259,8 @@ HTTP 200 OK
 * `database`: Metrics about the database.
     * `reachable`: A boolean value reflecting the state of the database connection. Please note that this flag **does not** reflect the health of the database itself.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Service Object
@@ -276,6 +283,8 @@ of how Kong proxies traffic.
 {{ page.service_json }}
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Add Service
@@ -297,6 +306,8 @@ HTTP 201 Created
 ```json
 {{ page.service_json }}
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -325,7 +336,11 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+
+[Back to TOC](#table-of-contents)
+
 ---
+
 
 ### List Services
 
@@ -379,6 +394,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Service
@@ -410,6 +427,8 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -449,6 +468,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Service
@@ -467,6 +488,8 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Route Object
@@ -484,6 +507,8 @@ your infrastructure.
 ```json
 {{ page.route_json }}
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -507,6 +532,10 @@ HTTP 201 Created
 {{ page.route_json }}
 ```
 
+[Back to TOC](#table-of-contents)
+
+---
+
 ### Retrieve Route
 
 **Endpoints**
@@ -526,6 +555,8 @@ HTTP 200 OK
 ```json
 {{ page.route_json }}
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -583,7 +614,10 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
+
 
 ### List Routes associated to a Service
 
@@ -639,6 +673,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Route
@@ -664,7 +700,11 @@ HTTP 200 OK
 ```json
 {{ page.service_json }}
 ```
+
+[Back to TOC](#table-of-contents)
+
 ---
+
 
 ### Update or create Route
 
@@ -694,7 +734,11 @@ HTTP 201 Created or HTTP 200 OK
 ```json
 {{ page.route_json }}
 ```
+
+[Back to TOC](#table-of-contents)
+
 ---
+
 
 ### Delete Route
 
@@ -712,6 +756,8 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Consumer Object
@@ -723,6 +769,8 @@ The Consumer object represents a consumer - or a user - of a Service. You can ei
     "custom_id": "abc123"
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -750,6 +798,8 @@ HTTP 201 Created
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Retrieve Consumer
@@ -775,6 +825,8 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -814,6 +866,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Consumer
@@ -843,6 +897,8 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -882,6 +938,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Consumer
@@ -899,6 +957,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -932,7 +992,7 @@ values for some specific Consumers, you can do so by specifying the
 
 See the [Precedence](#precedence) section below for more details.
 
-#### Precedence
+### Precedence
 
 A plugin will always be run once and only once per request. But the
 configuration with which it will run depends on the entities it has been
@@ -971,6 +1031,8 @@ and ignore A. However, requests that do not authenticate this Consumer will
 fallback to running Plugin config A. Note that if config B is disabled
 (its `enabled` flag is set to `false`), config A will apply to requests that
 would have otherwise matched config B.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1015,9 +1077,11 @@ HTTP 201 Created
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
-## Retrieve Plugin
+### Retrieve Plugin
 
 <div class="endpoint get">/plugins/{id}</div>
 
@@ -1047,6 +1111,8 @@ HTTP 200 OK
     "created_at": 1422386534
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1106,6 +1172,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Plugin
@@ -1143,6 +1211,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update or Add Plugin
@@ -1170,6 +1240,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Plugin
@@ -1187,6 +1259,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1237,6 +1311,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Retrieve Plugin Schema
@@ -1266,6 +1342,8 @@ HTTP 200 OK
     }
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1313,6 +1391,8 @@ HTTP 201 Created
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Retrieve Certificate
@@ -1342,6 +1422,9 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### List Certificates
@@ -1381,6 +1464,9 @@ HTTP 200 OK
     ]
 }
 ```
+
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update Certificate
@@ -1412,6 +1498,8 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1454,6 +1542,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete Certificate
@@ -1469,6 +1559,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1489,6 +1581,8 @@ lookup the certificate object based on the SNI associated with the certificate.
     "created_at": 1485521710265
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1519,6 +1613,8 @@ HTTP 201 Created
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Retrieve SNI
@@ -1547,6 +1643,10 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ### List SNIs
 
@@ -1584,6 +1684,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update SNI
@@ -1610,6 +1712,8 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1647,6 +1751,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete SNI
@@ -1662,6 +1768,9 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Upstream Objects
@@ -1720,6 +1829,8 @@ object, and applies to all of its targets.
     "slots": 10
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1786,6 +1897,8 @@ HTTP 201 Created
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Retrieve upstream
@@ -1850,6 +1963,8 @@ HTTP 200 OK
     "created_at": 1485521710265
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1977,6 +2092,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update upstream
@@ -2046,6 +2163,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Update or create Upstream
@@ -2073,6 +2192,8 @@ HTTP 201 Created or HTTP 200 OK
 
 See POST and PATCH responses.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete upstream
@@ -2090,6 +2211,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2121,6 +2244,10 @@ The health for each Target is returned in its `health` field:
   (circuit breakers) or [manually](#set-target-as-unhealthy),
   its status is displayed as `UNHEALTHY`. The load balancer is not directing
   any traffic to this Target via this Upstream.
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ### Endpoint
 
@@ -2161,6 +2288,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Target Object
@@ -2182,6 +2311,8 @@ The current target object definition is the one with the latest `created_at`.
     "upstream_id": "ee3310c1-6789-40ac-9386-f79c0cb58432"
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2214,6 +2345,8 @@ HTTP 201 Created
     "created_at": 1485523507446
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2274,6 +2407,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### List all targets
@@ -2281,6 +2416,10 @@ HTTP 200 OK
 Lists all targets of the upstream. Multiple target objects for the same
 target may be returned, showing the history of changes for a specific target.
 The target object with the latest `created_at` is the current definition.
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ### Endpoint
 
@@ -2318,6 +2457,8 @@ HTTP 200 OK
 }
 ```
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ### Delete target
@@ -2339,6 +2480,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2370,6 +2513,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -2407,6 +2552,8 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+
+[Back to TOC](#table-of-contents)
 
 [clustering]: /{{page.kong_version}}/clustering
 [cli]: /{{page.kong_version}}/cli

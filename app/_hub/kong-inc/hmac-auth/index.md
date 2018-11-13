@@ -228,7 +228,6 @@ The HMAC plugin can be enabled on a Service or a Route (or the deprecated API en
 
   ```bash
   $ curl -i -f -X POST http://localhost:8001/services/example-service/routes \
-      -d "name=hmac-test" \
       -d "paths[]=/"
   HTTP/1.1 201 Created
   ...

@@ -32,7 +32,7 @@ curl -L <u$username>@kong<$api-key>
 
 > Please note: This command requires your Bintray API key, not your account password. Once logged into Bintray, you can find your API key by visiting (https://bintray.com/profile/edit) and clicking "API Key" in the menud. Please contact your CSE or <support@konghq.com> if you need assistance accessing your API key.
 
-### Free Trial Users
+## Free Trial Users
 
 If you are a Free Trial user a link to your license file can be found in the Download and Install Instructions email sent immediately after signing up for your free trial.
 

@@ -47,7 +47,7 @@ purpose is.
 
 ---
 
-### Basic plugin modules
+## Basic plugin modules
 
 In its purest form, a plugin consists of two mandatory modules:
 
@@ -66,7 +66,7 @@ simple-plugin
 
 ---
 
-### Advanced plugin modules
+## Advanced plugin modules
 
 Some plugins might have to integrate deeper with Kong: have their own table in
 the database, expose endpoints in the Admin API, etc... Each of those can be

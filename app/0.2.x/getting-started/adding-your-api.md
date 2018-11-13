@@ -14,7 +14,7 @@ title: Adding your API
 
 In this section, you'll be adding your API to the Kong layer. This is the first step to having Kong manage your API. Kong exposes a [RESTful API][API] for managing the details of your Kong instances.
 
-1. ### Add your API using the RESTful API
+## 1. Add your API using the RESTful API
 
     Issue the following cURL request to add your first API ([Mockbin][mockbin]) to Kong:
 
@@ -28,7 +28,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     **Note:** Kong handles API configuration requests on port `:8001`
 
-2. ### Verify that your API has been added
+## 2. Verify that your API has been added
 
     You should see a similar response from the initial request:
 
@@ -48,7 +48,7 @@ In this section, you'll be adding your API to the Kong layer. This is the first 
 
     Kong is now aware of your API and ready to proxy requests.
 
-3. ### Forward your requests through Kong
+## 3. Forward your requests through Kong
 
     Issue the following cURL request to verify that Kong is properly forwarding requests to your API:
 

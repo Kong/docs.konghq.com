@@ -5,12 +5,12 @@ chapter: 2
 ---
 ## Introduction
 
-### Key Terms
+## Key Terms
 
 * **Example Dev Portal** = The set of pages, partials, and specs that are provided in the example Dev Portal files.
 * **Handlebars** = [Handlebars](https://handlebarsjs.com/) is a semantic JavaScript templating language.
 
-### Types of Humans
+## Types of Humans
 
 * **Developer** = A human that wants to learn about your APIs by visiting your Dev Portal.
 * **Admin** = A human that has access to administer **Kong** functionality.
@@ -22,7 +22,7 @@ chapter: 2
 * **User** = A human that uses an Application.
     * When OpenID Connect is in use, the **User** is typically involved in delegating permission to **Kong API Gateway** to proxy the requests that are coming from the **Application** that the **User** is using.
 
-### Types of Files
+## Types of Files
 
 * **Specifications / Specs** = An API specification, in **OpenAPI** (formerly known as Swagger) format. 
 * **Partials** = These are Handlebar files made up of HTML, JS, and CSS content that define the look, feel, functionality, and structure of your Dev Portal.
@@ -31,7 +31,7 @@ chapter: 2
     * The Loader requests **Pages**, **Partials** and **Specifications** from Kong, which it uses to render your **Dev Portal** in the visitor's browser.
     * The **Loader** is not modifiable by Admins - instead, customization is performed by modifying **Specifications**, **Partials**, and **Pages**.
 
-### Other Concepts
+## Other Concepts
 
 * **API** = The APIs that are proxied by Kong API Gateway, the APIs that are documented in Dev Portal, and APIs whose usage is monitored by Vitals, etc.
     * Note that this is *not* the **Admin API** of Kong - we consistently refer to that as **Admin API**
