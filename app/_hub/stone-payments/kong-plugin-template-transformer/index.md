@@ -35,7 +35,7 @@ params:
         Available nginx variables: headers, body, custom_data, route_groups, query_string.
     - name: response_template
       required: 'no'
-      default: nil
+      default:
       value_in_examples: '''{ "status": "{{status}}", "message": "{{body.message}}" }'''
       description: |
         Describes the template to be used for the transformation. 
