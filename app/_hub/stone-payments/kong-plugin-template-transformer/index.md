@@ -48,6 +48,6 @@ params:
         Fields to hide in the nginx logs.
 ---
 
-### Kong Plugin Template Transformer
+## Kong Plugin Template Transformer
 
 For questions, details or contributions, please reach us at https://github.com/stone-payments/kong-plugin-template-transformer
