@@ -21,8 +21,8 @@ kong_version_compatibility:
 
 params:
   name: kong-plugin-template-transformer
-  api_id: False
-  service_id: False
+  api_id: True
+  service_id: True
   consumer_id: False
   route_id: True
   config:
