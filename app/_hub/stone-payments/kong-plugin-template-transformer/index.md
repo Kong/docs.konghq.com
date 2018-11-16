@@ -42,7 +42,7 @@ params:
         Available nginx variables: headers, body, status.
     - name: hidden_fields
       required: 'no'
-      default: nil
+      default:
       value_in_examples: '''["password"]'''
       description: |
         Fields to hide in the nginx logs.
