@@ -28,7 +28,7 @@ params:
   config:
     - name: request_template
       required: 'no'
-      default: nil
+      default:
       value_in_examples: '''{ "email": "{{body.user}}", "password": "{{body.password}}" }'''
       description: |
         Describes the template to be used for the transformation. 
