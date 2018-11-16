@@ -88,15 +88,15 @@ You can deploy one of the following Kong templates from the marketplace:
 
 1. **Kong Certified by Bitnami**
 
-    Developer Tools software from the leading publisher
+    The Bitnami Kong Stack provides a one-click install solution for Kong. Bitnami certifies that the images are secure, up-to-date, and packaged using industry best practices.
 
-      You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong).
+    You can deploy it in Azure [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong) and all the documentation you need to configure and manage the server at the [Bitnami Docs](https://docs.bitnami.com/azure/apps/kong/).
 
 1. **Kong Cluster**
 
-    Kong Cluster for production environments - This solution configures a load-balanced Kong cluster with an additional Cassandra cluster for data storage.
+    Kong Cluster for production environments - This solution configures a load-balanced Kong cluster with an additional Cassandra cluster for data storage. This solutions is a perfect choice to ensure high availability and performance in medium/large size production environments.
 
-    You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong-cluster).
+    You can deploy Kong Cluster in Azure [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong-cluster) and learn more about how the Cluster is configured at the [Bitnami Docs](https://docs.bitnami.com/azure-templates/apps/kong/get-started/understand-cluster-config/).
 
 ## Running Kong on Azure Container Instances
 
