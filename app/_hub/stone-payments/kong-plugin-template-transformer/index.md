@@ -18,6 +18,11 @@ kong_version_compatibility:
      - 0.13.x
      - 0.14.x
     incompatible:
+  enterprise_edition:
+    compatible:
+      - 0.32-x
+      - 0.33-x
+    incompatible:
 
 params:
   name: kong-plugin-template-transformer
