@@ -2,7 +2,7 @@
 title: Kong Enterprise Changelog
 ---
 
-## 0.34 - 2018/11/17
+## 0.34 - 2018/11/19
 
 **Notifications**
 - **Kong EE 0.34** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
