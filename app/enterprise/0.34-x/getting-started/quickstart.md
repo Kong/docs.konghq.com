@@ -91,4 +91,4 @@ To begin, go to [Adding your API &rsaquo;][adding-your-api]
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /enterprise/{{page.kong_version}}/installation/centos/
 [amazonlinux]: /enterprise/{{page.kong_version}}/installation/amazon-linux/
-[dev-portal]: /enterprise/{{page.kong_version}}/developer-portal/overview
+[dev-portal]: /enterprise/{{page.kong_version}}/developer-portal/introduction
