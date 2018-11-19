@@ -114,7 +114,7 @@ params:
 
 ## Dynamic Transformation Based on Request Content
 
-The Request Transformer plugin bundled with Kong Enterprise Edition allows for
+The Request Transformer plugin bundled with Kong Enterprise allows for
 adding or replacing content in the upstream request based on variable data found
 in the client request, such as request headers, query string parameters, or URI
 parameters as defined by a URI capture group.
