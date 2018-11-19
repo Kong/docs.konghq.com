@@ -2,4 +2,5 @@
 layout: null
 ---
 User-agent: *
+Disallow: /
 Sitemap: {{site.links.web}}/sitemap.xml

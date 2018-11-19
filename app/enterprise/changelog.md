@@ -2,6 +2,168 @@
 title: Kong Enterprise Changelog
 ---
 
+## 0.34 - 2018/11/17
+
+**Notifications**
+- **Kong EE 0.34** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+  - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
+  - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
+- **Kong EE 0.34** has these notices from **Kong CE 0.13**:
+  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
+      - **Dev Portal** requires Cassandra 3.0+
+  - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
+
+- **Kong Manager**
+  - The name of the `Admin GUI` has changed to `Kong Manager`
+- **Licensing**
+  - License expiration logs: Kong will start logging the license expiration date once a day - with a `WARN` log - 90 days before the expiry; 30 days before, the log severity increases to `ERR` and, after expiration, to `CRIT`
+
+**CHANGES**
+- **Admin API**
+  - The system-generated `default` role for an RBAC user is no longer accessible via the Admin API
+  - Auto-config OAPI endpoint available for Admin API (configure services & routes via Swagger)
+- **Workspaces**
+  - Workspaces on Workspaces has been disabled, meaning that workspaces do not apply on `/workspaces/` endpoints
+  - Renaming workspaces is no longer allowed
+- **Vitals**
+  - Now enabled by default when starting Kong for the first time
+- **Dev Portal**
+  - **Breaking change** - change of config options
+  - `portal_gui_url` is removed, and `protocol`, `host`, and `portal_gui_use_subdomains` added
+  - `protocol` and `host` replace `portal_gui_url`
+  - `portal_gui_use_subdomains` avoids conflicts if base path name matches workspace name
+- **Plugins**
+  - **Prometheus**
+    - **Warning** - Dropped metrics that were aggregated across services in Kong. These metrics can be obtained much more efficiently using queries in Prometheus. 
+  - **Zipkin**
+    - Add kong.node.id tag
+  - **Proxy Cache**
+    - Add `application/json` to config `content-type` 
+  - **All logging plugins**
+    - Workspace of the request is logged
+  - **StatsD Advanced**
+    - Add workspace support with new metrics `status_count_per_workspace`
+  - **OpenID Connect**
+    - NOTE - If using an older version of the OpenID Connect plugin, with sub-plugins, Kong will not start after upgrading to 0.34. Sub-plugins are now disabled by default will be removed completely in subsequent releases. To make sure Kong starts, enable OIDC sub-plugins manually, with the custom_plugins configuration directive - or through the `KONG_CUSTOM_PLUGINS` environment variable; for example:
+
+    Set the following in the kong.conf file:
+
+    ```
+    custom_plugins=openid-connect-verification,openid-connect-authentication,openid-connect-protection
+    ```
+    Or the following environment variable:
+    ```
+    KONG_CUSTOM_PLUGINS=openid-connect-verification,openid-connect-authentication,openid-connect-protection
+    ```
+    The all-in-one version of OIDC is enabled by default (and is not deprecated).
+
+    - Always log the original error message when authorization code flow verification fails
+    - Optimize usage of ngx.ctx by loading it once and then passing it to functions
+    - **Breaking change** - Change config.ssl_verify default to false.
+
+**FEATURES**
+
+- **Dev Portal**
+  - Filterable API list
+  - Improved portal management in Kong Manager
+    - Overview page with quick links to portal, create pages
+    - Split out pages, specs, partials for ease of navigation
+  - SMTP support and admin/access request workflow improvements
+  - Global search
+  - Option for one dev portal per workspace, and option to enable within Kong Manager
+  - Improved OAS 3.0 support
+  - Markdown support
+- **Kong Manager**
+  - Workspaces are now configurable in Kong Manager
+    - Creation, management of workspaces for super admin
+    - RBAC assignment globally for super admin
+    - Vitals is workspace-aware
+  - Support for inviting additional users
+  - Self-service credential management
+  - General UI cleanup (tables, modals, forms, notifications)
+  - New menu/navigation system
+- **Vitals**
+  - Functionality to support storing Vitals data in Prometheus (via the StatsD Advanced plugin)
+  - InfluxDB support for Vitals
+- **Plugins**
+  - HTTPS support for **Forward Proxy plugin**
+  - **Route by header** added to the package - docs can be found [here](https://docs.konghq.com/hub/kong-inc/route-by-header/)
+  - **JWT Signer** added to the package - docs can be found [here](https://docs.konghq.com/hub/kong-inc/jwt-signer/)
+  - **OpenID Connect**
+    - Add `config.unauthorized_error_message`
+    - Add `config.forbidden_error_message`
+    - Add `config.http_proxy`
+    - Add `config.https_proxy`
+    - Add `config.keepalive`
+    - Add `config.authenticated_groups_claim`
+    - Add `config.rediscovery_lifetime`
+    - Add support for `X-Forwarded-*` headers in automatic `config.redirect_uri` generation
+    - Add `config.session_cookie_path`
+    - Add `config.session_cookie_domain`
+    - Add `config.session_cookie_samesite`
+    - Add `config.session_cookie_httponly`
+    - Add `config.session_cookie_secure`
+    - Add `config.authorization_cookie_path`
+    - Add `config.authorization_cookie_domain`
+    - Add `config.authorization_cookie_samesite`
+    - Add `config.authorization_cookie_httponly`
+    - Add `config.authorization_cookie_secure`
+- **CORE**
+  - Admin API and DAO Audit Log 
+  - **Healthchecks**
+    - HTTPS support
+  - **License**
+    - Added an increasingly `loud` logging to notify via nginx logs as the expiration date approaches
+      - 90 days before the expiration date: Daily `WARN` log
+      - 30 days before the expiration date: Daily `ERR` log
+      - After the expiration date: Daily `CRIT` log
+- **Workspaces**
+  - Added endpoint `/workspaces/:ws_id/meta` that provides info about workspace `ws_id`. Current counts of entities per entity type are returned
+
+**FIXES**
+- **CORE**
+  - **Plugin runloop**
+    - Fix issue where Log phase plugins are not executed for request with non-matching routes. 
+    Note: For request with non-matching routes, every logging phase plugin enabled in the cluster will run irrespective of the workspace where it's configured
+  - **Workspaces**
+    - Logging plugins log workspace info about requests
+    - Fix issue where attempt to share an entity outside the current request's workspace would result in an Internal Server Error
+    - Fix issue where a global plugin would be executed for a workspace where it doesn't belong
+  - **RBAC**
+    - Fix issue where admin could grant privileges to workspaces on which they don't have permissions
+    - Permissions created with the `/rbac/roles/:role/endpoints` endpoint receive the current request's workspace instead of the default workspace
+    - Return HTTP status code 500 for database errors instead of 401 and 404
+    - Fix issue where a user with Admin privilege was able to access RBAC admin endpoints
+  - **DAO**
+    - Allow self-signed certificates in Cassandra connections
+    - check for schema consensus in Cassandra migration
+    - Ensure ScyllaDB compatibility in Cassandra migraton
+  - **Config**
+    - IPv6 addresses in listen configuration directives are correctly parsed
+  - **Certificates & SNIs**
+    - Fix issue where internal server error was returned when CRUD operations were performed on Certificate endpoint
+- **Plugins**
+  - **Request Termination**
+    - Allow user to unset the value of `config.body` or `config.message` or both  
+  - **Zipkin**
+    - Fix failures when request is invalid or exits early
+    - Fix issue when service name is missing
+  - **Proxy Cache**
+    - Fix issue where responses were not cached if they met at least one positive criteria and did not meet any negative criteria
+    - Allow caching of responses without an explicit `public` directive in the `Cache-Control` header
+  - **HMAC Authentication**
+    - Fix issue where request was not correctly validated against the digest header when `config.validate_request_body` was set and request had no body
+
+  - **OpenID Connect**
+    - Fix `cache.tokens_load` ttl fallback to access token exp in case when expires_in is missing
+    - Fix headers to not set when header value is `ngx.null` (a bit more robust now)
+    - Fix encoding of complex upstream and downstream headers
+    - Fix multiple authentication plugins AND / OR scenarios
+    - Fix expiry leeway counting when there is refresh token available and when there is not.
+    - Fix issue when using password grant or client credentials grant with token caching enabled, and rotating keys on IdP that caused the cached tokens to give 403. The cached tokens will now be flushed and new tokens will be retrieved from the IdP.
+    - Fix a bug that prevented sub-plugins from loading the issuer data.
+
 ## 0.33-2 - 2018/10/09
 
 **Notifications**
