@@ -2,7 +2,7 @@
 
 name: StatsD Advanced
 publisher: Kong Inc.
-version: 0.33-x
+version: 0.34-x
 
 desc: Send metrics to StatsD with more flexible options
 description: |
@@ -22,7 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.33-x
+        - 0.34-x
 
 params:
   name: statsd-advanced
@@ -62,7 +62,7 @@ params:
     By default the Plugin sends a packet for each metric it observes. `udp_packet_size` configures the greatest datagram size the Plugin can combine. It should be less than 65507 according to UDP protocol. Please consider the MTU of the network when setting this parameter.
 ---
 
-### Metrics
+## Metrics
 
 Metric                     | description | namespace
 ---                        | ---         | ---
@@ -76,6 +76,7 @@ Metric                     | description | namespace
 `upstream_latency`         | the time it took for the final Service to process the request | kong.service.\<service_identifier>.upstream_latency
 `kong_latency`             | the internal Kong latency that it took to run all the Plugins | kong.service.\<service_identifier>.kong_latency
 `status_count_per_user`    | the status code for per Consumer per Service | kong.service.\<service_identifier>.user.\<customer_id>.status.\<status>
+`status_count_per_workspace`         | the status code per Workspace | kong.service.\<service_identifier>.workspace.\<workspace_identifier>.status.\<status>
 `status_count_per_user_per_route`    | the status code per Consumer per Route | kong.route.\<route_id>.user.\<customer_id>.status.\<status>
 `shdict_usage`             | the usage of shared dict, sent once every minute |kong.node.\<node_hostname>.shdict.\<shdict_name>.free_space and kong.node.\<node_hostname>.shdict.\<shdict_name>.capacity
 
@@ -91,7 +92,7 @@ Metric                     | description | namespace
 `status_count`             | the status code | kong.global.unmatched.status.\<status>.count
 `kong_latency`             | the internal Kong latency that it took to run all the Plugins | kong.global.unmatched.kong_latency
 
-#### Metric Fields
+### Metric Fields
 
 Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields:
 
@@ -102,8 +103,9 @@ Field         | description                                             | allowe
 `sample_rate`<br>*conditional*   | sampling rate                        | `number`                 
 `customer_identifier`<br>*conditional* | authenticated user detail       | `consumer_id`, `custom_id`, `username`
 `service_identifier`<br>*conditional* | Service detail       | `service_id`, `service_name`, `service_host`, `service_name_or_host`
+`workspace_identifier`<br>*conditional* | Workspace detail       | `workspace_id`, `workspace_name`
 
-#### Metric Behaviors
+### Metric Behaviors
 
 1.  By default all metrics get logged.
 2.  Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
@@ -112,9 +114,10 @@ Field         | description                                             | allowe
 5.  `shdict_usage` work only with `stat_type` as `gauge`.
 6.  `status_count_per_user`, `request_per_user`, `unique_users` and `status_count_per_user_per_route` must have `customer_identifier` defined.
 7.  All metrics can optionally configure `service_identifier`; by default it's set to `service_name_or_host`.
+8.  `status_count_per_workspace` must have `workspace_identifier` defined.
 
 
-### Kong Process Errors
+## Kong Process Errors
 
 This logging Plugin will only log HTTP request and response data. If you are
 looking for the Kong process error file (which is the nginx error file), then

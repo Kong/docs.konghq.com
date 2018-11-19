@@ -2,7 +2,7 @@
 
 name: Proxy Caching
 publisher: Kong Inc.
-version: 0.33-x
+version: 0.34-x
 
 desc: Cache and serve commonly requested responses in Kong
 description: |
@@ -18,7 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.33-x
+        - 0.34-x
 
 params:
   name: proxy-cache
@@ -41,7 +41,7 @@ params:
         Downstream request methods considered cacheable
     - name: content_type
       required:
-      default: text/plain
+      default: text/plain, application/json
       value_in_examples:
       description: |
         Upstream response content types considered cacheable
