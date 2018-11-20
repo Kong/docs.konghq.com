@@ -16,8 +16,6 @@ title: Kong Enterprise Changelog
 
 - **Kong Manager**
   - The name of the `Admin GUI` has changed to `Kong Manager`
-- **Licensing**
-  - License expiration logs: Kong will start logging the license expiration date once a day - with a `WARN` log - 90 days before the expiry; 30 days before, the log severity increases to `ERR` and, after expiration, to `CRIT`
 
 **CHANGES**
 - **Admin API**
@@ -113,11 +111,6 @@ title: Kong Enterprise Changelog
   - Admin API and DAO Audit Log 
   - **Healthchecks**
     - HTTPS support
-  - **License**
-    - Added an increasingly `loud` logging to notify via nginx logs as the expiration date approaches
-      - 90 days before the expiration date: Daily `WARN` log
-      - 30 days before the expiration date: Daily `ERR` log
-      - After the expiration date: Daily `CRIT` log
 - **Workspaces**
   - Added endpoint `/workspaces/:ws_id/meta` that provides info about workspace `ws_id`. Current counts of entities per entity type are returned
 
