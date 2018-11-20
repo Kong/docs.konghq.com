@@ -199,11 +199,12 @@ authentication plugin you have chosen.
 
 Supported Plugins:
 
-Value to Use        | Authentication Type
-----------------------+--------------------------
-basic-auth          | Basic Authentication
-ldap-auth-advanced  | LDAP Authentication
-
+```
+ Value to Use      | Authentication Type  
+-------------------|----------------------
+basic-auth         | Basic Authentication 
+ldap-auth-advanced | LDAP Authentication  
+```
 
 ### admin_gui_auth_conf
 
