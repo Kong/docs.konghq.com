@@ -19,12 +19,12 @@ id: documentation
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg"
           alt="Documentation" />
       </div>
-      <div class="page-header-title">
+      <div class="page-header-title {% if page.edition=='enterprise' %} page-header-title-enterprise {% endif %}">
         <h1>{{page.title}}</h1>
       </div>
 
       {% if page.kong_versions.size > 1 %}
-      <div class="versions-dropdown dropdown page-header-right">
+      <div class="versions-dropdown dropdown page-header-right {% if page.edition=='enterprise' %} page-header-right-enterprise {% endif %}">
         <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           Version {{page.kong_version}}
