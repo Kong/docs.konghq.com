@@ -101,3 +101,29 @@ You can deploy one of the following Kong templates from the marketplace:
 ## Running Kong on Azure Container Instances
 
 For more information, see [Running Kong on Azure Container Instances](./../microsoft_azure_container_instances).
+
+## Storing Kong metadata in Microsoft Azure
+### Running PostgreSQL on Azure with Azure Database for PostgreSQL
+Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
+
+Here are the simple steps to provision one:
+
+1. Go to the <a href="https://portal.azure.com" target="blank">Azure Portal</a>
+1. Create a new "Azure Database for PostgreSQL" instance
+1. Go to "Connection Security" and enable access to Azure services
+1. Create a new database called "kong" by using your favorite tool
+
+<div class="alert alert-warning">
+  <div class="text-center">
+    <strong>Note</strong>: Before connecting to your new database, make sure your IP address is whitelisted in "Connection Security"
+  </div>
+</div>
+
+### Running Cassandra on Azure with Azure Cosmos Db
+Currently, Azure Cosmos Db is not supported as a Cassandra data store.
+
+<div class="alert alert-info">
+  <div class="text-center">
+    <strong>Note</strong>: See <a href="https://github.com/Kong/docker-kong/issues/188" target="blank">#188</a> for more information.
+  </div>
+</div>
