@@ -100,7 +100,7 @@
 - title: Kong Dev Portal
   items:
     - text: Overview
-      url: /developer-portal/overview
+      url: /developer-portal/introduction
     - text: Configuration
       url: /developer-portal/configuration/getting-started
       items:
