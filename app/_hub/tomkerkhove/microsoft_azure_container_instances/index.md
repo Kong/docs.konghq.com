@@ -87,8 +87,8 @@ Running Kong on Azure Container Instances is super easy:
 1. **Provision a data store**
 
     Provision the data store that you want to use:
-    1. [Running Cassandra on Azure with Azure Cosmos Db](#running-cassandra-on-azure-with-azure-cosmos-db)
-    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](#running-postgresql-on-azure-with-azure-database-for-postgresql)
+    1. [Running Cassandra on Azure with Azure Cosmos Db](./microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db)
+    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](./microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql)
 
 1. **Open the Cloud Shell or Azure CLI**
 
@@ -137,28 +137,3 @@ Running Kong on Azure Container Instances is super easy:
     That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io`.
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
-
-## Running PostgreSQL on Azure with Azure Database for PostgreSQL
-Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
-
-Here are the simple steps to provision one:
-
-1. Go to the <a href="https://portal.azure.com" target="blank">Azure Portal</a>
-1. Create a new "Azure Database for PostgreSQL" instance
-1. Go to "Connection Security" and enable access to Azure services
-1. Create a new database called "kong" by using your favorite tool
-
-<div class="alert alert-warning">
-  <div class="text-center">
-    <strong>Note</strong>: Before connecting to your new database, make sure your IP address is whitelisted in "Connection Security"
-  </div>
-</div>
-
-## Running Cassandra on Azure with Azure Cosmos Db
-Currently, Azure Cosmos Db is not supported as a Cassandra data store.
-
-<div class="alert alert-info">
-  <div class="text-center">
-    <strong>Note</strong>: See <a href="https://github.com/Kong/docker-kong/issues/188" target="blank">#188</a> for more information.
-  </div>
-</div>
