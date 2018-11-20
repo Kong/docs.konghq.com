@@ -222,8 +222,8 @@ the Admin API won’t be available on the old cluster for the entire process.
 
 #### Considerations before Upgrading to 0.34
 
-* Vitals will now be enabled by default. Any Admin who logs in to Kong Manager will have the ability to see charts and metrics for Workspaces they have access to.
 * Key Authentication is being deprecated in favor of Basic Authentication. *Before migrating to 0.34, anyone using Key Authentication in 0.33-x should create Basic Authentication credentials for all of their Admins.*
+* Vitals will now be enabled by default. Any Admin who logs in to Kong Manager will have the ability to see charts and metrics for Workspaces they have access to.
 * The Dev Portal and Kong Manager no longer allow use of proxy ports in 0.34. Note that any previous proxies will need to be updated according to [Dev Portal Networking](enterprise/{{page.kong_version}}/developer-portal/configuration/networking/) and [Kong Manager Networking](enterprise/{{page.kong_version}}/kong-manager/configuration/networking/).
 * The Dev Portal now supports Workspaces. Existing Dev Portal configurations, files, URLs, and developers will be moved to the 'Default' Workspace. See [Working with Workspaces](/enterprise/{{page.kong_version}}/developer-portal/configuration/workspaces)
 * For a complete list of new features in 0.34, refer to the [Changelog](/enterprise/changelog).
