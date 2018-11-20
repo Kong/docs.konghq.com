@@ -103,6 +103,8 @@ You can deploy one of the following Kong templates from the marketplace:
 For more information, see [Running Kong on Azure Container Instances](./../microsoft_azure_container_instances).
 
 ## Storing Kong metadata in Microsoft Azure
+When running Kong you also need to store its metadata somewhere - Microsoft Azure can help with this as well!
+
 ### Running PostgreSQL on Azure with Azure Database for PostgreSQL
 Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
 
