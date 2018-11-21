@@ -77,7 +77,7 @@ You can change this in your configuration to enable Vitals with Prometheus:
 # via your Kong configuration file
 vitals = on
 vitals_strategy = prometheus
-vitals_statsd_address = statsd-node:9102
+vitals_statsd_address = statsd-node:9125
 vitals_tsdb_address = prometheus-node:9090
 ```
 
@@ -85,7 +85,7 @@ vitals_tsdb_address = prometheus-node:9090
 # or via environment variables
 $ export KONG_VITALS=on
 $ export KONG_VITALS_STRATEGY=prometheus
-$ export KONG_VITALS_STATSD_ADDRESS=statsd-node:9102
+$ export KONG_VITALS_STATSD_ADDRESS=statsd-node:9125
 $ export KONG_TSDB_ADDRESS=prometheus-node:9090
 ```
 
