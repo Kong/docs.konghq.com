@@ -1,15 +1,14 @@
 ---
-name: Microsoft Azure
-publisher: Tom Kerkhove
+name: Kong on Microsoft Azure Certified
+publisher: Bitnami
 
 categories:
   - deployment
 
 type: integration
 
-desc: Deploy Kong on Microsoft Azure # (required) 1-liner description; max 80 chars
+desc: # (required) 1-liner description; max 80 chars
 description: #|
-  This guide walks you through the options to run Kong on Microsoft Azure.
   # (required) extended description.
   # Use YAML piple notation for extended entries.
   # EXAMPLE long text format (do not use this entry)
@@ -21,11 +20,9 @@ description: #|
   #   industry. Lorem Ipsum has been the industry's standard dummy text ever
   #   since the 1500s.
 
-support_url: https://github.com/tomkerkhove/kong-deployment-on-azure/issues
-  # Defaults to the url setting in your publisher profile.
+support_url: # Defaults to the url setting in your publisher profile.
 
-source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
-  # (Optional) If your extension is open source, provide a link to your code.
+source_url: # (Optional) If your extension is open source, provide a link to your code.
 
 #license_type:
   # (Optional) For open source, use the abbreviations in parentheses at:
@@ -88,40 +85,12 @@ You can deploy one of the following Kong templates from the marketplace:
 
 1. **Kong Certified by Bitnami**
 
-    For more information, see [guidance provided by Bitnami](./../../bitnami/microsoft_azure/).
+    The Bitnami Kong Stack provides a one-click install solution for Kong. Bitnami certifies that the images are secure, up-to-date, and packaged using industry best practices.
 
-1. **Kong Cluster by Bitnami**
+    You can deploy it in Azure [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong) and all the documentation you need to configure and manage the server at the [Bitnami Docs](https://docs.bitnami.com/azure/apps/kong/).
 
-    For more information, see [guidance provided by Bitnami](./../../bitnami/microsoft_azure/).
+1. **Kong Cluster**
 
-## Running Kong on Azure Container Instances
+    Kong Cluster for production environments - This solution configures a load-balanced Kong cluster with an additional Cassandra cluster for data storage. This solutions is a perfect choice to ensure high availability and performance in medium/large size production environments.
 
-For more information, see [Running Kong on Azure Container Instances](./../microsoft_azure_container_instances).
-
-## Storing Kong metadata in Microsoft Azure
-When running Kong you also need to store its metadata somewhere - Microsoft Azure can help with this as well!
-
-### Running PostgreSQL on Azure with Azure Database for PostgreSQL
-Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
-
-Here are the simple steps to provision one:
-
-1. Go to the <a href="https://portal.azure.com" target="blank">Azure Portal</a>
-1. Create a new "Azure Database for PostgreSQL" instance
-1. Go to "Connection Security" and enable access to Azure services
-1. Create a new database called "kong" by using your favorite tool
-
-<div class="alert alert-warning">
-  <div class="text-center">
-    <strong>Note</strong>: Before connecting to your new database, make sure your IP address is whitelisted in "Connection Security"
-  </div>
-</div>
-
-### Running Cassandra on Azure with Azure Cosmos Db
-Currently, Azure Cosmos Db is not supported as a Cassandra data store.
-
-<div class="alert alert-info">
-  <div class="text-center">
-    <strong>Note</strong>: See <a href="https://github.com/Kong/docker-kong/issues/188" target="blank">#188</a> for more information.
-  </div>
-</div>
+    You can deploy Kong Cluster in Azure [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong-cluster) and learn more about how the Cluster is configured at the [Bitnami Docs](https://docs.bitnami.com/azure-templates/apps/kong/get-started/understand-cluster-config/).
