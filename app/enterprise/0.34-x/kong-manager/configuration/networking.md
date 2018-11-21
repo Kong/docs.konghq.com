@@ -68,6 +68,10 @@ Emails from Kong Manager require the following configuration:
 * [`admin_emails_reply_to`](/enterprise/{{page.kong_version}}/property-reference/#admin_emails_reply_to)
 * [`admin_invitation_expiry`](/enterprise/{{page.kong_version}}/property-reference/#admin_invitation_expiry)
 
+⚠️**Important:** If the SMTP settings are configured incorrectly, 
+e.g. if they point to a non-existent email address, Kong Manager will not 
+display errors. 
+
 In addition, refer to the 
 [general SMTP configuration](enterprise/{{page.kong_version}}/property-reference/#general-smtp-configuration) 
 shared by Kong Manager and Dev Portal.
