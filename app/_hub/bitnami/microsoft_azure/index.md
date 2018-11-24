@@ -37,7 +37,7 @@ license_url: https://bitnami.com/azure/terms
 privacy_policy_url: https://bitnami.com/privacy
   # (Optional) Link to a remote privacy policy
 
-#terms_of_service:
+terms_of_service: Bitnami Terms of Use can be found at https://bitnami.com/terms-of-use
   # (Optional) Text describing your terms of service.
 
 terms_of_service_url: https://bitnami.com/terms-of-use
