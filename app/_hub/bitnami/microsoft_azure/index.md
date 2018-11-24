@@ -1,4 +1,5 @@
 ---
+# This template is maintained by @marcosbc from Bitnami
 name: Kong on Microsoft Azure Certified
 publisher: Bitnami
 
@@ -7,8 +8,16 @@ categories:
 
 type: integration
 
-desc: # (required) 1-liner description; max 80 chars
-description: #|
+desc: The Bitnami Kong Stack provides a one-click install solution for Kong.
+description: |
+  The Bitnami Kong Stack provides a one-click install solution for Kong.
+  Bitnami certifies that the images are secure, up-to-date, and packaged using
+  industry best practices.
+
+  Looking for Kong with fault tolerance and support for heavier workloads? Try
+  Bitnami’s Kong Cluster solution, which uses the native cloud provider APIs to
+  deploy a multi-node, load-balanced Kong cluster and an additional Cassandra
+  cluster for data storage.
   # (required) extended description.
   # Use YAML piple notation for extended entries.
   # EXAMPLE long text format (do not use this entry)
