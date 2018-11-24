@@ -40,7 +40,7 @@ source_url: # (Optional) If your extension is open source, provide a link to you
 #terms_of_service:
   # (Optional) Text describing your terms of service.
 
-#terms_of_service_url:
+terms_of_service_url: https://bitnami.com/terms-of-use
   # (Optional) Link to your online TOS.
 
 # COMPATIBILITY
