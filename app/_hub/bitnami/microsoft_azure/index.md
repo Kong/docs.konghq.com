@@ -20,7 +20,7 @@ description: #|
   #   industry. Lorem Ipsum has been the industry's standard dummy text ever
   #   since the 1500s.
 
-support_url: # Defaults to the url setting in your publisher profile.
+support_url: https://bitnami.com/support/azure
 
 source_url: # (Optional) If your extension is open source, provide a link to your code.
 
