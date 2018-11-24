@@ -28,7 +28,7 @@ source_url: # (Optional) If your extension is open source, provide a link to you
   # (Optional) For open source, use the abbreviations in parentheses at:
   # https://opensource.org/licenses/alphabetical
 
-#license_url:
+license_url: https://bitnami.com/azure/terms
   # (Optional) Link to your custom license.
 
 #privacy_policy:
