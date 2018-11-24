@@ -31,7 +31,7 @@ license_type: Apache-2.0
 license_url: https://bitnami.com/azure/terms
   # (Optional) Link to your custom license.
 
-#privacy_policy:
+privacy_policy: Bitnami Privacy Policy can be found at https://bitnami.com/privacy
   # (Optional) If you have a custom privacy policy, place it here
 
 privacy_policy_url: https://bitnami.com/privacy
