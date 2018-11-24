@@ -34,7 +34,7 @@ source_url: # (Optional) If your extension is open source, provide a link to you
 #privacy_policy:
   # (Optional) If you have a custom privacy policy, place it here
 
-#privacy_policy_url:
+privacy_policy_url: https://bitnami.com/privacy
   # (Optional) Link to a remote privacy policy
 
 #terms_of_service:
