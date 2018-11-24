@@ -18,17 +18,7 @@ description: |
   Bitnami’s Kong Cluster solution, which uses the native cloud provider APIs to
   deploy a multi-node, load-balanced Kong cluster and an additional Cassandra
   cluster for data storage.
-  # (required) extended description.
-  # Use YAML piple notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
-  #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
-
+  
 support_url: https://bitnami.com/support/azure
 
 source_url: # (Optional) If your extension is open source, provide a link to your code.
