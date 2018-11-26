@@ -123,6 +123,8 @@
           url: /developer-portal/management/developers
     - text: Customization
       url: /developer-portal/customization
+    - text: Smart Components
+      url: /developer-portal/smart-components
     - text: Developers
       url: /developer-portal/developers/developer-access
       items:
