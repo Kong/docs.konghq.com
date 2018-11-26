@@ -197,8 +197,8 @@ directive.
 Here you may specify the configuration for the 
 authentication plugin you have chosen.
 
-* For [Basic Authentication](/hub/kong-inc/basic-auth/), set the value to `basic-auth`
-* For [LDAP Authentication](/hub/kong-inc/ldap-auth-advanced/), set the value to `ldap-auth-advanced`
+* For Basic Authentication, set the value to `basic-auth`
+* For LDAP Authentication, set the value to `ldap-auth-advanced`
 
 ### admin_gui_auth_conf
 
