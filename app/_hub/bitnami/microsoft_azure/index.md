@@ -8,7 +8,7 @@ categories:
 
 type: integration
 
-desc: The Bitnami Kong Stack provides a one-click install solution for Kong.
+desc: The Bitnami Kong Stack provides a one-click install solution for Kong
 description: |
   The Bitnami Kong Stack provides a one-click install solution for Kong.
   Bitnami certifies that the images are secure, up-to-date, and packaged using
@@ -18,25 +18,25 @@ description: |
   Bitnami’s Kong Cluster solution, which uses the native cloud provider APIs to
   deploy a multi-node, load-balanced Kong cluster and an additional Cassandra
   cluster for data storage.
-  
+
 support_url: https://bitnami.com/support/azure
 
 source_url: # (Optional) If your extension is open source, provide a link to your code.
 
-license_type: Apache-2.0
+# license_type: Apache-2.0
   # (Optional) For open source, use the abbreviations in parentheses at:
   # https://opensource.org/licenses/alphabetical
 
 license_url: https://bitnami.com/azure/terms
   # (Optional) Link to your custom license.
 
-privacy_policy: Bitnami Privacy Policy can be found at https://bitnami.com/privacy
+# privacy_policy:
   # (Optional) If you have a custom privacy policy, place it here
 
 privacy_policy_url: https://bitnami.com/privacy
   # (Optional) Link to a remote privacy policy
 
-terms_of_service: Bitnami Terms of Use can be found at https://bitnami.com/terms-of-use
+# terms_of_service:
   # (Optional) Text describing your terms of service.
 
 terms_of_service_url: https://bitnami.com/terms-of-use
