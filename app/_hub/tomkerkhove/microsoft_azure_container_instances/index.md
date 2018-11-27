@@ -21,7 +21,7 @@ desc: Deploy Kong on Microsoft Azure Container Instances # (required) 1-liner de
 description: |
   This guide walks you through deploying and running Kong on Microsoft Azure Container Instances.
 
-  We will be using either Azure Database for PostgreSQL or Cosmos Db to store the gateway configuration.
+  We will be using either Azure Database for PostgreSQL or Cosmos DB to store the gateway configuration.
 support_url: https://github.com/tomkerkhove/kong-deployment-on-azure/issues
   # Defaults to the url setting in your publisher profile.
 
@@ -80,15 +80,15 @@ kong_version_compatibility: # required
 ---
 
 ## Running Kong on Azure Container Instances
-<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview" target="blank">Azure Container Instances</a> is a great way to run lightweight containers in a serverless fashion.
+[Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview) is a great way to run lightweight containers in a serverless fashion.
 
 Running Kong on Azure Container Instances is super easy:
 
 1. **Provision a datastore**
 
     Provision the datastore that you want to use:
-    1. [Running Cassandra on Azure with Azure Cosmos DB](./../microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db)
-    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](./../microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql)
+    1. [Running Cassandra on Azure with Azure Cosmos DB](/hub/tomkerkhove/microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db)
+    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql)
 
 1. **Open the Cloud Shell or Azure CLI**
 
@@ -104,7 +104,7 @@ Running Kong on Azure Container Instances is super easy:
                                                   KONG_PG_PASSWORD="<password>" \
                           --command-line "kong migrations up"
     ```
-    In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](#running-postgresql-on-azure-with-azure-database-for-postgresql).
+    In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql).
 
 1. **Start Kong**
 
