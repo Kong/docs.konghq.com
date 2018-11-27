@@ -88,15 +88,15 @@ You can deploy one of the following Kong templates from the marketplace:
 
 1. **Kong Certified by Bitnami**
 
-    For more information, see [guidance provided by Bitnami](./../../bitnami/microsoft_azure/).
+    For more information, see [guidance provided by Bitnami](/hub/bitnami/microsoft_azure/).
 
 1. **Kong Cluster by Bitnami**
 
-    For more information, see [guidance provided by Bitnami](./../../bitnami/microsoft_azure/).
+    For more information, see [guidance provided by Bitnami](/hub/bitnami/microsoft_azure/).
 
 ## Running Kong on Azure Container Instances
 
-For more information, see [Running Kong on Azure Container Instances](./../microsoft_azure_container_instances).
+For more information, see [Running Kong on Azure Container Instances](/hub/tomkerkhove/microsoft_azure_container_instances).
 
 ## Provisioning a Kong datastore in Microsoft Azure
 When running Kong you need a datastore - Microsoft Azure can help with this as well!
