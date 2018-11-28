@@ -1,6 +1,8 @@
 <!-- 
 Thank your for making Kong better! #kongstrong
 
+After creating a pull request, we will automatically generate a preview version of the docs site with your changes. You should see a comment with a link on your PR several minutes after it is created. Please review the generated preview for broken links, formatting issues, etc. if you have not already done so using a local preview.
+
 note: Check existing issues and pull-requests before submitting new ones, as a courtesy to the maintainers and making sure work isn't duplicated.
 -->
 
