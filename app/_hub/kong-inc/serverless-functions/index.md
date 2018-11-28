@@ -28,6 +28,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  run_on: first/second/all (default: first)
   config:
     - name: functions
       required: true

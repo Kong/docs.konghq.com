@@ -52,6 +52,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  run_on: first/second/all (default: first)
   config:
     - name: path
       required: true

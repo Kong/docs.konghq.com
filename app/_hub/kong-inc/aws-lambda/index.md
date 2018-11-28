@@ -42,6 +42,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  run_on: first
   config:
     - name: aws_key
       required: true

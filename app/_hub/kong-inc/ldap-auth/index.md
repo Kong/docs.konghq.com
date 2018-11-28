@@ -41,6 +41,7 @@ params:
   service_id: false
   route_id: true
   consumer_id: false
+  run_on: first
   config:
     - name: hide_credentials
       required: false

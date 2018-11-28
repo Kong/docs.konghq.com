@@ -58,6 +58,7 @@ params:
   service_id: true
   route_id: false
   consumer_id: false
+  run_on: first
   config:
     - name: scopes
       required: true

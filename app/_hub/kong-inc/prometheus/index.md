@@ -22,6 +22,7 @@ params:
   api_id: true
   service_id: true
   route_id: true
+  run_on: first/second/all (default: first)
 
 ---
 

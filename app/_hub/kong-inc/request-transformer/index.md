@@ -45,6 +45,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  run_on: first
   config:
     - name: http_method
       required: false

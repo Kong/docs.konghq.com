@@ -46,6 +46,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  run_on: second if policy is local, first otherwise
   config:
     - name: second
       required: semi

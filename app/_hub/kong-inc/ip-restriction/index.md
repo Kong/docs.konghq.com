@@ -39,6 +39,7 @@ params:
   consumer_id: true
   protocol: http+stream # FIXME remove or correct this value before publication
   run_on: all # FIXME remove or correct this value before publication
+  run_on: first
   config:
     - name: whitelist
       required: semi

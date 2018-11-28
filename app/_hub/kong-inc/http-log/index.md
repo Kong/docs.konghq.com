@@ -47,7 +47,7 @@ params:
   route_id: true
   consumer_id: true
   protocol: stream # FIXME remove or correct this value before publication
-  run_on: second # FIXME remove or correct this value before publication
+  run_on: first/second/all (default: first)
   config:
     - name: http_endpoint
       required: true

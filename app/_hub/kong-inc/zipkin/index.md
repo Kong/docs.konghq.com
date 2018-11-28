@@ -1,5 +1,5 @@
 ---
-name: Zipkin  
+name: Zipkin
 publisher: Kong Inc.
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
@@ -36,6 +36,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  run_on: all
   config:
     - name: http_endpoint
       required: true
