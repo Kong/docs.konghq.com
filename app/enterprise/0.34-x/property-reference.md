@@ -600,6 +600,7 @@ The name and email address for the 'From' header included in all Dev Portal emai
 portal_emails_from = Your Name <example@example.com>
 ```
 
+⚠️ **IMPORTANT:** Some SMTP servers may require valid email addresses
 
 ### portal_emails_reply_to
 
@@ -615,6 +616,7 @@ The email address for the 'Reply-To' header included in all Dev Portal emails.
 portal_emails_reply_to: noreply@example.com
 ```
 
+⚠️ **IMPORTANT:** Some SMTP servers may require valid email addresses
 
 ## Admin SMTP Configuration
 
