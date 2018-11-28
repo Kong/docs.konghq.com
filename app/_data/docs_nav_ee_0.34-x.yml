@@ -122,9 +122,12 @@
         - text: Managing Developers
           url: /developer-portal/management/developers
     - text: Customization
-      url: /developer-portal/customization
-    - text: Smart Components
-      url: /developer-portal/smart-components
+      url: /developer-portal/customization/customization
+      items:
+          - text: Customizing the Dev Portal
+            url: /developer-portal/customization/customization
+          - text: Smart Components
+            url: /developer-portal/customization/smart-components
     - text: Developers
       url: /developer-portal/developers/developer-access
       items:

@@ -4,15 +4,26 @@ title: Using Smart Components with the Dev Portal
 
 ## Working with Components in the Dev Portal
 
-The Dev Portal makes accessible both Vue and React to be used within it's template files.  This guide will focus on developing with Vue.
+The Kong Dev Portal supports the use of Vue.js and React.js within the Dev 
+Portal template files to customize the functionality and look of the Dev Portal.
 
-Working with Vue within Handlebars templates will feel familiar outside of a few caveats which will be covered below.  In addition to this guide, the Default Dev Portal ships with examples of how you can use these 'smart components' in your portal.
+Working with Vue within Handlebars templates will feel familiar outside of a few
+ caveats which will be covered below.  In addition to this guide, the Default 
+ Dev Portal ships with examples of how to use these 'smart components'.
+
+
 
 ### Filetype
-All non-spec files must have a primary filetype of `.hbs` (Handlebars).  As a result Vue components are written within `.hbs` files, it is suggested to indicate this by appending `-vue` to the filename: `sample.hbs` -> `sample-vue.hbs`
+All non-spec files must have a primary filetype of `.hbs` (Handlebars).  As a 
+result Vue components are written within `.hbs` files, it is suggested to 
+indicate this by appending `-vue` to the filename: `sample.hbs` -> 
+`sample-vue.hbs`
 
 ### Instantiation
-In order to render correctly you must instantiate components within a callback passed to `window.registerApp`. Vue and React libraries are accessible via the window.  After handlebars renders the initial template, the dev portal will iterate over and instantiate each component passed to it via `registerApp`.
+In order to render correctly components must be instantiated within a callback 
+passed to `window.registerApp`. Vue and React libraries are accessible via the 
+window.  After handlebars renders the initial template, the Dev Portal will 
+iterate over and instantiate each component passed to it via `registerApp`.
 
 {% raw %}
   ```handlebars
@@ -38,7 +49,9 @@ In order to render correctly you must instantiate components within a callback p
 {% endraw %}
 
 ### Delimiters
-Handlebars & Vue share the use of the same template delimiters, this will cause issues as the libraries will not know which fields should be used by who.  For this reason it is necessary to indicate custom delimiters in your Vue template:
+Handlebars & Vue share the use of the same template delimiters, this will cause 
+issues as the libraries will not know which fields should be used by who.  For 
+this reason it is necessary to indicate custom delimiters in the Vue template:
 
 {% raw %}
   ```handlebars
@@ -76,7 +89,8 @@ Handlebars & Vue share the use of the same template delimiters, this will cause 
 {% endraw %}
 
 ### File Structure
-Vue maintains its general structure when written within handlebars and consists of `template`, `component`, and `style` sections.
+Vue maintains its general structure when written within handlebars and consists 
+of `template`, `component`, and `style` sections.
 
 {% raw %}
   ```handlebars
@@ -113,7 +127,12 @@ Vue maintains its general structure when written within handlebars and consists 
 {% endraw %}
 
 ### Importing
-If you would like to import logic from another file (for example if two components use shared logic), you can do so via handlebars partials. In order to access the logic contained in the imported file, attach importable content to the window.  Reference `search/widget.hbs` or `spec/dropdown.hbs` partials in the default dev portal which act as working examples of how this can be done.
+Importing logic from one file to another can be done via a handlebars partial. 
+In order to access the logic contained in the imported file, attach importable 
+content to the window.  Reference `search/widget.hbs` or `spec/dropdown.hbs` 
+partials in the default dev portal which act as working examples of how this can
+ be done.
+
 
 `import/helper-js.hbs`
 {% raw %}
