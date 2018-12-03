@@ -42,7 +42,7 @@ To create credentials for the first Super Admin account:
       ```
 
 4. Log in to Kong Manager with the username `kong_admin` and the password set 
-in step 2.
+in step 1.
 
 ![Log in to Kong Manager](https://konghq.com/wp-content/uploads/2018/11/km-rename.png)
 
