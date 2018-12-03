@@ -1154,7 +1154,7 @@ The origins configuration can be useful in complex networking configurations, an
 
 The term origin (singular) refers to a particular scheme/host or IP address/port triple, as described in RFC 6454 (https://tools.ietf.org/html/rfc6454#section-3.2). In Kong's `origins` configuration, the scheme *must* be one of `http`, `https`, `tcp`, or `tls`. In each pair of origins, the scheme *must* be of similar type - thus `http` can pair with `https`, and `tcp` can pair with `tls`, but `http` and `https` cannot pair with `tcp` and `tls`.
 
-Like all Kong configuration settings, the `origins` setting *can* be declared in the `Kong.conf` file - however **it is recommended that Kong administrators avoid doing so**. Instead, `origins` should be set on a per-node basis using [environment variables](https://docs.konghq.com/0.15.x/configuration/#environment-variables). As such, `origins` is not present in [`kong.conf.default`](https://github.com/Kong/kong/blob/master/kong.conf.default).  
+Like all Kong configuration settings, the `origins` setting *can* be declared in the `Kong.conf` file - however **it is recommended that Kong administrators avoid doing so**. Instead, `origins` should be set on a per-node basis using [environment variables](/{{page.kong_version}}/configuration/#environment-variables). As such, `origins` is not present in [`kong.conf.default`](https://github.com/Kong/kong/blob/master/kong.conf.default).  
 
 Default: none
 
