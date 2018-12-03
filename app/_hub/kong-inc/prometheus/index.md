@@ -19,7 +19,7 @@ kong_version_compatibility:
 
 params:
   name: prometheus
-  api_id: true
+  api_id: false
   service_id: true
   route_id: true
 
