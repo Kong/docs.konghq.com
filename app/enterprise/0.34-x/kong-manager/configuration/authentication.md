@@ -21,24 +21,24 @@ admin_gui_auth = basic-auth
 
 ## How to Log In as the First Super Admin
 
-To create credentials for the first Super Admin account:
+To create the first Super Admin account:
 
 1. Set the Super Admin's password. 
 
       ```
-      $ KONG_ADMIN_PASSWORD=<password-only-you-know>
+      $ export KONG_ADMIN_PASSWORD=<password-only-you-know>
       ```
 
 2. Run migrations. 
 
       ```
-      $ kong migrations up - c kong.conf.default
+      $ kong migrations up [-c /path/to/kong/conf]
       ```
 
 3. Start Kong.
 
       ```
-      $ kong start -c kong.conf.default
+      $ kong start [-c /path/to/kong/conf]
       ```
 
 4. Log in to Kong Manager with the username `kong_admin` and the password set 
@@ -54,9 +54,10 @@ to store and retrieve the RBAC token, parameters, and headers. Local Storage is
 saved on every successful login, and it is retrieved on every Kong Manager API 
 XHR request based on the `auth-store-types` value until you log out.
 
-⚠️ **IMPORTANT**: Local Storage Authentication credentials are stored in the 
-browser via `base64-encoding`, but are not encrypted. Therefore, it advised 
-that you always used SSL/TLS to encrypt your Kong Manager traffic.
+⚠️ **IMPORTANT**: Information in Local Storage, including the current 
+user's RBAC token, is stored in the browser via `base64-encoding`, but 
+is not encrypted. Therefore, it advised that you always use SSL/TLS to 
+encrypt your Kong Manager traffic.
 
 ## How to Log Out and Log In
 
@@ -65,12 +66,12 @@ This will clear the Local Storage authentication data (if exists) and redirect
 to the login page.
 
 2. *Ensure you are logged out* before attempting to log in with a different 
-account. Visit the Kong Manager, where you will be prompted with a login form.
+account. Visit Kong Manager, where you will be prompted with a login form.
 
 3. When you submit the login form, Kong Manager will make a request against the 
 Admin API using the specified `admin_gui_auth` with the data in the form. For 
 instance, if you have `basic-auth` enabled, then the form will submit with the 
-Authorization header e.g. `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. 
+Authorization header; e.g., `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. 
 
 4. If successful, the RBAC token associated with this Admin will be stored 
 locally and used for subsequent browser requests.
