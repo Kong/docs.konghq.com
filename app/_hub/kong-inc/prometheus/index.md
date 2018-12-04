@@ -21,7 +21,7 @@ params:
   name: prometheus
   api_id: false
   service_id: true
-  route_id: true
+  route_id: false
 
 ---
 
