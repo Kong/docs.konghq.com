@@ -11,7 +11,7 @@ title: Documentation for Kong
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-quickstart.svg" /><a href="/{{page.kong_version}}/getting-started/quickstart">5-minute Quickstart</a></h3>
-    <p>Learn how to start Kong, add your API, enable plugins, and add consumers in under thirty seconds.</p>
+    <p>Learn how to start Kong, add a Service, enable plugins, and add consumers in under thirty seconds.</p>
     <a href="/{{page.kong_version}}/getting-started/quickstart">Start using Kong &rarr;</a>
   </div>
 
@@ -35,7 +35,7 @@ title: Documentation for Kong
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/proxy">Proxy reference</a></h3>
-    <p>Learn every way to configure Kong to proxy your APIs, serve them over SSL or use WebSockets.</p>
+    <p>Learn every way to configure Kong to proxy your Services, serve them over SSL or use WebSockets.</p>
     <a href="/{{page.kong_version}}/proxy">Read the Proxy Reference &rarr;</a>
   </div>
 
