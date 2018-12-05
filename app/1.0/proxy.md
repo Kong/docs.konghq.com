@@ -66,13 +66,9 @@ Content-Type: application/json
 Server: kong/<x.x.x>
 
 {
-    "message": "no route and no API found with those values"
+    "message": "no route and no Service found with those values"
 }
 ```
-
-**Note**: this message mentions "APIs" since for backwards-compatibility
-reasons, Kong 0.13 still supports the API entity (and tries to match a request
-against any configured API if no Route was matched first).
 
 [Back to TOC](#table-of-contents)
 

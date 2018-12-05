@@ -313,8 +313,8 @@ and Kong will be running in that instance (as configured in `nginx-kong.conf`).
 
 A common use case for API providers is to make Kong serve both a website
 and the APIs themselves over the Proxy port &mdash; `80` or `443` in
-production. For example, `https://my-api.com` (Website) and
-`https://my-api.com/api/v1` (API).
+production. For example, `https://example.net` (Website) and
+`https://example.net/api/v1` (API).
 
 To achieve this, we cannot simply declare a new virtual server block,
 like we did in the previous section. A good solution is to use a custom
@@ -351,7 +351,7 @@ http {
     # here, we declare our custom location serving our website
     # (or API portal) which we can optimize for serving static assets
     location / {
-      root /var/www/my-api.com;
+      root /var/www/example.net;
       index index.htm index.html;
       ...
     }
@@ -507,6 +507,12 @@ a description of the accepted formats for this and other `*_listen` values.
 Default: `0.0.0.0:8000, 0.0.0.0:8443 ssl`
 
 Example: `0.0.0.0:80, 0.0.0.0:81 http2, 0.0.0.0:443 ssl, 0.0.0.0:444 http2 ssl`
+
+---
+
+#### stream_listen
+
+FIXME Port from https://github.com/Kong/kong-private/pull/128
 
 ---
 
@@ -1135,3 +1141,59 @@ Default: `30`
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
 [pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
+
+---
+
+### Additional Configuration
+
+FIXME - fix line breaks in section below
+
+FIXME - port the section below to the 0.15.x doc
+
+#### origins
+
+The origins configuration can be useful in complex networking configurations, and is typically required when Kong is used in a service mesh.
+
+`origins` is a comma-separated list of pairs of origins, with each half of the pair separated by an `=` symbol. The origin on the left of each pair is overridden by the origin on the right. This override occurs after the access phase, and before upstream resolution. It has the effect of causing Kong to send traffic that would have gone to the left origin to the right origin instead.
+
+The term origin (singular) refers to a particular scheme/host or IP address/port triple, as described in RFC 6454 (https://tools.ietf.org/html/rfc6454#section-3.2). In Kong's `origins` configuration, the scheme *must* be one of `http`, `https`, `tcp`, or `tls`. In each pair of origins, the scheme *must* be of similar type - thus `http` can pair with `https`, and `tcp` can pair with `tls`, but `http` and `https` cannot pair with `tcp` and `tls`.
+
+When an encrypted scheme like `tls` or `https` in the left origin is paired with an unencrypted scheme like `tcp` or `http` in the right origin, Kong will terminate TLS on incoming connections matching the left origin, and will then route traffic unencrypted to the specified right origin. This is useful when connections will be made to the Kong node over TLS, but the local service (for which Kong is proxying traffic) doesn't or can't terminate TLS. Similarly, if the left origin is `tcp` or `http` and the right origin is `tls` or `https`, Kong will accept unencrypted incoming traffic, and will then wrap that traffic in TLS as it is routed outbound. This capability is an important enabler of Kong Mesh.
+
+Like all Kong configuration settings, the `origins` setting *can* be declared in the `Kong.conf` file - however **it is recommended that Kong administrators avoid doing so**. Instead, `origins` should be set on a per-node basis using [environment variables](https://docs.konghq.com/{{page.kong_version}}/configuration/#environment-variables). As such, `origins` is not present in [`kong.conf.default`](https://github.com/Kong/kong/blob/0.15.0/kong.conf.default).
+
+In Kubernetes deployments, it is recommended that `origins` not be configured and maintained "by hand" - instead, `origins` for each Kong node should be managed by the [Kubernetes Identity Module (KIM)](FIXME URL needed).
+
+Default: none
+
+##### Examples
+
+If a given Kong node has the following configuration for `origins`:
+
+```
+http://upstream-foo-bar:1234=http://localhost:5678
+```
+
+That Kong node will not attempt to resolve `upstream-foo-bar` - instead, that Kong node will route traffic to `localhost:5678`. In a service mesh deployment of Kong, this override would be necessary to cause a Kong sidecar adjacent to an instance of the `upstream-foo-bar` application to route traffic to that local instance, rather than trying to route traffic back across the network to a non-local instance of `upstream-foo-bar`.
+
+---
+
+In another typical sidecar deployment, in which the Kong node is deployed on the same host, virtual machine, or Kubernetes Pod as one instance of a service for which Kong is acting as a proxy, `origins` would be configured like:
+
+```
+https://service-b:9876=http://localhost:5432
+```
+
+This arrangement would cause this Kong node to accept _only_ HTTPS connections on port 9876, terminate TLS, then forward the now-unencrypted traffic to localhost port 5432.
+
+---
+
+Following is an example consisting of two pairs, demonstrating the correct use of the `,` separator with no space:
+
+```
+https://foo.bar.com:443=http://localhost:80,tls://dog.cat.org:9999=tcp://localhost:8888
+```
+
+This configuration would result in Kong accepting _only_ HTTPS traffic on port 443, and _only_ TLS traffic on port 9999, terminating TLS in both cases, then forwarding the traffic to localhost ports 80 and 8888 respectively. Assuming that the localhost ports 80 and 8888 are each associated with a separate service, this configuration could occur when Kong is acting as a node proxy, which is a local proxy that is acting on behalf of multiple services (which differs from a sidecar proxy, in which a local proxy acts on behalf of only a _single_ local service).
+
+FIXME - the above example may need clarification/simplification.
