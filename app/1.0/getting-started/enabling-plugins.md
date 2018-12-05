@@ -13,13 +13,13 @@ title: Enabling Plugins
 
 In this section, you'll learn how to configure Kong plugins. One of the core
 principles of Kong is its extensibility through [plugins][plugins]. Plugins
-allow you to easily add new features to your API or make your API easier to
+allow you to easily add new features to your Service or make it easier to
 manage.
 
 In the steps below you will configure the [key-auth][key-auth] plugin to add
 authentication to your Service. Prior to the addition of this plugin, **all**
 requests to your Service would be proxied upstream. Once you add and configure this
-plugin, **only** requests with the correct API key(s) will be proxied - all
+plugin, **only** requests with the correct key(s) will be proxied - all
 other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
@@ -38,6 +38,8 @@ $ curl -i -X POST \
 **Note:** This plugin also accepts a `config.key_names` parameter, which
 defaults to `['apikey']`. It is a list of headers and parameters names (both
 are supported) that are supposed to contain the apikey during a request.
+
+[Back to TOC](#table-of-contents)
 
 ## 2. Verify that the plugin is properly configured
 
@@ -61,6 +63,8 @@ HTTP/1.1 401 Unauthorized
   "message": "No API key found in request"
 }
 ```
+
+[Back to TOC](#table-of-contents)
 
 ## Next Steps
 
