@@ -2,7 +2,7 @@
 title: Authentication Reference
 ---
 
-# Authentication Reference
+# Introduction
 
 Client access to upstream API services is typically controlled by the application and configuration of 
 Kong [authentication plugins][plugins]. 

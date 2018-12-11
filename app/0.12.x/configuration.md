@@ -2,7 +2,7 @@
 title: Configuration Reference
 ---
 
-# Configuration Reference
+# Introduction
 
 ## Configuration loading
 

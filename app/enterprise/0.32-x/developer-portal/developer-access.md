@@ -4,7 +4,7 @@ book: portal
 chapter: 8
 ---
 
-# Granting Access to Developers
+# Introduction
 
 Since [Developers][developers] are a type of [Consumer](/latest/getting-started/adding-consumers/), plugins and auth credentials can be similarly applied to them. In this section we will learn how Developers can get access to your routes and services by managing their credentials.
 

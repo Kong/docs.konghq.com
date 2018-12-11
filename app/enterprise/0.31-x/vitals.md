@@ -2,7 +2,7 @@
 title: Kong Vitals
 ---
 
-# Kong Vitals
+# Introduction
 
 ## What is Vitals?
 The Vitals feature in Kong's Admin API and GUI provides useful metrics about the health and performance of your Kong nodes, as well as metrics about the usage of your Kong-proxied APIs.

@@ -2,7 +2,7 @@
 title: 5-minute Quickstart
 ---
 
-# 5-minute Quickstart
+# Introduction
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong> Make sure you've

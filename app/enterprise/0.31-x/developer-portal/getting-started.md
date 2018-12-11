@@ -2,7 +2,7 @@
 title: Getting Started with the Kong Developer Portal
 ---
 
-# Getting Started with the Kong Developer Portal
+# Introduction
 
 ## Enable the Dev Portal
 

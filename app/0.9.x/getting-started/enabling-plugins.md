@@ -2,7 +2,7 @@
 title: Enabling Plugins
 ---
 
-# Enabling Plugins
+# Introduction
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong>

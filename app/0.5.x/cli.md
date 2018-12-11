@@ -2,7 +2,7 @@
 title: CLI Reference
 ---
 
-# CLI Reference
+# Introduction
 
 Kong comes with a ***CLI*** *(Command Line Interface)* which provides you with an interface to manage your Kong nodes. Each command is run in the context of a single node, since Kong has no cluster awareness yet.
 

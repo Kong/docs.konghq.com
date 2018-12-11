@@ -4,7 +4,7 @@ book: portal
 chapter: 3
 ---
 
-# Getting Started with the Kong Developer Portal
+# Introduction
 
 ## Enable the Dev Portal
 

@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 1
 ---
 
-# Plugin development - Introduction
+# Introduction
 
 ## What are plugins and how do they integrate with Kong?
 

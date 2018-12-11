@@ -2,7 +2,7 @@
 title: Proxy Reference
 ---
 
-# Proxy Reference
+# Introduction
 
 In this document we will cover Kong's **proxying capabilities**  by explaining
 its routing capabilities and internal workings in details.

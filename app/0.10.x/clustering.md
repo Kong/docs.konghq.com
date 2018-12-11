@@ -2,7 +2,7 @@
 title: Clustering Reference
 ---
 
-# Clustering Reference
+# Introduction
 
 Multiple Kong nodes pointing to the same datastore **must** belong to the same "Kong Cluster". 
 

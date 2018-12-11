@@ -2,7 +2,7 @@
 title: Welcome to Kong Enterprise Edition
 ---
 
-# Welcome to Kong Enterprise Edition
+# Introduction
 
 Before going further into Kong Enterprise Edition (EE), make sure you understand
 its [purpose and philosophy](/about). Once you are confident with the concept

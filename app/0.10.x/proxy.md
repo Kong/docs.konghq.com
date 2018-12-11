@@ -2,7 +2,7 @@
 title: Proxy Reference
 ---
 
-# Proxy Reference
+# Introduction
 
 Kong listens for traffic on four ports, which by default are:
 

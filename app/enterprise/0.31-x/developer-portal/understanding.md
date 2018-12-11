@@ -2,7 +2,7 @@
 title: Understanding the Kong Developer Portal
 ---
 
-# Understanding the Kong Developer Portal
+# Introduction
 
 The Kong Dev Portal is composed of different types of files that are stored in Kong's database and exposed through a read-only Public Dev Portal API (`:8004/files`) used by the Dev Portal Loader (`:8003`) to render your Dev Portal.
 

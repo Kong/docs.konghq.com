@@ -2,7 +2,7 @@
 title: Health Checks and Circuit Breakers Reference
 ---
 
-# Health Checks and Circuit Breakers Reference
+# Introduction
 
 You can make an API proxied by Kong use a [ring-balancer][ringbalancer], configured
 by adding an [upstream][upstream] entity that contains one or more [target][ringtarget]

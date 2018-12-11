@@ -2,7 +2,7 @@
 title: Admin API
 ---
 
-# Kong Admin API
+# Introduction
 
 Kong comes with an **internal** RESTful API for administration purposes. API commands can be run on any node in the cluster, and Kong will keep the configuration consistent across all nodes.
 

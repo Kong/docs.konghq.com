@@ -2,7 +2,7 @@
 title: Adding Consumers
 ---
 
-# Adding Consumers
+# Introduction
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong>

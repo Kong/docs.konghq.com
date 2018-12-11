@@ -2,7 +2,7 @@
 title: Authenticating the Developer Portal
 ---
 
-# Authenticating the Kong Developer Portal
+# Introduction
 
 - [Enable Authentication](#enable-authentication)
   - [Enable AUTH in Template Files](#enable-auth-in-template-files)

@@ -2,7 +2,7 @@
 title: Known Limitations - Developer Portal
 ---
 
-# Known Limitations
+# Introduction
 
 The Dev Portal is built with customization of content, look, feel, and structure in mind. That being said there are a few things to keep in mind while building to ensure everything works as expected.
 

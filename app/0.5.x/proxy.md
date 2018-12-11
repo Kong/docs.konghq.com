@@ -2,7 +2,7 @@
 title: Proxy Reference
 ---
 
-# Proxy Reference
+# Introduction
 
 As you might already know, Kong uses two ports to communicate. By default they are:
 

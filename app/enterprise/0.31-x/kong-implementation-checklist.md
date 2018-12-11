@@ -1,7 +1,7 @@
 ---
 title: Kong Implementation Checklist
 ---
-# Kong Implementation Checklist
+# Introduction
 
 - Kong can run on instances of any size with any resources. While the system requirements vary significantly depending on the use-case, generally speaking, we recommend to start big and then gradually reduce the instances to the appropriate number and size.
 - When allocating resources to a Kong cluster, slightly over-provision the cluster to make room for request spikes. Kong requires a database to run and you can choose either Cassandra or PostgreSQL.
