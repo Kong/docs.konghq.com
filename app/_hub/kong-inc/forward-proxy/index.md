@@ -1,6 +1,6 @@
 ---
 
-name: Enterprise Forward Proxy
+name: Forward Proxy Advanced
 publisher: Kong Inc.
 version: 0.34-x
 
