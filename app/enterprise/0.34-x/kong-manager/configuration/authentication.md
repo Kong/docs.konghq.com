@@ -7,42 +7,55 @@ chapter: 3
 > Before beginning, ensure completion of the steps in 
 [Getting Started with Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/configuration/getting-started)
 
-Kong has the ability to verify the identity of all users with Basic 
-Authentication or LDAP Authentication. 
+Kong can verify the identity of all users with Basic 
+Authentication or LDAP Authentication Advanced. 
+
+⚠️ **IMPORTANT**: Before enabling authentication, ensure that you
+have at least one Super Admin account. You may have set one up during
+the [Quick Start](/enterprise/{{page.kong_version}}/getting-started/quickstart),
+or you can set one up on the Organization page of Kong Manager.
+
+## How to set up a Super Admin
+Before enabling authentication, create a Super Admin. You can
+skip this section if you created a Super Admin during initial
+Kong setup.
+
+1. Go to the Organization page in Kong Manager.
+
+2. Click +Invite User and fill out the form. Give the user
+the super-admin role in the default workspace.
+
+3. Go back to the Organization page, Invited section, and click
+the email address of the user in order to view the user.
+
+4. Click Generate Registration Link. Copy the link. You'll use
+it later to finish setting up your account.
 
 ## How to Enable Basic Authentication
 
-To enable Basic Authentication, ensure that in `kong.conf.default`:
+To enable Basic Authentication, configure Kong with the following properties:
 
 ```
 enforce_rbac = on
 admin_gui_auth = basic-auth
 ```
 
-## How to Log In as the First Super Admin
+Start Kong:
 
-To create the first Super Admin account:
+```
+$ kong start [-c /path/to/kong/conf]
+```
 
-1. Set the Super Admin's password. 
+## How to Log In
 
-      ```
-      $ export KONG_ADMIN_PASSWORD=<password-only-you-know>
-      ```
+If you created a Super Admin via database migration as per the Quick Start
+guide, log in to Kong Manager with the username `kong_admin` and the password
+you set.
 
-2. Run migrations. 
+If you created a Super Admin via the Kong Manager Organization tab, browse
+to the registration link you created in How to Set up a Super Admin, Step 4.
 
-      ```
-      $ kong migrations up [-c /path/to/kong/conf]
-      ```
-
-3. Start Kong.
-
-      ```
-      $ kong start [-c /path/to/kong/conf]
-      ```
-
-4. Log in to Kong Manager with the username `kong_admin` and the password set 
-in step 1.
+Fill out the form to create your basic auth credentials. Now you can log in.
 
 ![Log in to Kong Manager](https://konghq.com/wp-content/uploads/2018/11/km-rename.png)
 

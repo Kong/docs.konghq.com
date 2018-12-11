@@ -18,6 +18,22 @@ run without containers by following our [CentOS][centos] or
 
 ## 1. Start Kong Enterprise
 
+If you will be securing your Admin API with RBAC or your Kong Manager 
+application with an authentication plugin, you will need a Super Admin 
+account, which is created during database migrations. 
+
+To set up the first account:
+
+Set a password for the Super Admin. This environment variable must
+be present in the environment where database migrations will run. 
+
+```
+$ export KONG_PASSWORD=<password-only-you-know>
+```
+
+This creates a user, `kong_admin`, and a password that can be used to
+log in to Kong Manager or to make Admin API requests when RBAC is enabled.
+
 Issue the following command to prepare your datastore by running the Kong
 migrations:
 
