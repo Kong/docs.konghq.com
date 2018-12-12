@@ -117,33 +117,43 @@ $ curl -X GET http://kong:8001/acls
             "group": "foo-group",
             "created_at": 1511391159000,
             "id": "724d1be7-c39e-443d-bf36-41db17452c75",
-            "consumer_id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf"
+            "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
         },
         {
             "group": "bar-group",
             "created_at": 1511391162000,
             "id": "0905f68e-fee3-4ecb-965c-fcf6912bf29e",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         },
         {
             "group": "baz-group",
             "created_at": 1509814006000,
             "id": "ff883d4b-aee7-45a8-a17b-8c074ba173bd",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the ACL `id` field.
-`group`<br>*optional*                 	 | A filter on the list based on the ACL `group` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the ACL `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/acls
+
+{
+    "total": 1,
+    "data": [
+        {
+            "group": "bar-group",
+            "created_at": 1511391162000,
+            "id": "0905f68e-fee3-4ecb-965c-fcf6912bf29e",
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose ACLs need to be listed
 
 #### Retrieve the Consumer associated with an ACL
 

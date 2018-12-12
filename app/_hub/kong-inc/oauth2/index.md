@@ -200,7 +200,7 @@ If you are migrating your existing OAuth 2.0 applications and access tokens over
 
 ```bash
 $ curl -X POST http://kong:8001/oauth2_tokens \
-    --data "credential_id=KONG-APPLICATION-ID" \
+    --data 'credential={"id": "KONG-APPLICATION-ID" }' \
     --data "token_type=bearer" \
     --data "access_token=SOME-TOKEN" \
     --data "refresh_token=SOME-TOKEN" \
@@ -209,7 +209,7 @@ $ curl -X POST http://kong:8001/oauth2_tokens \
 
 form parameter                        | default | description
 ---                                   | ---     | ---
-`credential_id`                       |         | The ID of the OAuth 2.0 application created on Kong.
+`credential`                          |         | Contains the ID of the OAuth 2.0 application created on Kong.
 `token_type`<br>*optional*            | `bearer`| The [token type](https://tools.ietf.org/html/rfc6749#section-7.1).
 `access_token`<br>*optional*          |         | You can optionally set your own access token value, otherwise a random string will be generated.
 `refresh_token`<br>*optional*         |         | You can optionally set your own unique refresh token value, otherwise a random string will be generated.
