@@ -15,10 +15,7 @@ have at least one Super Admin account. You may have set one up during
 the [Quick Start](/enterprise/{{page.kong_version}}/getting-started/quickstart),
 or you can set one up on the Organization page of Kong Manager.
 
-## How to set up a Super Admin
-Before enabling authentication, create a Super Admin. You can
-skip this section if you created a Super Admin during initial
-Kong setup.
+## How to Set Up a Super Admin
 
 1. Go to the Organization page in Kong Manager.
 
