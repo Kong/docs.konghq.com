@@ -47,12 +47,15 @@ $ kong start [-c /path/to/kong/conf]
 
 ## How to Log In
 
-If you created a Super Admin via database migration as per the Quick Start
-guide, log in to Kong Manager with the username `kong_admin` and the password
-you set.
+If you created a Super Admin via database migration as per the 
+[Quick Start](/enterprise/{{page.kong_version}}/getting-started/quickstart) 
+guide, log in to Kong Manager with the username `kong_admin` and the password 
+set in the environment variable.
 
-If you created a Super Admin via the Kong Manager Organization tab, browse
-to the registration link you created in How to Set up a Super Admin, Step 4.
+If you created a Super Admin via the Kong Manager "Organization" tab, browse
+to the registration link you copied in 
+["How to Set Up a Super Admin"](/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication#how-to-set-up-a-super-admin)
+, Step 4.
 
 Fill out the form to create your basic auth credentials. Now you can log in.
 
