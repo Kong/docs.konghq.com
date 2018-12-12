@@ -18,9 +18,9 @@ run without containers by following our [CentOS][centos] or
 
 ## 1. Start Kong Enterprise
 
-If you will be securing your Admin API with RBAC or your Kong Manager 
-application with an authentication plugin, you will need a Super Admin 
-account, which is created during database migrations. 
+A Super Admin account is required to secure the Admin API with RBAC or Kong 
+Manager with an authentication plugin. The Super Admin account is created 
+during database migrations. 
 
 To set up the first account:
 
