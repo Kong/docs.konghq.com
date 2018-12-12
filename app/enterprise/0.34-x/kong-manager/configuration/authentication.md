@@ -17,16 +17,18 @@ or you can set one up on the Organization page of Kong Manager.
 
 ## How to Set Up a Super Admin
 
-1. Go to the Organization page in Kong Manager.
+1. Go to the "Organization" tab in Kong Manager.
 
-2. Click +Invite User and fill out the form. Give the user
-the super-admin role in the default workspace.
+2. Click "+Invite User" and fill out the form. 
 
-3. Go back to the Organization page, Invited section, and click
-the email address of the user in order to view the user.
+3. Give the user the `super-admin` role in the `default` workspace.
 
-4. Click Generate Registration Link. Copy the link. You'll use
-it later to finish setting up your account.
+4. Return to the "Organization" page, and in the "Invited" section, click
+the email address of the user in order to view them.
+
+5. Click "Generate Registration Link". 
+
+6. Copy the link for later use after completing the account setup.
 
 ## How to Enable Basic Authentication
 
