@@ -143,4 +143,3 @@ custom_plugins = ab-microsensor
 
 ### Access ArecaBay Cloud Webconsole and setup LocalBay
 Please visit the following page <a href = "https://www.arecabay.com/partners/kong">https://www.arecabay.com/partners/kong</a> and request your ArecaBay Cloud Webconsole account. Follow the quickstart guide within the Webconsole to configure your Kong Plugin as a MicroSensor. This involves providing details for the Kong Plugin MicroSensor and downloading the setup script. Run the setup script which internally uses the Kong Admin API to configure & run the Kong Plugin as a global plugin.  
-
