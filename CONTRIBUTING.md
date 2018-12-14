@@ -2,6 +2,7 @@
 > contribute to Kong itself, then please go
 > [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md).
 
+
 # Contributing to docs.konghq.com 📜 🦍
 
 Hello, and welcome! Whether you are looking for help, trying to report a bug,
@@ -26,6 +27,7 @@ Consult the Table of Contents below, and jump to the desired section.
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
   - [Table of Contents generator](#table-of-contents-generator)
   - [Contributor T-shirt](#contributor-t-shirt)
+
 
 ## Where to seek help?
 
@@ -145,7 +147,7 @@ documenting a Kong plugin, be sure to see the next section.
 `/app/_assets/images/icons/hub/` - the filename of your image should be
 `publisher_extension` using the "publisher" and "extension" name from step 2.
 Custom logos are optional. If you don't have a custom logo, please duplicate
-an existing default logo file, and rename it as noted above. 
+an existing default logo file, and rename it as noted above.
 1. Be sure to run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
 `localhost:3000/hub`
@@ -156,6 +158,7 @@ Kong staff will review your PR, suggest improvements and adjustments as
 necessary, and once approved, will merge and deploy your Kong Hub addition!
 
 [Back to TOC](#table-of-contents)
+
 
 ### Writing plugin documentation
 
@@ -198,6 +201,7 @@ the existing plugins for examples, and see additional advice in
     Use YAML's pipe notation if writing longer Markdown text.
 
 [Back to TOC](#table-of-contents)
+
 
 #### Git branches
 
@@ -346,6 +350,7 @@ Instead, please:
 
 [Back to TOC](#table-of-contents)
 
+
 ### Table of Contents generator
 
 Almost all pages have an automatic Table of Contents (ToC) added to the top of
@@ -374,17 +379,17 @@ will cause a broken ToC, and should be corrected to:
 ### Sub-sub-heading Level 3
 ```
 
+[Back to TOC](#table-of-contents)
+
+
 ### Contributor T-shirt
 
-If your Pull Request to
-[Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com) was accepted,
-congratulations, you are eligible to receive the very special Contributor
-T-shirt! Go ahead and fill-out the [Contributors Submissions
-form](https://goo.gl/forms/5w6mxLaE4tz2YM0L2).
+If your contribution to this repository was accepted and fixes a bug, adds
+functionality, or makes it significantly easier to use or understand Kong,
+congratulations! You are eligible to receive the very special Contributor
+T-shirt! Find out how to request your shirt
+[here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributor-t-shirt).
 
-Proudly wear your T-shirt and show it to us by tagging
-[@thekonginc](https://twitter.com/thekonginc) on Twitter!
-
-![Kong Contributor T-shirt](https://konghq.com/wp-content/uploads/2018/04/100-contributor-t-shirt-1024x768.jpg)
+Thank you for contributing!
 
 [Back to TOC](#table-of-contents)
