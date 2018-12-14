@@ -145,7 +145,7 @@ documenting a Kong plugin, be sure to see the next section.
 `/app/_assets/images/icons/hub/` - the filename of your image should be
 `publisher_extension` using the "publisher" and "extension" name from step 2.
 Custom logos are optional. If you don't have a custom logo, please duplicate
-an existing default logo file, and rename it as noted above. 
+an existing default logo file, and rename it as noted above.
 1. Be sure to run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
 `localhost:3000/hub`
@@ -376,15 +376,8 @@ will cause a broken ToC, and should be corrected to:
 
 ### Contributor T-shirt
 
-If your Pull Request to
-[Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com) was accepted,
-congratulations, you are eligible to receive the very special Contributor
-T-shirt! Go ahead and fill-out the [Contributors Submissions
-form](https://goo.gl/forms/5w6mxLaE4tz2YM0L2).
-
-Proudly wear your T-shirt and show it to us by tagging
-[@thekonginc](https://twitter.com/thekonginc) on Twitter!
-
-![Kong Contributor T-shirt](https://konghq.com/wp-content/uploads/2018/04/100-contributor-t-shirt-1024x768.jpg)
+Contributions to this repo that fix a bugs, adds functionality, or make it
+significantly easier to understand or use Kong will earn you a Kong contributor
+t-shirt! Find out how to request your shirt [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributor-t-shirt).
 
 [Back to TOC](#table-of-contents)
