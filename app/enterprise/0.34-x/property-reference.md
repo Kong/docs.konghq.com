@@ -674,7 +674,7 @@ Expiration time in seconds for Admin invitation links. Set to zero for no expira
 
 ### smtp_mock
 
-**Default:** `off`
+**Default:** `on`
 
 **Description:**
 
