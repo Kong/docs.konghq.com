@@ -129,7 +129,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/key-auth -d ''
 HTTP/1.1 201 Created
 
 {
-    "consumer_id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007",
+    "consumer": { "id": "876bf719-8f18-4ce5-cc9f-5b5af6c36007" },
     "created_at": 1443371053000,
     "id": "62a7d3b7-b995-49f9-c9c8-bac4d781fb59",
     "key": "62eb165c070a41d5c1b58d9d3d725ca1"
@@ -204,33 +204,43 @@ $ curl -X GET http://kong:8001/key-auths
          "id":"17ab4e95-9598-424f-a99a-ffa9f413a821",
          "created_at":1507941267000,
          "key":"Qslaip2ruiwcusuSUdhXPv4SORZrfj4L",
-         "consumer_id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+         "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
       },
       {
          "id":"6cb76501-c970-4e12-97c6-3afbbba3b454",
          "created_at":1507936652000,
          "key":"nCztu5Jrz18YAWmkwOGJkQe9T8lB99l4",
-         "consumer_id":"c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+         "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
       },
       {
          "id":"b1d87b08-7eb6-4320-8069-efd85a4a8d89",
          "created_at":1507941307000,
          "key":"26WUW1VEsmwT1ORBFsJmLHZLDNAxh09l",
-         "consumer_id":"3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+         "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
       }
    ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the key-auth credential `id` field.
-`key`<br>*optional*                      | A filter on the list based on the key-auth credential `key` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the key-auth credential `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/key-auths
+
+{
+    "total": 1,
+    "data": [
+       {
+         "id":"6cb76501-c970-4e12-97c6-3afbbba3b454",
+         "created_at":1507936652000,
+         "key":"nCztu5Jrz18YAWmkwOGJkQe9T8lB99l4",
+         "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+       }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose credentials need to be listed
 
 ### Retrieve the Consumer associated with a key
 

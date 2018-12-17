@@ -487,7 +487,7 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "HS256",
             "key": "UHVwIly5ZxZH7g52E0HRlFkFC09v9yI0",
             "secret": "KMWyDsTTcZgqqyOGgRWTDgZtIyWeEtJh",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         },
         {
             "created_at": 1511389527000,
@@ -495,7 +495,7 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "ES256",
             "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
             "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         },
         {
             "created_at": 1509593912000,
@@ -503,21 +503,35 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "HS256",
             "key": "SqSNfg9ARmPnpycyJSMAc2uR6nxdmc9S",
             "secret": "CCh6ZIcwDSOIWacqkkWoJ0FWdZ5eTqrx",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the JWT credential `id` field.
-`key`<br>*optional*                 	 | A filter on the list based on the JWT credential `key` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the JWT credential `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/jwts
+
+{
+    "total": 1,
+    "data": [
+        {
+            "created_at": 1511389527000,
+            "id": "0dfc969b-02be-42ae-9d98-e04ed1c05850",
+            "algorithm": "ES256",
+            "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
+            "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose jwts need to be listed
+
 
 ### Retrieve the Consumer associated with a JWT
 

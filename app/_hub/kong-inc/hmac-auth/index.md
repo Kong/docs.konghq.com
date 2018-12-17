@@ -410,35 +410,46 @@ $ curl -X GET http://kong:8001/hmac-auths
             "id": "75695322-e8a0-4109-aed4-5416b0308d85",
             "secret": "wQazJ304DW5huJklHgUfjfiSyCyTAEDZ",
             "username": "foo",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         },
         {
             "created_at": 1509419793000,
             "id": "11d5cbfb-31b9-4a6d-8496-2f4a76500643",
             "secret": "zi6YHyvLaUCe21XMXKesTYiHSWy6m6CW",
             "username": "bar",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         },
         {
             "created_at": 1509681215000,
             "id": "eb0365bc-88ae-4568-be7c-db1eb7c16e5e",
             "secret": "NvHDTg5mp0ySFVJsITurtgyhEq1Cxbnv",
             "username": "baz",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the hmac-auth credential `id` field.
-`username`<br>*optional*                 | A filter on the list based on the hmac-auth credential `username` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the hmac-auth credential `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/hmac-auths
+
+{
+    "total": 1,
+    "data": [
+        {
+            "created_at": 1509419793000,
+            "id": "11d5cbfb-31b9-4a6d-8496-2f4a76500643",
+            "secret": "zi6YHyvLaUCe21XMXKesTYiHSWy6m6CW",
+            "username": "bar",
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose credentials need to be listed
 
 ### Retrieve the Consumer associated with a Credential
 
