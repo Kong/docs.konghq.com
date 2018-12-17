@@ -376,8 +376,11 @@ will cause a broken ToC, and should be corrected to:
 
 ### Contributor T-shirt
 
-Contributions to this repo that fix a bugs, adds functionality, or make it
-significantly easier to understand or use Kong will earn you a Kong contributor
-t-shirt! Find out how to request your shirt [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributor-t-shirt).
+If your Pull Request to Kong/docs.konghq.com was accepted and fixes a bug, adds
+functionality, or makes it significantly easier to use or understand Kong,
+congratulations! You are eligible to receive the very special Contributor
+T-shirt! Find out how to request your shirt
+[here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributor-t-shirt).
+Thank you so much for contributing!
 
 [Back to TOC](#table-of-contents)
