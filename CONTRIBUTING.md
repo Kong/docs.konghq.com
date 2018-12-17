@@ -376,7 +376,7 @@ will cause a broken ToC, and should be corrected to:
 
 ### Contributor T-shirt
 
-If your Pull Request to Kong/docs.konghq.com was accepted and fixes a bug, adds
+If your contribution to this repo was accepted and fixes a bug, adds
 functionality, or makes it significantly easier to use or understand Kong,
 congratulations! You are eligible to receive the very special Contributor
 T-shirt! Find out how to request your shirt
