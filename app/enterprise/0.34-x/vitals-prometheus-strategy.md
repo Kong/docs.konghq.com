@@ -86,7 +86,7 @@ vitals_tsdb_address = prometheus-node:9090
 $ export KONG_VITALS=on
 $ export KONG_VITALS_STRATEGY=prometheus
 $ export KONG_VITALS_STATSD_ADDRESS=statsd-node:9125
-$ export KONG_TSDB_ADDRESS=prometheus-node:9090
+$ export KONG_VITALS_TSDB_ADDRESS=prometheus-node:9090
 ```
 
 Please update `statsd-node` and `prometheus-node` with the actual hostname that
