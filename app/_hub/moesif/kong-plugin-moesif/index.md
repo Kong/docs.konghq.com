@@ -92,7 +92,7 @@ params:
       required: false
       default: "`{}`"
       description: An option to mask a specific request body field
-     - name: response_masks
+    - name: response_masks
       required: false
       default: "`{}`"
       description: An option to mask a specific response body field
