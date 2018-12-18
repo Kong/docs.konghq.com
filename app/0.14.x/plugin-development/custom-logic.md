@@ -237,6 +237,7 @@ zipkin                    | 100000
 ip-restriction            | 3000
 bot-detection             | 2500
 cors                      | 2000
+session                   | 1900
 jwt                       | 1005
 oauth2                    | 1004
 key-auth                  | 1003
