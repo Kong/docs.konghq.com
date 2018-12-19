@@ -2,6 +2,112 @@
 title: Kong Enterprise Changelog
 ---
 
+## 0.34-1 - 2018/12/19
+
+**Notifications**
+- **Kong EE 0.34** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
+  - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
+  - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
+- **Kong EE 0.34** has these notices from **Kong CE 0.13**:
+  - Support for **Postgres 9.4 has been removed** - starting with 0.32, Kong Enterprise does not start with Postgres 9.4 or prior
+  - Support for **Cassandra 2.1 has been deprecated, but Kong will still start** - versions beyond 0.33 will not start with Cassandra 2.1 or prior
+      - **Dev Portal** requires Cassandra 3.0+
+  - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
+
+**CHANGES**
+- **Kong Manager**
+        - Email addresses are stored in lower-case. These addresses must be case-insensitively unique. In previous versions, you could store mixed case email addresses. A migration for Postgres converts all existing email addresses to lower case. Cassandra users should review the email address of their admins and developers and update them to lower-case if necessary. Use the Kong Manager or the Admin API to make these updates.
+        - **Plugins**
+            - **Forward Proxy**
+                - Do not do a DNS request to the original upstream that would be discarded anyway as proxy will manage the resolving of the configured host.
+            - **OpenID Connect**
+                - Remove obsolete daos (adds migration)
+                - Hide secret from Admin API (used with sessions)
+                - Bump lua-resty-session to 2.23
+                - Change token verification to check token types when requested
+
+**FEATURES**
+- **Dev Portal**
+    - [kong_portal_templates](https://github.com/Kong/kong-portal-templates) repository:
+        - A public repository containing dev portal themes, examples, and dev tools for working with the Dev Portal template files.
+        - sync.js:
+            - Script which allows dev portal developers to `push`, `pull`, and `watch` the most up to date template files to and from kong to their local machine.
+        - default portal theme:
+            - Directory containing the most up to date version of the default portal template files that ship with Kong EE each release.
+            - Bugfixes, updates, and template features will be pushed here regularly and independently of the EE release cycle.
+    - Dev Portal now caches static JS assets
+- **Plugins**
+    - **OpenID Connect**
+        add `config.http_proxy_authorization` (note: this is not yet in upstream lua-resty-http)
+        add `config.https_proxy_authorization` (note: this is not yet in upstream lua-resty-http)
+        add `config.no_proxy`
+        add `config.logout_revoke_access_token`
+        add `config.logout_revoke_refresh_token`
+        add `config.refresh_token_param_name`
+        add `config.refresh_token_param_type`
+        add `config.refresh_tokens`
+- **CORE**
+    - **License**
+        - Added an increasingly "loud" logging to notify via nginx logs as the expiration date approaches.
+           - 90 days before the expiration date: Daily WARN log
+           - 30 days before the expiration date: Daily ERR log
+           - After the expiration date: Daily CRIT log
+    - **DB**
+        - **Cassandra**
+            - Support request-aware load-balancing policies in conf &
+              DAOs. `cassandra_lb_policy` now supports two new
+              policies RequestRoundRobin and RequestDCAwareRoundRobin.
+
+**FIXES**
+- **Admin API**
+    - Prevent creating or modifying developers and admins through the
+      /consumers endpoints
+    - Prevent creating or modifying consumers through the /admins
+      endpoints
+    - Fix error on /admins when trying to create an admin with the
+      same name as an existing RBAC user
+    - Roll back if a POST to /admins fails
+- **Dev Portal**
+    - KONG_PORTAL_AUTH_CONF param values can now handle escaped
+      characters such as #
+    - ACL plugin credential management no longer accessible from Dev
+      Portal client
+    - "Return to login" CTA on the password-reset page now redirects
+      to appropriate workspace
+    - Improved support for OAS 3 specifications
+    - General SwaggerUI improvements
+    - Developer approval email will only send once (on first
+      approval).  A developer will not receive an additional email if
+      they are revoked and re-approved.
+- **Kong Manager**
+    - When creating a new workspace, always create roles for that workspace
+    - List workspace roles in alphabetical order
+    - Provide a button on the Admin show page to generate a registration URL
+    - Fix misleading error message when adding an existing user to a
+      new workspace
+    - Add validation of image type when creating a workspace with an avatar
+    - Add configuration fields and icon for the JWT signer plugin
+    - Clean up console errors due to lack of permissions
+    - Make the UTC button on Vitals charts work in Firefox
+    - Change the display order of plugins to match the Plugin Hub
+- **CORE**
+    - **Workspaces**
+        - When removing an entity from a workspace, delete the entity
+          itself if it only belongs to that workspace.
+        - Developers nor admins do not affect consumer counters in
+          workspaces. Only proxy consumers do.
+    - **DB**
+        - **Cassandra**
+            - Fix an issue where Insert operation fails to return an entity as not all Cassandra nodes are synced yet while reading the data.
+            - Now Kong will make one try to fetch the inserted row before throwing error. (Fix: https://support.konghq.com/hc/en-us/requests/6217 )
+- **Plugins**
+    - **Rate-limiting**
+        - Use database-based redis connection pool to reduce unnecessary select call
+    - **Response-ratelimiting**
+        - Use database-based redis connection pool to reduce unnecessary select call
+    - **OpenID Connect**
+        - Fix schema `self_check` to verify issuer only when given (e.g. when using `PATCH` to update configuration)
+
 ## 0.34 - 2018/11/17
 
 **Notifications**
@@ -35,11 +141,11 @@ title: Kong Enterprise Changelog
   - `portal_gui_use_subdomains` avoids conflicts if base path name matches workspace name
 - **Plugins**
   - **Prometheus**
-    - **Warning** - Dropped metrics that were aggregated across services in Kong. These metrics can be obtained much more efficiently using queries in Prometheus. 
+    - **Warning** - Dropped metrics that were aggregated across services in Kong. These metrics can be obtained much more efficiently using queries in Prometheus.
   - **Zipkin**
     - Add kong.node.id tag
   - **Proxy Cache**
-    - Add `application/json` to config `content-type` 
+    - Add `application/json` to config `content-type`
   - **All logging plugins**
     - Workspace of the request is logged
   - **StatsD Advanced**
@@ -110,7 +216,7 @@ title: Kong Enterprise Changelog
     - Add `config.authorization_cookie_httponly`
     - Add `config.authorization_cookie_secure`
 - **CORE**
-  - Admin API and DAO Audit Log 
+  - Admin API and DAO Audit Log
   - **Healthchecks**
     - HTTPS support
   - **License**
@@ -124,7 +230,7 @@ title: Kong Enterprise Changelog
 **FIXES**
 - **CORE**
   - **Plugin runloop**
-    - Fix issue where Log phase plugins are not executed for request with non-matching routes. 
+    - Fix issue where Log phase plugins are not executed for request with non-matching routes.
     Note: For request with non-matching routes, every logging phase plugin enabled in the cluster will run irrespective of the workspace where it's configured
   - **Workspaces**
     - Logging plugins log workspace info about requests
@@ -145,7 +251,7 @@ title: Kong Enterprise Changelog
     - Fix issue where internal server error was returned when CRUD operations were performed on Certificate endpoint
 - **Plugins**
   - **Request Termination**
-    - Allow user to unset the value of `config.body` or `config.message` or both  
+    - Allow user to unset the value of `config.body` or `config.message` or both
   - **Zipkin**
     - Fix failures when request is invalid or exits early
     - Fix issue when service name is missing
