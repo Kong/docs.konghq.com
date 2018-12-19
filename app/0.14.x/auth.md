@@ -2,7 +2,7 @@
 title: Authentication Reference
 ---
 
-# Authentication Reference
+## Introduction
 
 Traffic to your upstream services (APIs or microservices) is typically controlled by the application and
 configuration of various Kong [authentication plugins][plugins]. Since Kong's Service entity represents
@@ -27,6 +27,8 @@ then there is no consumer to be identified, and only the credentials will be add
 
 The authentication method specific elements and examples can be found in each [plugin's documentation][plugins].
 
+[Back to TOC](#table-of-contents)
+
 ## Consumers
 
 The easiest way to think about consumers is to map them one-on-one to users. Yet, to Kong this does not matter.
@@ -36,6 +38,8 @@ platform, e.g. an android consumer, an iOS consumer, etc.
 
 It is an opaque concept to Kong and hence they are called "consumers" and not "users".
 
+[Back to TOC](#table-of-contents)
+
 ## Anonymous Access
 
 Kong has the ability to configure a given Service to allow **both** authenticated **and** anonymous access.
@@ -43,7 +47,7 @@ You might use this configuration to grant access to anonymous users with a low r
 to authenticated users with a higher rate limit.
 
 To configure a Service like this, you first apply your selected authentication plugin, then create a new
-consumer to represent annonymous users, then configure your authentication plugin to allow anonymous
+consumer to represent anonymous users, then configure your authentication plugin to allow anonymous
 access. Here is an example, which assumes you have already configured a Service named `example-service` and
 the corresponding route:
 
@@ -176,7 +180,9 @@ the corresponding route:
     }
     ```
 
-    It shows the request was succesful, but anonymous.
+    It shows the request was successful, but anonymous.
+
+[Back to TOC](#table-of-contents)
 
 ## Multiple Authentication
 
@@ -199,7 +205,7 @@ multiple authentication credentials. The key to the behaviour is the `config.ano
 undefined if they are mixed.
 
 **NOTE 2**: When using the `AND` method, the last plugin executed will be the one setting the credentials
-passed to the upstream service. With the `OR` method, it will be the first plugin that succesfully authenticates
+passed to the upstream service. With the `OR` method, it will be the first plugin that successfully authenticates
 the consumer, or the last plugin that will set its configured anonymous consumer.
 
 **NOTE 3**: When using the OAuth2 plugin in an `AND` fashion, then also the OAuth2 endpoints for requesting
@@ -210,6 +216,8 @@ tokens etc. will require authentication by the other configured auth plugins.
   anonymous access be forbidden, then the <a href="/plugins/request-termination"><tt>request-termination</tt> plugin</a> should be
   configured on the anonymous consumer. Failure to do so will allow unauthorized requests.
 </div>
+
+[Back to TOC](#table-of-contents)
 
 [plugins]: https://konghq.com/plugins/
 [key-auth]: /plugins/key-authentication

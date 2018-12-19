@@ -59,17 +59,17 @@
       }
     }
 
-    // titles proportions overriden from base.less
+    // titles proportions overridden from base.less
 
     h1 {
-      font-size: 33px;
+      font-size: 38px;
       font-weight: 400;
     }
 
     h2 {
       margin-top: 1.2em;
       margin-bottom: .8em;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 400;
     }
 
@@ -139,7 +139,7 @@
   .algolia-docsearch-suggestion--highlight {
     color: @blue-light;
   }
-  /* Highligted search terms in the main category headers */
+  /* Highlighted search terms in the main category headers */
   .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--highlight {
     background-color: @blue-light;
   }
@@ -149,10 +149,16 @@
   }
   @media (max-width: @navbar-collapse-point) {
     float: initial;
-    margin: 10px -3px 0;
+    display:inline-block;
+    margin-right:5px;
     .algolia-docsearch-suggestion--subcategory-column{
       display: none !important;
     }
+  }
+  @media (max-width:476px){
+    margin:10px 0 0;
+    float:left;
+    clear:both;
   }
 }
 

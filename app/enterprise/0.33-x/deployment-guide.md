@@ -2,7 +2,7 @@
 title: Kong Deployment Guide
 redirect_from: "/enterprise/0.33-x/kong-implementation-checklist/"
 ---
-# Kong Deployment Guide
+## Introduction
 
 - Kong can run on instances of any size with any resources. While the system
 requirements vary significantly depending on the use-case, generally speaking,
@@ -12,7 +12,7 @@ appropriate number and size.
 cluster to make room for request spikes. Kong requires a database to run and
 you can choose either Cassandra or PostgreSQL.
 
-### PostgreSQL
+## PostgreSQL
 
 - Generally speaking, PostgreSQL works well for most of the use-cases, and it’s
 usually easier to setup. We recommend setting up a master-slave replication with
@@ -22,7 +22,7 @@ account for infrastructure failures.
 node located in a different datacenter will have to send write requests all the
 way to the PostgreSQL data-center, adding increased latency to the system.
 
-### Cassandra
+## Cassandra
 
 - We recommend using Cassandra in Multi-DC environments because it supports
 native replication and availability capabilities of the system. When starting a
@@ -32,7 +32,7 @@ datacenter with a replication setting of 2.
 time the data will be the same across the cluster, so please account for
 inconsistencies in the system.
 
-### Kong Cluster
+## Kong Cluster
 
 - Regardless of the datastore being adopted with Kong, the Kong nodes themselves
 need to join in a cluster. The Kong nodes will talk to each other via their

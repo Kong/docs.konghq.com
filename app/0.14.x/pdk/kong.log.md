@@ -1,9 +1,10 @@
 ---
 title: kong.log
 pdk: true
+toc: true
 ---
 
-# kong.log
+## kong.log
 
 This namespace contains an instance of a "logging facility", which is a
  table containing all of the methods described below.
@@ -14,18 +15,9 @@ This namespace contains an instance of a "logging facility", which is a
  plugin's name for debugging purposes.
 
 
-## Table of Contents
-
-* [kong.log(...)](#kong_log)
-* [kong.log.LEVEL(...)](#kong_log_LEVEL)
-* [kong.log.inspect(...)](#kong_log_inspect)
-* [kong.log.inspect.on()](#kong_log_inspect_on)
-* [kong.log.inspect.off()](#kong_log_inspect_off)
 
 
-
-
-### <a name="kong_log"></a>kong.log(...)
+### kong.log(...)
 
 Write a log line to the location specified by the current Nginx
  configuration block's `error_log` directive, with the `notice` level (similar
@@ -108,7 +100,7 @@ kong.log("hello ", "world") -- alias to kong.log.notice()
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_log_LEVEL"></a>kong.log.LEVEL(...)
+### kong.log.LEVEL(...)
 
 Similar to `kong.log()`, but the produced log will have the severity given by
  `<level>`, instead of `notice`.  The supported levels are:
@@ -166,7 +158,7 @@ kong.log.alert("something requires immediate action")
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_log_inspect"></a>kong.log.inspect(...)
+### kong.log.inspect(...)
 
 Like `kong.log()`, this function will produce a log with the `notice` level,
  and accepts any number of arguments as well.  If inspect logging is disabled
@@ -229,7 +221,7 @@ kong.log.inspect("some value", a_variable)
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_log_inspect_on"></a>kong.log.inspect.on()
+### kong.log.inspect.on()
 
 Enables inspect logs for this logging facility.  Calls to
  `kong.log.inspect` will be writing log lines with the appropriate
@@ -249,7 +241,7 @@ kong.log.inspect.on()
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_log_inspect_off"></a>kong.log.inspect.off()
+### kong.log.inspect.off()
 
 Disables inspect logs for this logging facility.  All calls to
  `kong.log.inspect()` will be nopped.

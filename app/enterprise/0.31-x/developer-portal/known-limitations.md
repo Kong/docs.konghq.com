@@ -17,7 +17,7 @@ The Dev Portal is built with customization of content, look, feel, and structure
         * Media like images, SVGs, and videos should encoded and inserted inline or hosted elsewhere and referenced.
         * Custom JS and CSS (or supported pre-processors) should be nested in `<style>` or `<script>` tags (or served through a CDN) and placed in a partial.
     * `.json` or `.yaml` - spec files.
-* Swagger 2 and OpenAPI 3 are the only spec formats currently formated.
+* Swagger 2 and OpenAPI 3 are the only spec formats currently formatted.
 * `<meta>`  and `<head>` tags are not modifiable via html, you can accomplish this through custom JS included as a handlebars partial.
 * Spec renderer must render API specification served by the Files API - it cannot reference an API served via URL.
 * Content in Markdown format is not currently supported.

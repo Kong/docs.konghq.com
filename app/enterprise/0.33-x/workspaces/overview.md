@@ -2,9 +2,10 @@
 title: Overview
 book: workspaces
 chapter: 1
+toc: false
 ---
 
-# {{page.title}}
+## Introduction
 
 Starting with its 0.33 version, Kong Enterprise ships with a **novel Workspaces
 implementation**, allowing Kong Admins to **segment** Admin API configuration &

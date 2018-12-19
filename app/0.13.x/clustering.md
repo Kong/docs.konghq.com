@@ -12,37 +12,7 @@ configuration since they point to the same database. Kong nodes pointing to the
 You need a load-balancer in front of your Kong cluster to distribute traffic
 across your available nodes.
 
-### Table of Contents
-
-- [What a Kong cluster does and doesn't do][1]
-- [Single node Kong clusters][2]
-- [Multiple nodes Kong clusters][3]
-- [What is being cached?][4]
-- [How to configure database caching?][5]
-    - 1. [db_update_frequency][5-1]
-    - 2. [db_update_propagation][5-2]
-    - 3. [db_cache_ttl][5-3]
-    - 4. [When using Cassandra][5-4]
-- [Interacting with the cache via the Admin API][6]
-    - [Inspect a cached value][6-1]
-    - [Purge a cached value][6-2]
-    - [Purge a node's cache][6-3]
-
-[1]: #what-a-kong-cluster-does-and-doesnt-do
-[2]: #single-node-kong-clusters
-[3]: #multiple-nodes-kong-clusters
-[4]: #what-is-being-cached
-[5]: #how-to-configure-database-caching
-[5-1]: #1-db_update_frequency-default-5s
-[5-2]: #2-db_update_propagation-default-0s
-[5-3]: #3-db_cache_ttl-default-3600s
-[5-4]: #4-when-using-cassandra
-[6]: #interacting-with-the-cache-via-the-admin-api
-[6-1]: #inspect-a-cached-value
-[6-2]: #purge-a-cached-value
-[6-3]: #purge-a-nodes-cache
-
-### What a Kong cluster does and doesn't do
+## What a Kong cluster does and doesn't do
 
 **Having a Kong cluster does not mean that your clients traffic will be
 load-balanced across your Kong nodes out of the box.** You still need a
@@ -61,7 +31,7 @@ performance and consistency.
 
 [Back to TOC](#table-of-contents)
 
-### Single node Kong clusters
+## Single node Kong clusters
 
 A single Kong node connected to a database (Cassandra or PostgreSQL) creates a
 Kong cluster of one node. Any changes applied via the Admin API of this node
@@ -82,7 +52,7 @@ $ curl -i http://127.0.0.1:8000/test-service
 
 [Back to TOC](#table-of-contents)
 
-### Multiple nodes Kong clusters
+## Multiple nodes Kong clusters
 
 In a cluster of multiple Kong nodes, other nodes connected to the same database
 would not instantly be notified that the Service was deleted by node `A`.  While
@@ -107,7 +77,7 @@ This makes Kong clusters **eventually consistent**.
 
 [Back to TOC](#table-of-contents)
 
-### What is being cached?
+## What is being cached?
 
 All of the core entities such as Services, Routes, Plugins, Consumers, Credentials are
 cached in memory by Kong and depend on their invalidation via the polling
@@ -171,7 +141,7 @@ polling job.
 
 [Back to TOC](#table-of-contents)
 
-### How to configure database caching?
+## How to configure database caching?
 
 You can configure 3 properties in the Kong configuration file, the most
 important one being `db_update_frequency`, which determine where your Kong
@@ -182,7 +152,7 @@ experiment with its clustering capabilities while avoiding "surprises". As you
 prepare a production setup, you should consider tuning those values to ensure
 that your performance constraints are respected.
 
-#### 1. [db_update_frequency][db_update_frequency] (default: 5s)
+### 1. [db_update_frequency][db_update_frequency] (default: 5s)
 
 This value determines the frequency at which your Kong nodes will be polling
 the database for invalidation events. A lower value will mean that the polling
@@ -196,7 +166,7 @@ seconds.
 
 [Back to TOC](#table-of-contents)
 
-#### 2. [db_update_propagation][db_update_propagation] (default: 0s)
+### 2. [db_update_propagation][db_update_propagation] (default: 0s)
 
 If your database itself is eventually consistent (ie: Cassandra), you **must**
 configure this value. It is to ensure that the change has time to propagate
@@ -216,7 +186,7 @@ up to `db_update_frequency + db_update_propagation` seconds.
 
 [Back to TOC](#table-of-contents)
 
-#### 3. [db_cache_ttl][db_cache_ttl] (default: 3600s)
+### 3. [db_cache_ttl][db_cache_ttl] (default: 3600s)
 
 The time (in seconds) for which Kong will cache database entities (both hits
 and misses). This Time-To-Live value acts as a safeguard in case a Kong node
@@ -232,7 +202,7 @@ manually purged, or the node is restarted.
 
 [Back to TOC](#table-of-contents)
 
-#### 4. When using Cassandra
+### 4. When using Cassandra
 
 If you use Cassandra as your Kong database, you **must** set
 [db_update_propagation][db_update_propagation] to a non-zero value. Since
@@ -247,19 +217,19 @@ Kong nodes are up-to-date values from your database.
 
 [Back to TOC](#table-of-contents)
 
-### Interacting with the cache via the Admin API
+## Interacting with the cache via the Admin API
 
 If for some reason, you wish to investigate the cached values, or manually
 invalidate a value cached by Kong (a cached hit or miss), you can do so via the
 Admin API `/cache` endpoint.
 
-#### Inspect a cached value
+### Inspect a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/cache/{cache_key}</div>
 
-##### Response
+**Response**
 
 If a value with that key is cached:
 
@@ -283,13 +253,13 @@ this process easier.
 
 [Back to TOC](#table-of-contents)
 
-#### Purge a cached value
+### Purge a cached value
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache/{cache_key}</div>
 
-##### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -302,13 +272,13 @@ this process easier.
 
 [Back to TOC](#table-of-contents)
 
-#### Purge a node's cache
+### Purge a node's cache
 
-##### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cache</div>
 
-##### Response
+**Response**
 
 ```
 HTTP 204 No Content

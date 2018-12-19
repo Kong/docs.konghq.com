@@ -59,6 +59,10 @@
       margin: 1em 0;
     }
 
+    hr {
+      margin: 1.5em 0px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
@@ -126,6 +130,7 @@
 
         &:last-child {
           padding-bottom: 15px;
+          border-left: 1px solid #ebebeb;
         }
 
         &:before {
@@ -141,6 +146,7 @@
 
     .update-subscribe {
       display: flex;
+      margin-top: -25px;
       .icon {
         box-sizing: border-box;
         width: 36px;
@@ -158,6 +164,47 @@
       .update-content {
         display: inline-block;
         margin-left: 20px;
+        width: 80%;
+        max-width: 450px;
+        input {
+          width: 100%;
+          margin-bottom: 5px;
+          &.error {
+            border-color: @red;
+            background-image: url('/assets/images/icons/error.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-position-x: 95%;
+          }
+        }
+        .button {
+          background: @green;
+          color: @white-90;
+          margin-top: 1rem;
+        }
+        .form {
+          margin-bottom: 1rem;
+        }
+      }
+      .card {
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        padding: 10px;
+      }
+      .success-message {
+        color: @green;
+        display: block;
+      }
+
+      .error-message {
+        color: @red;
+        display: block;
+      }
+
+    }
+    .help {
+      a {
+        margin: 0px 5px;
       }
     }
 

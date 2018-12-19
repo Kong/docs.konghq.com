@@ -1,0 +1,85 @@
+---
+layout: default
+title: Kong Hub | Plugins and Integrations
+breadcrumbs: null
+permalink: /hub/
+body_id: page-hub
+
+---
+
+{% assign hub = site.hub %}
+{% assign kong_extns = hub | where: "publisher", "Kong Inc." %}
+{% assign third_extns = hub | where_exp: "extn", "extn.publisher != 'Kong Inc.'" %}
+{% assign categories = site.extensions.categories %}
+{% assign types = site.extensions.types %}
+
+<div class="page page-hub">
+  <header class="page-header">
+    <h2 class="text-center">Kong Hub</h2>
+    <h3 class="text-center">Extend Kong with Powerful Plugins and Easy Integrations</h3>
+  </header>
+  <div class="container kong-plugins">
+    <div class="row">
+      <div class="col col-lg-3 hidden-md-down sidebar">
+        <div class="sticky-top" style="top: 135px;">
+          <h5 class="my-1x">Filters</h5>
+          <ul class="nav flex-column" id="facet-filters">
+            <li class="nav-item">
+              <a class="nav-link active" data-filter="">
+                All Extensions
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-filter="open-source">
+                Bundled with Kong
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-filter="pub-konghq">
+                Bundled with Kong Enterprise
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-filter="pub-not-konghq">
+                Community published
+              </a>
+            </li>
+          </ul>
+          <h5 class="my-1x">Functionality</h5>
+          <ul class="nav flex-column" id="scroll-sidebar">
+            {% for cat in categories %}
+              <li class="nav-item">
+                <a class="nav-link" data-link="scroll" href="#{{ cat.slug }}">
+                  {{ cat.name }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <div class="cta-container">
+            <p class="cta-description sm">List your extension here!</p>
+            <a class="btn btn-gry" href="https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub" target="_blank">Teach me how</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-9 hub-cards">
+        <div class="row mb-2x">
+          {% for cat in categories %}
+            <div class="row category" id="{{cat.slug}}">
+              <h5>{{ cat.name }}</h5>
+              {% assign extns = kong_extns | where_exp: "extn","extn.categories contains cat.slug" %}
+              {% for extn in extns  %}
+                {% include hub_cards.html %}
+              {% endfor %}
+              {% assign extns = third_extns | where_exp: "extn","extn.categories contains cat.slug" %}
+              {% for extn in extns  %}
+                {% include hub_cards.html %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div><!-- row mb-2x  -->
+      </div><!-- col-12  -->
+    </div><!-- row -->
+  </div><!-- kong-plugins -->
+</div><!-- page -->
+
+<!-- {% include intercom.html %} -->

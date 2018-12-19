@@ -4,7 +4,7 @@ book: portal
 chapter: 1
 ---
 
-# {{page.title}}
+## Introduction
 
 ![Welcome to the Kong Dev Portal](https://konghq.com/wp-content/uploads/2018/05/kong-portal-intro.png)
 

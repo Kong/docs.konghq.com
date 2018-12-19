@@ -22,7 +22,7 @@ $(function () {
   // Change header download button color
 
   if (!$('body#enterprise').length) {
-    var introSectionHeight = $('.section.intro-section').outerHeight() || 50
+    var introSectionHeight = $('.section.intro-section').outerHeight() || 38
     var $downloadBtn = $('.navbar-nav').find('.button')
 
     $window.on('scroll', function () {
@@ -115,7 +115,7 @@ $(function () {
 
   // Subscribe form
 
-  $('.subscribe-form').on('submit', function (e) {
+  $('#subscription_form, #follow_up_subscription_form').on('submit', function (e) {
     e.preventDefault()
 
     var form = $(this)
@@ -129,11 +129,30 @@ $(function () {
       created_at: time
     }
 
+    form.find('.message').html('')
+    form.find('[name="email"]').removeClass('error')
+    if (!email || !isEmail(email)) {
+      $(this).find('.error-message').html('The e-mail address entered is invalid.')
+      form.find('[name="email"]').addClass('error')
+      return false
+    }
+
     form.addClass('loading')
 
-    var track = function () {
-      form.addClass('complete')
+    $.ajax({
+      url: form.attr('action'),
+      type: 'POST',
+      async: false,
+      data: form.serialize(),
+      xhrFields: {
+        withCredentials: true
+      },
+      success: function () {
+        console.log('Success')
+      }
+    })
 
+    var track = function () {
       analytics.track('request_newsletter_updates', {
         email: email,
         request_date: time
@@ -141,7 +160,56 @@ $(function () {
     }
 
     analytics.identify(email, traits, track)
+
+    form.find('[name="email"]').val()
+    $(this).find('.success-message').text('Thank you for signing up!')
+    return false
   })
+
+  // set utm_ values from query parameter
+
+  var getUrlParameter = function getUrlParameter (sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1))
+    var sURLVariables = sPageURL.split('&')
+    var sParameterName
+    var i
+    var x
+    var status = false
+    var urlParams = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term']
+    var paramValues = []
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=')
+
+      if ($.inArray(sParameterName[0], urlParams) >= 0) {
+        setCookie(sParameterName[0], sParameterName[1], 30)
+        paramValues.push(sParameterName[0])
+        status = true
+      }
+    }
+
+    if (status === true) {
+      for (i = 0; i < urlParams.length; i++) {
+        if ($.inArray(urlParams[i], paramValues) < 0) {
+          setCookie(urlParams[i], ' ', 30)
+        }
+      }
+    }
+
+    for (x = 0; x < urlParams.length; x++) {
+      if (getCookie(urlParams[x])) {
+        $('input[name="' + urlParams[x] + '"]').val(getCookie(urlParams[x]))
+      }
+    }
+  }
+
+  getUrlParameter()
+
+  // Check for email validation
+
+  function isEmail (email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+    return regex.test(email)
+  }
 
   // Enterprise page demo request form
 
@@ -264,16 +332,55 @@ $(function () {
 
   analytics.trackLink($('a[href="#comparison"]')[0], 'Clicked Why Kong')
 
-  $(window).scroll(function () {
-    var sticky = $('.site-header')
-    var scroll = $(window).scrollTop()
+  // Add Smooth scroll when link with attr clicked
+  $('a[data-link="scroll"]').click(function () {
+    $('html, body').animate({
+      scrollTop: $($.attr(this, 'href')).offset().top - 150 // Add spacing on top after scroll
+    }, 600) // Adjust scroll speed
+    // Remove any active classes that may already be applied
+    $('a[data-link="scroll"').removeClass('active')
+    // Add active class sidebar a
+    $(this).addClass('active')
+    return false
+  })
 
-    if (scroll >= 50) {
-      sticky.addClass('fixed-top')
-      $('.page').addClass('page-header-fixed')
-    } else {
-      sticky.removeClass('fixed-top')
-      $('.page').removeClass('page-header-fixed')
+  // Smooth scroll if hash in URL
+  if (window.location.hash) {
+    $('html, body').scrollTop(0).show()
+    $('html, body').animate({
+      scrollTop: $(window.location.hash).offset().top - 220 // Add spacing on top after scroll
+    }, 600) // Adjust scroll speed
+  }
+
+  // Plugins filter
+  $('a[data-filter]').click(function () {
+    var target = $(this).data('filter')
+
+    // Remove any active classes that may already be applied
+    $('a[data-filter]').removeClass('active')
+    // Add active class sidebar a
+    $(this).addClass('active')
+
+    // For all faded cards, replace href with data-href target
+    $('.plugin-card.fadeOut').each(function () {
+      var link = $(this).find('a')
+      link.attr('href', $(link).attr('data-href'))
+      link.removeAttr('data-href')
+    })
+
+    // Remove any fade states that may already be applied
+    $('.plugin-card').removeClass('fadeOut')
+
+    // If the target of the li is not all continue
+    if (target !== 'all') {
+      // Fade all cards that don't have matching filter
+      $('.plugin-card').not('.' + target).addClass('fadeOut')
+      // For each faded card, move href to data-href and remove href
+      $('.plugin-card.fadeOut').each(function () {
+        var link = $(this).find('a')
+        link.attr('data-href', $(link).attr('href'))
+        link.removeAttr('href')
+      })
     }
   })
 })

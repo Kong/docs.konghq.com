@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 10
 ---
 
-# {{page.title}}
+## Introduction
 
 Custom plugins for Kong consist of Lua source files that need to be in the file
 system of each of your Kong nodes. This guide will provide you with
@@ -14,18 +14,7 @@ plugin(s).
 These steps should be applied to each node in your Kong cluster, to ensure the
 custom plugin(s) are available on each one of them.
 
-
-### Table of Contents
-
-- [Packaging sources](#packaging-sources)
-- [Installing the plugin](#installing-the-plugin)
-- [Load the plugin](#load-the-plugin)
-- [Verify loading the plugin](#verify-loading-the-plugin)
-- [Removing a plugin](#removing-a-plugin)
-- [Distribute your plugin](#distribute-your-plugin)
-- [Troubleshooting](#troubleshooting)
-
-### Packaging sources
+## Packaging sources
 
 You can either use a regular packing strategy (e.g. `tar`), or use the LuaRocks
 package manager to do it for you. We recommend LuaRocks as it is installed
@@ -74,7 +63,7 @@ The contents of this archive should be close to the following:
 
 ---
 
-### Installing the plugin
+## Installing the plugin
 
 For a Kong node to be able to use the custom plugin, the custom plugin's Lua
 sources must be installed on your host's file system. There are multiple ways
@@ -174,7 +163,7 @@ sources, you must still do so for each node in your Kong cluster.
 
 ---
 
-### Load the plugin
+## Load the plugin
 
 You must now add the custom plugin's name to the `plugins` list in your
 Kong configuration (on each Kong node):
@@ -204,7 +193,7 @@ in your Kong cluster.
 
 ---
 
-### Verify loading the plugin
+## Verify loading the plugin
 
 You should now be able to start Kong without any issue. Consult your custom
 plugin's instructions on how to enable/configure your plugin
@@ -228,7 +217,7 @@ Then, you should see the following log for each plugin being loaded:
 
 ---
 
-### Removing a plugin
+## Removing a plugin
 
 There are three steps to completely remove a plugin.
 
@@ -255,7 +244,7 @@ There are three steps to completely remove a plugin.
 
 ---
 
-### Distributing your plugin
+## Distributing your plugin
 
 The preferred way to do so is to use [LuaRocks](https://luarocks.org/), a
 package manager for Lua modules. It calls such modules "rocks". **Your module
@@ -277,7 +266,7 @@ about the format see the LuaRocks [documentation on rockspecs][rockspec].
 
 ---
 
-### Troubleshooting
+## Troubleshooting
 
 Kong can fail to start because of a misconfigured custom plugin for several
 reasons:

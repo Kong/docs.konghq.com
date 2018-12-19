@@ -1,8 +1,9 @@
 ---
 title: How to Access Your Kong Enterprise Edition License
+toc: false
 ---
 
-Starting with Kong EE v .29, Kong requires a license file to start. This guide will walk you through accessing your license file. 
+Starting with Kong EE v .29, Kong requires a license file to start. This guide will walk you through accessing your license file.
 
 Log into https://bintray.com/login?forwardedFrom=%2Fkong%2F
 If you are unaware of your login credentials, reach out to your CSE and they'll be able to assist you.
@@ -27,7 +28,7 @@ curl -L -u<$UserName>@kong<$API_KEY> "https://kong.bintray.com/<$repoName>/licen
 
 > Note: Your UserName and key were emailed to you by your CSE. You will need to get the repo name from the GUI
 
- 
+
 
 ## What Next?
 Great! Now that you have your license, you can follow [this guide](/enterprise/latest/installation/docker) for instructions on how to use it to start Kong EE.

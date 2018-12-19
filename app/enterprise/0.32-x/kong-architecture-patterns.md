@@ -1,5 +1,5 @@
 ---
-title: Kong Implementation Checklist
+title: Kong Architecture Patterns
 ---
 # Kong Architecture Patterns
 
@@ -7,7 +7,9 @@ An important part of setting up a new Kong cluster is choosing the right archite
 
 ## Kong between client and upstream
 
-The classic architectural pattern we see customers setting up is adding Kong in between some, or all, of their API traffic. Kong is installed in your prefered hosting provider, and configured to proxy traffic to the existing APIs. Note that in this pattern the APIs are still accessible directly, that is both through the proxy and also without being routed through the API Gateway. We see this during initial testing, and migration phases, before customers eventually route all traffic through Kong. 
+The classic architectural pattern we see customers setting up is adding Kong in between some, or all, of their API traffic. Kong is installed in your preferred hosting provider, and configured to proxy traffic to the existing APIs. Note that in this pattern the APIs are still accessible directly, that is both through the proxy and also without being routed through the API Gateway. We see this during initial testing, and migration phases, before customers eventually route all traffic through Kong. 
+
+![Basic Kong pattern](https://konghq.com/wp-content/uploads/2018/06/comp-1-basic-kong.png "Basic Kong pattern")
 
 The pros of this approach are that it is simple to setup and configure. All it requires is setup, and coordinating new traffic to use the gateway. Older traffic will still flow directly to the APIs.
 
@@ -23,6 +25,8 @@ This is a popular architecture pattern that we see with customers who have publi
 
 This architecture pattern is the one we recommend for most customers. It is straightforward to setup, and offers security and control over API access.
 
+![Firewall Kong pattern](https://konghq.com/wp-content/uploads/2018/06/comp-2-kong-and-apis-behind-firewall.png "Firewall Kong pattern")
+
 The Kong cluster would be placed behind a firewall, or within an Amazon VPC. The Kong cluster's port 80 or 443, which ever your public API is available on, would be opened to the outside world. Inside the firewall the API servers would only allow connections from the Kong cluster. Other IP:ports may need to be opened for the API servers to reach resources they need to fulfill any requests.
 
 
@@ -37,6 +41,8 @@ Application availability is important, and high availability can be achieved by 
 The minimum number of Kong nodes per data center needed for high availability is three. This will ensure that in the unlikely event of a node failure there will still be a node and a backup. Cassandra would be configured in an optimal way; you can use the [Cassandra Calculator](https://www.ecyrd.com/cassandracalculator/) to determine how many Cassandra nodes are needed per data center to ensure high availability, and  performance for your specific needs.
 
 Logically Kong will act as a single cluster, and in a multi-datacenter strategy, can be configured similar to the previous architecture patterns. We recommending having the upstream services behind a firewall (or in a VPC in AWS) and only allow Kong nodes direct access to the APIs. 
+
+![Cassandra Kong pattern](https://konghq.com/wp-content/uploads/2018/06/comp-3-multi-data-center-w-cassandra.png "Cassandra Kong pattern")
 
 ## Separate Kong Admin node
 

@@ -1,10 +1,10 @@
 ---
-title: Overview
+title: RBAC Overview
 book: rbac
 chapter: 1
 ---
 
-## Overview
+## Introduction
 
 Kong Enterprise provides an additional layer of security for the Admin API in
 the form of Role-Based Access Control (RBAC). RBAC allows for fine-grained
@@ -57,7 +57,7 @@ to the Admin API without sending an authentication. Because Kong does not
 recognize a user associated with the requesting client, it rejects the
 request:
 
-```
+```bash
 $ curl -i http://localhost:8001/status
 HTTP/1.1 401 Unauthorized
 Access-Control-Allow-Origin: *
@@ -74,7 +74,7 @@ Transfer-Encoding: chunked
 By sending a request with a valid user token, we are granted read access to
 the resource in question:
 
-```
+```bash
 $ curl -H "Kong-Admin-Token: 12345" -i http://localhost:8001/status
 HTTP/1.1 200 OK
 Date: Fri, 04 Aug 2017 22:09:25 GMT
@@ -89,7 +89,7 @@ Attempting to create a new resource which our RBAC user is also
 not permitted, as it is not assigned any roles that have permissions with
 create access:
 
-```
+```bash
 $ curl -H "Kong-Admin-Token: 12345" -i http://localhost:8001/consumers -d name=alice
 HTTP/1.1 403 Forbidden
 Access-Control-Allow-Origin: *
@@ -103,7 +103,7 @@ Transfer-Encoding: chunked
 }
 ```
 
-#### User
+### User
 
 A user identifies the actor sending the current request. Users are identified
 by Kong via the `user_token` element, sent to the Admin API as a request header.
@@ -113,7 +113,7 @@ the `enabled` flag on the User entity in the Admin API; this allows Kong
 administrators to quickly enable and disable users without removing their
 tokens or metadata.
 
-#### Role
+### Role
 
 Roles tie together users and permissions, effectively assignment permissions to
 a user based on the assignment of permissions to the roles. Roles have a

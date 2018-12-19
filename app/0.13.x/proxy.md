@@ -25,64 +25,6 @@ Services entities.</p>
 below.</p>
 </div>
 
-## Table of Contents
-
-- [Terminology][proxy-terminology]
-- [Overview][proxy-overview]
-- [Reminder: How to configure a Service][proxy-reminder]
-- [Routes and matching capabilities][proxy-routes-and-matching-capabilities]
-    - [Request Host header][proxy-request-host-header]
-        - [Using wildcard hostnames][proxy-using-wildcard-hostnames]
-        - [The `preserve_host` property][proxy-preserve-host-property]
-    - [Request path][proxy-request-path]
-        - [Using regexes in paths][proxy-using-regexes-in-paths]
-            - [Evaluation order][proxy-evaluation-order]
-            - [Capturing groups][proxy-capturing-groups]
-            - [Escaping special characters][proxy-escaping-special-characters]
-        - [The `strip_path` property][proxy-strip-path-property]
-    - [Request HTTP method][proxy-request-http-method]
-- [Matching priorities][proxy-matching-priorities]
-- [Proxying behavior][proxy-proxying-behavior]
-    - [1. Load balancing][proxy-load-balancing]
-    - [2. Plugins execution][proxy-plugins-execution]
-    - [3. Proxying & upstream timeouts][proxy-proxying-upstream-timeouts]
-    - [4. Errors & retries][proxy-retries]
-    - [5. Response][proxy-response]
-- [Configuring a fallback Route][proxy-configuring-a-fallback-route]
-- [Configuring SSL for a Route][proxy-configuring-ssl-for-a-route]
-    - [Restricting the client protocol (HTTP/HTTPS)][proxy-restricting-client-protocol]
-- [Proxy WebSocket traffic][proxy-websocket]
-    - [WebSocket and TLS][proxy-websocket-tls]
-- [Conclusion][proxy-conclusion]
-
-[proxy-terminology]: #terminology
-[proxy-overview]: #overview
-[proxy-reminder]: #reminder-how-to-configure-a-service
-[proxy-routes-and-matching-capabilities]: #routes-and-matching-capabilities
-[proxy-request-host-header]: #request-host-header
-[proxy-using-wildcard-hostnames]: #using-wildcard-hostnames
-[proxy-preserve-host-property]: #the-preserve_host-property
-[proxy-request-path]: #request-path
-[proxy-using-regexes-in-paths]: #using-regexes-in-paths
-[proxy-evaluation-order]: #evaluation-order
-[proxy-capturing-groups]: #capturing-groups
-[proxy-escaping-special-characters]: #escaping-special-characters
-[proxy-strip-path-property]: #the-strip_path-property
-[proxy-request-http-method]: #request-http-method
-[proxy-matching-priorities]: #matching-priorities
-[proxy-proxying-behavior]: #proxying-behavior
-[proxy-load-balancing]: #1-load-balancing
-[proxy-plugins-execution]: #2-plugins-execution
-[proxy-proxying-upstream-timeouts]: #3-proxying-upstream-timeouts
-[proxy-retries]: #4-errors-retries
-[proxy-response]: #5-response
-[proxy-configuring-a-fallback-route]: #configuring-a-fallback-route
-[proxy-configuring-ssl-for-a-route]: #configuring-ssl-for-a-route
-[proxy-restricting-client-protocol]: #restricting-the-client-protocol-http-https
-[proxy-websocket]: #proxy-websocket-traffic
-[proxy-websocket-tls]: #websocket-and-tls
-[proxy-conclusion]: #conclusion
-
 ## Terminology
 
 - `client`: Refers to the *downstream* client making requests to Kong's
@@ -104,7 +46,7 @@ below.</p>
 
 ## Overview
 
-From a high-level perspective, Kong listens for HTTP traffc on its configured
+From a high-level perspective, Kong listens for HTTP traffic on its configured
 proxy port(s) (`8000` and `8443` by default). Kong will evaluate any incoming
 HTTP request against the Routes you have configured and try to find a matching
 one. If a given request matches the rules of a specific Route, Kong will
@@ -141,7 +83,7 @@ how Kong is configured via the [Admin API][API].
 
 Adding a Service to Kong is done by sending an HTTP request to the Admin API:
 
-```
+```bash
 $ curl -i -X POST http://localhost:8001/services/ \
     -d 'name=foo-service' \
     -d 'url=http://foo-service.com'
@@ -173,7 +115,7 @@ points to `http://foo-service.com` (your upstream).
 Now, in order to send traffic to this Service through Kong, we need to specify
 a Route, which acts as an entrypoint to Kong:
 
-```
+```bash
 $ curl -i -X POST http://localhost:8001/routes/ \
     -d 'hosts[]=example.com' \
     -d 'paths[]=/foo' \
@@ -857,7 +799,7 @@ There are two configurable elements here:
    `retries` property. See the [Admin API][API] for more details on this.
 
 2. What exactly constitutes an error: here Kong uses the Nginx defaults, which
-   means an error or timeout occuring while establishing a connection with the
+   means an error or timeout occurring while establishing a connection with the
    server, passing a request to it, or reading the response headers.
 
 The second option is based on Nginx's
@@ -892,7 +834,7 @@ registered plugins for the Route and/or Service that implement the
 `body_filter` hook. This hook may be called multiple times, due to the
 streaming nature of Nginx. Each chunk of the upstream response that is
 successfully processed by such `body_filter` hooks is sent back to the client.
-You can find more informations about the `body_filter` hook in the [Plugin
+You can find more information about the `body_filter` hook in the [Plugin
 development guide][plugin-development-guide].
 
 [Back to TOC](#table-of-contents)

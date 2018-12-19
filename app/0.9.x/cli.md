@@ -10,23 +10,7 @@ current machine).
 
 If you haven't yet, we recommend you read the [configuration reference][configuration-reference].
 
-### Table of Contents
-
-- [Global flags](#global-flags)
-- [Available commands](#available-commands)
-  - [kong check](#kong-check)
-  - [kong cluster](#kong-cluster)
-  - [kong compile](#kong-compile)
-  - [kong health](#kong-health)
-  - [kong migrations](#kong-migrations)
-  - [kong quit](#kong-quit)
-  - [kong reload](#kong-reload)
-  - [kong restart](#kong-restart)
-  - [kong start](#kong-start)
-  - [kong stop](#kong-stop)
-  - [kong version](#kong-version)
-
-### Global flags
+## Global flags
 
 All commands take a set of special, optional flags as arguments:
 
@@ -36,9 +20,9 @@ All commands take a set of special, optional flags as arguments:
 
 [Back to TOC](#table-of-contents)
 
-### Available commands
+## Available commands
 
-#### **kong check**
+### kong check
 
 ```
 Usage: kong check <conf>
@@ -52,7 +36,7 @@ Check the validity of a given Kong configuration file.
 
 ---
 
-#### **kong cluster**
+### kong cluster
 
 ```
 Usage: kong cluster COMMAND [OPTIONS]
@@ -76,7 +60,7 @@ Options:
 
 ---
 
-#### **kong compile**
+### kong compile
 
 For a detailed example of this command, see the
 [Embedding Kong](/{{page.kong_version}}/configuration#embedding-kong)
@@ -110,7 +94,7 @@ Options:
 
 ---
 
-#### **kong health**
+### kong health
 
 ```
 Usage: kong health [OPTIONS]
@@ -125,7 +109,7 @@ Options:
 
 ---
 
-#### **kong migrations**
+### kong migrations
 
 ```
 Usage: kong migrations COMMAND [OPTIONS]
@@ -145,7 +129,7 @@ Options:
 
 ---
 
-#### **kong quit**
+### kong quit
 
 ```
 Usage: kong quit [OPTIONS]
@@ -167,7 +151,7 @@ Options:
 
 ---
 
-#### **kong reload**
+### kong reload
 
 ```
 Usage: kong reload [OPTIONS]
@@ -190,7 +174,7 @@ Options:
 
 ---
 
-#### **kong restart**
+### kong restart
 
 ```
 Usage: kong restart [OPTIONS]
@@ -211,7 +195,7 @@ Options:
 
 ---
 
-#### **kong start**
+### kong start
 
 ```
 Usage: kong start [OPTIONS]
@@ -229,7 +213,7 @@ Options:
 
 ---
 
-#### **kong stop**
+### kong stop
 
 ```
 Usage: kong stop [OPTIONS]
@@ -247,7 +231,7 @@ Options:
 
 ---
 
-#### **kong version**
+### kong version
 
 ```
 Usage: kong version [OPTIONS]

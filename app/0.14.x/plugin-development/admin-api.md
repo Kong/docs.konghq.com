@@ -4,18 +4,15 @@ book: plugin_dev
 chapter: 8
 ---
 
-# {{page.title}}
+<div class="alert alert-warning">
+  <strong>Note:</strong> This chapter assumes that you have a relative
+  knowledge of <a href="http://leafo.net/lapis/">Lapis</a>.
+</div>
 
-#### Module
-
-```
-kong.plugins.<plugin_name>.api
-```
-
----
+## Introduction
 
 Kong can be configured using a REST interface referred to as the [Admin API].
-Plugins can extend it by adding their own endpoints to accomodate custom
+Plugins can extend it by adding their own endpoints to accommodate custom
 entities or other personalized management needs. A typical example of this is
 the creation, retrieval, and deletion (commonly referred to as "CRUD
 operations") of API keys.
@@ -23,14 +20,15 @@ operations") of API keys.
 The Admin API is a [Lapis](http://leafo.net/lapis/) application, and Kong's
 level of abstraction makes it easy for you to add endpoints.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This chapter assumes that you have a relative
-  knowledge of <a href="http://leafo.net/lapis/">Lapis</a>.
-</div>
+## Module
 
----
+```
+kong.plugins.<plugin_name>.api
+```
 
-### Adding endpoints to the Admin API
+[Back to TOC](#table-of-contents)
+
+## Adding endpoints to the Admin API
 
 Kong will detect and load your endpoints if they are defined in a module named:
 
@@ -78,9 +76,11 @@ other keys:
   errors](http://leafo.net/lapis/reference/exception_handling.html#capturing-recoverable-errors)
   documentation.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
-### Helpers
+## Helpers
 
 When handling a request on the Admin API, there are times when you want to send
 back responses and handle errors, to help you do so the third parameter
@@ -94,7 +94,7 @@ back responses and handle errors, to help you do so the third parameter
   the appropriate response code depending on the error (Internal Server Error,
   Bad Request, etc...).
 
-#### crud_helpers
+### crud_helpers
 
 Since most of the operations you will perform in your endpoints will be CRUD
 operations, you can also use the `kong.api.crud_helpers` module. This module
@@ -132,6 +132,8 @@ return {
 
 See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua)
 for an extended version of this example.
+
+[Back to TOC](#table-of-contents)
 
 ---
 

@@ -2,20 +2,17 @@
 title: Plugin Development - Writing tests
 book: plugin_dev
 chapter: 9
+toc: false
 ---
 
-# {{page.title}}
-
----
+## Introduction
 
 If you are serious about your plugins, you probably want to write tests for it.
 Unit testing Lua is easy, and [many testing
 frameworks](http://lua-users.org/wiki/UnitTesting) are available. However, you
 might also want to write integration tests. Again, Kong has your back.
 
----
-
-### Write integration tests
+## Write integration tests
 
 The preferred testing framework for Kong is
 [busted](http://olivinelabs.com/busted/) running with the
@@ -103,8 +100,10 @@ end
 its proxy listening on port 9000 (HTTP), 9443 (HTTPS)
 and Admin API on port 9001.
 
-If you cant to see a real-world example, give a look at the
+If you want to see a real-world example, give a look at the
 [Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/10-key-auth)
+
+[Back to TOC](#table-of-contents)
 
 ---
 

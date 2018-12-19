@@ -4,7 +4,7 @@ book: plugin_dev
 chapter: 5
 ---
 
-# {{page.title}}
+## Introduction
 
 Kong interacts with the model layer through classes we refer to as "DAOs". This chapter will detail the available API to interact with the datastore.
 
@@ -15,7 +15,7 @@ Kong supports two primary datastores: [Cassandra {{site.data.kong_latest.depende
 </div>
 ---
 
-### `singletons.db` and `singletons.dao`
+## `singletons.db` and `singletons.dao`
 
 All entities in Kong are represented by:
 
@@ -40,7 +40,7 @@ local plugins_dao = singletons.dao.plugins
 
 ---
 
-### The DAO Lua API
+## The DAO Lua API
 
 The DAO class is responsible for the operations executed on a given table in the datastore, generally mapping to an entity in Kong. All the underlying supported databases (currently Cassandra and PostgreSQL) comply to the same interface, thus making the DAO compatible with all of them.
 

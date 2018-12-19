@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 4
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Module
+## Module
 
 ```
 "kong.plugins.<plugin_name>.schema"
@@ -35,7 +35,7 @@ If all properties of the `config` object are valid according to your schema, the
 
 ---
 
-### schema.lua specifications
+## schema.lua specifications
 
 This module is to return a Lua table with properties that will define how your plugins can later be configured by users. Available properties are:
 
@@ -51,7 +51,7 @@ The `self_check` function must be implemented as follows:
 -- @param `schema` A table describing the schema (rules) of your plugin configuration.
 -- @param `config` A key/value table of the current plugin's configuration.
 -- @param `dao` An instance of the DAO (see DAO chapter).
--- @param `is_updating` A boolean indicating wether or not this check is performed in the context of an update.
+-- @param `is_updating` A boolean indicating whether or not this check is performed in the context of an update.
 -- @return `valid` A boolean indicating if the plugin's configuration is valid or not.
 -- @return `error` A DAO error (see DAO chapter)
 ```
@@ -71,7 +71,7 @@ return {
 }
 ```
 
-### Describing your configuration schema
+## Describing your configuration schema
 
 The `fields` property of your `schema.lua` file described the schema of your plugin's configuration. It is a flexible key/value table where each key will be a valid configuration property for your plugin, and each value a table describing the rules for that property. For example:
 
@@ -106,7 +106,7 @@ Here is the list of accepted rules for a property:
 
 ---
 
-#### Examples:
+### Examples:
 
 This `schema.lua` file for the [key-auth](/plugins/key-authentication/) plugin defines a default list of accepted parameter names for an API key, and a boolean whose default is set to `false`:
 

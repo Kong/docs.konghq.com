@@ -23,19 +23,7 @@ response;
 the ongoing traffic being proxied and determines the health of targets based
 on their behavior responding requests.
 
-### Table of Contents
-
-- [Healthy and unhealthy targets](#healthy-and-unhealthy-targets)
-- [Types of health checks](#types-of-health-checks)
-  - [Active health checks](#active-health-checks)
-  - [Passive health checks (circuit breakers)](#passive-health-checks-circuit-breakers)
-  - [Summary of pros and cons](#summary-of-pros-and-cons)
-- [Enabling and disabling health checks](#enabling-and-disabling-health-checks)
-  - [Enabling active health checks](#enabling-active-health-checks)
-  - [Enabling passive health checks](#enabling-passive-health-checks)
-  - [Disabling health checks](#disabling-health-checks)
-
-### Healthy and unhealthy targets
+## Healthy and unhealthy targets
 
 The objective of the health checks functionality is to dynamically mark
 targets as healthy or unhealthy, **for a given Kong node**. There is
@@ -65,7 +53,7 @@ increment the "HTTP failures" counter for the target and clear the "Successes" c
 If any of the "TCP failures", "HTTP failures" or "timeouts" counters reaches
 their configured threshold, the target will be marked as unhealthy.
 
-If the "Sucesses" counter reaches its configured threshold, the target will be
+If the "Successes" counter reaches its configured threshold, the target will be
 marked as healthy.
 
 The list of which HTTP status codes are "healthy" or "unhealthy", and the
@@ -134,9 +122,9 @@ Note:
    and does not limit the response. *Failing to do so might lead to health
    checks not being executed.*
 
-### Types of health checks
+## Types of health checks
 
-#### Active health checks
+### Active health checks
 
 Active health checks, as the name implies, actively probe targets for
 their health. When active health checks are enabled in an upstream entity,
@@ -151,7 +139,7 @@ When both are zero, active health checks are disabled altogether.
 
 [Back to TOC](#table-of-contents)
 
-#### Passive health checks (circuit breakers)
+### Passive health checks (circuit breakers)
 
 Passive health checks, also known as circuit breakers, are
 checks performed based on the requests being proxied by Kong,
@@ -182,7 +170,7 @@ be re-enabled again by the system administrator.
 
 [Back to TOC](#table-of-contents)
 
-#### Summary of pros and cons
+### Summary of pros and cons
 
 * Active health checks can automatically re-enable a target in the
 ring balancer as soon as it is healthy again. Passive health checks cannot.
@@ -203,9 +191,9 @@ passive health checks to monitor the target health based solely on its
 traffic, and only use active health checks while the target is unhealthy,
 in order to re-enable it automatically.
 
-### Enabling and disabling health checks
+## Enabling and disabling health checks
 
-#### Enabling active health checks
+### Enabling active health checks
 
 To enable active health checks, you need to specify the configuration items
 under `healthchecks.active` in the [Upstream object][upstreamobjects] configuration. You
@@ -250,7 +238,7 @@ probes to consider a target unhealthy.
 active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to
 consider a target unhealthy.
 
-#### Enabling passive health checks
+### Enabling passive health checks
 
 Passive health checks do not feature a probe, as they work by interpreting
 the ongoing traffic that flows from a target. This means that to enable
@@ -270,7 +258,7 @@ traffic to consider a target unhealthy, as observed by passive health checks.
 proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`)
 to consider a target unhealthy, as observed by passive health checks.
 
-#### Disabling health checks
+### Disabling health checks
 
 In all counter thresholds and intervals specified in the `healthchecks`
 configuration, setting a value to zero means that the functionality the field

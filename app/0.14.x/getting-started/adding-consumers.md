@@ -2,8 +2,6 @@
 title: Adding Consumers
 ---
 
-# Adding Consumers
-
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
   <ol>
@@ -22,60 +20,66 @@ management, and more.
 [key-auth][key-auth] plugin. If you haven't, you can either [enable the
 plugin][enabling-plugins] or skip steps two and three.
 
-1. ### Create a Consumer through the RESTful API
+## 1. Create a Consumer through the RESTful API
 
-    Lets create a user named `Jason` by issuing the following request:
+Lets create a user named `Jason` by issuing the following request:
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/consumers/ \
-      --data "username=Jason"
-    ```
+```bash
+$ curl -i -X POST \
+  --url http://localhost:8001/consumers/ \
+  --data "username=Jason"
+```
 
-    You should see a response similar to the one below:
+You should see a response similar to the one below:
 
-    ```http
-    HTTP/1.1 201 Created
-    Content-Type: application/json
-    Connection: keep-alive
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+Connection: keep-alive
 
-    {
-      "username": "Jason",
-      "created_at": 1428555626000,
-      "id": "bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
-    }
-    ```
+{
+  "username": "Jason",
+  "created_at": 1428555626000,
+  "id": "bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
+}
+```
 
-    Congratulations! You've just added your first consumer to Kong.
+Congratulations! You've just added your first consumer to Kong.
 
-    **Note:** Kong also accepts a `custom_id` parameter when [creating
-    consumers][API-consumers] to associate a consumer with your existing user
-    database.
+**Note:** Kong also accepts a `custom_id` parameter when [creating
+consumers][API-consumers] to associate a consumer with your existing user
+database.
 
-2. ### Provision key credentials for your Consumer
+[Back to TOC](#table-of-contents)
 
-    Now, we can create a key for our recently created consumer `Jason` by
-    issuing the following request:
+## 2. Provision key credentials for your Consumer
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/consumers/Jason/key-auth/ \
-      --data 'key=ENTER_KEY_HERE'
-    ```
+Now, we can create a key for our recently created consumer `Jason` by
+issuing the following request:
 
-3. ### Verify that your Consumer credentials are valid
+```bash
+$ curl -i -X POST \
+  --url http://localhost:8001/consumers/Jason/key-auth/ \
+  --data 'key=ENTER_KEY_HERE'
+```
 
-    We can now issue the following request to verify that the credentials of
-    our `Jason` Consumer is valid:
+[Back to TOC](#table-of-contents)
 
-    ```bash
-    $ curl -i -X GET \
-      --url http://localhost:8000 \
-      --header "Host: example.com" \
-      --header "apikey: ENTER_KEY_HERE"
-    ```
+## 3. Verify that your Consumer credentials are valid
 
-### Next Steps
+We can now issue the following request to verify that the credentials of
+our `Jason` Consumer is valid:
+
+```bash
+$ curl -i -X GET \
+  --url http://localhost:8000 \
+  --header "Host: example.com" \
+  --header "apikey: ENTER_KEY_HERE"
+```
+
+[Back to TOC](#table-of-contents)
+
+## Next Steps
 
 Now that we've covered the basics of adding Services, Routes, Consumers and enabling
 Plugins, feel free to read more on Kong in one of the following documents:

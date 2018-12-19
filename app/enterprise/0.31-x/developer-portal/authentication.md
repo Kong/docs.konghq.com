@@ -500,7 +500,7 @@ Ensure you are logged out (see section “**Logging Out**”). Visit an authenti
 When a user submits an HTML form with an attribute `id=”login"` the Dev Portal will:
 
 1. Obtain request **configuration object** for axios requests by:
-    - Calling `window.loginDectorator` (See **Authentication > Javascript Hooks**)
+    - Calling `window.loginDectorator` (See **Authentication > JavaScript Hooks**)
       - When `window.loginDecorator` doesn't exist
         - Use configuration stored in local storage (See section **Authentication > [How Authentication is Stored in Local Storage](#how-authentication-is-stored-in-local-storage)**)
           - When no configuration is stored in local storage

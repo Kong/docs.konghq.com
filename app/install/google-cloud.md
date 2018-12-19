@@ -7,10 +7,24 @@ breadcrumbs:
   Installation: /install
 ---
 
-1. **Launch Kong in Google Cloud**
+There currently are two options for installing Kong from the Google Cloud
+Platform (GCP) Marketplace - you can deploy Kong virtual machines with Cassandra
+on Google Compute Engine(GCE), or you can deploy Kong on Google Kubernetes
+Engine (GKE) with Postgres.
 
-    To Launch Kong into Google Cloud, please take a look at the [Kong launcher](https://console.cloud.google.com/launcher/details/bitnami-launchpad/kong) and follow the instructions.
+Note that GCP's [Free Tier and credit](https://cloud.google.com/free/),
+make it likely that you can experiment with Kong on GCP for free!
 
-2. **Use Kong**
+# Kong container on GKE
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+To launch Kong with Postgres on GKE, visit [the Kong on Kubernetes page](/install/kubernetes/#kong-via-google-cloud-platform-marketplace)
+and follow the instructions.
+
+# Kong virtual machine on GCE
+
+To launch Kong with Cassandra on GCE, visit [Kong on GCP Marketplace](https://console.cloud.google.com/launcher/details/bitnami-launchpad/kong)
+and follow the instructions.
+
+# Use Kong
+
+Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).

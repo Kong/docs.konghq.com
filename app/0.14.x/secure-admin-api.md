@@ -2,22 +2,13 @@
 title: Securing the Admin API
 ---
 
-# Securing the Admin API
+## Introduction
 
 Kong's Admin API provides a RESTful interface for administration and
 configuration of Services, Routes, Plugins, Consumers, and Credentials. Because this
 API allows full control of Kong, it is important to secure this API against
 unwanted access. This document describes a few possible approaches to securing
 the Admin API.
-
-## Table of Contents
-
-- [Network Layer Access Restrictions](#network-layer-access-restrictions)
-  - [Minimal Listening Footprint](#minimal-listening-footprint)
-  - [Layer 3/4 Network Controls](#layer-3-4-network-controls)
-- [Kong API Loopback](#kong-api-loopback)
-- [Custom Nginx Configuration](#custom-nginx-configuration)
-- [Role Based Access Control (RBAC)](#role-based-access-control)
 
 ## Network Layer Access Restrictions
 
@@ -91,7 +82,7 @@ $ curl -X POST http://localhost:8001/services \
 
 $ curl -X POST http://localhost:8001/services/admin-api/routes \
   --data paths[]=/admin-api
-  
+
 # we can now transparently reach the Admin API through the proxy server
 $ curl localhost:8000/admin-api/apis
 {

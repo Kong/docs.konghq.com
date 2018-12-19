@@ -4,20 +4,12 @@ book: plugin_dev
 chapter: 3
 ---
 
-# {{page.title}}
-
-#### Module
-
-```
-kong.plugins.<plugin_name>.handler
-```
-
----
-
 <div class="alert alert-warning">
   <strong>Note:</strong> This chapter assumes that you are familiar with
   <a href="http://www.lua.org/">Lua</a>.
 </div>
+
+## Introduction
 
 A Kong plugin allows you to inject custom logic (in Lua) at several
 entry-points in the life-cycle of a request/response as it is proxied by Kong.
@@ -25,9 +17,17 @@ To do so, one must implement one or several of the methods of the
 `base_plugin.lua` interface. Those methods are to be implemented in a module
 namespaced under: `kong.plugins.<plugin_name>.handler`
 
+## Module
+
+```
+kong.plugins.<plugin_name>.handler
+```
+
+[Back to TOC](#table-of-contents)
+
 ---
 
-### Available request contexts
+## Available request contexts
 
 The plugins interface allows you to override any of the following methods in
 your `handler.lua` file to implement custom logic at various entry-points
@@ -45,7 +45,7 @@ of the execution life-cycle of Kong:
 
 All of those functions take one parameter which is given by Kong upon its
 invocation: the configuration of your plugin. This parameter is a Lua table,
-and contains values derined by your users, according to your plugin's schema
+and contains values defined by your users, according to your plugin's schema
 (described in the `schema.lua` module). More on plugins schemas in the [next
 chapter]({{page.book.next}}).
 
@@ -57,9 +57,11 @@ chapter]({{page.book.next}}).
 [body_filter_by_lua]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua
 [log_by_lua]: https://github.com/openresty/lua-nginx-module#log_by_lua
 
+[Back to TOC](#table-of-contents)
+
 ---
 
-### handler.lua specifications
+## handler.lua specifications
 
 The `handler.lua` file must return a table implementing the functions you wish
 to be executed. In favor of brevity, here is a commented example module
@@ -80,7 +82,7 @@ local BasePlugin = require "kong.plugins.base_plugin"
 local CustomHandler = BasePlugin:extend()
 
 -- Your plugin handler's constructor. If you are extending the
--- Base Plugin handler, it's only role is to instanciate itself
+-- Base Plugin handler, it's only role is to instantiate itself
 -- with a name. The name is your plugin name as it will be printed in the logs.
 function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
@@ -184,12 +186,14 @@ end
 return CustomHandler
 ```
 
-See [the source code of the Key-Auth plugin] for an example of a real-life
+See [the source code of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua) for an example of a real-life
 handler code.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
-### Plugin Development Kit
+## Plugin Development Kit
 
 Logic implemented in those phases will most likely have to interact with the
 request/response objects or core components (e.g. access the cache,
@@ -203,9 +207,11 @@ When you are trying to implement some logic that needs to interact with Kong
 some error or debug information...), you should consult the [Plugin Development
 Kit Reference][pdk].
 
+[Back to TOC](#table-of-contents)
+
 ---
 
-### Plugins execution order
+## Plugins execution order
 
 Some plugins might depend on the execution of others to perform some
 operations. For example, plugins relying on the identity of the consumer have
@@ -259,10 +265,11 @@ request-termination       | 2
 correlation-id            | 1
 post-function             | -1000
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 Next: [Store configuration &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /{{page.kong_version}}/pdk
-[the source code of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua)

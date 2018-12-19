@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 6
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Modules
+## Modules
 
 ```
 "kong.plugins.<plugin_name>.migrations.cassandra"
@@ -25,7 +25,7 @@ As explained in the [previous chapter]({{page.book.previous}}), Kong interacts w
 
 ---
 
-### Create a migration file
+## Create a migration file
 
 Once you have defined your model, you must create a migration file which will be executed by Kong to create your column family. A migration file simply holds an array of migrations, and returns them.
 
@@ -78,7 +78,7 @@ Cassandra does not support constraints such as "must be unique" or "is a foreign
 
 ---
 
-### Extending the Base DAO
+## Extending the Base DAO
 
 To make the DAO Factory load your custom DAO(s), you will need:
 
@@ -94,7 +94,7 @@ This DAO is to be implemented in a module named:
 Here is an example of how one would define a schema to inherit from the base_dao module and store API keys in a new table ("column family" in Cassandra):
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
+  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritance pattern.
 </div>
 
 ```lua
@@ -136,7 +136,7 @@ You will have noticed a few new properties in the schema definition (compared to
 |-----------------------|---------------------------|-------------
 | `primary_key`         | Integer indexed table     | An array of each part of your column family's primary key. It also supports **composite keys**, even if all Kong entities currently use a simple `id` for usability of the Admin API. If your primary key is composite, only include what makes your **partition key**.
 | `clustering_key`      | Integer indexed table     | In the case when your primary key is composite, an array of each field determining your **clustering key**.
-| `fields.*.dao_insert_value` | Boolean              | If true, specifies that this field is to be automatically populated by the DAO (in the base_dao implementation) depending on it's type. A proeprty of type `id` will be a generated uuid, and `timestamp` a timestamp with second-precision.
+| `fields.*.dao_insert_value` | Boolean              | If true, specifies that this field is to be automatically populated by the DAO (in the base_dao implementation) depending on it's type. A property of type `id` will be a generated uuid, and `timestamp` a timestamp with second-precision.
 | `fields.*.queryable`  | Boolean                   | If true, specifies that Cassandra maintains an index on the specified column. This allows for querying the column family filtered by this column.
 | `fields.*.foreign`    | String                    | Specifies that this column is a foreign key to another entity's column. The format is: `dao_name:column_name`. This makes it up for Cassandra not supporting foreign keys. When the parent row will be deleted, Kong will also delete rows containing the parent's column value. This is a
 
@@ -151,7 +151,7 @@ The property name depends on the key with which you exported your DAO in the ret
 
 ---
 
-### Extending the Admin API
+## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with Kong to setup their APIs and plugins. It is likely that they also need to be able to interact with the custom entities you implemented for your plugin (for example, creating and deleting API keys). The way you would do this is by extending the Admin API, which we will detail in the next chapter: [Extending the Admin API]({{page.book.next}}).
 

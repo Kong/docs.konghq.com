@@ -1,22 +1,16 @@
 ---
 title: kong.service.response
 pdk: true
+toc: true
 ---
 
-# kong.service.response
+## kong.service.response
 
 Manipulation of the response from the Service
 
-## Table of Contents
-
-* [kong.service.response.get_status()](#kong_service_response_get_status)
-* [kong.service.response.get_headers([max_headers])](#kong_service_response_get_headers)
-* [kong.service.response.get_header(name)](#kong_service_response_get_header)
 
 
-
-
-### <a name="kong_service_response_get_status"></a>kong.service.response.get_status()
+### kong.service.response.get_status()
 
 Returns the HTTP status code of the response from the Service as a Lua number.
 
@@ -40,7 +34,7 @@ kong.log.inspect(kong.service.response.get_status()) -- 418
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_service_response_get_headers"></a>kong.service.response.get_headers([max_headers])
+### kong.service.response.get_headers([max_headers])
 
 Returns a Lua table holding the headers from the response from the Service.  Keys are
  header names. Values are either a string with the header value, or an array of
@@ -92,7 +86,7 @@ end
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_service_response_get_header"></a>kong.service.response.get_header(name)
+### kong.service.response.get_header(name)
 
 Returns the value of the specified response header.
 

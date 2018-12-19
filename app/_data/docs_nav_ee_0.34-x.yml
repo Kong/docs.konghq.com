@@ -1,0 +1,167 @@
+- title: Getting Started
+  items:
+    - text: Introduction
+      url: /getting-started/introduction
+    - text: Five-minute quickstart
+      url: /getting-started/quickstart
+    - text: Adding your API
+      url: /getting-started/adding-your-api
+    - text: Enabling Plugins
+      url: /getting-started/enabling-plugins
+    - text: Adding Consumers
+      url: /getting-started/adding-consumers
+    - text: Licensing
+      url: /getting-started/licensing
+    - text: Accessing Your License
+      url: /getting-started/accessing-your-license
+
+- title: Installation
+  items:
+    - text: Docker
+      url: /installation/docker
+    - text: CentOS
+      url: /installation/centos
+    - text: Amazon Linux
+      url: /installation/amazon-linux
+
+- title: APIs and Plugins
+  items:
+    - text: Canary Release Plugin
+      url: /plugins/canary-release
+    - text: Rate Limiting Plugin
+      url: /plugins/rate-limiting-advanced
+    - text: Request Transformer Plugin
+      url: /plugins/request-transformer
+    - text: OAuth2 Introspection Plugin
+      url: /plugins/oauth2-introspection
+    - text: OpenID Connect Plugin
+      url: /plugins/openid-connect
+    - text: HTTP Proxy Caching
+      url: /plugins/http-proxy-caching
+    - text: Forward Proxy
+      url: /plugins/forward-proxy
+    - text: StatsD Advanced Plugin
+      url: /plugins/statsd-advanced
+    - text: LDAP Auth Advanced Plugin
+      url: /plugins/ldap-authentication-advanced
+
+- title: Workspaces
+  items:
+    - text: Overview
+      url: /workspaces/overview
+    - text: Admin API
+      url: /workspaces/admin-api
+    - text: Examples
+      url: /workspaces/examples
+
+- title: RBAC
+  items:
+    - text: Overview
+      url: /rbac/overview
+    - text: Admin API
+      url: /rbac/admin-api
+    - text: Examples
+      url: /rbac/examples
+
+- title: Vitals
+  items:
+    - text: Kong Vitals
+      url: /vitals
+    - text: Kong Vitals with InfluxDB
+      url: /vitals-influx-strategy
+    - text: Kong Vitals with Prometheus
+      url: /vitals-prometheus-strategy
+
+- title: Kong Manager
+  items:
+    - text: Overview
+      url: /kong-manager/overview
+    - text: Configuration
+      url: /kong-manager/configuration/getting-started
+      items:
+        - text: Getting Started
+          url: /kong-manager/configuration/getting-started
+        - text: Authentication
+          url: /kong-manager/configuration/authentication
+        - text: Networking
+          url: /kong-manager/configuration/networking
+    - text: Organization Management
+      url: /kong-manager/organization-management/workspaces
+      items:
+        - text: Workspaces
+          url: /kong-manager/organization-management/workspaces
+        - text: RBAC and Permissions
+          url: /kong-manager/organization-management/rbac-and-perms
+        - text: Managing Admins
+          url: /kong-manager/organization-management/managing-admins
+    - text: Vitals
+      url: /kong-manager/vitals
+
+- title: Kong Dev Portal
+  items:
+    - text: Overview
+      url: /developer-portal/introduction
+    - text: Configuration
+      url: /developer-portal/configuration/getting-started
+      items:
+        - text: Getting Started
+          url: /developer-portal/configuration/getting-started
+        - text: Authentication
+          url: /developer-portal/configuration/authentication
+        - text: Networking
+          url: /developer-portal/configuration/networking
+        - text: SMTP
+          url: /developer-portal/configuration/smtp
+        - text: Working with Workspaces
+          url: /developer-portal/configuration/workspaces
+    - text: Management
+      url: /developer-portal/management/file-management
+      items:
+        - text: File Management
+          url: /developer-portal/management/file-management
+        - text: Managing Developers
+          url: /developer-portal/management/developers
+    - text: Customization
+      url: /developer-portal/customization/customization
+      items:
+          - text: Customizing the Dev Portal
+            url: /developer-portal/customization/customization
+          - text: Smart Components
+            url: /developer-portal/customization/smart-components
+    - text: Developers
+      url: /developer-portal/developers/developer-access
+      items:
+        - text: Account Management
+          url: /developer-portal/developers/developer-access
+    - text: FAQ & Troubleshooting
+      url: /developer-portal/faq
+
+- title: Guides &amp; References
+  items:
+    - text: Configuration Property Reference
+      url: /property-reference
+    - text: Kong Deployment Guide
+      url: /deployment-guide
+    - text: Changelog
+      url: /enterprise/changelog
+      absolute_url: true
+    - text: Architecture Overview
+      url: /kong-architecture-overview
+    - text: Architecture Patterns
+      url: /kong-architecture-patterns
+    - text: Rate Limiting Library
+      url: /rate-limiting
+    - text: Admin API Audit Logging
+      url: /admin-api-audit-log
+    - text: Kong Enterprise Versioning
+      url: /edition-versioning
+    - text: Multiple Authentication Methods
+      url: /allowing-multiple-authentication-methods
+    - text: PostgreSQL on RedHat
+      url: /postgresql-redhat
+    - text: OpenID Connect with Google
+      url: /oidc-google
+    - text: OpenID Connect with Auth0
+      url: /oidc-auth0
+    - text: Upgrades and Migrations
+      url: /upgrades-migrations

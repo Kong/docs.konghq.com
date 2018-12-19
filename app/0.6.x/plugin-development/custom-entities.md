@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 6
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Modules
+## Modules
 
 ```
 "kong.plugins.<plugin_name>.schema.migrations"
@@ -25,7 +25,7 @@ As explained in the [previous chapter]({{page.book.previous}}), Kong interacts w
 
 ---
 
-### Create a migration file
+## Create a migration file
 
 Once you have defined your model, you must create a migration file which will be executed by Kong to create your column family. A migration file simply holds an array of migrations, and returns them.
 
@@ -71,7 +71,7 @@ return Migrations
 ```
 
 - `name`: Must be a unique string. The format does not matter but can help you debug issues while developing your plugin, so make sure to name it in a relevant way.
-- `up`: Executed when Kong migrates **forward**. The first parameter, `options`, is a table containing the Cassandra properties defined in your configuration file, the second, `dao_factory`, is the instanciated DAO factory.
+- `up`: Executed when Kong migrates **forward**. The first parameter, `options`, is a table containing the Cassandra properties defined in your configuration file, the second, `dao_factory`, is the instantiated DAO factory.
 - `down`: Executed when Kong migrates **backward**. Its parameters and return values are the same as `up`.
 - `dao_factory:execute_queries()`: Execute multiple CQL statements separated by a semicolon. It returns an error if any, which is why if you call it multiple times in the migration function, you must ensure to test its return value, and return it (interrupting the migration) if it is non-nil.
 
@@ -79,7 +79,7 @@ Cassandra does not support constraints such as "must be unique" or "is a foreign
 
 ---
 
-### Extending the Base DAO
+## Extending the Base DAO
 
 To make the DAO Factory load your custom DAO(s), you will need:
 
@@ -95,7 +95,7 @@ This DAO is to be implemented in a module named:
 Here is an example of how one would define a schema to inherit from the base_dao module and store API keys in a new table ("column family" in Cassandra):
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
+  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritance pattern.
 </div>
 
 ```lua
@@ -140,7 +140,7 @@ You will have noticed a few new properties in the schema definition (compared to
 |-----------------------|---------------------------|-------------
 | `primary_key`         | Integer indexed table     | An array of each part of your column family's primary key. It also supports **composite keys**, even if all Kong entities currently use a simple `id` for usability of the Admin API. If your primary key is composite, only include what makes your **partition key**.
 | `clustering_key`      | Integer indexed table     | In the case when your primary key is composite, an array of each field determining your **clustering key**.
-| `fields.*.dao_insert_value` | Boolean              | If true, specifies that this field is to be automatically populated by the DAO (in the base_dao implementation) depending on it's type. A proeprty of type `id` will be a generated uuid, and `timestamp` a timestamp with second-precision.
+| `fields.*.dao_insert_value` | Boolean              | If true, specifies that this field is to be automatically populated by the DAO (in the base_dao implementation) depending on it's type. A property of type `id` will be a generated uuid, and `timestamp` a timestamp with second-precision.
 | `fields.*.queryable`  | Boolean                   | If true, specifies that Cassandra maintains an index on the specified column. This allows for querying the column family filtered by this column.
 | `fields.*.foreign`    | String                    | Specifies that this column is a foreign key to another entity's column. The format is: `dao_name:column_name`. This makes it up for Cassandra not supporting foreign keys. When the parent row will be deleted, Kong will also delete rows containing the parent's column value.
 | `marshall_event`         | Function     | A function that returns a table representing the entity fields to be used by the invalidation hooks. Only the bare minimum fields required by the invalidation hook should be returned, and its JSON representation should not exceed the size of a UDP packet.
@@ -156,7 +156,7 @@ The property name (`keyauth_credentials`) depends on the key with which you expo
 
 ---
 
-### Caching custom entities
+## Caching custom entities
 
 Sometimes custom entities are required on every request/response, which in turn triggers a query on the datastore every time. This is very inefficient because querying the datastore adds latency and slows the request/response down, and the resulting increased load on the datastore could affect the datastore performance itself and, in turn, other Kong nodes.
 

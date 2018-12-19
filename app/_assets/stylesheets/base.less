@@ -156,9 +156,14 @@ a {
   &:hover {
     color: @blue - 30%;
   }
+
+  code {
+    color: @blue;
+    background-color: #ebf7ff;
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .page-header-section-title {
   margin-top: 0;
   margin-bottom: 2rem;
   letter-spacing: 0;
@@ -167,7 +172,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Fix for anchor link h tags being hidden by nav */
 .page-content {
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, .page-header-section-title {
     @media (min-width: @navbar-collapse-point) {
       &::before {
         display: block;
@@ -181,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-h1 {
+h1, .page-header-section-title {
   font-size: 38px;
   font-weight: 400;
 }

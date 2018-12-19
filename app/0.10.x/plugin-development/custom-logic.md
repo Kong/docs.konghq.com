@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 3
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Module
+## Module
 
 ```
 "kong.plugins.<plugin_name>.handler"
@@ -22,7 +22,7 @@ Kong allows you to execute custom code at different times in the lifecycle of a 
 
 ---
 
-### Available request contexts
+## Available request contexts
 
 Kong allows you to write your code in all of the lua-nginx-module contexts. Each function to implement in your `handler.lua` file will be executed when the context is reached for a request:
 
@@ -48,12 +48,12 @@ All of those functions take one parameter given by Kong: the configuration of yo
 
 ---
 
-### handler.lua specifications
+## handler.lua specifications
 
 The `handler.lua` file must return a table implementing the functions you wish to be executed. In favor of brevity, here is a commented example module implementing all the available methods:
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritence pattern.
+  <strong>Note:</strong> Kong uses the <a href="https://github.com/rxi/classic">rxi/classic</a> module to simulate classes in Lua and ease the inheritance pattern.
 </div>
 
 ```lua
@@ -65,7 +65,7 @@ local BasePlugin = require "kong.plugins.base_plugin"
 local CustomHandler = BasePlugin:extend()
 
 -- Your plugin handler's constructor. If you are extending the
--- Base Plugin handler, it's only role is to instanciate itself
+-- Base Plugin handler, it's only role is to instantiate itself
 -- with a name. The name is your plugin name as it will be printed in the logs.
 function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
@@ -168,7 +168,7 @@ return CustomHandler
 
 ---
 
-### Plugins execution order
+## Plugins execution order
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This is still a work-in-progress API. For thoughts on how plugins execution order should be configurable in the future, see <a href="https://github.com/Kong/kong/issues/267">Kong/kong#267</a>.

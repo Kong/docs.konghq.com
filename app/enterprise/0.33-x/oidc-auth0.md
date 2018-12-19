@@ -1,25 +1,26 @@
 ---
 title: OpenID Connect with Auth0
-class: page-install-method
 ---
+
+## Introduction
 
 This guide covers an example OpenID Connect plugin configuration to authenticate headless service consumers using Auth0's identity provider.
 
-# Auth0 IDP configuration
+## Auth0 IDP configuration
 
 This configuration will use a [client credentials grant][client-credentials-grant] as it is non-interactive, and because we expect clients to authenticate on behalf of themselves, not an end-user. To do so, you will need to [create an Auth0 API][create-auth0-api] and a [non-interactive client][non-interactive-client].
 
-## API configuration
+### API configuration
 
 When creating your API, you will need to specify an Identifier. Using the URL that your consumer makes requests to is generally appropriate, so this will typically be the hostname/path combination configured as an API in Kong.
 
 After creating your API, you will also need to add the `openid` scope at `https://manage.auth0.com/#/apis/<API ID>/scopes`.
 
-## Client configuration
+### Client configuration
 
 You will need to authorize your client to access your API. Auth0 will prompt you to do so after client creation if you select the API you created previously from the client's Quick Start menu. After toggling the client to Authorized, expand its authorization settings and enable the `openid` scope.
 
-# Kong configuration
+## Kong configuration
 
 If you have not done so already, [create an API][create-api] to protect. The `url` configuration should match the Identifier you used when configuring Auth0.
 
@@ -33,7 +34,7 @@ $ curl -i -X POST http://kong:8001/kong-admin/apis/<API name>/plugins --data nam
   --data config.token_post_args_values="https://example.com/"
 ```
 
-# Downstream configuration
+## Downstream configuration
 
 The service accessing your resource will need to pass its credentials to Kong. It can do so via HTTP basic authentication, query string arguments, or parameters in the request body. Basic authentication is generally preferable, as credentials in a query string will be present in Kong's access logs (and possibly in other infrastructure's access logs, if you have HTTP-aware infrastructure in front of Kong) and credentials in request bodies are limited to request methods that expect
 client payloads.

@@ -7,7 +7,7 @@ The default behavior for Kong authentication plugins is to require credentials f
 
 To begin, [create an API](/latest/getting-started/adding-your-api/) and then create three consumers:
 
-```
+```bash
 $ curl -sX POST kong-admin:8001/consumers \
     -H "Content-Type: application/json" \
     --data '{"username": "anonymous"}'
@@ -31,7 +31,7 @@ The `anonymous` consumer does not correspond to any real user, and will only ser
 
 Next, we add both Key Auth and Basic Auth plugins to our consumer, and set the anonymous fallback to the consumer we created earlier.
 
-```
+```bash
 $ curl -sX POST kong-admin:8001/apis/example-api/plugins/ \
     -H "Content-Type: application/json" \
     --data '{"name": "key-auth", "config": { "hide_credentials": true, "anonymous": "d955c0cb-1a6e-4152-9440-414ebb8fee8a"} }'
@@ -49,7 +49,7 @@ If using [OpenID Connect](/enterprise/latest/plugins/openid-connect), you must a
 
 At this point unauthenticated requests and requests with invalid credentials are still allowed. The anonymous consumer is allowed, and will be applied to any request that does not pass a set of credentials associated with some other consumer.
 
-```
+```bash
 $ curl -s example.com:8000/user-agent
 
 {"user-agent": "curl/7.58.0"}
@@ -61,7 +61,7 @@ $ curl -s example.com:8000/user-agent?apikey=nonsense
 
 We'll now add a Key Auth credential for one consumer, and a Basic Auth credential for another.
 
-```
+```bash
 $ curl -sX POST kong-admin:8001/consumers/medvezhonok/basic-auth \
     -H "Content-Type: application/json" \
     --data '{"username": "medvezhonok", "password": "hunter2"}'
@@ -78,7 +78,7 @@ $ curl -sX POST kong-admin:8001/consumers/ezhik/key-auth \
 
 Lastly, we add a Request Terminator to the anonymous consumer.
 
-```
+```bash
 $ curl -sX POST kong-admin:8001/consumers/d955c0cb-1a6e-4152-9440-414ebb8fee8a/plugins/ \
     -H "Content-Type: application/json" \
     --data '{"name": "request-termination", "config": { "status_code": 401, "content_type": "application/json; charset=utf-8", "body": "{\"error\": \"Authentication required\"}"} }'
@@ -88,7 +88,7 @@ $ curl -sX POST kong-admin:8001/consumers/d955c0cb-1a6e-4152-9440-414ebb8fee8a/p
 
 Requests with missing or invalid credentials are now rejected, whereas authorized requests using either authentication method are allowed.
 
-```
+```bash
 $ curl -s example.com:8000/user-agent?apikey=nonsense
 
 {"error": "Authentication required"}

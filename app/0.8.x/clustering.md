@@ -8,33 +8,6 @@ Multiple Kong nodes pointing to the same datastore **must** belong to the same "
 
 A Kong cluster can be created in one datacenter, or in multiple datacenters, in both cloud or on-premise environments. Kong will take care of joining and leaving a node automatically in a cluster, as long as the node is configured properly.
 
-## Summary
-
-- 1. [Introduction][1]
-- 2. [How does Kong clustering work?][2]
-  - [Why do we need Kong Clustering?][2a]
-- 3. [Adding new nodes to a cluster][3]
-- 4. [Removing nodes from a cluster][4]
-- 5. [Checking the cluster state][5]
-- 6. [Network Assumptions][6]
-- 7. [Edge-case scenarios][7]
-  - [Asynchronous join on concurrent node starts][7a]
-  - [Automatic cache purge on join][7b]
-  - [Node failures][7c]
-
-[1]: #1-introduction
-[2]: #2-how-does-kong-clustering-work
-[2a]: #why-do-we-need-kong-clustering
-[3]: #3-adding-new-nodes-to-a-cluster
-[4]: #4-removing-nodes-from-a-cluster
-[5]: #5-checking-the-cluster-state
-[6]: #6-network-assumptions
-[7]: #7-edge-case-scenarios
-[7a]: #asynchronous-join-on-concurrent-node-starts
-[7b]: #automatic-cache-purge-on-join
-[7c]: #node-failures
-[8]: #8-problems-and-bug-reports
-
 ## 1. Introduction
 
 Generally speaking having multiple Kong nodes is a good practice for a number of reasons, including:
@@ -61,7 +34,7 @@ Kong cluster settings are specified in the configuration file at the following e
 * [cluster_listen_rpc][cluster_listen_rpc]
 * [cluster][cluster]
 
-#### Why do we need Kong Clustering?
+### Why do we need Kong Clustering?
 
 To understand why a Kong Cluster is needed, we need to spend a few words on how Kong interacts with the datastore.
 
@@ -85,7 +58,7 @@ A Kong node only needs to join one another node in a cluster, and it will automa
 
 ## 4. Removing nodes from a cluster
 
-Everytime a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions from `alive` to `left`.
+Every time a new Kong node is stopped, that node will try to gracefully remove itself from the cluster. When a node has been successfully removed from a cluster, its state transitions from `alive` to `left`.
 
 To gracefully stop and remove a node from the cluster just execute the `kong quit` or `kong stop` CLI commands.
 
@@ -113,19 +86,19 @@ Kong will try to automatically determine the first non-loopback IPv4 address and
 
 The implementation of the clustering feature of Kong is rather complex and may involve some edge case scenarios.
 
-#### Asynchronous join on concurrent node starts
+### Asynchronous join on concurrent node starts
 
 When multiple nodes are all being started simultaneously, a node may not be aware of the other nodes yet because the other nodes didn't have time to write their data to the datastore. To prevent this situation Kong implements by default a feature called "asynchronous auto-join".
 
 Asynchronous auto-join will check the datastore every 3 seconds for 60 seconds after a Kong node starts, and will join any node that may appear in those 60 seconds. This means that concurrent environments where multiple nodes are started simultaneously it could take up to 60 seconds for them to auto-join the cluster.
 
-#### Automatic cache purge on join
+### Automatic cache purge on join
 
 Every time a new node joins the cluster, or a failed node re-joins the cluster, the cache for every node is purged and all the data is forced to be reloaded. This is to avoid inconsistencies between the data that has already been invalidated in the cluster, and the data stored on the node.
 
 This also means that after joining the cluster the new node's performance will be slower until the data has been re-cached into its memory.
 
-#### Node failures
+### Node failures
 
 A node in the cluster can fail more multiple reasons, including networking problems or crashes. A node failure will also occur if Kong is not properly terminated by running `kong stop` or `kong quit`.
 

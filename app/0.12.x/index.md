@@ -5,7 +5,7 @@ title: Documentation for Kong
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="https://konghq.com/install/">Installation</a></h3>
-    <p>You can install Kong on most Linux distributions and OS X. We even provide the source so you can compile yourself.</p>
+    <p>You can install Kong on most Linux distributions and macOS. We even provide the source so you can compile yourself.</p>
     <a href="https://konghq.com/install/">Install Kong &rarr;</a>
   </div>
 

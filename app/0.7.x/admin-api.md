@@ -22,7 +22,7 @@ plugin_configuration_body: |
     ---:| ---
     `name` | The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `consumer_id`<br>*optional* | The unique identifier of the consumer that overrides the existing settings for this specific consumer on incoming requests.
-    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Plugin Gallery](https://konghq.com/plugins/).
+    `config.{property}` | The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `enabled` | Whether the plugin is applied. Default: `true`.
 ---
 
@@ -65,11 +65,11 @@ Handy for complex bodies (ex: complex plugin configuration), in that case simply
 
 Retrieve generic details about a node.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -107,11 +107,11 @@ Retrieve usage information about a node, with some basic information about the c
 
 If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/status</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -161,11 +161,11 @@ You can see the Kong cluster members, and forcibly remove a node from the cluste
 
 Retrieve the cluster status, returning information for each node in the cluster.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/cluster</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -200,11 +200,11 @@ HTTP 200 OK
 
 Forcibly remove a node from the cluster.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/cluster</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -231,7 +231,7 @@ The API object describes an API that's being exposed by Kong. Kong needs to know
 
 ### Add API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/apis/</div>
 
@@ -239,7 +239,7 @@ The API object describes an API that's being exposed by Kong. Kong needs to know
 
 {{ page.api_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -260,7 +260,7 @@ HTTP 201 Created
 
 ### Retrieve API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/{name or id}</div>
 
@@ -268,7 +268,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -289,7 +289,7 @@ HTTP 200 OK
 
 ### List APIs
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/</div>
 
@@ -305,7 +305,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -340,7 +340,7 @@ HTTP 200 OK
 
 ### Update API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/apis/{name or id}</div>
 
@@ -352,7 +352,7 @@ Attributes | Description
 
 {{ page.api_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -373,7 +373,7 @@ HTTP 200 OK
 
 ### Update Or Create API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/apis/</div>
 
@@ -383,7 +383,7 @@ HTTP 200 OK
 
 The body needs an `id` parameter to trigger an update on an existing entity.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -395,7 +395,7 @@ See POST and PATCH responses.
 
 ### Delete API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/apis/{name or id}</div>
 
@@ -403,7 +403,7 @@ Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the API to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -425,7 +425,7 @@ The Consumer object represents a consumer - or a user - of an API. You can eithe
 
 ### Create Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/consumers/</div>
 
@@ -433,7 +433,7 @@ The Consumer object represents a consumer - or a user - of an API. You can eithe
 
 {{ page.consumer_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -451,7 +451,7 @@ HTTP 201 Created
 
 ### Retrieve Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/{username or id}</div>
 
@@ -459,7 +459,7 @@ Attributes | Description
 ---:| ---
 `username or id`<br>**required** | The unique identifier **or** the username of the consumer to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -477,7 +477,7 @@ HTTP 200 OK
 
 ### List Consumers
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/consumers/</div>
 
@@ -491,7 +491,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -520,7 +520,7 @@ HTTP 200 OK
 
 ### Update Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/consumers/{username or id}</div>
 
@@ -532,7 +532,7 @@ Attributes | Description
 
 {{ page.consumer_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -550,7 +550,7 @@ HTTP 200 OK
 
 ### Update Or Create Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/consumers/</div>
 
@@ -560,7 +560,7 @@ HTTP 200 OK
 
 The body needs an `id` parameter to trigger an update on an existing entity.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -572,7 +572,7 @@ See POST and PATCH responses.
 
 ### Delete Consumer
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/consumers/{username or id}</div>
 
@@ -580,7 +580,7 @@ Attributes | Description
 ---:| ---
 `username or id`<br>**required** | The unique identifier **or** the name of the consumer to delete
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -590,7 +590,7 @@ HTTP 204 No Content
 
 ## Plugin Object
 
-A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Plugin Gallery](https://konghq.com/plugins/).
+A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response workflow, and it's how you can add functionalities to APIs that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
 
 When creating adding Plugin on top of an API, every request made by a client will be evaluated by the Plugin's configuration you setup. Sometimes the Plugin needs to be tuned to different values for some specific consumers, you can do that by specifying the `consumer_id` value.
 
@@ -613,7 +613,7 @@ When creating adding Plugin on top of an API, every request made by a client wil
 
 ### Add Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint post">/apis/{name or id}/plugins/</div>
 
@@ -625,7 +625,7 @@ Attributes | Description
 
 {{ page.plugin_configuration_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created
@@ -648,7 +648,7 @@ HTTP 201 Created
 
 ---
 
-## Retrieve Plugin
+### Retrieve Plugin
 
 <div class="endpoint get">/plugins/{id}</div>
 
@@ -658,7 +658,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**required** | The unique identifier of the plugin to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -683,7 +683,7 @@ HTTP 200 OK
 
 ### List All Plugins
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins/</div>
 
@@ -698,7 +698,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -740,7 +740,7 @@ HTTP 200 OK
 
 ### List Plugins per API
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/apis/{api name or id}/plugins/</div>
 
@@ -755,7 +755,7 @@ Attributes | Description
 `size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
 `offset`<br>*optional* | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -797,7 +797,7 @@ HTTP 200 OK
 
 ### Update Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint patch">/apis/{api name or id}/plugins/{id}</div>
 
@@ -810,7 +810,7 @@ Attributes | Description
 
 {{ page.plugin_configuration_body }}
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -835,7 +835,7 @@ HTTP 200 OK
 
 ### Update or Add Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint put">/apis/{api name or id}/plugins/</div>
 
@@ -849,7 +849,7 @@ Attributes | Description
 
 The body needs an `id` parameter to trigger an update on an existing entity.
 
-#### Response
+**Response**
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -861,7 +861,7 @@ See POST and PATCH responses.
 
 ### Delete Plugin
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint delete">/apis/{api name or id}/plugins/{id}</div>
 
@@ -870,7 +870,7 @@ Attributes | Description
 `api name or id`<br>**required** | The unique identifier **or** the name of the API for which to delete the plugin configuration
 `id`<br>**required** | The unique identifier of the plugin configuration to delete on this API
 
-#### Response
+**Response**
 
 ```
 HTTP 204 No Content
@@ -882,11 +882,11 @@ HTTP 204 No Content
 
 Retrieve a list of all installed plugins on the Kong node.
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/plugins/enabled</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -926,7 +926,7 @@ Retrieve the schema of a plugin's configuration. This is useful to understand wh
 
 <div class="endpoint get">/plugins/schema/{plugin name}</div>
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK

@@ -3,17 +3,7 @@ source: app
 destination: dist
 permalink: pretty
 timezone: America/San_Francisco
-markdown: redcarpet
-redcarpet:
-  extensions:
-    - fenced_code_blocks
-    - no_intra_emphasis
-    - autolink
-    - with_toc_data
-    - strikethrough
-    - lax_html_blocks
-    - superscript
-    - tables
+markdown: kramdown
 
 keep_files:
   - assets
@@ -34,6 +24,49 @@ repos:
   homebrew: https://github.com/Kong/homebrew-kong
   cloudformation: https://github.com/Kong/kong-dist-cloudformation
   oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
+
+collections:
+  hub:
+    output: true
+    layout: extension
+
+# for Kong platform extensions (not Jekyll)
+extensions:
+  categories:
+    - name: Authentication
+      slug: authentication
+      desc: Protect your services with an authentication layer
+    - name: Security
+      slug: security
+      desc: Protect your services with additional security layer
+    - name: Traffic Control
+      slug: traffic-control
+      desc: Manage, throttle and restrict inbound and outbound API traffic
+    - name: Serverless
+      slug: serverless
+      desc: Invoke serverless functions in combination with other plugins
+    - name: Analytics & Monitoring
+      slug: analytics-monitoring
+      desc: Visualize, inspect and monitor APIs and microservices traffic
+    - name: Transformations
+      slug: transformations
+      desc: Transform request and responses on the fly on Kong
+    - name: Logging
+      slug: logging
+      desc: Log request and response data using the best transport for your infrastructure
+    - name: Deployment
+      slug: deployment
+      desc: Deploy and configure Kong in many environments
+  types:
+    - name: plugin
+      slug: plugin
+    - name: integration
+      slug: integration
+    # - name: dev portal extension
+    #   slug: dev-mod
+
+# location vars
+icons_dir: assets/images/icons
 
 gems:
   - jekyll-redirect-from
@@ -62,13 +95,7 @@ defaults:
       breadcrumbs: null
 
   - scope:
-      path: 'plugins'
+      type: hub
     values:
-      layout: 'plugin'
-      id: page-plugin
-      breadcrumbs: null
-      nav:
-        - label: Getting Started
-          items:
-            - label: Installation
-            - label: Configuration
+      layout: extension
+      permalink: /:collection/:path

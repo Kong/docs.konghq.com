@@ -1,9 +1,9 @@
 ---
 title: CentOS
-class: page-install-method
+toc: false
 ---
 
-# Installing Kong Enterprise on CentOS
+## Installing Kong Enterprise on CentOS
 
 A quick guide on how to install Kong Enterprise on CentOS.
 

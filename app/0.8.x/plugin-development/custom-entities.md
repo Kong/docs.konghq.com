@@ -4,9 +4,9 @@ book: plugin_dev
 chapter: 6
 ---
 
-# {{page.title}}
+## Introduction
 
-#### Modules
+## Modules
 
 ```
 "kong.plugins.<plugin_name>.schema.migrations"
@@ -17,11 +17,11 @@ chapter: 6
 
 Your plugin might need to store more than its configuration in the database. In that case, Kong provides you with an abstraction on top of its primary datastores which allows you to store custom entities.
 
-As explained in the [previous chapter]({{page.book.previous}}), Kong interacts with the model layer through classes we refer to as "DAOs", and available on a singleton often refered to as the "DAO Factory". This chapter will explain how to to provide an abstraction for your own entities.
+As explained in the [previous chapter]({{page.book.previous}}), Kong interacts with the model layer through classes we refer to as "DAOs", and available on a singleton often referred to as the "DAO Factory". This chapter will explain how to to provide an abstraction for your own entities.
 
 ---
 
-### Create a migration file
+## Create a migration file
 
 Once you have defined your model, you must create your migration modules which will be executed by Kong to create the table in which your records of your entity will be stored. A migration file simply holds an array of migrations, and returns them.
 
@@ -103,7 +103,7 @@ While Postgres does, Cassandra does not support constraints such as "NOT NULL", 
 
 ---
 
-### Retrieve your custom DAO from the Dao Factory
+## Retrieve your custom DAO from the Dao Factory
 
 To make the DAO Factory load your custom DAO(s), you will simply need to define your entity's schema (just like the schemas describing your [plugin configuration]({{page.book.chapters.plugin-configuration}})). This schema contains a few more values since it must describes which table the entity relates to in the datastore, constraints on its fields such as foreign keys, non-null constraints and such.
 
@@ -113,7 +113,7 @@ This schema is to be defined in a module named:
 "kong.plugins.<plugin_name>.daos"
 ```
 
-Once that module returns your entity's schema, and assuming your plugin is loaded by Kong (see the `custom_plugins` property in `kong.yml`), the DAO Factory will use it to instanciate a DAO object (see [kong.dao]).
+Once that module returns your entity's schema, and assuming your plugin is loaded by Kong (see the `custom_plugins` property in `kong.yml`), the DAO Factory will use it to instantiate a DAO object (see [kong.dao]).
 
 Here is an example of how one would define a schema to store API keys in a his or her database:
 
@@ -162,7 +162,7 @@ The DAO name (`keyauth_credentials`) with which it is accessible from the DAO Fa
 
 ---
 
-### Caching custom entities
+## Caching custom entities
 
 Sometimes custom entities are required on every request/response, which in turn triggers a query on the datastore every time. This is very inefficient because querying the datastore adds latency and slows the request/response down, and the resulting increased load on the datastore could affect the datastore performance itself and, in turn, other Kong nodes.
 

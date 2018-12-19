@@ -1,10 +1,10 @@
 ---
-title: Examples
+title: RBAC Examples
 book: rbac
 chapter: 3
 ---
 
-# RBAC Examples
+## Introduction
 
 This chapter aims to provide a step-by-step tutorial on how to set up
 RBAC and see it in action, with an end-to-end use case. The chosen

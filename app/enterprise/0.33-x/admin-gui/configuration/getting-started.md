@@ -2,13 +2,12 @@
 title: Getting Started with the Kong Admin GUI
 book: admin_gui
 chapter: 2
+toc: false
 ---
-
-# {{page.title}}
 
 ## Start Kong
 
-Start Kong. 
+Start Kong.
 
 `kong start -c kong.conf.default`
 
@@ -22,7 +21,7 @@ You should now see the dashboard of the Kong Admin GUI.
 
 ## Next Steps
 
-#### Adding Authentication
+### Adding Authentication
 To add Authentication, head on over to [Authenticating the Kong Admin GUI](/enterprise/{{page.kong_version}}/admin-gui/configuration/authentication).
 
 Next: [Authentication &rsaquo;]({{page.book.next}})
