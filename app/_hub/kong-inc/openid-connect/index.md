@@ -292,6 +292,7 @@ Parameter ¹                          | Description
 `audience_claim`                     | The Name of the claim (or a path) where the audience can be found.
 `domains`                            | The domains to be verified against the `hd` claim.
 `max_age`                            | The `max_age` (in seconds) for the previous authentication, specifically the `auth_time` claim.
+`authenticated_groups_claim`         | The Name of the claim (or a path) where the authenticated groups can be found.
 `authorization_cookie_name`          | The name of authorization code flow cookie that is used for verifying the responses from OpenID Connect provider.
 `authorization_cookie_lifetime`      | Authorization cookie lifetime in seconds.
 `authorization_cookie_path`          | The `Path` parameter of the authorization cookie.
@@ -322,6 +323,9 @@ Parameter ¹                          | Description
 `rediscovery_lifetime`               | When JWKS have been rotated, the plugin tries to automatically fetch a new ones when needed. With this parameter you can limit the plugin to only do re-discovery on evert n seconds.
 `reverify`                           | When `session` authentication method is used, you can enable re-verification of signatures and claims of the tokens using this parameter.
 `bearer_token_param_type`            | The types of delivery mechanisms for the bearer token parameter.
+`refresh_token_param_name`           | The name of the payload parameter where the refresh or offline token is delivered.
+`refresh_token_param_type`           | The types of delivery mechanisms for the refresh token parameter.
+`refresh_tokens`                     | Enable or disable automatic expiring access token refreshing if the plugin has access to refresh token.
 `client_credentials_param_type`      | The types of delivery mechanisms for the client credentials.
 `password_param_type`                | The types of delivery mechanisms for the username and password.
 `id_token_param_name`                | The name of the payload parameter where the ID token is delivered for verification.
@@ -370,6 +374,8 @@ Parameter ¹                          | Description
 `logout_uri_suffix`                  | If request uri ends with specific string, that means that we should do a logout.
 `logout_methods`                     | List of HTTP methods that can be used for logout.
 `logout_revoke`                      | Revoke tokens from IdP on logout by calling `revocation_endpoint`.
+`logout_revoke_access_token`         | If `logout_revoke` is turned on, this controls whether or not `access_token` is revoked on logout.
+`logout_revoke_refresh_token`        | If `logout_revoke` is turned on, this controls whether or not `refresh_token` is revoked on logout.
 `revocation_endpoint`                | If `revocation_endpoint` is not specified in discovery (as it is not standardized by OpenID Connect), you can specify it manually.
 `end_session_endpoint`               | If `end_session_endpoint` is not specified in discovery, you can specify it manually (e.g. you can use your own non-OpenID Connect logout endpoint).
 `token_exchange_endpoint`            | Token exchange endpoint, if you want to exchange the access token to a new one before proxying to upstream service.
@@ -392,7 +398,10 @@ Parameter ¹                          | Description
 `hide_credentials`                   | An optional boolean value telling the plugin to hide the credential to the upstream API server. It will be removed by Kong before proxying the request.
 `http_version`                       | The HTTP version to use between Kong and OP.
 `http_proxy`                         | The proxy URL for HTTP communications.
+`http_proxy_authorization`           | A value for Proxy-Authorization header to be used with http_proxy.
 `https_proxy`                        | The proxy URL for HTTPS communications.
+`https_proxy_authorization`          | A value for Proxy-Authorization header to be used with https_proxy.
+`no_proxy`                           | A comma separated list of hosts that should not be proxied with `http_proxy` or `https_proxy`.
 `keepalive`                          | Whether or not should Kong keepalive connections with IdP.
 `ssl_verify`                         | Whether or not should Kong verify SSL Certificates when communicating to OP.
 `timeout`                            | The timeout value (in seconds) that is used for the Network IO.
@@ -461,6 +470,9 @@ Parameter ¹                          | Type      | Required | Default
 `rediscovery_lifetime`               | `number`  | `no`     | `300`
 `reverify`                           | `boolean` | `no`     | `false`
 `bearer_token_param_type`            | `array`   | `no`     | `"query"`, `"header"`, `"body"`
+`refresh_token_param_name`           | `string`  | `no`     | `—`
+`refresh_token_param_type`           | `array`   | `no`     | `"query"`, `"header"`, `"body"`
+`refresh_tokens`                     | `boolean` | `no`     | `true`
 `client_credentials_param_type`      | `array`   | `no`     | `"query"`, `"header"`, `"body"`
 `password_param_type`                | `array`   | `no`     | `"query"`, `"header"`, `"body"`
 `id_token_param_name`                | `string`  | `no`     | `—`
@@ -509,6 +521,8 @@ Parameter ¹                          | Type      | Required | Default
 `logout_uri_suffix`                  | `string`  | `no`     | `—`
 `logout_methods`                     | `array`   | `no`     | `"POST"`, `"DELETE"`
 `logout_revoke`                      | `boolean` | `no`     | `false`
+`logout_revoke_access_token`         | `boolean` | `no`     | `false`
+`logout_revoke_refresh_token`        | `boolean` | `no`     | `false`
 `revocation_endpoint`                | `url`     | `no`     | `—` (OpenID Connect Discovery)
 `end_session_endpoint`               | `url`     | `no`     | `—` (OpenID Connect Discovery)
 `token_exchange_endpoint`            | `url`     | `no`     | `—`
@@ -531,7 +545,10 @@ Parameter ¹                          | Type      | Required | Default
 `hide_credentials`                   | `boolean` | `no`     | `false`
 `http_version`                       | `number`  | `no`     | `1.1`
 `http_proxy`                         | `url`     | `no`     | `—`
+`http_proxy_authorization`           | `string`  | `no`     | `—`
 `https_proxy`                        | `url`     | `no`     | `—`
+`https_proxy_authorization`          | `string`  | `no`     | `—`
+`no_proxy`                           | `string`  | `no`     | `—`
 `keepalive`                          | `boolean` | `no`     | `true`
 `ssl_verify`                         | `boolean` | `no`     | `false`
 `timeout`                            | `number`  | `no`     | `10000`
@@ -869,8 +886,9 @@ especially nice when used together with authorization code flow.
 
 *refresh_token*
 
-If refresh token is available for Kong, this authentication method enables
-Kong to automatically refresh the access token using the refresh token.
+This authentication method enables authentication using refresh or an offline
+token. It is similar to `password` and `client_credentials`, but uses different
+grant type when calling the token endpoint of the identity provider.
 
 
 #### config.audience
@@ -954,6 +972,21 @@ Default | Required
 
 * `86400`
 * `1800`
+
+
+#### config.authenticated_groups_claim
+
+This property allows one to connect this plugin with an ACL plugin 
+where the ACL plugin provides both white- and blacklisting based on
+an arbitrary claim.
+
+With this configuration, one can specify the name of the claim
+(or path) where the "groups" can be found
+
+**Examples:**
+
+* `"groups"`
+* `"user,groups"`
 
 
 #### config.authorization_cookie_name
@@ -1335,6 +1368,76 @@ Default               | Required
 `"header,query,body"` | `no`
 
 
+#### config.refresh_token_param_name
+
+Because there is no such standard that defines how the refresh token
+or offline token should be sent to a server for verification, this
+parameter solves half of the puzzle by defining the parameters
+name where the plugin should look for the refresh token.
+
+**Examples:**
+
+* `"refresh_token"`
+* `"X-Refresh-Token"`
+* `"Offline-Token"`
+
+
+#### config.refresh_token_param_type
+
+This parameter is the another half of the puzzle of how the refresh token
+is delivered for verification (another one being `config.refresh_token_param_name`).
+The HTTP protocol provides a few methods for information delivery to
+the server:
+
+1. URL Query String
+2. HTTP Headers
+3. HTTP Body
+
+(servers do not generally deal with url `#fragments`).
+
+For query string and HTTP headers we do look for a value defined with
+`config.refresh_token_param_type`. For HTTP Body we support several ways of delivery:
+
+1. `application/x-www-form-urlencoded`
+2. `application/json`
+
+There we look for a value defined with `config.refresh_token_param_name`.
+
+Based on the above the supported values for this configuration parameter
+are (or any combination of them):
+
+Value         | Enabled by Default | Description
+:------------:|:------------------:|------------
+`"header"`    | `yes`              | If specified, tries to find refresh token from the HTTP header.
+`"query"`     | `yes`              | If specified, tries to find refresh token from the URL's query string.
+`"body"`      | `yes`              | If specified, tries to find refresh token from the HTTP request body (according to the possiblities defined above).
+
+Here are the unconfigured defaults:
+
+Default               | Required
+:--------------------:|:-------:
+`"header,query,body"` | `no`
+
+
+#### config.refresh_tokens
+
+Specifies whether or not the plugin should try to refresh (soon to be)
+expired access tokens if the plugin has a `refresh_token` available.
+This is most useful with `session` authentication, as the session can
+possibly live longer than the access token. If expired access token
+cannot be refreshed or the refresh token is not available, the request
+will be terminated and not proxied.
+
+Default | Required
+:------:|:-------:
+`true` | `no`
+
+**Examples:**
+
+* `true`
+* `false`
+
+
 #### config.client_credentials_param_type
 
 With this parameter you can define where the client credentials are searched
@@ -1380,9 +1483,9 @@ be send to a server for verification this parameter solves one half of
 the puzzle by defining the parameters name where the plugin should look
 for the id token.
 
-Default      | Required
-:-----------:|:-------:
-`"id_token"` | `no`
+The ID token can only be sent with the access token. It cannot be used
+alone for authentication (at least in current implementation, and we 
+encourage not to use it for authentication).
 
 **Examples:**
 
@@ -1767,7 +1870,27 @@ By default `"POST"` and `"DELETE"` are enabled.
 
 If you want also try to revoke the tokens on logout by calling IdP's
 revocation endpoint, you can use this parameter to enable it. By default
-the plugin does not call revocation endpoint.
+the plugin does not call revocation endpoint. With this parameter you
+can switch (`on`/`off`) the the more specific `config.logout_revoke_access_token`,
+and `config.logout_revoke_refresh_token`.
+
+
+#### config.logout_revoke_access_token
+
+If turned `on`, and `config.logout_revoke` is enabled, the plugin tries to
+revoke access token on logout.
+
+By default this is `enabled`, but the `config.logout_revoke` is disabled
+so the access token will not be revoked.
+
+
+#### config.logout_revoke_refresh_token
+
+If turned on, and `config.logout_revoke` is enabled, the plugin tries to
+revoke the refresh token on logout.
+
+By default this is `disabled`, and the `config.logout_revoke` is disabled
+too, so the refresh token will not be revoked
 
 
 #### config.revocation_endpoint
@@ -1921,8 +2044,8 @@ Default | Required
 This configuration parameter is used to adjust possible clock skew
 between the `OP` and `Kong`. The `config.leeway` is taken in account
 in all the time related verifications. The `leeway` is specified in
-seconds. Leeway is also used when checking session expiration, aka
-when to refresh the access token if refresh token is available.
+seconds. Leeway is also used when checking access token expiration,
+i.e. when to refresh the access token if refresh token is available.
 
 
 #### config.verify_parameters
@@ -2017,6 +2140,15 @@ Specifies the HTTP proxy to be used for communicating with the IdP.
 * `http://10.0.0.5:8080`
 
 
+#### config.http_proxy_authorization
+
+A value for `Proxy-Authorization` header to be used with `config.http_proxy`.
+
+**Examples:**
+
+* `Basic ZGVtbzp0ZXN0`
+
+
 #### config.https_proxy
 
 Specifies the HTTPS proxy to be used for communicating with the IdP.
@@ -2025,6 +2157,24 @@ Specifies the HTTPS proxy to be used for communicating with the IdP.
 **Examples:**
 
 * `http://10.0.0.5:8080`
+
+
+#### config.https_proxy_authorization
+
+A value for `Proxy-Authorization` header to be used with `config.https_proxy`.
+
+**Examples:**
+
+* `Basic ZGVtbzp0ZXN0`
+
+
+#### config.no_proxy
+
+A comma-separated list of hosts that should not be proxied.
+
+**Examples:**
+
+* `example.org,example.com`
 
 
 #### config.keepalive
@@ -2146,12 +2296,12 @@ Authorization Code Grant that is usually used with interactive browser sessions.
 is presented to this plugin by setting the cookie header (e.g. `Cookie: session=…`).
 
 
-#### Refresh Token
+#### Refresh Token (or Offline Token)
 
-While this plugin does not accept refresh token directly from the client, it does support
-automatic refreshing of access tokens if there is a refresh token received from a token
-endpoint. With all methods there may not be a refresh token available, though (e.g. the
-bearer token ones).
+If the client provides a refresh token or offline token to this plugin, the plugin can 
+attempt to fetch tokens from the token endpoint using `refresh_token` grant. It is necessary
+to configure the parameter name where the refresh token is supplied with 
+`config.refresh_token_param_name` and `config.refresh_token_param_type` configuration parameters.
 
 
 ### Usage
@@ -2488,3 +2638,9 @@ Provider                                                        | Information
 [Keycloak](http://www.keycloak.org/)                            | [Docs](https://keycloak.gitbooks.io/documentation/securing_apps/topics/oidc/oidc-generic.html)
 [Dex](https://github.com/coreos/dex)                            | [Docs](https://github.com/coreos/dex/blob/master/Documentation/openid-connect.md)
 [WSO2](https://wso2.com/)                                       | [Docs](https://docs.wso2.com/display/IS541/OpenID+Connect)
+
+
+## Enterprise Support & Demo
+
+[Learn more](https://konghq.com/kong-enterprise-edition/) about Kong Priority Support,
+Products, HA, Demo, Training, API Certifications and Professional Services.
