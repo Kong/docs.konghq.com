@@ -32,8 +32,6 @@ The configuration format is straightforward: simply uncomment any property
 (comments are defined by the `#` character) and modify it to your needs.
 Boolean values can be specified as `on`/`off` or `true`/`false` for convenience.
 
-[Back to TOC](#table-of-contents)
-
 ## Verifying your configuration
 
 You can verify the integrity of your settings with the `check` command:
@@ -59,8 +57,6 @@ $ kong start -c <kong.conf> --vv
 [...]
 ```
 
-[Back to TOC](#table-of-contents)
-
 ## Environment variables
 
 When loading properties out of a configuration file, Kong will also look for
@@ -82,8 +78,6 @@ can be overridden with:
 ```bash
 $ export KONG_LOG_LEVEL=error
 ```
-
-[Back to TOC](#table-of-contents)
 
 ## Injecting Nginx directives
 
@@ -277,8 +271,6 @@ You can then start Kong with:
 $ kong start -c kong.conf --nginx-conf custom_nginx.template
 ```
 
-[Back to TOC](#table-of-contents)
-
 ## Embedding Kong in OpenResty
 
 If you are running your own OpenResty servers, you can also easily embed Kong
@@ -306,8 +298,6 @@ $ nginx -p /usr/local/openresty -c my_nginx.conf
 ```
 
 and Kong will be running in that instance (as configured in `nginx-kong.conf`).
-
-[Back to TOC](#table-of-contents)
 
 ## Serving both a website and your APIs from Kong
 
@@ -371,8 +361,6 @@ http {
   # ...
 }
 ```
-
-[Back to TOC](#table-of-contents)
 
 ## Properties reference
 
@@ -474,8 +462,6 @@ experiencing LRU churning in the database cache (i.e. when the configured
 Send anonymous usage data such as error stack traces to help improve Kong.
 
 Default: `on`
-
-[Back to TOC](#table-of-contents)
 
 ---
 
@@ -834,8 +820,6 @@ returning an error for the request. Accepted values are `text/plain`,
 
 Default: `text/plain`
 
-[Back to TOC](#table-of-contents)
-
 ---
 
 ### Datastore section
@@ -894,8 +878,6 @@ name                            | description
 **cassandra_repl_factor**       | Specify a replication factor for the `SimpleStrategy`.
 **cassandra_data_centers**      | Specify data centers for the `NetworkTopologyStrategy`.
 **cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations.
-
-[Back to TOC](#table-of-contents)
 
 ---
 
@@ -966,8 +948,6 @@ unreachable). When this TTL expires, a new attempt to refresh the stale
 entities will be made.
 
 Default: 30 seconds
-
-[Back to TOC](#table-of-contents)
 
 ---
 
@@ -1066,8 +1046,6 @@ single query.
 
 Default: off
 
-[Back to TOC](#table-of-contents)
-
 ---
 
 ### Development & miscellaneous section
@@ -1134,8 +1112,6 @@ every remote server.
 See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
 
 Default: `30`
-
-[Back to TOC](#table-of-contents)
 
 [ngx_http_realip_module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
 

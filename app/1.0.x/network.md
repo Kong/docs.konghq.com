@@ -34,11 +34,10 @@ it from unauthorized access.
 
 Below are the recommended firewall settings:
 
-* The upstream APIs behind Kong will be available via the [proxy_listen] interface/port values.
-  Configure these values according to the access level you wish to grant to the upstream APIs.
+* The upstream Services behind Kong will be available via the [proxy_listen] interface/port values.
+  Configure these values according to the access level you wish to grant to the upstream Services.
 * If you are binding the Admin API to a public-facing interface (via [admin_listen]), then **protect** it to only allow trusted clients to access the Admin API.
   See also [Securing the Admin API][secure_admin_api].
-
 
 [proxy_listen]: /{{page.kong_version}}/configuration/#proxy_listen
 [admin_listen]: /{{page.kong_version}}/configuration/#admin_listen
