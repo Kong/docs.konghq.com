@@ -15,7 +15,7 @@ ring-balancer will then only route traffic to healthy targets.
 Kong supports two kinds of health checks, which can be used separately or in
 conjunction:
 
-* **active checks**, where a specific HTTP endpoint in the target is
+* **active checks**, where a specific HTTP or HTTPS endpoint in the target is
 periodically requested and the health of the target is determined based on its
 response;
 
@@ -128,7 +128,7 @@ Note:
 
 Active health checks, as the name implies, actively probe targets for
 their health. When active health checks are enabled in an upstream entity,
-Kong will periodically issue HTTP requests to a configured path at each target
+Kong will periodically issue HTTP or HTTPS requests to a configured path at each target
 of the upstream. This allows Kong to automatically enable and disable targets
 in the balancer based on the [probe results](#healthy-and-unhealthy-targets).
 
@@ -200,6 +200,11 @@ under `healthchecks.active` in the [Upstream object][upstreamobjects] configurat
 need to specify the necessary information so that Kong can perform periodic
 probing on the target, and how to interpret the resulting information.
 
+You can use the `healthchecks.active.type` field to specify whether to perform
+HTTP or HTTPS probes (setting it to `"http"` or `"https"`), or by simply
+testing if the connection to a given host and port is successful
+(setting it to `"tcp"`).
+
 For configuring the probe, you need to specify:
 
 * `healthchecks.active.http_path` - The path that should be used when
@@ -223,6 +228,22 @@ This allows you to tune the behavior of the active health checks, whether you
 want probes for healthy and unhealthy targets to run at the same interval, or
 one to be more frequent than the other.
 
+If you are using HTTPS healthchecks, you can also specify the following
+fields:
+
+* `healthchecks.active.https_verify_certificate` - Whether to check the
+validity of the SSL certificate of the remote host when performing active
+health checks using HTTPS.
+* `healthchecks.active.https_sni` - The hostname to use as an SNI
+(Server Name Identification) when performing active health checks
+using HTTPS. This is particularly useful when Targets are configured
+using IPs, so that the target host's certificate can be verified
+with the proper SNI.
+
+Note that failed TLS verifications will increment the "TCP failures" counter;
+the "HTTP failures" refer only to HTTP status codes, whether probes are done
+through HTTP or HTTPS.
+
 Finally, you need to configure how Kong should interpret the probe, by setting
 the various thresholds on the [health
 counters](#healthy-and-unhealthy-targets), which, once reached will trigger a
@@ -231,8 +252,8 @@ status change. The counter threshold fields are:
 * `healthchecks.active.healthy.successes` - Number of successes in active
 probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider
 a target healthy.
-* `healthchecks.active.unhealthy.tcp_failures` - Number of TCP failures in
-active probes to consider a target unhealthy.
+* `healthchecks.active.unhealthy.tcp_failures` - Number of TCP failures 
+or TLS verification failures in active probes to consider a target unhealthy.
 * `healthchecks.active.unhealthy.timeouts` - Number of timeouts in active
 probes to consider a target unhealthy.
 * `healthchecks.active.unhealthy.http_failures` - Number of HTTP failures in
