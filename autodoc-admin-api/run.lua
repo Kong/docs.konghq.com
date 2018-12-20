@@ -197,7 +197,10 @@ end
 local function gen_notation(fname, finfo, field_data)
   if finfo.type == "array" then
     local form_example = {}
-    for i, item in ipairs(field_data.example or finfo.default) do
+    local example = field_data.examples
+                    and (field_data.examples[1] or field_data.examples[2])
+                    or field_data.example
+    for i, item in ipairs(example or finfo.default) do
       table.insert(form_example, fname .. "[]=" .. item)
       if i == 2 then
         break
@@ -254,12 +257,12 @@ local function gen_example(exn, entity, fields, indent, prefix)
     local fullname = (prefix or "") .. fname
 
     local value
+    local field_data = data.entities[entity].fields[fullname]
     if finfo.type == "record" and not finfo.abstract then
       value = gen_example(exn, entity, finfo.fields, indent .. "    ", fullname .. ".")
-    elseif finfo.default ~= nil then
+    elseif finfo.default ~= nil and field_data.examples == nil and field_data.example == nil then
       value = cjson_encode(finfo.default)
     else
-      local field_data = data.entities[entity].fields[fullname]
       local example = field_data.examples and field_data.examples[exn]
       if example == nil then
         example = field_data.example
