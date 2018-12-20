@@ -1,6 +1,7 @@
 ---
 name: Response Rate Limiting
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Rate-limiting based on a custom response header value
 description: |

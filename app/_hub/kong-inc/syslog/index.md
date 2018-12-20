@@ -1,6 +1,7 @@
 ---
 name: Syslog
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Send request and response logs to Syslog
 description: |
@@ -32,7 +33,6 @@ kong_version_compatibility:
 
 params:
   name: syslog
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -52,7 +52,7 @@ params:
     - name: log_level
       required: false
       default: "`info`"
-      description: An optional logging severity, any request with equal or higher severity will be logged to System log.  
+      description: An optional logging severity, any request with equal or higher severity will be logged to System log.
 
 ---
 
@@ -173,7 +173,7 @@ A few considerations on the above JSON object:
 
 ## Notes
 
-* Make sure Syslog daemon is running on the instance and it's configured with logging level severity same as or lower than the set `config.log_level`.   
+* Make sure Syslog daemon is running on the instance and it's configured with logging level severity same as or lower than the set `config.log_level`.
 
 ## Kong Process Errors
 

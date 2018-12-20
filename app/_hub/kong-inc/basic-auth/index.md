@@ -1,10 +1,11 @@
 ---
 name: Basic Authentication
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Add Basic Authentication to your APIs
+desc: Add Basic Authentication to your Services
 description: |
-  Add Basic Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add Basic Authentication to a Service or a Route with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -44,7 +45,6 @@ kong_version_compatibility:
 
 params:
   name: basic-auth
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -62,7 +62,7 @@ params:
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
   extra: |
-    Once applied, any user with a valid credential can access the Service/API.
+    Once applied, any user with a valid credential can access the Service.
     To restrict usage to only some of the authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
     blacklist groups of users.
@@ -225,7 +225,6 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers

@@ -1,10 +1,11 @@
 ---
 name: Bot Detection
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Detect and block bots or custom clients
 description: |
-  Protects a Service or a Route (or the deprecated API entity) from most common bots and has the capability of whitelisting and blacklisting custom clients.
+  Protects a Service or a Route from most common bots and has the capability of whitelisting and blacklisting custom clients.
 
 type: plugin
 categories:
@@ -29,7 +30,6 @@ kong_version_compatibility:
 
 params:
   name: bot-detection
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false

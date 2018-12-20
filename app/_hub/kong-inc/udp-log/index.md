@@ -1,6 +1,7 @@
 ---
 name: UDP Log
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Send request and response logs to a UDP server
 description: |
@@ -36,7 +37,6 @@ kong_version_compatibility:
 
 params:
   name: udp-log
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
