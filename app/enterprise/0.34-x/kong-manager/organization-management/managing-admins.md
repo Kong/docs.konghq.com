@@ -8,6 +8,8 @@ chapter: 7
 
 Inviting a new Admin through the “Organization” page is similar to inviting an (Admin within a Workspace)[#how-to-invite-a-new-admin-in-a-workspace]. However, from the “Organization” page, Roles can be assigned to a new Admin for multiple Workspaces at once. The Super Admin can also view global roles across Workspaces from this page. 
 
+![Organization Page](https://konghq.com/wp-content/uploads/2018/12/org1.png)
+
 1. On the “Organization” page, to invite a new Admin, click the “Invite User” button.
 
 2. Ensure that the email address and username are matching. When a new Admin receives an invitation, they will only be able    to log in with that email address. Assign the appropriate Role and click “Invite User” to send the invitation.
@@ -16,7 +18,11 @@ Inviting a new Admin through the “Organization” page is similar to inviting 
 
 ⚠️ **IMPORTANT**: The Super Admin can see all available roles across Workspaces on the “Roles” tab of the “Organization” page. 
 
+![Role List](https://konghq.com/wp-content/uploads/2018/12/org2.png)
+
 3. On the “Organization” page, the new invitee will appear on the list with the “Invited” status. Once they accept the invitation, the user will be listed in the main “Users” list. 
+
+![User List](https://konghq.com/wp-content/uploads/2018/12/org3.png)
 
 4. The newly invited Admin will have the ability to set a password. If the Admin ever forgets the password, it is possible for them to reset it through a recovery email.
 
