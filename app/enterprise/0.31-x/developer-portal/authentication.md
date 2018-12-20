@@ -2,7 +2,7 @@
 title: Authenticating the Developer Portal
 ---
 
-# Introduction
+## Introduction
 
 - [Enable Authentication](#enable-authentication)
   - [Enable AUTH in Template Files](#enable-auth-in-template-files)

@@ -4,7 +4,7 @@ book: portal
 chapter: 6
 ---
 
-# Introduction
+## Introduction
 
 This document describes the configuration directives for the Kong Developer
 Portal.

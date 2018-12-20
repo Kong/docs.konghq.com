@@ -2,7 +2,7 @@
 title: Clustering Reference
 ---
 
-# Introduction
+## Introduction
 
 A Kong cluster allows you to scale the system horizontally by adding more
 machines to handle more incoming requests. They will all share the same

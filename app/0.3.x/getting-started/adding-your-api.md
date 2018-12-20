@@ -2,7 +2,7 @@
 title: Adding your API
 ---
 
-# Introduction
+## Introduction
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong>

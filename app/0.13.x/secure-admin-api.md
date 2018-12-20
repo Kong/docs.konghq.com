@@ -2,7 +2,7 @@
 title: Securing the Admin API
 ---
 
-# Introduction
+## Introduction
 
 Kong's Admin API provides a RESTful interface for administration and
 configuration of Services, Routes, Plugins, Consumers, and Credentials. Because this

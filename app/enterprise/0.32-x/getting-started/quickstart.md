@@ -2,7 +2,7 @@
 title: 5-minute Quickstart
 ---
 
-# Introduction
+## Introduction
 
 In this section, you'll learn how to manage your Kong Enterprise Edition (EE)
 instance. First you'll start Kong to give you access to the RESTful Admin API and an easy-to-use

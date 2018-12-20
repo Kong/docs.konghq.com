@@ -2,8 +2,6 @@
 title: Getting Started with the Kong Developer Portal
 ---
 
-# Introduction
-
 ## Enable the Dev Portal
 
 1. Open the Kong configuration file in your editor of choice (`kong.conf`)

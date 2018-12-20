@@ -4,7 +4,7 @@ book: portal
 chapter: 4
 ---
 
-# Introduction
+## Introduction
 
 - [Enable Authentication](#enable-authentication)
 - [Developer Registration](#developer-registration)

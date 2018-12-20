@@ -5,7 +5,7 @@ book: portal
 chapter: 10
 ---
 
-# Introduction
+## Introduction
 
 The Dev Portal default theme is shipped with two CSS file partials:
 

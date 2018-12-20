@@ -4,8 +4,6 @@ book: portal
 chapter: 3
 ---
 
-# Introduction
-
 ## Enable the Dev Portal
 
 1. Open the Kong configuration file in your editor of choice (`kong.conf`)

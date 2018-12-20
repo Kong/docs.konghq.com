@@ -2,7 +2,7 @@
 title: Installing PostgreSQL on RedHat
 ---
 
-# Introduction
+## Introduction
 
 The Kong [installation instructions for RedHat](/install/redhat/) focus on Kong. These instructions add some additional steps to get PostgreSQL setup. These exact installation steps come from an EC2 instance of RedHat Enterprise Linux 7, but can be generally applied to most Linux releases as well.
 

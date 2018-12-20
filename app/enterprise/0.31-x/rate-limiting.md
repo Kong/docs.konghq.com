@@ -2,8 +2,6 @@
 title: Enterprise Rate Limiting Library
 ---
 
-# Introduction
-
 ## Overview
 
 This library is designed to provide an efficient, scalable, eventually-consistent sliding window rate limiting library. It relies on atomic operations in shared ngx memory zones to track window counters within a given node, periodically syncing this data to a central data store (current Cassandra, Postgres, and Redis).

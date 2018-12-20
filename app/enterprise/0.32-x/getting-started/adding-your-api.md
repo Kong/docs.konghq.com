@@ -2,7 +2,7 @@
 title: Adding your API
 ---
 
-# Introduction
+## Introduction
 
 In this section, you'll be adding your API to Kong Enterprise Edition (EE).
 This is the first

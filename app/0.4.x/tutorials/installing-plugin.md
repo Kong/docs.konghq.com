@@ -2,7 +2,7 @@
 title: Tutorials - Installing a Plugin
 ---
 
-# Introduction
+## Introduction
 
 One of Kong's core principle is its extensibility through [Plugins](https://konghq.com/plugins/), which allow you to add features to your APIs.
 
