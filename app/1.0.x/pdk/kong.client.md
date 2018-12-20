@@ -1,9 +1,10 @@
 ---
 title: kong.client
 pdk: true
+toc: true
 ---
 
-# kong.client
+## kong.client
 
 Client information module
  A set of functions to retrieve information about the client connecting to
@@ -12,7 +13,9 @@ Client information module
  See also:
  [nginx.org/en/docs/http/ngx_http_realip_module.html](http://nginx.org/en/docs/http/ngx_http_realip_module.html)
 
-## kong.client.get_ip()
+
+
+### kong.client.get_ip()
 
 Returns the remote address of the client making the request.  This will
  **always** return the address of the client directly connecting to Kong.
@@ -42,7 +45,7 @@ kong.client.get_ip() -- "10.0.0.1"
 [Back to TOC](#table-of-contents)
 
 
-## kong.client.get_forwarded_ip()
+### kong.client.get_forwarded_ip()
 
 Returns the remote address of the client making the request.  Unlike
  `kong.client.get_ip`, this function will consider forwarded addresses in
@@ -83,7 +86,7 @@ kong.request.get_forwarded_ip() -- "127.0.0.1"
 [Back to TOC](#table-of-contents)
 
 
-## kong.client.get_port()
+### kong.client.get_port()
 
 Returns the remote port of the client making the request.  This will
  **always** return the port of the client directly connecting to Kong. That
@@ -109,7 +112,7 @@ kong.client.get_port() -- 30000
 [Back to TOC](#table-of-contents)
 
 
-## kong.client.get_forwarded_port()
+### kong.client.get_forwarded_port()
 
 Returns the remote port of the client making the request.  Unlike
  `kong.client.get_port`, this function will consider forwarded ports in cases
@@ -138,6 +141,91 @@ kong.client.get_forwarded_port() -- 40000
 -- Note: assuming that [balancer] is one of the trusted IPs, and that
 -- the load balancer adds the right headers matching with the configuration
 -- of `real_ip_header`, e.g. `proxy_protocol`.
+```
+
+[Back to TOC](#table-of-contents)
+
+
+### kong.client.get_credential()
+
+Returns the credentials of the currently authenticated consumer.
+ If not set yet, it returns `nil`.
+
+**Phases**
+
+* access, header_filter, body_filter, log
+
+**Returns**
+
+*  the authenticated credential
+
+
+**Usage**
+
+``` lua
+local credential = kong.client.get_credential()
+if credential then
+  consumer_id = credential.consumer_id
+else
+  -- request not authenticated yet
+end
+```
+
+[Back to TOC](#table-of-contents)
+
+
+### kong.client.get_consumer()
+
+Returns the `consumer` entity of the currently authenticated consumer.
+ If not set yet, it returns `nil`.
+
+**Phases**
+
+* access, header_filter, body_filter, log
+
+**Returns**
+
+* `table` the authenticated consumer entity
+
+
+**Usage**
+
+``` lua
+local consumer = kong.client.get_consumer()
+if consumer then
+  consumer_id = consumer.id
+else
+  -- request not authenticated yet, or a credential
+  -- without a consumer (external auth)
+end
+```
+
+[Back to TOC](#table-of-contents)
+
+
+### kong.client.authenticate(consumer, credential)
+
+Sets the authenticated consumer and/or credential for the current request.
+ While both `consumer` and `credential` can be `nil`, it is required
+ that at least one of them exists. Otherwise this function will throw an
+ error.
+
+**Phases**
+
+* access
+
+**Parameters**
+
+* **consumer** (table|nil):  The consumer to set. Note: if no
+ value is provided, then any existing value will be cleared!
+* **credential** (table|nil):  The credential to set. Note: if
+ no value is provided, then any existing value will be cleared!
+
+**Usage**
+
+``` lua
+-- assuming `credential` and `consumer` have been set by some authentication code
+kong.client.authenticate(consumer, credentials)
 ```
 
 [Back to TOC](#table-of-contents)
