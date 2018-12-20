@@ -6,7 +6,7 @@ chapter: 7
 
 ## How to Invite a New Admin from the Organization Page
 
-Inviting a new Admin through the “Organization” page is similar to inviting an (Admin within a Workspace)[#how-to-invite-a-new-admin-in-a-workspace]. However, from the “Organization” page, Roles can be assigned to a new Admin for multiple Workspaces at once. The Super Admin can also view global roles across Workspaces from this page. 
+Inviting a new Admin through the “Organization” page is similar to inviting an [Admin within a Workspace](#how-to-invite-a-new-admin-in-a-workspace). However, from the “Organization” page, Roles can be assigned to a new Admin for multiple Workspaces at once. The Super Admin can also view global roles across Workspaces from this page. 
 
 ![Organization Page](https://konghq.com/wp-content/uploads/2018/12/org1.png)
 
