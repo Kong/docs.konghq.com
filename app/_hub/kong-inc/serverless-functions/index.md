@@ -1,6 +1,7 @@
 ---
 name: Serverless Functions
 publisher: Kong Inc.
+version: 1.0.0
 
 source_url: https://github.com/Kong/kong-plugin-serverless-functions
 
@@ -25,7 +26,6 @@ kong_version_compatibility:
 
 params:
   name: serverless-functions
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false

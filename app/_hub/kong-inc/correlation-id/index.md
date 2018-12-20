@@ -1,6 +1,7 @@
 ---
 name: Correlation ID
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Correlate requests and responses using a unique ID
 description: |
@@ -30,7 +31,6 @@ kong_version_compatibility:
 
 params:
   name: correlation-id
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

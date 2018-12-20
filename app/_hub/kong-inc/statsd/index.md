@@ -1,10 +1,11 @@
 ---
 name: StatsD
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Send request and response logs to StatsD
 description: |
-  Log [metrics](#metrics) for a Service, Route (or the deprecated API entity)
+  Log [metrics](#metrics) for a Service, Route
   to a StatsD server.
   It can also be used to log metrics on [Collectd](https://collectd.org/)
   daemon by enabling its [Statsd
@@ -42,7 +43,6 @@ kong_version_compatibility:
 
 params:
   name: statsd
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -74,16 +74,16 @@ Metrics the plugin supports logging into the StatsD server.
 
 Metric                     | description | namespace
 ---                        | ---         | ---
-`request_count`            | tracks the request | kong.\<api_name>.request.count
-`request_size`             | tracks the request's body size in bytes | kong.\<api_name>.request.size
-`response_size`            | tracks the response's body size in bytes | kong.\<api_name>.response.size
-`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
-`status_count`             | tracks each status code returned in a response | kong.\<api_name>.status.\<status>.count and kong.\<api_name>.status.\<status>.total
-`unique_users`             | tracks unique users who made a requests to the underlying Service/Route (or API)| kong.\<api_name>.user.uniques
-`request_per_user`         | tracks request/user | kong.\<api_name>.user.\<consumer_id>.count
-`upstream_latency`         | tracks the time it took for the final service to process the request | kong.\<api_name>.upstream_latency
-`kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.\<api_name>.kong_latency
-`status_count_per_user`    | tracks request/status/user | kong.\<api_name>.user.\<customer_id>.status.\<status> and kong.\<api_name>.user.\<customer_id>.status.total
+`request_count`            | tracks the request | kong.\<service_name>.request.count
+`request_size`             | tracks the request's body size in bytes | kong.\<service_name>.request.size
+`response_size`            | tracks the response's body size in bytes | kong.\<service_name>.response.size
+`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<service_name>.latency
+`status_count`             | tracks each status code returned in a response | kong.\<service_name>.status.\<status>.count and kong.\<service_name>.status.\<status>.total
+`unique_users`             | tracks unique users who made a requests to the underlying Service/Route | kong.\<service_name>.user.uniques
+`request_per_user`         | tracks request/user | kong.\<service_name>.user.\<consumer_id>.count
+`upstream_latency`         | tracks the time it took for the final service to process the request | kong.\<service_name>.upstream_latency
+`kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.\<service_name>.kong_latency
+`status_count_per_user`    | tracks request/status/user | kong.\<service_name>.user.\<customer_id>.status.\<status> and kong.\<service_name>.user.\<customer_id>.status.total
 
 ### Metric Fields
 
@@ -91,9 +91,9 @@ Plugin can be configured with any combination of [Metrics](#metrics), with each 
 
 Field         | description                                             | allowed values
 ---           | ---                                                     | ---
-`name`          | StatsD metric's name                                  | [Metrics](#metrics)          
+`name`          | StatsD metric's name                                  | [Metrics](#metrics)
 `stat_type`     | determines what sort of event the metric represents   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
-`sample_rate`<br>*conditional*   | sampling rate                        | `number`                 
+`sample_rate`<br>*conditional*   | sampling rate                        | `number`
 `customer_identifier`<br>*conditional*| authenticated user detail       | `consumer_id`, `custom_id`, `username`
 
 ### Metric Requirements

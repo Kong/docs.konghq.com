@@ -1,10 +1,11 @@
 ---
 name: ACL
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Control which consumers can access APIs
+desc: Control which consumers can access Services
 description: |
-  Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or the Route (or API).
+  Restrict access to a Service or a Route by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or Route.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -46,7 +47,6 @@ kong_version_compatibility:
 
 params:
   name: acl
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -56,12 +56,12 @@ params:
       default:
       value_in_examples: group1, group2
       description: |
-        Comma separated list of arbitrary group names that are allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
+        Comma separated list of arbitrary group names that are allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: blacklist
       required: semi
       default:
       description: |
-        Comma separated list of arbitrary group names that are not allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
+        Comma separated list of arbitrary group names that are not allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: hide_groups_header
       required: false
       default: false
@@ -74,11 +74,11 @@ params:
 
 ### Usage
 
-In order to use this plugin, you need to properly have configured your Service or Route (or API) with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
+In order to use this plugin, you need to properly have configured your Service or Route with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
 
 #### Associating Consumers
 
-Once you have added an authentication plugin to a Service or a Route (or API) and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
+Once you have added an authentication plugin to a Service or a Route and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/acls \
@@ -179,7 +179,6 @@ curl -X GET http://kong:8001/acls/{id}/consumer
 [Consumer][consumer-object].
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
-[api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-authentication-to-a-microservice-api

@@ -1,10 +1,11 @@
 ---
 name: Key Authentication
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Add key authentication to your APIs
+desc: Add key authentication to your Services
 description: |
-  Add Key Authentication (also sometimes referred to as an API key) to a Service or a Route (or the deprecated API entity). Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
+  Add Key Authentication (also sometimes referred to as an API key) to a Service or a Route. Consumers then add their key either in a querystring parameter or a header to authenticate their requests.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -44,7 +45,6 @@ kong_version_compatibility:
 
 params:
   name: key-auth
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -81,7 +81,7 @@ params:
         <center>The option `config.run_on_preflight` is only available from version `0.11.1` and later</center>
     </div>
 
-    Once applied, any user with a valid credential can access the Service/API.
+    Once applied, any user with a valid credential can access the Service.
     To restrict usage to only some of the authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
     blacklist groups of users.
@@ -265,7 +265,6 @@ curl -X GET http://kong:8001/key-auths/{key or id}/consumer
 * `key or id`: The `id` or `key` property of the API key for which to get the
 associated Consumer.
 
-[api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers

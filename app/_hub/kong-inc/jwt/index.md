@@ -48,7 +48,6 @@ kong_version_compatibility:
 
 params:
   name: jwt
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -285,12 +284,6 @@ $ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
     --data "config.secret_is_base64=true"
 ```
 
-or patch an existing API:
-
-```bash
-$ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
-    --data "config.secret_is_base64=true"
-```
 Then, base64 encode your consumers' secrets:
 
 ```bash
@@ -370,8 +363,8 @@ heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publicly
 hosts the public key certificate used to sign tokens. Account name is referred
 to "COMPANYNAME" for the sake of the guide.
 
-To get started, create a Service, a Route that uses that Service, *or* create
-an API. _Note: Auth0 does not use base64 encoded secrets._
+To get started, create a Service and a Route that uses that Service.
+_Note: Auth0 does not use base64 encoded secrets._
 
 Create a Service:
 
@@ -389,29 +382,12 @@ $ curl -i -f -X POST http://localhost:8001/routes \
     --data "paths[]=/example_path"
 ```
 
-
-or create an API, note these are depreciated:
-
-```bash
-$ curl -i -X POST http://localhost:8001/apis \
-    --data "name={api}" \
-    --data "hosts=example.com" \
-    --data "upstream_url=http://httpbin.org"
-```
-
 Add the JWT Plugin:
 
 Add the plugin to your Route:
 
 ```bash
 $ curl -X POST http://localhost:8001/route/{route id}/plugins \
-    --data "name=jwt"
-```
-
-Add the plugin to your API:
-
-```bash
-$ curl -X POST http://localhost:8001/apis/{api}/plugins \
     --data "name=jwt"
 ```
 
