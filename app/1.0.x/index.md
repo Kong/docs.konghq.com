@@ -22,6 +22,12 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="https://github.com/Kong/kong-mesh-dist-kubernetes">Kubernetes &amp; Service Mesh</a></h3>
+    <p>We have a quick demo repository showing how to run Kong Service Mesh on Kubernetes.</p>
+    <a href="https://github.com/Kong/kong-mesh-dist-kubernetes">Visit the repo &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/cli">CLI reference</a></h3>
     <p>Want a better understanding of the CLI tool and its options? Browse the detailed command reference.</p>
     <a href="/{{page.kong_version}}/cli">Use the CLI &rarr;</a>
@@ -46,7 +52,7 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/health-checks-circuit-breakers">Health checks and circuit breakers</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/health-checks-circuit-breakers">Health checks &amp; circuit breakers</a></h3>
     <p>Let Kong monitor the availability of your services and adjust its load balancing accordingly.</p>
     <a href="/{{page.kong_version}}/health-checks-circuit-breakers">Learn about health checks and circuit breakers &rarr;</a>
   </div>
