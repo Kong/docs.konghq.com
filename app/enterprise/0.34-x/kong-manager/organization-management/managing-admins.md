@@ -14,11 +14,11 @@ Inviting a new Admin through the “Organization” page is similar to inviting 
 
 2. Ensure that the email address and username are matching. When a new Admin receives an invitation, they will only be able    to log in with that email address. Assign the appropriate Role and click “Invite User” to send the invitation.
 
-⚠️ **IMPORTANT**: Super Admins can invite users to multiple Workspaces, and assign them any Role available within Workspaces, including Roles that exist by default (e.g. super-admin, read-only) and Roles with customized permissions. 
+    ⚠️ **IMPORTANT**: Super Admins can invite users to multiple Workspaces, and assign them any Role available within Workspaces, including Roles that exist by default (e.g. super-admin, read-only) and Roles with customized permissions. 
 
-⚠️ **IMPORTANT**: The Super Admin can see all available roles across Workspaces on the “Roles” tab of the “Organization” page. 
+    ⚠️ **IMPORTANT**: The Super Admin can see all available roles across Workspaces on the “Roles” tab of the “Organization” page. 
 
-![Role List](https://konghq.com/wp-content/uploads/2018/12/org2.png)
+    ![Role List](https://konghq.com/wp-content/uploads/2018/12/org2.png)
 
 3. On the “Organization” page, the new invitee will appear on the list with the “Invited” status. Once they accept the invitation, the user will be listed in the main “Users” list. 
 
