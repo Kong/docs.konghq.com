@@ -1,6 +1,7 @@
 ---
 name: File Log
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Append request and response data to a log file on disk
 description: |
@@ -49,7 +50,6 @@ kong_version_compatibility:
 
 params:
   name: file-log
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

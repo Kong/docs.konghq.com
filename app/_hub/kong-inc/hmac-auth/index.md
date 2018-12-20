@@ -1,10 +1,11 @@
 ---
 name: HMAC Authentication
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Add HMAC Authentication to your APIs
+desc: Add HMAC Authentication to your Services
 description: |
-  Add HMAC Signature authentication to a Service or a Route (or the deprecated API entity)
+  Add HMAC Signature authentication to a Service or a Route
   to establish the integrity of incoming requests. The plugin will validate the
   digital signature sent in the `Proxy-Authorization` or `Authorization` header
   (in this order). This plugin implementation is based off the
@@ -47,7 +48,6 @@ kong_version_compatibility:
 
 params:
   name: hmac-auth
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -81,7 +81,7 @@ params:
       description: |
         A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
   extra: |
-    Once applied, any user with a valid credential can access the Service/API.
+    Once applied, any user with a valid credential can access the Service/Route.
     To restrict usage to only some of the authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
     blacklist groups of users.
@@ -212,7 +212,7 @@ include all of the headers and a `digest` of the body.
 
 ### HMAC Example
 
-The HMAC plugin can be enabled on a Service or a Route (or the deprecated API entity).
+The HMAC plugin can be enabled on a Service or a Route.
 
   **Create a Service**
 
@@ -235,21 +235,6 @@ The HMAC plugin can be enabled on a Service or a Route (or the deprecated API en
 
   ```
 
-
-  **Add an API**
-
-For versions below 0.13.0, you would use now-deprecated API entity:
-
-  ```bash
-  $ curl -i -X POST http://localhost:8001/apis \
-      -d "name=hmac-test" \
-      -d "hosts=hmac.com" \
-      -d "upstream_url=http://example.com"
-  HTTP/1.1 201 Created
-  ...
-
-  ```
-
   **Enabling the plugin on a Service**
 
   Plugins can be enabled on a Service or a Route. This example uses a Service.
@@ -263,24 +248,6 @@ For versions below 0.13.0, you would use now-deprecated API entity:
   ...
 
   ```
-
-  **Enabling the plugin on an API**
-
-  ```bash
-  $ curl -i -X POST http://localhost:8001/apis/hmac-test/plugins \
-      -d "name=hmac-auth" \
-      -d "config.enforce_headers=date, request-line" \
-      -d "config.algorithms=hmac-sha1, hmac-sha256"
-  HTTP/1.1 201 Created
-  ...
-
-  ```
-
-  Here we are enabling the `hmac-auth` plugin on API the `hmac-test`.
-  `config.enforce_headers` is set to force the client to at least use `date`
-  and `request-line` in the HTTP signature creation. Also we are setting the
-  `config.algorithms` to force the client to only use `hmac-sha1` or
-  `hmac-sha256` for hashing the signing string.
 
   **Add a Consumer**
 
@@ -303,7 +270,7 @@ For versions below 0.13.0, you would use now-deprecated API entity:
 
   ```
 
-  **Request to the API**
+  **Making an authorized request**
 
   ```bash
   $ curl -i -X GET http://localhost:8000/requests \
@@ -338,7 +305,7 @@ For versions below 0.13.0, you would use now-deprecated API entity:
   to `true`:
 
   The following example works the same way, whether the plugin was added to
-  a Service or a Route (or an API).
+  a Service or a Route.
 
   ```bash
   $ curl -i -X PATCH http://localhost:8001/plugins/{plugin-id} \

@@ -1,11 +1,12 @@
 ---
 name: Request Size Limiting
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Block requests with bodies greater than a specified size
 description: |
   <div class="alert alert-warning">
-    For security reasons we suggest enabling this plugin for any API you add to Kong to prevent a DOS (Denial of Service) attack.
+    For security reasons we suggest enabling this plugin for any Service you add to Kong to prevent a DOS (Denial of Service) attack.
   </div>
 
   Block incoming requests whose body is greater than a specific size in megabytes.
@@ -13,7 +14,7 @@ description: |
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
     with versions of Kong prior to 0.9.0
-    differs from what is documented herein. Refer to the 
+    differs from what is documented herein. Refer to the
     <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>
@@ -47,7 +48,6 @@ kong_version_compatibility:
 
 params:
   name: request-size-limiting
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

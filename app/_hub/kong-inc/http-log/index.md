@@ -1,6 +1,7 @@
 ---
 name: HTTP Log
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Send request and response logs to an HTTP server
 description: |
@@ -43,7 +44,6 @@ kong_version_compatibility:
 
 params:
   name: http-log
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
