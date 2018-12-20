@@ -22,7 +22,7 @@ Inviting a new Admin through the “Organization” page is similar to inviting 
 
 3. On the “Organization” page, the new invitee will appear on the list with the “Invited” status. Once they accept the invitation, the user will be listed in the main “Users” list. 
 
-    ![User List](https://konghq.com/wp-content/uploads/2018/12/org3.png)
+    ![User List](https://konghq.com/wp-content/uploads/2018/12/org3-1.png)
 
 4. The newly invited Admin will have the ability to set a password. If the Admin ever forgets the password, it is possible for them to reset it through a recovery email.
 
