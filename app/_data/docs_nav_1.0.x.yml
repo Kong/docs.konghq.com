@@ -96,11 +96,17 @@
       - text: kong.log
         url: /pdk/kong.log
 
+      - text: kong.node
+        url: /pdk/kong.node
+
       - text: kong.request
         url: /pdk/kong.request
 
       - text: kong.response
         url: /pdk/kong.response
+
+      - text: kong.router
+        url: /pdk/kong.router
 
       - text: kong.service
         url: /pdk/kong.service
