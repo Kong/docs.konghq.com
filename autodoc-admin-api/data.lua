@@ -28,7 +28,6 @@ return {
       "targets",
     },
     nodoc_entities = {
-      "apis",
     },
   },
 
@@ -37,8 +36,6 @@ return {
 --------------------------------------------------------------------------------
 
   intro = [[
-
-    # Kong Admin API
 
     Kong comes with an **internal** RESTful Admin API for administration purposes.
     Requests to the Admin API can be sent to any node in the cluster, and Kong will
@@ -240,7 +237,7 @@ return {
         path = {
           description = [[The path to be used in requests to the upstream server.]],
           examples = {
-            "/api",
+            "/some_api",
             "/another_api",
           }
         },
@@ -310,31 +307,67 @@ return {
           description = [[
             A list of the protocols this Route should allow. When set to `["https"]`,
             HTTP requests are answered with a request to upgrade to HTTPS.
-          ]]
+          ]],
+          examples = {
+            {"http", "https"},
+            {"tcp", "tls"},
+          }
         },
         methods = {
           kind = "semi-optional",
           description = [[
             A list of HTTP methods that match this Route.
-            At least one of `hosts`, `paths`, or `methods` must be set.
+            When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.
           ]],
-          example = {"GET", "POST"},
+          examples = { {"GET", "POST"}, nil },
+          skip_in_example = true, -- hack so we get HTTP fields in the first example and Stream fields in the second
         },
         hosts = {
           kind = "semi-optional",
           description = [[
             A list of domain names that match this Route.
-            At least one of `hosts`, `paths`, or `methods` must be set.
+            When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.
           ]],
-          example = { "example.com", "foo.test" },
+          examples = { {"example.com", "foo.test"}, nil },
+          skip_in_example = true, -- hack so we get HTTP fields in the first example and Stream fields in the second
         },
         paths = {
           kind = "semi-optional",
           description = [[
             A list of paths that match this Route.
-            At least one of `hosts`, `paths`, or `methods` must be set.
+            When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.
           ]],
-          example = { "/foo", "/bar" },
+          examples = { {"/foo", "/bar"}, nil },
+          skip_in_example = true, -- hack so we get HTTP fields in the first example and Stream fields in the second
+        },
+        snis = {
+          kind = "semi-optional",
+          description = [[
+            A list of SNIs that match this Route when using stream routing.
+            When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set.
+          ]],
+          examples = { nil, {"foo.test", "example.com"} },
+          skip_in_example = true, -- hack so we get HTTP fields in the first example and Stream fields in the second
+        },
+        sources = {
+          kind = "semi-optional",
+          description = [[
+            A list of IP sources of incoming connections that match this Route when using stream routing.
+            Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
+            When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set.
+          ]],
+          examples = { nil, {{ip = "10.1.0.0/16", port = 1234}, {ip = "10.2.2.2"}, {port = 9123}} },
+          skip_in_example = true, -- hack so we get HTTP fields in the first example and Stream fields in the second
+        },
+        destinations = {
+          kind = "semi-optional",
+          description = [[
+            A list of IP destinations of incoming connections that match this Route when using stream routing.
+            Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
+            When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set.
+          ]],
+          examples = { nil, {{ip = "10.1.0.0/16", port = 1234}, {ip = "10.2.2.2"}, {port = 9123}} },
+          skip_in_example = true, -- hack so we get HTTP fields in the first example and Stream fields in the second
         },
         strip_path = {
           description = [[
@@ -545,9 +578,6 @@ return {
         }
       },
       -- Skip deprecated endpoints
-      ["/apis/:apis/plugins/:id"] = {
-        skip = true,
-      },
       ["/routes/:routes/plugins/:id"] = {
         skip = true,
       },
@@ -578,9 +608,6 @@ return {
           example = { minute = 20, hour = 500 },
         },
         enabled = { description = [[Whether the plugin is applied.]] },
-        api = { description = [[
-          If set, the plugin will only activate when receiving requests via the given API.
-        ]] },
         route = { description = [[
           If set, the plugin will only activate when receiving requests via the specified route. Leave
           unset for the plugin to activate regardless of the Route being used.
@@ -594,6 +621,21 @@ return {
           If set, the plugin will activate only for requests where the specified has been authenticated.
           (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin
           to activate regardless of the authenticated consumer.
+        ]] },
+        run_on = { description = [[
+          Control on which Kong nodes this plugin will run, given a Service Mesh scenario.
+          Accepted values are:
+          * `first`, meaning "run on the first Kong node that is encountered by the request".
+            On an API Getaway scenario, this is the usual operation, since there is only
+            one Kong node in between source and destination. In a sidecar-to-sidecar Service
+            Mesh scenario, this means running the plugin only on the
+            Kong sidecar of the outbound connection.
+          * `second`, meaning "run on the second node that is encountered by the request".
+            This option is only relevant for sidecar-to-sidecar Service
+            Mesh scenarios: this means running the plugin only on the
+            Kong sidecar of the inbound connection.
+          * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar
+            scenario. This is useful for tracing/logging plugins.
         ]] },
       }
     },
