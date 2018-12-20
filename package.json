@@ -23,7 +23,7 @@
     "ignore": [
       "Makefile",
       "dist/**",
-      "app/0*/**",
+      "app/*.x/**",
       "app/enterprise/**/*",
       "app/_assets/images/**",
       "app/_assets/fonts/**",
