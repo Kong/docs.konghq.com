@@ -1,8 +1,11 @@
+body {
+  --green: #17a956;
+}
+
 .site-header {
   &:extend(.u-cf, .u-full-width);
   z-index: 1;
   box-shadow: 0 1px rgba(255, 255, 255, 0.1);
-
 
   &.fixed-top {
     top: 0;
@@ -101,7 +104,8 @@
             vertical-align: middle;
             width: 1.2rem;
             height: 1.2rem;
-            background: transparent url("/assets/images/icons/icn-phone.svg") no-repeat center center;
+            background: transparent url('/assets/images/icons/icn-phone.svg')
+              no-repeat center center;
             background-size: cover;
           }
         }
@@ -128,15 +132,15 @@
   //   }
   // }
 }
-  // Add maring to page while cookie policy is open
-  // .page.page-cookie-policy{
-  //   // NOTE: Commenting out until summit banner is removed
-  //   // margin-top: 50px;
-  //   margin-top: 150px;
-  //   @media screen and (max-width: 1100px) {
-  //     margin-top: 0;
-  //   }
-  // }
+// Add maring to page while cookie policy is open
+// .page.page-cookie-policy{
+//   // NOTE: Commenting out until summit banner is removed
+//   // margin-top: 50px;
+//   margin-top: 150px;
+//   @media screen and (max-width: 1100px) {
+//     margin-top: 0;
+//   }
+// }
 
 .navbar {
   &:extend(.u-cf, .u-full-width);
@@ -202,7 +206,7 @@
   a {
     .font-source-sans-sc();
     font-size: 14px;
-    color: rgba(255, 255, 255, .8);
+    color: rgba(255, 255, 255, 0.8);
 
     &:hover {
       color: #fff;
@@ -210,7 +214,7 @@
 
     &:active,
     &.active {
-      color: rgba(255, 255, 255, .4);
+      color: rgba(255, 255, 255, 0.4);
     }
   }
 
@@ -244,4 +248,83 @@
 .navbar-brand {
   padding-top: 19px;
   float: left;
+}
+
+// Updated Nav/Header Styles
+
+.kong-navbar-collapse {
+  display: none !important;
+}
+
+.kong-navbar {
+  background: #f9fafb;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  height: auto;
+  .navbar-toggler {
+    display: none;
+  }
+  .container.d-flex {
+    max-width: 1420px;
+    width: 100%;
+    display: block;
+    margin: 0px auto;
+    float: none;
+
+    a.navbar-brand {
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%) translateY(-7.5px);
+      transform: translateX(-50%) translateY(-7.5px);
+      top: 0px;
+      img {
+        max-width: 100px;
+      }
+    }
+    .navbar-nav {
+      &.left {
+        display: inline-block;
+        float: left;
+      }
+      &.right {
+        display: inline-block;
+        float: right;
+      }
+    }
+    li.kong-navbar_nav_link.kong-navbar_nav_link--cta {
+      padding-top: 12.5px;
+    }
+    li.navbar-item {
+      padding-top: 5px;
+      padding-bottom: 0px;
+      a.nav-link {
+        color: #062f4d;
+        text-transform: none;
+        transform: none;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0px;
+        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+          'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        padding: 5px 0;
+        cursor: pointer;
+      }
+      .list-group {
+        display: none;
+      }
+    }
+    .btn {
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 500;
+      transform: none;
+      text-transform: none;
+      border: 1px solid var(--green);
+      border-radius: 3px;
+      padding: 5px 12.5px 7.5px;
+      line-height: 1;
+      margin-top: 0;
+    }
+  }
 }
