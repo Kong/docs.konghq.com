@@ -13,7 +13,7 @@ $ kong start [-c /path/to/kong.conf]
 ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to your own configuration.
+allowing you to point to [your own configuration](https://docs.konghq.com/0.13.x/configuration/#configuration-loading)
 
 Once started, navigate to Kong Manager in the browser at `http://localhost:8002`
 
