@@ -75,6 +75,7 @@ Now that you have Kong running you can interact with the Admin API.
 
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
+[configuration-loading]: /{{page.kong_version}}/configuration/#configuration-loading
 [CLI]: /{{page.kong_version}}/cli
 [API]: /{{page.kong_version}}/admin-api
 [datastore-section]: /{{page.kong_version}}/configuration/#datastore-section
