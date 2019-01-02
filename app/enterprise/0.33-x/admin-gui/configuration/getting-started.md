@@ -9,9 +9,12 @@ toc: false
 
 Start Kong.
 
-`kong start -c kong.conf.default`
+```bash
+$ kong start [-c /path/to/kong.conf]
+```
 
-> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://getkong.org/latest/configuration/) in order to implement this step.
+**Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
+allowing you to point to your own configuration.
 
 Visit the Admin GUI:
 

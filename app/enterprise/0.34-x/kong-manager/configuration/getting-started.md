@@ -9,11 +9,11 @@ chapter: 2
 To start Kong:
 
 ```bash
-$ kong start -c kong.conf.default
+$ kong start [-c /path/to/kong.conf]
 ```
 
-> Note: Not all deployments of Kong use a configuration file, in which case 
-only `kong start` is required.
+**Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
+allowing you to point to your own configuration.
 
 Once started, navigate to Kong Manager in the browser at `http://localhost:8002`
 
