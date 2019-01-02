@@ -35,7 +35,7 @@ supports PostgreSQL and Cassandra).
     ```
 
     **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-    allowing you to point to your own configuration.
+    allowing you to point to [your own configuration][configuration-loading].
 
 ## 2. Verify that Kong has started successfully
 

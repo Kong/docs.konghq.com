@@ -35,7 +35,7 @@ supports PostgreSQL and Cassandra).
     ```
 
     **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-    allowing you to point to your own configuration.
+    allowing you to point to [your own configuration][configuration-loading].
 
 ## 2. Verify that Kong has started successfully
 
@@ -75,6 +75,7 @@ Now that you have Kong running you can interact with the Admin API.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
+[configuration-loading]: /{{page.kong_version}}/configuration/#configuration-loading
 [CLI]: /{{page.kong_version}}/cli
 [API]: /{{page.kong_version}}/admin-api
 [datastore-section]: /{{page.kong_version}}/configuration/#datastore-section
