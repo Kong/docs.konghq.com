@@ -2,21 +2,55 @@
 title: Configuration Property Reference for Kong Enterprise
 ---
 
-## Kong Manager
+## General
 
 
-### admin_api_uri
+### prefix
 
-**Default:** `NONE` (auto generated)
+See the property description in Kong's configuration reference for 
+[prefix](https://docs.konghq.com/0.13.x/configuration/#prefix)
 
-**Description:**  
 
-Hierarchical part of a URI which is composed 
-optionally of a host, port, and path at which your 
-Admin interface API accepts HTTP or HTTPS traffic. 
-When this config is disabled, the gui will use the 
-window protocol + host and append the resolved 
-admin_gui_listen HTTP/HTTPS port.
+### log_level
+
+See the property description in Kong's configuration reference for 
+[log_level](https://docs.konghq.com/0.13.x/configuration/#log_level)
+
+
+### proxy_access_log
+
+See the property description in Kong's configuration reference for 
+[proxy_access_log](https://docs.konghq.com/0.13.x/configuration/#proxy_access_log)
+
+
+### proxy_error_log 
+
+See the property description in Kong's configuration reference for 
+[proxy_error_log](https://docs.konghq.com/0.13.x/configuration/#proxy_error_log)
+
+
+### adming_access_log
+
+See the property description in Kong's configuration reference for 
+[admin_access_log](https://docs.konghq.com/0.13.x/configuration/#admin_access_log)
+
+
+### admin_error_log
+
+See the property description in Kong's configuration reference for 
+[admin_error_log](https://docs.konghq.com/0.13.x/configuration/#admin_error_log)
+
+
+### custom_plugins 
+
+See the property description in Kong's configuration reference for 
+[custom_plugins](https://docs.konghq.com/0.13.x/configuration/#custom_plugins)
+
+
+### anonymous_reports
+
+See the property description in Kong's configuration reference for 
+[anonymous_reports](https://docs.konghq.com/0.13.x/configuration/#anonymous_reports)
 
 **Example:**
 
@@ -71,6 +105,8 @@ for more details about the `proxy_protocol` parameter.
 proxy_url = https://127.0.0.1:8443
 ```
 
+
+## Kong Manager
 
 ### admin_gui_listen
 
