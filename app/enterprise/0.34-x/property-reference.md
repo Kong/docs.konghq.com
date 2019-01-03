@@ -567,6 +567,11 @@ admin_gui_ssl_key = /path/to/admin_gui_ssl.key
 
 ### admin_gui_flags
 
+**Default:** `{}`
+
+**Description:**  
+
+Alters the layout Admin GUI (JSON)
 
 ### admin_gui_access_log
 
