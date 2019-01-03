@@ -735,6 +735,16 @@ This value is defined in bytes.
 
 ### vitals_prometheus_scrape_interval
 
+**Default:** `5`
+
+**Description:**
+
+Defines the scrape_interval query
+parameter sent to the Prometheus
+server when reading Vitals data.
+This should be same as the scrape
+interval (in seconds) of the
+Prometheus server.
 
 ## Dev Portal
 
