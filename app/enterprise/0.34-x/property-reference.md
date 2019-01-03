@@ -360,6 +360,24 @@ See the property description in Kong's configuration reference for [Cassandra se
 ### cassandra_schema_consensus_timeout
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+## Datastore Cache
+
+
+### db_update_frequency
+
+See the property description in Kong's configuration reference for [db_update_frequency](https://docs.konghq.com/0.13.x/configuration/#db_update_frequency)
+
+
+### db_update_propagation
+
+See the property description in Kong's configuration reference for [db_update_propagation](https://docs.konghq.com/0.13.x/configuration/#db_update_propagation)
+
+
+### db_cache_ttl
+
+See the property description in Kong's configuration reference for [db_cache_ttl](https://docs.konghq.com/0.13.x/configuration/#db_cache_ttl)
 ## Kong Manager
 
 ### admin_gui_listen
