@@ -311,7 +311,7 @@ portal_gui_host = localhost:8003
 ```
 
 
-### port_gui_use_subdomains
+### portal_gui_use_subdomains
 
 **Default** `Off`
 
