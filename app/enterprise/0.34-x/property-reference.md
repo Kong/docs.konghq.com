@@ -1192,6 +1192,11 @@ Expiration time in seconds for Admin invitation links. Set to zero for no expira
 
 When enabled this flag will only mock the sending of emails and will not attempt to send actual emails. This can be used for testing before the SMTP client is fully configured.
 
+**Examples:**
+
+`smtp_mock = on` Emails will NOT attempt send.
+`smtp_mock = off` Emails will attempt send.
+
 
 ### smtp_host
 
