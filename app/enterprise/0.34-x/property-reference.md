@@ -1144,7 +1144,7 @@ When enabled invitation emails will be sent to Admins invited to the Kong Manage
 
 ### admin_emails_from
 
-**Default:** `on`
+**Default:** `""`
 
 **Description:**
 
@@ -1159,7 +1159,7 @@ admin_emails_from = "example@example.com"
 
 ### admin_emails_reply_to
 
-**Default:** `on`
+**Default:** `NONE` (empty)
 
 **Description:**
 
