@@ -659,6 +659,19 @@ Vitals metrics and visualizations on the dashboard.
 
 ### vitals_strategy
 
+**Default:** `database`
+
+**Description:** 
+
+Determines whether to use the Kong database
+(either PostgreSQL or Cassandra, as defined
+by the 'database' config value above), or a
+separate storage engine, for Vitals metrics.
+
+Accepted values are 'database', 'prometheus',
+or 'influxdb'.
+
+
 ### vitals_tsdb_address
 
 ### vitals_statsd_address
