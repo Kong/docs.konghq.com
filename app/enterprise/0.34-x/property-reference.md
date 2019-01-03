@@ -52,7 +52,6 @@ See the property description in Kong's configuration reference for
 See the property description in Kong's configuration reference for 
 [anonymous_reports](https://docs.konghq.com/0.13.x/configuration/#anonymous_reports)
 
-**Example:**
 
 ## NGINX
 
@@ -128,116 +127,93 @@ admin_gui_listen HTTP/HTTPS port.
 admin_api_uri = https://127.0.0.1:8444
 ```
 
-
 ### admin_listen
 
 See the property description in Kong's configuration reference for [admin_listen](https://docs.konghq.com/0.13.x/configuration/#admin_listen)
-
 
 ### nginx_user
 
 See the property description in Kong's configuration reference for [nginx_user](https://docs.konghq.com/0.13.x/configuration/#nginx_user)
 
-
 ### nginx_worker_processes 
 
 See the property description in Kong's configuration reference for  [nginx_worker_processes](https://docs.konghq.com/0.13.x/configuration/#nginx_worker_processes)
-
 
 ### nginx_daemon
 
 See the property description in Kong's configuration reference for [nginx_daemon](https://docs.konghq.com/0.13.x/configuration/#nginx_daemon)
 
-
 ### mem_cache_size
 
 See the property description in Kong's configuration reference for [mem_cahce_size](https://docs.konghq.com/0.13.x/configuration/#mem_cache_size)
-
 
 ### ssl_cipher_suite
 
 See the property description in Kong's configuration reference for [ssl_cipher_suite](https://docs.konghq.com/0.13.x/configuration/#ssl_cipher_suite)
 
-
 ### ssl_ciphers
 
 See the property description in Kong's configuration reference for [ssl_ciphers](https://docs.konghq.com/0.13.x/configuration/#ssl_ciphers)
-
 
 ### ssl_cert
 
 See the property description in Kong's configuration reference for [ssl_cert](https://docs.konghq.com/0.13.x/configuration/#ssl_cert)
 
-
 ### ssl_cert_key
 
 See the property description in Kong's configuration reference for [ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#ssl_cert_key)
-
 
 ### client_ssl
 
 See the property description in Kong's configuration reference for [client_ssl](https://docs.konghq.com/0.13.x/configuration/#client_ssl)
 
-
 ### client_ssl_cert
 
 See the property description in Kong's configuration reference for [client_ssl_cert](https://docs.konghq.com/0.13.x/configuration/#client_ssl_cert)
-
 
 ### client_ssl_cert_key
 
 See the property description in Kong's configuration reference for [client_ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#client_ssl_cert_key)
 
-
 ### admin_ssl_cert
 
 See the property description in Kong's configuration reference for [admin_ssl_cert](https://docs.konghq.com/0.13.x/configuration/#admin_ssl_cert)
-
 
 ### admin_ssl_cert_key
 
 See the property description in Kong's configuration reference for [admin_ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#admin_ssl_cert_key)
 
-
 ### upstream_keepalive
 
 See the property description in Kong's configuration reference for [upstream_keepalive](https://docs.konghq.com/0.13.x/configuration/#upstream_keepalive)
-
 
 ### server_tokens
 
 See the property description in Kong's configuration reference for [server_tokens](https://docs.konghq.com/0.13.x/configuration/#server_tokens)
 
-
 ### latency_tokens
 
 See the property description in Kong's configuration reference for [latency_tokens](https://docs.konghq.com/0.13.x/configuration/#latency_tokens)
-
 
 ### trusted_ips
 
 See the property description in Kong's configuration reference for [trusted_ips](https://docs.konghq.com/0.13.x/configuration/#trusted_ips)
 
-
 ### real_ip_header
 
 See the property description in Kong's configuration reference for [real_ip_header](https://docs.konghq.com/0.13.x/configuration/#real_ip_header)
-
 
 ### real_ip_recursive
 
 See the property description in Kong's configuration reference for [real_ip_recursive](https://docs.konghq.com/0.13.x/configuration/#real_ip_recursive)
 
-
 ### client_max_body_size
 
 See the property description in Kong's configuration reference for [client_max_body_size](https://docs.konghq.com/0.13.x/configuration/#client_max_body_size)
 
-
 ### client_body_buffer_size
 
 See the property description in Kong's configuration reference for [client_body_buffer_size](https://docs.konghq.com/0.13.x/configuration/#client_body_buffer_size)
-
 
 ### error_default_type
 
@@ -251,111 +227,89 @@ See the property description in Kong's configuration reference for [error_defaul
 
 See the property description in Kong's configuration reference for [database](https://docs.konghq.com/0.13.x/configuration/#database)
 
-
 ### pg_host
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
-
 
 ### pg_port
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
 
-
 ### pg_user
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
-
 
 ### pg_password
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
 
-
 ### pg_database
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
-
 
 ### pg_ssl
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
 
-
 ### pg_ssl_verify
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
-
 
 ### cassandra_contact_points
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
-
 ### cassandra_port
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
-
 
 ### cassandra_keyspace
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
-
 ### cassandra_timeout
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
-
 
 ### cassandra_ssl
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
-
 ### cassandra_ssl_verify
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
-
 
 ### cassandra_username
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
-
 ### cassandra_password
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
-
 
 ### cassandra_consistency
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
-
 ### cassandra_lb_policy
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
-
 
 ### cassandra_local_datacenter
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
-
 ### cassandra_repl_strategy
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
-
 
 ### cassandra_repl_factor
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
-
 ### cassandra_data_centers
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
-
 
 ### cassandra_schema_consensus_timeout
 
@@ -369,16 +323,96 @@ See the property description in Kong's configuration reference for [Cassandra se
 
 See the property description in Kong's configuration reference for [db_update_frequency](https://docs.konghq.com/0.13.x/configuration/#db_update_frequency)
 
-
 ### db_update_propagation
 
 See the property description in Kong's configuration reference for [db_update_propagation](https://docs.konghq.com/0.13.x/configuration/#db_update_propagation)
 
-
 ### db_cache_ttl
 
 See the property description in Kong's configuration reference for [db_cache_ttl](https://docs.konghq.com/0.13.x/configuration/#db_cache_ttl)
+
+
+## DNS Resolver
+
+
+### dns_resolver
+
+See the property description in Kong's configuration reference for [dns_resolver](https://docs.konghq.com/0.13.x/configuration/#dns_resolver)
+
+### dns_hostsfile
+
+See the property description in Kong's configuration reference for [dns_hostsfile](https://docs.konghq.com/0.13.x/configuration/#dns_hostsfile)
+
+### dns_order
+
+See the property description in Kong's configuration reference for [dns_order](https://docs.konghq.com/0.13.x/configuration/#dns_order)
+
+### dns_state_ttl
+
+See the property description in Kong's configuration reference for [dns_state_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_state_ttl)
+
+### dns_not_found_ttl
+
+See the property description in Kong's configuration reference for [dns_not_found_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_not_found_ttl)
+
+### dns_error_ttl
+
+See the property description in Kong's configuration reference for [dns_error_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_error_ttl)
+
+### dns_no_sync
+
+See the property description in Kong's configuration reference for [dns_no_sync](https://docs.konghq.com/0.13.x/configuration/#dns_no_sync)
+
+
+## Development & Miscellaneous
+
+
+### lua_ssl_trusted_certificate
+
+See the property description in Kong's configuration reference for [lua_ssl_trusted_certificate](https://docs.konghq.com/0.13.x/configuration/#lua_ssl_trusted_certificate)
+
+### lua_ssl_verify_depth
+
+See the property description in Kong's configuration reference for [lua_ssl_verify_depth](https://docs.konghq.com/0.13.x/configuration/#lua_ssl_verify_depth)
+
+### lua_package_path
+
+See the property description in Kong's configuration reference for [lua_package_path](https://docs.konghq.com/0.13.x/configuration/#lua_package_path)
+
+### lua_package_cpath
+
+See the property description in Kong's configuration reference for [lua_package_cpath](https://docs.konghq.com/0.13.x/configuration/#lua_package_cpath)
+
+### lua_socket_pool_size
+
+See the property description in Kong's configuration reference for [lua_socket_pool_size](https://docs.konghq.com/0.13.x/configuration/#lua_socket_pool_size)
+
+### enforce_rbac 
+
+**Default:** `off`
+
+**Description:**
+
+Specifies whether Admin API RBAC is enforced;
+accepts one of 'entity', 'both', 'on', or
+'off'. When 'on' is passed, only
+endpoint-level authorization is enforced;
+when 'entity' is passed, entity-level
+authorization applies; 'both' enables both
+endpoint and entity-level authorization;
+'off' disables both. When enabled, Kong will
+deny requests to the Admin API when a
+nonexistent or invalid RBAC authorization
+token is passed, or the RBAC user with which
+the token is associated does not have
+permissions to access/modify the requested
+resource.
+
+### rbac_auth_header
+
+
 ## Kong Manager
+
 
 ### admin_gui_listen
 
@@ -465,6 +499,9 @@ admin_gui_ssl_key = /path/to/admin_gui_ssl.key
 ```
 
 
+### admin_gui_flags
+
+
 ### admin_gui_access_log
 
 **Default:** `logs/admin_gui_access.log`
@@ -508,6 +545,7 @@ authentication plugin you have chosen.
 * For Basic Authentication, set the value to `basic-auth`
 * For LDAP Authentication, set the value to `ldap-auth-advanced`
 
+
 ### admin_gui_auth_conf
 
 **Default:** `NONE` (empty)
@@ -526,26 +564,24 @@ the associated plugin documentation.
 admin_gui_auth_conf = { "hide_credentials": true }
 ```
 
-### enforce_rbac 
 
-**Default:** `off`
+## Vitals
 
-**Description:**
 
-Specifies whether Admin API RBAC is enforced;
-accepts one of 'entity', 'both', 'on', or
-'off'. When 'on' is passed, only
-endpoint-level authorization is enforced;
-when 'entity' is passed, entity-level
-authorization applies; 'both' enables both
-endpoint and entity-level authorization;
-'off' disables both. When enabled, Kong will
-deny requests to the Admin API when a
-nonexistent or invalid RBAC authorization
-token is passed, or the RBAC user with which
-the token is associated does not have
-permissions to access/modify the requested
-resource.
+### vitals
+
+### vitals_strategy
+
+### vitals_tsdb_address
+
+### vitals_statsd_address
+
+### vitals_statsd_prefix
+
+### vitals_statsd_udp_packet_size
+
+### vitals_prometheus_scrape_interval
+
 
 ## Dev Portal
 
@@ -687,6 +723,7 @@ the `admin_listen` directive.
 portal_api_listen = 0.0.0.0:8004, 0.0.0.0:8447 ssl
 ```
 
+
 ### portal_api_url
 
 **Default:** `NONE` (empty)
@@ -763,24 +800,7 @@ portal_api_access_log = logs/portal_api_access.log
 ```
 
 
-### portal_auto_approve
-
-**Default:** `off`
-
-**Description:**  
-
-Dev Portal Auto Approve Access.
-
-When set to `on`, a developer will
-automatically be marked as `approved` after completing
-Dev Portal registration. Access can still be revoked through 
-Kong Manager or API.
-
-**Example:**
-
-```
-portal_auto_approve = on
-```
+### portal_api_error_log
 
 
 ## Dev Portal Authentication
@@ -805,7 +825,7 @@ portal_auth = basic-auth
 ```
 
 
-### portal_auth_config
+### portal_auth_conf
 
 **Default:** `NONE` (empty)
 
@@ -910,6 +930,7 @@ portal_emails_from = Your Name <example@example.com>
 
 ⚠️ **IMPORTANT:** Some SMTP servers may require valid email addresses
 
+
 ### portal_emails_reply_to
 
 **Default:** `nil`
@@ -925,6 +946,7 @@ portal_emails_reply_to: noreply@example.com
 ```
 
 ⚠️ **IMPORTANT:** Some SMTP servers may require valid email addresses
+
 
 ## Admin SMTP Configuration
 
@@ -1100,3 +1122,19 @@ Comma separated list of Admin emails to receive notifications.
 ```
 smtp_admin_emails = admin1@example.com, admin2@example.com
 ```
+
+
+## Data & Admin Audit
+
+
+### audit_log
+
+### audit_log_ignore_methods
+
+### audit_log_ignore_paths
+
+### audit_log_ignore_tables
+
+### audit_log_record_ttl
+
+### audit_log_signing_key
