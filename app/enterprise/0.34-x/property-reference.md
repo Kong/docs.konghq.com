@@ -1316,12 +1316,53 @@ smtp_admin_emails = admin1@example.com, admin2@example.com
 
 ### audit_log
 
+**Default:** `off`
+
+**Description:**
+
+When enabled, Kong will log information about Admin API access and database row insertions, updates, and deletes.
+
+
 ### audit_log_ignore_methods
+
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Comma-separated list of HTTP methods that will not generate audit log entries. By default, all HTTP requests will be logged.
+
 
 ### audit_log_ignore_paths
 
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Comma-separated list of request paths that will not generate audit log entries. By default, all HTTP requests will be logged.
+
+
 ### audit_log_ignore_tables
+
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Comma-separated list of database tables that will not generate audit log entries. By default, updates to all database tables will be logged (the term "updates" refers to the creation, update, or deletion of a row).
+
 
 ### audit_log_record_ttl
 
+**Default:** `2592000`
+
+**Description:**
+
+Length, in seconds, of the TTL for audit log records. Records in the database older than their TTL are automatically purged.
+
+
 ### audit_log_signing_key
+
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Defines the path to a private RSA signing key that can be used to insert a signature of audit records, adjacent to the record. The corresponding public key should be stored offline, and can be used the validate audit entries in the future. If this value is undefined, no signature will be generated.
