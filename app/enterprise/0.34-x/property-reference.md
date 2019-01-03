@@ -242,6 +242,124 @@ See the property description in Kong's configuration reference for [client_body_
 ### error_default_type
 
 See the property description in Kong's configuration reference for [error_default_type](https://docs.konghq.com/0.13.x/configuration/#error_default_type)
+
+
+## Datastore
+
+
+### database
+
+See the property description in Kong's configuration reference for [database](https://docs.konghq.com/0.13.x/configuration/#database)
+
+
+### pg_host
+
+See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
+
+### pg_port
+
+See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
+
+### pg_user
+
+See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
+
+### pg_password
+
+See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
+
+### pg_database
+
+See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
+
+### pg_ssl
+
+See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
+
+### pg_ssl_verify
+
+See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
+
+### cassandra_contact_points
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_port
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_keyspace
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_timeout
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_ssl
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_ssl_verify
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_username
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_password
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_consistency
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_lb_policy
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_local_datacenter
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_repl_strategy
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_repl_factor
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_data_centers
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
+
+### cassandra_schema_consensus_timeout
+
+See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 ## Kong Manager
 
 ### admin_gui_listen
