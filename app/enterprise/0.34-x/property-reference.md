@@ -723,6 +723,16 @@ exporter or server.
 
 ### vitals_statsd_udp_packet_size
 
+**Default:** `1024`
+
+**Description:**
+
+Defines the maximum buffer size in
+which Vitals statsd metrics will be
+held and sent in batches.
+This value is defined in bytes.
+
+
 ### vitals_prometheus_scrape_interval
 
 
