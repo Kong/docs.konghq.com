@@ -469,6 +469,13 @@ resource.
 
 ### rbac_auth_header
 
+**Default:** `Kong-Admin-Token`
+
+**Description:**
+
+Defines the name of the HTTP request header from which the Admin 
+API will attempt to identify the RBAC user.
+
 
 ## Kong Manager
 
