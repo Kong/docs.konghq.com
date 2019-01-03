@@ -711,6 +711,16 @@ instead of the UDP (default).
 
 ### vitals_statsd_prefix
 
+**Default:** `kong`
+
+**Description:**  
+
+Defines the prefix value attached to all
+Vitals StatsD events. This prefix is useful
+when writing metrics to a multi-tenant StatsD
+exporter or server.
+
+
 ### vitals_statsd_udp_packet_size
 
 ### vitals_prometheus_scrape_interval
