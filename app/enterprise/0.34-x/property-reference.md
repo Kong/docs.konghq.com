@@ -642,6 +642,21 @@ admin_gui_auth_conf = { "hide_credentials": true }
 
 ### vitals
 
+**Default:** `on`
+
+**Description:**  
+
+When enabled, Kong will store and report metrics about its performance.                                 
+When running Kong in a multi-node setup, `vitals` entails two 
+separate meanings depending on the node.
+
+On a Proxy-only node, `vitals` determines whether to collect data 
+for Vitals.
+
+On an Admin-only node, `vitals` determines whether to display 
+Vitals metrics and visualizations on the dashboard.
+
+
 ### vitals_strategy
 
 ### vitals_tsdb_address
