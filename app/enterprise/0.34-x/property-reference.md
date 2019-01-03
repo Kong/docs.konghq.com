@@ -966,6 +966,24 @@ portal_api_access_log = logs/portal_api_access.log
 
 ### portal_api_error_log
 
+**Default:** `logs/error.log`
+
+**Description:**  
+
+Developer Portal API Error Log location.
+
+Here you can set an absolute or relative path for your
+Portal API access logs.
+
+Setting this value to `off` will disable logging
+Portal API access logs.
+
+When using relative pathing, logs will be placed under
+the `prefix` location.
+
+Granularity can be adjusted through the `log_level`
+directive.
+
 
 ## Dev Portal Authentication
 
