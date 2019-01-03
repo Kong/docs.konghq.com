@@ -674,6 +674,24 @@ or 'influxdb'.
 
 ### vitals_tsdb_address
 
+**Default:** `NONE` (empty)
+
+**Description:**  
+
+Defines the host and port of the TSDB server
+to which Vitals data is written and read.
+This value is only applied when the
+'vitals_strategy` option is set to
+'prometheus' or 'influxdb'. This value
+accepts IPv4, IPv6, and hostname values.
+If the 'vitals_strategy' is set to
+'prometheus', this value determines the
+address of the Prometheus server from which
+Vitals data will be read. For 'influxdb'
+strategies, this value controls both the read
+and write source for Vitals data.
+
+
 ### vitals_statsd_address
 
 ### vitals_statsd_prefix
