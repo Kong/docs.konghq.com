@@ -295,6 +295,16 @@ body {
     background: #fff;
   }
   .navbar-toggler {
+    outline: none;
+    -webkit-outline: none;
+    border: 0px solid !important;
+    border-color: transparent !important;
+    &:active,
+    &:hover,
+    &:focus {
+      outline: none;
+      -webkit-outline: none;
+    }
     @media (min-width: 1278px) {
       display: none !important;
     }
@@ -340,7 +350,7 @@ body {
         }
 
         &:nth-of-type(3) {
-          transform: translateX(5px) translateY(1.5px) rotate(-45deg);
+          transform: translateX(5px) translateY(3px) rotate(-45deg);
         }
       }
     }
@@ -1253,4 +1263,7 @@ body {
   z-index: 99;
   transition: 0.2s ease-in-out;
   pointer-events: none;
+  @media (max-width: 1278px) {
+    display: none;
+  }
 }
