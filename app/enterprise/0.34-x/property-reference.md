@@ -386,25 +386,31 @@ See the property description in Kong's configuration reference for [db_cache_ttl
 
 See the property description in Kong's configuration reference for [dns_resolver](https://docs.konghq.com/0.13.x/configuration/#dns_resolver)
 
+
 ### dns_hostsfile
 
 See the property description in Kong's configuration reference for [dns_hostsfile](https://docs.konghq.com/0.13.x/configuration/#dns_hostsfile)
+
 
 ### dns_order
 
 See the property description in Kong's configuration reference for [dns_order](https://docs.konghq.com/0.13.x/configuration/#dns_order)
 
+
 ### dns_state_ttl
 
 See the property description in Kong's configuration reference for [dns_state_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_state_ttl)
+
 
 ### dns_not_found_ttl
 
 See the property description in Kong's configuration reference for [dns_not_found_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_not_found_ttl)
 
+
 ### dns_error_ttl
 
 See the property description in Kong's configuration reference for [dns_error_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_error_ttl)
+
 
 ### dns_no_sync
 
@@ -418,21 +424,26 @@ See the property description in Kong's configuration reference for [dns_no_sync]
 
 See the property description in Kong's configuration reference for [lua_ssl_trusted_certificate](https://docs.konghq.com/0.13.x/configuration/#lua_ssl_trusted_certificate)
 
+
 ### lua_ssl_verify_depth
 
 See the property description in Kong's configuration reference for [lua_ssl_verify_depth](https://docs.konghq.com/0.13.x/configuration/#lua_ssl_verify_depth)
+
 
 ### lua_package_path
 
 See the property description in Kong's configuration reference for [lua_package_path](https://docs.konghq.com/0.13.x/configuration/#lua_package_path)
 
+
 ### lua_package_cpath
 
 See the property description in Kong's configuration reference for [lua_package_cpath](https://docs.konghq.com/0.13.x/configuration/#lua_package_cpath)
 
+
 ### lua_socket_pool_size
 
 See the property description in Kong's configuration reference for [lua_socket_pool_size](https://docs.konghq.com/0.13.x/configuration/#lua_socket_pool_size)
+
 
 ### enforce_rbac 
 
@@ -454,6 +465,7 @@ token is passed, or the RBAC user with which
 the token is associated does not have
 permissions to access/modify the requested
 resource.
+
 
 ### rbac_auth_header
 
