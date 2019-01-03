@@ -127,93 +127,116 @@ admin_gui_listen HTTP/HTTPS port.
 admin_api_uri = https://127.0.0.1:8444
 ```
 
+
 ### admin_listen
 
 See the property description in Kong's configuration reference for [admin_listen](https://docs.konghq.com/0.13.x/configuration/#admin_listen)
+
 
 ### nginx_user
 
 See the property description in Kong's configuration reference for [nginx_user](https://docs.konghq.com/0.13.x/configuration/#nginx_user)
 
+
 ### nginx_worker_processes 
 
 See the property description in Kong's configuration reference for  [nginx_worker_processes](https://docs.konghq.com/0.13.x/configuration/#nginx_worker_processes)
+
 
 ### nginx_daemon
 
 See the property description in Kong's configuration reference for [nginx_daemon](https://docs.konghq.com/0.13.x/configuration/#nginx_daemon)
 
+
 ### mem_cache_size
 
 See the property description in Kong's configuration reference for [mem_cahce_size](https://docs.konghq.com/0.13.x/configuration/#mem_cache_size)
+
 
 ### ssl_cipher_suite
 
 See the property description in Kong's configuration reference for [ssl_cipher_suite](https://docs.konghq.com/0.13.x/configuration/#ssl_cipher_suite)
 
+
 ### ssl_ciphers
 
 See the property description in Kong's configuration reference for [ssl_ciphers](https://docs.konghq.com/0.13.x/configuration/#ssl_ciphers)
+
 
 ### ssl_cert
 
 See the property description in Kong's configuration reference for [ssl_cert](https://docs.konghq.com/0.13.x/configuration/#ssl_cert)
 
+
 ### ssl_cert_key
 
 See the property description in Kong's configuration reference for [ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#ssl_cert_key)
+
 
 ### client_ssl
 
 See the property description in Kong's configuration reference for [client_ssl](https://docs.konghq.com/0.13.x/configuration/#client_ssl)
 
+
 ### client_ssl_cert
 
 See the property description in Kong's configuration reference for [client_ssl_cert](https://docs.konghq.com/0.13.x/configuration/#client_ssl_cert)
+
 
 ### client_ssl_cert_key
 
 See the property description in Kong's configuration reference for [client_ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#client_ssl_cert_key)
 
+
 ### admin_ssl_cert
 
 See the property description in Kong's configuration reference for [admin_ssl_cert](https://docs.konghq.com/0.13.x/configuration/#admin_ssl_cert)
+
 
 ### admin_ssl_cert_key
 
 See the property description in Kong's configuration reference for [admin_ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#admin_ssl_cert_key)
 
+
 ### upstream_keepalive
 
 See the property description in Kong's configuration reference for [upstream_keepalive](https://docs.konghq.com/0.13.x/configuration/#upstream_keepalive)
+
 
 ### server_tokens
 
 See the property description in Kong's configuration reference for [server_tokens](https://docs.konghq.com/0.13.x/configuration/#server_tokens)
 
+
 ### latency_tokens
 
 See the property description in Kong's configuration reference for [latency_tokens](https://docs.konghq.com/0.13.x/configuration/#latency_tokens)
+
 
 ### trusted_ips
 
 See the property description in Kong's configuration reference for [trusted_ips](https://docs.konghq.com/0.13.x/configuration/#trusted_ips)
 
+
 ### real_ip_header
 
 See the property description in Kong's configuration reference for [real_ip_header](https://docs.konghq.com/0.13.x/configuration/#real_ip_header)
+
 
 ### real_ip_recursive
 
 See the property description in Kong's configuration reference for [real_ip_recursive](https://docs.konghq.com/0.13.x/configuration/#real_ip_recursive)
 
+
 ### client_max_body_size
 
 See the property description in Kong's configuration reference for [client_max_body_size](https://docs.konghq.com/0.13.x/configuration/#client_max_body_size)
 
+
 ### client_body_buffer_size
 
 See the property description in Kong's configuration reference for [client_body_buffer_size](https://docs.konghq.com/0.13.x/configuration/#client_body_buffer_size)
+
 
 ### error_default_type
 
@@ -227,89 +250,111 @@ See the property description in Kong's configuration reference for [error_defaul
 
 See the property description in Kong's configuration reference for [database](https://docs.konghq.com/0.13.x/configuration/#database)
 
+
 ### pg_host
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
 
 ### pg_port
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
 
+
 ### pg_user
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
 
 ### pg_password
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
 
+
 ### pg_database
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
 
 ### pg_ssl
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
 
+
 ### pg_ssl_verify
 
 See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+
 
 ### cassandra_contact_points
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
+
 ### cassandra_port
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
 
 ### cassandra_keyspace
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
+
 ### cassandra_timeout
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
 
 ### cassandra_ssl
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
+
 ### cassandra_ssl_verify
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
 
 ### cassandra_username
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
+
 ### cassandra_password
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
 
 ### cassandra_consistency
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
+
 ### cassandra_lb_policy
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
 
 ### cassandra_local_datacenter
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
+
 ### cassandra_repl_strategy
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
 
 ### cassandra_repl_factor
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
 
+
 ### cassandra_data_centers
 
 See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+
 
 ### cassandra_schema_consensus_timeout
 
@@ -323,9 +368,11 @@ See the property description in Kong's configuration reference for [Cassandra se
 
 See the property description in Kong's configuration reference for [db_update_frequency](https://docs.konghq.com/0.13.x/configuration/#db_update_frequency)
 
+
 ### db_update_propagation
 
 See the property description in Kong's configuration reference for [db_update_propagation](https://docs.konghq.com/0.13.x/configuration/#db_update_propagation)
+
 
 ### db_cache_ttl
 
