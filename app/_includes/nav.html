@@ -42,13 +42,13 @@
       <nav id="navbar" class="navbar-nav">
         <ul>
           <li>
-            <a href="/" class="active">Docs</a>
+            <a href="/" {% if page.layout == 'docs' %}class="active"{% endif %}>Docs</a>
           </li>
           <li>
             <a href="https://konghq.com/about-kong-inc/">About</a>
           </li>
           <li>
-            <a href="/hub/">Hub</a>
+            <a href="/hub/" {% if page.layout == 'extension' or page.url == '/hub/' %}class="active"{% endif %}>Hub</a>
           </li>
           <li>
             <a href="https://konghq.com/community-resources/">Community</a>
