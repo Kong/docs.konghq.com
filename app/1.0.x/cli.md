@@ -22,6 +22,7 @@ All commands take a set of special, optional flags as arguments:
 
 ## Available commands
 
+
 ### kong check
 
 ```
@@ -29,12 +30,77 @@ Usage: kong check <conf>
 
 Check the validity of a given Kong configuration file.
 
-<conf> (default /etc/kong.conf or /etc/kong/kong.conf) configuration file
+<conf> (default /etc/kong/kong.conf) configuration file
+
 ```
 
 [Back to TOC](#table-of-contents)
 
 ---
+
+
+### kong health
+
+```
+Usage: kong health [OPTIONS]
+
+Check if the necessary services are running for this node.
+
+Options:
+ -p,--prefix      (optional string) prefix at which Kong should be running
+
+```
+
+[Back to TOC](#table-of-contents)
+
+---
+
+
+### kong migrations
+
+```
+Usage: kong migrations COMMAND [OPTIONS]
+
+Manage database schema migrations.
+
+The available commands are:
+  bootstrap                         Bootstrap the database and run all
+                                    migrations.
+
+  up                                Run any new migrations.
+
+  finish                            Finish running any pending migrations after
+                                    'up'.
+
+  list                              List executed migrations.
+
+  reset                             Reset the database.
+
+Options:
+ -y,--yes                           Assume "yes" to prompts and run
+                                    non-interactively.
+
+ -q,--quiet                         Suppress all output.
+
+ -f,--force                         Run migrations even if database reports
+                                    as already executed.
+
+ --db-timeout     (default 60)      Timeout, in seconds, for all database
+                                    operations (including schema consensus for
+                                    Cassandra).
+
+ --lock-timeout   (default 60)      Timeout, in seconds, for nodes waiting on
+                                    the leader node to finish running
+                                    migrations.
+
+ -c,--conf        (optional string) Configuration file.
+
+```
+
+[Back to TOC](#table-of-contents)
+
+---
+
 
 ### kong prepare
 
@@ -48,53 +114,21 @@ be used to start Kong from the nginx binary without using the 'kong start'
 command.
 
 Example usage:
-  kong prepare -p /usr/local/kong -c kong.conf && kong migrations up &&
-    nginx -p /usr/local/kong -c /usr/local/kong/nginx.conf
+  kong migrations up
+  kong prepare -p /usr/local/kong -c kong.conf
+  nginx -p /usr/local/kong -c /usr/local/kong/nginx.conf
 
 Options:
- -c,--conf    (optional string) configuration file
- -p,--prefix  (optional string) override prefix directory
- --nginx-conf (optional string) custom Nginx configuration template
+  -c,--conf       (optional string) configuration file
+  -p,--prefix     (optional string) override prefix directory
+  --nginx-conf    (optional string) custom Nginx configuration template
+
 ```
 
 [Back to TOC](#table-of-contents)
 
 ---
 
-### kong health
-
-```
-Usage: kong health [OPTIONS]
-
-Check if the necessary services are running for this node.
-
-Options:
-  -p,--prefix (optional string) prefix at which Kong should be running
-```
-
-[Back to TOC](#table-of-contents)
-
----
-
-### kong migrations
-
-```
-Usage: kong migrations COMMAND [OPTIONS]
-
-Manage Kong's database migrations.
-
-The available commands are:
-  list   List migrations currently executed.
-  up     Execute all missing migrations up to the latest available.
-  reset  Reset the configured database (irreversible).
-
-Options:
-  -c,--conf (optional string) configuration file
-```
-
-[Back to TOC](#table-of-contents)
-
----
 
 ### kong quit
 
@@ -110,13 +144,15 @@ If the timeout delay is reached, the node will be forcefully
 stopped (SIGTERM).
 
 Options:
-  -p,--prefix  (optional string) prefix Kong is running at
-  -t,--timeout (default 10) timeout before forced shutdown
+ -p,--prefix      (optional string) prefix Kong is running at
+ -t,--timeout     (default 10) timeout before forced shutdown
+
 ```
 
 [Back to TOC](#table-of-contents)
 
 ---
+
 
 ### kong reload
 
@@ -132,35 +168,42 @@ and stop the old ones when they have finished processing
 current requests.
 
 Options:
-  -c,--conf    (optional string) configuration file
-  -p,--prefix  (optional string) prefix Kong is running at
-  --nginx-conf (optional string) custom Nginx configuration template
+ -c,--conf        (optional string) configuration file
+ -p,--prefix      (optional string) prefix Kong is running at
+ --nginx-conf     (optional string) custom Nginx configuration template
+
 ```
 
 [Back to TOC](#table-of-contents)
 
 ---
+
 
 ### kong restart
 
 ```
 Usage: kong restart [OPTIONS]
 
-Restart a Kong node in the given prefix directory.
+Restart a Kong node (and other configured services like Serf)
+in the given prefix directory.
 
 This command is equivalent to doing both 'kong stop' and
 'kong start'.
 
 Options:
-  -c,--conf        (optional string)   configuration file
-  -p,--prefix      (optional string)   prefix at which Kong should be running
-  --nginx-conf     (optional string)   custom Nginx configuration template
-  --run-migrations (optional boolean)  optionally run migrations on the DB
+ -c,--conf        (optional string)   configuration file
+ -p,--prefix      (optional string)   prefix at which Kong should be running
+ --nginx-conf     (optional string)   custom Nginx configuration template
+ --run-migrations (optional boolean)  optionally run migrations on the DB
+ --db-timeout     (default 60)
+ --lock-timeout   (default 60)
+
 ```
 
 [Back to TOC](#table-of-contents)
 
 ---
+
 
 ### kong start
 
@@ -171,15 +214,28 @@ Start Kong (Nginx and other configured services) in the configured
 prefix directory.
 
 Options:
-  -c,--conf        (optional string)   configuration file
-  -p,--prefix      (optional string)   prefix at which Kong should be running
-  --nginx-conf     (optional string)   custom Nginx configuration template
-  --run-migrations (optional boolean)  optionally run migrations on the DB
+ -c,--conf        (optional string)   Configuration file.
+
+ -p,--prefix      (optional string)   Override prefix directory.
+
+ --nginx-conf     (optional string)   Custom Nginx configuration template.
+
+ --run-migrations (optional boolean)  Run migrations before starting.
+
+ --db-timeout     (default 60)        Timeout, in seconds, for all database
+                                      operations (including schema consensus for
+                                      Cassandra).
+
+ --lock-timeout   (default 60)        When --run-migrations is enabled, timeout,
+                                      in seconds, for nodes waiting on the
+                                      leader node to finish running migrations.
+
 ```
 
 [Back to TOC](#table-of-contents)
 
 ---
+
 
 ### kong stop
 
@@ -192,12 +248,14 @@ prefix directory.
 This command sends a SIGTERM signal to Nginx.
 
 Options:
-  -p,--prefix (optional string) prefix Kong is running at
+ -p,--prefix      (optional string) prefix Kong is running at
+
 ```
 
 [Back to TOC](#table-of-contents)
 
 ---
+
 
 ### kong version
 
@@ -208,9 +266,13 @@ Print Kong's version. With the -a option, will print
 the version of all underlying dependencies.
 
 Options:
-  -a,--all    get version of all dependencies
+ -a,--all         get version of all dependencies
+
 ```
 
 [Back to TOC](#table-of-contents)
+
+---
+
 
 [configuration-reference]: /{{page.kong_version}}/configuration
