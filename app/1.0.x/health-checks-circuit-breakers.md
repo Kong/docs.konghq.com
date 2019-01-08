@@ -138,8 +138,8 @@ is set to zero, the checking is disabled at the corresponding scenario.
 When both are zero, active health checks are disabled altogether.
 
 <div class="alert alert-warning">
-<strong>Note:</strong> Active Health checks currently only support HTTP/HTTPS targets. They
-will self-deactivate when applied to TCP streams.
+<strong>Note:</strong> Active health checks currently only support HTTP/HTTPS targets. They
+do not apply to Upstreams assigned to Services with the protocol attribute set to "tcp" or "tls".
 </div>
 
 [Back to TOC](#table-of-contents)
