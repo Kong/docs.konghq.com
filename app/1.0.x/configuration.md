@@ -483,9 +483,9 @@ Some suffixes can be specified for each pair:
 - Finally, `proxy_protocol` will enable usage of the PROXY protocol for a
   given address/port.
 
-the proxy port for this node, enabling a 'control-plane' mode (without traffic
-proxying capabilities) which can configure a cluster of nodes connected to the
-same database.
+This value can be set to `off`, thus disabling the proxy port for this node, enabling
+a 'control-plane' mode (without traffic proxying capabilities) which can configure a
+cluster of nodes connected to the same database.
 
 See http://nginx.org/en/docs/http/ngx_http_core_module.html#listen for
 a description of the accepted formats for this and other `*_listen` values.
@@ -718,7 +718,7 @@ Default: `off`
 Sets the maximum number of idle keepalive connections to upstream servers that
 are preserved in the cache of each worker process. When this number is
 exceeded, the least recently used connections are closed. A value of `0`
-will disable this behavior altogether, forcing each upstream request to open 
+will disable this behavior altogether, forcing each upstream request to open
 a new connection.
 
 Default: `60`
