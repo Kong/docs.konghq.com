@@ -236,6 +236,24 @@ we recommend the following sequence of steps:
    was successful. From now on, you can safely make Admin API
    requests to your 1.0 nodes.
 
+At any step of the way, you may run `kong migrations list` to get
+a report of the state of migrations. It will list whether there
+are missing migrations, if there are pending migrations (which have
+already started in the `kong migrations up` step and later need to
+finish in the `kong migrations finish` step) or if there
+are new migrations available. The status code of the process will
+also change accordingly:
+
+* `0` - migrations are up-to-date
+* `1` - failed inspecting the state of migrations (e.g. database is down)
+* `3` - database needs bootstrapping:
+  you should run `kong migrations bootstrap` to install on
+  a fresh datastore.
+* `4` - there are pending migrations: once your old cluster is
+  decomissioned you should run `kong migrations finish` (step 5 above).
+* `5` - there are new migrations: you should start a migration
+  sequence (beginning from step 1 above).
+
 ### Migration Steps from 1.0 Release Candidates
 
 The process is the same as for upgrading for 0.14 listed above, but on step 1
