@@ -53,7 +53,7 @@ Here is a quick example showing how to connect a Kong container to a Cassandra o
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
         -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-        kong:latest kong migrations up
+        kong:latest kong migrations bootstrap
     ```
 
     In the above example, both Cassandra and PostgreSQL are configured, but you
