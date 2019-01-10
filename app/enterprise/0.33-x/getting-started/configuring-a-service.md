@@ -1,5 +1,6 @@
 ---
 title: Adding your API
+redirect_from: "/enterprise/0.33-x/getting-started/adding-your-api/"
 ---
 
 ## Introduction
