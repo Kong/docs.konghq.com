@@ -76,13 +76,13 @@ $ kong reload
 
 Now that you have Kong EE running you can interact with the Admin API and GUI.
 
-To begin, go to [Adding your API &rsaquo;][adding-your-api]
+To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
 [CLI]: /latest/cli
 [API]: /latest/admin-api
 [GUI]: /enterprise/{{page.kong_version}}/admin-gui/overview
 [datastore-section]: /latest/configuration/#datastore-section
-[adding-your-api]: /enterprise/{{page.kong_version}}/getting-started/adding-your-api
+[configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /enterprise/{{page.kong_version}}/installation/centos/
 [amazonlinux]: /enterprise/{{page.kong_version}}/installation/amazon-linux/
