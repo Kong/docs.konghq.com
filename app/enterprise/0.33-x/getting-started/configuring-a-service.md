@@ -1,33 +1,53 @@
 ---
-title: Adding your API
+title: Configuring a Service
 redirect_from: "/enterprise/0.33-x/getting-started/adding-your-api/"
 ---
 
 ## Introduction
 
-In this section, you'll be adding your API to Kong Enterprise Edition (EE).
-This is the first
-step to having Kong EE manage your API. For purposes of this Getting Started
-guide, we suggest adding the [Mockbin API][mockbin] to Kong, as Mockbin is
-helpful for learning how Kong EE proxies your API requests.
+<div class="alert alert-warning">
+  <strong>Before you start:</strong>
+  <ol>
+    <li>Make sure you've <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!</li>
+    <li>Make sure you've <a href="/enterprise/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
+  </ol>
+</div>
 
-Kong exposes a [RESTful Admin API][API] on ports `:8001` and `:8444` and an
-Admin GUI on ports `:8002` and `:8445` for managing the
-configuration of your Kong instance or cluster. The Admin GUI makes
-requests to the Admin API, and you can use either interface for configuring
-and managing Kong EE.
+In this section, you'll be adding an API to Kong. In order to do this, you'll
+first need to add a _Service_; that is the name Kong uses to refer to the upstream APIs and microservices
+it manages.
 
-## 1. Add your API using the Admin API or GUI
+For the purpose of this guide, we'll create a Service pointing to the [Mockbin API][mockbin]. Mockbin is
+an "echo" type public website which returns the requests it gets back to the requester, as responses. This
+makes it helpful for learning how Kong proxies your API requests.
+
+Before you can start making requests against the Service, you will need to add a _Route_ to it.
+Routes specify how (and _if_) requests are sent to their Services after they reach Kong. A single
+Service can have many Routes.
+
+After configuring the Service and the Route, you'll be able to make requests through Kong using them.
+
+Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and
+Routes, is made via requests on that API.
+
+## 1. Add your Service using the Admin API or GUI
 
 If you'd like to use the Admin API, issue the following cURL request to add
-your first API ([Mockbin][mockbin]) to Kong EE:
+your first API ([Mockbin][mockbin]) to Kong Enterprise:
 
 ```bash
 $ curl -i -X POST \
-  --url http://localhost:8001/apis/ \
-  --data 'name=example-api' \
-  --data 'hosts=example.com' \
-  --data 'upstream_url=http://mockbin.org'
+  --url http://localhost:8001/services/ \
+  --data 'name=example-service' \
+  --data 'url=http://mockbin.org'
+```
+
+After adding your Service, add a Route linked to it:
+
+```bash
+$ curl -i -X POST \
+  --url http://localhost:8001/services/example-service/routes \
+  --data 'hosts[]=example.com'
 ```
 
 Or, add your first API in the Admin GUI, via Services & Routes:
@@ -37,11 +57,12 @@ Or, add your first API in the Admin GUI, via Services & Routes:
   Your browser does not support the video tag.
 </video>
 
+Kong is now aware of your Service and ready to proxy requests.
 
 ## 2. Verify that your API has been added
 
 You'll get a confirmation message in the Admin GUI, or if you used cURL
-you should see a response similar to the following:
+you should see responses similar to the following:
 
 ```http
 HTTP/1.1 201 Created
@@ -49,21 +70,45 @@ Content-Type: application/json
 Connection: keep-alive
 
 {
-  "created_at": 1488830759000,
-  "hosts": [
+   "host":"mockbin.org",
+   "created_at":1519130509,
+   "connect_timeout":60000,
+   "id":"92956672-f5ea-4e9a-b096-667bf55bc40c",
+   "protocol":"http",
+   "name":"example-service",
+   "read_timeout":60000,
+   "port":80,
+   "path":null,
+   "updated_at":1519130509,
+   "retries":5,
+   "write_timeout":60000
+}
+```
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+Connection: keep-alive
+
+{
+   "created_at":1519131139,
+   "strip_path":true,
+   "hosts":[
       "example.com"
-  ],
-  "http_if_terminated": false,
-  "https_only": false,
-  "id": "6378122c-a0a1-438d-a5c6-efabae9fb969",
-  "name": "example-api",
-  "preserve_host": false,
-  "retries": 5,
-  "strip_uri": true,
-  "upstream_connect_timeout": 60000,
-  "upstream_read_timeout": 60000,
-  "upstream_send_timeout": 60000,
-  "upstream_url": "http://mockbin.org"
+   ],
+   "preserve_host":false,
+   "regex_priority":0,
+   "updated_at":1519131139,
+   "paths":null,
+   "service":{
+      "id":"79d7ee6e-9fc7-4b95-aa3b-61d2e17e7516"
+   },
+   "methods":null,
+   "protocols":[
+      "http",
+      "https"
+   ],
+   "id":"f9ce2ed7-c06e-4e16-bd5d-3a82daef3f9d"
 }
 ```
 
