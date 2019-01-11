@@ -254,6 +254,17 @@
         jQuery('.subnav, .trigger, .remove').removeClass('active');
       });
     </script>
+    <script>
+      // trigger overlay on nav hover
+      jQuery('.kong-navbar-dropdown').hover(
+        function(e) {
+          jQuery('.overlay').addClass('active');
+        }, // over
+        function(e) {
+          jQuery('.overlay').removeClass('active');
+        } // out
+      );
+    </script>
   </body>
 
   {% if page.pdk %}

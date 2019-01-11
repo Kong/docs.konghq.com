@@ -4,11 +4,6 @@ body {
   header {
     font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
       'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    &:hover {
-      & ~ .overlay {
-        opacity: 1;
-      }
-    }
   }
 }
 
@@ -1282,6 +1277,9 @@ body {
   z-index: 99;
   transition: 0.2s ease-in-out;
   pointer-events: none;
+  &.active {
+    opacity: 0.75;
+  }
   @media (max-width: 1278px) {
     display: none;
   }
