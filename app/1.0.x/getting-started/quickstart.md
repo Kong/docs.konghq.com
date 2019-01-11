@@ -7,8 +7,8 @@ title: 5-minute Quickstart
   <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!
 </div>
 
-In this section, you'll learn how to manage your Kong instance. First we'll
-have you start Kong giving in order to give you access to the RESTful Admin
+In this section, you'll learn how to manage your Kong instance. First, we'll
+have you start Kong in order to give you access to the RESTful Admin
 interface, through which you manage your Services, Routes, Consumers, and more. Data sent
 through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
 supports PostgreSQL and Cassandra).
@@ -33,7 +33,7 @@ $ kong start [-c /path/to/kong.conf]
 ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to your own configuration.
+allowing you to point to [your own configuration][configuration-loading].
 
 ## 2. Verify that Kong has started successfully
 
@@ -73,6 +73,7 @@ Now that you have Kong running you can interact with the Admin API.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
+[configuration-loading]: /{{page.kong_version}}/configuration/#configuration-loading
 [CLI]: /{{page.kong_version}}/cli
 [API]: /{{page.kong_version}}/admin-api
 [datastore-section]: /{{page.kong_version}}/configuration/#datastore-section

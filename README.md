@@ -67,18 +67,24 @@ scraper to test out config changes.
   * Generate documentation for all the modules in your PDK (where possible) and
     put in a folder inside your version docs
 
-## Generating the Admin API Documentation
+## Generating the Admin API and CLI Documentation
 
 - Make sure that `resty` is in your `$PATH` (installing kong installs `resty` as well)
-- Several luarocks are needed. Easiest way to get all of them is to execute `make dev` in the kong folder
+- Several Lua rocks are needed. Easiest way to get all of them is to execute `make dev` in the Kong folder
 - Have a local clone of Kong
 - In the Kong repository, checkout the desired branch/tag/release
-- Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
-- This command will attempt to:
-  * Compare Kong's schemas and Admin API routes with the contents of the file
-    `autodoc-admin-api/data.lua` and error out if there's any mismatches or missing data.
-  * If no errors were found, a new `admin-api.md` file will be generated in the path corresponding
-    to the provided KONG_VERSION.
+- To generate the Admin API docs:
+  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
+  - This command will attempt to:
+    * Compare Kong's schemas and Admin API routes with the contents of the file
+      `autodoc-admin-api/data.lua` and error out if there's any mismatches or missing data.
+    * If no errors were found, a new `admin-api.md` file will be generated in the path corresponding
+      to the provided KONG_VERSION.
+- To generate the CLI docs:
+  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp cli-docs`
+  - This command will:
+    * Extract the output of the `--help` for every `kong` CLI subcommand
+    * Generate a new `cli.md` in the path corresponding to the provided KONG_VERSION.
 
 ## Listing Your Extension in the Kong Hub
 

@@ -199,7 +199,6 @@ request:
 $ curl -X GET http://kong:8001/key-auths
 
 {
-   "total":3,
    "data":[
       {
          "id":"17ab4e95-9598-424f-a99a-ffa9f413a821",
@@ -220,16 +219,16 @@ $ curl -X GET http://kong:8001/key-auths
          "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
       }
    ]
+   "next":null,
 }
 ```
 
 You can filter the list by consumer by using this other path:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/key-auths
+$ curl -X GET http://kong:8001/consumers/{username or id}/key-auth
 
 {
-    "total": 1,
     "data": [
        {
          "id":"6cb76501-c970-4e12-97c6-3afbbba3b454",
@@ -238,6 +237,7 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/key-auths
          "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
        }
     ]
+    "next":null,
 }
 ```
 

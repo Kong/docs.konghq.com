@@ -717,7 +717,9 @@ Default: `off`
 
 Sets the maximum number of idle keepalive connections to upstream servers that
 are preserved in the cache of each worker process. When this number is
-exceeded, the least recently used connections are closed.
+exceeded, the least recently used connections are closed. A value of `0`
+will disable this behavior altogether, forcing each upstream request to open 
+a new connection.
 
 Default: `60`
 

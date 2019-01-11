@@ -38,6 +38,8 @@ Below are the recommended firewall settings:
   Configure these values according to the access level you wish to grant to the upstream Services.
 * If you are binding the Admin API to a public-facing interface (via [admin_listen]), then **protect** it to only allow trusted clients to access the Admin API.
   See also [Securing the Admin API][secure_admin_api].
+* Your proxy will need have rules added for any TCP Stream listeners that you configure. For example, if you want Kong to manage traffic on port `4242`, your
+  firewall will need to be allow traffic on said port.
 
 [proxy_listen]: /{{page.kong_version}}/configuration/#proxy_listen
 [admin_listen]: /{{page.kong_version}}/configuration/#admin_listen

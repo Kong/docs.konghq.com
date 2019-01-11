@@ -263,6 +263,7 @@
     </div>
   </div>
 
+
   <div class="kong-navbar-collapse_section row no-gutters justify-content-between section-right">
     <h5 class="col-12 trigger">
       <a class="nav-link">Resources &nbsp;<i class="fas fa-chevron-right"></i></a>
@@ -290,6 +291,48 @@
           <a class="nav-link" href="http://konghq.com/faqs/">FAQs</a>
           <a class="nav-link" href="http://konghq.com/kong-summit">Kong Summit</a>
         </div>
+      
+  <!-- .enterprise -->
+  <div class="navbar">
+    <div class="container">
+      <a href="https://konghq.com" class="navbar-brand">
+        <img src="/assets/images/Kogo.svg" alt="Kong">
+      </a>
+      <iframe class="header-star" src="https://ghbtns.com/github-btn.html?user=Kong&amp;repo=kong&amp;type=star" frameborder="0"
+        scrolling="0" width="55" height="20"></iframe>
+      <button data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" class="navbar-toggle">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <nav id="navbar" class="navbar-nav">
+        <ul>
+          <li>
+            <a href="/" {% if page.layout == 'docs' %}class="active"{% endif %}>Docs</a>
+          </li>
+          <li>
+            <a href="https://konghq.com/about-kong-inc/">About</a>
+          </li>
+          <li>
+            <a href="/hub/" {% if page.layout == 'extension' or page.url == '/hub/' %}class="active"{% endif %}>Hub</a>
+          </li>
+          <li>
+            <a href="https://konghq.com/community-resources/">Community</a>
+          </li>
+          <li>
+            <a href="https://konghq.com/kong-enterprise-edition/">Enterprise</a>
+          </li>
+          <li>
+            <a href="{{ site.repos.kong }}" target="_blank">GitHub</a>
+          </li>
+          <li class="hidden-lg">
+            <a href="https://support.konghq.com/">Support</a>
+          </li>
+          <li>
+            <a href="https://konghq.com/install" class="button button-dark{% if page.url == " /install/ " %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Installation</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 

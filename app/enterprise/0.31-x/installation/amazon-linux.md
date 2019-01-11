@@ -46,12 +46,14 @@ $ sudo service postgresql95 restart
 $ sudo vi /etc/kong/license.json
 
 # Uncomment and add 'kong' to pg_password line
-$ sudo vi /etc/kong/kong.conf.default
+$ sudo vi [/path/to/kong.conf]
 
 # Run migrations and start kong
-$ kong migrations up -c /etc/kong/kong.conf.default
-$ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
+$ kong migrations up [-c /path/to/kong.conf]
+$ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
+
+**Note:** You may use `kong.conf.default` or create [your own configuration](https://docs.konghq.com/0.12.x/configuration/#configuration-loading).
 
 ### Test your Kong installation
 
@@ -74,11 +76,11 @@ $ ifconfig
 
 # Uncomment the admin_listen setting, and update to 
 # something like this `admin_listen = 172.31.3.8:8001`
-$ sudo vi /etc/kong/kong.conf.default 
+$ sudo vi [/path/to/kong.conf] 
 
 # Restart kong
 $ sudo /usr/local/bin/kong stop 
-$ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
+$ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 
 In a browser, load your server on port `8002`

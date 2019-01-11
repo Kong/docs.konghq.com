@@ -2,10 +2,8 @@
 name: ArecaBay MicroSensor
 publisher: ArecaBay
 
-categories: 
-  - security
+categories:
   - analytics-monitoring
-  - logging
 
 type: plugin
 
