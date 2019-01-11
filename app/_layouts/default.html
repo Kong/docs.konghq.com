@@ -2,59 +2,272 @@
 <html lang="en" itemscope itemtype="http://schema.org/Article">
   {% include head.html %}
 
-  <body id="{{ page.id }}" {% if page.hide_subscribe %} class="no-subscribe-section"{% endif %} data-spy="scroll" data-target="#scroll-sidebar" data-offset="350">
+  <body
+    id="{{ page.id }}"
+    {%
+    if
+    page.hide_subscribe
+    %}
+    class="no-subscribe-section"
+    {%
+    endif
+    %}
+    data-spy="scroll"
+    data-target="#scroll-sidebar"
+    data-offset="350"
+  >
     {% include nav.html %}
 
     {{ content }}
 
-    {% include footer.html %}
-    {% include anchor_links.html %}
+    {% include footer.html %} {% include anchor_links.html %}
 
     <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
 
     <div id="fb-root"></div>
 
-    <script src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/js/vendor/bootstrap.min.js" async defer></script>
+    <script
+      src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/js/vendor/bootstrap.min.js"
+      async
+      defer
+    ></script>
 
-    <script id="github-bjs" src="https://buttons.github.io/buttons.js" async defer></script>
-    <script id="twitter-wjs" type="text/javascript" src="https://platform.twitter.com/widgets.js" async defer></script>
-    <script id="facebook-jssdk" type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=842731852424506" async defer></script>
+    <script
+      id="github-bjs"
+      src="https://buttons.github.io/buttons.js"
+      async
+      defer
+    ></script>
+    <script
+      id="twitter-wjs"
+      type="text/javascript"
+      src="https://platform.twitter.com/widgets.js"
+      async
+      defer
+    ></script>
+    <script
+      id="facebook-jssdk"
+      type="text/javascript"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=842731852424506"
+      async
+      defer
+    ></script>
 
     <script type="text/javascript">
       piAId = '393112';
       piCId = '48375';
 
       (function() {
-        function async_load(){
-          var s = document.createElement('script'); s.type = 'text/javascript';
-          s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
-          var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+        function async_load() {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.src =
+            ('https:' == document.location.protocol
+              ? 'https://pi'
+              : 'http://cdn') + '.pardot.com/pd.js';
+          var c = document.getElementsByTagName('script')[0];
+          c.parentNode.insertBefore(s, c);
         }
-        if(window.attachEvent) { window.attachEvent('onload', async_load); }
-        else { window.addEventListener('load', async_load, false); }
+        if (window.attachEvent) {
+          window.attachEvent('onload', async_load);
+        } else {
+          window.addEventListener('load', async_load, false);
+        }
       })();
     </script>
 
-    <script type='text/javascript'>
-      var _vwo_code=(function(){
-      var account_id=125292,
-      settings_tolerance=2000,
-      library_tolerance=2500,
-      use_existing_jquery=true,
-      // DO NOT EDIT BELOW THIS LINE
-      f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+    <script type="text/javascript">
+      var _vwo_code = (function() {
+        var account_id = 125292,
+          settings_tolerance = 2000,
+          library_tolerance = 2500,
+          use_existing_jquery = true,
+          // DO NOT EDIT BELOW THIS LINE
+          f = false,
+          d = document;
+        return {
+          use_existing_jquery: function() {
+            return use_existing_jquery;
+          },
+          library_tolerance: function() {
+            return library_tolerance;
+          },
+          finish: function() {
+            if (!f) {
+              f = true;
+              var a = d.getElementById('_vis_opt_path_hides');
+              if (a) a.parentNode.removeChild(a);
+            }
+          },
+          finished: function() {
+            return f;
+          },
+          load: function(a) {
+            var b = d.createElement('script');
+            b.src = a;
+            b.type = 'text/javascript';
+            b.innerText;
+            b.onerror = function() {
+              _vwo_code.finish();
+            };
+            d.getElementsByTagName('head')[0].appendChild(b);
+          },
+          init: function() {
+            settings_timer = setTimeout(
+              '_vwo_code.finish()',
+              settings_tolerance
+            );
+            this.load(
+              '//dev.visualwebsiteoptimizer.com/j.php?a=' +
+                account_id +
+                '&u=' +
+                encodeURIComponent(d.URL) +
+                '&r=' +
+                Math.random()
+            );
+            var a = d.createElement('style'),
+              b = '',
+              h = d.getElementsByTagName('head')[0];
+            a.setAttribute('id', '_vis_opt_path_hides');
+            a.setAttribute('type', 'text/css');
+            if (a.styleSheet) a.styleSheet.cssText = b;
+            else a.appendChild(d.createTextNode(b));
+            h.appendChild(a);
+            return settings_timer;
+          }
+        };
+      })();
+      _vwo_settings_timer = _vwo_code.init();
     </script>
 
     <script type="text/javascript">
-      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
-        analytics.load("WDj0nSS7hpyxwL3evgbOzK755s0NUye6");
-        analytics.page()
-      }}();
+      !(function() {
+        var analytics = (window.analytics = window.analytics || []);
+        if (!analytics.initialize)
+          if (analytics.invoked)
+            window.console &&
+              console.error &&
+              console.error('Segment snippet included twice.');
+          else {
+            analytics.invoked = !0;
+            analytics.methods = [
+              'trackSubmit',
+              'trackClick',
+              'trackLink',
+              'trackForm',
+              'pageview',
+              'identify',
+              'group',
+              'track',
+              'ready',
+              'alias',
+              'page',
+              'once',
+              'off',
+              'on'
+            ];
+            analytics.factory = function(t) {
+              return function() {
+                var e = Array.prototype.slice.call(arguments);
+                e.unshift(t);
+                analytics.push(e);
+                return analytics;
+              };
+            };
+            for (var t = 0; t < analytics.methods.length; t++) {
+              var e = analytics.methods[t];
+              analytics[e] = analytics.factory(e);
+            }
+            analytics.load = function(t) {
+              var e = document.createElement('script');
+              e.type = 'text/javascript';
+              e.async = !0;
+              e.src =
+                ('https:' === document.location.protocol
+                  ? 'https://'
+                  : 'http://') +
+                'cdn.segment.com/analytics.js/v1/' +
+                t +
+                '/analytics.min.js';
+              var n = document.getElementsByTagName('script')[0];
+              n.parentNode.insertBefore(e, n);
+            };
+            analytics.SNIPPET_VERSION = '3.0.1';
+            analytics.load('WDj0nSS7hpyxwL3evgbOzK755s0NUye6');
+            analytics.page();
+          }
+      })();
     </script>
 
+    <script>
+      // Collapse Toggler
+      $('button[data-toggle="kong-expand"]').on('click', function(e) {
+        e.stopPropagation();
+        var $this = $(this);
+        $($this.data('target')).toggleClass('kong-navbar-collapse--expand');
+        $this.toggleClass('active').attr('aria-expanded', true);
+        $('.kong-navbar-collapse_section').removeClass('shift');
+        $('.subnav, .trigger, .remove').removeClass('active');
+      });
+
+      function closeMenu(e) {
+        var target = e.target; // Get target
+        var menu = $('nav#pagesNav'); // Get menu container
+        var header = $('header.navbar'); // Get header
+        var toggler = $('.navbar-toggler'); // Get menu toggle btn
+
+        // if clicked target is not the menu container/decendent of menu container, toggler or header close
+        if (
+          !menu.has(target).length > 0 &&
+          !menu.is(target) &&
+          !header.is(e.target) &&
+          !toggler.is(e.target)
+        ) {
+          $('#pagesNav').removeClass('kong-navbar-collapse--expand');
+          $('button[data-toggle="kong-expand"]').removeClass('active');
+        }
+      }
+
+      // Close mobile menu when clicked outside
+      $(window).on('click', function(e) {
+        closeMenu(e);
+      });
+
+      // Close mobile menu on esc click
+      $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+          closeMenu(e);
+        }
+      });
+
+      // Offscreen Subnav Triggers
+
+      jQuery('.trigger').click(function() {
+        jQuery(this)
+          .next()
+          .addClass('active');
+        jQuery('.trigger, .remove').addClass('active');
+        jQuery('.kong-navbar-collapse_section').addClass('shift');
+      });
+      jQuery('.back').click(function() {
+        jQuery('.kong-navbar-collapse_section').removeClass('shift');
+        jQuery('.subnav, .trigger, .remove').removeClass('active');
+      });
+    </script>
+    <script>
+      // trigger overlay on nav hover
+      jQuery('.kong-navbar-dropdown').hover(
+        function(e) {
+          jQuery('.overlay').addClass('active');
+        }, // over
+        function(e) {
+          jQuery('.overlay').removeClass('active');
+        } // out
+      );
+    </script>
   </body>
 
-{% if page.pdk %}
-<!--- PDK git sha1: {{ site.data.pdk_info.sha1 }} -->
-{% endif %}
+  {% if page.pdk %}
+  <!--- PDK git sha1: {{ site.data.pdk_info.sha1 }} -->
+  {% endif %}
 </html>
