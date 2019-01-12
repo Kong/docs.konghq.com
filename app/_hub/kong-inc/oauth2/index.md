@@ -179,7 +179,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
     --data "name=Test%20Application" \
     --data "client_id=SOME-CLIENT-ID" \
     --data "client_secret=SOME-CLIENT-SECRET" \
-    --data "redirect_uris=http://some-domain/endpoint/, http://some-other-domain/endpoint/"
+    --data "redirect_uris=http://some-domain/endpoint/, http://other-domain/endpoint/"
 ```
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
