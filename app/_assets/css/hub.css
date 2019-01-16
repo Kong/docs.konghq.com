@@ -15078,3 +15078,53 @@ header.page-header {
     padding: 7px;
     width: 0
 }
+
+body .navbar a.nav-link.btn.btn-outline-secondary.transparent {
+    margin-top: -20px;
+}
+
+body .kong-navbar .container.d-flex li.navbar-item .list-group{
+    top:52px;
+}
+
+body .list-group-item.flex-row.flex-nowrap.mega.row {
+    padding:0;
+}
+
+body .navbar .col-md-4, body .navbar .col-md-2, body .navbar .col-md-6, body .navbar .col-md-8 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+body .list-group-item.flex-row.flex-nowrap {
+    padding: 0;
+}
+
+body .kong-navbar .solutions .list-item a{
+    border:0px solid;
+    background:transparent;
+}
+
+body .kong-navbar .list-item a:hover{
+    background:transparent !important;
+}
+
+body .kong-navbar .container.d-flex li.navbar-item .list-group a{
+    border:none;
+}
+
+body .kong-navbar .company .list-group-item .icon img {
+    top: 7.5px;
+}
+
+body .kong-navbar .company .list-group-item .icon img.partners{
+    top:1.5px;
+}
+
+body .kong-navbar .container.d-flex li.navbar-item .list-group .inner-wrap a{
+    background:transparent !important;
+}
+
+body .page-header{
+    padding-top:75px;
+}
