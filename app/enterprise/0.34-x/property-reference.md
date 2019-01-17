@@ -71,8 +71,13 @@ is adjusted by the `log_level` directive.
 
 ### custom_plugins 
 
-See the property description in Kong's configuration reference for 
-[custom_plugins](https://docs.konghq.com/0.13.x/configuration/#custom_plugins)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Comma-separated list of additional plugins this node should load. 
+Use this property to load custom plugins that are not bundled with Kong. 
+Plugins will be loaded from the `kong.plugins.{name}.*` namespace.
 
 
 ### anonymous_reports
