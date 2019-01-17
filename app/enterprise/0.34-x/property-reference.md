@@ -23,14 +23,15 @@ and logs. Each Kong process must have a separate working directory.
 
 Log level of the Nginx server. Logs are found at `<prefix>/logs/error.log`.
 
+**Note:** See http://nginx.org/en/docs/ngx_core_module.html#error_log for a list 
+of accepted values.
+
 
 ### proxy_access_log
 
 See the property description in Kong's configuration reference for 
 [proxy_access_log](https://docs.konghq.com/0.13.x/configuration/#proxy_access_log)
 
-**Note:** See http://nginx.org/en/docs/ngx_core_module.html#error_log for a list 
-of accepted values.
 
 ### proxy_error_log 
 
