@@ -1767,7 +1767,8 @@ admin_emails_reply_to = admin@example.com
 
 **Description:**
 
-Expiration time in seconds for Admin invitation links. Set to zero for no expiration.
+Expiration time in seconds for Admin invitation links. Set to zero for no 
+expiration.
 
 
 ## General SMTP Configuration
