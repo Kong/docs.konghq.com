@@ -7,8 +7,12 @@ title: Configuration Property Reference for Kong Enterprise
 
 ### prefix
 
-See the property description in Kong's configuration reference for 
-[prefix](https://docs.konghq.com/0.13.x/configuration/#prefix)
+**Default:** `/usr/local/kong/`
+
+**Description:**  
+
+Working directory. Equivalent to Nginx's prefix path, containing temporary files 
+and logs. Each Kong process must have a separate working directory.
 
 
 ### log_level
