@@ -29,8 +29,9 @@ toc: false
 
 **Description:**  
 
-Working directory. Equivalent to Nginx's prefix path, containing temporary files 
-and logs. Each Kong process must have a separate working directory.
+Working directory. Equivalent to Nginx's prefix path, containing 
+temporary files and logs. Each Kong process must have a separate 
+working directory.
 
 
 ### log_level
@@ -39,9 +40,11 @@ and logs. Each Kong process must have a separate working directory.
 
 **Description:**  
 
-Log level of the Nginx server. Logs are found at `<prefix>/logs/error.log`.
+Log level of the Nginx server. Logs are found at 
+`<prefix>/logs/error.log`.
 
-**Note:** See http://nginx.org/en/docs/ngx_core_module.html#error_log for a list 
+**Note:** See 
+http://nginx.org/en/docs/ngx_core_module.html#error_log for a list 
 of accepted values.
 
 
@@ -62,8 +65,8 @@ it will be placed under the `prefix` location.
 
 **Description:**
 
-Path for proxy port request error logs. The granularity of these logs 
-is adjusted by the `log_level` directive.
+Path for proxy port request error logs. The granularity of these 
+logs is adjusted by the `log_level` directive.
 
 
 ### admin_access_log
@@ -73,8 +76,8 @@ is adjusted by the `log_level` directive.
 **Description:**
 
 Path for Admin API request access logs. Set this value to `off` to
-disable logging Admin API requests. If this value is a relative path, 
-it will be placed under the `prefix` location.
+disable logging Admin API requests. If this value is a relative 
+path, it will be placed under the `prefix` location.
 
 
 ### admin_error_log
@@ -83,8 +86,8 @@ it will be placed under the `prefix` location.
 
 **Description:**
 
-Path for Admin API request error logs. The granularity of these logs 
-is adjusted by the `log_level` directive.
+Path for Admin API request error logs. The granularity of these 
+logs is adjusted by the `log_level` directive.
 
 
 ### custom_plugins 
@@ -94,8 +97,9 @@ is adjusted by the `log_level` directive.
 **Description:**
 
 Comma-separated list of additional plugins this node should load. 
-Use this property to load custom plugins that are not bundled with Kong. 
-Plugins will be loaded from the `kong.plugins.{name}.*` namespace.
+Use this property to load custom plugins that are not bundled with 
+Kong. Plugins will be loaded from the `kong.plugins.{name}.*` 
+namespace.
 
 
 ### anonymous_reports
@@ -104,7 +108,8 @@ Plugins will be loaded from the `kong.plugins.{name}.*` namespace.
 
 **Description:**
 
-Send anonymous usage data such as error stack traces to help improve Kong.
+Send anonymous usage data such as error stack traces to help 
+improve Kong.
 
 
 ## NGINX
