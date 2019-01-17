@@ -1780,7 +1780,9 @@ expiration.
 
 **Description:**
 
-When enabled this flag will only mock the sending of emails and will not attempt to send actual emails. This can be used for testing before the SMTP client is fully configured.
+When enabled this flag will only mock the sending of emails and will not 
+attempt to send actual emails. This can be used for testing before the SMTP 
+client is fully configured.
 
 **Examples:**
 
@@ -1811,7 +1813,8 @@ The port number on SMTP server to connect to.
 
 **Description:**
 
-When set to `on`, STARTTLS is used to encrypt communication with the SMTP server. This is normally used in conjunction with port 587.
+When set to `on`, STARTTLS is used to encrypt communication with the SMTP 
+server. This is normally used in conjunction with port 587.
 
 
 ### smtp_username
@@ -1838,7 +1841,8 @@ Password used for authentication with the SMTP server.
 
 **Description:**
 
-When set to `on` SMTPS is used to encrypt communication with the SMTP server. This is normally used in conjunction with port 465.
+When set to `on` SMTPS is used to encrypt communication with the SMTP server. 
+This is normally used in conjunction with port 465.
 
 
 ### smtp_auth_type
@@ -1847,7 +1851,8 @@ When set to `on` SMTPS is used to encrypt communication with the SMTP server. Th
 
 **Description:**
 
-The method used to authenticate with the SMTP server. Valid options are `plain`, `login`, or `nil`.
+The method used to authenticate with the SMTP server. Valid options are 
+`plain`, `login`, or `nil`.
 
 
 ### smtp_domain
