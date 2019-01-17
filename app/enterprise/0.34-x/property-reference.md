@@ -812,17 +812,53 @@ caching of such configuration entities.
 
 ### db_update_frequency
 
-See the property description in Kong's configuration reference for [db_update_frequency](https://docs.konghq.com/0.13.x/configuration/#db_update_frequency)
+**Default:** `5`
+
+**Description:**
+
+Frequency (in seconds) at which to check for
+updated entities with the datastore.
+When a node creates, updates, or deletes an
+entity via the Admin API, other nodes need
+to wait for the next poll (configured by
+this value) to eventually purge the old
+cached entity and start using the new one.
 
 
 ### db_update_propagation
 
-See the property description in Kong's configuration reference for [db_update_propagation](https://docs.konghq.com/0.13.x/configuration/#db_update_propagation)
+**Default:** `0`
+
+**Description:**
+
+Time (in seconds) taken for an entity in the
+datastore to be propagated to replica nodes
+of another datacenter.
+When in a distributed environment such as
+a multi-datacenter Cassandra cluster, this
+value should be the maximum number of
+seconds taken by Cassandra to propagate a
+row to other datacenters.
+When set, this property will increase the
+time taken by Kong to propagate the change
+of an entity.
+Single-datacenter setups or PostgreSQL
+servers should suffer no such delays, and
+this value can be safely set to 0.
 
 
 ### db_cache_ttl
 
-See the property description in Kong's configuration reference for [db_cache_ttl](https://docs.konghq.com/0.13.x/configuration/#db_cache_ttl)
+**Default:** `3600`
+
+**Description:**
+
+Time-to-live (in seconds) of an entity from
+the datastore when cached by this node.
+Database misses (no entity) are also cached
+according to this setting.
+If set to 0, such cached entities/misses
+never expire.
 
 
 ## DNS Resolver
