@@ -1618,8 +1618,9 @@ portal_auth_conf = { "hide_credentials": true }
 
 **Description:**
 
-When this flag is set to 'on', a developer will automatically be marked as "approved" after completing registration. Access can still be revoked through the Kong Manager or Admin API.
-
+When this flag is set to 'on', a developer will automatically be marked as 
+"approved" after completing registration. Access can still be revoked through the 
+Kong Manager or Admin API.
 
 
 ### portal_token_exp
@@ -1628,7 +1629,8 @@ When this flag is set to 'on', a developer will automatically be marked as "appr
 
 **Description:**
 
-Duration in seconds for the expiration of the Dev Portal reset password token. Default `21600` is six hours.
+Duration in seconds for the expiration of the Dev Portal reset password token. 
+Default `21600` is six hours.
 
 
 ## Dev Portal SMTP Configuration
