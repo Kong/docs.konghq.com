@@ -48,10 +48,15 @@ Path for proxy port request error logs. The granularity of these logs
 is adjusted by the `log_level` directive.
 
 
-### adming_access_log
+### admin_access_log
 
-See the property description in Kong's configuration reference for 
-[admin_access_log](https://docs.konghq.com/0.13.x/configuration/#admin_access_log)
+**Default:** `logs/admin_access.log`
+
+**Description:**
+
+Path for Admin API request access logs. Set this value to `off` to
+disable logging Admin API requests. If this value is a relative path, 
+it will be placed under the `prefix` location.
 
 
 ### admin_error_log
