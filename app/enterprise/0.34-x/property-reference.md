@@ -29,8 +29,13 @@ of accepted values.
 
 ### proxy_access_log
 
-See the property description in Kong's configuration reference for 
-[proxy_access_log](https://docs.konghq.com/0.13.x/configuration/#proxy_access_log)
+**Default:** `logs/access.log`
+
+**Description:**  
+
+Path for proxy port request access logs. Set this value to `off` to 
+disable logging proxy requests. If this value is a relative path, 
+it will be placed under the `prefix` location.
 
 
 ### proxy_error_log 
