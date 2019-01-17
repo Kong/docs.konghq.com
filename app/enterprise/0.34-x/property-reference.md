@@ -82,8 +82,11 @@ Plugins will be loaded from the `kong.plugins.{name}.*` namespace.
 
 ### anonymous_reports
 
-See the property description in Kong's configuration reference for 
-[anonymous_reports](https://docs.konghq.com/0.13.x/configuration/#anonymous_reports)
+**Default:** `on`
+
+**Description:**
+
+Send anonymous usage data such as error stack traces to help improve Kong.
 
 
 ## NGINX
