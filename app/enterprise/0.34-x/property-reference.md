@@ -40,8 +40,12 @@ it will be placed under the `prefix` location.
 
 ### proxy_error_log 
 
-See the property description in Kong's configuration reference for 
-[proxy_error_log](https://docs.konghq.com/0.13.x/configuration/#proxy_error_log)
+**Default:** `logs/error.log`
+
+**Description:**
+
+Path for proxy port request error logs. The granularity of these logs 
+is adjusted by the `log_level` directive.
 
 
 ### adming_access_log
