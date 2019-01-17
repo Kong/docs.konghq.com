@@ -15079,6 +15079,21 @@ header.page-header {
     width: 0
 }
 
+/*** Nav Styles ***/
+
+
+body .kong-navbar-dropdown_column.col-md-6.offerings a:hover{
+    background:transparent !important;
+}
+
+body .kong-navbar-collapse .kong-navbar-collapse_section .subnav h6{
+    margin-bottom:10px;
+}
+
+body .kong-navbar .navbar-toggler {
+    margin-top: 0 !important;
+}
+
 body .navbar a.nav-link.btn.btn-outline-secondary.transparent {
     margin-top: -20px;
 }
@@ -15127,4 +15142,13 @@ body .kong-navbar .container.d-flex li.navbar-item .list-group .inner-wrap a{
 
 body .page-header{
     padding-top:75px;
+}
+
+body .kong-navbar-collapse .kong-navbar-collapse_section .subnav .col-md-6{
+    padding-left:30px
+}
+
+body .kong-navbar-collapse .kong-navbar-collapse_section .subnav .col-md-6 a{
+    font-size:16px;
+    margin-bottom:0px
 }
