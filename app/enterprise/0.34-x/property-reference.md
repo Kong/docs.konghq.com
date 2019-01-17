@@ -238,112 +238,314 @@ from the database.
 
 ### nginx_user
 
-See the property description in Kong's configuration reference for [nginx_user](https://docs.konghq.com/0.13.x/configuration/#nginx_user)
+**Default:** `nobody nobody`
+
+**Description:**
+
+Defines user and group credentials used by
+worker processes. If group is omitted, a
+group whose name equals that of user is
+used. 
+
+**Example:** `[user] [group]`
 
 
 ### nginx_worker_processes 
 
-See the property description in Kong's configuration reference for  [nginx_worker_processes](https://docs.konghq.com/0.13.x/configuration/#nginx_worker_processes)
+**Default:** `auto`
+
+**Description:**
+
+Determines the number of worker processes spawned by Nginx.
 
 
 ### nginx_daemon
 
-See the property description in Kong's configuration reference for [nginx_daemon](https://docs.konghq.com/0.13.x/configuration/#nginx_daemon)
+**Default:** `on`
+
+**Description:**
+
+Determines wether Nginx will run as a daemon
+or as a foreground process. Mainly useful
+for development or when running Kong inside
+a Docker environment.
 
 
 ### mem_cache_size
 
-See the property description in Kong's configuration reference for [mem_cahce_size](https://docs.konghq.com/0.13.x/configuration/#mem_cache_size)
+**Default:** `128m`
+
+**Description:**
+
+Size of the in-memory cache for database
+entities. The accepted units are `k` and
+`m`, with a minimum recommended value of
+a few MBs.
 
 
 ### ssl_cipher_suite
 
-See the property description in Kong's configuration reference for [ssl_cipher_suite](https://docs.konghq.com/0.13.x/configuration/#ssl_cipher_suite)
+**Default:** `modern`
 
+**Description:**
+
+Defines the TLS ciphers served by Nginx.
+Accepted values are `modern`,
+`intermediate`, `old`, or `custom`.
+
+**Note:** see https://wiki.mozilla.org/Security/Server_Side_TLS for detailed 
+descriptions of each cipher suite.
 
 ### ssl_ciphers
 
-See the property description in Kong's configuration reference for [ssl_ciphers](https://docs.konghq.com/0.13.x/configuration/#ssl_ciphers)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Defines a custom list of TLS ciphers to be
+served by Nginx. This list must conform to
+the pattern defined by `openssl ciphers`.
+This value is ignored if `ssl_cipher_suite`
+is not `custom`.
 
 
 ### ssl_cert
 
-See the property description in Kong's configuration reference for [ssl_cert](https://docs.konghq.com/0.13.x/configuration/#ssl_cert)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+The absolute path to the SSL certificate for
+`proxy_listen` values with SSL enabled.
 
 
 ### ssl_cert_key
 
-See the property description in Kong's configuration reference for [ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#ssl_cert_key)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+The absolute path to the SSL key for
+`proxy_listen` values with SSL enabled.
 
 
 ### client_ssl
 
-See the property description in Kong's configuration reference for [client_ssl](https://docs.konghq.com/0.13.x/configuration/#client_ssl)
+**Default:** `off`
+
+**Description:**
+
+Determines if Nginx should send client-side
+SSL certificates when proxying requests.
 
 
 ### client_ssl_cert
 
-See the property description in Kong's configuration reference for [client_ssl_cert](https://docs.konghq.com/0.13.x/configuration/#client_ssl_cert)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+If `client_ssl` is enabled, the absolute
+path to the client SSL certificate for the
+`proxy_ssl_certificate` directive. Note that
+this value is statically defined on the
+node, and currently cannot be configured on
+a per-API basis.
 
 
 ### client_ssl_cert_key
 
-See the property description in Kong's configuration reference for [client_ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#client_ssl_cert_key)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+If `client_ssl` is enabled, the absolute
+path to the client SSL key for the
+`proxy_ssl_certificate_key` address. Note
+this value is statically defined on the
+node, and currently cannot be configured on
+a per-API basis.
 
 
 ### admin_ssl_cert
 
-See the property description in Kong's configuration reference for [admin_ssl_cert](https://docs.konghq.com/0.13.x/configuration/#admin_ssl_cert)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+The absolute path to the SSL certificate for
+`admin_listen` values with SSL enabled.
 
 
 ### admin_ssl_cert_key
 
-See the property description in Kong's configuration reference for [admin_ssl_cert_key](https://docs.konghq.com/0.13.x/configuration/#admin_ssl_cert_key)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+The absolute path to the SSL key for
+`admin_listen` values with SSL enabled.
 
 
 ### upstream_keepalive
 
-See the property description in Kong's configuration reference for [upstream_keepalive](https://docs.konghq.com/0.13.x/configuration/#upstream_keepalive)
+**Default:** `60`
+
+**Description:**
+
+Sets the maximum number of idle keepalive
+connections to upstream servers that are
+preserved in the cache of each worker
+process. When this number is exceeded, the
+least recently used connections are closed.
 
 
 ### server_tokens
 
-See the property description in Kong's configuration reference for [server_tokens](https://docs.konghq.com/0.13.x/configuration/#server_tokens)
+**Default:** `on`
+
+**Description:**
+
+Enables or disables emitting Kong version on
+error pages and in the "Server" or "Via"
+(in case the request was proxied) response
+header field.
 
 
 ### latency_tokens
 
-See the property description in Kong's configuration reference for [latency_tokens](https://docs.konghq.com/0.13.x/configuration/#latency_tokens)
+**Default:** `on`
+
+**Description:**
+
+Enables or disables emitting Kong latency
+information in the "X-Kong-Proxy-Latency"
+and "X-Kong-Upstream-Latency" response
+header fields.
 
 
 ### trusted_ips
 
-See the property description in Kong's configuration reference for [trusted_ips](https://docs.konghq.com/0.13.x/configuration/#trusted_ips)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Defines trusted IP addresses blocks that are
+known to send correct X-Forwarded-* headers.
+Requests from trusted IPs make Kong forward
+their X-Forwarded-* headers upstream.
+Non-trusted requests make Kong insert its
+own X-Forwarded-* headers.
+
+This property also sets the
+`set_real_ip_from` directive(s) in the Nginx
+configuration. It accepts the same type of
+values (CIDR blocks) but as a
+comma-separated list.
+
+To trust *all* /!\ IPs, set this value to
+`0.0.0.0/0,::/0`.
+
+If the special value `unix:` is specified,
+all UNIX-domain sockets will be trusted.
+
+**Note:** see http://nginx.org/en/docs/http/ngx_http_realip_module.html for 
+examples of accepted values.
 
 
 ### real_ip_header
 
-See the property description in Kong's configuration reference for [real_ip_header](https://docs.konghq.com/0.13.x/configuration/#real_ip_header)
+**Default:** `X-Real-IP`
+
+**Description:**
+
+Defines the request header field whose value
+will be used to replace the client address.
+This value sets the ngx_http_realip_module
+directive of the same name in the Nginx
+configuration.
+
+If set to `proxy_protocol`, then at least
+one of the `proxy_listen` entries must
+have the `proxy_protocol` flag enabled.
+
+**Note:** see 
+http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header 
+for a description of this directive.
 
 
 ### real_ip_recursive
 
-See the property description in Kong's configuration reference for [real_ip_recursive](https://docs.konghq.com/0.13.x/configuration/#real_ip_recursive)
+**Default:** `off`
+
+**Description:**
+
+This value sets the ngx_http_realip_module
+directive of the same name in the Nginx
+configuration.
+
+**Note:** see 
+http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive 
+for a description of this directive.
 
 
 ### client_max_body_size
 
-See the property description in Kong's configuration reference for [client_max_body_size](https://docs.konghq.com/0.13.x/configuration/#client_max_body_size)
+**Default:** `0`
 
+**Description:**
+
+Defines the maximum request body size allowed
+by requests proxied by Kong, specified in
+the Content-Length request header. If a
+request exceeds this limit, Kong will
+respond with a 413 (Request Entity Too
+Large). Setting this value to 0 disables
+checking the request body size.
+
+Note: see 
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
+for further description of this parameter. Numeric values may be suffixed
+with 'k' or 'm' to denote limits in terms of kilobytes or megabytes.
 
 ### client_body_buffer_size
 
-See the property description in Kong's configuration reference for [client_body_buffer_size](https://docs.konghq.com/0.13.x/configuration/#client_body_buffer_size)
+**Default:** `8k`
+
+**Description:**
+
+Defines the buffer size for reading the
+request body. If the client request body is
+larger than this value, the body will be
+buffered to disk. Note that when the body is
+buffered to disk Kong plugins that access or
+manipulate the request body may not work, so
+it is advisable to set this value as high as
+possible (e.g., set it as high as
+`client_max_body_size` to force request
+bodies to be kept in memory). Do note that
+high-concurrency environments will require
+significant memory allocations to process
+many concurrent large request bodies.
+
+**Note:** see 
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
+for further description of this parameter. Numeric values may be suffixed
+with 'k' or 'm' to denote limits in terms of kilobytes or megabytes.
 
 
 ### error_default_type
 
-See the property description in Kong's configuration reference for [error_default_type](https://docs.konghq.com/0.13.x/configuration/#error_default_type)
+**Default:** `text/plain`
+
+**Description:**
+
+Default MIME type to use when the request
+`Accept` header is missing and Nginx
+is returning an error for the request.
+Accepted values are `text/plain`,
+`text/html`, `application/json`, and
+`application/xml`.
 
 
 ## Datastore
