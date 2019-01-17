@@ -61,8 +61,12 @@ it will be placed under the `prefix` location.
 
 ### admin_error_log
 
-See the property description in Kong's configuration reference for 
-[admin_error_log](https://docs.konghq.com/0.13.x/configuration/#admin_error_log)
+**Default:** `logs/error.log`
+
+**Description:**
+
+Path for Admin API request error logs. The granularity of these logs 
+is adjusted by the `log_level` directive.
 
 
 ### custom_plugins 
