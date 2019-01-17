@@ -1133,15 +1133,6 @@ portal_emails_reply_to: noreply@example.com
 ## Admin SMTP Configuration
 
 
-### admin_invite_email
-
-**Default:** `on`
-
-**Description:**
-
-When enabled invitation emails will be sent to Admins invited to the Kong Manager.
-
-
 ### admin_emails_from
 
 **Default:** `""`
