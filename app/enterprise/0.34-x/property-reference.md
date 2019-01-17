@@ -1336,7 +1336,8 @@ Prometheus server.
 
 Enable or disable the Dev Portal Interface and API
 
-When enabled, Kong will expose the Kong Dev Portal Files endpoint and the public Dev Portal Files API.
+When enabled, Kong will expose the Kong Dev Portal Files endpoint and the 
+public Dev Portal Files API.
 
 **Example:**
 
@@ -1371,7 +1372,8 @@ portal_gui_listen = 0.0.0.0:8003, 0.0.0.0:8446 ssl
 
 The Dev Portal URL protocol
 
-Provide the protocol used in conjunction with portal_gui_host to construct the lookup, or balancer address for Kong Proxy nodes.
+Provide the protocol used in conjunction with portal_gui_host to construct the 
+lookup, or balancer address for Kong Proxy nodes.
 
 **Example:**
 
@@ -1388,7 +1390,8 @@ portal_gui_protocol = http
 
 Dev Portal GUI Host
 
-Provide the host unsed in conjunction with portal_gui_protocol to construct the lookup, or balancer address for Kong Proxy nodes.
+Provide the host unsed in conjunction with portal_gui_protocol to construct the 
+lookup, or balancer address for Kong Proxy nodes.
 
 **Example:**
 
@@ -1405,7 +1408,9 @@ portal_gui_host = localhost:8003
 
 Enable workspaced Dev Portals to use subdomains
 
-By default the Dev Portal will use the first namespace in the request path to determine the workspace. By enabling subdomains, the Dev Portal will expect the workspace to be included in the request url as a subdomain
+By default the Dev Portal will use the first namespace in the request path to 
+determine the workspace. By enabling subdomains, the Dev Portal will expect the 
+workspace to be included in the request url as a subdomain
 
 **Example**
 
@@ -1426,7 +1431,8 @@ portal_gui_use_subdomains = on
 
 **Description:**  
 
-The absolute path to the SSL certificate for `portal_gui_listen` values with SSL enabled.
+The absolute path to the SSL certificate for `portal_gui_listen` values with 
+SSL enabled.
 
 **Example:**
 
@@ -1529,8 +1535,8 @@ portal_api_ssl_cert_key = /path/to/portal_api_ssl_cert.key
 
 Location of log containing all calls made to the Portal API.
 
-`portal_api_access.log` location can be absolute or relative. When using relative pathing, logs will be placed under
-the `prefix` location.
+`portal_api_access.log` location can be absolute or relative. When using 
+relative pathing, logs will be placed under the `prefix` location.
 
 Setting this value to `off` will disable logging
 Portal API access logs.
