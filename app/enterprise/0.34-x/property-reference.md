@@ -802,6 +802,13 @@ migrations.
 
 ## Datastore Cache
 
+In order to avoid unecessary communication with the datastore, Kong caches
+entities (e.g., APIs, Consumers, Credentials) for a configurable period
+of time. It also handles invalidations if such an entity is updated.
+
+This section allows for configuring the behavior of Kong regarding the
+caching of such configuration entities.
+
 
 ### db_update_frequency
 
