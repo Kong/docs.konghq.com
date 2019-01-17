@@ -1635,6 +1635,9 @@ Default `21600` is six hours.
 
 ## Dev Portal SMTP Configuration
 
+Referenced on workspace creation to set SMTP defaults in the database 
+for that particular workspace.
+
 
 ### portal_invite_email
 
@@ -1642,7 +1645,8 @@ Default `21600` is six hours.
 
 **Description:**
 
-When enabled, Admins will be able to invite Developers to a Dev Portal by using the "Invite" button in the Kong Manager.
+When enabled, Admins will be able to invite Developers to a Dev Portal by 
+using the "Invite" button in the Kong Manager.
 
 
 ### portal_access_request_email
@@ -1651,7 +1655,8 @@ When enabled, Admins will be able to invite Developers to a Dev Portal by using 
 
 **Description:**
 
-When enabled, Admins specified by `smtp_admin_emails` will receive an email when a Developer requests access to a Dev Portal.
+When enabled, Admins specified by `smtp_admin_emails` will receive an email 
+when a Developer requests access to a Dev Portal.
 
 
 ### portal_approved_email
@@ -1660,7 +1665,8 @@ When enabled, Admins specified by `smtp_admin_emails` will receive an email when
 
 **Description:**
 
-When enabled, Developers will receive an email when access to a Dev Portal has been approved.
+When enabled, Developers will receive an email when access to a Dev Portal has 
+been approved.
 
 
 ### portal_reset_email
@@ -1669,7 +1675,8 @@ When enabled, Developers will receive an email when access to a Dev Portal has b
 
 **Description:**
 
-When enabled, Developers will be able to use the "Reset Password" flow on a Dev Portal and will receive an email with password reset instructions.
+When enabled, Developers will be able to use the "Reset Password" flow on a 
+Dev Portal and will receive an email with password reset instructions.
 
 When disabled, Developers will *not* be able to reset their account passwords.
 
@@ -1680,9 +1687,11 @@ When disabled, Developers will *not* be able to reset their account passwords.
 
 **Description:**
 
-When enabled, Developers will receive an email after successfully reseting their Dev Portal account password.
+When enabled, Developers will receive an email after successfully reseting 
+their Dev Portal account password.
 
-When disabled, Developers will still be able to reset their account passwords, but will not recieve a confirmation email.
+When disabled, Developers will still be able to reset their account passwords, 
+but will not recieve a confirmation email.
 
 
 ### portal_emails_from
