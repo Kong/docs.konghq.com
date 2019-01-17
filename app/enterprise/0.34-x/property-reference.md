@@ -1908,6 +1908,12 @@ smtp_admin_emails = admin1@example.com, admin2@example.com
 
 ## Data & Admin Audit
 
+When enabled, Kong will store detailed audit data regarding Admin API and
+database access. In most cases, updates to the database are associated with
+Admin API requests. As such, database object audit log data is tied to a
+given HTTP via a unique identifier, providing built-in association of Admin
+API and database traffic.
+
 
 ### audit_log
 
@@ -1915,7 +1921,8 @@ smtp_admin_emails = admin1@example.com, admin2@example.com
 
 **Description:**
 
-When enabled, Kong will log information about Admin API access and database row insertions, updates, and deletes.
+When enabled, Kong will log information about Admin API access and database 
+row insertions, updates, and deletes.
 
 
 ### audit_log_ignore_methods
@@ -1942,7 +1949,9 @@ Comma-separated list of request paths that will not generate audit log entries. 
 
 **Description:**
 
-Comma-separated list of database tables that will not generate audit log entries. By default, updates to all database tables will be logged (the term "updates" refers to the creation, update, or deletion of a row).
+Comma-separated list of database tables that will not generate audit log 
+entries. By default, updates to all database tables will be logged (the 
+term "updates" refers to the creation, update, or deletion of a row).
 
 
 ### audit_log_record_ttl
@@ -1951,7 +1960,8 @@ Comma-separated list of database tables that will not generate audit log entries
 
 **Description:**
 
-Length, in seconds, of the TTL for audit log records. Records in the database older than their TTL are automatically purged.
+Length, in seconds, of the TTL for audit log records. Records in the database 
+older than their TTL are automatically purged.
 
 
 ### audit_log_signing_key
@@ -1960,4 +1970,7 @@ Length, in seconds, of the TTL for audit log records. Records in the database ol
 
 **Description:**
 
-Defines the path to a private RSA signing key that can be used to insert a signature of audit records, adjacent to the record. The corresponding public key should be stored offline, and can be used the validate audit entries in the future. If this value is undefined, no signature will be generated.
+Defines the path to a private RSA signing key that can be used to insert a 
+signature of audit records, adjacent to the record. The corresponding public 
+key should be stored offline, and can be used the validate audit entries in 
+the future. If this value is undefined, no signature will be generated.
