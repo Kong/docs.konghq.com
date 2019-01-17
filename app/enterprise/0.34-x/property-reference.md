@@ -117,7 +117,27 @@ improve Kong.
 
 ### proxy_listen
 
-See the property description in Kong's configuration reference for [proxy_listen](https://docs.konghq.com/0.13.x/configuration/#proxy_listen)
+**Default:** `0.0.0.0:8000, 0.0.0.0:8443 ssl`
+
+**Description:**
+
+Comma-separated list of addresses and ports on which the proxy 
+server should listen. The proxy server is the public entrypoint of 
+Kong, which proxies traffic from your consumers to your backend 
+services. This value accepts IPv4, IPv6, and hostnames.
+ 
+Some suffixes can be specified for each pair:
+
+- `ssl` will require that all connections made through a particular 
+  address/port be made with TLS enabled.
+- `http2` will allow for clients to open HTTP/2 connections to Kong's proxy 
+  server.
+- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a given 
+  address/port.
+
+This value can be set to `off`, thus disabling the proxy port for this node, 
+enabling a 'control-plane' mode (without traffic proxying capabilities) which 
+can configure a cluster of nodes connected to the same database.
 
 
 ### proxy_url
