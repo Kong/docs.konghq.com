@@ -1571,6 +1571,9 @@ directive.
 
 ## Dev Portal Authentication
 
+Referenced on workspace creation to set Dev Portal authentication defaults 
+in the database for that particular workspace.
+
 
 ### portal_auth
 
