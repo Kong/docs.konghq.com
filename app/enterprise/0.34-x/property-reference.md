@@ -863,40 +863,96 @@ never expire.
 
 ## DNS Resolver
 
+By default the DNS resolver will use the standard configuration files 
+`/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be 
+overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if 
+they have been set.
+
 
 ### dns_resolver
 
-See the property description in Kong's configuration reference for [dns_resolver](https://docs.konghq.com/0.13.x/configuration/#dns_resolver)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Comma separated list of nameservers, each
+entry in `ip[:port]` format to be used by
+Kong. If not specified the nameservers in
+the local `resolv.conf` file will be used.
+Port defaults to 53 if omitted. Accepts
+both IPv4 and IPv6 addresses.
 
 
 ### dns_hostsfile
 
-See the property description in Kong's configuration reference for [dns_hostsfile](https://docs.konghq.com/0.13.x/configuration/#dns_hostsfile)
+**Default:** `/etc/hosts`
+
+**Description:**
+
+The hosts file to use. This file is read
+once and its content is static in memory.
+To read the file again after modifying it,
+Kong must be reloaded.
 
 
 ### dns_order
 
-See the property description in Kong's configuration reference for [dns_order](https://docs.konghq.com/0.13.x/configuration/#dns_order)
+**Default:** `LAST,SRV,A,CNAME`
+
+**Description:**
+
+The order in which to resolve different
+record types. The `LAST` type means the
+type of the last successful lookup (for the
+specified name). The format is a (case
+insensitive) comma separated list.
 
 
 ### dns_state_ttl
 
-See the property description in Kong's configuration reference for [dns_state_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_state_ttl)
+**Default:** `4`
+
+**Description:**
+
+ Defines, in seconds, how long a record will
+remain in cache past its TTL. This value
+will be used while the new DNS record is
+fetched in the background.
+Stale data will be used from expiry of a
+record until either the refresh query
+completes, or the `dns_stale_ttl` number of
+seconds have passed.
 
 
 ### dns_not_found_ttl
 
-See the property description in Kong's configuration reference for [dns_not_found_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_not_found_ttl)
+**Default:** `30`
+
+**Description:**
+
+TTL in seconds for empty DNS responses and "(3) name error" responses.
 
 
 ### dns_error_ttl
 
-See the property description in Kong's configuration reference for [dns_error_ttl](https://docs.konghq.com/0.13.x/configuration/#dns_error_ttl)
+**Default:** `1`
+
+**Description:**
+
+TTL in seconds for error responses.
 
 
 ### dns_no_sync
 
-See the property description in Kong's configuration reference for [dns_no_sync](https://docs.konghq.com/0.13.x/configuration/#dns_no_sync)
+**Default:** `off`
+
+**Description:**
+
+If enabled, then upon a cache-miss every
+request will trigger its own dns query.
+When disabled multiple requests for the
+same name/type will be synchronised to a
+single query.
 
 
 ## Development & Miscellaneous
