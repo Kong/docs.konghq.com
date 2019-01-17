@@ -209,7 +209,31 @@ admin_api_uri = https://127.0.0.1:8444
 
 ### admin_listen
 
-See the property description in Kong's configuration reference for [admin_listen](https://docs.konghq.com/0.13.x/configuration/#admin_listen)
+**Default:** `127.0.0.1:8001, 127.0.0.1:8444 ssl`
+
+**Description:**
+
+Comma-separated list of addresses and ports on which the 
+Admin interface should listen. The Admin interface is 
+the API allowing you to configure and manage Kong. 
+Access to this interface should be *restricted* to Kong 
+administrators *only*. This value accepts IPv4, IPv6, 
+and hostnames.
+
+Some suffixes can be specified for each pair:
+- `ssl` will require that all connections made
+  through a particular address/port be made with TLS
+  enabled.
+- `http2` will allow for clients to open HTTP/2
+  connections to Kong's proxy server.
+- Finally, `proxy_protocol` will enable usage of the
+  PROXY protocol for a given address/port.
+
+This value can be set to `off`, thus disabling
+the Admin interface for this node, enabling a
+'data-plane' mode (without configuration
+capabilities) pulling its configuration changes
+from the database.
 
 
 ### nginx_user
