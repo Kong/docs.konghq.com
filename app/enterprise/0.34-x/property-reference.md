@@ -559,117 +559,245 @@ same database.
 
 ### database
 
-See the property description in Kong's configuration reference for [database](https://docs.konghq.com/0.13.x/configuration/#database)
+**Default:** `postgres`
+
+**Description:**
+
+Determines which of PostgreSQL or Cassandra
+this node will use as its datastore.
+Accepted values are `postgres` and
+`cassandra`.
 
 
 ### pg_host
 
-See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+**Default:** `127.0.0.1 `
+
+**Description:**
+
+The PostgreSQL host to connect to.
 
 
 ### pg_port
 
-See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+**Default:** `5432`
+
+**Description:**
+
+The port to connect to.
 
 
 ### pg_user
 
-See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+**Default:** `kong`
+
+**Description:**
+
+The username to authenticate if required.
 
 
 ### pg_password
 
-See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+The password to authenticate if required.
 
 
 ### pg_database
 
-See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+**Default:** `kong`
+
+**Description:**
+
+The database name to connect to.
 
 
 ### pg_ssl
 
-See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+**Default:** `off`
+
+**Description:**
+
+Toggles client-server TLS connections
+between Kong and PostgreSQL.
 
 
 ### pg_ssl_verify
 
-See the property description in Kong's configuration reference for [Postgres settings](https://docs.konghq.com/0.13.x/configuration/#postgres-settings)
+**Default:** `off`
 
+**Description:**
+
+Toggles server certificate verification if
+`pg_ssl` is enabled. See the `lua_ssl_trusted_certificate`
+setting to specify a certificate authority.
 
 ### cassandra_contact_points
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `127.0.0.1`
+
+**Description:**
+
+A comma-separated list of contact points to your cluster.
 
 
 ### cassandra_port
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `9042`
+
+**Description:**
+
+The port on which your nodes are listening on. All your nodes and contact 
+points must listen on the same port.
 
 
 ### cassandra_keyspace
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `kong`
+
+**Description:**
+
+The keyspace to use in your cluster.
 
 
 ### cassandra_timeout
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `5000`
+
+**Description:**
+
+Defines the timeout (in ms), for reading and writing.
 
 
 ### cassandra_ssl
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `off`
+
+**Description:**
+
+Toggles client-to-node TLS connections between Kong and Cassandra.
 
 
 ### cassandra_ssl_verify
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `off`
+
+**Description:**
+
+Toggles server certificate verification if
+`cassandra_ssl` is enabled.
+See the `lua_ssl_trusted_certificate`
+setting to specify a certificate authority.
 
 
 ### cassandra_username
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `kong`
+
+**Description:**
+
+Username when using the `PasswordAuthenticator` scheme.
 
 
 ### cassandra_password
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Password when using the `PasswordAuthenticator` scheme.
 
 
 ### cassandra_consistency
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `ONE`
 
+**Description:**
+
+Consistency setting to use when reading/writing to the Cassandra cluster.
 
 ### cassandra_lb_policy
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `RoundRobin`
+
+**Description:**
+
+Load balancing policy to use when
+distributing queries across your Cassandra
+cluster.
+Accepted values are:
+`RoundRobin`, `RequestRoundRobin`,
+`DCAwareRoundRobin`, and
+`RequestDCAwareRoundRobin`.
+Prefer the later if and only if you are
+using a multi-datacenter cluster.
 
 
 ### cassandra_local_datacenter
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+When using the `DCAwareRoundRobin`
+or `RequestDCAwareRoundRobin` load
+balancing policy, you must specify the name
+of the local (closest) datacenter for this
+Kong node.
 
 
 ### cassandra_repl_strategy
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `SimpleStrategy`
 
+**Description:**
+
+When migrating for the first time,
+Kong will use this setting to
+create your keyspace.
+Accepted values are
+`SimpleStrategy` and
+`NetworkTopologyStrategy`.
 
 ### cassandra_repl_factor
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `1`
+
+**Description:**
+
+When migrating for the first time, Kong
+will create the keyspace with this
+replication factor when using the
+`SimpleStrategy`.
 
 
 ### cassandra_data_centers
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `dc1:2,dc2:3`
+
+**Description:**
+
+When migrating for the first time,
+will use this setting when using the
+`NetworkTopologyStrategy`.
+The format is a comma-separated list
+made of <dc_name>:<repl_factor>.
 
 
 ### cassandra_schema_consensus_timeout
 
-See the property description in Kong's configuration reference for [Cassandra settings](https://docs.konghq.com/0.13.x/configuration/#cassandra-settings)
+**Default:** `10000`
+
+**Description:**
+
+Defines the timeout (in ms) for
+the waiting period to reach a
+schema consensus between your
+Cassandra nodes.
+This value is only used during
+migrations.
 
 
 ## Datastore Cache
