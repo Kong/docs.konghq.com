@@ -550,6 +550,12 @@ Accepted values are `text/plain`,
 
 ## Datastore
 
+Kong will store all of its data (such as APIs, consumers, and plugins) in
+either Cassandra or PostgreSQL.
+
+All Kong nodes belonging to the same cluster must connect themselves to the
+same database.
+
 
 ### database
 
