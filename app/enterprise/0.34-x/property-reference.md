@@ -174,8 +174,8 @@ Kong Manager and Dev Portal will use
 the window request host and append the resolved
 listener port depending on the requested protocol.
 
-**Note:** see http://nginx.org/en/docs/http/ngx_http_core_module.html#listen for
-a description of the accepted formats for this and other *_listen values.
+**Note:** see http://nginx.org/en/docs/http/ngx_http_core_module.html#listen 
+for a description of the accepted formats for this and other *_listen values.
 
 **Note:** see https://www.nginx.com/resources/admin-guide/proxy-protocol/
 for more details about the `proxy_protocol` parameter.
