@@ -957,30 +957,70 @@ single query.
 
 ## Development & Miscellaneous
 
+Additional settings inherited from lua-nginx-module allowing for more
+flexibility and advanced usage.
+
+See the lua-nginx-module documentation for more informations:
+https://github.com/openresty/lua-nginx-module
+
 
 ### lua_ssl_trusted_certificate
 
-See the property description in Kong's configuration reference for [lua_ssl_trusted_certificate](https://docs.konghq.com/0.13.x/configuration/#lua_ssl_trusted_certificate)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Absolute path to the certificate
+authority file for Lua cosockets in PEM
+format. This certificate will be the one
+used for verifying Kong's database
+connections, when `pg_ssl_verify` or
+`cassandra_ssl_verify` are enabled.
 
 
 ### lua_ssl_verify_depth
 
-See the property description in Kong's configuration reference for [lua_ssl_verify_depth](https://docs.konghq.com/0.13.x/configuration/#lua_ssl_verify_depth)
+**Default:** `1`
+
+**Description:**
+
+Sets the verification depth in the server
+certificates chain used by Lua cosockets,
+set by `lua_ssl_trusted_certificate`.
+This includes the certificates configured
+for Kong's database connections.
 
 
 ### lua_package_path
 
-See the property description in Kong's configuration reference for [lua_package_path](https://docs.konghq.com/0.13.x/configuration/#lua_package_path)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Sets the Lua module search path (LUA_PATH).
+Useful when developing or using custom
+plugins not stored in the default search
+path.
 
 
 ### lua_package_cpath
 
-See the property description in Kong's configuration reference for [lua_package_cpath](https://docs.konghq.com/0.13.x/configuration/#lua_package_cpath)
+**Default:** `NONE` (empty)
+
+**Description:**
+
+Sets the Lua C module search path (LUA_CPATH).
 
 
 ### lua_socket_pool_size
 
-See the property description in Kong's configuration reference for [lua_socket_pool_size](https://docs.konghq.com/0.13.x/configuration/#lua_socket_pool_size)
+**Default:** `30`
+
+**Description:**
+
+Specifies the size limit for every cosocket
+connection pool associated with every remote
+server.
 
 
 ### enforce_rbac 
