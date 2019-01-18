@@ -15152,3 +15152,14 @@ body .kong-navbar-collapse .kong-navbar-collapse_section .subnav .col-md-6 a{
     font-size:16px;
     margin-bottom:0px
 }
+
+body .newsletter .logo img{
+    margin-bottom:10px;
+}
+
+
+body footer.marketing-footer--light-gray{
+    padding-top:4rem !important;
+    padding-bottom:1rem;
+    margin-top:50px;
+}

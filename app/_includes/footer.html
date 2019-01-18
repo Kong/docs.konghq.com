@@ -1,57 +1,122 @@
-{% if page.hide_subscribe == null %}
-  {% include subscribe.html %}
-{% endif %}
 
 <footer class="marketing-footer--light-gray">
   <section>
-    <ul>
+    <ul class="newsletter">
       <li class="logo-wrapper">
         <div class="logo">
-          <img src="/assets/images/kong-blue.png" alt="Kong Inc">
+          <img src="/assets/images/Kogo-gradient.svg" alt="Kong" />
+        </div>
+        <div class="form">
+          <form accept-charset="UTF-8" method="post" action="https://go.pardot.com/l/392112/2018-10-02/bh8cfd" class="form" id = "subscription_form">
+            <input type="text" name="email" id="email" class="text" size="30" placeholder="Email" maxlength="255">
+            <div class="error-message message"></div>
+            <div class="success-message message"></div>
+            <input type="hidden" name="utm_source">
+            <input type="hidden" name="utm_campaign">
+            <input type="hidden" name="utm_medium">
+            <input type="hidden" name="utm_content">
+            <input type="hidden" name="utm_term">
+            <input type="submit" class="button" accesskey="s" value="Subscribe">
+            </form>
+        </div>
+        <div class="social">
+
+          <div class="social-link">
+            <a href="https://www.facebook.com/konghq/" title="Facebook"
+              ><i
+                aria-label="Facebook"
+                class="fa fa-facebook-official"
+                aria-hidden="true"
+              ></i
+            ></a>
+          </div>
+          <div class="social-link">
+            <a href="https://twitter.com/thekonginc" title="Twitter"
+              ><i
+                aria-label="Twitter"
+                class="fa fa-twitter"
+                aria-hidden="true"
+              ></i
+            ></a>
+          </div>
+          <div class="social-link">
+            <a href="https://www.meetup.com/topics/kong/all/" title="Meetup"
+              ><i
+              aria-label="Meetup"
+              class="fa fa-meetup"
+              aria-hidden="true"
+            ></i
+          ></a>
+          </div>
+          <div class="social-link">
+            <a href="https://linkedin.com/company/278819" title="LinkedIn"
+              ><i aria-label="GitHub" class="fa fa-linkedin" aria-hidden="true"></i
+            ></a>
+          </div>
+          <div class="social-link">
+            <a href="https://github.com/kong/kong" target="_blank" class="btn-gh">
+              <i class="fa fa-github" aria-hidden="true" aria-label="GitHub"></i> Star
+            </a>
+          </div>
+          
         </div>
       </li>
       <li>
         <nav>
-          <h4>Company</h4>
+          <h5>Products</h5>
           <ul>
-            <li><a href="https://konghq.com/about-kong-inc/">About</a></li>
-            <li><a href="https://konghq.com/investors/">Investors</a></li>
-            <li><a href="http://konghq.com/blog/">Blog</a></li>
-            <li><a href="https://konghq.com/jobs/">Jobs</a></li>
-            <li><a href="https://konghq.com/contact/">Contact</a></li>
-            <li><a href="https://support.konghq.com">Support</a></li>
+            <li><a href="http://konghq.com/kong/">Kong</a></li>
+            <li><a href="http://konghq.com/kong-enterprise/">Kong Enterprise</a></li>
+            <li><a href="http://konghq.com/cloud/">Kong Cloud</a></li>
+            <li><a href="http://konghq.com/subscriptions/">Subscriptions</a></li>
           </ul>
         </nav>
       </li>
       <li>
         <nav>
-          <h4>Products</h4>
+          <h5>Resources</h5>
           <ul>
-            <li><a href="https://docs.konghq.com/">Kong</a></li>
-            <li><a href="https://konghq.com/api-dev-portal/">Dev Portal</a></li>
-            <li><a href="https://konghq.com/api-analytics/">API Analytics</a></li>
-            <li><a href="https://konghq.com/kong-enterprise-edition/">Enterprise</a></li>
+            <li>
+              <a href="https://support.konghq.com" target="_blank"
+                >Enterprise Support</a
+              >
+            </li>
+            <li>
+              <a href="https://docs.konghq.com" target="_blank"
+                >Documentation</a
+              >
+            </li>
+            <li><a href="http://konghq.com/partners/">Partners</a></li>
+            <li><a href="http://konghq.com/webinars/">Webinars</a></li>
+            <li><a href="http://konghq.com/ebooks/">Ebooks</a></li>
+            <li><a href="http://konghq.com/meetups/">Meetups</a></li>
+          </ul>
+          '
+        </nav>
+      </li>
+      <li>
+        <nav>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="http://konghq.com/about-kong-inc/">About</a></li>
+            <li><a href="http://konghq.com/investors/">Investors</a></li>
+            <li><a href="http://konghq.com/blog/">News</a></li>
+            <li>
+              <a href="http://konghq.com/careers/">Careers <span>Hiring!</span></a>
+            </li>
+            <li><a href="http://konghq.com/kong-summit/">Kong Summit</a></li>
+            <li><a href="http://konghq.com/contact/">Contact</a></li>
           </ul>
         </nav>
       </li>
       <li>
         <nav>
-          <h4>Open Source</h4>
+          <h5>Open Source</h5>
           <ul>
-            <li><a href="http://mockbin.org/">Mockbin</a></li>
-            <li><a href="http://apiembed.com/">API Embed</a></li>
-            <li><a href="http://unirest.io/">Unirest</a></li>
-            <li><a href="http://guardianjs.com/">Guardian JS</a></li>
-            <li><a href="http://oauthbible.com/">OAuth Bible</a></li>
-          </ul>
-        </nav>
-      </li>
-      <li>
-        <nav>
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="https://konghq.com/terms/">Terms of Service</a></li>
-            <li><a href="https://konghq.com/privacy/">Privacy Policy</a></li>
+            <li><a href="http://konghq.com/install/">Install</a></li>
+            <li><a target="blank" href="https://github.com/Kong/">GitHub</a></li>
+            <li><a href="https://discuss.konghq.com/"">Kong Nation</a></li>
+            <li><a href="http://konghq.com/meetups/">Meetups</a></li>
           </ul>
         </nav>
       </li>
@@ -61,19 +126,9 @@
   <section class="legal">
     <ul>
       <li>
-        <span class="mashape-footer-content">&copy; Kong Inc. {{ site.time | date: '%Y' }}</span>
-      </li>
-      <li>
-        <div class="social-link">
-          <a href="https://github.com/Kong" title="GitHub"><i aria-label="GitHub" class="fa fa-github" aria-hidden="true"></i></a></div>
-        <div class="social-link">
-          <a href="https://www.facebook.com/konghq/" title="Facebook"><i aria-label="Facebook" class="fa fa-facebook-official" aria-hidden="true"></i></a></div>
-        <div class="social-link">
-          <a href="https://www.meetup.com/topics/kong/all/" title="Meetup"><img aria-label="Meetup" alt="Meetup" src="/assets/images/footer/icn-meetup-black.svg"></a>
-        </div>
-        <div class="social-link">
-          <a href="https://twitter.com/thekonginc" title="Twitter"><i aria-label="Twitter" class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
+        <span class="mashape-footer-content"
+          >&copy; Kong Inc. {{ site.time | date: '%Y' }} &nbsp; <a href="http://konghq.com/terms/">Terms</a><b>•</b><a href="http://konghq.com/privacy/">Privacy</a></span
+        >
       </li>
     </ul>
   </section>
