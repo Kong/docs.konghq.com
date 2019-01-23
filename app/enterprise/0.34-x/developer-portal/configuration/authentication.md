@@ -40,7 +40,7 @@ Developers are now able to request access to the Dev Portal via the
 will be submitted to the `http://127.0.0.1:8000/_kong/portal/register` endpoint 
 and a Developer credential is created upon registration. The Developer will not 
 be able to use this credential until they are approved. See 
-[Approving Developers](/enterprise/{{page.kong_version}}/developer-portal/management/managing-developers#approving-developers).
+[Approving Developers](/enterprise/{{page.kong_version}}/developer-portal/management/developers/#developer-status).
 
 
 Required Registration fields by Authentication plugin:
