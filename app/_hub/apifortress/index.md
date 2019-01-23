@@ -14,7 +14,6 @@ name: API Fortress HTTP Log
 publisher: API Fortress
 
 categories: 
-  - analytics-monitoring
   - logging
 
 type: 
