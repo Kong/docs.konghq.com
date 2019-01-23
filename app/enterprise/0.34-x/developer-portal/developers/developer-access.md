@@ -15,7 +15,7 @@ Current plugins supported:
 - [ACL](/plugins/acl/)
 - [Basic Authentication](/plugins/basic-authentication/)
 - [Key Authentication](/plugins/key-authentication/)
-- [OAuth 2.0](/plugins/basic-authentication/)
+- [OAuth 2.0](/hub/kong-inc/oauth2/)
 - [HMAC Signature Authentication](/plugins/hmac-authentication/)
 - [JWT](/plugins/jwt/)
 
