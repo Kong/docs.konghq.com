@@ -78,6 +78,16 @@ endcapture %} {% endunless %}
   />
   <link rel="dns-prefetch" href="//dev.visualwebsiteoptimizer.com" />
   <link rel="dns-prefetch" href="//cdn.segment.com" />
+
+  <!-- Recaptcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script type="text/javascript">
+    var onSubmit = function(response) {
+      document.getElementById('subscription_form').submit();
+      document.getElementById('follow_up_subscription_form').submit();
+    };
+  </script>
+
   <!-- ##gulp-resource-hints## -->
 
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
