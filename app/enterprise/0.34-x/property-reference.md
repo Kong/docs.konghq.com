@@ -3,7 +3,7 @@ title: Configuration Property Reference for Kong Enterprise
 toc: false
 ---
 
-##Table of Contents
+## Table of Contents
 
 * [General](#general)
 * [NGINX](#nginx)
