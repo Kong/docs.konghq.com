@@ -13,7 +13,7 @@ As a Developer, once you are [approved](/enterprise/{{page.kong_version}}/develo
 Current plugins supported:
 
 - [ACL](/plugins/acl/)
-- [Basic Authentication](/plugins/key-authentication/)
+- [Basic Authentication](/plugins/basic-authentication/)
 - [Key Authentication](/plugins/key-authentication/)
 - [OAuth 2.0](/plugins/basic-authentication/)
 - [HMAC Signature Authentication](/plugins/hmac-authentication/)
