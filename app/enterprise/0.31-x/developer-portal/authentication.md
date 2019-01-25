@@ -134,7 +134,7 @@ After you have set `auth=true` in your Files, you will need to tell the Dev Port
 
 ### Add a Consumer
 
-Next, [add a Kong consumer](/latest/getting-started/adding-consumers/) with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
+Next, [add a Kong consumer](/enterprise/{{page.kong_version}}/getting-started/adding-consumers/) with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
 
 ### Login to the Dev Portal
 
