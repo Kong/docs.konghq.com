@@ -53,7 +53,7 @@ $ kong migrations up [-c /path/to/kong.conf]
 $ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 
-**Note:** You may use `kong.conf.default` or create [your own configuration](https://docs.konghq.com/0.12.x/configuration/#configuration-loading).
+**Note:** You may use `kong.conf.default` or create [your own configuration](/0.12.x/configuration/#configuration-loading).
 
 ### Test your Kong installation
 
