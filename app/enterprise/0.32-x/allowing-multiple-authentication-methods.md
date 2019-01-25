@@ -45,7 +45,7 @@ $ curl -sX POST kong-admin:8001/apis/example-api/plugins/ \
 {"created_at":1517528499000,"config":{"hide_credentials":true,"anonymous":"d955c0cb-1a6e-4152-9440-414ebb8fee8a"},"id":"e5a40543-debe-4225-a879-a54901368e6d","name":"basic-auth","api_id":"a2a168a8-4491-4fe1-9426-cde3b5fcd45b","enabled":true}
 ```
 
-If using [OpenID Connect](/enterprise/latest/plugins/openid-connect), you must also set `config.consumer_claim` along with `anonymous`, as setting `anonymous` alone will not map that consumer.
+If using [OpenID Connect](/enterprise/{{page.kong_version}}/plugins/openid-connect), you must also set `config.consumer_claim` along with `anonymous`, as setting `anonymous` alone will not map that consumer.
 
 At this point unauthenticated requests and requests with invalid credentials are still allowed. The anonymous consumer is allowed, and will be applied to any request that does not pass a set of credentials associated with some other consumer.
 
