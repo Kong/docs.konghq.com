@@ -32,7 +32,7 @@ The Kong cluster would be placed behind a firewall, or within an Amazon VPC. The
 
 Access to the [Kong Admin API can be secured in a couple of different ways](/0.13.x/secure-admin-api/). Depending on your needs you would lock it down to localhost on the machine it is running on, use the firewall to prevent access from anyone outside your network, or proxy the Admin API through Kong itself, and secure it using one of the authentication plugins.
 
-With Kong Enterprise you also have the option of using Role Based Access Control (RBAC) to shape fine grained access for your team, and co-workers. [RBAC in Kong](/enterprise/0.31-x/plugins/rbac-api/) is used to create roles with defined permissions; roles are then assigned to users who are limited in what they can and cannot do by the permissions. Roles could be created for read-only roles; for when you want to let co-workers look, but not edit, the configuration. You could also create roles for different teams; giving them access to edit and update only their APIs.
+With Kong Enterprise you also have the option of using Role Based Access Control (RBAC) to shape fine grained access for your team, and co-workers. [RBAC in Kong](/enterprise/{{page.kong_version}}/plugins/rbac-api/) is used to create roles with defined permissions; roles are then assigned to users who are limited in what they can and cannot do by the permissions. Roles could be created for read-only roles; for when you want to let co-workers look, but not edit, the configuration. You could also create roles for different teams; giving them access to edit and update only their APIs.
 
 ## Multi-datacenter with Cassandra
 
