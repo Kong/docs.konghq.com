@@ -9,7 +9,7 @@ An upgrade (or update) is the process of changing the version of the software cu
 
 1. Download the version of Kong you are interested in upgrading to.
 2. Make a backup copy of the production database.
-3. Review the [changelog](https://docs.konghq.com/enterprise/changelog/) for the version you are upgrading to.
+3. Review the [changelog](/enterprise/changelog/) for the version you are upgrading to.
 4. Prepare the preproduction environment with the copy of the database taken from production.
 5. Install the newer package in preproduction.
 6. Apply any breaking changes to your preproduction environment.
