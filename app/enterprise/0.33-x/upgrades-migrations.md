@@ -33,7 +33,7 @@ Following the changelog itself is essential that you review any breaking changes
 
 Running the `kong migrations up` command an update of the existing schema to the newer version is performed, old Kong packages running on updated database schemas are not guaranteed to work correctly.
 At this stage, you want to validate the upgrade and smoke test your preproduction environment.
-One smart way of doing so is verifying the behaviour with the application of the [Canary Release Plugin](https://docs.konghq.com/plugins/ee-canary-release/) on a low-priority api or Service entity in preproduction redirecting it to correspondent entity in the upgraded production (if you setup allows doing so) and you may want to add also request termination plugin in the source environment, or doing so entirely with a reverse-proxy hard redirect for specifics low priority routes, if you have any in your infrastructure, nevertheless using cURL commands.
+One smart way of doing so is verifying the behaviour with the application of the [Canary Release Plugin](/plugins/ee-canary-release/) on a low-priority api or Service entity in preproduction redirecting it to correspondent entity in the upgraded production (if you setup allows doing so) and you may want to add also request termination plugin in the source environment, or doing so entirely with a reverse-proxy hard redirect for specifics low priority routes, if you have any in your infrastructure, nevertheless using cURL commands.
 Once preproduction is validated you can go ahead and perform the same upgrade in production according to with your experience in preproduction following your business processes.
 
 ## Notes for rollbacks
