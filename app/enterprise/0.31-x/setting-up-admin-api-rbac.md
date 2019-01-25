@@ -142,7 +142,7 @@ Server: kong/0.11.0rc2
 
 ## Extending RBAC
 
-The default RBAC roles and permissions shipped with Kong are a great starting point for shaping a basic enforcement policy, but they may not fit all use cases. [The Admin API](/enterprise/0.31-x/plugins/rbac-api) provides a comprehensive set of endpoints to create, edit, and delete RBAC users, roles, and permissions.
+The default RBAC roles and permissions shipped with Kong are a great starting point for shaping a basic enforcement policy, but they may not fit all use cases. [The Admin API](/enterprise/{{page.kong_version}}/plugins/rbac-api) provides a comprehensive set of endpoints to create, edit, and delete RBAC users, roles, and permissions.
 
 Additionally, third-party plugin developers can register their own Admin API RBAC resources as part of the [Admin API extension](/enterprise/{{page.kong_version}}/plugin-development/admin-api). This is done by defining a "resource" value associated with each API endpoint, like so:
 
