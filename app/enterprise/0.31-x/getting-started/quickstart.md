@@ -78,7 +78,7 @@ Now that you have Kong EE running you can interact with the Admin API and GUI.
 
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
-[CLI]: /0.12.x/admin-api
+[CLI]: /0.12.x/cli
 [API]: /0.12.x/admin-api
 [GUI]: /enterprise/{{page.kong_version}}/admin-gui/
 [datastore-section]: /0.12.x/configuration/#datastore-section
