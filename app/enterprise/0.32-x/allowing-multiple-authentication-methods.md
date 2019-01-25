@@ -5,7 +5,7 @@ title: Allowing multiple authentication methods
 
 The default behavior for Kong authentication plugins is to require credentials for all requests without regard for whether a request has been authenticated via some other plugin. Configuring an anonymous consumer on your authentication plugins allows you to offer clients multiple options for authentication.
 
-To begin, [create an API](/latest/getting-started/adding-your-api/) and then create three consumers:
+To begin, [create an API](/enterprise/{{page.kong_version}}/getting-started/adding-your-api/) and then create three consumers:
 
 ```bash
 $ curl -sX POST kong-admin:8001/consumers \
