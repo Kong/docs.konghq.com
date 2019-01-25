@@ -91,7 +91,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 [consumers]: /0.13.x/admin-api#consumer-object
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
 [configuration]: /0.13.x/configuration
-[CLI]: /0.13.x/admin-api
+[CLI]: /0.13.x/cli
 [proxy]: /0.13.x/proxy
 [API]: /0.13.x/admin-api
 [cluster]: /0.13.x/clustering
