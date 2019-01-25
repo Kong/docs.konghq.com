@@ -30,6 +30,6 @@ The nature of this versioning scheme is such that the scope of semantic weight
 of changes in each release of Kong Enterprise **cannot be interpreted solely 
 through the change in version number**. Because of this, we strongly encourage 
 Enterprise users to consult the 
-[Kong Enterprise Changelog](/enterprise/{{page.kong_version}}/changelog) and 
+[Kong Enterprise Changelog](/enterprise/changelog) and 
 [Upgrading Kong Enterprise](https://support.konghq.com/hc/en-us/articles/115009693288-Upgrading-Kong) 
 before upgrading.
