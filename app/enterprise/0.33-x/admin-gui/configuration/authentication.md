@@ -28,7 +28,7 @@ Knowing that we will follow these steps:
 5. [Restart Kong](#fifth)
 
 
-In this example we will configure authentication on the Admin GUI using [Key Authentication](https://getkong.org/plugins/key-authentication).
+In this example we will configure authentication on the Admin GUI using [Key Authentication](/plugins/key-authentication).
 
 <a name="first"></a>
 **First, we will add an Admin entity using the Admin API:**
@@ -169,7 +169,7 @@ The Admin GUI supports other Authentication plugins which are explained in more 
 under [Example configurations](#example-configs):
 
 * [LDAP Authentication Advanced](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced)
-* [Basic Authentication](https://getkong.org/plugins/basic-authentication)
+* [Basic Authentication](/plugins/basic-authentication)
 
 ## Add a Credential
 
@@ -188,7 +188,7 @@ only to admins.
 
 Check out the section [Enabling Authentication](#enable-authentication) for a
 step by step guide on setting up
-[Key Authentication](https://getkong.org/plugins/key-authentication).
+[Key Authentication](/plugins/key-authentication).
 
 ### LDAP Authentication
 
@@ -234,7 +234,7 @@ your remote LDAP server.
 
 ### Basic Authentication
 
-The [Basic Authentication Plugin](https://getkong.org/plugins/basic-authentication)
+The [Basic Authentication Plugin](/plugins/basic-authentication)
 allows Admins to use username and password to authenticate requests, and can be
 used to authenticate the Admin GUI.
 
