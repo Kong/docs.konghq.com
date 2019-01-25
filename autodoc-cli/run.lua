@@ -1,4 +1,4 @@
-#!/usr/bin/env resty
+#!/usr/bin/env luajit
 
 local lfs = require("lfs")
 

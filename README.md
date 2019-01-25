@@ -69,7 +69,7 @@ scraper to test out config changes.
 
 ## Generating the Admin API and CLI Documentation
 
-- Make sure that `resty` is in your `$PATH` (installing kong installs `resty` as well)
+- Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them)
 - Several Lua rocks are needed. Easiest way to get all of them is to execute `make dev` in the Kong folder
 - Have a local clone of Kong
 - In the Kong repository, checkout the desired branch/tag/release
