@@ -70,7 +70,7 @@ These are the port settings in order for Kong to work:
 
 Below are the recommended firewall settings:
 
-- The upstream APIs behind Kong will be available on [proxy_listen](/0.13.x/configuration/#proxy_listen) and [proxy_listen_ssl](/0.13.x/configuration/#proxy_listen_ssl). Configure these ports accordingly to the access level you wish to grant to the upstream APIs.
+- The upstream APIs behind Kong will be available on [proxy_listen](/0.13.x/configuration/#proxy_listen). Configure this port accordingly to the access level you wish to grant to the upstream APIs.
 - Protect [admin_listen](/0.13.x/configuration/#admin_listen), and only allow trusted sources that can access the Admin API.
 
 ### Network
