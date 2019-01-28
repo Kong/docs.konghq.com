@@ -448,8 +448,8 @@ in the path (the root `/` character).
 
 As previously mentioned, Kong evaluates prefix paths by length: the longest
 prefix paths are evaluated first. However, Kong will evaluate regex paths based
-on the `regex_priority` attribute of Routes. This means that considering
-the following Routes:
+on the `regex_priority` attribute of Routes from highest priority to lowest.
+This means that considering the following Routes:
 
 ```json
 [
@@ -463,19 +463,22 @@ the following Routes:
     },
     {
         "paths": ["/version"],
-        "regex_priority": 3
     },
+    {
+        "paths": ["/version/any/"],
+    }
 ]
 ```
 
 In this scenario, Kong will evaluate incoming requests against the following
 defined URIs, in this order:
 
-1. `/version`
-2. `/version/\d+/status/\d+`
-3. `/status/\d+`
+1. `/version/any/`
+2. `/version
+3. `/version/\d+/status/\d+`
+4. `/status/\d+`
 
-Prefix paths are always evaluated first.
+Prefix paths are always evaluated before regex paths.
 
 As usual, a request must still match a Route's `hosts` and `methods` properties
 as well, and Kong will traverse your Routes until it finds one that matches

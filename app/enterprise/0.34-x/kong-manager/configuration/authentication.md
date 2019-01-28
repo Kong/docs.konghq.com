@@ -7,42 +7,57 @@ chapter: 3
 > Before beginning, ensure completion of the steps in 
 [Getting Started with Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/configuration/getting-started)
 
-Kong has the ability to verify the identity of all users with Basic 
-Authentication or LDAP Authentication. 
+Kong can verify the identity of all users with Basic 
+Authentication or LDAP Authentication Advanced. 
+
+⚠️ **IMPORTANT**: Before enabling authentication, ensure that you
+have at least one Super Admin account. You may have set one up during
+the [Quick Start](/enterprise/{{page.kong_version}}/getting-started/quickstart),
+or you can set one up on the Organization page of Kong Manager.
+
+## How to Set Up a Super Admin
+
+1. Go to the "Organization" tab in Kong Manager.
+
+2. Click "+Invite User" and fill out the form. 
+
+3. Give the user the `super-admin` role in the `default` workspace.
+
+4. Return to the "Organization" page, and in the "Invited" section, click
+the email address of the user in order to view them.
+
+5. Click "Generate Registration Link". 
+
+6. Copy the link for later use after completing the account setup.
 
 ## How to Enable Basic Authentication
 
-To enable Basic Authentication, ensure that in `kong.conf.default`:
+To enable Basic Authentication, configure Kong with the following properties:
 
 ```
 enforce_rbac = on
 admin_gui_auth = basic-auth
 ```
 
-## How to Log In as the First Super Admin
+Start Kong:
 
-To create credentials for the first Super Admin account:
+```
+$ kong start [-c /path/to/kong/conf]
+```
 
-1. Set the Super Admin's password. 
+## How to Log In
 
-      ```
-      $ KONG_ADMIN_PASSWORD=<password-only-you-know>
-      ```
+If you created a Super Admin via database migration as per the 
+[Quick Start](/enterprise/{{page.kong_version}}/getting-started/quickstart) 
+guide, log in to Kong Manager with the username `kong_admin` and the password 
+set in the environment variable.
 
-2. Run migrations. 
+If you created a Super Admin via the Kong Manager "Organization" tab, browse
+to the registration link you copied in 
+["How to Set Up a Super Admin"](/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication#how-to-set-up-a-super-admin)
+, Step 4.
 
-      ```
-      $ kong migrations up - c kong.conf.default
-      ```
-
-3. Start Kong.
-
-      ```
-      $ kong start -c kong.conf.default
-      ```
-
-4. Log in to Kong Manager with the username `kong_admin` and the password set 
-in step 2.
+Fill out the form to create your basic auth credentials. Now you can log in.
 
 ![Log in to Kong Manager](https://konghq.com/wp-content/uploads/2018/11/km-rename.png)
 
@@ -54,9 +69,10 @@ to store and retrieve the RBAC token, parameters, and headers. Local Storage is
 saved on every successful login, and it is retrieved on every Kong Manager API 
 XHR request based on the `auth-store-types` value until you log out.
 
-⚠️ **IMPORTANT**: Local Storage Authentication credentials are stored in the 
-browser via `base64-encoding`, but are not encrypted. Therefore, it advised 
-that you always used SSL/TLS to encrypt your Kong Manager traffic.
+⚠️ **IMPORTANT**: Information in Local Storage, including the current 
+user's RBAC token, is stored in the browser via `base64-encoding`, but 
+is not encrypted. Therefore, it advised that you always use SSL/TLS to 
+encrypt your Kong Manager traffic.
 
 ## How to Log Out and Log In
 
@@ -65,12 +81,12 @@ This will clear the Local Storage authentication data (if exists) and redirect
 to the login page.
 
 2. *Ensure you are logged out* before attempting to log in with a different 
-account. Visit the Kong Manager, where you will be prompted with a login form.
+account. Visit Kong Manager, where you will be prompted with a login form.
 
 3. When you submit the login form, Kong Manager will make a request against the 
 Admin API using the specified `admin_gui_auth` with the data in the form. For 
 instance, if you have `basic-auth` enabled, then the form will submit with the 
-Authorization header e.g. `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. 
+Authorization header; e.g., `Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`. 
 
 4. If successful, the RBAC token associated with this Admin will be stored 
 locally and used for subsequent browser requests.

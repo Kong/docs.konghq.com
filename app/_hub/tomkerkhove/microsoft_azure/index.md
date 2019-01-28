@@ -88,16 +88,40 @@ You can deploy one of the following Kong templates from the marketplace:
 
 1. **Kong Certified by Bitnami**
 
-    Developer Tools software from the leading publisher
+    For more information, see [guidance provided by Bitnami](/hub/bitnami/microsoft_azure/).
 
-      You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong).
+1. **Kong Cluster by Bitnami**
 
-1. **Kong Cluster**
-
-    Kong Cluster for production environments - This solution configures a load-balanced Kong cluster with an additional Cassandra cluster for data storage.
-
-    You can find the template [here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kong-cluster).
+    For more information, see [guidance provided by Bitnami](/hub/bitnami/microsoft_azure/).
 
 ## Running Kong on Azure Container Instances
 
-For more information, see [Running Kong on Azure Container Instances](./../microsoft_azure_container_instances).
+For more information, see [Running Kong on Azure Container Instances](/hub/tomkerkhove/microsoft_azure_container_instances).
+
+## Provisioning a Kong datastore in Microsoft Azure
+When running Kong you need a datastore - Microsoft Azure can help with this as well!
+
+### Running PostgreSQL on Azure with Azure Database for PostgreSQL
+[Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/) is a great way to use a managed PostgreSQL in the Azure Cloud.
+
+Here are the simple steps to provision one:
+
+1. Go to the <a href="https://portal.azure.com" target="blank">Azure Portal</a>
+1. Create a new "Azure Database for PostgreSQL" instance
+1. Go to "Connection Security" and enable access to Azure services
+1. Create a new database called "kong" by using your favorite tool
+
+<div class="alert alert-warning">
+  <div class="text-center">
+    <strong>Note</strong>: Before connecting to your new database, make sure your IP address is whitelisted in "Connection Security"
+  </div>
+</div>
+
+### Running Cassandra on Azure with Azure Cosmos DB
+Currently,  [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/)  is not supported as a Cassandra datastore.
+
+<div class="alert alert-info">
+  <div class="text-center">
+    <strong>Note</strong>: See <a href="https://github.com/Kong/docker-kong/issues/188" target="blank">#188</a> for more information.
+  </div>
+</div>

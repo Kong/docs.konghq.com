@@ -1,10 +1,11 @@
 ---
 name: IP Restriction
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Whitelist or blacklist IPs that can make API requests
+desc: Whitelist or blacklist IPs that can make requests to your Services
 description: |
-  Restrict access to a Service or a Route (or the deprecated API entity) by either whitelisting or blacklisting IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used.
+  Restrict access to a Service or a Route by either whitelisting or blacklisting IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used.
 
 type: plugin
 categories:
@@ -13,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -33,7 +35,6 @@ kong_version_compatibility:
 
 params:
   name: ip-restriction
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

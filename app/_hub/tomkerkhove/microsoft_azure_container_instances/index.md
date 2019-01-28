@@ -21,7 +21,7 @@ desc: Deploy Kong on Microsoft Azure Container Instances # (required) 1-liner de
 description: |
   This guide walks you through deploying and running Kong on Microsoft Azure Container Instances.
 
-  We will be using either Azure Database for PostgreSQL or Cosmos Db to store the gateway configuration.
+  We will be using either Azure Database for PostgreSQL or Cosmos DB to store the gateway configuration.
 support_url: https://github.com/tomkerkhove/kong-deployment-on-azure/issues
   # Defaults to the url setting in your publisher profile.
 
@@ -80,15 +80,15 @@ kong_version_compatibility: # required
 ---
 
 ## Running Kong on Azure Container Instances
-<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview" target="blank">Azure Container Instances</a> is a great way to run lightweight containers in a serverless fashion.
+[Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview) is a great way to run lightweight containers in a serverless fashion.
 
 Running Kong on Azure Container Instances is super easy:
 
-1. **Provision a data store**
+1. **Provision a datastore**
 
-    Provision the data store that you want to use:
-    1. [Running Cassandra on Azure with Azure Cosmos Db](#running-cassandra-on-azure-with-azure-cosmos-db)
-    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](#running-postgresql-on-azure-with-azure-database-for-postgresql)
+    Provision the datastore that you want to use:
+    1. [Running Cassandra on Azure with Azure Cosmos DB](/hub/tomkerkhove/microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db)
+    1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql)
 
 1. **Open the Cloud Shell or Azure CLI**
 
@@ -102,9 +102,12 @@ Running Kong on Azure Container Instances is super easy:
                           --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" \
                                                   KONG_PG_USER="<username>" \
                                                   KONG_PG_PASSWORD="<password>" \
-                          --command-line "kong migrations up"
+                          --command-line "kong migrations bootstrap"
     ```
-    In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](#running-postgresql-on-azure-with-azure-database-for-postgresql).
+    In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql).
+
+    **Note for Kong < 0.15**: with Kong versions below 0.15 (up to 0.14), use
+    the `up` sub-command instead of `bootstrap`.
 
 1. **Start Kong**
 
@@ -137,28 +140,3 @@ Running Kong on Azure Container Instances is super easy:
     That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io`.
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
-
-## Running PostgreSQL on Azure with Azure Database for PostgreSQL
-Azure Database for PostgreSQL is a great way to use a managed PostgreSQL in the Azure Cloud.
-
-Here are the simple steps to provision one:
-
-1. Go to the <a href="https://portal.azure.com" target="blank">Azure Portal</a>
-1. Create a new "Azure Database for PostgreSQL" instance
-1. Go to "Connection Security" and enable access to Azure services
-1. Create a new database called "kong" by using your favorite tool
-
-<div class="alert alert-warning">
-  <div class="text-center">
-    <strong>Note</strong>: Before connecting to your new database, make sure your IP address is whitelisted in "Connection Security"
-  </div>
-</div>
-
-## Running Cassandra on Azure with Azure Cosmos Db
-Currently, Azure Cosmos Db is not supported as a Cassandra data store.
-
-<div class="alert alert-info">
-  <div class="text-center">
-    <strong>Note</strong>: See <a href="https://github.com/Kong/docker-kong/issues/188" target="blank">#188</a> for more information.
-  </div>
-</div>

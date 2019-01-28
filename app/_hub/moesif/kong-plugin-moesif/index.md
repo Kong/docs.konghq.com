@@ -80,6 +80,22 @@ params:
       required: false
       default: "`1.0`"
       description: An optional API Version you want to tag this request with
+    - name: disable_capture_request_body
+      required: false
+      default: "`false`"
+      description: An option to disable logging of request body
+    - name: disable_capture_response_body
+      required: false
+      default: "`false`"
+      description: An option to disable logging of response body
+    - name: request_masks
+      required: false
+      default: "`{}`"
+      description: An option to mask a specific request body field
+    - name: response_masks
+      required: false
+      default: "`{}`"
+      description: An option to mask a specific response body field
   extra:
     # This is for additional remarks about your configuration.
 ###############################################################################
@@ -113,9 +129,9 @@ If the luarocks utility is installed in your system (this is likely the case if 
 It can be installed from luarocks repository by doing:
 
 ```shell
-luarocks install kong-plugin-moesif
+luarocks install --server=http://luarocks.org/manifests/moesif kong-plugin-moesif
 ```
 
 ### Kong process errors
 
-This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path: FIXME
+This logging plugin will only log HTTP request and response data. If you are looking for the Kong process error file (which is the nginx error file), then you can find it at the following path:

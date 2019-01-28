@@ -1,12 +1,13 @@
 ---
 name: Request Termination
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Terminates all requests with a specific response
 description: |
   This plugin terminates incoming requests with a specified status code and
-  message. This allows to (temporarily) stop traffic on a Service or a Route
-  (or the deprecated API entity), or even block a Consumer.
+  message. This allows to (temporarily) stop traffic on a Service or a Route,
+  or even block a Consumer.
 
 type: plugin
 categories:
@@ -15,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -28,7 +30,6 @@ kong_version_compatibility:
 
 params:
   name: request-termination
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -51,7 +52,7 @@ params:
       description: Content type of the raw response configured with `config.body`.
   extra: |
     Once applied, every request (within the configured plugin scope of a Service,
-    Route, Consumer, API, or global) will be immediately terminated by
+    Route, Consumer, or global) will be immediately terminated by
     sending the configured response.
 
 ---

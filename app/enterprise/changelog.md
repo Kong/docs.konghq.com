@@ -16,97 +16,97 @@ title: Kong Enterprise Changelog
 
 **CHANGES**
 - **Kong Manager**
-        - Email addresses are stored in lower-case. These addresses must be case-insensitively unique. In previous versions, you could store mixed case email addresses. A migration for Postgres converts all existing email addresses to lower case. Cassandra users should review the email address of their admins and developers and update them to lower-case if necessary. Use the Kong Manager or the Admin API to make these updates.
-        - **Plugins**
-            - **Forward Proxy**
-                - Do not do a DNS request to the original upstream that would be discarded anyway as proxy will manage the resolving of the configured host.
-            - **OpenID Connect**
-                - Remove obsolete daos (adds migration)
-                - Hide secret from Admin API (used with sessions)
-                - Bump lua-resty-session to 2.23
-                - Change token verification to check token types when requested
+  - Email addresses are stored in lower-case. These addresses must be case-insensitively unique. In previous versions, you could store mixed case email addresses. A migration for Postgres converts all existing email addresses to lower case. Cassandra users should review the email address of their admins and developers and update them to lower-case if necessary. Use the Kong Manager or the Admin API to make these updates.
+- **Plugins**
+  - **Forward Proxy**
+    - Do not do a DNS request to the original upstream that would be discarded anyway as proxy will manage the resolving of the configured host.
+  - **OpenID Connect**
+    - Remove obsolete daos (adds migration)
+    - Hide secret from Admin API (used with sessions)
+    - Bump lua-resty-session to 2.23
+    - Change token verification to check token types when requested
 
 **FEATURES**
 - **Dev Portal**
-    - [kong_portal_templates](https://github.com/Kong/kong-portal-templates) repository:
-        - A public repository containing dev portal themes, examples, and dev tools for working with the Dev Portal template files.
-        - sync.js:
-            - Script which allows dev portal developers to `push`, `pull`, and `watch` the most up to date template files to and from kong to their local machine.
-        - default portal theme:
-            - Directory containing the most up to date version of the default portal template files that ship with Kong EE each release.
-            - Bugfixes, updates, and template features will be pushed here regularly and independently of the EE release cycle.
-    - Dev Portal now caches static JS assets
+  - [kong_portal_templates](https://github.com/Kong/kong-portal-templates) repository:
+    - A public repository containing dev portal themes, examples, and dev tools for working with the Dev Portal template files.
+  - sync.js:
+    - Script which allows dev portal developers to `push`, `pull`, and `watch` the most up to date template files to and from kong to their local machine.
+  - default portal theme:
+    - Directory containing the most up to date version of the default portal template files that ship with Kong EE each release.
+  - Bugfixes, updates, and template features will be pushed here regularly and independently of the EE release cycle.
+  - Dev Portal now caches static JS assets
 - **Plugins**
-    - **OpenID Connect**
-        add `config.http_proxy_authorization` (note: this is not yet in upstream lua-resty-http)
-        add `config.https_proxy_authorization` (note: this is not yet in upstream lua-resty-http)
-        add `config.no_proxy`
-        add `config.logout_revoke_access_token`
-        add `config.logout_revoke_refresh_token`
-        add `config.refresh_token_param_name`
-        add `config.refresh_token_param_type`
-        add `config.refresh_tokens`
+  - **OpenID Connect**
+    - add `config.http_proxy_authorization` (note: this is not yet in upstream lua-resty-http)
+    - add `config.https_proxy_authorization` (note: this is not yet in upstream lua-resty-http)
+    - add `config.no_proxy`
+    - add `config.logout_revoke_access_token`
+    - add `config.logout_revoke_refresh_token`
+    - add `config.refresh_token_param_name`
+    - add `config.refresh_token_param_type`
+    - add `config.refresh_tokens`
 - **CORE**
-    - **License**
-        - Added an increasingly "loud" logging to notify via nginx logs as the expiration date approaches.
-           - 90 days before the expiration date: Daily WARN log
-           - 30 days before the expiration date: Daily ERR log
-           - After the expiration date: Daily CRIT log
-    - **DB**
-        - **Cassandra**
-            - Support request-aware load-balancing policies in conf &
-              DAOs. `cassandra_lb_policy` now supports two new
-              policies RequestRoundRobin and RequestDCAwareRoundRobin.
+  - **License**
+    - Added an increasingly "loud" logging to notify via nginx logs as the expiration date approaches.
+      - 90 days before the expiration date: Daily WARN log
+      - 30 days before the expiration date: Daily ERR log
+      - After the expiration date: Daily CRIT log
+  - **DB**
+    - **Cassandra**
+      - Support request-aware load-balancing policies in conf &
+        DAOs. `cassandra_lb_policy` now supports two new
+        policies RequestRoundRobin and RequestDCAwareRoundRobin.
 
 **FIXES**
 - **Admin API**
-    - Prevent creating or modifying developers and admins through the
-      /consumers endpoints
-    - Prevent creating or modifying consumers through the /admins
-      endpoints
-    - Fix error on /admins when trying to create an admin with the
-      same name as an existing RBAC user
-    - Roll back if a POST to /admins fails
+  - Prevent creating or modifying developers and admins through the
+    /consumers endpoints
+  - Prevent creating or modifying consumers through the /admins
+    endpoints
+  - Fix error on /admins when trying to create an admin with the
+    same name as an existing RBAC user
+  - Roll back if a POST to /admins fails
 - **Dev Portal**
-    - KONG_PORTAL_AUTH_CONF param values can now handle escaped
-      characters such as #
-    - ACL plugin credential management no longer accessible from Dev
-      Portal client
-    - "Return to login" CTA on the password-reset page now redirects
-      to appropriate workspace
-    - Improved support for OAS 3 specifications
-    - General SwaggerUI improvements
-    - Developer approval email will only send once (on first
-      approval).  A developer will not receive an additional email if
-      they are revoked and re-approved.
+  - KONG_PORTAL_AUTH_CONF param values can now handle escaped
+    characters such as #
+  - ACL plugin credential management no longer accessible from Dev
+    Portal client
+  - "Return to login" CTA on the password-reset page now redirects
+    to appropriate workspace
+  - Improved support for OAS 3 specifications
+  - General SwaggerUI improvements
+  - Developer approval email will only send once (on first
+    approval).  A developer will not receive an additional email if
+    they are revoked and re-approved.
 - **Kong Manager**
-    - When creating a new workspace, always create roles for that workspace
-    - List workspace roles in alphabetical order
-    - Provide a button on the Admin show page to generate a registration URL
-    - Fix misleading error message when adding an existing user to a
-      new workspace
-    - Add validation of image type when creating a workspace with an avatar
-    - Add configuration fields and icon for the JWT signer plugin
-    - Clean up console errors due to lack of permissions
-    - Make the UTC button on Vitals charts work in Firefox
-    - Change the display order of plugins to match the Plugin Hub
+  - When creating a new workspace, always create roles for that workspace
+  - List workspace roles in alphabetical order
+  - Provide a button on the Admin show page to generate a registration URL
+  - Fix misleading error message when adding an existing user to a
+    new workspace
+  - Add validation of image type when creating a workspace with an avatar
+  - Add configuration fields and icon for the JWT signer plugin
+  - Clean up console errors due to lack of permissions
+  - Make the UTC button on Vitals charts work in Firefox
+  - Change the display order of plugins to match the Plugin Hub
 - **CORE**
-    - **Workspaces**
-        - When removing an entity from a workspace, delete the entity
-          itself if it only belongs to that workspace.
-        - Developers nor admins do not affect consumer counters in
-          workspaces. Only proxy consumers do.
-    - **DB**
-        - **Cassandra**
-            - Fix an issue where Insert operation fails to return an entity as not all Cassandra nodes are synced yet while reading the data.
-            - Now Kong will make one try to fetch the inserted row before throwing error. (Fix: https://support.konghq.com/hc/en-us/requests/6217 )
+  - **Workspaces**
+    - When removing an entity from a workspace, delete the entity
+      itself if it only belongs to that workspace.
+    - Developers nor admins do not affect consumer counters in
+      workspaces. Only proxy consumers do.
+  - **DB**
+    - **Cassandra**
+      - Fix an issue where Insert operation fails to return an entity as not all Cassandra nodes are synced yet while reading the data.
+      - Now Kong will make one try to fetch the inserted row before throwing error. (Fix: https://support.konghq.com/hc/en-us/requests/6217 )
 - **Plugins**
-    - **Rate-limiting**
-        - Use database-based redis connection pool to reduce unnecessary select call
-    - **Response-ratelimiting**
-        - Use database-based redis connection pool to reduce unnecessary select call
-    - **OpenID Connect**
-        - Fix schema `self_check` to verify issuer only when given (e.g. when using `PATCH` to update configuration)
+  - **Rate-limiting**
+    - Use database-based redis connection pool to reduce unnecessary select call
+  - **Response-ratelimiting**
+    - Use database-based redis connection pool to reduce unnecessary select call
+  - **OpenID Connect**
+    - Fix schema `self_check` to verify issuer only when given (e.g. when using `PATCH` to update configuration)
 
 ## 0.34 - 2018/11/17
 

@@ -1,6 +1,7 @@
 ---
 name: Request Transformer
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Modify the request before hitting the upstream server
 description: |
@@ -21,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -41,7 +43,6 @@ kong_version_compatibility:
 
 params:
   name: request-transformer
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -135,7 +136,7 @@ remove --> rename --> replace --> add --> append
 ## Examples
 
 In these examples we have the plugin enabled on a Service. This would work
-similarly for Routes, or the depreciated API entity.
+similarly for Routes.
 
 - Add multiple headers by passing each header:value pair separately:
 
@@ -146,7 +147,7 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "config.add.headers[2]=h2:v1"
 ```
 incoming request headers | upstream proxied headers:
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 ---
 
@@ -158,7 +159,7 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
 incoming request headers | upstream proxied headers:
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 ---
 
@@ -171,7 +172,7 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 ```
 
 incoming request headers | upstream proxied headers:
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 ---
 
@@ -185,12 +186,12 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 ```
 
 incoming request headers | upstream proxied headers:
----           | ---          
+---           | ---
 h1: v2        | <ul><li>h1: v2</li><li>h2: v1</li></ul>
 h3: v1        | <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
 
 incoming request querystring | upstream proxied querystring
----           | ---          
+---           | ---
 \?q1=v1       | \?q1=v1&q2=v1
 -             | \?q1=v2&q2=v1
 ---
@@ -204,11 +205,11 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 ```
 
 incoming request headers | upstream proxied headers:
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
 
 incoming url encoded body | upstream proxied url encoded body:
----           | ---          
+---           | ---
 p1=v1&p2=v1   | p2=v1
 p2=v1         | p2=v1
 

@@ -1,6 +1,7 @@
 ---
 name: Loggly
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Send request and response logs to Loggly
 description: |
@@ -13,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -31,7 +33,6 @@ kong_version_compatibility:
 
 params:
   name: loggly
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

@@ -1,73 +1,318 @@
-<header class="site-header fixed-top">
-  <div class="enterprise">
-
-    <!-- Kong Summit Announcement Banner -->
-
-    <div class="container">
-      <nav class="enterprise-sites one-half column">
-        <ul>
-          <li>
-            <a href="https://konghq.com/kong-enterprise-edition">Enterprise</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/kong-community-edition">Kong API Gateway</a>
-          </li>
-        </ul>
-      </nav>
-      <nav class="enterprise-contact one-half column">
-        <ul>
-          <li>
-            <a href="https://support.konghq.com/">Support</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/request-demo">Request Demo</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+<header class="navbar navbar-inverse navbar-toggleable-lg kong-navbar flex-row align-items-center fixed-top">
+  <div class="container d-flex">
+    <nav id="fullNav" class="col justify-content-md-end kong-navbar_nav">
+      <ul class="navbar-nav left">
+        <li class="navbar-item kong-navbar-dropdown kong-navbar-dropdown--columns">
+          <a class="nav-link">Products</a>
+          <div class="list-group products">
+            <div class="list-group-item flex-row flex-nowrap mega row">
+              <div class="kong-navbar-dropdown_column col-md-6">
+                <h5 class="list-group-item-action">Service Control Platform</h5>
+                  <div class="inner-wrap">
+                    <a href="http://konghq.com/products/service-control-platform" class="list-group-item-action">Platform Overview</a>
+                    <a href="http://konghq.com/products/kong-manager" class="list-group-item-action">Kong Manager</a>
+                    <a href="http://konghq.com/api-dev-portal" class="list-group-item-action">Kong Dev Portal</a>
+                    <a href="http://konghq.com/products/kong-vitals" class="list-group-item-action">Kong Vitals</a>
+                    <a href="http://konghq.com/products/kong-brain" class="list-group-item-action">Kong Brain</a>
+                    <a href="http://konghq.com/products/kong-immunity" class="list-group-item-action">Kong Immunity</a>
+                  </div>
+              </div>
+              <div class="kong-navbar-dropdown_column col-md-6 offerings">
+                <h5 class="list-group-item-action">Offerings</h5>
+                <a href="http://konghq.com/kong/" class="list-group-item-action col-md-4">
+                  Kong
+                  <p class="mb-1 mini">The blazingly fast open source microservices API gateway.</p>
+                </a>
+                <a href="http://konghq.com/kong-enterprise/" class="list-group-item-action col-md-4">
+                  Kong Enterprise
+                  <p class="mb-1 mini">The next-generation API platform built on top of Kong.</p>
+                </a>
+                <a href="http://konghq.com/cloud" class="list-group-item-action col-md-4">
+                  Kong Cloud
+                  <p class="mb-1 mini">Kong Enterprise innovation delivered at cloud speed.</p>
+                </a>
+              </div>
+            </div> <!-- list-group-item -->
+          </div> <!-- list-group -->
+        </li>
+        <li class="navbar-item kong-navbar-dropdown kong-navbar-dropdown-small"><a class="nav-link">Solutions</a>
+          <div class="list-group solutions">
+          <div class="list-group-item flex-row flex-nowrap">
+            <div class="list-item">
+            <a href="http://konghq.com/solutions/gateway" target="blank" class="list-group-item list-group-item-action">API Gateway
+            <p>Take control of your microservices traffic with the world's most popular API gateway.</p>
+            </a>
+            </div>
+            <div class="list-item">
+            <a href="http://konghq.com/solutions/kubernetes-ingress" class="list-group-item list-group-item-action">Kubernetes Ingress
+            <p>Own your Kubernetes cluster by extending Kong functionality as an ingress controller.</p>
+            </a>
+            </div>
+            <div class="list-item">
+            <a href="http://konghq.com/solutions/service-mesh/" class="list-group-item list-group-item-action">Service Mesh
+            <p>Inject Kong as a sidecar for your services to go from mess to mesh.<br><br></p>
+            </a>
+            </div>
+          </div>
+          </div> <!-- list-group -->
+        </li>
+        <li class="navbar-item kong-navbar-dropdown kong-navbar-dropdown-small"><a class="nav-link">Open Source</a>
+          <div class="list-group open-source">
+          <div class="list-group-item flex-row flex-nowrap">
+            <div class="list-item">
+            <a href="http://konghq.com/install" class="list-group-item list-group-item-action">Install
+            <p>Deploy Kong on your environment and platform of choice.<br><br><br></p></a>
+            </div>
+            <div class="list-item">
+            <a href="http://konghq.com/solutions/kubernetes-ingress" class="list-group-item list-group-item-action">Kubernetes Ingress
+            <p>Own your Kubernetes cluster by extending Kong functionality as an ingress controller.</p></a>
+            </div>
+            <div class="list-item">
+            <a href="https://github.com/Kong/" target="blank" class="list-group-item list-group-item-action">GitHub
+            <p>Find code or file an issue for Kong’s code/documentation.<br><br></p></a>
+            </div>
+            <div class="list-item">
+            <a href="https://discuss.konghq.com/" class="list-group-item list-group-item-action">Kong Nation
+            <p>Get help from Kong engineers and community members.<br><br></p></a>
+            </div>
+            <div class="list-item">
+            <a href="http://konghq.com/meetups" class="list-group-item list-group-item-action">Meetups
+            <p>Meet your local community.<br><br><br></p></a>
+            </div>
+          </div>
+          </div> <!-- list-group -->
+        </li>
+        <li class="navbar-item">
+          <a href="https://docs.konghq.com/hub" class="nav-link">Hub</a>
+        </li>
+    </ul>
+    <a href="http://konghq.com/" class="navbar-brand col col-xl-auto">
+      <img src="/assets/images/Kogo-gradient.svg" alt="Kong">
+    </a>
+    <ul class="navbar-nav right">
+      <li class="navbar-item kong-navbar-dropdown kong-navbar-dropdown-small"><a class="nav-link">Docs</a>
+          <div class="list-group docs">
+          <div class="list-group-item flex-row flex-nowrap">
+            <div class="list-item">
+            <a href="https://docs.konghq.com" class="list-group-item list-group-item-action">Get started with Kong
+              <p>Use the 5-minute quickstart and installation guide to deploy Kong now.</p></a>
+            </div>
+            <div class="list-item">
+            <a href="https://docs.konghq.com/enterprise" class="list-group-item list-group-item-action">Deploy Kong Enterprise
+            <p>Use the quickstart and reference materials to launch Kong Enterprise today.</p></a>
+            </div>
+            <div class="list-item">
+            <a href="https://docs.konghq.com/enterprise/latest/vitals" class="list-group-item list-group-item-action">Master Kong Vitals
+            <p>Learn how to implement Vitals and optimize it for your deployment.</p></a>
+            </div>
+            <div class="list-item">
+            <a href="https://docs.konghq.com/enterprise/latest/developer-portal/introduction/" class="list-group-item list-group-item-action">Launch your Dev Portal
+            <p>Learn how to create and manager your Kong Dev Portal.<br><br></p></a>
+            </div>
+          </div>
+          </div>
+        </li>
+        <li class="navbar-item kong-navbar-dropdown kong-navbar-dropdown--columns">
+          <a class="nav-link">Resources</a>
+          <div class="list-group products resources">
+            <div class="list-group-item flex-row flex-nowrap mega row">
+              <div class="kong-navbar-dropdown_column col-md-4">
+                <h5 class="list-group-item-action">Community</h5>
+                <div class="inner-wrap">
+                <a href="https://discuss.konghq.com/" class="list-group-item-action">Kong Nation</a>
+                <a href="https://github.com/Kong/" class="list-group-item-action">GitHub</a>
+                <a href="http://konghq.com/meetups" class="list-group-item-action">Meetups</a>
+                <a href="http://konghq.com/kong-summit" class="list-group-item-action">Kong Summit</a>
+                </div>
+              </div>
+              <div class="kong-navbar-dropdown_column col-md-2">
+                <h5 class="list-group-item-action">Support</h5>
+                <div class="inner-wrap">
+                <a href="https://support.konghq.com" class="list-group-item-action">Enterprise Support Portal</a>
+                <a href="http://konghq.com/faqs/" class="list-group-item-action">FAQs</a>
+                </div>
+              </div>
+              <div class="kong-navbar-dropdown_column col-md-6 learn">
+                <h5 class="list-group-item-action">Learn</h5>
+                  <div class="inner-wrap">
+                    <a href="http://konghq.com/blog" class="list-group-item-action col-md-3">Blog</a>
+                    <a href="http://konghq.com/ebooks" class="list-group-item-action col-md-3">Ebooks</a>
+                    <a href="http://konghq.com/webinars" class="list-group-item-action col-md-3">Webinars</a>
+                    <a href="http://konghq.com/briefs" class="list-group-item-action col-md-3">Briefs</a>
+                  </div>
+              </div>
+            </div> <!-- list-group-item -->
+          </div> <!-- list-group -->
+        </li>
+        <li class="navbar-item kong-navbar-dropdown kong-navbar-dropdown-small"><a class="nav-link">Company</a>
+          <div class="list-group company">
+          <div class="list-group-item flex-row flex-nowrap">
+            <div class="list-item icon">
+            <a href="http://konghq.com/about-kong-inc" class="list-group-item list-group-item-action"><img src="/assets/images/nav/icn-about.svg" alt="about"><span>About</span></a>
+            </div>
+            <div class="list-item icon">
+            <a href="http://konghq.com/investors" class="list-group-item list-group-item-action"><img src="/assets/images/nav/icn-investors.svg" alt="investors"><span>Investors</span></a>
+            </div>
+            <div class="list-item icon">
+            <a href="http://konghq.com/careers" class="list-group-item list-group-item-action"><img src="/assets/images/nav/icn-careers.svg" alt="careers"><span>Careers</span></a>
+            </div>
+            <div class="list-item icon">
+            <a href="http://konghq.com/partners" class="list-group-item list-group-item-action"><img class="partners" src="/assets/images/nav/icn-partners.svg" alt="partners"><span>Partners</span></a>
+            </div>
+            <div class="list-item icon">
+            <a href="http://konghq.com/brand" class="list-group-item list-group-item-action"><img src="/assets/images/nav/icn-press.svg" alt="press"><span>Press</span></a>
+            </div>
+            <div class="list-item icon">
+            <a href="http://konghq.com/contact" class="list-group-item list-group-item-action"><img src="/assets/images/nav/icn-contact.svg" alt="contact"><span>Contact</span></a>
+            </div>
+          </div>
+          </div>
+        </li>
+        <li class="kong-navbar_nav_link kong-navbar_nav_link--cta"><a class="nav-link btn btn-outline-secondary transparent" href="http://konghq.com/request-demo">Request Demo</a></li>
+      </ul>
+    </nav>
+    <button class="navbar-toggler align-self-center" type="button" data-toggle="kong-expand" data-target="#pagesNav" aria-controls="pagesNav" aria-expanded="false" aria-label="Toggle navigation">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
   </div>
-  <!-- .enterprise -->
-  <div class="navbar">
-    <div class="container">
-      <a href="https://konghq.com" class="navbar-brand">
-        <img src="/assets/images/Kogo.svg" alt="Kong">
-      </a>
-      <iframe class="header-star" src="https://ghbtns.com/github-btn.html?user=Kong&amp;repo=kong&amp;type=star" frameborder="0"
-        scrolling="0" width="55" height="20"></iframe>
-      <button data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" class="navbar-toggle">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <nav id="navbar" class="navbar-nav">
-        <ul>
-          <li>
-            <a href="/" class="active">Docs</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/about-kong-inc/">About</a>
-          </li>
-          <li>
-            <a href="/hub/">Hub</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/community-resources/">Community</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/kong-enterprise-edition/">Enterprise</a>
-          </li>
-          <li>
-            <a href="{{ site.repos.kong }}" target="_blank">GitHub</a>
-          </li>
-          <li class="hidden-lg">
-            <a href="https://support.konghq.com/">Support</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/install" class="button button-dark{% if page.url == " /install/ " %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Installation</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-  <!-- .navbar -->
 </header>
+<!---- Mobile Navigation ----->
+<nav id="pagesNav" class="fixed-top hidden-xl-up kong-navbar-collapse">
+<div class="btnwrap">
+      <a class="btn" href="http://konghq.com/request-demo">Request Demo</a>
+      <a href="http://konghq.com/install" class="btn btn-primary">Installation</a>
+    </div>
+  <div class="kong-navbar-collapse_section row no-gutters justify-content-between section-left">
+    <h5 class="col-12 trigger">
+      <a class="nav-link">Products &nbsp;<i class="fas fa-chevron-right"></i></a>
+    </h5>
+    <div class="subnav">
+    <h5 class="col-12"><a class="back nav-link"><i class="fas fa-chevron-left"></i>&nbsp; Products</a></h5>
+        <div class="col-md-6">
+          <h6>Service Control Platform</h6>
+          <a class="nav-link" href="http://konghq.com/products/service-control-platform">Platform Overview</a>
+          <a class="nav-link" href="http://konghq.com/products/kong-manager">Kong Manager</a>
+          <a class="nav-link" href="http://konghq.com/api-dev-portal">Kong Dev Portal</a>
+          <a class="nav-link" href="http://konghq.com/products/kong-vitals">Kong Vitals</a>
+          <a class="nav-link" href="http://konghq.com/products/kong-brain">Kong Brain</a>
+          <a class="nav-link" href="http://konghq.com/products/kong-immunity">Kong Immunity</a>
+        </div>
+
+        <div class="col-md-6">
+          <h6>Offerings</h6>
+          <div class="row">
+            <div class="col-4">
+              <a class="nav-link" href="http://konghq.com/kong/">Kong</a>
+              <a class="nav-link" href="http://konghq.com/kong-enterprise/">Kong Enterprise</a>
+              <a class="nav-link" href="http://konghq.com/cloud">Kong Cloud</a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="kong-navbar-collapse_section section-left">
+    <h5 class="trigger">
+      <a class="nav-link">Solutions &nbsp;<i class="fas fa-chevron-right"></i></a>
+    </h5>
+    <div class="subnav">
+    <h5 class="col-12"><a class="back nav-link"><i class="fas fa-chevron-left"></i>&nbsp; Solutions</a></h5>
+      <div class="col-md-6">
+              <a class="nav-link" href="http://konghq.com/solutions/gateway/">API Gateway</a>
+              <a class="nav-link" href="http://konghq.com/solutions/kubernetes-ingress/">Kubernetes Ingress</a>
+              <a class="nav-link" href="http://konghq.com/solutions/service-mesh/">Service Mesh</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="kong-navbar-collapse_section section-left">
+    <h5 class="trigger">
+      <a class="nav-link">Open Source &nbsp;<i class="fas fa-chevron-right"></i></a>
+    </h5>
+    <div class="subnav">
+    <h5 class="col-12"><a class="back nav-link"><i class="fas fa-chevron-left"></i>&nbsp; Open Source</a></h5>
+      <div class="col-md-6">
+        <a class="nav-link" href="http://konghq.com/install/">Install</a>
+        <a class="nav-link"  target="blank" href="https://github.com/Kong/">GitHub</a>
+        <a class="nav-link" href="https://discuss.konghq.com/">Kong Nation</a>
+        <a class="nav-link" href="http://konghq.com/meetups/">Meetups</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="kong-navbar-collapse_section section-left">
+    <h5 class="remove">
+      <a class="nav-link" href="https://docs.konghq.com/hub">Hub</a>
+    </h5>
+  </div>
+
+  <div class="kong-navbar-collapse_section section-right">
+    <h5 class="trigger">
+      <a class="nav-link">Docs &nbsp;<i class="fas fa-chevron-right"></i></a>
+    </h5>
+    <div class="subnav">
+      <h5 class="col-12"><a class="back nav-link"><i class="fas fa-chevron-left"></i>&nbsp; Docs</a></h5>
+      <div class="col-md-6">
+      <a class="nav-link" href="https://docs.konghq.com/">Kong</a>
+      <a class="nav-link" href="https://docs.konghq.com/enterprise/">Kong Enterprise</a>
+      <a class="nav-link" href="https://docs.konghq.com/enterprise/latest/vitals/">Kong Vitals</a>
+      <a class="nav-link" href="https://docs.konghq.com/enterprise/latest/developer-portal/introduction/">Dev Portal</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="kong-navbar-collapse_section row no-gutters justify-content-between section-right">
+    <h5 class="col-12 trigger">
+      <a class="nav-link">Resources &nbsp;<i class="fas fa-chevron-right"></i></a>
+    </h5>
+    <div class="subnav">
+      <h5 class="col-12"><a class="back nav-link"><i class="fas fa-chevron-left"></i>&nbsp; Resources</a></h5>
+      <div class="col-md-6">
+          <h6>Community</h6>
+          <a class="nav-link" href="https://discuss.konghq.com/">Kong Nation</a>
+          <a class="nav-link" href="https://github.com/Kong/">GitHub</a>
+          <a class="nav-link" href="http://konghq.com/meetups/">Meetups</a>
+          <a class="nav-link" href="http://konghq.com/kong-summit/">Kong Summit</a>
+        </div>
+        <div class="col-md-6">
+          <h6>Support</h6>
+          <a class="nav-link" href="https://support.konghq.com">Enterprise Support Portal</a>
+        </div>
+
+        <div class="col-md-6">
+          <h6 class="shot-top">Learn</h6>
+          <a class="nav-link" href="http://konghq.com/blog">Blog</a>
+          <a class="nav-link" href="http://konghq.com/ebooks">Ebooks</a>
+          <a class="nav-link" href="http://konghq.com/webinars">Webinars</a>
+          <a class="nav-link" href="http://konghq.com/briefs">Briefs</a>
+          <a class="nav-link" href="http://konghq.com/faqs/">FAQs</a>
+          <a class="nav-link" href="http://konghq.com/kong-summit">Kong Summit</a>
+        </div>
+  </div>
+
+</div>
+
+  <div class="kong-navbar-collapse_section section-right">
+    <h5 class="trigger">
+      <a class="nav-link">Company &nbsp;<i class="fas fa-chevron-right"></i></a>
+    </h5>
+      <div class="subnav">
+        <h5 class="col-12"><a class="back nav-link"><i class="fas fa-chevron-left"></i>&nbsp; Company</a></h5>
+        <div class="col-md-6">
+          <a class="nav-link" href="http://konghq.com/about-kong-inc">About</a>
+          <a class="nav-link" href="http://konghq.com/investors">Investors</a>
+          <a class="nav-link" href="/careers">Careers</a>
+          <a class="nav-link" href="http://konghq.com/partners">Partners</a>
+          <a class="nav-link" href="http://konghq.com/brand">Press</a>
+          <a class="nav-link" href="http://konghq.com/contact">Contact</a>
+        </div>
+      </div>
+  </div>
+  <div class="hidden-md-up kong-navbar-collapse_section kong-navbar-collapse_section--buttons">
+  </div>
+</nav>
+</header>
+<div class="overlay"></div>

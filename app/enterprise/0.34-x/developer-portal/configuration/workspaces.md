@@ -58,7 +58,7 @@ the `Settings` page in the `Kong Manager` or by submitting a cURL request
 directly to the Dev Portal's configuration table. More information on these 
 settings can be found in 
 [Getting Started](/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started) and in the 
-[Dev Portal Property Reference](/enterpise/{{page.kong_version}}/property-reference/#dev-portal)
+[Dev Portal Property Reference](/enterprise/{{page.kong_version}}/property-reference/#dev-portal)
 
 
 ## Files

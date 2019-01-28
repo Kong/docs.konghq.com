@@ -222,8 +222,8 @@ the Admin API won’t be available on the old cluster for the entire process.
 
 #### Considerations before Upgrading to 0.34
 
-* Vitals will now be enabled by default. Any Admin who logs in to Kong Manager will have the ability to see charts and metrics for Workspaces they have access to.
 * Key Authentication is being deprecated in favor of Basic Authentication. *Before migrating to 0.34, anyone using Key Authentication in 0.33-x should create Basic Authentication credentials for all of their Admins.*
+* Vitals will now be enabled by default. Any Admin who logs in to Kong Manager will have the ability to see charts and metrics for Workspaces they have access to.
 * The Dev Portal and Kong Manager no longer allow use of proxy ports in 0.34. Note that any previous proxies will need to be updated according to [Dev Portal Networking](enterprise/{{page.kong_version}}/developer-portal/configuration/networking/) and [Kong Manager Networking](enterprise/{{page.kong_version}}/kong-manager/configuration/networking/).
 * The Dev Portal now supports Workspaces. Existing Dev Portal configurations, files, URLs, and developers will be moved to the 'Default' Workspace. See [Working with Workspaces](/enterprise/{{page.kong_version}}/developer-portal/configuration/workspaces)
 * For a complete list of new features in 0.34, refer to the [Changelog](/enterprise/changelog).
@@ -235,13 +235,13 @@ the Admin API won’t be available on the old cluster for the entire process.
 3. Download Kong Enterprise 0.34
 4. Ensure the following properties are configured:
 
-      [`enforce_rbac`](/enterprise/0.34-x/property-reference#enforce_rbac) is 'on'
+      [`enforce_rbac`](/enterprise/0.34-x/property-reference#enforce_rbac) is `on`
 
-      [`admin_gui_auth`](/enterprise/0.34-x/property-reference/#admin_gui_auth) is set to 'basic-auth' or 'ldap-auth'
+      [`admin_gui_auth`](/enterprise/0.34-x/property-reference/#admin_gui_auth) is set to `basic-auth` or `ldap-auth`
 
-      [`portal_gui_protocol`](/enterprise/0.34-x/property-reference/#portal_gui_protocol) is set to 'http' or 'https'
+      [`portal_gui_protocol`](/enterprise/0.34-x/property-reference/#portal_gui_protocol) is set to `http` or `https`
 
-      [`portal_gui_host`](/enterprise/0.34-x/property-reference/#portal_gui_host) is set to 'localhost:8003' or the custom host name configured for Dev Portal
+      [`portal_gui_host`](/enterprise/0.34-x/property-reference/#portal_gui_host) is set to `localhost:8003` or the custom host name configured for Dev Portal
 5. Create a node in a new Kong cluster and run kong migrations up to process migrations. 
 6. Once the node has completed the migration, start it with kong start. 
 7. Confirm that it can process requests and configuration changes (creating and deleting a test Service will suffice to confirm Kong can communicate with the datastore).

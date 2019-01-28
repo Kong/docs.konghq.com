@@ -128,7 +128,17 @@
   version: "0.14.1"
   luarocks_version: "0.14.1-0"
   dependencies:
-    luajit: "2.1.0-beta2"
+    luajit: "2.1.0-beta3"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
+-
+  release: "1.0.x"
+  version: "1.0.2"
+  luarocks_version: "1.0.2-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
     luarocks: "2.4.3"
     cassandra: "3.x.x"
     postgres: "9.5+"

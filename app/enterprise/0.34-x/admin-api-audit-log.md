@@ -370,49 +370,7 @@ HTTP 200 OK
 
 ### Configuration Reference
 
-#### audit_log 
-
-When enabled, Kong will log information about Admin API access and database row insertions, updates, and deletes.
-
-Default: `off`
-
----
-
-#### audit_log_ignore_methods
-
-Comma-separated list of HTTP methods that will not generate audit log entries. By default, all HTTP requests will be logged.
-
-Default: none
-
----
-
-#### audit_log_ignore_paths
-
-Comma-separated list of request paths that will not generate audit log entries. By default, all HTTP requests will be logged.
-
-Default: none
-
----
-
-#### audit_log_ignore_tables
-
-Comma-separated list of database tables that will not generate audit log entries. By default, updates to all database tables will be logged (the term "updates" refers to the creation, update, or deletion of a row).
-
-Default: none
-
----
-
-#### audit_log_record_ttl
-
-Length, in seconds, of the TTL for audit log records. Records in the database older than their TTL are automatically purged.
-
-Default: `2592000`
-
----
-
-#### audit_log_signing_key
-Defines the path to a private RSA signing key that can be used to insert a signature of audit records, adjacent to the record. The corresponding public key should be stored offline, and can be used the validate audit entries in the future. If this value is undefined, no signature will be generated.
-
-Default: none
+See the [Data & Admin Audit](/enterprise/{{page.kong_version}}/property-reference#data--admin-audit) 
+section of Kong Enterprise's Configuration Property Reference.
 
 [Back to TOC](#table-of-contents)

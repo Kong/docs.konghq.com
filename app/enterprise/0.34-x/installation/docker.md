@@ -78,7 +78,11 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
       kong-ee kong migrations up
     ```
-    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file
+    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
+    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
+    For example, assuming you've saved your `license.json` file into `C:\temp`, 
+    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
+    license file.
 
 10. Start Kong:
 
@@ -91,10 +95,10 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
       -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
       -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-      -e "KONG_VITALS=on" \
       -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
       -e "KONG_PORTAL=on" \
-      -e "KONG_PORTAL_GUI_URI=localhost:8003" \
+      -e "KONG_PORTAL_GUI_PROTOCOL=http" \
+      -e "KONG_PORTAL_GUI_HOST=127.0.0.1:8003" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
       -p 8000:8000 \
       -p 8443:8443 \
@@ -106,14 +110,17 @@ welcome email. Once you have your license, you can set it in an environment vari
       -p 8004:8004 \
       kong-ee
     ```
-    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file
+    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
+    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
+    For example, assuming you've saved your `license.json` file into `C:\temp`, 
+    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
+    license file.
 
-11. Congratulations! You now have Kong Enterprise installed and running. Test 
-it by visiting Kong Manager at http://localhost:8002 (replace `localhost` with 
-your server IP or hostname when running Kong on a remote system). If you load 
-the Dev Portal, at http://localhost:8003, expect a blank page until you follow 
-the instructions 
-[here](/enterprise/{{page.kong_version}}/developer-portal/getting-started/).
+11. Kong Enterprise should now be installed and running. Test 
+it by visiting Kong Manager at [http://localhost:8002](http://localhost:8002)
+(replace `localhost` with your server IP or hostname when running Kong on a 
+remote system), or by visiting the Default Dev Portal at 
+[http://127.0.0.1:8003/default](http://127.0.0.1:8003/default)
 
 ## Enable RBAC
 
@@ -122,7 +129,7 @@ allows you to create multiple profiles of Kong users—e.g., `super-admin`,
 `admin`, `read-only`—and permit the resources to which they have access. 
 To enable it:
 
-1. Create an initial RBAC super admin:
+1. Create an initial RBAC admin:
 
     ```
     curl -X POST http://localhost:8001/rbac/users/ -d name=admin -d user_token=12345
@@ -150,6 +157,10 @@ header in requests:
 
     If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on`
     to your initial container environment variables.
+
+5. When RBAC is enabled, the Kong Manager requires the use of an 
+authentication plugin. Follow the 
+[Authenticating Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication) Guide to complete this set up.
 
 ## FAQs
 

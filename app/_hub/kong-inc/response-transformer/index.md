@@ -1,6 +1,7 @@
 ---
 name: Response Transformer
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Modify the upstream response before returning it to the client
 description: |
@@ -17,6 +18,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -36,7 +38,6 @@ kong_version_compatibility:
 
 params:
   name: response-transformer
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -84,7 +85,7 @@ remove --> replace --> add --> append
 ## Examples
 
 In these examples we have the plugin enabled on a Route. This would work
-similar for Services, or the depreciated API entity.
+similar for Services.
 
 - Add multiple headers by passing each header:value pair separately:
 
@@ -95,7 +96,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "config.add.headers[2]=h2:v1"
 ```
 upstream response headers | proxied response headers
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 ---
 
@@ -107,7 +108,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
 upstream response headers | proxied response headers
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 ---
 
@@ -120,7 +121,7 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 ```
 
 upstream response headers | proxied response headers
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
 ---
 
@@ -134,12 +135,12 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 ```
 
 upstream response headers | proxied response headers:
----           | ---          
+---           | ---
 h1: v2        | <ul><li>h1: v2</li><li>h2: v1</li></ul>
 h3: v1        | <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
 
 upstream response JSON body | proxied response body
----           | ---          
+---           | ---
 {}            | {"p1" : "v1", "p2": "v2"}
 {"p1" : "v2"}  | {"p1" : "v2", "p2": "v2"}
 ---
@@ -153,11 +154,11 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 ```
 
 upstream response headers | proxied response headers
----           | ---          
+---           | ---
 h1: v1        | <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
 
 upstream response JSON body | proxied response body
----           | ---          
+---           | ---
 {"p2": "v2"}   | {"p2": "v2"}
 {"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"}
 
