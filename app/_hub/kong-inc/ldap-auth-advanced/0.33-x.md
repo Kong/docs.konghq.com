@@ -122,7 +122,8 @@ params:
       default:
       value_in_examples:
       description: |
-        The DN to bind to
+        The DN to bind to. Used to perform LDAP search of user. This bind_dn 
+        should have permissions to search for the user being authenticated.
 
 ---
 
