@@ -63,7 +63,6 @@ These are the port settings in order for Kong to work:
 
 - Allow HTTP traffic to [proxy_listen](/0.13.x/configuration/#proxy_listen). By default  8000. 
 - Allow HTTP traffic to [admin_listen](/0.13.x/configuration/#admin_listen). By default 8001.
-- Allow HTTPS traffic to [admin_listen_ssl](/0.13.x/configuration/#admin_listen_ssl). By default 8444.
 - Allow HTTP traffic to admin_gui_listen. By default 8002.
 - Allow HTTPS traffic to admin_gui_listen_ssl. By default 8445.
 
