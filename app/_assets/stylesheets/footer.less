@@ -82,11 +82,26 @@
           }
         }
 
+        #subscription_form .error-message.message {
+          display: inline-block;
+          width: 100%;
+          clear: both;
+          position: absolute;
+          bottom: -20px;
+          left: 0;
+          @media (max-width: 480px) {
+            bottom: -25px;
+          }
+        }
+
         form {
           display: inline-block;
           width: 100%;
           margin-top: 1rem;
           margin-bottom: 10px;
+          @media (max-width: 480px) {
+            margin-bottom: 20px;
+          }
           input[type='text'] {
             display: inline-block;
             float: left;
@@ -95,6 +110,11 @@
             font-size: 16px;
             max-width: 225px;
             margin-bottom: 0;
+            @media (max-width: 480px) {
+              max-width: 100% !important;
+              width: 100%;
+              margin-bottom: 5px;
+            }
           }
           input.button {
             background: #17a956;
@@ -107,10 +127,11 @@
             padding-left: 15px;
             padding-right: 15px;
             position: absolute;
-            @media (max-width: 468px) {
-              position: absolute;
-              right: 15px;
-              top: 0;
+            @media (max-width: 480px) {
+              position: relative;
+              display: inline-block;
+              width: 100%;
+              clear: both;
             }
           }
           .success-message.message {
