@@ -18,25 +18,23 @@
       padding-left: 0;
     }
   }
-  &~.page-header-title h1 {
+  & ~ .page-header-title h1 {
     color: @navy-darker;
   }
 }
 
-.edit-this-page{
+.edit-this-page {
   position: absolute;
   right: 0;
 
   @media (max-width: 650px) {
-    top: 80px;
-    left: 10px;
+    top: 135px;
+    left: 0px;
   }
 }
 
-
 #documentation {
   .content {
-
     ol {
       padding-left: 2rem;
     }
@@ -68,7 +66,7 @@
 
     h2 {
       margin-top: 1.2em;
-      margin-bottom: .8em;
+      margin-bottom: 0.8em;
       font-size: 30px;
       font-weight: 400;
     }
@@ -99,8 +97,8 @@
     h5,
     h6 {
       a.header-link {
-        margin-left: -.9em;
-        padding-right: .2em;
+        margin-left: -0.9em;
+        padding-right: 0.2em;
         color: inherit;
 
         i {
@@ -115,12 +113,11 @@
         }
       }
     }
-
   }
 }
 
 #getkong-algolia-search {
-  input{
+  input {
     vertical-align: inherit !important;
     height: 40px;
     margin-bottom: 0;
@@ -140,7 +137,8 @@
     color: @blue-light;
   }
   /* Highlighted search terms in the main category headers */
-  .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--highlight {
+  .algolia-docsearch-suggestion--category-header
+    .algolia-docsearch-suggestion--highlight {
     background-color: @blue-light;
   }
   /* Currently selected suggestion */
@@ -149,16 +147,16 @@
   }
   @media (max-width: @navbar-collapse-point) {
     float: initial;
-    display:inline-block;
-    margin-right:5px;
-    .algolia-docsearch-suggestion--subcategory-column{
+    display: inline-block;
+    margin-right: 5px;
+    .algolia-docsearch-suggestion--subcategory-column {
       display: none !important;
     }
   }
-  @media (max-width:476px){
-    margin:10px 0 0;
-    float:left;
-    clear:both;
+  @media (max-width: 476px) {
+    margin: 10px 0 0;
+    float: left;
+    clear: both;
   }
 }
 
