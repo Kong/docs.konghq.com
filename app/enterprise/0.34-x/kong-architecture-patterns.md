@@ -37,7 +37,7 @@ With Kong Enterprise you also have the option of using Role Based Access Control
 
 ## Multi-Datacenter with Cassandra
 
-Application availability is important, and high availability can be achieved by configuring Kong in a multi-datacenter setup using [Apache Cassandra](/about/faq/#apache-cassandra) as the backing datastore. In this configuration each geographically disparate datacenter is host to at least three Kong nodes, and the appropriate number of Cassandra nodes.
+Application availability is important, and high availability can be achieved by configuring Kong in a multi-datacenter setup using [Apache Cassandra](https://konghq.com/faqs/#apache-cassandra) as the backing datastore. In this configuration each geographically disparate datacenter is host to at least three Kong nodes, and the appropriate number of Cassandra nodes.
 
 The minimum number of Kong nodes per data center needed for high availability is three. This will ensure that in the unlikely event of a node failure there will still be a node and a backup. Cassandra would be configured in an optimal way; you can use the [Cassandra Calculator](https://www.ecyrd.com/cassandracalculator/) to determine how many Cassandra nodes are needed per data center to ensure high availability, and  performance for your specific needs.
 
