@@ -52,7 +52,7 @@ To set up the first account:
     ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to [your own configuration](https://docs.konghq.com/0.13.x/configuration/#configuration-loading).
+allowing you to point to [your own configuration](/0.13.x/configuration/#configuration-loading).
 
 ## 2. Verify that Kong Enterprise has Started Successfully
 

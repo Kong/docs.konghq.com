@@ -34,7 +34,7 @@ $ kong start [-c /path/to/kong.conf]
 ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to [your own configuration](https://docs.konghq.com/0.13.x/configuration/#configuration-loading).
+allowing you to point to [your own configuration](/0.13.x/configuration/#configuration-loading).
 
 ## 2. Verify that Kong EE has started successfully
 
@@ -78,10 +78,10 @@ Now that you have Kong EE running you can interact with the Admin API and GUI.
 
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
-[CLI]: /latest/cli
-[API]: /latest/admin-api
+[CLI]: /0.13.x/cli
+[API]: /0.13.x/admin-api
 [GUI]: /enterprise/{{page.kong_version}}/admin-gui/
-[datastore-section]: /latest/configuration/#datastore-section
+[datastore-section]: /0.13.x/configuration/#datastore-section
 [adding-your-api]: /enterprise/{{page.kong_version}}/getting-started/adding-your-api
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /enterprise/{{page.kong_version}}/installation/centos/

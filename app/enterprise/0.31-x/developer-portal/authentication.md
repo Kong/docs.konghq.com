@@ -41,7 +41,7 @@ Now that we've created our API, update the following line in your Kong Configura
 portal_api_uri = 127.0.0.1:8000/portal
 ```
 
-Next, we need to enable an authentication plugin and apply it our newly created API. You can select from any of the available [Kong plugins](https://konghq.com/plugins/). Let's start with [Basic Authentication:](https://docs.konghq.com/plugins/basic-authentication/)
+Next, we need to enable an authentication plugin and apply it our newly created API. You can select from any of the available [Kong plugins](https://konghq.com/plugins/). Let's start with [Basic Authentication:](/plugins/basic-authentication/)
 
 ```bash
 curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins \
@@ -49,7 +49,7 @@ curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins \
   --data 'config.hide_credentials=true'
 ```
 
-Now, let's enable the [CORS plugin](https://docs.konghq.com/plugins/cors/) so your Dev Portal can make requests from `:8003` → `:8000` and with the appropriate access control headers:
+Now, let's enable the [CORS plugin](/plugins/cors/) so your Dev Portal can make requests from `:8003` → `:8000` and with the appropriate access control headers:
 
 ```bash
 curl -X POST http://127.0.0.1:8001/apis/portal-files/plugins \
@@ -87,8 +87,8 @@ You should now see that [:8000/portal/files](http://127.0.0.1:8000/portal/files)
 
 Other auth plugins are also provided and are explained in more detail in “[Example configurations](#example-configs)”:
 
-* [Key Authentication](https://docs.konghq.com/plugins/key-authentication/)
-* [OpenID Connect-EE](https://docs.konghq.com/plugins/ee-openid-connect/)
+* [Key Authentication](/plugins/key-authentication/)
+* [OpenID Connect-EE](/plugins/ee-openid-connect/)
 
 Next, we will tell the Dev Portal that authentication is enabled by manipulating a few files.
 
@@ -134,7 +134,7 @@ After you have set `auth=true` in your Files, you will need to tell the Dev Port
 
 ### Add a Consumer
 
-Next, [add a Kong consumer](/latest/getting-started/adding-consumers/) with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
+Next, [add a Kong consumer](/enterprise/{{page.kong_version}}/getting-started/adding-consumers/) with [credentials](/plugins/basic-authentication/#create-a-credential) that are associated with your Basic auth plugin.
 
 ### Login to the Dev Portal
 
@@ -378,7 +378,7 @@ window.onLoginError = onLoginError
 
 ### Basic Authentication
 
-Check out the section “**Enabling Authentication”** for a step by step guide on setting up [Basic Authentication](https://docs.konghq.com/plugins/basic-authentication/).
+Check out the section “**Enabling Authentication”** for a step by step guide on setting up [Basic Authentication](/plugins/basic-authentication/).
 
 ![alt text](https://konghq.com/wp-content/uploads/2018/03/screen-browser4.png "Basic Auth")
 
@@ -399,7 +399,7 @@ Check out the section “**Enabling Authentication”** for a step by step guide
 
 ### Key Authentication
 
-The [Key Authentication Plugin](https://docs.konghq.com/plugins/key-authentication/) allows developers to use API keys to authenticate requests against an API. This is useful when consumers have an API Key rather than a username/password.
+The [Key Authentication Plugin](/plugins/key-authentication/) allows developers to use API keys to authenticate requests against an API. This is useful when consumers have an API Key rather than a username/password.
 
 Add the key auth plugin to the `portal-files` API:
 
@@ -437,9 +437,9 @@ The `loginDecorator` will then save the API key from the form submission in loca
 
 ### Open-ID Connect Plugin
 
-The [OpenID Connect Plugin](https://docs.konghq.com/plugins/ee-openid-connect/) allows you to hook into existing authentication setups using third-party *Identity Providers* (**IdP**) such as Google, Yahoo, Microsoft Azure AD, etc. 
+The [OpenID Connect Plugin](/plugins/ee-openid-connect/) allows you to hook into existing authentication setups using third-party *Identity Providers* (**IdP**) such as Google, Yahoo, Microsoft Azure AD, etc. 
 
-[OIDC](https://docs.konghq.com/plugins/ee-openid-connect/) must be used with the “session” method, utilizing cookies for Dev Portal File API requests.
+[OIDC](/plugins/ee-openid-connect/) must be used with the “session” method, utilizing cookies for Dev Portal File API requests.
 
 Add the `openid-connect` plugin to the `portal-files` API:
 
