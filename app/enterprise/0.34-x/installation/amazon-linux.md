@@ -25,6 +25,10 @@ $ sudo service postgresql95 start
 $ sudo -i -u postgres (puts you into new shell)
 ```
 
+**Note**: `<USERNAME>` is obtained from your access key, by appending a `%40kong`
+to it (encoded form of `@kong`). For example, if your access key is `bob-company`,
+your username will be `bob-company%40kong`.
+
 Create `kong` user
 
 ```bash
