@@ -158,9 +158,9 @@ authentication failed and 'anonymous' was set)
 
 #### LDAP Search and config.bind_dn
 
-LDAP directory searching is performed during the request/plugin lifecycle and is
-used to retrieve the fully qualified DN of the user, in order that a bind 
-request can be performed using the user's given LDAP username and password. The 
+LDAP directory searching is performed during the request/plugin lifecycle. It is
+used to retrieve the fully qualified DN of the user so a bind 
+request can be performed with the user's given LDAP username and password. The 
 search for the user being authenticated uses the `config.bind_dn` property. The 
 search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
 `base_dn=<config.base_dn>`. Here is an example of how it performs the search 
