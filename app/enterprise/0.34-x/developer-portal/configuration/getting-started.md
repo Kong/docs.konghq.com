@@ -40,7 +40,7 @@ included as subdomains e.g `http://default.localhost:8003`
 For more information on the Dev Portal properties available, checkout out the 
 [Kong Enterprise Configuration Property Reference](/enterprise/{{page.kong_version}}/property-reference)
 
-> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://docs.konghq.com/0.13.x/configuration/) in order to implement this step.
+> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](/0.13.x/configuration/) in order to implement this step.
 
 
 

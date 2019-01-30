@@ -18,8 +18,8 @@ properties:
   Kong's configuration capabilities: the **Admin API** (`8001` by default).
 
 <div class="alert alert-warning">
-<p><strong>Note:</strong> Starting with 0.13.0, the API entity was
-deprecated. This document will cover proxying with the new Routes and
+<p><strong>Note:</strong> Starting with 1.0.0, the API entity has been removed.
+This document will cover proxying with the new Routes and
 Services entities.</p>
 <p>See an older version of this document if you are using 0.12 or
 below.</p>
@@ -925,14 +925,13 @@ the `cert.pem` certificate previously configured.
 
 [Back to TOC](#table-of-contents)
 
-### Restricting the client protocol (HTTP/HTTPS)
+### Restricting the client protocol (HTTP/HTTPS/TCP/TLS)
 
 Routes have a `protocols` property to restrict the client protocol they should
-listen for. This attribute accepts a set of values, which can be `http` or
-`https`.
+listen for. This attribute accepts a set of values, which can be `"http"`,
+`"https"`, `"tcp"` or `"tls"`.
 
-A Route with `http` and `https` will accept traffic regardless of the protocol
-the client is connecting with (plain-text or over TLS):
+A Route with `http` and `https` will accept traffic in both protocols.
 
 ```json
 {
@@ -946,22 +945,10 @@ the client is connecting with (plain-text or over TLS):
 }
 ```
 
-Not specifying `https` has the same effect, a route would accept both
-plain-text and TLS traffic:
+Not specifying any protocol has the same effect, since routes default to
+`["http", "https"]`.
 
-```json
-{
-    "hosts": ["..."],
-    "paths": ["..."],
-    "methods": ["..."],
-    "protocols": ["http"],
-    "service": {
-        "id": "..."
-    }
-}
-```
-
-However, a Route with only `https` would _only_ accept traffic over TLS. It
+However, a Route with *only* `https` would _only_ accept traffic over HTTPS. It
 would _also_ accept unencrypted traffic _if_ SSL termination previously
 occurred from a trusted IP. SSL termination is considered valid when the
 request comes from one of the configured IPs in
@@ -993,6 +980,54 @@ Server: kong/x.y.z
 
 {"message":"Please use HTTPS protocol"}
 ```
+
+Since Kong 1.0 it's possible to create routes for raw TCP (not necessarily HTTP)
+connections by using `"tcp"` in the `protocols` attribute:
+
+```json
+{
+    "hosts": ["..."],
+    "paths": ["..."],
+    "methods": ["..."],
+    "protocols": ["tcp"],
+    "service": {
+        "id": "..."
+    }
+}
+```
+
+Similarly, we can create routes which accept raw TLS traffic (not necessarily HTTPS) with
+the `"tls"` value:
+
+```json
+{
+    "hosts": ["..."],
+    "paths": ["..."],
+    "methods": ["..."],
+    "protocols": ["tls"],
+    "service": {
+        "id": "..."
+    }
+}
+```
+
+A Route with *only* `TLS` would _only_ accept traffic over TLS.
+
+It is also possible to accept both TCP and TLS simultaneously:
+
+```
+{
+    "hosts": ["..."],
+    "paths": ["..."],
+    "methods": ["..."],
+    "protocols": ["tcp", "tls"],
+    "service": {
+        "id": "..."
+    }
+}
+
+```
+
 
 [Back to TOC](#table-of-contents)
 

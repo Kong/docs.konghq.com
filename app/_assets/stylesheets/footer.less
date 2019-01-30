@@ -4,13 +4,12 @@
  * used across the site
  */
 
-@import "variables";
-@import "utils";
+@import 'variables';
+@import 'utils';
 
 /* =======================================================
    MARKETING -> FOOTER
    ==================================================== */
-
 
 // Animations
 @keyframes mashape-ape-animation {
@@ -27,7 +26,7 @@
  * Main footer selector
  */
 
-[class^="marketing-footer"] {
+[class^='marketing-footer'] {
   .font-source-sans();
   width: 100%;
   padding: @gutter-flex-2x 0 0;
@@ -42,15 +41,165 @@
         padding: 0;
       }
       @media (min-width: @grid-width-sm) {
-        width: 80%;
-        max-width: 1020px;
+        width: 95%;
+        max-width: 1280px;
       }
 
       > li {
+        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+          'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .social-link {
+          width: auto;
+          min-width: auto;
+          display: inline-block;
+          float: left;
+          a:not(.btn-gh),
+          i {
+            color: #999;
+            font-size: 20px;
+            margin-right: 5px;
+          }
+          a.btn-gh {
+            padding: 2px 5px;
+            color: #333;
+            text-decoration: none;
+            text-shadow: 0 1px 0 #fff;
+            font: 700 11px/14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            cursor: pointer;
+            border-radius: 3px;
+            border: 1px solid #d5d5d5;
+            background-color: #eee;
+            background-image: linear-gradient(to bottom, #fcfcfc 0, #eee 100%);
+            font-size: 11px;
+            color: #999;
+            display: inline-block;
+            margin-top: 6px;
+            i {
+              color: #999;
+              margin-right: 0px;
+              font-size: 14px;
+            }
+          }
+        }
+
+        #subscription_form .error-message.message {
+          display: inline-block;
+          width: 100%;
+          clear: both;
+          position: absolute;
+          bottom: -20px;
+          left: 0;
+          @media (max-width: 480px) {
+            bottom: -25px;
+          }
+        }
+
+        form {
+          display: inline-block;
+          width: 100%;
+          margin-top: 1rem;
+          margin-bottom: 10px;
+          @media (max-width: 480px) {
+            margin-bottom: 20px;
+          }
+          input[type='text'] {
+            display: inline-block;
+            float: left;
+            height: 40px;
+            margin-right: 7.5px;
+            font-size: 16px;
+            max-width: 225px;
+            margin-bottom: 0;
+            @media (max-width: 480px) {
+              max-width: 100% !important;
+              width: 100%;
+              margin-bottom: 5px;
+            }
+          }
+          input.button {
+            background: #17a956;
+            height: 40px;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: Roboto;
+            padding-left: 15px;
+            padding-right: 15px;
+            position: absolute;
+            @media (max-width: 480px) {
+              position: relative;
+              display: inline-block;
+              width: 100%;
+              clear: both;
+            }
+          }
+          .success-message.message {
+            float: left;
+            display: inline-block;
+            clear: both;
+            margin-top: 5px;
+            color: #409ecb;
+          }
+        }
+        h5 {
+          color: #062f4d;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          transform: scaleY(0.9);
+          margin-bottom: 1rem;
+          font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+            'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        a {
+          font-size: 15px;
+          span {
+            display: inline-block;
+            padding: 2.5px 7.5px;
+            margin-left: 5px;
+            color: #008aeb;
+            background: #d0eaff;
+            border-radius: 5px;
+            font-weight: 400;
+            font-size: 12px;
+            text-transform: uppercase;
+          }
+        }
         .flex-col(1, 1, 6);
+
+        &.logo-wrapper {
+          min-width: 350px;
+        }
+
+        @media (max-width: 960px) {
+          &.logo-wrapper {
+            width: 100%;
+            flex-basis: 100%;
+            min-width: 100%;
+            input[type='text'] {
+              display: inline-block;
+              float: left;
+              height: 40px;
+              margin-right: 7.5px;
+              font-size: 16px;
+              max-width: calc(~'100% - 125px');
+              width: 100%;
+              min-width: 200px;
+              margin-bottom: 0;
+            }
+          }
+        }
 
         @media (min-width: @grid-width-sm) {
           .flex-col(1, 1, 3);
+          &.logo-wrapper {
+            flex-basis: 33.33333333%;
+          }
+          &:not(.logo-wrapper) {
+            padding-left: 3rem;
+          }
         }
         @media (min-width: @grid-width-lg) {
           .flex-col(1, 1, 2);
@@ -74,7 +223,7 @@
   .image,
   .logo {
     width: 100%;
-    max-width: 10rem;
+    max-width: 120px;
     height: 100%;
 
     a {
@@ -110,7 +259,7 @@
       justify-content: center;
       width: 100%;
       padding: 0;
-      background-image: url("/assets/images/footer/ape-sprite.png");
+      background-image: url('/assets/images/footer/ape-sprite.png');
       background-size: 200% auto;
       background-position: 0 0;
       background-repeat: no-repeat;
@@ -130,53 +279,55 @@
     }
   }
 
-    /*
+  /*
     * Footer links
     */
 
-    nav {
-      h4 {
-        margin: 0 0 1.5em;
-        padding: 0.75rem 0 0;
-        .font-source-sans-sc();
-        .font-size(19);
-        letter-spacing: 0;
-        font-weight: 600;
+  nav {
+    h4 {
+      margin: 0 0 1.5em;
+      padding: 0.75rem 0 0;
+      .font-source-sans-sc();
+      .font-size(19);
+      letter-spacing: 0;
+      font-weight: 600;
 
-        &:after {
-          content: '';
-          display: block;
-          width: 3.25rem;
-          margin: 1rem 0 1.5rem;
-        }
-      }
-      ul, li {
-        padding-left: 0;
-        margin: 0;
-        list-style: none;
-      }
-      ul {
-        margin-bottom: 2em;
-      }
-      li {
-        margin-bottom: 0.75rem;
-      }
-      a {
-        text-decoration: none;
-        .font-size(22);
-        font-weight: 400;
-      }
-      a:hover {
-        text-decoration: none;
+      &:after {
+        content: '';
+        display: block;
+        width: 3.25rem;
+        margin: 1rem 0 1.5rem;
       }
     }
+    ul,
+    li {
+      padding-left: 0;
+      margin: 0;
+      list-style: none;
+    }
+    ul {
+      margin-bottom: 2em;
+    }
+    li {
+      margin-bottom: 0.75rem;
+    }
+    a {
+      text-decoration: none;
+      .font-size(22);
+      font-weight: 400;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
 
   /**
    * Marketing > Footer > Legal
    */
 
   .legal {
-    padding: 1rem 0;
+    padding: 0rem 0 1rem;
+    background: #fff;
 
     ul {
       .flex-row();
@@ -200,12 +351,18 @@
       }
 
       li {
-        .flex-col(1, 1, 6);
-        align-self: center;
-      }
-      li:last-child {
-        .flex-col(1, 1, 6);
-        text-align: right;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        font-size: 16px !important;
+        a {
+          font-weight: 500;
+        }
+        b {
+          color: #ccc;
+          display: inline-block;
+          margin: 0 10px;
+        }
       }
 
       .social-link {
@@ -240,9 +397,13 @@
   } // end legal
 } // end Footer component
 
-[class^="marketing-footer"][class*="--light-gray"] {
-  border-top: solid 1px #fafafa;
-  background-color: #fafafa;
+[class^='marketing-footer'][class*='--light-gray'] {
+  border-top: solid 1px #ccc;
+  background-color: #fff;
+
+  section {
+    padding-top: 0 !important;
+  }
 
   nav {
     h4 {
@@ -262,18 +423,15 @@
   }
 
   .legal {
-    background-color: #fafafa;
+    background-color: #fff;
     color: @black-70;
 
     ul {
-      &:before {
-        border-top: solid 1px @color-dark-blend-border-light;
-      }
+      text-align: center;
 
       a {
         color: #000;
       }
     }
-
   }
 }

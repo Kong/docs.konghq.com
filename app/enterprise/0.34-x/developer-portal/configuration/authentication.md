@@ -6,9 +6,9 @@ title: Authenticating the Dev Portal
 
 The Dev Portal supports the following authentication plugins:
 
-* [Basic Auth](https://docs.konghq.com/hub/kong-inc/basic-auth/)
-* [Key Authentication](https://docs.konghq.com.org/plugins/key-authentication)
-* [OpenID Connect-EE](https://docs.konghq.com.org/plugins/ee-openid-connect/)
+* [Basic Auth](/hub/kong-inc/basic-auth/)
+* [Key Authentication](/plugins/key-authentication)
+* [OpenID Connect-EE](/plugins/ee-openid-connect/)
 
 
 ## Enable Authentication
@@ -40,7 +40,7 @@ Developers are now able to request access to the Dev Portal via the
 will be submitted to the `http://127.0.0.1:8000/_kong/portal/register` endpoint 
 and a Developer credential is created upon registration. The Developer will not 
 be able to use this credential until they are approved. See 
-[Approving Developers](/enterprise/{{page.kong_version}}/developer-portal/management/managing-developers#approving-developers).
+[Approving Developers](/enterprise/{{page.kong_version}}/developer-portal/management/developers/#developer-status).
 
 
 Required Registration fields by Authentication plugin:
@@ -91,11 +91,11 @@ in plain text, so be careful not to store sensitive information in meta.
 
 Check out the section "**Enabling Authentication"** for a step by step guide on 
 setting up 
-[Basic Authentication](https://docs.konghq.com.org/plugins/basic-authentication).
+[Basic Authentication](/plugins/basic-authentication).
 
 ### Key Authentication
 
-The [Key Authentication Plugin](https://docs.konghq.com.org/plugins/key-authentication) 
+The [Key Authentication Plugin](/plugins/key-authentication) 
 allows developers to use API keys to authenticate requests, and can be used to 
 authenticate the Dev Portal. Developers will be able to login with a single API 
 key, rather than a username/password.
@@ -111,12 +111,12 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
 
 ### Open-ID Connect Plugin
 
-The [OpenID Connect Plugin](/plugins/ee-openid-connect/) allows the Dev Portal 
-to hook into existing authentication setups using third-party 
+The [OpenID Connect Plugin](/hub/kong-inc/openid-connect/) 
+allows the Dev Portal to hook into existing authentication setups using third-party 
 *Identity Providers* (**IdP**) such as Google, Yahoo, Microsoft Azure AD, etc. 
 
-[OIDC](/plugins/ee-openid-connect/) must be used with the `session` method, 
-utilizing cookies for Dev Portal File API requests.
+[OIDC](/hub/kong-inc/openid-connect/) must be used with 
+the `session` method, utilizing cookies for Dev Portal File API requests.
 
 In the Dev Portal's settings in `Kong Manager` select `Open ID Connect` from the 
 Authentication Plugin dropdown, or run the following cURL command:

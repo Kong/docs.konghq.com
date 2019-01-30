@@ -179,7 +179,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
     --data "name=Test%20Application" \
     --data "client_id=SOME-CLIENT-ID" \
     --data "client_secret=SOME-CLIENT-SECRET" \
-    --data "redirect_uri=http://some-domain/endpoint/"
+    --data "redirect_uris[]=http://some-domain/endpoint/"
 ```
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
@@ -189,7 +189,7 @@ form parameter                | default | description
 `name`                        |         | The name to associate to the credential. In OAuth 2.0 this would be the application name.
 `client_id`<br>*optional*     |         | You can optionally set your own unique `client_id`. If missing, the plugin will generate one.
 `client_secret`<br>*optional* |         | You can optionally set your own unique `client_secret`. If missing, the plugin will generate one.
-`redirect_uri`                |         | The URL in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2](https://tools.ietf.org/html/rfc6749#section-3.1.2))
+`redirect_uris`               |         | An array with one or more URLs in your app where users will be sent after authorization ([RFC 6742 Section 3.1.2](https://tools.ietf.org/html/rfc6749#section-3.1.2))
 
 ## Migrating Access Tokens
 

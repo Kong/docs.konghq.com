@@ -22,7 +22,7 @@ configured, please [contact support](mailto:support@konghq.com) for further assi
 
 ## Why do I get errors when testing endpoints in my Developer Portal but not when `curl`ing them?
 
-Developer Portal requests originate from port `8003`, but are proxied on port `8000`. For security, this causes your browser to throw a Cross Origin Request error. You can fix this by configuring the [CORS plugin](https://docs.konghq.com/plugins/cors/) and specifying `config.credentials=true` and `config.origins=http://localhost:8003`. Also, unless you have specific reasons to do so, you should leave `config.preflight_continue=false`.
+Developer Portal requests originate from port `8003`, but are proxied on port `8000`. For security, this causes your browser to throw a Cross Origin Request error. You can fix this by configuring the [CORS plugin](/plugins/cors/) and specifying `config.credentials=true` and `config.origins=http://localhost:8003`. Also, unless you have specific reasons to do so, you should leave `config.preflight_continue=false`.
 
 ## Why do I have files with `unauthenticated/` in them?
 

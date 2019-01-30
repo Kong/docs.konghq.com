@@ -102,9 +102,12 @@ Running Kong on Azure Container Instances is super easy:
                           --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" \
                                                   KONG_PG_USER="<username>" \
                                                   KONG_PG_PASSWORD="<password>" \
-                          --command-line "kong migrations up"
+                          --command-line "kong migrations bootstrap"
     ```
     In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql).
+
+    **Note for Kong < 0.15**: with Kong versions below 0.15 (up to 0.14), use
+    the `up` sub-command instead of `bootstrap`.
 
 1. **Start Kong**
 

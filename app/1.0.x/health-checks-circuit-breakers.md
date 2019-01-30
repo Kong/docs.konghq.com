@@ -137,12 +137,17 @@ when a target is healthy or unhealthy. If the `interval` value for either
 is set to zero, the checking is disabled at the corresponding scenario.
 When both are zero, active health checks are disabled altogether.
 
+<div class="alert alert-warning">
+<strong>Note:</strong> Active health checks currently only support HTTP/HTTPS targets. They
+do not apply to Upstreams assigned to Services with the protocol attribute set to "tcp" or "tls".
+</div>
+
 [Back to TOC](#table-of-contents)
 
 ### Passive health checks (circuit breakers)
 
 Passive health checks, also known as circuit breakers, are
-checks performed based on the requests being proxied by Kong,
+checks performed based on the requests being proxied by Kong (HTTP/HTTPS/TCP),
 with no additional traffic being generated. When a target becomes
 unresponsive, the passive health checker will detect that and mark
 the target as unhealthy. The ring-balancer will start skipping this
@@ -167,6 +172,7 @@ Passive health checks have the advantage of not producing extra
 traffic, but they are unable to automatically mark a target as
 healthy again: the "circuit is broken", and the target needs to
 be re-enabled again by the system administrator.
+
 
 [Back to TOC](#table-of-contents)
 
@@ -252,7 +258,7 @@ status change. The counter threshold fields are:
 * `healthchecks.active.healthy.successes` - Number of successes in active
 probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider
 a target healthy.
-* `healthchecks.active.unhealthy.tcp_failures` - Number of TCP failures 
+* `healthchecks.active.unhealthy.tcp_failures` - Number of TCP failures
 or TLS verification failures in active probes to consider a target unhealthy.
 * `healthchecks.active.unhealthy.timeouts` - Number of timeouts in active
 probes to consider a target unhealthy.

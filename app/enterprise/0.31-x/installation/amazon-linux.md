@@ -20,6 +20,10 @@ baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterpris
 $ sudo yum install kong-enterprise-edition
 ```
 
+**Note**: `<USERNAME>` is obtained from your access key, by appending a `%40kong`
+to it (encoded form of `@kong`). For example, if your access key is `bob-company`,
+your username will be `bob-company%40kong`.
+
 ## Install Postgres
 ```bash
 $ sudo yum install postgresql95 postgresql95-server
@@ -53,7 +57,7 @@ $ kong migrations up [-c /path/to/kong.conf]
 $ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 
-**Note:** You may use `kong.conf.default` or create [your own configuration](https://docs.konghq.com/0.12.x/configuration/#configuration-loading).
+**Note:** You may use `kong.conf.default` or create [your own configuration](/0.12.x/configuration/#configuration-loading).
 
 ### Test your Kong installation
 

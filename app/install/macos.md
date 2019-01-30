@@ -50,11 +50,14 @@ breadcrumbs:
     Next, run the Kong migrations:
 
     ```bash
-    $ kong migrations up [-c /path/to/kong.conf]
+    $ kong migrations bootstrap [-c /path/to/kong.conf]
     ```
 
-    **Note**: Migrations should never be run concurrently; only
-    one Kong node should be performing migrations at a time.
+    **Note for Kong < 0.15**: with Kong versions below 0.15 (up to 0.14), use
+    the `up` sub-command instead of `bootstrap`. Also note that with Kong <
+    0.15, migrations should never be run concurrently; only one Kong node
+    should be performing migrations at a time. This limitation is lifted for
+    Kong 0.15, 1.0, and above.
 
 1. **Start Kong**
 

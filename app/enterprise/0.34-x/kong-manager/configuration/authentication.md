@@ -109,6 +109,7 @@ enforce_rbac = on
 admin_gui_auth_conf={                                     \
 "anonymous":"",                                           \
 "attribute":"uid",                                        \ 
+"bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
 "base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
 "cache_ttl": 2,                                           \
 "header_type":"Basic",                                    \
@@ -121,11 +122,15 @@ admin_gui_auth_conf={                                     \
 }
 ```
 
-The values above can be replaced with their corresponding values for your 
-custom LDAP configuration:
+The values above can be replaced with their corresponding values for your custom
+LDAP configuration:
 
+  - `<ENTER_YOUR_BIND_DN_HERE>` - Your LDAP Bind DN (Distinguished Name)
+        * Used to perform LDAP search of user. This bind_dn should have 
+          permissions to search for the user being authenticated.
+        * For Example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
   - `<ENTER_YOUR_BASE_DN_HERE>` - Your LDAP Base DN (Distinguished Name)
-        * For Example, `ou=scientists,dc=ldap,dc=kong,dc=com`
+        * For Example, `ou=scientists,dc=ldap,dc=com`
   - `<ENTER_YOUR_LDAP_HOST_HERE>` - LDAP Host domain
         * For Example, `ec2"-XX-XXX-XX-XXX.compute-1.amazonaws.com`
 
