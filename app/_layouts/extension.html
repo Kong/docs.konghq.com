@@ -272,7 +272,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           {{ plugin_config_for_api | markdownify }}
         {% endif %}
 
-        <h3>Global plugins</h3>
+        <h3 id="global-plugins">Global plugins</h3>
 
         <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
           Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
@@ -280,7 +280,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
         </p>
 
-        <h3>Parameters</h3>
+        <h3 id="parameters">Parameters</h3>
 
         <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
 
@@ -470,7 +470,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
     <div class="page-content-container">
       <div class="page-content">
-        <div class="content">
+        <div class="content show-anchor-links">
           {{ full_content }}
         </div>
       </div>
