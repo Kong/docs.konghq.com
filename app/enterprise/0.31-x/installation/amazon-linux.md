@@ -20,6 +20,10 @@ baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterpris
 $ sudo yum install kong-enterprise-edition
 ```
 
+**Note**: `<USERNAME>` is obtained from your access key, by appending a `%40kong`
+to it (encoded form of `@kong`). For example, if your access key is `bob-company`,
+your username will be `bob-company%40kong`.
+
 ## Install Postgres
 ```bash
 $ sudo yum install postgresql95 postgresql95-server
