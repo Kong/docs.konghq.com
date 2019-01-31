@@ -28,8 +28,8 @@ enabled by navigating to `Settings` page in the `Kong Manager` and toggling the
 Dev Portal Switch. Or by sending the following cURL request:
 
 ```
-curl -X PATCH http://localhost:8001/workspace/<WORKSPACE_NAME> \
- --data "config.portal=on"
+curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
+ --data "config.portal=true"
 ```
 
 **Note: If you cannot see the Settings or Overview pages, the Kong Dev Portal 
