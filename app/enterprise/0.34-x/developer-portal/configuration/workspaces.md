@@ -11,8 +11,7 @@ running multiple instances of the Dev Portal - one for each Workspace. When a
 Workspace is created, that Workspaces Dev Portal will automatically appear on 
 the "Dev Portals Overivew Page"
 
-![Dev Portals Overview Page]
-(https://konghq.com/wp-content/uploads/2018/11/devportals-overview.png)
+![Dev Portals Overview Page](https://konghq.com/wp-content/uploads/2018/11/devportals-overview.png)
 
 Note that Kong Admins will only be able to see the cards for Dev Portals to 
 which they have permissions to edit. 
