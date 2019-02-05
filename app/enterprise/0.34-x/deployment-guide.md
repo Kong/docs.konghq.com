@@ -126,7 +126,7 @@ By default, `8002`.
 - Allow HTTPS traffic to [`admin_gui_listen`](/enterprise/{{page.kong_version}}/property-reference/#admin_gui_listen). 
 By default, `8445`.
 
-For Dev Portal:
+For the Dev Portal:
 
 - Allow HTTP traffic to [`portal_gui_listen`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen). 
 By default, `8003`.
