@@ -128,8 +128,10 @@ By default, `8445`.
 
 For Dev Portal:
 
-- Allow HTTP traffic to [`portal_gui_listen`](/0.13.x/configuration/#portal_gui_listen). By default, `8003`.
-- Allow HTTPS traffic to [`portal_gui_listen`](/0.13.x/configuration/#portal_gui_listen). By default, `8446`.
+- Allow HTTP traffic to [`portal_gui_listen`](/0.13.x/configuration/#portal_gui_listen). 
+By default, `8003`.
+- Allow HTTPS traffic to [`portal_gui_listen`](/0.13.x/configuration/#portal_gui_listen). 
+By default, `8446`.
 
 **Note**: since Kong CE 0.13.0—and EE 0.32—listen directives have a new
 format, described [here](/0.13.x/configuration/#proxy_listen), where instead of
