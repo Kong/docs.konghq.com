@@ -114,15 +114,24 @@ firewall settings for Kong.
 
 These are the port settings in order for Kong to work:
 
-- Allow HTTP traffic to [proxy_listen](/0.13.x/configuration/#proxy_listen). By default 8000.
-- Allow HTTPS traffic to [proxy_listen](/0.13.x/configuration/#proxy_listen). By default 8443.
-- Allow HTTP traffic to [admin_listen](/0.13.x/configuration/#admin_listen). By default 8001.
-- Allow HTTPS traffic to [admin_listen](/0.13.x/configuration/#admin_listen). By default 8444.
+- Allow HTTP traffic to [`proxy_listen`](/0.13.x/configuration/#proxy_listen). By default, `8000`.
+- Allow HTTPS traffic to [`proxy_listen`](/0.13.x/configuration/#proxy_listen). By default, `8443`.
+- Allow HTTP traffic to [`admin_listen`](/0.13.x/configuration/#admin_listen). By default, `8001`.
+- Allow HTTPS traffic to [`admin_listen`](/0.13.x/configuration/#admin_listen). By default, `8444`.
 
 For Kong Manager:
 
-- Allow HTTP traffic to admin_gui_listen. By default 8002.
-- Allow HTTPS traffic to admin_gui_listen_ssl. By default 8445.
+- Allow HTTP traffic to [`admin_gui_listen`](/enterprise/{{page.kong_version}}/property-reference/#admin_gui_listen). 
+By default, `8002`.
+- Allow HTTPS traffic to [`admin_gui_listen`](/enterprise/{{page.kong_version}}/property-reference/#admin_gui_listen). 
+By default, `8445`.
+
+For the Dev Portal:
+
+- Allow HTTP traffic to [`portal_gui_listen`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen). 
+By default, `8003`.
+- Allow HTTPS traffic to [`portal_gui_listen`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen). 
+By default, `8446`.
 
 **Note**: since Kong CE 0.13.0—and EE 0.32—listen directives have a new
 format, described [here](/0.13.x/configuration/#proxy_listen), where instead of
