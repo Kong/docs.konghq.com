@@ -121,8 +121,10 @@ These are the port settings in order for Kong to work:
 
 For Kong Manager:
 
-- Allow HTTP traffic to [`admin_gui_listen`](/0.13.x/configuration/#admin_gui_listen). By default, `8002`.
-- Allow HTTPS traffic to [`admin_gui_listen`](/0.13.x/configuration/#admin_gui_listen). By default, `8445`.
+- Allow HTTP traffic to [`admin_gui_listen`](/0.13.x/configuration/#admin_gui_listen). 
+By default, `8002`.
+- Allow HTTPS traffic to [`admin_gui_listen`](/0.13.x/configuration/#admin_gui_listen). 
+By default, `8445`.
 
 For Dev Portal:
 
