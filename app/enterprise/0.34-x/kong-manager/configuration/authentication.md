@@ -17,11 +17,6 @@ or you can set one up on the Organization page of Kong Manager.
 
 ## How to Set Up a Super Admin
 
-<video width="100%" autoplay loop controls>
-  <source src="https://konghq.com/wp-content/uploads/2019/02/org-super-admin-ent-34.mov" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
 1. Go to the "Organization" tab in Kong Manager.
 
 2. Click "+Invite User" and fill out the form. 
