@@ -40,7 +40,7 @@ Connection: keep-alive
 Or, add your first Consumer via Kong Manager:
 
 <video width="100%" autoplay loop controls>
-  <source src="https://konghq.com/wp-content/uploads/2018/07/add-consumer-ee-0.33.mp4" type="video/mp4">
+  <source src="https://konghq.com/wp-content/uploads/2019/02/create-consumer-ent-34.mov" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
