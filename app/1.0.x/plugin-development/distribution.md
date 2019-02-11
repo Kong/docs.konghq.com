@@ -189,6 +189,16 @@ Note: you can also set this property via its environment variable equivalent:
 Reminder: don't forget to update the `plugins` directive for each node
 in your Kong cluster.
 
+Reminder: the plugin will take effect after restart kong:
+    
+    kong restart
+
+But, if you want to apply plugin while kong never stop, you can use this:
+
+    kong prepare
+    kong reload
+    
+
 [Back to TOC](#table-of-contents)
 
 ---
