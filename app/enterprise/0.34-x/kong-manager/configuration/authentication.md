@@ -81,6 +81,11 @@ encrypt your Kong Manager traffic.
 
 ## How to Log Out and Log In
 
+<video width="100%" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2019/02/logout-login-enterprise-34.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 1. Hover over the account name at the top right, and click the "Logout" button. 
 This will clear the Local Storage authentication data (if exists) and redirect 
 to the login page.
