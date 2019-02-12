@@ -6,6 +6,10 @@ chapter: 5
 
 ## How to Create a New Workspace
 
+<video width="100%" autoplay loop controls>
+ <source src="https://konghq.com/wp-content/uploads/2019/02/new-workspace-ent-34.mov" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
 
 1. Log in as the Super Admin. On the "Workspaces" page, click the "New Workspace" button at the top right to see the "Create Workspace" form.
 
