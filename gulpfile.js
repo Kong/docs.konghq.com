@@ -288,7 +288,7 @@ gulp.task('clean', function () {
   return del(['dist', '.gh-pages'])
 })
 
-gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
+gulp.task('build', ['javascripts', 'images', 'fonts', 'copycss'], function (cb) {
   sequence('html', 'styles', cb)
 })
 
