@@ -179,7 +179,7 @@ Adding this value allows you to use the following function on the DAO of that
 entity:
 
 ```lua
-cache_key = kong.dao:cache_key(arg1, arg2, arg3, ...)
+cache_key = kong.db.<dao>:cache_key(arg1, arg2, arg3, ...)
 ```
 
 Where the arguments must be the attributes specified in your schema's
@@ -189,7 +189,7 @@ computes a string value `cache_key` that is ensured to be unique.
 For example, if we were to generate the cache_key of an API key:
 
 ```lua
-local cache_key = kong.dao.keyauth_credentials:cache_key("abcd")
+local cache_key = kong.db.keyauth_credentials:cache_key("abcd")
 ```
 
 This would produce a cache_key for the API key `"abcd"` (retrieved from one
@@ -198,7 +198,7 @@ cache (or fetch from the database if the cache is a miss):
 
 ```lua
 local apikey = kong.request.get_query().apikey
-local cache_key = kong.dao.keyauth_credentials:cache_key(apikey)
+local cache_key = kong.db.keyauth_credentials:cache_key(apikey)
 
 local credential, err = kong.cache:get(cache_key, nil, load_entity_key, apikey)
 if err then
