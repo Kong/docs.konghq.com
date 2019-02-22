@@ -1,5 +1,5 @@
 ---
-title: Loadbalancing reference
+title: Load Balancing Reference
 ---
 
 # Load Balancing Reference
@@ -8,7 +8,7 @@ Kong provides multiple ways of load balancing requests to multiple backend servi
 a straightforward DNS-based method, and a more dynamic ring-balancer that also
 allows for service registry without needing a DNS server.
 
-## DNS-based loadbalancing
+## DNS-based load balancing
 
 When using DNS based load balancing the registration of the backend services is
 done outside of Kong, and Kong only receives updates from the DNS server.
