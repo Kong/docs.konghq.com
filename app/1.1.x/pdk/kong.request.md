@@ -290,7 +290,7 @@ Returns the path, including the querystring if any.  No
 ``` lua
 -- Given a request to https://example.com:1234/v1/movies?movie=foo
 
-kong.request.get_raw_path_and_query() -- "/v1/movies?movie=foo"
+kong.request.get_path_with_query() -- "/v1/movies?movie=foo"
 ```
 
 [Back to TOC](#table-of-contents)
