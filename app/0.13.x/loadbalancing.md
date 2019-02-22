@@ -1,5 +1,5 @@
 ---
-title: Loadbalancing reference
+title: Load Balancing Reference
 ---
 
 # Load Balancing Reference
