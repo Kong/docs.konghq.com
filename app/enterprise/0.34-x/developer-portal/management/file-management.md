@@ -1,7 +1,6 @@
 ---
 title: Kong Dev Portal File Management
 ---
-# {{ page.title }}
 
 ## File Types
 

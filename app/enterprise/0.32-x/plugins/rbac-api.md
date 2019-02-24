@@ -1,7 +1,8 @@
 ---
 title: RBAC API
 ---
-# RBAC API Reference
+
+## Introduction
 
 <div class="alert alert-ee">
   Be sure to review the <a href="/enterprise/{{page.kong_version}}/setting-up-admin-api-rbac">RBAC overview</a> before exploring the RBAC API below.

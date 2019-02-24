@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.service
+## Introduction
 
 The service module contains a set of functions to manipulate the connection
  aspect of the request to the Service, such as connecting to a given host, IP

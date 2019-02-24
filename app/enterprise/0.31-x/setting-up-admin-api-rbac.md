@@ -1,8 +1,9 @@
 ---
 title: Setting Up Admin API RBAC
 ---
-# Setting Up Admin API RBAC
-## Overview
+
+## Introduction
+
 Kong Enterprise provides an additional layer of security for the Admin API in the form of role-based access control (RBAC). RBAC allows for fine-grained control over resource access based on a model of user roles and permissions. Users are assigned to one or more roles, which each in turn possess one or more permissions granting or denying access to a particular resource. In this way, fine-grained control over specific Admin API resources can be enforced, while scaling to allow complex, case-specific uses.
 
 ## Terms and Concepts

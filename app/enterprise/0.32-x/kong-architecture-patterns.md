@@ -1,7 +1,8 @@
 ---
 title: Kong Architecture Patterns
 ---
-# Kong Architecture Patterns
+
+## Introduction
 
 An important part of setting up a new Kong cluster is choosing the right architectural pattern that fits your needs and integrates with your existing infrastructure. Here are a few that we commonly see and recommend. Kong itself is greatly flexible, and can be setup in many ways. We present these as starting points in hopes that you find that using or extending one of these patterns provides an ideal fit for your unique needs.
 

@@ -2,7 +2,7 @@
 title: Adding Consumers
 ---
 
-# Adding Consumers
+## Introduction
 
 In the last section, we learned how to add plugins to Kong Enterprise Edition
 (EE) - in this section

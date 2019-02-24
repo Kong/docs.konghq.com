@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.ip
+## Introduction
 
 Trusted IPs module
 

@@ -2,7 +2,7 @@
 title: Kong Architecture Overview
 ---
 
-# Kong Architecture Overview
+## Introduction
 
 Broadly, Kong is suite of software that utilizes OpenResty to dynamically configure NGINX and process HTTP requests. This article covers the purpose and architecture of those underlying components as they relate to Kong's execution.
 

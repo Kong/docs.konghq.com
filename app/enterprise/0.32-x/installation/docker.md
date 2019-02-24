@@ -3,7 +3,7 @@ title: Installing Kong EE Docker Image
 class: page-install-method
 ---
 
-# Installing Kong EE from Docker Image
+## Introduction
 
 <img src="/assets/images/distributions/docker.svg"/>
 
