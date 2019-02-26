@@ -30,7 +30,7 @@ the following files until the Kong testing framework is released:
 
 - `bin/busted`: the busted executable running with the resty-cli interpreter
 - `spec/helpers.lua`: helper functions to start/stop Kong from busted
-- `spec/kong_tests.conf`: a configuration file for your running your test Kong instances with the helpers module
+- `spec/kong_tests.conf`: a configuration file for the Kong instances running with the helpers module
 
 Assuming that the `spec.helpers` module is available in your `LUA_PATH`, you
 can use the following Lua code in busted to start and stop Kong:
