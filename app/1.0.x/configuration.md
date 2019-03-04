@@ -794,7 +794,7 @@ To trust *all* /!\ IPs, set this value to `0.0.0.0/0,::/0`.
 If the special value `unix:` is specified, all UNIX-domain sockets will be
 trusted.
 
-See http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from
+See [`nginx http realip module documentation`](http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from)
 for examples of accepted values.
 
 Default: none
@@ -813,7 +813,7 @@ If this value receives `proxy_protocol`:
 - the `proxy_protocol` parameter will be appended to the `listen` directive of the
   Nginx template.
 
-See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
+See [`real ip header documentation`](http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header)
 for a description of this directive.
 
 Default: `X-Real-IP`
@@ -825,7 +825,7 @@ Default: `X-Real-IP`
 This value sets the [ngx_http_realip_module](http://nginx.org/en/docs/http/ngx_http_realip_module.html) directive
 of the same name in the Nginx configuration.
 
-See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
+See [`real ip recursive documantation`](http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive)
 for a description of this directive.
 
 Default: `off`
@@ -839,7 +839,7 @@ Content-Length request header. If a request exceeds this limit, Kong will respon
 413 (Request Entity Too Large). Setting this value to 0 disables checking the request body
 size.
 
-See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
+See [`client max body size documentation`](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
 for further description of this parameter. Numeric values may be suffixed with
 `k` or `m` to denote limits in terms of kilobytes or megabytes.
 
@@ -857,7 +857,7 @@ it is advisable to set this value as high as possible (e.g., set it as high as
 high-concurrency environments will require significant memory allocations to process
 many concurrent large request bodies.
 
-See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
+See [`client body buffer size documentation`](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
 for further description of this parameter. Numeric values may be suffixed with
 `k` or `m` to denote limits in terms of kilobytes or megabytes.
 
@@ -1126,8 +1126,8 @@ Default: `off`
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
 
-See the lua-nginx-module documentation for more information:
-https://github.com/openresty/lua-nginx-module
+See the [`lua-nginx-module documentation`](https://github.com/openresty/lua-nginx-module) for more information.
+
 
 ---
 
@@ -1137,7 +1137,7 @@ Absolute path to the certificate authority file for Lua cosockets in PEM
 format. This certificate will be the one used for verifying Kong's database
 connections, when `pg_ssl_verify` or `cassandra_ssl_verify` are enabled.
 
-See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
+See the [`lua ssl trusted certificate documentation`](https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate) for more information.
 
 Default: none
 
@@ -1150,7 +1150,7 @@ cosockets, set by `lua_ssl_trusted_certificate`.
 
 This includes the certificates configured for Kong's database connections.
 
-See https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth
+See the [`lua ssl verify depth documentation`](https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth) for more information.
 
 Default: `1`
 
@@ -1161,7 +1161,7 @@ Default: `1`
 Sets the Lua module search path (LUA_PATH). Useful when developing or using
 custom plugins not stored in the default search path.
 
-See https://github.com/openresty/lua-nginx-module#lua_package_path
+See the [`lua package path documentation`](https://github.com/openresty/lua-nginx-module#lua_package_path) for more information.
 
 Default: none
 
@@ -1171,7 +1171,7 @@ Default: none
 
 Sets the Lua C module search path (LUA_CPATH).
 
-See https://github.com/openresty/lua-nginx-module#lua_package_cpath
+See the [`lua package cpath documentation`](https://github.com/openresty/lua-nginx-module#lua_package_cpath) for more information:
 
 Default: none
 
@@ -1182,7 +1182,7 @@ Default: none
 Specifies the size limit for every cosocket connection pool associated with
 every remote server.
 
-See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
+See the [`lua socket pool size documentation`](https://github.com/openresty/lua-nginx-module#lua_socket_pool_size) for more information.
 
 Default: `30`
 
@@ -1206,7 +1206,7 @@ phase, and before upstream resolution. It has the effect of causing Kong to
 send traffic that would have gone to the left origin to the right origin instead.
 
 The term origin (singular) refers to a particular scheme/host or IP address/port
-triple, as described in RFC 6454 (https://tools.ietf.org/html/rfc6454#section-3.2).
+triple, as described in [`RFC 6454`](https://tools.ietf.org/html/rfc6454#section-3.2).
 In Kong's `origins` configuration, the scheme *must* be one of `http`, `https`,
 `tcp`, or `tls`. In each pair of origins, the scheme *must* be of similar type -
 thus `http` can pair with `https`, and `tcp` can pair with `tls`, but `http` and
