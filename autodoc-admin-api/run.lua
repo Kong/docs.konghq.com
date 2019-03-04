@@ -1,5 +1,7 @@
 #!/usr/bin/env resty
 
+require "resty.core"
+
 local lfs = require("lfs")
 local cjson = require("cjson")
 
