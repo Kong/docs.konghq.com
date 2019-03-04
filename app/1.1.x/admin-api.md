@@ -13,6 +13,7 @@ service_body: |
     `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Defaults to `60000`.
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
+    `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
@@ -28,7 +29,8 @@ service_json: |
         "path": "/some_api",
         "connect_timeout": 60000,
         "write_timeout": 60000,
-        "read_timeout": 60000
+        "read_timeout": 60000,
+        "tags": ["user-level", "low-priority"]
     }
 
 service_data: |
@@ -44,7 +46,8 @@ service_data: |
         "path": "/some_api",
         "connect_timeout": 60000,
         "write_timeout": 60000,
-        "read_timeout": 60000
+        "read_timeout": 60000,
+        "tags": ["user-level", "low-priority"]
     }, {
         "id": "bdab0e47-4e37-4f0b-8fd0-87d95cc4addc",
         "created_at": 1422386534,
@@ -57,7 +60,8 @@ service_data: |
         "path": "/another_api",
         "connect_timeout": 60000,
         "write_timeout": 60000,
-        "read_timeout": 60000
+        "read_timeout": 60000,
+        "tags": ["admin", "high-priority", "critical"]
     }],
 
 route_body: |
@@ -74,7 +78,8 @@ route_body: |
     `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
     `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
-    `service` |  The Service this Route is associated to. This is where the Route proxies traffic to.  With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
+    `tags`<br>*optional* |  An optional set of strings associated with the Route, for grouping and filtering. 
+    `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to.  With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
 
 route_json: |
     {
@@ -89,6 +94,7 @@ route_json: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "tags": ["user-level", "low-priority"],
         "service": {"id":"f5a9c0ca-bdbb-490f-8928-2ca95836239a"}
     }
 
@@ -105,6 +111,7 @@ route_data: |
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
+        "tags": ["user-level", "low-priority"],
         "service": {"id":"a3395f66-2af6-4c79-bea2-1b6933764f80"}
     }, {
         "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
@@ -118,6 +125,7 @@ route_data: |
         "snis": ["foo.test", "example.com"],
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
+        "tags": ["admin", "high-priority", "critical"],
         "service": {"id":"ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6"}
     }],
 
@@ -126,13 +134,15 @@ consumer_body: |
     ---:| ---
     `username`<br>*semi-optional* |  The unique username of the consumer. You must send either this field or `custom_id` with the request. 
     `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Consumer, for grouping and filtering. 
 
 consumer_json: |
     {
         "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
         "created_at": 1422386534,
         "username": "my-username",
-        "custom_id": "my-custom-id"
+        "custom_id": "my-custom-id",
+        "tags": ["user-level", "low-priority"]
     }
 
 consumer_data: |
@@ -140,12 +150,14 @@ consumer_data: |
         "id": "4e8d95d4-40f2-4818-adcb-30e00c349618",
         "created_at": 1422386534,
         "username": "my-username",
-        "custom_id": "my-custom-id"
+        "custom_id": "my-custom-id",
+        "tags": ["user-level", "low-priority"]
     }, {
         "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
         "created_at": 1422386534,
         "username": "my-username",
-        "custom_id": "my-custom-id"
+        "custom_id": "my-custom-id",
+        "tags": ["admin", "high-priority", "critical"]
     }],
 
 plugin_body: |
@@ -157,7 +169,9 @@ plugin_body: |
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`. With form-encoded, the notation is `consumer.id=<consumer_id>`. With JSON, use `"consumer":{"id":"<consumer_id>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
     `run_on` |  Control on which Kong nodes this plugin will run, given a Service Mesh scenario. Accepted values are: * `first`, meaning "run on the first Kong node that is encountered by the request". On an API Getaway scenario, this is the usual operation, since there is only one Kong node in between source and destination. In a sidecar-to-sidecar Service Mesh scenario, this means running the plugin only on the Kong sidecar of the outbound connection. * `second`, meaning "run on the second node that is encountered by the request". This option is only relevant for sidecar-to-sidecar Service Mesh scenarios: this means running the plugin only on the Kong sidecar of the inbound connection. * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar scenario. This is useful for tracing/logging plugins.  Defaults to `"first"`.
+    `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["http", "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Defaults to `true`.
+    `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering. 
 
 plugin_json: |
     {
@@ -169,7 +183,9 @@ plugin_json: |
         "consumer": null,
         "config": {"hour":500, "minute":20},
         "run_on": "first",
-        "enabled": true
+        "protocols": ["http", "https"],
+        "enabled": true,
+        "tags": ["user-level", "low-priority"]
     }
 
 plugin_data: |
@@ -182,7 +198,9 @@ plugin_data: |
         "consumer": null,
         "config": {"hour":500, "minute":20},
         "run_on": "first",
-        "enabled": true
+        "protocols": ["http", "https"],
+        "enabled": true,
+        "tags": ["user-level", "low-priority"]
     }, {
         "id": "a2e013e8-7623-4494-a347-6d29108ff68b",
         "name": "rate-limiting",
@@ -192,7 +210,9 @@ plugin_data: |
         "consumer": null,
         "config": {"hour":500, "minute":20},
         "run_on": "first",
-        "enabled": true
+        "protocols": ["tcp", "tls"],
+        "enabled": true,
+        "tags": ["admin", "high-priority", "critical"]
     }],
 
 certificate_body: |
@@ -200,6 +220,7 @@ certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
     `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. 
 
 certificate_json: |
@@ -207,7 +228,8 @@ certificate_json: |
         "id": "91020192-062d-416f-a275-9addeeaffaf2",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
-        "key": "-----BEGIN RSA PRIVATE KEY-----..."
+        "key": "-----BEGIN RSA PRIVATE KEY-----...",
+        "tags": ["user-level", "low-priority"]
     }
 
 certificate_data: |
@@ -215,18 +237,21 @@ certificate_data: |
         "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
-        "key": "-----BEGIN RSA PRIVATE KEY-----..."
+        "key": "-----BEGIN RSA PRIVATE KEY-----...",
+        "tags": ["user-level", "low-priority"]
     }, {
         "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
-        "key": "-----BEGIN RSA PRIVATE KEY-----..."
+        "key": "-----BEGIN RSA PRIVATE KEY-----...",
+        "tags": ["admin", "high-priority", "critical"]
     }],
 
 sni_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
+    `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
     `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
 sni_json: |
@@ -234,6 +259,7 @@ sni_json: |
         "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
         "name": "my-sni",
         "created_at": 1422386534,
+        "tags": ["user-level", "low-priority"],
         "certificate": {"id":"a9b2107f-a214-47b3-add4-46b942187924"}
     }
 
@@ -242,11 +268,13 @@ sni_data: |
         "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
         "name": "my-sni",
         "created_at": 1422386534,
+        "tags": ["user-level", "low-priority"],
         "certificate": {"id":"7fca84d6-7d37-4a74-a7b0-93e576089a41"}
     }, {
         "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
         "name": "my-sni",
         "created_at": 1422386534,
+        "tags": ["admin", "high-priority", "critical"],
         "certificate": {"id":"02621eee-8309-4bf6-b36b-a82017a5393e"}
     }],
 
@@ -282,6 +310,7 @@ upstream_body: |
     `healthchecks.passive.type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. Possible values are `tcp`, `http` or `https` (in passive checks, `http` and `https` options are equivalent.). Defaults to `"http"`.
     `healthchecks.passive.healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Defaults to `0`.
     `healthchecks.passive.healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
+    `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering. 
 
 upstream_json: |
     {
@@ -326,7 +355,8 @@ upstream_json: |
                     "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 }
             }
-        }
+        },
+        "tags": ["user-level", "low-priority"]
     }
 
 upstream_data: |
@@ -372,7 +402,8 @@ upstream_data: |
                     "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 }
             }
-        }
+        },
+        "tags": ["user-level", "low-priority"]
     }, {
         "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
         "created_at": 1422386534,
@@ -415,7 +446,8 @@ upstream_data: |
                     "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 }
             }
-        }
+        },
+        "tags": ["admin", "high-priority", "critical"]
     }],
 
 target_body: |
@@ -423,6 +455,7 @@ target_body: |
     ---:| ---
     `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record. 
     `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`1000`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Defaults to `100`.
+    `tags`<br>*optional* |  An optional set of strings associated with the Target, for grouping and filtering. 
 
 target_json: |
     {
@@ -430,7 +463,8 @@ target_json: |
         "created_at": 1422386534,
         "upstream": {"id":"ba641b07-e74a-430a-ab46-94b61e5ea66b"},
         "target": "example.com:8000",
-        "weight": 100
+        "weight": 100,
+        "tags": ["user-level", "low-priority"]
     }
 
 target_data: |
@@ -439,13 +473,15 @@ target_data: |
         "created_at": 1422386534,
         "upstream": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"},
         "target": "example.com:8000",
-        "weight": 100
+        "weight": 100,
+        "tags": ["user-level", "low-priority"]
     }, {
         "id": "a9daa3ba-8186-4a0d-96e8-00d80ce7240b",
         "created_at": 1422386534,
         "upstream": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"},
         "target": "example.com:8000",
-        "weight": 100
+        "weight": 100,
+        "tags": ["admin", "high-priority", "critical"]
     }],
 
 
@@ -595,6 +631,84 @@ HTTP 200 OK
     * `reachable`: A boolean value reflecting the state of the
       database connection. Please note that this flag **does not**
       reflect the health of the database itself.
+
+
+---
+
+---
+
+## Db-less configuration
+
+
+
+### Update db-less config
+
+This endpoint allows resetting a db-less Kong with a new
+declarative configuration data file. To learn more about it,
+please run:
+
+```
+kong config init
+```
+
+That will generate a file with the appropriate structure, names
+and examples.
+
+
+<div class="endpoint post">/config</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+``` json
+{
+    { "services": [],
+      "routes": []
+    }
+}
+```
+
+The response contains a list of all the entities that were parsed from the
+input file.
+
+
+---
+
+---
+
+##  Tags 
+
+
+
+###  List entity IDs by tag 
+
+Returns the entities that have been tagged with a provided tag.
+
+
+<div class="endpoint get">/tags/:tags</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+``` json
+{
+    {
+      "data": [
+        { "id": "acf60b10-125c-4c1a-bffe-6ed55daefba4", ... },
+        { "id": "5dc49e7e-95a4-4026-8a12-20566374611a", ... },
+        ...
+      ],
+      "offset" = "8c11a30c-b618-41d3-be75-2bb42a770471",
+      "next" = "/tags/example?offset=093f1e51-0686-4d02-8dad-44b6240bc2ae",
+    }
+}
+```
 
 
 ---

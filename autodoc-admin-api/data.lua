@@ -13,6 +13,8 @@ return {
   known = {
     general_files = {
       "kong/api/routes/kong.lua",
+      "kong/api/routes/config.lua",
+      "kong/api/routes/tags.lua",
     },
     nodoc_files = {
       "kong/api/routes/cache.lua", -- FIXME should we document this?
@@ -189,7 +191,77 @@ return {
           ]],
         },
       }
-    }
+    },
+    config = {
+      title = [[Db-less configuration]],
+      description = "",
+      ["/"] = {
+        POST = {
+          title = [[Update db-less config]],
+          endpoint = [[<div class="endpoint post">/config</div>]],
+          description = [[
+            This endpoint allows resetting a db-less Kong with a new
+            declarative configuration data file. To learn more about it,
+            please run:
+
+            ```
+            kong config init
+            ```
+
+            That will generate a file with the appropriate structure, names
+            and examples.
+          ]],
+          response = [[
+            ```
+            HTTP 200 OK
+            ```
+
+            ``` json
+            {
+                { "services": [],
+                  "routes": []
+                }
+            }
+            ```
+
+            The response contains a list of all the entities that were parsed from the
+            input file.
+          ]]
+        }
+      },
+    },
+    tags = {
+      title = [[ Tags ]],
+      description = "",
+      ["/tags/:tags"] = {
+        GET = {
+          title = [[ List entity IDs by tag ]],
+          endpoint = [[<div class="endpoint get">/tags/:tags</div>]],
+          description = [[
+            Returns the entities that have been tagged with a provided tag.
+          ]],
+          response = [[
+            ```
+            HTTP 200 OK
+            ```
+
+            ``` json
+            {
+                {
+                  "data": [
+                    { "id": "acf60b10-125c-4c1a-bffe-6ed55daefba4", ... },
+                    { "id": "5dc49e7e-95a4-4026-8a12-20566374611a", ... },
+                    ...
+                  ],
+                  "offset" = "8c11a30c-b618-41d3-be75-2bb42a770471",
+                  "next" = "/tags/example?offset=093f1e51-0686-4d02-8dad-44b6240bc2ae",
+                }
+            }
+            ```
+          ]]
+        },
+      },
+    },
   },
 
 --------------------------------------------------------------------------------
@@ -261,6 +333,15 @@ return {
             The timeout in milliseconds between two successive read operations
             for transmitting a request to the upstream server.
           ]]
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Service, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
         },
       },
       extra_fields = {
@@ -389,6 +470,15 @@ return {
             This is where the Route proxies traffic to.
           ]]
         },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Route, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       }
     },
 
@@ -419,6 +509,15 @@ return {
             You must send either this field or `username` with the request.
           ]],
           example = "my-custom-id",
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Consumer, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
         },
       }
     },
@@ -578,13 +677,13 @@ return {
         }
       },
       -- Skip deprecated endpoints
-      ["/routes/:routes/plugins/:id"] = {
+      ["/routes/:routes/plugins/:plugins"] = {
         skip = true,
       },
-      ["/services/:services/plugins/:id"] = {
+      ["/services/:services/plugins/:plugins"] = {
         skip = true,
       },
-      ["/consumers/:consumers/plugins/:id"] = {
+      ["/consumers/:consumers/plugins/:plugins"] = {
         skip = true,
       },
 
@@ -637,6 +736,29 @@ return {
           * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar
             scenario. This is useful for tracing/logging plugins.
         ]] },
+        protocols = {
+          description = [[
+            A list of the request protocols that will trigger this plugin. Possible values are
+            `"http"`, `"https"`, `"tcp"`, and `"tls"`.
+
+            The default value, as well as the possible values allowed on this field, may change
+            depending on the plugin type. For example, plugins that only work in stream mode will
+            may only support `"tcp"` and `"tls"`.
+          ]],
+          examples = {
+            { "http", "https" },
+            { "tcp", "tls" },
+          },
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Plugin, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       }
     },
 
@@ -658,6 +780,15 @@ return {
           description = [[PEM-encoded private key of the SSL key pair.]],
           example = "-----BEGIN RSA PRIVATE KEY-----..."
         },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Certificate, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       },
       extra_fields = {
         { snis = {
@@ -669,7 +800,8 @@ return {
             for your convenience.
           ]]
         } },
-      }
+      },
+
     },
 
     snis = {
@@ -692,6 +824,15 @@ return {
           description = [[
             The id (a UUID) of the certificate with which to associate the SNI hostname
           ]]
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the SNIs, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
         },
       },
     },
@@ -776,7 +917,8 @@ return {
             }
             ```
           ]],
-        }
+        },
+
       },
       fields = {
         id = { skip = true },
@@ -810,6 +952,15 @@ return {
         ["healthchecks.passive.unhealthy.tcp_failures"] = { description = [[Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks.]] },
         ["healthchecks.passive.unhealthy.timeouts"] = { description = [[Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks.]] },
         ["healthchecks.passive.unhealthy.http_failures"] = { description = [[Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks.]] },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Upstream, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       }
     },
 
@@ -994,6 +1145,15 @@ return {
             If the hostname resolves to an SRV record, the `weight` value will be
             overridden by the value from the DNS record.
           ]]
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Target, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
         },
       },
     }
