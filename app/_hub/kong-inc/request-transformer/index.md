@@ -147,9 +147,21 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "config.add.headers[2]=h2:v1"
 ```
 
-|incoming request headers | upstream proxied headers: 
-|---           | --- 
-|h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul> 
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 - Add multiple headers by passing comma separated header:value pair:
 
