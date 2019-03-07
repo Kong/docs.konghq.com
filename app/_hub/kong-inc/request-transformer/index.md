@@ -159,9 +159,21 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
 
-|incoming request headers | upstream proxied headers: 
-|---           | --- 
-|h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul> 
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 - Add multiple headers passing config as JSON body:
 
@@ -171,9 +183,21 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
 
-|incoming request headers | upstream proxied headers: 
-|---           | --- 
-|h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul> 
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 - Add a querystring and a header:
 
@@ -184,10 +208,31 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "config.add.headers=h1:v1"
 ```
 
-|incoming request headers | upstream proxied headers: 
-|---           | --- 
-|h1: v2        | <ul><li>h1: v2</li><li>h2: v1</li></ul> 
-|h3: v1        | <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul> 
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v2</td>
+    <td>
+      <ul>
+        <li>h1: v2</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>h3: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+        <li>h3: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 |incoming request querystring | upstream proxied querystring 
 |---           | --- 
@@ -202,9 +247,22 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'
 ```
 
-|incoming request headers | upstream proxied headers: 
-|---           | --- 
-|h1: v1        | <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul> 
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h1: v2</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 |incoming url encoded body | upstream proxied url encoded body: 
 |---           | --- 
