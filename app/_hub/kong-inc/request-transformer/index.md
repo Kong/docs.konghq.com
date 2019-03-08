@@ -216,7 +216,7 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
-  --data "config.add.querystring=q1:v2,q2=v1" \
+  --data "config.add.querystring=q1:v2,q2:v1" \
   --data "config.add.headers=h1:v1"
 ```
 
