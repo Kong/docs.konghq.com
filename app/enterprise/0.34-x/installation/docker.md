@@ -61,7 +61,7 @@ is required**:
 
 8. To make the license data easier to handle, export it as a shell variable.
 Please note that **your license contents will differ**! Users with Bintray
-accounts should visit [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files)
+accounts should visit `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 to retrieve their license. Trial users should download their license from their
 welcome email. Once you have your license, you can set it in an environment variable:
 
