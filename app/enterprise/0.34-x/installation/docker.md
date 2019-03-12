@@ -122,46 +122,6 @@ it by visiting Kong Manager at [http://localhost:8002](http://localhost:8002)
 remote system), or by visiting the Default Dev Portal at 
 [http://127.0.0.1:8003/default](http://127.0.0.1:8003/default)
 
-## Enable RBAC
-
-[Role-Based Access Control (RBAC)](/enterprise/{{page.kong_version}}/rbac/overview)
-allows you to create multiple profiles of Kong users—e.g., `super-admin`,
-`admin`, `read-only`—and permit the resources to which they have access. 
-To enable it:
-
-1. Create an initial RBAC admin:
-
-    ```
-    curl -X POST http://localhost:8001/rbac/users/ -d name=admin -d user_token=12345
-    curl -X POST http://localhost:8001/rbac/users/admin/roles -d roles=super-admin
-    ```
-
-2. Start a bash session on the container:
-
-    ```
-    docker exec -it kong-ee /bin/sh
-    ```
-
-3. Reload Kong with RBAC enabled:
-
-    ```
-    KONG_ENFORCE_RBAC=on kong reload
-    ```
-
-4. Confirm that your user token is working by passing the `Kong-Admin-Token`
-header in requests:
-
-    ```
-    curl -X GET http://localhost:8001/status -H "Kong-Admin-Token: 12345"
-    ```
-
-    If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on`
-    to your initial container environment variables.
-
-5. When RBAC is enabled, the Kong Manager requires the use of an 
-authentication plugin. Follow the 
-[Authenticating Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication) Guide to complete this set up.
-
 ## FAQs
 
 The Admin API only listens on the local interface by default. This was done as a
