@@ -121,11 +121,11 @@
 }
 
 .sidebar-toggle {
-  position: absolute;
-  right: 0;
   display: none;
+  margin-left: auto;
+  font-size: 14px;
   @media (max-width: 800px) {
-    display: block;
+    display: flex;
   }
 }
 
@@ -171,14 +171,15 @@
     box-shadow: 0px 12px 15px rgba(0,0,0,.15);
     border: 0 none;
     background: #fff;
-    overflow: auto;
-    z-index: 10;
+    overflow: scroll;
+    z-index: 100;
     transform: translateX(100%);
     -webkit-transform: translateX(100%);
     transition: all 300ms ease-in-out;
 
     .close-sidebar {
-      display: inline-block;
+      display: block;
+      z-index: 100;
     }
 
     &.sidebar-open {
