@@ -12,7 +12,7 @@ Inviting a new Admin through the “Organization” page is similar to inviting 
 
 1. On the “Organization” page, to invite a new Admin, click the “Invite User” button.
 
-2. Ensure that the email address and username are matching. When a new Admin receives an invitation, they will only be able    to log in with that email address. Assign the appropriate Role and click “Invite User” to send the invitation.
+2. Fill out the username and email address. When a new Admin receives an invitation, they will only be able    to log in with that email address. Assign the appropriate Role and click “Invite User” to send the invitation.
 
     ⚠️ **IMPORTANT**: Super Admins can invite users to multiple Workspaces, and assign them any Role available within Workspaces, including Roles that exist by default (e.g. super-admin, read-only) and Roles with customized permissions. 
 
