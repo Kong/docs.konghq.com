@@ -368,16 +368,18 @@ http {
 
 #### prefix
 
-Working directory. Equivalent to Nginx's prefix path, containing temporary files
-and logs. Each Kong process must have a separate working directory.
+Working directory. Equivalent to Nginx's prefix path, containing temporary
+files and logs.
 
-Default: `/usr/local/kong`
+Each Kong process must have a separate working directory.
+
+Default: `/usr/local/kong/`
 
 ---
 
 #### log_level
 
-Log level of the Nginx server. Logs can be found at `<prefix>/logs/error.log`
+Log level of the Nginx server. Logs are found at `<prefix>/logs/error.log`.
 
 See http://nginx.org/en/docs/ngx_core_module.html#error_log for a list of
 accepted values.
@@ -389,8 +391,10 @@ Default: `notice`
 #### proxy_access_log
 
 Path for proxy port request access logs. Set this value to `off` to disable
-logging proxy requests. If this value is a relative path, it will be placed
-under the `prefix` location.
+logging proxy requests.
+
+If this value is a relative path, it will be placed under the `prefix`
+location.
 
 Default: `logs/access.log`
 
@@ -398,8 +402,8 @@ Default: `logs/access.log`
 
 #### proxy_error_log
 
-Path for proxy port request error logs. Granularity of these logs is adjusted
-by the `log_level` directive.
+Path for proxy port request error logs. The granularity of these logs is
+adjusted by the `log_level` directive.
 
 Default: `logs/error.log`
 
@@ -408,8 +412,10 @@ Default: `logs/error.log`
 #### admin_access_log
 
 Path for Admin API request access logs. Set this value to `off` to disable
-logging Admin API requests. If this value is a relative path, it will be placed
-under the `prefix` location.
+logging Admin API requests.
+
+If this value is a relative path, it will be placed under the `prefix`
+location.
 
 Default: `logs/admin_access.log`
 
@@ -417,8 +423,8 @@ Default: `logs/admin_access.log`
 
 #### admin_error_log
 
-Path for Admin API request error logs. Granularity of these logs is adjusted by
-the `log_level` directive.
+Path for Admin API request error logs. The granularity of these logs is
+adjusted by the `log_level` directive.
 
 Default: `logs/error.log`
 
@@ -426,34 +432,37 @@ Default: `logs/error.log`
 
 #### plugins
 
-Comma-separated list of names of plugins this node should load. By default,
-only plugins bundled in official distributions are loaded via the `bundled`
-keyword.
+Comma-separated list of plugins this node should load. By default, only plugins
+bundled in official distributions are loaded via the `bundled` keyword.
 
-Loading a plugin does not enable it by default, but only instructs Kong to load its
-source code, and allows to configure the plugin via the various related Admin API
-endpoints.
+Loading a plugin does not enable it by default, but only instructs Kong to load
+its source code, and allows to configure the plugin via the various related
+Admin API endpoints.
 
 The specified name(s) will be substituted as such in the Lua namespace:
 `kong.plugins.{name}.*`.
 
-When the `off` keyword is specified as the only value, no plugins will be loaded.
+When the `off` keyword is specified as the only value, no plugins will be
+loaded.
 
-`bundled` and plugin names can be mixed together, as the following examples suggest:
+`bundled` and plugin names can be mixed together, as the following examples
+suggest:
 
-- `plugins=bundled,custom-auth,custom-log` will include the bundled plugins
+- `plugins = bundled,custom-auth,custom-log` will include the bundled plugins
   plus two custom ones
-- `plugins=custom-auth,custom-log` will *only* include the `custom-auth` and
+- `plugins = custom-auth,custom-log` will *only* include the `custom-auth` and
   `custom-log` plugins.
-- `plugins=off` will not include any plugins
+- `plugins = off` will not include any plugins
 
 **Note:** Kong will not start if some plugins were previously configured (i.e.
-have rows in the database) and are not specified in this list. Before disabling
-a plugin, ensure all instances of it are removed before restarting Kong.
+have rows in the database) and are not specified in this list.
+
+Before disabling a plugin, ensure all instances of it are removed before
+restarting Kong.
 
 **Note:** Limiting the amount of available plugins can improve P99 latency when
 experiencing LRU churning in the database cache (i.e. when the configured
-[mem_cache_size](#mem_cache_size) is full.
+`mem_cache_size`) is full.
 
 Default: `bundled`
 
@@ -467,14 +476,17 @@ Default: `on`
 
 ---
 
+
 ### NGINX section
 
 #### proxy_listen
 
 Comma-separated list of addresses and ports on which the proxy server should
-listen. The proxy server is the public entry point of Kong, which proxies
-traffic from your consumers to your backend services. This value accepts IPv4,
-IPv6, and hostnames.
+listen for HTTP/HTTPS traffic.
+
+The proxy server is the public entry point of Kong, which proxies traffic from
+your consumers to your backend services. This value accepts IPv4, IPv6, and
+hostnames.
 
 Some suffixes can be specified for each pair:
 
@@ -482,27 +494,29 @@ Some suffixes can be specified for each pair:
   address/port be made with TLS enabled.
 - `http2` will allow for clients to open HTTP/2 connections to Kong's proxy
   server.
-- `proxy_protocol` will enable usage of the PROXY protocol for a
-  given address/port.
-- `transparent` will cause kong to listen to, and respond from, any and
-  all IP addresses and ports you configure in iptables.
+- `proxy_protocol` will enable usage of the PROXY protocol for a given
+  address/port.
+- `transparent` will cause kong to listen to, and respond from, any and all IP
+  addresses and ports you configure in iptables.
 
-This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port
-for this node.
+This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port for
+this node.
 
 If stream_listen is also set to `off`, this enables 'control-plane' mode for
-this node (in which all traffic proxying capabilities are disabled).
-This node can then be used only to configure a cluster of Kong nodes connected
-to the same datastore.
+this node (in which all traffic proxying capabilities are disabled). This node
+can then be used only to configure a cluster of Kong nodes connected to the same
+datastore.
 
 Example: `proxy_listen = 0.0.0.0:443 ssl, 0.0.0.0:444 http2 ssl`
 
-See http://nginx.org/en/docs/http/ngx_http_core_module.html#listen for
-a description of the accepted formats for this and other `*_listen` values.
+See http://nginx.org/en/docs/http/ngx_http_core_module.html#listen for a
+description of the accepted formats for this and other `*_listen` values.
 
-See https://www.nginx.com/resources/admin-guide/proxy-protocol/
-for more details about the `proxy_protocol` parameter.
-Not all `*_listen` values accept all formats specified in nginx's documentation.
+See https://www.nginx.com/resources/admin-guide/proxy-protocol/ for more
+details about the `proxy_protocol` parameter.
+
+Not all `*_listen` values accept all formats specified in nginx's
+documentation.
 
 Default: `0.0.0.0:8000, 0.0.0.0:8443 ssl`
 
@@ -510,21 +524,20 @@ Default: `0.0.0.0:8000, 0.0.0.0:8443 ssl`
 
 #### stream_listen
 
-Comma-separated list of addresses and ports on which the stream mode should listen.
+Comma-separated list of addresses and ports on which the stream mode should
+listen.
 
-This value accepts IPv4, IPv6, and hostnames. Some suffixes can be specified for each pair:
-- `proxy_protocol` will enable usage of the
-   PROXY protocol for a given address/port.
-- `transparent` will cause kong to listen to, and
-   respond from, any and all IP addresses and ports
-   you configure in iptables.
+This value accepts IPv4, IPv6, and hostnames.
 
-**Note:** The `ssl` suffix is not supported,
-and each address/port will accept TCP with or
-without TLS enabled.
+Some suffixes can be specified for each pair:
 
-See http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen
-for a description of the formats that Kong might accept in stream_listen.
+- `proxy_protocol` will enable usage of the PROXY protocol for a given
+  address/port.
+- `transparent` will cause kong to listen to, and respond from, any and all IP
+  addresses and ports you configure in iptables.
+
+**Note:** The `ssl` suffix is not supported, and each address/port will accept
+TCP with or without TLS enabled.
 
 Examples:
 
@@ -534,7 +547,11 @@ stream_listen = 0.0.0.0:989, 0.0.0.0:20
 stream_listen = [::1]:1234
 ```
 
-By default this value is set to `off`, thus disabling the mesh proxy port for this node.
+By default this value is set to `off`, thus disabling the stream proxy port for
+this node.
+
+See http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen for a
+description of the formats that Kong might accept in stream_listen.
 
 Default: `off`
 
@@ -542,23 +559,26 @@ Default: `off`
 
 #### admin_listen
 
-Comma-separated list of addresses and ports on which the Admin interface
-should listen. The Admin interface is the API allowing you to configure and
-manage Kong. Access to this interface should be *restricted* to Kong
-administrators *only*. This value accepts IPv4, IPv6, and hostnames.
+Comma-separated list of addresses and ports on which the Admin interface should
+listen.
+
+The Admin interface is the API allowing you to configure and manage Kong.
+
+Access to this interface should be *restricted* to Kong administrators *only*.
+This value accepts IPv4, IPv6, and hostnames.
 
 Some suffixes can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
   address/port be made with TLS enabled.
-- `http2` will allow for clients to open HTTP/2 connections to Kong's
-  proxy server.
-- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a
-  given address/port.
+- `http2` will allow for clients to open HTTP/2 connections to Kong's proxy
+  server.
+- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a given
+  address/port.
 
 This value can be set to `off`, thus disabling the Admin interface for this
-node, enabling a 'data-plane' mode (without configuration capabilities)
-pulling its configuration changes from the database.
+node, enabling a 'data-plane' mode (without configuration capabilities) pulling
+its configuration changes from the database.
 
 Example: `stream_listen = 127.0.0.1:8444 http2 ssl`
 
@@ -568,8 +588,8 @@ Default: `127.0.0.1:8001, 127.0.0.1:8444 ssl`
 
 #### nginx_user
 
-Defines user and group credentials used by worker processes. If group is omitted, a
-group whose name equals that of user is used.
+Defines user and group credentials used by worker processes. If group is
+omitted, a group whose name equals that of user is used.
 
 Example: `nginx_user = nginx www`
 
@@ -580,12 +600,9 @@ Default: `nobody nobody`
 #### nginx_worker_processes
 
 Determines the number of worker processes spawned by Nginx.
-Mainly useful for development or when running Kong inside
-a Docker environment.
 
-See http://nginx.org/en/docs/ngx_core_module.html#worker_processes
-for detailed usage of this directive and a description of accepted
-values.
+See http://nginx.org/en/docs/ngx_core_module.html#worker_processes for detailed
+usage of this directive and a description of accepted values.
 
 Default: `auto`
 
@@ -604,30 +621,21 @@ Default: `on`
 
 #### mem_cache_size
 
-Size of the in-memory cache for database entities. The accepted units are `k` and
-`m`, with a minimum recommended value of a few MBs.
+Size of the in-memory cache for database entities. The accepted units are `k`
+and `m`, with a minimum recommended value of a few MBs.
 
 Default: `128m`
 
 ---
 
-#### ssl
-
-Determines if Nginx should be listening for HTTPS traffic on the
-`proxy_listen_ssl` address. If disabled, Nginx will only bind itself
-on `proxy_listen`, and all SSL settings will be ignored.
-
-Default: `on`
-
----
-
 #### ssl_cipher_suite
 
-Defines the TLS ciphers served by Nginx. Accepted values are `modern`,
-`intermediate`, `old`, or `custom`.
+Defines the TLS ciphers served by Nginx.
 
-See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed
-descriptions of each cipher suite.
+Accepted values are `modern`, `intermediate`, `old`, or `custom`.
+
+See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
+of each cipher suite.
 
 Default: `modern`
 
@@ -636,8 +644,9 @@ Default: `modern`
 #### ssl_ciphers
 
 Defines a custom list of TLS ciphers to be served by Nginx. This list must
-conform to the pattern defined by `openssl ciphers`. This value is ignored if
-`ssl_cipher_suite` is not `custom`.
+conform to the pattern defined by `openssl ciphers`.
+
+This value is ignored if `ssl_cipher_suite` is not `custom`.
 
 Default: none
 
@@ -645,9 +654,8 @@ Default: none
 
 #### ssl_cert
 
-If `ssl` is enabled, the absolute path to the SSL certificate for the
-`proxy_listen_ssl` address. If none is specified and `ssl` is enabled, Kong will
-generate a default certificate and key.
+The absolute path to the SSL certificate for `proxy_listen` values with SSL
+enabled.
 
 Default: none
 
@@ -655,18 +663,9 @@ Default: none
 
 #### ssl_cert_key
 
-If `ssl` is enabled, the absolute path to the SSL key for the
-`proxy_listen_ssl` address.
+The absolute path to the SSL key for `proxy_listen` values with SSL enabled.
 
 Default: none
-
----
-
-#### http2
-
-Enables HTTP2 support for HTTPS traffic on the `proxy_listen_ssl` address.
-
-Default: `off`
 
 ---
 
@@ -699,21 +698,10 @@ Default: none
 
 ---
 
-#### admin_ssl
-
-Determines if Nginx should be listening for HTTPS traffic on the
-`admin_listen_ssl` address. If disabled, Nginx will only bind itself on
-`admin_listen`, and all SSL settings will be ignored.
-
-Default: `on`
-
----
-
 #### admin_ssl_cert
 
-If `admin_ssl` is enabled, the absolute path to the SSL certificate for the
-`admin_listen_ssl` address. If none is specified and `admin_ssl` is enabled,
-Kong will generate a default certificate and key.
+The absolute path to the SSL certificate for `admin_listen` values with SSL
+enabled.
 
 Default: none
 
@@ -721,28 +709,20 @@ Default: none
 
 #### admin_ssl_cert_key
 
-If `admin_ssl` is enabled, the absolute path to the SSL key for the
-`admin_listen_ssl` address.
+The absolute path to the SSL key for `admin_listen` values with SSL enabled.
 
 Default: none
-
----
-
-#### admin_http2
-
-Enables HTTP2 support for HTTPS traffic on the `admin_listen_ssl` address.
-
-Default: `off`
 
 ---
 
 #### upstream_keepalive
 
 Sets the maximum number of idle keepalive connections to upstream servers that
-are preserved in the cache of each worker process. When this number is
-exceeded, the least recently used connections are closed. A value of `0`
-will disable this behavior altogether, forcing each upstream request to open
-a new connection.
+are preserved in the cache of each worker process. When this number is exceeded,
+the least recently used connections are closed.
+
+A value of `0` will disable this behavior altogether, forcing each upstream
+request to open a new connection.
 
 Default: `60`
 
@@ -757,8 +737,8 @@ Accepted values are:
 - `Server`: Injects `Server: kong/x.y.z` on Kong-produced response (e.g. Admin
   API, rejected requests from auth plugin, etc...).
 - `Via`: Injects `Via: kong/x.y.z` for successfully proxied requests.
-- `X-Kong-Proxy-Latency`: Time taken (in milliseconds) by Kong to process
-  a request and run all plugins before proxying the request upstream.
+- `X-Kong-Proxy-Latency`: Time taken (in milliseconds) by Kong to process a
+  request and run all plugins before proxying the request upstream.
 - `X-Kong-Upstream-Latency`: Time taken (in milliseconds) by the upstream
   service to send response headers.
 - `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
@@ -768,9 +748,9 @@ Accepted values are:
 - `latency_tokens`: Same as specifying both `X-Kong-Proxy-Latency` and
   `X-Kong-Upstream-Latency`.
 
-In addition to those, this value can be set to `off`, which prevents Kong
-from injecting any of the above headers. Note that this does not
-prevent plugins from injecting headers of their own.
+In addition to those, this value can be set to `off`, which prevents Kong from
+injecting any of the above headers. Note that this does not prevent plugins from
+injecting headers of their own.
 
 Example: `headers = via, latency_tokens`
 
@@ -780,10 +760,13 @@ Default: `server_tokens, latency_tokens`
 
 #### trusted_ips
 
-Defines trusted IP address blocks that are known to send correct
-`X-Forwarded-*` headers. Requests from trusted IPs make Kong forward their
-`X-Forwarded-*` headers upstream. Non-trusted requests make Kong insert its own
+Defines trusted IP addresses blocks that are known to send correct
 `X-Forwarded-*` headers.
+
+Requests from trusted IPs make Kong forward their `X-Forwarded-*` headers
+upstream.
+
+Non-trusted requests make Kong insert its own `X-Forwarded-*` headers.
 
 This property also sets the `set_real_ip_from` directive(s) in the Nginx
 configuration. It accepts the same type of values (CIDR blocks) but as a
@@ -803,15 +786,18 @@ Default: none
 
 #### real_ip_header
 
-Defines the request header field whose value will be used to replace the client address.
-This value sets the `ngx_http_realip_module` directive of the same name in the Nginx
-configuration.
+Defines the request header field whose value will be used to replace the client
+address.
+
+This value sets the `ngx_http_realip_module` directive of the same name in the
+Nginx configuration.
 
 If this value receives `proxy_protocol`:
 
-- at least one of the `proxy_listen` entries must have the `proxy_protocol` flag enabled.
-- the `proxy_protocol` parameter will be appended to the `listen` directive of the
-  Nginx template.
+- at least one of the `proxy_listen` entries must have the `proxy_protocol`
+  flag enabled.
+- the `proxy_protocol` parameter will be appended to the `listen` directive of
+  the Nginx template.
 
 See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
 for a description of this directive.
@@ -822,8 +808,8 @@ Default: `X-Real-IP`
 
 #### real_ip_recursive
 
-This value sets the [ngx_http_realip_module](http://nginx.org/en/docs/http/ngx_http_realip_module.html) directive
-of the same name in the Nginx configuration.
+This value sets the ngx_http_realip_module directive of the same name in the
+Nginx configuration.
 
 See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
 for a description of this directive.
@@ -834,14 +820,15 @@ Default: `off`
 
 #### client_max_body_size
 
-Defines the maximum request body size allowed by requests proxied by Kong, specified in the
-Content-Length request header. If a request exceeds this limit, Kong will respond with a
-413 (Request Entity Too Large). Setting this value to 0 disables checking the request body
-size.
+Defines the maximum request body size allowed by requests proxied by Kong,
+specified in the Content-Length request header. If a request exceeds this limit,
+Kong will respond with a 413 (Request Entity Too Large). Setting this value to 0
+disables checking the request body size.
 
-See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
-for further description of this parameter. Numeric values may be suffixed with
-`k` or `m` to denote limits in terms of kilobytes or megabytes.
+See
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size for
+further description of this parameter. Numeric values may be suffixed with `k`
+or `m` to denote limits in terms of kilobytes or megabytes.
 
 Default: `0`
 
@@ -849,15 +836,16 @@ Default: `0`
 
 #### client_body_buffer_size
 
-Defines the buffer size for reading the request body. If the client request body is
-larger than this value, the body will be buffered to disk. Note that when the body is
-buffered to disk Kong plugins that access or manipulate the request body may not work, so
-it is advisable to set this value as high as possible (e.g., set it as high as
-`client_max_body_size` to force request bodies to be kept in memory). Do note that
-high-concurrency environments will require significant memory allocations to process
-many concurrent large request bodies.
+Defines the buffer size for reading the request body. If the client request
+body is larger than this value, the body will be buffered to disk. Note that
+when the body is buffered to disk Kong plugins that access or manipulate the
+request body may not work, so it is advisable to set this value as high as
+possible (e.g., set it as high as `client_max_body_size` to force request bodies
+to be kept in memory). Do note that high-concurrency environments will require
+significant memory allocations to process many concurrent large request bodies.
 
-See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
+See
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
 for further description of this parameter. Numeric values may be suffixed with
 `k` or `m` to denote limits in terms of kilobytes or megabytes.
 
@@ -867,19 +855,22 @@ Default: `8k`
 
 #### error_default_type
 
-Default MIME type to use when the request `Accept` header is missing and Nginx is
-returning an error for the request. Accepted values are `text/plain`,
-`text/html`, `application/json`, and `application/xml`.
+Default MIME type to use when the request `Accept` header is missing and Nginx
+is returning an error for the request.
+
+Accepted values are `text/plain`, `text/html`, `application/json`, and
+`application/xml`.
 
 Default: `text/plain`
 
 ---
 
+
 ### Datastore section
 
-Kong will store all of its data (such as Routes, Services, Consumers and Plugins) in
-either Cassandra or PostgreSQL, and all Kong nodes belonging to the same
-cluster **must** connect themselves to the same database.
+Kong will store all of its data (such as Routes, Services, Consumers, and
+Plugins) in either Cassandra or PostgreSQL, and all Kong nodes belonging to the
+same cluster must connect themselves to the same database.
 
 Kong supports the following database versions:
 
@@ -891,69 +882,68 @@ Kong supports the following database versions:
 #### database
 
 Determines which of PostgreSQL or Cassandra this node will use as its
-datastore. Accepted values are `postgres` and `cassandra`.
+datastore.
+
+Accepted values are `postgres` and `cassandra`.
 
 Default: `postgres`
 
 ---
 
+
 #### Postgres settings
 
-name                  |  description      | default
-----------------------|-------------------|----------------
-**pg_host**           | Host of the Postgres server. | `127.0.0.1`
-**pg_port**           | Port of the Postgres server. | `5432`
-**pg_user**           | Postgres user.               | `kong`
-**pg_password**       | Postgres user's password.    |
-**pg_database**       | Database to connect to. | `kong`
-**pg_ssl**            | Enable SSL connections to the server.   | `off`
-**pg_ssl_verify**     | Toggles server certificate verification if `pg_ssl` is enabled. See `lua_ssl_trusted_certificate` setting. | `off`
-
----
+name   | description  | default
+-------|--------------|----------
+**pg_host** | Host of the Postgres server. | `127.0.0.1`
+**pg_port** | Port of the Postgres server. | `5432`
+**pg_timeout** | Defines the timeout (in ms), for connecting, reading and writing. | `5000`
+**pg_user** | Postgres user. | `kong`
+**pg_password** | Postgres user's password. | none
+**pg_database** | The database name to connect to. | `kong`
+**pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
+**pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. | `off`
+**pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 
 #### Cassandra settings
 
-name                            | description      | default
---------------------------------|------------------|----------------
-**cassandra_contact_points**    | A comma-separated list of contacts points to your Cassandra cluster. | `127.0.0.1`
-**cassandra_port**              | The port on which your nodes are listening on. All your nodes and contact points must listen on the same port | `9042`
-**cassandra_keyspace**          | Keyspace to use in your cluster. Will be created if it doesn't exist. | `kong`
-**cassandra_consistency**       | Consistency setting to use when reading/writing to the Cassandra cluster | `ONE`
-**cassandra_timeout**           | Defines the timeout (in ms) for reading and writing | `5000`
-**cassandra_ssl**               | Toggles client-to-node TLS connections between Kong and Cassandra. | `off`
-**cassandra_ssl_verify**        | Toggles server certificate verification if `cassandra_ssl` is enabled. See the `lua_ssl_trusted_certificate` to specify a certificate authority. | `off`
-**cassandra_username**          | Username when using the PasswordAuthenticator scheme. | `kong`
-**cassandra_password**          | Password when using the PasswordAuthenticator scheme. |
-**cassandra_lb_policy**         | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin`, `RequestRoundRobin`, `DCAwareRoundRobin` and `RequestDCAwareRoundRobin`. Policies prefixed with "Request" make efficient use of established connections throughout the same request. Prefer "DCAware" policies if and only if you are using a multi-datacenter cluster.
-**cassandra_local_datacenter**  | When using the `DCAwareRoundRobin` or `RequestDCAwareRoundRobin` balancing policy, you must specify the name of the cluster local (closest) to this Kong node.
-**cassandra_repl_strategy**     | When migrating for the first time, Kong will use this setting to create your keyspace. Accepted values are `SimpleStrategy` and `NetworkTopologyStrategy` | `SimpleStrategy`
-**cassandra_repl_factor**       | When migrating for the first time, Kong will create the keyspace with this replication factor when using `SimpleStrategy`. | `1`
-**cassandra_data_centers**      | When migrating for the first time, Kong will use this setting when using `NetworkTopologyStrategy`. The format is a comma-separated list made of `<dc_name>:<repl_factor>`. | `dc1:2,dc2:3`
-**cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations. | `10000`
+name   | description  | default
+-------|--------------|----------
+**cassandra_contact_points** | A comma-separated list of contact points to your cluster. You may specify IP addresses or hostnames. Note that the port component of SRV records will be ignored in favor of `cassandra_port`. When connecting to a multi-DC cluster, ensure that contact points from the local datacenter are specified first in this list. | `127.0.0.1`
+**cassandra_port** | The port on which your nodes are listening on. All your nodes and contact points must listen on the same port. Will be created if it doesn't exist. | `9042`
+**cassandra_keyspace** | The keyspace to use in your cluster. | `kong`
+**cassandra_consistency** | Consistency setting to use when reading/ writing to the Cassandra cluster. | `ONE`
+**cassandra_timeout** | Defines the timeout (in ms) for reading and writing. | `5000`
+**cassandra_ssl** | Toggles client-to-node TLS connections between Kong and Cassandra. | `off`
+**cassandra_ssl_verify** | Toggles server certificate verification if `cassandra_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
+**cassandra_username** | Username when using the `PasswordAuthenticator` scheme. | `kong`
+**cassandra_password** | Password when using the `PasswordAuthenticator` scheme. | none
+**cassandra_lb_policy** | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are: `RoundRobin`, `RequestRoundRobin`, `DCAwareRoundRobin`, and `RequestDCAwareRoundRobin`. Policies prefixed with "Request" make efficient use of established connections throughout the same request. Prefer "DCAware" policies if and only if you are using a multi-datacenter cluster. | `RequestRoundRobin`
+**cassandra_local_datacenter** | When using the `DCAwareRoundRobin` or `RequestDCAwareRoundRobin` load balancing policy, you must specify the name of the local (closest) datacenter for this Kong node. | none
+**cassandra_repl_strategy** | When migrating for the first time, Kong will use this setting to create your keyspace. Accepted values are `SimpleStrategy` and `NetworkTopologyStrategy`. | `SimpleStrategy`
+**cassandra_repl_factor** | When migrating for the first time, Kong will create the keyspace with this replication factor when using the `SimpleStrategy`. | `1`
+**cassandra_data_centers** | When migrating for the first time, will use this setting when using the `NetworkTopologyStrategy`. The format is a comma-separated list made of `<dc_name>:<repl_factor>`. | `dc1:2,dc2:3`
+**cassandra_schema_consensus_timeout** | Defines the timeout (in ms) for the waiting period to reach a schema consensus between your Cassandra nodes. This value is only used during migrations. | `10000`
 
----
-
-### Datastore cache section
+### Datastore Cache section
 
 In order to avoid unnecessary communication with the datastore, Kong caches
-entities (such as APIs, Consumers, Credentials, etc...) for a configurable
-period of time. It also handles invalidations if such an entity is updated.
+entities (such as APIs, Consumers, Credentials...) for a configurable period of
+time. It also handles invalidations if such an entity is updated.
 
-This section allows for configuring the behavior of Kong regarding the
-caching of such configuration entities.
+This section allows for configuring the behavior of Kong regarding the caching
+of such configuration entities.
 
 ---
 
 #### db_update_frequency
 
-Frequency (in seconds) at which to check for
-updated entities with the datastore.
+Frequency (in seconds) at which to check for updated entities with the
+datastore.
 
-When a node creates, updates, or deletes an
-entity via the Admin API, other nodes need
-to wait for the next poll (configured by
-this value) to eventually purge the old
-cached entity and start using the new one.
+When a node creates, updates, or deletes an entity via the Admin API, other
+nodes need to wait for the next poll (configured by this value) to eventually
+purge the old cached entity and start using the new one.
 
 Default: `5`
 
@@ -961,23 +951,18 @@ Default: `5`
 
 #### db_update_propagation
 
-Time (in seconds) taken for an entity in the
-datastore to be propagated to replica nodes
-of another datacenter.
+Time (in seconds) taken for an entity in the datastore to be propagated to
+replica nodes of another datacenter.
 
-When in a distributed environment such as
-a multi-datacenter Cassandra cluster, this
-value should be the maximum number of
-seconds taken by Cassandra to propagate a
-row to other datacenters.
+When in a distributed environment such as a multi-datacenter Cassandra cluster,
+this value should be the maximum number of seconds taken by Cassandra to
+propagate a row to other datacenters.
 
-When set, this property will increase the
-time taken by Kong to propagate the change
-of an entity.
+When set, this property will increase the time taken by Kong to propagate the
+change of an entity.
 
-Single-datacenter setups or PostgreSQL
-servers should suffer no such delays, and
-this value can be safely set to 0.
+Single-datacenter setups or PostgreSQL servers should suffer no such delays,
+and this value can be safely set to 0.
 
 Default: `0`
 
@@ -985,15 +970,14 @@ Default: `0`
 
 #### db_cache_ttl
 
-Time-to-live (in seconds) of an entity from
-the datastore when cached by this node.
+Time-to-live (in seconds) of an entity from the datastore when cached by this
+node.
 
-Database misses (no entity) are also cached
-according to this setting.
-If set to 0 (default), such cached entities
-or misses never expire.
+Database misses (no entity) are also cached according to this setting.
 
-Default: `0` (no expiration)
+If set to 0 (default), such cached entities or misses never expire.
+
+Default: `0`
 
 ---
 
@@ -1001,27 +985,29 @@ Default: `0` (no expiration)
 
 Time (in seconds) for which stale entities from the datastore should be
 resurrected for when they cannot be refreshed (e.g., the datastore is
-unreachable). When this TTL expires, a new attempt to refresh the stale
-entities will be made.
+unreachable). When this TTL expires, a new attempt to refresh the stale entities
+will be made.
 
 Default: `30`
 
 ---
 
-### DNS resolver section
+
+### DNS Resolver section
 
 By default the DNS resolver will use the standard configuration files
 `/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be
-overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if
-they have been set.
+overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if they
+have been set.
 
 Kong will resolve hostnames as either `SRV` or `A` records (in that order, and
 `CNAME` records will be dereferenced in the process).
+
 In case a name was resolved as an `SRV` record it will also override any given
 port number by the `port` field contents received from the DNS server.
 
-The DNS options `SEARCH` and `NDOTS` (from the `/etc/resolv.conf` file) will
-be used to expand short names to fully qualified ones. So it will first try the
+The DNS options `SEARCH` and `NDOTS` (from the `/etc/resolv.conf` file) will be
+used to expand short names to fully qualified ones. So it will first try the
 entire `SEARCH` list for the `SRV` type, if that fails it will try the `SEARCH`
 list for `A`, etc.
 
@@ -1034,12 +1020,11 @@ field entries in the record.
 
 #### dns_resolver
 
-Comma separated list of nameservers, each
-entry in `ip[:port]` format to be used by
-Kong. If not specified the nameservers in
-the local `resolv.conf` file will be used.
-Port defaults to 53 if omitted. Accepts
-both IPv4 and IPv6 addresses.
+Comma separated list of nameservers, each entry in `ip[:port]` format to be
+used by Kong. If not specified the nameservers in the local `resolv.conf` file
+will be used.
+
+Port defaults to 53 if omitted. Accepts both IPv4 and IPv6 addresses.
 
 Default: none
 
@@ -1047,8 +1032,10 @@ Default: none
 
 #### dns_hostsfile
 
-The hosts file to use. This file is read once and its content is static
-in memory. To read the file again after modifying it, Kong must be reloaded.
+The hosts file to use. This file is read once and its content is static in
+memory.
+
+To read the file again after modifying it, Kong must be reloaded.
 
 Default: `/etc/hosts`
 
@@ -1056,11 +1043,9 @@ Default: `/etc/hosts`
 
 #### dns_order
 
-The order in which to resolve different
-record types. The `LAST` type means the
-type of the last successful lookup (for the
-specified name). The format is a (case
-insensitive) comma separated list.
+The order in which to resolve different record types. The `LAST` type means the
+type of the last successful lookup (for the specified name). The format is a
+(case insensitive) comma separated list.
 
 Default: `LAST,SRV,A,CNAME`
 
@@ -1068,10 +1053,9 @@ Default: `LAST,SRV,A,CNAME`
 
 #### dns_valid_ttl
 
-By default, DNS records are cached using
-the TTL value of a response. If this
-property receives a value (in seconds), it
-will override the TTL for all records.
+By default, DNS records are cached using the TTL value of a response. If this
+property receives a value (in seconds), it will override the TTL for all
+records.
 
 Default: none
 
@@ -1079,14 +1063,11 @@ Default: none
 
 #### dns_stale_ttl
 
-Defines, in seconds, how long a record will
-remain in cache past its TTL. This value
-will be used while the new DNS record is
-fetched in the background.
-Stale data will be used from expiry of a
-record until either the refresh query
-completes, or the `dns_stale_ttl` number of
-seconds have passed.
+Defines, in seconds, how long a record will remain in cache past its TTL. This
+value will be used while the new DNS record is fetched in the background.
+
+Stale data will be used from expiry of a record until either the refresh query
+completes, or the `dns_stale_ttl` number of seconds have passed.
 
 Default: `4`
 
@@ -1094,8 +1075,7 @@ Default: `4`
 
 #### dns_not_found_ttl
 
-TTL in seconds for empty DNS responses and
-"(3) name error" responses.
+TTL in seconds for empty DNS responses and "(3) name error" responses.
 
 Default: `30`
 
@@ -1111,17 +1091,18 @@ Default: `1`
 
 #### dns_no_sync
 
-If enabled, then upon a cache-miss every
-request will trigger its own dns query.
-When disabled multiple requests for the
-same name/type will be synchronised to a
-single query.
+If enabled, then upon a cache-miss every request will trigger its own dns
+query.
+
+When disabled multiple requests for the same name/type will be synchronised to
+a single query.
 
 Default: `off`
 
 ---
 
-### Development & miscellaneous section
+
+### Development & Miscellaneous section
 
 Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
@@ -1163,7 +1144,7 @@ custom plugins not stored in the default search path.
 
 See https://github.com/openresty/lua-nginx-module#lua_package_path
 
-Default: none
+Default: `./?.lua;./?/init.lua;`
 
 ---
 
@@ -1186,11 +1167,8 @@ See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
 
 Default: `30`
 
-
-[Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
-[pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
-
 ---
+
 
 ### Additional Configuration
 
@@ -1280,3 +1258,7 @@ service, this configuration could occur when Kong is acting as a node proxy,
 which is a local proxy that is acting on behalf of multiple services (which
 differs from a sidecar proxy, in which a local proxy acts on behalf of only a
 _single_ local service).
+
+
+[Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
+[pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
