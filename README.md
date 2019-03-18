@@ -67,7 +67,7 @@ scraper to test out config changes.
   * Generate documentation for all the modules in your PDK (where possible) and
     put in a folder inside your version docs
 
-## Generating the Admin API and CLI Documentation
+## Generating the Admin API, CLI and Configuration Documentation
 
 - Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them)
 - Several Lua rocks are needed. Easiest way to get all of them is to execute `make dev` in the Kong folder
@@ -85,6 +85,13 @@ scraper to test out config changes.
   - This command will:
     * Extract the output of the `--help` for every `kong` CLI subcommand
     * Generate a new `cli.md` in the path corresponding to the provided KONG_VERSION.
+- To generate the Configuration docs:
+  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp conf-docs`
+  - This command will:
+    * Parse Kong's `kong.conf.default` file and extract sections, variable names, descriptions, and default values
+    * Write those down inside a `configuration.md` file in the path matching KONG_VERSION.
+    * The command will completely overwrite the file, including text before and after the list of vars.
+    * The data used for the before/after parts can be found in `autodoc-conf/data.lua`
 
 ## Listing Your Extension in the Kong Hub
 
