@@ -143,4 +143,4 @@ $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10
 ```
-This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds.
+This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds. For more information, please see [Enterprise Rate Limiting Library](https://docs.konghq.com/enterprise/0.34-x/rate-limiting/).
