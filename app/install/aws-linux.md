@@ -11,9 +11,28 @@ breadcrumbs:
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
-- [Download]({{ site.links.download }}/kong-community-edition-aws/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.aws.rpm)
+- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux/kong-{{site.data.kong_latest.version}}.aws.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
+
+### YUM Repositories
+
+You can also install Kong via YUM; follow the instructions on the "Set Me Up"
+section on the page below.
+
+- [RPM Repository](https://bintray.com/kong/kong-rpm)
+
+**NOTE**: ensure that the `baseurl` field of the generated `.repo` file contains
+amazonlinux/amazonlinux; for instance:
+
+```
+baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
+```
+or
+
+```
+baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
+```
 
 ----
 
@@ -25,7 +44,7 @@ Start by downloading the following package specifically built for the Amazon Lin
 
     ```bash
     $ sudo yum install epel-release
-    $ sudo yum install kong-community-edition-{{site.data.kong_latest.version}}.aws.rpm --nogpgcheck
+    $ sudo yum install kong-{{site.data.kong_latest.version}}.aws.rpm --nogpgcheck
     ```
 
 2. **Prepare your database**

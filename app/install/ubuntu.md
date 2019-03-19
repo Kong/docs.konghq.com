@@ -11,11 +11,11 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [12.04 Precise]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.precise.all.deb)
-- [14.04 Trusty]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.trusty.all.deb)
-- [16.04 Xenial]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.xenial.all.deb)
-- [17.04 Zesty]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.zesty.all.deb)
-- [18.04 Bionic]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.bionic.all.deb)
+- [12.04 Precise]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.precise.all.deb)
+- [14.04 Trusty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.trusty.all.deb)
+- [16.04 Xenial]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.xenial.all.deb)
+- [17.04 Zesty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.zesty.all.deb)
+- [18.04 Bionic]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.bionic.all.deb)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
@@ -25,7 +25,7 @@ You can also install Kong via APT; follow the instructions on the "Set Me Up"
 section on the page below, setting  *distribution* to the appropriate value
 (e.g., `precise`) and *components* to `main`.
 
-- [Deb Repository](https://bintray.com/kong/kong-community-edition-deb)
+- [Deb Repository](https://bintray.com/kong/kong-deb)
 
 ----
 
@@ -38,7 +38,7 @@ section on the page below, setting  *distribution* to the appropriate value
     ```bash
     $ sudo apt-get update
     $ sudo apt-get install openssl libpcre3 procps perl
-    $ sudo dpkg -i kong-community-edition-{{site.data.kong_latest.version}}.*.deb
+    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
     ```
 
 2. **Prepare your database**
