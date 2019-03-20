@@ -232,13 +232,63 @@ return {
     },
     tags = {
       title = [[ Tags ]],
-      description = "",
-      ["/tags/:tags"] = {
+      description = [[
+        Tags are strings associated to entities in Kong. Each tag must be composed of one or more
+        alphanumeric characters, `_`, `-`, `.` or `~`.
+
+        Most core entities can be *tagged* via their `tags` attribute, upon creation or edition.
+
+        Tags can be used to filter core entities as well, via the `?tags` querystring parameter.
+
+        For example: if you normally get a list of all the Services by doing:
+
+        ```
+        GET /services
+        ```
+
+        You can get the list of all the Services tagged `example` by doing:
+
+        ```
+        GET /services?tags=example
+        ```
+
+        Similarly, if you want to filter Services so that you only get the ones tagged `example` *and*
+        `admin`, you can do that like so:
+
+        ```
+        GET /services?tags=example,admin
+        ```
+
+        Finally, if you wanted to filter the Services tagged `example` *or* `admin`, you could use:
+
+        ```
+        GET /services?tags=example/admin
+        ```
+
+        Some notes:
+
+        * A maximum of 5 tags can be queried simultaneously in a single request with `,` or `/`
+        * Mixing operators is not supported: if you try to mix `,` with `/` in the same querystring,
+          you will receive an error.
+        * You may need to quote and/or escape some characters when using them from the
+          command line.
+        * Filtering by `tags` is not supported in foreign key relationship endpoints. For example,
+          the `tags` parameter will be ignored in a request such as `GET /services/foo/routes?tags=a,b`
+        * `offset` parameters are not guaranteed to work if the `tags` parameter is altered or removed
+      ]],
+      ["/tags"] = {
         GET = {
-          title = [[ List entity IDs by tag ]],
-          endpoint = [[<div class="endpoint get">/tags/:tags</div>]],
+          title = [[ List all tags ]],
+          endpoint = [[<div class="endpoint get">/tags</div>]],
           description = [[
-            Returns the entities that have been tagged with a provided tag.
+            Returns a paginated list of all the tags in the system.
+
+            The list of entities will not be restricted to a single entity type: all the
+            entities tagged with tags will be present on this list.
+
+            If an entity is tagged with more than one tag, the `entity_id` for that entity
+            will appear more than once in the resulting list. Similarly, if several entities
+            have been tagged with the same tag, the tag will appear in several items of this list.
           ]],
           response = [[
             ```
@@ -249,12 +299,60 @@ return {
             {
                 {
                   "data": [
-                    { "id": "acf60b10-125c-4c1a-bffe-6ed55daefba4", ... },
-                    { "id": "5dc49e7e-95a4-4026-8a12-20566374611a", ... },
+                    { "entity_name": "services",
+                      "entity_id": "acf60b10-125c-4c1a-bffe-6ed55daefba4",
+                      "tag": "s1",
+                    },
+                    { "entity_name": "services",
+                      "entity_id": "acf60b10-125c-4c1a-bffe-6ed55daefba4",
+                      "tag": "s2",
+                    },
+                    { "entity_name": "routes",
+                      "entity_id": "60631e85-ba6d-4c59-bd28-e36dd90f6000",
+                      "tag": "s1",
+                    },
                     ...
                   ],
-                  "offset" = "8c11a30c-b618-41d3-be75-2bb42a770471",
-                  "next" = "/tags/example?offset=093f1e51-0686-4d02-8dad-44b6240bc2ae",
+                  "offset" = "c47139f3-d780-483d-8a97-17e9adc5a7ab",
+                  "next" = "/tags?offset=c47139f3-d780-483d-8a97-17e9adc5a7ab",
+                }
+            }
+            ```
+          ]]
+        },
+      },
+
+      ["/tags/:tags"] = {
+        GET = {
+          title = [[ List entity IDs by tag ]],
+          endpoint = [[<div class="endpoint get">/tags/:tags</div>]],
+          description = [[
+            Returns the entities that have been tagged with the specified tag.
+
+            The list of entities will not be restricted to a single entity type: all the
+            entities tagged with tags will be present on this list.
+          ]],
+          response = [[
+            ```
+            HTTP 200 OK
+            ```
+
+            ``` json
+            {
+                {
+                  "data": [
+                    { "entity_name": "services",
+                      "entity_id": "c87440e1-0496-420b-b06f-dac59544bb6c",
+                      "tag": "example",
+                    },
+                    { "entity_name": "routes",
+                      "entity_id": "8a99e4b1-d268-446b-ab8b-cd25cff129b1",
+                      "tag": "example",
+                    },
+                    ...
+                  ],
+                  "offset" = "1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9",
+                  "next" = "/tags/example?offset=1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9",
                 }
             }
             ```
@@ -285,6 +383,8 @@ return {
         requests. Once a Route is matched, Kong proxies the request to its associated
         Service. See the [Proxy Reference][proxy-reference] for a detailed explanation
         of how Kong proxies traffic.
+
+        Services can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -367,6 +467,8 @@ return {
         them) offers a powerful routing mechanism with which it is possible to define
         fine-grained entry-points in Kong leading to different upstream services of
         your infrastructure.
+
+        Routes can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -488,6 +590,8 @@ return {
         either rely on Kong as the primary datastore, or you can map the consumer list
         with your database to keep consistency between Kong and your existing primary
         datastore.
+
+        Consumers can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -534,6 +638,8 @@ return {
         that Service will run said Plugin. If a Plugin needs to be tuned to different
         values for some specific Consumers, you can do so by specifying the
         `consumer_id` value:
+
+        Plugins can be both [tagged and filtered by tags](#tags).
       ]],
       details = [[
         See the [Precedence](#precedence) section below for more details.
@@ -768,6 +874,8 @@ return {
         certificate. These objects are used by Kong to handle SSL/TLS termination for
         encrypted requests. Certificates are optionally associated with SNI objects to
         tie a cert/key pair to one or more hostnames.
+
+        Certificates can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -812,6 +920,8 @@ return {
         That is, a certificate object can have many hostnames associated with it; when
         Kong receives an SSL request, it uses the SNI field in the Client Hello to
         lookup the certificate object based on the SNI associated with the certificate.
+
+        SNIs can be both [tagged and filtered by tags](#tags).
       ]],
       ["/snis/:snis/certificate"] = {
         endpoint = false,
@@ -848,6 +958,8 @@ return {
         enable and disable targets based on their ability or inability to serve
         requests. The configuration for the health checker is stored in the upstream
         object, and applies to all of its targets.
+
+        Upstreams can be both [tagged and filtered by tags](#tags).
       ]],
       ["/upstreams/:upstreams/health"] = {
         GET = {
@@ -976,6 +1088,8 @@ return {
         alternatively, use the `DELETE` convenience method to accomplish the same.
 
         The current target object definition is the one with the latest `created_at`.
+
+        Targets can be both [tagged and filtered by tags](#tags).
       ]],
       ["/targets"] = {
         -- This is not using `skip = true` because
