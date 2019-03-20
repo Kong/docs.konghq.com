@@ -299,12 +299,12 @@ A diagram representing this flow:
 
     ```json
     {
-      "redirect_uris": "http://some/url"
+      "redirect_uri": "http://some/url"
     }
     ```
 
     With either a `200 OK` or `400 Bad Request` response code depending if the request was successful or not.
-7. In **both** cases, ignore the response status code and just redirect the user to whatever URI is being returned in the `redirect_uris` property.
+7. In **both** cases, ignore the response status code and just redirect the user to whatever URI is being returned in the `redirect_uri` property.
 
 8. The client application will take it from here, and will continue the flow with Kong with no other interaction with your web application. Like exchanging the authorization code for an access token if it's an Authorization Code Grant flow.
 
