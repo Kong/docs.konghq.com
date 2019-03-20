@@ -1,6 +1,6 @@
 .PHONY: clean install run test deploy docker-run docker-test docker-bash
 
-DOCKER_COMMAND=docker run -it -p 3000:3000 -p 3001:3001 --user=1000:1000 --rm -v $$PWD:/srv/jekyll kongdocs
+DOCKER_COMMAND=docker run -it -p 3000:3000 -p 3001:3001 --rm -v $$PWD:/srv/jekyll kongdocs
 NODE_MODULES=node_modules
 
 clean:
@@ -14,7 +14,7 @@ install:
 node_modules: install
 
 setup:
-	npm install -g gulp
+	npm install -g gulp gulp-cli
 	bundle install
 
 run: setup $(NODE_MODULES)

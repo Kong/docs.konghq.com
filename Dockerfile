@@ -19,7 +19,7 @@ RUN apk update && apk upgrade && apk add \
 COPY . /tmp/jekyll
 
 RUN cd /tmp/jekyll \
-  && npm install -g gulp \
+  && npm install -g gulp gulp-cli \
   && npm install -f \
 	&& bundle install \
 	&& chmod -R 777 /usr/local/bundle/
