@@ -17,6 +17,11 @@ or you can set one up on the Organization page of Kong Manager.
 
 ## How to Set Up a Super Admin
 
+<video width="100%" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2019/02/org-super-admin-ent-34.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 1. Go to the "Organization" tab in Kong Manager.
 
 2. Click "+Invite User" and fill out the form. 
@@ -76,6 +81,11 @@ encrypt your Kong Manager traffic.
 
 ## How to Log Out and Log In
 
+<video width="100%" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2019/02/logout-login-enterprise-34.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 1. Hover over the account name at the top right, and click the "Logout" button. 
 This will clear the Local Storage authentication data (if exists) and redirect 
 to the login page.
@@ -109,6 +119,7 @@ enforce_rbac = on
 admin_gui_auth_conf={                                     \
 "anonymous":"",                                           \
 "attribute":"uid",                                        \ 
+"bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
 "base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
 "cache_ttl": 2,                                           \
 "header_type":"Basic",                                    \
@@ -121,11 +132,15 @@ admin_gui_auth_conf={                                     \
 }
 ```
 
-The values above can be replaced with their corresponding values for your 
-custom LDAP configuration:
+The values above can be replaced with their corresponding values for your custom
+LDAP configuration:
 
+  - `<ENTER_YOUR_BIND_DN_HERE>` - Your LDAP Bind DN (Distinguished Name)
+        * Used to perform LDAP search of user. This bind_dn should have 
+          permissions to search for the user being authenticated.
+        * For Example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
   - `<ENTER_YOUR_BASE_DN_HERE>` - Your LDAP Base DN (Distinguished Name)
-        * For Example, `ou=scientists,dc=ldap,dc=kong,dc=com`
+        * For Example, `ou=scientists,dc=ldap,dc=com`
   - `<ENTER_YOUR_LDAP_HOST_HERE>` - LDAP Host domain
         * For Example, `ec2"-XX-XXX-XX-XXX.compute-1.amazonaws.com`
 

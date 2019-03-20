@@ -28,6 +28,12 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/upgrading">Upgrade guide</a></h3>
+    <p>Already using Kong, and wanting to upgrade? Here's the step-by-step guide.</p>
+    <a href="/{{page.kong_version}}/upgrading">Read the upgrade guide &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/configuration">Configuration file</a></h3>
     <p>Want to further optimize your Kong cluster, database, or configure NGINX? Dive into the configuration.</p>
     <a href="/{{page.kong_version}}/configuration">Start configuring Kong &rarr;</a>
@@ -74,4 +80,6 @@ title: Documentation for Kong
     <p>Looking for something Kong does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for Kong.</p>
     <a href="/{{page.kong_version}}/plugin-development">Read the plugin development guide &rarr;</a>
   </div>
+
+
 </div>

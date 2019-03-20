@@ -3,7 +3,7 @@ title: Installing Kong EE Docker Image
 class: page-install-method
 ---
 
-# Installing Kong EE from Docker Image
+## Introduction
 
 <img src="/assets/images/distributions/docker.svg"/>
 
@@ -82,7 +82,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
 
 ## Enable RBAC
 
-[Role-based Access Control (RBAC)](/enterprise/latest/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
+[Role-based Access Control (RBAC)](/enterprise/{{page.kong_version}}/setting-up-admin-api-rbac/) allows you to create multiple Kong administrators and control which resources they have access to. To enable it:
 
 1. Create an initial RBAC administrator:
         

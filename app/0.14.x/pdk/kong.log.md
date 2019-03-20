@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.log
+## Introduction
 
 This namespace contains an instance of a "logging facility", which is a
  table containing all of the methods described below.

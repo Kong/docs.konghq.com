@@ -34,100 +34,138 @@ Kong will detect and load your endpoints if they are defined in a module named:
 "kong.plugins.<plugin_name>.api"
 ```
 
-This module is bound to return a table containing strings describing your
-routes (See [Lapis routes & URL
-Patterns](http://leafo.net/lapis/reference/actions.html#routes--url-patterns))
-and HTTP verbs they support. Routes are then assigned a simple handler
-function.
+This module is bound to return a table with one or more entries with the following structure:
 
-This table is then fed to Lapis (See Lapis' [handling HTTP verbs
-documentation](http://leafo.net/lapis/reference/actions.html#handling-http-verbs)).
-Example:
-
-```lua
-return {
-  ["/my-plugin/new/get/endpoint"] = {
-    GET = function(self, dao_factory, helpers)
-      -- ...
-    end
-  }
+``` lua
+{
+  ["<path>"] = {
+     schema = <schema>,
+     methods = {
+       before = function(self) ... end,
+       on_error = function(self) ... end,
+       GET = function(self) ... end,
+       PUT = function(self) ... end,
+       ...
+     }
+  },
+  ...
 }
 ```
 
-The handler function takes three arguments, which are, in order:
+Where:
 
-- `self`: The request object. See [Lapis request
-  object](http://leafo.net/lapis/reference/actions.html#request-object)
-- `dao_factory`: The DAO Factory. See the
-  [datastore]({{page.book.chapters.access-the-datastore}}) chapter of this
-  guide.
-- `helpers`: A table containing a few helpers, described below.
+- `<path>` should be a string representing a route like `/users` (See [Lapis routes & URL
+  Patterns](http://leafo.net/lapis/reference/actions.html#routes--url-patterns)) for details.
+  Notice that the path can contain interpolation parameters, like `/users/:users/new`.
+- `<schema>` is a schema definition. Schemas for core and custom plugin entities are available
+  via `kong.db.<entity>.schema`. The schema is used to parse certain fields according to their
+  types; for example if a field is marked as an integer, it will be parsed as such when it is
+  passed to a function (by default form fields are all strings).
+- The `methods` subtable contains functions, indexed by a string.
+  - The `before` key is optional and can hold a function. If present, the function will be executed
+    on every request that hits `path`, before any other function is invoked.
+  - One or more functions can be indexed with HTTP method names, like `GET` or `PUT`. These functions
+    will be executed when the appropriate HTTP method and `path` is matched. If a `before` function is
+    present on the `path`, it will be executed first. Keep in mind that `before` functions can
+    use `kong.response.exit` to finish early, effectively cancelling the "regular" http method function.
+  - The `on_error` key is optional and can hold a function. If present, the function will be executed
+    when the code from other functions (either from a `before` or a "http method") throws an error. If
+    not present, then Kong will use a default error handler to return the errors.
 
-In addition to the HTTPS verbs it supports, a route table can also contain two
-other keys:
+For example:
 
-- **before**: as in
-  [Lapis](http://leafo.net/lapis/reference/actions.html#handling-http-verbs), a
-  before_filter that runs before the executed verb action.
-- **on_error**: a custom error handler function that overrides the one provided
-  by Kong. See Lapis' [capturing recoverable
-  errors](http://leafo.net/lapis/reference/exception_handling.html#capturing-recoverable-errors)
-  documentation.
+``` lua
+local endpoints = require "kong.api.endpoints"
 
----
-
-## Helpers
-
-When handling a request on the Admin API, there are times when you want to send
-back responses and handle errors, to help you do so the third parameter
-`helpers` is a table with the following properties:
-
-- `responses`: a module with helper functions to send HTTP responses.
-- `yield_error`: the
-  [yield_error](http://leafo.net/lapis/reference/exception_handling.html#capturing-recoverable-errors)
-  function from Lapis. To call when your handler encounters an error (from a
-  DAO, for example). Since all Kong errors are tables with context, it can send
-  the appropriate response code depending on the error (Internal Server Error,
-  Bad Request, etc...).
-
-### crud_helpers
-
-Since most of the operations you will perform in your endpoints will be CRUD
-operations, you can also use the `kong.api.crud_helpers` module. This module
-provides you with helpers for any insert, retrieve, update or delete operations
-and performs the necessary DAO operations and replies with the appropriate HTTP
-status codes. It also provides you with functions to retrieve parameters from
-the path, such as an API's name or id, or a Consumer's username or id.
-
-Example:
-
-```lua
-local crud = require "kong.api.crud_helpers"
+local credentials_schema = kong.db.keyauth_credentials.schema
+local consumers_schema = kong.db.consumers.schema
 
 return {
-  ["/consumers/:username_or_id/key-auth/"] = {
-    before = function(self, dao_factory, helpers)
-      crud.find_consumer_by_username_or_id(self, dao_factory, helpers)
-      self.params.consumer_id = self.consumer.id
-    end,
+  ["/consumers/:consumers/key-auth"] = {
+    schema = credentials_schema,
+    methods = {
+      GET = endpoints.get_collection_endpoint(
+              credentials_schema, consumers_schema, "consumer"),
 
-    GET = function(self, dao_factory, helpers)
-      crud.paginated_set(self, dao_factory.keyauth_credentials)
-    end,
-
-    PUT = function(self, dao_factory)
-      crud.put(self.params, dao_factory.keyauth_credentials)
-    end,
-
-    POST = function(self, dao_factory)
-      crud.post(self.params, dao_factory.keyauth_credentials)
-    end
-  }
+      POST = endpoints.post_collection_endpoint(
+              credentials_schema, consumers_schema, "consumer"),
+    },
+  },
 }
 ```
 
-See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua)
-for an extended version of this example.
+This code will create two Admin API endpoints in `/consumers/:consumers/key-auth`, to
+obtain (`GET`) and create (`POST`) credentials associated to a given consumer. On this example
+the functions are provided by the `kong.api.endpoints` library. If you want to see a more
+complete example, with custom code in functions, see
+[the `api.lua` file from the key-auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua).
+
+The `endpoints` module currently contains the default implementation for the most usual CRUD
+operations used in Kong. This module provides you with helpers for any insert, retrieve,
+update or delete operations and performs the necessary DAO operations and replies with
+the appropriate HTTP status codes. It also provides you with functions to retrieve parameters from
+the path, such as an Service's name or id, or a Consumer's username or id.
+
+If `endpoints`-provided are functions not enough, a regular Lua function can be used instead. From there you can use:
+
+- Several functions provided by the `endpoints` module.
+- All the functionality provided by the [PDK](../../pdk)
+- The `self` parameter, which is the [Lapis request object](http://leafo.net/lapis/reference/actions.html#request-object).
+- And of course you can `require` any Lua modules if needed. Make sure they are compatible with OpenResty if you choose this route.
+
+``` lua
+local endpoints = require "kong.api.endpoints"
+
+local credentials_schema = kong.db.keyauth_credentials.schema
+local consumers_schema = kong.db.consumers.schema
+
+return {
+  ["/consumers/:consumers/key-auth/:keyauth_credentials"] = {
+    schema = credentials_schema,
+    methods = {
+      before = function(self, db, helpers)
+        local consumer, _, err_t = endpoints.select_entity(self, db, consumers_schema)
+        if err_t then
+          return endpoints.handle_error(err_t)
+        end
+        if not consumer then
+          return kong.response.exit(404, { message = "Not found" })
+        end
+
+        self.consumer = consumer
+
+        if self.req.method ~= "PUT" then
+          local cred, _, err_t = endpoints.select_entity(self, db, credentials_schema)
+          if err_t then
+            return endpoints.handle_error(err_t)
+          end
+
+          if not cred or cred.consumer.id ~= consumer.id then
+            return kong.response.exit(404, { message = "Not found" })
+          end
+          self.keyauth_credential = cred
+          self.params.keyauth_credentials = cred.id
+        end
+      end,
+      GET  = endpoints.get_entity_endpoint(credentials_schema),
+      PUT  = function(self, db, helpers)
+        self.args.post.consumer = { id = self.consumer.id }
+        return endpoints.put_entity_endpoint(credentials_schema)(self, db, helpers)
+      end,
+    },
+  },
+}
+```
+
+On the previous example, the `/consumers/:consumers/key-auth/:keyauth_credentials` path gets
+three functions:
+- The `before` function is a custom Lua function which uses several `endpoints`-provided utilities
+  (`endpoints.handle_error`) as well as PDK functions (`kong.response.exit`). It also populates
+  `self.consumer` for the subsequent functions to use.
+- The `GET` function is built entirely using `endpoints`. This is possible because the `before` has
+  "prepared" things in advance, like `self.consumer`.
+- The `PUT` function populates `self.args.post.consumer` before calling the `endpoints`-provided
+  `put_entity_endpoint` function.
 
 ---
 

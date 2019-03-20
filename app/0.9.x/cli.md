@@ -2,7 +2,7 @@
 title: CLI Reference
 ---
 
-# CLI Reference
+## Introduction
 
 The provided CLI (*Command Line Interface*) allows you to start, stop, and
 manage your Kong instances. The CLI manages your local node (as in, on the

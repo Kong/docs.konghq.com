@@ -49,6 +49,6 @@ Thank you for installing Kong Enterprise Edition. This document orients you to K
 
 * **API** = The APIs that are proxied by Kong API Gateway, the APIs that are documented in Dev Portal, and APIs whose usage is monitored by Vitals, etc.
     * Note that this is *not* the **Admin API** of Kong - we consistently refer to that as **Admin API**
-* **Consumer** = [A Kong concept and entity.](/latest/getting-started/adding-consumers/) 
+* **Consumer** = [A Kong concept and entity.](/enterprise/{{page.kong_version}}/getting-started/adding-consumers/) 
 * **Application** = A computer program that calls API(s) proxied by **Kong API Gateway**.
     * This could be a mobile or web front end, an application running on the server of a partner or customer, or an application running within your company. 

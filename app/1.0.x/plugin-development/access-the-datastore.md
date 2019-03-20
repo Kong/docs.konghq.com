@@ -14,14 +14,7 @@ Kong supports two primary datastores: [Cassandra
 and [PostgreSQL
 {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/).
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> As of 0.13.0, Kong is rolling out a new version of
-  the DAO abstraction layer called `kong.db`, which will gradually
-  replace `kong.dao`
-</div>
----
-
-## kong.db and kong.dao
+## kong.db
 
 All entities in Kong are represented by:
 
@@ -34,13 +27,9 @@ All entities in Kong are represented by:
   methods to insert, update, find and delete entities of that type.
 
 The core entities in Kong are: Services, Routes, Consumers and Plugins.
-Services, Routes, and Consumers are available through the new `kong.db`
-singleton. The rest of the entities are available through `kong.dao`. In the
-future, all entities will be gradually migrated to `kong.db`, including custom
-plugins entities (currently relying on `kong.dao`).
+All of them are accessible as Data Access Objects (DAOs),
+through the `kong.db` global singleton:
 
-Both the DAO Factory and the new `db` interface are singleton instances in Kong
-and thus, are accessible through the `kong` global:
 
 ```lua
 -- Core DAOs
@@ -50,8 +39,8 @@ local consumers_dao = kong.db.consumers
 local plugins_dao = kong.dao.plugins
 ```
 
-The `kong` global exposes the [Plugin Development Kit], and its `kong.dao` and
-`kong.db` properties are instances of the DAO and DB singletons.
+Both core entities from Kong and custom entities from plugins are
+available through `kong.db.*`.
 
 ---
 
@@ -62,18 +51,17 @@ the datastore, generally mapping to an entity in Kong. All the underlying
 supported databases (currently Cassandra and PostgreSQL) comply to the same
 interface, thus making the DAO compatible with all of them.
 
-For example, inserting a Service (with `kong.db`) and a Plugin (with
-`kong.dao`) is as easy as:
+For example, inserting a Service and a Plugin is as easy as:
 
 ```lua
 local inserted_service, err = kong.db.services:insert({
   name = "mockbin",
-  url = "http://mockbin.org"
+  url = "http://mockbin.org",
 })
 
-local inserted_plugin, err = kong.dao.plugins:insert({
+local inserted_plugin, err = kong.db.plugins:insert({
   name = "key-auth",
-  service_id = inserted_service.id
+  service_id = { id = inserted_service.id },
 })
 ```
 

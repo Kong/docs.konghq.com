@@ -1,6 +1,6 @@
 <header class="navbar navbar-inverse navbar-toggleable-lg kong-navbar flex-row align-items-center fixed-top">
   <div class="container d-flex">
-    <nav id="fullNav" class="collapse navbar-collapse col justify-content-md-end kong-navbar_nav">
+    <nav id="fullNav" class="col justify-content-md-end kong-navbar_nav">
       <ul class="navbar-nav left">
         <li class="navbar-item kong-navbar-dropdown kong-navbar-dropdown--columns">
           <a class="nav-link">Products</a>
@@ -76,8 +76,8 @@
             <p>Get help from Kong engineers and community members.<br><br></p></a>
             </div>
             <div class="list-item">
-            <a href="http://konghq.com/meetups" class="list-group-item list-group-item-action">Meetups
-            <p>Meet your local community.<br><br><br></p></a>
+            <a href="http://konghq.com/community" class="list-group-item list-group-item-action">Community
+            <p>Join the Kong community to find help or contribute to Kong.<br><br><br></p></a>
             </div>
           </div>
           </div> <!-- list-group -->
@@ -94,7 +94,7 @@
           <div class="list-group docs">
           <div class="list-group-item flex-row flex-nowrap">
             <div class="list-item">
-            <a href="https://docs.konghq.com" class="list-group-item list-group-item-action">Get started with Kong
+            <a href="https://docs.konghq.com" class="list-group-item list-group-item-action">Kong Docs + Getting Started
               <p>Use the 5-minute quickstart and installation guide to deploy Kong now.</p></a>
             </div>
             <div class="list-item">
@@ -107,7 +107,7 @@
             </div>
             <div class="list-item">
             <a href="https://docs.konghq.com/enterprise/latest/developer-portal/introduction/" class="list-group-item list-group-item-action">Launch your Dev Portal
-            <p>Learn how to create and manager your Kong Dev Portal.<br><br></p></a>
+            <p>Learn how to create and manage your Kong Dev Portal.<br><br></p></a>
             </div>
           </div>
           </div>
@@ -117,16 +117,16 @@
           <div class="list-group products resources">
             <div class="list-group-item flex-row flex-nowrap mega row">
               <div class="kong-navbar-dropdown_column col-md-4">
-                <h5 class="list-group-item-action">Community</h5>
+                <h5 class="list-group-item-action">Connect</h5>
                 <div class="inner-wrap">
+                <a href="http://konghq.com/community" class="list-group-item-action">Community</a>
                 <a href="https://discuss.konghq.com/" class="list-group-item-action">Kong Nation</a>
                 <a href="https://github.com/Kong/" class="list-group-item-action">GitHub</a>
-                <a href="http://konghq.com/meetups" class="list-group-item-action">Meetups</a>
                 <a href="http://konghq.com/kong-summit" class="list-group-item-action">Kong Summit</a>
                 </div>
               </div>
               <div class="kong-navbar-dropdown_column col-md-2">
-                <h5 class="list-group-item-action">Support</h5>
+                <h5 class="list-group-item-action">Get Support</h5>
                 <div class="inner-wrap">
                 <a href="https://support.konghq.com" class="list-group-item-action">Enterprise Support Portal</a>
                 <a href="http://konghq.com/faqs/" class="list-group-item-action">FAQs</a>
@@ -237,7 +237,7 @@
         <a class="nav-link" href="http://konghq.com/install/">Install</a>
         <a class="nav-link"  target="blank" href="https://github.com/Kong/">GitHub</a>
         <a class="nav-link" href="https://discuss.konghq.com/">Kong Nation</a>
-        <a class="nav-link" href="http://konghq.com/meetups/">Meetups</a>
+        <a class="nav-link" href="http://konghq.com/community/">Community</a>
       </div>
     </div>
   </div>
@@ -271,14 +271,14 @@
     <div class="subnav">
       <h5 class="col-12"><a class="back nav-link"><i class="fas fa-chevron-left"></i>&nbsp; Resources</a></h5>
       <div class="col-md-6">
-          <h6>Community</h6>
+          <h6>Connect</h6>
+          <a class="nav-link" href="http://konghq.com/community/">Community</a>
           <a class="nav-link" href="https://discuss.konghq.com/">Kong Nation</a>
           <a class="nav-link" href="https://github.com/Kong/">GitHub</a>
-          <a class="nav-link" href="http://konghq.com/meetups/">Meetups</a>
           <a class="nav-link" href="http://konghq.com/kong-summit/">Kong Summit</a>
         </div>
         <div class="col-md-6">
-          <h6>Support</h6>
+          <h6>Get Support</h6>
           <a class="nav-link" href="https://support.konghq.com">Enterprise Support Portal</a>
         </div>
 
@@ -288,52 +288,10 @@
           <a class="nav-link" href="http://konghq.com/ebooks">Ebooks</a>
           <a class="nav-link" href="http://konghq.com/webinars">Webinars</a>
           <a class="nav-link" href="http://konghq.com/briefs">Briefs</a>
-          <a class="nav-link" href="http://konghq.com/faqs/">FAQs</a>
-          <a class="nav-link" href="http://konghq.com/kong-summit">Kong Summit</a>
         </div>
-  <!-- .enterprise -->
-  <div class="navbar">
-    <div class="container">
-      <a href="https://konghq.com" class="navbar-brand">
-        <img src="/assets/images/Kogo.svg" alt="Kong">
-      </a>
-      <iframe class="header-star" src="https://ghbtns.com/github-btn.html?user=Kong&amp;repo=kong&amp;type=star" frameborder="0"
-        scrolling="0" width="55" height="20"></iframe>
-      <button data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" class="navbar-toggle">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <nav id="navbar" class="navbar-nav">
-        <ul>
-          <li>
-            <a href="/" {% if page.layout == 'docs' %}class="active"{% endif %}>Docs</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/about-kong-inc/">About</a>
-          </li>
-          <li>
-            <a href="/hub/" {% if page.layout == 'extension' or page.url == '/hub/' %}class="active"{% endif %}>Hub</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/community-resources/">Community</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/kong-enterprise-edition/">Enterprise</a>
-          </li>
-          <li>
-            <a href="{{ site.repos.kong }}" target="_blank">GitHub</a>
-          </li>
-          <li class="hidden-lg">
-            <a href="https://support.konghq.com/">Support</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/install" class="button button-dark{% if page.url == " /install/ " %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Installation</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
   </div>
+
+</div>
 
   <div class="kong-navbar-collapse_section section-right">
     <h5 class="trigger">

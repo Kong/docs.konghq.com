@@ -125,8 +125,7 @@ a build, which should generally happen right after your patch was merged.
 
 If you are planning on producing a new Kong plugin or integration, with the
 intent to list it in the Kong Hub, you are encouraged to have a quick
-call with Kong's Director of Ecosystem, Cooper Marcus -
-[book a time](http://meetme.so/cooper), or email him at cooper@konghq.com.
+chat with Kong's CTO, Marco Palladino - email him at marco@konghq.com.
 
 Adding a new listing to the Kong Hub may be proposed by:
 

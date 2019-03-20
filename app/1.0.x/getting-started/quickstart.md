@@ -19,7 +19,7 @@ Issue the following command to prepare your datastore by running the Kong
 migrations:
 
 ```bash
-$ kong migrations up [-c /path/to/kong.conf]
+$ kong migrations bootstrap [-c /path/to/kong.conf]
 ```
 
 You should see a message that tells you Kong has successfully migrated your

@@ -30,4 +30,4 @@ curl -L -u<$UserName>@kong<$API_KEY> "https://kong.bintray.com/<$repoName>/licen
  
 
 ## What Next?
-Great! Now that you have your license, you can follow [this guide](/enterprise/latest/installation/docker) for instructions on how to use it to start Kong EE.
+Great! Now that you have your license, you can follow [this guide](/enterprise/{{page.kong_version}}/installation/docker) for instructions on how to use it to start Kong EE.

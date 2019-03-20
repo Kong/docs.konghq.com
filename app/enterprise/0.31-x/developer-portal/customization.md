@@ -3,7 +3,7 @@ title: Customizing the Kong Developer Portal
 class: page-install-method
 ---
 
-# Customizing the Kong Developer Portal
+## Introduction
 
 Now that you have the Example Dev Portal running and you understand how files interact with and are served by the Dev Portal Loader, lets go through the steps of customizing the look and feel of the Example Dev Portal.
 

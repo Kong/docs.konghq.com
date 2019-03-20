@@ -273,7 +273,7 @@ gulp.task('cli-docs', function (cb) {
   }
 
   // 1 Generate cli.md
-  cmd = 'resty autodoc-cli/run.lua'
+  cmd = 'luajit autodoc-cli/run.lua'
   obj = childProcess.spawnSync(cmd, { shell: true })
   errLog = obj.stderr.toString()
   if (errLog.length > 0) {
@@ -288,7 +288,7 @@ gulp.task('clean', function () {
   return del(['dist', '.gh-pages'])
 })
 
-gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
+gulp.task('build', ['javascripts', 'images', 'fonts', 'copycss'], function (cb) {
   sequence('html', 'styles', cb)
 })
 
