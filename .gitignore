@@ -19,3 +19,4 @@ dist
 
 # package managers
 node_modules
+vendor

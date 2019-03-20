@@ -1,8 +1,8 @@
 ---
 
-name: EE Forward Proxy
+name: Forward Proxy Advanced
 publisher: Kong Inc.
-version: 0.33-x
+version: 0.34-x
 
 desc: Allows Kong to connect to intermediary transparent HTTP proxies
 description: |
@@ -18,7 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.33-x
+        - 0.34-x
 
 params:
   name: forward-proxy

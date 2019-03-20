@@ -2,11 +2,11 @@
 
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 0.33-x
+version: 0.34-x
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
-  The Rate Limiting Advanced plugin for Kong Enterprise Edition is a re-engineered version of the incredibly popular Kong Rate Limiting plugin, with greatly enhanced configuration options and performance.
+  The Rate Limiting Advanced plugin for Kong Enterprise is a re-engineered version of the incredibly popular Kong Rate Limiting plugin, with greatly enhanced configuration options and performance.
 
 enterprise: true
 type: plugin
@@ -18,7 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.33-x
+        - 0.34-x
 
 params:
   name: rate-limiting-advanced
@@ -143,4 +143,4 @@ $ curl -i -X POST http://kong:8001/apis/{api}/plugins \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10
 ```
-This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds.
+This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds. For more information, please see [Enterprise Rate Limiting Library](https://docs.konghq.com/enterprise/0.34-x/rate-limiting/).

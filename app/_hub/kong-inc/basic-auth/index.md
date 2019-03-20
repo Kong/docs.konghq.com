@@ -1,10 +1,11 @@
 ---
 name: Basic Authentication
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Add Basic Authentication to your APIs
+desc: Add Basic Authentication to your Services
 description: |
-  Add Basic Authentication to a Service or a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add Basic Authentication to a Service or a Route with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -21,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -43,7 +45,6 @@ kong_version_compatibility:
 
 params:
   name: basic-auth
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -61,7 +62,7 @@ params:
       description: |
         An optional string (consumer uuid) value to use as an "anonymous" consumer if authentication fails. If empty (default), the request will fail with an authentication failure `4xx`. Please note that this value must refer to the Consumer `id` attribute which is internal to Kong, and **not** its `custom_id`.
   extra: |
-    Once applied, any user with a valid credential can access the Service/API.
+    Once applied, any user with a valid credential can access the Service.
     To restrict usage to only some of the authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
     blacklist groups of users.
@@ -159,35 +160,46 @@ $ curl -X GET http://kong:8001/basic-auths
             "id": "805520f6-842b-419f-8a12-d1de8a30b29f",
             "password": "37b1af03d3860acf40bd9c681aa3ef3f543e49fe",
             "username": "baz",
-            "consumer_id": "5e52251c-54b9-4c10-9605-b9b499aedb47"
+            "consumer": { "id": "5e52251c-54b9-4c10-9605-b9b499aedb47" }
         },
         {
             "created_at": 1511379863000,
             "id": "8edfe5c7-3151-4d92-971f-3faa5e6c5d7e",
             "password": "451b06c564a06ce60874d0ea2f542fa8ed26317e",
             "username": "foo",
-            "consumer_id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf"
+            "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
         },
         {
             "created_at": 1511379877000,
             "id": "f11cb0ea-eacf-4a6b-baea-a0e0b519a990",
             "password": "451b06c564a06ce60874d0ea2f542fa8ed26317e",
             "username": "foobar",
-            "consumer_id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf"
+            "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the basic-auth credential `id` field.
-`username`<br>*optional*                 | A filter on the list based on the basic-auth credential `username` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the basic-auth credential `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/basic-auths
+
+{
+    "total": 1,
+    "data": [
+        {
+            "created_at": 1511379863000,
+            "id": "8edfe5c7-3151-4d92-971f-3faa5e6c5d7e",
+            "password": "451b06c564a06ce60874d0ea2f542fa8ed26317e",
+            "username": "foo",
+            "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose credentials need to be listed
 
 ### Retrieve the Consumer associated with a Credential
 
@@ -213,7 +225,6 @@ Credential for which to get the associated [Consumer][consumer-object].
 Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object
 [acl-associating]: /plugins/acl/#associating-consumers

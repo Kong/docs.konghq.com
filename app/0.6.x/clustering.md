@@ -2,7 +2,7 @@
 title: Clustering Reference
 ---
 
-# Clustering Reference
+## Overview
 
 Multiple Kong nodes pointing to the same datastore **must** belong to the same "Kong cluster". A Kong cluster allows you to scale the system horizontally by adding more machines to handle a bigger load of incoming requests, and they all share the same data since they point to the same datastore.
 

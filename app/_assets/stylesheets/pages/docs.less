@@ -18,25 +18,26 @@
       padding-left: 0;
     }
   }
-  &~.page-header-title h1 {
+  & ~ .page-header-title h1 {
     color: @navy-darker;
   }
 }
 
-.edit-this-page{
+.edit-this-page {
   position: absolute;
   right: 0;
 
-  @media (max-width: 650px) {
-    top: 80px;
-    left: 10px;
+  @media (max-width: 1100px) {
+    top: 135px;
+    left: 0px;
+  }
+  @media (max-width: 400px) {
+    left: 20px;
   }
 }
 
-
 #documentation {
   .content {
-
     ol {
       padding-left: 2rem;
     }
@@ -62,14 +63,14 @@
     // titles proportions overridden from base.less
 
     h1 {
-      font-size: 33px;
+      font-size: 38px;
       font-weight: 400;
     }
 
     h2 {
       margin-top: 1.2em;
-      margin-bottom: .8em;
-      font-size: 28px;
+      margin-bottom: 0.8em;
+      font-size: 30px;
       font-weight: 400;
     }
 
@@ -91,36 +92,12 @@
     h6 {
       font-size: 20px;
       font-weight: 200;
-    } // anchor links for titles
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      a.header-link {
-        margin-left: -.9em;
-        padding-right: .2em;
-        color: inherit;
-
-        i {
-          font-size: 70%;
-          visibility: hidden;
-        }
-      }
-
-      &:hover {
-        .header-link i {
-          visibility: visible;
-        }
-      }
     }
-
   }
 }
 
 #getkong-algolia-search {
-  input{
+  input {
     vertical-align: inherit !important;
     height: 40px;
     margin-bottom: 0;
@@ -131,17 +108,9 @@
   .algolia-docsearch-suggestion {
     border-bottom-color: @blue-light;
   }
-  /* Main category headers */
-  .algolia-docsearch-suggestion--category-header {
-    background-color: @blue-light;
-  }
   /* Highlighted search terms */
   .algolia-docsearch-suggestion--highlight {
     color: @blue-light;
-  }
-  /* Highlighted search terms in the main category headers */
-  .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--highlight {
-    background-color: @blue-light;
   }
   /* Currently selected suggestion */
   .aa-cursor .algolia-docsearch-suggestion--content {
@@ -149,16 +118,16 @@
   }
   @media (max-width: @navbar-collapse-point) {
     float: initial;
-    display:inline-block;
-    margin-right:5px;
-    .algolia-docsearch-suggestion--subcategory-column{
+    display: inline-block;
+    margin-right: 5px;
+    .algolia-docsearch-suggestion--subcategory-column {
       display: none !important;
     }
   }
-  @media (max-width:476px){
-    margin:10px 0 0;
-    float:left;
-    clear:both;
+  @media (max-width: 476px) {
+    margin: 10px 0 0;
+    float: left;
+    clear: both;
   }
 }
 

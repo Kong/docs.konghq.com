@@ -16,20 +16,25 @@
   },
   "standard": {
     "ignore": [
-      "dist/**"
+      "dist/**",
+      "vendor/**",
+      "node_modules/**"
     ]
   },
   "echint": {
     "ignore": [
       "Makefile",
       "dist/**",
-      "app/0*/**",
+      "app/*.x/**",
       "app/enterprise/**/*",
       "app/_assets/images/**",
       "app/_assets/fonts/**",
       "app/license/index.md",
       "ldoc/*",
-      "Gemfile.lock"
+      "Gemfile.lock",
+      "autodoc-admin-api/*.lua",
+      "vendor/**",
+      "node_modules/**"
     ]
   },
   "devDependencies": {

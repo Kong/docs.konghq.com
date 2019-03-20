@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.service.request
+## Introduction
 
 Manipulation of the request to the Service
 

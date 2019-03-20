@@ -1,6 +1,7 @@
 ---
 name: Request Transformer
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Modify the request before hitting the upstream server
 description: |
@@ -21,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -41,7 +43,6 @@ kong_version_compatibility:
 
 params:
   name: request-transformer
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -114,7 +115,7 @@ params:
 
 ## Dynamic Transformation Based on Request Content
 
-The Request Transformer plugin bundled with Kong Enterprise Edition allows for
+The Request Transformer plugin bundled with Kong Enterprise allows for
 adding or replacing content in the upstream request based on variable data found
 in the client request, such as request headers, query string parameters, or URI
 parameters as defined by a URI capture group.
@@ -135,7 +136,7 @@ remove --> rename --> replace --> add --> append
 ## Examples
 
 In these examples we have the plugin enabled on a Service. This would work
-similarly for Routes, or the depreciated API entity.
+similarly for Routes.
 
 - Add multiple headers by passing each header:value pair separately:
 
@@ -145,10 +146,22 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
-incoming request headers | upstream proxied headers:
----           | ---          
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 - Add multiple headers by passing comma separated header:value pair:
 
@@ -157,10 +170,22 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
-incoming request headers | upstream proxied headers:
----           | ---          
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 - Add multiple headers passing config as JSON body:
 
@@ -170,30 +195,61 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data '{"name": "request-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
 
-incoming request headers | upstream proxied headers:
----           | ---          
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 - Add a querystring and a header:
 
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
-  --data "config.add.querystring=q1:v2,q2=v1" \
+  --data "config.add.querystring=q1:v2,q2:v1" \
   --data "config.add.headers=h1:v1"
 ```
 
-incoming request headers | upstream proxied headers:
----           | ---          
-h1: v2        | <ul><li>h1: v2</li><li>h2: v1</li></ul>
-h3: v1        | <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v2</td>
+    <td>
+      <ul>
+        <li>h1: v2</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>h3: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h2: v1</li>
+        <li>h3: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-incoming request querystring | upstream proxied querystring
----           | ---          
-\?q1=v1       | \?q1=v1&q2=v1
--             | \?q1=v2&q2=v1
----
+|incoming request querystring | upstream proxied querystring 
+|---           | --- 
+| ?q1=v1       |  ?q1=v1&q2=v1 
+|              |  ?q1=v2&q2=v1 
 
 - Append multiple headers and remove a body parameter:
 
@@ -203,14 +259,27 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'
 ```
 
-incoming request headers | upstream proxied headers:
----           | ---          
-h1: v1        | <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
+<table>
+  <tr>
+    <th>incoming request headers</th>
+    <th>upstream proxied headers:</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+        <li>h1: v1</li>
+        <li>h1: v2</li>
+        <li>h2: v1</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-incoming url encoded body | upstream proxied url encoded body:
----           | ---          
-p1=v1&p2=v1   | p2=v1
-p2=v1         | p2=v1
+|incoming url encoded body | upstream proxied url encoded body: 
+|---           | --- 
+|p1=v1&p2=v1   | p2=v1 
+|p2=v1         | p2=v1 
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object

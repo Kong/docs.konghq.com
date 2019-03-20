@@ -1,10 +1,11 @@
 ---
 name: ACL
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Control which consumers can access APIs
+desc: Control which consumers can access Services
 description: |
-  Restrict access to a Service or a Route (or the deprecated API entity) by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or the Route (or API).
+  Restrict access to a Service or a Route by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or Route.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -21,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -45,7 +47,6 @@ kong_version_compatibility:
 
 params:
   name: acl
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -55,12 +56,12 @@ params:
       default:
       value_in_examples: group1, group2
       description: |
-        Comma separated list of arbitrary group names that are allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
+        Comma separated list of arbitrary group names that are allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: blacklist
       required: semi
       default:
       description: |
-        Comma separated list of arbitrary group names that are not allowed to consume the Service or the Route (or API). One of `config.whitelist` or `config.blacklist` must be specified.
+        Comma separated list of arbitrary group names that are not allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: hide_groups_header
       required: false
       default: false
@@ -73,11 +74,11 @@ params:
 
 ### Usage
 
-In order to use this plugin, you need to properly have configured your Service or Route (or API) with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
+In order to use this plugin, you need to properly have configured your Service or Route with an [authentication plugin][faq-authentication] so that the plugin can identify who is the client [Consumer][consumer-object] making the request.
 
 #### Associating Consumers
 
-Once you have added an authentication plugin to a Service or a Route (or API) and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
+Once you have added an authentication plugin to a Service or a Route and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/acls \
@@ -117,33 +118,43 @@ $ curl -X GET http://kong:8001/acls
             "group": "foo-group",
             "created_at": 1511391159000,
             "id": "724d1be7-c39e-443d-bf36-41db17452c75",
-            "consumer_id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf"
+            "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
         },
         {
             "group": "bar-group",
             "created_at": 1511391162000,
             "id": "0905f68e-fee3-4ecb-965c-fcf6912bf29e",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         },
         {
             "group": "baz-group",
             "created_at": 1509814006000,
             "id": "ff883d4b-aee7-45a8-a17b-8c074ba173bd",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the ACL `id` field.
-`group`<br>*optional*                 	 | A filter on the list based on the ACL `group` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the ACL `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/acls
+
+{
+    "total": 1,
+    "data": [
+        {
+            "group": "bar-group",
+            "created_at": 1511391162000,
+            "id": "0905f68e-fee3-4ecb-965c-fcf6912bf29e",
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose ACLs need to be listed
 
 #### Retrieve the Consumer associated with an ACL
 
@@ -168,7 +179,6 @@ curl -X GET http://kong:8001/acls/{id}/consumer
 [Consumer][consumer-object].
 
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
-[api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-authentication-to-a-microservice-api

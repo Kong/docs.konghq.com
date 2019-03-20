@@ -28,6 +28,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -47,7 +48,6 @@ kong_version_compatibility:
 
 params:
   name: jwt
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
@@ -89,7 +89,7 @@ params:
       required: false
       default: 0
       description: |
-        An integer limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime will rejected (HTTP 403). If this valeu is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this value.
+        An integer limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime will rejected (HTTP 403). If this value is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this setting.
 
   extra: |
     <div class="alert alert-warning">
@@ -284,12 +284,6 @@ $ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
     --data "config.secret_is_base64=true"
 ```
 
-or patch an existing API:
-
-```bash
-$ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
-    --data "config.secret_is_base64=true"
-```
 Then, base64 encode your consumers' secrets:
 
 ```bash
@@ -369,8 +363,8 @@ heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publicly
 hosts the public key certificate used to sign tokens. Account name is referred
 to "COMPANYNAME" for the sake of the guide.
 
-To get started, create a Service, a Route that uses that Service, *or* create
-an API. _Note: Auth0 does not use base64 encoded secrets._
+To get started, create a Service and a Route that uses that Service.
+_Note: Auth0 does not use base64 encoded secrets._
 
 Create a Service:
 
@@ -388,29 +382,12 @@ $ curl -i -f -X POST http://localhost:8001/routes \
     --data "paths[]=/example_path"
 ```
 
-
-or create an API, note these are depreciated:
-
-```bash
-$ curl -i -X POST http://localhost:8001/apis \
-    --data "name={api}" \
-    --data "hosts=example.com" \
-    --data "upstream_url=http://httpbin.org"
-```
-
 Add the JWT Plugin:
 
 Add the plugin to your Route:
 
 ```bash
 $ curl -X POST http://localhost:8001/route/{route id}/plugins \
-    --data "name=jwt"
-```
-
-Add the plugin to your API:
-
-```bash
-$ curl -X POST http://localhost:8001/apis/{api}/plugins \
     --data "name=jwt"
 ```
 
@@ -487,7 +464,7 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "HS256",
             "key": "UHVwIly5ZxZH7g52E0HRlFkFC09v9yI0",
             "secret": "KMWyDsTTcZgqqyOGgRWTDgZtIyWeEtJh",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         },
         {
             "created_at": 1511389527000,
@@ -495,7 +472,7 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "ES256",
             "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
             "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         },
         {
             "created_at": 1509593912000,
@@ -503,21 +480,35 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "HS256",
             "key": "SqSNfg9ARmPnpycyJSMAc2uR6nxdmc9S",
             "secret": "CCh6ZIcwDSOIWacqkkWoJ0FWdZ5eTqrx",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the JWT credential `id` field.
-`key`<br>*optional*                 	 | A filter on the list based on the JWT credential `key` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the JWT credential `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/jwts
+
+{
+    "total": 1,
+    "data": [
+        {
+            "created_at": 1511389527000,
+            "id": "0dfc969b-02be-42ae-9d98-e04ed1c05850",
+            "algorithm": "ES256",
+            "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
+            "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose jwts need to be listed
+
 
 ### Retrieve the Consumer associated with a JWT
 

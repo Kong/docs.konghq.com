@@ -30,7 +30,7 @@ Here is a quick example showing how to build a (disposable) test setup:
     # specify migrations flag to initialise the datastore
     $ vagrant ssh -c "kong start --run-migrations"
     ```
-    <br/>
+
     The host ports `8000`, `8001`, `8443`, and `8444` will be forwarded to the Vagrant box.
 
     <div class="alert alert-warning">

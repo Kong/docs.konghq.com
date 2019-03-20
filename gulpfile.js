@@ -233,12 +233,62 @@ gulp.task('pdk-docs', function (cb) {
   log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
 })
 
+gulp.task('admin-api-docs', function (cb) {
+  var KONG_PATH, KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 0.14.x')
+  }
+
+  // 1 Generate admin-api.md
+  cmd = 'resty autodoc-admin-api/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated Admin API docs for ' + KONG_VERSION)
+})
+
+gulp.task('cli-docs', function (cb) {
+  var KONG_PATH, KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
+
+  // 1 Generate cli.md
+  cmd = 'luajit autodoc-cli/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated CLI docs for ' + KONG_VERSION)
+})
+
 gulp.task('clean', function () {
   ghPages.clean()
   return del(['dist', '.gh-pages'])
 })
 
-gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
+gulp.task('build', ['javascripts', 'images', 'fonts', 'copycss'], function (cb) {
   sequence('html', 'styles', cb)
 })
 

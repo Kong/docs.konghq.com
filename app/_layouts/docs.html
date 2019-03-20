@@ -7,43 +7,47 @@ id: documentation
 <div class="page {{ page.class }}">
   <header class="page-header">
     <div class="container">
-        <div class="edit-this-page">
-            <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i> Edit this Page</a>
-          </div>
+      <div class="edit-this-page">
+        <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i>
+          Edit this Page</a>
+      </div>
       <nav class="docs-navigation">
-        <a href="/" {% if page.edition == 'community' %} class="active"{% endif %}>Kong Community Edition (CE)</a>
-        <a href="/enterprise" {% if page.edition == 'enterprise' %} class="active"{% endif %}>Kong Enterprise Edition (EE)</a>
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
       </nav>
       <div class="page-header-icon">
-        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg" alt="Documentation" />
+        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg"
+          alt="Documentation" />
       </div>
-      <div class="page-header-title">
+      <div class="page-header-title {% if page.edition=='enterprise' %} page-header-title-enterprise {% endif %}">
         <h1>{{page.title}}</h1>
       </div>
 
       {% if page.kong_versions.size > 1 %}
-        <div class="versions-dropdown dropdown page-header-right">
-          <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Version {{page.kong_version}}
-            {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-            <span class="caret"></span>
-          </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-            {% for ver in page.kong_versions reversed %}
-              <li {% if page.kong_version == ver.release %} class="active" {% endif %}>
-                <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"{% if ver.release == page.kong_version %} class="active"{% endif %}>
-                  {{ver.release}} {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-          {% if page.edition == 'community' %}
-          <div id="getkong-algolia-search" class="search-input">
-            <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
-          </div>
-          {% endif %}
+      <div class="versions-dropdown dropdown page-header-right {% if page.edition=='enterprise' %} page-header-right-enterprise {% endif %}">
+        <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Version {{page.kong_version}}
+          {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+          {% for ver in page.kong_versions reversed %}
+          <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+            <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}" {% if ver.release==page.kong_version
+              %} class="active" {% endif %}>
+              {{ver.release}} {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% if page.edition == 'community' %}
+        <div id="getkong-algolia-search" class="search-input">
+          <i class="fa fa-search"></i>
+          <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
         </div>
+        {% endif %}
+      </div>
       {% endif %}
     </div>
   </header>
@@ -51,23 +55,26 @@ id: documentation
   <div class="container">
     <aside class="page-navigation">
       {% if page.edition == 'community' %}
-        {% assign docs_url = '/' | append: page.kong_version %}
+      {% assign docs_url = '/' | append: page.kong_version %}
       {% else %}
-        {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
+      {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
       {% endif %}
 
       {% for nav in page.nav_items %}
       <nav>
         {% if nav.url %}
-          <a href="{{docs_url | append: nav.url}}"><h5>{{nav.title}}</h5></a>
-        {% else %}
+        <a href="{{docs_url | append: nav.url}}">
           <h5>{{nav.title}}</h5>
+        </a>
+        {% else %}
+        <h5>{{nav.title}}</h5>
         {% endif %}
         <ul>
           {% for item in nav.items %}
           {% capture url %}{{ docs_url | append: item.url }}/{% endcapture %}
           <li>
-            <a {% if item.absolute_url %}href="{{item.url}}"{% else %}href="{{docs_url | append: item.url}}"{% endif %} {% if page.url == url %}class="active"{% endif %}>
+            <a {% if item.absolute_url %}href="{{item.url}}" {% else %}href="{{docs_url | append: item.url}}" {% endif
+              %} {% if page.url==url %}class="active" {% endif %}>
               {{item.text}}
             </a>
             {% if item.items %}
@@ -75,7 +82,7 @@ id: documentation
               {% for subitem in item.items %}
               {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
               <li>
-                <a href="{{docs_url | append: subitem.url}}" {% if page.url == sub_url %}class="active"{% endif %}>{{subitem.text}}</a>
+                <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% endif %}>{{subitem.text}}</a>
               </li>
               {% endfor %}
             </ul>
@@ -89,23 +96,25 @@ id: documentation
 
     <div class="page-content-container" id="documentation">
       <div class="page-content">
-        <div class="content">
+        <div class="content show-anchor-links">
           {% if page.edition == 'community' %}
-            <div class="alert alert-ee">
-              Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Edition (EE) Documentation</strong></a> instead?
-            </div>
+          <div class="alert alert-ee">
+            Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Documentation</strong></a>
+            instead?
+          </div>
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.has_version %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/latest">here</a> to browse the documentation for the latest version.
+            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/latest">here</a>
+            to browse the documentation for the latest version.
           </div>
           {% endif %}
 
           {% assign filename = page.path | split: '/' | last %}
           {% if page.toc == true or
-            page.toc != false and filename != "index.md" %}
-            <h2 id="table-of-contents">Table of Contents</h2>
-            {% include toc.html html=content %}
+          page.toc != false and filename != "index.md" %}
+          <h2 id="table-of-contents">Table of Contents</h2>
+          {% include toc.html html=content %}
           {% endif %}
 
           {{ content }}
@@ -124,7 +133,8 @@ id: documentation
 </style>
 {% if page.edition == 'community' %}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-<script type="text/javascript"> docsearch({
+<script type="text/javascript">
+  docsearch({
     apiKey: '691286ef280379144076a4f8df47a1d1',
     indexName: 'getkong',
     inputSelector: '#getkong-algolia-search-input',
@@ -135,9 +145,11 @@ id: documentation
     // Override selected event to allow for local environment navigation
     handleSelected: function (input, event, suggestion) {
       input.setVal('');
-      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split("docs.konghq.com")[1]
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
     }
     // ,debug: true // Set debug to true if you want to inspect the dropdown
   });
+
 </script>
 {% endif %}

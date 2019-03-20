@@ -2,7 +2,7 @@
 title: 5-minute Quickstart
 ---
 
-# 5-minute Quickstart
+## Introduction
 
 In this section, you'll learn how to manage your Kong Enterprise Edition (EE)
 instance. First you'll start Kong to give you access to the RESTful Admin API and an easy-to-use
@@ -34,7 +34,7 @@ $ kong start [-c /path/to/kong.conf]
 ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to your own configuration.
+allowing you to point to [your own configuration](/0.12.x/configuration/#configuration-loading).
 
 ## 2. Verify that Kong EE has started successfully
 
@@ -78,10 +78,10 @@ Now that you have Kong EE running you can interact with the Admin API and GUI.
 
 To begin, go to [Adding your API &rsaquo;][adding-your-api]
 
-[CLI]: /latest/cli
-[API]: /latest/admin-api
+[CLI]: /0.12.x/cli
+[API]: /0.12.x/admin-api
 [GUI]: /enterprise/{{page.kong_version}}/admin-gui/
-[datastore-section]: /latest/configuration/#datastore-section
+[datastore-section]: /0.12.x/configuration/#datastore-section
 [adding-your-api]: /enterprise/{{page.kong_version}}/getting-started/adding-your-api
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /enterprise/{{page.kong_version}}/installation/centos/

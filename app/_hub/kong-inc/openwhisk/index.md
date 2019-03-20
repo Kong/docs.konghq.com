@@ -1,6 +1,7 @@
 ---
 name: Apache OpenWhisk
 publisher: Kong Inc.
+version: 1.0.0
 
 source_url: https://github.com/Kong/kong-plugin-openwhisk
 
@@ -29,7 +30,6 @@ installation: |
 
 params:
   name: openwhisk
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -112,7 +112,7 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     ok: created action hello
     ```
 
-2. Create a Service or Route (or use the depreciated API entity)
+2. Create a Service or Route
 
     Create a Service.
 
@@ -131,18 +131,6 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     ```bash
     $ curl -i -f -X  POST http://localhost:8001/services/openwhisk-test/routes/ \
       --data "paths[]=/"
-
-    HTTP/1.1 201 Created
-    ...
-
-    ```
-
-    Or you could use the API entity.
-
-    ```bash
-    $ curl -i -X  POST http://localhost:8001/apis/ \
-      --data "name=openwhisk-test" -d "hosts=example.com" \
-      --data "upstream_url=http://example.com"
 
     HTTP/1.1 201 Created
     ...
@@ -286,13 +274,7 @@ be specified for the entity to be validated by Kong. The `host` property in
 particular must either be an IP address, or a hostname that gets resolved by
 your nameserver.
 
-When the plugin is added to an API entity (which is deprecated as of 0.13.0),
-it is the `upsream_url` property which must be specified and resolvable as well
-(but ignored).
-
 #### Response plugins
 
 There is a known limitation in the system that prevents some response plugins
 from being executed. We are planning to remove this limitation in the future.
-
-[api-object]: /latest/admin-api/#api-object

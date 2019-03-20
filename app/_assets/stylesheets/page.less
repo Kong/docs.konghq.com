@@ -1,7 +1,7 @@
 .page-header {
   background-color: #fdfdfd;
   border-bottom: 1px solid @gray;
-  padding: 145px 0 20px;
+  padding: 95px 0 20px;
 
   @media (max-width: 1100px) {
     padding: 50px 0 10px;
@@ -49,6 +49,10 @@
     @media screen and (max-width:1080px){
       max-width:100%;
     }
+  }
+
+  .page-header-title-enterprise {
+    max-width:calc(~"100% - 280px");
   }
 
   .page-header-btn {
@@ -101,6 +105,10 @@
       display: inline-block;
       vertical-align: bottom;
     }
+  }
+
+  .page-header-right-enterprise {
+    min-width: 180px;
   }
 
   .dropdown .dropdown-menu {
@@ -354,6 +362,7 @@
     th, td {
       .font-source-sans();
       font-size: 14px;
+      vertical-align: top;
     }
 
     th {
@@ -370,7 +379,6 @@
     td {
       padding: 10px;
       &:first-child {
-        text-align: right;
         white-space: nowrap;
 
         code {
@@ -444,9 +452,9 @@
         padding-right: 25px;
       }
 
-      &:nth-child(even) {
-        padding-left: 25px;
-      }
+      // &:nth-child(even) {
+      //   padding-left: 25px;
+      // }
 
       &:last-of-type {
         height: 200px;

@@ -1,6 +1,7 @@
 ---
-name: Zipkin  
+name: Zipkin
 publisher: Kong Inc.
+version: 1.0.0
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
 
@@ -23,6 +24,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.0.x
         - 0.14.x
     enterprise_edition:
       compatible:
@@ -32,7 +34,6 @@ kong_version_compatibility:
 
 params:
   name: zipkin
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true

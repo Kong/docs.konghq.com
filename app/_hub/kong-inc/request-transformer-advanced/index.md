@@ -2,11 +2,11 @@
 
 name: Request Transformer Advanced
 publisher: Kong Inc.
-version: 0.33-x
+version: 0.34-x
 
 desc: Use powerful regular expressions, variables and templates to transform API requests
 description: |
-  The Request Transformer plugin for Kong Enterprise Edition builds on the Community Edition version of this plugin with enhanced capabilities to match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute those strings into transformed requests via flexible templates.
+  The Request Transformer plugin for Kong Enterprise builds on the Kong version of this plugin with enhanced capabilities to match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute those strings into transformed requests via flexible templates.
 
 enterprise: true
 type: plugin
@@ -18,7 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.33-x
+        - 0.34-x
 
 params:
   name: request-transformer-advanced
