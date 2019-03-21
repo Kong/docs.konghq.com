@@ -1,12 +1,12 @@
 workflow "Jekyll build now" {
   resolves = [
-    "Jekyll Action",
+    "Filters for GitHub Actions",
   ]
   on = "push"
 }
 
 action "Jekyll Action" {
-  uses = "kong/docs.konghq.com@master"
+  uses = "helaili/jekyll-action@master"
   needs = "Filters for GitHub Actions"
   env = {
     SRC = "dist"
