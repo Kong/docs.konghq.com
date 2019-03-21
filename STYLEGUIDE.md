@@ -10,7 +10,7 @@ proper case
 Use *Kong Manage*r instead
 
 ### American English
-use American English throughout Kong documentation
+Use American English throughout Kong documentation
 
 ### ampersands
 Always use “and” in content, only use “&” in titles with two items that have always had it or in product names
