@@ -4,7 +4,7 @@
 Use proper case
 
 ### Admin API 
-proper case
+Use proper case
 
 ### Admin GUI
 Use *Kong Manage*r instead
