@@ -7,7 +7,7 @@ Use proper case
 Use proper case
 
 ### Admin GUI
-Use *Kong Manage*r instead
+Use *Kong Manager* instead
 
 ### American English
 Use American English throughout Kong documentation
