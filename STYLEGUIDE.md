@@ -140,7 +140,7 @@ Use proper case
 For safety, clarity, and sanity
 
 ### setup, set up
-Joined as a noun/modifier, separated as a phrasal verb, joined as a noun/modifier, separated as a phrasal verb
+Joined as a noun/modifier, separated as a phrasal verb
 
 * A protocol is required to *set up* a service.
 * To learn more, visit the account *setup* guide.  
