@@ -1,7 +1,7 @@
 # Documentation Style Guide
 
 ### Admin
-proper case
+Use proper case
 
 ### Admin API 
 proper case
