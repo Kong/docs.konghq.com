@@ -83,7 +83,7 @@ When contributing, be aware of a few things:
 
 [Back to TOC](#table-of-contents)
 
-### Styleguide
+### Style guide
 
 In order to ensure consistency throughout all of Kong's documentation, we ask that all contributions follow our [Styleguide](https://github.com/Kong/docs.konghq.com/blob/master/styleguide.md).
 
