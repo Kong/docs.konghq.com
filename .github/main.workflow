@@ -1,6 +1,6 @@
-workflow "Documentation" {
-  on = "push"
+workflow "Build and deploy on push" {
   resolves = ["Build and Deploy Jekyll"]
+  on = "push"
 }
 
 action "Build and Deploy Jekyll" {
