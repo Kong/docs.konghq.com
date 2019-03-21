@@ -17,6 +17,7 @@ Consult the Table of Contents below, and jump to the desired section.
 - [Where to seek help?](#where-to-seek-help)
 - [Where to report bugs?](#where-to-report-bugs)
 - [Contributing to Kong documentation and the Kong Hub](#contributing-to-kong-documentation-and-the-kong-hub)
+  - [Styleguide](#style-guide)
   - [Submitting a patch](#submitting-a-patch)
   - [Kong Hub contributions](#kong-hub-contributions)
   - [Writing plugin documentation](#writing-plugin-documentation)
@@ -82,6 +83,9 @@ When contributing, be aware of a few things:
 
 [Back to TOC](#table-of-contents)
 
+### Styleguide
+
+In order to ensure consistency throughout all of Kong's documentation, we ask that all contributions follow our [Styleguide](https://github.com/Kong/docs.konghq.com/blob/master/styleguide.md).
 
 ### Submitting a patch
 
