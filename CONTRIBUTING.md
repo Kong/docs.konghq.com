@@ -85,7 +85,7 @@ When contributing, be aware of a few things:
 
 ### Style guide
 
-In order to ensure consistency throughout all of Kong's documentation, we ask that all contributions follow our [style guide](https://github.com/Kong/docs.konghq.com/blob/master/styleguide.md).
+In order to ensure consistency throughout all of Kong's documentation, we ask that all contributions follow our [style guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
 
 ### Submitting a patch
 
