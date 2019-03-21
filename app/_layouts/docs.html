@@ -14,6 +14,7 @@ id: documentation
       <nav class="docs-navigation">
         <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong</a>
         <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
+        <span class="sidebar-toggle">Open Sidebar</span>
       </nav>
       <div class="page-header-icon">
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg"
@@ -54,6 +55,7 @@ id: documentation
 
   <div class="container">
     <aside class="page-navigation">
+      <span class="close-sidebar"></span>
       {% if page.edition == 'community' %}
       {% assign docs_url = '/' | append: page.kong_version %}
       {% else %}

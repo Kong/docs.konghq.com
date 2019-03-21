@@ -296,6 +296,15 @@ $(function () {
     }
 
     $navItems.on('click', setNavItemActive)
+
+    if ($(window).width() <= 800) {
+      $('.sidebar-toggle').click(function () {
+        $('.page-navigation').addClass('sidebar-open')
+      })
+      $('.page-navigation > .close-sidebar').click(function () {
+        $('.page-navigation').removeClass('sidebar-open')
+      })
+    }
   }
 
   // Analytics
