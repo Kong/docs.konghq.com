@@ -5,5 +5,7 @@ workflow "Documentation" {
 
 action "Build and Deploy Jekyll" {
   uses = "kong/docs.konghq.com@master"
-  secrets = ["GITHUB_TOKEN"]
+  secrets = [
+    "JEKYLL_Token",
+  ]
 }
