@@ -27,7 +27,7 @@
 
 **cURL** - not CURL or curl
 
-**e.g**. - indicates an in-exhaustive list of examples, thus should not conclude with “etc.”; if offering a clarification, rather than an example, use “i.e.”. Following the Chicago Manual, follow each with a comma.
+**e.g**. - indicates an inexhaustive list of examples, thus should not conclude with “etc.”; if offering a clarification, rather than an example, use “i.e.”. Following the Chicago Manual, follow each with a comma.
 
 * *Bad*: Users may select a role, e.g. admin, read-only, etc.
 * **_Good_: Users may select a role, e.g., admin, read-only.**
