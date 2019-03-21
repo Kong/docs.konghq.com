@@ -35,12 +35,16 @@ npm start
 
 ## Deploying
 
-This will deploy to GitHub pages:
+Github Actions will automatically deploy updates to GitHub pages when a commit is pushed to master.
+
+To manually deploy to GitHub pages:
 
 >
 ```bash
 npm run deploy
 ```
+
+
 
 ## Search
 
