@@ -36,7 +36,7 @@ Do not use “click on”; specify what is being clicked
 * **_Good_: Click the “Admins” button**
 
 ### cURL
-Do not useCURL or curl
+Do not use CURL or curl
 
 ### e.g.
 Indicates an inexhaustive list of examples, thus should not conclude with “etc.”; if offering a clarification, rather than an example, use “i.e.”. Following the Chicago Manual, follow each with a comma.
@@ -88,16 +88,16 @@ Use proper case
 Use Admin instead
 
 ### Kong Community Edition, Kong CE
-Use Kong instead
+Use *Kong* instead
 
 ### Kong Dev Portal
-Use Dev Portal in docs, not “Developer Portal’
+Use *Dev Portal* in docs, not “Developer Portal’
 
 ### Kong Enterprise
 Use proper case
 
 ### Kong Enterprise Edition, Kong EE
-Use Kong Enterprise instead—except in pre-34 versions, e.g. “Kong EE 0.32”
+Use *Kong Enterprise* instead—except in pre-34 versions, e.g. “Kong EE 0.32”
 
 ### Kong Manager
 Use proper case
@@ -151,8 +151,8 @@ Use proper case
 ### Super Admin
 Lowercase; no hyphen even as a compound modifier
 
-* Invite a *Super Admin*.
-* Grant the new consumer *Super Admin* permissions.
+* Invite a *super admin*.
+* Grant the new consumer *super admin* permissions.
 
 ### text in buttons, links
 Maintain the case, surround with double quotes
