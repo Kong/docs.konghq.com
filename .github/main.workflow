@@ -8,4 +8,5 @@ action "Build and Deploy Jekyll" {
   secrets = [
     "JEKYLL_Token",
   ]
+  args = "branch master"
 }
