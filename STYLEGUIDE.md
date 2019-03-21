@@ -25,7 +25,7 @@ Use proper case, abbreviate if the context permits. Only use lowercase with a hy
 * **_Good_: Options include LDAP Auth and Basic Auth.**
 * *Bad*: Ensure that `admin_gui_auth` is set to basic auth.
 * **_Good_: Ensure that `admin_gui_auth` is set to `basic-auth`.**
-* **_Good_: Ensure that admin_gui_auth = basic-auth.**
+* **_Good_: Ensure that `admin_gui_auth = basic-auth`.**
 
 
 ### click
