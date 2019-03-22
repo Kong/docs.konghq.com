@@ -24,7 +24,7 @@ pull the image:
     $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
     ```
 
-4. For **trial users**, run the following, replacing `<your trial image URL>`
+   For **trial users**, run the following, replacing `<your trial image URL>`
 with the URL you received in your welcome email:
 
     ```
@@ -32,10 +32,10 @@ with the URL you received in your welcome email:
     docker load -i /tmp/kong-docker-ee.tar.gz
     ```
 
-You should now have your Kong Enterprise Free Trial image locally. Run
+   You should now have your Kong Enterprise Free Trial image locally. Run
 `docker images` to find it.
 
-5. Tag it—for easier use in the commands below—as follows:
+4. Tag it—for easier use in the commands below—as follows:
 
     ```
     docker tag <IMAGE ID> kong-ee
@@ -45,10 +45,10 @@ You should now have your Kong Enterprise Free Trial image locally. Run
     Enterprise 0.31-1 or `78ffc3bce991` if it is for 0.32. Recent Kong Enterprise
     Free Trial images (>= 0.34) come with a more intuitive name.
 
-6. Generally, we'll be following the instructions [here](/install/docker/) with
+5. Generally, we'll be following the instructions [here](/install/docker/) with
 some slight, but important, differences
 
-7. For convenience, the commands will look something like this—**PostgreSQL 9.5
+6. For convenience, the commands will look something like this—**PostgreSQL 9.5
 is required**:
 
     ```
@@ -59,7 +59,7 @@ is required**:
       postgres:9.5
     ```
 
-8. To make the license data easier to handle, export it as a shell variable.
+7. To make the license data easier to handle, export it as a shell variable.
 Please note that **your license contents will differ**! Users with Bintray
 accounts should visit `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 to retrieve their license. Trial users should download their license from their
@@ -69,7 +69,7 @@ welcome email. Once you have your license, you can set it in an environment vari
     export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
     ```
 
-9. Run Kong migrations:
+8. Run Kong migrations:
 
     ```
     docker run --rm --link kong-ee-database:kong-ee-database \
@@ -84,7 +84,7 @@ welcome email. Once you have your license, you can set it in an environment vari
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-10. Start Kong:
+9. Start Kong:
 
     ```
     docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
@@ -116,7 +116,7 @@ welcome email. Once you have your license, you can set it in an environment vari
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-11. Kong Enterprise should now be installed and running. Test 
+10. Kong Enterprise should now be installed and running. Test 
 it by visiting Kong Manager at [http://localhost:8002](http://localhost:8002)
 (replace `localhost` with your server IP or hostname when running Kong on a 
 remote system), or by visiting the Default Dev Portal at 
