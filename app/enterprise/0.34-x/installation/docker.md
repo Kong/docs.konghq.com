@@ -43,7 +43,7 @@ with the URL you received in your welcome email:
 
     (Replace "IMAGE ID" with the one matching your repository, seen in step 4)
 
-6. For convenience, the commands will look something like this—**PostgreSQL 9.5
+6. Run the migrations with an ephemeral Kong container.—**PostgreSQL 9.5
 is required**:
 
     ```
