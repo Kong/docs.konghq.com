@@ -1,7 +1,10 @@
 # Documentation Style Guide
 
-### Admin
-Use proper case
+### Admin, admin
+Use proper case for the Kong entity, lowercase for the RBAC Role
+
+* Invite the Admin using the Organization tab
+* The default Roles are `super-admin`, `admin`, and `read-only`
 
 ### Admin API 
 Use proper case
@@ -148,11 +151,11 @@ Joined as a noun/modifier, separated as a phrasal verb, joined as a noun/modifie
 ### Services
 Use proper case
 
-### Super Admin
-Lowercase; no hyphen even as a compound modifier
+### super admin
+Use lowercase, hyphen as a compound modifier. Note that an [Admin](#Admin) is a Kong entity.
 
 * Invite a *super admin*.
-* Grant the new consumer *super admin* permissions.
+* An Admin account may invite others if it has *super-admin* permissions.
 
 ### text in buttons, links
 Maintain the case, surround with double quotes

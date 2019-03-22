@@ -31,6 +31,7 @@ Fix #XXX
 <!-- to check an item, place an "x" in the box like so: "- [x] Documentation" -->
 - [ ] [Commit message & atomicity](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#commit-atomicity) checked
 - [ ] Documentation <!-- Adding a new feature? Do you need to document it the README.md or otherwise? -->
+- [ ] [Adheres to Kong style guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md)
 - [ ] Spellchecked my updates
 - [ ] Ready to be merged <!-- In your opinion, is this ready to be merged as soon as it's reviewed? -->
 
