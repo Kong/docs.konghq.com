@@ -9,8 +9,8 @@ title: Installing Kong Enterprise Docker Image
 A guide to installing Kong Enterprise—and its license file—using
 Docker. **Trial users should skip directly to step 4**.
 
-1. Log in to <a href="https://bintray.com" target="_blank">bintray.com</a>. Your credentials will have 
-been emailed to you by your Sales or Support contact.
+1. Log in to <a href="https://bintray.com" target="_blank">bintray.com</a>. Your Sales or Support
+contact will email the credential to you.
 
 2. In the upper right corner, click "Edit Profile' to retrieve your API
 key, which will be used in step 3. Alternatively, to retrieve it from
