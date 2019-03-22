@@ -329,6 +329,16 @@ local function write_entity_templates(outfd, entity)
   outfd:write("\n")
 end
 
+
+local function bold_text_section(outfd, title, content)
+  if not content then
+    return
+  end
+  outfd:write(title and ("*" .. title .. "*\n\n") or "")
+  outfd:write(unindent(content) .. "\n")
+  outfd:write("\n")
+end
+
 local function section(outfd, title, content)
   if not content then
     return
@@ -356,10 +366,10 @@ local function write_endpoint(outfd, endpoint, ep_data)
       for _, fk_endpoint in ipairs(fk_endpoints) do
         section(outfd, nil, fk_endpoint)
       end
-      section(outfd, "Request Querystring Parameters", meth_data.request_query)
-      section(outfd, "Request Body", meth_data.request_body)
+      bold_text_section(outfd, "Request Querystring Parameters", meth_data.request_query)
+      bold_text_section(outfd, "Request Body", meth_data.request_body)
       section(outfd, nil, meth_data.details)
-      section(outfd, "Response", meth_data.response)
+      bold_text_section(outfd, "Response", meth_data.response)
       outfd:write("---\n\n")
     end
   end
