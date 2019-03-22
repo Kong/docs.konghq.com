@@ -20,7 +20,7 @@ Bintray, click <a href="https://bintray.com/profile/edit" target="_blank">here</
 pull the image:
 
     ```
-    $ docker login -u <your_username_from_bintray> --password-stdin <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
+    $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
     $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
     ```
 
