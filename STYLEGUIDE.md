@@ -66,7 +66,7 @@ For explanatory sections, specify the value of the content, then provide clarifi
 * *Bad*: In this section, you will learn the reason for negotiating with pirates. Pirates may seem scary, but they can be reasoned with. Just match their body language and offer them some rum. From there, negotiation is self-explanatory. Now you know how to negotiate with pirates.
 * **_Good_: Although pirates do not abide by the law, it is possible to come to a reasonable compromise with them. Their goal is financial gain, not a fight, and many of them were once merchant sailors. If it is not possible to deter them, it is best to maintain a friendly disposition. For the safety of your crew, keep their motivations in mind at all times during negotiation.**
 
-### How-To Guides
+### how-to guides
 Any section of documentation that is a guide involving multiple steps should have the following:
 
 1. A title starting with “How to”
