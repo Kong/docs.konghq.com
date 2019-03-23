@@ -107,6 +107,7 @@ to verify a few things:
    linear)
 - The linting is succeeding: run `npm run test` (see the development
   documentation for additional details)
+- You've tagged "Team Docs" as reviewers
 
 If the above guidelines are respected, your Pull Request has all its chances
 to be considered and will be reviewed by a maintainer.
