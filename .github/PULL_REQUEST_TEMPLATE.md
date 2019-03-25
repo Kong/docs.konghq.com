@@ -33,6 +33,7 @@ Fix #XXX
 - [ ] Documentation <!-- Adding a new feature? Do you need to document it the README.md or otherwise? -->
 - [ ] [Adheres to Kong style guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md)
 - [ ] Spellchecked my updates
+- [ ] Tagged "Team Docs" as reviewers
 - [ ] Ready to be merged <!-- In your opinion, is this ready to be merged as soon as it's reviewed? -->
 
 <!-- feel free to add additional comments -->

@@ -89,7 +89,8 @@ params:
 ---
 
 ### Flow
-<img src="https://konghq.com/wp-content/uploads/2018/09/oauth-introspection-flow.png" alt="OAuth2 Introspection Flow" />
+
+![OAuth2 Introspection Flow](/assets/images/docs/oauth2/oauth2-introspection.png)
 
 ### Associate the response to a Consumer
 
