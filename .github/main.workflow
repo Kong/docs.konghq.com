@@ -1,6 +1,6 @@
 workflow "Deploy Site" {
   on = "push"
-  resolves = "BryanSchuetz/jekyll-deploy-gh-pages@master"
+  resolves = "levfishbluefish/jekyll-deploy-gh-pages@master"
 }
 
 action "Filters for GitHub Actions" {
@@ -8,8 +8,8 @@ action "Filters for GitHub Actions" {
   args = "branch master"
 }
 
-action "BryanSchuetz/jekyll-deploy-gh-pages@master" {
-  uses = "BryanSchuetz/jekyll-deploy-gh-pages@master"
+action "levfishbluefish/jekyll-deploy-gh-pages@master" {
+  uses = "levfishbluefish/jekyll-deploy-gh-pages@master"
   needs = ["Filters for GitHub Actions"]
   args = "branch master"
   secrets = ["GITHUB_TOKEN"]
