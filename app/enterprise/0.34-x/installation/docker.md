@@ -7,14 +7,16 @@ title: Installing Kong Enterprise Docker Image
 ## Installation Steps
 
 A guide to installing Kong Enterprise—and its license file—using
-Docker. **Trial users should skip directly to step 4**.
+Docker. 
 
-1. Log in to [bintray.com](https://bintray.com). Your credentials will have 
-been emailed to you by your Sales or Support contact.
+**Free trial users should skip directly to step 3**.
+
+1. Log in to <a href="https://bintray.com" target="_blank">bintray.com</a>. Your Sales or Support
+contact will email the credential to you.
 
 2. In the upper right corner, click "Edit Profile' to retrieve your API
 key, which will be used in step 3. Alternatively, to retrieve it from
-Bintray, click [here](https://bintray.com/profile/edit).
+Bintray, click <a href="https://bintray.com/profile/edit" target="_blank">here</a>.
 
 3. For **users with existing contracts**, add the Kong Docker repository and
 pull the image:
@@ -24,7 +26,7 @@ pull the image:
     $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
     ```
 
-4. For **trial users**, run the following, replacing `<your trial image URL>`
+   For **trial users**, run the following, replacing `<your trial image URL>`
 with the URL you received in your welcome email:
 
     ```
@@ -32,23 +34,18 @@ with the URL you received in your welcome email:
     docker load -i /tmp/kong-docker-ee.tar.gz
     ```
 
-You should now have your Kong Enterprise Free Trial image locally. Run
-`docker images` to find it.
+4. You should now have your Kong Enterprise image locally. Run
+`docker images` to verify and find the image ID matching your repository. 
 
-5. Tag it—for easier use in the commands below—as follows:
+5. Tag the image ID for easier use in the commands that follow:
 
     ```
     docker tag <IMAGE ID> kong-ee
     ```
 
-    Replace "IMAGE ID" with `7fc852f88079` if the Free Trial image is for Kong
-    Enterprise 0.31-1 or `78ffc3bce991` if it is for 0.32. Recent Kong Enterprise
-    Free Trial images (>= 0.34) come with a more intuitive name.
+    (Replace "IMAGE ID" with the one matching your repository, seen in step 4)
 
-6. Generally, we'll be following the instructions [here](/install/docker/) with
-some slight, but important, differences
-
-7. For convenience, the commands will look something like this—**PostgreSQL 9.5
+6. Run the migrations with an ephemeral Kong container.—**PostgreSQL 9.5
 is required**:
 
     ```
@@ -59,9 +56,9 @@ is required**:
       postgres:9.5
     ```
 
-8. To make the license data easier to handle, export it as a shell variable.
+7. To make the license data easier to handle, export it as a shell variable.
 Please note that **your license contents will differ**! Users with Bintray
-accounts should visit [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files)
+accounts should visit `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 to retrieve their license. Trial users should download their license from their
 welcome email. Once you have your license, you can set it in an environment variable:
 
@@ -69,7 +66,7 @@ welcome email. Once you have your license, you can set it in an environment vari
     export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
     ```
 
-9. Run Kong migrations:
+8. Run Kong migrations:
 
     ```
     docker run --rm --link kong-ee-database:kong-ee-database \
@@ -84,7 +81,7 @@ welcome email. Once you have your license, you can set it in an environment vari
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-10. Start Kong:
+9. Start Kong:
 
     ```
     docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
@@ -116,51 +113,11 @@ welcome email. Once you have your license, you can set it in an environment vari
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-11. Kong Enterprise should now be installed and running. Test 
+10. Kong Enterprise should now be installed and running. Test 
 it by visiting Kong Manager at [http://localhost:8002](http://localhost:8002)
 (replace `localhost` with your server IP or hostname when running Kong on a 
 remote system), or by visiting the Default Dev Portal at 
 [http://127.0.0.1:8003/default](http://127.0.0.1:8003/default)
-
-## Enable RBAC
-
-[Role-Based Access Control (RBAC)](/enterprise/{{page.kong_version}}/rbac/overview)
-allows you to create multiple profiles of Kong users—e.g., `super-admin`,
-`admin`, `read-only`—and permit the resources to which they have access. 
-To enable it:
-
-1. Create an initial RBAC admin:
-
-    ```
-    curl -X POST http://localhost:8001/rbac/users/ -d name=admin -d user_token=12345
-    curl -X POST http://localhost:8001/rbac/users/admin/roles -d roles=super-admin
-    ```
-
-2. Start a bash session on the container:
-
-    ```
-    docker exec -it kong-ee /bin/sh
-    ```
-
-3. Reload Kong with RBAC enabled:
-
-    ```
-    KONG_ENFORCE_RBAC=on kong reload
-    ```
-
-4. Confirm that your user token is working by passing the `Kong-Admin-Token`
-header in requests:
-
-    ```
-    curl -X GET http://localhost:8001/status -H "Kong-Admin-Token: 12345"
-    ```
-
-    If you are able to access Kong without issues, you can add `KONG_ENFORCE_RBAC=on`
-    to your initial container environment variables.
-
-5. When RBAC is enabled, the Kong Manager requires the use of an 
-authentication plugin. Follow the 
-[Authenticating Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication) Guide to complete this set up.
 
 ## FAQs
 
