@@ -9,7 +9,7 @@ title: Installing Kong Enterprise Docker Image
 A guide to installing Kong Enterprise—and its license file—using
 Docker. 
 
-**Free trial users should skip directly to step 4**.
+**Free trial users should skip directly to step 3**.
 
 1. Log in to <a href="https://bintray.com" target="_blank">bintray.com</a>. Your Sales or Support
 contact will email the credential to you.
