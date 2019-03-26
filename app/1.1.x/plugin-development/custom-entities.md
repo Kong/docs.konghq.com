@@ -6,9 +6,10 @@ chapter: 6
 
 ## Introduction
 
-Your plugin might need to store more than its configuration in the database. In
-that case, Kong provides you with an abstraction on top of its primary
-datastores which allows you to store custom entities.
+While not all plugins need it, your plugin might need to store more than
+its configuration in the database. In that case, Kong provides you with
+an abstraction on top of its primary datastores which allows you to store
+custom entities.
 
 As explained in the [previous chapter]({{page.book.previous}}), Kong interacts
 with the model layer through classes we refer to as "DAOs", and available on a
@@ -18,11 +19,14 @@ to to provide an abstraction for your own entities.
 ## Modules
 
 ```
-kong.plugins.<plugin_name>.schema.migrations
 kong.plugins.<plugin_name>.daos
+kong.plugins.<plugin_name>.migrations.init
+kong.plugins.<plugin_name>.migrations.000_base
+kong.plugins.<plugin_name>.migrations.001_xxx
+kong.plugins.<plugin_name>.migrations.002_yyy
 ```
 
-## Create a migration file
+## Create the migrations folder
 
 Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
@@ -32,88 +36,99 @@ returns them.
 If you plugin is intended to support both Cassandra and PostgreSQL, then both
 migrations must be written.
 
-Each migration must bear a unique name, and `up` and `down` fields. Such fields
-can either be strings of SQL/CQL queries for simple migrations, or actual Lua
-code to execute for complex ones. The `up` field will be executed when Kong
-migrates **forward**. It must bring your database's schema to the latest state
-required by your plugin. The `down` field must execute the necessary actions to
-revert your schema to its previous state, before `up` was ran.
+If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
+folder to it. If there is no `init.lua` file inside already, you should create one.
+This is where all the migrations for your plugin will be referenced.
 
-One of the main benefits of this approach is should you need to release a new
-version of your plugin that modifies a model, you can add new migrations to the
-array before releasing your plugin. Another benefit is that it is also possible
-to revert such migrations.
+The initial version of your `migrations/init.lua` file will point to a single migration.
 
-As described in the [file structure]({{page.book.chapters.file-structure}})
-chapter, your migrations modules must be named:
+In this case we have called it `000_base`.
 
-```
-"kong.plugins.<plugin_name>.migrations.cassandra"
-"kong.plugins.<plugin_name>.migrations.postgres"
-```
-
-Here is an example of how one would define a migration file to store API keys:
-
-```lua
--- cassandra.lua
+``` lua
+-- `migrations/init.lua`
 return {
-  {
-    name = "2015-07-31-172400_init_keyauth",
-    up =  [[
-      CREATE TABLE IF NOT EXISTS keyauth_credentials(
-        id uuid,
-        consumer_id uuid,
-        key text,
-        created_at timestamp,
-        PRIMARY KEY (id)
-      );
-
-      CREATE INDEX IF NOT EXISTS ON keyauth_credentials(key);
-      CREATE INDEX IF NOT EXISTS keyauth_consumer_id ON keyauth_credentials(consumer_id);
-    ]],
-    down = [[
-      DROP TABLE keyauth_credentials;
-    ]]
-  }
+  "000_base",
 }
 ```
 
-```lua
--- postgres.lua
+This means that there will be a file in `<plugin_name>/migrations/000_base.lua` containing the
+initial migrations. We'll see how this is done in a minute.
+
+## Adding a new migration to an existing plugin
+
+Sometimes it is necessary to introduce changes after a version of a plugin has already been
+released. A new functionality might be needed. A database table row might need changing.
+
+When this happens, *you must* create a new migrations file. You *must not*
+of modify the existing migration files once they are published.
+
+While there is no strict rule for naming your migration files, there is a convention that the
+initial one is prefixed by `000`, the next one by `001`, and so on.
+
+Following with our previous example, if we wanted to release a new version of the plugin with
+changes in the database (for example, a table was needed called `foo`) we would insert it by
+adding a file called `<plugin_name>/migrations/001_add_foo.lua`, and referencing it on the
+migrations init file like so:
+
+
+``` lua
+-- `<plugin_name>/migrations/init.lua`
 return {
-  {
-    name = "2015-07-31-172400_init_keyauth",
+  "000_base",
+  "001_add_foo",
+}
+```
+
+## Migration File syntax
+
+While Kong's core migrations support both PostgreSQL and Cassandra, custom plugins
+can choose to support either both of them or just one.
+
+A migration file is a Lua file which returns a table with the following structure:
+
+``` lua
+-- `<plugin_name>/migrations/000_base.lua`
+return {
+  postgresql = {
     up = [[
-      CREATE TABLE IF NOT EXISTS keyauth_credentials(
-        id uuid,
-        consumer_id uuid REFERENCES consumers (id) ON DELETE CASCADE,
-        key text UNIQUE,
-        created_at timestamp without time zone default (CURRENT_TIMESTAMP(0) at time zone 'utc'),
-        PRIMARY KEY (id)
-      );
-
-      DO $$
-      BEGIN
-        IF (SELECT to_regclass('public.keyauth_key_idx')) IS NULL THEN
-          CREATE INDEX keyauth_key_idx ON keyauth_credentials(key);
-        END IF;
-        IF (SELECT to_regclass('public.keyauth_consumer_idx')) IS NULL THEN
-          CREATE INDEX keyauth_consumer_idx ON keyauth_credentials(consumer_id);
-        END IF;
-      END$$;
+      CREATE INDEX IF NOT EXISTS "routes_name_idx" ON "routes" ("name");
     ]],
-    down = [[
-      DROP TABLE keyauth_credentials;
-    ]]
+    teardown = function(connector, helpers)
+      assert(connector:connect_migrations())
+      assert(connector:query('DROP TABLE IF EXISTS "schema_migrations" CASCADE;'))
+    end,
+  },
+
+  cassandra = {
+    up = [[
+      CREATE INDEX IF NOT EXISTS routes_name_idx ON routes(name);
+    ]],
+    teardown = function(connector, helpers)
+      assert(connector:connect_migrations())
+      assert(connector:query("DROP TABLE IF EXISTS schema_migrations"))
+    end,
   }
 }
 ```
 
-- `name`: Must be a unique string. The format does not matter but can help you
-  debug issues while developing your plugin, so make sure to name it in a
-  relevant way.
-- `up`: Executed when Kong migrates **forward**.
-- `down`: Executed when Kong migrates **backward**.
+If a plugin only supports PostgreSQL or Cassandra, only the section for one strategy is
+needed. Each strategy section has two parts, `up` and `teardown`.
+
+* `up` is an optional string of raw SQL/CQL statements. Those statements will be executed
+  when `kong migrations up` is executed.
+* `teardown` is an optional Lua function, which takes a `connector` parameter. Such connector
+  can invoke the `query` method to execute SQL/CQL queries. Teardown is triggered by
+  `kong migrations finish`
+
+It is recommended that all the non-destructive operations, such as creation of new tables and
+addition of new records is done on the `up` sections, while destructive operations (such as
+removal of data, changing row types, insertion of new data) is done on the `teardown` sections.
+
+In both cases, it is recommended that all the SQL/CQL statements are written so that they are
+as reentrant as possible. `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
+`CREATE INDEX IF NOT EXIST` instead of `CREATE INDEX`, etc. If a migration fails for some
+reason it is expected that the first attempt at fixing the problem will be simply
+re-running the migrations.
 
 While PostgreSQL does, Cassandra does not support constraints such as "NOT
 NULL", "UNIQUE" or "FOREIGN KEY", but Kong provides you with such features when
@@ -123,7 +138,7 @@ for one that works with Cassandra too.
 
 **IMPORTANT**: if your `schema` uses a `unique` constraint, then Kong will
 enforce it for Cassandra, but for PostgreSQL you must set this constraint in
-the `migrations` file.
+the migrations.
 
 To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations)
 
