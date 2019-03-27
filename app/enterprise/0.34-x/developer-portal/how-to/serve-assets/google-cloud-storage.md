@@ -1,5 +1,5 @@
 ---
-title: How to use Google Cloud Storage to serve Kong Dev Portal assets
+title: How to Use Google Cloud Storage to Serve Dev Portal Assets
 toc: false
 ---
 
