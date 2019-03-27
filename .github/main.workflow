@@ -12,5 +12,7 @@ action "levfishbluefish/jekyll-deploy-gh-pages@master" {
   uses = "levfishbluefish/jekyll-deploy-gh-pages@master"
   needs = ["Filters for GitHub Actions"]
   args = "branch master"
-  secrets = ["GITHUB_TOKEN"]
+  secrets = [
+    "JEKYLL_Token",
+  ]
 }
