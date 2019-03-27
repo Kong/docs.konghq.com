@@ -101,6 +101,10 @@
   items:
     - text: Overview
       url: /developer-portal/introduction
+    - text: How To
+      items:
+        - text: Serve Assests with Google Cloud Storage
+          url: /developer-portal/how-to/serve-assets/google-cloud-storage
     - text: Configuration
       url: /developer-portal/configuration/getting-started
       items:
