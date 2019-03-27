@@ -201,6 +201,9 @@ the existing plugins for examples, and see additional advice in
     * `value_in_examples` - if the field is to appear in examples, this is
     the value to use. A required field with no `value_in_examples` entry
     will resort to the one in `default`.
+    * `array_value_in_examples` - an array of values that should appear in
+    examples. This should always be provided if the field is is required,
+    as the template does not translate default values into arrays.
     * `description` - description of the field.
     Use YAML's pipe notation if writing longer Markdown text.
 

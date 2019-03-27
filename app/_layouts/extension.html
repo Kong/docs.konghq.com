@@ -13,6 +13,10 @@ breadcrumbs:
   for field in page.params.config %}{%
   if field.value_in_examples != nil %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.value_in_examples }}"{%
+  elsif field.array_value_in_examples != nil %} {%
+    for example in field.array_value_in_examples %} \
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}[]={{ example | markdownify | strip_html | strip }}"{%
+    endfor %} {%
   elsif field.required == true %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
   endif %}{% endfor %}

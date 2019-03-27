@@ -58,7 +58,9 @@ params:
     - name: methods
       required: false
       default: "`GET, HEAD, PUT, PATCH, POST`"
-      value_in_examples: GET, POST
+      array_value_in_examples:
+        - GET
+        - POST
       description:
         Value for the `Access-Control-Allow-Methods` header, expects a comma delimited string (e.g. `GET,POST`).
     - name: headers

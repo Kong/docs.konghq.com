@@ -263,7 +263,7 @@ You can patch an existing jwt plugin:
 ```bash
 # This adds verification for both nbf and exp claims:
 $ curl -X PATCH http://kong:8001/plugins/{jwt plugin id} \
-    --data "config.claims_to_verify=exp,nbf"
+    --data "config.claims_to_verify[]=exp&config.claims_to_verify[]=nbf"
 ```
 
 Supported claims:
