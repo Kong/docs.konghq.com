@@ -273,7 +273,15 @@ their initial config) so they are fully compatible with DB-less:
 * `datadog`
 * `file-log`
 * `http-log`
+* `tcp-log`
+* `udp-log`
+* `syslog`
 * `ip-restriction`
+* `prometheus`
+* `zipkin`
+* `request-transformer`
+* `response-transformer`
+* `request-termination`
 * `kubernetes-sidecar-injector`
 
 ##### Partial Compatibility
