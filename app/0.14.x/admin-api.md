@@ -390,7 +390,7 @@ HTTP 200 OK
         "read_timeout": 60000,
         "write_timeout": 60000
     }],
-    "next": "http://localhost:8001/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+    "next": "/services?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
 ```
 
