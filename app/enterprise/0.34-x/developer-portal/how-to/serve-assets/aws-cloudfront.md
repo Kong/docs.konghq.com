@@ -5,9 +5,12 @@ toc: false
 
 ### Introduction
 
-Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds.
+Amazon CloudFront is a fast content delivery network (CDN) service that securely
+ delivers data, videos, applications, and APIs to customers globally with low 
+ latency, high transfer speeds.
 
-In this guide we will create an Amazon S3 bucket, and an Amazon CloudFront distribution to serve static assets for your Kong Developer Portal.
+In this guide we will create an Amazon S3 bucket, and an Amazon CloudFront 
+distribution to serve static assets for your Kong Developer Portal.
 
 
 ### Prerequisites
@@ -52,3 +55,15 @@ Once your distribution is ready, find the image you want to use in your S3 Bucke
 
 You can now copy the `Object URL` for the image and use it in the Dev Portal.
 
+### FAQs
+
+1. Why am I getting a “Access Denied” when requesting the “logo.png” through my Cloudfront URL?
+
+    This is a DNS redirect that S3 does by default on newly created buckets. The bucket's DNS has not fully propagated to <name>.s3.amazonaws.com, you can do one of two things:
+
+    a. Wait for the DNS to propagate
+
+    b. Change the “Origin” on your “Cloudfront Distribution” to be the exact bucket URI such as <name>.s3-us-west-1.amazonaws.com
+
+    If you are still seeing this error after 48 hours, check that the image
+    has been set to `public` as seen in Step 9
