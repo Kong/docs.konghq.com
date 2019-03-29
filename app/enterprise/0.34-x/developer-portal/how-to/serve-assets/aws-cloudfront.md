@@ -3,8 +3,6 @@ title: How to Use AWS Cloudfront to Serve Kong Dev Portal Assets
 toc: false
 ---
 
-![AWS Cloudfront](https://s3.us-east-2.amazonaws.com/kong-doc-assets/developer-portal/how-to/aws-cloudfront/aws-cloudfront.jpg)
-
 ### Introduction
 
 Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds.
