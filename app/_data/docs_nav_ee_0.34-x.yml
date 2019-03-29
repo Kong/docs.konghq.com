@@ -101,6 +101,10 @@
   items:
     - text: Overview
       url: /developer-portal/introduction
+    - text: How-Tos
+      items:
+        - text: Serve Assets with AWS CloudFront
+          url: /developer-portal/how-to/serve-assets/aws-cloudfront
     - text: Configuration
       url: /developer-portal/configuration/getting-started
       items:
