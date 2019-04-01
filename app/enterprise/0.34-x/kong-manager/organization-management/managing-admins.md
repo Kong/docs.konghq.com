@@ -59,7 +59,7 @@ button.
 ⚠️ **IMPORTANT**: If an email fails to send, either due to an incorrect email 
     address or an external error, it will be possible to resend an invitation.
 
-⚠️ **IMPORTANT**: If SMTP is not enabled or the invitation email fails to sent, 
+⚠️ **IMPORTANT**: If SMTP is not enabled or the invitation email fails to send, 
     it is possible for the Super Admin to copy and provide a registration link 
     directly. See the next section.
 
