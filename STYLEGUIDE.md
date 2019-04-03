@@ -32,6 +32,29 @@ hyphen in code/config samples
 * **_Good_: Ensure that `admin_gui_auth` is set to `basic-auth`.**
 * **_Good_: Ensure that `admin_gui_auth = basic-auth`.**
 
+### bold text
+Use bold text for: 
+* Visible GUI text, e.g., click the **Organization** tab.
+* Usernames or Workspace names, e.g., **Gruce** or **Payments**
+* Term lists, e.g.,
+   * **bucanneers**: 17th-century French hunters who survived on the island of 
+      Hispaniola by hunting wild cattle 
+      and swine and smoking the meat in a wooden frame called a *boucane*, 
+      whence *boucaniers*. Many became pirates after being driven off the 
+      island by the Spanish.
+   * **pirates**: people who commit unsanctioned theft by use of a vessel. 
+   * **privateers**: civilian sailors licensed to attack an enemy of their 
+      country at war and keep the plunder on condition of paying their
+      government a certain percentage. Many would turn to piracy when war 
+      officially ended.
+* Emphasis when changing context for a command, like switching to a new 
+  workspace or user, e.g.,
+    > Log in as a **super admin** and move from the **default** 
+    > workspace to **Payments**. Then check the **Admins** page to see if 
+    > **Gruce** has accepted the invitation.
+
+Do not use bold text for [headings](#heading) or anything that should be 
+formatted with [in-line code](#in-line-code).
 
 ### click
 Do not use “click on”; specify what is being clicked
