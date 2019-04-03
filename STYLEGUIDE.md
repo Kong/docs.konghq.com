@@ -168,6 +168,28 @@ Do not use httpie
 ### i.e.
 See e.g.; should only be used to specificy a case, not offer possible examples
 
+### in-line code
+Use in-line code formatting for:
+* Command names, e.g. `kong start`
+* Package names, e.g. `luarocks`
+* Optional commands
+* Variable names, e.g. `KONG_PASSWORD`
+* Configuration properties and values, e.g. 
+    * `admin_gui_auth`
+    * `ldap-auth-advanced`
+    * `admin_gui_auth = ldap-auth-advanced`
+* File names and paths, like `~/.ssh/authorized_keys`
+* Example URLs that are not active links, like `http://example.com`
+* Ports, like `:3000`
+* Key presses, which should be in ALL CAPS and use a plus symbol, `+`, if keys 
+    need to be pressed simultaneously, such as `ENTER` or `CTRL+C`
+
+For multiple lines of code or an example command, use a 
+[code block](#code-block).
+
+Do not use in-line formatting for anything that should be in 
+[bold text](#bold-text)
+
 ### Kong
 Use proper case
 
