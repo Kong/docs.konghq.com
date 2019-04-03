@@ -144,7 +144,8 @@ a title, as it will nest the table of contents.
 ```
 
 ### how-to guides
-Any section of documentation that is a guide involving multiple steps should have the following:
+Any section of documentation that is a guide involving multiple steps should 
+have the following:
 
 1. A title starting with “How to”
     * *Bad*: Creating New Admins in a Workspace
