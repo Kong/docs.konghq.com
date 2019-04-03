@@ -59,9 +59,10 @@ formatted with [in-line code](#in-line-code).
 ### click
 Do not use “click on”; specify what is being clicked
 
-* *Bad*: Click on “Admins”
+* *Bad*: Click on **Admins**
 * *Bad*: Look for one that says “Admins” and click
-* **_Good_: Click the “Admins” button**
+* **_Good_: Click the Admins button**
+
 
 ### cURL
 Do not use CURL or curl
