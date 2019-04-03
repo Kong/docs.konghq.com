@@ -63,6 +63,24 @@ Do not use “click on”; specify what is being clicked
 * *Bad*: Look for one that says “Admins” and click
 * **_Good_: Click the Admins button**
 
+### code block
+Use a code block to indicate multiple lines of code or an example command. For 
+one line, see [in-line code](#in-line-code)
+
+To write a code block, add 3 backticks (` ``` `) to the top and bottom of the 
+block.
+
+```
+$ kong migrations bootstrap
+```
+
+If a specific language is used, specify it. Writing ` ```javascript ` at the 
+top of this block highlights the syntax:
+
+```javascript
+let password = 'hunter2'
+alert(password)
+``` 
 
 ### cURL
 Do not use CURL or curl
