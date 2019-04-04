@@ -16,13 +16,15 @@ Use *Kong Manager* instead
 Use American English throughout Kong documentation
 
 ### ampersands
-Always use “and” in content, only use “&” in titles with two items that have always had it or in product names
+Always use “and” in content, only use “&” in titles with two items that have 
+always had it or in product names
 
 ### API
 All upper case; if referring to an entity, use Services and Routes instead
 
 ### Basic Auth, Basic Authentication
-Use proper case, abbreviate if the context permits. Only use lowercase with a hyphen in code/config samples
+Use proper case, abbreviate if the context permits. Only use lowercase with a 
+hyphen in code/config samples
 
 * Bad: Options include LDAP Auth and basic auth.
 * **_Good_: Options include LDAP Auth and Basic Auth.**
@@ -30,19 +32,63 @@ Use proper case, abbreviate if the context permits. Only use lowercase with a hy
 * **_Good_: Ensure that `admin_gui_auth` is set to `basic-auth`.**
 * **_Good_: Ensure that `admin_gui_auth = basic-auth`.**
 
+### bold text
+Use bold text for: 
+* Visible GUI text, e.g., click the **Organization** tab.
+* Usernames or Workspace names, e.g., **Gruce** or **Payments**
+* Term lists, e.g.,
+   * **bucanneers**: 17th-century French hunters who survived on the island of 
+      Hispaniola by hunting wild cattle 
+      and swine and smoking the meat in a wooden frame called a *boucane*, 
+      whence *boucaniers*. Many became pirates after being driven off the 
+      island by the Spanish.
+   * **pirates**: people who commit unsanctioned theft by use of a vessel. 
+   * **privateers**: civilian sailors licensed to attack an enemy of their 
+      country at war and keep the plunder on condition of paying their
+      government a certain percentage. Many would turn to piracy when war 
+      officially ended.
+* Emphasis when changing context for a command, like switching to a new 
+  workspace or user, e.g.,
+    > Log in as a **super admin** and move from the **default** 
+    > workspace to **Payments**. Then check the **Admins** page to see if 
+    > **Gruce** has accepted the invitation.
+
+Do not use bold text for [headings](#heading) or anything that should be 
+formatted with [in-line code](#in-line-code).
 
 ### click
 Do not use “click on”; specify what is being clicked
 
-* *Bad*: Click on “Admins”
+* *Bad*: Click on **Admins**
 * *Bad*: Look for one that says “Admins” and click
-* **_Good_: Click the “Admins” button**
+* **_Good_: Click the Admins button**
+
+### code block
+Use a code block to indicate multiple lines of code or an example command. For 
+one line, see [in-line code](#in-line-code)
+
+To write a code block, add 3 backticks (` ``` `) to the top and bottom of the 
+block.
+
+```
+$ kong migrations bootstrap
+```
+
+If a specific language is used, specify it. Writing ` ```javascript ` at the 
+top of this block highlights the syntax:
+
+```javascript
+let password = 'hunter2'
+alert(password)
+``` 
 
 ### cURL
 Do not use CURL or curl
 
 ### e.g.
-Indicates an inexhaustive list of examples, thus should not conclude with “etc.”; if offering a clarification, rather than an example, use “i.e.”. Following the Chicago Manual, follow each with a comma.
+Indicates an inexhaustive list of examples, thus should not conclude with 
+“etc.”; if offering a clarification, rather than an example, use “i.e.”. 
+Following the Chicago Manual, follow each with a comma.
 
 * *Bad*: Users may select a role, e.g. admin, read-only, etc.
 * **_Good_: Users may select a role, e.g., admin, read-only.**
@@ -54,35 +100,95 @@ Indicates an inexhaustive list of examples, thus should not conclude with “etc
 Indicates an incomplete thought, not a pause in a sentence; see em-dash
 
 ### em-dash (—)
-Indicates a pause or emphatic break in a sentence; it's not a hyphen and has no surrounding space
+Indicates a pause or emphatic break in a sentence; it's not a hyphen and has no 
+surrounding space
 
-* *Bad*: The admin role allows a user access to all endpoints... except for RBAC permissions.
-* *Bad*: The admin role allows a user access to all endpoints - except for RBAC permissions.
-* **_Good_: The admin role allows a user access to all endpoints—except for RBAC permissions.**
+* *Bad*: The admin role allows a user access to all endpoints... except for 
+    RBAC permissions.
+* *Bad*: The admin role allows a user access to all endpoints - except for RBAC 
+    permissions.
+* **_Good_: The admin role allows a user access to all endpoints—except for 
+    RBAC permissions.**
 
 ### explanatory guides
-For explanatory sections, specify the value of the content, then provide clarification and examples. Avoid starting sections with casual or redundant information, e.g., “In this section, you'll learn how to do X.” For example, in a section titled “Negotiation with Pirates”:
+For explanatory sections, specify the value of the content, then provide 
+clarification and examples. Avoid starting sections with casual or redundant 
+information, e.g., “In this section, you'll learn how to do X.” For example, 
+in a section titled “Negotiation with Pirates”:
 
-* *Bad*: In this section, you will learn the reason for negotiating with pirates. Pirates may seem scary, but they can be reasoned with. Just match their body language and offer them some rum. From there, negotiation is self-explanatory. Now you know how to negotiate with pirates.
-* **_Good_: Although pirates do not abide by the law, it is possible to come to a reasonable compromise with them. Their goal is financial gain, not a fight, and many of them were once merchant sailors. If it is not possible to deter them, it is best to maintain a friendly disposition. For the safety of your crew, keep their motivations in mind at all times during negotiation.**
+* *Bad*: In this section, you will learn the reason for negotiating with 
+    pirates. Pirates may seem scary, but they can be reasoned with. Just match 
+    their body language and offer them some rum. From there, negotiation is 
+    self-explanatory. Now you know how to negotiate with pirates.
+* **_Good_: Although pirates do not abide by the law, it is possible to come to 
+    a reasonable compromise with them. Their goal is financial gain, not a 
+    fight, and many of them were once merchant sailors. If it is not possible 
+    to deter them, it is best to maintain a friendly disposition. For the 
+    safety of your crew, keep their motivations in mind at all times during 
+    negotiation.**
+
+### heading
+For section headings, use `##`. For subsections, use `###`. Do not use `#` for 
+a title, as it will nest the table of contents.
+
+```
+## Section 1
+
+### Subsection 1.a
+
+## Section 2
+
+### Subsection 2.a
+
+### Subsection 2.b
+```
 
 ### how-to guides
-Any section of documentation that is a guide involving multiple steps should have the following:
+Any section of documentation that is a guide involving multiple steps should 
+have the following:
 
 1. A title starting with “How to”
     * *Bad*: Creating New Admins in a Workspace
     * **_Good_: How to Create New Admins in a Workspace**
-2. Numbered steps ranging from two to five; anything with more than five steps can be broken down into separate guides
-3. Oriented towards a goal, not teaching; each step should be minimal and straightforward
-    * detailed explanation may go in a separate section below the how-to guide, but should not interrupt it
-    * *important* tags that prevent an undesired outcome may go at the bottom of a step, but should not be overused
-4. Each step in a how-to guide should be identical to its TL;DR version--if any content is inessential, it can go into a blog post or a more appropriate section
+2. Numbered steps ranging from two to five; anything with more than five steps 
+    can be broken down into separate guides
+3. Oriented towards a goal, not teaching; each step should be minimal and 
+    straightforward
+    * detailed explanation may go in a separate section below the how-to guide, 
+        but should not interrupt it
+    * *important* tags that prevent an undesired outcome may go at the bottom 
+        of a step, but should not be overused
+4. Each step in a how-to guide should be identical to its TL;DR version—if any 
+    content is inessential, it can go into a blog post or a more appropriate 
+    section
 
 ### HTTPie
 Do not use httpie
 
 ### i.e.
 See e.g.; should only be used to specificy a case, not offer possible examples
+
+### in-line code
+Use in-line code formatting for:
+* Command names, e.g. `kong start`
+* Package names, e.g. `luarocks`
+* Optional commands
+* Variable names, e.g. `KONG_PASSWORD`
+* Configuration properties and values, e.g. 
+    * `admin_gui_auth`
+    * `ldap-auth-advanced`
+    * `admin_gui_auth = ldap-auth-advanced`
+* File names and paths, like `~/.ssh/authorized_keys`
+* Example URLs that are not active links, like `http://example.com`
+* Ports, like `:3000`
+* Key presses, which should be in ALL CAPS and use a plus symbol, `+`, if keys 
+    need to be pressed simultaneously, such as `ENTER` or `CTRL+C`
+
+For multiple lines of code or an example command, use a 
+[code block](#code-block).
+
+Do not use in-line formatting for anything that should be in 
+[bold text](#bold-text)
 
 ### Kong
 Use proper case
@@ -106,7 +212,8 @@ Use *Kong Enterprise* instead—except in pre-34 versions, e.g. “Kong EE 0.32�
 Use proper case
 
 ### login, log in
-Joined as a noun/modifier, separated as a phrasal verb; added prepositions are also separated
+Joined as a noun/modifier, separated as a phrasal verb; added prepositions are 
+also separated
 
 * To see the dashboard, *log in* as an admin. 
 * *Log in to* the app.
@@ -120,7 +227,8 @@ Spell out numbers less than 10
 
 
 ### personal pronouns 
-Avoid “you” and “we” in favor of the specific role performing the task or the imperative mood, but do not use the passive voice if “you” would be simpler.
+Avoid “you” and “we” in favor of the specific role performing the task or the 
+imperative mood, but do not use the passive voice if “you” would be simpler.
 
 * *Bad*: We will start by creating credentials for you.
 * **_Good_: To start, create credentials for the super admin.**
@@ -134,7 +242,8 @@ Use proper case
 Use proper case
 
 ### Role-Based Access Control, RBAC
-Use proper case, introduce full phrase only once per section, use abbreviation after
+Use proper case, introduce full phrase only once per section, use abbreviation 
+after
 
 ### Routes
 Use proper case
@@ -152,7 +261,8 @@ Joined as a noun/modifier, separated as a phrasal verb
 Use proper case
 
 ### super admin
-Use lowercase, hyphen as a compound modifier. Note that an [Admin](#Admin) is a Kong entity.
+Use lowercase, hyphen as a compound modifier. Note that an [Admin](#Admin) is a 
+Kong entity.
 
 * Invite a *super admin*.
 * An Admin account may invite others if it has *super-admin* permissions.
@@ -170,7 +280,8 @@ Prepositions and articles are lower case, everything else is proper case
 * Create RBAC Roles for an Admin in the New Workspace
 
 ### utilize
-Has a specific meaning, “to use what is available”; it should not be used a fancy synonym for “use”
+Has a specific meaning, “to use what is available”; it should not be used a 
+fancy synonym for “use”
 
 * *Bad*: The Admin may *utilize* the feature to observe traffic.
 * **_Good_: The Admin may *use* the feature to observe traffic.**
