@@ -47,6 +47,18 @@ baseurl=https://kong.bintray.com/kong-rpm/centos/7
     $ sudo yum install epel-release
     $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
     ```
+    If you are using the repository, execute:
+
+    ```bash
+    $ sudo yum update -y
+    $ sudo yum install -y wget
+    $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
+    $ export major_version=`grep -oE '[0-9]+\.[0-9]+' /etc/redhat-release | cut -d "." -f1`
+    $ sed -i -e 's/baseurl.*/&\/centos\/'$major_version''/ bintray-kong-kong-rpm.repo
+    $ sudo mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    $ sudo yum update -y
+    $ sudo yum install -y kong
+    ```
 
 2. **Prepare your database**
 

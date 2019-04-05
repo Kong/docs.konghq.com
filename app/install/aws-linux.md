@@ -28,11 +28,6 @@ amazonlinux/amazonlinux; for instance:
 ```
 baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
 ```
-or
-
-```
-baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
-```
 
 ----
 
@@ -40,11 +35,23 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
 
 1. **Install Kong**
 
-    After downloading the [package](#packages), execute:
+    If you are downloading the [package](#packages), execute:
 
     ```bash
     $ sudo yum install epel-release
     $ sudo yum install kong-{{site.data.kong_latest.version}}.aws.rpm --nogpgcheck
+    ```
+    
+    If you are using the repository, execute:
+    ```bash
+    $ sudo yum update -y
+    $ sudo yum install -y wget
+    $ sudo amazon-linux-extras install -y epel
+    $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
+    $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ bintray-kong-kong-private-rpm.repo
+    $ mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    $ sudo yum update -y
+    $ sudo yum install -y kong
     ```
 
 2. **Prepare your database**

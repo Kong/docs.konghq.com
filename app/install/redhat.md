@@ -58,6 +58,17 @@ baseurl=https://kong.bintray.com/kong-rpm/rhel/7
     $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
     ```
 
+    If you are using the repository, execute:
+    ```bash
+    $ sudo yum install -y wget
+    $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo 
+    $ export major_version=`grep -oE '[0-9]+\.[0-9]+' /etc/redhat-release | cut -d "." -f1`
+    $ sed -i -e 's/baseurl.*/&\/rhel\/'$major_version''/ bintray-kong-kong-rpm.repo
+    $ sudo mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    $ sudo yum update -y
+    $ sudo yum install -y kong
+    ```
+
 3. **Prepare your database**
 
     [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
