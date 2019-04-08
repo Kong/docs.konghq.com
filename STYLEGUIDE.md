@@ -182,11 +182,11 @@ See e.g.; should only be used to specify a case, not offer possible examples.
 
 ### in-line code
 Use in-line code formatting for:
-* Command names, e.g. `kong start`
-* Package names, e.g. `luarocks`
+* Command names, e.g., `kong start`
+* Package names, e.g., `luarocks`
 * Optional commands
 * Variable names, e.g. `KONG_PASSWORD`
-* Configuration properties and values, e.g. 
+* Configuration properties and values, e.g., 
     * `admin_gui_auth`
     * `ldap-auth-advanced`
     * `admin_gui_auth = ldap-auth-advanced`
