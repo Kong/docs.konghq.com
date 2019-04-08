@@ -36,10 +36,9 @@ Inviting a new Admin through the “Organization” page is similar to inviting 
 1. On the "Admins" page, to invite a new admin, click the "Create New Admin" 
 button.
 
-2. Ensure that the email address and username are matching. When a new Admin 
-    receives an invitation, they will only be able to log in with that email 
-    address. Assign the appropriate Role and click "Invite Admin" to send the 
-    invitation.
+2.  When a new Admin receives an invitation, they will only be able to log in 
+    with that email address. Assign the appropriate Role and click "Invite Admin" 
+    to send the invitation.
 
     ![Create New Admin](https://konghq.com/wp-content/uploads/2018/11/km-name-admin.png)
 
