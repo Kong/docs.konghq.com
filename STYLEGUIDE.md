@@ -215,7 +215,7 @@ Use *Kong* instead—except in pre-1.0 versions, e.g. "Kong CE 0.12".
 Use *Dev Portal* instead, not "Developer Portal".
 
 ### Kong Enterprise
-Use proper case
+Use proper case.
 
 ### Kong Enterprise Edition, Kong EE
 Use *Kong Enterprise* instead—except in pre-34 versions, e.g. “Kong EE 0.32”
