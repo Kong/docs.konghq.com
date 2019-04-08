@@ -200,7 +200,7 @@ For multiple lines of code or an example command, use a
 [code block](#code-block).
 
 Do not use in-line formatting for anything that should be in 
-[bold text](#bold-text)
+[bold text](#bold-text).
 
 ### Kong
 Use proper case
