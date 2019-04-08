@@ -7,7 +7,7 @@ Use proper case for the Kong entity, lowercase for the RBAC Role.
 * The default **Roles** are **super-admin**, **_admin_**, and **read-only**
 
 ### Admin API 
-Use proper case
+Use proper case.
 
 ### Admin GUI
 Use *Kong Manager* instead
