@@ -112,8 +112,8 @@ Indicates an incomplete thought or omission, not a pause thought; see
 * **_Good_: The error message will start, "Unable to complete request..."**
 
 ### em-dash (—)
-Indicates a pause or emphatic break in a sentence; it's not a hyphen and has no 
-surrounding space
+Indicates a pause or emphatic break in a sentence; it is not a hyphen and has 
+no surrounding space.
 
 * *Bad*: The admin role allows a user access to all endpoints... except for 
     RBAC permissions.
