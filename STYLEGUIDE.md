@@ -39,10 +39,9 @@ Use bold text for:
 * Usernames or Workspace names, e.g., **Gruce** or **Payments**
 * Term lists, e.g.,
    * **bucanneers**: 17th-century French hunters who survived on the island of 
-      Hispaniola by hunting wild cattle 
-      and swine and smoking the meat in a wooden frame called a *boucane*, 
-      whence *boucaniers*. Many became pirates after being driven off the 
-      island by the Spanish.
+      Hispaniola by hunting wild cattle and swine and smoking the meat in a 
+      wooden frame called a *boucane*, whence *boucaniers*. Many became pirates 
+      after being driven off the island by the Spanish.
    * **pirates**: people who commit unsanctioned theft by use of a vessel. 
    * **privateers**: civilian sailors licensed to attack an enemy of their 
       country at war and keep the plunder on condition of paying their
