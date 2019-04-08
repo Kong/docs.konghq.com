@@ -125,8 +125,8 @@ no surrounding space.
 ### explanatory guides
 For explanatory sections, specify the value of the content, then provide 
 clarification and examples. Avoid starting sections with casual or redundant 
-information, e.g., “In this section, you'll learn how to do X.” For example, 
-in a section titled “Negotiation with Pirates”:
+information, e.g., "In this section, you'll learn how to do X." For example, 
+in a section titled "Negotiation with Pirates":
 
 * *Bad*: In this section, you will learn the reason for negotiating with 
     pirates. Pirates may seem scary, but they can be reasoned with. Just match 
