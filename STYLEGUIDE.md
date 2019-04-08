@@ -159,7 +159,7 @@ a title, as it will nest the table of contents.
 Any section of documentation that is a guide involving multiple steps should 
 have the following:
 
-1. A title starting with “How to”
+1. A title starting with "How to"
     * *Bad*: Creating New Admins in a Workspace
     * **_Good_: How to Create New Admins in a Workspace**
 2. Numbered steps ranging from two to five; anything with more than five steps 
