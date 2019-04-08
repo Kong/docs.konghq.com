@@ -115,12 +115,12 @@ Indicates an incomplete thought or omission, not a pause thought; see
 Indicates a pause or emphatic break in a sentence; it is not a hyphen and has 
 no surrounding space.
 
-* *Bad*: The admin role allows a user access to all endpoints... except for 
-    RBAC permissions.
-* *Bad*: The admin role allows a user access to all endpoints - except for RBAC 
-    permissions.
-* **_Good_: The admin role allows a user access to all endpoints—except for 
-    RBAC permissions.**
+* *Bad*: The **admin Role** allows a user access to all endpoints... except for 
+    RBAC **Permissions**.
+* *Bad*: The **admin Role** allows a user access to all endpoints - except for 
+    RBAC **Permissions**.
+* **_Good_: The *admin Role* allows a user access to all endpoints—except for 
+    RBAC *Permissions*.**
 
 ### explanatory guides
 For explanatory sections, specify the value of the content, then provide 
