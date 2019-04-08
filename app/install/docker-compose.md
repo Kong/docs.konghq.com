@@ -8,12 +8,13 @@ breadcrumbs:
 ---
 
 
-The Kong docker-compose yaml is a subdirectory on the [https://github.com/Kong/docker-kong](https://github.com/Kong/docker-kong/blob/master/compose/docker-compose.yml)
-repository. Kong releases include a corresponding repository tag so replace `master` with the specific version of Kong one wants to use. The Kong docker-compose.yml
-uses [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) docker container as a proxy in a production setup one likely would replace that with a load
-balancer of their choosing such as a ALB or ELB if using AWS.
+The Kong docker-compose YAML file is in a subdirectory on the [https://github.com/Kong/docker-kong](https://github.com/Kong/docker-kong/blob/master/compose/docker-compose.yml)
+repository.
 
-The Kong docker-compose yaml Kong can be provisioned via docker-compose using the following steps:
+The Kong docker-compose.yml uses [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) docker container as a proxy in a production setup one likely would replace that with a load
+balancer of their choosing such as an ALB or ELB if using AWS.
+
+The Kong docker-compose YAML Kong can be provisioned via docker-compose using the following steps:
 
 
 1. **Run the docker-compose**

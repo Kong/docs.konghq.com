@@ -7,7 +7,7 @@ breadcrumbs:
   Installation: /install
 ---
 
-Details about how to use Kong in Docker can be found on the DockerHub repository hosting the image: [kong](https://hub.docker.com/_/kong/). We also have a [Docker Compose template](https://github.com/Kong/docker-kong/tree/master/compose) with built-in orchestration and scalability.
+Details about how to use Kong in Docker can be found on the DockerHub repository hosting the image: [kong](https://hub.docker.com/_/kong/).
 
 Here is a quick example showing how to connect a Kong container to a Cassandra or PostgreSQL container:
 
