@@ -45,7 +45,7 @@ Use bold text for:
    * **pirates**: people who commit unsanctioned theft by use of a vessel. 
    * **privateers**: civilian sailors licensed to attack an enemy of their 
       country at war and keep the plunder on condition of paying their
-      government a certain percentage. Many would turn to piracy when war 
+      government a certain percentage. Many would turn to piracy when the war 
       officially ended.
 * Emphasis when changing context for a command, like switching to a new 
   workspace or user, e.g.,
