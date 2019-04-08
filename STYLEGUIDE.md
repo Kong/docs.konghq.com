@@ -203,10 +203,10 @@ Do not use in-line formatting for anything that should be in
 [bold text](#bold-text).
 
 ### Kong
-Use proper case
+Use proper case.
 
 ### Kong Admin
-Use Admin instead
+Use [**Admin** or **admin**](#admin-admin) instead.
 
 ### Kong Community Edition, Kong CE
 Use *Kong* instead
