@@ -59,9 +59,9 @@ formatted with [in-line code](#in-line-code).
 ### click
 Do not use "click on"; specify _what_ is being clicked.
 
-* *Bad*: Click on **Admins**
-* *Bad*: Look for one that says “Admins” and click
-* **_Good_: Click the Admins button**
+* *Bad*: Click on **Admins**. 
+* *Bad*: Look for one that says "Admins" and click.
+* **_Good_: Click the Admins button.**
 
 ### code block
 Use a code block to indicate multiple lines of code or an example command. For 
