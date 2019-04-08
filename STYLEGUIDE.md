@@ -298,8 +298,8 @@ Prepositions and articles are lower case, everything else is proper case.
 * Create RBAC **Roles** for an **Admin** in the new **Workspace**.
 
 ### utilize
-Has a specific meaning, “to use what is available”; it should not be used a 
-fancy synonym for “use”
+Has a specific meaning, "to use what is available"; it should not be used a 
+fancy synonym for "use".
 
 * *Bad*: The Admin may *utilize* the feature to observe traffic.
 * **_Good_: The Admin may *use* the feature to observe traffic.**
