@@ -57,7 +57,7 @@ Do not use bold text for [headings](#heading) or anything that should be
 formatted with [in-line code](#in-line-code).
 
 ### click
-Do not use “click on”; specify what is being clicked
+Do not use "click on"; specify _what_ is being clicked.
 
 * *Bad*: Click on **Admins**
 * *Bad*: Look for one that says “Admins” and click
