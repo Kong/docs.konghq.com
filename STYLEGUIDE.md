@@ -232,7 +232,8 @@ also separated.
 * Reset your password at the *login* page.
 
 ### numbering
-Spell out numbers less than 10
+Write all numbers as digits (including 1–9). Ranges should use an en-dash (–)
+instead of "to" or "through".
 
 * *Bad*: There are 2 properties to set in the config.
 * **_Good_: There are two properties to set in the config.**
