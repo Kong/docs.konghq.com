@@ -108,6 +108,9 @@ _Chicago Manual_, follow "e.g." with a comma before the example.
 Indicates an incomplete thought or omission, not a pause thought; see 
 [em-dash](#em-dash).
 
+* *Bad*: Click "Garth-Stuff"... or more interestingly, the user named "KongOps".
+* **_Good_: The error message will start, "Unable to complete request..."**
+
 ### em-dash (—)
 Indicates a pause or emphatic break in a sentence; it's not a hyphen and has no 
 surrounding space
