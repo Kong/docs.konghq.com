@@ -175,7 +175,7 @@ have the following:
     section
 
 ### HTTPie
-Do not use httpie
+Do not write "httpie" or "HTTPIE".
 
 ### i.e.
 See e.g.; should only be used to specificy a case, not offer possible examples
