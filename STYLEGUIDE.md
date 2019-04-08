@@ -100,8 +100,8 @@ _Chicago Manual_, follow "e.g." with a comma before the example.
 
 * *Bad*: Users may select a role, e.g. admin, read-only, etc.
 * **_Good_: Users may select a role, e.g., admin, read-only.**
-* *Bad*: The Role with the most RBAC permissions, e.g. the Super Admin.
-* **_Good_: The Role with the most RBAC permissions, i.e., the Super Admin.**
+* *Bad*: The Role with the most RBAC permissions, e.g. the **super admin**.
+* **_Good_: The Role with the most RBAC permissions, i.e., the super admin.**
 
 
 ### ellipses (...)
