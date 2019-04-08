@@ -242,8 +242,8 @@ instead of "to" or "through".
 
 
 ### personal pronouns 
-Avoid “you” and “we” in favor of the specific role performing the task or the 
-imperative mood, but do not use the passive voice if “you” would be simpler.
+Avoid "you" and "we" in favor of the specific role performing the task or the 
+imperative mood, but do not use the passive voice if "you" would be simpler.
 
 * *Bad*: We will start by creating credentials for you.
 * **_Good_: To start, create credentials for the super admin.**
