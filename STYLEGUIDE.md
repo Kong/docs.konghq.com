@@ -218,14 +218,14 @@ Use *Dev Portal* instead, not "Developer Portal".
 Use proper case.
 
 ### Kong Enterprise Edition, Kong EE
-Use *Kong Enterprise* instead—except in pre-34 versions, e.g. “Kong EE 0.32”
+Use *Kong Enterprise* instead—except in pre-34 versions, e.g. "Kong EE 0.32".
 
 ### Kong Manager
-Use proper case
+Use proper case.
 
 ### login, log in
 Joined as a noun/modifier, separated as a phrasal verb; added prepositions are 
-also separated
+also separated.
 
 * To see the dashboard, *log in* as an admin. 
 * *Log in to* the app.
