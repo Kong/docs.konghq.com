@@ -286,7 +286,7 @@ particular **Roles**.
     **Permissions**.
 
 ### text in buttons, links
-Maintain the case, surround with double quotes
+Maintain the case, format with [bold text](#bold-text).
 
 * Click **Admins** in the sidebar.
 
