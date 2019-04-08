@@ -10,7 +10,7 @@ Use proper case for the Kong entity, lowercase for the RBAC Role.
 Use proper case.
 
 ### Admin GUI
-Use *Kong Manager* instead
+Use *Kong Manager* instead.
 
 ### American English
 Use American English throughout Kong documentation
