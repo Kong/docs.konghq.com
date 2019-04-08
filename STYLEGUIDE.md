@@ -13,7 +13,7 @@ Use proper case.
 Use *Kong Manager* instead.
 
 ### American English
-Use American English throughout Kong documentation
+Use American English throughout Kong documentation.
 
 ### ampersands
 Always use “and” in content, only use “&” in titles with two items that have 
