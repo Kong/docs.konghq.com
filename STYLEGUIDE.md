@@ -162,7 +162,7 @@ have the following:
 1. A title starting with "How to"
     * *Bad*: Creating New Admins in a Workspace
     * **_Good_: How to Create New Admins in a Workspace**
-2. Numbered steps ranging from two to five; anything with more than five steps 
+2. Numbered steps, 2 to 5 in length; anything with more than 5 steps 
     can be broken down into separate guides
 3. Oriented towards a goal, not teaching; each step should be minimal and 
     straightforward
