@@ -1,7 +1,7 @@
 # Documentation Style Guide
 
 ### Admin, admin
-Use proper case for the Kong entity, lowercase for the RBAC Role
+Use proper case for the Kong entity, lowercase for the RBAC Role.
 
 * Invite the Admin using the Organization tab
 * The default Roles are `super-admin`, `admin`, and `read-only`
