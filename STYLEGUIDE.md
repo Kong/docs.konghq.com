@@ -178,7 +178,7 @@ have the following:
 Do not write "httpie" or "HTTPIE".
 
 ### i.e.
-See e.g.; should only be used to specificy a case, not offer possible examples
+See e.g.; should only be used to specify a case, not offer possible examples.
 
 ### in-line code
 Use in-line code formatting for:
