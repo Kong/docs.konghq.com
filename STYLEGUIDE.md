@@ -74,12 +74,20 @@ block.
 $ kong migrations bootstrap
 ```
 
-If a specific language is used, specify it. Writing ` ```javascript ` at the 
-top of this block highlights the syntax:
+If a specific language is used, specify it. For example, this block:
+
+```
+    ```javascript
+    let password = 'hunter2'              // use 'quotes' for strings
+    alert(`Your password is ${password}`) // use `ticks` for template literals
+    ```
+```
+
+produces the contents with JavaScript's syntax highlighting:
 
 ```javascript
-let password = 'hunter2'
-alert(password)
+let password = 'hunter2'              // use 'quotes' for strings
+alert(`Your password is ${password}`) // use `ticks` for template literals
 ``` 
 
 ### cURL
