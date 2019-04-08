@@ -209,7 +209,7 @@ Use proper case.
 Use [**Admin** or **admin**](#admin-admin) instead.
 
 ### Kong Community Edition, Kong CE
-Use *Kong* instead
+Use *Kong* instead—except in pre-1.0 versions, e.g. "Kong CE 0.12".
 
 ### Kong Dev Portal
 Use *Dev Portal* in docs, not “Developer Portal’
