@@ -227,7 +227,7 @@ Use proper case.
 Joined as a noun/modifier, separated as a phrasal verb; added prepositions are 
 also separated.
 
-* To see the dashboard, *log in* as an admin. 
+* To see the dashboard, *log in* as an **admin**. 
 * *Log in to* the app.
 * Reset your password at the *login* page.
 
@@ -276,20 +276,21 @@ Use proper case.
 Use lowercase, hyphen as a compound modifier. Note that an [Admin](#Admin) is a 
 Kong entity.
 
-* Invite a *super admin*.
-* An Admin account may invite others if it has *super-admin* permissions.
+* Invite a **_super admin_**.
+* An **Admin** account may invite others if it has **_super-admin_** 
+    **Permissions**.
 
 ### text in buttons, links
 Maintain the case, surround with double quotes
 
-* Click “Admins” in the sidebar.
+* Click **Admins** in the sidebar.
 
-* Use the “Add Role” button.
+* Use the **Add Role** button.
 
 ### titles
 Prepositions and articles are lower case, everything else is proper case.
 
-* Create RBAC Roles for an Admin in the New Workspace
+* Create RBAC **Roles** for an **Admin** in the new **Workspace**.
 
 ### utilize
 Has a specific meaning, “to use what is available”; it should not be used a 
