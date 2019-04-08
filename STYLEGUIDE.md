@@ -16,8 +16,8 @@ Use *Kong Manager* instead.
 Use American English throughout Kong documentation.
 
 ### ampersands
-Always use “and” in content, only use “&” in titles with two items that have 
-always had it or in product names
+Always use "and" in content, only use "&" in titles with two items that have 
+always had it or in product names.
 
 ### API
 All upper case; if referring to an entity, use Services and Routes instead
