@@ -94,9 +94,9 @@ alert(`Your password is ${password}`) // use `ticks` for template literals
 Do not write as "CURL" or "curl".
 
 ### e.g.
-Indicates an inexhaustive list of examples, thus should not conclude with 
-“etc.”; if offering a clarification, rather than an example, use “i.e.”. 
-Following the Chicago Manual, follow each with a comma.
+Indicates an inexhaustive list of examples, so "etc." is redundant. Use "i.e." 
+if offering a clarification, rather than an example. Following the 
+_Chicago Manual_, follow "e.g." with a comma before the example.
 
 * *Bad*: Users may select a role, e.g. admin, read-only, etc.
 * **_Good_: Users may select a role, e.g., admin, read-only.**
