@@ -248,29 +248,29 @@ imperative mood, but do not use the passive voice if “you” would be simpler.
 * **_Good_: Log in with the password you set during migrations.**
 
 ### Plugin
-Use proper case
+Use proper case.
 
 ### Role
-Use proper case
+Use proper case.
 
 ### Role-Based Access Control, RBAC
 Use proper case, introduce full phrase only once per section, use abbreviation 
-after
+after.
 
 ### Routes
-Use proper case
+Use proper case.
 
 ### serial comma 
-For safety, clarity, and sanity
+For safety, clarity, and sanity.
 
 ### setup, set up
-Joined as a noun/modifier, separated as a phrasal verb
+Joined as a noun/modifier, separated as a phrasal verb.
 
 * A protocol is required to *set up* a service.
 * To learn more, visit the account *setup* guide.  
 
 ### Services
-Use proper case
+Use proper case.
 
 ### super admin
 Use lowercase, hyphen as a compound modifier. Note that an [Admin](#Admin) is a 
@@ -287,7 +287,7 @@ Maintain the case, surround with double quotes
 * Use the “Add Role” button.
 
 ### titles
-Prepositions and articles are lower case, everything else is proper case
+Prepositions and articles are lower case, everything else is proper case.
 
 * Create RBAC Roles for an Admin in the New Workspace
 
@@ -299,7 +299,7 @@ fancy synonym for “use”
 * **_Good_: The Admin may *use* the feature to observe traffic.**
 
 ### Vitals
-Use proper case
+Use proper case.
 
 ### Workspace, Workspaces
-Use proper case
+Use proper case.
