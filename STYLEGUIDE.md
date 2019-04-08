@@ -91,7 +91,7 @@ alert(`Your password is ${password}`) // use `ticks` for template literals
 ``` 
 
 ### cURL
-Do not use CURL or curl
+Do not write as "CURL" or "curl".
 
 ### e.g.
 Indicates an inexhaustive list of examples, thus should not conclude with 
