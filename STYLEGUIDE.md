@@ -235,8 +235,10 @@ also separated.
 Write all numbers as digits (including 1–9). Ranges should use an en-dash (–)
 instead of "to" or "through".
 
-* *Bad*: There are 2 properties to set in the config.
-* **_Good_: There are two properties to set in the config.**
+* *Bad*: If a user has more than five bins, provide nine to 23 blocks.
+* **_Good_: If a user has more than 5 bins, provide 9–23 blocks.** 
+* *Bad*: This guide assumes steps one through three from the previous guide.
+* **_Good_: This guides assumes steps 1–3 from the previous guide.**
 
 
 ### personal pronouns 
