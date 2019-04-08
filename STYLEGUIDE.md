@@ -105,7 +105,8 @@ _Chicago Manual_, follow "e.g." with a comma before the example.
 
 
 ### ellipses (...)
-Indicates an incomplete thought, not a pause in a sentence; see em-dash
+Indicates an incomplete thought or omission, not a pause thought; see 
+[em-dash](#em-dash).
 
 ### em-dash (—)
 Indicates a pause or emphatic break in a sentence; it's not a hyphen and has no 
