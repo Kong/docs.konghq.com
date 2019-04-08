@@ -3,8 +3,8 @@
 ### Admin, admin
 Use proper case for the Kong entity, lowercase for the RBAC Role.
 
-* Invite the Admin using the Organization tab
-* The default Roles are `super-admin`, `admin`, and `read-only`
+* Invite the **_Admin_** using the **Organization** tab
+* The default **Roles** are **super-admin**, **_admin_**, and **read-only**
 
 ### Admin API 
 Use proper case
