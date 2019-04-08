@@ -24,8 +24,8 @@ All upper case; if referring to an entity, use **Services** and **Routes**
 instead.
 
 ### Basic Auth, Basic Authentication
-Use proper case, abbreviate if the context permits. Only use lowercase with a 
-hyphen in code/config samples
+Use proper case; abbreviate if the context permits. Only use lowercase (with a 
+hyphen) in code or configuration samples.
 
 * Bad: Options include LDAP Auth and basic auth.
 * **_Good_: Options include LDAP Auth and Basic Auth.**
