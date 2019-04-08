@@ -22,6 +22,10 @@
   name: AWS Cloud Formation
   type: cloud
 
+- id: docker-compose
+  name: Docker Compose
+  type: cloud
+
 - id: aws-linux
   name: Amazon Linux
   type: package
