@@ -276,8 +276,10 @@ Joined as a noun/modifier, separated as a phrasal verb.
 Use proper case.
 
 ### super admin
-Use lowercase, hyphen as a compound modifier. Note that an [Admin](#Admin) is a 
-Kong entity.
+Use lowercase, hyphen as a compound modifier. Note that an 
+[Admin](#admin-admin) is a Kong entity, whereas **admin** and **super admin** 
+refer to particular **Roles** assigned to an **Admin**, or users with those 
+particular **Roles**.
 
 * Invite a **_super admin_**.
 * An **Admin** account may invite others if it has **_super-admin_** 
