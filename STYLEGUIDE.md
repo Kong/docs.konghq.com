@@ -65,7 +65,7 @@ Do not use "click on"; specify _what_ is being clicked.
 
 ### code block
 Use a code block to indicate multiple lines of code or an example command. For 
-one line, see [in-line code](#in-line-code)
+one line, see [in-line code](#in-line-code).
 
 To write a code block, add 3 backticks (` ``` `) to the top and bottom of the 
 block.
