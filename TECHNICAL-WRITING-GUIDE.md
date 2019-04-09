@@ -19,7 +19,7 @@ official documentation. But with more contributors comes more variation in
 writing style, so in order to maintain a consistent voice and style throughout
 all of Kong's documentation, we have curated a set of technical writing guidelines. 
 
-To decrease the turn around time for publishing docs we ask that all
+To decrease the turn-around time for publishing docs, we ask that all
 contributors read through this guide in its entirety, reference our 
 [Style Guide](/STYLEGUIDE.md), and consider using one of Kong's documentation
 [templates](/templates).
