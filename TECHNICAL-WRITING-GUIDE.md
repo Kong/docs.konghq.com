@@ -11,7 +11,7 @@
   - [Tutorials](#tutorials)
 
 
-## Introduction
+### Introduction
 
 Kong's documentation community is growing. That means there are more and more 
 people writing, commenting, editing, and otherwise contributing to Kong's 
@@ -100,6 +100,7 @@ such as “How to Delete an Admin”
 They should follow the follow structure:
 
 * Title
+* Table of Contents
 * Introduction
 * Prerequisites
 * Step 1 
@@ -115,14 +116,18 @@ a starting point.
 
 How-To guide titles typically follow the “How to [X] using [Y]” format.
 
-*Introduction [h2]*
+*Table of Contents [h4]*
+ 
+ - Bulleted list of each step in the guide
+
+*Introduction [h3]*
 
 How-To guides should start with an introduction. It should be limited to a few
 succinct sentences or paragraphs that introduces what the user will be learning
 to do. A “how-to” guide should provide an end-goal, or something that the user
 will accomplish by following the steps. 
 
-*Prerequisites [h2]*
+*Prerequisites [h3]*
 
 * A bulleted list of everything a user needs to complete the how-to guide
 
@@ -134,7 +139,7 @@ explaining not only what to a user needs to do in each step but also why. We
 want users to walk away with an understanding of what they accomplished,
 rather than just copy and pasting code.
 
-*Next Steps [h2] [optional]*
+*Next Steps [h3] [optional]*
 
 After completing the how to guide, consider including a related article or
 “next steps”. Most guides will relate directly to a property reference, and
