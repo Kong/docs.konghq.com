@@ -136,15 +136,15 @@ will accomplish by following the steps.
 *Steps [h2]*
 
 Begin each step with an h2 heading containing a summary statement, followed by
-a brief introduction of what the step will accomplish. Please be through in
+a brief introduction of what the step will accomplish. Please be thorough in
 explaining not only what to a user needs to do in each step but also why. We
 want users to walk away with an understanding of what they accomplished,
-rather than just copy and pasting code.
+rather than just copying and pasting code.
 
 *Next Steps [h3] [optional]*
 
 After completing the how to guide, consider including a related article or
-“next steps”. Most guides will relate directly to a property reference, and
+“next steps”. Most guides will relate directly to a property reference, an
 explanatory doc, or be a prerequisite to another guide, including this
 information will help guide users through our documentation.
 
