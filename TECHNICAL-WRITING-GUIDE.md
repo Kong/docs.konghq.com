@@ -4,7 +4,7 @@
 
 - [Introduction](#introduction)
 - [Style and Tone](#style-and-tone)
-- [Types of Documentation and Structure](#documentation-types-and-structure)
+- [Types of Documentation and Structure](#types-of-documentation-and-structure)
   - [Reference Documentation](#reference-documentation)
   - [Explanatory Documentation](#explanatory-documentation)
   - [How-To Guides](#how-to-guides)
@@ -112,9 +112,11 @@ Our _How-To template_ have this layout available in Markdown for you to use as
 a starting point.
 
 *Title [h1]*
+
 How-To guide titles typically follow the “How to [X] using [Y]” format.
 
 *Introduction [h2]*
+
 How-To guides should start with an introduction. It should be limited to a few
 succinct sentences or paragraphs that introduces what the user will be learning
 to do. A “how-to” guide should provide an end-goal, or something that the user
@@ -125,6 +127,7 @@ will accomplish by following the steps.
 * A bulleted list of everything a user needs to complete the how-to guide
 
 *Steps [h2]*
+
 Begin each step with an h2 heading containing a summary statement, followed by
 a brief introduction of what the step will accomplish. Please be through in
 explaining not only what to a user needs to do in each step but also why. We
@@ -132,6 +135,7 @@ want users to walk away with an understanding of what they accomplished,
 rather than just copy and pasting code.
 
 *Next Steps [h2] [optional]*
+
 After completing the how to guide, consider including a related article or
 “next steps”. Most guides will relate directly to a property reference, and
 explanatory doc, or be a prerequisite to another guide, including this
