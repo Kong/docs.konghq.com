@@ -64,7 +64,7 @@ Kong docs contain four types of documentation
 
 ### Reference documentation
 
-This type of documentation is strictly informative such as documenting API
+This type of documentation is strictly informative, such as the descriptions of API
 endpoints or configuration properties.
 
 
