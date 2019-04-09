@@ -35,9 +35,9 @@ Here at Kong we maintain an approachable yet professional tone. This means docs
 should:
 
 - be written for all experience levels
-- be written in first person plural (e.g "we")
+- be written in first person plural, e.g., "we"
 - avoid placing "blame" on the user
-- avoid excessive jokes and informal jargon
+- avoid excessive jokes or informal jargon
 
 
 **2. Is it helpful?**
@@ -45,20 +45,21 @@ should:
 Will this document or update help users to understand a new concept, set up
 something from scratch, or answer a question?
 
-Writers and editors for Kong docs should strive to cover their topic throughly 
+Writers and editors for Kong docs should strive to cover their topic thoroughly 
 and succinctly. The goal is to help users accomplish a task from start to finish
-or learn something rather than just copy and pasting bits of code. Documentation
-should also help guide users to other relevant documentation or resources.
+or learn something rather than just copy and paste bits of code. Documentation
+should also help guide users to other relevant pages or resources.
 
-**3 - Is it true?**
+**3. Is it true?**
 
-Kong documentation should be technically correct and contain enough detail to 
+Kong documentation should be technically accurate and contain enough detail to 
 provide users with the correct context. Before publishing, writers should have
 other contributors review and verify the technical accuracy of a document. This
-ensure that users will be able to follow a doc from start to finish.
+process ensures that users will be able to follow a doc from start to finish.
 
 ## Types of Documentation and Structure
-Kong docs contain four “types” of documentation
+
+Kong docs contain four types of documentation
 
 
 ### Reference documentation
