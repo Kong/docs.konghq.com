@@ -11,9 +11,9 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [7 Wheezy]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.wheezy.all.deb)
-- [8 Jessie]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.jessie.all.deb)
-- [9 Stretch]({{ site.links.download }}/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-{{site.data.kong_latest.version}}.stretch.all.deb)
+- [7 Wheezy]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.wheezy.all.deb)
+- [8 Jessie]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.jessie.all.deb)
+- [9 Stretch]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.stretch.all.deb)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
@@ -23,7 +23,7 @@ You can also install Kong via APT; follow the instructions on the "Set Me Up"
 section on the page below, setting  *distribution* to the appropriate value
 (e.g., `wheezy`) and *components* to `main`.
 
-- [Deb Repository](https://bintray.com/kong/kong-community-edition-deb)
+- [Deb Repository](https://bintray.com/kong/kong-deb)
 
 ----
 
@@ -36,7 +36,18 @@ section on the page below, setting  *distribution* to the appropriate value
     ```bash
     $ sudo apt-get update
     $ sudo apt-get install openssl libpcre3 procps perl
-    $ sudo dpkg -i kong-community-edition-{{site.data.kong_latest.version}}.*.deb
+    $ sudo dpkg -i kong-{{site.data.kong_latest.version}}.*.deb
+    ```
+    
+    If you are using the apt repository execute:
+    ```bash
+    $ sudo apt-get update
+    $ sudo apt-get install -y apt-transport-https curl lsb-core
+    $ echo "deb https://kong.bintray.com/kong-deb `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list
+    $ curl -o bintray.key https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+    $ sudo apt-key add bintray.key
+    $ sudo apt-get update
+    $ sudo apt-get install -y kong
     ```
 
 2. **Prepare your database**
