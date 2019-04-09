@@ -3,12 +3,12 @@
 ### Table of Contents
 
 - [Introduction](#introduction)
-- Style and Tone
-- Documentation Types & Structure
-  - Reference Documentation
-  - Explanatory Documentation
-  - How-To Guides
-  - Tutorials
+- [Style and Tone](#style-and-tone)
+- [Types of Documentation and Structure](#documentation-types-and-structure)
+  - [Reference Documentation](#reference-documentation)
+  - [Explanatory Documentation](#explanatory-documentation)
+  - [How-To Guides](#how-to-guides)
+  - [Tutorials](#tutorials)
 
 
 ## Introduction
@@ -57,7 +57,7 @@ provide users with the correct context. Before publishing, writers should have
 other contributors review and verify the technical accuracy of a document. This
 ensure that users will be able to follow a doc from start to finish.
 
-## Types of Documentation and their Structure
+## Types of Documentation and Structure
 Kong docs contain four “types” of documentation
 
 
