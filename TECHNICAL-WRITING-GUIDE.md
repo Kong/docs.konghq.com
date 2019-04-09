@@ -131,7 +131,8 @@ will accomplish by following the steps.
 
 *Prerequisites [h3]*
 
-* A bulleted list of everything a user needs to complete the how-to guide
+* A bulleted list of everything a user needs to complete the How-to guide
+* May be broken up into subsections for clarity
 
 *Steps [h2]*
 
