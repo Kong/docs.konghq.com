@@ -111,7 +111,7 @@ They should follow the following structure:
 * Step n
 * Optional next steps or related article
 
-Our [How-to template](/templates/how-to.md) have this layout available in Markdown for you to use as
+Our [How-to template](/templates/how-to.md) has this layout available in Markdown for you to use as
 a starting point.
 
 *Title [h1]*
@@ -126,7 +126,7 @@ How-to guide titles typically follow the “How to [X] using [Y]” format.
 
 How-to guides should start with an introduction. It should be limited to a few
 succinct sentences or paragraphs that introduces what the user will be learning
-to do. A “how-to” guide should provide an end-goal, or something that the user
+to do. A How-to guide should provide an end-goal, or something that the user
 will accomplish by following the steps. 
 
 *Prerequisites [h3]*
