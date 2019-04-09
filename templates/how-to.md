@@ -22,6 +22,20 @@ accomplish by following the steps.
 ### Prerequisites
 
 - A bulleted list of everything a user needs to complete the how-to guide
+- May be broken into multiple sections for additional clarity
+
+**Configuration** (optional)
+
+- `foo = bar`
+
+**Migrations** (optional)
+
+- KONG_PASSWORD was set before migrations 
+- super admin exists
+
+**State** (optional)
+
+- no custom Roles in the default Workspace.
 
 
 ## Step 1 - Title for Step 1
