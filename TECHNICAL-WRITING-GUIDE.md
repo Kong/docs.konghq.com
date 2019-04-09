@@ -98,7 +98,8 @@ a specific concept.
 
 How-to guides should solve an explicit problem or accomplish a specific task
 such as “How to Delete an Admin”
-They should follow the follow structure:
+
+They should follow the following structure:
 
 * Title
 * Table of Contents
