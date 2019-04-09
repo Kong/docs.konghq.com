@@ -312,7 +312,7 @@ used. Plugins that fall into this category are:
 
 The `pre-function` and `post-function` plugins for serverless can be used
 in DB-less mode, with the caveat that if any configured functions attempt to
-to the database, the writes will fail.
+write to the database, the writes will fail.
 
 ##### Not Compatible
 
