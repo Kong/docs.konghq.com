@@ -1,6 +1,8 @@
 ---
 title: Admin API
 
+toc: false
+
 service_body: |
     Attributes | Description
     ---:| ---
