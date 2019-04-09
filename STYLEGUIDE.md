@@ -206,7 +206,7 @@ Do not use in-line formatting for anything that should be in
 Use proper case.
 
 ### Kong Admin
-Use [**Admin** or **admin**](#admin-admin) instead.
+Use **Admin** or **admin** (see [Admin, admin](#admin-admin)) instead.
 
 ### Kong Community Edition, Kong CE
 Use *Kong* instead—except in pre-1.0 versions, e.g. "Kong CE 0.12".
