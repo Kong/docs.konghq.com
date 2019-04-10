@@ -42,14 +42,14 @@ params:
     - name: whitelist
       required: semi
       default:
-      value_in_examples: 54.13.21.1, 143.1.0.0/24
+      value_in_examples: [ "54.13.21.1", "143.1.0.0/24" ]
       description: |
-        Comma separated list of IPs or CIDR ranges to whitelist. One of `config.whitelist` or `config.blacklist` must be specified.
+        List of IPs or CIDR ranges to whitelist. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: blacklist
       required: semi
       default:
       description: |
-        Comma separated list of IPs or CIDR ranges to blacklist. One of `config.whitelist` or `config.blacklist` must be specified.
+        List of IPs or CIDR ranges to blacklist. One of `config.whitelist` or `config.blacklist` must be specified.
 
   extra: |
 

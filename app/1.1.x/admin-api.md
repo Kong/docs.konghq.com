@@ -513,6 +513,27 @@ with dotted keys. Example:
 config.limit=10&config.period=seconds
 ```
 
+Arrays and sets can be specified in various ways:
+
+1. Sending same parameter multiple times:
+    ```
+    hosts=example.com&hosts=example.org
+    ```
+2. Using array notation:
+    ```
+    hosts[1]=example.com&hosts[2]=example.org
+    ```
+    or 
+    ```
+    hosts[]=example.com&hosts[]=example.org
+    ```
+    Array and object notation can also be mixed:
+
+    ```
+    config.hosts[1]=example.com&config.hosts[2]=example.org
+    ```
+
+
 - **application/json**
 
 Handy for complex bodies (ex: complex plugin configuration), in that case simply send
@@ -523,6 +544,18 @@ a JSON representation of the data you want to send. Example:
     "config": {
         "limit": 10,
         "period": "seconds"
+    }
+}
+```
+
+JSON arrays can be specified as well:
+
+```json
+{
+    "config": {
+        "limit": 10,
+        "period": "seconds",
+        "hosts": [ "example.com", "example.org" ]
     }
 }
 ```

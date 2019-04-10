@@ -54,14 +54,14 @@ params:
     - name: whitelist
       required: semi
       default:
-      value_in_examples: group1, group2
+      value_in_examples: [ "group1", "group2" ]
       description: |
-        Comma separated list of arbitrary group names that are allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
+        Arbitrary group names that are allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: blacklist
       required: semi
       default:
       description: |
-        Comma separated list of arbitrary group names that are not allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
+        Arbitrary group names that are not allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: hide_groups_header
       required: false
       default: false

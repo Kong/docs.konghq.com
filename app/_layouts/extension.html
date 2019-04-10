@@ -11,8 +11,14 @@ breadcrumbs:
 
 {% capture config_required_fields %}{%
   for field in page.params.config %}{%
-  if field.value_in_examples != nil %} \
+  if field.value_in_examples != nil  %}{%
+  if field.value_in_examples.first %}{%
+  for value in field.value_in_examples %} \
+    --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ value }}"{%
+  endfor %}{%
+  else %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.value_in_examples }}"{%
+  endif %}{%
   elsif field.required == true %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
   endif %}{% endfor %}

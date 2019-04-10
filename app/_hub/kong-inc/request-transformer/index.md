@@ -52,15 +52,15 @@ params:
       description: Changes the HTTP method for the upstream request.
     - name: remove.headers
       required: false
-      value_in_examples: "x-toremove, x-another-one"
+      value_in_examples: [ "x-toremove", "x-another-one" ]
       description: List of header names. Unset the header(s) with the given name.
     - name: remove.querystring
       required: false
-      value_in_examples: "qs-old-name:qs-new-name, qs2-old-name:qs2-new-name"
+      value_in_examples: [ "qs-old-name:qs-new-name", "qs2-old-name:qs2-new-name" ]
       description: List of querystring names. Remove the querystring if it is present.
     - name: remove.body
       required: false
-      value_in_examples: "formparam-toremove, formparam-another-one"
+      value_in_examples: [ "formparam-toremove", "formparam-another-one" ]
       description: List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
     - name: replace.headers
       required: false
@@ -70,34 +70,34 @@ params:
       description: List of queryname:value pairs. If and only if the field name is already set, replace its old value with the new one. Ignored if the field name is not already set.
     - name: rename.headers
       required: false
-      value_in_examples: "header-old-name:header-new-name, another-old-name:another-new-name"
+      value_in_examples: [ "header-old-name:header-new-name", "another-old-name:another-new-name" ]
       description: List of headername:value pairs. If and only if the header is already set, rename the header. The value is unchanged. Ignored if the header is not already set.
     - name: rename.querystring
       required: false
-      value_in_examples: "qs-old-name:qs-new-name, qs2-old-name:qs2-new-name"
+      value_in_examples: [ "qs-old-name:qs-new-name", "qs2-old-name:qs2-new-name" ]
       description: List of queryname:value pairs. If and only if the field name is already set, rename the field name. The value is unchanged. Ignored if the field name is not already set.
     - name: rename.body
       required: false
-      value_in_examples: "param-old:param-new, param2-old:param2-new"
+      value_in_examples: [ "param-old:param-new", "param2-old:param2-new" ]
       description: List of parameter name:value pairs. Rename the parameter name if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
     - name: append.headers
       required: false
-      value_in_examples: "x-existing-header:some_value, x-another-header:some_value"
+      value_in_examples: [ "x-existing-header:some_value", "x-another-header:some_value" ]
       description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
     - name: replace.body
       required: false
       description: List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: add.headers
       required: false
-      value_in_examples: "x-new-header:value,x-another-header:something"
+      value_in_examples: [ "x-new-header:value", "x-another-header:something" ]
       description: List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
     - name: add.querystring
       required: false
-      value_in_examples: "new-param:some_value, another-param:some_value"
+      value_in_examples: [ "new-param:some_value", "another-param:some_value" ]
       description: List of queryname:value pairs. If and only if the querystring is not already set, set a new querystring with the given value. Ignored if the header is already set.
     - name: add.body
       required: false
-      value_in_examples: "new-form-param:some_value, another-form-param:some_value"
+      value_in_examples: [ "new-form-param:some_value", "another-form-param:some_value" ]
       description: List of pramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is not present, add a new parameter with the given value to form-encoded body. Ignored if the parameter is already present.
     - name: append.headers
       required: false

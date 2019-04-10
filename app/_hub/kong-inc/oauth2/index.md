@@ -62,8 +62,8 @@ params:
     - name: scopes
       required: true
       default:
-      value_in_examples: email,phone,address
-      description: Describes an array of comma separated scope names that will be available to the end user
+      value_in_examples: [ "email", "phone", "address" ]
+      description: Describes an array of scope names that will be available to the end user
     - name: mandatory_scope
       required: false
       default: "`false`"
@@ -179,7 +179,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
     --data "name=Test%20Application" \
     --data "client_id=SOME-CLIENT-ID" \
     --data "client_secret=SOME-CLIENT-SECRET" \
-    --data "redirect_uris[]=http://some-domain/endpoint/"
+    --data "redirect_uris=http://some-domain/endpoint/"
 ```
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
@@ -200,7 +200,7 @@ If you are migrating your existing OAuth 2.0 applications and access tokens over
 
 ```bash
 $ curl -X POST http://kong:8001/oauth2_tokens \
-    --data 'credential={"id": "KONG-APPLICATION-ID" }' \
+    --data 'credential.id=KONG-APPLICATION-ID' \
     --data "token_type=bearer" \
     --data "access_token=SOME-TOKEN" \
     --data "refresh_token=SOME-TOKEN" \
