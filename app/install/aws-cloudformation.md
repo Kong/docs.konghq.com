@@ -80,7 +80,7 @@ on AWS RDS for you.
 Provisions Kong resources in a new VPC or existing VPC. 
 
 Note: User would need to provide a S3 bucket location where `kong.yml` is
-stored with declarative configuration to bootstrap all the Kong instances.
+stored with the declarative configuration to bootstrap all the Kong instances.
 
  ##### HVM AMI
 
