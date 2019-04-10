@@ -21,19 +21,32 @@ accomplish by following the steps.
 
 ### Prerequisites
 
-- A bulleted list of everything a user needs to complete the how-to guide
+- A bulleted list of everything a user needs to complete the How-to guide
 - May be broken into multiple sections for additional clarity
 
-**Prereq Section 1**
+**Prereq Section 1** (optional)
+
+- prereq 
+- prereq
 
 
-**Prereq Section 2**
+**Prereq Section 2** (optional)
+
+- prereq
+- prereq
 
 
 ## Step 1 - Title for Step 1
 
- 1. Can include mini-steps within each step
+ 1. mini-step
  
+ 2. mini-step
+ 
+ 3. mini-step
+ 
+ 4. mini-step
+ 
+ 5. mini-step
  
 
 ## Step 2 - Title for Step 2
@@ -49,3 +62,5 @@ accomplish by following the steps.
 
 
 ### Next Steps
+
+<!-- Keep newline at end of file -->
