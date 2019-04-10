@@ -12,7 +12,9 @@ links:
     kong-hvm: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-cassandra-user-vpc-optional-hvm.template"
     kong-pv: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-cassandra-user-vpc-optional-pv.template"
     kong-postgres-hvm: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-postgres-optional-vpc-optional-hvm.template"
-    kong-postgres-pv: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-postgres-optional-vpc-optional-pv.template "
+    kong-postgres-pv: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-postgres-optional-vpc-optional-pv.template"
+    kong-dbless-hvm: "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-dbless-vpc-optional-pv.template"
+    kong-dbless-pv : "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-dbless-vpc-optional-pv.template"
 ---
 
 ### Templates
@@ -72,6 +74,36 @@ on AWS RDS for you.
 - [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
+
+#### Kong in DB-less mode
+
+Provisions Kong resources in a new VPC or existing VPC. 
+
+Note: User would need to provide a S3 bucket location where `kong.yml` is
+stored with declarative configuration to bootstrap all the Kong instances.
+
+ ##### HVM AMI
+
+- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
+
+##### PV AMI
+
+- [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+- [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+- [us-west-2]({{ page.links.aws }}?region=us-west-2#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+- [eu-west-1]({{ page.links.aws }}?region=eu-west-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+- [ap-northeast-1]({{ page.links.aws }}?region=ap-northeast-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+- [ap-southeast-1]({{ page.links.aws }}?region=ap-southeast-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+- [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+- [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
+
 
 ----
 ### Recommended usage
