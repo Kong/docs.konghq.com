@@ -85,7 +85,7 @@ When contributing, be aware of a few things:
 
 ### Kong's Technical Writing Guide & Style Guide
 
-In order to ensure consistency throughout all of Kong's documentation, we ask that all contributors reference our [technical writing guide ](https://github.com/Kong/docs.konghq.com/blob/master/TECHNICAL-WRITING-GUIDE.md) and [style guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
+In order to ensure consistency throughout all of Kong's documentation, we ask that all contributors reference our [Technical Writing Guide ](https://github.com/Kong/docs.konghq.com/blob/master/TECHNICAL-WRITING-GUIDE.md) and [Style Guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
 
 ### Submitting a patch
 

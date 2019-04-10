@@ -21,7 +21,7 @@ all of Kong's documentation, we have curated a set of technical writing guidelin
 
 To decrease the turn-around time for publishing docs, we ask that all
 contributors read through this guide in its entirety, reference our 
-[Styleguide](/STYLEGUIDE.md), and consider using one of Kong's documentation
+[Style Guide](/STYLEGUIDE.md), and consider using one of Kong's documentation
 [templates](/templates).
 
 
