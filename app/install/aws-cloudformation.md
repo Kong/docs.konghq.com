@@ -82,7 +82,7 @@ Provisions Kong resources in a new VPC or existing VPC.
 Note: User would need to provide an S3 bucket location where `kong.yml` is
 stored with the declarative configuration to bootstrap all the Kong instances.
 
- ##### HVM AMI
+##### HVM AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
