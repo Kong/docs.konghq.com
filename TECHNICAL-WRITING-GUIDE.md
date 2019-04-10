@@ -155,4 +155,4 @@ information will help guide users through our documentation.
 Kong tutorials should be goal-oriented and walk a user through an entire process,
 from start to finish. They should contain explicit instructions and examples,
 with complete code snippets and screenshots. A tutorial will state something
-along the lines of “In this tutorial we will do *X*”. 
+along the lines of, “In this tutorial, we will learn to do *X*”. 
