@@ -4,13 +4,130 @@ require "resty.core"
 
 local lfs = require("lfs")
 local cjson = require("cjson")
+local pl_tablex = require("pl.tablex")
 
-local data = require("autodoc-admin-api.data")
+local method_array = {
+  "POST",
+  "GET",
+  "PATCH",
+  "PUT",
+  "DELETE",
+}
 
-local KONG_PATH = os.getenv("KONG_PATH")
-local KONG_VERSION = os.getenv("KONG_VERSION")
+local title_exceptions = {
+  ["api"] = "API",
+  ["curl"] = "cURL",
+  ["db-less"] = "DB-less",
+  ["dns"] = "DNS",
+  ["nginx"] = "NGINX",
+  ["rbac"] = "RBAC",
+  ["sni"] = "SNI",
+  ["snis"] = "SNIs",
+  ["httpie"] = "HTTPie",
+}
+
+-- Chicago-style prepositions to be lowercased,
+-- based on https://capitalizemytitle.com/
+for _, p in ipairs({
+  "about",
+  "above",
+  "across",
+  "after",
+  "against",
+  "along",
+  "among",
+  "around",
+  "at",
+  "before",
+  "behind",
+  "below",
+  "beneath",
+  "beside",
+  "beyond",
+  "by",
+  "down",
+  "during",
+  "for",
+  "from",
+  "in",
+  "inside",
+  "into",
+  "near",
+  "of",
+  "off",
+  "on",
+  "out",
+  "outside",
+  "over",
+  "past",
+  "through",
+  "throughout",
+  "to",
+  "toward",
+  "under",
+}) do
+  title_exceptions[p] = p
+end
+
+local utils = {
+  -- "EXAMPLE of teXT using dns" => "Example of Text Using DNS".
+  titleize = function(str)
+    local text = str:gsub("(%a[%w_'-]*)", function(word)
+      local exception = title_exceptions[word:lower()]
+      if exception then
+        return exception
+      else
+        return word:sub(1,1):upper()..word:sub(2):lower()
+      end
+    end)
+    -- force very first character uppercase
+    return text:sub(1,1):upper()..text:sub(2)
+  end
+}
+
+local KONG_PATH = assert(os.getenv("KONG_PATH"), "please specify the KONG_PATH environment variable")
 
 package.path = KONG_PATH .. "/?.lua;" .. KONG_PATH .. "/?/init.lua;" .. package.path
+
+local pok, kong_meta = pcall(require, "kong.meta")
+if not pok then
+  error("failed loading Kong modules. please set the KONG_PATH environment variable.")
+end
+local meta_version = kong_meta._VERSION_TABLE.major .. "." .. kong_meta._VERSION_TABLE.minor .. ".x"
+
+local KONG_VERSION = os.getenv("KONG_VERSION")
+if KONG_VERSION then
+--  -- Commented out because kong.meta in `next` branch is always behind :(
+--
+--  if meta_version ~= KONG_VERSION then
+--    error("KONG_VERSION environment variable does not match Kong version in sources.")
+--  end
+else
+  KONG_VERSION = meta_version
+  print("Building docs for Kong version " .. KONG_VERSION)
+end
+
+local admin_api_data = require("autodoc-admin-api.data")
+
+local function deep_merge(t1, t2)
+  local copy = {}
+  for k, v in pairs(t1) do
+    copy[k] = v
+  end
+  for k, v in pairs(t2) do
+    if type(v) == "table" and type(t1[k]) == "table" then
+      copy[k] = deep_merge(t1[k], v)
+    else
+      copy[k] = v
+    end
+  end
+  return copy
+end
+
+local dbless_data = pl_tablex.deepcopy(admin_api_data)
+local dbless_overrides = dbless_data.dbless
+dbless_data.dbless = nil
+dbless_data = deep_merge(dbless_data, dbless_overrides)
 
 local Endpoints = require("kong.api.endpoints")
 
@@ -22,14 +139,6 @@ kong.db = require("kong.db").new({    -- luacheck: ignore
 })
 
 --------------------------------------------------------------------------------
-
-local methods = {
-  "POST",
-  "GET",
-  "PATCH",
-  "PUT",
-  "DELETE",
-}
 
 local function sortedpairs(tbl)
   local keys = {}
@@ -69,10 +178,6 @@ local function to_singular(plural)
   return plural:gsub("s$", "")
 end
 
-local function title_case(word)
-  return word:sub(1,1):upper() .. word:sub(2)
-end
-
 local function entity_to_api_path(entity)
   return "kong/api/routes/" .. entity .. ".lua"
 end
@@ -87,6 +192,7 @@ end
 
 -- A deterministic pseudo-UUID generator, to make autodoc idempotent.
 local gen_uuid
+local reset_uuid
 do
   local uuids = {
     "9748f662-7711-4a90-8186-dc02f10eb0f5",
@@ -130,8 +236,16 @@ do
     "f00c6da4-3679-4b44-b9fb-36a19bd3ae83",
     "0c61e164-6171-4837-8836-8f5298726d53",
   }
+
+  local ctr = 0
+
   gen_uuid = function()
-    return assert(table.remove(uuids))
+    ctr = ctr + 1
+    return assert(uuids[ctr])
+  end
+
+  reset_uuid = function()
+    ctr = 0
   end
 end
 
@@ -253,15 +367,15 @@ local function process_field(outfd, entity_data, entity_name, fname, finfo, pref
   write_field(outfd, fname, finfo, fullname, field_data, entity_name)
 end
 
-local function gen_example(exn, entity, fields, indent, prefix)
+local function gen_example(exn, entity, entity_data, fields, indent, prefix)
   local csv = {}
   for fname, finfo in each_field(fields) do
     local fullname = (prefix or "") .. fname
 
     local value
-    local field_data = data.entities[entity].fields[fullname]
+    local field_data = entity_data.fields[fullname]
     if finfo.type == "record" and not finfo.abstract then
-      value = gen_example(exn, entity, finfo.fields, indent .. "    ", fullname .. ".")
+      value = gen_example(exn, entity, entity_data, finfo.fields, indent .. "    ", fullname .. ".")
     elseif finfo.default ~= nil and field_data.examples == nil and field_data.example == nil then
       value = cjson_encode(finfo.default)
     else
@@ -298,12 +412,10 @@ local function gen_example(exn, entity, fields, indent, prefix)
   return table.concat(out)
 end
 
-local function write_entity_templates(outfd, entity)
+local function write_entity_templates(outfd, entity, entity_data)
   local schema = assert(require("kong.db.schema.entities." .. entity))
   local singular = to_singular(entity)
 
-  local entity_data = assert(data.entities[entity],
-                             "Missing autodoc entity data for " .. entity)
   assert(entity_data.fields, "Missing autodoc fields entry for " .. entity)
 
   outfd:write(singular .. "_body: |\n")
@@ -321,11 +433,11 @@ local function write_entity_templates(outfd, entity)
 
   outfd:write("\n")
   outfd:write(singular .. "_json: |\n")
-  outfd:write("    " .. gen_example(1, entity, schema.fields, "    ") .. "\n")
+  outfd:write("    " .. gen_example(1, entity, entity_data, schema.fields, "    ") .. "\n")
   outfd:write("\n")
   outfd:write(singular .. "_data: |\n")
-  outfd:write('    "data": [' .. gen_example(1, entity, schema.fields, "    ") .. ", ")
-  outfd:write(gen_example(2, entity, schema.fields, "    ") .. "],\n")
+  outfd:write('    "data": [' .. gen_example(1, entity, entity_data, schema.fields, "    ") .. ", ")
+  outfd:write(gen_example(2, entity, entity_data, schema.fields, "    ") .. "],\n")
   outfd:write("\n")
 end
 
@@ -334,7 +446,7 @@ local function bold_text_section(outfd, title, content)
   if not content then
     return
   end
-  outfd:write(title and ("*" .. title .. "*\n\n") or "")
+  outfd:write(title and ("*" .. utils.titleize(title) .. "*\n\n") or "")
   outfd:write(unindent(content) .. "\n")
   outfd:write("\n")
 end
@@ -343,22 +455,27 @@ local function section(outfd, title, content)
   if not content then
     return
   end
-  outfd:write(title and ("#### " .. title .. "\n\n") or "")
+  outfd:write(title and ("#### " .. utils.titleize(title) .. "\n\n") or "")
   outfd:write(unindent(content) .. "\n")
   outfd:write("\n")
 end
 
-local function write_endpoint(outfd, endpoint, ep_data)
+local function write_endpoint(outfd, endpoint, ep_data, methods)
   assert(ep_data, "Missing autodoc data for endpoint " .. endpoint)
   if ep_data.done or ep_data.skip then
     return
   end
 
-  for _, method in ipairs(methods) do
+  -- check for endpoint-specific overrides (useful for db-less)
+  methods = methods and methods[endpoint] or methods
+
+  for _, method in ipairs(method_array) do
+    if methods == nil or methods[method] == true then
+
     local meth_data = ep_data[method]
     if meth_data then
       assert(meth_data.title, "Missing autodoc info for " .. method .. " " .. endpoint)
-      outfd:write("### " .. meth_data.title .. "\n")
+      outfd:write("### " .. utils.titleize(meth_data.title) .. "\n")
       outfd:write("\n")
       section(outfd, nil, meth_data.description)
       local fk_endpoints = meth_data.fk_endpoints or {}
@@ -372,14 +489,16 @@ local function write_endpoint(outfd, endpoint, ep_data)
       bold_text_section(outfd, "Response", meth_data.response)
       outfd:write("---\n\n")
     end
+
+    end
   end
   ep_data.done = true
 end
 
-local function write_endpoints(outfd, info, all_endpoints)
+local function write_endpoints(outfd, info, all_endpoints, methods)
   for endpoint, ep_data in sortedpairs(info.data) do
     if endpoint:match("^/") then
-      write_endpoint(outfd, endpoint, ep_data)
+      write_endpoint(outfd, endpoint, ep_data, methods)
       all_endpoints[endpoint] = ep_data
     end
   end
@@ -388,28 +507,30 @@ end
 
 
 
-local function write_general_section(outfd, filename, all_endpoints)
-  local name = filename:match("/([^/]+)%.lua$")
+local function write_general_section(outfd, filename, all_endpoints, name, data_general)
+  local file_data = assert(data_general[name], "Missing autodoc data for " .. filename)
 
-  local general_data = assert(data.general[name],
-                             "Missing autodoc data for " .. filename)
+  if file_data.skip == true then
+    return
+  end
 
   outfd:write("---\n\n")
-  outfd:write("## " .. general_data.title .. "\n")
+  outfd:write("## " .. utils.titleize(file_data.title) .. "\n")
   outfd:write("\n")
 
-  assert(general_data.description,
+  assert(file_data.description,
          "Missing autodoc general description for " .. filename)
 
-  outfd:write(unindent(general_data.description))
+  outfd:write(unindent(file_data.description))
   outfd:write("\n\n")
 
   local info = {
     filename = filename,
-    data = general_data,
+    data = file_data,
     mod = assert(loadfile(KONG_PATH .. "/" .. filename))()
   }
-  write_endpoints(outfd, info, all_endpoints)
+
+  write_endpoints(outfd, info, all_endpoints, data_general.methods)
 end
 
 local active_verbs = {
@@ -433,8 +554,8 @@ local function adjust_for_method(subs, method)
   subs.METHOD = method:upper()
   subs.active_verb = active_verbs[subs.METHOD]
   subs.passive_verb = passive_verbs[subs.METHOD]
-  subs.Active_verb = title_case(subs.active_verb)
-  subs.Passive_verb = title_case(subs.passive_verb)
+  subs.Active_verb = utils.titleize(subs.active_verb)
+  subs.Passive_verb = utils.titleize(subs.passive_verb)
 end
 
 local gen_endpoint
@@ -495,8 +616,8 @@ end
 local function gen_template_subs_table(edata, plural, schema, fedata, fplural)
   local singular = to_singular(plural)
   local subs = {
-    ["Entity"] = edata.entity_title or title_case(singular),
-    ["Entities"] = edata.entity_title_plural or title_case(plural),
+    ["Entity"] = edata.entity_title or utils.titleize(singular),
+    ["Entities"] = edata.entity_title_plural or utils.titleize(plural),
     ["entity"] = edata.entity_lower or singular:lower(),
     ["entities"] = edata.entity_lower_plural or plural:lower(),
     ["entities_url"] = edata.entity_url_collection_name or plural,
@@ -505,8 +626,8 @@ local function gen_template_subs_table(edata, plural, schema, fedata, fplural)
   }
   if fedata then
     local fsingular = to_singular(fplural)
-    subs["ForeignEntity"] = fedata.entity_title or title_case(fsingular)
-    subs["ForeignEntities"] = fedata.entity_title_plural or title_case(fplural)
+    subs["ForeignEntity"] = fedata.entity_title or utils.titleize(fsingular)
+    subs["ForeignEntities"] = fedata.entity_title_plural or utils.titleize(fplural)
     subs["foreign_entity"] = fedata.entity_lower or fsingular:lower()
     subs["foreign_entities"] = fedata.entity_lower_plural or fplural:lower()
     subs["foreign_entities_url"] = fedata.entity_url_collection_name or fplural
@@ -515,11 +636,9 @@ local function gen_template_subs_table(edata, plural, schema, fedata, fplural)
   return subs
 end
 
-local function prepare_entity(plural)
+local function prepare_entity(data, plural, entity_data)
   local out = {}
 
-  local entity_data = assert(data.entities[plural],
-                             "Missing autodoc data for " .. plural)
   assert(entity_data.description,
          "Missing autodoc entity description for " .. plural)
 
@@ -527,10 +646,16 @@ local function prepare_entity(plural)
   local subs = gen_template_subs_table(entity_data, plural, schema)
 
   local title = entity_data.title or (subs.Entity .. " Object")
-  table.insert(out, "## " .. title .. "\n")
+  table.insert(out, "## " .. utils.titleize(title) .. "\n")
   table.insert(out, "\n")
 
   table.insert(out, unindent(entity_data.description))
+
+  if entity_data.fields.tags then
+    table.insert(out, "\n")
+    table.insert(out, unindent(render(data.entity_templates.tags, subs)))
+  end
+
   table.insert(out, "\n\n")
   table.insert(out, "```json\n")
   table.insert(out, "{{ page." .. subs.entity .. "_json }}\n")
@@ -573,7 +698,7 @@ local function skip_fk_endpoint(edata, endpoint, method)
   return ret
 end
 
-local function prepare_foreign_key_endpoints(entity_infos, entity)
+local function prepare_foreign_key_endpoints(data, entity_infos, entity)
   local einfo = entity_infos[entity]
   local edata = einfo.data
 
@@ -617,7 +742,7 @@ end
 --------------------------------------------------------------------------------
 
 -- Check that all modules present in the Admin API are known by this script.
-local function check_admin_api_modules()
+local function check_admin_api_modules(data)
   local file_set = {}
   for _, item in ipairs(data.known.general_files) do
     file_set[item] = "use"
@@ -649,16 +774,22 @@ end
 
 --------------------------------------------------------------------------------
 
-local function main()
-  check_admin_api_modules()
+local function write_admin_api(filename, data, title)
+  lfs.mkdir("app")
+  lfs.mkdir("app/" .. KONG_VERSION)
+  local outpath = "app/" .. KONG_VERSION .. "/" .. filename
 
-  local outpath = "app/" .. KONG_VERSION .. "/admin-api.md"
   local outfd = assert(io.open(outpath, "w+"))
 
+  reset_uuid()
+
   outfd:write("---\n")
-  outfd:write("title: Admin API\n\n")
+  outfd:write("title: " .. utils.titleize(title) .. "\n\n")
   for _, entity in ipairs(data.known.entities) do
-    write_entity_templates(outfd, entity)
+    local entity_data = assert(data.entities[entity],
+                               "Missing autodoc entity data for " .. entity)
+
+    write_entity_templates(outfd, entity, entity_data)
   end
   outfd:write("\n---\n")
 
@@ -666,25 +797,26 @@ local function main()
 
   local all_endpoints = {}
 
-  for _, item in ipairs(data.known.general_files) do
-    write_general_section(outfd, item, all_endpoints)
+  for _, fullname in ipairs(data.known.general_files) do
+    local name = fullname:match("/([^/]+)%.lua$")
+    write_general_section(outfd, fullname, all_endpoints, name, data.general)
   end
 
   local entity_infos = {}
 
   for _, entity in ipairs(data.known.entities) do
-    local einfo = prepare_entity(entity)
+    local einfo = prepare_entity(data, entity, data.entities[entity])
     table.insert(entity_infos, einfo)
     entity_infos[entity] = einfo
   end
 
   for _, entity in ipairs(data.known.entities) do
-    prepare_foreign_key_endpoints(entity_infos, entity)
+    prepare_foreign_key_endpoints(data, entity_infos, entity)
   end
 
   for _, entity_info in ipairs(entity_infos) do
     outfd:write(entity_info.intro)
-    write_endpoints(outfd, entity_info, all_endpoints)
+    write_endpoints(outfd, entity_info, all_endpoints, data.entities.methods)
   end
 
   -- Check that all endpoints were traversed
@@ -704,6 +836,30 @@ local function main()
   outfd:write(unindent(assert(data.footer, "Missing footer string in data.lua")))
 
   outfd:close()
+
+  print("Wrote " .. outpath)
+end
+
+--------------------------------------------------------------------------------
+
+local function main()
+  check_admin_api_modules(admin_api_data)
+
+  write_admin_api(
+    "admin-api.md",
+    admin_api_data,
+    "Admin API"
+  )
+
+  write_admin_api(
+    "db-less-admin-api.md",
+    dbless_data,
+    "Admin API for DB-less Mode",
+    {
+      "GET",
+    }
+  )
+
 end
 
 main()

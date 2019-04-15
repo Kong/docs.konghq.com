@@ -124,6 +124,12 @@
 - title: Admin API
   url: /admin-api/
   items:
+    - text: DB-less
+      url: /db-less-admin-api
+
+    - text: Declarative Configuration
+      url: /db-less-admin-api/#declarative-configuration
+
     - text: Supported Content Types
       url: /admin-api/#supported-content-types
 

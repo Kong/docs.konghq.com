@@ -1,5 +1,5 @@
 ---
-title: Admin API
+title: Admin API for DB-less Mode
 
 service_body: |
     Attributes | Description
@@ -181,7 +181,7 @@ plugin_json: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"hour":500, "minute":20},
+        "config": {"minute":20, "hour":500},
         "run_on": "first",
         "protocols": ["http", "https"],
         "enabled": true,
@@ -196,7 +196,7 @@ plugin_data: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"hour":500, "minute":20},
+        "config": {"minute":20, "hour":500},
         "run_on": "first",
         "protocols": ["http", "https"],
         "enabled": true,
@@ -208,7 +208,7 @@ plugin_data: |
         "route": null,
         "service": null,
         "consumer": null,
-        "config": {"hour":500, "minute":20},
+        "config": {"minute":20, "hour":500},
         "run_on": "first",
         "protocols": ["tcp", "tls"],
         "enabled": true,
@@ -488,23 +488,25 @@ target_data: |
 ---
 
 <div class="alert alert-info.blue" role="alert">
-  This page refers to the Admin API for running Kong configured with a
-  database (Postgres or Cassandra). For using the Admin API for Kong
-  in DB-less mode, please refer to the
-  <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
-  page.
+  This page refers to the Admin API for running Kong configured without a
+  database, managing in-memory entities via declarative config.
+  For using the Admin API for Kong with a database, please refer to the
+  <a href="/{{page.kong_version}}/admin-api">Admin API for Database Mode</a> page.
 </div>
 
 Kong comes with an **internal** RESTful Admin API for administration purposes.
-Requests to the Admin API can be sent to any node in the cluster, and Kong will
-keep the configuration consistent across all nodes.
+In [DB-less mode][db-less], this Admin API can be used to load a new declarative
+configuration, and for inspecting the current configuration. In DB-less mode,
+the Admin API for each node functions independently, reflecting the memory state
+of that particular Kong node. This is the case because there is no database
+coordination between Kong nodes.
 
 - `8001` is the default port on which the Admin API listens.
 - `8444` is the default port for HTTPS traffic to the Admin API.
 
-This API is designed for internal use and provides full control over Kong, so
-care should be taken when setting up Kong environments to avoid undue public
-exposure of this API. See [this document][secure-admin-api] for a discussion
+This API provides full control over Kong, so care should be taken when setting
+up Kong environments to avoid undue public exposure of this API.
+See [this document][secure-admin-api] for a discussion
 of methods to secure the Admin API.
 
 ## Supported Content Types
@@ -512,28 +514,7 @@ of methods to secure the Admin API.
 The Admin API accepts 2 content types on every endpoint:
 
 - **application/x-www-form-urlencoded**
-
-Simple enough for basic request bodies, you will probably use it most of the time.
-Note that when sending nested values, Kong expects nested objects to be referenced
-with dotted keys. Example:
-
-```
-config.limit=10&config.period=seconds
-```
-
 - **application/json**
-
-Handy for complex bodies (ex: complex plugin configuration), in that case simply send
-a JSON representation of the data you want to send. Example:
-
-```json
-{
-    "config": {
-        "limit": 10,
-        "period": "seconds"
-    }
-}
-```
 
 ---
 
@@ -639,6 +620,65 @@ HTTP 200 OK
     * `reachable`: A boolean value reflecting the state of the
       database connection. Please note that this flag **does not**
       reflect the health of the database itself.
+
+
+---
+
+---
+
+## Declarative Configuration
+
+Loading the declarative configuration of entities into Kong
+can be done in two ways: at start-up, through the `declarative_config`
+property, or at run-time, through the Admin API using the `/config`
+endpoint.
+
+To get started using declarative configuration, you need a file
+(in YAML or JSON format) containing entity definitions. You can
+generate a sample declarative configuration with the command:
+
+```
+kong config init
+```
+
+It generates a file named `kong.yml` in the current directory,
+containing the appropriate structure and examples.
+
+
+### Reload Declarative Configuration
+
+This endpoint allows resetting a DB-less Kong with a new
+declarative configuration data file. All previous contents
+are erased from memory, and the entities specified in the
+given file take their place.
+
+To learn more about the file format, please read the
+[declarative configuration][db-less] documentation.
+
+
+<div class="endpoint post">/config</div>
+
+Attributes | Description
+---:| ---
+`config`<br>**required** | The config data (in YAML or JSON format) to be loaded.
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+``` json
+{
+    { "services": [],
+      "routes": []
+    }
+}
+```
+
+The response contains a list of all the entities that were parsed from the
+input file.
 
 
 ---
@@ -800,31 +840,6 @@ Services can be both [tagged and filtered by tags](#tags).
 {{ page.service_json }}
 ```
 
-### Add Service
-
-##### Create Service
-
-<div class="endpoint post">/services</div>
-
-
-*Request Body*
-
-{{ page.service_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.service_json }}
-```
-
-
----
-
 ### List Services
 
 ##### List All Services
@@ -890,142 +905,6 @@ HTTP 200 OK
 
 ---
 
-### Update Service
-
-##### Update Service
-
-<div class="endpoint patch">/services/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Service to update.
-
-
-##### Update Service Associated to a Specific Route
-
-<div class="endpoint patch">/routes/{route name or id}/service</div>
-
-Attributes | Description
----:| ---
-`route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be updated.
-
-
-##### Update Service Associated to a Specific Plugin
-
-<div class="endpoint patch">/plugins/{plugin id}/service</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be updated.
-
-
-*Request Body*
-
-{{ page.service_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.service_json }}
-```
-
-
----
-
-### Update Or Create Service
-
-##### Create Or Update Service
-
-<div class="endpoint put">/services/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
-
-
-##### Create Or Update Service Associated to a Specific Route
-
-<div class="endpoint put">/routes/{route name or id}/service</div>
-
-Attributes | Description
----:| ---
-`route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be created or updated.
-
-
-##### Create Or Update Service Associated to a Specific Plugin
-
-<div class="endpoint put">/plugins/{plugin id}/service</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be created or updated.
-
-
-*Request Body*
-
-{{ page.service_body }}
-
-
-Inserts (or replaces) the Service under the requested resource with the
-definition specified in the body. The Service will be identified via the `name
-or id` attribute.
-
-When the `name or id` attribute has the structure of a UUID, the Service being
-inserted/replaced will be identified by its `id`. Otherwise it will be
-identified by its `name`.
-
-When creating a new Service without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-Notice that specifying a `name` in the URL and a different one in the request
-body is not allowed.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete Service
-
-##### Delete Service
-
-<div class="endpoint delete">/services/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
-
-
-##### Delete Service Associated to a Specific Route
-
-<div class="endpoint delete">/routes/{route name or id}/service</div>
-
-Attributes | Description
----:| ---
-`route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be deleted.
-
-
-*Response*
-
-```
-HTTP 204 No Content
-```
-
-
----
-
 ## Route Object
 
 Route entities define rules to match client requests. Each Route is
@@ -1044,40 +923,6 @@ Routes can be both [tagged and filtered by tags](#tags).
 ```json
 {{ page.route_json }}
 ```
-
-### Add Route
-
-##### Create Route
-
-<div class="endpoint post">/routes</div>
-
-
-##### Create Route Associated to a Specific Service
-
-<div class="endpoint post">/services/{service name or id}/routes</div>
-
-Attributes | Description
----:| ---
-`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service that should be associated to the newly-created Route.
-
-
-*Request Body*
-
-{{ page.route_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.route_json }}
-```
-
-
----
 
 ### List Routes
 
@@ -1144,115 +989,6 @@ HTTP 200 OK
 
 ---
 
-### Update Route
-
-##### Update Route
-
-<div class="endpoint patch">/routes/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Route to update.
-
-
-##### Update Route Associated to a Specific Plugin
-
-<div class="endpoint patch">/plugins/{plugin id}/route</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be updated.
-
-
-*Request Body*
-
-{{ page.route_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.route_json }}
-```
-
-
----
-
-### Update Or Create Route
-
-##### Create Or Update Route
-
-<div class="endpoint put">/routes/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
-
-
-##### Create Or Update Route Associated to a Specific Plugin
-
-<div class="endpoint put">/plugins/{plugin id}/route</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be created or updated.
-
-
-*Request Body*
-
-{{ page.route_body }}
-
-
-Inserts (or replaces) the Route under the requested resource with the
-definition specified in the body. The Route will be identified via the `name
-or id` attribute.
-
-When the `name or id` attribute has the structure of a UUID, the Route being
-inserted/replaced will be identified by its `id`. Otherwise it will be
-identified by its `name`.
-
-When creating a new Route without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-Notice that specifying a `name` in the URL and a different one in the request
-body is not allowed.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete Route
-
-##### Delete Route
-
-<div class="endpoint delete">/routes/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
-
-
-*Response*
-
-```
-HTTP 204 No Content
-```
-
-
----
-
 ## Consumer Object
 
 The Consumer object represents a consumer - or a user - of a Service. You can
@@ -1266,31 +1002,6 @@ Consumers can be both [tagged and filtered by tags](#tags).
 ```json
 {{ page.consumer_json }}
 ```
-
-### Add Consumer
-
-##### Create Consumer
-
-<div class="endpoint post">/consumers</div>
-
-
-*Request Body*
-
-{{ page.consumer_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.consumer_json }}
-```
-
-
----
 
 ### List Consumers
 
@@ -1343,115 +1054,6 @@ HTTP 200 OK
 
 ```json
 {{ page.consumer_json }}
-```
-
-
----
-
-### Update Consumer
-
-##### Update Consumer
-
-<div class="endpoint patch">/consumers/{username or id}</div>
-
-Attributes | Description
----:| ---
-`username or id`<br>**required** | The unique identifier **or** the username of the Consumer to update.
-
-
-##### Update Consumer Associated to a Specific Plugin
-
-<div class="endpoint patch">/plugins/{plugin id}/consumer</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be updated.
-
-
-*Request Body*
-
-{{ page.consumer_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.consumer_json }}
-```
-
-
----
-
-### Update Or Create Consumer
-
-##### Create Or Update Consumer
-
-<div class="endpoint put">/consumers/{username or id}</div>
-
-Attributes | Description
----:| ---
-`username or id`<br>**required** | The unique identifier **or** the username of the Consumer to create or update.
-
-
-##### Create Or Update Consumer Associated to a Specific Plugin
-
-<div class="endpoint put">/plugins/{plugin id}/consumer</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be created or updated.
-
-
-*Request Body*
-
-{{ page.consumer_body }}
-
-
-Inserts (or replaces) the Consumer under the requested resource with the
-definition specified in the body. The Consumer will be identified via the `username
-or id` attribute.
-
-When the `username or id` attribute has the structure of a UUID, the Consumer being
-inserted/replaced will be identified by its `id`. Otherwise it will be
-identified by its `username`.
-
-When creating a new Consumer without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-Notice that specifying a `username` in the URL and a different one in the request
-body is not allowed.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete Consumer
-
-##### Delete Consumer
-
-<div class="endpoint delete">/consumers/{username or id}</div>
-
-Attributes | Description
----:| ---
-`username or id`<br>**required** | The unique identifier **or** the username of the Consumer to delete.
-
-
-*Response*
-
-```
-HTTP 204 No Content
 ```
 
 
@@ -1520,58 +1122,6 @@ fallback to running Plugin config A. Note that if config B is disabled
 (its `enabled` flag is set to `false`), config A will apply to requests that
 would have otherwise matched config B.
 
-
-### Add Plugin
-
-##### Create Plugin
-
-<div class="endpoint post">/plugins</div>
-
-
-##### Create Plugin Associated to a Specific Route
-
-<div class="endpoint post">/routes/{route id}/plugins</div>
-
-Attributes | Description
----:| ---
-`route id`<br>**required** | The unique identifier of the Route that should be associated to the newly-created Plugin.
-
-
-##### Create Plugin Associated to a Specific Service
-
-<div class="endpoint post">/services/{service id}/plugins</div>
-
-Attributes | Description
----:| ---
-`service id`<br>**required** | The unique identifier of the Service that should be associated to the newly-created Plugin.
-
-
-##### Create Plugin Associated to a Specific Consumer
-
-<div class="endpoint post">/consumers/{consumer id}/plugins</div>
-
-Attributes | Description
----:| ---
-`consumer id`<br>**required** | The unique identifier of the Consumer that should be associated to the newly-created Plugin.
-
-
-*Request Body*
-
-{{ page.plugin_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.plugin_json }}
-```
-
-
----
 
 ### List Plugins
 
@@ -1642,97 +1192,6 @@ HTTP 200 OK
 
 ```json
 {{ page.plugin_json }}
-```
-
-
----
-
-### Update Plugin
-
-##### Update Plugin
-
-<div class="endpoint patch">/plugins/{plugin id}</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin to update.
-
-
-*Request Body*
-
-{{ page.plugin_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.plugin_json }}
-```
-
-
----
-
-### Update Or Create Plugin
-
-##### Create Or Update Plugin
-
-<div class="endpoint put">/plugins/{plugin id}</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin to create or update.
-
-
-*Request Body*
-
-{{ page.plugin_body }}
-
-
-Inserts (or replaces) the Plugin under the requested resource with the
-definition specified in the body. The Plugin will be identified via the `name
-or id` attribute.
-
-When the `name or id` attribute has the structure of a UUID, the Plugin being
-inserted/replaced will be identified by its `id`. Otherwise it will be
-identified by its `name`.
-
-When creating a new Plugin without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-Notice that specifying a `name` in the URL and a different one in the request
-body is not allowed.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete Plugin
-
-##### Delete Plugin
-
-<div class="endpoint delete">/plugins/{plugin id}</div>
-
-Attributes | Description
----:| ---
-`plugin id`<br>**required** | The unique identifier of the Plugin to delete.
-
-
-*Response*
-
-```
-HTTP 204 No Content
 ```
 
 
@@ -1834,31 +1293,6 @@ Certificates can be both [tagged and filtered by tags](#tags).
 {{ page.certificate_json }}
 ```
 
-### Add Certificate
-
-##### Create Certificate
-
-<div class="endpoint post">/certificates</div>
-
-
-*Request Body*
-
-{{ page.certificate_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.certificate_json }}
-```
-
-
----
-
 ### List Certificates
 
 ##### List All Certificates
@@ -1906,97 +1340,6 @@ HTTP 200 OK
 
 ---
 
-### Update Certificate
-
-##### Update Certificate
-
-<div class="endpoint patch">/certificates/{certificate id}</div>
-
-Attributes | Description
----:| ---
-`certificate id`<br>**required** | The unique identifier of the Certificate to update.
-
-
-*Request Body*
-
-{{ page.certificate_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.certificate_json }}
-```
-
-
----
-
-### Update Or Create Certificate
-
-##### Create Or Update Certificate
-
-<div class="endpoint put">/certificates/{certificate id}</div>
-
-Attributes | Description
----:| ---
-`certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
-
-
-*Request Body*
-
-{{ page.certificate_body }}
-
-
-Inserts (or replaces) the Certificate under the requested resource with the
-definition specified in the body. The Certificate will be identified via the `name
-or id` attribute.
-
-When the `name or id` attribute has the structure of a UUID, the Certificate being
-inserted/replaced will be identified by its `id`. Otherwise it will be
-identified by its `name`.
-
-When creating a new Certificate without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-Notice that specifying a `name` in the URL and a different one in the request
-body is not allowed.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete Certificate
-
-##### Delete Certificate
-
-<div class="endpoint delete">/certificates/{certificate id}</div>
-
-Attributes | Description
----:| ---
-`certificate id`<br>**required** | The unique identifier of the Certificate to delete.
-
-
-*Response*
-
-```
-HTTP 204 No Content
-```
-
-
----
-
 ## SNI Object
 
 An SNI object represents a many-to-one mapping of hostnames to a certificate.
@@ -2010,40 +1353,6 @@ SNIs can be both [tagged and filtered by tags](#tags).
 ```json
 {{ page.sni_json }}
 ```
-
-### Add SNI
-
-##### Create SNI
-
-<div class="endpoint post">/snis</div>
-
-
-##### Create SNI Associated to a Specific Certificate
-
-<div class="endpoint post">/certificates/{certificate name or id}/snis</div>
-
-Attributes | Description
----:| ---
-`certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created SNI.
-
-
-*Request Body*
-
-{{ page.sni_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.sni_json }}
-```
-
-
----
 
 ### List SNIs
 
@@ -2101,97 +1410,6 @@ HTTP 200 OK
 
 ---
 
-### Update SNI
-
-##### Update SNI
-
-<div class="endpoint patch">/snis/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the SNI to update.
-
-
-*Request Body*
-
-{{ page.sni_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.sni_json }}
-```
-
-
----
-
-### Update Or Create SNI
-
-##### Create Or Update SNI
-
-<div class="endpoint put">/snis/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the SNI to create or update.
-
-
-*Request Body*
-
-{{ page.sni_body }}
-
-
-Inserts (or replaces) the SNI under the requested resource with the
-definition specified in the body. The SNI will be identified via the `name
-or id` attribute.
-
-When the `name or id` attribute has the structure of a UUID, the SNI being
-inserted/replaced will be identified by its `id`. Otherwise it will be
-identified by its `name`.
-
-When creating a new SNI without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-Notice that specifying a `name` in the URL and a different one in the request
-body is not allowed.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete SNI
-
-##### Delete SNI
-
-<div class="endpoint delete">/snis/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the SNI to delete.
-
-
-*Response*
-
-```
-HTTP 204 No Content
-```
-
-
----
-
 ## Upstream Object
 
 The upstream object represents a virtual hostname and can be used to loadbalance
@@ -2210,31 +1428,6 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 ```json
 {{ page.upstream_json }}
 ```
-
-### Add Upstream
-
-##### Create Upstream
-
-<div class="endpoint post">/upstreams</div>
-
-
-*Request Body*
-
-{{ page.upstream_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.upstream_json }}
-```
-
-
----
 
 ### List Upstreams
 
@@ -2287,124 +1480,6 @@ HTTP 200 OK
 
 ```json
 {{ page.upstream_json }}
-```
-
-
----
-
-### Update Upstream
-
-##### Update Upstream
-
-<div class="endpoint patch">/upstreams/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
-
-
-##### Update Upstream Associated to a Specific Target
-
-<div class="endpoint patch">/targets/{target host:port or id}/upstream</div>
-
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
-
-
-*Request Body*
-
-{{ page.upstream_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.upstream_json }}
-```
-
-
----
-
-### Update Or Create Upstream
-
-##### Create Or Update Upstream
-
-<div class="endpoint put">/upstreams/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
-
-
-##### Create Or Update Upstream Associated to a Specific Target
-
-<div class="endpoint put">/targets/{target host:port or id}/upstream</div>
-
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
-
-
-*Request Body*
-
-{{ page.upstream_body }}
-
-
-Inserts (or replaces) the Upstream under the requested resource with the
-definition specified in the body. The Upstream will be identified via the `name
-or id` attribute.
-
-When the `name or id` attribute has the structure of a UUID, the Upstream being
-inserted/replaced will be identified by its `id`. Otherwise it will be
-identified by its `name`.
-
-When creating a new Upstream without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-Notice that specifying a `name` in the URL and a different one in the request
-body is not allowed.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete Upstream
-
-##### Delete Upstream
-
-<div class="endpoint delete">/upstreams/{name or id}</div>
-
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
-
-
-##### Delete Upstream Associated to a Specific Target
-
-<div class="endpoint delete">/targets/{target host:port or id}/upstream</div>
-
-Attributes | Description
----:| ---
-`target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
-
-
-*Response*
-
-```
-HTTP 204 No Content
 ```
 
 
@@ -2500,35 +1575,6 @@ Targets can be both [tagged and filtered by tags](#tags).
 {{ page.target_json }}
 ```
 
-### Add Target
-
-##### Create Target Associated to a Specific Upstream
-
-<div class="endpoint post">/upstreams/{upstream host:port or id}/targets</div>
-
-Attributes | Description
----:| ---
-`upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream that should be associated to the newly-created Target.
-
-
-*Request Body*
-
-{{ page.target_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.target_json }}
-```
-
-
----
-
 ### List Targets
 
 ##### List Targets Associated to a Specific Upstream
@@ -2551,29 +1597,6 @@ HTTP 200 OK
 {{ page.target_data }}
     "next": "http://localhost:8001/targets?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
 }
-```
-
-
----
-
-### Delete Target
-
-Disable a target in the load balancer. Under the hood, this method creates
-a new entry for the given target definition with a `weight` of 0.
-
-
-<div class="endpoint delete">/upstreams/{upstream name or id}/targets/{host:port or id}</div>
-
-Attributes | Description
----:| ---
-`upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to delete the target.
-`host:port or id`<br>**required** | The host:port combination element of the target to remove, or the `id` of an existing target entry.
-
-
-*Response*
-
-```
-HTTP 204 No Content
 ```
 
 
@@ -2700,4 +1723,5 @@ HTTP 200 OK
 [healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
 [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
 [proxy-reference]: /{{page.kong_version}}/proxy
-[db-less-admin-api]: /{{page.kong_version}}/db-less-admin-api
+[db-less]: /{{page.kong_version}}/db-less-and-declarative-config
+[admin-api]: /{{page.kong_version}}/admin-api
