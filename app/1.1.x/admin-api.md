@@ -643,8 +643,6 @@ HTTP 200 OK
 
 ---
 
----
-
 ##  Tags 
 
 Tags are strings associated to entities in Kong. Each tag must be composed of one or more

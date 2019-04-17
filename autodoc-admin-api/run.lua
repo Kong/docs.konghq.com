@@ -469,7 +469,7 @@ local function write_endpoint(outfd, endpoint, ep_data, methods)
   -- check for endpoint-specific overrides (useful for db-less)
   methods = methods and methods[endpoint] or methods
 
-  for _, method in ipairs(method_array) do
+  for i, method in ipairs(method_array) do
     if methods == nil or methods[method] == true then
 
     local meth_data = ep_data[method]
@@ -514,7 +514,6 @@ local function write_general_section(outfd, filename, all_endpoints, name, data_
     return
   end
 
-  outfd:write("---\n\n")
   outfd:write("## " .. utils.titleize(file_data.title) .. "\n")
   outfd:write("\n")
 
@@ -794,6 +793,8 @@ local function write_admin_api(filename, data, title)
   outfd:write("\n---\n")
 
   outfd:write(unindent(assert(data.intro, "Missing intro string in data.lua")))
+
+  outfd:write("---\n\n")
 
   local all_endpoints = {}
 
