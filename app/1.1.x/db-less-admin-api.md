@@ -624,8 +624,6 @@ HTTP 200 OK
 
 ---
 
----
-
 ## Declarative Configuration
 
 Loading the declarative configuration of entities into Kong
@@ -680,8 +678,6 @@ HTTP 200 OK
 The response contains a list of all the entities that were parsed from the
 input file.
 
-
----
 
 ---
 
