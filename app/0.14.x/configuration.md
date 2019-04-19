@@ -2,7 +2,7 @@
 title: Configuration Reference
 ---
 
-## Configuration loading
+## Introduction
 
 Kong comes with a default configuration file that can be found at
 `/etc/kong/kong.conf.default` if you installed Kong via one of the official

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="29px" viewBox="0 0 30 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icn-kongnation-md</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-1836.000000, -548.000000)" stroke-width="2">
+            <g id="03-Docs" transform="translate(1797.000000, 187.000000)">
+                <g id="icn-kongnation-md" transform="translate(40.000000, 362.000000)">
+                    <polyline id="Stroke-1" stroke="#004B80" points="0.758553564 18.0599982 5.0625 18.0599982 9.49159612 21.8516615 11.5808637 21.8516615 11.5808637 14.5882674 8.34813037 14.5882674 7.10472949 13.7840469 6.25224243 13.7840469 6.25224243 12.8080472 10.259938 10.0906551 10.259938 3.16947382 5.0625 3.16947382"></polyline>
+                    <polyline id="Stroke-12" stroke="#004B80" points="23.4400815 3.375 18.0562774 7.85106532 18.0562774 10.340196 19.2187771 10.8039821 23.4400815 10.8039821 19.011358 10.8039821 16.875 12.8842645 16.875 14.4793011 18.8820894 16.4337081 21.5717786 16.4337081 23.4400815 22"></polyline>
+                    <path d="M27.2698759,13.1299855 C27.2698759,20.3817874 21.1656552,26.2599258 13.634938,26.2599258 C6.10422067,26.2599258 0,20.3817874 0,13.1299855 C0,5.8781837 6.10422067,4.52756561e-05 13.634938,4.52756561e-05 C21.1656552,4.52756561e-05 27.2698759,5.8781837 27.2698759,13.1299855 Z" id="Stroke-2" stroke="#0573E3"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

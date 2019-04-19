@@ -3,6 +3,8 @@
 'use strict'
 
 $(function () {
+  var NAV_HEIGHT = 56
+
   var $window = $(window)
   var $docs = $('#documentation')
 
@@ -15,7 +17,7 @@ $(function () {
     e.preventDefault()
 
     $('html, body').animate({
-      scrollTop: $($(this).attr('href')).offset().top - 107 // Header height
+      scrollTop: $($(this).attr('href')).offset().top - NAV_HEIGHT // Header height
     }, 700)
   })
 
@@ -294,6 +296,15 @@ $(function () {
     }
 
     $navItems.on('click', setNavItemActive)
+
+    if ($(window).width() <= 800) {
+      $('.sidebar-toggle').click(function () {
+        $('.page-navigation').addClass('sidebar-open')
+      })
+      $('.page-navigation > .close-sidebar').click(function () {
+        $('.page-navigation').removeClass('sidebar-open')
+      })
+    }
   }
 
   // Analytics
@@ -335,7 +346,7 @@ $(function () {
   // Add Smooth scroll when link with attr clicked
   $('a[data-link="scroll"]').click(function () {
     $('html, body').animate({
-      scrollTop: $($.attr(this, 'href')).offset().top - 150 // Add spacing on top after scroll
+      scrollTop: $($.attr(this, 'href')).offset().top - NAV_HEIGHT // Add spacing on top after scroll
     }, 600) // Adjust scroll speed
     // Remove any active classes that may already be applied
     $('a[data-link="scroll"').removeClass('active')
@@ -348,7 +359,7 @@ $(function () {
   if (window.location.hash) {
     $('html, body').scrollTop(0).show()
     $('html, body').animate({
-      scrollTop: $(window.location.hash).offset().top - 220 // Add spacing on top after scroll
+      scrollTop: $(window.location.hash).offset().top - NAV_HEIGHT // Add spacing on top after scroll
     }, 600) // Adjust scroll speed
   }
 

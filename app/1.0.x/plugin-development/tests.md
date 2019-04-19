@@ -30,7 +30,7 @@ the following files until the Kong testing framework is released:
 
 - `bin/busted`: the busted executable running with the resty-cli interpreter
 - `spec/helpers.lua`: helper functions to start/stop Kong from busted
-- `spec/kong_tests.conf`: a configuration file for your running your test Kong instances with the helpers module
+- `spec/kong_tests.conf`: a configuration file for the Kong instances running with the helpers module
 
 Assuming that the `spec.helpers` module is available in your `LUA_PATH`, you
 can use the following Lua code in busted to start and stop Kong:
@@ -101,7 +101,7 @@ its proxy listening on port 9000 (HTTP), 9443 (HTTPS)
 and Admin API on port 9001.
 
 If you want to see a real-world example, give a look at the
-[Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/10-key-auth)
+[Key-Auth plugin specs](https://github.com/Kong/kong/tree/master/spec/03-plugins/09-key-auth)
 
 ---
 

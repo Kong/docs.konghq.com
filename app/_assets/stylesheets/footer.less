@@ -31,10 +31,26 @@
   width: 100%;
   padding: @gutter-flex-2x 0 0;
 
+  .form iframe {
+    min-height: 60px;
+    min-width: 500px;
+  }
+
+  @media (max-width: 480px) {
+    .form iframe {
+      min-height: 190px;
+      min-width: 0px;
+    }
+  }
+
   section {
     > ul {
       .flex-row;
       list-style: none;
+
+      &.newsletter {
+        overflow: hidden;
+      }
 
       @media (min-width: @grid-width-xs) {
         max-width: 85%;
@@ -82,11 +98,26 @@
           }
         }
 
+        #subscription_form .error-message.message {
+          display: inline-block;
+          width: 100%;
+          clear: both;
+          position: absolute;
+          bottom: -20px;
+          left: 0;
+          @media (max-width: 480px) {
+            bottom: -25px;
+          }
+        }
+
         form {
           display: inline-block;
           width: 100%;
           margin-top: 1rem;
           margin-bottom: 10px;
+          @media (max-width: 480px) {
+            margin-bottom: 20px;
+          }
           input[type='text'] {
             display: inline-block;
             float: left;
@@ -95,6 +126,11 @@
             font-size: 16px;
             max-width: 225px;
             margin-bottom: 0;
+            @media (max-width: 480px) {
+              max-width: 100% !important;
+              width: 100%;
+              margin-bottom: 5px;
+            }
           }
           input.button {
             background: #17a956;
@@ -107,10 +143,11 @@
             padding-left: 15px;
             padding-right: 15px;
             position: absolute;
-            @media (max-width: 468px) {
-              position: absolute;
-              right: 15px;
-              top: 0;
+            @media (max-width: 480px) {
+              position: relative;
+              display: inline-block;
+              width: 100%;
+              clear: both;
             }
           }
           .success-message.message {
@@ -174,10 +211,11 @@
         @media (min-width: @grid-width-sm) {
           .flex-col(1, 1, 3);
           &.logo-wrapper {
-            flex-basis: 33.33333333%;
+            flex-basis: 23.33333333%;
           }
           &:not(.logo-wrapper) {
             padding-left: 3rem;
+            flex-basis: 0%;
           }
         }
         @media (min-width: @grid-width-lg) {

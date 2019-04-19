@@ -11,8 +11,7 @@ running multiple instances of the Dev Portal - one for each Workspace. When a
 Workspace is created, that Workspaces Dev Portal will automatically appear on 
 the "Dev Portals Overivew Page"
 
-![Dev Portals Overview Page]
-(https://konghq.com/wp-content/uploads/2018/11/devportals-overview.png)
+![Dev Portals Overview Page](https://konghq.com/wp-content/uploads/2018/11/devportals-overview.png)
 
 Note that Kong Admins will only be able to see the cards for Dev Portals to 
 which they have permissions to edit. 
@@ -28,8 +27,8 @@ enabled by navigating to `Settings` page in the `Kong Manager` and toggling the
 Dev Portal Switch. Or by sending the following cURL request:
 
 ```
-curl -X PATCH http://localhost:8001/workspace/<WORKSPACE_NAME> \
- --data "config.portal=on"
+curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
+ --data "config.portal=true"
 ```
 
 **Note: If you cannot see the Settings or Overview pages, the Kong Dev Portal 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="37px" viewBox="0 0 43 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>icn_api_gateway</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-1399.000000, -239.000000)" fill-rule="nonzero" stroke-width="2">
+            <g id="02-Solutions" transform="translate(1358.000000, 187.000000)">
+                <g id="offerings" transform="translate(38.000000, 44.000000)">
+                    <g id="icn_api_gateway" transform="translate(3.000000, 9.000000)">
+                        <polyline id="Path-7" stroke="#C2D6FF" points="0 24 18 24 25.5 31 40 31"></polyline>
+                        <path d="M0,18 L41,18" id="Path-7" stroke="#0573E3"></path>
+                        <polyline id="Path-7" stroke="#004B80" transform="translate(20.000000, 7.750000) scale(1, -1) translate(-20.000000, -7.750000) " points="0 4 18 4 25.5 11.5 40 11.5"></polyline>
+                        <polyline id="Path-8" stroke="#004B80" points="37 0 41 4 37 8"></polyline>
+                        <polyline id="Path-8" stroke="#0573E3" points="37 14 41 18 37 22"></polyline>
+                        <polyline id="Path-8" stroke="#C2D6FF" points="37 27 41 31 37 35"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
