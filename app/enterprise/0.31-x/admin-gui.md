@@ -3,8 +3,6 @@ title: Kong Admin GUI
 class: page-install-method
 ---
 
-# Kong Admin GUI
-
 ## Access the GUI with SSL enabled
 1. **Configure**
   

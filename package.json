@@ -33,6 +33,7 @@
       "ldoc/*",
       "Gemfile.lock",
       "autodoc-admin-api/*.lua",
+      "autodoc-conf/*.lua",
       "vendor/**",
       "node_modules/**"
     ]

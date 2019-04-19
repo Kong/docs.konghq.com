@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.client
+## Introduction
 
 Client information module
  A set of functions to retrieve information about the client connecting to

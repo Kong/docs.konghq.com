@@ -46,13 +46,13 @@ params:
       description: |
         Upstream response content types considered cacheable
     - name: vary_headers
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
         Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
     - name: vary_query_params
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
@@ -70,7 +70,7 @@ params:
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2)
     - name: storage_ttl
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
@@ -80,7 +80,7 @@ params:
       default:
       value_in_examples:
       description: |
-        The backing data store in which to hold cache entities
+        The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
     - name: memory.dictionary_name
       required:
       default: kong_cache

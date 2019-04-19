@@ -3,6 +3,7 @@ title: Managing Developers
 book: portal
 chapter: 7
 ---
+
 ## Introduction
 
 In this section you will learn how to manage [developers](/enterprise/{{page.kong_version}}/developer-portal/glossary/#types-of-humans) in your Kong Developer Portal. If you have not yet enabled the Portal follow the [Getting Started](/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started/) guide.

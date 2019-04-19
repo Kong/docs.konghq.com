@@ -2,7 +2,7 @@
 title: Enabling Plugins
 ---
 
-# Enabling Plugins
+## Introduction
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong>
@@ -25,7 +25,7 @@ plugin, **only** requests with the correct API key(s) will be proxied - all
 other requests will be rejected by Kong, thus protecting your upstream service
 from unauthorized use.
 
-## 1. Configure the key-auth plugin for your API
+### 1. Configure the key-auth plugin for your API
 
     Issue the following cURL request on the previously created API named
     `example-api`:
@@ -40,7 +40,7 @@ from unauthorized use.
     defaults to `[apikey]`. It is a list of headers and parameters names (both
     are supported) that are supposed to contain the API key during a request.
 
-## 2. Verify that the plugin is properly configured
+### 2. Verify that the plugin is properly configured
 
     Issue the following cURL request to verify that the [key-auth][key-auth]
     plugin was properly configured on the API:

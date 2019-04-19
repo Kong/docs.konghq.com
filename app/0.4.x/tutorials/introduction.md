@@ -2,7 +2,7 @@
 title: Tutorials - Introduction
 ---
 
-# Introduction
+## Introduction
 
 The following tutorials assume that Kong has been properly installed using one of the [available installation methods](/install/).
 

@@ -4,8 +4,6 @@ book: plugin_dev
 chapter: 4
 ---
 
-## Introduction
-
 ## Module
 
 ```

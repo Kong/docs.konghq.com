@@ -3,7 +3,7 @@ title: Dev Portal SMTP Configuration
 toc: false
 ---
 
-## Dev Portal SMTP Email Reference
+## Introduction
 
 The following property reference outlines each email and email variable used by the Dev Portal to send emails to Kong Admins and Developers.
 

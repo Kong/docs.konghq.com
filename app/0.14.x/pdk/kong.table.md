@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.table
+## Introduction
 
 Utilities for Lua tables
 

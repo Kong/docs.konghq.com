@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="30px" viewBox="0 0 24 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icn-github-md</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-1839.000000, -464.000000)" fill-rule="nonzero" stroke-width="2">
+            <g id="03-Docs" transform="translate(1797.000000, 187.000000)">
+                <g id="icn-github-md" transform="translate(43.000000, 278.000000)">
+                    <polyline id="Path-4" stroke="#C2D6FF" points="3 16 15 16 19 12 19 1.13686838e-13"></polyline>
+                    <path d="M3,28 L3,2" id="Path-2" stroke="#004B80"></path>
+                    <circle id="Oval" stroke="#0573E3" fill="#FFFFFF" cx="3" cy="3" r="3"></circle>
+                    <circle id="Oval" stroke="#0573E3" fill="#FFFFFF" cx="3" cy="25" r="3"></circle>
+                    <circle id="Oval" stroke="#0573E3" fill="#FFFFFF" cx="19" cy="3" r="3"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

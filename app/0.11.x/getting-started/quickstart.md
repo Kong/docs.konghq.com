@@ -2,7 +2,7 @@
 title: 5-minute Quickstart
 ---
 
-# 5-minute Quickstart
+## Introduction
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong> Make sure you've
@@ -15,7 +15,7 @@ interface, through which you manage your APIs, consumers, and more. Data sent
 through the Admin API is stored in Kong's [datastore][datastore-section] (Kong
 supports PostgreSQL and Cassandra).
 
-## 1. Start Kong
+### 1. Start Kong
 
 Issue the following command to prepare your datastore by running the Kong
 migrations:
@@ -37,7 +37,7 @@ $ kong start [-c /path/to/kong.conf]
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
 allowing you to point to [your own configuration][configuration-loading].
 
-## 2. Verify that Kong has started successfully
+### 2. Verify that Kong has started successfully
 
 If everything went well, you should see a message (`Kong started`)
 informing you that Kong is running.
@@ -52,7 +52,7 @@ By default Kong listens on the following ports:
 - `:8001` on which the [Admin API][API] used to configure Kong listens.
 - `:8444` on which the Admin API listens for HTTPS traffic.
 
-## 3. Stop Kong
+### 3. Stop Kong
 
 As needed you can stop the Kong process by issuing the following
 [command][CLI]:
@@ -61,7 +61,7 @@ As needed you can stop the Kong process by issuing the following
 $ kong stop
 ```
 
-## 4. Reload Kong
+### 4. Reload Kong
 
 Issue the following command to [reload][CLI] Kong without downtime:
 

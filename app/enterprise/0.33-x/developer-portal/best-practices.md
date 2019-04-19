@@ -211,7 +211,7 @@ When the file structure is setup, you can make use of [GitHub Webhooks](https://
 
 ## Effective Partial Usage
 
-Partials in the portal allow you to create reusable elements of a page. A page will traditionally be made up of a group of partials. For example, if you wanted to create a page announcing a new product, you would probably want to include things such as the header, footer, sidebar etc. Each of those elements are saved as partials. For more information about partials, please refer to [our documentation](https://docs.konghq.com/enterprise/0.33-x/developer-portal/file-management/#partials).
+Partials in the portal allow you to create reusable elements of a page. A page will traditionally be made up of a group of partials. For example, if you wanted to create a page announcing a new product, you would probably want to include things such as the header, footer, sidebar etc. Each of those elements are saved as partials. For more information about partials, please refer to [our documentation](/enterprise/0.33-x/developer-portal/file-management/#partials).
 
 Partials allow you to control what is on every page. In order for your portal to load quickly, it is vital to keep these files as small as possible. The general rule is partials should be around 500 kB. They should never be larger than 1 MB.
 

@@ -11,8 +11,8 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [CentOS 6]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/6/kong-community-edition-{{site.data.kong_latest.version}}.el6.noarch.rpm)
-- [CentOS 7]({{ site.links.download }}/kong-community-edition-rpm/download_file?file_path=centos/7/kong-community-edition-{{site.data.kong_latest.version}}.el7.noarch.rpm)
+- [CentOS 6]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/6/kong-{{site.data.kong_latest.version}}.el6.noarch.rpm)
+- [CentOS 7]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/7/kong-{{site.data.kong_latest.version}}.el7.noarch.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
@@ -21,18 +21,18 @@ Start by downloading the corresponding package for your configuration:
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
 
-- [RPM Repository](https://bintray.com/kong/kong-community-edition-rpm)
+- [RPM Repository](https://bintray.com/kong/kong-rpm)
 
 **NOTE**: ensure that the `baseurl` field of the generated `.repo` file contains
 your CentOS version; for instance:
 
 ```
-baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/6
+baseurl=https://kong.bintray.com/kong-rpm/centos/6
 ```
 or
 
 ```
-baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
+baseurl=https://kong.bintray.com/kong-rpm/centos/7
 ```
 
 ----
@@ -45,7 +45,19 @@ baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
 
     ```bash
     $ sudo yum install epel-release
-    $ sudo yum install kong-community-edition-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
+    $ sudo yum install kong-{{site.data.kong_latest.version}}.*.noarch.rpm --nogpgcheck
+    ```
+    If you are using the repository, execute:
+
+    ```bash
+    $ sudo yum update -y
+    $ sudo yum install -y wget
+    $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
+    $ export major_version=`grep -oE '[0-9]+\.[0-9]+' /etc/redhat-release | cut -d "." -f1`
+    $ sed -i -e 's/baseurl.*/&\/centos\/'$major_version''/ bintray-kong-kong-rpm.repo
+    $ sudo mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    $ sudo yum update -y
+    $ sudo yum install -y kong
     ```
 
 2. **Prepare your database**

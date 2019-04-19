@@ -2,7 +2,7 @@
 title: Adding Consumers
 ---
 
-# Adding Consumers
+## Introduction
 
 In the last section, we learned how to add plugins to Kong Enterprise Edition
 (EE) - in this section
@@ -87,11 +87,11 @@ Plugins, feel free to read more on Kong in one of the following documents:
 
 
 [key-auth]: /plugins/key-authentication
-[API-consumers]: /latest/admin-api#create-consumer
-[consumers]: /latest/admin-api#consumer-object
+[API-consumers]: /0.12.x/admin-api#create-consumer
+[consumers]: /0.12.x/admin-api#consumer-object
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
-[configuration]: /latest/configuration
-[CLI]: /latest/cli
-[proxy]: /latest/proxy
-[API]: /latest/admin-api
-[cluster]: /latest/clustering
+[configuration]: /0.12.x/configuration
+[CLI]: /0.12.x/cli
+[proxy]: /0.12.x/proxy
+[API]: /0.12.x/admin-api
+[cluster]: /0.12.x/clustering

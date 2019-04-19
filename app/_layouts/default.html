@@ -264,6 +264,18 @@
           jQuery('.overlay').removeClass('active');
         } // out
       );
+      jQuery(window).load(function() {
+        jQuery('#oss_subnav').addClass('expand');
+      });
+      jQuery(window).scroll(function() {
+        var scroll = jQuery(window).scrollTop();
+
+        if (scroll >= 5) {
+          jQuery('#oss_subnav').addClass('collapsed');
+        } else {
+          jQuery('#oss_subnav').removeClass('collapsed');
+        }
+      });
     </script>
   </body>
 

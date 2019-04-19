@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icn-kubernetes-md</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-1835.000000, -363.000000)" fill-rule="nonzero" stroke-width="2">
+            <g id="03-Docs" transform="translate(1797.000000, 187.000000)">
+                <g id="icn-kubernetes-md" transform="translate(36.000000, 174.000000)">
+                    <path d="M21,16.5 L29.25,8.25" id="Path-9" stroke="#004B80" stroke-linecap="round"></path>
+                    <path d="M19.5,22.5 L24,32.25" id="Path-9" stroke="#004B80" stroke-linecap="round"></path>
+                    <path d="M11.25,22.5 L15.75,32.25" id="Path-9" stroke="#004B80" stroke-linecap="round" transform="translate(13.500000, 27.375000) scale(-1, 1) translate(-13.500000, -27.375000) "></path>
+                    <path d="M21.75,21.75 L32.25,19.5" id="Path-9" stroke="#004B80" stroke-linecap="round" transform="translate(27.000000, 20.625000) scale(1, -1) translate(-27.000000, -20.625000) "></path>
+                    <path d="M3.75,21.75 L14.25,19.5" id="Path-9" stroke="#004B80" stroke-linecap="round" transform="translate(9.000000, 20.625000) scale(-1, -1) translate(-9.000000, -20.625000) "></path>
+                    <path d="M6.75,15.75 L15,7.5" id="Path-9" stroke="#004B80" stroke-linecap="round" transform="translate(10.875000, 11.625000) scale(-1, 1) translate(-10.875000, -11.625000) "></path>
+                    <path d="M18,15 L18,3.75" id="Path-10" stroke="#004B80" stroke-linecap="round"></path>
+                    <circle id="Oval-2" stroke="#0573E3" cx="18" cy="18.75" r="3.75"></circle>
+                    <circle id="Oval-2" stroke="#0573E3" cx="18" cy="18.75" r="10.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
