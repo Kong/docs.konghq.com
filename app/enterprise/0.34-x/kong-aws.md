@@ -1,5 +1,5 @@
 ---
-title: Kong Installation - AWS Guide & Best Practices
+title: Kong Installation - AWS Guide and Best Practices
 ---
 
 <img src="https://konghq.com/wp-content/uploads/2019/04/image001.jpg">
