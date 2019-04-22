@@ -2,6 +2,8 @@
 title: Kong Installation - AWS Guide & Best Practices
 ---
 
+<img src="https://konghq.com/wp-content/uploads/2019/04/image001.jpg">
+
 This document serves as a reference guide for installing Kong and Kong Enterprise on Amazon Web Services (AWS). This guide covers AWS-specific preparation and installation steps for setting up a typical installation of a Kong cluster.
 
 ## Introduction
