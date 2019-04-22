@@ -39,6 +39,8 @@ Kong Enterprise users should also be familiar with the following concepts and ha
 
 ## AWS Resource Setup
 
+<img src="https://konghq.com/wp-content/uploads/2019/04/diagram_057_VCP.png">
+
 ## Instance Sizing
 
 For Kong, prefer CPU optimized instances. We recommend at least 4 CPU cores, 16GB of RAM and 24GB of disk space. Kong performs better on a system with multiple cores. In an AWS environment, we recommend running `c5.2xlarge` instances in production that guarantee enough cores (8) and memory (16GB).
