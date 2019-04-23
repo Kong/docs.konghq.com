@@ -295,7 +295,7 @@ Maintain the case, format with [bold text](#bold-text).
 ### titles
 Prepositions and articles are lower case, everything else is proper case.
 
-* Create RBAC **Roles** for an **Admin** in the **New** **Workspace**.
+* Create RBAC **Roles** for an **Admin** in the New **Workspace**.
 
 ### utilize
 Has a specific meaning, "to use what is available"; it should not be used a 
