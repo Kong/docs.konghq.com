@@ -196,7 +196,7 @@ parse successful
 
 ## Loading The Declarative Configuration File
 
-There are two ways to load a declarative configuartion into Kong: via
+There are two ways to load a declarative configuration into Kong: via
 `kong.conf` and via the Admin API.
 
 To load a declarative configuration at Kong start-up, use the
