@@ -188,7 +188,7 @@ VPC	Yes	No	Only additional services for VPCs, like a NAT Gateway, are billable
 
 The open source version of Kong is free to use, fork, develop, and contribute back to the community. We welcome our community members to participate in our [discussion forums](https://discuss.konghq.com/) to keep abreast of developments in Kong.
 
-Kong Enterprise (todo)
+Kong Enterprise is priced variably based on the size of the enterprise deployment. To learn more, [schedule a Kong Enterprise demo](https://konghq.com/request-demo/).
 
 ### Contacting Support
 
