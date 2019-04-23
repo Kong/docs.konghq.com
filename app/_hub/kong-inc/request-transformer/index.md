@@ -46,6 +46,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
   config:
     - name: http_method
       required: false
@@ -246,10 +247,10 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   </tr>
 </table>
 
-|incoming request querystring | upstream proxied querystring 
-|---           | --- 
-| ?q1=v1       |  ?q1=v1&q2=v1 
-|              |  ?q1=v2&q2=v1 
+|incoming request querystring | upstream proxied querystring
+|---           | ---
+| ?q1=v1       |  ?q1=v1&q2=v1
+|              |  ?q1=v2&q2=v1
 
 - Append multiple headers and remove a body parameter:
 
@@ -276,10 +277,10 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   </tr>
 </table>
 
-|incoming url encoded body | upstream proxied url encoded body: 
-|---           | --- 
-|p1=v1&p2=v1   | p2=v1 
-|p2=v1         | p2=v1 
+|incoming url encoded body | upstream proxied url encoded body:
+|---           | ---
+|p1=v1&p2=v1   | p2=v1
+|p2=v1         | p2=v1
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object

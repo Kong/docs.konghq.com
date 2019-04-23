@@ -48,6 +48,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
   config:
     - name: origins
       required: false

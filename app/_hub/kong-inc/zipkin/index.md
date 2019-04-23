@@ -37,6 +37,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https", "tcp", "tls"]
   config:
     - name: http_endpoint
       required: true

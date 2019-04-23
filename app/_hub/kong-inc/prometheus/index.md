@@ -23,6 +23,7 @@ params:
   name: prometheus
   service_id: true
   route_id: false
+  protocols: ["http", "https", "tcp", "tls"]
 
 ---
 

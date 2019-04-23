@@ -29,6 +29,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
   config:
     - name: functionname
       required: true

@@ -51,6 +51,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
   config:
     - name: uri_param_names
       required: false
