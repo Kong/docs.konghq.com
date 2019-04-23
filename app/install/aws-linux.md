@@ -48,7 +48,7 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     $ sudo yum install -y wget
     $ sudo amazon-linux-extras install -y epel
     $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
-    $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ bintray-kong-kong-private-rpm.repo
+    $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ bintray-kong-kong-rpm.repo
     $ mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
     $ sudo yum update -y
     $ sudo yum install -y kong
