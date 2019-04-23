@@ -1,1 +1,241 @@
-## PUT FILES HERE
+- title: Deployment
+  items:
+    - text: Licensing
+      url: /deployment/licensing
+      items:
+        - text: How to Access Your License
+          url: /deployment/access-license
+    - text: Installation
+      url: /deployment/installation/overview
+      items:
+        - text: Docker
+          url: /deployment/installation/docker
+        - text: CentOS
+          url: /deployment/installation/centos
+        - text: Amazon Linux
+          url: /deployment/installation/amazon-linux
+        - text: Ubuntu
+          url: /deployment/installation/ubuntu
+        - text: Debian
+          url: /deployment/installation/debian
+        - text: Red Hat Enterprise Linux
+          url: /deployment/installation/red-hat
+    - text: Upgrades and Migrations
+      items:
+        - text: Changelog
+          url: /enterprise/changelog
+          absolute_url: true
+        - text: Kong Enterprise Versioning
+          url: /deployment/upgrades/edition-versioning
+        - text: Migrating to 0.35
+          url: /deployment/upgrades/migrations
+    - title: Deployment Best Practices
+      items:
+        - text: AWS Deployment
+          url: /deployment/best-practices/aws
+
+- title: Getting Started
+  items:
+    - text: Introduction
+      url: /getting-started/introduction
+    - text: Key Concepts
+      url: /getting-started/key-concepts
+    - text: How to Start Kong Enterprise
+      url: /getting-started/start-kong
+    - text: How to Enable Basic Authentication
+      url: /getting-started/enable-basic-auth
+    - text: How to Add a Workspace
+      url: /getting-started/add-workspace
+    - text: How to Add a Role and Permissions
+      url: /getting-started/add-role
+    - text: How to Add an Admin
+      url: /getting-started/add-admin
+    - text: How to Add a Service and Route
+      url: /getting-started/add-service
+    - text: How to Add a Plugin
+      url: /getting-started/add-plugin
+    - text: How to Add a Consumer
+      url: /getting-started/enable-auth
+    - text: How to Add a Role
+    - text: How to Add a Workspace
+
+- title: APIs and Plugins
+  items:
+    - text: Plugin Reference
+      items:
+      - text: Canary Release Plugin
+        url: /plugins/canary-release
+      - text: Rate Limiting Plugin
+        url: /plugins/rate-limiting-advanced
+      - text: Request Transformer Plugin
+        url: /plugins/request-transformer
+      - text: OAuth2 Introspection Plugin
+        url: /plugins/oauth2-introspection
+      - text: OpenID Connect Plugin
+        url: /plugins/openid-connect
+      - text: HTTP Proxy Caching
+        url: /plugins/http-proxy-caching
+      - text: Forward Proxy
+        url: /plugins/forward-proxy
+      - text: StatsD Advanced Plugin
+        url: /plugins/statsd-advanced
+      - text: LDAP Auth Advanced Plugin
+        url: /plugins/ldap-authentication-advanced
+      - text: Sessions Plugin
+        url: /plugins/sessions
+      - text: Route By Headers
+        url: /plugins/route-by-heders
+      - text: JWT Signer
+        url: /plugins/jwt-signer
+    - text: Implementation
+      items:
+        - text: Multiple Authentication Methods
+          url: /plugins/allowing-multiple-authentication-methods
+        - text: OpenID Connect with Google
+          url: /plugins/oidc-google
+        - text: OpenID Connect with Auth0
+          url: /plugins/oidc-auth0
+
+- title: Admin API
+  items:
+  - title: Workspaces
+    url: /administration/workspaces
+    items:
+      - text: /workspaces Endpoint Reference
+        url: /administration/workspaces/reference
+      - text: Examples
+        url: administration/workspaces/examples
+  - title: RBAC
+    url: /administration/rbac
+    items:
+      - text: /rbac Endpoint Reference
+        url: /administration/rbac/reference
+      - text: Examples
+        url: /administration/rbac/examples
+  - title: Admins
+    url: /administration/admins
+    items:
+      - text: /admins Endpoint Reference
+        url: /adminsitration/admins/reference
+      - text: Examples
+        url: /administration/admins/examples
+        Kong EE 0.35 Nav
+  - title: Admin API Reference
+    url: /admin-api/reference
+
+- title: Vitals
+  items:
+    - text: Kong Vitals
+      url: /vitals
+    - text: Kong Vitals with InfluxDB
+      url: /vitals-influx-strategy
+    - text: Kong Vitals with Prometheus
+      url: /vitals-prometheus-strategy
+
+- title: Audit Logging
+  items:
+    - text: Audit Logging
+      url: /audit-log
+
+- title: Kong Manager
+  items:
+    - text: Overview
+      url: /kong-manager/overview
+    - text: Networking
+      url: /kong-manager/networking
+      items:
+        - text: Default Configuration
+          url: /kong-manager/networking/default
+        - text: Custom Configuration
+          url: /kong-manager/networking/custom
+        - text: Configuring Kong Manager to Send Email
+          url: /kong-manager/networking/email
+    - text: Authentication
+      url: /kong-manager/authentication
+      items:
+        - text: Securing Kong Manager
+          url: /kong-manager/authentication/security
+        - text: How to Enable Basic Auth for Kong Manager
+          url: /kong-manager/authentication/basic
+        - text: How to Enable LDAP for Kong Manager
+          url: /kong-manager/authentication/ldap
+        - text: How to Map AD Users to Kong Manager Admins
+          url: /kong-manager/authentication/ad-map
+        - text: How to Enable OIDC for Kong Manager
+          url: /kong-manager/authentication/oidc
+    - text: Administration
+      url: /kong-manager/administration
+      items:
+        - text: Workspaces in Kong Manager
+          url: /kong-manager/administration/workspaces
+        - text: How to Create a New Workspace in Kong Manager
+          url: /kong-manager/administration/create-workspace 
+        - text: RBAC in Kong Manager
+          url: /kong-manager/administration/rbac
+        - text: Default RBAC Roles in Workspaces
+          url: /kong-manager/administration/default-roles
+        - text: How to Create a New Role with Custom Permissions
+          url: /kong-manager/administration/new-role
+        - text: Admins in Kong Manager
+          url: /kong-manager/administration/admins
+        - text: How to Invite an Admin
+          url: /kong-manager/administration/invite
+    - text: Vitals in Kong Manager
+      url: /kong-manager/vitals
+    - text: Best Practices with Kong Manager
+      url: /kong-manager/best-practices
+    - text: FAQ/Troubleshooting
+      url: /kong-manager/faq
+
+- title: Kong Dev Portal
+  items:
+    - text: Overview
+      url: /developer-portal/introduction
+    - text: Portal Files API
+      url: /developer-portal/files-api
+    - text: Configuration
+      url: /developer-portal/configuration/getting-started
+      items:
+        - text: Getting Started
+          url: /developer-portal/configuration/getting-started
+        - text: Authentication
+          url: /developer-portal/configuration/authentication
+        - text: SMTP
+          url: /developer-portal/configuration/smtp
+        - text: Working with Workspaces
+          url: /developer-portal/configuration/workspaces
+    - text: Networking
+      url: /developer-portal/networking
+    - text: Administration
+      items:
+        - text: Managing Developers
+          url: /developer-portal/management/developers
+    - text: Theme Customization
+      url: /developer-portal/customization/customization
+      items:
+          - text: Customizing the Dev Portal
+            url: /developer-portal/customization/customization
+    - text: Content Management
+      items:
+          - text: File Management
+            url: /developer-portal/content-management/file-management
+          - text: How to Use Google Cloud Storage to Serve Dev Portal Assets
+            url: /developer-portal/content-management/serving-assets/google-cloud-storage
+          - text: How to Use AWS Cloudfront to Serve Dev Portal Assets
+            url: /developer-portal/content-management/serving-assets/aws-cloudfront
+    - text: Best Practices
+      url: /developer-portal/best-practices
+    - text: FAQ & Troubleshooting
+      url: /developer-portal/faq
+
+- title: Guides & References
+  items:
+    - text: Configuration Property Reference
+      url: /property-reference
+    - text: Architecture Overview
+      url: /kong-architecture-overview
+    - text: Architecture Patterns
+      url: /kong-architecture-patterns
+    - text: Rate Limiting Library
+      url: /rate-limiting
+      
