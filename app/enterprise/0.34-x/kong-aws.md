@@ -116,7 +116,7 @@ Additional directions on installing Kong Enterprise on AWS Linux can be found [h
 
 ### Proxy protocol
 
-When running Kong behind a load balancer forwarding requests via the Proxy protocol, we recommend configuring Kong to listen for Proxy protol requests in order to correctly identify the downstream client address. This can be set by defining the `proxy_protocol` stanza of the `proxy_listen` and `admin_listen` directives as outlined in the [configuration reference](https://docs.konghq.com/1.0.x/configuration/#proxy_listen):
+When running Kong behind a load balancer forwarding requests via the Proxy protocol, we recommend configuring Kong to listen for Proxy protocol requests in order to correctly identify the downstream client address. This can be set by defining the `proxy_protocol` stanza of the `proxy_listen` and `admin_listen` directives as outlined in the [configuration reference](https://docs.konghq.com/1.0.x/configuration/#proxy_listen):
 
 ```
 proxy_listen = 0.0.0.0:8000 proxy_protocol
