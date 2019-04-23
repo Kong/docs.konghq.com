@@ -177,12 +177,13 @@ We recommend using auto-scaling groups in AWS as the de facto solution for scali
 
 The following table list the AWS resources used by Kong and states if they are required and billable:
 
-Service	Required	Billable	Notes
-EC2	Yes	Yes	Free tier instance types are not recommended
-ELB No Yes Load balancers are not strictly required to operate Kong, but are strongly recommended for highly-available and scalable deployments
-RDS/Aurora	Yes	Yes	Free tier instance types are not recommended
-ASG No No Auto scaling groups are not strictly required to operate Kong, but are strongly recommended for highly-available and scalable deployments
-VPC	Yes	No	Only additional services for VPCs, like a NAT Gateway, are billable
+| Service | Required | Billable | Notes |
+|------------|----------|----------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| EC2 | Yes | Yes | Free tier instance types are not recommended |
+| ELB | No | Yes | Load balancers are not strictly required to operate Kong, but are strongly recommended for highly-available and scalable deployments |
+| RDS/Aurora | Yes | Yes | Free tier instance types are not recommended |
+| ASG | No | No | Auto scaling groups are not strictly required to operate Kong, but are strongly recommended for highly-available and scalable deployments |
+| VPC | Yes | No | Only additional services for VPCs, like a NAT Gateway, are billable |
 
 ### Cost Model
 
