@@ -29,7 +29,7 @@
           url: /deployment/upgrades/edition-versioning
         - text: Migrating to 0.35
           url: /deployment/upgrades/migrations
-    - title: Deployment Best Practices
+    - text: Deployment Best Practices
       items:
         - text: AWS Deployment
           url: /deployment/best-practices/aws
@@ -57,7 +57,9 @@
     - text: How to Add a Consumer
       url: /getting-started/enable-auth
     - text: How to Add a Role
+      url: /getting-started/add-role
     - text: How to Add a Workspace
+      url: /getting-started/add-workspace
 
 - title: APIs and Plugins
   items:
@@ -119,7 +121,6 @@
         url: /adminsitration/admins/reference
       - text: Examples
         url: /administration/admins/examples
-        Kong EE 0.35 Nav
   - title: Admin API Reference
     url: /admin-api/reference
 
@@ -169,7 +170,7 @@
         - text: Workspaces in Kong Manager
           url: /kong-manager/administration/workspaces
         - text: How to Create a New Workspace in Kong Manager
-          url: /kong-manager/administration/create-workspace 
+          url: /kong-manager/administration/create-workspace
         - text: RBAC in Kong Manager
           url: /kong-manager/administration/rbac
         - text: Default RBAC Roles in Workspaces
@@ -200,6 +201,11 @@
           url: /developer-portal/configuration/getting-started
         - text: Authentication
           url: /developer-portal/configuration/authentication
+          items:
+            - text: Basic Auth
+              url: /developer-portal/configuation/authentication/basic-auth
+            - text: Key Auth
+              url: /developer-portal/configuration/authentication/key-auth
         - text: SMTP
           url: /developer-portal/configuration/smtp
         - text: Working with Workspaces
@@ -219,10 +225,13 @@
       items:
           - text: File Management
             url: /developer-portal/content-management/file-management
-          - text: How to Use Google Cloud Storage to Serve Dev Portal Assets
-            url: /developer-portal/content-management/serving-assets/google-cloud-storage
-          - text: How to Use AWS Cloudfront to Serve Dev Portal Assets
-            url: /developer-portal/content-management/serving-assets/aws-cloudfront
+          - text: Serving Assets
+            url: /developer-portal/content-management/serving-assets
+            items:
+              - text: How to Use Google Cloud Storage to Serve Dev Portal Assets
+                url: /developer-portal/content-management/serving-assets/google-cloud-storage
+              - text: How to Use AWS Cloudfront to Serve Dev Portal Assets
+                url: /developer-portal/content-management/serving-assets/aws-cloudfront
     - text: Best Practices
       url: /developer-portal/best-practices
     - text: FAQ & Troubleshooting
