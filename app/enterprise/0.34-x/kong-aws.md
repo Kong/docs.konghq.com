@@ -4,11 +4,9 @@ title: Kong Installation - AWS Guide and Best Practices
 
 <img src="https://konghq.com/wp-content/uploads/2019/04/image001.jpg">
 
-This document serves as a reference guide for installing Kong and Kong Enterprise on Amazon Web Services (AWS). This guide covers AWS-specific preparation and installation steps for setting up a typical installation of a Kong cluster.
-
 ## Introduction
 
-This guide covers the installation and configuration of a Kong cluster on AWS with the following functionality and constraints
+This document serves as a reference guide for installing Kong and Kong Enterprise on Amazon Web Services (AWS). This guide covers AWS-specific preparation and installation steps for setting up a typical installation of a Kong cluster on AWS with the following functionality and constraints:
 
 - Kong is deployed in a single geographic region
 - Multi-AZ AWS services are used wherever possibly to provide redundancy and scalability
