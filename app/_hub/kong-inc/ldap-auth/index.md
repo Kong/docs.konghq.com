@@ -42,6 +42,7 @@ params:
   service_id: false
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
   config:
     - name: hide_credentials
       required: false
