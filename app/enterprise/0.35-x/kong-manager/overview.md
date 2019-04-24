@@ -11,11 +11,11 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/configuration/getting-started">Getting Started</a>
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/networking">Networking</a>
     </h3>
-    <p>Get started with Kong Manager to experience the full potential of Kong Enterprise.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/configuration/getting-started">
-        Get started &rarr;
+    <p>Check and customize Kong Manager's networking configuration.</p>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/networking">
+        Get connected &rarr;
     </a>
   </div>
 
