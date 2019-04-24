@@ -33,11 +33,11 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/organization-management/rbac-and-perms/">
-          RBAC and Permissions</a>
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/rbac">
+          RBAC: Roles and Permissions</a>
     </h3>
-    <p>.</p>
-    <a href="/enterprise/{{page.kong_version}}/organization-management/rbac-and-perms">Learn more &rarr;</a>
+    <p>Authorize Admins with default and custom Roles and Permissions.</p>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/rbac">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
