@@ -22,10 +22,12 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication">Authentication</a>
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/authentication">Authentication</a>
     </h3>
-    <p>Verify the identity of all Kong users either with basic authentication or LDAP.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication">Learn more &rarr;</a>
+    <p>Verify the identity of all Kong Admins with Basic Auth, OIDC, or LDAP.</p>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/authentication">
+        Learn more &rarr;
+    </a>
   </div>
 
   <div class="docs-grid-block">
@@ -34,7 +36,7 @@ toc: false
         <a href="/enterprise/{{page.kong_version}}/kong-manager/organization-management/rbac-and-perms/">
           RBAC and Permissions</a>
     </h3>
-    <p>Learn how to customize the look and feel of the Kong Dev Portal.</p>
+    <p>.</p>
     <a href="/enterprise/{{page.kong_version}}/organization-management/rbac-and-perms">Learn more &rarr;</a>
   </div>
 
