@@ -33,10 +33,10 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/organization-management/workspaces">Workspaces</a>
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/workspaces">Workspaces</a>
     </h3>
-    <p>Segment your cluster for specific teams.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/organization-management/workspaces">Learn more &rarr;</a>
+    <p>Segment your cluster into Workspaces for specific teams.</p>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/workspaces">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
