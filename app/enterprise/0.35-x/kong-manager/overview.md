@@ -15,7 +15,7 @@ toc: false
     </h3>
     <p>Check and customize Kong Manager's networking configuration.</p>
     <a href="/enterprise/{{page.kong_version}}/kong-manager/networking">
-        Get connected &rarr;
+        Learn more &rarr;
     </a>
   </div>
 
