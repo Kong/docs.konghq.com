@@ -56,10 +56,6 @@
       url: /getting-started/add-plugin
     - text: How to Add a Consumer
       url: /getting-started/enable-auth
-    - text: How to Add a Role
-      url: /getting-started/add-role
-    - text: How to Add a Workspace
-      url: /getting-started/add-workspace
 
 - title: APIs and Plugins
   items:
