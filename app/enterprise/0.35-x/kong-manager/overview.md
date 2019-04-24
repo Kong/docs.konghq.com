@@ -38,6 +38,7 @@ toc: false
     <p>Segment your cluster for specific teams.</p>
     <a href="/enterprise/{{page.kong_version}}/kong-manager/organization-management/workspaces">Learn more &rarr;</a>
   </div>
+
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
@@ -47,8 +48,6 @@ toc: false
     <p>Authorize Admins with default and custom Roles and Permissions.</p>
     <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/rbac">Learn more &rarr;</a>
   </div>
-
-
 
   <div class="docs-grid-block">
     <h3>
