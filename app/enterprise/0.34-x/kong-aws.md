@@ -145,7 +145,7 @@ Kong nodes are stateless compute instances that rely on configuration data prese
 
 We recommend that [RDS snapshots](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateSnapshot.html) be taken regularly as a database backup mechanism. Additional data duplication techniques, such as PostgreSQL's `pgdump` tool, are useful tools that can be used in conjunction with RDS snapshots to provide a robust data backup strategy.
 
-For additional data assurance, we recommend store the RDS snapshots via S3 or some other data service located outside the geographic region in which the Kong cluster is deployed.
+For additional data assurance, we recommend storing the RDS snapshots via S3 or some other data service located outside the geographic region in which the Kong cluster is deployed.
 
 ### Service Outage
 
