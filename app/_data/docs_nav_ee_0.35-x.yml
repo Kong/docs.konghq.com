@@ -96,43 +96,38 @@
 
 - title: Admin API
   items:
-  - title: Workspaces
-    url: /administration/workspaces
+  - text: Workspaces
+    url: /admin-api/workspaces
     items:
       - text: /workspaces Endpoint Reference
-        url: /administration/workspaces/reference
+        url: /admin-api/workspaces/reference
       - text: Examples
-        url: administration/workspaces/examples
-  - title: RBAC
-    url: /administration/rbac
+        url: admin-api/workspaces/examples
+  - text: RBAC
+    url: /admin-api/rbac
     items:
       - text: /rbac Endpoint Reference
-        url: /administration/rbac/reference
+        url: /admin-api/rbac/reference
       - text: Examples
-        url: /administration/rbac/examples
-  - title: Admins
-    url: /administration/admins
+        url: /admin-api/rbac/examples
+  - text: Admins
+    url: /admin-api/admins
     items:
       - text: /admins Endpoint Reference
-        url: /adminsitration/admins/reference
+        url: /admin-api/admins/reference
       - text: Examples
-        url: /administration/admins/examples
-  - title: Admin API Reference
+        url: /admin-api/admins/examples
+  - text: Vitals
+    url: /admin-api/vitals
+    items:
+      - text: Kong Vitals with InfluxDB
+        url: /admin-api/vitals/influx-db
+      - text: Kong Vitals with Prometheus
+        url: /admin-api/vitals/prometheus
+  - text: Audit Logging
+    url: /admin-api/audit-log
+  - text: Admin API Reference
     url: /admin-api/reference
-
-- title: Vitals
-  items:
-    - text: Kong Vitals
-      url: /vitals
-    - text: Kong Vitals with InfluxDB
-      url: /vitals-influx-strategy
-    - text: Kong Vitals with Prometheus
-      url: /vitals-prometheus-strategy
-
-- title: Audit Logging
-  items:
-    - text: Audit Logging
-      url: /audit-log
 
 - title: Kong Manager
   items:
