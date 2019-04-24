@@ -98,8 +98,9 @@ Following the general steps to create a Security Group, as outlined in the AWS D
 
 6. Use the Add Rule button to add the following Inbound rules:
 
-Type - Protocol - Port Range - Source - Description
-Custom TCP - TCP - 5432 - <VPC CIDR> - Postgres access for Kong nodes
+| Type | Protocol | Port Range | Source | Description |
+|------------|----------|------------|------------|--------------------------------|
+| Custom TCP | TCP | 5432 | <VPC CIDR> | Postgres access for Kong nodes |
 
 ### RDS
 
