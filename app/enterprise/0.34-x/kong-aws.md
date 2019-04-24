@@ -169,7 +169,7 @@ We recommend performing recovery testing on a regular basis. The above guide can
 
 ### Horizontal scaling
 
-We recommend using auto-scaling groups in AWS as the de facto solution for scaling Kong. For further reading, see the section on [scaling Kong](https://docs.konghq.com/enterprise/0.34-x/deployment-guide/#scaling-kong) in the deployment guide.
+We recommend using [auto-scaling groups](#ASG) in AWS as the de facto solution for scaling Kong. For further reading, see the section on [scaling Kong](https://docs.konghq.com/enterprise/0.34-x/deployment-guide/#scaling-kong) in the deployment guide.
 
 ## Additional Notes
 
