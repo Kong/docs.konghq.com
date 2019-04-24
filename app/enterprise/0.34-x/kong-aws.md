@@ -77,9 +77,10 @@ Following the general steps to create a Security Group, as outlined in the AWS D
 
 6. Use the Add Rule button to add the following Inbound rules:
 
-Type - Protocol - Port Range - Source - Description
-Custom TCP Rule - TCP - 8000-8003 - <VPC CIDR> - Kong proxy, Admin API, Manager, and Dev Portal (HTTP)
-Custom TCP Rule - TCP - 8443-8446 - <VPC CIDR> - Kong proxy, Admin API, Manager, and Dev Portal (HTTPS)
+| Type | Protocol | Port Range | Source | Description |
+|-----------------|----------|------------|------------|--------------------------------------------------------|
+| Custom TCP Rule | TCP | 8000-8003 | <VPC CIDR> | Kong proxy, Admin API, Manager, and Dev Portal (HTTP) |
+| Custom TCP Rule | TCP | 8443-8446 | <VPC CIDR> | Kong proxy, Admin API, Manager, and Dev Portal (HTTPS) |
 
 #### RDS Security Group
 
