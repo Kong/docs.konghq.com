@@ -18,7 +18,8 @@
     "ignore": [
       "dist/**",
       "vendor/**",
-      "node_modules/**"
+      "node_modules/**",
+      "Dockerfile"
     ]
   },
   "echint": {
@@ -35,7 +36,8 @@
       "autodoc-admin-api/*.lua",
       "autodoc-conf/*.lua",
       "vendor/**",
-      "node_modules/**"
+      "node_modules/**",
+      "Docker"
     ]
   },
   "devDependencies": {

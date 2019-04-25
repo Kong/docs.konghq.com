@@ -13,4 +13,3 @@ RUN chmod -R 777 /usr/lib/node_modules \
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 3000 3001
-
