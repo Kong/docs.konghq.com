@@ -302,7 +302,7 @@ sessions after specified `cookie_lifetime` unless renewal occurs during normal
 browser activity. It is recommended that the application logout via XHR request 
 (or something similar) to manually handle redirects.
 
-## 👋🏻 Logging Out
+## Logging Out
 
 It is typical to provide users the ability to log out (i.e. to manually destroy) their
 current session. Logging out is possible with either query params or `POST` params in 
