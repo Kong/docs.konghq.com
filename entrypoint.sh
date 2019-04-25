@@ -3,6 +3,6 @@
 npm install -g yarn
 npm install -g gulp
 bundle install
-yarn
+yarn --ignore-engines
 gulp clean
 gulp
