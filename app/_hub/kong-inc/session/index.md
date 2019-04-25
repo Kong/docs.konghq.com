@@ -7,7 +7,7 @@ desc: Support sessions for Kong Authentication Plugins.
 description: |
   The Kong Session Plugin can be used to manage browser sessions for APIs proxied 
   through the Kong API Gateway. It provides configuration and management for
-  session data storage, encyption, renewal, expiry, and sending browser cookies
+  session data storage, encryption, renewal, expiry, and sending browser cookies.
   🍪. It is built using
   <a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a>
 
