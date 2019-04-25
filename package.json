@@ -50,7 +50,6 @@
     "font-awesome": "^4.4.0",
     "gh-pages": "^2.0.1",
     "glob": "^7.1.3",
-    "gulp": "^4.0.1",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.0",
@@ -70,5 +69,8 @@
     "run-sequence": "^2.2.1",
     "skeleton-css": "^2.0.4",
     "standard": "^12.0.1"
+  },
+  "dependencies": {
+    "gulp": "3.9.1"
   }
 }
