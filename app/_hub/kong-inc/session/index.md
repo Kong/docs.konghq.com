@@ -290,7 +290,7 @@ ngx.ctx.authenticated_consumer.id
 ngx.ctx.authenticated_credential.id
 ```
 
-## 🦍 Kong Storage Adapter
+## Kong Storage Adapter
 
 the Kong Session **Plugin** extends the functionality of [lua-resty-session] with its own
 session data storage adapter when `storage=kong`. This will store encrypted
