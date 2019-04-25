@@ -49,6 +49,11 @@ params:
   route_id: true
   consumer_id: false
   protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    Consumers and Credentials can be created with declarative config.
+
+    Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials are not available on db-less mode.
   config:
     - name: key_names
       required: false

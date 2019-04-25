@@ -38,6 +38,7 @@ params:
   route_id: true
   consumer_id: true
   protocols: ["http", "https", "tcp", "tls"]
+  dbless_compatible: yes
   config:
     - name: http_endpoint
       required: true

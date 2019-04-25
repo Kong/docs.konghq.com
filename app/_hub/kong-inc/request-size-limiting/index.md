@@ -52,6 +52,7 @@ params:
   route_id: true
   consumer_id: true
   protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: allowed_payload_size
       required: true
