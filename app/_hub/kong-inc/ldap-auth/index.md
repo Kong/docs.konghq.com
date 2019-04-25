@@ -43,6 +43,7 @@ params:
   route_id: true
   consumer_id: false
   protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: hide_credentials
       required: false

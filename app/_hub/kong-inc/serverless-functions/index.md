@@ -30,6 +30,9 @@ params:
   route_id: true
   consumer_id: false
   protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.
   config:
     - name: functions
       required: true

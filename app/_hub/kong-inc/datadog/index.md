@@ -46,6 +46,7 @@ params:
   route_id: true
   consumer_id: true
   protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: host
       required: false

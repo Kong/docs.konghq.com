@@ -24,6 +24,9 @@ params:
   service_id: true
   route_id: false
   protocols: ["http", "https", "tcp", "tls"]
+  dbless_compatible: yes
+  dbless_explanation: |
+    The database will always be reported as “reachable” in prometheus with db-less.
 
 ---
 

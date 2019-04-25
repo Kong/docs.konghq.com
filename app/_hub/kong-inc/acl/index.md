@@ -51,6 +51,11 @@ params:
   route_id: true
   consumer_id: false
   protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    Consumers and ACLs can be created with declarative config.
+
+    Admin API endpoints which do POST, PUT, PATCH or DELETE on ACLs will not work on db-less mode.
   config:
     - name: whitelist
       required: semi
