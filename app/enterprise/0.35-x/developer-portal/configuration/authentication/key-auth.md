@@ -4,8 +4,8 @@ title: How to Enable Key Auth in the Dev Portal
 
 ### Introduction
 
-The Dev Portal can be fully or partially authenticated using API keys or *Key
-Authentication*. Users provide a unique key upon registering and use this key
+The Dev Portal can be fully or partially authenticated using API keys or **Key
+Authentication**. Users provide a unique key upon registering and use this key
 to log into the Dev Portal.
 
 Key Authentication for the Dev Portal can be enabled in three ways:
