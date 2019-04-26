@@ -35,4 +35,5 @@ curl -L -u<$UserName>@kong<$API_KEY> "https://kong.bintray.com/<$repoName>/licen
  
 
 ## What Next?
+
 Great! With a license in hand, select [an installation guides](/enterprise/{{page.kong_version}}/deployment/installation/overview) for instructions on how to use it to deploy Kong Enterprise.

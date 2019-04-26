@@ -56,10 +56,6 @@
       url: /getting-started/add-plugin
     - text: How to Add a Consumer
       url: /getting-started/enable-auth
-    - text: How to Add a Role
-      url: /getting-started/add-role
-    - text: How to Add a Workspace
-      url: /getting-started/add-workspace
 
 - title: APIs and Plugins
   items:
@@ -100,43 +96,38 @@
 
 - title: Admin API
   items:
-  - title: Workspaces
-    url: /administration/workspaces
+  - text: Workspaces
+    url: /admin-api/workspaces
     items:
       - text: /workspaces Endpoint Reference
-        url: /administration/workspaces/reference
+        url: /admin-api/workspaces/reference
       - text: Examples
-        url: administration/workspaces/examples
-  - title: RBAC
-    url: /administration/rbac
+        url: admin-api/workspaces/examples
+  - text: RBAC
+    url: /admin-api/rbac
     items:
       - text: /rbac Endpoint Reference
-        url: /administration/rbac/reference
+        url: /admin-api/rbac/reference
       - text: Examples
-        url: /administration/rbac/examples
-  - title: Admins
-    url: /administration/admins
+        url: /admin-api/rbac/examples
+  - text: Admins
+    url: /admin-api/admins
     items:
       - text: /admins Endpoint Reference
-        url: /adminsitration/admins/reference
+        url: /admin-api/admins/reference
       - text: Examples
-        url: /administration/admins/examples
-  - title: Admin API Reference
+        url: /admin-api/admins/examples
+  - text: Vitals
+    url: /admin-api/vitals
+    items:
+      - text: Kong Vitals with InfluxDB
+        url: /admin-api/vitals/influx-db
+      - text: Kong Vitals with Prometheus
+        url: /admin-api/vitals/prometheus
+  - text: Audit Logging
+    url: /admin-api/audit-log
+  - text: Admin API Reference
     url: /admin-api/reference
-
-- title: Vitals
-  items:
-    - text: Kong Vitals
-      url: /vitals
-    - text: Kong Vitals with InfluxDB
-      url: /vitals-influx-strategy
-    - text: Kong Vitals with Prometheus
-      url: /vitals-prometheus-strategy
-
-- title: Audit Logging
-  items:
-    - text: Audit Logging
-      url: /audit-log
 
 - title: Kong Manager
   items:
@@ -192,6 +183,54 @@
   items:
     - text: Overview
       url: /developer-portal/introduction
+    - text: Quickstart
+      url: /developer-portal/quick-start
+    - text: Configuration
+      url: /developer-portal/configuration/
+      items:
+        - text: Default Settings
+          url: /developer-portal/configuration/default-settings
+        - text: Authentication
+          url: /developer-portal/configuration/authentication
+          items:
+            - text: Basic Auth
+              url: /developer-portal/configuration/authentication/basic-auth
+            - text: Key Auth
+              url: /developer-portal/configuration/authentication/key-auth
+            - text: OpenID Connect
+              url: /developer-portal/configuration/authentication/oidc
+        - text: SMTP
+          url: /developer-portal/configuration/smtp
+        - text: Working with Workspaces
+          url: /developer-portal/configuration/workspaces
+    - text: Networking
+      url: /developer-portal/networking
+    - text: Administration
+      items:
+        - text: Managing Developers
+          url: /developer-portal/management/developers
+    - text: Theme Customization
+      url: /developer-portal/customization/customization
+      items:
+          - text: Customizing the Dev Portal
+            url: /developer-portal/customization/customization
+    - text: Content Management
+      items:
+          - text: File Management
+            url: /developer-portal/content-management/file-management
+          - text: Serving Assets
+            url: /developer-portal/content-management/serving-assets
+            items:
+              - text: How to Use Google Cloud Storage to Serve Dev Portal Assets
+                url: /developer-portal/content-management/serving-assets/google-cloud-storage
+              - text: How to Use AWS Cloudfront to Serve Dev Portal Assets
+                url: /developer-portal/content-management/serving-assets/aws-cloudfront
+    - text: Portal Files API
+      url: /developer-portal/files-api
+    - text: Best Practices
+      url: /developer-portal/best-practices
+    - text: FAQ & Troubleshooting
+      url: /developer-portal/faq
 
 - title: Guides & References
   items:
