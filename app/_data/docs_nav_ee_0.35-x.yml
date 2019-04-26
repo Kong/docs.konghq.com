@@ -201,7 +201,7 @@
               url: /developer-portal/configuration/authentication/oidc
         - text: SMTP
           url: /developer-portal/configuration/smtp
-        - text: Working with Workspaces
+        - text: Running Multiple Dev Portals
           url: /developer-portal/configuration/workspaces
     - text: Networking
       url: /developer-portal/networking
