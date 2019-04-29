@@ -55,7 +55,7 @@
     - text: How to Add a Plugin
       url: /getting-started/add-plugin
     - text: How to Add a Consumer
-      url: /getting-started/enable-auth
+      url: /getting-started/add-consumer
 
 - title: APIs and Plugins
   items:
