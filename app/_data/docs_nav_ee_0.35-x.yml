@@ -117,10 +117,12 @@
         url: /admin-api/admins/reference
       - text: Examples
         url: /admin-api/admins/examples
+      - text: How to Map AD Users to Admins
+        url: /admin-api/admins/ad-map
   - text: Vitals
     url: /admin-api/vitals
     items:
-      - text: Kong Vitals with InfluxDB
+      - text: Kong Vitals with InfluxDB∂
         url: /admin-api/vitals/influx-db
       - text: Kong Vitals with Prometheus
         url: /admin-api/vitals/prometheus
@@ -133,50 +135,53 @@
   items:
     - text: Overview
       url: /kong-manager/overview
+    - text: Securing Kong Manager
+      url: /kong-manager/security
     - text: Networking
-      url: /kong-manager/networking
       items:
-        - text: Default Configuration
-          url: /kong-manager/networking/default
-        - text: Custom Configuration
-          url: /kong-manager/networking/custom
+        - text: Default and Custom Configuration
+          url: /kong-manager/networking/configuration
         - text: Configuring Kong Manager to Send Email
           url: /kong-manager/networking/email
     - text: Authentication
-      url: /kong-manager/authentication
       items:
-        - text: Securing Kong Manager
-          url: /kong-manager/authentication/security
-        - text: How to Enable Basic Auth for Kong Manager
+        - text: How to Create a Super Admin
+          url: /kong-manager/authentication/super-admin
+        - text: Basic Auth
           url: /kong-manager/authentication/basic
-        - text: How to Enable LDAP for Kong Manager
+        - text: LDAP
           url: /kong-manager/authentication/ldap
-        - text: How to Map AD Users to Kong Manager Admins
-          url: /kong-manager/authentication/ad-map
-        - text: How to Enable OIDC for Kong Manager
+        - text: OIDC
           url: /kong-manager/authentication/oidc
+        - text: Sessions in Kong Manager
+          url: /kong-manager/authentication/sessions
     - text: Administration
-      url: /kong-manager/administration
       items:
-        - text: Workspaces in Kong Manager
-          url: /kong-manager/administration/workspaces
-        - text: How to Create a New Workspace in Kong Manager
-          url: /kong-manager/administration/create-workspace
-        - text: RBAC in Kong Manager
-          url: /kong-manager/administration/rbac
-        - text: Default RBAC Roles in Workspaces
-          url: /kong-manager/administration/default-roles
-        - text: How to Create a New Role with Custom Permissions
-          url: /kong-manager/administration/new-role
-        - text: Admins in Kong Manager
-          url: /kong-manager/administration/admins
-        - text: How to Invite an Admin
-          url: /kong-manager/administration/invite
+        - text: Workspaces
+        - items:
+          - text: Workspaces in Kong Manager
+            url: /kong-manager/administration/workspaces/workspaces
+          - text: How to Create a New Workspace in Kong Manager
+            url: /kong-manager/administration/workspaces/create-workspace
+          - text: How to Update or Delete a Workspace
+            url: /kong-manager/administration/workspaces/update-workspace
+        - text: RBAC
+        - items:
+          - text: RBAC in Kong Manager
+            url: /kong-manager/administration/rbac/rbac
+          - text: How to Create a New Role with Custom Permissions
+            url: /kong-manager/administration/rbac/new-role
+        - text: Admins
+        - items:
+          - text: Admins in Kong Manager
+            url: /kong-manager/administration/admins/admins
+          - text: How to Invite an Admin
+            url: /kong-manager/administration/admins/invite
     - text: Vitals in Kong Manager
       url: /kong-manager/vitals
     - text: Best Practices with Kong Manager
       url: /kong-manager/best-practices
-    - text: FAQ/Troubleshooting
+    - text: FAQ/Troubleshooting Kong Manager
       url: /kong-manager/faq
 
 - title: Kong Dev Portal
