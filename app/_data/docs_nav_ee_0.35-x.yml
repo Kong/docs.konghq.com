@@ -188,25 +188,23 @@
   items:
     - text: Overview
       url: /developer-portal/introduction
-    - text: Quickstart
-      url: /developer-portal/quick-start
+    - text: Portal Files API
+      url: /developer-portal/files-api
     - text: Configuration
-      url: /developer-portal/configuration/
+      url: /developer-portal/configuration/getting-started
       items:
-        - text: Default Settings
-          url: /developer-portal/configuration/default-settings
+        - text: Getting Started
+          url: /developer-portal/configuration/getting-started
         - text: Authentication
           url: /developer-portal/configuration/authentication
           items:
             - text: Basic Auth
-              url: /developer-portal/configuration/authentication/basic-auth
+              url: /developer-portal/configuation/authentication/basic-auth
             - text: Key Auth
               url: /developer-portal/configuration/authentication/key-auth
-            - text: OpenID Connect
-              url: /developer-portal/configuration/authentication/oidc
         - text: SMTP
           url: /developer-portal/configuration/smtp
-        - text: Running Multiple Dev Portals
+        - text: Working with Workspaces
           url: /developer-portal/configuration/workspaces
     - text: Networking
       url: /developer-portal/networking
@@ -230,8 +228,6 @@
                 url: /developer-portal/content-management/serving-assets/google-cloud-storage
               - text: How to Use AWS Cloudfront to Serve Dev Portal Assets
                 url: /developer-portal/content-management/serving-assets/aws-cloudfront
-    - text: Portal Files API
-      url: /developer-portal/files-api
     - text: Best Practices
       url: /developer-portal/best-practices
     - text: FAQ & Troubleshooting
