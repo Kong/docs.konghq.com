@@ -57,43 +57,6 @@
     - text: How to Add a Consumer
       url: /getting-started/add-consumer
 
-- title: APIs and Plugins
-  items:
-    - text: Plugin Reference
-      items:
-      - text: Canary Release Plugin
-        url: /plugins/canary-release
-      - text: Rate Limiting Plugin
-        url: /plugins/rate-limiting-advanced
-      - text: Request Transformer Plugin
-        url: /plugins/request-transformer
-      - text: OAuth2 Introspection Plugin
-        url: /plugins/oauth2-introspection
-      - text: OpenID Connect Plugin
-        url: /plugins/openid-connect
-      - text: HTTP Proxy Caching
-        url: /plugins/http-proxy-caching
-      - text: Forward Proxy
-        url: /plugins/forward-proxy
-      - text: StatsD Advanced Plugin
-        url: /plugins/statsd-advanced
-      - text: LDAP Auth Advanced Plugin
-        url: /plugins/ldap-authentication-advanced
-      - text: Sessions Plugin
-        url: /plugins/sessions
-      - text: Route By Headers
-        url: /plugins/route-by-heders
-      - text: JWT Signer
-        url: /plugins/jwt-signer
-    - text: Implementation
-      items:
-        - text: Multiple Authentication Methods
-          url: /plugins/allowing-multiple-authentication-methods
-        - text: OpenID Connect with Google
-          url: /plugins/oidc-google
-        - text: OpenID Connect with Auth0
-          url: /plugins/oidc-auth0
-
 - title: Admin API
   items:
   - text: Workspaces
@@ -232,6 +195,43 @@
       url: /developer-portal/best-practices
     - text: FAQ & Troubleshooting
       url: /developer-portal/faq
+
+- title: APIs and Plugins
+  items:
+    - text: Plugin Reference
+      items:
+      - text: Canary Release Plugin
+        url: /plugins/canary-release
+      - text: Rate Limiting Plugin
+        url: /plugins/rate-limiting-advanced
+      - text: Request Transformer Plugin
+        url: /plugins/request-transformer
+      - text: OAuth2 Introspection Plugin
+        url: /plugins/oauth2-introspection
+      - text: OpenID Connect Plugin
+        url: /plugins/openid-connect
+      - text: HTTP Proxy Caching
+        url: /plugins/http-proxy-caching
+      - text: Forward Proxy
+        url: /plugins/forward-proxy
+      - text: StatsD Advanced Plugin
+        url: /plugins/statsd-advanced
+      - text: LDAP Auth Advanced Plugin
+        url: /plugins/ldap-authentication-advanced
+      - text: Sessions Plugin
+        url: /plugins/sessions
+      - text: Route By Headers
+        url: /plugins/route-by-heders
+      - text: JWT Signer
+        url: /plugins/jwt-signer
+    - text: Implementation
+      items:
+        - text: Multiple Authentication Methods
+          url: /plugins/allowing-multiple-authentication-methods
+        - text: OpenID Connect with Google
+          url: /plugins/oidc-google
+        - text: OpenID Connect with Auth0
+          url: /plugins/oidc-auth0
 
 - title: Guides & References
   items:
