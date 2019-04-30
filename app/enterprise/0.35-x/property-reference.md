@@ -1088,7 +1088,7 @@ Defines the name of the HTTP request header from which the Admin
 API will attempt to identify the RBAC user.
 
 
-## Admin GUI (Kong Manager)
+## Kong Manager
 
 
 ### admin_gui_listen
