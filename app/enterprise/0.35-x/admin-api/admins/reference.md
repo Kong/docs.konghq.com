@@ -1,5 +1,5 @@
-\---
-title: /admins **Endpoint** Reference
+---
+title: /admins Endpoint Reference
 book: admins
 ---
 
@@ -112,11 +112,9 @@ HTTP 200 OK
 
 <div class="endpoint get">/admins/{name_or_id}</div>
 
-```
 | Attribute | Description |
 |------------|-----------------------------------|
 | name_or_id | The Admin's username or custom_id |
-```
 
 **Response**
 
