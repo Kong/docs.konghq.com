@@ -62,9 +62,9 @@ params:
   protocols: ["http", "https"]
   dbless_compatible: no
   dbless_explanation: |
-    For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with db-less.
+    For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with DB-less.
 
-    In addition to this, its Admin API endpoints offer several POST, PATCH, PUT and DELETE methods for tokens and credentials. None of them would work on db-less.
+    In addition to this, its Admin API endpoints offer several POST, PATCH, PUT and DELETE methods for tokens and credentials. None of them would work on DB-less.
   config:
     - name: scopes
       required: true

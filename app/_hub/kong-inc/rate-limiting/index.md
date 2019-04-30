@@ -52,7 +52,7 @@ params:
   dbless_compatible: partially
   dbless_explanation: |
     The plugin will run fine with the `local` policy (which doesn't use the database) or
-    the `redis` policy (which uses an independent Redis, so it is compatible with db-less).
+    the `redis` policy (which uses an independent Redis, so it is compatible with DB-less).
 
     The plugin will not work with the `cluster` policy, which requires writes to the database.
 
