@@ -196,7 +196,7 @@ parse successful
 
 ## Loading The Declarative Configuration File
 
-There are two ways to load a declarative configuartion into Kong: via
+There are two ways to load a declarative configuration into Kong: via
 `kong.conf` and via the Admin API.
 
 To load a declarative configuration at Kong start-up, use the
@@ -209,7 +209,7 @@ $ export KONG_DECLARATIVE_CONFIG=kong.yml
 $ kong start -c kong.conf
 ```
 
-Alternatively, you can load a declarative config into a running
+Alternatively, you can load a declarative configuration into a running
 Kong node via its Admin API, using the `/config` endpoint. The 
 following example loads `kong.yml` using HTTPie:
 
@@ -243,7 +243,7 @@ nodes, since they have no knowledge of each other.
 
 #### Read-Only Admin API
 
-Since the only way to configure entities is via declarative config,
+Since the only way to configure entities is via declarative configuration,
 the endpoints for CRUD operations on entities are effectively read-only
 in the Admin API when running Kong in DB-less mode. `GET` operations
 for inspecting entities work as usual, but attempts to `POST`, `PATCH`
