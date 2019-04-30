@@ -117,8 +117,6 @@
         url: /admin-api/admins/reference
       - text: Examples
         url: /admin-api/admins/examples
-      - text: How to Map AD Users to Admins
-        url: /admin-api/admins/ad-map
   - text: Vitals
     url: /admin-api/vitals
     items:
