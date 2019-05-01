@@ -1,15 +1,16 @@
 ---
 title: How to Start Kong Enterprise
+toc: false
 ---
-## 1. Start Kong Enterprise
+A **Super Admin** account is required to secure the Admin API with RBAC or Kong 
+Manager with an authentication plugin. 
 
-A Super Admin account is required to secure the Admin API with RBAC or Kong 
-Manager with an authentication plugin. The Super Admin account is created 
+The **Super Admin** account is created 
 during database migrations. 
 
 To set up the first account:
 
-1. Set a password for the Super Admin. This environment variable must
+1. Set a password for the **Super Admin**. This environment variable must
     be present in the environment where database migrations will run. 
 
     ```

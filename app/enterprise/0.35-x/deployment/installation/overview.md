@@ -1,5 +1,6 @@
 ---
 title: Installing Kong Enterprise
+toc: false
 ---
 
 <div class="docs-grid">

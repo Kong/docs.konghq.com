@@ -22,9 +22,6 @@
           url: /deployment/installation/red-hat
     - text: Upgrades and Migrations
       items:
-        - text: Changelog
-          url: /enterprise/changelog
-          absolute_url: true
         - text: Kong Enterprise Versioning
           url: /deployment/upgrades/edition-versioning
         - text: Migrating to 0.35
@@ -33,6 +30,9 @@
       items:
         - text: AWS Deployment
           url: /deployment/best-practices/aws
+    - text: Changelog
+      url: /enterprise/changelog
+      absolute_url: true
 
 - title: Getting Started
   items:
@@ -52,8 +52,6 @@
       url: /getting-started/add-admin
     - text: How to Add a Service and Route
       url: /getting-started/add-service
-    - text: How to Add a Plugin
-      url: /getting-started/add-plugin
     - text: How to Add a Consumer
       url: /getting-started/add-consumer
 
