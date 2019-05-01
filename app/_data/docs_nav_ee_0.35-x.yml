@@ -77,15 +77,15 @@
   items:
     - text: Overview
       url: /kong-manager/overview
-    - text: Securing Kong Manager
-      url: /kong-manager/security
     - text: Networking
+      url: /kong-manager/networking/configuration
       items:
         - text: Default and Custom Configuration
           url: /kong-manager/networking/configuration
         - text: Configuring Kong Manager to Send Email
           url: /kong-manager/networking/email
     - text: Authentication
+      url: /kong-manager/authentication/super-admin
       items:
         - text: How to Create a Super Admin
           url: /kong-manager/authentication/super-admin
@@ -98,8 +98,10 @@
         - text: Sessions in Kong Manager
           url: /kong-manager/authentication/sessions
     - text: Administration
+      url: /kong-manager/administration/workspaces/workspaces
       items:
         - text: Workspaces
+          url: /kong-manager/administration/workspaces/workspaces
         - items:
           - text: Workspaces in Kong Manager
             url: /kong-manager/administration/workspaces/workspaces
@@ -108,12 +110,14 @@
           - text: How to Update or Delete a Workspace
             url: /kong-manager/administration/workspaces/update-workspace
         - text: RBAC
+          url: /kong-manager/administration/rbac/rbac
         - items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac/rbac
           - text: How to Create a New Role with Custom Permissions
             url: /kong-manager/administration/rbac/new-role
         - text: Admins
+          url: /kong-manager/administration/admins/admins
         - items:
           - text: Admins in Kong Manager
             url: /kong-manager/administration/admins/admins
@@ -121,10 +125,6 @@
             url: /kong-manager/administration/admins/invite
     - text: Vitals in Kong Manager
       url: /kong-manager/vitals
-    - text: Best Practices with Kong Manager
-      url: /kong-manager/best-practices
-    - text: FAQ/Troubleshooting Kong Manager
-      url: /kong-manager/faq
 
 - title: Kong Dev Portal
   items:
