@@ -36,14 +36,10 @@
 
 - title: Getting Started
   items:
-    - text: Introduction
-      url: /getting-started/introduction
     - text: Key Concepts
       url: /getting-started/key-concepts
     - text: How to Start Kong Enterprise
       url: /getting-started/start-kong
-    - text: How to Enable Basic Authentication
-      url: /getting-started/enable-basic-auth
     - text: How to Add a Workspace
       url: /getting-started/add-workspace
     - text: How to Add a Role and Permissions
@@ -52,6 +48,8 @@
       url: /getting-started/add-admin
     - text: How to Add a Service and Route
       url: /getting-started/add-service
+    - text: How to Enable a Plugin
+      url: /getting-started/enable-plugin
     - text: How to Add a Consumer
       url: /getting-started/add-consumer
 

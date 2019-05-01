@@ -5,7 +5,7 @@ title: How to Add a Service and Route
 ## 1. Add Your Service Using the Admin API or Kong Manager
 
 If you'd like to use the Admin API, issue the following cURL request to add
-your first Service ([Mockbin][mockbin]) to Kong Enterprise:
+your first Service (Mockbin) to Kong Enterprise:
 
 ```bash
 $ curl -i -X POST \
@@ -57,7 +57,7 @@ Kong is now aware of your Service and ready to proxy requests.
 ## 3. Forward Requests through Kong Enterprise
 
 Issue the following cURL request to verify that Kong is properly forwarding
-requests to your Service. Note that [by default][proxy-port] Kong handles proxy
+requests to your Service. Note that by default, Kong handles proxy
 requests on port `:8000`:
 
 ```bash

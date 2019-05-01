@@ -1,27 +1,71 @@
 ---
 title: How to Add an Admin
+toc: false
 ---
-## How to Invite a New Admin from the Organization Page
+#### Table of Contents
 
-Inviting a new Admin through the “Organization” page is similar to inviting an [Admin within a Workspace](#how-to-invite-a-new-admin-in-a-workspace). However, from the “Organization” page, Roles can be assigned to a new Admin for multiple Workspaces at once. The Super Admin can also view global roles across Workspaces from this page. 
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Video Walkthrough](#video-walkthrough)
+- [Step 1](#step-1)
+- [Step 2](#step-2)
+- [Step 3](#step-3)
+- [Step 4](#step-4)
+- [Step 5](#step-5)
+- [Step 6](#step-6)
+- [Next Steps](#next-steps)
 
-<video width="100%" autoplay loop controls>
-  <source src="https://konghq.com/wp-content/uploads/2019/02/org-super-admin-ent-34.mov" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+### Introduction
 
-1. On the “Organization” page, to invite a new Admin, click the “Invite User” button.
+An **Admin** is any user in Kong Manager. They may access 
+Kong entities within their assigned **Workspaces** based 
+on the **Permissions** of their **Roles**.
 
-2. Fill out the username and email address. When a new Admin receives an invitation, they will only be able to log in with that email address. Assign the appropriate Role and click “Invite User” to send the invitation.
+This guide describes how to invite an **Admin** in Kong 
+Manager. As an alternative, if a **Super Admin** wants to 
+invite an **Admin** with the Admin API, it is possible to 
+do so using 
+[`/admins`](/enterprise/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
 
-    ⚠️ **IMPORTANT**: Super Admins can invite users to multiple Workspaces, and assign them any Role available within Workspaces, including Roles that exist by default (e.g. super-admin, read-only) and Roles with customized permissions. 
+### Prerequisites
 
-    ⚠️ **IMPORTANT**: The Super Admin can see all available roles across Workspaces on the “Roles” tab of the “Organization” page. 
+* [`enforce_rbac = on`](/enterprise/{{page.kong_version}}/property-reference/#enforce_rbac)
+* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/getting-started/start-kong.md)
+* Logged in to Kong Manager as a **Super Admin** 
+* SMTP must be configured to [send invitation emails](/enterprise/{{page.kong_version}}/kong-manager/networking/email/),
+but to simply test this workflow without actually sending 
+an email, leave [`smtp_mock = on`](/enterprise/{{page.kong_version}}/property-reference/#smtp_mock). See 
+[How to Copy and Send a Registration Link](/enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-copy-and-send-a-registration-link) 
+for details on how to 
+copy a registration link instead of sending an email.
 
-    ![Role List](https://konghq.com/wp-content/uploads/2018/12/org2.png)
+## Step 1
 
-3. On the “Organization” page, the new invitee will appear on the list with the “Invited” status. Once they accept the invitation, the user will be listed in the main “Users” list. 
+On the **Admins** page, to invite a new **Admin**, click the 
+**Create New Admin** button.
 
-    ![User List](https://konghq.com/wp-content/uploads/2018/12/org3-1.png)
+## Step 2
 
-4. The newly invited Admin will have the ability to set a password. If the Admin ever forgets the password, it is possible for them to reset it through a recovery email.
+Assign the appropriate **Role** and click "Invite Admin" to send 
+the invitation.
+
+**Note:** When a new **Admin** receives an invitation, they will 
+only be able to log in with that email address. 
+
+![Create New Admin](https://konghq.com/wp-content/uploads/2018/11/km-name-admin.png)
+
+## Step 3
+
+On the **Admin** page, the new invitee will appear on the list with 
+the **invited**"** status. Once they accept the invitation, their 
+status will change to **accepted**.
+
+![Invited Admins](https://konghq.com/wp-content/uploads/2018/11/km-invited-admins.png)
+
+## Step 4
+
+The newly invited **Admin** will have the ability to set a password. 
+If the **Admin** forgets the password, it is possible to reset it 
+through a recovery email.
+
+### Next Steps
