@@ -71,6 +71,11 @@
         url: /admin-api/rbac/examples
   - text: Admins
     url: /admin-api/admins/reference
+    items:
+      - text: API Reference
+        url: /admin-api/admins/reference
+      - text: Examples
+        url: /admin-api/admins/examples
   - text: Vitals
     url: /admin-api/vitals
     items:
