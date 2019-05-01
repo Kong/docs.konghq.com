@@ -1,5 +1,5 @@
 ---
-title: /rbac Endpoint Reference
+title: RBAC Reference
 book: rbac
 ---
 

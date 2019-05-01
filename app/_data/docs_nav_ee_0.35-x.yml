@@ -56,35 +56,22 @@
 - title: Admin API
   items:
   - text: Workspaces
-    items:
-      - text: /workspaces Endpoint Reference
-        url: /admin-api/workspaces/reference
-      - text: Examples
-        url: admin-api/workspaces/examples
+    url: /admin-api/workspaces/reference
   - text: RBAC
-    items:
-      - text: /rbac Endpoint Reference
-        url: /admin-api/rbac/reference
-      - text: Examples
-        url: /admin-api/rbac/examples
+    url: /admin-api/rbac/reference
   - text: Admins
-    items:
-      - text: /admins Endpoint Reference
-        url: /admin-api/admins/reference
-      - text: Examples
-        url: /admin-api/admins/examples
+    url: /admin-api/admins/reference
   - text: Vitals
+    url: /admin-api/vitals
     items:
       - text: Vitals Overview
         url: /admin-api/vitals
       - text: Kong Vitals with InfluxDB∂
-        url: /admin-api/vitals/influx-db
+        url: /admin-api/vitals/vitals-influx-strategy
       - text: Kong Vitals with Prometheus
-        url: /admin-api/vitals/prometheus
+        url: /admin-api/vitals/vitals-prometheus-strategy
   - text: Audit Logging
     url: /admin-api/audit-log
-  - text: Admin API Reference
-    url: /admin-api/reference
 
 - title: Kong Manager
   items:

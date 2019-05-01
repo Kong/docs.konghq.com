@@ -1,5 +1,5 @@
 ---
-title: /admins Endpoint Reference
+title: Admins Reference
 book: admins
 ---
 

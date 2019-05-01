@@ -1,5 +1,5 @@
 ---
-title: /workspaces Endpoint Reference Reference
+title: Workspaces Reference
 book: workspaces
 
 workspace_body: |
