@@ -64,6 +64,7 @@
         url: /admin-api/workspaces/examples
   - text: RBAC
     url: /admin-api/rbac/reference
+    items:
       - text: API Reference
         url: /admin-api/rbac/reference
       - text: Examples
