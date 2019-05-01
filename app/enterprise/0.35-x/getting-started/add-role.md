@@ -13,7 +13,6 @@ toc: false
 - [Step 4](#step-4)
 - [Step 5](#step-5)
 - [Step 6](#step-6)
-- [Next Steps](#next-steps)
 
 ### Introduction
 
@@ -90,5 +89,3 @@ Submit the form and see the new **Role** appear on the
 **Admins** page.
 
 ![Roles list](https://konghq.com/wp-content/uploads/2018/11/km-roles-list.png)
-
-### Next Steps

@@ -13,7 +13,6 @@ toc: false
 - [Step 4](#step-4)
 - [Step 5](#step-5)
 - [Step 6](#step-6)
-- [Next Steps](#next-steps)
 
 ### Introduction
 
@@ -57,7 +56,7 @@ only be able to log in with that email address.
 ## Step 3
 
 On the **Admin** page, the new invitee will appear on the list with 
-the **invited**"** status. Once they accept the invitation, their 
+the **invited** status. Once they accept the invitation, their 
 status will change to **accepted**.
 
 ![Invited Admins](https://konghq.com/wp-content/uploads/2018/11/km-invited-admins.png)
@@ -67,5 +66,3 @@ status will change to **accepted**.
 The newly invited **Admin** will have the ability to set a password. 
 If the **Admin** forgets the password, it is possible to reset it 
 through a recovery email.
-
-### Next Steps

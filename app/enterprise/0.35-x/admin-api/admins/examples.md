@@ -55,7 +55,3 @@ REGISTER_TOKEN=$(http $HOST/$WORKSPACE/admins/$USERNAME?generate_register_url=tr
 ```bash
 http $HOST/$WORKSPACE/admins/register token=$REGISTER_TOKEN username=$USERNAME email=$EMAIL password="<new_password>"
 ```
-
-### Next Steps
-
-Add **Roles** to the newly invited **Admins**.

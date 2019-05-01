@@ -9,7 +9,6 @@ toc: false
 - [Step 1](#step-1)
 - [Step 2](#step-2)
 - [Step 3](#step-3)
-- [Next Steps](#next-steps)
 
 ### Introduction
 
@@ -78,5 +77,3 @@ $ kong start [-c /path/to/kong.conf]
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
 allowing you to point to [your own configuration](/1.0.x/configuration/#configuration-loading).
-
-### Next Steps

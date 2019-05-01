@@ -35,6 +35,7 @@
       absolute_url: true
 
 - title: Getting Started
+  url: /getting-started/key-concepts
   items:
     - text: Key Concepts
       url: /getting-started/key-concepts
