@@ -6,50 +6,33 @@ book: admin_gui
 
 Kong Manager enables users with **Admin** accounts to interact with 
 Kong entitities such as **Services**,**Plugins**, and **Consumers**
-using a graphical interface. An **Admin** belongs to a **Workspace** 
-and has a **Role** in order to confine **Priviliges** based on a need 
-to know. Various **Authentication Plugins** that can be applied to
-Kong resources may also be applied to Kong Manager itself through
-configuration. The following document summarizes Kong Manager's 
+using a graphical interface. 
+
+An **Admin** belongs to a **Workspace** and has at least one **Role** 
+with a set of **Priviliges**. 
+
+The following document summarizes Kong Manager's 
 security controls for authentication and authorization. 
 
 ## Authentication with Plugins
 
-Why use Basic Auth?
+Kong Enterprise comes packaged with **Authentication Plugins** 
+that can be used to secure Kong Manager. Unlike enabling a **Plugin** 
+on an entity, using an **Authentication Plugin** for Kong Manager 
+simply requires enabling [`enforce_rbac`]() 
+and setting 
+[`admin_gui_auth`]() 
+to the desired **Plugin**.
 
-How to use Basic Auth.
+To use **Basic Authentication**
 
-Why use LDAP?
-
-How to use LDAP.
-
-Why use OIDC?
-
-How to use OIDC.
-
-Kong Manager may be configured to use a variety of **Authentication
-Plugins**. 
-
-### Identification
-
-Depending on the type of authentication, is possible to 
-identify Admins by username, email, or custom ID. The following 
-table shows how users are identified based on the authentication 
-type in Kong Manager:
-
-Basic - custom_id, email, or username - 
-LDAP - custom_id - 
-OIDC - email - 
-
-### Sessions
+## Sessions
 
 ## Authorization with RBAC and Workspaces
 
 ### Workspaces
 
 ### Role-Based Access Control
-
-## Accounting with Audit Logs
 
 ## Network Configuration
 
