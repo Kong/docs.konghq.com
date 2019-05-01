@@ -76,7 +76,7 @@
     items:
       - text: Vitals Overview
         url: /admin-api/vitals
-      - text: Kong Vitals with InfluxDB∂
+      - text: Kong Vitals with InfluxDB
         url: /admin-api/vitals/vitals-influx-strategy
       - text: Kong Vitals with Prometheus
         url: /admin-api/vitals/vitals-prometheus-strategy
