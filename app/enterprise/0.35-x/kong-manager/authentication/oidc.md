@@ -23,6 +23,7 @@ admin_gui_auth_conf={                                      \
   "logout_redirect_uri": ["localhost:8002"],               \
   "scopes": ["openid","profile","email","offline_access"], \
   "auth_methods": ["authorization_code"]                   \
+}
 ```
 
 The admin_gui_auth_config value must be valid JSON.

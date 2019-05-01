@@ -57,16 +57,31 @@
   items:
   - text: Workspaces
     url: /admin-api/workspaces/reference
+    items:
+      - text: API Reference
+        url: /admin-api/workspaces/reference
+      - text: Examples
+        url: /admin-api/workspaces/examples
   - text: RBAC
     url: /admin-api/rbac/reference
+    items:
+      - text: API Reference
+        url: /admin-api/rbac/reference
+      - text: Examples
+        url: /admin-api/rbac/examples
   - text: Admins
     url: /admin-api/admins/reference
+    items:
+      - text: API Reference
+        url: /admin-api/admins/reference
+      - text: Examples
+        url: /admin-api/admins/examples
   - text: Vitals
     url: /admin-api/vitals
     items:
       - text: Vitals Overview
         url: /admin-api/vitals
-      - text: Kong Vitals with InfluxDB∂
+      - text: Kong Vitals with InfluxDB
         url: /admin-api/vitals/vitals-influx-strategy
       - text: Kong Vitals with Prometheus
         url: /admin-api/vitals/vitals-prometheus-strategy

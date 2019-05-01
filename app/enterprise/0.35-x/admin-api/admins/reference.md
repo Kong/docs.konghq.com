@@ -42,8 +42,8 @@ HTTP 200 OK
 | Attribute   | Description |
 |-------------|------------------------------------------------------------|
 | `email` | The Admin's email address |
-| `username` <br>semi-optional | The Admin's user name |
-| `custom_id` <br>semi-optional | The Admin's custom ID |
+| `username` | The Admin's username |
+| `custom_id` <br>optional | The Admin's custom ID |
 
 **Response**
 
@@ -99,7 +99,7 @@ HTTP 201 Created
 |-------------|------------------------------------------------------------|
 | `email` | The Admin's email address |
 | `password` | The Admin's new password |
-| `token` | The authentication token to be presented to the Admin API. |
+| `token` | The authentication token |
 
 **Response**
 
@@ -114,7 +114,7 @@ HTTP 200 OK
 
 | Attribute | Description |
 |------------|-----------------------------------|
-| name_or_id | The Admin's username or custom_id |
+| name_or_id | The Admin's username or ID |
 
 **Response**
 
@@ -140,9 +140,9 @@ HTTP 200 OK
 
 | Attribute | Description |
 |----------------------|--------------------------------------------|
-| `name_or_id` | The Admin's current user name or custom ID |
+| `name_or_id` | The Admin's current username or custom ID |
 | `email` <br>optional | The Admin's new email address |
-| `username` <br>optional | The Admin's new user name |
+| `username` <br>optional | The Admin's new username |
 | `custom_id` <br>optional | The Admin's new custom ID |
 
 **Response**
@@ -169,7 +169,7 @@ HTTP 200 OK
 
 | Attribute   | Description |
 |--------------|-----------------------------------|
-| `name_or_id` | The Admin's username or custom_id |
+| `name_or_id` | The Admin's username or ID |
 
 **Response**
 
@@ -184,7 +184,7 @@ HTTP 204 No Content
 
 | Attribute   | Description |
 |--------------|-----------------------------------|
-| `name_or_id` | The Admin's username or custom_id |
+| `name_or_id` | The Admin's username or ID |
 
 **Response**
 
@@ -217,8 +217,8 @@ HTTP 200 OK
 
 | Attribute   | Description |
 |--------------|-----------------------------------------------------------|
-| `name_or_id` | The Admin's current user name or custom ID |
-| `roles` | (comma separated) string of roles to remove from an Admin |
+| `name_or_id` | The Admin's current username or ID |
+| `roles` | (comma separated) string of names of Roles to create or update for an Admin |
 
 **Response**
 
@@ -258,8 +258,8 @@ HTTP 201 OK
 
 | Attribute   | Description |
 |--------------|-----------------------------------------------------------|
-| `name_or_id` | The Admin's current user name or custom ID |
-| `roles` | (comma separated) string of roles to remove from an Admin |
+| `name_or_id` | The Admin's current username or custom ID |
+| `roles` | (comma separated) string of names of Roles to remove from an Admin |
 
 **Response**
 
@@ -274,7 +274,7 @@ HTTP 204 No Content
 
 | Attribute   | Description |
 |--------------|-----------------------------------|
-| `name_or_id` | The Admin's user name or custom ID |
+| `name_or_id` | The Admin's username or ID |
 
 **Response**
 
