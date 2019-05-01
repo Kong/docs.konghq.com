@@ -57,8 +57,17 @@
   items:
   - text: Workspaces
     url: /admin-api/workspaces/reference
+    items:
+      - text: API Reference
+        url: /admin-api/workspaces/reference
+      - text: Examples
+        url: /admin-api/workspaces/examples
   - text: RBAC
     url: /admin-api/rbac/reference
+      - text: API Reference
+        url: /admin-api/rbac/reference
+      - text: Examples
+        url: /admin-api/rbac/examples
   - text: Admins
     url: /admin-api/admins/reference
   - text: Vitals
