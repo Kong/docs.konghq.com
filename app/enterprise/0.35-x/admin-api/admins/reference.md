@@ -69,6 +69,13 @@ HTTP 200 OK
 
 <div class="endpoint post">/admins/register</div>
 
+| Attribute   | Description |
+|-------------|---------------------------|
+| `token` | The authentication token |
+| `username` | The admin's username |
+| `email` | The admin's email address |
+| `password` | The admin's new password |
+
 **Response**
 
 ```
