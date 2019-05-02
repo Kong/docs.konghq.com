@@ -21,19 +21,18 @@ to to provide an abstraction for your own entities.
 ```
 kong.plugins.<plugin_name>.daos
 kong.plugins.<plugin_name>.migrations.init
-kong.plugins.<plugin_name>.migrations.000_base
-kong.plugins.<plugin_name>.migrations.001_xxx
-kong.plugins.<plugin_name>.migrations.002_yyy
+kong.plugins.<plugin_name>.migrations.000_base_<plugin_name>
+kong.plugins.<plugin_name>.migrations.001_<from-version>_to_<to_version>
+kong.plugins.<plugin_name>.migrations.002_<from-version>_to_<to_version>
 ```
 
 ## Create the migrations folder
 
 Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
-entity will be stored. A migration file holds an array of migrations, and
-returns them.
+entity will be stored.
 
-If you plugin is intended to support both Cassandra and PostgreSQL, then both
+If your plugin is intended to support both Cassandra and Postgres, then both
 migrations must be written.
 
 If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
@@ -42,76 +41,125 @@ This is where all the migrations for your plugin will be referenced.
 
 The initial version of your `migrations/init.lua` file will point to a single migration.
 
-In this case we have called it `000_base`.
+In this case we have called it `000_base_my_plugin`.
 
 ``` lua
 -- `migrations/init.lua`
 return {
-  "000_base",
+  "000_base_my_plugin",
 }
 ```
 
-This means that there will be a file in `<plugin_name>/migrations/000_base.lua` containing the
-initial migrations. We'll see how this is done in a minute.
+This means that there will be a file in `<plugin_name>/migrations/000_base_my_plugin.lua`
+containing the initial migrations. We'll see how this is done in a minute.
 
 ## Adding a new migration to an existing plugin
 
 Sometimes it is necessary to introduce changes after a version of a plugin has already been
 released. A new functionality might be needed. A database table row might need changing.
 
-When this happens, *you must* create a new migrations file. You *must not*
-of modify the existing migration files once they are published.
+When this happens, *you must* create a new migrations file. You *must not* of modify the
+existing migration files once they are published (you can still make them more robust and
+bulletproof if you want, e.g. always try to write the migrations reentrant).
 
 While there is no strict rule for naming your migration files, there is a convention that the
 initial one is prefixed by `000`, the next one by `001`, and so on.
 
 Following with our previous example, if we wanted to release a new version of the plugin with
 changes in the database (for example, a table was needed called `foo`) we would insert it by
-adding a file called `<plugin_name>/migrations/001_add_foo.lua`, and referencing it on the
-migrations init file like so:
+adding a file called `<plugin_name>/migrations/001_100_to_110.lua`, and referencing it on the
+migrations init file like so (where `100` is the previous version of the plugin `1.0.0` and
+`110` is the version to which plugin is migrated to `1.1.0`:
 
 
 ``` lua
 -- `<plugin_name>/migrations/init.lua`
 return {
-  "000_base",
-  "001_add_foo",
+  "000_base_my_plugin",
+  "001_100_to_110",
 }
 ```
 
 ## Migration File syntax
 
-While Kong's core migrations support both PostgreSQL and Cassandra, custom plugins
+While Kong's core migrations support both Postgres and Cassandra, custom plugins
 can choose to support either both of them or just one.
 
 A migration file is a Lua file which returns a table with the following structure:
 
 ``` lua
--- `<plugin_name>/migrations/000_base.lua`
+-- `<plugin_name>/migrations/000_base_my_plugin.lua`
 return {
   postgresql = {
     up = [[
-      CREATE INDEX IF NOT EXISTS "routes_name_idx" ON "routes" ("name");
+      CREATE TABLE IF NOT EXISTS "my_plugin_table" (
+        "id"           UUID                         PRIMARY KEY,
+        "created_at"   TIMESTAMP WITHOUT TIME ZONE,
+        "col1"         TEXT
+      );
+    
+      DO $$
+      BEGIN
+        CREATE INDEX IF NOT EXISTS "my_plugin_table_col1"
+                                ON "my_plugin_table" ("col1");
+      EXCEPTION WHEN UNDEFINED_COLUMN THEN
+        -- Do nothing, accept existing state
+      END$$;
+    ]],
+  },
+
+  cassandra = {
+    up = [[
+      CREATE TABLE IF NOT EXISTS my_plugin_table (
+        id          uuid PRIMARY KEY,
+        created_at  timestamp,
+        col1        text
+      );
+      
+      CREATE INDEX IF NOT EXISTS ON my_plugin_table (col1);
+    ]],
+  }
+}
+
+-- `<plugin_name>/migrations/001_100_to_110.lua`
+return {
+  postgresql = {
+    up = [[
+      DO $$
+      BEGIN
+        ALTER TABLE IF EXISTS ONLY "my_plugin_table" ADD "cache_key" TEXT UNIQUE;
+      EXCEPTION WHEN DUPLICATE_COLUMN THEN
+        -- Do nothing, accept existing state
+      END;
+    $$;
     ]],
     teardown = function(connector, helpers)
       assert(connector:connect_migrations())
-      assert(connector:query('DROP TABLE IF EXISTS "schema_migrations" CASCADE;'))
+      assert(connector:query([[
+        DO $$
+        BEGIN
+          ALTER TABLE IF EXISTS ONLY "my_plugin_table" DROP "col1";
+        EXCEPTION WHEN UNDEFINED_COLUMN THEN
+          -- Do nothing, accept existing state
+        END$$;
+      ]])
     end,
   },
 
   cassandra = {
     up = [[
-      CREATE INDEX IF NOT EXISTS routes_name_idx ON routes(name);
+      ALTER TABLE my_plugin_table ADD cache_key text;
+      CREATE INDEX IF NOT EXISTS ON my_plugin_table (cache_key);
     ]],
     teardown = function(connector, helpers)
       assert(connector:connect_migrations())
-      assert(connector:query("DROP TABLE IF EXISTS schema_migrations"))
+      assert(connector:query("ALTER TABLE my_plugin_table DROP col1"))
     end,
   }
 }
 ```
 
-If a plugin only supports PostgreSQL or Cassandra, only the section for one strategy is
+If a plugin only supports Postgres or Cassandra, only the section for one strategy is
 needed. Each strategy section has two parts, `up` and `teardown`.
 
 * `up` is an optional string of raw SQL/CQL statements. Those statements will be executed
@@ -127,20 +175,20 @@ removal of data, changing row types, insertion of new data) is done on the `tear
 In both cases, it is recommended that all the SQL/CQL statements are written so that they are
 as reentrant as possible. `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
 `CREATE INDEX IF NOT EXIST` instead of `CREATE INDEX`, etc. If a migration fails for some
-reason it is expected that the first attempt at fixing the problem will be simply
+reason, it is expected that the first attempt at fixing the problem will be simply
 re-running the migrations.
 
-While PostgreSQL does, Cassandra does not support constraints such as "NOT
+While Postgres does, Cassandra does not support constraints such as "NOT
 NULL", "UNIQUE" or "FOREIGN KEY", but Kong provides you with such features when
 you define your model's schema. Bear in mind that this schema will be the same
-for both PostgreSQL and Cassandra, hence, you might trade-off a pure SQL schema
+for both Postgres and Cassandra, hence, you might trade-off a pure SQL schema
 for one that works with Cassandra too.
 
 **IMPORTANT**: if your `schema` uses a `unique` constraint, then Kong will
-enforce it for Cassandra, but for PostgreSQL you must set this constraint in
+enforce it for Cassandra, but for Postgres you must set this constraint in
 the migrations.
 
-To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/{{page.kong_version}}/kong/plugins/key-auth/migrations)
+To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/{{page.kong_version}}/kong/plugins/key-auth/migrations).
 
 ---
 
@@ -168,23 +216,49 @@ plugin folder. The `daos.lua` file should return a table containing one or more
 schemas. For example:
 
 ```lua
--- <plugin_name>/daos.lua
+-- daos.lua
 local typedefs = require "kong.db.schema.typedefs"
 
-local credentials = {
-  primary_key = { "id" },
-  name = "keyauth_credentials",
-  endpoint_key = "key",
-  cache_key = { "key" },
-  fields = {
-    { id = typedefs.uuid },
-    { created_at = typedefs.auto_timestamp_s },
-    { consumer = { type = "foreign", reference = "consumers", default = ngx.null, on_delete = "cascade" } },
-    { key = { type = "string", required = false, unique = true, auto = true } },
-  }
-}
 
-return { credentials }
+return {
+  -- this plugin only results in one custom DAO, named `keyauth_credentials`:
+  keyauth_credentials = {
+    name               = "keyauth_credentials", -- the actual table in the database
+    endpoint_key       = "key",
+    primary_key        = { "id" },
+    cache_key          = { "key" },
+    generate_admin_api = true,
+    fields = {
+      {
+        -- a value to be inserted by the DAO itself
+        -- (think of serial id and the uniqueness of such required here)
+        id = typedefs.uuid,
+      },
+      {
+        -- also interted by the DAO itself
+        created_at = typedefs.auto_timestamp_s,
+      },
+      {
+        -- a foreign key to a consumer's id
+        consumer = {
+          type      = "foreign",
+          reference = "consumers",
+          default   = ngx.null,
+          on_delete = "cascade",
+        },
+      },
+      {
+        -- a unique API key
+        key = {
+          type      = "string",
+          required  = false,
+          unique    = true,
+          auto      = true,
+        },
+      },
+    },
+  },
+}
 ```
 
 This example `daos.lua` file introduces a single schema called `keyauth_credentials`.
@@ -196,13 +270,14 @@ Here is a description of some top-level properties:
 <tr><th>Name</th><th>Type</th><th>Description</th></tr>
 <tr>
   <td><code>name</code></td>
-  <td>String (mandatory)</td>
+  <td><code>string</code> (required)</td>
   <td>It will be used to determine the DAO name (<code>kong.db.[name]</code>).</td>
 </tr>
 <tr>
   <td><code>primary_key</code></td>
-  <td>Array of strings (mandatory)</td>
-  <td>Field names forming the entity's primary key.
+  <td><code>table</code> (required)</td>
+  <td>
+    Field names forming the entity's primary key.
     Schemas support composite keys, even if most Kong core entities currently use an UUID named
     <code>id</code>. If you are using Cassandra and need a composite key, it should have the same
     fields as the partition key.
@@ -210,8 +285,9 @@ Here is a description of some top-level properties:
 </tr>
 <tr>
 <td><code>endpoint_key</code></td>
-  <td>String (optional)</td>
-  <td>The name of the field used as an alternative identifier on the Admin API.
+  <td><code>string</code> (optional)</td>
+  <td>
+    The name of the field used as an alternative identifier on the Admin API.
     On the example above, <code>key</code> is the endpoint_key. This means that a credential with
     <code>id = 123</code> and <code>key = "foo"</code> could be referenced as both
     <code>/keyauth_credentials/123</code> and <code>/keyauth_credentials/foo</code>.
@@ -219,16 +295,18 @@ Here is a description of some top-level properties:
 </tr>
 <tr>
   <td><code>cache_key</code></td>
-  <td>Array of strings (optional)</td>
-  <td>Contains the name of the fields used for generating the <code>cache_key</code>, a string which must
+  <td><code>table</code> (optional)</td>
+  <td>
+    Contains the name of the fields used for generating the <code>cache_key</code>, a string which must
     unequivocally identify the entity inside Kong's cache. A unique field, like <code>key</code> in your example,
     is usually good candidate. In other cases a combination of several fields is preferable.
   </td>
 </tr>
 <tr>
   <td><code>fields</code></td>
-  <td>Array of field definitions</td>
-  <td>Each field definition is a table with a single key, which is the field's name. The table value is
+  <td><code>table</code></td>
+  <td>
+    Each field definition is a table with a single key, which is the field's name. The table value is
     a subtable containing the field's <em>attributes</em>, some of which will be explained below.
   </td>
 </tr>
@@ -250,36 +328,40 @@ Here's a non-exhaustive explanation of some of the field attributes available:
 <tr><th>Attribute name</th><th>type</th><th>Description</th></tr>
 <tr>
   <td><code>type</code></td>
-  <td>String</td>
+  <td><code>string</code></td>
   <td>
-  <p>Schemas support the following scalar types: <code>"string"</code>, <code>"integer"</code>, <code>"number"</code> and
-  <code>"boolean"</code>. Compound types like <code>"array"</code>, <code>"record"</code>, or <code>"set"</code> are
-  also supported.</p>
+    Schemas support the following scalar types: <code>"string"</code>, <code>"integer"</code>, <code>"number"</code> and
+    <code>"boolean"</code>. Compound types like <code>"array"</code>, <code>"record"</code>, or <code>"set"</code> are
+    also supported.<br><br>
 
-  <p>In additon to these values, the <code>type</code> attribute can also take the special <code>"foreign"</code> value,
-  which denotes a foreign relationship.</p>
+    In additon to these values, the <code>type</code> attribute can also take the special <code>"foreign"</code> value,
+    which denotes a foreign relationship.<br><br>
 
-  <p>Each field will need to be backed by database fields of appropriately similar types, created via migrations.</p>
+    Each field will need to be backed by database fields of appropriately similar types, created via migrations.<br><br>
 
-  <p><code>type</code> is the only required attribute for all field definitions.</p>
+    <code>type</code> is the only required attribute for all field definitions.
   </td>
 </tr>
 <tr>
   <td><code>default</code></td>
-  <td>Any Lua value matching the <code>type</code> attribute</td>
-  <td>Specifies the value the field will have when attempting to insert it, if no value was provided.
-  Devalut values are always set via Lua, never by the underlying database. It is thus not recommended to set
-  any default values on fields in migrations.</td>
+  <td><code>any</code> (matching with <code>type</code> attribute)</td>
+  <td>
+    Specifies the value the field will have when attempting to insert it, if no value was provided.
+    Default values are always set via Lua, never by the underlying database. It is thus not recommended to set
+    any default values on fields in migrations.
+  </td>
 </tr>
 <tr>
   <td><code>required</code></td>
-  <td>Boolean</td>
-  <td>When set to <code>true</code> on a field, an error will be thrown when attempting to insert an entity lacking a value
-    for said field (unless the field in question has a default value).</td>
+  <td><code>boolean</code></td>
+  <td>
+    When set to <code>true</code> on a field, an error will be thrown when attempting to insert an entity lacking a value
+    for said field (unless the field in question has a default value).
+  </td>
 </tr>
 <tr>
   <td><code>unique</code></td>
-  <td>Boolean</td>
+  <td><code>boolean</code></td>
   <td>
   <p>When set to <code>true</code> on a field, an error will be thrown when attempting to insert an entity on the database,
     but another entity already has the given value on said field.</p>
@@ -291,9 +373,10 @@ Here's a non-exhaustive explanation of some of the field attributes available:
 </tr>
 <tr>
   <td><code>auto</code></td>
-  <td>Boolean</td>
+  <td><code>boolean</code></td>
   <td>
-  <p>When attempting to insert an entity without providing a value for this a field where <code>auto</code> is set to <code>true</code>, </p>
+  When attempting to insert an entity without providing a value for this a field where <code>auto</code> is set to <code>true</code>,
+  <br><br>
   <ul>
     <li>If <code>type == "uuid"</code>, the field will take a random UUID as value.</li>
     <li>If <code>type == "string"</code>, the field will take a random string.</li>
@@ -304,7 +387,7 @@ Here's a non-exhaustive explanation of some of the field attributes available:
 </tr>
 <tr>
   <td><code>reference</code></td>
-  <td>String</td>
+  <td><code>string</code></td>
   <td>Required for fields of type <code>foreign</code>. The given string <em>must</em> be the name of an existing schema,
     to which the foreign key will "point to". This means that if a schema B has a foreign key pointing to schema A,
     then A needs to be loaded before B.
@@ -312,21 +395,22 @@ Here's a non-exhaustive explanation of some of the field attributes available:
 </tr>
 <tr>
   <td><code>on_delete</code></td>
-  <td>String</td>
+  <td><code>string</code></td>
   <td>
-  <p>Optional and exclusive for fields of type <code>foreign</code>. It dictates what must happen
-  with entities linked by a foreign key when the entity being referenced is deleted. It can have three possible
-  values:</p>
+    Optional and exclusive for fields of type <code>foreign</code>. It dictates what must happen
+    with entities linked by a foreign key when the entity being referenced is deleted. It can have three possible
+    values:<br><br>
 
-  <ul>
-    <li><code>"cascade"</code>: When the linked entity is deleted, all the dependent entities must also be deleted.</li>
-    <li><code>"null"</code>: When the linked entity is deleted, all the dependent entities will have their foreign key
-    field set to <code>null</code>.</li>
-    <li><code>"restrict"</code>: Attempting to delete an entity with linked entities will result in an error.</li>
-  </ul>
+    <ul>
+      <li><code>"cascade"</code>: When the linked entity is deleted, all the dependent entities must also be deleted.</li>
+      <li><code>"null"</code>: When the linked entity is deleted, all the dependent entities will have their foreign key
+      field set to <code>null</code>.</li>
+      <li><code>"restrict"</code>: Attempting to delete an entity with linked entities will result in an error.</li>
+    </ul>
 
-  <p>In Cassandra this is handled with pure Lua code, but in PostgreSQL it will be necessary to declare the references
-    as <code>ON DELETE CASCADE/NULL/RESTRICT</code> in a migration.</p>
+    <br><br>
+    In Cassandra this is handled with pure Lua code, but in PostgreSQL it will be necessary to declare the references
+    as <code>ON DELETE CASCADE/NULL/RESTRICT</code> in a migration.
   </td>
 </tr>
 </tbody>
@@ -551,9 +635,11 @@ When a custom entity is required on every request/response it is good practice
 to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 
 The next chapter will focus on caching custom entities, and invalidating them
-when they change in the datastore: [Caching custom
-entities]({{page.book.next}}).
+when they change in the datastore: [Caching custom entities]({{page.book.next}}).
 
 ---
 
 Next: [Caching custom entities &rsaquo;]({{page.book.next}})
+
+[Admin API]: /{{page.kong_version}}/admin-api/
+[Plugin Development Kit]: /{{page.kong_version}}/pdk
