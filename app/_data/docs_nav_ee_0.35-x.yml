@@ -100,6 +100,8 @@
           url: /kong-manager/networking/configuration
         - text: Configuring Kong Manager to Send Email
           url: /kong-manager/networking/email
+    - text: Securing Kong Manager
+      url: /kong-manager/security
     - text: Authentication
       url: /kong-manager/authentication/super-admin
       items:
