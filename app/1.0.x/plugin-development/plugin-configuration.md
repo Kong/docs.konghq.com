@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Store Configuration
+title: Plugin Development - Plugin Configuration
 book: plugin_dev
 chapter: 4
 ---
@@ -7,7 +7,7 @@ chapter: 4
 ## Introduction
 
 Most of the time, it makes sense for your plugin to be configurable to answer
-all of your user's needs. Your plugin's configuration is stored in the
+all of your users' needs. Your plugin's configuration is stored in the
 datastore for Kong to retrieve it and pass it to your
 [handler.lua]({{page.book.chapters.custom-logic}}) methods when the plugin is
 being executed.
@@ -24,16 +24,22 @@ Service, Route and/or Consumer.
 For example, a user performs the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/services/<service-name-or-id>/plugins/ \
+$ curl -X POST http://kong:8001/services/<service-name-or-id>/plugins \
     -d "name=my-custom-plugin" \
     -d "config.foo=bar"
 ```
 
 If all properties of the `config` object are valid according to your schema,
 then the API would return `201 Created` and the plugin would be stored in the
-database along with its configuration (`{foo = "bar"}` in this case). If the
-configuration is not valid, the Admin API would return `400 Bad Request` and
-the appropriate error messages.
+database along with its configuration:
+```lua
+{
+  foo = "bar"
+}
+ ```
+ 
+If the configuration is not valid, the Admin API would return `400 Bad Request`
+and the appropriate error messages.
 
 ## Module
 
@@ -43,102 +49,224 @@ kong.plugins.<plugin_name>.schema
 
 ## schema.lua specifications
 
-This module is to return a Lua table with properties that will define how your plugins can later be configured by users. Available properties are:
+This module is to return a Lua table with properties that will define how your
+plugins can later be configured by users. Available properties are:
 
-| Property name                 | Lua type    | Default          | Description
-|-------------------------------|-------------|------------------|-------------
-| `no_consumer`                 | Boolean     | `false`          | If true, it will not be possible to apply this plugin to a specific Consumer. This plugin must be applied to Services and Routes only. For example: authentication plugins.
-| `fields`                      | Table       | `{}`             | Your plugin's **schema**. A key/value table of available properties and their rules.
-| `self_check`                  | Function    | `nil`            | A function to implement if you want to perform any custom validation before accepting the plugin's configuration.
+| Property name   | Lua type   | Description
+|-----------------|------------|------------
+| `name`          | `string`   | Name of the plugin, e.g. `key-auth`.
+| `fields`        | `table`    | Array of field definitions.
+| `entity_checks` | `function` | Array of conditional entity level validation checks.
 
-The `self_check` function must be implemented as follows:
+
+All the plugins inherit some default fields which are:
+
+| Field name      | Lua type   | Description
+|-----------------|------------|------------
+| `id`            | `string`   | Auto-generated plugin id.
+| `name`          | `string`   | Name of the plugin, e.g. `key-auth`.
+| `created_at`    | `number`   | Creation time of the plugin configuration (seconds from epoch).
+| `route`         | `table`    | Route to which plugin is bound, if any.
+| `service`       | `table`    | Service to which plugin is bound, if any.
+| `consumer`      | `table`    | Consumer to which plugin is bound when possible, if any.
+| `run_on`        | `string`   | Determines on which node the plugin should run on service mesh.
+| `protocols`     | `table`    | The plugin will run on specified protocol(s).
+| `enabled`       | `boolean`  | Whether or not the plugin is enabled.
+| `tags`          | `table`    | The tags for the plugin.
+
+In most of the cases you can ignore most of those and use the defaults. Or let the user
+specify value when enabling a plugin.
+
+Here is an example of a potential `schema.lua` file (with some overrides applied):
 
 ```lua
--- @param `schema` A table describing the schema (rules) of your plugin configuration.
--- @param `config` A key/value table of the current plugin's configuration.
--- @param `dao` An instance of the DAO (see DAO chapter).
--- @param `is_updating` A boolean indicating whether or not this check is performed in the context of an update.
--- @return `valid` A boolean indicating if the plugin's configuration is valid or not.
--- @return `error` A DAO error (see DAO chapter)
-```
+local typedefs = require "kong.db.schema.typedefs"
 
-Here is an example of a potential `schema.lua` file:
 
-```lua
 return {
-  no_consumer = true, -- this plugin will only be applied to Services or Routes,
+  name = "<plugin-name>",
   fields = {
-    -- Describe your plugin's configuration's schema here.
+    {
+      -- this plugin will only be applied to Services or Routes
+      consumer = typedefs.no_consumer
+    },
+    {
+      -- this plugin will only be executed on the first Kong node
+      -- if a request comes from a service mesh (when acting as
+      -- a non-service mesh gateway, the nodes are always considered
+      -- to be "first".
+      run_on = typedefs.run_on_first
+    },
+    {
+      -- this plugin will only run within Nginx HTTP module
+      protocols = typedefs.protocols_http
+    },
+    {
+      config = {
+        type = "record",
+        fields = {
+          -- Describe your plugin's configuration's schema here.        
+        },
+      },
+    },
   },
-  self_check = function(schema, plugin_t, dao, is_updating)
-    -- perform any custom verification
-    return true
-  end
+  entity_checks = {
+    -- Describe your plugin's entity validation rules
+  },
 }
 ```
 
 ## Describing your configuration schema
 
-The `fields` property of your `schema.lua` file described the schema of your
-plugin's configuration. It is a flexible key/value table where each key will be
-a valid configuration property for your plugin, and each value a table
-describing the rules for that property. For example:
+The `config.fields` property of your `schema.lua` file describes the schema of your
+plugin's configuration. It is a flexible array of field definitions where each field
+is a valid configuration property for your plugin, describing the rules for that
+property. For example:
 
 ```lua
+{
+  name = "<plugin-name>",
   fields = {
-    some_string = {type = "string", required = true},
-    some_boolean = {type = "boolean", default = false},
-    some_array = {type = "array", enum = {"GET", "POST", "PUT", "DELETE"}}
-  }
+    config = {
+      type = "record",
+      fields = {
+        {
+          some_string = {
+            type = "string",
+            required = false,
+          },
+        },
+        {
+          some_boolean = {
+            type = "boolean",
+            default = false,
+          },
+        },
+        {
+          some_array = {
+            type = "array",
+            elements = {
+              type = "string",
+              one_of = {
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+}
 ```
 
-Here is the list of accepted rules for a property:
+Here is the list of some common (not all) accepted rules for a property (see the fields table above for examples):
 
-| Rule          | Lua type(s)              | Accepted values                                 | Description
-|---------------|--------------------------|-------------------------------------------------|----------------------------
-| `type`        | string                   | "id", "number", "boolean", "string", "table", "array", "url", "timestamp" | Validates the type of a property.
-| `required`    | boolean                  |                                                 | **Default**: false. If true, the property must be present in the configuration.
-| `unique`      | boolean                  |                                                 | **Default**: false. If true, the value must be unique (see remark below).
-| `default`     | any                      |                                                 | If the property is not specified in the configuration, will set the property to the given value.
-| `immutable`   | boolean                  |                                                 | **Default**: false. If true, the property will not be allowed to be updated once the plugin configuration has been created.
-| `enum`        | table                    | Integer indexed table                           | A list of accepted values for a property. Any value not included in this list will not be accepted.
-| `regex`       | string                   | A valid PCRE regular expression                 | A regex against which to validate the property's value.
-| `schema`      | table                    | A nested schema definition                      | If the property's `type` is table, defines a schema against which to validate those sub-properties.
-| `func`        | function                 |                                                 | A function to perform any custom validation on a property. See later examples for its parameters and return values.
+| Rule               | Description
+|--------------------|----------------------------
+| `type`             | The type of a property.
+| `required`         | Whether or not the property is required 
+| `default`          | The default value for the property when not specified
+| `elements`         | Field definition of `array` or `set` elements.
+| `keys`             | Field definition of `map` keys.
+| `values`           | Field definition of `map` values.
+| `fields`           | Field definition(s) of `record` fields.
 
-> - **type**: will cast the value retrieved from the request parameters. If the type is not one of the native Lua types, custom verification is performed against it:
->   - id: must be a string
->   - timestamp: must be a number
->   - url: must be a valid URL
->   - array: must be an integer-indexed table (equivalent of arrays in Lua). In
->     the Admin API, such an array can either be sent by having several times
->     the property's key with different values in the request's body, or
->     comma-delimited through a single body parameter.
-> - **unique**: This property does not make sense for a plugin configuration,
->   but is used when a plugin needs to store custom entities in the datastore.
-> - **schema**: if you need to perform deepened validation of nested
->   properties, this field allows you to create a nested schema. Schema
->   verification is **recursive**. Any level of nesting is valid, but bear in
->   mind that this will affect the usability of your plugin.
-> - **Any property attached to a configuration object but not present in your
->   schema will also invalidate the said configuration.**
+There are many more, but the above are commonly used.
+
+You can also add field validators, to mention a few:
+
+| Rule               | Description
+|--------------------|----------------------------
+| `between`          | Checks that the input number is between allowed values.
+| `eq`               | Checks the equality of the input to allowed value.
+| `ne`               | Checks the inequality of the input to allowed value.
+| `gt`               | Checks that the number is greater than given value. 
+| `len_eq`           | Checks that the input string length is equal to the given value. 
+| `len_min`          | Checks that the input string length is at least the given value.
+| `len_max`          | Checks that the input string length is at most the given value.
+| `match`            | Checks that the input string matches the given Lua pattern.
+| `not_match`        | Checks that the input string doesn't match the given Lua pattern.
+| `match_all`        | Checks that the input string matches all the given Lua patterns.
+| `match_none`       | Checks that the input string doesn't match any of the given Lua patterns.
+| `match_any`        | Checks that the input string matches any of the given Lua patterns.
+| `starts_with`      | Checks that the input string starts with a given value.
+| `one_of`           | Checks that the input string is one of the accepted values.
+| `contains`         | Checks that the input array contains the given value.
+| `is_regex`         | Checks that the input string is a valid regex pattern.  
+| `custom_validator` | A custom validation function written in Lua.
+
+There are some additional validators, but you get a good idea how you can specify validation
+rules on fields from the above table.
 
 ---
 
 ### Examples
 
-This `schema.lua` file for the [key-auth](/plugins/key-authentication/) plugin
-defines a default list of accepted parameter names for an API key, and a
-boolean whose default is set to `false`:
+This `schema.lua` file is for the [key-auth](/hub/kong-inc/key-auth/) plugin:
 
 ```lua
 -- schema.lua
+local typedefs = require "kong.db.schema.typedefs"
+
+
 return {
-  no_consumer = true,
+  name = "key-auth",
   fields = {
-    key_names = {type = "array", required = true, default = {"apikey"}},
-    hide_credentials = {type = "boolean", default = false}
-  }
+    {
+      consumer = typedefs.no_consumer
+    },
+    {
+      run_on = typedefs.run_on_first
+    },
+    {
+      protocols = typedefs.protocols_http
+    },
+    {
+      config = {
+        type = "record",
+        fields = {
+          {
+            key_names = {
+              type = "array",
+              required = true,
+              elements = typedefs.header_name,
+              default = {
+                "apikey",
+              },
+            },
+          },
+          {
+            hide_credentials = {
+              type = "boolean",
+              default = false,
+            },
+          },
+          {
+            anonymous = {
+              type = "string",
+              uuid = true,
+              legacy = true,
+            },
+          },
+          {
+            key_in_body = {
+              type = "boolean",
+              default = false,
+            },
+          },
+          {
+            run_on_preflight = {
+              type = "boolean",
+              default = true,
+            },
+          },
+        },
+      },
+    },
+  },
 }
 ```
 
@@ -149,18 +277,30 @@ enabled the plugin with the default values, you'd have access to:
 ```lua
 -- handler.lua
 local BasePlugin = require "kong.plugins.base_plugin"
+
+
+local kong = kong
+
+
 local CustomHandler = BasePlugin:extend()
+
+
+CustomHandler.VERSION  = "1.0.0"
+CustomHandler.PRIORITY = 10
+
 
 function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
 end
 
+
 function CustomHandler:access(config)
   CustomHandler.super.access(self)
 
-  kong.log.inspect(config.key_names)        -- {"apikey"}
+  kong.log.inspect(config.key_names)        -- { "apikey" }
   kong.log.inspect(config.hide_credentials) -- false
 end
+
 
 return CustomHandler
 ```
@@ -176,32 +316,52 @@ A more complex example, which could be used for an eventual logging plugin:
 
 ```lua
 -- schema.lua
+local typedefs = require "kong.db.schema.typedefs"
 
-local function server_port(given_value, given_config)
-  -- Custom validation
-  if given_value > 65534 then
-    return false, "port value too high"
-  end
-
-  -- If environment is "development", 8080 will be the default port
-  if given_config.environment == "development" then
-    return true, nil, {port = 8080}
-  end
-end
 
 return {
+  name = "my-custom-plugin",
   fields = {
-    environment = {type = "string", required = true, enum = {"production", "development"}}
-    server = {
-      type = "table",
-      schema = {
+    {
+      config = {
+        type = "record",
         fields = {
-          host = {type = "url", default = "http://example.com"},
-          port = {type = "number", func = server_port, default = 80}
-        }
-      }
-    }
-  }
+          {
+            environment = {
+              type = "string",
+              required = true,
+              one_of = {
+                "production",
+                "development",
+              },
+            },
+          },
+          {
+            server = {
+              type = "record",
+              fields = {
+                {
+                  host = typedefs.host {
+                    default = "example.com",
+                  },
+                },
+                {
+                  port = {
+                    type = "number",
+                    default = 80,
+                    between = {
+                      0,
+                      65534
+                    },
+                  },
+                },  
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }
 ```
 
@@ -221,19 +381,31 @@ And the following will be available in
 ```lua
 -- handler.lua
 local BasePlugin = require "kong.plugins.base_plugin"
+
+
+local kong = kong
+
+
 local CustomHandler = BasePlugin:extend()
+
+
+CustomHandler.VERSION  = "1.0.0"
+CustomHandler.PRIORITY = 10
+
 
 function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
 end
+
 
 function CustomHandler:access(config)
   CustomHandler.super.access(self)
 
   kong.log.inspect(config.environment) -- "development"
   kong.log.inspect(config.server.host) -- "http://localhost"
-  kong.log.inspect(config.server.port) -- 8080
+  kong.log.inspect(config.server.port) -- 80
 end
+
 
 return CustomHandler
 ```
@@ -242,7 +414,7 @@ You can also see a real-world example of schema in [the Key-Auth plugin source c
 
 ---
 
-Next: [Store custom entities &rsaquo;]({{page.book.next}})
+Next: [Accessing the Datastore &rsaquo;]({{page.book.next}})
 
 [Admin API]: /{{page.kong_version}}/admin-api
 [Plugin Development Kit]: /{{page.kong_version}}/pdk
