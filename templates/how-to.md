@@ -14,15 +14,14 @@
 
 ### Introduction
 
-This is an introduction to this how to guide. It should be limited to a few
-succinct sentences that introduces what the user will be learning to do. A
-How-to guide should provide an end-goal, or something that the user will 
-accomplish by following the steps. 
+This is an introduction to this how-to guide. It should be limited to a few
+succinct sentences that introduce what the user will be learning to do. A
+The how-to guide should provide an end-goal or something that the user will accomplish by following the steps. 
 
 ### Prerequisites
 
 - A bulleted list of everything a user needs to complete the How-to guide
-- May be broken into multiple sections for additional clarity
+- Maybe broken into multiple sections for additional clarity
 
 **Prereq Section 1** (optional)
 
