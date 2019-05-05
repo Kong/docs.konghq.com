@@ -56,14 +56,14 @@ docs.konghq.com and can be found [here](https://github.com/algolia/docsearch-con
 To update the scraper config, you can submit a pull request to the config. To
 test a config change locally, you will need to run their open source
 [scraper](https://github.com/algolia/docsearch-scraper) against your own
-scraper to test out config changes.
+the scraper to test out config changes.
 
 ## Generating the Plugin Development Kit documentation
 
 - Have a local clone of Kong
 - Install Luarocks (comes with Kong)
 - Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
-- In the Kong repository, checkout the desired branch/tag/release
+- In the Kong repository, check out the desired branch/tag/release
 - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
 - This command will attempt to:
   * Obtain an updated list of modules from your local PDK and put it inside
@@ -74,11 +74,11 @@ scraper to test out config changes.
 ## Generating the Admin API, CLI and Configuration Documentation
 
 - Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them)
-- Several Lua rocks are needed. Easiest way to get all of them is to execute `make dev` in the Kong folder
+- Several Lua rocks are needed. The easiest way to get all of them is to execute `make dev` in the Kong folder
 - Have a local clone of Kong
-- In the Kong repository, checkout the desired branch/tag/release
+- In the Kong repository, check out the desired branch/tag/release
 - To generate the Admin API docs:
-  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
+  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-API-docs`
   - This command will attempt to:
     * Compare Kong's schemas and Admin API routes with the contents of the file
       `autodoc-admin-api/data.lua` and error out if there's any mismatches or missing data.
