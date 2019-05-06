@@ -20,7 +20,7 @@ restrict their access based on **Permissions** of **Roles** within
 **Workspaces**.
 
 The first **Super Admin** account is created during database migrations 
-following the guide below.
+following the guide below. It may only be added once.
 
 ### Prerequisites
 
@@ -58,6 +58,11 @@ $ export KONG_PASSWORD=<password-only-you-know>
 This automatically creates a user, `kong_admin`, and a password that 
 can be used to log in to Kong Manager. This password may also be 
 used as a `Kong-Admin-Token` to make Admin API requests.
+
+**Note:** only one **Super Admin** may be created using this method. 
+Future migrations will not override it or create additional **Super Admins**. 
+To do so, it is necessary to 
+[invite new users as **Super Admins** in Kong Manager](enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
 
 ## Step 2
 
