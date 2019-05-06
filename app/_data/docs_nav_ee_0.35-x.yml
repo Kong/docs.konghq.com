@@ -22,9 +22,6 @@
           url: /deployment/installation/red-hat
     - text: Upgrades and Migrations
       items:
-        - text: Changelog
-          url: /enterprise/changelog
-          absolute_url: true
         - text: Kong Enterprise Versioning
           url: /deployment/upgrades/edition-versioning
         - text: Migrating to 0.35
@@ -33,17 +30,17 @@
       items:
         - text: AWS Deployment
           url: /deployment/best-practices/aws
+    - text: Changelog
+      url: /enterprise/changelog
+      absolute_url: true
 
 - title: Getting Started
+  url: /getting-started/key-concepts
   items:
-    - text: Introduction
-      url: /getting-started/introduction
     - text: Key Concepts
       url: /getting-started/key-concepts
     - text: How to Start Kong Enterprise
       url: /getting-started/start-kong
-    - text: How to Enable Basic Authentication
-      url: /getting-started/enable-basic-auth
     - text: How to Add a Workspace
       url: /getting-started/add-workspace
     - text: How to Add a Role and Permissions
@@ -52,132 +49,100 @@
       url: /getting-started/add-admin
     - text: How to Add a Service and Route
       url: /getting-started/add-service
-    - text: How to Add a Plugin
-      url: /getting-started/add-plugin
+    - text: How to Enable a Plugin
+      url: /getting-started/enable-plugin
     - text: How to Add a Consumer
-      url: /getting-started/enable-auth
-
-- title: APIs and Plugins
-  items:
-    - text: Plugin Reference
-      items:
-      - text: Canary Release Plugin
-        url: /plugins/canary-release
-      - text: Rate Limiting Plugin
-        url: /plugins/rate-limiting-advanced
-      - text: Request Transformer Plugin
-        url: /plugins/request-transformer
-      - text: OAuth2 Introspection Plugin
-        url: /plugins/oauth2-introspection
-      - text: OpenID Connect Plugin
-        url: /plugins/openid-connect
-      - text: HTTP Proxy Caching
-        url: /plugins/http-proxy-caching
-      - text: Forward Proxy
-        url: /plugins/forward-proxy
-      - text: StatsD Advanced Plugin
-        url: /plugins/statsd-advanced
-      - text: LDAP Auth Advanced Plugin
-        url: /plugins/ldap-authentication-advanced
-      - text: Sessions Plugin
-        url: /plugins/sessions
-      - text: Route By Headers
-        url: /plugins/route-by-heders
-      - text: JWT Signer
-        url: /plugins/jwt-signer
-    - text: Implementation
-      items:
-        - text: Multiple Authentication Methods
-          url: /plugins/allowing-multiple-authentication-methods
-        - text: OpenID Connect with Google
-          url: /plugins/oidc-google
-        - text: OpenID Connect with Auth0
-          url: /plugins/oidc-auth0
+      url: /getting-started/add-consumer
 
 - title: Admin API
   items:
   - text: Workspaces
-    url: /admin-api/workspaces
+    url: /admin-api/workspaces/reference
     items:
-      - text: /workspaces Endpoint Reference
+      - text: API Reference
         url: /admin-api/workspaces/reference
       - text: Examples
-        url: admin-api/workspaces/examples
+        url: /admin-api/workspaces/examples
   - text: RBAC
-    url: /admin-api/rbac
+    url: /admin-api/rbac/reference
     items:
-      - text: /rbac Endpoint Reference
+      - text: API Reference
         url: /admin-api/rbac/reference
       - text: Examples
         url: /admin-api/rbac/examples
   - text: Admins
-    url: /admin-api/admins
+    url: /admin-api/admins/reference
     items:
-      - text: /admins Endpoint Reference
+      - text: API Reference
         url: /admin-api/admins/reference
       - text: Examples
         url: /admin-api/admins/examples
   - text: Vitals
     url: /admin-api/vitals
     items:
+      - text: Vitals Overview
+        url: /admin-api/vitals
       - text: Kong Vitals with InfluxDB
-        url: /admin-api/vitals/influx-db
+        url: /admin-api/vitals/vitals-influx-strategy
       - text: Kong Vitals with Prometheus
-        url: /admin-api/vitals/prometheus
+        url: /admin-api/vitals/vitals-prometheus-strategy
   - text: Audit Logging
     url: /admin-api/audit-log
-  - text: Admin API Reference
-    url: /admin-api/reference
 
 - title: Kong Manager
   items:
     - text: Overview
       url: /kong-manager/overview
     - text: Networking
-      url: /kong-manager/networking
+      url: /kong-manager/networking/configuration
       items:
-        - text: Default Configuration
-          url: /kong-manager/networking/default
-        - text: Custom Configuration
-          url: /kong-manager/networking/custom
+        - text: Default and Custom Configuration
+          url: /kong-manager/networking/configuration
         - text: Configuring Kong Manager to Send Email
           url: /kong-manager/networking/email
+    - text: Securing Kong Manager
+      url: /kong-manager/security
     - text: Authentication
-      url: /kong-manager/authentication
+      url: /kong-manager/authentication/super-admin
       items:
-        - text: Securing Kong Manager
-          url: /kong-manager/authentication/security
-        - text: How to Enable Basic Auth for Kong Manager
+        - text: How to Create a Super Admin
+          url: /kong-manager/authentication/super-admin
+        - text: Basic Auth
           url: /kong-manager/authentication/basic
-        - text: How to Enable LDAP for Kong Manager
+        - text: LDAP
           url: /kong-manager/authentication/ldap
-        - text: How to Map AD Users to Kong Manager Admins
-          url: /kong-manager/authentication/ad-map
-        - text: How to Enable OIDC for Kong Manager
+        - text: OIDC
           url: /kong-manager/authentication/oidc
+        - text: Sessions in Kong Manager
+          url: /kong-manager/authentication/sessions
     - text: Administration
-      url: /kong-manager/administration
+      url: /kong-manager/administration/workspaces/workspaces
       items:
-        - text: Workspaces in Kong Manager
-          url: /kong-manager/administration/workspaces
-        - text: How to Create a New Workspace in Kong Manager
-          url: /kong-manager/administration/create-workspace
-        - text: RBAC in Kong Manager
-          url: /kong-manager/administration/rbac
-        - text: Default RBAC Roles in Workspaces
-          url: /kong-manager/administration/default-roles
-        - text: How to Create a New Role with Custom Permissions
-          url: /kong-manager/administration/new-role
-        - text: Admins in Kong Manager
-          url: /kong-manager/administration/admins
-        - text: How to Invite an Admin
-          url: /kong-manager/administration/invite
+        - text: Workspaces
+          url: /kong-manager/administration/workspaces/workspaces
+        - items:
+          - text: Workspaces in Kong Manager
+            url: /kong-manager/administration/workspaces/workspaces
+          - text: How to Create a New Workspace in Kong Manager
+            url: /kong-manager/administration/workspaces/create-workspace
+          - text: How to Update or Delete a Workspace
+            url: /kong-manager/administration/workspaces/update-workspace
+        - text: RBAC
+          url: /kong-manager/administration/rbac/rbac
+        - items:
+          - text: RBAC in Kong Manager
+            url: /kong-manager/administration/rbac/rbac
+          - text: How to Create a New Role with Custom Permissions
+            url: /kong-manager/administration/rbac/new-role
+        - text: Admins
+          url: /kong-manager/administration/admins/admins
+        - items:
+          - text: Admins in Kong Manager
+            url: /kong-manager/administration/admins/admins
+          - text: How to Invite an Admin
+            url: /kong-manager/administration/admins/invite
     - text: Vitals in Kong Manager
       url: /kong-manager/vitals
-    - text: Best Practices with Kong Manager
-      url: /kong-manager/best-practices
-    - text: FAQ/Troubleshooting
-      url: /kong-manager/faq
 
 - title: Kong Dev Portal
   items:
@@ -231,6 +196,43 @@
       url: /developer-portal/best-practices
     - text: FAQ & Troubleshooting
       url: /developer-portal/faq
+
+- title: APIs and Plugins
+  items:
+    - text: Plugin Reference
+      items:
+      - text: Canary Release Plugin
+        url: /plugins/canary-release
+      - text: Rate Limiting Plugin
+        url: /plugins/rate-limiting-advanced
+      - text: Request Transformer Plugin
+        url: /plugins/request-transformer
+      - text: OAuth2 Introspection Plugin
+        url: /plugins/oauth2-introspection
+      - text: OpenID Connect Plugin
+        url: /plugins/openid-connect
+      - text: HTTP Proxy Caching
+        url: /plugins/http-proxy-caching
+      - text: Forward Proxy
+        url: /plugins/forward-proxy
+      - text: StatsD Advanced Plugin
+        url: /plugins/statsd-advanced
+      - text: LDAP Auth Advanced Plugin
+        url: /plugins/ldap-authentication-advanced
+      - text: Sessions Plugin
+        url: /plugins/sessions
+      - text: Route By Headers
+        url: /plugins/route-by-heders
+      - text: JWT Signer
+        url: /plugins/jwt-signer
+    - text: Implementation
+      items:
+        - text: Multiple Authentication Methods
+          url: /plugins/allowing-multiple-authentication-methods
+        - text: OpenID Connect with Google
+          url: /plugins/oidc-google
+        - text: OpenID Connect with Auth0
+          url: /plugins/oidc-auth0
 
 - title: Guides & References
   items:
