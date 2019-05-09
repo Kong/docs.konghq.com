@@ -219,8 +219,8 @@
         url: /plugins/statsd-advanced
       - text: LDAP Auth Advanced Plugin
         url: /plugins/ldap-authentication-advanced
-      - text: Sessions Plugin
-        url: /plugins/sessions
+      - text: Session Plugin
+        url: /plugins/session
       - text: Route By Headers
         url: /plugins/route-by-heders
       - text: JWT Signer
