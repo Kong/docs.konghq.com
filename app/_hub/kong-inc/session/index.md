@@ -11,7 +11,7 @@ description: |
   It is built using
   <a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a>
 
-type: Plugin
+type: plugin
 categories:
   - authentication
 
