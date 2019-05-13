@@ -9,6 +9,8 @@ toc: false
 - [Step 1](#step-1)
 - [Step 2](#step-2)
 - [Step 3](#step-3)
+- [Step 4](#step-4)
+- [Next Steps](#next-steps)
 
 ### Introduction
 
@@ -82,3 +84,19 @@ $ kong start [-c /path/to/kong.conf]
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
 allowing you to point to [your own configuration](/1.0.x/configuration/#configuration-loading).
+
+## Step 4
+
+To test that Kong Enterprise has successfully started with a **Super Admin**, 
+visit Kong Manager's URL. By default, it is `http://localhost:8002`. 
+
+The username is `kong_admin` and the password is the one set in 
+[Step 1](#step-1).
+
+### Next Steps
+
+With Kong Enterprise started and the **Super Admin** logged in, it is now 
+possible to create any entity in Kong. 
+
+Next, see how to segment the Kong cluster into 
+[**Workspaces**](enterprise/{{page.kong_version}}/getting-started/add-workspace).
