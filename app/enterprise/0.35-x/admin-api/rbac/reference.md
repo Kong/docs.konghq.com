@@ -408,14 +408,19 @@ HTTP 201 Created
 
 ```json
 {
- "actions": [
-  "read"
- ],
- "created_at": 1501524737000,
- "endpoint": "/apis",
- "negative": false,
- "role_id": "d881bd36-00ca-404f-b428-427b2eab0184",
- "workspace": "default"
+  "actions": [
+    "delete",
+    "create",
+    "update",
+    "read"
+  ],
+  "created_at": 1557764505,
+  "endpoint": "/consumers",
+  "negative": false,
+  "role": {
+    "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+  },
+  "workspace": "default"
 }
 ```
 
@@ -440,14 +445,18 @@ HTTP 200 OK
 
 ```json
 {
-  "endpoint": "/routes",
-  "created_at": 1529052518000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
   "actions": [
+    "delete",
     "create",
+    "update",
     "read"
   ],
+  "created_at": 1557764505,
+  "endpoint": "/consumers",
   "negative": false,
+  "role": {
+    "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+  },
   "workspace": "default"
 }
 ```
@@ -473,27 +482,32 @@ HTTP 200 OK
 
 ```json
 {
-  "total": 2,
   "data": [
     {
-      "endpoint": "/apis",
-      "created_at": 1529002671000,
-      "role_id": "432d7b69-ab71-4567-8089-a02600cdddf6",
       "actions": [
+        "delete",
+        "create",
+        "update",
         "read"
       ],
+      "created_at": 1557764505,
+      "endpoint": "/consumers",
       "negative": false,
+      "role": {
+        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+      },
       "workspace": "default"
     },
     {
-      "endpoint": "/routes",
-      "created_at": 1529004720000,
-      "role_id": "432d7b69-ab71-4567-8089-a02600cdddf6",
       "actions": [
-        "create",
         "read"
       ],
+      "created_at": 1557764438,
+      "endpoint": "/services",
       "negative": false,
+      "role": {
+        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+      },
       "workspace": "default"
     }
   ]
@@ -528,14 +542,18 @@ HTTP 200 OK
 
 ```json
 {
-  "endpoint": "/routes",
-  "created_at": 1529052518000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
   "actions": [
+    "delete",
     "create",
+    "update",
     "read"
   ],
+  "created_at": 1557764438,
+  "endpoint": "/services",
   "negative": false,
+  "role": {
+    "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+  },
   "workspace": "default"
 }
 ```
@@ -558,21 +576,7 @@ HTTP 200 OK
 **Response**
 
 ```
-HTTP 200 OK
-```
-
-```json
-{
-  "endpoint": "/routes",
-  "created_at": 1529052518000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
-  "actions": [
-    "create",
-    "read"
-  ],
-  "negative": false,
-  "workspace": "default"
-}
+HTTP 204 OK
 ```
 
 ---
