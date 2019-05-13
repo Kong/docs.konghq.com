@@ -51,7 +51,7 @@ params:
       value_in_examples:
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection
-    - name: ssl
+    - name: ldaps
       required:
       default: "`false`"
       value_in_examples:
