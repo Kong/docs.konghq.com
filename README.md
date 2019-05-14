@@ -78,7 +78,7 @@ the scraper to test out config changes.
 - Have a local clone of Kong
 - In the Kong repository, check out the desired branch/tag/release
 - To generate the Admin API docs:
-  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-API-docs`
+  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
   - This command will attempt to:
     * Compare Kong's schemas and Admin API routes with the contents of the file
       `autodoc-admin-api/data.lua` and error out if there's any mismatches or missing data.
