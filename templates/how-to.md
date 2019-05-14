@@ -21,7 +21,7 @@ The how-to guide should provide an end-goal or something that the user will acco
 ### Prerequisites
 
 - A bulleted list of everything a user needs to complete the How-to guide
-- Maybe broken into multiple sections for additional clarity
+- May be broken into multiple sections for additional clarity
 
 **Prereq Section 1** (optional)
 
