@@ -63,7 +63,7 @@ scraper to test out config changes.
 - Have a local clone of Kong
 - Install Luarocks (comes with Kong)
 - Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
-- In the Kong repository, checkout the desired branch/tag/release
+- In the Kong repository, check out the desired branch/tag/release
 - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
 - This command will attempt to:
   * Obtain an updated list of modules from your local PDK and put it inside
