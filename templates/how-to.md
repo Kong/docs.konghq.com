@@ -14,7 +14,7 @@
 
 ### Introduction
 
-This is an introduction to this how to guide. It should be limited to a few
+This section is the introduction to the how-to guide. It should be limited to a few
 succinct sentences that introduces what the user will be learning to do. A
 How-to guide should provide an end-goal, or something that the user will 
 accomplish by following the steps. 
