@@ -41,9 +41,9 @@ HTTP 200 OK
 
 | Attribute   | Description |
 |-------------|------------------------------------------------------------|
-| `email` | The Admin's email address |
-| `username` | The Admin's username |
-| `custom_id` <br>optional | The Admin's custom ID |
+| `email` | The **Admin**'s email address |
+| `username` | The **Admin**'s username |
+| `custom_id` <br>optional | The **Admin**'s custom ID |
 
 **Response**
 
@@ -72,9 +72,9 @@ HTTP 200 OK
 | Attribute   | Description |
 |-------------|---------------------------|
 | `token` | The authentication token |
-| `username` | The admin's username |
-| `email` | The admin's email address |
-| `password` | The admin's new password |
+| `username` | The **Admin**'s username |
+| `email` | The **Admin**'s email address |
+| `password` | The **Admin**'s new password |
 
 **Response**
 
@@ -89,7 +89,7 @@ HTTP 201 Created
 
 | Attribute   | Description |
 |-------------|------------------------------------------------------------|
-| `email` | The Admin's email address |
+| `email` | The **Admin**'s email address |
 
 **Response**
 
@@ -104,8 +104,8 @@ HTTP 201 Created
 
 | Attribute   | Description |
 |-------------|------------------------------------------------------------|
-| `email` | The Admin's email address |
-| `password` | The Admin's new password |
+| `email` | The **Admin**'s email address |
+| `password` | The **Admin**'s new password |
 | `token` | The authentication token |
 
 **Response**
@@ -121,7 +121,14 @@ HTTP 200 OK
 
 | Attribute | Description |
 |------------|-----------------------------------|
-| name_or_id | The Admin's username or ID |
+| `name_or_id` | The **Admin**'s username or ID |
+| `generate_register_url` <br>optional | `true` returns a unique registration URL for the **Admin** |
+
+**Notes:** 
+* `generate_register_url` will only generate a URL if the **Admin**'s 
+invitation status is 4 ("invited").
+* `generate_register_url` will override the preåvious registration URL 
+for the particular **Admin** each time it is requested.
 
 **Response**
 
@@ -147,10 +154,10 @@ HTTP 200 OK
 
 | Attribute | Description |
 |----------------------|--------------------------------------------|
-| `name_or_id` | The Admin's current username or custom ID |
-| `email` <br>optional | The Admin's new email address |
-| `username` <br>optional | The Admin's new username |
-| `custom_id` <br>optional | The Admin's new custom ID |
+| `name_or_id` | The **Admin**'s current username or custom ID |
+| `email` <br>optional | The **Admin**'s new email address |
+| `username` <br>optional | The **Admin**'s new username |
+| `custom_id` <br>optional | The **Admin**'s new custom ID |
 
 **Response**
 
@@ -176,7 +183,7 @@ HTTP 200 OK
 
 | Attribute   | Description |
 |--------------|-----------------------------------|
-| `name_or_id` | The Admin's username or ID |
+| `name_or_id` | The **Admin**'s username or ID |
 
 **Response**
 
@@ -191,7 +198,7 @@ HTTP 204 No Content
 
 | Attribute   | Description |
 |--------------|-----------------------------------|
-| `name_or_id` | The Admin's username or ID |
+| `name_or_id` | The **Admin**'s username or ID |
 
 **Response**
 
@@ -224,8 +231,8 @@ HTTP 200 OK
 
 | Attribute   | Description |
 |--------------|-----------------------------------------------------------|
-| `name_or_id` | The Admin's current username or ID |
-| `roles` | (comma separated) string of names of Roles to create or update for an Admin |
+| `name_or_id` | The **Admin**'s current username or ID |
+| `roles` | (comma separated) string of names of Roles to create or update for an **Admin** |
 
 **Response**
 
@@ -265,8 +272,8 @@ HTTP 201 OK
 
 | Attribute   | Description |
 |--------------|-----------------------------------------------------------|
-| `name_or_id` | The Admin's current username or custom ID |
-| `roles` | (comma separated) string of names of Roles to remove from an Admin |
+| `name_or_id` | The **Admin**'s current username or custom ID |
+| `roles` | (comma separated) string of names of Roles to remove from an **Admin** |
 
 **Response**
 
@@ -281,7 +288,7 @@ HTTP 204 No Content
 
 | Attribute   | Description |
 |--------------|-----------------------------------|
-| `name_or_id` | The Admin's username or ID |
+| `name_or_id` | The **Admin**'s username or ID |
 
 **Response**
 

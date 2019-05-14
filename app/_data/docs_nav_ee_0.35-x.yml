@@ -20,6 +20,9 @@
           url: /deployment/installation/debian
         - text: Red Hat Enterprise Linux
           url: /deployment/installation/red-hat
+    - text: Changelog
+      url: /enterprise/changelog
+      absolute_url: true
     - text: Upgrades and Migrations
       items:
         - text: Kong Enterprise Versioning
@@ -30,9 +33,6 @@
       items:
         - text: AWS Deployment
           url: /deployment/best-practices/aws
-    - text: Changelog
-      url: /enterprise/changelog
-      absolute_url: true
 
 - title: Getting Started
   url: /getting-started/key-concepts
@@ -55,21 +55,12 @@
       url: /getting-started/add-consumer
 
 - title: Admin API
+  url: /admin-api/
   items:
   - text: Workspaces
     url: /admin-api/workspaces/reference
-    items:
-      - text: API Reference
-        url: /admin-api/workspaces/reference
-      - text: Examples
-        url: /admin-api/workspaces/examples
   - text: RBAC
     url: /admin-api/rbac/reference
-    items:
-      - text: API Reference
-        url: /admin-api/rbac/reference
-      - text: Examples
-        url: /admin-api/rbac/examples
   - text: Admins
     url: /admin-api/admins/reference
     items:
@@ -219,8 +210,8 @@
         url: /plugins/statsd-advanced
       - text: LDAP Auth Advanced Plugin
         url: /plugins/ldap-authentication-advanced
-      - text: Sessions Plugin
-        url: /plugins/sessions
+      - text: Session Plugin
+        url: /plugins/session
       - text: Route By Headers
         url: /plugins/route-by-heders
       - text: JWT Signer

@@ -35,7 +35,7 @@ There are 4 basic entities involving RBAC.
 | Attribute                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
 | `name`                   | The RBAC user name.                                                                                                                 |
-| `user_token`<br>optional | The authentication token to be presented to the Admin API. If this value is not present, the token will automatically be generated. |
+| `user_token` | The authentication token to be presented to the Admin API. The value will be hashed and cannot be fetched in plaintext. |
 | `enabled`<br>optional    | A flag to enable or disable the user. By default, users are enabled.                                                                |
 | `comment`<br>optional    | A string describing the RBAC user object.                                                                                           |
 
@@ -47,11 +47,13 @@ HTTP 201 Created
 
 ```json
 {
- "created_at": 1501395904000,
- "enabled": true,
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
- "name": "bob",
- "user_token": "9CiAvvgnqCQmarplngmT3rJImEujOw7m"
+  "comment": null,
+  "created_at": 1557522650,
+  "enabled": true,
+  "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
+  "name": "doc_knight",
+  "user_token": "$2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG",
+  "user_token_ident": "4d870"
 }
 ```
 ___
@@ -73,11 +75,12 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000,
- "enabled": true,
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
- "name": "bob",
- "user_token": "9CiAvvgnqCQmarplngmT3rJImEujOw7m"
+  "created_at": 1557522650,
+  "enabled": true,
+  "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
+  "name": "doc_lord",
+  "user_token": "$2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG",
+  "user_token_ident": "4d870"
 }
 ```
 ___
@@ -95,44 +98,30 @@ HTTP 200 OK
 
 ```json
 {
- "data": [
-  {
-   "created_at": 1501524409000,
-   "enabled": true,
-   "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e",
-   "name": "bob",
-   "user_token": "1VHzdFqU24GmoeAlsoE7V95gWn1OoPjS"
-  }
- ],
- "total": 1
+  "data": [
+    {
+      "comment": null,
+      "created_at": 1557512629,
+      "enabled": true,
+      "id": "f035f120-a95e-4327-b2ae-8fa264601d75",
+      "name": "doc_lord",
+      "user_token": "$2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6",
+      "user_token_ident": "88ea3"
+    },
+    {
+      "comment": null,
+      "created_at": 1557522650,
+      "enabled": true,
+      "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
+      "name": "doc_knight",
+      "user_token": "$2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG",
+      "user_token_ident": "4d870"
+    }
+  ],
+  "next": null
 }
 ```
 ___
-
-## Update or Create a User
-**Endpoint**
-<div class="endpoint put">/rbac/users</div>
-**Request Body**
-
-| Attribute                | Description                                                                                                                         |
-| ---------                | -----------                                                                                                                         |
-| `name`                   | The RBAC user name.                                                                                                                 |
-| `user_token`<br>optional | The authentication token to be presented to the Admin API. If this value is not present, the token will automatically be generated. |
-| `enabled`<br>optional    | A flag to enable or disable the user. By default, users are enabled.                                                                |
-| `comment`<br>optional    | A string describing the RBAC user object.                                                                                           |
-
-The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`id` for Users), the entity will be
-created with the given payload. If the request payload **does** contain an
-entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404
-NOT FOUND` will be returned.
-
-**Response**
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
 
 ## Update a User
 **Endpoint**
@@ -159,11 +148,13 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000,
- "enabled": true,
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
- "name": "bob",
- "user_token": "9CiAvvgnqCQmarplngmT3rJImEujOw7m"
+  "comment": "this comment came from a patch request",
+  "created_at": 1557522650,
+  "enabled": true,
+  "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
+  "name": "donut_lord",
+  "user_token": "$2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG",
+  "user_token_ident": "4d870"
 }
 ```
 ___
@@ -202,9 +193,11 @@ HTTP 201 Created
 
 ```json
 {
- "created_at": 1501395904000,
- "id": "8ddc36ee-dde0-4daa-baae-6868f4514256",
- "name": "read-only"
+  "comment": null,
+  "created_at": 1557532241,
+  "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+  "is_default": false,
+  "name": "service_reader"
 }
 ```
 ___
@@ -226,9 +219,10 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000,
- "id": "8ddc36ee-dde0-4daa-baae-6868f4514256",
- "name": "read-only"
+  "created_at": 1557532241,
+  "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+  "is_default": false,
+  "name": "service_reader"
 }
 ```
 ___
@@ -246,14 +240,33 @@ HTTP 200 OK
 
 ```json
 {
- "data": [
-  {
-   "created_at": 1501524270000,
-   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676",
-   "name": "read-only"
-  }
- ],
- "total": 3
+  "data": [
+    {
+      "comment": "Full access to all endpoints, across all workspaces—except RBAC Admin API",
+      "created_at": 1557506249,
+      "id": "38a03d47-faae-4366-b430-f6c10aee5029",
+      "name": "admin"
+    },
+    {
+      "comment": "Read access to all endpoints, across all workspaces",
+      "created_at": 1557506249,
+      "id": "4141675c-8beb-41a5-aa04-6258ab2d2f7f",
+      "name": "read-only"
+    },
+    {
+      "comment": "Full access to all endpoints, across all workspaces",
+      "created_at": 1557506249,
+      "id": "888117e0-f2b3-404d-823b-dee595423505",
+      "name": "super-admin"
+    },
+    {
+      "comment": null,
+      "created_at": 1557532241,
+      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+      "name": "doc_lord"
+    }
+  ],
+  "next": null
 }
 ```
 ___
@@ -279,10 +292,27 @@ NOT FOUND` will be returned.
 
 **Response**
 
+If creating the entity:
+
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 201 Created
 ```
 
+If replacing the entity:
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+  "comment": "the best",
+  "created_at": 1557532566,
+  "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+  "is_default": false,
+  "name": "doc_lord"
+}
+```
 
 ## Update a Role
 **Endpoint**
@@ -307,10 +337,11 @@ HTTP 200 OK
 
 ```json
 {
- "created_at": 1501395904000,
- "enabled": true,
- "id": "283fccff-2d4f-49a9-8730-dc8b71ec2245",
- "name": "bob"
+  "comment": "comment from patch request",
+  "created_at": 1557532566,
+  "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+  "is_default": false,
+  "name": "service_reader"
 }
 ```
 ___
@@ -377,14 +408,19 @@ HTTP 201 Created
 
 ```json
 {
- "actions": [
-  "read"
- ],
- "created_at": 1501524737000,
- "endpoint": "/apis",
- "negative": false,
- "role_id": "d881bd36-00ca-404f-b428-427b2eab0184",
- "workspace": "default"
+  "actions": [
+    "delete",
+    "create",
+    "update",
+    "read"
+  ],
+  "created_at": 1557764505,
+  "endpoint": "/consumers",
+  "negative": false,
+  "role": {
+    "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+  },
+  "workspace": "default"
 }
 ```
 
@@ -409,14 +445,18 @@ HTTP 200 OK
 
 ```json
 {
-  "endpoint": "/routes",
-  "created_at": 1529052518000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
   "actions": [
+    "delete",
     "create",
+    "update",
     "read"
   ],
+  "created_at": 1557764505,
+  "endpoint": "/consumers",
   "negative": false,
+  "role": {
+    "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+  },
   "workspace": "default"
 }
 ```
@@ -442,27 +482,32 @@ HTTP 200 OK
 
 ```json
 {
-  "total": 2,
   "data": [
     {
-      "endpoint": "/apis",
-      "created_at": 1529002671000,
-      "role_id": "432d7b69-ab71-4567-8089-a02600cdddf6",
       "actions": [
+        "delete",
+        "create",
+        "update",
         "read"
       ],
+      "created_at": 1557764505,
+      "endpoint": "/consumers",
       "negative": false,
+      "role": {
+        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+      },
       "workspace": "default"
     },
     {
-      "endpoint": "/routes",
-      "created_at": 1529004720000,
-      "role_id": "432d7b69-ab71-4567-8089-a02600cdddf6",
       "actions": [
-        "create",
         "read"
       ],
+      "created_at": 1557764438,
+      "endpoint": "/services",
       "negative": false,
+      "role": {
+        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+      },
       "workspace": "default"
     }
   ]
@@ -497,14 +542,18 @@ HTTP 200 OK
 
 ```json
 {
-  "endpoint": "/routes",
-  "created_at": 1529052518000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
   "actions": [
+    "delete",
     "create",
+    "update",
     "read"
   ],
+  "created_at": 1557764438,
+  "endpoint": "/services",
   "negative": false,
+  "role": {
+    "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+  },
   "workspace": "default"
 }
 ```
@@ -527,21 +576,7 @@ HTTP 200 OK
 **Response**
 
 ```
-HTTP 200 OK
-```
-
-```json
-{
-  "endpoint": "/routes",
-  "created_at": 1529052518000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
-  "actions": [
-    "create",
-    "read"
-  ],
-  "negative": false,
-  "workspace": "default"
-}
+HTTP 204 No Content
 ```
 
 ---
@@ -583,16 +618,16 @@ HTTP 201 Created
   "actions": [
     "delete",
     "create",
-    "update",
     "read"
   ],
-  "created_at": 1529005234000,
-  "entity_id": "124572ea-f571-46fd-8662-8cbd3192f572",
-  "entity_type": "apis",
+  "created_at": 1557771505,
+  "entity_id": "*",
+  "entity_type": "wildcard",
   "negative": false,
-  "role_id": "432d7b69-ab71-4567-8089-a02600cdddf6"
+  "role": {
+    "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+  }
 }
-
 ```
 
 ---
@@ -617,16 +652,16 @@ HTTP 200 Ok
   "actions": [
     "delete",
     "create",
-    "update",
     "read"
   ],
-  "created_at": 1529005234000,
-  "entity_id": "124572ea-f571-46fd-8662-8cbd3192f572",
-  "entity_type": "apis",
+  "created_at": 1557771505,
+  "entity_id": "*",
+  "entity_type": "wildcard",
   "negative": false,
-  "role_id": "432d7b69-ab71-4567-8089-a02600cdddf6"
+  "role": {
+    "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+  }
 }
-
 ```
 
 ---
@@ -650,20 +685,20 @@ HTTP 200 Ok
 {
   "data": [
     {
-      "created_at": 1529005234000,
-      "role_id": "432d7b69-ab71-4567-8089-a02600cdddf6",
-      "entity_id": "124572ea-f571-46fd-8662-8cbd3192f572",
-      "negative": false,
-      "entity_type": "apis",
       "actions": [
         "delete",
         "create",
-        "update",
         "read"
-      ]
+      ],
+      "created_at": 1557771505,
+      "entity_id": "*",
+      "entity_type": "wildcard",
+      "negative": false,
+      "role": {
+        "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+      }
     }
-  ],
-  "total": 1
+  ]
 }
 ```
 
@@ -693,14 +728,16 @@ HTTP 200 OK
 
 ```json
 {
-  "created_at": 1529052531000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
-  "entity_id": "1d947f65-4879-43f0-ad93-f7cf4f05cc51",
-  "negative": false,
-  "entity_type": "apis",
   "actions": [
-    "read"
-  ]
+    "update"
+  ],
+  "created_at": 1557771505,
+  "entity_id": "*",
+  "entity_type": "wildcard",
+  "negative": false,
+  "role": {
+    "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+  }
 }
 ```
 
@@ -740,21 +777,29 @@ HTTP 200 OK
 ```
 ```json
 {
-  "entities": {
-    "1d947f65-4879-43f0-ad93-f7cf4f05cc51": [
-      "delete",
-      "create",
-      "update",
-      "read"
-    ]
-  },
   "endpoints": {
-    "default": {
-      "/default/routes": [
-        "read"
-      ]
+    "*": {
+      "*": {
+        "actions": [
+          "delete",
+          "create",
+          "update",
+          "read"
+        ],
+        "negative": false
+      },
+      "/*/rbac/*": {
+        "actions": [
+          "delete",
+          "create",
+          "update",
+          "read"
+        ],
+        "negative": true
+      }
     }
-  }
+  },
+  "entities": {}
 }
 ```
 
@@ -781,20 +826,22 @@ HTTP 201 Created
 ```
 ```json
 {
- "roles": [
-  {
-   "created_at": 1501524270000,
-   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676",
-   "name": "developer"
+  "roles": [
+    {
+      "created_at": 1557772263,
+      "id": "aae80073-095f-4553-ba9a-bee5ed3b8b91",
+      "name": "doc-knight"
+    }
+  ],
+  "user": {
+    "comment": null,
+    "created_at": 1557772232,
+    "enabled": true,
+    "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
+    "name": "gruce-wayne",
+    "user_token": "$2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K",
+    "user_token_ident": "88ea3"
   }
- ],
- "user": {
-  "created_at": 1501524409000,
-  "enabled": true,
-  "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e",
-  "name": "bob",
-  "user_token": "1VHzdFqU24GmoeAlsoE7V95gWn1OoPjS"
- }
 }
 ```
 
@@ -815,21 +862,30 @@ HTTP 201 Created
 HTTP 200 OK
 ```
 ```json
+
 {
- "roles": [
-  {
-   "created_at": 1501524270000,
-   "id": "9bd49829-2a8b-41fd-b7fc-28e63c100676",
-   "name": "developer"
+  "roles": [
+    {
+      "comment": "Read access to all endpoints, across all workspaces",
+      "created_at": 1557765500,
+      "id": "a1c810ee-8366-4654-ba0c-963ffb9ccf2e",
+      "name": "read-only"
+    },
+    {
+      "created_at": 1557772263,
+      "id": "aae80073-095f-4553-ba9a-bee5ed3b8b91",
+      "name": "doc-knight"
+    }
+  ],
+  "user": {
+    "comment": null,
+    "created_at": 1557772232,
+    "enabled": true,
+    "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
+    "name": "gruce-wayne",
+    "user_token": "$2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K",
+    "user_token_ident": "88ea3"
   }
- ],
- "user": {
-  "created_at": 1501524409000,
-  "enabled": true,
-  "id": "11cbd5cf-e4e0-47b6-968b-73b062440a4e",
-  "name": "bob",
-  "user_token": "1VHzdFqU24GmoeAlsoE7V95gWn1OoPjS"
- }
 }
 ```
 
@@ -858,9 +914,6 @@ HTTP 204 No Content
 
 ---
 
-
-[Admin API]: /{{page.kong_version}}/admin-api/
-
 ## List a User's Permissions
 **Endpoint**
 
@@ -877,17 +930,17 @@ HTTP 200 OK
 ```
 ```json
 {
-  "entities": {
-    "1d947f65-4879-43f0-ad93-f7cf4f05cc51": [
-      "read"
-    ]
-  },
   "endpoints": {
-    "default": {
-      "/default/routes": [
-        "read"
-      ]
+    "*": {
+      "*": {
+        "actions": [
+          "read"
+        ],
+        "negative": false
+      }
     }
-  }
+  },
+  "entities": {}
 }
+
 ```

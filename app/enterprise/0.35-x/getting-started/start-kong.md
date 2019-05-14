@@ -9,6 +9,8 @@ toc: false
 - [Step 1](#step-1)
 - [Step 2](#step-2)
 - [Step 3](#step-3)
+- [Step 4](#step-4)
+- [Next Steps](#next-steps)
 
 ### Introduction
 
@@ -20,7 +22,7 @@ restrict their access based on **Permissions** of **Roles** within
 **Workspaces**.
 
 The first **Super Admin** account is created during database migrations 
-following the guide below.
+following the guide below. It may only be added once.
 
 ### Prerequisites
 
@@ -59,6 +61,11 @@ This automatically creates a user, `kong_admin`, and a password that
 can be used to log in to Kong Manager. This password may also be 
 used as a `Kong-Admin-Token` to make Admin API requests.
 
+**Note:** only one **Super Admin** may be created using this method. 
+Future migrations will not override it or create additional **Super Admins**. 
+To do so, it is necessary to 
+[invite new users as **Super Admins** in Kong Manager](enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
+
 ## Step 2
 
 Issue the following command to prepare your datastore by running the Kong migrations:
@@ -77,3 +84,19 @@ $ kong start [-c /path/to/kong.conf]
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
 allowing you to point to [your own configuration](/1.0.x/configuration/#configuration-loading).
+
+## Step 4
+
+To test that Kong Enterprise has successfully started with a **Super Admin**, 
+visit Kong Manager's URL. By default, it is `http://localhost:8002`. 
+
+The username is `kong_admin` and the password is the one set in 
+[Step 1](#step-1).
+
+### Next Steps
+
+With Kong Enterprise started and the **Super Admin** logged in, it is now 
+possible to create any entity in Kong. 
+
+Next, see how to segment the Kong cluster into 
+[**Workspaces**](enterprise/{{page.kong_version}}/getting-started/add-workspace).

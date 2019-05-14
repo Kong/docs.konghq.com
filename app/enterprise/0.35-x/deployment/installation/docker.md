@@ -73,7 +73,7 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-ee-database" \
       -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
-      kong-ee kong migrations up
+      kong-ee kong migrations bootstrap
     ```
     **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
     variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
@@ -94,8 +94,6 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
       -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
       -e "KONG_PORTAL=on" \
-      -e "KONG_PORTAL_GUI_PROTOCOL=http" \
-      -e "KONG_PORTAL_GUI_HOST=127.0.0.1:8003" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
       -p 8000:8000 \
       -p 8443:8443 \

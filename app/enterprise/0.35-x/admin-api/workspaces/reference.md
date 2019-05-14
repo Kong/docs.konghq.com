@@ -5,7 +5,7 @@ book: workspaces
 workspace_body: |
     Attribute | Description
     ---:| ---
-    `name` | The Workspace name.
+    `name` | The **Workspace** name.
 
 workspace_entities_body: |
     Attribute | Description
@@ -20,7 +20,7 @@ Kong Enterprise's Workspaces feature is configurable through Kong's
 
 ## Workspace Object
 
-The Workspace object describes the workspece entity, which has an ID
+The **Workspace** object describes the **Workspace** entity, which has an ID
 and a name.
 
 ### Add Workspace
@@ -41,9 +41,31 @@ HTTP 201 Created
 
 ```json
 {
-  "name": "teamA",
-  "created_at": 1528838706000,
-  "id": "5396b1b3-ff46-4cb2-8065-5a4b35be342d"
+  "comment": null,
+  "config": {
+    "meta": null,
+    "portal": false,
+    "portal_access_request_email": null,
+    "portal_approved_email": null,
+    "portal_auth": null,
+    "portal_auth_conf": null,
+    "portal_auto_approve": null,
+    "portal_cors_origins": null,
+    "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
+    "portal_emails_from": null,
+    "portal_emails_reply_to": null,
+    "portal_invite_email": null,
+    "portal_reset_email": null,
+    "portal_reset_success_email": null,
+    "portal_token_exp": null
+  },
+  "created_at": 1557441226,
+  "id": "c663cca5-c6f6-474a-ae44-01f62aba16a9",
+  "meta": {
+    "color": null,
+    "thumbnail": null
+  },
+  "name": "green-team"
 }
 ```
 
@@ -61,14 +83,63 @@ HTTP 200 OK
 
 ```json
 {
-  "total": 1,
   "data": [
     {
-      "created_at": 1528806517000,
-      "id": "9f8008c5-722f-4637-8080-5ee96b535c33",
+      "comment": null,
+      "config": {
+        "meta": null,
+        "portal": false,
+        "portal_access_request_email": null,
+        "portal_approved_email": null,
+        "portal_auth": null,
+        "portal_auth_conf": null,
+        "portal_auto_approve": null,
+        "portal_cors_origins": null,
+        "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
+        "portal_emails_from": null,
+        "portal_emails_reply_to": null,
+        "portal_invite_email": null,
+        "portal_reset_email": null,
+        "portal_reset_success_email": null,
+        "portal_token_exp": null
+      },
+      "created_at": 1557419951,
+      "id": "00000000-0000-0000-0000-000000000000",
+      "meta": {
+        "color": null,
+        "thumbnail": null
+      },
       "name": "default"
+    },
+    {
+      "comment": null,
+      "config": {
+        "meta": null,
+        "portal": false,
+        "portal_access_request_email": null,
+        "portal_approved_email": null,
+        "portal_auth": null,
+        "portal_auth_conf": null,
+        "portal_auto_approve": null,
+        "portal_cors_origins": null,
+        "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
+        "portal_emails_from": null,
+        "portal_emails_reply_to": null,
+        "portal_invite_email": null,
+        "portal_reset_email": null,
+        "portal_reset_success_email": null,
+        "portal_token_exp": null
+      },
+      "created_at": 1557441226,
+      "id": "c663cca5-c6f6-474a-ae44-01f62aba16a9",
+      "meta": {
+        "color": null,
+        "thumbnail": null
+      },
+      "name": "green-team"
     }
-  ]
+  ],
+  "next": null
 }
 ```
 
@@ -76,23 +147,67 @@ HTTP 200 OK
 
 **Endpoint**
 
-<div class="endpoint put">/workspaces/</div>
+<div class="endpoint put">/workspaces/{id}</div>
 
-#### Request Body
+Attributes | Description
+---:| ---
+`id`<br>**conditional** | The **Workspace's** unique ID, if replacing it.*
 
-{{ page.workspace_body }}
-
-The behavior of `PUT` endpoints is the following: if the request payload **does
+* The behavior of `PUT` endpoints is the following: if the request payload **does
 not** contain an entity's primary key (`id` for Workspaces), the entity will be
 created with the given payload. If the request payload **does** contain an
 entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
+#### Request Body
+
+Attribute | Description
+---:| ---
+`name` | The **Workspace** name.
+
 **Response**
 
+If creating the entity:
+
 ```
-HTTP 201 Created or HTTP 200 OK
+HTTP 201 Created
+```
+
+If replacing the entity:
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+  "comment": null,
+  "config": {
+    "meta": null,
+    "portal": false,
+    "portal_access_request_email": null,
+    "portal_approved_email": null,
+    "portal_auth": null,
+    "portal_auth_conf": null,
+    "portal_auto_approve": null,
+    "portal_cors_origins": null,
+    "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
+    "portal_emails_from": null,
+    "portal_emails_reply_to": null,
+    "portal_invite_email": null,
+    "portal_reset_email": null,
+    "portal_reset_success_email": null,
+    "portal_token_exp": null
+  },
+  "created_at": 1557504202,
+  "id": "c663cca5-c6f6-474a-ae44-01f62aba16a9",
+  "meta": {
+    "color": null,
+    "thumbnail": null
+  },
+  "name": "rocket-team"
+}
 ```
 
 ### Retrieve a Workspace
@@ -103,7 +218,7 @@ HTTP 201 Created or HTTP 200 OK
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Workspace to retrieve
+`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve
 
 **Response**
 
@@ -113,12 +228,16 @@ HTTP 200 OK
 
 ```json
 {
-  "created_at": 1528838706000,
-  "id": "5396b1b3-ff46-4cb2-8065-5a4b35be342d",
-  "name": "teamA"
+  "config": {
+    "portal": false,
+    "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]"
+  },
+  "created_at": 1557504202,
+    "id": "c663cca5-c6f6-474a-ae44-01f62aba16a9",
+    "meta": { },
+  "name": "rocket-team"
 }
 ```
-
 
 ### Retrieve Workspace Metadata
 
@@ -128,7 +247,7 @@ HTTP 200 OK
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Workspace to retrieve
+`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve
 
 #### Response
 
@@ -138,28 +257,28 @@ HTTP 200 OK
 
 ```json
 {
-    "counts": {
-        "acls": 0,
-        "apis": 0,
-        "basicauth_credentials": 0,
-        "consumers": 1234,
-        "files": 41,
-        "hmacauth_credentials": 0,
-        "jwt_secrets": 0,
-        "keyauth_credentials": 0,
-        "oauth2_authorization_codes": 0,
-        "oauth2_credentials": 0,
-        "oauth2_tokens": 0,
-        "plugins": 0,
-        "rbac_roles": 3,
-        "rbac_users": 0,
-        "routes": 15,
-        "services": 2,
-        "ssl_certificates": 0,
-        "ssl_servers_names": 0,
-        "targets": 1,
-        "upstreams": 1
-    }
+  "counts": {
+    "acls": 1,
+    "apis": 1,
+    "basicauth_credentials": 1,
+    "consumers": 1234,
+    "files": 41,
+    "hmacauth_credentials": 1,
+    "jwt_secrets": 1,
+    "keyauth_credentials": 1,
+    "oauth2_authorization_codes": 1,
+    "oauth2_credentials": 1,
+    "oauth2_tokens": 1,
+    "plugins": 5,
+    "rbac_roles": 3,
+    "rbac_users": 12,
+    "routes": 15,
+    "services": 2,
+    "ssl_certificates": 1,
+    "ssl_servers_names": 1,
+    "targets": 1,
+    "upstreams": 1
+  }
 }
 ```
 
@@ -171,7 +290,10 @@ HTTP 200 OK
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Workspace to delete
+`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to delete
+
+**Note:** All entities within a **Workspace** must be deleted before the 
+**Workspace** itself can be.
 
 **Response**
 
@@ -187,15 +309,15 @@ HTTP 204 No Content
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Workspace to delete
+`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to patch
 
 #### Request Body
 
 Attributes | Description
 ---:| ---
-`comment` | A string describing the workspace
+`comment` | A string describing the **Workspace**
 
-The behavior of `PATCH` endpoints prevents the renaming of a workspace.
+The behavior of `PATCH` endpoints prevents the renaming of a **Workspace**.
 
 **Response**
 
@@ -205,16 +327,38 @@ HTTP 200 OK
 
 ```json
 {
-  "name": "teamB",
-  "created_at": 1528838706000,
-  "id": "5396b1b3-ff46-4cb2-8065-5a4b35be342d"
+  "comment": "this is a sample comment in the patch request",
+  "config": {
+    "meta": null,
+    "portal": false,
+    "portal_access_request_email": null,
+    "portal_approved_email": null,
+    "portal_auth": null,
+    "portal_auth_conf": null,
+    "portal_auto_approve": null,
+    "portal_cors_origins": null,
+    "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
+    "portal_emails_from": null,
+    "portal_emails_reply_to": null,
+    "portal_invite_email": null,
+    "portal_reset_email": null,
+    "portal_reset_success_email": null,
+    "portal_token_exp": null
+  },
+  "created_at": 1557509909,
+  "id": "c543d2c8-d297-4c9c-adf5-cd64212868fd",
+  "meta": {
+    "color": null,
+    "thumbnail": null
+  },
+  "name": "green-team"
 }
 ```
 
 ### Add entities to a Workspace
 
 Workspaces are groups of entities. This endpoint allows one to add an entity,
-identified by its unique identifier, to a workspace.
+identified by its unique identifier, to a **Workspace**.
 
 **Endpoint**
 
@@ -227,24 +371,25 @@ identified by its unique identifier, to a workspace.
 **Response**
 
 ```
-HTTP 200 No Content
+HTTP 200 Created
 ```
 
 ```json
-{
-  "host": "example.com",
-  "created_at": 1528927690,
-  "connect_timeout": 60000,
-  "id": "ecdc96cd-39d7-4a72-b661-8481a3e14e1e",
-  "protocol": "http",
-  "name": null,
-  "read_timeout": 60000,
-  "port": 80,
-  "path": "/",
-  "updated_at": 1528927690,
-  "retries": 5,
-  "write_timeout": 60000
-}
+[
+  {
+    "connect_timeout": 60000,
+    "created_at": 1557510770,
+    "host": "httpbin.com",
+    "id": "8e15ca43-1d14-4f58-8f05-0327af74b5c5",
+    "name": "testservice",
+    "port": 80,
+    "protocol": "http",
+    "read_timeout": 60000,
+    "retries": 5,
+    "updated_at": 1557510770,
+    "write_timeout": 60000
+  }
+]
 ```
 
 The response is the representation of the entity that was added to the
@@ -266,21 +411,27 @@ HTTP 200 OK
 {
   "data": [
     {
-      "workspace_id": "5396b1b3-ff46-4cb2-8065-5a4b35be342d",
-      "entity_id": "d766d5a8-4dc8-49e8-928d-29ff5aebb927",
+      "entity_id": "8e15ca43-1d14-4f58-8f05-0327af74b5c5",
       "entity_type": "services",
+      "unique_field_name": "name",
+      "unique_field_value": "testservice",
+      "workspace_id": "c543d2c8-d297-4c9c-adf5-cd64212868fd",
+      "workspace_name": "green-team"
     },
     {
-      "workspace_id": "5396b1b3-ff46-4cb2-8065-5a4b35be342d",
-      "entity_id": "65b66412-df45-485d-8fa8-13cda8c892ac",
-      "entity_type": "consumers",
+      "entity_id": "8e15ca43-1d14-4f58-8f05-0327af74b5c5",
+      "entity_type": "services",
+      "unique_field_name": "id",
+      "unique_field_value": "8e15ca43-1d14-4f58-8f05-0327af74b5c5",
+      "workspace_id": "c543d2c8-d297-4c9c-adf5-cd64212868fd",
+      "workspace_name": "green-team"
     }
   ],
   "total": 2
 }
 ```
 
-In this case, the workspace references two entities: a Service and a Consumer. 
+In this case, the **Workspace** references two Services. 
 
 ### Delete entities from a Workspace
 
@@ -301,7 +452,7 @@ HTTP 204 No Content
 ### Retrieve an entity from a Workspace
 
 This endpoint allows one to retrieve an entity from a workspace—useful, say,
-for checking if a given entity is part of a given workspace.
+for checking if a given entity is part of a given **Workspace**.
 
 **Endpoint**
 
@@ -315,13 +466,14 @@ HTTP 200 OK
 
 ```json
 {
-  "workspace_id": "5396b1b3-ff46-4cb2-8065-5a4b35be342d",
-  "entity_id": "d766d5a8-4dc8-49e8-928d-29ff5aebb927",
-  "entity_type": "services"
+  "entity_id": "8e15ca43-1d14-4f58-8f05-0327af74b5c5",
+  "entity_type": "services",
+  "workspace_id": "c543d2c8-d297-4c9c-adf5-cd64212868fd",
+  "workspace_name": "green-team"
 }
 ```
 
-### Delete a particular entity from a workspace
+### Delete a particular entity from a Workspace
 
 **Endpoint**
 
@@ -330,10 +482,8 @@ HTTP 200 OK
 **Response**
 
 ```
-HTTP 204 No Response
+HTTP 204 No Content
 ```
-
-Next: [Workspaces Examples &rsaquo;]({{page.book.next}})
 
 ---
 

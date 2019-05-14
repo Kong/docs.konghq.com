@@ -9,6 +9,9 @@ When a user logs in to Kong Manager with their credentials, the Sessions Plugin 
 
 Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself. By default, the cookie uses the [Secure, HttpOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies), and [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies) directives.
 
+**Note:** In order to enable SameSite, Kong Manager and the Admin API must 
+share the same host.
+
 ## Configuration to Use the Sessions Plugin with Kong Manager
 
 To enable sessions authentication, configure the following:
