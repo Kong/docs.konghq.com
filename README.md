@@ -56,7 +56,7 @@ docs.konghq.com and can be found [here](https://github.com/algolia/docsearch-con
 To update the scraper config, you can submit a pull request to the config. To
 test a config change locally, you will need to run their open source
 [scraper](https://github.com/algolia/docsearch-scraper) against your own
-the scraper to test out config changes.
+scraper to test out config changes.
 
 ## Generating the Plugin Development Kit documentation
 
