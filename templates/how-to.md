@@ -14,10 +14,9 @@
 
 ### Introduction
 
-This is an introduction to this how to guide. It should be limited to a few
-succinct sentences that introduces what the user will be learning to do. A
-How-to guide should provide an end-goal, or something that the user will 
-accomplish by following the steps. 
+Use this section to provide an introduction to the how-to guide and provide the user with context for the guide. It should be limited to a few succinct sentences and provide a clear end-goal or outline of what the user will accomplish by following the guide
+succinct sentences that introduce what the user will be learning to do. A
+The how-to guide should provide an end-goal or something that the user will accomplish by following the steps. 
 
 ### Prerequisites
 
