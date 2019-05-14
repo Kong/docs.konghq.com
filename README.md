@@ -76,7 +76,7 @@ scraper to test out config changes.
 - Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them)
 - Several Lua rocks are needed. The easiest way to get all of them is to execute `make dev` in the Kong folder
 - Have a local clone of Kong
-- In the Kong repository, checkout the desired branch/tag/release
+- In the Kong repository, check out the desired branch/tag/release
 - To generate the Admin API docs:
   - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
   - This command will attempt to:
