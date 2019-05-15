@@ -104,7 +104,7 @@
           url: /kong-manager/authentication/ldap
         - text: OIDC
           url: /kong-manager/authentication/oidc
-        - text: Sessions in Kong Manager
+        - text: Sessions
           url: /kong-manager/authentication/sessions
     - text: Administration
       url: /kong-manager/administration/workspaces/workspaces

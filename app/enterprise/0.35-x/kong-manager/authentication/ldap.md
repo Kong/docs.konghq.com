@@ -17,6 +17,7 @@ configuration file or using environment variables:
 ```
 admin_gui_auth = ldap-auth-advanced
 enforce_rbac = on
+admin_gui_session_conf = { "secret":"set-your-string-here" }
 admin_gui_auth_conf = {                                   
     "anonymous":"",                                           \
     "attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>",                \ 
@@ -48,6 +49,12 @@ admin_gui_auth_conf = {
 * `"ldap_password":"<ENTER_YOUR_LDAP_PASSWORD_HERE>"`: LDAP password
     * *Note*: As with any configuration property, sensitive information may be set as an 
       environment variable instead of being written directly in the configuration file.
+
+⚠️**Important:** the **Sessions Plugin** requries a secret and is configured securely by default. 
+* Under all circumstances, the `secret` must be manually set to a string.
+* If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`. 
+* If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`. 
+Learn more about these properties in [Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [example configurations](#example-configurations).
 
 After starting Kong with the desired configuration, you can create new *Admins* 
 whose usernames match those in the AD. Those users will then be able to accept 
