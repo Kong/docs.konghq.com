@@ -35,7 +35,7 @@
           url: /deployment/best-practices/aws
 
 - title: Getting Started
-  url: /getting-started/key-concepts
+  url: /getting-started/
   items:
     - text: Key Concepts
       url: /getting-started/key-concepts

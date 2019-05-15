@@ -1,9 +1,9 @@
 ---
 title: Kong Enterprise Documentation
 ---
-# Welcome to Kong Enterprise
 
-{% if page.edition == 'enterprise' %}
+![Welcome to the Kong Enterprise](https://konghq.com/wp-content/themes/konghq/assets/img/home/buildings.svg)
+
 <div class="alert alert-ee">
   <div class="alert-body">
     <div class="left">
@@ -12,7 +12,6 @@ title: Kong Enterprise Documentation
     <p>Kong Enterprise adds features, functionality, and performance to Kong. This documentation doesn’t cover the general practices that are common to both Kong and Kong Enterprise—learn the <a href="/">basics in Kong documentation</a>.</p>
   </div>
 </div>
-{% endif %}
 
 <div class="docs-grid">
 
@@ -35,9 +34,9 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/getting-started/key-concepts">Getting Started</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/getting-started">Getting Started</a></h3>
     <p>Learn key concepts and get started with Kong Enterprise's features.</p>
-    <a href="/enterprise/{{page.kong_version}}/getting-started/key-concepts">Get Started &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/getting-started">Get Started &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
