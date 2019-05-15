@@ -82,15 +82,15 @@ params:
     - name: logout_methods
       required: false 
       default: '[`"POST"`, `"DELETE"`]'
-      description: "The methods that may be used to end sessions: POST, DELETE, GET. Do not alter this property if using Sessions with Kong Manager."
+      description: The methods that may be used to end sessions: POST, DELETE, GET.
     - name: logout_query_arg
       required: false 
       default: session_logout
-      description: The query argument passed to logout requests. Do not change this property; doing so will break the ability to use Kong Manager.
+      description: The query argument passed to logout requests.
     - name: logout_post_arg
       required: false 
       default: session_logout
-      description: The post argument passed to logout requests. Do not change this property; doing so will break the ability to use Kong Manager.
+      description: The post argument passed to logout requests. Do not change this property.
 
 ---
 

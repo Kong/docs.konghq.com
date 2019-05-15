@@ -38,13 +38,14 @@ verify) when configuring Kong Manager connectivity to the Admin API.
 
 | authentication enabled | local API    | remote API    | auth settings                                     |
 |------------------------|--------------|---------------|---------------------------------------------------|
-| yes                    | [`admin_listen`] | [`admin_api_uri`] | [`admin_gui_auth`], [`enforce_rbac`], [`admin_gui_auth_conf`] |
+| yes                    | [`admin_listen`] | [`admin_api_uri`] | [`admin_gui_auth`], [`enforce_rbac`], [`admin_gui_auth_conf`], [`admin_gui_session_conf`] |
 | no                     | [`admin_listen`] | [`admin_api_uri`] | n/a                                               |
 
 To enable authentication, configure the following properties:
 
 * [`admin_gui_auth`] set to the desired plugin
 * [`admin_gui_auth_conf`] (optional)
+* [`admin_gui_session_conf`] set to the desired configuration
 * [`enforce_rbac`] set to `on`
 
 ⚠️ When Kong Manager authentication is enabled, RBAC must be turned 
@@ -57,3 +58,4 @@ to Kong Manager can perform any operation available on the Admin API.
 [`admin_gui_auth_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth_conf
 [`enforce_rbac`]: /enterprise/{{page.kong_version}}/property-reference/#enforce_rbac
 [`admin_listen`]: /enterprise/{{page.kong_version}}/property-reference/#admin_listen
+[`admin_gui_session_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_session_conf
