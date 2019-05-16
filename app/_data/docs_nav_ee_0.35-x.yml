@@ -31,6 +31,8 @@
 - title: Getting Started
   url: /getting-started/
   items:
+    - text: Overview
+      url: /getting-started/
     - text: How to Start Kong Enterprise
       url: /getting-started/start-kong
     - text: How to Add a Workspace
