@@ -137,6 +137,9 @@ kong = require("kong.global").new()   -- luacheck: ignore
 kong.db = require("kong.db").new({    -- luacheck: ignore
   database = "postgres",
 })
+kong.configuration = { -- luacheck: ignore
+  loaded_plugins = {}
+}
 
 --------------------------------------------------------------------------------
 
