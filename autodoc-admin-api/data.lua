@@ -541,6 +541,15 @@ return {
             This is where the Route proxies traffic to.
           ]]
         },
+        https_redirect_status_code = {
+          description = [[
+            The status code Kong responds with when all properties of a Route
+            match except the protocol i.e. if the protocol of the request
+            is `HTTP` instead of `HTTPS`.
+            `Location` header is injected by Kong if the field is set
+            to 301, 302, 307 or 308.
+          ]]
+        },
         tags = {
           description = [[
             An optional set of strings associated with the Route, for grouping and filtering.
