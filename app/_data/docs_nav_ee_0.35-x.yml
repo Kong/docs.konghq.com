@@ -134,8 +134,6 @@
     - text: Configuration
       url: /developer-portal/configuration/
       items:
-        - text: Default Settings
-          url: /developer-portal/configuration/default-settings
         - text: Authentication
           url: /developer-portal/configuration/authentication
           items:
