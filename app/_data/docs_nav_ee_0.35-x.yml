@@ -14,12 +14,6 @@
           url: /deployment/installation/centos
         - text: Amazon Linux
           url: /deployment/installation/amazon-linux
-        - text: Ubuntu
-          url: /deployment/installation/ubuntu
-        - text: Debian
-          url: /deployment/installation/debian
-        - text: Red Hat Enterprise Linux
-          url: /deployment/installation/red-hat
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
@@ -37,8 +31,6 @@
 - title: Getting Started
   url: /getting-started/
   items:
-    - text: Key Concepts
-      url: /getting-started/key-concepts
     - text: How to Start Kong Enterprise
       url: /getting-started/start-kong
     - text: How to Add a Workspace
@@ -114,7 +106,7 @@
         - items:
           - text: Workspaces in Kong Manager
             url: /kong-manager/administration/workspaces/workspaces
-          - text: How to Create a New Workspace in Kong Manager
+          - text: How to Create a New Workspace
             url: /kong-manager/administration/workspaces/create-workspace
           - text: How to Update or Delete a Workspace
             url: /kong-manager/administration/workspaces/update-workspace
@@ -132,15 +124,13 @@
             url: /kong-manager/administration/admins/admins
           - text: How to Invite an Admin
             url: /kong-manager/administration/admins/invite
-    - text: Vitals in Kong Manager
+    - text: Vitals
       url: /kong-manager/vitals
 
 - title: Kong Dev Portal
   items:
     - text: Overview
       url: /developer-portal/introduction
-    - text: Quickstart
-      url: /developer-portal/quick-start
     - text: Configuration
       url: /developer-portal/configuration/
       items:
@@ -157,7 +147,7 @@
               url: /developer-portal/configuration/authentication/oidc
         - text: SMTP
           url: /developer-portal/configuration/smtp
-        - text: Running Multiple Dev Portals
+        - text: Running Multiple Dev Portals with Workspaces
           url: /developer-portal/configuration/workspaces
     - text: Networking
       url: /developer-portal/networking
@@ -174,17 +164,6 @@
       items:
           - text: File Management
             url: /developer-portal/content-management/file-management
-          - text: Serving Assets
-            url: /developer-portal/content-management/serving-assets
-            items:
-              - text: How to Use Google Cloud Storage to Serve Dev Portal Assets
-                url: /developer-portal/content-management/serving-assets/google-cloud-storage
-              - text: How to Use AWS Cloudfront to Serve Dev Portal Assets
-                url: /developer-portal/content-management/serving-assets/aws-cloudfront
-    - text: Portal Files API
-      url: /developer-portal/files-api
-    - text: Best Practices
-      url: /developer-portal/best-practices
     - text: FAQ & Troubleshooting
       url: /developer-portal/faq
 
