@@ -82,7 +82,7 @@ params:
     - name: logout_methods
       required: false 
       default: '[`"POST"`, `"DELETE"`]'
-      description: The methods that may be used to end sessions: POST, DELETE, GET.
+      description: 'The methods that may be used to end sessions: POST, DELETE, GET.'
     - name: logout_query_arg
       required: false 
       default: session_logout
