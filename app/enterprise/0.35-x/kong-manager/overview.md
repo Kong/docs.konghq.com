@@ -11,10 +11,10 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/networking">Networking</a>
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/networking/configuration">Networking</a>
     </h3>
     <p>Check and customize Kong Manager's networking configuration.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/networking">
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/networking/configuration">
         Learn more &rarr;
     </a>
   </div>
@@ -22,10 +22,10 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/authentication">Authentication</a>
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/security">Security</a>
     </h3>
-    <p>Verify the identity of all Kong Admins with Basic Auth, OIDC, or LDAP.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/authentication">
+    <p>Authenticate Kong Admins with Basic Auth, OIDC, LDAP, and Sessions. Authorize Admins with RBAC and Workspaces.</p>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/security">
         Learn more &rarr;
     </a>
   </div>
