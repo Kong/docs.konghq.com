@@ -36,7 +36,7 @@ toc: false
         <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/workspaces/workspaces">Workspaces</a>
     </h3>
     <p>Segment your cluster into Workspaces for specific teams.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/workspaces">Learn more &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/workspaces/workspaces">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
