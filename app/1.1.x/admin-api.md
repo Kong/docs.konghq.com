@@ -706,6 +706,10 @@ have been tagged with the same tag, the tag will appear in several items of this
 
 *Response*
 
+```
+HTTP 200 OK
+```
+
 #### Response
 
 ``` json
