@@ -18,7 +18,7 @@
       url: /enterprise/changelog
       absolute_url: true
     - text: Migrating to 0.35
-      url: /deployment/upgrades/migrations
+      url: /deployment/migrations
     - text: Deployment Best Practices
       items:
         - text: AWS Deployment
