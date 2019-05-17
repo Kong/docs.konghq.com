@@ -50,7 +50,7 @@ title: Kong Enterprise Changelog
     - Conditional transformations on response status through the new flag if_status, a subfield in all transformations (e.g., `add.if_status`, `remove.if_status`); the transformation only happens if the response code matches one of the codes in the `if_status field`
     - Full-body replacement through the new config.replace.body
     - Added a support of status code ranges for `if_status` configuration parameter. Now you can provide status code ranges and single status codes together (e.g., `201-204,401`)
-  - **Request Validator**:
+  - **Request Validator** _new_:
     - Validate the request body against a JSON schema; if the payload is not valid JSON or if it doesn't conform to the schema, the plugin returns a 400 Bad Request response before the request reaches upstream
   - **Canary**:
     - Healthchecks: new configuration upstream_fallback allows the plugin to skip applying the canary upstream if it's not healthy. Note: it only works if the host specified in upstream_host points to a Kong upstream, and if that upstream has healthchecks enabled on it)
