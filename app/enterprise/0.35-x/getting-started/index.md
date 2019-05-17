@@ -110,7 +110,7 @@ a particular team to access its own Admin API entities separately from other tea
         <a href="/enterprise/{{page.kong_version}}/getting-started/enable-plugin/">Enable a Plugin</a>
     </h3>
     <p>Expand Kong Enterprise with plugins</p>
-    <a href="/enterprise/{{page.kong_version}}x/getting-started/enable-plugin/">Enable a Plugin &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/getting-started/enable-plugin/">Enable a Plugin &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
