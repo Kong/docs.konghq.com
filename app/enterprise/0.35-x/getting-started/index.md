@@ -6,13 +6,13 @@ toc: false
 ### Introduction
 
 Thank you for installing Kong Enterprise! The following series of Getting Started
-guides are designed to help you familarize yourself with Kong Enterprise's features
+guides are designed to help you familiarize yourself with Kong Enterprise's features
 and capabilities, with practical steps to start Kong Enterprise securely, access
 Kong Manager as a **Super Admin**, and create new entities such as **Services**.
 
 Each guide also contains links to more in-depth material. Note that Kong
  Enterprise 0.35 includes Kong 1.0 at its core, so CLI commands and most Admin 
- API endpoints are documented in standard [Kong documentaiton](/1.0.x/).
+ API endpoints are documented in standard [Kong documentation](/1.0.x/).
 
  If you have any issues or further questions, please 
 [contact Support](https://support.konghq.com/support/s/) and they will be happy
@@ -92,7 +92,7 @@ a particular team to access its own Admin API entities separately from other tea
         <a href="/enterprise/{{page.kong_version}}/getting-started/add-admin/">Add an Admin</a>
     </h3>
     <p>Authorize Admins with default and custom Roles and Permissions.</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/getting-started/add-admin/">Add an Admin &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/getting-started/add-admin/">Add an Admin &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
