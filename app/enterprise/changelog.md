@@ -2,6 +2,142 @@
 title: Kong Enterprise Changelog
 ---
 
+## 0.35 - 2019/05/17
+
+**CHANGES**
+- **Admin API**
+  - RBAC: Following Kong 1.0's changes, referenced (`foreign_key`) entities like RBAC Users and RBAC Roles are returned as nested JSON tables instead of flattened `role_id` or `user_id` fields in top-level entity.
+  - `user_token` must now be provided when creating a new RBAC user (in a POST request to rbac/users) and is no longer auto-generated if left blank
+
+**FEATURES**
+- **Kong Manager**
+  - User information is no longer stored in local storage. A user exchanges credentials for a session. See the Session Plugin for details.
+  - Enable and view plugins in context of a route and a service
+  - Type-ahead service name/ID search on routes form
+  - Easily scan/copy IDs in service table
+  - Contextual help and error messages for forms
+  - Breadcrumbs to more easily tell where in app you are, navigate/pivot to other pages
+  - In-context doc links
+  - Global navigation links to docs and support portal
+  - Improved Info tab for cluster & config info
+  - Detailed debug tracing can be enabled which outputs information about various portions of the request lifecycle, such as DB or DNS queries, plugin execution, core handler timing, etc
+- **Dev Portal**
+  - Developers can now sign up to multiple workspaces with the same email address.
+  - Developer Portal is disabled for each workspace by default.
+  - Default theme shipped with Kong Enterprise now supports IE11.
+  - User information is no longer stored in local storage. A user exchanges credentials for a session. See the Session Plugin for details.
+  - Developer Portal page, partial, and specification look-ups moved to server-side.
+  - Added support for OAS3 body parameters.
+  - Added CORS header configuration option to workspace portal configuration object to allow explicit CORS configuration.
+  - Added a live editor built on VSCode core for improved customization of Developer Portal within Kong Manager
+  - Added custom registration fields support and custom registration field interface.
+  - Added methods to links in the sidebar on documentation in the default portal theme.
+  - Added hover states to drop-downs in the sidebar of documentation in the default portal theme.
+  - Added a right border to the sidebar in the default portal theme.
+  - Changed "Full Name" registration field to be a custom registration field, and can be managed through the custom fields -   interface in Kong Manager.
+  - Changed custom checkbox to native checkbox in the default developer portal theme on the dashboard.
+- **Core**
+  - New RBAC user tokens are not stored in plaintext. If upgrading to this version, any existing tokens will remain in plaintext until either a) the token is used in an Admin API call or b) the rbac_user record is PATCHed (even if the PATCH request includes the existing value of `user_token`).
+- **Plugins**
+  - **Response Transformer Advanced**: 
+    - Conditional transformations on response status through the new flag if_status, a subfield in all transformations (e.g., `add.if_status`, `remove.if_status`); the transformation only happens if the response code matches one of the codes in the `if_status field
+    - Full-body replacement through the new config.replace.body
+    - Added a support of status code ranges for `if_status` configuration parameter. Now you can provide status code ranges and single status codes together (e.g., `201-204,401`)
+  - **Request Validator**:
+    - Validate the request body against a JSON schema; if the payload is not valid JSON or if it doesn't conform to the schema, the plugin returns a 400 Bad Request response before the request reaches upstream
+  - **Canary**:
+    - Healthchecks: new configuration upstream_fallback allows the plugin to skip applying the canary upstream if it's not healthy. Note: it only works if the host specified in upstream_host points to a Kong upstream, and if that upstream has healthchecks enabled on it)
+  - **Oauth2 Introspection**:
+    - Set Id to Rate limiting may detect calls to introspection endpoint
+    - Set credential id to allow rate limiting based on access token
+  - **The Kong Session Plugin**:
+    - The Kong Session Plugin adds session support for Kong Manager and Dev Portal. Sessions can be stored via cookie or database. See the accompanying documentation for how to configure the plugin for use with Kong Manager.
+  - **Vault-Auth**:
+    - Authenticate requests via Vault
+  - **OpenID Connect**:
+    - Update `lua-resty-http` to `>= 0.13`
+    - Update `lua-resty-session` to `2.23`
+    - Add `config.authorization_endpoint`
+    - Add `config.token_endpoint`
+    - Add `config.response_type`
+    - Add `config.token_post_args_client`
+    - Add `config.token_headers_names`
+    - Add `config.token_headers_values`
+    - Add `config.introspection_post_args_names`
+    - Add `config.introspection_post_args_values`
+    - Add `config.instrospection_post_args_client`
+    - Add `config.session_secret`
+    - Add `config.session_cookie_renew`
+    - Add `config.ignore_signature`
+    - Add `config.cache_ttl_max`
+    - Add `config.cache_ttl_min`
+    - Add `config.cache_ttl_neg`
+    - Add `config.cache_ttl_resurrect`
+    - Add `config.upstream_session_id_header`
+    - Add `config.downstream_session_id_header`
+    - Add `tokens` option to `config.login_tokens` to return full token endpoint results with `response` or `redirect` specified in `config.login_action`
+    - Add `introspection` option to `config.login_tokens` to return introspection results with `response` or `redirect` specified in `config.login_action`
+    - Change Kong 1.0 support
+    - Change Refresh-token headers can now have `Bearer` in front of the token.
+    - Change to forbid only unapproved developers
+    - Change `config.scopes_claim` is also searched in introspected jwt token results
+    - Change `config.audience_claim` is also searched in introspected jwt token results
+    - Change `config.consumer_claim` is also searched in introspected jwt token results
+    - Change `config.consumer_claim` is also searched with user info when `config.search_user_info` is enabled
+    - Change `config.credential_claim` is searched from `id token` as well
+    - Change `config.credential_claim` is also searched in introspected jwt token results
+    - Change `config.credential_claim` is also searched with user info when `config.search_user_info` is enabled
+    - Change `config.authenticated_groups_claim` is searched from `id token` as well
+    - Change `config.authenticated_groups_claim` is also searched with user info when `config.search_user_info` is enabled
+    - Change `config.upstream_headers_claims` and `config.downstream_headers_claims` are now searched from introspection results, jwt access token and id token, and user info when `config.search_user_info` is enabled
+    - Change `id_token` is not anymore copied over when refreshing tokens to prevent further claims verification errors. The token endpoint can return a new id token, or user info can be used instead.
+    - Change hide `secret` from admin api
+    - Change `config.issuer` to semi-optional (you still need to specify it but code won't error if http request to issuer fails)
+    - Change more reentrant migrations
+    - Change issuer to be optional
+    - Change signature verification to look suitable key by algorithm as well in case where key identifier is missing or cannot be found
+    - Remove developer status/type check from plugin
+    - Remove `daos` that were never used
+    - Remove all the sub-plugins (openid-connect-verification, openid-connect-authentication, and openid-connect-protection)
+    - Fix issue with Kong OAuth 2.0 and OpenID Connect sharing incompatible values with same cache key
+  - **Forward Proxy**:
+    - Fix an issue preventing the plugin from working with requests using chunked TE
+  - **LDAP Auth Advanced**:
+    - Added LDAPS protocol support
+    - Added tests for multiple connection strategies
+    - Fixed an issue where plugin tries to start a secure connection on an existing pooled connection from previous requests
+  - **StatsD Advanced**
+    - Added filter by status code functionality for responses to be logged. Admin from now on can add status code ranges for responses which want to be logged and sent to StatsD server. If Admin doesn't provide any status code, all responses will be logged.
+- **Security**
+  - Set security headers in Kong Manager and Dev Portal
+  - Guard against frame misuse in Kong Manager and Dev Portal
+
+**FIXES**
+- Clear option for turning off New Relic data collection
+- Keyword search bug fixed in Kong Manager
+- Info tab of Kong Manager no longer empty (shows license information)
+- Custom plugins viewable within plugin groupings
+- Error messages on workspace form don't remain longer than intended
+- Column overflow issue in services table in Kong Manager fixed
+- New routes were accidentally accepting strings for regex_priority when submitting a new Routes, fixed as part of 1.0 merge
+- Developers can now sign up to multiple portals
+- When configuring KONG_ADMIN_API_URI with a port CORS breaks
+- Fixed issue in the kong manager where the Developer Portal pages would display the wrong content when disabled from kong.conf.
+- Fixed issue in the kong manager and developer portal where email validation would accept in- valid inputs.
+- Fixed issue in the developer portal forgot email template where the URL pointed to the wrong location.
+- Fixed issue in the developer portal when loading content a CORS error would occur if improperly configured, content is now loaded server - side, and header added to make configuration easier.
+- Fixed issue in the default portal spec renderer where request bodies were not rendering properly.
+- Fixed issue in the default portal theme when loaded on Internet Explorer it would display a blank page.
+- Fixed issue in the default portal theme in sidebar where long names would overflow and stretch the sidebar.
+- Fixed issue in the default portal theme where the drop - down arrow would not rotate.
+- Fixed issue in the default portal theme where the sidebar would sometimes overlap content.
+- Fixed issue in the default portal theme where long content would stretch the container.
+- Fixed issue in the default portal theme where transitioning from the mobile to full-screen would retain the sidebar overlay.
+- Fixed issue in the default portal theme where links on documentation would not navigate due to spaces.
+- Fixed issue in the default portal theme where on logout a user would be redirected to the default workspace portal.
+- Fixed issue in the portal theme sync script where environment flags were not properly evaluated as booleans.
+- Fixed issue in the portal theme sync script where relative links would add the theme name to files inserted on a workspace.
+
 ## 0.34-1 - 2018/12/19
 
 **Notifications**
