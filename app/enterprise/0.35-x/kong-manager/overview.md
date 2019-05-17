@@ -42,7 +42,7 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/rbac">
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/rbac/rbac">
           RBAC Roles and Permissions</a>
     </h3>
     <p>Authorize Admins with default and custom Roles and Permissions.</p>
