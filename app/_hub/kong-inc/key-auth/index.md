@@ -39,6 +39,7 @@ kong_version_compatibility:
         - 0.2.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -231,6 +232,7 @@ $ curl -X GET http://kong:8001/key-auths
 ```
 
 You can filter the list by consumer by using this other path:
+<<<<<<< HEAD
 
 ```bash
 $ curl -X GET http://kong:8001/consumers/{username or id}/key-auth
@@ -248,6 +250,25 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/key-auth
 }
 ```
 
+=======
+
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/key-auth
+
+{
+    "data": [
+       {
+         "id":"6cb76501-c970-4e12-97c6-3afbbba3b454",
+         "created_at":1507936652000,
+         "key":"nCztu5Jrz18YAWmkwOGJkQe9T8lB99l4",
+         "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+       }
+    ]
+    "next":null,
+}
+```
+
+>>>>>>> private_repo/master
 `username or id`: The username or id of the consumer whose credentials need to be listed
 
 ### Retrieve the Consumer associated with a key

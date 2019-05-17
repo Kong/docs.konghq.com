@@ -1,7 +1,7 @@
 ---
 name: Kong JWT Signer
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Verify and (re-)sign one or two tokens in a request
 description: |
@@ -23,6 +23,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
 
 params:

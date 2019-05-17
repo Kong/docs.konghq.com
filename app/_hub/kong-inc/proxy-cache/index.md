@@ -2,7 +2,7 @@
 
 name: Proxy Caching
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Cache and serve commonly requested responses in Kong
 description: |
@@ -18,7 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.34-x
+        - 0.35-x
 
 params:
   name: proxy-cache

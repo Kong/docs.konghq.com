@@ -104,7 +104,6 @@ function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
 end
 
-
 function CustomHandler:init_worker()
   -- Eventually, execute the parent implementation
   -- (will log that your plugin is entering this context)
@@ -131,7 +130,6 @@ function CustomHandler:certificate(config)
   -- Implement any custom logic here
 end
 
-
 function CustomHandler:rewrite(config)
   -- Eventually, execute the parent implementation
   -- (will log that your plugin is entering this context)
@@ -139,7 +137,6 @@ function CustomHandler:rewrite(config)
 
   -- Implement any custom logic here
 end
-
 
 function CustomHandler:access(config)
   -- Eventually, execute the parent implementation
@@ -149,7 +146,6 @@ function CustomHandler:access(config)
   -- Implement any custom logic here
 end
 
-
 function CustomHandler:header_filter(config)
   -- Eventually, execute the parent implementation
   -- (will log that your plugin is entering this context)
@@ -157,7 +153,6 @@ function CustomHandler:header_filter(config)
 
   -- Implement any custom logic here
 end
-
 
 function CustomHandler:body_filter(config)
   -- Eventually, execute the parent implementation
@@ -167,7 +162,6 @@ function CustomHandler:body_filter(config)
   -- Implement any custom logic here
 end
 
-
 function CustomHandler:log(config)
   -- Eventually, execute the parent implementation
   -- (will log that your plugin is entering this context)
@@ -175,7 +169,6 @@ function CustomHandler:log(config)
 
   -- Implement any custom logic here
 end
-
 
 -- This module needs to return the created table, so that Kong
 -- can execute those functions.
@@ -189,7 +182,6 @@ optional:
 
 ```lua
 local BasePlugin = require "kong.plugins.base_plugin"
-
 
 -- The actual logic is implemented in those modules
 local access = require "kong.plugins.my-custom-plugin.access"
@@ -207,7 +199,6 @@ function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
 end
 
-
 function CustomHandler:access(config)
   CustomHandler.super.access(self)
 
@@ -215,7 +206,6 @@ function CustomHandler:access(config)
   -- for example, `execute()` and passing it the plugin's configuration.
   access.execute(config)
 end
-
 
 function CustomHandler:body_filter(config)
   CustomHandler.super.body_filter(self)

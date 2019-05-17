@@ -553,8 +553,13 @@ local function adjust_for_method(subs, method)
   subs.METHOD = method:upper()
   subs.active_verb = active_verbs[subs.METHOD]
   subs.passive_verb = passive_verbs[subs.METHOD]
+<<<<<<< HEAD
   subs.Active_verb = utils.titleize(subs.active_verb)
   subs.Passive_verb = utils.titleize(subs.passive_verb)
+=======
+  subs.Active_verb = title_case(subs.active_verb)
+  subs.Passive_verb = title_case(subs.passive_verb)
+>>>>>>> private_repo/master
 end
 
 local gen_endpoint

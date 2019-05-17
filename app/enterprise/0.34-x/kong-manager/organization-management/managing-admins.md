@@ -6,20 +6,22 @@ chapter: 7
 
 ## How to Invite a New Admin from the Organization Page
 
-Inviting a new Admin through the “Organization” page is similar to inviting an [Admin within a Workspace](#how-to-invite-a-new-admin-in-a-workspace). However, from the “Organization” page, Roles can be assigned to a new Admin for multiple Workspaces at once. The Super Admin can also view global roles across Workspaces from this page. 
+Inviting a new **Admin** through the “Organization” page is similar to inviting an [Admin within a Workspace](#how-to-invite-a-new-admin-in-a-workspace). However, from the “Organization” page, Roles can be assigned to a new **Admin** for multiple Workspaces at once. The **Super Admin** can also view global roles across Workspaces from this page. 
 
 <video width="100%" autoplay loop controls>
   <source src="https://konghq.com/wp-content/uploads/2019/02/org-super-admin-ent-34.mov" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-1. On the “Organization” page, to invite a new Admin, click the “Invite User” button.
+1. On the “Organization” page, to invite a new **Admin**, click the “Invite User” button.
 
-2. Fill out the username and email address. When a new Admin receives an invitation, they will only be able to log in with that email address. Assign the appropriate Role and click “Invite User” to send the invitation.
+2. Fill out the username and email address. When a new **Admin** receives an invitation, they will only be able to log in with that email address. Assign the appropriate Role and click “Invite User” to send the invitation.
 
-    ⚠️ **IMPORTANT**: Super Admins can invite users to multiple Workspaces, and assign them any Role available within Workspaces, including Roles that exist by default (e.g. super-admin, read-only) and Roles with customized permissions. 
+    **Super Admins** can invite users to multiple Workspaces, and assign them any Role available within Workspaces, including Roles that exist by default (e.g. super-admin, read-only) and Roles with customized permissions. 
 
-    ⚠️ **IMPORTANT**: The Super Admin can see all available roles across Workspaces on the “Roles” tab of the “Organization” page. 
+    The **Super Admin** can see all available Roles across Workspaces on the “Roles” tab of the “Organization” page.
+
+⚠️ **IMPORTANT**: If a **Role** is not assigned to or is revoked from an **Admin**, the **Workspace** will still appear in the **Admin's Workspace Access** column on the **Organization** page. The **Admin** will not actually be able to access anything in the **Workspace** without a **Role**.
 
     ![Role List](https://konghq.com/wp-content/uploads/2018/12/org2.png)
 
@@ -27,29 +29,29 @@ Inviting a new Admin through the “Organization” page is similar to inviting 
 
     ![User List](https://konghq.com/wp-content/uploads/2018/12/org3-1.png)
 
-4. The newly invited Admin will have the ability to set a password. If the Admin ever forgets the password, it is possible for them to reset it through a recovery email.
+4. The newly invited **Admin** will have the ability to set a password. If the **Admin** ever forgets the password, it is possible for them to reset it through a recovery email.
 
 ## How to Invite a New Admin in a Workspace
 
 ![Create an Admin in Kong Manager](https://konghq.com/wp-content/uploads/2018/07/admins2.png)
 
-1. On the "Admins" page, to invite a new admin, click the "Create New Admin" 
+1. On the **Admins** page, to invite a new **Admin**, click the **Create New Admin**
 button.
 
-2.  When a new Admin receives an invitation, they will only be able to log in 
-    with that email address. Assign the appropriate Role and click "Invite Admin" 
+2.  When a new **Admin** receives an invitation, they will only be able to log in 
+    with that email address. Assign the appropriate Role and click **Invite Admin** 
     to send the invitation.
 
     ![Create New Admin](https://konghq.com/wp-content/uploads/2018/11/km-name-admin.png)
 
-3. On the "Admins" page, the new invitee will appear on the list with the 
+3. On the **Admins** page, the new invitee will appear on the list with the 
     "invited" status. Once they accept the invitation, their status will 
     change to "accepted".
 
     ![Invited Admins](https://konghq.com/wp-content/uploads/2018/11/km-invited-admins.png)
 
-4. The newly invited Admin will have the ability to set a password. If the 
-    Admin forgets the password, it is possible to reset it through a recovery email.
+4. The newly invited **Admin** will have the ability to set a password. If the 
+    **Admin** forgets the password, it is possible to reset it through a recovery email.
 
 ⚠️ **IMPORTANT**: By default, the registration link will expire after 259,200 
     seconds (3 days). This timeframe can be configured with the `kong.conf` 
@@ -59,22 +61,22 @@ button.
     address or an external error, it will be possible to resend an invitation.
 
 ⚠️ **IMPORTANT**: If SMTP is not enabled or the invitation email fails to send, 
-    it is possible for the Super Admin to copy and provide a registration link 
+    it is possible for the **Super Admin** to copy and provide a registration link 
     directly. See the next section.
 
 ## How to Copy and Send a Registration Link
 
-If a mail server is not yet set up, it is still possible to invite Admins to 
+If a mail server is not yet set up, it is still possible to invite **Admins** to 
 register and log in. 
 
-1. Invite an Admin as described in the section above. 
+1. Invite an **Admin** as described in the section above. 
 
-2. If the "View" link is clicked next to the invited Admin's name, a 
+2. If the "View" link is clicked next to the invited **Admin**'s name, a 
     `register_url` is displayed on the invitee's details page. 
 
     ![Registration URL](https://konghq.com/wp-content/uploads/2018/11/km-registration-url.png)
 
-3. Copy and directly send this link to the invited Admin so that they may set 
+3. Copy and directly send this link to the invited **Admin** so that they may set 
     up their credentials and log in. 
 
 ⚠️ **IMPORTANT**: If `admin_gui_auth` is `ldap-auth-advanced`, credentials are 
@@ -82,9 +84,9 @@ not stored in Kong, and the Admin will be directed to Login.
 
 ## How to Grant an Admin Access with LDAP
 
-1. Pick a user in the LDAP Directory that will be the Super Admin. 
+1. Pick a user in the LDAP Directory that will be the **Super Admin**. 
 
-2. Change the Super Admin’s username in Kong by making a `PATCH` request to
+2. Change the **Super Admin**’s username in Kong by making a `PATCH` request to
 `admins/kong_admin` and setting the value of `username` to the corresponding 
 LDAP `attribute`. 
 

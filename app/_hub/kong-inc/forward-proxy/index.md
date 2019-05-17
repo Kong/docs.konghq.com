@@ -2,11 +2,15 @@
 
 name: Forward Proxy Advanced
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Allows Kong to connect to intermediary transparent HTTP proxies
 description: |
-  The Forward Proxy plugin allows Kong to connect to intermediary transparent HTTP proxies, instead of directly to the upstream_url, when forwarding requests upstream. This is useful in environments where Kong sits in an organization's internal network, the upstream API is available via the public internet, and the organization proxies all outbound traffic through a forward proxy server.
+  The Forward Proxy plugin allows Kong to connect to intermediary transparent
+   HTTP proxies, instead of directly to the upstream_url, when forwarding requests
+   upstream. This is useful in environments where Kong sits in an organization's
+   internal network, the upstream API is available via the public internet, and
+   the organization proxies all outbound traffic through a forward proxy server.
 
 enterprise: true
 type: plugin
@@ -18,7 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.34-x
+        - 0.35-x
 
 params:
   name: forward-proxy
@@ -50,6 +54,9 @@ params:
 
 ### Notes
 
-The plugin attempts to transparently replace upstream connections made by Kong core, sending the request instead to an intermediary forward proxy. Currently only transparent HTTP proxies are supported; TLS connections (via `CONNECT`) are not yet supported.
+The plugin attempts to transparently replace upstream connections made by Kong
+ core, sending the request instead to an intermediary forward proxy. Currently
+  only transparent HTTP proxies are supported; TLS connections (via `CONNECT`) 
+  are not yet supported.
 
 ---

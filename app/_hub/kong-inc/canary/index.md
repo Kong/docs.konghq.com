@@ -2,7 +2,7 @@
 
 name: Canary Release
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Slowly roll out software changes to a subset of users
 description: |
@@ -20,7 +20,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.34-x
+        - 0.35-x
 
 params:
   name: canary
