@@ -1,8 +1,9 @@
 - title: Deployment
   items:
     - text: Licensing
-      url: /deployment/licensing
       items:
+        - text: Overview
+          url: /deployment/licensing
         - text: How to Access Your License
           url: /deployment/access-license
     - text: Installation
