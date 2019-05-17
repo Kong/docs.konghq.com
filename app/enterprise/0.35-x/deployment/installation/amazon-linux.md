@@ -49,7 +49,7 @@ $ sudo vi /etc/kong/license.json
 $ sudo vi [/path/to/kong.conf]
 
 # Run migrations and start kong
-$ kong migrations up [-c /path/to/kong.conf]
+$ kong migrations bootstrap [-c /path/to/kong.conf]
 $ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 
