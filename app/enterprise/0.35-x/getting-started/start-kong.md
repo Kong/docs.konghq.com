@@ -71,7 +71,7 @@ used as a `Kong-Admin-Token` to make Admin API requests.
 **Note:** only one **Super Admin** may be created using this method. 
 Future migrations will not override it or create additional **Super Admins**. 
 To do so, it is necessary to 
-[invite new users as **Super Admins** in Kong Manager](enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
+[invite new users as **Super Admins** in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
 
 ## Step 2
 
