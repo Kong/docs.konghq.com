@@ -189,7 +189,6 @@ $ curl -X GET http://kong:8001/basic-auths
 ```
 
 You can filter the list by consumer by using this other path:
-<<<<<<< HEAD
 
 ```bash
 $ curl -X GET http://kong:8001/consumers/{username or id}/basic-auths
@@ -208,26 +207,6 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/basic-auths
 }
 ```
 
-=======
-
-```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/basic-auths
-
-{
-    "total": 1,
-    "data": [
-        {
-            "created_at": 1511379863000,
-            "id": "8edfe5c7-3151-4d92-971f-3faa5e6c5d7e",
-            "password": "451b06c564a06ce60874d0ea2f542fa8ed26317e",
-            "username": "foo",
-            "consumer": { "id": "89a41fef-3b40-4bb0-b5af-33da57a7ffcf" }
-        }
-    ]
-}
-```
-
->>>>>>> private_repo/master
 `username or id`: The username or id of the consumer whose credentials need to be listed
 
 ### Retrieve the Consumer associated with a Credential

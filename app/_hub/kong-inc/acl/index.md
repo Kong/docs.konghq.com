@@ -145,7 +145,6 @@ $ curl -X GET http://kong:8001/acls
 ```
 
 You can filter the list by consumer by using this other path:
-<<<<<<< HEAD
 
 ```bash
 $ curl -X GET http://kong:8001/consumers/{username or id}/acls
@@ -163,25 +162,6 @@ $ curl -X GET http://kong:8001/consumers/{username or id}/acls
 }
 ```
 
-=======
-
-```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/acls
-
-{
-    "total": 1,
-    "data": [
-        {
-            "group": "bar-group",
-            "created_at": 1511391162000,
-            "id": "0905f68e-fee3-4ecb-965c-fcf6912bf29e",
-            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
-        }
-    ]
-}
-```
-
->>>>>>> private_repo/master
 `username or id`: The username or id of the consumer whose ACLs need to be listed
 
 #### Retrieve the Consumer associated with an ACL

@@ -150,7 +150,6 @@ credential for future requests for the duration specified in
 When a client has been authenticated, the plugin will append some headers to the
  request before proxying it to the upstream service, so that you can identify 
  the consumer in your code:
-<<<<<<< HEAD
 
 * `X-Credential-Username`, the `username` of the Credential (only if the 
 consumer is not the 'anonymous' consumer)
@@ -174,31 +173,6 @@ search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
 `base_dn=<config.base_dn>`. Here is an example of how it performs the search 
 using the `ldapsearch` command line utility:
 
-=======
-
-* `X-Credential-Username`, the `username` of the Credential (only if the 
-consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and 
-the 'anonymous' consumer was set instead.
-* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if 
-authentication failed and 'anonymous' was set)
-* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if 
-authentication failed and 'anonymous' was set)
-* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if 
-authentication failed and 'anonymous' was set)
-
-
-#### LDAP Search and config.bind_dn
-
-LDAP directory searching is performed during the request/plugin lifecycle. It is
-used to retrieve the fully qualified DN of the user so a bind 
-request can be performed with the user's given LDAP username and password. The 
-search for the user being authenticated uses the `config.bind_dn` property. The 
-search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
-`base_dn=<config.base_dn>`. Here is an example of how it performs the search 
-using the `ldapsearch` command line utility:
-
->>>>>>> private_repo/master
 ```bash
 $ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b 
 "<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"

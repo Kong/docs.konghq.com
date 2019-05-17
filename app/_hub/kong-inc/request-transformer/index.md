@@ -250,17 +250,10 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   </tr>
 </table>
 
-<<<<<<< HEAD
 |incoming request querystring | upstream proxied querystring
 |---           | ---
 | ?q1=v1       |  ?q1=v1&q2=v1
 |              |  ?q1=v2&q2=v1
-=======
-|incoming request querystring | upstream proxied querystring 
-|---           | --- 
-| ?q1=v1       |  ?q1=v1&q2=v1 
-|              |  ?q1=v2&q2=v1 
->>>>>>> private_repo/master
 
 - Append multiple headers and remove a body parameter:
 
@@ -287,17 +280,10 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   </tr>
 </table>
 
-<<<<<<< HEAD
-|incoming url encoded body | upstream proxied url encoded body:
-|---           | ---
-|p1=v1&p2=v1   | p2=v1
-|p2=v1         | p2=v1
-=======
 |incoming url encoded body | upstream proxied url encoded body: 
 |---           | --- 
 |p1=v1&p2=v1   | p2=v1 
 |p2=v1         | p2=v1 
->>>>>>> private_repo/master
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object
