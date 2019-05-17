@@ -19,10 +19,6 @@
       absolute_url: true
     - text: Migrating to 0.35
       url: /deployment/migrations
-    - text: Deployment Best Practices
-      items:
-        - text: AWS Deployment
-          url: /deployment/best-practices/aws
 
 - title: Getting Started
   url: /getting-started/
