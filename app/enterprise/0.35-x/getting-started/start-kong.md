@@ -106,4 +106,4 @@ With Kong Enterprise started and the **Super Admin** logged in, it is now
 possible to create any entity in Kong. 
 
 Next, see how to segment the Kong cluster into 
-[**Workspaces**](enterprise/{{page.kong_version}}/getting-started/add-workspace).
+[**Workspaces**](/enterprise/{{page.kong_version}}/getting-started/add-workspace).
