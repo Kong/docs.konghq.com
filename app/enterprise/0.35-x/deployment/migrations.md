@@ -35,7 +35,9 @@ For a no-downtime migration from a 0.34 cluster to a 0.35 cluster:
 1. Download 0.35, and configure it to point to the same datastore as your 0.34 cluster. 
 2. Run `kong migrations up`. Both 0.34 and 0.35 nodes can now run simultaneously on the same datastore.
 3. Start provisioning 0.35 nodes, but **do not use** their Admin API yet. 
+
     ⚠️ **Important:** When doing a Blue/Green upgrade in a 0.34 cluster where RBAC is enabled, if you make an Admin API request from a new 0.35 node, from then on, Admin API calls will only work from the new 0.35 node. This is because the new token will be hashed in the database and will fail on the old 0.34 nodes since they do not know how to verify the hashed token.
+
 4. Gradually divert traffic away from your 0.34 nodes, and into your 0.35 cluster. Monitor your traffic to make sure everything is going smoothly.
 5. When your traffic is fully migrated to the 0.35 cluster, decommission your 0.34 nodes.
 6. From your 0.35 cluster, run: `kong migrations finish`. From this point on, it will not be possible to start 0.34 nodes pointing to the same datastore anymore. Only run this command when you are confident that your migration was successful. From now on, you can safely make Admin API requests to your 0.35 nodes.
