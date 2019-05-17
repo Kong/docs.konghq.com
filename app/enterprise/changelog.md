@@ -4,6 +4,13 @@ title: Kong Enterprise Changelog
 
 ## 0.35 - 2019/05/17
 
+**Notifications**
+- **Kong Enterprise 0.35** inherits from **Kong 1.0.3**; read 1.0.0 - 1.0.3 changelogs for details:
+  - [1.0.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#100)
+  - [1.0.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#101)
+  - [1.0.2 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#102)
+  - [1.0.3 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
+
 **CHANGES**
 - **Admin API**
   - RBAC: Following Kong 1.0's changes, referenced (`foreign_key`) entities like RBAC Users and RBAC Roles are returned as nested JSON tables instead of flattened `role_id` or `user_id` fields in top-level entity.
