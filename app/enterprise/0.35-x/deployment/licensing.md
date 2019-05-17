@@ -12,7 +12,7 @@ There are three possible ways to configure a license file on a Kong node. These 
 
 1. If present, the contents of the environmental variable `KONG_LICENSE_DATA` are used.
 2. Kong will search in the default location `/etc/kong/license.json`
-3. If present, the contents of the file defined by the environmental variable `KONG_LICENSE_PATH` is used.
+3. If present, the contents of the file defined by the environment variable `KONG_LICENSE_PATH` is used.
 
 In this manner, the license file can be deployed either as a file on the node filesystem, or as an environmental variable. 
 
