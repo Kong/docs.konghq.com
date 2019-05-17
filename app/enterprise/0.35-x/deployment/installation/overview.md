@@ -4,6 +4,7 @@ toc: false
 ---
 
 <div class="docs-grid">
+
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/docker">Docker</a></h3>
     <p></p>
@@ -22,7 +23,7 @@ toc: false
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux">Go to Guide&rarr;</a>
   </div>
 
-  <div class="docs-grid-block">
+  <!-- <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/ubuntu">Ubuntu</a></h3>
     <p></p>
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/ubuntu">Go to Guide&rarr;</a>
@@ -38,5 +39,6 @@ toc: false
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/red-hat">Red Hat</a></h3>
     <p></p>
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/red-hat">Go to Guide&rarr;</a>
-  </div>
+  </div> -->
+
 </div>
