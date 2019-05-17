@@ -123,14 +123,6 @@ When disabled, Developers will *not* be able to reset their account passwords.
 Kong Admins will have to manually create new credentials for the Developer in 
 the Kong Manager.
 
-### portal_token_exp
-
-**Default:** `21600`
-
-**Description:**
-Duration in seconds for the expiration of the Dev Portal reset password token. 
-Default `21600` is six hours.
-
 
 ### portal_reset_success_email
 

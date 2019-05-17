@@ -39,6 +39,8 @@
       url: /getting-started/enable-plugin
     - text: How to Add a Consumer
       url: /getting-started/add-consumer
+    - text: How to Enable the Dev Portal
+      url: /getting-started/enable-dev-portal
 
 - title: Admin API
   url: /admin-api/
@@ -137,6 +139,8 @@
               url: /developer-portal/configuration/authentication/key-auth
             - text: OpenID Connect
               url: /developer-portal/configuration/authentication/oidc
+            - text: Adding Registration Fields
+              url: /developer-portal/configuration/authentication/adding-registration-fields
         - text: SMTP
           url: /developer-portal/configuration/smtp
         - text: Running Multiple Dev Portals with Workspaces
@@ -146,9 +150,9 @@
     - text: Administration
       items:
         - text: Managing Developers
-          url: /developer-portal/management/developers
+          url: /developer-portal/administration/managing-developers
     - text: Theme Customization
-      url: /developer-portal/customization/customization
+      url: /developer-portal/theme-customization/customizing-dev-portal
       items:
           - text: Customizing the Dev Portal
             url: /developer-portal/customization/customization

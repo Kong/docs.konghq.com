@@ -8,11 +8,26 @@ The Dev Portal can be fully or partially authenticated using API keys or **Key
 Authentication**. Users provide a unique key upon registering and use this key
 to log into the Dev Portal.
 
+
 Key Authentication for the Dev Portal can be enabled in three ways:
 
 - via the [Kong Manager](#enable-key-auth-via-kong-manager)
 - via the [the command line](#enable-key-auth-via-the-command-line)
 - via the [the Kong configuration file](#enable-key-auth-via-the-kong-conf)
+
+
+>**Warning** Enabling authentication in the Dev Portal requires use of the
+> Sessions plugin. Developers will not be able to login if this is not set 
+> properly.
+
+### Enable Portal Session Config
+
+In the the Kong configuration file set the `portal_session_conf` property:
+
+```
+portal_session_conf={ "cookie_name": "portal_session", "secret": "super-secret", "cookie_secure": false, "storage": "kong" }
+```
+
 
 ### Enable Key Auth via Kong Manager
 
