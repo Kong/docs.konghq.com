@@ -17,12 +17,8 @@
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
-    - text: Upgrades and Migrations
-      items:
-        - text: Kong Enterprise Versioning
-          url: /deployment/upgrades/edition-versioning
-        - text: Migrating to 0.35
-          url: /deployment/upgrades/migrations
+    - text: Migrating to 0.35
+      url: /deployment/upgrades/migrations
     - text: Deployment Best Practices
       items:
         - text: AWS Deployment
