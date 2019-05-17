@@ -31,7 +31,7 @@ using the [`/workspaces/` route](/enterprise/{{page.kong_version}}/admin-api/wor
 ### Prerequisites
 
 * [`enforce_rbac = on`](/enterprise/{{page.kong_version}}/property-reference/#enforce_rbac)
-* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/getting-started/start-kong.md)
+* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/getting-started/start-kong)
 * Logged in to Kong Manager as a **Super Admin** 
 
 ## Video Walkthrough
