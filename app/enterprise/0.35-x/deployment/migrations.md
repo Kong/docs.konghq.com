@@ -4,7 +4,7 @@ title: Migrating to 0.35
 
 ### Prerequisites for Migrating to 0.35
 
-* If running a version earlier than 0.34, it is necessary to [upgrade to 0.34](/enterprise/[0.34-x/deployment-guide/#upgrading-to-034](https://kongdocs-private.netlify.com/enterprise/0.34-x/deployment-guide/#upgrading-to-034)) first before migrating to 0.35.
+* If running a version earlier than 0.34, it is necessary to [upgrade to 0.34](/enterprise/0.34-x/deployment-guide/#upgrading-to-034) first before migrating to 0.35.
 * If the datastore still has `API` entities instead of `Services` and `Routes`, upgrading to 0.35 will not be possible. `APIs` were deprecated in release 0.32 and are now removed from Kong. It is possible to convert `APIs` to `Services` and `Routes` and then remove the `APIs` on the 0.34 node.
 
 ### Changes and Configuration to Consider before Upgrading
