@@ -39,6 +39,8 @@
       url: /getting-started/enable-plugin
     - text: How to Add a Consumer
       url: /getting-started/add-consumer
+    - text: How to Enable the Dev Portal
+      url: /getting-started/enable-dev-portal
 
 - title: Admin API
   url: /admin-api/
