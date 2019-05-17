@@ -22,7 +22,7 @@ In addition to the **Authentication Plugins** above, the new [**Sessions Plugin*
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`. 
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`. 
-Learn more about these properties in [Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [example configurations](#example-configurations).
+Learn more about these properties in [Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [example configurations](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
 
 ## Access Control with Roles and Workspaces
 

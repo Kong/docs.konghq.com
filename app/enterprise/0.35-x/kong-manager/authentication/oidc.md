@@ -47,12 +47,13 @@ admin_gui_auth_conf={                                      \
   "scopes": ["openid","profile","email","offline_access"], \
   "auth_methods": ["authorization_code"]                   \
 }
+```
 
 ⚠️**Important:** the **Sessions Plugin** requries a secret and is configured securely by default. 
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`. 
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`. 
-Learn more about these properties in [Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [example configurations](#example-configurations).
+Learn more about these properties in [Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [example configurations](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
 
 Replace the entries surrounded by `<>` with values that are valid for your IdP. For example, Google credentials can be found here: https://console.cloud.google.com/projectselector/apis/credentials
 
