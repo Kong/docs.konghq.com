@@ -127,7 +127,7 @@ Admin API.
 
 Without a license properly referenced, you’ll get errors running migrations:
 
-    $ docker run -ti --rm ... kong migrations up
+    $ docker run -ti --rm ... kong migrations bootstrap
     nginx: [alert] Error validating Kong license: license path environment variable not set
 
 Also, without a license, you will get no output if you do a `docker run` in
