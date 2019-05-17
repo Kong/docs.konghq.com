@@ -55,7 +55,7 @@ toc: false
         <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/admins">Managing Admins</a>
     </h3>
     <p>Invite and keep track of every team member, all from one place</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/admins">Learn more &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/admins/admins">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
