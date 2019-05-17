@@ -46,7 +46,7 @@ title: Kong Enterprise Changelog
 - **Core**
   - New RBAC user tokens are not stored in plaintext. If upgrading to this version, any existing tokens will remain in plaintext until either a) the token is used in an Admin API call or b) the rbac_user record is PATCHed (even if the PATCH request includes the existing value of `user_token`).
 - **Plugins**
-  - **Response Transformer Advanced**: 
+  - **Response Transformer Advanced** _new_: 
     - Conditional transformations on response status through the new flag if_status, a subfield in all transformations (e.g., `add.if_status`, `remove.if_status`); the transformation only happens if the response code matches one of the codes in the `if_status field`
     - Full-body replacement through the new config.replace.body
     - Added a support of status code ranges for `if_status` configuration parameter. Now you can provide status code ranges and single status codes together (e.g., `201-204,401`)
