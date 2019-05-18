@@ -102,7 +102,7 @@
         - items:
           - text: Workspaces in Kong Manager
             url: /kong-manager/administration/workspaces/workspaces
-          - text: How to Create a New Workspace
+          - text: How to Create a Workspace
             url: /kong-manager/administration/workspaces/create-workspace
           - text: How to Update or Delete a Workspace
             url: /kong-manager/administration/workspaces/update-workspace
