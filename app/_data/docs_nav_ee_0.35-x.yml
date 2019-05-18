@@ -43,7 +43,6 @@
       url: /getting-started/enable-dev-portal
 
 - title: Admin API
-  url: /admin-api/
   items:
   - text: Workspaces
     url: /admin-api/workspaces/reference

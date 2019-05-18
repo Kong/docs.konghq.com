@@ -28,9 +28,9 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/migrations">Migration Guide</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/migrations">Migration Guide</a></h3>
     <p>Migrate to the latest version of Kong Enterprise.</p>
-    <a href="/enterprise/migrations/">See Guide &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/deployment/migrations/">See Guide &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
@@ -40,9 +40,9 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/admin-api">Admin API</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Admin API</a></h3>
     <p>Harness Kong Enterprise's features with the Admin API.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/">Learn more &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
@@ -58,9 +58,9 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/apis-plugins">APIs and Plugins</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/hub">APIs and Plugins</a></h3>
     <p>Expand Kong Enterprise's capabilities with additional APIs and Plugins.</p>
-    <a href="/enterprise/changelog/">Learn More &rarr;</a>
+    <a href="/hub">Learn More &rarr;</a>
   </div>
 
 </div>
