@@ -10,29 +10,29 @@ toc: false
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
     <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started">Configuration</a></h3>
-    <p>Learn how to configure the Dev Portal.</p>
+    <p>Learn how to configure the Kong Dev Portal.</p>
     <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration">
     Learn More &rarr;</a>
   </div>
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-quickstart.svg" />
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started">Administration</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/managing-developers">Administration</a></h3>
     <p>Learn how to manage the Dev Portal and Developer accounts.</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration">
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/managing-developers">
     Learn More &rarr;</a>
   </div>
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started">Customize the Dev Portal</a></h3>
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/theme-customization/customizing-dev-portal">Customize the Dev Portal</a></h3>
     <p>Learn how to customize the look and feel of the Dev Portal.</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/customization">
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/theme-customization/customizing-dev-portal">
     Learn More &rarr;</a>
   </div>
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started">Manage Content</a></h3>
-    <p>Learn how to get the Kong Dev Portal up and running</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/content-management">
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/content-management/file-management">Manage Content</a></h3>
+    <p>Learn how to upload and manage files in the Dev Portal</p>
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/content-management/file-management">
     Learn More &rarr;</a>
   </div>
   <div class="docs-grid-block">

@@ -139,6 +139,7 @@
               url: /developer-portal/configuration/authentication/key-auth
             - text: OpenID Connect
               url: /developer-portal/configuration/authentication/oidc
+            - text: Adding Custom Registration Fields
         - text: SMTP
           url: /developer-portal/configuration/smtp
         - text: Running Multiple Dev Portals with Workspaces
@@ -150,10 +151,9 @@
         - text: Managing Developers
           url: /developer-portal/management/developers
     - text: Theme Customization
-      url: /developer-portal/customization/customization
       items:
           - text: Customizing the Dev Portal
-            url: /developer-portal/customization/customization
+            url: /developer-portal/theme-customization/customizing-dev-portal
     - text: Content Management
       items:
           - text: File Management
@@ -189,6 +189,8 @@
         url: /plugins/route-by-header
       - text: JWT Signer
         url: /plugins/jwt-signer
+      - text: Vault Auth
+        url: /hub/kong-inc/vault-auth
     - text: Implementation
       items:
         - text: Multiple Authentication Methods
