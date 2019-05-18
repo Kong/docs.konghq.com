@@ -108,7 +108,7 @@ vitals_prometheus_scrape_interval = new_value_in_seconds
 $ export KONG_VITALS_PROMETHEUS_SCRAPE_INTERVAL=new_value_in_seconds
 ```
 
-The above option configures `interval` parameter when quering Prometheus.
+The above option configures `interval` parameter when querying Prometheus.
 The value `new_value_in_seconds` should be equal or larger than
 `scrape_interval` config in Prometheus. 
 
@@ -138,7 +138,7 @@ mappings:
 # ...
 ```
 
-## Tunning and Optimization
+## Tuning and Optimization
 
 ### StatsD exporter UDP buffer
 

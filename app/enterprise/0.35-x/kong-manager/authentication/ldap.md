@@ -1,6 +1,7 @@
 ---
 title: How to Enable LDAP for Kong Manager
 book: admin_gui
+toc: false
 ---
 
 Kong Enterprise offers the ability to bind authentication for Kong Manager 
