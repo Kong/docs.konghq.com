@@ -38,6 +38,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -279,10 +280,10 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   </tr>
 </table>
 
-|incoming url encoded body | upstream proxied url encoded body:
-|---           | ---
-|p1=v1&p2=v1   | p2=v1
-|p2=v1         | p2=v1
+|incoming url encoded body | upstream proxied url encoded body: 
+|---           | --- 
+|p1=v1&p2=v1   | p2=v1 
+|p2=v1         | p2=v1 
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object

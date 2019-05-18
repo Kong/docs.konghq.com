@@ -11,7 +11,7 @@ description: |
   It is built using
   <a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a>
 
-type: Plugin
+type: plugin
 categories:
   - authentication
 
@@ -82,15 +82,15 @@ params:
     - name: logout_methods
       required: false 
       default: '[`"POST"`, `"DELETE"`]'
-      description: "The methods that may be used to end sessions: POST, DELETE, GET. Do not change this property; doing so will break the ability to use Kong Manager."
+      description: 'The methods that may be used to end sessions: POST, DELETE, GET.'
     - name: logout_query_arg
       required: false 
       default: session_logout
-      description: The query argument passed to logout requests. Do not change this property; doing so will break the ability to use Kong Manager.
+      description: The query argument passed to logout requests.
     - name: logout_post_arg
       required: false 
       default: session_logout
-      description: The post argument passed to logout requests. Do not change this property; doing so will break the ability to use Kong Manager.
+      description: The post argument passed to logout requests. Do not change this property.
 
 ---
 
@@ -145,7 +145,7 @@ For usage with [Key Auth] **Plugin**
 
     ```bash
     $ curl -i -X POST \
-      --url http://localhost:8001/services/example-service/**Plugin**s/ \
+      --url http://localhost:8001/services/example-service/plugins/ \
       --data 'name=key-auth'
     ```
 
@@ -201,14 +201,14 @@ For usage with [Key Auth] **Plugin**
 
     ```bash
     $ curl -i -X PATCH \
-      --url http://localhost:8001/**Plugin**s/<your-key-auth-**Plugin**-id> \
+      --url http://localhost:8001/plugins/<your-key-auth-plugin-id> \
       --data "config.anonymous=<anonymous_consumer_id>"
     ```
 
 1. Add the Kong Session **Plugin** to the service
 
     ```bash
-    $ curl -X POST http://localhost:8001/services/example-service/**Plugin**s \
+    $ curl -X POST http://localhost:8001/services/example-service/plugins \
         --data "name=session"  \
         --data "config.storage=kong" \
         --data "config.cookie_secure=false"
@@ -222,7 +222,7 @@ For usage with [Key Auth] **Plugin**
     authentication credentials, enable the Request Termination **Plugin**.
 
     ```bash
-    $ curl -X POST http://localhost:8001/services/example-service/**Plugin**s \
+    $ curl -X POST http://localhost:8001/services/example-service/plugins \
         --data "name=request-termination"  \
         --data "config.status_code=403" \
         --data "config.message=So long and thanks for all the fish!" \
@@ -328,5 +328,5 @@ _not_ a problem during session renewal period as renew happens in `access` phase
 [Plugin]: https://docs.konghq.com/hub/
 [lua-resty-session]: https://github.com/bungle/lua-resty-session
 [multiple authentication]: https://docs.konghq.com/0.14.x/auth/#multiple-authentication
-[key-auth]: https://docs.konghq.com/hub/kong-inc/key-auth/
+[Key Auth]: https://docs.konghq.com/hub/kong-inc/key-auth/
 [Request Termination]: https://docs.konghq.com/hub/kong-inc/request-termination/

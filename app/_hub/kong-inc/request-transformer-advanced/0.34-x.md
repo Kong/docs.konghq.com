@@ -1,0 +1,294 @@
+---
+
+name: Request Transformer Advanced
+publisher: Kong Inc.
+version: 0.34-x
+
+desc: Use powerful regular expressions, variables and templates to transform API requests
+description: |
+  The Request Transformer plugin for Kong Enterprise builds on the Kong version of this plugin with enhanced capabilities to match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute those strings into transformed requests via flexible templates.
+
+enterprise: true
+type: plugin
+categories:
+  - transformations
+
+kong_version_compatibility:
+    community_edition:
+      compatible:
+    enterprise_edition:
+      compatible:
+        - 0.34-x
+
+params:
+  name: request-transformer-advanced
+  api_id: true
+  service_id: true
+  route_id: true
+  consumer_id: true
+  config:
+    - name: http_method
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        Changes the HTTP method for the upstream request
+    - name: remove.headers
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of header names. Unset the headers with the given name.
+    - name: remove.querystring
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of querystring names. Remove the querystring if it is present.
+    - name: remove.body
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and parameter is present.
+    - name: replace.headers
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
+    - name: replace.querystring
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of queryname:value pairs. If and only if the querystring name is already set, replace its old value with the new one. Ignored if the header is not already set.
+    - name: replace.uri
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        Updates the upstream request URI with given value. This value can only be used to update the path part of the URI, not the scheme, nor the hostname.
+    - name: replace.body
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
+    - name: rename.headers
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of headername:value pairs. If and only if the header is already set, rename the header. The value is unchanged. Ignored if the header is not already set.
+    - name: rename.querystring
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of queryname:value pairs. If and only if the field name is already set, rename the field name. The value is unchanged. Ignored if the field name is not already set.
+    - name: rename.body
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of parameter name:value pairs. Rename the parameter name if and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and parameter is present.
+    - name: add.headers
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of headername:value pairs. If and only if the header is not already set, set a new header with the given value. Ignored if the header is already set.
+    - name: add.querystring
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of queryname:value pairs. If and only if the querystring name is not already set, set a new querystring with the given value. Ignored if the querystring name is already set.
+    - name: add.body
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of paramname:value pairs. If and only if content-type is one the following [`application/json, multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is not present, add a new parameter with the given value to form-encoded body. Ignored if the parameter is already present.
+    - name: append.headers
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
+    - name: append.querystring
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of queryname:value pairs. If the querystring is not set, set it with the given value. If it is already set, a new querystring with the same name and the new value will be set.
+    - name: append.body
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        List of paramname:value pairs. If the content-type is one the following [`application/json`, `application/x-www-form-urlencoded`], add a new parameter with the given value if the parameter is not present, otherwise if it is already present, the two values (old and new) will be aggregated in an array.
+  extra: |
+    Note: if the value contains a `,` then the comma separated format cannot be used. The array notation must be used instead.
+
+---
+
+### Template as Value
+
+User can use any of the the current request headers, query params, and captured URI named groups as template to populate above supported config fields.
+
+| Request Param | Template
+| --------- | -----------
+| header | $(headers.<header_name> or $(headers['<header-name>']) or 'optional_default')
+| querystring | $(query_params.<query_param_name> or $(query_params['query-param-name']) or 'optional_default')
+| captured URIs | $(uri_captures.<group_name> or $(uri_captures['group-name']) or 'optional_default')
+
+To escape a template, wrap it inside quotes and pass inside another template.<br>
+Ex. $('$(some_needs_to_escaped)')
+
+Note: Plugin creates a non mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
+
+#### Examples Using Template as Value
+
+Add an API `test` with `uris` configured with a named capture group `user_id`
+
+```bash
+$ curl -X POST http://localhost:8001/apis \
+    --data 'name=test' \
+    --data 'upstream_url=http://mockbin.com' \
+    --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
+    --data "strip_uri=false"
+```
+
+Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
+and its value is being set with the value sent with header `x-user-id` or
+with the default value alice is `header` is missing.
+
+```bash
+$ curl -X POST http://localhost:8001/apis/test/plugins \
+    --data "name=request-transformer-advanced" \
+    --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
+    --data "config.remove.headers=x-user-id"
+```
+
+Now send a request without setting header `x-user-id`
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo
+```
+
+Plugin will add a new header `x-consumer-id` with value alice before proxying
+request upstream. Now try sending request with header `x-user-id` set
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo \
+  -H "X-User-Id:bob"
+```
+
+This time plugin will add a new header `x-consumer-id` with value sent along
+with header `x-user-id`, i.e.`bob`
+
+### Order of Execution
+
+Plugin performs the response transformation in following order
+
+remove –> replace –> add –> append
+
+### Configuration Examples
+
+Add multiple headers by passing each header:value pair separately:
+
+```bash
+$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+  --data "name=request-transformer-advanced" \
+  --data "config.add.headers[1]=h1:v1" \
+  --data "config.add.headers[2]=h2:v1"
+```
+
+| Incoming Request Headers | Upstream Proxied Headers
+| --------- | -----------
+| h1: v1 | h1: v1, h2: v1
+
+Add multiple headers by passing comma separated header:value pair:
+
+```bash
+$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+  --data "name=request-transformer-advanced" \
+  --data "config.add.headers=h1:v1,h2:v2"
+```
+
+| Incoming Request Headers | Upstream Proxied Headers
+| --------- | -----------
+| h1: v1 | h1: v1, h2: v1
+
+Add multiple headers passing config as JSON body:
+
+```bash
+$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+  --header 'content-type: application/json' \
+  --data '{"name": "request-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
+```
+
+| Incoming Request Headers | Upstream Proxied Headers
+| --------- | -----------
+| h1: v1 | h1: v1, h2: v1
+
+Add a querystring and a header:
+
+```bash
+$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+  --data "name=request-transformer-advanced" \
+  --data "config.add.querystring=q1:v2,q2=v1" \
+  --data "config.add.headers=h1:v1"
+
+```
+
+| Incoming Request Headers | Upstream Proxied Headers
+| --------- | -----------
+| h1: v1 | h1: v1, h2: v1
+| h3: v1 | h1: v1, h2: v1, h3: v1
+
+| Incoming Request Querystring | Upstream Proxied Querystring
+| --------- | -----------
+| ?q1=v1 | ?q1=v1&q2=v1
+|        | ?q1=v2&q2=v1
+
+Append multiple headers and remove a body parameter:
+
+```bash
+$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+  --data "name=request-transformer-advanced" \
+  --data "config.add.headers=h1:v2,h2:v1" \
+  --data "config.remove.body=p1" \
+
+```
+
+| Incoming Request Headers | Upstream Proxied Headers
+| --------- | -----------
+| h1: v1 | h1: v1, h1: v2, h2: v1
+
+| Incoming URL Encoded Body | Upstream Proxied URL Encoded Body
+| --------- | -----------
+| p1=v1&p2=v1 | p2=v1
+| p2=v1 | p2=v1
+
+Add multiple headers and querystring parameters if not already set:
+
+```bash
+$ curl -X POST http://localhost:8001/apis/mockbin/plugins \
+  --data "name=request-transformer-advanced" \
+  --data "config.add.headers=h1:v1,h2:v1" \
+  --data "config.add.querystring=q1:v2,q2:v1" \
+
+```
+
+| Incoming Request Headers | Upstream Proxied Headers
+| --------- | -----------
+| h1: v1 | h1: v1, h2: v1
+| h3: v1 |  h1: v1, h2: v1, h3: v1
+
+| Incoming Request Querystring | Upstream Proxied Querystring
+| --------- | -----------
+| ?q1=v1 | ?q1=v1&q2=v1
+|        | ?q1=v2&q2=v1

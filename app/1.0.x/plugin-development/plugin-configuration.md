@@ -397,7 +397,6 @@ function CustomHandler:new()
   CustomHandler.super.new(self, "my-custom-plugin")
 end
 
-
 function CustomHandler:access(config)
   CustomHandler.super.access(self)
 

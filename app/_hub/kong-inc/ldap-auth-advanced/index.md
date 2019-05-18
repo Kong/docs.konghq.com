@@ -2,7 +2,7 @@
 
 name: LDAP Authentication Advanced
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Secure Kong clusters, routes and services with username and password protection
 description: |
@@ -18,6 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
 
 params:
@@ -51,6 +52,13 @@ params:
       value_in_examples:
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection
+    - name: ldaps
+      required:
+      default: "`false`"
+      value_in_examples:
+      description: |
+        Set it to `true` to use `ldaps`, a secure protocol (that can be configured 
+        to TLS) to connect to the LDAP server.
     - name: base_dn
       required:
       default:

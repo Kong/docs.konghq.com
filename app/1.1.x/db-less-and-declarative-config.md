@@ -319,4 +319,3 @@ write to the database, the writes will fail.
 * `oauth2` - For its regular work, the plugin needs to both generate and delete
   tokens, and commit those changes to the database, which is not compatible with
   DB-less.
-
