@@ -77,7 +77,7 @@
       items:
         - text: Default and Custom Configuration
           url: /kong-manager/networking/configuration
-        - text: Configuring Kong Manager to Send Email
+        - text: Configuring to Send Email
           url: /kong-manager/networking/email
     - text: Securing Kong Manager
       url: /kong-manager/security
