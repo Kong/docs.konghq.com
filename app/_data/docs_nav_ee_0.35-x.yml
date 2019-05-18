@@ -104,7 +104,7 @@
             url: /kong-manager/administration/workspaces/workspaces
           - text: How to Create a Workspace
             url: /kong-manager/administration/workspaces/create-workspace
-          - text: How to Update or Delete a Workspace
+          - text: How to Update a Workspace
             url: /kong-manager/administration/workspaces/update-workspace
         - text: RBAC
           url: /kong-manager/administration/rbac/rbac
@@ -186,7 +186,7 @@
       - text: Session Plugin
         url: /plugins/session
       - text: Route By Headers
-        url: /plugins/route-by-heders
+        url: /plugins/route-by-header
       - text: JWT Signer
         url: /plugins/jwt-signer
     - text: Implementation
