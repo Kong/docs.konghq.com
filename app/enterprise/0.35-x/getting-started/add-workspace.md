@@ -21,7 +21,7 @@ it is possible to divide the cluster into logical groups with
 limited access. These **Workspaces** provide clearer 
 segmentation of traffic and entities. Each team's 
 access may be restricted to their own **Workspace**, supporting 
-the principle of least privilige.
+the principle of least privilege. 
 
 The guide below describes how to create **Workspaces** in Kong 
 Manager. As an alternative, if a **Super Admin** wants to create 
