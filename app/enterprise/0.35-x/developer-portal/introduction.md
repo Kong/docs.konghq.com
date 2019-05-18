@@ -9,7 +9,7 @@ toc: false
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/getting-started">Configuration</a></h3>
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration">Configuration</a></h3>
     <p>Learn how to configure the Kong Dev Portal.</p>
     <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration">
     Learn More &rarr;</a>
