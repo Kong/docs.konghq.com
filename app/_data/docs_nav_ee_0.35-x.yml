@@ -203,9 +203,3 @@
   items:
     - text: Configuration Property Reference
       url: /property-reference
-    - text: Architecture Overview
-      url: /kong-architecture-overview
-    - text: Architecture Patterns
-      url: /kong-architecture-patterns
-    - text: Rate Limiting Library
-      url: /rate-limiting
