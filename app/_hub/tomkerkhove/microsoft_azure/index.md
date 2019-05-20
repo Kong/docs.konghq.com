@@ -57,6 +57,9 @@ kong_version_compatibility: # required
   community_edition: # optional
     compatible:
         - 0.14.x
+        - 0.15.x
+        - 1.0.x
+        - 1.1.x
     #incompatible:
   # enterprise_edition: # optional
     # compatible:
