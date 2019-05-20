@@ -52,10 +52,10 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/admins/admins">Managing Admins</a>
+        <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite">Managing Admins</a>
     </h3>
     <p>Invite and keep track of every team member, all from one place</p>
-    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/admins/admins">Learn more &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
