@@ -183,7 +183,7 @@
       - text: Session Plugin
         url: /plugins/session
       - text: Route By Headers
-        url: /plugins/route-by-headers
+        url: /plugins/route-by-header
       - text: JWT Signer
         url: /plugins/jwt-signer
       - text: Vault Auth
