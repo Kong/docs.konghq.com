@@ -187,7 +187,7 @@
       - text: JWT Signer
         url: /plugins/jwt-signer
       - text: Vault Auth
-        url: /hub/kong-inc/vault-auth
+        url: /plugins/vault-auth
     - text: Implementation
       items:
         - text: Multiple Authentication Methods
