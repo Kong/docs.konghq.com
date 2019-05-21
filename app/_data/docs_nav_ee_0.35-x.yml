@@ -182,7 +182,7 @@
         url: /plugins/ldap-authentication-advanced
       - text: Session Plugin
         url: /plugins/session
-      - text: Route By Headers
+      - text: Route By Header
         url: /plugins/route-by-header
       - text: JWT Signer
         url: /plugins/jwt-signer
