@@ -4,7 +4,7 @@ title: Migrating to 0.35
 
 ### Prerequisites for Migrating to 0.35
 
-* If running a version of Kong Enterprise earlier than 0.34, it is necessary to [upgrade to 0.34](/enterprise/0.34-x/deployment-guide/#upgrading-to-034) first before migrating to 0.35.
+* If running a version of Kong Enterprise earlier than 0.34.1, it is necessary to upgrade to 0.34.1 first before migrating to 0.35. Likewise, if running a version of Kong Enterprise earlier than 0.34, it is first necessary to [upgrade to 0.34](/enterprise/0.34-x/deployment-guide/#upgrading-to-034) before 0.34.1.
 * If running Kong versions 0.14 or 0.15, you must [upgrade to Kong 1.0](/1.0.x/upgrading/) before upgrading to Kong Enterprise 0.35. You cannot upgrade to Kong Enterprise 0.34 first.
 * If running Kong version 0.13 or older, you can either upgrade to Kong 1.0 or Kong Enterprise 0.34 before upgrading to Kong Enterprise 0.35.
 * If the datastore still has `API` entities instead of `Services` and `Routes`, upgrading to 0.35 will not be possible. `APIs` were deprecated in release 0.32 and are now removed from Kong. It is possible to convert `APIs` to `Services` and `Routes` and then remove the `APIs` on the 0.34 node.
