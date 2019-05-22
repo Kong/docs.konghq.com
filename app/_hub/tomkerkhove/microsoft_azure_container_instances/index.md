@@ -57,6 +57,7 @@ source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+        - 0.13.x
         - 0.14.x
         - 0.15.x
         - 1.0.x
