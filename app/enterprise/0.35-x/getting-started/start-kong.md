@@ -10,6 +10,7 @@ toc: false
 - [Step 2](#step-2)
 - [Step 3](#step-3)
 - [Step 4](#step-4)
+- [Default Ports](#default-ports)
 - [Next Steps](#next-steps)
 
 ### Introduction
@@ -95,10 +96,25 @@ allowing you to point to [your own configuration](/1.0.x/configuration/#configur
 ## Step 4
 
 To test that Kong Enterprise has successfully started with a **Super Admin**, 
-visit Kong Manager's URL. By default, it is `http://localhost:8002`. 
+visit Kong Manager's URL. By [default](#default-ports), it is on port `:8002`. 
 
 The username is `kong_admin` and the password is the one set in 
 [Step 1](#step-1).
+
+### Default Ports
+
+By default Kong listens on the following ports:
+
+- `:8000`: incoming HTTP traffic from Consumers, and forwarded to Upstream 
+  Services.
+- `:8443`: incoming HTTPS traffic. This port behaves similarly to the `:8000` 
+  port, except that it expects HTTPS traffic only. 
+- `:8003`: Dev Portal traffic, assuming the Dev Portal is enabled.
+- `:8004`: Dev Portal `/files` traffic, assuming the Dev Portal is enabled.
+- `:8001`: Admin API listens for HTTP traffic.
+- `:8444`: Admin API listens for HTTPS traffic.
+- `:8002`: Kong Manager listens for HTTP traffic.
+- `:8445`: Kong Manager listens for HTTPS traffic.
 
 ### Next Steps
 
