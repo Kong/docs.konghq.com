@@ -99,7 +99,7 @@ Running Kong on Azure Container Instances is super easy:
 
     ```bash
     $ az container create --name kong-migrations \
-                          --resource-group kong-sandbox \
+                          --resource-group kong-gateway \
                           --image kong:latest \
                           --restart-policy Never \
                           --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" \
@@ -117,7 +117,7 @@ Running Kong on Azure Container Instances is super easy:
     ```bash
     $ az container create --name kong-gateway /
                           --dns-name-label kong-gateway /
-                          --resource-group kong-sandbox /
+                          --resource-group kong-gateway /
                           --image kong:latest /
                           --port 8000 8443 8001 8444 /
                           --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" /
