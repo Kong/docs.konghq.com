@@ -56,6 +56,7 @@ source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+        - 0.13.x
         - 0.14.x
         - 0.15.x
         - 1.0.x
@@ -115,9 +116,9 @@ Here are the simple steps to provision one:
 1. Create a new database called "kong" via the CLI or by using your favorite tool
 
     ```bash
-    $ az mysql db create --name kong \
-                         --resource-group kong-on-azure \
-                         --server-name kong-on-azure
+    $ az postgres db create --name kong \
+                            --resource-group kong-on-azure \
+                            --server-name kong-on-azure
     ```
 
 <div class="alert alert-warning">
