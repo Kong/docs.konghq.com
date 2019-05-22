@@ -4,9 +4,8 @@ book: admin_gui
 ---
 **Prerequisites**:
 
-* Authentication is enabled, following the [Getting Started](/enterprise/{{page.kong_version}}/kong-manager/configuration/getting-started/) guide
-* [RBAC is enabled](/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication/#how-to-enable-basic-authentication)
-* [Logged in as the Super Admin](/enterprise/{{page.kong_version}}/kong-manager/configuration/authentication/#how-to-log-in-as-the-first-super-admin) or a user that has `/admins` and `/rbac` read and write access
+* Authentication and RBAC are enabled, following the [Getting Started](/enterprise/{{page.kong_version}}/getting-started/start-kong/#prerequisites) guide
+* [Logged in as the Super Admin](/enterprise/{{page.kong_version}}/getting-started/start-kong/#step-4) or a user that has `/admins` and `/rbac` read and write access
 
 <video width="100%" autoplay loop controls>
  <source src="https://konghq.com/wp-content/uploads/2019/02/role-creation-ent-34.mov" type="video/mp4">
