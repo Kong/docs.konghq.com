@@ -105,9 +105,9 @@ The username is `kong_admin` and the password is the one set in
 
 By default, Kong Enterprise listens on the following ports:
 
-- `:8000`: incoming HTTP traffic from **Consumers**, and forwarded to upstream 
+- [`:8000`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen): incoming HTTP traffic from **Consumers**, and forwarded to upstream 
   **Services**.
-- `:8443`: incoming HTTPS traffic. This port behaves similarly to the `:8000` 
+- [`:8443`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen)): incoming HTTPS traffic. This port behaves similarly to the `:8000` 
   port, except that it expects HTTPS traffic only. 
 - `:8003`: Dev Portal traffic, assuming the Dev Portal is **enabled**.
 - `:8004`: Dev Portal **`/files` traffic**, assuming the Dev Portal is **enabled**.
