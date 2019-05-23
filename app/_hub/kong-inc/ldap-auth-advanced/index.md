@@ -115,7 +115,7 @@ params:
         Whether consumer is optional
     - name: consumer_by
       required: false
-      default: "`{ "username", "custom_id" }`"
+      default: "`[ "username", "custom_id" ]`"
       value_in_examples:
       description: |
         Whether to authenticate consumer based on `username` and/or `custom_id`
