@@ -109,8 +109,10 @@ By default, Kong Enterprise listens on the following ports:
   **Services**.
 - [`:8443`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen)): incoming HTTPS traffic. This port behaves similarly to the `:8000` 
   port, except that it expects HTTPS traffic only. 
-- `:8003`: Dev Portal traffic, assuming the Dev Portal is **enabled**.
-- `:8004`: Dev Portal **`/files` traffic**, assuming the Dev Portal is **enabled**.
+- [`:8003`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen): Dev Portal listens for HTTP traffic, assuming Dev Portal is **enabled**.
+-[`:8446`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen): Dev Portal listens for HTTPS traffic, assuming Dev Portal is **enabled**.
+- [`:8004`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen): Dev Portal **`/files`** traffic over HTTP, assuming the Dev Portal is **enabled**.
+- [`:8447`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen): Dev Portal **`/files`** traffic over HTTPS, assuming the Dev Portal is **enabled**.
 - `:8001`: Admin API listens for HTTP traffic.
 - `:8444`: Admin API listens for HTTPS traffic.
 - `:8002`: Kong Manager listens for HTTP traffic.
