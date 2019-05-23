@@ -188,6 +188,8 @@
         url: /plugins/jwt-signer
       - text: Vault Auth
         url: /plugins/vault-auth
+      - text: Request Validator
+        url: /plugins/request-validator
     - text: Implementation
       items:
         - text: Multiple Authentication Methods
