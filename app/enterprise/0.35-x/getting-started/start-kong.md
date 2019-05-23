@@ -103,7 +103,7 @@ The username is `kong_admin` and the password is the one set in
 
 ### Default Ports
 
-By default Kong listens on the following ports:
+By default, Kong Enterprise listens on the following ports:
 
 - `:8000`: incoming HTTP traffic from Consumers, and forwarded to Upstream 
   Services.
