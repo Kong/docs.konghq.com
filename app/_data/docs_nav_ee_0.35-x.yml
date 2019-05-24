@@ -146,7 +146,7 @@
     - text: Administration
       items:
         - text: Managing Developers
-          url: /developer-portal/management/developers
+          url: /developer-portal/administration/managing-developers
     - text: Theme Customization
       items:
           - text: Customizing the Dev Portal
