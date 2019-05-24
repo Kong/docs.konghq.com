@@ -30,15 +30,15 @@ title: Migrating to 0.35
 
 ### Migration Steps from 0.34 to 0.35
 
-Kong 0.35 introduces a new, improved migrations framework. It supports a no-downtime, Blue/Green migration model for upgrading from 0.34. The full migration is now split into two steps, which are performed via commands `kong migrations up` and `kong migrations finish`.
+Kong 0.35 introduces a new, improved migrations framework. The full migration is now split into two steps, which are performed via commands `kong migrations up` and `kong migrations finish`.
 
 For a no-downtime migration from a 0.34 cluster to a 0.35 cluster:
 
-1. Download 0.35, and configure it to point to the same datastore as your 0.34 cluster. 
+1. Download 0.35, and configure it to point to the same datastore as your 0.34 cluster.
 2. Run `kong migrations up`. Both 0.34 and 0.35 nodes can now run simultaneously on the same datastore.
-3. Start provisioning 0.35 nodes, but **do not use** their Admin API yet. 
+3. Start provisioning 0.35 nodes, but **do not use** their Admin API yet.
 
-    ⚠️ **Important:** When doing a Blue/Green upgrade in a 0.34 cluster where RBAC is enabled, if you make an Admin API request from a new 0.35 node, from then on, Admin API calls will only work from the new 0.35 node. This is because the new token will be hashed in the database and will fail on the old 0.34 nodes since they do not know how to verify the hashed token.
+    ⚠️ **Important:** When doing a Blue/Green upgrade in a 0.34 cluster where RBAC is enabled, if you make an Admin API request from a new 0.35 node, from then on, Admin API calls will only work from the new 0.35 node. This is because the new token will be hashed in the database and will fail on the old 0.34 nodes since they do not know how to verify the hashed token. Note also that Admins are present in a new cluster only after running `kong migrations finish`.
 
 4. Gradually divert traffic away from your 0.34 nodes, and into your 0.35 cluster. Monitor your traffic to make sure everything is going smoothly.
 5. When your traffic is fully migrated to the 0.35 cluster, decommission your 0.34 nodes.
