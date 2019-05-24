@@ -61,6 +61,6 @@ This also requires that clients login using an account mapped to some consumer, 
 [add-certificate]: /1.0.x/admin-api/#add-certificate
 [google-oidc]: https://developers.google.com/identity/protocols/OpenIDConnect
 [google-create-credentials]: https://console.developers.google.com/apis/credentials
-[add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service/
+[add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [oidc-standard-claims]: http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
