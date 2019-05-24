@@ -137,6 +137,7 @@
             - text: OpenID Connect
               url: /developer-portal/configuration/authentication/oidc
             - text: Adding Custom Registration Fields
+              url: /developer-portal/configuration/authentication/adding-registration-fields
         - text: SMTP
           url: /developer-portal/configuration/smtp
         - text: Running Multiple Dev Portals with Workspaces
