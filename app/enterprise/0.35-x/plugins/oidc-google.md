@@ -18,7 +18,7 @@ You can optionally customize the consent screen to inform clients who/what appli
 
 ## Kong Configuration
 
-If you have not yet [added an API][add-api], go ahead and do so. Again, note that you should be able to secure this API with HTTPS, so if you are configuring a host, use a hostname you have a certificate for.
+If you have not yet [added a **Service**][add-service], go ahead and do so. Again, note that you should be able to secure this API with HTTPS, so if you are configuring a host, use a hostname you have a certificate for.
 
 ### Basic Plugin Configuration
 
@@ -58,9 +58,9 @@ standardized][oidc-standard-claims], however--if a provider returns an `email` c
 This also requires that clients login using an account mapped to some consumer, which may not be desirable (e.g. you apply OpenID Connect to a service, but only use plugins requiring a consumer on some routes). To deal with this, you can set the `anonymous` parameter in your OIDC plugin configuration to the ID of a generic consumer, which will then be used for all authenticated users that cannot be mapped to some other consumer.
 
 
-[add-certificate]: /0.13.x/admin-api/#add-certificate
+[add-certificate]: /1.0.x/admin-api/#add-certificate
 [google-oidc]: https://developers.google.com/identity/protocols/OpenIDConnect
 [google-create-credentials]: https://console.developers.google.com/apis/credentials
-[add-api]: //enterprise/{{page.kong_version}}/getting-started/adding-your-api/
+[add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service/
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [oidc-standard-claims]: http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
