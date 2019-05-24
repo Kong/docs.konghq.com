@@ -22,7 +22,7 @@ You will need to authorize your client to access your API. Auth0 will prompt you
 
 ## Kong Configuration
 
-If you have not done so already, [create an API][create-api] to protect. The `url` configuration should match the Identifier you used when configuring Auth0.
+If you have not done so already, [create a **Service**][add-service] to protect. The `url` configuration should match the Identifier you used when configuring Auth0.
 
 Add an OpenID plugin configuration using the parameters in the example below using an HTTP client or Kong Manager. Auth0's token endpoint [requires passing the API identifier in the `audience` parameter][audience-required], which must be added as a custom argument:
 
@@ -45,5 +45,5 @@ For basic authentication, use your client ID as the username and your client sec
 [client-credentials-grant]: https://auth0.com/docs/api-auth/tutorials/client-credentials
 [create-auth0-api]: https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
 [non-interactive-client]: https://auth0.com/docs/clients
-[create-api]: /0.13.x/admin-api/#add-api
+[add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service
 [audience-required]: https://auth0.com/docs/api/authentication#client-credentials
