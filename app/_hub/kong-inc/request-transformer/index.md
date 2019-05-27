@@ -1,7 +1,7 @@
 ---
 name: Request Transformer
 publisher: Kong Inc.
-version: 1.0.0
+version: 1.2.0
 
 desc: Modify the request before hitting the upstream server
 description: |
@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
         - 1.1.x
         - 1.0.x
         - 0.14.x
@@ -72,6 +73,15 @@ params:
     - name: replace.querystring
       required: false
       description: List of queryname:value pairs. If and only if the field name is already set, replace its old value with the new one. Ignored if the field name is not already set.
+    - name: replace.uri
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        Updates the upstream request URI with given value. This value can only be used to update the path part of the URI, not the scheme, nor the hostname.
+    - name: replace.body
+      required: false
+      description: List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: rename.headers
       required: false
       value_in_examples: "header-old-name:header-new-name, another-old-name:another-new-name"
@@ -84,13 +94,6 @@ params:
       required: false
       value_in_examples: "param-old:param-new, param2-old:param2-new"
       description: List of parameter name:value pairs. Rename the parameter name if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
-    - name: append.headers
-      required: false
-      value_in_examples: "x-existing-header:some_value, x-another-header:some_value"
-      description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
-    - name: replace.body
-      required: false
-      description: List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: add.headers
       required: false
       value_in_examples: "x-new-header:value,x-another-header:something"
@@ -105,7 +108,8 @@ params:
       description: List of pramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is not present, add a new parameter with the given value to form-encoded body. Ignored if the parameter is already present.
     - name: append.headers
       required: false
-      description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, an additional new header with the same name and the new value will be appended.
+      value_in_examples: "x-existing-header:some_value, x-another-header:some_value"
+      description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
     - name: append.querystring
       required: false
       description: List of queryname:value pairs. If the querystring is not set, set it with the given value. If it is already set, a new querystring with the same name and the new value will be set.
@@ -117,19 +121,20 @@ params:
 
 ---
 
-## Dynamic Transformation Based on Request Content
+## Template as Value
 
-The Request Transformer plugin bundled with Kong Enterprise allows for
-adding or replacing content in the upstream request based on variable data found
-in the client request, such as request headers, query string parameters, or URI
-parameters as defined by a URI capture group.
+User can use any of the the current request headers, query params, and captured URI named groups as template to populate above supported config fields.
 
-If you already are a Kong Enterprise customer, you can request access to this
-plugin functionality by opening a support ticket using your Enterprise support
-channels.
+| Request Param | Template
+| --------- | -----------
+| header | $(headers.<header_name> or $(headers['<header-name>']) or 'optional_default')
+| querystring | $(query_params.<query_param_name> or $(query_params['query-param-name']) or 'optional_default')
+| captured URIs | $(uri_captures.<group_name> or $(uri_captures['group-name']) or 'optional_default')
 
-If you are not a Kong Enterprise customer, you can inquire about our
-Enterprise offering by [contacting us](/enterprise).
+To escape a template, wrap it inside quotes and pass inside another template.<br>
+Ex. $('$(some_needs_to_escaped)')
+
+Note: Plugin creates a non mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
 
 ## Order of execution
 
@@ -280,12 +285,52 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   </tr>
 </table>
 
-|incoming url encoded body | upstream proxied url encoded body: 
-|---           | --- 
-|p1=v1&p2=v1   | p2=v1 
-|p2=v1         | p2=v1 
+|incoming url encoded body | upstream proxied url encoded body:
+|---           | ---
+|p1=v1&p2=v1   | p2=v1
+|p2=v1         | p2=v1
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object
 [configuration]: /latest/configuration
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
+
+### Examples Using Template as Value
+
+Add an API `test` with `uris` configured with a named capture group `user_id`
+
+```bash
+$ curl -X POST http://localhost:8001/apis \
+    --data 'name=test' \
+    --data 'upstream_url=http://mockbin.com' \
+    --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
+    --data "strip_uri=false"
+```
+
+Enable the ‘request-transformer plugin to add a new header `x-consumer-id` and
+its value is being set with the value sent with header `x-user-id` or with the
+default value alice is `header` is missing.
+
+```bash
+$ curl -X POST http://localhost:8001/apis/test/plugins \
+    --data "name=request-transformer" \
+    --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
+    --data "config.remove.headers=x-user-id"
+```
+
+Now send a request without setting header `x-user-id`
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo
+```
+
+Plugin will add a new header `x-consumer-id` with value alice before proxying
+request upstream. Now try sending request with header `x-user-id` set
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo \
+  -H "X-User-Id:bob"
+```
+
+This time plugin will add a new header `x-consumer-id` with value sent along
+with header `x-user-id`, i.e.`bob`

@@ -8,6 +8,13 @@ desc: Use powerful regular expressions, variables and templates to transform API
 description: |
   The Request Transformer plugin for Kong Enterprise builds on the Kong version of this plugin with enhanced capabilities to match portions of incoming requests using regular expressions, save those matched strings into variables, and substitute those strings into transformed requests via flexible templates.
 
+  <div class="alert alert-warning">
+    <strong>Note:</strong> For versions of Kong Enterprise after 0.35-x the
+    functionality of this plugin is part of Request Transformer plugin. Refer to
+    the <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG
+    </a> for details.
+  </div>
+
 enterprise: true
 type: plugin
 categories:
