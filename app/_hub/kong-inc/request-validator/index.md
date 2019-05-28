@@ -10,6 +10,7 @@ description: |
   [JSON schema](https://json-schema.org/) compliant; instead, Kong's own schema
   format is used.
 
+enterprise: true
 type: plugin
 categories:
   - traffic-control
