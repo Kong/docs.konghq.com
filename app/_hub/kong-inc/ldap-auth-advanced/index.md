@@ -26,7 +26,7 @@ params:
   api_id: true
   service_id: true
   route_id: true
-  consumer_id: true
+  consumer_id: false
   config:
     - name: ldap_host
       required:
