@@ -110,7 +110,7 @@
         - items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac/rbac
-          - text: How to Create a New Role with Custom Permissions
+          - text: How to Create a New Role
             url: /kong-manager/administration/rbac/new-role
         - text: Admins
           url: /kong-manager/administration/admins/invite
