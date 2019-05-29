@@ -19,6 +19,7 @@
       "dist/**",
       "vendor/**",
       "node_modules/**",
+      "Dockerfile",
       "gulpfile.js",
       "app/_assets/javascripts/app.js"
     ]
@@ -37,7 +38,8 @@
       "autodoc-admin-api/*.lua",
       "autodoc-conf/*.lua",
       "vendor/**",
-      "node_modules/**"
+      "node_modules/**",
+      "Docker"
     ]
   },
   "devDependencies": {
