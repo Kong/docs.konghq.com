@@ -39,6 +39,6 @@ In the event that the default kong_admin Super Admin was not seeded during the i
 
 2. Before the link generated above can be used, RBAC and GUI Authentication must be enabled. Follow the instructions on [how to enable Basic Auth on Kong Manager](../basic).
 
-3. Paste the URL in your browser and you will be asked to create a password for the newly defined ***Super Admin*** user on the Kong Manager.
+3. Paste the URL in your browser and you will be asked to create a password for the newly defined ***Super Admin*** user on the Kong Manager. ***Please Note:*** In addition to the Kong Manager UI, this password will also be used as the Kong-Admin-Token needed to utilize the Kong Admin API.
 
 4. Go to the Kong Manager homepage and you will be prompted to login with the new ***Super Admin*** credentials
