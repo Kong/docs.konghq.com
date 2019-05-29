@@ -85,6 +85,16 @@ id: documentation
               {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
               <li>
                 <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% endif %}>{{subitem.text}}</a>
+                {% if subitem.items %}
+                <ul>
+                  {% for subitem in subitem.items %}
+                  {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
+                  <li>
+                    <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% endif %}>{{subitem.text}}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
               </li>
               {% endfor %}
             </ul>

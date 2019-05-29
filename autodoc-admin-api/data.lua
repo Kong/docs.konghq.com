@@ -39,6 +39,14 @@ return {
 
   intro = [[
 
+    <div class="alert alert-info.blue" role="alert">
+      This page refers to the Admin API for running Kong configured with a
+      database (Postgres or Cassandra). For using the Admin API for Kong
+      in DB-less mode, please refer to the
+      <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
+      page.
+    </div>
+
     Kong comes with an **internal** RESTful Admin API for administration purposes.
     Requests to the Admin API can be sent to any node in the cluster, and Kong will
     keep the configuration consistent across all nodes.
@@ -88,6 +96,7 @@ return {
     [healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
     [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
     [proxy-reference]: /{{page.kong_version}}/proxy
+    [db-less-admin-api]: /{{page.kong_version}}/db-less-admin-api
   ]],
 
   general = {
@@ -193,42 +202,7 @@ return {
       }
     },
     config = {
-      title = [[Db-less configuration]],
-      description = "",
-      ["/"] = {
-        POST = {
-          title = [[Update db-less config]],
-          endpoint = [[<div class="endpoint post">/config</div>]],
-          description = [[
-            This endpoint allows resetting a db-less Kong with a new
-            declarative configuration data file. To learn more about it,
-            please run:
-
-            ```
-            kong config init
-            ```
-
-            That will generate a file with the appropriate structure, names
-            and examples.
-          ]],
-          response = [[
-            ```
-            HTTP 200 OK
-            ```
-
-            ``` json
-            {
-                { "services": [],
-                  "routes": []
-                }
-            }
-            ```
-
-            The response contains a list of all the entities that were parsed from the
-            input file.
-          ]]
-        }
-      },
+      skip = true,
     },
     tags = {
       title = [[ Tags ]],
@@ -367,7 +341,6 @@ return {
 --------------------------------------------------------------------------------
 
   entities = {
-
     services = {
       description = [[
         Service entities, as the name implies, are abstractions of each of your own
@@ -383,8 +356,6 @@ return {
         requests. Once a Route is matched, Kong proxies the request to its associated
         Service. See the [Proxy Reference][proxy-reference] for a detailed explanation
         of how Kong proxies traffic.
-
-        Services can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -467,8 +438,6 @@ return {
         them) offers a powerful routing mechanism with which it is possible to define
         fine-grained entry-points in Kong leading to different upstream services of
         your infrastructure.
-
-        Routes can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -590,8 +559,6 @@ return {
         either rely on Kong as the primary datastore, or you can map the consumer list
         with your database to keep consistency between Kong and your existing primary
         datastore.
-
-        Consumers can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -636,10 +603,9 @@ return {
 
         When adding a Plugin Configuration to a Service, every request made by a client to
         that Service will run said Plugin. If a Plugin needs to be tuned to different
-        values for some specific Consumers, you can do so by specifying the
-        `consumer_id` value:
-
-        Plugins can be both [tagged and filtered by tags](#tags).
+        values for some specific Consumers, you can do so by creating a separate
+        plugin instance that specifies both the Service and the Consumer, through the
+        `service` and `consumer` fields.
       ]],
       details = [[
         See the [Precedence](#precedence) section below for more details.
@@ -874,8 +840,6 @@ return {
         certificate. These objects are used by Kong to handle SSL/TLS termination for
         encrypted requests. Certificates are optionally associated with SNI objects to
         tie a cert/key pair to one or more hostnames.
-
-        Certificates can be both [tagged and filtered by tags](#tags).
       ]],
       fields = {
         id = { skip = true },
@@ -920,8 +884,6 @@ return {
         That is, a certificate object can have many hostnames associated with it; when
         Kong receives an SSL request, it uses the SNI field in the Client Hello to
         lookup the certificate object based on the SNI associated with the certificate.
-
-        SNIs can be both [tagged and filtered by tags](#tags).
       ]],
       ["/snis/:snis/certificate"] = {
         endpoint = false,
@@ -958,8 +920,6 @@ return {
         enable and disable targets based on their ability or inability to serve
         requests. The configuration for the health checker is stored in the upstream
         object, and applies to all of its targets.
-
-        Upstreams can be both [tagged and filtered by tags](#tags).
       ]],
       ["/upstreams/:upstreams/health"] = {
         GET = {
@@ -1088,8 +1048,6 @@ return {
         alternatively, use the `DELETE` convenience method to accomplish the same.
 
         The current target object definition is the one with the latest `created_at`.
-
-        Targets can be both [tagged and filtered by tags](#tags).
       ]],
       ["/targets"] = {
         -- This is not using `skip = true` because
@@ -1281,17 +1239,17 @@ return {
     GET = {
       title = [[List ${Entities}]],
       endpoint_w_ek = [[
-        ##### List all ${Entities}
+        ##### List All ${Entities}
 
         <div class="endpoint ${method}">/${entities_url}</div>
       ]],
       endpoint = [[
-        ##### List all ${Entities}
+        ##### List All ${Entities}
 
         <div class="endpoint ${method}">/${entities_url}</div>
       ]],
       fk_endpoint = [[
-        ##### List ${Entities} associated to a specific ${ForeignEntity}
+        ##### List ${Entities} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} id}/${entities_url}</div>
 
@@ -1300,7 +1258,7 @@ return {
         `${foreign_entity} id`<br>**required** | The unique identifier of the ${ForeignEntity} whose ${Entities} are to be retrieved. When using this endpoint, only ${Entities} associated to the specified ${ForeignEntity} will be listed.
       ]],
       fk_endpoint_w_ek = [[
-        ##### List ${Entities} associated to a specific ${ForeignEntity}
+        ##### List ${Entities} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} ${endpoint_key} or id}/${entities_url}</div>
 
@@ -1340,7 +1298,7 @@ return {
         <div class="endpoint ${method}">/${entities_url}</div>
       ]],
       fk_endpoint = [[
-        ##### Create ${Entity} associated to a specific ${ForeignEntity}
+        ##### Create ${Entity} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} id}/${entities_url}</div>
 
@@ -1349,7 +1307,7 @@ return {
         `${foreign_entity} id`<br>**required** | The unique identifier of the ${ForeignEntity} that should be associated to the newly-created ${Entity}.
       ]],
       fk_endpoint_w_ek = [[
-        ##### Create ${Entity} associated to a specific ${ForeignEntity}
+        ##### Create ${Entity} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} ${endpoint_key} or id}/${entities_url}</div>
 
@@ -1372,6 +1330,9 @@ return {
     },
   },
   entity_templates = {
+    tags = [[
+      ${Entities} can be both [tagged and filtered by tags](#tags).
+    ]],
     endpoint_w_ek = [[
       ##### ${Active_verb} ${Entity}
 
@@ -1382,7 +1343,7 @@ return {
       `${endpoint_key} or id`<br>**required** | The unique identifier **or** the ${endpoint_key} of the ${Entity} to ${active_verb}.
     ]],
     fk_endpoint_w_ek = [[
-      ##### ${Active_verb} ${ForeignEntity} associated to a specific ${Entity}
+      ##### ${Active_verb} ${ForeignEntity} Associated to a Specific ${Entity}
 
       <div class="endpoint ${method}">/${entities_url}/{${entity} ${endpoint_key} or id}/${foreign_entity_url}</div>
 
@@ -1400,7 +1361,7 @@ return {
       `${entity} id`<br>**required** | The unique identifier of the ${Entity} to ${active_verb}.
     ]],
     fk_endpoint = [[
-      ##### ${Active_verb} ${ForeignEntity} associated to a specific ${Entity}
+      ##### ${Active_verb} ${ForeignEntity} Associated to a Specific ${Entity}
 
       <div class="endpoint ${method}">/${entities_url}/{${entity} id}/${foreign_entity_url}</div>
 
@@ -1472,5 +1433,137 @@ return {
       ]],
     }
   },
+
+--------------------------------------------------------------------------------
+-- Overrides for DB-less mode
+--------------------------------------------------------------------------------
+
+  dbless = {
+
+    intro = [[
+
+    <div class="alert alert-info.blue" role="alert">
+      This page refers to the Admin API for running Kong configured without a
+      database, managing in-memory entities via declarative config.
+      For using the Admin API for Kong with a database, please refer to the
+      <a href="/{{page.kong_version}}/admin-api">Admin API for Database Mode</a> page.
+    </div>
+
+    Kong comes with an **internal** RESTful Admin API for administration purposes.
+    In [DB-less mode][db-less], this Admin API can be used to load a new declarative
+    configuration, and for inspecting the current configuration. In DB-less mode,
+    the Admin API for each Kong node functions independently, reflecting the memory state
+    of that particular Kong node. This is the case because there is no database
+    coordination between Kong nodes.
+
+    - `8001` is the default port on which the Admin API listens.
+    - `8444` is the default port for HTTPS traffic to the Admin API.
+
+    This API provides full control over Kong, so care should be taken when setting
+    up Kong environments to avoid undue public exposure of this API.
+    See [this document][secure-admin-api] for a discussion
+    of methods to secure the Admin API.
+
+    ## Supported Content Types
+
+    The Admin API accepts 2 content types on every endpoint:
+
+    - **application/x-www-form-urlencoded**
+    - **application/json**
+
+    ]],
+
+    footer = [[
+      [clustering]: /{{page.kong_version}}/clustering
+      [cli]: /{{page.kong_version}}/cli
+      [active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+      [healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
+      [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+      [proxy-reference]: /{{page.kong_version}}/proxy
+      [db-less]: /{{page.kong_version}}/db-less-and-declarative-config
+      [admin-api]: /{{page.kong_version}}/admin-api
+    ]],
+
+    general = {
+      config = {
+        skip = false,
+        title = [[Declarative Configuration]],
+        description = [[
+          Loading the declarative configuration of entities into Kong
+          can be done in two ways: at start-up, through the `declarative_config`
+          property, or at run-time, through the Admin API using the `/config`
+          endpoint.
+
+          To get started using declarative configuration, you need a file
+          (in YAML or JSON format) containing entity definitions. You can
+          generate a sample declarative configuration with the command:
+
+          ```
+          kong config init
+          ```
+
+          It generates a file named `kong.yml` in the current directory,
+          containing the appropriate structure and examples.
+        ]],
+        ["/config"] = {
+          POST = {
+            title = [[Reload declarative configuration]],
+            endpoint = [[
+              <div class="endpoint post">/config</div>
+
+              Attributes | Description
+              ---:| ---
+              `config`<br>**required** | The config data (in YAML or JSON format) to be loaded.
+            ]],
+
+            description = [[
+              This endpoint allows resetting a DB-less Kong with a new
+              declarative configuration data file. All previous contents
+              are erased from memory, and the entities specified in the
+              given file take their place.
+
+              To learn more about the file format, please read the
+              [declarative configuration][db-less] documentation.
+            ]],
+            response = [[
+              ```
+              HTTP 200 OK
+              ```
+
+              ``` json
+              {
+                  { "services": [],
+                    "routes": []
+                  }
+              }
+              ```
+
+              The response contains a list of all the entities that were parsed from the
+              input file.
+            ]]
+          }
+        },
+      },
+    },
+
+    entities = {
+      methods = {
+        -- in DB-less mode, only document GET endpoints for entities
+        ["GET"] = true,
+        ["POST"] = false,
+        ["PATCH"] = false,
+        ["PUT"] = false,
+        ["DELETE"] = false,
+        -- exceptions for the healthcheck endpoints:
+        ["/upstreams/:upstreams/targets/:targets/healthy"] = {
+          ["POST"] = true,
+        },
+        ["/upstreams/:upstreams/targets/:targets/unhealthy"] = {
+          ["POST"] = true,
+        },
+      },
+    }
+
+  }
 
 }

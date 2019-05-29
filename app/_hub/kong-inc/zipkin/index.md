@@ -24,10 +24,12 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.1.x
         - 1.0.x
         - 0.14.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -37,6 +39,8 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https", "tcp", "tls"]
+  dbless_compatible: yes
   config:
     - name: http_endpoint
       required: true

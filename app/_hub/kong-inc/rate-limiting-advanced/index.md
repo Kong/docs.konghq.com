@@ -2,11 +2,13 @@
 
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
-  The Rate Limiting Advanced plugin for Kong Enterprise is a re-engineered version of the incredibly popular Kong Rate Limiting plugin, with greatly enhanced configuration options and performance.
+  The Rate Limiting Advanced plugin for Kong Enterprise is a re-engineered
+   version of the incredibly popular Kong Rate Limiting plugin, with greatly
+   enhanced configuration options and performance.
 
 enterprise: true
 type: plugin
@@ -18,6 +20,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
 
 params:
@@ -56,7 +59,10 @@ params:
       default:
       value_in_examples:
       description: |
-        How often to sync counter data to the central data store. A value of 0 results in synchronous behavior; a value of -1 ignores sync behavior entirely and only stores counters in node memory. A value greater than 0 will sync the counters in that many number of seconds.
+        How often to sync counter data to the central data store. A value of 0
+         results in synchronous behavior; a value of -1 ignores sync behavior
+         entirely and only stores counters in node memory. A value greater than
+         0 will sync the counters in that many number of seconds.
     - name: namespace
       required: false
       default: random string
@@ -143,4 +149,4 @@ $ curl -i -X POST http://kong:8001/services/{service}/plugins \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10
 ```
-This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds. For more information, please see [Enterprise Rate Limiting Library](https://docs.konghq.com/enterprise/0.34-x/rate-limiting/).
+This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds. For more information, please see [Enterprise Rate Limiting Library](https://docs.konghq.com/enterprise/0.35-x/rate-limiting/).

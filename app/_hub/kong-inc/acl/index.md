@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.1.x
         - 1.0.x
         - 0.14.x
         - 0.13.x
@@ -39,6 +40,7 @@ kong_version_compatibility:
 #        - 0.2.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -50,6 +52,12 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    Consumers and ACLs can be created with declarative configuration.
+
+    Admin API endpoints which do POST, PUT, PATCH or DELETE on ACLs will not work on DB-less mode.
   config:
     - name: whitelist
       required: semi

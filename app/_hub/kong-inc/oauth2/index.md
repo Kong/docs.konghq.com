@@ -34,6 +34,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.1.x
         - 1.0.x
         - 0.14.x
         - 0.13.x
@@ -48,6 +49,7 @@ kong_version_compatibility:
         - 0.4.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -58,6 +60,12 @@ params:
   service_id: true
   route_id: false
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: no
+  dbless_explanation: |
+    For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with DB-less.
+
+    In addition to this, its Admin API endpoints offer several POST, PATCH, PUT and DELETE methods for tokens and credentials. None of them would work on DB-less.
   config:
     - name: scopes
       required: true
