@@ -26,9 +26,31 @@ Here is a quick example showing how to build a (disposable) test setup:
 
 2. **Start Kong**
 
+    The default Vagrantfile will install both PostgreSQL and Cassandra. PostgreSQL is the default:
+
+
     ```bash
     # specify migrations flag to initialise the datastore
     $ vagrant ssh -c "kong start --run-migrations"
+    ```
+
+    Cassandra is available via a setting:
+
+    ```bash
+    $ vagrant ssh -c "KONG_DATABASE=cassandra kong start --run-migrations"
+    ```
+
+    To start Kong in DB-less mode, use this:
+
+    ```bash
+    $ vagrant ssh -c "KONG_DATABASE=off kong start"
+    ```
+
+    If you want to include a [declarative configuration file](/{{site.data.kong_latest.release}}/db-less-and-declarative-config/),
+    put it inside a `./kong/kong.yml` folder, and it will be available through the `/kong/kong.yml` path in Vagrant:
+
+    ```bash
+    $ vagrant ssh -c "KONG_DECLARATIVE_CONFIG=/kong/kong.yml KONG_DATABASE=off kong start"
     ```
 
     The host ports `8000`, `8001`, `8443`, and `8444` will be forwarded to the Vagrant box.
