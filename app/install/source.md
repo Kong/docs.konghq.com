@@ -12,6 +12,17 @@ redirect_from: /install/compile/
 {% capture luarocks_version %}{{site.data.kong_latest.dependencies.luarocks}}{% endcapture %}
 {% capture openresty_version %}{{site.data.kong_latest.dependencies.openresty}}{% endcapture %}
 
+Kong can run either with or without a database.
+
+When using a database, you will use the `kong.conf` configuration file for setting Kong's
+configuration properties at start-up and the database as storage of all configured entities,
+such as the Routes and Services to which Kong proxies.
+
+When not using a database, you will use `kong.conf` its configuration properties and a `kong.yml`
+file for specifying the entities as a declarative configuration.
+
+## With a Database
+
 1. **Install the dependencies**
 
     [OpenResty {{openresty_version}}](https://openresty.org/en/installation.html).
@@ -123,5 +134,51 @@ redirect_from: /install/compile/
     ```
 
     Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+
+
+## Without a database
+
+1. Follow steps 1 and 2 (Install Dependencies, Install Kong) from the list above.
+
+2. **Write declarative configuration file**
+
+    The following command will generate a `kong.yml`
+    file in your current folder. It contains instructions about how to fill it up.
+    Follow the [Declarative Configuration Format]: /{{site.data.kong_latest.release}}/db-less-and-declarative-config/#the-declarative-configuration-format instructions while doing so.
+
+    ``` bash
+    $ kong config init
+    ```
+
+    We'll assume the file is named `kong.yml`.
+
+
+3. **Add `kong.conf`**
+
+    Download [`kong.conf.default`](https://raw.githubusercontent.com/Kong/kong/master/kong.conf.default) file and [adjust][configuration] it as necessary.
+
+    In particular, make sure to set the `database` config option to `off` and the `declarative_config` option to
+    the absolute path to `kong.yml`:
+
+    ```conf
+    database = off
+    ...
+    declarative_config = /path/to/kong.yml
+
+    ```
+
+4. **Start Kong**
+
+    ```bash
+    $ kong start [-c /path/to/kong.conf]
+    ```
+
+5. **Use Kong**
+
+    Verify that Kong is running and it has the entities detailed in the declarative config file:
+
+    ```bash
+    $ curl -i http://localhost:8001/
+    ```
 
 [configuration]: /{{site.data.kong_latest.release}}/configuration#database
