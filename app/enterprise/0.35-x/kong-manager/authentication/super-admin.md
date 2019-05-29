@@ -1,6 +1,7 @@
 ---
 title: How to Create a Super Admin
 book: admin_gui
+toc: false
 ---
 
 If you seeded a **Super Admin** at the time of running 
