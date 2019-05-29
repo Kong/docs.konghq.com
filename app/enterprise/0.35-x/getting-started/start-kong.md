@@ -70,9 +70,12 @@ can be used to log in to Kong Manager. This password may also be
 used as a `Kong-Admin-Token` to make Admin API requests.
 
 **Note:** only one **Super Admin** may be created using this method, and only
-on a fresh installation with an empty database.  Future migrations will not update the
-password or create additional **Super Admins**.  To add additional **Super
-Admins** it is necessary to [invite a new user as a **Super Admin** in Kong Manager](enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
+on a fresh installation with an empty database. If one is not created during migrations, 
+follow [this guide](/enterprise/{{page.kong_version}}/kong-manager/authentication/super-admin/#how-to-create-your-first-super-admin-account-post-installation) to remediate. 
+
+Future migrations will not update the password or create additional **Super Admins**. 
+To add additional **Super Admins** it is necessary to 
+[invite a new user as a **Super Admin** in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
 
 ## Step 2
 
