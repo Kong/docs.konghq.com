@@ -194,4 +194,4 @@ Then, check your log files. If you see `[vitals] kong_vitals_requests_consumers 
 
 Vitals data is purged regularly: 1-second data is purged after one hour, and 1-minute data is purged after 25 hours. Due to limitations in Cassandra 2.x query options, the counter table vitals_consumers is not purged. If it becomes necessary to prune this table, you will need to do so manually.
 
-[vitals_spec]: /enterprise/{{page.kong_version}}/vitalsSpec.yaml
+[vitals_spec]: /enterprise/{{page.kong_version}}/admin-api/vitals/vitalsSpec.yaml
