@@ -248,7 +248,7 @@ instead of "to" or "through".
 * **_Good_: This guides assumes steps 1–3 from the previous guide.**
 
 ### passive voice
-See [active voice](#active-voice)
+See [active voice](#active-voice).
 
 ### personal pronouns 
 Avoid "you" and "we" in favor of the specific role performing the task or the 
