@@ -96,6 +96,12 @@ Every request will be logged separately in a JSON object, with the following for
             "accept": "*/*",
             "host": "httpbin.org",
             "user-agent": "curl/7.37.1"
+        },
+        "tls": {
+            "version": "TLSv1.2",
+            "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+            "supported_client_ciphers": "ECDHE-RSA-AES256-GCM-SHA384",
+            "client_verify": "NONE"
         }
     },
     "upstream_uri": "/",

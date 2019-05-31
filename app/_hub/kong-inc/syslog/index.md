@@ -76,6 +76,12 @@ Every request will be logged to System log in [SYSLOG](https://en.wikipedia.org/
             "accept": "*/*",
             "host": "httpbin.org",
             "user-agent": "curl/7.37.1"
+        },
+        "tls": {
+            "version": "TLSv1.2",
+            "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+            "supported_client_ciphers": "ECDHE-RSA-AES256-GCM-SHA384",
+            "client_verify": "NONE"
         }
     },
     "upstream_uri": "/",
