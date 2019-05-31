@@ -43,7 +43,7 @@
     ]
   },
   "devDependencies": {
-    "bootstrap": "^3.3.5",
+    "bootstrap": "3.4.1",
     "browser-sync": "2.24.4",
     "cloudflare": "2.4.1",
     "del": "2.2.2",
