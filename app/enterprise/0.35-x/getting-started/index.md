@@ -6,7 +6,7 @@ toc: false
 ### Introduction
 
 Thank you for installing Kong Enterprise! The following series of Getting Started
-guides are designed to help you familiarize yourself with Kong Enterprise's features
+guides is designed to help you familiarize yourself with Kong Enterprise's features
 and capabilities, with practical steps to start Kong Enterprise securely, access
 Kong Manager as a **Super Admin**, and create new entities such as **Services**.
 
