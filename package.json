@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "bootstrap": "3.4.1",
-    "browser-sync": "2.24.4",
+    "browser-sync": "2.26.5",
     "cloudflare": "2.4.1",
     "del": "2.2.2",
     "echint": "1.5.3",
@@ -52,7 +52,7 @@
     "font-awesome": "4.7.0",
     "gh-pages": "2.0.1",
     "gifsicle": "3.0.4",
-    "glob": "5.0.15",
+    "glob": "7.1.4",
     "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.1",
     "gulp-clean-css": "3.9.4",
