@@ -52,7 +52,7 @@
     "font-awesome": "4.7.0",
     "gh-pages": "0.4.0",
     "gifsicle": "3.0.4",
-    "glob": "5.0.15",
+    "glob": "7.1.4",
     "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.1",
     "gulp-clean-css": "3.9.4",
