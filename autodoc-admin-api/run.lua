@@ -451,6 +451,16 @@ local function bold_text_section(outfd, title, content)
   outfd:write("\n")
 end
 
+
+local function bold_text_section(outfd, title, content)
+  if not content then
+    return
+  end
+  outfd:write(title and ("*" .. title .. "*\n\n") or "")
+  outfd:write(unindent(content) .. "\n")
+  outfd:write("\n")
+end
+
 local function section(outfd, title, content)
   if not content then
     return
