@@ -65,7 +65,7 @@
     "gulp-plumber": "1.2.1",
     "gulp-purifycss": "0.2.0",
     "gulp-rename": "1.4.0",
-    "gulp-resource-hints": "0.1.2",
+    "gulp-resource-hints": "0.2.1",
     "gulp-size": "2.1.0",
     "gulp-sourcemaps": "1.12.1",
     "jpegtran": "1.0.6",
