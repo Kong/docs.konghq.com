@@ -47,7 +47,7 @@
     "browser-sync": "2.26.5",
     "cloudflare": "2.4.1",
     "del": "4.1.1",
-    "echint": "1.5.3",
+    "echint": "4.0.2",
     "fancy-log": "1.3.3",
     "font-awesome": "4.7.0",
     "gh-pages": "2.0.1",
