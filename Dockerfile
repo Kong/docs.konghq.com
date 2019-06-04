@@ -1,4 +1,4 @@
-# Jekyll version should mirror version in gem file
+# This should mirror the jekyll version in the Gemfile
 FROM jekyll/jekyll:3.8.5
 
 WORKDIR /srv/jekyll
