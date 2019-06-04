@@ -68,7 +68,7 @@ extensions:
 # location vars
 icons_dir: assets/images/icons
 
-gems:
+plugins:
   - jekyll-redirect-from
 
 defaults:
