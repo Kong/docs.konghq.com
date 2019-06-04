@@ -15,12 +15,25 @@ breadcrumbs:
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.value_in_examples }}"{%
   elsif field.required == true %} \
     --data{% if field.urlencode_in_examples %}-urlencode{% endif %} "config.{{ field.name }}={{ field.default | markdownify | strip_html | strip }}"{%
-  endif %}{% endfor %}
-{% endcapture %}
+  endif %}{% endfor
+%}{% endcapture %}
+
+{% capture config_required_fields_yaml
+  %}config: {%
+  for field in page.params.config %}{%
+  if field.value_in_examples != nil %}
+    {{ field.name }}: {{ field.value_in_examples }}{%
+  elsif field.required == true %}
+    {{ field.name }}: {{ field.default | markdownify | strip_html | strip }}{%
+  endif %}{% endfor
+%}{% endcapture %}
 
 {% if page.params.service_id %}
 {% capture plugin_config_for_service %}
 ### Enabling the plugin on a Service
+
+{% tabs %}
+{% tab With a database %}
 
 Configure this plugin on a [Service](/latest/admin-api/#service-object) by
 making the following request:
@@ -29,9 +42,21 @@ making the following request:
 $ curl -X POST http://kong:8001/services/{service}/plugins \
     --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
+{% tab Without a database %}
 
-* `service`: the id or name of the Service that this plugin configuration will
-  target.
+Configure this plugin on a [Service](/latest/admin-api/#service-object) by
+adding this section do your declarative configuration file:
+
+``` yaml
+plugins:
+- name: {{page.params.name}}
+  service: {service}
+  {{ config_required_fields_yaml }}
+```
+{% endtabs %}
+
+In both cases, `{service}` is the `id` or `name` of the Service that this plugin configuration will target.
+
 {% endcapture %}
 {% endif %}
 
@@ -39,14 +64,31 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 {% capture plugin_config_for_route %}
 ### Enabling the plugin on a Route
 
+{% tabs %}
+{% tab With a database %}
+
 Configure this plugin on a [Route](/latest/admin-api/#Route-object) with:
 
 ```bash
-$ curl -X POST http://kong:8001/routes/{route_id}/plugins \
+$ curl -X POST http://kong:8001/routes/{route}/plugins \
     --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 
-* `route_id`: the id of the Route that this plugin configuration will target.
+{% tab Without a database %}
+
+Configure this plugin on a [Route](/latest/admin-api/#route-object) by
+adding this section do your declarative configuration file:
+
+``` yaml
+plugins:
+- name: {{page.params.name}}
+  route: {route}
+  {{ config_required_fields_yaml }}
+```
+{% endtabs %}
+
+In both cases, `{route}` is the `id` or `name` of the Route that this plugin configuration will target.
+
 {% endcapture %}
 {% endif %}
 
@@ -54,17 +96,33 @@ $ curl -X POST http://kong:8001/routes/{route_id}/plugins \
 {% capture plugin_config_for_consumer %}
 ### Enabling the plugin on a Consumer
 
+{% tabs %}
+{% tab With a database %}
+
 You can use the `http://localhost:8001/plugins` endpoint to enable this plugin
 on specific [Consumers](/latest/admin-api/#Consumer-object):
 
 ```bash
-$ curl -X POST http://kong:8001/plugins \
+$ curl -X POST http://kong:8001/consumers/{consumer}/plugins \
     --data "name={{page.params.name}}" \
-    --data "consumer_id={consumer_id}" {{ config_required_fields }}
+    {{ config_required_fields }}
 ```
 
-Where `consumer_id` is the id of the Consumer we want to associate with this
-plugin.
+{% tab Without a database %}
+
+Configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) by
+adding this section do your declarative configuration file:
+
+``` yaml
+plugins:
+- name: {{page.params.name}}
+  consumer: {consumer}
+  {{ config_required_fields_yaml }}
+```
+
+{% endtabs %}
+
+In both cases, `{consumer}` is the `id` or `username` of the Consumer that this plugin configuration will target.
 
 {% if page.params.service_id or page.params_route_id or page.params.api_id %}
   You can combine `consumer_id` and {% if page.params.service_id %}
@@ -295,10 +353,15 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
         <h3 id="global-plugins">Global plugins</h3>
 
-        <p>All plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint. A plugin which is not associated to any Service,
-          Route or Consumer (or API, if you are using an older version of Kong) is considered "global", and will be run on every request.
-          Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
-          <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
+        <ul>
+          <li><strong>Using a database</strong>, all plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint.</li>
+          <li><strong>Without a database</strong>, all plugins can be configured via the <code>plugins:</code> entry on the declarative configuration file.</li>
+        </ul>
+
+        <p>A plugin which is not associated to any Service, Route or Consumer (or API, if you are using an older
+        version of Kong) is considered "global", and will be run on every request.
+        Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
+        <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
         </p>
 
         <h3 id="parameters">Parameters</h3>
