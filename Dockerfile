@@ -1,4 +1,5 @@
-FROM jekyll/jekyll:3.1.0
+# This should mirror the jekyll version in the Gemfile
+FROM jekyll/jekyll:3.8.5
 
 WORKDIR /srv/jekyll
 
