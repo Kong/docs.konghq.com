@@ -5,7 +5,7 @@ book: admin_gui
 ## What Can Admins Do in Kong Manager?
 
 Kong Manager enables users with **Admin** accounts to access Kong entities such
- as **Services**, **Plugins**, and **Consumers.**
+as **Services**, **Plugins**, and **Consumers.**
 
 The following document summarizes Kong Manager's controls for *authentication* 
 and *authorization*. 
