@@ -53,7 +53,7 @@ on to enforce authorization rules. Otherwise, whoever can log in
 to Kong Manager can perform any operation available on the Admin API.
 
 [`admin_gui_auth`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth
-[`default_ports`]: /enterprise/0.35-x/getting-started/start-kong/#default-ports
+[`default_ports`]: /enterprise/{{page.kong_version}}/getting-started/start-kong/#default-ports
 [`admin_api_uri`]: /enterprise/{{page.kong_version}}/property-reference/#admin_api_uri
 [`admin_gui_auth_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth_conf
 [`enforce_rbac`]: /enterprise/{{page.kong_version}}/property-reference/#enforce_rbac
