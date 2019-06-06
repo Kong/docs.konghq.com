@@ -136,11 +136,7 @@
               url: /developer-portal/configuration/authentication/key-auth
             - text: OpenID Connect
               url: /developer-portal/configuration/authentication/oidc
-<<<<<<< HEAD
-            - text: Adding Registration Fields
-=======
             - text: Adding Custom Registration Fields
->>>>>>> 4483c6fc9a6ba2bfb37b594ffe08df08b786742b
               url: /developer-portal/configuration/authentication/adding-registration-fields
         - text: SMTP
           url: /developer-portal/configuration/smtp
@@ -153,10 +149,6 @@
         - text: Managing Developers
           url: /developer-portal/administration/managing-developers
     - text: Theme Customization
-<<<<<<< HEAD
-      url: /developer-portal/theme-customization/customizing-dev-portal
-=======
->>>>>>> 4483c6fc9a6ba2bfb37b594ffe08df08b786742b
       items:
           - text: Customizing the Dev Portal
             url: /developer-portal/theme-customization/customizing-dev-portal
