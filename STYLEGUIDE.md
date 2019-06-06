@@ -189,6 +189,11 @@ Do not write "httpie" or "HTTPIE".
 ### i.e.
 See e.g.; should only be used to specify a case, not offer possible examples.
 
+### images
+Included images should be 1200px wide. Introduce image concept *before* 
+showing the image, not after.
+See: [screenshots](#screenshots) and [videos](#vidoes)
+
 ### in-line code
 Use in-line code formatting for:
 * Command names, e.g., `kong start`
@@ -274,6 +279,10 @@ after.
 ### Routes
 Use proper case.
 
+### screenshots
+Screenshots should be 1200px wide, do not include browser tool bars, 
+title bars, url bars etc.
+
 ### serial comma 
 For safety, clarity, and sanity.
 
@@ -314,6 +323,10 @@ fancy synonym for "use".
 
 * *Bad*: The Admin may *utilize* the feature to observe traffic.
 * **_Good_: The Admin may *use* the feature to observe traffic.**
+
+### videos
+Videos should be less than 30 seconds in length, contain no voice-over
+narration, and must be approved by a Kong member.
 
 ### Vitals
 Use proper case.
