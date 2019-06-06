@@ -92,7 +92,7 @@ params:
       default: 2000
       value_in_examples:
       description: |
-        Connection timeout to use for Redis connection when the `redis` strategy is defined
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined
     - name: redis.password
       required: semi
       default:

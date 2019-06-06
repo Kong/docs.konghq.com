@@ -1,5 +1,14 @@
 # Documentation Style Guide
 
+### active voice
+Use the active voice. See [personal pronouns](#personal-pronouns) for guidance 
+on when it is appropriate to use "you" and "your".
+
+* Bad: The files should be added to the directory by the owner.
+* **_Good_: The owner should add the files to the directory.**
+* Bad: To access a network's LDAP services, your computer must first be authenticated.
+* **_Good_: To access a network's LDAP services, a server that supports the protocol must first authenticate your computer.
+
 ### Admin, admin
 Use proper case for the Kong entity, lowercase for the RBAC Role.
 
@@ -240,6 +249,8 @@ instead of "to" or "through".
 * *Bad*: This guide assumes steps one through three from the previous guide.
 * **_Good_: This guides assumes steps 1–3 from the previous guide.**
 
+### passive voice
+See [active voice](#active-voice).
 
 ### personal pronouns 
 Avoid "you" and "we" in favor of the specific role performing the task or the 

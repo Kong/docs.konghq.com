@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Caching custom entities
+title: Plugin Development - Caching Custom Entities
 book: plugin_dev
 chapter: 7
 ---
@@ -49,15 +49,15 @@ local cache = kong.cache
 
 There are 2 levels of cache:
 
-1. L1: Lua memory cache - local to an nginx worker
+1. L1: Lua memory cache - local to an Nginx worker process.
    This can hold any type of Lua value.
-2. L2: Shared memory cache (SHM) - local to an nginx node, but shared between
-   all workers. This can only hold scalar values, and hence requires
-   (de)serialization.
+2. L2: Shared memory cache (SHM) - local to an Nginx node, but shared between
+   all the workers. This can only hold scalar values, and hence requires
+   (de)serialization of a more complex types such as Lua tables.
 
-When data is fetched from the database, it will be stored in both caches. Now
-if the same worker process requests the data again, it will retrieve the
-previously-deserialized data from the Lua memory cache. If a different
+When data is fetched from the database, it will be stored in both caches. 
+If the same worker process requests the data again, it will retrieve the
+previously deserialized data from the Lua memory cache. If a different
 worker within the same Nginx node requests that data, it will find the data
 in the SHM, deserialize it (and store it in its own Lua memory cache) and
 then return it.
@@ -67,55 +67,77 @@ This module exposes the following functions:
 Function name                                 | Description
 ----------------------------------------------|---------------------------
 `value, err = cache:get(key, opts?, cb, ...)` | Retrieves the value from the cache. If the cache does not have value (miss), invokes `cb` in protected mode. `cb` must return one (and only one) value that will be cached. It *can* throw errors, as those will be caught and properly logged by Kong, at the `ngx.ERR` level. This function **does** cache negative results (`nil`). As such, one must rely on its second argument `err` when checking for errors.
-`ttl, err, value = cache:probe(key)`          | Checks if a value is cached. If it is, returns its remaining TTL. It not, returns `nil`. The value being cached can also be a negative caching. The third return value is the value being cached itself.
-`cache:invalidate_local(key)`                       | Evicts a value from the node's cache.
-`cache:invalidate(key)`                             | Evicts a value from the node's cache **and** propagates the eviction events to all other nodes in the cluster.
-`cache:purge()`                                     | Evicts **all** values from the node's cache.
+`ttl, err, value = cache:probe(key)`          | Checks if a value is cached. If it is, returns its remaining ttl. It not, returns `nil`. The value being cached can also be a negative caching. The third return value is the value being cached itself.
+`cache:invalidate_local(key)`                 | Evicts a value from the node's cache.
+`cache:invalidate(key)`                       | Evicts a value from the node's cache **and** propagates the eviction events to all other nodes in the cluster.
+`cache:purge()`                               | Evicts **all** values from the node's cache.
 
 Bringing back our authentication plugin example, to lookup a credential with a
 specific api-key, we would write something similar to:
 
 ```lua
--- access.lua
+-- handler.lua
+local BasePlugin = require "kong.plugins.base_plugin"
 
-local function load_entity_key(api_key)
-  -- IMPORTANT: the callback is executed inside a lock, hence we cannot terminate
-  -- a request here, we MUST always return.
-  local apikeys, err = kong.dao.apikeys:find_all({key = api_key}) -- Lookup in the datastore
+
+local kong = kong
+
+
+local function load_credential(key)
+  local credential, err = kong.db.keyauth_credentials:select_by_key(key)
+  if not credential then
+    return nil, err
+  end
+  return credential
+end
+
+
+local CustomHandler = BasePlugin:extend()
+
+
+CustomHandler.VERSION  = "1.0.0"
+CustomHandler.PRIORITY = 1010
+
+
+function CustomHandler:new()
+  CustomHandler.super.new(self, "my-custom-plugin")
+end
+
+
+function CustomHandler:access(config)
+  CustomHandler.super.access(self)
+  
+  -- retrieve the apikey from the request querystring
+  local key = kong.request.get_query_arg("apikey")
+
+  local credential_cache_key = kong.db.keyauth_credentials:cache_key(key)
+
+  -- We are using cache.get to first check if the apikey has been already
+  -- stored into the in-memory cache. If it's not, then we lookup the datastore
+  -- and return the credential object. Internally cache.get will save the value
+  -- in-memory, and then return the credential.
+  local credential, err = kong.cache:get(credential_cache_key, nil,
+                                         load_credential, credential_cache_key)
   if err then
-    error(err) -- caught by kong.cache and logged
+    kong.log.err(err)
+    return kong.response.exit(500, {
+      message = "Unexpected error"
+    })
   end
-
-  if not apikeys then
-    return nil -- nothing was found (cached for `neg_ttl`)
+    
+  if not credential then
+    -- no credentials in cache nor datastore
+    return kong.response.exit(401, {
+      message = "Invalid authentication credentials"
+    })
   end
-
-  -- assuming the key was unique, we always only have 1 value...
-  return apikeys[1] -- cache the credential (cached for `ttl`)
+    
+  -- set an upstream header if the credential exists and is valid
+  kong.service.request.set_header("X-API-Key", credential.apikey)
 end
 
--- retrieve the apikey from the request querystring
-local querystring = kong.request.get_query()
-local apikey = querystring.apikey
 
--- We are using cache.get to first check if the apikey has been already
--- stored into the in-memory cache at the key: "apikeys." .. apikey
--- If it's not, then we lookup the datastore and return the credential
--- object. Internally cache.get will save the value in-memory, and then
--- return the credential.
-local credential, err = kong.cache:get("apikeys." .. apikey, nil,
-                                       load_entity_key, apikey)
-if err then
-  return kong.response.exit(500, "Unexpected error: " .. err)
-end
-
-if not credential then
-  -- no credentials in cache nor datastore
-  return kong.response.exit(403, "Invalid authentication credentials")
-end
-
--- set an upstream header if the credential exists and is valid
-kong.service.request.set_header("X-API-Key", credential.apikey)
+return CustomHandler
 ```
 
 Note that in the above example, we use various components from the [Plugin
@@ -132,8 +154,8 @@ Give that file a look in order to see how an official plugin uses the cache.
 ### Updating or deleting a custom entity
 
 Every time a cached custom entity is updated or deleted in the datastore (i.e.
-using the Admin API), it creates an inconsistency between the data in
-the datastore, and the data cached in the Kong nodes' memory. To avoid this
+using the Admin API), it creates an inconsistency between the data in the
+datastore, and the data cached in the Kong nodes' memory. To avoid this
 inconsistency, we need to evict the cached entity from the in-memory store and
 force Kong to request it again from the datastore. We refer to this process as
 cache invalidation.
@@ -155,19 +177,48 @@ on the `cache_key` property of your entity's schema. For example, in the
 following schema:
 
 ```lua
-local SCHEMA = {
-  primary_key = { "id" },
-  table = "keyauth_credentials",
-  cache_key = { "key" }, -- cache key for this entity
-  fields = {
-    id = { type = "id" },
-    created_at = { type = "timestamp", immutable = true },
-    consumer_id = { type = "id", required = true, foreign = "consumers:id"},
-    key = { type = "string", required = false, unique = true }
-  }
-}
+local typedefs = require "kong.db.schema.typedefs"
 
-return { keyauth_credentials = SCHEMA }
+
+return {
+  -- this plugin only results in one custom DAO, named `keyauth_credentials`:
+  keyauth_credentials = {
+    name               = "keyauth_credentials", -- the actual table in the database
+    endpoint_key       = "key",
+    primary_key        = { "id" },
+    cache_key          = { "key" },
+    generate_admin_api = true,
+    fields = {
+      {
+        -- a value to be inserted by the DAO itself
+        -- (think of serial id and the uniqueness of such required here)
+        id = typedefs.uuid,
+      },
+      {
+        -- also interted by the DAO itself
+        created_at = typedefs.auto_timestamp_s,
+      },
+      {
+        -- a foreign key to a consumer's id
+        consumer = {
+          type      = "foreign",
+          reference = "consumers",
+          default   = ngx.null,
+          on_delete = "cascade",
+        },
+      },
+      {
+        -- a unique API key
+        key = {
+          type      = "string",
+          required  = false,
+          unique    = true,
+          auto      = true,
+        },
+      },
+    },
+  },
+}
 ```
 
 We can see that we declare the cache key of this API key entity to be its
@@ -197,13 +248,19 @@ of the query's arguments) that we can the use to retrieve the key from the
 cache (or fetch from the database if the cache is a miss):
 
 ```lua
-local apikey = kong.request.get_query().apikey
-local cache_key = kong.db.keyauth_credentials:cache_key(apikey)
+local key       = kong.request.get_query_arg("apikey")
+local cache_key = kong.db.keyauth_credentials:cache_key(key)
 
 local credential, err = kong.cache:get(cache_key, nil, load_entity_key, apikey)
 if err then
-  return kong.response.exit(500, "Unexpected error: " .. err)
+  kong.log.err(err)
+  return kong.response.exit(500, { message = "Unexpected error" })
 end
+
+if not credential then
+  return kong.response.exit(401, { message = "Invalid authentication credentials" })
+end
+
 
 -- do something with the credential
 ```
@@ -281,8 +338,8 @@ As you are probably aware, the [Admin API] is where Kong users communicate with
 Kong to setup their APIs and plugins. It is likely that they also need to be
 able to interact with the custom entities you implemented for your plugin (for
 example, creating and deleting API keys). The way you would do this is by
-extending the Admin API, which we will detail in the next chapter: [Extending
-the Admin API]({{page.book.next}}).
+extending the Admin API, which we will detail in the next chapter:
+[Extending the Admin API]({{page.book.next}}).
 
 ---
 

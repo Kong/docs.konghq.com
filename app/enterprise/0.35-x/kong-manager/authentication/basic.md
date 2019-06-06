@@ -1,9 +1,17 @@
 ---
 title: How to Enable Basic Auth for Kong Manager
 book: admin_gui
+toc: false
 ---
 
-1. To enable Basic Authentication, configure Kong with the following properties:
+#### Table of Contents:
+- [Prerequisites](#prerequisites)
+- [Step 1](#step-1)
+- [Step 2](#step-2)
+
+### Prerequisites
+
+To enable Basic Authentication, configure Kong with the following properties:
 
 ```
 enforce_rbac = on
@@ -17,13 +25,17 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`. 
 Learn more about these properties in [Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [example configurations](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
 
-2. Start Kong:
+## Step 1
+
+Start Kong:
 
 ```
 $ kong start [-c /path/to/kong/conf]
 ```
 
-3. If you created a **Super Admin** via database migration, log in to Kong 
+## Step 2
+
+If you created a **Super Admin** via database migration, log in to Kong 
 Manager with the username `kong_admin` and the password 
 set in the environment variable.
 

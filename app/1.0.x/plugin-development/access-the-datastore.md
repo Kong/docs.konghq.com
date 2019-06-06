@@ -1,5 +1,5 @@
 ---
-title: Plugin Development - Accessing the datastore
+title: Plugin Development - Accessing the Datastore
 book: plugin_dev
 chapter: 5
 ---
@@ -19,12 +19,12 @@ and [PostgreSQL
 All entities in Kong are represented by:
 
 - A schema that describes which table the entity relates to in the datastore,
-  constraints on its fields such as foreign keys, non-null constraints etc...
-  This schema is a table described in the [plugin
-  configuration]({{page.book.chapters.plugin-configuration}}) chapter.
+  constraints on its fields such as foreign keys, non-null constraints etc.
+  This schema is a table described in the [plugin configuration]({{page.book.chapters.plugin-configuration}})
+  chapter.
 - An instance of the `DAO` class mapping to the database currently in use
-  (Cassandra or PostgreSQL). This class' methods consume the schema and expose
-  methods to insert, update, find and delete entities of that type.
+  (Cassandra or Postgres). This class' methods consume the schema and expose
+  methods to insert, update, select and delete entities of that type.
 
 The core entities in Kong are: Services, Routes, Consumers and Plugins.
 All of them are accessible as Data Access Objects (DAOs),
@@ -33,10 +33,10 @@ through the `kong.db` global singleton:
 
 ```lua
 -- Core DAOs
-local services_dao = kong.db.services
-local routes_dao = kong.db.routes
-local consumers_dao = kong.db.consumers
-local plugins_dao = kong.dao.plugins
+local services  = kong.db.services
+local routes    = kong.db.routes
+local consumers = kong.db.consumers
+local plugins   = kong.db.plugins
 ```
 
 Both core entities from Kong and custom entities from plugins are
@@ -48,7 +48,7 @@ available through `kong.db.*`.
 
 The DAO class is responsible for the operations executed on a given table in
 the datastore, generally mapping to an entity in Kong. All the underlying
-supported databases (currently Cassandra and PostgreSQL) comply to the same
+supported databases (currently Cassandra and Postgres) comply to the same
 interface, thus making the DAO compatible with all of them.
 
 For example, inserting a Service and a Plugin is as easy as:
@@ -56,12 +56,12 @@ For example, inserting a Service and a Plugin is as easy as:
 ```lua
 local inserted_service, err = kong.db.services:insert({
   name = "mockbin",
-  url = "http://mockbin.org",
+  url  = "http://mockbin.org",
 })
 
 local inserted_plugin, err = kong.db.plugins:insert({
-  name = "key-auth",
-  service_id = { id = inserted_service.id },
+  name    = "key-auth",
+  service = inserted_service,
 })
 ```
 
@@ -70,6 +70,6 @@ For a real-life example of the DAO being used in a plugin, see the
 
 ---
 
-Next: [Custom Entities &rsaquo;]({{page.book.next}})
+Next: [Storing Custom Entities &rsaquo;]({{page.book.next}})
 
 [Plugin Development Kit]: /{{page.kong_version}}/pdk

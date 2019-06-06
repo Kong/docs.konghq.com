@@ -4,7 +4,7 @@ title: How to Install Kong Enterprise on CentOS
 
 ## Installation Steps
 
-1. Head over to https://bintray.com/kong/kong-enterprise-edition-rpm
+1. Head over to [https://bintray.com/kong/kong-enterprise-edition-rpm](https://bintray.com/kong/kong-enterprise-edition-rpm)
 
 2. Click "Set Me Up" and follow the instructions on the "Download > Resolving 
 RPM packages" tab

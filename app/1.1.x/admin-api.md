@@ -18,7 +18,7 @@ service_body: |
 
 service_json: |
     {
-        "id": "0c61e164-6171-4837-8836-8f5298726d53",
+        "id": "9748f662-7711-4a90-8186-dc02f10eb0f5",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-service",
@@ -35,7 +35,7 @@ service_json: |
 
 service_data: |
     "data": [{
-        "id": "f00c6da4-3679-4b44-b9fb-36a19bd3ae83",
+        "id": "4e3ad2e4-0bc4-4638-8e34-c84a417ba39b",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-service",
@@ -49,7 +49,7 @@ service_data: |
         "read_timeout": 60000,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "bdab0e47-4e37-4f0b-8fd0-87d95cc4addc",
+        "id": "a5fb8d9b-a99d-40e9-9d35-72d42a62d83a",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-service",
@@ -83,7 +83,7 @@ route_body: |
 
 route_json: |
     {
-        "id": "173a6cee-90d1-40a7-89cf-0329eca780a6",
+        "id": "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -95,12 +95,12 @@ route_json: |
         "strip_path": true,
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
-        "service": {"id":"f5a9c0ca-bdbb-490f-8928-2ca95836239a"}
+        "service": {"id":"fc73f2af-890d-4f9b-8363-af8945001f7f"}
     }
 
 route_data: |
     "data": [{
-        "id": "885a0392-ef1b-4de3-aacf-af3f1697ce2c",
+        "id": "4506673d-c825-444c-a25b-602e3c2ec16e",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -112,9 +112,9 @@ route_data: |
         "strip_path": true,
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
-        "service": {"id":"a3395f66-2af6-4c79-bea2-1b6933764f80"}
+        "service": {"id":"d35165e2-d03e-461a-bdeb-dad0a112abfe"}
     }, {
-        "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
+        "id": "af8330d3-dbdc-48bd-b1be-55b98608834b",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -126,7 +126,7 @@ route_data: |
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "tags": ["admin", "high-priority", "critical"],
-        "service": {"id":"ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6"}
+        "service": {"id":"a9daa3ba-8186-4a0d-96e8-00d80ce7240b"}
     }],
 
 consumer_body: |
@@ -138,7 +138,7 @@ consumer_body: |
 
 consumer_json: |
     {
-        "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
+        "id": "127dfc88-ed57-45bf-b77a-a9d3a152ad31",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
@@ -147,13 +147,13 @@ consumer_json: |
 
 consumer_data: |
     "data": [{
-        "id": "4e8d95d4-40f2-4818-adcb-30e00c349618",
+        "id": "9aa116fd-ef4a-4efa-89bf-a0b17c4be982",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
+        "id": "ba641b07-e74a-430a-ab46-94b61e5ea66b",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
@@ -175,7 +175,7 @@ plugin_body: |
 
 plugin_json: |
     {
-        "id": "a3ad71a8-6685-4b03-a101-980a953544f6",
+        "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -190,7 +190,7 @@ plugin_json: |
 
 plugin_data: |
     "data": [{
-        "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
+        "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -202,7 +202,7 @@ plugin_data: |
         "enabled": true,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "a2e013e8-7623-4494-a347-6d29108ff68b",
+        "id": "01c23299-839c-49a5-a6d5-8864c09184af",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -225,7 +225,7 @@ certificate_body: |
 
 certificate_json: |
     {
-        "id": "91020192-062d-416f-a275-9addeeaffaf2",
+        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
@@ -234,13 +234,13 @@ certificate_json: |
 
 certificate_data: |
     "data": [{
-        "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
+        "id": "02621eee-8309-4bf6-b36b-a82017a5393e",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
+        "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
@@ -256,26 +256,26 @@ sni_body: |
 
 sni_json: |
     {
-        "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
+        "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"a9b2107f-a214-47b3-add4-46b942187924"}
+        "certificate": {"id":"d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6"}
     }
 
 sni_data: |
     "data": [{
-        "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
+        "id": "a9b2107f-a214-47b3-add4-46b942187924",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"7fca84d6-7d37-4a74-a7b0-93e576089a41"}
+        "certificate": {"id":"04fbeacf-a9f1-4a5d-ae4a-b0407445db3f"}
     }, {
-        "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
+        "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["admin", "high-priority", "critical"],
-        "certificate": {"id":"02621eee-8309-4bf6-b36b-a82017a5393e"}
+        "certificate": {"id":"d26761d5-83a4-4f24-ac6c-cff276f2b79c"}
     }],
 
 upstream_body: |
@@ -314,7 +314,7 @@ upstream_body: |
 
 upstream_json: |
     {
-        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
+        "id": "91020192-062d-416f-a275-9addeeaffaf2",
         "created_at": 1422386534,
         "name": "my-upstream",
         "hash_on": "none",
@@ -361,7 +361,7 @@ upstream_json: |
 
 upstream_data: |
     "data": [{
-        "id": "01c23299-839c-49a5-a6d5-8864c09184af",
+        "id": "a2e013e8-7623-4494-a347-6d29108ff68b",
         "created_at": 1422386534,
         "name": "my-upstream",
         "hash_on": "none",
@@ -405,7 +405,7 @@ upstream_data: |
         },
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
+        "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
         "created_at": 1422386534,
         "name": "my-upstream",
         "hash_on": "none",
@@ -459,9 +459,9 @@ target_body: |
 
 target_json: |
     {
-        "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
+        "id": "a3ad71a8-6685-4b03-a101-980a953544f6",
         "created_at": 1422386534,
-        "upstream": {"id":"ba641b07-e74a-430a-ab46-94b61e5ea66b"},
+        "upstream": {"id":"b87eb55d-69a1-41d2-8653-8d706eecefc0"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
@@ -469,16 +469,16 @@ target_json: |
 
 target_data: |
     "data": [{
-        "id": "9aa116fd-ef4a-4efa-89bf-a0b17c4be982",
+        "id": "4e8d95d4-40f2-4818-adcb-30e00c349618",
         "created_at": 1422386534,
-        "upstream": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"},
+        "upstream": {"id":"58c8ccbb-eafb-4566-991f-2ed4f678fa70"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "a9daa3ba-8186-4a0d-96e8-00d80ce7240b",
+        "id": "ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6",
         "created_at": 1422386534,
-        "upstream": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"},
+        "upstream": {"id":"4fe14415-73d5-4f00-9fbc-c72a0fccfcb2"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["admin", "high-priority", "critical"]
@@ -486,6 +486,14 @@ target_data: |
 
 
 ---
+
+<div class="alert alert-info.blue" role="alert">
+  This page refers to the Admin API for running Kong configured with a
+  database (Postgres or Cassandra). For using the Admin API for Kong
+  in DB-less mode, please refer to the
+  <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
+  page.
+</div>
 
 Kong comes with an **internal** RESTful Admin API for administration purposes.
 Requests to the Admin API can be sent to any node in the cluster, and Kong will
@@ -529,11 +537,11 @@ a JSON representation of the data you want to send. Example:
 
 ---
 
-## Information routes
+## Information Routes
 
 
 
-### Retrieve node information
+### Retrieve Node Information
 
 Retrieve generic details about a node.
 
@@ -577,7 +585,7 @@ HTTP 200 OK
 
 ---
 
-### Retrieve node status
+### Retrieve Node Status
 
 Retrieve usage information about a node, with some basic information
 about the connections being processed by the underlying nginx process,
@@ -635,50 +643,6 @@ HTTP 200 OK
 
 ---
 
----
-
-## Db-less configuration
-
-
-
-### Update db-less config
-
-This endpoint allows resetting a db-less Kong with a new
-declarative configuration data file. To learn more about it,
-please run:
-
-```
-kong config init
-```
-
-That will generate a file with the appropriate structure, names
-and examples.
-
-
-<div class="endpoint post">/config</div>
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-``` json
-{
-    { "services": [],
-      "routes": []
-    }
-}
-```
-
-The response contains a list of all the entities that were parsed from the
-input file.
-
-
----
-
----
-
 ##  Tags 
 
 Tags are strings associated to entities in Kong. Each tag must be composed of one or more
@@ -725,7 +689,7 @@ Some notes:
 * `offset` parameters are not guaranteed to work if the `tags` parameter is altered or removed
 
 
-###  List all tags 
+###  List All Tags 
 
 Returns a paginated list of all the tags in the system.
 
@@ -739,11 +703,14 @@ have been tagged with the same tag, the tag will appear in several items of this
 
 <div class="endpoint get">/tags</div>
 
-#### Response
+
+*Response*
 
 ```
 HTTP 200 OK
 ```
+
+#### Response
 
 ``` json
 {
@@ -772,7 +739,7 @@ HTTP 200 OK
 
 ---
 
-###  List entity IDs by tag 
+###  List Entity Ids by Tag 
 
 Returns the entities that have been tagged with the specified tag.
 
@@ -861,7 +828,7 @@ HTTP 201 Created
 
 ### List Services
 
-##### List all Services
+##### List All Services
 
 <div class="endpoint get">/services</div>
 
@@ -893,7 +860,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
 
 
-##### Retrieve Service associated to a specific Route
+##### Retrieve Service Associated to a Specific Route
 
 <div class="endpoint get">/routes/{route name or id}/service</div>
 
@@ -902,7 +869,7 @@ Attributes | Description
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be retrieved.
 
 
-##### Retrieve Service associated to a specific Plugin
+##### Retrieve Service Associated to a Specific Plugin
 
 <div class="endpoint get">/plugins/{plugin id}/service</div>
 
@@ -935,7 +902,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Service to update.
 
 
-##### Update Service associated to a specific Route
+##### Update Service Associated to a Specific Route
 
 <div class="endpoint patch">/routes/{route name or id}/service</div>
 
@@ -944,7 +911,7 @@ Attributes | Description
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be updated.
 
 
-##### Update Service associated to a specific Plugin
+##### Update Service Associated to a Specific Plugin
 
 <div class="endpoint patch">/plugins/{plugin id}/service</div>
 
@@ -971,9 +938,9 @@ HTTP 200 OK
 
 ---
 
-### Update or create Service
+### Update Or Create Service
 
-##### Create or update Service
+##### Create Or Update Service
 
 <div class="endpoint put">/services/{name or id}</div>
 
@@ -982,7 +949,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
 
 
-##### Create or update Service associated to a specific Route
+##### Create Or Update Service Associated to a Specific Route
 
 <div class="endpoint put">/routes/{route name or id}/service</div>
 
@@ -991,7 +958,7 @@ Attributes | Description
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be created or updated.
 
 
-##### Create or update Service associated to a specific Plugin
+##### Create Or Update Service Associated to a Specific Plugin
 
 <div class="endpoint put">/plugins/{plugin id}/service</div>
 
@@ -1042,7 +1009,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
 
 
-##### Delete Service associated to a specific Route
+##### Delete Service Associated to a Specific Route
 
 <div class="endpoint delete">/routes/{route name or id}/service</div>
 
@@ -1086,7 +1053,7 @@ Routes can be both [tagged and filtered by tags](#tags).
 <div class="endpoint post">/routes</div>
 
 
-##### Create Route associated to a specific Service
+##### Create Route Associated to a Specific Service
 
 <div class="endpoint post">/services/{service name or id}/routes</div>
 
@@ -1115,12 +1082,12 @@ HTTP 201 Created
 
 ### List Routes
 
-##### List all Routes
+##### List All Routes
 
 <div class="endpoint get">/routes</div>
 
 
-##### List Routes associated to a specific Service
+##### List Routes Associated to a Specific Service
 
 <div class="endpoint get">/services/{service name or id}/routes</div>
 
@@ -1156,7 +1123,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
 
 
-##### Retrieve Route associated to a specific Plugin
+##### Retrieve Route Associated to a Specific Plugin
 
 <div class="endpoint get">/plugins/{plugin id}/route</div>
 
@@ -1189,7 +1156,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Route to update.
 
 
-##### Update Route associated to a specific Plugin
+##### Update Route Associated to a Specific Plugin
 
 <div class="endpoint patch">/plugins/{plugin id}/route</div>
 
@@ -1216,9 +1183,9 @@ HTTP 200 OK
 
 ---
 
-### Update or create Route
+### Update Or Create Route
 
-##### Create or update Route
+##### Create Or Update Route
 
 <div class="endpoint put">/routes/{name or id}</div>
 
@@ -1227,7 +1194,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
 
 
-##### Create or update Route associated to a specific Plugin
+##### Create Or Update Route Associated to a Specific Plugin
 
 <div class="endpoint put">/plugins/{plugin id}/route</div>
 
@@ -1328,7 +1295,7 @@ HTTP 201 Created
 
 ### List Consumers
 
-##### List all Consumers
+##### List All Consumers
 
 <div class="endpoint get">/consumers</div>
 
@@ -1360,7 +1327,7 @@ Attributes | Description
 `username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
 
 
-##### Retrieve Consumer associated to a specific Plugin
+##### Retrieve Consumer Associated to a Specific Plugin
 
 <div class="endpoint get">/plugins/{plugin id}/consumer</div>
 
@@ -1393,7 +1360,7 @@ Attributes | Description
 `username or id`<br>**required** | The unique identifier **or** the username of the Consumer to update.
 
 
-##### Update Consumer associated to a specific Plugin
+##### Update Consumer Associated to a Specific Plugin
 
 <div class="endpoint patch">/plugins/{plugin id}/consumer</div>
 
@@ -1420,9 +1387,9 @@ HTTP 200 OK
 
 ---
 
-### Update or create Consumer
+### Update Or Create Consumer
 
-##### Create or update Consumer
+##### Create Or Update Consumer
 
 <div class="endpoint put">/consumers/{username or id}</div>
 
@@ -1431,7 +1398,7 @@ Attributes | Description
 `username or id`<br>**required** | The unique identifier **or** the username of the Consumer to create or update.
 
 
-##### Create or update Consumer associated to a specific Plugin
+##### Create Or Update Consumer Associated to a Specific Plugin
 
 <div class="endpoint put">/plugins/{plugin id}/consumer</div>
 
@@ -1501,8 +1468,9 @@ each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
 
 When adding a Plugin Configuration to a Service, every request made by a client to
 that Service will run said Plugin. If a Plugin needs to be tuned to different
-values for some specific Consumers, you can do so by specifying the
-`consumer_id` value:
+values for some specific Consumers, you can do so by creating a separate
+plugin instance that specifies both the Service and the Consumer, through the
+`service` and `consumer` fields.
 
 Plugins can be both [tagged and filtered by tags](#tags).
 
@@ -1561,7 +1529,7 @@ would have otherwise matched config B.
 <div class="endpoint post">/plugins</div>
 
 
-##### Create Plugin associated to a specific Route
+##### Create Plugin Associated to a Specific Route
 
 <div class="endpoint post">/routes/{route id}/plugins</div>
 
@@ -1570,7 +1538,7 @@ Attributes | Description
 `route id`<br>**required** | The unique identifier of the Route that should be associated to the newly-created Plugin.
 
 
-##### Create Plugin associated to a specific Service
+##### Create Plugin Associated to a Specific Service
 
 <div class="endpoint post">/services/{service id}/plugins</div>
 
@@ -1579,7 +1547,7 @@ Attributes | Description
 `service id`<br>**required** | The unique identifier of the Service that should be associated to the newly-created Plugin.
 
 
-##### Create Plugin associated to a specific Consumer
+##### Create Plugin Associated to a Specific Consumer
 
 <div class="endpoint post">/consumers/{consumer id}/plugins</div>
 
@@ -1608,12 +1576,12 @@ HTTP 201 Created
 
 ### List Plugins
 
-##### List all Plugins
+##### List All Plugins
 
 <div class="endpoint get">/plugins</div>
 
 
-##### List Plugins associated to a specific Route
+##### List Plugins Associated to a Specific Route
 
 <div class="endpoint get">/routes/{route id}/plugins</div>
 
@@ -1622,7 +1590,7 @@ Attributes | Description
 `route id`<br>**required** | The unique identifier of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
 
 
-##### List Plugins associated to a specific Service
+##### List Plugins Associated to a Specific Service
 
 <div class="endpoint get">/services/{service id}/plugins</div>
 
@@ -1631,7 +1599,7 @@ Attributes | Description
 `service id`<br>**required** | The unique identifier of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
 
 
-##### List Plugins associated to a specific Consumer
+##### List Plugins Associated to a Specific Consumer
 
 <div class="endpoint get">/consumers/{consumer id}/plugins</div>
 
@@ -1709,9 +1677,9 @@ HTTP 200 OK
 
 ---
 
-### Update or create Plugin
+### Update Or Create Plugin
 
-##### Create or update Plugin
+##### Create Or Update Plugin
 
 <div class="endpoint put">/plugins/{plugin id}</div>
 
@@ -1894,7 +1862,7 @@ HTTP 201 Created
 
 ### List Certificates
 
-##### List all Certificates
+##### List All Certificates
 
 <div class="endpoint get">/certificates</div>
 
@@ -1968,9 +1936,9 @@ HTTP 200 OK
 
 ---
 
-### Update or create Certificate
+### Update Or Create Certificate
 
-##### Create or update Certificate
+##### Create Or Update Certificate
 
 <div class="endpoint put">/certificates/{certificate id}</div>
 
@@ -2051,7 +2019,7 @@ SNIs can be both [tagged and filtered by tags](#tags).
 <div class="endpoint post">/snis</div>
 
 
-##### Create SNI associated to a specific Certificate
+##### Create SNI Associated to a Specific Certificate
 
 <div class="endpoint post">/certificates/{certificate name or id}/snis</div>
 
@@ -2080,12 +2048,12 @@ HTTP 201 Created
 
 ### List SNIs
 
-##### List all SNIs
+##### List All SNIs
 
 <div class="endpoint get">/snis</div>
 
 
-##### List SNIs associated to a specific Certificate
+##### List SNIs Associated to a Specific Certificate
 
 <div class="endpoint get">/certificates/{certificate name or id}/snis</div>
 
@@ -2163,9 +2131,9 @@ HTTP 200 OK
 
 ---
 
-### Update or create SNI
+### Update Or Create SNI
 
-##### Create or update SNI
+##### Create Or Update SNI
 
 <div class="endpoint put">/snis/{name or id}</div>
 
@@ -2271,7 +2239,7 @@ HTTP 201 Created
 
 ### List Upstreams
 
-##### List all Upstreams
+##### List All Upstreams
 
 <div class="endpoint get">/upstreams</div>
 
@@ -2303,7 +2271,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
 
-##### Retrieve Upstream associated to a specific Target
+##### Retrieve Upstream Associated to a Specific Target
 
 <div class="endpoint get">/targets/{target host:port or id}/upstream</div>
 
@@ -2336,7 +2304,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
 
 
-##### Update Upstream associated to a specific Target
+##### Update Upstream Associated to a Specific Target
 
 <div class="endpoint patch">/targets/{target host:port or id}/upstream</div>
 
@@ -2363,9 +2331,9 @@ HTTP 200 OK
 
 ---
 
-### Update or create Upstream
+### Update Or Create Upstream
 
-##### Create or update Upstream
+##### Create Or Update Upstream
 
 <div class="endpoint put">/upstreams/{name or id}</div>
 
@@ -2374,7 +2342,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 
-##### Create or update Upstream associated to a specific Target
+##### Create Or Update Upstream Associated to a Specific Target
 
 <div class="endpoint put">/targets/{target host:port or id}/upstream</div>
 
@@ -2425,7 +2393,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
 
-##### Delete Upstream associated to a specific Target
+##### Delete Upstream Associated to a Specific Target
 
 <div class="endpoint delete">/targets/{target host:port or id}/upstream</div>
 
@@ -2443,7 +2411,7 @@ HTTP 204 No Content
 
 ---
 
-### Show Upstream health for node
+### Show Upstream Health for Node
 
 Displays the health status for all Targets of a given Upstream, according to
 the perspective of a specific Kong node. Note that, being node-specific
@@ -2535,7 +2503,7 @@ Targets can be both [tagged and filtered by tags](#tags).
 
 ### Add Target
 
-##### Create Target associated to a specific Upstream
+##### Create Target Associated to a Specific Upstream
 
 <div class="endpoint post">/upstreams/{upstream host:port or id}/targets</div>
 
@@ -2564,7 +2532,7 @@ HTTP 201 Created
 
 ### List Targets
 
-##### List Targets associated to a specific Upstream
+##### List Targets Associated to a Specific Upstream
 
 <div class="endpoint get">/upstreams/{upstream host:port or id}/targets</div>
 
@@ -2612,7 +2580,7 @@ HTTP 204 No Content
 
 ---
 
-### Set target as healthy
+### Set Target As Healthy
 
 Set the current health status of a target in the load balancer to "healthy"
 in the entire Kong cluster.
@@ -2644,7 +2612,7 @@ HTTP 204 No Content
 
 ---
 
-### Set target as unhealthy
+### Set Target As Unhealthy
 
 Set the current health status of a target in the load balancer to "unhealthy"
 in the entire Kong cluster.
@@ -2682,7 +2650,7 @@ HTTP 204 No Content
 
 ---
 
-### List all Targets
+### List All Targets
 
 Lists all targets of the upstream. Multiple target objects for the same
 target may be returned, showing the history of changes for a specific target.
@@ -2733,3 +2701,4 @@ HTTP 200 OK
 [healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
 [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
 [proxy-reference]: /{{page.kong_version}}/proxy
+[db-less-admin-api]: /{{page.kong_version}}/db-less-admin-api

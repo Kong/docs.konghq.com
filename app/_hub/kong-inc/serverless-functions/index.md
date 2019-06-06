@@ -16,10 +16,12 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.1.x
         - 1.0.x
         - 0.14.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -29,6 +31,10 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.
   config:
     - name: functions
       required: true
@@ -80,7 +86,7 @@ different priority in the plugin chain.
     -- Terminate request early if our custom authentication header
     -- does not exist
     if not custom_auth then
-      return kong.response.exit(401\, "Invalid Credentials")
+      return kong.response.exit(401, "Invalid Credentials")
     end
 
     -- Remove custom authentication header from request

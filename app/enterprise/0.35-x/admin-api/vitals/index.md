@@ -9,7 +9,7 @@ metrics about the health and performance of Kong nodes and Kong-proxied APIs.
 
 ## Requirements
 
-- PostgresSQL 9.5+ or Cassanda 2.1+
+- PostgresSQL 9.5+ or Cassandra 2.1+
 
 ## How to Enable and Disable Vitals
 
@@ -63,8 +63,8 @@ All metrics are collected at 1-second intervals and aggregated into 1-minute
 intervals. The 1-second intervals are retained for one hour. The 1-minute 
 intervals are retained for 25 hours.
 
-If longer rentention times are needed, the Vitals API can be used to pull metrics
-out of Kong and into a data rentention tool.
+If longer retention times are needed, the Vitals API can be used to pull metrics
+out of Kong and into a data retention tool.
 
 ### Health Metrics
 
@@ -90,11 +90,11 @@ The Proxy Latency metrics are the min, max, and average values for the time, in 
 
 These metrics are referenced in the Vitals API with the following labels: `latency_proxy_request_min_ms`, `latency_proxy_request_max_ms`, `latency_proxy_request_avg_ms`
 
-Latency is not reported when a request is a prematurely ended by Kong (e.g., bad auth, rate limited, etc.)—note that this differs from the “Total Requests” metric that does count such requests.
+Latency is not reported when a request is prematurely ended by Kong (e.g., bad auth, rate limited, etc.)—note that this differs from the “Total Requests” metric that does count such requests.
 
 ##### Upstream Latency
 
-The Upsteam Latency metrics are the min, max, and average values for the time elapsed, in milliseconds, between Kong sending requests upstream and Kong receiving the first bytes of responses from upstream.
+The Upstream Latency metrics are the min, max, and average values for the time elapsed, in milliseconds, between Kong sending requests upstream and Kong receiving the first bytes of responses from upstream.
 
 These metrics are referenced in the Vitals API with the following labels: `latency_upstream_min_ms`, `latency_upstream_max_ms`, `latency_upstream_avg_ms`
 
@@ -194,4 +194,4 @@ Then, check your log files. If you see `[vitals] kong_vitals_requests_consumers 
 
 Vitals data is purged regularly: 1-second data is purged after one hour, and 1-minute data is purged after 25 hours. Due to limitations in Cassandra 2.x query options, the counter table vitals_consumers is not purged. If it becomes necessary to prune this table, you will need to do so manually.
 
-[vitals_spec]: /enterprise/{{page.kong_version}}/vitalsSpec.yaml
+[vitals_spec]: /enterprise/{{page.kong_version}}/admin-api/vitals/vitalsSpec.yaml

@@ -13,10 +13,17 @@ Basic Authentication for the Dev Portal can be enabled in three ways:
 - via the [the command line](#enable-basic-auth-via-the-command-line)
 - via the [the Kong configuration file](#enable-basic-auth-via-the-kong-conf)
 
->**Warning** The Basic Authentication scheme uses Local Storage and
->is not encrypted. It is advised to always use SSL/TLS when using
->this authentication method. Please review
->[XSS vulnerabilities](https://developer.mozilla.org/en-US/Glossary/Cross-site_scripting) before using this method.
+>**Warning** Enabling authentication in the Dev Portal requires use of the
+> Sessions plugin. Developers will not be able to login if this is not set 
+> properly.
+
+### Enable Portal Session Config
+
+In the the Kong configuration file set the `portal_session_conf` property:
+
+```
+portal_session_conf={ "cookie_name": "portal_session", "secret": "super-secret", "cookie_secure": false, "storage": "kong" }
+```
 
 ### Enable Basic Auth via Kong Manager
 

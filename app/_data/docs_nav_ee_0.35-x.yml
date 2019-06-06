@@ -39,9 +39,10 @@
       url: /getting-started/enable-plugin
     - text: How to Add a Consumer
       url: /getting-started/add-consumer
+    - text: How to Enable the Dev Portal
+      url: /getting-started/enable-dev-portal
 
 - title: Admin API
-  url: /admin-api/
   items:
   - text: Workspaces
     url: /admin-api/workspaces/reference
@@ -75,7 +76,7 @@
       items:
         - text: Default and Custom Configuration
           url: /kong-manager/networking/configuration
-        - text: Configuring Kong Manager to Send Email
+        - text: Configuring to Send Email
           url: /kong-manager/networking/email
     - text: Securing Kong Manager
       url: /kong-manager/security
@@ -100,22 +101,20 @@
         - items:
           - text: Workspaces in Kong Manager
             url: /kong-manager/administration/workspaces/workspaces
-          - text: How to Create a New Workspace
+          - text: How to Create a Workspace
             url: /kong-manager/administration/workspaces/create-workspace
-          - text: How to Update or Delete a Workspace
+          - text: How to Update a Workspace
             url: /kong-manager/administration/workspaces/update-workspace
         - text: RBAC
           url: /kong-manager/administration/rbac/rbac
         - items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac/rbac
-          - text: How to Create a New Role with Custom Permissions
+          - text: How to Create a New Role
             url: /kong-manager/administration/rbac/new-role
         - text: Admins
-          url: /kong-manager/administration/admins/admins
+          url: /kong-manager/administration/admins/invite
         - items:
-          - text: Admins in Kong Manager
-            url: /kong-manager/administration/admins/admins
           - text: How to Invite an Admin
             url: /kong-manager/administration/admins/invite
     - text: Vitals
@@ -137,6 +136,8 @@
               url: /developer-portal/configuration/authentication/key-auth
             - text: OpenID Connect
               url: /developer-portal/configuration/authentication/oidc
+            - text: Adding Custom Registration Fields
+              url: /developer-portal/configuration/authentication/adding-registration-fields
         - text: SMTP
           url: /developer-portal/configuration/smtp
         - text: Running Multiple Dev Portals with Workspaces
@@ -146,12 +147,11 @@
     - text: Administration
       items:
         - text: Managing Developers
-          url: /developer-portal/management/developers
+          url: /developer-portal/administration/managing-developers
     - text: Theme Customization
-      url: /developer-portal/customization/customization
       items:
           - text: Customizing the Dev Portal
-            url: /developer-portal/customization/customization
+            url: /developer-portal/theme-customization/customizing-dev-portal
     - text: Content Management
       items:
           - text: File Management
@@ -183,10 +183,14 @@
         url: /plugins/ldap-authentication-advanced
       - text: Session Plugin
         url: /plugins/session
-      - text: Route By Headers
-        url: /plugins/route-by-heders
+      - text: Route By Header
+        url: /plugins/route-by-header
       - text: JWT Signer
         url: /plugins/jwt-signer
+      - text: Vault Auth
+        url: /plugins/vault-auth
+      - text: Request Validator
+        url: /plugins/request-validator
     - text: Implementation
       items:
         - text: Multiple Authentication Methods
@@ -200,9 +204,3 @@
   items:
     - text: Configuration Property Reference
       url: /property-reference
-    - text: Architecture Overview
-      url: /kong-architecture-overview
-    - text: Architecture Patterns
-      url: /kong-architecture-patterns
-    - text: Rate Limiting Library
-      url: /rate-limiting

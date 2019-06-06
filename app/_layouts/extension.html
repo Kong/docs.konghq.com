@@ -259,6 +259,27 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
       {% if page.type == "plugin" %}
         <h2 id="configuration">Configuration</h2>
+        {% if page.params.protocols %}
+          <p>This plugin is compatible with requests with the following protocols:</p>
+          <ul>
+            {% for protocol in page.params.protocols %}
+              <li><code>{{ protocol }}</code></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if page.params.dbless_compatible == true %}
+          <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
+        {% elsif page.params.dbless_compatible == "partially" %}
+          <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
+        {% elsif page.params.dbless_compatible != nil %}
+          <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
+        {% endif %}
+
+        {% if page.params.dbless_explanation %}
+          {{ page.params.dbless_explanation | mardownify }}
+        {% endif %}
+
         {% if page.params.service_id %}
           {{ plugin_config_for_service | markdownify }}
         {% endif %}

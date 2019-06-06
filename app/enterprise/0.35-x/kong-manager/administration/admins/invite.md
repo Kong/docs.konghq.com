@@ -2,6 +2,16 @@
 title: How to Invite an Admin
 book: admin_gui
 ---
+
+## Using the Organization Page to Manage Users
+
+To view all of the current **Workspaces** and **Roles**, click 
+the **Organization** link on the top navigation bar. 
+
+From this page, it is possible to update each **Admin's** **Role** across 
+any **Workspace**. From the **Roles** tab, it is also possible to 
+update the **Permissions** assigned to each **Role**.
+
 ## How to Invite a New Admin from the Organization Page
 
 Inviting a new Admin through the “Organization” page is similar to inviting an [Admin within a Workspace](#how-to-invite-a-new-admin-in-a-workspace). However, from the “Organization” page, Roles can be assigned to a new Admin for multiple Workspaces at once. The Super Admin can also view global roles across Workspaces from this page. 

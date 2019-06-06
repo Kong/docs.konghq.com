@@ -34,9 +34,9 @@ Pack your rock using the following command (from the plugin repo):
     $ luarocks pack <plugin-name> <version>
 
 Assuming your plugin rockspec is called
-`kong-plugin-myPlugin-0.1.0-1.rockspec`, the above would become;
+`kong-plugin-my-plugin-0.1.0-1.rockspec`, the above would become;
 
-    $ luarocks pack kong-plugin-myPlugin 0.1.0-1
+    $ luarocks pack kong-plugin-my-plugin 0.1.0-1
 
 The LuaRocks `pack` command has now created a `.rock` file (this is simply a
 zip file containing everything needed to install the rock).
@@ -84,7 +84,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
         $ luarocks install <rock-filename>
 
     The filename can be a local name, or any of the supported methods, eg.
-    `http://myrepository.lan/rocks/myplugin-0.1.0-1.all.rock`
+    `http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`
 
 2. Via LuaRocks from the source archive
 

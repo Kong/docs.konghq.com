@@ -3,7 +3,7 @@ title: Vitals in Kong Manager
 book: admin_gui
 ---
 
-For information about how to toggle the Vitals feature and use the Vitals API, visit [Kong Vitals](/enterprise/{{page.kong_version}}/vitals)
+For information about how to toggle the Vitals feature and use the Vitals API, visit [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals)
 
 ## Vitals Charts
 

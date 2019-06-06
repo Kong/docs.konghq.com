@@ -1,7 +1,7 @@
 ---
 name: Response Transformer Advanced
 publisher: Kong Inc.
-version: 1.0.0
+version: 0.35-x
 
 desc: Modify the upstream response before returning it to the client
 description: |
@@ -16,26 +16,9 @@ categories:
   - transformations
 
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 1.0.x
-        - 0.14.x
-        - 0.13.x
-        - 0.12.x
-        - 0.11.x
-        - 0.10.x
-        - 0.9.x
-        - 0.8.x
-        - 0.7.x
-        - 0.6.x
-        - 0.5.x
     enterprise_edition:
       compatible:
         - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
-        - 0.31-x
 
 params:
   name: response-transformer-advanced
@@ -177,6 +160,18 @@ upstream response JSON body | proxied response body
 ---           | ---
 {"p2": "v2"}   | {"p2": "v2"}
 {"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"}
+
+- Replace entire response body if response code is 500
+
+```
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.replace.body='{\"error\": \"internal server error\"}'" \
+  --data "config.replace.if_status=500"
+```
+
+**Note**: the plugin doesn't validate the value in `config.replace.body` against
+the content type as defined in the `Content-Type` response header.
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object

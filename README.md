@@ -1,6 +1,6 @@
 # KONG Website
 
-This repository is the source code for [Kong](https://github.com/Kong/kong)'s website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
+This repository is the source code for [Kong](https://github.com/Kong/kong)'s documentation website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
 
 ## Develop Locally With Docker
 
@@ -35,9 +35,7 @@ npm start
 
 ## Deploying
 
-Github Actions will automatically deploy updates to GitHub pages when a commit is pushed to master.
-
-To manually deploy to GitHub pages:
+The repository must be manually deploy to GitHub pages:
 
 >
 ```bash
@@ -63,7 +61,7 @@ scraper to test out config changes.
 - Have a local clone of Kong
 - Install Luarocks (comes with Kong)
 - Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
-- In the Kong repository, checkout the desired branch/tag/release
+- In the Kong repository, check out the desired branch/tag/release
 - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
 - This command will attempt to:
   * Obtain an updated list of modules from your local PDK and put it inside
@@ -74,9 +72,9 @@ scraper to test out config changes.
 ## Generating the Admin API, CLI and Configuration Documentation
 
 - Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them)
-- Several Lua rocks are needed. Easiest way to get all of them is to execute `make dev` in the Kong folder
+- Several Lua rocks are needed. The easiest way to get all of them is to execute `make dev` in the Kong folder
 - Have a local clone of Kong
-- In the Kong repository, checkout the desired branch/tag/release
+- In the Kong repository, check out the desired branch/tag/release
 - To generate the Admin API docs:
   - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
   - This command will attempt to:

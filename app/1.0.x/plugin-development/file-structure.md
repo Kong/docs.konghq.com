@@ -23,7 +23,7 @@ kong.plugins.<plugin_name>.<module_name>
 > Your modules of course need to be accessible through your
 > [package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
 > variable, which can be tweaked to your needs via the
-> [lua_package_path](/{{page.kong_version}}/configuration/#development-miscellaneous-section)
+> [lua_package_path](/{{page.kong_version}}/configuration/#lua_package_path)
 > configuration property.
 > However, the preferred way of installing plugins is through
 > [LuaRocks](https://luarocks.org/), which Kong natively integrates with.
@@ -31,7 +31,7 @@ kong.plugins.<plugin_name>.<module_name>
 
 To make Kong aware that it has to look for your plugin's modules, you'll have
 to add it to the
-[plugins](/{{page.kong_version}}/configuration/#general-section) property in
+[plugins](/{{page.kong_version}}/configuration/#plugins) property in
 your configuration file, which is a comma-separated list. For example:
 
 ```yaml
@@ -69,10 +69,10 @@ simple-plugin
 └── schema.lua
 ```
 
-- [handler.lua]: the core of your plugin. It is an interface to implement, in
+- **[handler.lua]**: the core of your plugin. It is an interface to implement, in
   which each function will be run at the desired moment in the lifecycle of a
-  request.
-- [schema.lua]: your plugin probably has to retain some configuration entered
+  request / connection.
+- **[schema.lua]**: your plugin probably has to retain some configuration entered
   by the user. This module holds the *schema* of that configuration and defines
   rules on it, so that the user can only enter valid configuration values.
 
@@ -81,7 +81,7 @@ simple-plugin
 ## Advanced plugin modules
 
 Some plugins might have to integrate deeper with Kong: have their own table in
-the database, expose endpoints in the Admin API, etc... Each of those can be
+the database, expose endpoints in the Admin API, etc. Each of those can be
 done by adding a new module to your plugin. Here is what the structure of a
 plugin would look like if it was implementing all of the optional modules:
 
@@ -91,8 +91,8 @@ complete-plugin
 ├── daos.lua
 ├── handler.lua
 ├── migrations
-│   ├── cassandra.lua
-│   └── postgres.lua
+│   ├── init.lua
+│   └── 000_base_complete_plugin.lua
 └── schema.lua
 ```
 
@@ -100,16 +100,16 @@ Here is the complete list of possible modules to implement and a brief
 description of what their purpose is. This guide will go in details to let you
 master each one of them.
 
-| Module name        | Required   | Description
-|:-------------------|------------|----------
-| [api.lua]          | No         | Defines a list of endpoints to be available in the Admin API to interact with entities custom entities handled by your plugin.
-| [daos.lua]         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the datastore.
-| [handler.lua]      | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request.
-| [migrations/*.lua] | No         | The corresponding migrations for a given datastore. Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
-| [schema.lua]       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
+| Module name            | Required   | Description
+|:-----------------------|------------|------------
+| **[api.lua]**          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
+| **[daos.lua]**         | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the datastore.
+| **[handler.lua]**      | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request / connection.
+| **[migrations/*.lua]** | No         | The database migrations (e.g. creation of tables). Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua].
+| **[schema.lua]**       | Yes        | Holds the schema of your plugin's configuration, so that the user can only enter valid configuration values.
 
-The [Key-Auth plugin] is an example of plugin with this file structure. See
-[its source code] for more details.
+The [Key-Auth plugin] is an example of plugin with this file structure.
+See [its source code] for more details.
 
 ---
 
@@ -120,5 +120,5 @@ Next: [Write custom logic &rsaquo;]({{page.book.next}})
 [handler.lua]: {{page.book.chapters.custom-logic}}
 [schema.lua]: {{page.book.chapters.plugin-configuration}}
 [migrations/*.lua]: {{page.book.chapters.custom-entities}}
-[Key-Auth plugin]: /plugins/key-authentication/
+[Key-Auth plugin]: /hub/kong-inc/key-auth/
 [its source code]: https://github.com/Kong/kong/tree/master/kong/plugins/key-auth
