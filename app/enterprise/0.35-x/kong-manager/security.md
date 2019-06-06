@@ -8,7 +8,7 @@ Kong Manager enables users with **Admin** accounts to access Kong entities such
  as **Services**, **Plugins**, and **Consumers.**
 
 The following document summarizes Kong Manager's controls for *authentication* 
-and *authorization*. 
+and *authorization*.
 
 ## Authentication with Plugins
 
