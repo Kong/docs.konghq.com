@@ -1,6 +1,6 @@
 # KONG Website
 
-This repository is the source code for [Kong](https://github.com/Kong/kong)'s website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
+This repository is the source code for [Kong](https://github.com/Kong/kong)'s documentation website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
 
 ## Develop Locally With Docker
 
@@ -35,16 +35,12 @@ npm start
 
 ## Deploying
 
-Github Actions will automatically deploy updates to GitHub pages when a commit is pushed to master.
-
-To manually deploy to GitHub pages:
+The repository must be manually deploy to GitHub pages:
 
 >
 ```bash
 npm run deploy
 ```
-
-
 
 ## Search
 
