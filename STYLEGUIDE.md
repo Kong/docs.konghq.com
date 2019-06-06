@@ -328,6 +328,8 @@ fancy synonym for "use".
 Videos should be less than 30 seconds in length, contain no voice-over
 narration, and must be approved by a Kong member.
 
+Include videos *after* the steps covered in the video have been introduced.
+
 ### Vitals
 Use proper case.
 
