@@ -7,7 +7,7 @@ book: admin_gui
 
 By default, Kong Manager starts up without authentication (see 
 [`admin_gui_auth`]), and it assumes that the Admin API is available 
-on port 8001 (see [`default_ports`]) of the same host that serves 
+on port 8001 (see [Default Ports]) of the same host that serves 
 Kong Manager.
 
 ## Custom Configuration
@@ -53,7 +53,7 @@ on to enforce authorization rules. Otherwise, whoever can log in
 to Kong Manager can perform any operation available on the Admin API.
 
 [`admin_gui_auth`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth
-[`default_ports`]: /enterprise/0.35-x/getting-started/start-kong/#default-ports
+[`default_ports`]: /enterprise/{{page.kong_version}}/getting-started/start-kong/#default-ports
 [`admin_api_uri`]: /enterprise/{{page.kong_version}}/property-reference/#admin_api_uri
 [`admin_gui_auth_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth_conf
 [`enforce_rbac`]: /enterprise/{{page.kong_version}}/property-reference/#enforce_rbac
