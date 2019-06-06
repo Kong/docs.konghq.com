@@ -150,6 +150,12 @@ params:
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.
 
+<div class="alert alert-warning">
+  <div class="text-center">
+    <strong>Note</strong>: This plugin requires a database in order to work effectively. It *does not* work on DB-Less mode.
+  </div>
+</div>
+
 ### Endpoints
 
 By default the OAuth 2.0 plugin listens on the following endpoints when a client consumes the underlying Service via the [proxy port][proxy-port]:

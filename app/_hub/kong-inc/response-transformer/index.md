@@ -93,12 +93,24 @@ similar for Services.
 
 - Add multiple headers by passing each header:value pair separately:
 
+{% tabs %}
+{% tab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
+{% tab Without a database %}
+```yaml
+plugins:
+- name: response-transformer
+  route: {route}
+  config:
+    add:
+      headers: ["h1:v1", "h2:v2"]
+```
+{% endtabs %}
 
 <table>
   <tr>
@@ -116,10 +128,10 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   </tr>
 </table>
 
-- Add multiple headers by passing comma separated header:value pair:
+- Add multiple headers by passing comma separated header:value pair (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -137,10 +149,10 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   </tr>
 </table>
 
-- Add multiple headers passing config as JSON body:
+- Add multiple headers passing config as JSON body (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -160,12 +172,25 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 
 - Add a body property and a header:
 
+{% tabs %}
+{% tab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
 ```
+{% tab Without a database %}
+```yaml
+plugins:
+- name: response-transformer
+  route: {route}
+  config:
+    add:
+      json: ["p1:v1", "p2=v2"]
+      headers: ["h1:v1"]
+```
+{% endtabs %}
 
 <table>
   <tr>
@@ -193,11 +218,25 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 
 - Append multiple headers and remove a body property:
 
+{% tabs %}
+{% tab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
+{% tab Without a database %}
+```yaml
+plugins:
+- name: response-transformer
+  route: {route}
+  config:
+    append:
+      headers: ["h1:v2", "h2:v1"]
+    remove:
+      json: ["p1"]
+```
+{% endtabs %}
 
 <table>
   <tr>

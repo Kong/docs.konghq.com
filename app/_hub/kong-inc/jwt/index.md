@@ -112,24 +112,39 @@ In order to use the plugin, you first need to create a Consumer and associate on
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object.
+A Consumer can have many credentials.
+
+{% tabs %}
+{% tab With a Database %}
+To create a Consumer, you can execute the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers \
-    --data "username=<USERNAME>" \
-    --data "custom_id=<CUSTOM_ID>"
-HTTP/1.1 201 Created
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
+{% tab Without a Database %}
+Your declarative configuration file will need to have one or more Consumers. You can create them
+on the `consumers:` yaml section:
 
-form parameter                  | default | description
----                             | ---     | ---
-`username`<br>*semi-optional*   |         | The username for this Consumer. Either this field or `custom_id` must be specified.
-`custom_id`<br>*semi-optional*  |         | A custom identifier used to map the Consumer to an external database. Either this field or `username` must be specified.
+``` yaml
+consumers:
+- username: user123
+  custom_id: SOME_CUSTOM_ID
+```
+{% endtabs %}
 
-A [Consumer][consumer-object] can have many JWT credentials.
+In both cases, the parameters are as described below:
+
+parameter                       | description
+---                             | ---
+`username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
+`custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
+
 
 ### Create a JWT credential
 
+{% tabs %}
+{% tab With a database %}
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
@@ -144,11 +159,20 @@ HTTP/1.1 201 Created
     "secret": "e71829c351aa4242c2719cbfbe671c09"
 }
 ```
+{% tab Without a database %}
+You can add JWT credentials on your declarative config file on the `jwt_secrets:` yaml entry:
 
-- `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+``` yaml
+jwt_secrets:
+- consumer: {consumer}
+```
+{% endtabs %}
 
-form parameter                 | default         | description
+In both cases the fields/parameters work as follows:
+
+field/parameter                | default         | description
 ---                            | ---             | ---
+`{consumer}`                   |                 | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
 `algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, or `ES256`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256` or `ES256`, the public key (in PEM format) to use to verify the token's signature.

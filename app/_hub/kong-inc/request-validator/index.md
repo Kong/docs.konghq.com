@@ -36,19 +36,43 @@ params:
 
 ### Overview
 
-By applying the plugin to an Service, all requests to that Service will be validated
+By applying the plugin to a Service, all requests to that Service will be validated
 before being proxied.
 
-```
+{% tabs %}
+{% tab With a database %}
+
+Use a request like this:
+
+``` bash
 curl -i -X POST http://kong:8001/services/{service}/plugins \
   --data "name=request-validator" \
   --data 'config.body_schema=[{"name":{"type": "string", "required": true}}]'
 ```
 
-| form parameter         | default   | description                                                       |
-| ---                    | ---       | ---                                                               |
-| `name`                 |           | The name of the plugin to use, in this case: `request-validator`  |
-| `config.body_schema`   |           | The request body schema specification                             |
+{% tab Without a database %}
+
+Add the following entry to the `plugins:` section in the declarative configuration file:
+
+``` yaml
+plugins:
+- name: request-validator
+  service: {service}
+  config:
+    body_schema:
+      name:
+        type: string
+        required: true
+```
+{% endtabs %}
+
+The parameters/fields in both cases mean:
+
+| form parameter         | description                                                               |
+| ---                    | ---                                                                       |
+| `{service}`            | The `id` or `name` of the Service to which the plugin will be associated. |
+| `name`                 | The name of the plugin to use, in this case: `request-validator`          |
+| `config.body_schema`   | The request body schema specification                                     |
 
 In this example, the request body data would have to be a valid JSON and
 conform to the schema specified in `body_schema` - i.e., it would be required

@@ -83,18 +83,33 @@ In order to use the plugin, you first need to create a Consumer to associate one
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object.
+A Consumer can have many credentials.
+
+{% tabs %}
+{% tab With a Database %}
+To create a Consumer, you can execute the following request:
 
 ```bash
 curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
+{% tab Without a Database %}
+Your declarative configuration file will need to have one or more Consumers. You can create them
+on the `consumers:` yaml section:
 
-parameter                       | default | description
----                             | ---     | ---
-`username`<br>*semi-optional*   |         | The username of the consumer. Either this field or `custom_id` must be specified.
-`custom_id`<br>*semi-optional*  |         | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
+``` yaml
+consumers:
+- username: user123
+  custom_id: SOME_CUSTOM_ID
+```
+{% endtabs %}
 
-A [Consumer][consumer-object] can have many credentials.
+In both cases, the parameters are as described below:
+
+parameter                       | description
+---                             | ---
+`username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
+`custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
 If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
 service, you must add the new consumer to a whitelisted group. See
@@ -102,6 +117,8 @@ service, you must add the new consumer to a whitelisted group. See
 
 ### Create a Credential
 
+{% tabs %}
+{% tab With a Database %}
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
@@ -110,12 +127,27 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/basic-auth \
     --data "password=OpenSesame"
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+{% tab Without a Database %}
 
-form parameter             | default | description
----                        | ---     | ---
-`username`                 |         | The username to use in the Basic Authentication
-`password`<br>*optional*   |         | The password to use in the Basic Authentication
+You can add credentials on your declarative config file on the `basicauth_credentials` yaml entry:
+
+``` yaml
+basicauth_credentials:
+- consumer: {consumer}
+  username: Aladdin
+  password: OpenSesame
+```
+
+{% endtabs %}
+
+In both cases, the fields / parameters work as described below:
+
+field/parameter            | description
+---                        | ---
+`{consumer}`               | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+`username`                 | The username to use in the Basic Authentication
+`password`<br>*optional*   | The password to use in the Basic Authentication
+
 
 ### Using the Credential
 

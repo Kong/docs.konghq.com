@@ -56,6 +56,8 @@ different priority in the plugin chain.
 
 ## Demonstration
 
+### With a Database
+
 1. Create a Service on Kong:
 
     ```bash
@@ -130,6 +132,57 @@ different priority in the plugin chain.
     ...
     ```
 
+### Without a Database
+
+1. Create the Service, Route and Associated plugin on the declarative config file:
+
+    ``` yaml
+    services:
+    - name: plugin-testing
+      url: http://httpbin.org/headers
+
+    routes:
+    - service: plugin-testing
+      paths: [ "/test" ]
+
+    plugins:
+    - name: pre-function
+      config:
+        functions: |
+          -- Get list of request headers
+          local custom_auth = kong.request.get_header("x-custom-auth")
+
+          -- Terminate request early if our custom authentication header
+          -- does not exist
+          if not custom_auth then
+            return kong.response.exit(401, "Invalid Credentials")
+          end
+
+          -- Remove custom authentication header from request
+          kong.service.request.clear_header('x-custom-auth')
+    ```
+
+2. Test that our Lua code will terminate the request when no header is passed:
+
+    ```bash
+    curl -i -X GET http://localhost:8000/test
+
+    HTTP/1.1 401 Unauthorized
+    ...
+    "Invalid Credentials"
+    ```
+
+3. Test the Lua code we just applied by making a valid request:
+
+    ```bash
+    curl -i -X GET http://localhost:8000/test \
+      --header "x-custom-auth: demo"
+
+    HTTP/1.1 200 OK
+    ...
+    ```
+----
+
 This is just a small demonstration of the power these plugins grant. We were
 able to dynamically inject Lua code into the plugin access phase to dynamically
 terminate, or transform the request without creating a custom plugin or
@@ -138,7 +191,6 @@ reloading / redeploying Kong.
 In short, serverless functions give you the full capabilities of a custom plugin
 in the access phase without ever redeploying / restarting Kong.
 
-----
 
 ### Notes
 
