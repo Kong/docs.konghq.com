@@ -34,6 +34,11 @@ To set up the first account:
     This creates a user, `kong_admin`, and a password that can be used to
     log in to Kong Manager or to make Admin API requests when RBAC is enabled.
 
+    **Note:** only one **Super Admin** may be created using this method, and only
+    on a fresh installation with an empty database.  Future migrations will not update the
+    password or create additional **Super Admins**.  To add additional **Super
+    Admins** it is necessary to invite a new user as a **Super Admin** in Kong Manager.
+
 2. Issue the following command to prepare your datastore by running the Kong
     migrations:
 

@@ -165,3 +165,5 @@
       url: /oidc-auth0
     - text: Upgrades and Migrations
       url: /upgrades-migrations
+    - text: AWS Guide and Best Practices
+      url: /kong-aws

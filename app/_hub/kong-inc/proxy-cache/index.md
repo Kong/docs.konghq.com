@@ -19,6 +19,7 @@ kong_version_compatibility:
     enterprise_edition:
       compatible:
         - 0.35-x
+        - 0.34-x
 
 params:
   name: proxy-cache

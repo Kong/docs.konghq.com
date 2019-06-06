@@ -39,11 +39,11 @@ admin_gui_auth_conf={                                      \
   "ssl_verify": false,                                     \
   "consumer_claim": ["email"],                             \
   "leeway": 60,                                            \
-  "redirect_uri": ["localhost:8002"],                      \
-  "login_redirect_uri": ["localhost:8002"],                \
+  "redirect_uri": ["http://localhost:8002"],                      \
+  "login_redirect_uri": ["http://localhost:8002"],                \
   "logout_methods": ["GET", "DELETE"],                     \
   "logout_query_arg": "logout",                            \
-  "logout_redirect_uri": ["localhost:8002"],               \
+  "logout_redirect_uri": ["http://localhost:8002"],               \
   "scopes": ["openid","profile","email","offline_access"], \
   "auth_methods": ["authorization_code"]                   \
 }

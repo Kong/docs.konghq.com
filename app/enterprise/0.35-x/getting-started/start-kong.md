@@ -10,6 +10,7 @@ toc: false
 - [Step 2](#step-2)
 - [Step 3](#step-3)
 - [Step 4](#step-4)
+- [Default Ports](#default-ports)
 - [Next Steps](#next-steps)
 
 ### Introduction
@@ -68,10 +69,13 @@ This automatically creates a user, `kong_admin`, and a password that
 can be used to log in to Kong Manager. This password may also be 
 used as a `Kong-Admin-Token` to make Admin API requests.
 
-**Note:** only one **Super Admin** may be created using this method. 
-Future migrations will not override it or create additional **Super Admins**. 
-To do so, it is necessary to 
-[invite new users as **Super Admins** in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
+**Note:** only one **Super Admin** may be created using this method, and only
+on a fresh installation with an empty database. If one is not created during migrations, 
+follow [this guide](/enterprise/{{page.kong_version}}/kong-manager/authentication/super-admin/#how-to-create-your-first-super-admin-account-post-installation) to remediate. 
+
+Future migrations will not update the password or create additional **Super Admins**. 
+To add additional **Super Admins** it is necessary to 
+[invite a new user as a **Super Admin** in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/administration/admins/invite/#how-to-invite-a-new-admin-from-the-organization-page).
 
 ## Step 2
 
@@ -95,10 +99,27 @@ allowing you to point to [your own configuration](/1.0.x/configuration/#configur
 ## Step 4
 
 To test that Kong Enterprise has successfully started with a **Super Admin**, 
-visit Kong Manager's URL. By default, it is `http://localhost:8002`. 
+visit Kong Manager's URL. By [default](#default-ports), it is on port `:8002`. 
 
 The username is `kong_admin` and the password is the one set in 
 [Step 1](#step-1).
+
+### Default Ports
+
+By default, Kong Enterprise listens on the following ports:
+
+- [`:8000`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen): incoming HTTP traffic from **Consumers**, and forwarded to upstream 
+  **Services**.
+- [`:8443`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen): incoming HTTPS traffic. This port behaves similarly to the `:8000` 
+  port, except that it expects HTTPS traffic only. 
+- [`:8003`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen): Dev Portal listens for HTTP traffic, assuming Dev Portal is **enabled**.
+- [`:8446`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen): Dev Portal listens for HTTPS traffic, assuming Dev Portal is **enabled**.
+- [`:8004`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen): Dev Portal **`/files`** traffic over HTTP, assuming the Dev Portal is **enabled**.
+- [`:8447`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen): Dev Portal **`/files`** traffic over HTTPS, assuming the Dev Portal is **enabled**.
+- [`:8001`](/enterprise/{{page.kong_version}}/property-reference/#admin_api_uri): Admin API listens for HTTP traffic.
+- [`:8444`](/enterprise/{{page.kong_version}}/property-reference/#admin_api_uri): Admin API listens for HTTPS traffic.
+- [`:8002`](/enterprise/{{page.kong_version}}/property-reference/#admin_gui_listen): Kong Manager listens for HTTP traffic.
+- [`:8445`](/enterprise/{{page.kong_version}}/property-reference/#admin_gui_listen): Kong Manager listens for HTTPS traffic.
 
 ### Next Steps
 

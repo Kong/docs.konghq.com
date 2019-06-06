@@ -528,21 +528,7 @@ HTTP 200 OK
 **Response**
 
 ```
-HTTP 200 OK
-```
-
-```json
-{
-  "endpoint": "/routes",
-  "created_at": 1529052518000,
-  "role_id": "22ffce18-afef-4f19-a1b2-2071f52e2f30",
-  "actions": [
-    "create",
-    "read"
-  ],
-  "negative": false,
-  "workspace": "default"
-}
+HTTP 204 No Content
 ```
 
 ---

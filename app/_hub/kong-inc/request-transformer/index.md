@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.1.x
         - 1.0.x
         - 0.14.x
         - 0.13.x
@@ -37,6 +38,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -46,6 +48,8 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: http_method
       required: false
@@ -246,10 +250,10 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   </tr>
 </table>
 
-|incoming request querystring | upstream proxied querystring 
-|---           | --- 
-| ?q1=v1       |  ?q1=v1&q2=v1 
-|              |  ?q1=v2&q2=v1 
+|incoming request querystring | upstream proxied querystring
+|---           | ---
+| ?q1=v1       |  ?q1=v1&q2=v1
+|              |  ?q1=v2&q2=v1
 
 - Append multiple headers and remove a body parameter:
 

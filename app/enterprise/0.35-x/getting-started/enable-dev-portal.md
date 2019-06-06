@@ -1,6 +1,9 @@
 ---
 title: How To Enable the Dev Portal
+<<<<<<< HEAD
 book: portal
+=======
+>>>>>>> 4483c6fc9a6ba2bfb37b594ffe08df08b786742b
 toc: false
 ---
 
@@ -13,7 +16,11 @@ configuration file (`kong.conf`):
 portal = on
 ```
 
+<<<<<<< HEAD
 Kong Entperise must be **restarted** for this value to take effect.
+=======
+Kong Enterprise must be **restarted** for this value to take effect.
+>>>>>>> 4483c6fc9a6ba2bfb37b594ffe08df08b786742b
 
 ### Step 2 - Enable the default Workspace Dev Portal
 

@@ -505,7 +505,7 @@ Retrieve generic details about a node.
 
 <div class="endpoint get">/</div>
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -555,7 +555,7 @@ of nginx, every existing nginx monitoring tool or agent can be used.
 
 <div class="endpoint get">/status</div>
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -629,12 +629,12 @@ of how Kong proxies traffic.
 <div class="endpoint post">/services</div>
 
 
-#### Request Body
+*Request Body*
 
 {{ page.service_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -654,7 +654,7 @@ HTTP 201 Created
 <div class="endpoint get">/services</div>
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -699,7 +699,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be retrieved.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -741,12 +741,12 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.service_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -788,7 +788,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be created or updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.service_body }}
 
@@ -808,7 +808,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -839,7 +839,7 @@ Attributes | Description
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be deleted.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -881,12 +881,12 @@ Attributes | Description
 `service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service that should be associated to the newly-created Route.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.route_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -915,7 +915,7 @@ Attributes | Description
 `service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service whose Routes are to be retrieved. When using this endpoint, only Routes associated to the specified Service will be listed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -951,7 +951,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be retrieved.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -984,12 +984,12 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.route_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1022,7 +1022,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be created or updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.route_body }}
 
@@ -1042,7 +1042,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1064,7 +1064,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -1092,12 +1092,12 @@ datastore.
 <div class="endpoint post">/consumers</div>
 
 
-#### Request Body
+*Request Body*
 
 {{ page.consumer_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -1117,7 +1117,7 @@ HTTP 201 Created
 <div class="endpoint get">/consumers</div>
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1153,7 +1153,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be retrieved.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1186,12 +1186,12 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.consumer_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1224,7 +1224,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be created or updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.consumer_body }}
 
@@ -1244,7 +1244,7 @@ Notice that specifying a `username` in the URL and a different one in the reques
 body is not allowed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1266,7 +1266,7 @@ Attributes | Description
 `username or id`<br>**required** | The unique identifier **or** the username of the Consumer to delete.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -1370,12 +1370,12 @@ Attributes | Description
 `consumer id`<br>**required** | The unique identifier of the Consumer that should be associated to the newly-created Plugin.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.plugin_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -1422,7 +1422,7 @@ Attributes | Description
 `consumer id`<br>**required** | The unique identifier of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1449,7 +1449,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1473,12 +1473,12 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin to update.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.plugin_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1502,7 +1502,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin to create or update.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.plugin_body }}
 
@@ -1522,7 +1522,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1544,7 +1544,7 @@ Attributes | Description
 `plugin id`<br>**required** | The unique identifier of the Plugin to delete.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -1559,7 +1559,7 @@ Retrieve a list of all installed plugins on the Kong node.
 
 <div class="endpoint get">/plugins/enabled</div>
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1610,7 +1610,7 @@ third-party integrations to the Kong's plugin system.
 
 <div class="endpoint get">/plugins/schema/{plugin name}</div>
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1654,12 +1654,12 @@ tie a cert/key pair to one or more hostnames.
 <div class="endpoint post">/certificates</div>
 
 
-#### Request Body
+*Request Body*
 
 {{ page.certificate_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -1679,7 +1679,7 @@ HTTP 201 Created
 <div class="endpoint get">/certificates</div>
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1706,7 +1706,7 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1730,12 +1730,12 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.certificate_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1759,7 +1759,7 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.certificate_body }}
 
@@ -1779,7 +1779,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1801,7 +1801,7 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -1838,12 +1838,12 @@ Attributes | Description
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created SNI.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.sni_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -1872,7 +1872,7 @@ Attributes | Description
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1899,7 +1899,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1923,12 +1923,12 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the SNI to update.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.sni_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -1952,7 +1952,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the SNI to create or update.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.sni_body }}
 
@@ -1972,7 +1972,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1994,7 +1994,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the SNI to delete.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -2027,12 +2027,12 @@ object, and applies to all of its targets.
 <div class="endpoint post">/upstreams</div>
 
 
-#### Request Body
+*Request Body*
 
 {{ page.upstream_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -2052,7 +2052,7 @@ HTTP 201 Created
 <div class="endpoint get">/upstreams</div>
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -2088,7 +2088,7 @@ Attributes | Description
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -2121,12 +2121,12 @@ Attributes | Description
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.upstream_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -2159,7 +2159,7 @@ Attributes | Description
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.upstream_body }}
 
@@ -2179,7 +2179,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -2210,7 +2210,7 @@ Attributes | Description
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -2256,7 +2256,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream for which to display Target health.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -2318,12 +2318,12 @@ Attributes | Description
 `upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream that should be associated to the newly-created Target.
 
 
-#### Request Body
+*Request Body*
 
 {{ page.target_body }}
 
 
-#### Response
+*Response*
 
 ```
 HTTP 201 Created
@@ -2347,7 +2347,7 @@ Attributes | Description
 `upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream whose Targets are to be retrieved. When using this endpoint, only Targets associated to the specified Upstream will be listed.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK
@@ -2377,7 +2377,7 @@ Attributes | Description
 `host:port or id`<br>**required** | The host:port combination element of the target to remove, or the `id` of an existing target entry.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -2409,7 +2409,7 @@ Attributes | Description
 `target or id`<br>**required** | The host/port combination element of the target to set as healthy, or the `id` of an existing target entry.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -2447,7 +2447,7 @@ Attributes | Description
 `target or id`<br>**required** | The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 204 No Content
@@ -2470,7 +2470,7 @@ Attributes | Description
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets.
 
 
-#### Response
+*Response*
 
 ```
 HTTP 200 OK

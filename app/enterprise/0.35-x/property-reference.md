@@ -1263,7 +1263,7 @@ Kong Manager.
 admin_gui_session_conf = { "cookie_name": "kookie", "secret": "changeme"}
 ```
 
-### admin)gui_auth_header
+### admin_gui_auth_header
 
 **Default:** `Kong-Admin-User`
 
