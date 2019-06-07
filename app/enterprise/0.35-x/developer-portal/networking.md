@@ -5,10 +5,18 @@ book: portal
 
 ## Networking Configuration Reference
 
+#### portal_api_url
+
+**Description:**
+
+The address on which the Dev Portal API is accessible by Kong.
+
+**Example:** `https://portal-api.domain.tld`
+
 
 #### portal_gui_protocol
 
-**Description**
+**Description:**
 
 Sets the protocol the Dev Portal will use to construct the URL.
 
@@ -27,7 +35,7 @@ Sets the host name for the Dev Portal URL.
 #### portal_gui_use_subdomains
 **Description:**
 
-Determines where the Dev Portal will expect the Workspace name to be included 
+Determines where the Dev Portal will expect the Workspace name to be included
 in the request URL.
 
 When this option is `off` the Dev Portal will use the following URL scheme:
