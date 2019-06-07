@@ -17,17 +17,20 @@ Key Authentication for the Dev Portal can be enabled in three ways:
 
 
 >**Warning** Enabling authentication in the Dev Portal requires use of the
-> Sessions plugin. Developers will not be able to login if this is not set 
-> properly.
+> Sessions plugin. Developers will not be able to login if this is not set
+> properly. More information about [Sessions in the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions)
 
 ### Enable Portal Session Config
 
-In the the Kong configuration file set the `portal_session_conf` property:
-
 ```
-portal_session_conf={ "cookie_name": "portal_session", "secret": "super-secret", "cookie_secure": false, "storage": "kong" }
+portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong" }
 ```
 
+For testing purposes when using HTTP, example config should include `"cookie_secure": false`:
+
+```
+portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_secure": false }
+```
 
 ### Enable Key Auth via Kong Manager
 
@@ -36,8 +39,8 @@ portal_session_conf={ "cookie_name": "portal_session", "secret": "super-secret",
 3. Select **Key Authentication** from the drop down
 4. Click the **Save Changes** button at the bottom of the form
 
->**Warning** This will automatically authenticate the Dev Portal with Key 
->Auth. Anyone currently viewing the Dev Portal will lose access on the 
+>**Warning** This will automatically authenticate the Dev Portal with Key
+>Auth. Anyone currently viewing the Dev Portal will lose access on the
 >next page refresh.
 
 
@@ -50,13 +53,13 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   --data "config.portal_auth=key-auth"
 ```
 
->**Warning** This will automatically authenticate the Dev Portal with Key 
->Auth. Anyone currently viewing the Dev Portal will lose access on the 
+>**Warning** This will automatically authenticate the Dev Portal with Key
+>Auth. Anyone currently viewing the Dev Portal will lose access on the
 >next page refresh.
 
 ### Enable Key Auth via the Kong.conf
 
-Kong allows for a `default authentication plugin` to be set in the Kong 
+Kong allows for a `default authentication plugin` to be set in the Kong
 configuration file with the `portal_auth` property.
 
 In your `kong.conf` file set the property as follows:
@@ -65,6 +68,5 @@ In your `kong.conf` file set the property as follows:
 portal_auth="key-auth"
 ```
 
-This will set every Dev Portal to use Key Authentication by default when 
-initialized, regardless of Workspace. See 
-[Setting a Default Auth Plugin](/developer-portal/configuration/default-settings/#auth-plugin) for more information.
+This will set every Dev Portal to use Key Authentication by default when
+initialized, regardless of Workspace.
