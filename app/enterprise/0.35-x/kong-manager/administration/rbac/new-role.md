@@ -1,14 +1,17 @@
 ---
 title: How to Create a New Role with Custom Permissions
 book: admin_gui
+toc: false
 ---
-**Prerequisites**:
+#### Prerequisites
 
 * Authentication and RBAC are enabled, following the 
 [Getting Started](/enterprise/{{page.kong_version}}/getting-started/start-kong/#prerequisites) 
 guide
 * [Logged in as the Super Admin](/enterprise/{{page.kong_version}}/getting-started/start-kong/#step-4) 
 or a user that has `/admins` and `/rbac` read and write access.
+
+## Create a New Role with Custom Permissions
 
 1. On the "Admins" page, to create a new Role, click the "Add Role" button at 
 the top right of the list of Roles. 
