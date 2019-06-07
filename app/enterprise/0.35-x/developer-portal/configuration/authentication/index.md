@@ -37,4 +37,12 @@ toc: false
     <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/adding-registration-fields">
     Get Started &rarr;</a>
   </div>
+    <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions">
+    Sessions in the Dev Portal</a></h3>
+    <p>Configuring Sessions for use in the Dev Portal</p>
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/sessions">
+    Get Started &rarr;</a>
+  </div>
 </div>
