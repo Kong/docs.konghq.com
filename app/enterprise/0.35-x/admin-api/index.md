@@ -30,7 +30,7 @@ toc: false
         <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/rbac">RBAC</a>
     </h3>
     <p>Authenticate Kong Admins with Basic Auth, OIDC, LDAP, and Sessions. Authorize Admins with RBAC and Workspaces.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/rbac">
+    <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/reference">
         Learn more &rarr;
     </a>
   </div>
