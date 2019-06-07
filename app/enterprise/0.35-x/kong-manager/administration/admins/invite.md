@@ -14,22 +14,22 @@ update the **Permissions** assigned to each **Role**.
 
 ## How to Invite a New Admin from the Organization Page
 
-Inviting a new Admin through the “Organization” page is similar to inviting an 
-[Admin within a Workspace](#how-to-invite-a-new-admin-in-a-workspace). However, 
-from the “Organization” page, Roles can be assigned to a new Admin for multiple 
-Workspaces at once. The Super Admin can also view global roles across Workspaces 
+Inviting a new **Admin** through the **Organization** page is similar to inviting an 
+[**Admin** within a **Workspace**](#how-to-invite-a-new-admin-in-a-workspace). However, 
+from the **Organization** page, **Roles** can be assigned to a new **Admin** for multiple 
+**Workspaces** at once. The **Super Admin** can also view global roles across **Workspaces** 
 from this page. 
 
-1. On the “Organization” page, to invite a new Admin, click the “Invite User” 
+1. On the **Organization** page, to invite a new **Admin**, click the **Invite User**
 button.
 
-2. Fill out the username and email address. When a new Admin receives an 
+2. Fill out the username and email address. When a new **Admin** receives an 
 invitation, they will only be able to log in with that email address. Assign 
-the appropriate Role and click “Invite User” to send the invitation.
+the appropriate **Role** and click **Invite User** to send the invitation.
 
-    ⚠️ **IMPORTANT**: Super Admins can invite users to multiple Workspaces, and 
-    assign them any Role available within Workspaces, including Roles that exist 
-    by default (e.g. super-admin, read-only) and Roles with customized 
+    ⚠️ **IMPORTANT**: **Super Admins** can invite users to multiple **Workspaces**, and 
+    assign them any **Role** available within **Workspaces**, including **Roles** that exist 
+    by default (e.g. `super-admin`, `read-only`) and **Roles** with customized 
     permissions. 
 
     ⚠️ **IMPORTANT**: The Super Admin can see all available roles across 
