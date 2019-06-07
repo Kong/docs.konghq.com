@@ -27,7 +27,7 @@ toc: false
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/rbac">RBAC</a>
+        <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/reference">RBAC</a>
     </h3>
     <p>Authenticate Kong Admins with Basic Auth, OIDC, LDAP, and Sessions. Authorize Admins with RBAC and Workspaces.</p>
     <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/reference">
