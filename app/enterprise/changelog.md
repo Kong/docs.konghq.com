@@ -2,7 +2,8 @@
 title: Kong Enterprise Changelog
 ---
 
-## 0.35 - 2019/05/17
+## 0.35
+**Release Date:** 2019/05/17
 
 **Notifications**
 - **Kong Enterprise 0.35** inherits from **Kong 1.0.3**; read 1.0.0 - 1.0.3 changelogs for details:
@@ -145,7 +146,8 @@ title: Kong Enterprise Changelog
 - Fixed issue in the portal theme sync script where environment flags were not properly evaluated as booleans.
 - Fixed issue in the portal theme sync script where relative links would add the theme name to files inserted on a workspace.
 
-## 0.34-1 - 2018/12/19
+## 0.34-1
+**Release Date:** 2018/12/19
 
 **Notifications**
 - **Kong EE 0.34** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
@@ -251,7 +253,8 @@ title: Kong Enterprise Changelog
   - **OpenID Connect**
     - Fix schema `self_check` to verify issuer only when given (e.g. when using `PATCH` to update configuration)
 
-## 0.34 - 2018/11/17
+## 0.34
+**Release Date:** 2018/11/17
 
 **Notifications**
 - **Kong EE 0.34** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
@@ -413,7 +416,8 @@ title: Kong Enterprise Changelog
     - Fix issue when using password grant or client credentials grant with token caching enabled, and rotating keys on IdP that caused the cached tokens to give 403. The cached tokens will now be flushed and new tokens will be retrieved from the IdP.
     - Fix a bug that prevented sub-plugins from loading the issuer data.
 
-## 0.33-2 - 2018/10/09
+## 0.33-2
+**Release Date:** 2018/10/09
 
 **Notifications**
 
@@ -692,7 +696,8 @@ title: Kong Enterprise Changelog
       - Fix an issue where the plugin fails to authenticate a user when the LDAP server doesn't return the user's password as part of the search result
       - Fix issue where the username field wasn't allowed to contain non-alaphanumeric characters
 
-## 0.33-1 - 2018/09/05
+## 0.33-1
+**Release Date:** 2018/09/05
 
 **Notifications**
 
@@ -762,7 +767,8 @@ title: Kong Enterprise Changelog
       - Fix issue leading to cache key collision in some scenarios - e.g., for requests issued by the same consumer
       - Fix cache key for Routes and Services: previously, distinct routes/services entities would be given the same cache key
 
-## 0.33 - 2018/07/24
+## 0.33
+**Release Date:** 2018/07/24
 
 **Notifications**
 
@@ -862,7 +868,8 @@ title: Kong Enterprise Changelog
     lua_shared_dict kong_rate_limiting_counters 12m;
     ```
 
-## 0.32 - 2018/05/24
+## 0.32
+**Release Date:** 2018/05/24
 
 **Notifications**
 
@@ -1017,7 +1024,8 @@ title: Kong Enterprise Changelog
   - Fix `config.scopes` when set to `null` or `""` so that it doesn't add an OpenID scope forcibly, as the plugin is not only OpenID Connect only, but also OAuth2
 
 
-## 0.31-1 - 2018/04/25
+## 0.31-1
+**Release Date:** 2018/04/25
 
 **Changes**
 
@@ -1049,7 +1057,8 @@ index 15682975..653a7ddd 100644
 - Fixes an issue where boolean values (and boolean values as strings) were not correctly marshalled when using Cassandra
 - Fixes an issue in Redis Sentinel configuration parsing
 
-## 0.31 - 2018/03/16
+## 0.31
+**Release Date:** 2018/03/16
 
 Kong Enterprise 0.31 is shipped with all the changes present in Kong Community Edition 0.12.3, as well as with the following additions:
 
@@ -1108,7 +1117,8 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
     - "Public only" Portal - no authentication (eg. the portal is fully accessible to anyone who can access it)
     - Authenticated Portal - Developers must log in, and then they can see what they are entitled to see
 
-## 0.30 - 2018/01/24
+## 0.30
+**Release Date:** 2018/01/24
 
 Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community Edition 0.12.1](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0121---20180118), as well as with the following additions:
 
