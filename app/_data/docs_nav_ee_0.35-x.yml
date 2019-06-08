@@ -45,7 +45,10 @@
       url: /getting-started/enable-dev-portal
 
 - title: Admin API
+  url: /admin-api
   items:
+  - text: Overview
+    url: /admin-api
   - text: Workspaces
     url: /admin-api/workspaces/reference
   - text: RBAC
