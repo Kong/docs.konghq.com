@@ -4,8 +4,8 @@ book: admin_gui
 toc: false
 ---
 
-1. Log in as the Super Admin. On the "Workspaces" page, click the "New Workspace" 
-button at the top right to see the "Create Workspace" form.
+1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace** 
+button at the top right to see the **Create Workspace** form.
 
     ![New Workspace Form](https://konghq.com/wp-content/uploads/2018/11/km-new-workspace.png)
 
@@ -34,7 +34,7 @@ button at the top right to see the "Create Workspace" form.
     • Vitals
     ```
 
-3. Select a color or avatar to make each Workspace easier to distinguish, or 
+3. Select a color or avatar to make each **Workspace** easier to distinguish, or 
 accept the default color. 
 
     ![Select Workspace Color](https://konghq.com/wp-content/uploads/2018/11/km-color-ws.png)

@@ -32,19 +32,19 @@ the appropriate **Role** and click **Invite User** to send the invitation.
     by default (e.g. `super-admin`, `read-only`) and **Roles** with customized 
     permissions. 
 
-    ⚠️ **IMPORTANT**: The Super Admin can see all available roles across 
-    Workspaces on the “Roles” tab of the “Organization” page. 
+    ⚠️ **IMPORTANT**: The **Super Admin** can see all available roles across 
+    **Workspaces** on the **Roles** tab of the **Organization** page. 
 
     ![Role List](https://konghq.com/wp-content/uploads/2018/12/org2.png)
 
-3. On the “Organization” page, the new invitee will appear on the list with the 
-“Invited” status. Once they accept the invitation, the user will be listed in 
-the main “Users” list. 
+3. On the **Organization** page, the new invitee will appear on the list with the 
+**Invited** status. Once they accept the invitation, the user will be listed in 
+the main **Users** list. 
 
     ![User List](https://konghq.com/wp-content/uploads/2018/12/org3-1.png)
 
-4. The newly invited Admin will have the ability to set a password. If the 
-Admin ever forgets the password, it is possible for them to reset it through a 
+4. The newly invited **Admin** will have the ability to set a password. If the 
+**Admin** ever forgets the password, it is possible for them to reset it through a 
 recovery email.
 
 <video width="100%" autoplay loop controls>
@@ -72,7 +72,7 @@ button.
     ![Invited Admins](https://konghq.com/wp-content/uploads/2018/11/km-invited-admins.png)
 
 4. The newly invited Admin will have the ability to set a password. If the 
-    Admin forgets the password, it is possible to reset it through a recovery 
+    **Admin** forgets the password, it is possible to reset it through a recovery 
     email.
 
 ⚠️ **IMPORTANT**: By default, the registration link will expire after 259,200 
