@@ -8,7 +8,7 @@
         - text: How to Access Your License
           url: /deployment/access-license
     - text: Installation
-      url: /deploment/installation
+      url: /deployment/installation
       items:
         - text: Docker
           url: /deployment/installation/docker
