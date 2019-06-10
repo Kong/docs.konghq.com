@@ -3,6 +3,9 @@ install-prerequisites:
 	npm install -g gulp
 
 install:
+	-chmod -R 777 node_modules
+	-chmod 777 Gemfile.lock
+	-chmod 777 package-lock.json
 	npm install
 	bundle install
 	yarn --ignore-engines
