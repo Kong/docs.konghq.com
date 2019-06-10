@@ -73,6 +73,6 @@
     "lodash": "4.17.11",
     "run-sequence": "1.2.2",
     "skeleton-css": "2.0.4",
-    "standard": "5.4.1"
+    "standard": "12.0.1"
   }
 }
