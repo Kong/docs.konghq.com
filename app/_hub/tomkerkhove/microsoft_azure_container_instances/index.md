@@ -88,15 +88,15 @@ kong_version_compatibility: # required
 
 Running Kong on Azure Container Instances is super easy:
 
-1. **Provision a datastore**
+1. Provision a datastore
 
     Provision the datastore that you want to use:
     1. [Running Cassandra on Azure with Azure Cosmos DB](/hub/tomkerkhove/microsoft_azure/#running-cassandra-on-azure-with-azure-cosmos-db)
     1. [Running PostgreSQL on Azure with Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql)
 
-1. **Open the Cloud Shell or Azure CLI**
+1. Open the Cloud Shell or Azure CLI
 
-1. **Run the migrations**
+1. Run the migrations
 
     ```bash
     $ az container create --name kong-migrations \
@@ -113,7 +113,7 @@ Running Kong on Azure Container Instances is super easy:
     **Note for Kong < 0.15**: with Kong versions below 0.15 (up to 0.14), use
     the `up` sub-command instead of `bootstrap`.
 
-1. **Start Kong**
+1. Start Kong
 
     ```bash
     $ az container create --name kong-gateway /
@@ -139,7 +139,7 @@ Running Kong on Azure Container Instances is super easy:
       </div>
     </div>
 
-1. **Use Kong**
+1. Use Kong
 
     That's it - You can now use Kong by browsing to `<dns-label>.westeurope.azurecontainer.io`.
 

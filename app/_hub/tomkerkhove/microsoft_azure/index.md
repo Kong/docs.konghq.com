@@ -90,11 +90,11 @@ The Azure Marketplace provides quickstart templates that allow you to very easil
 
 You can deploy one of the following Kong templates from the marketplace:
 
-1. **Kong Certified by Bitnami**
+1. Kong Certified by Bitnami
 
     For more information, see [guidance provided by Bitnami](/hub/bitnami/microsoft_azure/).
 
-1. **Kong Cluster by Bitnami**
+1. Kong Cluster by Bitnami
 
     For more information, see [guidance provided by Bitnami](/hub/bitnami/microsoft_azure/).
 

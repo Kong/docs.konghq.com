@@ -156,7 +156,7 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
 
 4. Make a request to invoke the action
 
-    **Without parameters**
+    Without parameters
 
       ```bash
       $ curl -i -X POST http://localhost:8000/ -H "Host:example.com"
@@ -168,7 +168,7 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
       }
       ```
 
-    **Parameters as form-urlencoded**
+    Parameters as form-urlencoded
 
       ```bash
       $ curl -i -X POST http://localhost:8000/ -H "Host:example.com" --data "name=bar"
@@ -180,7 +180,7 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
       }
       ```
 
-    **Parameters as JSON body**
+    Parameters as JSON body
 
       ```bash
       $ curl -i -X POST http://localhost:8000/ -H "Host:example.com" \
@@ -193,7 +193,7 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
       }
       ```
 
-    **Parameters as multipart form**
+    Parameters as multipart form
 
       ```bash
       $ curl -i -X POST http://localhost:8000/ -H "Host:example.com"  -F name=bar
@@ -207,7 +207,7 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
       }
       ```
 
-    **Parameters as querystring**
+    Parameters as querystring
 
       ```bash
       $ curl -i -X POST http://localhost:8000/?name=foo -H "Host:example.com"
@@ -219,7 +219,7 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
       }
       ```
 
-    **OpenWhisk metadata in response**
+    OpenWhisk metadata in response
 
       When Kong's `config.result` is set to false, OpenWhisk's metadata will
       be returned in response:

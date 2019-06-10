@@ -222,7 +222,7 @@ include all of the headers and a `digest` of the body.
 
 The HMAC plugin can be enabled on a Service or a Route.
 
-  **Create a Service**
+  Create a Service
 
   ```bash
   $ curl -i -X POST http://localhost:8001/services \
@@ -233,7 +233,7 @@ The HMAC plugin can be enabled on a Service or a Route.
 
   ```
 
-  **Then create a Route**
+  Then create a Route
 
   ```bash
   $ curl -i -f -X POST http://localhost:8001/services/example-service/routes \
@@ -243,7 +243,7 @@ The HMAC plugin can be enabled on a Service or a Route.
 
   ```
 
-  **Enabling the plugin on a Service**
+  Enabling the plugin on a Service
 
   Plugins can be enabled on a Service or a Route. This example uses a Service.
 
@@ -257,7 +257,7 @@ The HMAC plugin can be enabled on a Service or a Route.
 
   ```
 
-  **Add a Consumer**
+  Add a Consumer
 
   ```bash
   $ curl -i -X POST http://localhost:8001/consumers/ \
@@ -267,7 +267,7 @@ The HMAC plugin can be enabled on a Service or a Route.
 
   ```
 
-  **Add credential for Alice**
+  Add credential for Alice
 
   ```bash
   $ curl -i -X POST http://localhost:8001/consumers/alice/hmac-auth \
@@ -278,7 +278,7 @@ The HMAC plugin can be enabled on a Service or a Route.
 
   ```
 
-  **Making an authorized request**
+  Making an authorized request
 
   ```bash
   $ curl -i -X GET http://localhost:8000/requests \
@@ -307,7 +307,7 @@ The HMAC plugin can be enabled on a Service or a Route.
   Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date request-line", signature=<base64_digest>"
   ```
 
-  **Validating request body**
+  Validating request body
 
   To enable body validation we would need to set `config.validate_request_body`
   to `true`:

@@ -1,4 +1,4 @@
----
+﻿---
 name: Kong Heroku app
 publisher: Heroku community
 
@@ -57,4 +57,4 @@ kong_version_compatibility: # required
 
 ### Deployment
 
-▶️ **Get started at the [GitHub repo](https://github.com/heroku/heroku-kong).**
+▶️ Get started at the [GitHub repo](https://github.com/heroku/heroku-kong).

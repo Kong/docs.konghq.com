@@ -22,7 +22,7 @@ description: |
   The plugin will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not.
   The plugin can also perform verifications on registered claims and custom claims.
 
-  **Feature Support**
+  Feature Support
 
   - v2.public JSON payload PASETOs
   - Registered claims validation
@@ -95,7 +95,7 @@ params:
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests, if set to `false` then `OPTIONS` requests will always be allowed.
 
   extra: |
-    **Claim Rules**
+    Claim Rules
 
     * `ForAudience` which compares the payload-provided `aud` claim with an expected value.
     * `IdentifiedBy` which compares the payload-provided `jti` claim with an expected value.
