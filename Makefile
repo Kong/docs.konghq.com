@@ -1,2 +1,23 @@
+install-prerequisites:
+	npm install -g yarn
+	npm install -g gulp
+
+install:
+	npm install
+	bundle install
+	yarn --ignore-engines
+	yarn upgrade
+
+run: install
+	gulp
+
 develop:
-	docker-compose up --build
+	docker-compose up
+
+test:
+	COMMAND="npm test" docker-compose up
+
+check-links:
+	docker-compose up -d
+	while [ `curl -s -o /dev/null -w ''%{http_code}'' localhost:3000` != 200 ]; do echo "waiting"; docker-compose logs --tail=2 jekyll; sleep 20; done
+	docker-compose exec jekyll yarn blc http://localhost:3000 -efr --exclude careers --exclude hub

@@ -4,6 +4,7 @@ services:
   jekyll:
     build: .
     user: jekyll
+    command: ${COMMAND:-make run}
     volumes:
       - .:/srv/jekyll
     ports:

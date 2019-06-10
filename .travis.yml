@@ -1,22 +1,12 @@
-language: node_js
-node_js:
-  - "8"
-
+dist: xenial
 sudo: false
+
+language: generic
 notifications:
   email: false
 
-cache:
-  bundler: true
-  yarn: true
-
 before_install:
-  - rvm install 2.3.3
-  - npm install -g yarn
-install:
-  - bundle install
-  - yarn
-before_script:
-  - npm test
+  - docker-compose build
 script:
-  - gulp build
+  - make test
+  - make check-links
