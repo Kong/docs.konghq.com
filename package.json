@@ -67,7 +67,7 @@
     "gulp-rename": "1.4.0",
     "gulp-resource-hints": "0.2.1",
     "gulp-size": "2.1.0",
-    "gulp-sourcemaps": "1.12.1",
+    "gulp-sourcemaps": "2.6.5",
     "jpegtran": "1.0.6",
     "list-assets": "0.0.2",
     "lodash": "4.17.11",
