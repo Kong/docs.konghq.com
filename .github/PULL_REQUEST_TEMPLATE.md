@@ -5,13 +5,27 @@ https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md
 
 ### Summary
 
-SUMMARY_GOES_HERE
+Added some typo modifications 
+Added spaces where necessary and was absent 
 
 ### Full changelog
 
 * [Edited docs to ...]
-* [Added cool new feature ...]
-* ...
+
+*Edited Docs* 
+
+app\_hub\kong-inc\rate-limiting-advanced\0.31-x
+
+app\_hub\kong-inc\rate-limiting-advanced\0.32-x
+
+app\_hub\kong-inc\rate-limiting-advanced\0.33-x
+
+app\_hub\kong-inc\rate-limiting-advanced\0.34-x
+
+app\_hub\kong-inc\rate-limiting-advanced\index
+
+app\_hub\optum\kong-upstream-jwt\index(modification)
+
 
 ### Issues resolved
 

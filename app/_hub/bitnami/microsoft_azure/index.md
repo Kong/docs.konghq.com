@@ -1,4 +1,4 @@
----
+﻿---
 # This template is maintained by @marcosbc from Bitnami
 name: Kong on Microsoft Azure Certified
 publisher: Bitnami
