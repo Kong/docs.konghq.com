@@ -1,14 +1,11 @@
 ---
 title: How to Create a New Workspace in Kong Manager
 book: admin_gui
+toc: false
 ---
 
-<video width="100%" autoplay loop controls>
- <source src="https://konghq.com/wp-content/uploads/2019/02/new-workspace-ent-34.mov" type="video/mp4">
- Your browser does not support the video tag.
-</video>
-
-1. Log in as the Super Admin. On the "Workspaces" page, click the "New Workspace" button at the top right to see the "Create Workspace" form.
+1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace** 
+button at the top right to see the **Create Workspace** form.
 
     ![New Workspace Form](https://konghq.com/wp-content/uploads/2018/11/km-new-workspace.png)
 
@@ -37,11 +34,13 @@ book: admin_gui
     • Vitals
     ```
 
-3. Select a color or avatar to make each Workspace easier to distinguish, or accept the default color. 
+3. Select a color or avatar to make each **Workspace** easier to distinguish, or 
+accept the default color. 
 
     ![Select Workspace Color](https://konghq.com/wp-content/uploads/2018/11/km-color-ws.png)
 
-4. Click the "Create New Workspace" button. Upon creation, the application will navigate to the new Workspace's "Dashboard" page.
+4. Click the "Create New Workspace" button. Upon creation, the application will 
+navigate to the new Workspace's "Dashboard" page.
 
     ![New Dashboard](https://konghq.com/wp-content/uploads/2018/11/km-new-dashboard.png)
 
@@ -51,6 +50,14 @@ click the "Admins" link.
 
     ![Admins Hover Over](https://konghq.com/wp-content/uploads/2018/11/admins-section.png)
 
-6. The "Admins" page displays a list of current Admins and Roles. Four default Roles specific to the new Workspace are already visible, and new Roles specific to the Workspace can be assigned from this page. 
+6. The "Admins" page displays a list of current Admins and Roles. Four default 
+Roles specific to the new Workspace are already visible, and new Roles specific 
+to the Workspace can be assigned from this page. 
 
     ![New Workspace Admins](https://konghq.com/wp-content/uploads/2018/11/km-ws-admins.png)
+
+
+<video width="100%" autoplay loop controls>
+ <source src="https://konghq.com/wp-content/uploads/2019/02/new-workspace-ent-34.mov" type="video/mp4">
+ Your browser does not support the video tag.
+</video>

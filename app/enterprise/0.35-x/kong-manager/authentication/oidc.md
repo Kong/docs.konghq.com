@@ -23,7 +23,8 @@ manually enable the **Plugin**; the configuration alone will enable
 
 ### Prerequisites
 
-The following is an example using Google as the IdP and serving Kong Manager from its default URL, `http://127.0.0.1:8002`.
+The following is an example using Google as the IdP and serving Kong Manager 
+from its default URL, `http://127.0.0.1:8002`.
 
 (The `admin_gui_auth_config` value must be valid JSON.)
 
@@ -55,11 +56,14 @@ admin_gui_auth_conf={                                      \
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`. 
 Learn more about these properties in [Session Security in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security), and see [example configurations](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#example-configurations).
 
-Replace the entries surrounded by `<>` with values that are valid for your IdP. For example, Google credentials can be found here: https://console.cloud.google.com/projectselector/apis/credentials
+Replace the entries surrounded by `<>` with values that are valid for your IdP. 
+For example, Google credentials can be found here: 
+https://console.cloud.google.com/projectselector/apis/credentials
 
 ## Step 1
 
-Create an **Admin** that has a **username** matching the **email** returned from the Identity Provider upon successful login.
+Create an **Admin** that has a **username** matching the **email** returned from 
+the Identity Provider upon successful login.
 
 ```bash
 $ http POST :8001/admins username="<admin_email>" email="<admin_email>" Kong-Admin-Token:<RBAC_TOKEN>
@@ -71,11 +75,14 @@ For example, if a user has a Google email address, **hal9000@sky.net**:
 $ http POST :8001/admins username="hal9000@sky.net" email="hal9000@sky.net" Kong-Admin-Token:<RBAC_TOKEN>
 ```
 
-**Note:** The **email** entered for the **Admin** in the request is used to ensure the **Admin** receives an email invitation, whereas **username** is the attribute that the **Plugin** uses with the IdP. 
+**Note:** The **email** entered for the **Admin** in the request is used to 
+ensure the **Admin** receives an email invitation, whereas **username** is the 
+attribute that the **Plugin** uses with the IdP. 
 
 ## Step 2
 
-Assign the new **Admin** at least one **Role** so they can log in and access Kong entities. 
+Assign the new **Admin** at least one **Role** so they can log in and access 
+Kong entities. 
 
 ```bash
 $ http POST :8001/admins/<admin_email>/roles roles="<role-name>"
