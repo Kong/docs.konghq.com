@@ -54,7 +54,7 @@ Avoid terms such as "simple", "easy", and "trivial" so as not to alienate reader
 who are less familiar with the tools at hand, or who need to jump through 
 administrative hoops to implement a "simple" technical solution. Instead, provide 
 specific reasons for _how_ something is simple, e.g., the steps involved, 
-comparison to another process, or the value of time saved. Leave it to 
+comparison to another process, or the amount of time saved. Leave it to 
 the reader to determine _whether_ it is simple for them.
 
 **3. Is it true?**
