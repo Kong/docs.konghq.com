@@ -8,5 +8,5 @@ notifications:
 before_install:
   - docker-compose build
 script:
-  - make test
+  - make docker-test
   - make check-links
