@@ -7,6 +7,9 @@ notifications:
 
 before_install:
   - docker-compose build
+  - touch Gemfile.lock
+  - mkdir node_modules
+  - chmod -R 777 .
 script:
   - make docker-test
   - make check-links
