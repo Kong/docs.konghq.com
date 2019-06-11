@@ -2,6 +2,37 @@
 title: Kong Enterprise Changelog
 ---
 
+## 0.35-1
+**Release Date:** 2019/05/28
+
+**Notifications**
+- **Kong Enterprise 0.35** inherits from **Kong 1.0.3**; read 1.0.0 - 1.0.3 changelogs for details:
+  - [1.0.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#100)
+  - [1.0.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#101)
+  - [1.0.2 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#102)
+  - [1.0.3 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
+
+**FEATURES**
+- **Plugins**
+  - Allow Redis strategy configuration for Rate Limiting Advanced
+
+**FIXES**
+- After upgrade to 0.35, Developer Portal now shows documentation.
+- `plugins.run_on default` now correctly set on migrations upgrade.
+- Can now add `rate-limiting-advanced` with `config.strategy=redis` 
+and `config.redis.sentinel_addresses`
+- Long requests URLs no longer causes the UI to not wrap the content 
+of the "Request URL" field
+- Upgrade from 0.34-1 to 0.35 using Cassandra no longer creates 
+duplicate **Workspace**
+- Migrations from 0.34-1 did not properly handle **Certificates** and 
+**SNIs** in context of **Workspaces**. Migrating from 0.34-1 no longer 
+supports zero downtime. To get fully functional 0.35, must run 
+`migrations finish`
+- Allow use of `KONG_PASSWORD` when migrating from 0.34-1 when a 
+**Super Admin** already exists
+- Schema defaults are used when doing a `Read` before `Write`.
+
 ## 0.35
 **Release Date:** 2019/05/17
 
