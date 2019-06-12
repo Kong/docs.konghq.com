@@ -72,6 +72,7 @@ route_body: |
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set. 
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
+    `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Defaults to `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
     `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`. 
@@ -91,6 +92,7 @@ route_json: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
+        "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
@@ -108,6 +110,7 @@ route_data: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
+        "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
@@ -119,6 +122,7 @@ route_data: |
         "updated_at": 1422386534,
         "name": "my-route",
         "protocols": ["tcp", "tls"],
+        "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
@@ -497,7 +501,7 @@ target_data: |
 Kong comes with an **internal** RESTful Admin API for administration purposes.
 In [DB-less mode][db-less], this Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
-the Admin API for each node functions independently, reflecting the memory state
+the Admin API for each Kong node functions independently, reflecting the memory state
 of that particular Kong node. This is the case because there is no database
 coordination between Kong nodes.
 
@@ -570,7 +574,7 @@ HTTP 200 OK
 
 Retrieve usage information about a node, with some basic information
 about the connections being processed by the underlying nginx process,
-and the status of the database connection.
+the status of the database connection, and node's memory usage.
 
 If you want to monitor the Kong process, since Kong is built on top
 of nginx, every existing nginx monitoring tool or agent can be used.
@@ -586,6 +590,28 @@ HTTP 200 OK
 
 ```json
 {
+    "database": {
+      "reachable": true
+    },
+    "memory": {
+        "workers_lua_vms": [{
+            "http_allocated_gc": "0.02 MiB",
+            "pid": 18477
+          }, {
+            "http_allocated_gc": "0.02 MiB",
+            "pid": 18478
+        }],
+        "lua_shared_dicts": {
+            "kong": {
+                "allocated_slabs": "0.04 MiB",
+                "capacity": "5.00 MiB"
+            },
+            "kong_db_cache": {
+                "allocated_slabs": "0.80 MiB",
+                "capacity": "128.00 MiB"
+            },
+        }
+    },
     "server": {
         "total_requests": 3,
         "connections_active": 1,
@@ -594,13 +620,38 @@ HTTP 200 OK
         "connections_reading": 0,
         "connections_writing": 1,
         "connections_waiting": 0
-    },
-    "database": {
-        "reachable": true
     }
 }
 ```
 
+* `memory`: Metrics about the memory usage.
+    * `workers_lua_vms`: An array with all workers of the Kong node, where each
+      entry contains:
+    * `http_allocated_gc`: HTTP submodule's Lua virtual machine's memory
+      usage information, as reported by `collectgarbage("count")`, for every
+      active worker, i.e. a worker that received a proxy call in the last 10
+      seconds.
+    * `pid`: worker's process identification number.
+    * `lua_shared_dicts`: An array of information about dictionaries that are
+      shared with all workers in a Kong node, where each array node contains how
+      much memory is dedicated for the specific shared dictionary (`capacity`)
+      and how much of said memory is in use (`allocated_slabs`).
+      These shared dictionaries have least recent used (LRU) eviction
+      capabilities, so a full dictionary, where `allocated_slabs == capacity`,
+      will work properly. However for some dictionaries, e.g. cache HIT/MISS
+      shared dictionaries, increasing their size can be beneficial for the
+      overall performance of a Kong node.
+  * The memory usage unit and precision can be changed using the querystring
+    arguments `unit` and `scale`:
+      * `unit`: one of `b/B`, `k/K`, `m/M`, `g/G`, which will return results
+        in bytes, kibibytes, mebibytes, or gibibytes, respectively. When
+        "bytes" are requested, the memory values in the response will have a
+        number type instead of string. Defaults to `m`.
+      * `scale`: the number of digits to the right of the decimal points when
+        values are given in human-readable memory strings (unit other than
+        "bytes"). Defaults to `2`.
+      You can get the shared dictionaries memory usage in kibibytes with 4
+      digits of precision by doing: `GET /status?unit=k&scale=4`
 * `server`: Metrics about the nginx HTTP/S server.
     * `total_requests`: The total number of client requests.
     * `connections_active`: The current number of active client
@@ -681,7 +732,7 @@ input file.
 
 ---
 
-##  Tags 
+## Tags
 
 Tags are strings associated to entities in Kong. Each tag must be composed of one or more
 alphanumeric characters, `_`, `-`, `.` or `~`.
@@ -727,7 +778,7 @@ Some notes:
 * `offset` parameters are not guaranteed to work if the `tags` parameter is altered or removed
 
 
-###  List All Tags 
+### List All Tags
 
 Returns a paginated list of all the tags in the system.
 
@@ -774,7 +825,7 @@ HTTP 200 OK
 
 ---
 
-###  List Entity Ids by Tag 
+### List Entity Ids by Tag
 
 Returns the entities that have been tagged with the specified tag.
 

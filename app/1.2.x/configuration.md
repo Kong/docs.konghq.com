@@ -403,7 +403,7 @@ Default: `logs/access.log`
 #### proxy_error_log
 
 Path for proxy port request error logs. The granularity of these logs is
-adjusted by the `log_level` directive.
+adjusted by the `log_level` property.
 
 Default: `logs/error.log`
 
@@ -424,7 +424,7 @@ Default: `logs/admin_access.log`
 #### admin_error_log
 
 Path for Admin API request error logs. The granularity of these logs is
-adjusted by the `log_level` directive.
+adjusted by the `log_level` property.
 
 Default: `logs/error.log`
 
@@ -455,10 +455,9 @@ suggest:
 - `plugins = off` will not include any plugins
 
 **Note:** Kong will not start if some plugins were previously configured (i.e.
-have rows in the database) and are not specified in this list.
 
-Before disabling a plugin, ensure all instances of it are removed before
-restarting Kong.
+have rows in the database) and are not specified in this list. Before disabling
+a plugin, ensure all instances of it are removed before restarting Kong.
 
 **Note:** Limiting the amount of available plugins can improve P99 latency when
 experiencing LRU churning in the database cache (i.e. when the configured
@@ -602,7 +601,7 @@ Default: `nobody nobody`
 Determines the number of worker processes spawned by Nginx.
 
 See http://nginx.org/en/docs/ngx_core_module.html#worker_processes for detailed
-usage of this directive and a description of accepted values.
+usage of the equivalent Nginx directive and a description of accepted values.
 
 Default: `auto`
 
@@ -808,7 +807,7 @@ Default: `X-Real-IP`
 
 #### real_ip_recursive
 
-This value sets the ngx_http_realip_module directive of the same name in the
+This value sets the `ngx_http_realip_module` directive of the same name in the
 Nginx configuration.
 
 See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
@@ -868,14 +867,25 @@ Default: `text/plain`
 
 ### Datastore section
 
-Kong will store all of its data (such as Routes, Services, Consumers, and
-Plugins) in either Cassandra or PostgreSQL, and all Kong nodes belonging to the
-same cluster must connect themselves to the same database.
+Kong can run with a database to store coordinated data between Kong nodes in a
+cluster, or without a database, where each node stores its information
+independently in memory.
+
+When using a database, Kong will store data for all its entities (such as
+Routes, Services, Consumers, and Plugins) in either Cassandra or PostgreSQL, and
+all Kong nodes belonging to the same cluster must connect themselves to the same
+database.
 
 Kong supports the following database versions:
 
 - **PostgreSQL**: 9.5 and above.
 - **Cassandra**: 2.2 and above.
+
+When not using a database, Kong is said to be in "DB-less mode": it will keep
+its entities in memory, and each node needs to have this data entered via a
+declarative configuration file, which can be specified through the
+`declarative_config` property, or via the Admin API using the `/config`
+endpoint.
 
 ---
 
@@ -884,7 +894,7 @@ Kong supports the following database versions:
 Determines which of PostgreSQL or Cassandra this node will use as its
 datastore.
 
-Accepted values are `postgres` and `cassandra`.
+Accepted values are `postgres`, `cassandra`, and `off`.
 
 Default: `postgres`
 
@@ -904,6 +914,8 @@ name   | description  | default
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. | `off`
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
+**pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
+**pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
 
 #### Cassandra settings
 
@@ -924,6 +936,22 @@ name   | description  | default
 **cassandra_repl_factor** | When migrating for the first time, Kong will create the keyspace with this replication factor when using the `SimpleStrategy`. | `1`
 **cassandra_data_centers** | When migrating for the first time, will use this setting when using the `NetworkTopologyStrategy`. The format is a comma-separated list made of `<dc_name>:<repl_factor>`. | `dc1:2,dc2:3`
 **cassandra_schema_consensus_timeout** | Defines the timeout (in ms) for the waiting period to reach a schema consensus between your Cassandra nodes. This value is only used during migrations. | `10000`
+
+#### declarative_config
+
+The path to the declarative configuration file which holds the specification of
+all entities (Routes, Services, Consumers, etc.) to be used when the `database`
+is set to `off`.
+
+Entities are stored in Kong's in-memory cache, so you must ensure that enough
+memory is allocated to it via the `mem_cache_size` property. You must also
+ensure that items in the cache never expire, which means that `db_cache_ttl`
+should preserve its default value of 0.
+
+Default: none
+
+---
+
 
 ### Datastore Cache section
 
@@ -989,6 +1017,25 @@ unreachable). When this TTL expires, a new attempt to refresh the stale entities
 will be made.
 
 Default: `30`
+
+---
+
+#### db_cache_warmup_entities
+
+Entities to be pre-loaded from the datastore into the in-memory cache at Kong
+start-up.
+
+This speeds up the first access of endpoints that use the given entities.
+
+When the `services` entity is configured for warmup, the DNS entries for values
+in its `host` attribute are pre-resolved asynchronously as well.
+
+Cache size set in `mem_cache_size` should be set to a value large enough to
+hold all instances of the specified entities.
+
+If the size is insufficient, Kong will log a warning.
+
+Default: `services, plugins`
 
 ---
 
@@ -1098,6 +1145,34 @@ When disabled multiple requests for the same name/type will be synchronised to
 a single query.
 
 Default: `off`
+
+---
+
+
+### Tuning & Behavior section
+
+#### router_consistency
+
+Defines whether this node should rebuild its router synchronously or
+asynchronously (the router is rebuilt every time a Route or a Service is updated
+via the Admin API or loading a declarative configuration file).
+
+Accepted values are:
+
+- `strict`: the router will be rebuilt synchronously, causing incoming requests
+  to be delayed until the rebuild is finished.
+- `eventual`: the router will be rebuilt asynchronously via a recurring
+  background job running every second inside of each worker.
+
+Note that `strict` ensures that all workers of a given node will always proxy
+requests with an identical router, but that increased long tail latency can be
+observed if frequent Routes and Services updates are expected.
+
+Using `eventual` will help preventing long tail latency issues in such cases,
+but may cause workers to route requests differently for a short period of time
+after Routes and Services updates.
+
+Default: `strict`
 
 ---
 

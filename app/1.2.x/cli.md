@@ -47,14 +47,14 @@ Usage: kong config COMMAND [OPTIONS]
 Use declarative configuration files with Kong.
 
 The available commands are:
-  init                          Generate an example config file to
-                                get you started.
+  init                                Generate an example config file to
+                                      get you started.
 
-  db_import <file>              Import a declarative config file into
-                                the Kong database.
+  db_import <file>                    Import a declarative config file into
+                                      the Kong database.
 
-  parse <file>                  Parse a declarative config file (check
-                                its syntax) but do not load it into Kong.
+  parse <file>                        Parse a declarative config file (check
+                                      its syntax) but do not load it into Kong.
 
 Options:
  -c,--conf        (optional string)   Configuration file.
@@ -123,6 +123,7 @@ Options:
 
  -c,--conf        (optional string) Configuration file.
 
+
 ```
 
 [Back to TOC](#table-of-contents)
@@ -142,14 +143,14 @@ be used to start Kong from the nginx binary without using the 'kong start'
 command.
 
 Example usage:
-  kong migrations up
-  kong prepare -p /usr/local/kong -c kong.conf
-  nginx -p /usr/local/kong -c /usr/local/kong/nginx.conf
+ kong migrations up
+ kong prepare -p /usr/local/kong -c kong.conf
+ nginx -p /usr/local/kong -c /usr/local/kong/nginx.conf
 
 Options:
-  -c,--conf       (optional string) configuration file
-  -p,--prefix     (optional string) override prefix directory
-  --nginx-conf    (optional string) custom Nginx configuration template
+ -c,--conf       (optional string) configuration file
+ -p,--prefix     (optional string) override prefix directory
+ --nginx-conf    (optional string) custom Nginx configuration template
 
 ```
 
