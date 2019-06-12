@@ -37,57 +37,60 @@ return {
 -- General (non-entity) Admin API route files
 --------------------------------------------------------------------------------
 
-  intro = [[
-
-    <div class="alert alert-info.blue" role="alert">
-      This page refers to the Admin API for running Kong configured with a
-      database (Postgres or Cassandra). For using the Admin API for Kong
-      in DB-less mode, please refer to the
-      <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
-      page.
-    </div>
-
-    Kong comes with an **internal** RESTful Admin API for administration purposes.
-    Requests to the Admin API can be sent to any node in the cluster, and Kong will
-    keep the configuration consistent across all nodes.
-
-    - `8001` is the default port on which the Admin API listens.
-    - `8444` is the default port for HTTPS traffic to the Admin API.
-
-    This API is designed for internal use and provides full control over Kong, so
-    care should be taken when setting up Kong environments to avoid undue public
-    exposure of this API. See [this document][secure-admin-api] for a discussion
-    of methods to secure the Admin API.
-
-    ## Supported Content Types
-
-    The Admin API accepts 2 content types on every endpoint:
-
-    - **application/x-www-form-urlencoded**
-
-    Simple enough for basic request bodies, you will probably use it most of the time.
-    Note that when sending nested values, Kong expects nested objects to be referenced
-    with dotted keys. Example:
-
-    ```
-    config.limit=10&config.period=seconds
-    ```
-
-    - **application/json**
-
-    Handy for complex bodies (ex: complex plugin configuration), in that case simply send
-    a JSON representation of the data you want to send. Example:
-
-    ```json
+  intro = {
     {
-        "config": {
-            "limit": 10,
-            "period": "seconds"
-        }
-    }
-    ```
+      text = [[
+        <div class="alert alert-info.blue" role="alert">
+          This page refers to the Admin API for running Kong configured with a
+          database (Postgres or Cassandra). For using the Admin API for Kong
+          in DB-less mode, please refer to the
+          <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
+          page.
+        </div>
 
-  ]],
+        Kong comes with an **internal** RESTful Admin API for administration purposes.
+        Requests to the Admin API can be sent to any node in the cluster, and Kong will
+        keep the configuration consistent across all nodes.
+
+        - `8001` is the default port on which the Admin API listens.
+        - `8444` is the default port for HTTPS traffic to the Admin API.
+
+        This API is designed for internal use and provides full control over Kong, so
+        care should be taken when setting up Kong environments to avoid undue public
+        exposure of this API. See [this document][secure-admin-api] for a discussion
+        of methods to secure the Admin API.
+      ]]
+    }, {
+      title = [[Supported Content Types]],
+      text = [[
+        The Admin API accepts 2 content types on every endpoint:
+
+        - **application/x-www-form-urlencoded**
+
+        Simple enough for basic request bodies, you will probably use it most of the time.
+        Note that when sending nested values, Kong expects nested objects to be referenced
+        with dotted keys. Example:
+
+        ```
+        config.limit=10&config.period=seconds
+        ```
+
+        - **application/json**
+
+        Handy for complex bodies (ex: complex plugin configuration), in that case simply send
+        a JSON representation of the data you want to send. Example:
+
+        ```json
+        {
+            "config": {
+                "limit": 10,
+                "period": "seconds"
+            }
+        }
+        ```
+      ]]
+    },
+  },
 
   footer = [[
     [clustering]: /{{page.kong_version}}/clustering
@@ -1496,38 +1499,42 @@ return {
 
   dbless = {
 
-    intro = [[
+    intro = {
+      {
+        text = [[
+          <div class="alert alert-info.blue" role="alert">
+            This page refers to the Admin API for running Kong configured without a
+            database, managing in-memory entities via declarative config.
+            For using the Admin API for Kong with a database, please refer to the
+            <a href="/{{page.kong_version}}/admin-api">Admin API for Database Mode</a> page.
+          </div>
 
-    <div class="alert alert-info.blue" role="alert">
-      This page refers to the Admin API for running Kong configured without a
-      database, managing in-memory entities via declarative config.
-      For using the Admin API for Kong with a database, please refer to the
-      <a href="/{{page.kong_version}}/admin-api">Admin API for Database Mode</a> page.
-    </div>
+          Kong comes with an **internal** RESTful Admin API for administration purposes.
+          In [DB-less mode][db-less], this Admin API can be used to load a new declarative
+          configuration, and for inspecting the current configuration. In DB-less mode,
+          the Admin API for each Kong node functions independently, reflecting the memory state
+          of that particular Kong node. This is the case because there is no database
+          coordination between Kong nodes.
 
-    Kong comes with an **internal** RESTful Admin API for administration purposes.
-    In [DB-less mode][db-less], this Admin API can be used to load a new declarative
-    configuration, and for inspecting the current configuration. In DB-less mode,
-    the Admin API for each Kong node functions independently, reflecting the memory state
-    of that particular Kong node. This is the case because there is no database
-    coordination between Kong nodes.
+          - `8001` is the default port on which the Admin API listens.
+          - `8444` is the default port for HTTPS traffic to the Admin API.
 
-    - `8001` is the default port on which the Admin API listens.
-    - `8444` is the default port for HTTPS traffic to the Admin API.
+          This API provides full control over Kong, so care should be taken when setting
+          up Kong environments to avoid undue public exposure of this API.
+          See [this document][secure-admin-api] for a discussion
+          of methods to secure the Admin API.
+        ]],
+      },
+      {
+        title = [[Supported Content Types]],
+        text = [[
+          The Admin API accepts 2 content types on every endpoint:
 
-    This API provides full control over Kong, so care should be taken when setting
-    up Kong environments to avoid undue public exposure of this API.
-    See [this document][secure-admin-api] for a discussion
-    of methods to secure the Admin API.
-
-    ## Supported Content Types
-
-    The Admin API accepts 2 content types on every endpoint:
-
-    - **application/x-www-form-urlencoded**
-    - **application/json**
-
-    ]],
+          - **application/x-www-form-urlencoded**
+          - **application/json**
+        ]],
+      },
+    },
 
     footer = [[
       [clustering]: /{{page.kong_version}}/clustering
@@ -1620,6 +1627,23 @@ return {
       },
     }
 
+  },
+
+--------------------------------------------------------------------------------
+-- Template for Admin API section of the Navigation file
+--------------------------------------------------------------------------------
+
+  nav = {
+    header = [[
+      - title: Admin API
+        url: /admin-api/
+        items:
+          - text: DB-less
+            url: /db-less-admin-api
+
+          - text: Declarative Configuration
+            url: /db-less-admin-api/#declarative-configuration
+      ]],
   }
 
 }
