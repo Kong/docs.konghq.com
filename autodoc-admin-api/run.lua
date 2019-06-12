@@ -134,6 +134,9 @@ local Endpoints = require("kong.api.endpoints")
 -- Minimal boilerplate so that module files can be loaded
 _KONG = require("kong.meta")          -- luacheck: ignore
 kong = require("kong.global").new()   -- luacheck: ignore
+kong.configuration = {                -- luacheck: ignore
+  loaded_plugins = {},
+}
 kong.db = require("kong.db").new({    -- luacheck: ignore
   database = "postgres",
 })
