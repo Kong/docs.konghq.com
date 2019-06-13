@@ -29,7 +29,7 @@ title: Migrating to 0.35
 ```
 * As a result of the switch to server-side rendering, a few portal template files need to be updated or replaced to regain full functionality:
     1. Replace contents of partial `spec/index-vue` with contents of:
-    [](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/spec/index-vue.hbs)
+    [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/spec/index-vue.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/spec/index-vue.hbs)
     2. Replace contents of partial `search/widget-vue` with contents of:
     [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/search/widget-vue.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/search/widget-vue.hbs)
     3. Create or update partial  `unauthenticated/assets/icons/search-header` with contents of:
