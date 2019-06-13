@@ -114,6 +114,8 @@ access be forbidden, then the [Request Termination] **Plugin** should be
 configured on an anonymous consumer. Failure to do so will allow unauthorized
 requests. For more information please see section on [multiple authentication].
 
+### Setup With a Database
+
 For usage with [Key Auth] **Plugin**
 
 1. Create an example Service and a Route
@@ -229,16 +231,62 @@ For usage with [Key Auth] **Plugin**
         --data "consumer.id=<anonymous_consumer_id>"
     ```
 
-    Anonymous requests now will return status `403`.
+### Setup Without a Database
 
-    ```bash
-      $ curl -i -X GET \
-        --url http://localhost:8000/sessions-test
-    ```
+Add all these to the declarative config file:
 
-    Should return `403`.
+``` yaml
+services:
+- name: example-service
+  url: http://mockbin.org/request
 
-1. Verify that the session **Plugin** is properly configured
+routes:
+- service: example-service
+  paths: [ "/sessions-test" ]
+
+consumers:
+- username: anonymous_users
+  # manually set to fixed uuid in order to use it in key-auth plugin
+  id: 81823632-10c0-4098-a4f7-31062520c1e6
+- username: fiona
+
+keyauth_credentials:
+- consumer: fiona
+  key: open_sesame
+
+plugins:
+- name: key-auth
+  service: example-service
+  config:
+    # using the anonymous consumer fixed uuid (can't use the username)
+    anonymous: 81823632-10c0-4098-a4f7-31062520c1e6
+    # cookie_secure is true by default, and should always be true,
+    # but is set to false for the sake of this demo in order to avoid using HTTPS.
+    cookie_secure: false
+- name: session
+  config:
+    storage: kong
+    cookie_secure: false
+- name: request-termination
+  service: example-service
+  consumer: anonymous_users
+  config:
+    status_code: 403
+    message: "So long and thanks for all the fish!"
+```
+
+### Verification
+
+1. Check that Anonymous requests are disabled
+
+   ``` bash
+     $ curl -i -X GET \
+       --url http://localhost:8000/sessions-test
+   ```
+
+   Should return `403`.
+
+2. Verify that a user can authenticate via sessions
 
     ```bash
     $ curl -i -X GET \

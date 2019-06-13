@@ -94,10 +94,19 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+     <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
 
 - Add multiple headers by passing comma separated header:value pair:
 
@@ -106,10 +115,20 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "name=response-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
+
 
 - Add multiple headers passing config as JSON body:
 
@@ -119,10 +138,18 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data '{"name": "response-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
 
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
 
 - Add a body property and a header:
 
@@ -133,16 +160,30 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "config.add.headers=h1:v1"
 ```
 
-upstream response headers | proxied response headers:
----           | ---
-h1: v2        | <ul><li>h1: v2</li><li>h2: v1</li></ul>
-h3: v1        | <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v2</td>
+    <td>
+      <ul><li>h1: v2</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>h3: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
+    </td>
+  </tr>
+</table>
 
-upstream response JSON body | proxied response body
----           | ---
-{}            | {"p1" : "v1", "p2": "v2"}
-{"p1" : "v2"}  | {"p1" : "v2", "p2": "v2"}
----
+
+| upstream response JSON body | proxied response body |
+| ---           | --- |
+| {}            | {"p1" : "v1", "p2": "v2"} |
+| {"p1" : "v2"}  | {"p1" : "v2", "p2": "v2"} |
 
 - Append multiple headers and remove a body property:
 
@@ -152,14 +193,23 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data '{"name": "response-transformer-advanced", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
 
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
 
-upstream response JSON body | proxied response body
----           | ---
-{"p2": "v2"}   | {"p2": "v2"}
-{"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"}
+|upstream response JSON body | proxied response body |
+|---           | --- |
+|{"p2": "v2"}   | {"p2": "v2"} |
+|{"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"} |
 
 - Replace entire response body if response code is 500
 
