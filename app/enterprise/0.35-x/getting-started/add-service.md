@@ -6,12 +6,12 @@ title: How to Add a Service and Route
 
 This guide walks through the creation and configuration of a 
 **Service and Route** via **Kong Manager** in **Kong Enterprise**. To do this with 
-via the **command line** read Kong's documentation guide 
+via the **command line** read Kong's guide to 
 [Configuring a Service](/latest/getting-started/configuring-a-service/).
 
 For the purpose of this guide, we’ll create a **Service** pointing to the Mockbin 
-API. Mockbin is an “echo” type public website which returns requests back to
-the requester as responses. This is helpful for learning how Kong proxies API 
+API. Mockbin is an “echo” type public website that returns requests back to
+the requester as responses. This visibility is helpful for learning how Kong proxies API 
 requests.
 
 Kong exposes the RESTful **Admin API** on port `:8001`. Kong’s configuration, 
@@ -33,12 +33,12 @@ access to **Kong Manager**
     ![Service Page](https://d92hw8qwgdmef.cloudfront.net/0.35/getting-started/add-a-service/01-service-page.png)
 
 2. Click the **Create a New Service** button to open the **Create Service** form.
-Fill in a **name** and a **URL** for the service.<br/><br/>For example, set the 
+Fill in a **name** and a **URL** for the **Service**.<br/><br/>For example, set the 
 name to `test-service` with the URL `http://mockbin.org`.
 
     ![Create Service Form](https://d92hw8qwgdmef.cloudfront.net/0.35/getting-started/add-a-service/02-service-name.png)
 <br/><br/>Kong Manager also allows **Services** to be configured using **Protocol**,
-**Host**, **Path**, and **Port** (optional). To configure the Service using
+**Host**, **Path**, and **Port** (optional). To configure the **Service** using
 this method, click the **Add using Protocol, Host, and Path** option.
 
     ![Configure Using Protocol](https://d92hw8qwgdmef.cloudfront.net/0.35/getting-started/add-a-service/03-service-protocol.png)  
@@ -51,11 +51,11 @@ edited later.
     ![Advanced Fields](https://d92hw8qwgdmef.cloudfront.net/0.35/getting-started/add-a-service/04-service-advanced-fields.png)
 
 
-3. Create the Service by clicking the **Create Service** button at the bottom of
+3. Create the **Service** by clicking the **Create Service** button at the bottom of
 the form.<br/><br/>If successful, you will be automatically redirected to the 
-Service's **Overview** page.<br/><br/>The **Service Overview** page displays 
-information and **Activity** on the Service, as well as any **Routes** or 
-**Plugins** that have been connected to the Service.
+**Service's Overview** page.<br/><br/>The **Service Overview** page displays 
+information and **Activity** on the **Service**, as well as any **Routes** or 
+**Plugins** that have been connected to the **Service**.
 
     ![Service Overview](https://d92hw8qwgdmef.cloudfront.net/0.35/getting-started/add-a-service/05-service-overview.png)
 
@@ -76,17 +76,17 @@ will be automatically filled out if the form was accessed via the
 <br/><br/>If this field is not automatically filled, the **Service Id** can be
 found via the **Services Overview** page, accessed by clicking on the **Services**
 tab on the side navigation and then clicking the **clipboard** icon next to the
-desired Services **Id** field.
+desired **Service's Id** field.
 
 3. The **Route** will also need a name, and at least one of the following fields:
 **Host**, **Methods**, or **Paths**<br/>To continue with the Mockbin example,
-name the Route `test-route` with the **Host** `example.com`. Once completed,
+name the **Route** `test-route` with the **Host** `example.com`. Once completed,
 click the **Create Route** button at the bottom of the form.
 
     ![Create Route Form](https://d92hw8qwgdmef.cloudfront.net/0.35/getting-started/add-a-service/08-route-form-example.png)
 
 4. If created successfully, the page will be automatically redirected back to
-the **Service Overview** page, and the new Route will now appear under the
+the **Service Overview** page, and the new **Route** will now appear under the
 **Routes** tab.
 
     ![Completed Route](https://d92hw8qwgdmef.cloudfront.net/0.35/getting-started/add-a-service/10-completed-route.png)
