@@ -1130,6 +1130,10 @@ HTTP 200 OK
 }
 ```
 
+⚠️ **Note**: **Consumers** associated with **Admins** will _not_ be 
+listed with **`GET`** `/consumers`. Instead, use 
+[**`GET`** `/admins`](/enterprise/0.35-x/admin-api/admins/reference/#list-admins) 
+to list all **Admins**.
 
 ---
 
