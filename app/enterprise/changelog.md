@@ -20,8 +20,12 @@ title: Kong Enterprise Changelog
 - After upgrade to 0.35, Developer Portal now shows documentation.
 - Developer Portal OAPI spec rendering of long request URL wrapping 
 is fixed
+- `rate-limiting-advanced` schema validation rules prevented use of 
+Redis Sentinel (`config.strategy=redis` and 
+`config.redis.sentinel_addresses`) for counters datastore. Validation 
+rule is fixed.
 - Upgrade from 0.34-1 to 0.35 using Cassandra no longer creates 
-duplicate **Workspace**
+duplicate **Workspace**.
 - Migrations from 0.34-1 to 0.35 did not properly handle **Certificates** 
 and **SNIs** in context of **Workspaces**. Migrating from 0.34-1 with 
 this fix does not support zero downtime in this release. To get a fully 
