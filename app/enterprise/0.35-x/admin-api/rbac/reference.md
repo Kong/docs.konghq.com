@@ -122,7 +122,8 @@ HTTP 200 OK
 }
 ```
 
-⚠️ **Note**: **RBAC Users** associated with **Admins** will _not_ be listed with **`GET`** `/rbac/users`. Instead, use 
+⚠️ **Note**: **RBAC Users** associated with **Admins** will _not_ be 
+listed with **`GET`** `/rbac/users`. Instead, use 
 [**`GET`** `/admins`](/enterprise/{{page.kong_version}}/admin-api/admins/reference/#list-admins) 
 to list all **Admins**.
 
