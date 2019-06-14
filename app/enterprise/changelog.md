@@ -25,10 +25,12 @@ and `config.redis.sentinel_addresses`
 of the "Request URL" field
 - Upgrade from 0.34-1 to 0.35 using Cassandra no longer creates 
 duplicate **Workspace**
-- Migrations from 0.34-1 did not properly handle **Certificates** and 
-**SNIs** in context of **Workspaces**. Migrating from 0.34-1 no longer 
-supports zero downtime. To get fully functional 0.35, must run 
-`migrations finish`
+- Migrations from 0.34-1 to 0.35 did not properly handle **Certificates** 
+and **SNIs** in context of **Workspaces**. Migrating from 0.34-1 with 
+this fix does not support zero downtime in this release. To get a fully 
+functional 0.35 instance with **Certificates**, must run `migrations 
+finish`. Proper creation of **Workspace** links for **Certificates** and 
+**SNIs** is fixed.
 - Allow use of `KONG_PASSWORD` when migrating from 0.34-1 when a 
 **Super Admin** already exists
 - Schema defaults are used when doing a `Read` before `Write`.
