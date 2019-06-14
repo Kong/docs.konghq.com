@@ -2,6 +2,45 @@
 title: Kong Enterprise Changelog
 ---
 
+## 0.35-1
+**Release Date:** 2019/05/28
+
+**Notifications**
+- **Kong Enterprise 0.35** inherits from **Kong 1.0.3**; read 1.0.0 - 1.0.3 changelogs for details:
+  - [1.0.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#100)
+  - [1.0.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#101)
+  - [1.0.2 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#102)
+  - [1.0.3 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
+
+**FEATURES**
+- **Plugins**
+  - Allow Redis strategy configuration for Rate Limiting Advanced
+
+**FIXES**
+- After upgrade to 0.35, Developer Portal now shows documentation.
+- Developer Portal OAPI spec rendering of long request URL wrapping 
+is fixed
+- `rate-limiting-advanced` schema validation rules prevented use of 
+Redis Sentinel (`config.strategy=redis` and 
+`config.redis.sentinel_addresses`) for counters datastore. Validation 
+rule is fixed.
+- Upgrade from 0.34-1 to 0.35 using Cassandra no longer creates 
+duplicate **Workspace**.
+- Migrations from 0.34-1 to 0.35 did not properly handle **Certificates** 
+and **SNIs** in context of **Workspaces**. Migrating from 0.34-1 with 
+this fix does not support zero downtime in this release. To get a fully 
+functional 0.35 instance with **Certificates**, must run `migrations 
+finish`. Proper creation of **Workspace** links for **Certificates** and 
+**SNIs** is fixed.
+- If a Kong Manager **Super Admin** was already created, setting 
+`KONG_PASSWORD` during `migrations up` to 0.35 would error. Running 
+migrations when **Super Admin** already exists and `KONG_PASSWORD` 
+environment variable is set is fixed.
+- Cassandra `read before write` pattern did not correctly use schema 
+defaults and prevented `PATCH` of the **Plugins** entity. Usage of schema 
+default values in Cassandra `read before write` pattern is fixed.
+- `plugins.run_on default` now correctly set on migrations upgrade.
+
 ## 0.35
 **Release Date:** 2019/05/17
 
