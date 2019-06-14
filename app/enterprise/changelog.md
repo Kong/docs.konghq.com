@@ -18,11 +18,8 @@ title: Kong Enterprise Changelog
 
 **FIXES**
 - After upgrade to 0.35, Developer Portal now shows documentation.
-- `plugins.run_on default` now correctly set on migrations upgrade.
-- Can now add `rate-limiting-advanced` with `config.strategy=redis` 
-and `config.redis.sentinel_addresses`
-- Long requests URLs no longer causes the UI to not wrap the content 
-of the "Request URL" field
+- Developer Portal OAPI spec rendering of long request URL wrapping 
+is fixed
 - Upgrade from 0.34-1 to 0.35 using Cassandra no longer creates 
 duplicate **Workspace**
 - Migrations from 0.34-1 to 0.35 did not properly handle **Certificates** 
@@ -38,7 +35,7 @@ environment variable is set is fixed.
 - Cassandra `read before write` pattern did not correctly use schema 
 defaults and prevented `PATCH` of the **Plugins** entity. Usage of schema 
 default values in Cassandra `read before write` pattern is fixed.
-
+- `plugins.run_on default` now correctly set on migrations upgrade.
 
 ## 0.35
 **Release Date:** 2019/05/17
