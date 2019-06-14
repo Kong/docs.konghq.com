@@ -35,7 +35,10 @@ finish`. Proper creation of **Workspace** links for **Certificates** and
 `KONG_PASSWORD` during `migrations up` to 0.35 would error. Running 
 migrations when **Super Admin** already exists and `KONG_PASSWORD` 
 environment variable is set is fixed.
-- Schema defaults are used when doing a `Read` before `Write`.
+- Cassandra `read before write` pattern did not correctly use schema 
+defaults and prevented `PATCH` of the **Plugins** entity. Usage of schema 
+default values in Cassandra `read before write` pattern is fixed.
+
 
 ## 0.35
 **Release Date:** 2019/05/17
