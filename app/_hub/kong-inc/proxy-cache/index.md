@@ -201,7 +201,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint get">/proxy-cache/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------
