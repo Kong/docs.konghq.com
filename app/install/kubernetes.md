@@ -56,12 +56,11 @@ once you've completed your experiment to avoid on-going Google Cloud usage charg
 
 <iframe width="660" height="400" src="https://www.youtube-nocookie.com/embed/MPlSyWDAOpw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-# Kong via Helm or Minikube
+# Kong via Helm
 
-An easy way to deploy Kong on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
+Install Kong or Kong Enterprise using the official [Helm chart]({{ page.links.kubeapps_hub }})
 
-Kong can also be deployed on minikube - please follow the [README]({{ page.links.minikube }})
-and use the manifest files provided in `minikube` directory.
+For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes).
 
 # Kong via Manifest Files
 
