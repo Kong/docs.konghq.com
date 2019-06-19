@@ -43,6 +43,8 @@ for specific entities.
 
 ## Video Walkthrough
 
+Describe this video.
+
 <video width="100%" autoplay loop controls>
  <source src="https://konghq.com/wp-content/uploads/2019/02/role-creation-ent-34.mov" type="video/mp4">
  Your browser does not support the video tag.
