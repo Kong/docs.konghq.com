@@ -31,7 +31,7 @@ kind: CertificateSigningRequest
 metadata:
   name: kong-control-plane.kong.svc
 spec:
-  request: $(openssl req -new -nodes -batch -subj /CN=kong-control-plane.kong.svc | base64 | tr -d '\n')
+  request: $(openssl req -new -nodes -batch -keyout privkey.pem -subj /CN=kong-control-plane.kong.svc | base64 | tr -d '\n')
   usages:
   - digital signature
   - key encipherment
