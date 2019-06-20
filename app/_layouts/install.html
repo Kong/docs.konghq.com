@@ -56,6 +56,11 @@ layout: default
 
     <div class="page-content-container">
       <div class="page-content">
+          {% if page.toc == true or
+            page.toc != false and filename != "index.md" %}
+            <h2 id="table-of-contents">Table of Contents</h2>
+            {% include toc.html html=content class="inline-toc" anchor_class="scroll-to" h_max=2 %}
+            {% endif %}
         <div class="content">
           {{ content }}
 
