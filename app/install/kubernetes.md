@@ -15,16 +15,7 @@ links:
   az: "https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest"
 ---
 
-## Table of Contents
-
-<!-- FIXME the list below should be an unordered list, but currently those do not render correctly in this section of the Docs site - depends on https://github.com/Kong/docs.konghq.com/issues/917 -->
-1. [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
-1. [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
-1. [Kong via Helm or Minikube](#kong-via-helm-or-minikube)
-1. [Kong via Manifest Files](#kong-via-manifest-files)
-1. [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users)
-
-# Kubernetes Ingress Controller for Kong
+## Kubernetes Ingress Controller for Kong
 
 Install Kong or Kong Enterprise using the official
 <a href="https://github.com/Kong/kubernetes-ingress-controller">Kubernetes Ingress Controller</a>.
@@ -39,7 +30,7 @@ is on the [Kong Blog](https://konghq.com/blog/).
 For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes). For bug reports,
 please [open a new issue on GitHub](https://github.com/Kong/kubernetes-ingress-controller/issues).
 
-# Kong via Google Cloud Platform Marketplace
+## Kong via Google Cloud Platform Marketplace
 
 Perhaps the fastest way to try Kong on Kubernetes is via the Google Cloud
 Platform Marketplace and [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) -
@@ -56,20 +47,20 @@ once you've completed your experiment to avoid on-going Google Cloud usage charg
 
 <iframe width="660" height="400" src="https://www.youtube-nocookie.com/embed/MPlSyWDAOpw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-# Kong via Helm or Minikube
+## Kong via Helm or Minikube
 
 An easy way to deploy Kong on Kubernetes is via [Helm]({{ page.links.kubeapps_hub }}).
 
 Kong can also be deployed on minikube - please follow the [README]({{ page.links.minikube }})
 and use the manifest files provided in `minikube` directory.
 
-# Kong via Manifest Files
+## Kong via Manifest Files
 
 Kong, or the trial version of Kong Enterprise, can be provisioned
 on a Kubernetes cluster via the manifest files provided
 in the [repo]({{ page.links.gh_repo }}).
 
-## 1. **Initial setup**
+### 1. **Initial setup**
 
 Download or clone the following repo:
 
@@ -81,9 +72,9 @@ $ cd kong-dist-kubernetes
 Skip to step 3 if you have already provisioned a cluster and registered it
 with Kubernetes.
 
-## 2.  **Deploy a cluster**
+### 2.  **Deploy a cluster**
 
-### [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/)
+#### [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/)
 
 You need [gcloud]({{ page.links.gcloud }}) and [kubectl]({{ page.links.kubectl }})
 command-line tools installed and set up to run deployment commands. Also
@@ -103,7 +94,7 @@ $ gcloud deployment-manager deployments \
     create cluster --config cluster.yaml
 ```
 
-### [Azure Kubernetes Cluster (AKS)](https://docs.microsoft.com/en-us/azure/aks/)
+#### [Azure Kubernetes Cluster (AKS)](https://docs.microsoft.com/en-us/azure/aks/)
 
 You need [az]({{ page.links.az }}) command-line tools installed and set up to run deployment commands.
 
@@ -127,7 +118,7 @@ You need [az]({{ page.links.az }}) command-line tools installed and set up to ru
     $ az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
     ```
 
-## 3. **Deploy a datastore**
+### 3. **Deploy a datastore**
 
 Before deploying Kong, you need to provision a Cassandra or PostgreSQL pod.
 
@@ -149,7 +140,7 @@ $ kubectl create -f postgres.yaml
 **Kong Enterprise trial users** should complete the steps in the
 **Additional Steps for Kong Enterprise Trial Users** section below before proceeding.
 
-## 4. **Prepare database**
+### 4. **Prepare database**
 
 Using the `kong_migration_<postgres|cassandra>.yaml` file,
 run the migration job:
@@ -163,7 +154,7 @@ Once the job completes, you can remove the pod by running following command:
 $ kubectl delete -f kong_migration_<postgres|cassandra>.yaml
 ```
 
-## 5. **Deploy Kong**
+### 5. **Deploy Kong**
 
 Using the `kong_<postgres|cassandra>.yaml` file from this
 repo, deploy Kong admin, proxy services, and a `Deployment` controller to
@@ -173,7 +164,7 @@ the cluster:
 $ kubectl create -f kong_<postgres|cassandra>.yaml
 ```
 
-## 6. **Verify your deployments**
+### 6. **Verify your deployments**
 
 You can now see the resources that have been deployed using `kubectl`:
 
@@ -191,12 +182,12 @@ $ curl <kong-proxy-ip-address>:8000
 $ curl https://<kong-proxy-ssl-ip-address>:8443
 ```
 
-## 7. **Get Started with Kong**
+### 7. **Get Started with Kong**
 
 Quickly learn how to use Kong with the
 [5-minute Quickstart](/latest/getting-started/quickstart/).
 
-# Additional Steps for Kong Enterprise Trial Users
+## Additional Steps for Kong Enterprise Trial Users
 
 1. **Publish a Kong Enterprise Docker image to your container registry**
 

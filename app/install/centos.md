@@ -7,7 +7,7 @@ breadcrumbs:
   Installation: /install
 ---
 
-### Packages
+## Packages
 
 Start by downloading the corresponding package for your configuration:
 
@@ -37,7 +37,7 @@ baseurl=https://kong.bintray.com/kong-rpm/centos/7
 
 ----
 
-### Installation
+## Installation
 
 1. **Install Kong**
 

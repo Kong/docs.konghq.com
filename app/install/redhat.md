@@ -9,7 +9,7 @@ breadcrumbs:
 
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### Packages
+## Packages
 
 Start by downloading the corresponding package for your configuration:
 
@@ -18,7 +18,7 @@ Start by downloading the corresponding package for your configuration:
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
-### YUM Repositories
+## YUM Repositories
 
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
@@ -39,7 +39,7 @@ baseurl=https://kong.bintray.com/kong-rpm/rhel/7
 
 ----
 
-### Installation
+## Installation
 
 1. **Enable the EPEL repository**
 
