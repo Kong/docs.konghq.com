@@ -15,9 +15,13 @@ $(function () {
 
   $('.scroll-to').on('click', function (e) {
     e.preventDefault()
-
+    if ($(window).width() <= 1000) {
+      var offset = NAV_HEIGHT + 40
+    } else {
+      var offset = NAV_HEIGHT
+    }
     $('html, body').animate({
-      scrollTop: $($(this).attr('href')).offset().top - NAV_HEIGHT // Header height
+      scrollTop: $($(this).attr('href')).offset().top - offset // Header height
     }, 700)
   })
 
@@ -357,9 +361,14 @@ $(function () {
 
   // Smooth scroll if hash in URL
   if (window.location.hash) {
+    if ($(window).width() <= 1000) {
+      var offset = NAV_HEIGHT + 40
+    } else {
+      var offset = NAV_HEIGHT
+    }
     $('html, body').scrollTop(0).show()
     $('html, body').animate({
-      scrollTop: $(window.location.hash).offset().top - NAV_HEIGHT // Add spacing on top after scroll
+      scrollTop: $(window.location.hash).offset().top - offset // Add spacing on top after scroll
     }, 600) // Adjust scroll speed
   }
 
