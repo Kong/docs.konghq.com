@@ -23,7 +23,7 @@ Plugin via the command line, checkout the
 
 ### How to Enable a Plugin in Kong Manager
 
-1. Chose the desired **Workspace** in **Kong Manager** and navigate to the
+1. Choose the desired **Workspace** in **Kong Manager** and navigate to the
 **Plugins** tab under **API Gateway**.
 
     ![Plugins Tab](https://doc-assets.konghq.com/0.35/getting-started/add-a-plugin/01-plugin-tab.png)
@@ -45,7 +45,7 @@ to configure the **Plugin** without enabling it.
 3. Define the **Plugin** as *global* or *scoped*.
 <br/><br/>*Global* will apply the **Plugin** to *every* **Service** and
 **Route** in the **Workspace**.
-<br/>*Scoped* will apply the **Plugin** to one **Service** , **Route**, and/or
+<br/>*Scoped* will apply the **Plugin** to one **Service**, **Route**, and/or
 **Consumer**.
 <br/><br/>To use this option, select the **Scoped** radio button and select the 
 desired **Service**, **Route**, or **Consumer** from the dropdown.
@@ -66,7 +66,7 @@ following fields are *required*:<br/>-`config.limit`<br/>-`config.sync_rate`<br/
 
 5. Click the **Create** button at the bottom of the form to save and
 enable the **Plugin**. If it is successful, the page will automatically 
-redirect to the the **Plugin Overview**, with the **Rate Limiting** Plugin
+redirect to the **Plugin Overview**, with the **Rate Limiting** Plugin
 listed.
 
     ![Plugin Overview](https://doc-assets.konghq.com/0.35/getting-started/add-a-plugin/06-plugin-overview.png)
