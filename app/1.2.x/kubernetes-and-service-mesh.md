@@ -106,7 +106,7 @@ curl -fsSL https://raw.githubusercontent.com/Kong/kong-dist-kubernetes/master/se
 Going forward, any pods that start get a Kong Sidecar automatically injected, and all
 data from the containers of that pod will flow through a Kong Sidecar.
 
-For example if we utilize the `bookinfo.yaml` example from istio
+For example, if we use the `bookinfo.yaml` example from Istio:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.1/samples/bookinfo/platform/kube/bookinfo.yaml
