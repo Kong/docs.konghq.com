@@ -112,7 +112,7 @@ For example, if we use the `bookinfo.yaml` example from Istio:
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.1/samples/bookinfo/platform/kube/bookinfo.yaml
 ```
 
-We see that all pods received a Kong sidecar
+We see that all pods received a Kong Sidecar:
 
 ```
 kubectl get all
