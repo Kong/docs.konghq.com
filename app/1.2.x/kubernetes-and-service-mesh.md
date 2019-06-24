@@ -95,7 +95,7 @@ webhooks:
 EOF
 ```
 
-or use the following convenience script
+or use the following convenience script:
 
 ```
 curl -fsSL https://raw.githubusercontent.com/Kong/kong-dist-kubernetes/master/setup_sidecar_injector.sh | bash
