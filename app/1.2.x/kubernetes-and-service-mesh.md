@@ -58,7 +58,7 @@ $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].st
 $ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
-Enable the sidecar injector plugin via the Kong admin api
+Enable the Sidecar Injector Plugin via the Kong Admin API:
 
 ```
 curl $HOST:$ADMIN_PORT/plugins -d name=kubernetes-sidecar-injector -d config.image=kong
