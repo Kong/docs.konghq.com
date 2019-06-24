@@ -15,7 +15,7 @@ You need Kong 1.0.0 or later running on Kubernetes including and an SSL certific
 stored as a secret that's available to the Kong control plane. The Make tasks `run_cassandra`
 and `run_postgres` from the [Kong Kubernetes Repository](https://github.com/Kong/kong-dist-kubernetes)
 will fully provision the prerequisite data store, Kong control plane, Kong data plane
-and the ssl secret.
+and the SSL secret.
 
 Alternatively follow the any of the setup instructions from 
 [Kong Kubernetes Install Instructions](/install/kubernetes/) page then setup the 
