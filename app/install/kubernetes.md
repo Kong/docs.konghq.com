@@ -153,7 +153,7 @@ $ export PROXY_PORT=$(kubectl get svc --namespace kong kong-ingress-data-plane -
 
 Continue to [configuring a service](/latest/getting-started/configuring-a-service/).
 
-### **Declarative / No Datastore**
+### **Using Kong without a Database**
 
 For declarative / db-less, create a config map using the `declarative.yaml` sample file from
 this repository
