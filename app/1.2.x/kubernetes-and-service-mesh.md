@@ -51,7 +51,7 @@ curl -fsSL https://raw.githubusercontent.com/Kong/kong-dist-kubernetes/master/se
 
 ## Installation Steps
 
-Export some variables to access the Kong admin api and Proxy
+Export some variables to access the Kong Admin API and Proxy:
 
 ```
 $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].status.addresses[0].address}')
