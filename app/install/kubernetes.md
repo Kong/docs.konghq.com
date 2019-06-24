@@ -143,7 +143,7 @@ pod/kong-control-plane         1/1     Running
 pod/kong-ingress-data-plane    1/1     Running
 ```
 
-Export the Kong host, admin api and proxy ports
+Export the Kong host, Admin API and proxy ports
 
 ```bash
 $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].status.addresses[0].address}')
