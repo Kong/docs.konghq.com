@@ -19,7 +19,7 @@ and the ssl secret.
 
 Alternatively follow the any of the setup instructions from 
 [Kong Kubernetes Install Instructions](/install/kubernetes/) page then setup the 
-ssl certificate / secret
+SSL certificate/secret:
 
 ```
 cd $(mktemp -d)
