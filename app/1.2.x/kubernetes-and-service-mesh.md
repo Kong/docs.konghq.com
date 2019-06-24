@@ -11,7 +11,7 @@ mesh on Kubernetes with our [Kubernetes sidecar injector plugin](https://github.
 
 ## Prerequisites
 
-You need Kong 110.0 or later running on Kubernetes including and a ssl certificate
+You need Kong 1.0.0 or later running on Kubernetes including and an SSL certificate
 stored as a secret that's available to the Kong control plane. The Make tasks `run_cassandra`
 and `run_postgres` from the [Kong Kubernetes Repository](https://github.com/Kong/kong-dist-kubernetes)
 will fully provision the prerequisite data store, Kong control plane, Kong data plane
