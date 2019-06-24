@@ -43,7 +43,7 @@ kubectl delete csr kong-control-plane.kong.svc
 rm privkey.pem
 ```
 
-or use the following convenience script
+or use the following convenience script:
 
 ```
 curl -fsSL https://raw.githubusercontent.com/Kong/kong-dist-kubernetes/master/setup_certificate.sh | bash
