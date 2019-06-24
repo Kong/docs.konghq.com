@@ -64,7 +64,7 @@ Enable the Sidecar Injector Plugin via the Kong Admin API:
 curl $HOST:$ADMIN_PORT/plugins -d name=kubernetes-sidecar-injector -d config.image=kong
 ```
 
-Turn on Kubernetes sidecar injection
+Turn on Kubernetes Sidecar Injection:
 
 ```
 cat <<EOF | kubectl create -f -
