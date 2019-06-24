@@ -139,12 +139,11 @@ pod/kong-control-plane         1/1     Running
 pod/kong-ingress-data-plane    1/1     Running
 ```
 
-Export the Kong host, Admin API and proxy ports
+Get access to the Kong Admin API port (if running minikube the below should work):
 
 ```bash
 $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].status.addresses[0].address}')
 $ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o jsonpath='{.spec.ports[0].nodePort}')
-$ export PROXY_PORT=$(kubectl get svc --namespace kong kong-ingress-data-plane -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
 Continue to [configuring a service](/latest/getting-started/configuring-a-service/).
@@ -177,11 +176,11 @@ Now do a rolling deployment using the `md5sum` of the declarative Kong yaml file
 $ kubectl patch deployment kong-dbless -n kong -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"declarative\":\"`md5sum declarative.yaml | awk '{ print $$1 }'`\"}}}}}}"
 ```
 
-Export the Kong host, and proxy port
+Get access to the Kong Admin API port (if running minikube the below should work):
 
 ```bash
-$ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].status.addresses[0].address}')
-$ export PROXY_PORT=$(kubectl get svc --namespace kong kong-dbless -o jsonpath='{.spec.ports[0].nodePort}')
+$ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].status.addresses[0].address}')=
+$ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
 Continue to [db-less and declarative configuration documentation page](/latest/db-less-and-declarative-config/)
