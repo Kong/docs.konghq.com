@@ -117,7 +117,7 @@ $ kubectl create -f postgres.yaml
 ```
 
 Use the `kong-control-plane-postgres.yaml` file from this repository to run required migrations
-and deploy Kong control plane node including the Kong admin api
+and deploy Kong control plane node including the Kong Admin API:
 
 ```bash
 $ kubectl -n kong apply -f kong-control-plane-postgres.yaml
