@@ -56,7 +56,7 @@ once you've completed your experiment to avoid on-going Google Cloud usage charg
 
 # Kong via Helm
 
-Install Kong or Kong Enterprise using the official [Helm chart]({{ page.links.kubeapps_hub }})
+Install Kong or Kong Enterprise using the official [Helm chart]({{ page.links.kubeapps_hub }}).
 
 For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes).
 
