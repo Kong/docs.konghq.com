@@ -16,11 +16,10 @@ links:
 ## Kubernetes Ingress Controller for Kong
 
 Install Kong or Kong Enterprise using the official
-<a href="https://github.com/Kong/kubernetes-ingress-controller">Kubernetes Ingress Controller</a>.
+[Kubernetes Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller).
 
-Learn more via the <a href="https://github.com/Kong/kubernetes-ingress-controller/blob/master/README.md">README
-</a>. To run a local proof of concept, follow the
-<a href="https://github.com/Kong/kubernetes-ingress-controller/tree/master/deploy">Minikube and Minishift tutorials</a>.
+Learn more via the [README](https://github.com/Kong/kubernetes-ingress-controller/blob/master/README.md). 
+To run a local proof of concept, follow the [Minikube and Minishift tutorials](https://github.com/Kong/kubernetes-ingress-controller/tree/master/deploy).
 
 The [Kubernetes Ingress Controller for Kong launch announcement](https://konghq.com/blog/kubernetes-ingress-controller-for-kong/)
 is on the [Kong Blog](https://konghq.com/blog/).
@@ -47,7 +46,7 @@ once you've completed your experiment to avoid on-going Google Cloud usage charg
 
 ## Kong via Helm
 
-Install Kong or Kong Enterprise using the official [Helm chart]({{ page.links.kubeapps_hub }}).
+Install **Kong** or **Kong Enterprise** using the official [Helm chart]({{ page.links.kubeapps_hub }}).
 
 For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes).
 
