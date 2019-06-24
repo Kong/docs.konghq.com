@@ -13,16 +13,7 @@ links:
   az: "https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest"
 ---
 
-## Table of Contents
-
-<!-- FIXME the list below should be an unordered list, but currently those do not render correctly in this section of the Docs site - depends on https://github.com/Kong/docs.konghq.com/issues/917 -->
-1. [Kubernetes Ingress Controller for Kong](#kubernetes-ingress-controller-for-kong)
-1. [Kong via Google Cloud Platform Marketplace](#kong-via-google-cloud-platform-marketplace)
-1. [Kong via Helm](#kong-via-helm)
-1. [Kong via Manifest Files](#kong-via-manifest-files)
-1. [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users)
-
-# Kubernetes Ingress Controller for Kong
+## Kubernetes Ingress Controller for Kong
 
 Install Kong or Kong Enterprise using the official
 <a href="https://github.com/Kong/kubernetes-ingress-controller">Kubernetes Ingress Controller</a>.
@@ -37,7 +28,7 @@ is on the [Kong Blog](https://konghq.com/blog/).
 For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes). For bug reports,
 please [open a new issue on GitHub](https://github.com/Kong/kubernetes-ingress-controller/issues).
 
-# Kong via Google Cloud Platform Marketplace
+## Kong via Google Cloud Platform Marketplace
 
 Perhaps the fastest way to try Kong on Kubernetes is via the Google Cloud
 Platform Marketplace and [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) -
@@ -54,19 +45,19 @@ once you've completed your experiment to avoid on-going Google Cloud usage charg
 
 <iframe width="660" height="400" src="https://www.youtube-nocookie.com/embed/MPlSyWDAOpw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-# Kong via Helm
+## Kong via Helm
 
 Install Kong or Kong Enterprise using the official [Helm chart]({{ page.links.kubeapps_hub }}).
 
 For questions and discussion, please visit [Kong Nation](https://discuss.konghq.com/c/kubernetes).
 
-# Kong via Manifest Files
+## Kong via Manifest Files
 
 Kong, or the trial version of Kong Enterprise, can be provisioned
 on a Kubernetes cluster via the manifest files provided
 in the [Kong Kubernetes repository]({{ page.links.gh_repo }}).
 
-## **Prerequisites**
+### **Prerequisites**
 
 1. Download or clone the [Kong Kubernetes repository]({{ page.links.gh_repo }})
 2. A Kubernetes cluster
@@ -86,6 +77,7 @@ The next step depends on whether you are going to use Kong with Cassandra, Postg
 * For Cassandra, continue to [Cassandra Backed Kong](#cassandra-backed-kong)
 * For Postgres, continue to [Postgres Backed Kong](#postgres-backed-kong)
 * For DB-less mode, continue to [Using Kong without a Database](#using-kong-without-a-database)
+
 ### **Cassandra Backed Kong**
 
 Use the `cassandra-service.yaml` and `cassandra-statefulset.yaml`
@@ -195,7 +187,7 @@ $ export PROXY_PORT=$(kubectl get svc --namespace kong kong-dbless -o jsonpath='
 
 Continue to [db-less and declarative configuration documentation page](/latest/db-less-and-declarative-config/)
 
-# Additional Steps for Kong Enterprise Trial Users
+## Additional Steps for Kong Enterprise Trial Users
 
 1. **Publish a Kong Enterprise Docker image to your container registry**
 

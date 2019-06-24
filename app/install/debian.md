@@ -7,7 +7,7 @@ breadcrumbs:
   Installation: /install
 ---
 
-### Packages
+## Packages
 
 Start by downloading the corresponding package for your configuration:
 
@@ -17,7 +17,7 @@ Start by downloading the corresponding package for your configuration:
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
-### APT Repositories
+## APT Repositories
 
 You can also install Kong via APT; follow the instructions on the "Set Me Up"
 section on the page below, setting  *distribution* to the appropriate value
@@ -27,7 +27,7 @@ section on the page below, setting  *distribution* to the appropriate value
 
 ----
 
-### Installation
+## Installation
 
 1. **Install Kong**
 
