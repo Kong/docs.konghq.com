@@ -74,7 +74,7 @@ in the [Kong Kubernetes repository]({{ page.links.gh_repo }}).
 ## **Installation Steps**
 
 The [Kong Kubernetes repository]({{ page.links.gh_repo }}) includes Make tasks `run_cassandra`,
-`run_postgres` and `run_dbless` for ease of use but we'll detail the specific yaml files the tasks use here.
+`run_postgres` and `run_dbless` for ease of use, but we'll detail the specific YAML files the tasks use here.
 
 For all variations create the Kong namespace
 ```bash
