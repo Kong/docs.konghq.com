@@ -81,6 +81,11 @@ For all variations create the Kong namespace
 $ kubectl apply -f kong-namespace.yaml
 ```
 
+The next step depends on whether you are going to use Kong with Cassandra, Postgres or without a datastore:
+
+* For Cassandra, continue to [Cassandra Backed Kong](#cassandra-backed-kong)
+* For Postgres, continue to [Postgres Backed Kong](#postgres-backed-kong)
+* For DB-less mode, continue to [Using Kong without a Database](#using-kong-without-a-database)
 ### **Cassandra Backed Kong**
 
 Use the `cassandra-service.yaml` and `cassandra-statefulset.yaml`
