@@ -8,7 +8,7 @@ toc: false
     <div class="left">
       <img src="/assets/images/icons/icn-buildings.svg" />
     </div>
-    <p>The following documentation refers to Kong Enterprise specific Admin API functionality. For a complete reference checkout the <a href="/latest/admin-apo">Kong Admin API Reference</a>.</p>
+    <p>The following documentation refers to Kong Enterprise specific Admin API functionality. For a complete reference checkout the <a href="/latest/admin-api">Kong Admin API Reference</a>.</p>
   </div>
 </div>
 
