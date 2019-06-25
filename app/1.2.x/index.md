@@ -22,15 +22,9 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/streams-and-service-mesh">Streams &amp; Service Mesh</a></h3>
-    <p>Want to use Kong over TCP traffic? Want to start using Service Mesh? Check our tutorial to learn how to do it.</p>
-    <a href="/{{page.kong_version}}/streams-and-service-mesh">Read the tutorial &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/kubernetes-and-service-mesh">Kubernetes &amp; Service Mesh</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/hub/kong-inc/kubernetes-sidecar-injector/">Kubernetes &amp; Service Mesh</a></h3>
     <p>Use our sidecar injector plugin to run Kong as a service mesh on Kubernetes</p>
-    <a href="/{{page.kong_version}}/kubernestes-and-service-mesh">Read the tutorial &rarr;</a>
+    <a href="/hub/kong-inc/kubernetes-sidecar-injector/">Read the plugin guide &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

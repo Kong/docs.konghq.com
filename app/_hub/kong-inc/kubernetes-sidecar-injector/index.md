@@ -1,5 +1,33 @@
 ---
-title: Kong Service Mesh and Kubernetes
+name: Kubernetes Sidecar Injector
+publisher: Kong Inc.
+
+categories:
+  - deployment
+
+type: integration
+
+desc: Kubernetes Kong Service Mesh
+description: |
+  The plugin will inject Kong dataplane nodes and form a service mesh on top of Kubernetes
+
+source_url: https://github.com/Kong/kubernetes-sidecar-injector
+
+kong_version_compatibility:
+    community_edition:
+      compatible:
+        - 1.2.x
+        - 1.1.x
+
+params:
+  name: kubernetes-sidecar-injector
+  config:
+    - name: image
+      required: false
+      default: "`kong`"
+      value_in_examples: kong
+      description: The docker image to inject
+
 ---
 
 ## Introduction
@@ -126,4 +154,3 @@ pod/reviews-v3       2/2     Running
 ```
 
 Continue to [configuring a service](/latest/getting-started/configuring-a-service/).
-
