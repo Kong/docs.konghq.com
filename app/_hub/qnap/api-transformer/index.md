@@ -6,7 +6,7 @@ categories:
 type: plugin
 desc: Kong middleware to transform requests / responses, using Lua script.
 description: |
-    This is Kong plugins to completely transform requests and responses depend on your own business requirements.
+    This is a Kong Plugin that transforms requests and responses depending on your own business requirements.
 support_url: https://github.com/qnap-dev/kong-plugin-api-transformer/issues
 source_url:  https://github.com/qnap-dev/kong-plugin-api-transformer
 license_type: Apache-2.0
