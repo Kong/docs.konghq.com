@@ -131,7 +131,7 @@ $ kubectl -n kong apply -f kong-ingress-data-plane-postgres.yaml
 
 Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
 
-### **Using Datastore Backed Kong**
+### Using Datastore Backed Kong
 
 First let's ensure the Kong control plane and data plane are successfully running
 
