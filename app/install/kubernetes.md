@@ -61,7 +61,7 @@ in the [Kong Kubernetes repository]({{ page.links.gh_repo }}).
 1. Download or clone the [Kong Kubernetes repository]({{ page.links.gh_repo }})
 2. A Kubernetes cluster
 
-## **Installation Steps**
+## Installation Steps
 
 The [Kong Kubernetes repository]({{ page.links.gh_repo }}) includes Make tasks `run_cassandra`,
 `run_postgres` and `run_dbless` for ease of use, but we'll detail the specific YAML files the tasks use here.
