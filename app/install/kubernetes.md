@@ -165,7 +165,7 @@ Now deploy the Kong dataplane using the `kong-dbless.yaml` file from this reposi
 $ kubectl apply -f kong-dbless.yaml
 ```
 
-### **Using Declarative / DB Less Backed Kong**
+### Using Declarative / DB Less Backed Kong
 
 To update declarative / db-less Kong edit the declarative file and then replace the config map
 
