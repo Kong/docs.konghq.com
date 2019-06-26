@@ -106,7 +106,7 @@ $ kubectl -n kong apply -f kong-ingress-data-plane-cassandra.yaml
 
 Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
 
-### **PostgreSQL Backed Kong**
+### PostgreSQL Backed Kong
 
 Use the `postgres.yaml` file from the repository to deploy a  PostgreSQL `Service` and a 
 `ReplicationController` in the cluster:
