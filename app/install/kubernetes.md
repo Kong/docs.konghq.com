@@ -80,7 +80,7 @@ For Postgres, continue to [Postgres Backed Kong](#postgres-backed-kong)
 
 For DB-less mode, continue to [Using Kong without a Database](#using-kong-without-a-database)
 
-### **Cassandra Backed Kong**
+### Cassandra Backed Kong
 
 Use the `cassandra-service.yaml` and `cassandra-statefulset.yaml`
 file from this repository to deploy a Cassandra `Service` and a `StatefulSet` in the cluster.
