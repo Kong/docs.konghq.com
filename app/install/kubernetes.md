@@ -56,7 +56,7 @@ Kong, or the trial version of Kong Enterprise, can be provisioned
 on a Kubernetes cluster via the manifest files provided
 in the [Kong Kubernetes repository]({{ page.links.gh_repo }}).
 
-### **Prerequisites**
+### Prerequisites
 
 1. Download or clone the [Kong Kubernetes repository]({{ page.links.gh_repo }})
 2. A Kubernetes cluster
