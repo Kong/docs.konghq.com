@@ -1,8 +1,21 @@
 ---
 title: How to Install Kong Enterprise on CentOS
+toc: false
 ---
 
-## Installation Steps
+#### Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Step 1](#step-1)
+- [Step 2](#step-2)
+- [Step 3](#step-3)
+- [Step 4](#step-4)
+- [Step 5](#step-5)
+- [Step 6](#step-6)
+- [Step 7](#step-7)
+- [Step 8](#step-8)
+- [Step 9](#step-9)
+- [Next Steps](#next-steps)
 
 ### Prerequisites
 
