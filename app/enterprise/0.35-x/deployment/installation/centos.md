@@ -7,7 +7,7 @@ title: How to Install Kong Enterprise on CentOS
 ### Prerequisites
 
 This installation guide assumes:
-        - You have a CentOS 7 system with root access. 
+* You have a CentOS 7 system with root access. 
         - You can SSH to that system to configure it. 
         - You have basic knowledge of CentOS and can alter the commands below to suit your needs. The example commands may not 
           be suitable for you based on your environment and security needs. 
