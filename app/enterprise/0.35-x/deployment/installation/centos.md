@@ -67,75 +67,148 @@ Before installing Kong Enterprise, ensure that you've prepared your system:
     $ scp kong-se-license.json <centos username>@192.168.91.109:~
     ```
 
-`$ sudo yum install kong-enterprise-edition-0.35-1.el7.noarch.rpm`
+## Step 1
 
-5. Install Postgresql 
+Install Kong Enterprise (Note your version will be different based on when you obtained the rpm)
 
-`$ sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm`
+```
+$ sudo yum install kong-enterprise-edition-0.35-1.el7.noarch.rpm
+```
 
-`$ sudo yum install postgresql95 postgresql95-server`
+## Step 2
 
-6. Initialize Postgresql database
+Install PostgreSQL.
 
-`$ sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb`
+```
+$ sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
-7. Start Postgres and Enable automatic start
+$ sudo yum install postgresql95 postgresql95-server
+```
 
-`$ sudo systemctl enable postgresql-9.5`
-`$ sudo systemctl start postgresql-9.5`
+## Step 3 
 
-8. Create a Kong database and user. 
+Initialize the PostgreSQL database.
 
-⚠️**Note**: Make sure the username and password for the Kong Database are kept safe. We have used a simple example below for illustration purposes. 
+```
+$ sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
+```
 
-**switch to postgres user**
-`$ sudo -i -u postgres`
+## Step 4
 
-**launch postgresql**
-`$ psql`
+Start PostgreSQL and enable automatic start.
 
-**Create Kong user and database, make Kong the owner of the database and set the password of the Kong user to 'kong'**
+```
+$ sudo systemctl enable postgresql-9.5
+$ sudo systemctl start postgresql-9.5
+```
+
+## Step 5
+
+Create a Kong database and user. 
+
+⚠️**Note**: Make sure the username and password for the Kong Database are kept 
+safe. We have used a simple example below for illustration purposes. 
+
+1. Switch to PostgreSQL user  
+    ```
+    $ sudo -i -u postgres
+    ```
+
+2. Launch PostgreSQL
+    ```
+    $ psql
+    ```
+
+3. Create a Kong user and database, make Kong the owner of the database, and 
+set the password of the Kong user to 'kong'
+    ```
 $ CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
+    ```
 
-**exit from psql**
-`$ \q`
+4. Exit from PostgreSQL
+    ```
+    $ \q
+    ```
 
-**return to terminal**
-`$ exit`
+5. Return to terminal
+    ```
+    $ exit
+    ```
 
-9. Modify the Postgres configuration to allow password authentication with MD5.
+6. Modify the PostgreSQL configuration to allow password authentication with 
+MD5.
+    Under IPv4 local connections: replace the `"ident"` entry with `"md5"`
+  
+    ```
+    $ sudo vi /var/lib/pgsql/9.5/data/pg_hba.conf
+    ```
 
-**Under IPv4 local connections: replace the `"ident"` entry with `"md5"`**
-`$ sudo vi /var/lib/pgsql/9.5/data/pg_hba.conf`
+7. restart PostgreSQL
+    ```
+    $ sudo systemctl restart postgresql-9.5
+    ```
 
-**restart postgresql**
-`$ sudo systemctl restart postgresql-9.5`
+8. Copy the license file from your home directory to the `/etc/kong` directory. 
+Kong will look for the license here. 
+    ```
+    $ sudo cp kong-se-license.json /etc/kong/license.json
+    ```
 
-10. Copy the license file from your home directory to the `/etc/kong` directory. Kong will look for the license here. 
-`$ sudo cp kong-se-license.json /etc/kong/license.json`
+9. Modify the `kong.conf` file and update the PostgreSQL database password to 
+the password you used when you created the PostgreSQL user named **kong**. 
 
-11. Modify the `kong.conf` file and update the Postgres database password to the password you used when you created the Postgres user named **kong**. 
+10. Make a copy of the default configuration file    
+    ```
+    $ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+    ```
 
-**Make a copy of the default conf file**
-`$ cp /etc/kong/kong.conf.default /etc/kong/kong.conf`
+11. Uncomment and add 'kong' to pg_password line
+    ```
+    $ sudo vi [/path/to/kong.conf]
+    ```
 
-**Uncomment and add 'kong' to pg_password line**
-`$ sudo vi [/path/to/kong.conf]`
+## Step 6 
 
-12. Seed the **Super Admin** for initial startup. This step is not mandatory, but if you want to add security and Role-Based Access Control (RBAC) to your environment, it is best to seed the **Super Admin** at this step and make note of the password for when you need it later. 
-**Create an environment variable with the _Super Admin_ password (that will be used during migrations to seed the initial _Super Admin_ password)**
-`$ export KONG_PASSWORD=<password-only-you-know>`
+Seed the **Super Admin** for initial startup. This step is not mandatory, 
+but if you want to add security and Role-Based Access Control (RBAC) to your 
+environment, it is best to seed the **Super Admin** at this step and make note 
+of the password for when you need it later. 
 
-13. Run migrations to prepare the Kong DB
-`$ kong migrations bootstrap -c /etc/kong/kong.conf`
+Create an environment variable with the _Super Admin_ password (that will be 
+used during migrations to seed the initial _Super Admin_ password):
 
-14. Start kong
-`$ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf`
+```
+$ export KONG_PASSWORD=<password-only-you-know>
+```
 
-15. Verify Kong installation is working
-`curl -i -X GET --url http://localhost:8001/services`
+## Step 7
 
-**You should receive a HTTP/1.1 200 OK message. If you do, you are ready to move on. As a Next Step, consider the following tasks:**
+Run migrations to prepare the Kong DB
+
+```
+$ kong migrations bootstrap -c /etc/kong/kong.conf
+```
+
+## Step 8
+
+Start Kong.
+
+```
+$ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
+```
+
+## Step 9
+
+Verify Kong installation is working.
+
+```
+curl -i -X GET --url http://localhost:8001/services
+```
+
+## Next Steps
+
+You should receive a HTTP/1.1 200 OK message. If you do, you are ready to move on. As a Next Step, consider the following tasks:
+
 1. Turn on RBAC and understand the RBAC model within Kong. 
 2. Turn on the Admin GUI Portal to allow you to administer Kong through the UI. 
 3. Create a sample Workspace to understand how Kong can be segregated for use between teams. 
