@@ -37,18 +37,18 @@ Before installing Kong Enterprise, ensure that you've prepared your system:
     ```
     $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@192.168.91.109:~
     ```
-
-⚠️**Note**: In order to use a yum repo to download Kong Enterprise, you can edit the yum repo file under `/etc/yum.repos.d` to reference your CentOS version (`$releasever`, e.g., `6`, `7`), by editing the **baseurl** field. For instance:
+            
+    ⚠️**Note**: In order to use a yum repo to download Kong Enterprise, you can edit the yum repo file under `/etc/yum.repos.d` to reference your CentOS version (`$releasever`, e.g., `6`, `7`), by editing the **baseurl** field. For instance:
 
     ```
-  baseurl=https://<USERNAME>:<API_KEY>@kong.bintray.com/kong-enterprise-edition-rpm/centos/$releasever
+    baseurl=https://<USERNAME>:<API_KEY>@kong.bintray.com/kong-enterprise-edition-rpm/centos/$releasever
     ```
     
-  Where `<USERNAME>` is obtained from your access key, by appending a `%40kong` to it (encoded form of `@kong`). For
-  example, if your access key is `bob-company`, your username will be `bob-company%40kong`.
-        
+    Where `<USERNAME>` is obtained from your access key, by appending a `%40kong` to it (encoded form of `@kong`). For
+    example, if your access key is `bob-company`, your username will be `bob-company%40kong`.
+          
     Now you can update `yum` with 
-  
+      
     ```
     $ yum update
     ```
@@ -122,7 +122,7 @@ safe. We have used a simple example below for illustration purposes.
 3. Create a Kong user and database, make Kong the owner of the database, and 
 set the password of the Kong user to 'kong'
     ```
-$ CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
+    $ CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
     ```
 
 4. Exit from PostgreSQL
