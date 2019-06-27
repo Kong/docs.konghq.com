@@ -45,15 +45,26 @@ with the URL you received in your welcome email:
 
     (Replace "IMAGE ID" with the one matching your repository, seen in step 4)
 
-6. Run the migrations with an ephemeral Kong container.—**PostgreSQL 9.5
-is required**:
+6. Start your database
 
+    If you wish to use a Cassandra container:
+
+    ```bash
+    $ docker run -d --name kong-database \
+                  --network=kong-net \
+                  -p 9042:9042 \
+                  cassandra:3
     ```
-    docker run -d --name kong-ee-database \
-      -p 5432:5432 \
-      -e "POSTGRES_USER=kong" \
-      -e "POSTGRES_DB=kong" \
-      postgres:9.5
+
+    If you wish to use a PostgreSQL container:
+
+    ```bash
+    $ docker run -d --name kong-database \
+                  --network=kong-net \
+                  -p 5432:5432 \
+                  -e "POSTGRES_USER=kong" \
+                  -e "POSTGRES_DB=kong" \
+                  postgres:9.6
     ```
 
 7. To make the license data easier to handle, export it as a shell variable.
