@@ -1,24 +1,24 @@
-# KONG Website
+# KONG Site
 
-This repository is the source code for [Kong](https://github.com/Kong/kong)'s documentation website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
+Este repositório contém o código fonte para a página de documentação [Kong](https://github.com/Kong/kong). Há uma página [Jekyll](https://jekyllrb.com/) hospedada no GitHub pages.
 
-## Develop Locally With Docker
+## Desenvolva localmente com o Docker
 
 >
 ```bash
 make develop
 ```
 
-## Develop Locally Without Docker
+## Desenvolva localmente sem o Docker
 
-### Prerequisites
+### Pré-requisitos
 
 - [npm](https://www.npmjs.com/)
 - [Bundler](https://bundler.io/)
 - [Ruby](https://www.ruby-lang.org) (>= 2.0, < 2.3)
 - [Python](https://www.python.org) (>= 2.7.X, < 3)
 
-### Install
+### Instalação
 
 >
 ```bash
@@ -26,78 +26,73 @@ gem install bundler
 npm install
 ```
 
-### Running
+### Execução
 
 >
 ```bash
 npm start
 ```
 
-## Deploying
+## Deploy
 
-The repository must be manually deploy to GitHub pages:
+O deploy do repositório deve ser feito manualmente para o Github pages:
 
 >
 ```bash
 npm run deploy
 ```
 
-## Search
+## Busca
 
-We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our CE
-documentation search. The algolia index is maintained by Algolia through their
-docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
-runs every 24 hours. The config used by the scraper is open source for
-docs.konghq.com and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
-To update the scraper config, you can submit a pull request to the config. To
-test a config change locally, you will need to run their open source
-[scraper](https://github.com/algolia/docsearch-scraper) against your own
-scraper to test out config changes.
+Nós usamos o Algolia [docsearch](https://www.algolia.com/docsearch) para nossa documentação de busca CE.
+O index do algolia é mantido pelo Algolia através do serviço de busca de documentos. O [scraper](https://github.com/algolia/docsearch-scraper)
+roda a cada 24 horas. A configuração usada pelo scraper é open source para
+docs.konghq.com e pode ser encontrada [aqui](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
+Para atualizar o scraper config, você pode enviar uma pull request para o config. Para testar uma config localmente, você precisará rodar o scraper open source
+[scraper](https://github.com/algolia/docsearch-scraper) com o seu próprio scraper para efetivar as mudanças.
 
-## Generating the Plugin Development Kit documentation
+## Gerando o Plugin da documentação do kit de desenvolvimento
 
-- Have a local clone of Kong
-- Install Luarocks (comes with Kong)
-- Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
-- In the Kong repository, check out the desired branch/tag/release
-- Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
-- This command will attempt to:
-  * Obtain an updated list of modules from your local PDK and put it inside
-    your nav file
-  * Generate documentation for all the modules in your PDK (where possible) and
-    put in a folder inside your version docs
+- Faça um clone local do Kong.
+- Instale o Luarocks (vem com o Kong)
+- Instale o `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
+- No repositório do Kong, dê uma olhada em branch/tag/release
+- Execute: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
+- Esse comando vai tentar:
+  * Obtenha uma lista atualizada de módulos do seu PDK local e ponha dentro do seu arquivo nav
+  * Gere a documentação para todos os módulos do seu PDK (quando possível) e
+    ponha em uma pasta dentro da versão do seu docs
 
-## Generating the Admin API, CLI and Configuration Documentation
+## Gerando a Admin API, CLI e Configurando a Documentação
 
-- Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them)
-- Several Lua rocks are needed. The easiest way to get all of them is to execute `make dev` in the Kong folder
-- Have a local clone of Kong
-- In the Kong repository, check out the desired branch/tag/release
-- To generate the Admin API docs:
-  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
-  - This command will attempt to:
-    * Compare Kong's schemas and Admin API routes with the contents of the file
-      `autodoc-admin-api/data.lua` and error out if there's any mismatches or missing data.
-    * If no errors were found, a new `admin-api.md` file will be generated in the path corresponding
-      to the provided KONG_VERSION.
-- To generate the CLI docs:
-  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp cli-docs`
-  - This command will:
-    * Extract the output of the `--help` for every `kong` CLI subcommand
-    * Generate a new `cli.md` in the path corresponding to the provided KONG_VERSION.
-- To generate the Configuration docs:
-  - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp conf-docs`
-  - This command will:
-    * Parse Kong's `kong.conf.default` file and extract sections, variable names, descriptions, and default values
-    * Write those down inside a `configuration.md` file in the path matching KONG_VERSION.
-    * The command will completely overwrite the file, including text before and after the list of vars.
-    * The data used for the before/after parts can be found in `autodoc-conf/data.lua`
+- Certifique-se que os executáveis `resty` e `luajit` estão no seu `$PATH` (instalar o Kong deve instalá-los)
+- Algumas Lua rocks são necessárias. O jeito mais fácil de consegui-las é executando `make dev` no diretório Kong
+- Faça o clone local do kong
+- No repositório do Kong, cheque pelo branch/tag/release desejado
+- Para gerar os Admin API docs:
+  - Execute: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
+  - Este comando tentará:
+    * Comparar os Kong schemas e as rotas Admin API com os conteúdos do arquivo
+      `autodoc-admin-api/data.lua` se houver erros de incompatibilidade ou dados faltando.
+    * Se não forem encontrados erros, um novo arquivo `admin-api.md` será gerado no caminho correspondente
+      para o KONG_VERSION fornecido.
+- Para gerar os CLI docs:
+  - Executar: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp cli-docs`
+  - Esse comando irá:
+    * Extrair um output do `--help` para cada `kong` CLI subcomando
+    * Gerar um novo `cli.md` no caminho correspondente para a KONG_VERSION fornecida.
+- Para gerar os Configuration docs:
+  - Execute: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp conf-docs`
+  - Esse comando irá:
+    * Faça o parse do arquivo Kong `kong.conf.default` e extraia seções, nomes de variáveis, descrições e valores default
+    * Ponha tudo dentro do arquivo `configuration.md` em um caminho que seja igual a KONG_VERSION.
+    * O comando vai sobrescrever completamente o arquivo, incluindo o texto antes e depois da lista de vars.
+    * Os dados usados para as partes antes/depois podem ser encontrados em `autodoc-conf/data.lua`
 
-## Listing Your Extension in the Kong Hub
+## Listando a sua extensão no Kong Hub
 
-We encourage developers to list their Kong plugins and integrations (which
-we refer to collectively as "extensions") in the
-[Kong Hub](https://docs.konghq.com/hub), with documentation hosted
-on the Kong website for ready access.
+Nós encorajamos os desenvolvedores a listar seus plugins e integrações Kong (as quais nos referimos coletivamente como "extensions") no
+[Kong Hub](https://docs.konghq.com/hub), com a documentação hospedada
+no site da Kong para acesso imediato.
 
-See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.
+Acesse [CONTRIBUINDO](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) para mais informações.
