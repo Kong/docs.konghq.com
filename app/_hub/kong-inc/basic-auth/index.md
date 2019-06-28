@@ -1,3 +1,6 @@
+
+<a href="https://docs.konghq.com/hub/"><h2>Plugins</h2></a>
+
 ---
 name: Basic Authentication
 publisher: Kong Inc.
@@ -77,7 +80,6 @@ params:
     blacklist groups of users.
 
 ---
-<a href="https://docs.konghq.com/hub/"><h2>Plugins</h2></a>
 ## Usage
 
 In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer or an application consuming the upstream service.
