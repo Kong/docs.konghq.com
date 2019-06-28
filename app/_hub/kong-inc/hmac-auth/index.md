@@ -1,3 +1,5 @@
+<a href="https://docs.konghq.com/hub/"><h2>Kong Hub</h2></a>
+
 ---
 name: HMAC Authentication
 publisher: Kong Inc.
