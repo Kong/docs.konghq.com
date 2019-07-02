@@ -891,7 +891,7 @@ your SSL certificate and key via the Admin API:
 $ curl -i -X POST http://localhost:8001/certificates \
     -F "cert=@/path/to/cert.pem" \
     -F "key=@/path/to/cert.key" \
-    -F "snis=ssl-example.com,other-ssl-example.com"
+    -F "snis=*.ssl-example.com,other-ssl-example.com"
 HTTP/1.1 201 Created
 ...
 ```
@@ -899,12 +899,26 @@ HTTP/1.1 201 Created
 The `snis` form parameter is a sugar parameter, directly inserting an SNI and
 associating the uploaded certificate to it.
 
+Note that one of the SNI names defined in `snis` above contains a wildcard
+(`*.ssl-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
+rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
+single `sni` configured with a wildcard name can be used to match multiple 
+subdomains, instead of creating an SNI for each. 
+
+Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
+
+Matching of `snis` respects the following priority:
+
+ 1. plain (no wildcard)
+ 2. prefix
+ 3. suffix
+
 You must now register the following Route within Kong. We will match requests
 to this Route using only the Host header for convenience:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/routes \
-    -d 'hosts=ssl-example.com,other-ssl-example.com' \
+    -d 'hosts=prefix.ssl-example.com,other-ssl-example.com' \
     -d 'service.id=d54da06c-d69f-4910-8896-915c63c270cd'
 HTTP/1.1 201 Created
 ...
@@ -914,13 +928,13 @@ You can now expect the Route to be served over HTTPS by Kong:
 
 ```bash
 $ curl -i https://localhost:8443/ \
-  -H "Host: ssl-example.com"
+  -H "Host: prefix.ssl-example.com"
 HTTP/1.1 200 OK
 ...
 ```
 
 When establishing the connection and negotiating the SSL handshake, if your
-client sends `ssl-example.com` as part of the SNI extension, Kong will serve
+client sends `prefix.ssl-example.com` as part of the SNI extension, Kong will serve
 the `cert.pem` certificate previously configured.
 
 [Back to TOC](#table-of-contents)

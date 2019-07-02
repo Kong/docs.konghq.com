@@ -254,7 +254,7 @@ certificate_data: |
 sni_body: |
     Attributes | Description
     ---:| ---
-    `name` | The SNI name to associate with the given certificate. May contain a single wildcard in the leftmost or rightmost position. This can be helpful when maintaining multiple subdomains, as a single SNI configured with a wildcard name can be used to match multiple subdomains, instead of creating an SNI entity for each. Valid wildcard positions are `mydomain.*, *.mydomain.com, *.www.mydomain.com`
+    `name` | The SNI name to associate with the given certificate. May contain a single wildcard in the leftmost (suffix) or rightmost (prefix) position. This can be helpful when maintaining multiple subdomains, as a single SNI configured with a wildcard name can be used to match multiple subdomains, instead of creating an SNI entity for each. Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`. Plain SNI names (no wildcard) take priority when matching, followed by prefix and then suffix.
     `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
     `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
