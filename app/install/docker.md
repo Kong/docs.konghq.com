@@ -177,7 +177,7 @@ The steps involved in starting Kong in [DB-less mode] are the following:
     ```bash
     $ docker run -d --name kong \
         --network=kong-net \
-        -v "kong-vol:/usr/local/kong/declarative"
+        -v "kong-vol:/usr/local/kong/declarative" \
         -e "KONG_DATABASE=off" \
         -e "KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/kong.yml" \
         -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
