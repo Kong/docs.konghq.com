@@ -1,0 +1,46 @@
+---
+layout: default
+sitemap: true
+---
+
+<div class="page-changelog">
+  <header class="page-header">
+    <div class="container">
+      <div class="edit-this-page">
+        <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i>
+          Edit this Page</a>
+      </div>
+      <nav class="docs-navigation">
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
+        <span class="sidebar-toggle">Open Sidebar</span>
+      </nav>
+      <div class="page-header-icon">
+        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg"
+          alt="Documentation" />
+      </div>
+      <div class="page-header-title {% if page.edition=='enterprise' %} page-header-title-enterprise {% endif %}">
+        <h1>{{page.title}}</h1>
+      </div>
+  </header>
+
+  <div class="container">
+    <aside class="page-navigation">
+      <nav class="version-select">
+        <h5>Releases</h5>
+
+          {% assign filename = page.path | split: '/' | last %}
+          {% include toc.html html=content %}
+
+      </nav>
+    </aside>
+
+    <div class="page-content-container" id="changelog">
+      <div class="page-content">
+        <div class="content show-anchor-links">
+          {{ content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

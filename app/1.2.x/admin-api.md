@@ -225,7 +225,7 @@ certificate_body: |
     `cert` | PEM-encoded public certificate of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. 
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
 
 certificate_json: |
     {
@@ -256,7 +256,7 @@ sni_body: |
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
     `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
-    `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
+    `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
 sni_json: |
     {
@@ -525,6 +525,27 @@ with dotted keys. Example:
 config.limit=10&config.period=seconds
 ```
 
+Arrays and sets can be specified in various ways:
+
+1. Sending same parameter multiple times:
+    ```
+    hosts=example.com&hosts=example.org
+    ```
+2. Using array notation:
+    ```
+    hosts[1]=example.com&hosts[2]=example.org
+    ```
+    or 
+    ```
+    hosts[]=example.com&hosts[]=example.org
+    ```
+    Array and object notation can also be mixed:
+
+    ```
+    config.hosts[1]=example.com&config.hosts[2]=example.org
+    ```
+
+
 - **application/json**
 
 Handy for complex bodies (ex: complex plugin configuration), in that case simply send
@@ -535,6 +556,18 @@ a JSON representation of the data you want to send. Example:
     "config": {
         "limit": 10,
         "period": "seconds"
+    }
+}
+```
+
+JSON arrays can be specified as well:
+
+```json
+{
+    "config": {
+        "limit": 10,
+        "period": "seconds",
+        "hosts": [ "example.com", "example.org" ]
     }
 }
 ```
@@ -1871,9 +1904,10 @@ HTTP 200 OK
 
 ## Certificate Object
 
-A certificate object represents a public certificate/private key pair for an SSL
-certificate. These objects are used by Kong to handle SSL/TLS termination for
-encrypted requests. Certificates are optionally associated with SNI objects to
+A certificate object represents a public certificate, and can be optionally paired with the
+corresponding private key. These objects are used by Kong to handle SSL/TLS termination for
+encrypted requests, or for use as a trusted CA store when validating peer certificate of
+client/service. Certificates are optionally associated with SNI objects to
 tie a cert/key pair to one or more hostnames.
 
 Certificates can be both [tagged and filtered by tags](#tags).

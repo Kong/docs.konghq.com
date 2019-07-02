@@ -49,8 +49,6 @@ be enabled. Follow the instructions on
 
 3. Paste the URL in your browser and you will be asked to create a password for 
 the newly defined **Super Admin** user on the Kong Manager. 
-**Note:** In addition to Kong Manager, this password will also be used as the 
-`Kong-Admin-Token` needed to utilize the Admin API.
 
 4. Go to the Kong Manager homepage and you will be prompted to login with the 
 new ***Super Admin*** credentials.

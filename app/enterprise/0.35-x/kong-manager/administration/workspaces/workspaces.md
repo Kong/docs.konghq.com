@@ -39,4 +39,4 @@ a **Workspace**, the **Admin** assigned to that **Role** will not be
 able to see the related navigation links.
 
 For more information about **Admins** and **Roles**, see 
-[RBAC in Kong Manager](/enterprise/{{page.kong_version}}/kong-mananger/administration/rbac/rbac). 
+[RBAC in Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/administration/rbac/rbac). 
