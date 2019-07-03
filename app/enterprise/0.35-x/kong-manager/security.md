@@ -1,6 +1,7 @@
 ---
 title: Securing Kong Manager
 book: admin_gui
+toc: false
 ---
 #### Table of Contents
 
