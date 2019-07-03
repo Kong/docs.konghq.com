@@ -70,10 +70,10 @@ admin_gui_ssl_cert = /path/to/test.crt
 admin_gui_ssl_cert_key = /path/to/test.key
 ```
 
-3) Ensure that `admin_gui_url` is prefixed with `https` to use TLS, e.g.
+3) Ensure that `admin_gui_url` is prefixed with `https` to use TLS, e.g.,
 
 ```
-admin_gui_url = https://test.com:844
+admin_gui_url = https://test.com:8445
 ```
 
 ### Using `https://localhost`
