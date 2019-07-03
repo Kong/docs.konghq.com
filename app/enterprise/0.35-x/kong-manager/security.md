@@ -2,6 +2,12 @@
 title: Securing Kong Manager
 book: admin_gui
 ---
+#### Table of Contents
+
+- [What Can Admins Do in Kong Manager?](#what-can-admins-do-in-kong-manager)
+- [Configuring Authentication](#configuring-authentication)
+- [Access Control with RBAC and Workspaces](#access-control-with-roles-and-workspaces)
+
 ## What Can Admins Do in Kong Manager?
 
 Kong Manager enables users with **Admin** accounts to access Kong entities such 
@@ -10,7 +16,7 @@ as **Services**, **Plugins**, and **Consumers.**
 The following document summarizes Kong Manager's controls for *authentication* 
 and *authorization*.
 
-## Authentication with Plugins
+## Configuring Authentication
 
 Kong Enterprise comes packaged with **Authentication Plugins** that can be used 
 to secure Kong Manager. Unlike enabling a **Plugin** on an entity or cluster, 
