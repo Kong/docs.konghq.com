@@ -129,8 +129,8 @@ To complete this guide you will need:
     $ CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
     ```
 
-    >⚠️**Note**: Make sure the username and password for the Kong Database are kept 
-    > safe. We have used a simple example for illustration purposes only.
+    >⚠️**Note**: Make sure the username and password for the Kong Database are
+    >kept safe. We have used a simple example for illustration purposes only.
 
 4. Exit from PostgreSQL
 
@@ -176,7 +176,7 @@ must be modified to accept the correct PostgreSQL user and password.
     $ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
-2. Uncomment and update the Postgres database properties inside the Kong conf:
+2. Uncomment and update the PostgresQL database properties inside the Kong conf:
 
     ```
     $ sudo vi [/path/to/kong.conf]
@@ -188,17 +188,20 @@ must be modified to accept the correct PostgreSQL user and password.
     ```
 
 
-## Step 6. Seed the **Super Admin** (*optional*)
+## Step 6. Seed the **Super Admin** *(optional)*
 
-For added security and Role-Based Access Control (RBAC), it is best to seed the 
-**Super Admin** before initial start up. 
+For added security and Role-Based Access Control (RBAC), it is best to seed 
+the **super-admin** before initial start up.
 
-Create an environment variable with the _Super Admin_ password (that will be 
-used during migrations to seed the initial _Super Admin_ password):
+Create an environment variable with the desired **super-admin** password:
 
-    ```
+
     $ export KONG_PASSWORD=<password-only-you-know>
-    ```
+
+
+This will be used during migrations to seed the initial **super-admin** 
+password within Kong.
+
 
 ## Step 7. Start Kong
 
@@ -220,11 +223,13 @@ used during migrations to seed the initial _Super Admin_ password):
     curl -i -X GET --url http://localhost:8001/
     ```
 
+
 ## Troubleshooting
 
 If you did not receive an HTTP/1.1 200 OK message, or need assistance completing
 setup reach out to your **Support contact** or head over to the
-[Support Portal](https://support.konghq.com/support/s/)
+[Support Portal](https://support.konghq.com/support/s/).
+
 
 ## Next Steps
 
