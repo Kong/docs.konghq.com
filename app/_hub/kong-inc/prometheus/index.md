@@ -10,7 +10,7 @@ description: |
     <div class="alert alert-warning">
     <strong>Note:</strong> To maintain performance in configurations with high 
     throughput, you will also need to configure the
-    <a href="/hub/kong-inc/statsd-advanced/">StatsD Advanced Plugin</a>.
+    <a href="/hub/kong-inc/statsd/">StatsD Plugin</a> or the <a href="/hub/kong-inc/statsd-advanced/">StatsD Advanced Plugin</a>.
     </div>
 
 type: plugin
