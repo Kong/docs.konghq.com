@@ -57,4 +57,4 @@ outfd:write(admin_api_data)
 
 outfd:close()
 
-print("Wrote " .. outfile)
+print("Write " .. outfile)
