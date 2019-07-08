@@ -5,9 +5,17 @@ book: admin_gui
 
 ## How does the Sessions Plugin work in Kong Manager?
 
-When a user logs in to Kong Manager with their credentials, the Sessions Plugin will create a session cookie. The cookie is used for all subsequent requests and is valid to authenticate the user. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended. 
+When a user logs in to Kong Manager with their credentials, the Sessions Plugin 
+will create a session cookie. The cookie is used for all subsequent requests and 
+is valid to authenticate the user. The session has a limited duration and renews 
+at a configurable interval, which helps prevent an attacker from obtaining and
+ using a stale cookie after the session has ended. 
 
-The Session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for the Admin API and Kong Manager. Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself. 
+The Session configuration is secure by default, which may 
+[require alteration](#session-security) if using HTTP or different domains for 
+the Admin API and Kong Manager. Even if an attacker were to obtain a stale 
+cookie, it would not benefit them since the cookie is encrypted. The encrypted 
+session data may be stored either in Kong or the cookie itself. 
 
 ## Configuration to Use the Sessions Plugin with Kong Manager
 
@@ -48,11 +56,15 @@ admin_gui_session_conf = {
 * `logout_query_arg`
 * `logout_post_arg`
 
-For detailed descriptions of each configuration property, learn more in the [Session Plugin documentation](/enterprise/{{page.kong_version}}/plugins/session). 
+For detailed descriptions of each configuration property, learn more in the 
+[Session Plugin documentation](/enterprise/{{page.kong_version}}/plugins/session). 
 
 ## Session Security
 
-The Session configuration is secure by default, so the cookie uses the [Secure, HttpOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies), and [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies) directives. 
+The Session configuration is secure by default, so the cookie uses the 
+[Secure, HttpOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies), 
+and [SameSite](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies) 
+directives. 
 
 ⚠️**Important:** The following properties must be altered depending on the protocol and domains in use:
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
@@ -60,7 +72,8 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 
 ## Example Configurations
 
-If using HTTPS and hosting Kong Manager and the Admin API from the same domain, the following configuration could be used for Basic Auth:
+If using HTTPS and hosting Kong Manager and the Admin API from the same domain, 
+the following configuration could be used for Basic Auth:
 
 ```
 enforce_rbac = on

@@ -112,12 +112,26 @@ params:
 
 ## Plugin Configuration
 
-Configure the plugin for a service:
+Configure this plugin on a [Service](/latest/admin-api/#service-object) by
+
+{% tabs %}
+{% tab With a database %}
+Make the following request:
 
 ```bash
 $ curl -X POST http://<kong>:8001/service/{service}/plugins \
        --data "name=jwt-signer"
 ```
+{% tab Without a database %}
+Add a plugin to your declarative config file, in the `plugins:` yaml section:
+
+``` yaml
+plugins:
+- name: jwt-signer
+  service:  {service}
+```
+{% endtabs %}
+
 
 ## Plugin Configuration Parameters
 

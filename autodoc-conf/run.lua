@@ -165,10 +165,9 @@ for _, section in ipairs(parsed) do
 
   local pg_found = false
   local cassandra_found = false
-  local render_as_table
+  local render_as_table = false
 
   for _, var in ipairs(section.vars) do
-    render_as_table = false
 
     if string.match(var.name, "^pg_.+$") then
       render_as_table = true
@@ -179,9 +178,8 @@ for _, section in ipairs(parsed) do
         write("")
         write(table_header)
       end
-    end
 
-    if string.match(var.name, "^cassandra_.+$") then
+    elseif string.match(var.name, "^cassandra_.+$") then
       render_as_table = true
       if not cassandra_found then
         cassandra_found = true
@@ -190,6 +188,12 @@ for _, section in ipairs(parsed) do
         write("")
         write(table_header)
       end
+
+    else
+      if render_as_table then
+        write("")
+      end
+      render_as_table = false
     end
 
     if render_as_table then

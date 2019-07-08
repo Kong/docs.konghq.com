@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
     enterprise_edition:
       compatible:
         - 0.35-x
@@ -79,7 +80,7 @@ params:
     - name: strategy
       required:
       default:
-      value_in_examples:
+      value_in_examples: memory
       description: |
         The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
     - name: memory.dictionary_name
@@ -200,7 +201,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint get">/proxy-cache/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------

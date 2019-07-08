@@ -40,9 +40,9 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Admin API</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/admin-api">Admin API</a></h3>
     <p>Harness Kong Enterprise's features with the Admin API.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Learn more &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/admin-api">Learn more &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

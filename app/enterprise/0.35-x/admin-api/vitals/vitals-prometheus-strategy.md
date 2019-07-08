@@ -3,7 +3,7 @@ title: Kong Vitals with Prometheus
 ---
 
 For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra), 
-please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/vitals/).
+please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
 ## Setup Prometheus environment for Vitals
 
@@ -27,7 +27,7 @@ with some specific features like min/max gauges and Unix domain socket support.
 StatsD exporter needed to configured with a set of mapping rules to translate
 the StatsD UDP events to Prometheus metrics. A default set of mapping rules can
 be downloaded at
-[statsd.rules.yaml](/enterprise/{{page.kong_version}}/statsd.rules.yaml).
+[statsd.rules.yaml](/enterprise/{{page.kong_version}}/plugins/statsd.rules.yaml).
 Then start StatsD exporter with
 
 ```bash

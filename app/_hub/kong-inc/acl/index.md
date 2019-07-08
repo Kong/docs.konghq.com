@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
         - 1.1.x
         - 1.0.x
         - 0.14.x
@@ -62,14 +63,14 @@ params:
     - name: whitelist
       required: semi
       default:
-      value_in_examples: group1, group2
+      value_in_examples: [ "group1", "group2" ]
       description: |
-        Comma separated list of arbitrary group names that are allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
+        Arbitrary group names that are allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: blacklist
       required: semi
       default:
       description: |
-        Comma separated list of arbitrary group names that are not allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
+        Arbitrary group names that are not allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: hide_groups_header
       required: false
       default: false
@@ -86,6 +87,8 @@ In order to use this plugin, you need to properly have configured your Service o
 
 #### Associating Consumers
 
+{% tabs %}
+{% tab With a database %}
 Once you have added an authentication plugin to a Service or a Route and you have created your [Consumers][consumer-object], you can now associate a group to a [Consumer][consumer-object] using the following request:
 
 ```bash
@@ -98,6 +101,19 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/acls \
 form parameter        | default| description
 ---                   | ---    | ---
 `group`               |        | The arbitrary group name to associate to the consumer.
+
+{% tab Without a database %}
+You can create ACL objects via the `acls:` entry in the declarative configuration file:
+
+``` yaml
+acls:
+  consumer: { consumer }
+  group: group1
+```
+
+* `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+* `group`: The arbitrary group name to associate to the consumer.
+{% endtabs %}
 
 You can have more than one group associated to a consumer.
 

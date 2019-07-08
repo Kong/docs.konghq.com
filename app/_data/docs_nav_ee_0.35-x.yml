@@ -1,12 +1,14 @@
 - title: Deployment
   items:
     - text: Licensing
+      url: /deployment/licensing
       items:
         - text: Overview
           url: /deployment/licensing
         - text: How to Access Your License
           url: /deployment/access-license
     - text: Installation
+      url: /deployment/installation
       items:
         - text: Docker
           url: /deployment/installation/docker
@@ -43,7 +45,10 @@
       url: /getting-started/enable-dev-portal
 
 - title: Admin API
+  url: /admin-api
   items:
+  - text: Overview
+    url: /admin-api
   - text: Workspaces
     url: /admin-api/workspaces/reference
   - text: RBAC
@@ -68,6 +73,7 @@
     url: /admin-api/audit-log
 
 - title: Kong Manager
+  url: /kong-manager/overview
   items:
     - text: Overview
       url: /kong-manager/overview
@@ -121,6 +127,7 @@
       url: /kong-manager/vitals
 
 - title: Kong Dev Portal
+  url: /developer-portal/introduction
   items:
     - text: Overview
       url: /developer-portal/introduction
@@ -162,6 +169,7 @@
       url: /developer-portal/faq
 
 - title: APIs and Plugins
+  url: https://konghq.com/hub
   items:
     - text: Plugin Reference
       items:
@@ -203,6 +211,7 @@
           url: /plugins/oidc-auth0
 
 - title: Guides & References
+  url: /property-reference
   items:
     - text: Configuration Property Reference
       url: /property-reference
