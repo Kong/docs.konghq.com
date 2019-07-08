@@ -78,8 +78,8 @@ admin_gui_url = https://test.com:8445
 
 ### Using `https://localhost`
 
-If using `localhost` for testing, it may be preferrable to just use HTTP as the protocol and, if using RBAC, 
-to set `cookie_secure=false` in Session configuration. The reason to use HTTP for `localhost` is that 
+If serving Kong Manager on localhost, it may be preferable to use HTTP as the protocol. If also using RBAC,
+set cookie_secure=false in admin_gui_session_conf.". The reason to use HTTP for `localhost` is that 
 creating TLS certificates for `localhost` requires more effort and configuration, and there may not be any 
 reason to use it. The adequate use cases for TLS are (1) when data is in transit between hosts, or (2) 
 when testing an application with [mixed content](https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content)
