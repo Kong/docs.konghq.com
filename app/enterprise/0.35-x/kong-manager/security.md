@@ -1,13 +1,7 @@
 ---
 title: Securing Kong Manager
 book: admin_gui
-toc: false
 ---
-#### Table of Contents
-
-- [What Can Admins Do in Kong Manager?](#what-can-admins-do-in-kong-manager)
-- [Configuring Authentication](#configuring-authentication)
-- [Access Control with RBAC and Workspaces](#access-control-with-roles-and-workspaces)
 
 ## What Can Admins Do in Kong Manager?
 
