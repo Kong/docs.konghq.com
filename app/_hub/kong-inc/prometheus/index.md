@@ -7,6 +7,12 @@ desc: Expose metrics related to Kong and proxied upstream services in Prometheus
 description: |
     Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.
 
+    <div class="alert alert-warning">
+    <strong>Note:</strong> To maintain performance in configurations with high 
+    throughput, you will also need to configure the
+    <a href="/hub/kong-inc/statsd/">StatsD Plugin</a> or the <a href="/hub/kong-inc/statsd-advanced/">StatsD Advanced Plugin</a>.
+    </div>
+
 type: plugin
 categories:
   - analytics-monitoring
