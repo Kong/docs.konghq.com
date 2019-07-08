@@ -46,7 +46,7 @@ To complete this guide you will need:
 
 3. Obtain your Kong Enterprise license
 
-   If you do not already have your license file, it can be downloaded from your
+   If you do not already have your license file, you can download it from your
    account files in Bintray 
    `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
@@ -95,7 +95,7 @@ To complete this guide you will need:
     $ sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
     ```
 
-3. Start PostgresQL and Enable Automatic Start
+3. Start PostgreSQL and Enable Automatic Start
 
     ```
     $ sudo systemctl enable postgresql-9.5
@@ -158,7 +158,7 @@ To complete this guide you will need:
     | # IPv6 local connections:                      |
     | host | all      | all  | ::1/128      | ident  |
 
-8. Restart PostgresQL
+8. Restart PostgreSQL
 
     ```
     $ sudo systemctl restart postgresql-9.5
@@ -176,7 +176,7 @@ must be modified to accept the correct PostgreSQL user and password.
     $ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
-2. Uncomment and update the PostgresQL database properties inside the Kong conf:
+2. Uncomment and update the PostgreSQL database properties inside the Kong conf:
 
     ```
     $ sudo vi [/path/to/kong.conf]
@@ -188,18 +188,18 @@ must be modified to accept the correct PostgreSQL user and password.
     ```
 
 
-## Step 6. Seed the **Super Admin** *(optional)*
+## Step 6. Seed the Super Admin _(optional)_
 
-For added security and Role-Based Access Control (RBAC), it is best to seed 
-the **super-admin** before initial start up.
+For the added security of Role-Based Access Control (RBAC), it is best to seed 
+the **Super Admin** before initial start-up.
 
-Create an environment variable with the desired **super-admin** password:
+Create an environment variable with the desired **Super Admin** password:
 
 
     $ export KONG_PASSWORD=<password-only-you-know>
 
 
-This will be used during migrations to seed the initial **super-admin** 
+This will be used during migrations to seed the initial **Super Admin** 
 password within Kong.
 
 
@@ -233,6 +233,6 @@ setup reach out to your **Support contact** or head over to the
 
 ## Next Steps
 
-Work through Kong's series of 
+Work through Kong Enterprise's series of 
 [Getting Started](/enterprise/latest/getting-started) guides to get the most
 out of Kong Enterprise.
