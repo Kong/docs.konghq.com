@@ -405,63 +405,62 @@
     font-style: italic;
   }
 
-    /* 
-  Generic Styling, for Desktops/Laptops 
+    /*
+  Generic Styling for Desktop
   */
-  table { 
-    width: 100%; 
-    border-collapse: collapse; 
+  table {
+    width: 100%;
+    border-collapse: collapse;
     font-size: 14px;
   }
   code {
     font-size: 14px;
   }
   /* Zebra striping */
-  tr:nth-of-type(odd) { 
-    background: @gray-light; 
+  tr:nth-of-type(odd) {
+    background: @gray-light;
   }
-  th { 
-    font-weight: bold; 
+  th {
+    font-weight: bold;
   }
-  td, th { 
-    padding: 6px; 
-    border: 1px solid #ccc; 
-    text-align: left; 
+  td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
   }
 
   @media
   only screen and (max-width: 1099px)
   {
-    table, thead, tbody, th, td, tr { 
-      display: block; 
+    table, thead, tbody, th, td, tr {
+      display: block;
     }
 
     table {
         /* Hide table headers (but not display: none;, for accessibility) */
-      thead tr { 
+      thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
       }
-      
+
       tr { border: 1px solid #ccc; }
-      
-      td { 
+
+      td {
         /* Behave  like a "row" */
         border: none;
-        border-bottom: 1px solid #eee; 
+        border-bottom: 1px solid #eee;
         position: relative;
-       // padding-left: 50%; 
       }
-      
-      td:before { 
+
+      td:before {
         /* Now like a table header */
         position: absolute;
         /* Top/left values mimic padding */
         top: 6px;
         left: 6px;
-        width: 45%; 
-        padding-right: 10px; 
+        width: 45%;
+        padding-right: 10px;
         white-space: nowrap;
       }
     }
