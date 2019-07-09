@@ -56,7 +56,7 @@ with the URL you received in your welcome email:
                   cassandra:3
     ```
 
-    If you wish to use a PostgreSQL container:
+    If using a PostgreSQL container:
 
     ```bash
     $ docker run -d --name kong-database \
