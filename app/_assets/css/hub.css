@@ -7810,7 +7810,7 @@ a.bg-inverse:focus,a.bg-inverse:hover {
 }
 
 .text-right {
-    text-align: right!important
+    !important
 }
 
 .text-center {
