@@ -26,7 +26,7 @@ Key Authentication for the Dev Portal can be enabled in three ways:
 portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong" }
 ```
 
-For testing purposes when using HTTP, example config should include `"cookie_secure": false`:
+If using HTTP while testing, include `"cookie_secure": false` in the config:
 
 ```
 portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", "storage": "kong", "cookie_secure": false }
