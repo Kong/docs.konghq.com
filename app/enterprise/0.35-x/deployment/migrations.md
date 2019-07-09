@@ -62,3 +62,26 @@ At any step of the way, you may run `kong migrations list` to get a report of th
 * `3` - database needs bootstrapping: you should run `kong migrations bootstrap` to install on a fresh datastore.
 * `4` - there are pending migrations: once your old cluster is decommissioned you should run `kong migrations finish` (step 5 above).
 * `5` - there are new migrations: you should start a migration sequence (beginning from step 1 above).
+
+### Migration Steps from Kong 1.0 to Kong Enterprise 0.35
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This action is irreversible, therefore it is highly recommended to have a backup of production data.
+</div>
+
+Kong Enterprise 0.35 includes a command to migrate all Kong entities to Kong Enterprise. The following steps will guide you through the migration process.
+
+First download Kong Enterprise 0.35, and configure it to point to the same datastore as your Kong 1.0 node. The migration command expects the datastore to be up to date on any pending migration:
+
+```shell
+$ kong migrations up [-c config]
+$ kong migrations finish [-c config]
+```
+
+Once all Kong Enterprise migrations are up to date, the migration command can be run as:
+
+```shell
+$ kong migrations migrate-community-to-enterprise [-c config] [-f] [-y]
+```
+
+Confirm now that all the entities are now available on your Kong Enterprise 0.35 node.
