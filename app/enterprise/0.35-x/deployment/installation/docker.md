@@ -47,7 +47,7 @@ with the URL you received in your welcome email:
 
 6. Start your database
 
-    If you wish to use a Cassandra container:
+    If using a Cassandra container:
 
     ```bash
     $ docker run -d --name kong-database \
