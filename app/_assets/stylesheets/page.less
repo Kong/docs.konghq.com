@@ -408,10 +408,12 @@
     /*
   Generic Styling for Desktop
   */
+
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+
   }
   code {
     font-size: 14px;
@@ -426,22 +428,19 @@
   td, th {
     padding: 6px;
     border: 1px solid #ccc;
-    text-align: left;
   }
 
-  @media
-  only screen and (max-width: 1099px)
+  @media only screen and (max-width: 1099px)
   {
     table, thead, tbody, th, td, tr {
       display: block;
+      text-align: left !important;
     }
 
     table {
-        /* Hide table headers (but not display: none;, for accessibility) */
+        /* Hide table headers  */
       thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+       display: none;
       }
 
       tr { border: 1px solid #ccc; }
@@ -454,14 +453,12 @@
       }
 
       td:before {
-        /* Now like a table header */
-        position: absolute;
-        /* Top/left values mimic padding */
-        top: 6px;
-        left: 6px;
-        width: 45%;
         padding-right: 10px;
         white-space: nowrap;
+
+        content: attr(data-label);
+        font-size: 14px;
+
       }
     }
   }

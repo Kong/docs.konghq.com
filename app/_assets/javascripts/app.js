@@ -403,4 +403,18 @@ $(function () {
       })
     }
   })
+
+  // Responsive Tables
+  $('table').each(function (index, value) {
+    var headerCount = $(this).find('thead th').length
+
+    for (i = 0; i <= headerCount; i++) {
+      var headerLabel = $(this).find('thead th:nth-child(' + i + ')').text()
+
+      $(this).find('tr td:not([colspan]):nth-child(' + i + ')').replaceWith(
+        function () {
+          return $('<td data-label="' + headerLabel + '">').append($(this).contents())
+        })
+    }
+  })
 })
