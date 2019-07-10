@@ -5,7 +5,7 @@ title: How to Install Kong Enterprise on CentOS
 ## Introduction
 
 This guide walks through downloading, installing, and starting Kong Enterprise
-using CentOS 7 and PostgreSQL 9.5. The configuration shown in this guide is
+using CentOS and PostgreSQL 9.5. The configuration shown in this guide is
 intended only as an example -- you will want to modify and take additional
 measures to secure your Kong Enterprise system before moving to a production
 environment.
@@ -15,7 +15,7 @@ environment.
 
 To complete this guide you will need:
 
-- A CentOS 7 system with root equivalent access.
+- A CentOS 6 or 7 system with root equivalent access.
 - The ability to SSH to the system.
 
 
@@ -24,13 +24,13 @@ To complete this guide you will need:
 1. Option 1. Download via **Packages**
 
     Log in to [Bintray](http://bintray.com) to download the latest Kong 
-    Enterprise RPM for CentOS 7. Your **Sales** or **Support** contact will
+    Enterprise RPM for CentOS. Your **Sales** or **Support** contact will
     email this credential to you.
     
     Copy the file to your home directory:
 
     ```
-    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@<remote ip:~
+    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@<serverip:~
     ```
 
 2. Option 2. Download via **YUM**
