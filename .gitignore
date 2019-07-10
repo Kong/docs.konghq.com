@@ -8,6 +8,7 @@
 .ruby-version
 .ruby-gemset
 *.log
+.vscode/
 yarn.lock
 
 # jekyll
