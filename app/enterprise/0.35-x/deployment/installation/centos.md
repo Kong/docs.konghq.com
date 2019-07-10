@@ -58,7 +58,7 @@ To complete this guide you will need:
 4. Securely copy the license file to the CentOS system
 
     ```
-    $ scp kong-se-license.json <centos username>@192.168.91.109:~
+    $ scp license.json <centos username>@192.168.91.109:~
     ```
 
 
@@ -179,7 +179,7 @@ must be modified to accept the correct PostgreSQL user and password.
 2. Uncomment and update the PostgreSQL database properties inside the Kong conf:
 
     ```
-    $ sudo vi [/path/to/kong.conf]
+    $ sudo vi etc/kong/kong.conf
     ```
     ```
     pg_user = kong
