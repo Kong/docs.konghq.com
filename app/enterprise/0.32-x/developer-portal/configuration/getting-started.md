@@ -4,8 +4,6 @@ book: portal
 chapter: 3
 ---
 
-# Getting Started with the Kong Developer Portal
-
 ## Enable the Dev Portal
 
 1. Open the Kong configuration file in your editor of choice (`kong.conf`)
@@ -15,7 +13,7 @@ chapter: 3
     - Serves the **Dev Portal Loader** on port `:8003`
 3. Restart Kong (`kong restart`)
 
-> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](https://docs.konghq.com/0.13.x/configuration/) in order to implement this step.
+> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](/0.13.x/configuration/) in order to implement this step.
 
 ## Visit the Example Dev Portal
 

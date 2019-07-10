@@ -1,7 +1,8 @@
 ---
 title: Kong Implementation Checklist
 ---
-# Kong Implementation Checklist
+
+## Introduction
 
 - Kong can run on instances of any size with any resources. While the system requirements vary significantly depending on the use-case, generally speaking, we recommend to start big and then gradually reduce the instances to the appropriate number and size.
 - When allocating resources to a Kong cluster, slightly over-provision the cluster to make room for request spikes. Kong requires a database to run and you can choose either Cassandra or PostgreSQL.
@@ -18,7 +19,7 @@ title: Kong Implementation Checklist
 
 ## Kong Cluster
 
-- Regardless of the datastore being adopted with Kong, the Kong nodes themselves need to join in a cluster. The Kong nodes will talk to each other via their connections to the database (PostgreSQL or Cassandra). Please refer to the [clustering reference](/latest/clustering/) for more details.
+- Regardless of the datastore being adopted with Kong, the Kong nodes themselves need to join in a cluster. The Kong nodes will talk to each other via their connections to the database (PostgreSQL or Cassandra). Please refer to the [clustering reference](/0.12.x/clustering/) for more details.
 
 ## Production System Requirements
 
@@ -34,7 +35,7 @@ High ulimit systemvalue, possibly >=65535 . A higher limit value will allow Kong
 ## Scaling Kong
 
 - Kong is stateless and more nodes can be added behind the load balancer to scale the system. Incoming HTTP/s requests can be processed by any server, and that also includes the Kong’s Admin API.
-- Every new Kong node should target the same datastore, and join the existing Kong nodes in a cluster. Failure to join the Kong nodes in a Kong cluster will result in data inconsistencies and errors when processing requests. Kong automates joining a node in the cluster as long as the right configuration settings have been provided. For more information, we recommend reading the [clustering reference](/latest/clustering/).
+- Every new Kong node should target the same datastore, and join the existing Kong nodes in a cluster. Failure to join the Kong nodes in a Kong cluster will result in data inconsistencies and errors when processing requests. Kong automates joining a node in the cluster as long as the right configuration settings have been provided. For more information, we recommend reading the [clustering reference](/0.12.x/clustering/).
 
 ## Kong Performance
 
@@ -61,10 +62,10 @@ In this section, you will find a summary about the recommended network and firew
 
 These are the port settings in order for Kong to work: 
 
-- Allow HTTP traffic to [proxy_listen](/latest/configuration/#proxy_listen). By default  8000. 
-- Allow HTTPS traffic to [proxy_listen_ssl](/latest/configuration/#proxy_listen_ssl). By default 8443.
-- Allow HTTP traffic to [admin_listen](/latest/configuration/#admin_listen). By default 8001.
-- Allow HTTPS traffic to [admin_listen_ssl](/latest/configuration/#admin_listen_ssl). By default 8444.
+- Allow HTTP traffic to [proxy_listen](/0.12.x/configuration/#proxy_listen). By default  8000. 
+- Allow HTTPS traffic to [proxy_listen_ssl](/0.12.x/configuration/#proxy_listen_ssl). By default 8443.
+- Allow HTTP traffic to [admin_listen](/0.12.x/configuration/#admin_listen). By default 8001.
+- Allow HTTPS traffic to [admin_listen_ssl](/0.12.x/configuration/#admin_listen_ssl). By default 8444.
 - Allow HTTP traffic to admin_gui_listen. By default 8002.
 - Allow HTTPS traffic to admin_gui_listen_ssl. By default 8445.
 
@@ -72,8 +73,8 @@ These are the port settings in order for Kong to work:
 
 Below are the recommended firewall settings:
 
-- The upstream APIs behind Kong will be available on [proxy_listen](/latest/configuration/#proxy_listen) and [proxy_listen_ssl](/latest/configuration/#proxy_listen_ssl). Configure these ports accordingly to the access level you wish to grant to the upstream APIs.
-- Protect [admin_listen](/latest/configuration/#admin_listen), and only allow trusted sources that can access the Admin API.
+- The upstream APIs behind Kong will be available on [proxy_listen](/0.12.x/configuration/#proxy_listen) and [proxy_listen_ssl](/0.12.x/configuration/#proxy_listen_ssl). Configure these ports accordingly to the access level you wish to grant to the upstream APIs.
+- Protect [admin_listen](/0.12.x/configuration/#admin_listen), and only allow trusted sources that can access the Admin API.
 
 ### Network
 

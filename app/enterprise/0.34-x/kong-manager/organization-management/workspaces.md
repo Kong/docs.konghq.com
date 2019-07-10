@@ -6,6 +6,10 @@ chapter: 5
 
 ## How to Create a New Workspace
 
+<video width="100%" autoplay loop controls>
+ <source src="https://konghq.com/wp-content/uploads/2019/02/new-workspace-ent-34.mov" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
 
 1. Log in as the Super Admin. On the "Workspaces" page, click the "New Workspace" button at the top right to see the "Create Workspace" form.
 
@@ -55,6 +59,11 @@ click the "Admins" link.
     ![New Workspace Admins](https://konghq.com/wp-content/uploads/2018/11/km-ws-admins.png)
 
 ## How to Update or Delete a Workspace
+
+<video width="100%" autoplay loop controls>
+ <source src="https://konghq.com/wp-content/uploads/2019/02/delete-ws-ent-34.mov" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
 
 ⚠️ **IMPORTANT**: In order to delete a Workspace, everything inside the 
 Workspace must be deleted first. This includes default Roles on the "Admins" 

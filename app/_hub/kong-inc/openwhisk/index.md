@@ -114,6 +114,8 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
 
 2. Create a Service or Route
 
+    **With a database**
+
     Create a Service.
 
     ```bash
@@ -137,9 +139,25 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
 
     ```
 
+    **Without a database**
+
+    Add a Service and an associated Route on the declarative config file:
+
+    ``` yaml
+    services:
+    - name: openwhisk-test
+      url: http://example.com
+
+    routes:
+    - service: openwhisk-test
+      paths: ["/"]
+    ```
+
 3. Enable the `openwhisk` plugin on the Route
 
-Plugins can be enabled on a Service or a Route. This example uses a Service.
+    **With a database**
+
+    Plugins can be enabled on a Service or a Route. This example uses a Service.
 
     ```bash
     $ curl -i -X POST http://localhost:8001/services/openwhisk-test/plugins \
@@ -152,6 +170,21 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
     HTTP/1.1 201 Created
     ...
 
+    ```
+
+    **Without a database**
+
+    Add an entry to the `plugins: ` declarative configuration yaml entry.
+    It can be associated to a Service or Route. This example uses a Service:
+
+    ``` yaml
+    plugins:
+    - name: openwhisk
+      config:
+        host: 192.168.33.13
+        service_token: username:key
+        action: hello
+        path: /api/v1/namespaces/guest
     ```
 
 4. Make a request to invoke the action

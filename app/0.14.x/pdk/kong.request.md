@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.request
+## Introduction
 
 Client request module
  A set of functions to retrieve information about the incoming requests made

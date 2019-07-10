@@ -2,8 +2,6 @@
 title: Kong Enterprise Edition Licensing
 ---
 
-# Kong Enterprise Edition Licensing
-
 ## Overview
 Kong Enterprise Edition enforces the presence and validity of a license file. 
 

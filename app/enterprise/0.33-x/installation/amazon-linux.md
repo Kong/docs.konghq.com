@@ -25,6 +25,10 @@ $ sudo service postgresql95 start
 $ sudo -i -u postgres (puts you into new shell)
 ```
 
+**Note**: `<USERNAME>` is obtained from your access key, by appending a `%40kong`
+to it (encoded form of `@kong`). For example, if your access key is `bob-company`,
+your username will be `bob-company%40kong`.
+
 Create `kong` user
 
 ```bash
@@ -49,7 +53,7 @@ $ kong migrations up [-c /path/to/kong.conf]
 $ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 
-**Note:** You may use `kong.conf.default` or create [your own configuration](https://docs.konghq.com/0.13.x/configuration/#configuration-loading).
+**Note:** You may use `kong.conf.default` or create [your own configuration](/0.13.x/configuration/#configuration-loading).
 
 ## Setup HTTPie to make commands easier
 

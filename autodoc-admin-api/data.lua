@@ -13,6 +13,8 @@ return {
   known = {
     general_files = {
       "kong/api/routes/kong.lua",
+      "kong/api/routes/config.lua",
+      "kong/api/routes/tags.lua",
     },
     nodoc_files = {
       "kong/api/routes/cache.lua", -- FIXME should we document this?
@@ -35,49 +37,60 @@ return {
 -- General (non-entity) Admin API route files
 --------------------------------------------------------------------------------
 
-  intro = [[
-
-    Kong comes with an **internal** RESTful Admin API for administration purposes.
-    Requests to the Admin API can be sent to any node in the cluster, and Kong will
-    keep the configuration consistent across all nodes.
-
-    - `8001` is the default port on which the Admin API listens.
-    - `8444` is the default port for HTTPS traffic to the Admin API.
-
-    This API is designed for internal use and provides full control over Kong, so
-    care should be taken when setting up Kong environments to avoid undue public
-    exposure of this API. See [this document][secure-admin-api] for a discussion
-    of methods to secure the Admin API.
-
-    ## Supported Content Types
-
-    The Admin API accepts 2 content types on every endpoint:
-
-    - **application/x-www-form-urlencoded**
-
-    Simple enough for basic request bodies, you will probably use it most of the time.
-    Note that when sending nested values, Kong expects nested objects to be referenced
-    with dotted keys. Example:
-
-    ```
-    config.limit=10&config.period=seconds
-    ```
-
-    - **application/json**
-
-    Handy for complex bodies (ex: complex plugin configuration), in that case simply send
-    a JSON representation of the data you want to send. Example:
-
-    ```json
+  intro = {
     {
-        "config": {
-            "limit": 10,
-            "period": "seconds"
-        }
-    }
-    ```
+      text = [[
+        <div class="alert alert-info.blue" role="alert">
+          This page refers to the Admin API for running Kong configured with a
+          database (Postgres or Cassandra). For using the Admin API for Kong
+          in DB-less mode, please refer to the
+          <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
+          page.
+        </div>
 
-  ]],
+        Kong comes with an **internal** RESTful Admin API for administration purposes.
+        Requests to the Admin API can be sent to any node in the cluster, and Kong will
+        keep the configuration consistent across all nodes.
+
+        - `8001` is the default port on which the Admin API listens.
+        - `8444` is the default port for HTTPS traffic to the Admin API.
+
+        This API is designed for internal use and provides full control over Kong, so
+        care should be taken when setting up Kong environments to avoid undue public
+        exposure of this API. See [this document][secure-admin-api] for a discussion
+        of methods to secure the Admin API.
+      ]]
+    }, {
+      title = [[Supported Content Types]],
+      text = [[
+        The Admin API accepts 2 content types on every endpoint:
+
+        - **application/x-www-form-urlencoded**
+
+        Simple enough for basic request bodies, you will probably use it most of the time.
+        Note that when sending nested values, Kong expects nested objects to be referenced
+        with dotted keys. Example:
+
+        ```
+        config.limit=10&config.period=seconds
+        ```
+
+        - **application/json**
+
+        Handy for complex bodies (ex: complex plugin configuration), in that case simply send
+        a JSON representation of the data you want to send. Example:
+
+        ```json
+        {
+            "config": {
+                "limit": 10,
+                "period": "seconds"
+            }
+        }
+        ```
+      ]]
+    },
+  },
 
   footer = [[
     [clustering]: /{{page.kong_version}}/clustering
@@ -86,6 +99,7 @@ return {
     [healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
     [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
     [proxy-reference]: /{{page.kong_version}}/proxy
+    [db-less-admin-api]: /{{page.kong_version}}/db-less-admin-api
   ]],
 
   general = {
@@ -140,7 +154,7 @@ return {
           description = [[
             Retrieve usage information about a node, with some basic information
             about the connections being processed by the underlying nginx process,
-            and the status of the database connection.
+            the status of the database connection, and node's memory usage.
 
             If you want to monitor the Kong process, since Kong is built on top
             of nginx, every existing nginx monitoring tool or agent can be used.
@@ -152,6 +166,28 @@ return {
 
             ```json
             {
+                "database": {
+                  "reachable": true
+                },
+                "memory": {
+                    "workers_lua_vms": [{
+                        "http_allocated_gc": "0.02 MiB",
+                        "pid": 18477
+                      }, {
+                        "http_allocated_gc": "0.02 MiB",
+                        "pid": 18478
+                    }],
+                    "lua_shared_dicts": {
+                        "kong": {
+                            "allocated_slabs": "0.04 MiB",
+                            "capacity": "5.00 MiB"
+                        },
+                        "kong_db_cache": {
+                            "allocated_slabs": "0.80 MiB",
+                            "capacity": "128.00 MiB"
+                        },
+                    }
+                },
                 "server": {
                     "total_requests": 3,
                     "connections_active": 1,
@@ -160,13 +196,38 @@ return {
                     "connections_reading": 0,
                     "connections_writing": 1,
                     "connections_waiting": 0
-                },
-                "database": {
-                    "reachable": true
                 }
             }
             ```
 
+            * `memory`: Metrics about the memory usage.
+                * `workers_lua_vms`: An array with all workers of the Kong node, where each
+                  entry contains:
+                * `http_allocated_gc`: HTTP submodule's Lua virtual machine's memory
+                  usage information, as reported by `collectgarbage("count")`, for every
+                  active worker, i.e. a worker that received a proxy call in the last 10
+                  seconds.
+                * `pid`: worker's process identification number.
+                * `lua_shared_dicts`: An array of information about dictionaries that are
+                  shared with all workers in a Kong node, where each array node contains how
+                  much memory is dedicated for the specific shared dictionary (`capacity`)
+                  and how much of said memory is in use (`allocated_slabs`).
+                  These shared dictionaries have least recent used (LRU) eviction
+                  capabilities, so a full dictionary, where `allocated_slabs == capacity`,
+                  will work properly. However for some dictionaries, e.g. cache HIT/MISS
+                  shared dictionaries, increasing their size can be beneficial for the
+                  overall performance of a Kong node.
+              * The memory usage unit and precision can be changed using the querystring
+                arguments `unit` and `scale`:
+                  * `unit`: one of `b/B`, `k/K`, `m/M`, `g/G`, which will return results
+                    in bytes, kibibytes, mebibytes, or gibibytes, respectively. When
+                    "bytes" are requested, the memory values in the response will have a
+                    number type instead of string. Defaults to `m`.
+                  * `scale`: the number of digits to the right of the decimal points when
+                    values are given in human-readable memory strings (unit other than
+                    "bytes"). Defaults to `2`.
+                  You can get the shared dictionaries memory usage in kibibytes with 4
+                  digits of precision by doing: `GET /status?unit=k&scale=4`
             * `server`: Metrics about the nginx HTTP/S server.
                 * `total_requests`: The total number of client requests.
                 * `connections_active`: The current number of active client
@@ -189,7 +250,140 @@ return {
           ]],
         },
       }
-    }
+    },
+    config = {
+      skip = true,
+    },
+    tags = {
+      title = [[ Tags ]],
+      description = [[
+        Tags are strings associated to entities in Kong. Each tag must be composed of one or more
+        alphanumeric characters, `_`, `-`, `.` or `~`.
+
+        Most core entities can be *tagged* via their `tags` attribute, upon creation or edition.
+
+        Tags can be used to filter core entities as well, via the `?tags` querystring parameter.
+
+        For example: if you normally get a list of all the Services by doing:
+
+        ```
+        GET /services
+        ```
+
+        You can get the list of all the Services tagged `example` by doing:
+
+        ```
+        GET /services?tags=example
+        ```
+
+        Similarly, if you want to filter Services so that you only get the ones tagged `example` *and*
+        `admin`, you can do that like so:
+
+        ```
+        GET /services?tags=example,admin
+        ```
+
+        Finally, if you wanted to filter the Services tagged `example` *or* `admin`, you could use:
+
+        ```
+        GET /services?tags=example/admin
+        ```
+
+        Some notes:
+
+        * A maximum of 5 tags can be queried simultaneously in a single request with `,` or `/`
+        * Mixing operators is not supported: if you try to mix `,` with `/` in the same querystring,
+          you will receive an error.
+        * You may need to quote and/or escape some characters when using them from the
+          command line.
+        * Filtering by `tags` is not supported in foreign key relationship endpoints. For example,
+          the `tags` parameter will be ignored in a request such as `GET /services/foo/routes?tags=a,b`
+        * `offset` parameters are not guaranteed to work if the `tags` parameter is altered or removed
+      ]],
+      ["/tags"] = {
+        GET = {
+          title = [[ List all tags ]],
+          endpoint = [[<div class="endpoint get">/tags</div>]],
+          description = [[
+            Returns a paginated list of all the tags in the system.
+
+            The list of entities will not be restricted to a single entity type: all the
+            entities tagged with tags will be present on this list.
+
+            If an entity is tagged with more than one tag, the `entity_id` for that entity
+            will appear more than once in the resulting list. Similarly, if several entities
+            have been tagged with the same tag, the tag will appear in several items of this list.
+          ]],
+          response = [[
+            ```
+            HTTP 200 OK
+            ```
+
+            ``` json
+            {
+                {
+                  "data": [
+                    { "entity_name": "services",
+                      "entity_id": "acf60b10-125c-4c1a-bffe-6ed55daefba4",
+                      "tag": "s1",
+                    },
+                    { "entity_name": "services",
+                      "entity_id": "acf60b10-125c-4c1a-bffe-6ed55daefba4",
+                      "tag": "s2",
+                    },
+                    { "entity_name": "routes",
+                      "entity_id": "60631e85-ba6d-4c59-bd28-e36dd90f6000",
+                      "tag": "s1",
+                    },
+                    ...
+                  ],
+                  "offset" = "c47139f3-d780-483d-8a97-17e9adc5a7ab",
+                  "next" = "/tags?offset=c47139f3-d780-483d-8a97-17e9adc5a7ab",
+                }
+            }
+            ```
+          ]]
+        },
+      },
+
+      ["/tags/:tags"] = {
+        GET = {
+          title = [[ List entity IDs by tag ]],
+          endpoint = [[<div class="endpoint get">/tags/:tags</div>]],
+          description = [[
+            Returns the entities that have been tagged with the specified tag.
+
+            The list of entities will not be restricted to a single entity type: all the
+            entities tagged with tags will be present on this list.
+          ]],
+          response = [[
+            ```
+            HTTP 200 OK
+            ```
+
+            ``` json
+            {
+                {
+                  "data": [
+                    { "entity_name": "services",
+                      "entity_id": "c87440e1-0496-420b-b06f-dac59544bb6c",
+                      "tag": "example",
+                    },
+                    { "entity_name": "routes",
+                      "entity_id": "8a99e4b1-d268-446b-ab8b-cd25cff129b1",
+                      "tag": "example",
+                    },
+                    ...
+                  ],
+                  "offset" = "1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9",
+                  "next" = "/tags/example?offset=1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9",
+                }
+            }
+            ```
+          ]]
+        },
+      },
+    },
   },
 
 --------------------------------------------------------------------------------
@@ -197,7 +391,6 @@ return {
 --------------------------------------------------------------------------------
 
   entities = {
-
     services = {
       description = [[
         Service entities, as the name implies, are abstractions of each of your own
@@ -261,6 +454,15 @@ return {
             The timeout in milliseconds between two successive read operations
             for transmitting a request to the upstream server.
           ]]
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Service, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
         },
       },
       extra_fields = {
@@ -389,6 +591,24 @@ return {
             This is where the Route proxies traffic to.
           ]]
         },
+        https_redirect_status_code = {
+          description = [[
+            The status code Kong responds with when all properties of a Route
+            match except the protocol i.e. if the protocol of the request
+            is `HTTP` instead of `HTTPS`.
+            `Location` header is injected by Kong if the field is set
+            to 301, 302, 307 or 308.
+          ]]
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Route, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       }
     },
 
@@ -420,6 +640,15 @@ return {
           ]],
           example = "my-custom-id",
         },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Consumer, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       }
     },
 
@@ -433,8 +662,9 @@ return {
 
         When adding a Plugin Configuration to a Service, every request made by a client to
         that Service will run said Plugin. If a Plugin needs to be tuned to different
-        values for some specific Consumers, you can do so by specifying the
-        `consumer_id` value:
+        values for some specific Consumers, you can do so by creating a separate
+        plugin instance that specifies both the Service and the Consumer, through the
+        `service` and `consumer` fields.
       ]],
       details = [[
         See the [Precedence](#precedence) section below for more details.
@@ -578,13 +808,13 @@ return {
         }
       },
       -- Skip deprecated endpoints
-      ["/routes/:routes/plugins/:id"] = {
+      ["/routes/:routes/plugins/:plugins"] = {
         skip = true,
       },
-      ["/services/:services/plugins/:id"] = {
+      ["/services/:services/plugins/:plugins"] = {
         skip = true,
       },
-      ["/consumers/:consumers/plugins/:id"] = {
+      ["/consumers/:consumers/plugins/:plugins"] = {
         skip = true,
       },
 
@@ -637,14 +867,38 @@ return {
           * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar
             scenario. This is useful for tracing/logging plugins.
         ]] },
+        protocols = {
+          description = [[
+            A list of the request protocols that will trigger this plugin. Possible values are
+            `"http"`, `"https"`, `"tcp"`, and `"tls"`.
+
+            The default value, as well as the possible values allowed on this field, may change
+            depending on the plugin type. For example, plugins that only work in stream mode will
+            may only support `"tcp"` and `"tls"`.
+          ]],
+          examples = {
+            { "http", "https" },
+            { "tcp", "tls" },
+          },
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Plugin, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       }
     },
 
     certificates = {
       description = [[
-        A certificate object represents a public certificate/private key pair for an SSL
-        certificate. These objects are used by Kong to handle SSL/TLS termination for
-        encrypted requests. Certificates are optionally associated with SNI objects to
+        A certificate object represents a public certificate, and can be optionally paired with the
+        corresponding private key. These objects are used by Kong to handle SSL/TLS termination for
+        encrypted requests, or for use as a trusted CA store when validating peer certificate of
+        client/service. Certificates are optionally associated with SNI objects to
         tie a cert/key pair to one or more hostnames.
       ]],
       fields = {
@@ -658,6 +912,15 @@ return {
           description = [[PEM-encoded private key of the SSL key pair.]],
           example = "-----BEGIN RSA PRIVATE KEY-----..."
         },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Certificate, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       },
       extra_fields = {
         { snis = {
@@ -666,10 +929,12 @@ return {
             An array of zero or more hostnames to associate with this
             certificate as SNIs. This is a sugar parameter that will, under the
             hood, create an SNI object and associate it with this certificate
-            for your convenience.
+            for your convenience. To set this attribute this certificate must
+            have a valid private key associated with it.
           ]]
         } },
-      }
+      },
+
     },
 
     snis = {
@@ -690,8 +955,19 @@ return {
         name = { description = [[The SNI name to associate with the given certificate.]] },
         certificate = {
           description = [[
-            The id (a UUID) of the certificate with which to associate the SNI hostname
+            The id (a UUID) of the certificate with which to associate the SNI hostname.
+            The Certificate must have a valid private key associated with it to be used
+            by the SNI object.
           ]]
+        },
+        tags = {
+          description = [[
+            An optional set of strings associated with the SNIs, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
         },
       },
     },
@@ -776,7 +1052,8 @@ return {
             }
             ```
           ]],
-        }
+        },
+
       },
       fields = {
         id = { skip = true },
@@ -810,6 +1087,15 @@ return {
         ["healthchecks.passive.unhealthy.tcp_failures"] = { description = [[Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks.]] },
         ["healthchecks.passive.unhealthy.timeouts"] = { description = [[Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks.]] },
         ["healthchecks.passive.unhealthy.http_failures"] = { description = [[Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks.]] },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Upstream, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       }
     },
 
@@ -995,6 +1281,15 @@ return {
             overridden by the value from the DNS record.
           ]]
         },
+        tags = {
+          description = [[
+            An optional set of strings associated with the Target, for grouping and filtering.
+          ]],
+          examples = {
+            { "user-level", "low-priority" },
+            { "admin", "high-priority", "critical" }
+          },
+        },
       },
     }
   },
@@ -1007,17 +1302,17 @@ return {
     GET = {
       title = [[List ${Entities}]],
       endpoint_w_ek = [[
-        ##### List all ${Entities}
+        ##### List All ${Entities}
 
         <div class="endpoint ${method}">/${entities_url}</div>
       ]],
       endpoint = [[
-        ##### List all ${Entities}
+        ##### List All ${Entities}
 
         <div class="endpoint ${method}">/${entities_url}</div>
       ]],
       fk_endpoint = [[
-        ##### List ${Entities} associated to a specific ${ForeignEntity}
+        ##### List ${Entities} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} id}/${entities_url}</div>
 
@@ -1026,7 +1321,7 @@ return {
         `${foreign_entity} id`<br>**required** | The unique identifier of the ${ForeignEntity} whose ${Entities} are to be retrieved. When using this endpoint, only ${Entities} associated to the specified ${ForeignEntity} will be listed.
       ]],
       fk_endpoint_w_ek = [[
-        ##### List ${Entities} associated to a specific ${ForeignEntity}
+        ##### List ${Entities} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} ${endpoint_key} or id}/${entities_url}</div>
 
@@ -1066,7 +1361,7 @@ return {
         <div class="endpoint ${method}">/${entities_url}</div>
       ]],
       fk_endpoint = [[
-        ##### Create ${Entity} associated to a specific ${ForeignEntity}
+        ##### Create ${Entity} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} id}/${entities_url}</div>
 
@@ -1075,7 +1370,7 @@ return {
         `${foreign_entity} id`<br>**required** | The unique identifier of the ${ForeignEntity} that should be associated to the newly-created ${Entity}.
       ]],
       fk_endpoint_w_ek = [[
-        ##### Create ${Entity} associated to a specific ${ForeignEntity}
+        ##### Create ${Entity} Associated to a Specific ${ForeignEntity}
 
         <div class="endpoint ${method}">/${foreign_entities_url}/{${foreign_entity} ${endpoint_key} or id}/${entities_url}</div>
 
@@ -1098,6 +1393,9 @@ return {
     },
   },
   entity_templates = {
+    tags = [[
+      ${Entities} can be both [tagged and filtered by tags](#tags).
+    ]],
     endpoint_w_ek = [[
       ##### ${Active_verb} ${Entity}
 
@@ -1108,7 +1406,7 @@ return {
       `${endpoint_key} or id`<br>**required** | The unique identifier **or** the ${endpoint_key} of the ${Entity} to ${active_verb}.
     ]],
     fk_endpoint_w_ek = [[
-      ##### ${Active_verb} ${ForeignEntity} associated to a specific ${Entity}
+      ##### ${Active_verb} ${ForeignEntity} Associated to a Specific ${Entity}
 
       <div class="endpoint ${method}">/${entities_url}/{${entity} ${endpoint_key} or id}/${foreign_entity_url}</div>
 
@@ -1126,7 +1424,7 @@ return {
       `${entity} id`<br>**required** | The unique identifier of the ${Entity} to ${active_verb}.
     ]],
     fk_endpoint = [[
-      ##### ${Active_verb} ${ForeignEntity} associated to a specific ${Entity}
+      ##### ${Active_verb} ${ForeignEntity} Associated to a Specific ${Entity}
 
       <div class="endpoint ${method}">/${entities_url}/{${entity} id}/${foreign_entity_url}</div>
 
@@ -1198,5 +1496,158 @@ return {
       ]],
     }
   },
+
+--------------------------------------------------------------------------------
+-- Overrides for DB-less mode
+--------------------------------------------------------------------------------
+
+  dbless = {
+
+    intro = {
+      {
+        text = [[
+          <div class="alert alert-info.blue" role="alert">
+            This page refers to the Admin API for running Kong configured without a
+            database, managing in-memory entities via declarative config.
+            For using the Admin API for Kong with a database, please refer to the
+            <a href="/{{page.kong_version}}/admin-api">Admin API for Database Mode</a> page.
+          </div>
+
+          Kong comes with an **internal** RESTful Admin API for administration purposes.
+          In [DB-less mode][db-less], this Admin API can be used to load a new declarative
+          configuration, and for inspecting the current configuration. In DB-less mode,
+          the Admin API for each Kong node functions independently, reflecting the memory state
+          of that particular Kong node. This is the case because there is no database
+          coordination between Kong nodes.
+
+          - `8001` is the default port on which the Admin API listens.
+          - `8444` is the default port for HTTPS traffic to the Admin API.
+
+          This API provides full control over Kong, so care should be taken when setting
+          up Kong environments to avoid undue public exposure of this API.
+          See [this document][secure-admin-api] for a discussion
+          of methods to secure the Admin API.
+        ]],
+      },
+      {
+        title = [[Supported Content Types]],
+        text = [[
+          The Admin API accepts 2 content types on every endpoint:
+
+          - **application/x-www-form-urlencoded**
+          - **application/json**
+        ]],
+      },
+    },
+
+    footer = [[
+      [clustering]: /{{page.kong_version}}/clustering
+      [cli]: /{{page.kong_version}}/cli
+      [active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+      [healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
+      [secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+      [proxy-reference]: /{{page.kong_version}}/proxy
+      [db-less]: /{{page.kong_version}}/db-less-and-declarative-config
+      [admin-api]: /{{page.kong_version}}/admin-api
+    ]],
+
+    general = {
+      config = {
+        skip = false,
+        title = [[Declarative Configuration]],
+        description = [[
+          Loading the declarative configuration of entities into Kong
+          can be done in two ways: at start-up, through the `declarative_config`
+          property, or at run-time, through the Admin API using the `/config`
+          endpoint.
+
+          To get started using declarative configuration, you need a file
+          (in YAML or JSON format) containing entity definitions. You can
+          generate a sample declarative configuration with the command:
+
+          ```
+          kong config init
+          ```
+
+          It generates a file named `kong.yml` in the current directory,
+          containing the appropriate structure and examples.
+        ]],
+        ["/config"] = {
+          POST = {
+            title = [[Reload declarative configuration]],
+            endpoint = [[
+              <div class="endpoint post">/config</div>
+
+              Attributes | Description
+              ---:| ---
+              `config`<br>**required** | The config data (in YAML or JSON format) to be loaded.
+            ]],
+
+            description = [[
+              This endpoint allows resetting a DB-less Kong with a new
+              declarative configuration data file. All previous contents
+              are erased from memory, and the entities specified in the
+              given file take their place.
+
+              To learn more about the file format, please read the
+              [declarative configuration][db-less] documentation.
+            ]],
+            response = [[
+              ```
+              HTTP 200 OK
+              ```
+
+              ``` json
+              {
+                  { "services": [],
+                    "routes": []
+                  }
+              }
+              ```
+
+              The response contains a list of all the entities that were parsed from the
+              input file.
+            ]]
+          }
+        },
+      },
+    },
+
+    entities = {
+      methods = {
+        -- in DB-less mode, only document GET endpoints for entities
+        ["GET"] = true,
+        ["POST"] = false,
+        ["PATCH"] = false,
+        ["PUT"] = false,
+        ["DELETE"] = false,
+        -- exceptions for the healthcheck endpoints:
+        ["/upstreams/:upstreams/targets/:targets/healthy"] = {
+          ["POST"] = true,
+        },
+        ["/upstreams/:upstreams/targets/:targets/unhealthy"] = {
+          ["POST"] = true,
+        },
+      },
+    }
+
+  },
+
+--------------------------------------------------------------------------------
+-- Template for Admin API section of the Navigation file
+--------------------------------------------------------------------------------
+
+  nav = {
+    header = [[
+      - title: Admin API
+        url: /admin-api/
+        items:
+          - text: DB-less
+            url: /db-less-admin-api
+
+          - text: Declarative Configuration
+            url: /db-less-admin-api/#declarative-configuration
+      ]],
+  }
 
 }

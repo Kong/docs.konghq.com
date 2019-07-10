@@ -31,7 +31,7 @@ $ curl -i -X POST \
 Or, add your first plugin via Kong Manager on the "Plugins" page:
 
 <video width="100%" autoplay loop controls>
- <source src="https://konghq.com/wp-content/uploads/2018/07/create-keyauth-plugin-ee-0.33.mp4" type="video/mp4">
+ <source src="https://konghq.com/wp-content/uploads/2019/02/add-basic-auth-ent-34.mov" type="video/mp4">
  Your browser does not support the video tag.
 </video>
 

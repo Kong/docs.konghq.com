@@ -17,6 +17,11 @@ or you can set one up on the Organization page of Kong Manager.
 
 ## How to Set Up a Super Admin
 
+<video width="100%" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2019/02/org-super-admin-ent-34.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 1. Go to the "Organization" tab in Kong Manager.
 
 2. Click "+Invite User" and fill out the form. 
@@ -76,6 +81,11 @@ encrypt your Kong Manager traffic.
 
 ## How to Log Out and Log In
 
+<video width="100%" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2019/02/logout-login-enterprise-34.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 1. Hover over the account name at the top right, and click the "Logout" button. 
 This will clear the Local Storage authentication data (if exists) and redirect 
 to the login page.
@@ -93,44 +103,53 @@ locally and used for subsequent browser requests.
 
 ## LDAP Authentication
 
-The [LDAP Authentication Advanced plugin](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced) 
-allows Admins to use their own LDAP server to bind authentication to the Admin 
-API with username and password protection. Note: You must use `Basic` as your 
-`header_type` in the `admin_gui_auth_config` Kong configuration. To implement 
-this (and any other) configuration, restart Kong after saving changes to 
-`kong.conf`:
+Kong Enterprise offers the ability to bind authentication for Kong Manager 
+*Admins* to a company's Active Directory using the 
+[LDAP Authentication Advanced plugin](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced).
+
+⚠️ **IMPORTANT**: by using the configuration below, it is unnecessary to manually apply
+the plugin; the configuration alone will enable LDAP Authentication for Kong Manager.
+
+Ensure Kong is configured with the following properties either in the configuration 
+file or using environment variables:
 
 ```
 admin_gui_auth = ldap-auth-advanced
 enforce_rbac = on
-```
-
-```
-admin_gui_auth_conf={                                     \
-"anonymous":"",                                           \
-"attribute":"uid",                                        \ 
-"base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
-"cache_ttl": 2,                                           \
-"header_type":"Basic",                                    \
-"keepalive":60000,                                        \
-"ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>",                \
-"ldap_port":389,                                          \
-"start_tls":false,                                        \
-"timeout":10000,                                          \
-"verify_ldap_host":true                                   \
+admin_gui_auth_conf = {                                   
+    "anonymous":"",                                           \
+    "attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>",                \ 
+    "bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
+    "base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
+    "cache_ttl": 2,                                           \
+    "header_type":"Basic",                                    \
+    "keepalive":60000,                                        \
+    "ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>",                \
+    "ldap_password":"<ENTER_YOUR_LDAP_PASSWORD_HERE>",        \
+    "ldap_port":389,                                          \
+    "start_tls":false,                                        \
+    "timeout":10000,                                          \
+    "verify_ldap_host":true                                   \
+    "consumer_by":"username",                                 \
 }
 ```
 
-The values above can be replaced with their corresponding values for your 
-custom LDAP configuration:
+* `"attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>"`: The attribute used to identify LDAP users
+    * For example, to map LDAP users to admins by their username, `"attribute":"uid"`
+* `"bind_dn":"<ENTER_YOUR_BIND_DN_HERE>"`: LDAP Bind DN (Distinguished Name) 
+    * Used to perform LDAP search of user. This bind_dn should have permissions to search 
+      for the user being authenticated. 
+    * For example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
+* `"base_dn":"<ENTER_YOUR_BASE_DN_HERE>"`: LDAP Base DN (Distinguished Name) 
+    * For example, `ou=scientists,dc=ldap,dc=com`
+* `"ldap_host":"<ENTER_YOUR_LDAP_HOST_HERE>"`: LDAP host domain 
+    * For example, `"ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com"`
+* `"ldap_password":"<ENTER_YOUR_LDAP_PASSWORD_HERE>"`: LDAP password
+    * *Note*: As with any configuration property, sensitive information may be set as an 
+      environment variable instead of being written directly in the configuration file.
 
-  - `<ENTER_YOUR_BASE_DN_HERE>` - Your LDAP Base DN (Distinguished Name)
-        * For Example, `ou=scientists,dc=ldap,dc=kong,dc=com`
-  - `<ENTER_YOUR_LDAP_HOST_HERE>` - LDAP Host domain
-        * For Example, `ec2"-XX-XXX-XX-XXX.compute-1.amazonaws.com`
-
-After you have updated your configuration and restarted Kong, you will now be 
-able to login to Kong Manager with a username and password validated against 
-your remote LDAP server.
+After starting Kong with the desired configuration, you may create new *Admins* whose
+usernames match those in the AD. Those users will then be able to accept invitations
+to join Kong Manager and log in with their LDAP credentials.
 
 Next: [Networking &rsaquo;]({{page.book.next}})

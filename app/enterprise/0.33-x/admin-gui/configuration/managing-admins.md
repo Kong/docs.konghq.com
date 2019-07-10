@@ -3,6 +3,7 @@ title: Managing Admins
 book: admin_gui
 chapter: 4
 ---
+
 ## Introduction
 
 ![Managing Admins in the Kong Admin GUI](https://konghq.com/wp-content/uploads/2018/07/admins1.png)

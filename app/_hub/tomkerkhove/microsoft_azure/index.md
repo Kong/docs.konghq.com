@@ -56,7 +56,11 @@ source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+        - 0.13.x
         - 0.14.x
+        - 0.15.x
+        - 1.0.x
+        - 1.1.x
     #incompatible:
   # enterprise_edition: # optional
     # compatible:
@@ -109,7 +113,13 @@ Here are the simple steps to provision one:
 1. Go to the <a href="https://portal.azure.com" target="blank">Azure Portal</a>
 1. Create a new "Azure Database for PostgreSQL" instance
 1. Go to "Connection Security" and enable access to Azure services
-1. Create a new database called "kong" by using your favorite tool
+1. Create a new database called "kong" via the CLI or by using your favorite tool
+
+    ```bash
+    $ az postgres db create --name kong \
+                            --resource-group kong-on-azure \
+                            --server-name kong-on-azure
+    ```
 
 <div class="alert alert-warning">
   <div class="text-center">

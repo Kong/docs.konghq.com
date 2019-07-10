@@ -53,7 +53,7 @@ params:
       required: false
       default: "`apikey`"
       description: |
-        Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
+        Describes an array of comma separated parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-]. Underscores are not permitted for keys in headers due to [additional restrictions in the NGINX defaults](http://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers).
     - name: key_in_body
       required: false
       default: "`false`"

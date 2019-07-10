@@ -31,7 +31,7 @@ toc: false
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
     <a href="/enterprise/{{page.kong_version}}/developer-portal/customization">Customization</a></h3>
     <p>Learn how to customize the look and feel of the Kong Dev Portal.</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/customization">
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/customization/customization">
     Learn More &rarr;</a>
   </div>
 

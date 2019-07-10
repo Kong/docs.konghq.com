@@ -57,7 +57,11 @@ source_url: https://github.com/tomkerkhove/kong-deployment-on-azure
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+        - 0.13.x
         - 0.14.x
+        - 0.15.x
+        - 1.0.x
+        - 1.1.x
     #incompatible:
   # enterprise_edition: # optional
     # compatible:
@@ -96,22 +100,25 @@ Running Kong on Azure Container Instances is super easy:
 
     ```bash
     $ az container create --name kong-migrations \
-                          --resource-group kong-sandbox \
+                          --resource-group kong-gateway \
                           --image kong:latest \
                           --restart-policy Never \
                           --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" \
                                                   KONG_PG_USER="<username>" \
                                                   KONG_PG_PASSWORD="<password>" \
-                          --command-line "kong migrations up"
+                          --command-line "kong migrations bootstrap"
     ```
     In this example, we are using a PostgreSQL database running on [Azure Database for PostgreSQL](/hub/tomkerkhove/microsoft_azure/#running-postgresql-on-azure-with-azure-database-for-postgresql).
+
+    **Note for Kong < 0.15**: with Kong versions below 0.15 (up to 0.14), use
+    the `up` sub-command instead of `bootstrap`.
 
 1. **Start Kong**
 
     ```bash
     $ az container create --name kong-gateway /
                           --dns-name-label kong-gateway /
-                          --resource-group kong-sandbox /
+                          --resource-group kong-gateway /
                           --image kong:latest /
                           --port 8000 8443 8001 8444 /
                           --environment-variables KONG_PG_HOST="<instance-name>.postgres.database.azure.com" /

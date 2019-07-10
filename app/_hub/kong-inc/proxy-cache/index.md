@@ -2,7 +2,7 @@
 
 name: Proxy Caching
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Cache and serve commonly requested responses in Kong
 description: |
@@ -16,8 +16,10 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
 
 params:
@@ -44,15 +46,15 @@ params:
       default: text/plain, application/json
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable
+        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned
     - name: vary_headers
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
         Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
     - name: vary_query_params
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
@@ -70,7 +72,7 @@ params:
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2)
     - name: storage_ttl
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
@@ -78,9 +80,9 @@ params:
     - name: strategy
       required:
       default:
-      value_in_examples:
+      value_in_examples: memory
       description: |
-        The backing data store in which to hold cache entities
+        The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
     - name: memory.dictionary_name
       required:
       default: kong_cache
@@ -199,7 +201,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint get">/proxy-cache/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------

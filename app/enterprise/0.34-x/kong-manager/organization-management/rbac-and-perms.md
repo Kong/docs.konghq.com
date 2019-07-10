@@ -43,6 +43,12 @@ When a Super Admin creates a new Workspace, there are three default Roles that m
 
 ## How to Create RBAC Roles for Admins in the New Workspace
 
+<video width="100%" autoplay loop controls>
+ <source src="https://konghq.com/wp-content/uploads/2019/02/role-creation-ent-34.mov" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
+
+
 1. On the "Admins" page, to create a new Role, click the "Add Role" button at the top right of the list of Roles. 
 
 2. On the "Add Role" form, name the Role according to the permissions you want to grant. Write a brief comment describing the permissions of the Role. 

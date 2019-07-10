@@ -2,7 +2,7 @@
 
 name: OAuth 2.0 Introspection
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |
@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
 
 params:
@@ -89,7 +90,8 @@ params:
 ---
 
 ### Flow
-<img src="https://konghq.com/wp-content/uploads/2018/09/oauth-introspection-flow.png" alt="OAuth2 Introspection Flow" />
+
+![OAuth2 Introspection Flow](/assets/images/docs/oauth2/oauth2-introspection.png)
 
 ### Associate the response to a Consumer
 

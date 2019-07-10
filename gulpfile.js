@@ -273,7 +273,7 @@ gulp.task('cli-docs', function (cb) {
   }
 
   // 1 Generate cli.md
-  cmd = 'resty autodoc-cli/run.lua'
+  cmd = 'luajit autodoc-cli/run.lua'
   obj = childProcess.spawnSync(cmd, { shell: true })
   errLog = obj.stderr.toString()
   if (errLog.length > 0) {
@@ -283,12 +283,57 @@ gulp.task('cli-docs', function (cb) {
   log('Re-generated CLI docs for ' + KONG_VERSION)
 })
 
+gulp.task('conf-docs', function (cb) {
+  var KONG_PATH, KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_PATH = process.env.KONG_PATH
+  if (KONG_PATH === undefined) {
+    return cb('No KONG_PATH environment variable set')
+  }
+
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
+
+  // Generate configuration.md
+  cmd = 'luajit autodoc-conf/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated Conf docs for ' + KONG_VERSION)
+})
+
+gulp.task('nav-docs', function (cb) {
+  var KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
+
+  // 1 Generate docs_nav_X.Y.x.yml
+  cmd = 'luajit autodoc-nav/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated navigation file for ' + KONG_VERSION)
+})
+
 gulp.task('clean', function () {
   ghPages.clean()
   return del(['dist', '.gh-pages'])
 })
 
-gulp.task('build', ['javascripts', 'images', 'fonts'], function (cb) {
+gulp.task('build', ['javascripts', 'images', 'fonts', 'copycss'], function (cb) {
   sequence('html', 'styles', cb)
 })
 

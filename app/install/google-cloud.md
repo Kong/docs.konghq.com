@@ -5,6 +5,7 @@ header_title: Google Cloud
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
+toc: false
 ---
 
 There currently are two options for installing Kong from the Google Cloud

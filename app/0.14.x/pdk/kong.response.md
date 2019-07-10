@@ -4,7 +4,7 @@ pdk: true
 toc: true
 ---
 
-## kong.response
+## Introduction
 
 Client response module
 

@@ -18,6 +18,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
+        - 1.1.x
         - 1.0.x
         - 0.14.x
         - 0.13.x
@@ -31,6 +33,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -41,6 +44,8 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: remove.headers
       required: false
@@ -89,78 +94,168 @@ similar for Services.
 
 - Add multiple headers by passing each header:value pair separately:
 
+{% tabs %}
+{% tab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+{% tab Without a database %}
+```yaml
+plugins:
+- name: response-transformer
+  route: {route}
+  config:
+    add:
+      headers: ["h1:v1", "h2:v2"]
+```
+{% endtabs %}
 
-- Add multiple headers by passing comma separated header:value pair:
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul>
+      <li>h1: v1</li>
+      <li>h2: v1</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+
+- Add multiple headers by passing comma separated header:value pair (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
 
-- Add multiple headers passing config as JSON body:
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
+
+- Add multiple headers passing config as JSON body (only possible with a database):
 
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
 
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h2: v1</li></ul>
----
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
 
 - Add a body property and a header:
 
+{% tabs %}
+{% tab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
   --data "config.add.json=p1:v1,p2=v2" \
   --data "config.add.headers=h1:v1"
 ```
+{% tab Without a database %}
+```yaml
+plugins:
+- name: response-transformer
+  route: {route}
+  config:
+    add:
+      json: ["p1:v1", "p2=v2"]
+      headers: ["h1:v1"]
+```
+{% endtabs %}
 
-upstream response headers | proxied response headers:
----           | ---
-h1: v2        | <ul><li>h1: v2</li><li>h2: v1</li></ul>
-h3: v1        | <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v2</td>
+    <td>
+      <ul><li>h1: v2</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>h3: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h2: v1</li><li>h3: v1</li></ul>
+    </td>
+  </tr>
+</table>
 
-upstream response JSON body | proxied response body
----           | ---
-{}            | {"p1" : "v1", "p2": "v2"}
-{"p1" : "v2"}  | {"p1" : "v2", "p2": "v2"}
----
+| upstream response JSON body | proxied response body |
+| ---           | --- |
+| {}            | {"p1" : "v1", "p2": "v2"} |
+| {"p1" : "v2"}  | {"p1" : "v2", "p2": "v2"} |
 
 - Append multiple headers and remove a body property:
 
+{% tabs %}
+{% tab With a database %}
 ```bash
-$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+$ curl -X POST http://localhost:8001/routes/{route}/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "response-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"json": ["p1"]}}}'
 ```
+{% tab Without a database %}
+```yaml
+plugins:
+- name: response-transformer
+  route: {route}
+  config:
+    append:
+      headers: ["h1:v2", "h2:v1"]
+    remove:
+      json: ["p1"]
+```
+{% endtabs %}
 
-upstream response headers | proxied response headers
----           | ---
-h1: v1        | <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
+<table>
+  <tr>
+    <th>upstream response headers</th>
+    <th>proxied response headers</th>
+  </tr>
+  <tr>
+    <td>h1: v1</td>
+    <td>
+      <ul><li>h1: v1</li><li>h1: v2</li><li>h2: v1</li></ul>
+    </td>
+  </tr>
+</table>
 
-upstream response JSON body | proxied response body
----           | ---
-{"p2": "v2"}   | {"p2": "v2"}
-{"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"}
+| upstream response JSON body | proxied response body |
+| ---           | --- |
+| {"p2": "v2"}   | {"p2": "v2"} |
+| {"p1" : "v1", "p2" : "v1"}  | {"p2": "v2"} |
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object
