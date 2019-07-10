@@ -1,5 +1,6 @@
 ---
 title: Configuring a Service
+redirect_from: "/enterprise/0.33-x/getting-started/adding-your-api/"
 ---
 
 ## Introduction
@@ -8,7 +9,7 @@ title: Configuring a Service
   <strong>Before you start:</strong>
   <ol>
     <li>Make sure you've <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!</li>
-    <li>Make sure you've <a href="/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
+    <li>Make sure you've <a href="/enterprise/{{page.kong_version}}/getting-started/quickstart">started Kong</a>.</li>
   </ol>
 </div>
 
@@ -29,10 +30,10 @@ After configuring the Service and the Route, you'll be able to make requests thr
 Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and
 Routes, is made via requests on that API.
 
-## 1. Add your Service using the Admin API
+## 1. Add your Service using the Admin API or GUI
 
-Issue the following cURL request to add your first Service (pointing to the [Mockbin API][mockbin])
-to Kong:
+If you'd like to use the Admin API, issue the following cURL request to add
+your first API ([Mockbin][mockbin]) to Kong Enterprise:
 
 ```bash
 $ curl -i -X POST \
@@ -41,7 +42,27 @@ $ curl -i -X POST \
   --data 'url=http://mockbin.org'
 ```
 
-You should receive a response similar to:
+After adding your Service, add a Route linked to it:
+
+```bash
+$ curl -i -X POST \
+  --url http://localhost:8001/services/example-service/routes \
+  --data 'hosts[]=example.com'
+```
+
+Or, add your first API in the Admin GUI, via Services & Routes:
+
+<video width="100%" autoplay loop controls>
+  <source src="https://konghq.com/wp-content/uploads/2018/07/first-api-ee-0.33.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Kong is now aware of your Service and ready to proxy requests.
+
+## 2. Verify that your API has been added
+
+You'll get a confirmation message in the Admin GUI, or if you used cURL
+you should see responses similar to the following:
 
 ```http
 HTTP/1.1 201 Created
@@ -63,17 +84,6 @@ Connection: keep-alive
    "write_timeout":60000
 }
 ```
-
-
-## 2. Add a Route for the Service
-
-```bash
-$ curl -i -X POST \
-  --url http://localhost:8001/services/example-service/routes \
-  --data 'hosts[]=example.com'
-```
-
-The answer should be similar to:
 
 ```http
 HTTP/1.1 201 Created
@@ -102,12 +112,12 @@ Connection: keep-alive
 }
 ```
 
-Kong is now aware of your Service and ready to proxy requests.
+Kong is now aware of your API and ready to proxy requests.
 
-## 3. Forward your requests through Kong
+## 3. Forward your requests through Kong EE
 
 Issue the following cURL request to verify that Kong is properly forwarding
-requests to your Service. Note that [by default][proxy-port] Kong handles proxy
+requests to your API. Note that [by default][proxy-port] Kong handles proxy
 requests on port `:8000`:
 
 ```bash
@@ -117,23 +127,19 @@ $ curl -i -X GET \
 ```
 
 A successful response means Kong is now forwarding requests made to
-`http://localhost:8000` to the `url` we configured in step #1,
+`http://localhost:8000` to the `upstream_url` we configured in step #1,
 and is forwarding the response back to us. Kong knows to do this through
-the header defined in the above cURL request:
+the header defined in the above cURL request `Host: example.com`
 
-<ul>
-  <li><strong>Host: &lt;given host></strong></li>
-</ul>
-
-<hr>
+---
 
 ## Next Steps
 
-Now that you've added your Service to Kong, let's learn how to enable plugins.
+Now that you've added your API to Kong EE, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /{{page.kong_version}}/admin-api
-[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
-[proxy-port]: /{{page.kong_version}}/configuration/#nginx-section
+[API]: /latest/admin-api
+[enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins
+[proxy-port]: /latest/configuration/#nginx-section
 [mockbin]: https://mockbin.com/
