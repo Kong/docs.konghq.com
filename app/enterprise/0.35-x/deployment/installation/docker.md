@@ -50,7 +50,7 @@ with the URL you received in your welcome email:
     If using a Cassandra container:
 
     ```bash
-    $ docker run -d --name kong-database \
+    $ docker run -d --name kong-ee-database \
                   --network=kong-net \
                   -p 9042:9042 \
                   cassandra:3
@@ -59,7 +59,7 @@ with the URL you received in your welcome email:
     If using a PostgreSQL container:
 
     ```bash
-    $ docker run -d --name kong-database \
+    $ docker run -d --name kong-ee-database \
                   --network=kong-net \
                   -p 5432:5432 \
                   -e "POSTGRES_USER=kong" \
