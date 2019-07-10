@@ -405,8 +405,8 @@ $(function () {
   })
 
   // Responsive Tables
-   if($window.width() <= 1099) {
-     mobileTable()
+  if($window.width() <= 1099) {
+    mobileTable()
   }
 
   $window.resize(function (){
