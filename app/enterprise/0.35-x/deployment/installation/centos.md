@@ -30,7 +30,7 @@ To complete this guide you will need:
     Copy the file to your home directory:
 
     ```
-    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@192.168.91.109:~
+    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@<remote ip:~
     ```
 
 2. Option 2. Download via **YUM**
@@ -220,9 +220,10 @@ password within Kong.
 3. Verify Kong is working
 
     ```
-    curl -i -X GET --url http://localhost:8001/
+    curl -i -X GET --url http://localhost:8001/services
     ```
-
+    
+    You should receive an HTTP/1.1 200 OK message.
 
 ## Troubleshooting
 
