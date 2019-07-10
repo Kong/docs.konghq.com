@@ -864,7 +864,7 @@ this value can be safely set to 0.
 
 ### db_cache_ttl
 
-**Default:** `3600`
+**Default:** `0`
 
 **Description:**
 
