@@ -126,7 +126,7 @@ id: documentation
           {% if page.toc == true or
           page.toc != false and filename != "index.md" %}
           <h2 id="table-of-contents">Table of Contents</h2>
-          {% include toc.html html=content anchor_class="scroll-to" %}
+          {% include toc.html html=content anchor_class="scroll-to" h_max=4 %}
           {% endif %}
 
           {{ content }}
