@@ -58,7 +58,7 @@ To complete this guide you will need:
 4. Securely copy the license file to the CentOS system
 
     ```
-    $ scp license.json <centos username>@192.168.91.109:~
+    $ scp license.json <centos username>@<serverip>:~
     ```
 
 
