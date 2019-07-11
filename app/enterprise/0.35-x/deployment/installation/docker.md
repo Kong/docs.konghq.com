@@ -48,8 +48,8 @@ with the URL you received in your welcome email:
 6. Create a Docker network
 
     You will need to create a custom network to allow the containers to discover
-    and communicate with each other. In this example `kong-ee-net` is the network name,
-    you can use any name.
+    and communicate with each other. In this example, `kong-ee-net` is the network name,
+    but you can use any name.
 
     ```bash
     $ docker network create kong-ee-net
