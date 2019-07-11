@@ -129,9 +129,10 @@ for details.
     parameter. Now you can provide status code ranges and single status codes
     together (e.g., `201-204,401`)
   - **Request Validator** (_NEW_):
-    - Validate the request body against a JSON schema; if the payload is not
+    - Validate the request body against a schema; if the payload is not
     valid JSON or if it doesn't conform to the schema, the plugin returns a 400
-    Bad Request response before the request reaches upstream
+    Bad Request response before the request reaches upstream. This version of
+    the plugin **does not** support JSON Schema; it uses Kong's schema format
   - **Canary**:
     - Healthchecks: new configuration upstream_fallback allows the plugin to
     skip applying the canary upstream if it's not healthy. Note: it only works
