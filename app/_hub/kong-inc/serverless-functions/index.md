@@ -83,19 +83,17 @@ different priority in the plugin chain.
 1. Create a file named `custom-auth.lua` with the following content:
 
     ```lua
-    return function()
       -- Get list of request headers
       local custom_auth = kong.request.get_header("x-custom-auth")
 
       -- Terminate request early if our custom authentication header
       -- does not exist
       if not custom_auth then
-        return kong.response.exit(401\, "Invalid Credentials")
+        return kong.response.exit(401, "Invalid Credentials")
       end
 
       -- Remove custom authentication header from request
       kong.service.request.clear_header('x-custom-auth')
-    end
     ```
 
 4. Ensure the file contents:
@@ -223,12 +221,6 @@ return function()
   ngx.log(ngx.ERR, "hello world: ", count)
 end
 ```
-
-#### Escaping Commas
-
-Since the Lua code blocks are sent in an Array, when using `form-data` you might
-run into an issue with code being split when using commas. To avoid this situation
-escape commas using the backslash character `\,`.
 
 #### Minifying Lua
 
