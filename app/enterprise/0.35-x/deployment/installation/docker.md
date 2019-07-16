@@ -45,13 +45,24 @@ with the URL you received in your welcome email:
 
     (Replace "IMAGE ID" with the one matching your repository, seen in step 4)
 
-6. Start your database
+6. Create a Docker network
+
+    You will need to create a custom network to allow the containers to discover
+    and communicate with each other. In this example, `kong-ee-net` is the network name,
+    but you can use any name.
+
+    ```bash
+    $ docker network create kong-ee-net
+    ```
+
+
+7. Start your database
 
     If using a Cassandra container:
 
     ```bash
     $ docker run -d --name kong-ee-database \
-                  --network=kong-net \
+                  --network=kong-ee-net \
                   -p 9042:9042 \
                   cassandra:3
     ```
@@ -60,14 +71,14 @@ with the URL you received in your welcome email:
 
     ```bash
     $ docker run -d --name kong-ee-database \
-                  --network=kong-net \
+                  --network=kong-ee-net \
                   -p 5432:5432 \
                   -e "POSTGRES_USER=kong" \
                   -e "POSTGRES_DB=kong" \
                   postgres:9.6
     ```
 
-7. To make the license data easier to handle, export it as a shell variable.
+8. To make the license data easier to handle, export it as a shell variable.
 Please note that **your license contents will differ**! Users with Bintray
 accounts should visit `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 to retrieve their license. Trial users should download their license from their
@@ -77,11 +88,12 @@ welcome email. Once you have your license, you can set it in an environment vari
     export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
     ```
 
-8. Run Kong migrations:
+9. Run Kong migrations:
 
     ```
-    docker run --rm --link kong-ee-database:kong-ee-database \
-      -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=kong-ee-database" \
+    docker run --rm --network=kong-ee-net \
+      -e "KONG_DATABASE=postgres" \
+      -e "KONG_PG_HOST=kong-ee-database" \
       -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
       kong-ee kong migrations bootstrap
@@ -92,10 +104,10 @@ welcome email. Once you have your license, you can set it in an environment vari
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-9. Start Kong:
+10. Start Kong:
 
     ```
-    docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
+    docker run -d --name kong-ee --network=kong-ee-net \
       -e "KONG_DATABASE=postgres" \
       -e "KONG_PG_HOST=kong-ee-database" \
       -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
@@ -122,7 +134,7 @@ welcome email. Once you have your license, you can set it in an environment vari
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-10. Kong Enterprise should now be installed and running. Test 
+11. Kong Enterprise should now be installed and running. Test 
 it by visiting Kong Manager at [http://localhost:8002](http://localhost:8002)
 (replace `localhost` with your server IP or hostname when running Kong on a 
 remote system), or by visiting the Default Dev Portal at 
