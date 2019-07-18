@@ -5,6 +5,7 @@ header_title: Vagrant Installation
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
+toc: false
 ---
 
 Vagrant can be used to create an isolated environment for Kong and its

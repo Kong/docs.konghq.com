@@ -27,6 +27,17 @@ title: Migrating to 0.35
 '/portal/developers/*/password' => '/developers/*/password'
 '/portal/invite'                => '/developers/invite'
 ```
+* As a result of the switch to server-side rendering, a few portal template files need to be updated or replaced to regain full functionality:
+    1. Replace contents of partial `spec/index-vue` with contents of:
+    [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/spec/index-vue.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/spec/index-vue.hbs)
+    2. Replace contents of partial `search/widget-vue` with contents of:
+    [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/search/widget-vue.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/search/widget-vue.hbs)
+    3. Create or update partial  `unauthenticated/assets/icons/search-header` with contents of:
+    [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/search-header.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/search-header.hbs)
+    4. Create or update partial  `unauthenticated/assets/icons/loading` with contents of:
+    [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/loading.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/loading.hbs)
+    5. Create or update partial `unauthenticated/assets/icons/search-widget` with contents of:
+    [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/search-widget.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/search-widget.hbs)
 
 ### Migration Steps from 0.34 to 0.35
 
@@ -51,3 +62,26 @@ At any step of the way, you may run `kong migrations list` to get a report of th
 * `3` - database needs bootstrapping: you should run `kong migrations bootstrap` to install on a fresh datastore.
 * `4` - there are pending migrations: once your old cluster is decommissioned you should run `kong migrations finish` (step 5 above).
 * `5` - there are new migrations: you should start a migration sequence (beginning from step 1 above).
+
+### Migration Steps from Kong 1.0 to Kong Enterprise 0.35
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This action is irreversible, therefore it is highly recommended to have a backup of production data.
+</div>
+
+Kong Enterprise 0.35 includes a command to migrate all Kong entities to Kong Enterprise. The following steps will guide you through the migration process.
+
+First download Kong Enterprise 0.35, and configure it to point to the same datastore as your Kong 1.0 node. The migration command expects the datastore to be up to date on any pending migration:
+
+```shell
+$ kong migrations up [-c config]
+$ kong migrations finish [-c config]
+```
+
+Once all Kong Enterprise migrations are up to date, the migration command can be run as:
+
+```shell
+$ kong migrations migrate-community-to-enterprise [-c config] [-f] [-y]
+```
+
+Confirm now that all the entities are now available on your Kong Enterprise 0.35 node.

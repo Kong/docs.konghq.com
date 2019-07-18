@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
     enterprise_edition:
       compatible:
         - 0.35-x
@@ -45,7 +46,7 @@ params:
       default: text/plain, application/json
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable
+        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned
     - name: vary_headers
       required: false
       default:
@@ -79,7 +80,7 @@ params:
     - name: strategy
       required:
       default:
-      value_in_examples:
+      value_in_examples: memory
       description: |
         The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
     - name: memory.dictionary_name
@@ -200,7 +201,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint get">/proxy-cache/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------

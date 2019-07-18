@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
         - 1.1.x
         - 1.0.x
         - 0.14.x
@@ -42,12 +43,12 @@ params:
       required: false
       default:
       description: |
-        A comma separated array of regular expressions that should be whitelisted. The regular expressions will be checked against the `User-Agent` header.
+        An array of regular expressions that should be whitelisted. The regular expressions will be checked against the `User-Agent` header.
     - name: blacklist
       required: false
       default:
       description: |
-        A comma separated array of regular expressions that should be blacklisted. The regular expressions will be checked against the `User-Agent` header.
+        An array of regular expressions that should be blacklisted. The regular expressions will be checked against the `User-Agent` header.
 
 ---
 

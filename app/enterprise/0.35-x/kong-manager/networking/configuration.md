@@ -7,7 +7,7 @@ book: admin_gui
 
 By default, Kong Manager starts up without authentication (see 
 [`admin_gui_auth`]), and it assumes that the Admin API is available 
-on port 8001 (see [`admin_api_port`]) of the same host that serves 
+on port 8001 (see [Default Ports]) of the same host that serves 
 Kong Manager.
 
 ## Custom Configuration
@@ -52,8 +52,50 @@ To enable authentication, configure the following properties:
 on to enforce authorization rules. Otherwise, whoever can log in 
 to Kong Manager can perform any operation available on the Admin API.
 
+## TLS Certificates
+
+By default, if Kong Manager’s URL is accessed over HTTPS _without_ a certificate issued by a CA, it will 
+receive  a self-signed certificate that modern web browsers will not trust, preventing the application 
+from accessing the Admin API.
+
+In order to serve Kong Manager over HTTPS,  use a trusted certificate authority to issue TLS certificates, 
+and have the resulting `.crt` and `.key` files ready for the next step.
+
+1) Move `.crt` and `.key` files into the desired directory of the Kong node.
+
+2) Point [`admin_gui_ssl_cert`] and [`admin_gui_ssl_cert_key`] at the absolute paths of the certificate and key.
+
+```
+admin_gui_ssl_cert = /path/to/test.crt
+admin_gui_ssl_cert_key = /path/to/test.key
+```
+
+3) Ensure that `admin_gui_url` is prefixed with `https` to use TLS, e.g.,
+
+```
+admin_gui_url = https://test.com:8445
+```
+
+### Using `https://localhost`
+
+If serving Kong Manager on localhost, it may be preferable to use HTTP as the protocol. If also using RBAC,
+set `cookie_secure=false` in `admin_gui_session_conf`. The reason to use HTTP for `localhost` is that 
+creating TLS certificates for `localhost` requires more effort and configuration, and there may not be any 
+reason to use it. The adequate use cases for TLS are (1) when data is in transit between hosts, or (2) 
+when testing an application with [mixed content](https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content)
+(which Kong Manager does not use).
+
+External CAs cannot provide a certificate since no one uniquely owns `localhost`, nor is it rooted in a top-level 
+domain (e.g., `.com`, `.org`). Likewise, self-signed certificates will not be trusted in modern browsers. Instead, 
+it is necessary to use a private CA that allows you to issue your own certificates. Also ensure that the SSL state 
+is cleared from the browser after testing to prevent stale certificates from interfering with future access to 
+`localhost`.
+
+
 [`admin_gui_auth`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth
-[`admin_api_port`]: /enterprise/{{page.kong_version}}/property-reference/#admin_api_port
+[`admin_gui_ssl_cert`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_ssl_cert
+[`admin_gui_ssl_cert_key`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_ssl_cert_key
+[`default_ports`]: /enterprise/{{page.kong_version}}/getting-started/start-kong/#default-ports
 [`admin_api_uri`]: /enterprise/{{page.kong_version}}/property-reference/#admin_api_uri
 [`admin_gui_auth_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth_conf
 [`enforce_rbac`]: /enterprise/{{page.kong_version}}/property-reference/#enforce_rbac

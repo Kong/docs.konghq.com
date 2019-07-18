@@ -4,7 +4,14 @@ title: Admin API Audit Log
 
 ## Introduction
 
-Kong Enterprise provides a granular logging facility on its Admin API. This allows cluster administrators to keep detailed track of changes made to the cluster configuration throughout its lifetime, aiding in compliance efforts and providing valuable data points during forensic investigations. Generated audit log trails are [Workspace](/enterprise/{{page.kong_version}}/admin-api/workspaces)- and [RBAC](/enterprise/{{page.kong_version}}/admin-api/rbac)-aware, providing Kong operators a deep and wide look into changes happening within the cluster.
+Kong Enterprise provides a granular logging facility on its Admin API. This 
+allows cluster administrators to keep detailed track of changes made to the 
+cluster configuration throughout its lifetime, aiding in compliance efforts and 
+providing valuable data points during forensic investigations. Generated audit 
+log trails are [Workspace](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference)
+- and [RBAC](/enterprise/{{page.kong_version}}/admin-api/rbac/rbac)-aware, 
+providing Kong operators a deep and wide look into changes happening within 
+the cluster.
 
 [Back to TOC](#table-of-contents)
 
@@ -24,7 +31,8 @@ $ export KONG_AUDIT_LOG=on
 $ export KONG_AUDIT_LOG=off
 ```
 
-As with other Kong configurations, changes take effect on kong reload or kong restart.
+As with other Kong configurations, changes take effect on kong reload or kong 
+restart.
 
 [Back to TOC](#table-of-contents)
 
@@ -32,7 +40,11 @@ As with other Kong configurations, changes take effect on kong reload or kong re
 
 ### Generating and Viewing Audit Logs
 
-Audit logging provides granular details of each HTTP request that was handled by Kong's Admin API. Audit log data is written to Kong's back database. As a result, request audit logs are available via the Admin API (in addition to via direct database query). For example, consider a query to the Admin API to the `/status` endpoint:
+Audit logging provides granular details of each HTTP request that was handled by 
+Kong's Admin API. Audit log data is written to Kong's back database. As a result, 
+request audit logs are available via the Admin API (in addition to via direct 
+database query). For example, consider a query to the Admin API to the `/status` 
+endpoint:
 
 ```
 vagrant@ubuntu-xenial:/kong$ http :8001/status
@@ -61,7 +73,9 @@ X-Kong-Admin-Request-ID: ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM
 }
 ```
 
-The above interaction with the Admin API would generate a correlating entry in the audit log table—querying the audit log via the Admin API returns the details of of the interaction above: 
+The above interaction with the Admin API would generate a correlating entry in 
+the audit log table—querying the audit log via the Admin API returns the details 
+of of the interaction above: 
 
 ```
 $ http :8001/audit/requests
@@ -91,15 +105,22 @@ X-Kong-Admin-Request-ID: VXgMG1Y3rZKbjrzVYlSdLNPw8asVwhET
 }
 ```
 
-Note the value of the `request_id` field. This is tied to the `X-Kong-Admin-Request-ID` response header received in the first transaction. This allows close association of client requests and audit log records within the Kong cluster.
+Note the value of the `request_id` field. This is tied to the 
+`X-Kong-Admin-Request-ID` response header received in the first transaction. 
+This allows close association of client requests and audit log records within 
+the Kong cluster.
 
-Because every audit log entry is made available via Kong's Admin API, it is possible to transport audit log entries into existing logging warehouses, SIEM solutions, or other remote services for duplication and inspection.
+Because every audit log entry is made available via Kong's Admin API, it is 
+possible to transport audit log entries into existing logging warehouses, SIEM 
+solutions, or other remote services for duplication and inspection.
 
 [Back to TOC](#table-of-contents)
 
 ### Workspaces and RBAC
 
-Audit log entries are written with an awareness of the requested Workspace, and the RBAC user (if present). When RBAC is enforced, the RBAC user's UUID will be written to the `rbac_user_id` field in the audit log entry:
+Audit log entries are written with an awareness of the requested Workspace, and 
+the RBAC user (if present). When RBAC is enforced, the RBAC user's UUID will be 
+written to the `rbac_user_id` field in the audit log entry:
 
 ```
 {
@@ -126,14 +147,22 @@ Note also the presence of the `workspace` field. This is the UUID of the Workspa
 
 ### Limiting Audit Log Generation
 
-It may be desirable to ignore audit log generation for certain Admin API requests, such as innocuous requests to the `/status` endpoint for healthchecking, or to ignore requests for a given path prefix (e.g., a given Workspace). To this end, the `audit_log_ignore_methods` and `audit_log_ignore_paths` configuration options are presented:
+It may be desirable to ignore audit log generation for certain Admin API 
+requests, such as innocuous requests to the `/status` endpoint for 
+healthchecking, or to ignore requests for a given path prefix (e.g., a given 
+Workspace). To this end, the `audit_log_ignore_methods` and 
+`audit_log_ignore_paths` configuration options are presented:
 
 ```bash
-audit_log_ignore_methods = GET,OPTIONS # do not generate an audit log entry for GET or OPTIONS HTTP requests
-audit_log_ignore_paths = /foo,/status # do not generate an audit log entry for requests that match the strings '/foo' or '/status'
+audit_log_ignore_methods = GET,OPTIONS 
+# do not generate an audit log entry for GET or OPTIONS HTTP requests
+audit_log_ignore_paths = /foo,/status 
+# do not generate an audit log entry for requests that match the strings '/foo' or '/status'
 ```
 
-Note that `audit_log_ignore_paths` values matched via simple string matching; regular expression or anchored searching for ignored paths is not supported at this time.
+Note that `audit_log_ignore_paths` values matched via simple string matching; 
+regular expression or anchored searching for ignored paths is not supported at 
+this time.
 
 [Back to TOC](#table-of-contents)
 
@@ -141,7 +170,10 @@ Note that `audit_log_ignore_paths` values matched via simple string matching; re
 
 ### Generating and Viewing Audit Logs
 
-In addition to Admin API request data, Kong will generate granular audit log entries for all insertions, updates, and deletions to the cluster database. Database updates audit logs are also associated with Admin API request unique IDs. Consider the following request to create a Consumer:
+In addition to Admin API request data, Kong will generate granular audit log 
+entries for all insertions, updates, and deletions to the cluster database. 
+Database updates audit logs are also associated with Admin API request unique 
+IDs. Consider the following request to create a Consumer:
 
 ```
 $ http :8001/consumers username=bob
@@ -163,7 +195,9 @@ X-Kong-Admin-Request-ID: 59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2
 
 ```
 
-As seen before, a request audit log is generated with details about the request. Note the presence of the `payload` field, recorded when the request body is present:
+As seen before, a request audit log is generated with details about the request. 
+Note the presence of the `payload` field, recorded when the request body is 
+present:
 
 ```
 $ http :8001/audit/requests
@@ -194,7 +228,8 @@ X-Kong-Admin-Request-ID: SpPaxLTkDNndzKaYiWuZl3xrxDUIiGRR
 }
 ```
 
-Additionally, additional audit logs are generated to track the creation of the database entity:
+Additionally, additional audit logs are generated to track the creation of the 
+database entity:
 
 ```
 $ http :8001/audit/objects
@@ -223,23 +258,33 @@ X-Kong-Admin-Request-ID: ZKra3QT0d3eJKl96jOUXYueLumo0ck8c
 }
 ```
 
-Object audit entries contain information about the entity updated, including the entity body itself, its database primary key, and the type of operation performed (`create`, `update`, or `delete`). Note also the associated `request_id` field.
+Object audit entries contain information about the entity updated, including the 
+entity body itself, its database primary key, and the type of operation 
+performed (`create`, `update`, or `delete`). Note also the associated
+ `request_id` field.
 
 [Back to TOC](#table-of-contents)
 
 ### Limiting Audit Log Generation
 
-As with request audit logs, it may be desirable to skip generation of audit logs for certain database tables. This is configurable via the `audit_log_ignore_tables` Kong config option:
+As with request audit logs, it may be desirable to skip generation of audit logs 
+for certain database tables. This is configurable via the 
+`audit_log_ignore_tables` Kong config option:
 
 ```
-audit_log_ignore_tables = consumers # do not generate database audit logs for changes to the consumers table
+audit_log_ignore_tables = consumers 
+# do not generate database audit logs for changes to the consumers table
 ```
 
 [Back to TOC](#table-of-contents)
 
 ## Digital Signatures
 
-To provide nonrepudiation, audit logs may be signed with a private RSA key. When enabled, a lexically sorted representation of each audit log entry is signed by the defined private key; the signature is stored in an additional field within the record itself. The public key should be stored elsewhere and can be used later to validate the signature of the record.
+To provide nonrepudiation, audit logs may be signed with a private RSA key. When 
+enabled, a lexically sorted representation of each audit log entry is signed by 
+the defined private key; the signature is stored in an additional field within 
+the record itself. The public key should be stored elsewhere and can be used 
+later to validate the signature of the record.
 
 ### Setting Up Log Signing
 
@@ -275,7 +320,10 @@ Audit log entries will now contain a field `signature`:
 
 ### Validating Signatures
 
-Record signatures can be regenerated and verified by `openssl` or other cryptographic tools to confirm the validity of the signature. Re-generating the signature requires serializing the record into a string format that can be signed. The following is a canonical implementation written in Lua:
+Record signatures can be regenerated and verified by `openssl` or other 
+cryptographic tools to confirm the validity of the signature. Re-generating the 
+signature requires serializing the record into a string format that can be 
+signed. The following is a canonical implementation written in Lua:
 
 ```lua
 local pl_sort = require "pl.tablex".sort
@@ -297,7 +345,10 @@ end
 table.concat(serialize(data), "|")
 ```
 
-The contents of the record itself can be fed to this implementation (minus the `signature` field) in order to derive the value passed to the RSA key signing facility. Note that the `signature` field within each record is a Base-64 encoded representation of the RSA signature itself.
+The contents of the record itself can be fed to this implementation (minus the 
+`signature` field) in order to derive the value passed to the RSA key signing 
+facility. Note that the `signature` field within each record is a Base-64 
+encoded representation of the RSA signature itself.
 
 [Back to TOC](#table-of-contents)
 
