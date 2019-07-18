@@ -96,6 +96,7 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_PG_HOST=kong-ee-database" \
       -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
+      -e "KONG_PASSWORD=password" \
       kong-ee kong migrations bootstrap
     ```
     **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
