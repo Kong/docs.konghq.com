@@ -76,7 +76,7 @@ To complete this guide you will need:
 1. Install PostgreSQL
 
     ```
-    $ sudo apt-get install postgresql postgresql-contrib
+    $ sudo apt-get install postgresql-9.5 postgresql-contrib
     ```
 
 
