@@ -28,6 +28,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
+        - 1.1.x
         - 1.0.x
         - 0.14.x
         - 0.13.x
@@ -41,6 +43,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -51,6 +54,12 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    Consumers and Credentials can be created with declarative configuration.
+
+    Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials will not work on DB-less mode.
   config:
     - name: hide_credentials
       required: false
@@ -98,22 +107,38 @@ update or remove any request parameter used in HMAC signature before this plugin
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object]
-object. To create a Consumer, you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object.
+A Consumer can have many credentials.
+
+{% tabs %}
+{% tab With a Database %}
+To create a Consumer, you can execute the following request:
 
 ```bash
-$ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
+{% tab Without a Database %}
+Your declarative configuration file will need to have one or more Consumers. You can create them
+on the `consumers:` yaml section:
+
+``` yaml
+consumers:
+- username: user123
+  custom_id: SOME_CUSTOM_ID
+```
+{% endtabs %}
+
+In both cases, the parameters are as described below:
 
 parameter                       | description
 ---                             | ---
 `username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
-A [Consumer][consumer-object] can have many credentials.
-
 ### Create a Credential
 
+{% tabs %}
+{% tab With a database %}
 You can provision new username/password credentials by making the following
 HTTP request:
 
@@ -123,11 +148,22 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
     --data "secret=secret456"
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object]
-entity to associate the credentials to.
+{% tab Without a database %}
+You can add credentials on your declarative config file on the `hmacauth_credentials` yaml entry:
 
-form parameter             | description
+``` yaml
+hmacauth_credentials:
+- consumer: {consumer}
+  username: bob
+  secret: secret456
+```
+{% endtabs %}
+
+In both cases the fields/parameters work as follows:
+
+field/parameter            | description
 ---                        | ---
+`{consumer}`               | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 `username`                 | The username to use in the HMAC Signature verification.
 `secret`<br>*optional*     | The secret to use in the HMAC Signature verification. Note that if this parameter isn't provided, Kong will generate a value for you and send it as part of the response body.
 

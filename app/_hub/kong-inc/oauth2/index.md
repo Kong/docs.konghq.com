@@ -34,6 +34,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
+        - 1.1.x
         - 1.0.x
         - 0.14.x
         - 0.13.x
@@ -48,6 +50,7 @@ kong_version_compatibility:
         - 0.4.x
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -58,12 +61,18 @@ params:
   service_id: true
   route_id: false
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: no
+  dbless_explanation: |
+    For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with DB-less.
+
+    In addition to this, its Admin API endpoints offer several POST, PATCH, PUT and DELETE methods for tokens and credentials. None of them would work on DB-less.
   config:
     - name: scopes
       required: true
       default:
-      value_in_examples: email,phone,address
-      description: Describes an array of comma separated scope names that will be available to the end user
+      value_in_examples: [ "email", "phone", "address" ]
+      description: Describes an array of scope names that will be available to the end user
     - name: mandatory_scope
       required: false
       default: "`false`"
@@ -142,6 +151,12 @@ params:
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.
 
+<div class="alert alert-warning">
+  <div class="text-center">
+    <strong>Note</strong>: This plugin requires a database in order to work effectively. It *does not* work on DB-Less mode.
+  </div>
+</div>
+
 ### Endpoints
 
 By default the OAuth 2.0 plugin listens on the following endpoints when a client consumes the underlying Service via the [proxy port][proxy-port]:
@@ -179,7 +194,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
     --data "name=Test%20Application" \
     --data "client_id=SOME-CLIENT-ID" \
     --data "client_secret=SOME-CLIENT-SECRET" \
-    --data "redirect_uris[]=http://some-domain/endpoint/"
+    --data "redirect_uris=http://some-domain/endpoint/"
 ```
 
 `consumer_id`: The [Consumer][consumer-object] entity to associate the credentials to
@@ -200,7 +215,7 @@ If you are migrating your existing OAuth 2.0 applications and access tokens over
 
 ```bash
 $ curl -X POST http://kong:8001/oauth2_tokens \
-    --data 'credential={"id": "KONG-APPLICATION-ID" }' \
+    --data 'credential.id=KONG-APPLICATION-ID' \
     --data "token_type=bearer" \
     --data "access_token=SOME-TOKEN" \
     --data "refresh_token=SOME-TOKEN" \

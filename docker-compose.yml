@@ -3,6 +3,7 @@ version: '3.4'
 services:
   jekyll:
     build: .
+    user: jekyll
     volumes:
       - .:/srv/jekyll
     ports:

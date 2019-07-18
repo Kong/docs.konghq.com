@@ -4,8 +4,8 @@
       url: /getting-started/introduction
     - text: Five-minute quickstart
       url: /getting-started/quickstart
-    - text: Adding your API
-      url: /getting-started/adding-your-api
+    - text: Configuring a Service
+      url: /getting-started/configuring-a-service
     - text: Enabling Plugins
       url: /getting-started/enabling-plugins
     - text: Adding Consumers
@@ -165,3 +165,5 @@
       url: /oidc-auth0
     - text: Upgrades and Migrations
       url: /upgrades-migrations
+    - text: AWS Guide and Best Practices
+      url: /kong-aws

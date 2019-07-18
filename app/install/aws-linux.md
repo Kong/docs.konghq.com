@@ -5,9 +5,10 @@ header_title: Amazon Linux
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
+
 ---
 
-### Packages
+## Packages
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
@@ -15,7 +16,7 @@ Start by downloading the following package specifically built for the Amazon Lin
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
-### YUM Repositories
+## YUM Repositories
 
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
@@ -31,7 +32,7 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
 
 ----
 
-### Installation
+## Installation
 
 1. **Install Kong**
 
@@ -41,20 +42,31 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     $ sudo yum install epel-release
     $ sudo yum install kong-{{site.data.kong_latest.version}}.aws.rpm --nogpgcheck
     ```
-    
+
     If you are using the repository, execute:
     ```bash
     $ sudo yum update -y
     $ sudo yum install -y wget
     $ sudo amazon-linux-extras install -y epel
     $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
-    $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ bintray-kong-kong-private-rpm.repo
+    $ sed -i -e 's/baseurl.*/&\/amazonlinux\/amazonlinux'/ bintray-kong-kong-rpm.repo
     $ mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
     $ sudo yum update -y
     $ sudo yum install -y kong
     ```
 
-2. **Prepare your database**
+2. **Prepare your database or declarative configuration file**
+
+    Kong can run either with or without a database.
+
+    When using a database, you will use the `kong.conf` configuration file for setting Kong's
+    configuration properties at start-up and the database as storage of all configured entities,
+    such as the Routes and Services to which Kong proxies.
+
+    When not using a database, you will use `kong.conf` its configuration properties and a `kong.yml`
+    file for specifying the entities as a declarative configuration.
+
+    **Using a database**
 
     [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
 
@@ -75,6 +87,24 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
     0.15, migrations should never be run concurrently; only one Kong node
     should be performing migrations at a time. This limitation is lifted for
     Kong 0.15, 1.0, and above.
+
+    **Without a database**
+
+    If you are going to run Kong in [DB-less mode](/{{site.data.kong_latest.release}}/db-less-and-declarative-config/),
+    you should start by generating declarative config file. The following command will generate a `kong.yml`
+    file in your current folder. It contains instructions about how to populate it.
+
+    ``` bash
+    $ kong config init
+    ```
+
+    After populating the `kong.yml` file, edit your `kong.conf` file. Set the `database` option
+    to `off` and the `declarative_config` option to the path of your `kong.yml` file:
+
+    ``` conf
+    database = off
+    declarative_config = /path/to/kong.yml
+    ```
 
 3. **Start Kong**
 

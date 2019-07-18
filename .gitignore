@@ -8,6 +8,7 @@
 .ruby-version
 .ruby-gemset
 *.log
+.vscode/
 yarn.lock
 
 # jekyll
@@ -19,3 +20,4 @@ dist
 
 # package managers
 node_modules
+vendor

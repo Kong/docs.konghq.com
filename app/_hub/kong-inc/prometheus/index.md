@@ -7,6 +7,12 @@ desc: Expose metrics related to Kong and proxied upstream services in Prometheus
 description: |
     Expose metrics related to Kong and proxied upstream services in [Prometheus](https://prometheus.io/docs/introduction/overview/) exposition format, which can be scraped by a Prometheus Server.
 
+    <div class="alert alert-warning">
+    <strong>Note:</strong> To maintain performance in configurations with high 
+    throughput, you will also need to configure the
+    <a href="/hub/kong-inc/statsd/">StatsD Plugin</a> or the <a href="/hub/kong-inc/statsd-advanced/">StatsD Advanced Plugin</a>.
+    </div>
+
 type: plugin
 categories:
   - analytics-monitoring
@@ -14,6 +20,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
+        - 1.1.x
         - 1.0.x
         - 0.14.x
     enterprise_edition:
@@ -23,6 +31,10 @@ params:
   name: prometheus
   service_id: true
   route_id: false
+  protocols: ["http", "https", "tcp", "tls"]
+  dbless_compatible: yes
+  dbless_explanation: |
+    The database will always be reported as “reachable” in prometheus with DB-less.
 
 ---
 

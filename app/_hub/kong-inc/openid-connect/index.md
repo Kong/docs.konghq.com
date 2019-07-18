@@ -2,7 +2,7 @@
 
 name: OpenID Connect
 publisher: Kong Inc.
-version: 0.34-x
+version: 0.35-x
 
 desc: Integrate Kong with a third-party OpenID Connect 1.0 provider
 description: |
@@ -120,6 +120,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.35-x
         - 0.34-x
 
 ---

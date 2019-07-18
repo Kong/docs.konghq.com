@@ -85,6 +85,16 @@ id: documentation
               {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
               <li>
                 <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% endif %}>{{subitem.text}}</a>
+                {% if subitem.items %}
+                <ul>
+                  {% for subitem in subitem.items %}
+                  {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
+                  <li>
+                    <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% endif %}>{{subitem.text}}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
               </li>
               {% endfor %}
             </ul>
@@ -116,7 +126,7 @@ id: documentation
           {% if page.toc == true or
           page.toc != false and filename != "index.md" %}
           <h2 id="table-of-contents">Table of Contents</h2>
-          {% include toc.html html=content %}
+          {% include toc.html html=content anchor_class="scroll-to" h_max=4 %}
           {% endif %}
 
           {{ content }}

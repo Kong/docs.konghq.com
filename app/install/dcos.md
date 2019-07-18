@@ -5,6 +5,7 @@ header_title: Kong deployment on DC/OS cluster
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
+toc: false
 links:
   mesos-aws: "https://dcos.io/docs/1.9/installing/oss/cloud/aws/"
   mesos-cli: "https://dcos.io/docs/1.9/cli/"

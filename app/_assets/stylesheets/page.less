@@ -273,11 +273,6 @@
     color: #505659;
   }
 
-  p {
-    line-height: 1.5;
-    font-size: 16px;
-  }
-
   h1, h2, h3, h4 {
     margin-bottom: 1em;
     font-weight: 600;
@@ -410,50 +405,60 @@
     font-style: italic;
   }
 
+    /*
+  Generic Styling for Desktop
+  */
+
   table {
     width: 100%;
-    border: 1px solid @gray;
+    border-collapse: collapse;
+    font-size: 14px;
 
-    th, td {
-      .font-source-sans();
-      font-size: 14px;
-      vertical-align: top;
+  }
+  code {
+    font-size: 14px;
+  }
+  /* Zebra striping */
+  tr:nth-of-type(odd) {
+    background: @gray-light;
+  }
+  th {
+    font-weight: bold;
+  }
+  td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+  }
+
+  @media only screen and (max-width: 1099px)
+  {
+    table, thead, tbody, th, td, tr {
+      display: block;
+      text-align: left;
     }
 
-    th {
-      text-transform: lowercase;
-      .font-source-sans-sc();
-      font-size: 14px;
-      text-align: left !important;
-      background: @gray-light;
-      border-bottom: 1px solid @gray;
-      color: lighten(@gray-dark, 30%);
-      padding: 10px;
-    }
+    table {
+        /* Hide table headers  */
+      thead tr {
+        display: none;
+      }
 
-    td {
-      padding: 10px;
-      &:first-child {
+      tr { border: 1px solid #ccc; }
+
+      td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+      }
+
+      td:before {
+        padding-right: 10px;
         white-space: nowrap;
 
-        code {
-          padding: 3px 9px;
-        }
+        content: attr(data-label);
+        font-size: 14px;
 
-        br {
-          & + em,
-          & + strong,
-          & + b {
-            display: inline-block;
-            margin-top: 3px;
-          }
-        }
-      }
-      &:nth-child(2) {
-        word-wrap: break-word;
-        code {
-          white-space: normal;
-        }
       }
     }
   }
