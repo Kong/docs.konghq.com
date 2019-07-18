@@ -3,6 +3,51 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 0.35-3
+**Release Date:** 2019/07/17
+
+### Notifications
+- **Kong Enterprise 0.35-3** inherits from **Kong 1.0.3**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+for details.
+
+### Features
+
+#### Core
+- New CLI migrations command `migrate-apis` to convert all existing API objects to **Services and Routes**
+- New CLI migrations command `migrate-community-to-enterprise` for moving Core entities to Enterprise entities
+- Support for Redis Cluster as a backend for `rate-limiting-advanced` and `proxy-cache` plugins
+- Cache-warming configuration to load specified entities at startup to improve first request latency
+
+#### Kong Manager
+- New page to reset **RBAC** token and manage user password
+
+#### Plugins
+- `upstream-tls` - allows verification of upstream certificates, custom CA certificates, and verification depth
+
+### Fixes
+
+#### Core
+- Correctly count `workspace_entities` when moving from previous versions
+
+#### Dev Portal
+- Dev Portal Docs now point to 0.35
+- Unauthenticated Spec rendering is fixed
+
+#### Plugins
+- **`jwt-signer`** 
+  - Fix **IMPORTANT!** verify expiry and scopes checks on JWT tokens
+  - Fix finding Consumer by custom ID
+  - Fix runtime error on unexpected function, `kong.log.error` -> `kong.log.err`
+  - Change invalidation to happen locally, not cluster wide, each node invalidates on their own
+- **`openid-connect`**
+  - Change invalidations to local invalidation instead of cluster-wide invalidation
+  - Fix **Admin API** to properly call the cleanup function on entity endpoint
+  - Fix `hide_credentials` not clearing X-Access-Token header
+  - Change debug logging to not log about disabled authentication methods
+  - Change TTL code and fix some edge cases
+
+
 ## 0.35-1
 **Release Date:** 2019/05/28
 

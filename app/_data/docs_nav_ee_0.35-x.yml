@@ -21,6 +21,8 @@
       absolute_url: true
     - text: Migrating to 0.35
       url: /deployment/migrations
+    - text: Migrating APIs to Services
+      url: /deployment/migrate-apis-cli
 
 - title: Getting Started
   url: /getting-started/
@@ -43,6 +45,14 @@
       url: /getting-started/add-consumer
     - text: How to Enable the Dev Portal
       url: /getting-started/enable-dev-portal
+
+- title: Guides & References
+  url: /property-reference
+  items:
+    - text: Configuration Property Reference
+      url: /property-reference
+    - text: CLI Reference
+      url: /cli
 
 - title: Admin API
   url: /admin-api
@@ -99,6 +109,8 @@
           url: /kong-manager/authentication/oidc
         - text: Sessions
           url: /kong-manager/authentication/sessions
+    - text: How to Reset Passwords and RBAC Tokens
+      url: /kong-manager/reset-password
     - text: Administration
       url: /kong-manager/administration/workspaces/workspaces
       items:
@@ -197,6 +209,8 @@
         url: /plugins/route-by-header
       - text: JWT Signer
         url: /plugins/jwt-signer
+      - text: Upstream TLS
+        url: /plugins/upstream-tls
       - text: Vault Auth
         url: /plugins/vault-auth
       - text: Request Validator
@@ -209,9 +223,3 @@
           url: /plugins/oidc-google
         - text: OpenID Connect with Auth0
           url: /plugins/oidc-auth0
-
-- title: Guides & References
-  url: /property-reference
-  items:
-    - text: Configuration Property Reference
-      url: /property-reference

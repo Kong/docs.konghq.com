@@ -123,6 +123,12 @@ params:
       value_in_examples:
       description: |
         Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.cluster_addresses
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
     - name: window_type
       required:
       default: sliding
