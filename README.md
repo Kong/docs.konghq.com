@@ -42,6 +42,8 @@ The repository must be manually deploy to GitHub pages:
 npm run deploy
 ```
 
+
+
 ## Search
 
 We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our CE
