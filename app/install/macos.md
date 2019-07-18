@@ -17,8 +17,6 @@ breadcrumbs:
 
 
 
-
-
 1. **Install Kong**
 
     Use the [Homebrew](https://brew.sh/) package manager to add Kong as a tap and install it:
