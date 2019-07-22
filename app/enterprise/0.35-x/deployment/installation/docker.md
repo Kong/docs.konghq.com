@@ -18,7 +18,7 @@ contact will email the credential to you.
 key, which will be used in step 3. Alternatively, to retrieve it from
 Bintray, click <a href="https://bintray.com/profile/edit" target="_blank">here</a>.
 
-3. For **users with existing contracts**, add the Kong Docker repository and
+3. For **users with access to the Kong repository**, add the Kong Docker repository and
 pull the image:
 
     ```
@@ -78,7 +78,7 @@ with the URL you received in your welcome email:
                   postgres:9.6
     ```
 
-8. To make the license data easier to handle, export it as a shell variable.
+8. Make the license data available to Kong by exporting to a shell variable.
 Please note that **your license contents will differ**! Users with Bintray
 accounts should visit `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 to retrieve their license. Trial users should download their license from their
@@ -99,7 +99,7 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_PASSWORD=password" \
       kong-ee kong migrations bootstrap
     ```
-    **NOTE the KONG_PASSWORD environment variable:** The value used for the 'KONG_PASSWORD' environment variable is going to be the password for the built in 'kong_admin' super user when Kong RBAC is turned on. We will cover the RBAC components later in the documentation but it is recomended to "seed" the super user password right now during the DB migrations step so you do not have to create this super user later. Please use a secure password here and keep this password accessible for when we turn RBAC on.  
+    **NOTE the KONG_PASSWORD environment variable:** The value used for the 'KONG_PASSWORD' environment variable will be the  password for the built in 'kong_admin' super user when Kong RBAC is turned on. We will cover the RBAC components later in the documentation but it is recomended to "seed" the super user password during the DB migrations step. Please use a secure password here and keep this password accessible when RBAC is turned on.  
     
     **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
     variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
@@ -132,15 +132,15 @@ welcome email. Once you have your license, you can set it in an environment vari
       kong-ee
     ```
     **Note on Environment Variables being used:**
-    When running in docker all the Kong environment variables located in /etc/kong/kong.conf are prepended with KONG_ and you can specify the envionment varialbes you need to run the Kong cluster according to your needs. 
-    KONG_DATABASE is specifying the database used in the cluster
+    When running in docker all the Kong environment variables located in /etc/kong/kong.conf are prepended with KONG_ and you can specify the envionment varialbes you need to run the Kong cluster. 
+    KONG_DATABASE specifies the database used
     KONG_PG_HOST and KONG_CASSANDRA_CONTACT_POINTS are pointing to the kong-ee-database container. 
     KONG_PROXY_ACCESS_LOG, KONG_ADMIN_ACCESS_LOG, KONG_PROXY_ERROR_LOG, and KONG_ADMIN_ERROR_LOG are specifying the location of the Kong logs. Note that you can tail the Kong containers logs by running the ''' docker logs -f kong-ee ''' command in a separate terminal once Kong has been started. 
     KONG_ADMIN_LISTEN is being modified so we can send API calls to the Kong Admin API. For security reasons, the Admin API only listens on the local interface by default. We are overriding that setting with `KONG_ADMIN_LISTEN=0.0.0.0:8001` to listen on all interfaces so we can enable Kong Manager and Dev Portal to talk with the Kong
     Admin API.
-    KONG_ADMIN_API_URI is not being set, however it should be noted that modifying the **admin_api_uri** directive in `kong.conf` updates the Javascript that is sent to the browser, so the browser knows where to send XHR requests. You may need to modify the 'admin_api_uri` with the correct uri if you are accessing the Kong container in a separate network. 
+    KONG_ADMIN_API_URI is not being set, however it should be noted that modifying the **admin_api_uri** directive in `kong.conf` updates the Javascript that is sent to the browser, so the browser knows where to send XHR requests. Modify the 'admin_api_uri` with the correct uri if you are accessing the Kong container in a separate network. 
     KONG_PORTAL=on is specifying that we want the Dev Portal turned on. 
-    KONG_LICENSE_DATA is specifying the Kong EE license. Without this Kong will not run properly. Please see further below for specific errors you will see due to incorrect license definition. 
+    KONG_LICENSE_DATA is specifying the Kong EE license. Without this Kong will not run properly. 
 
      **Note the KONG_LICENSE_DATA=$KONG_LICENSE_DATA environment variable ensures that the Kong license is properly referenced. There are a number of licensing related issues described below that can occur if you don't properly reference the Kong EE license** 
     
