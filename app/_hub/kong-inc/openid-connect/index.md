@@ -2477,7 +2477,6 @@ On successful `HTTP 200 OK`, the response will be similar to:
     "introspect_jwt_tokens": false,
     "introspection_hint": "access_token",
     "issuer": "http://ip10-0-0-3-bec2g5kmeb6ge43qmuc0-8080.direct.konglabs-s3.simplru.com/auth/realms/master",
-  ],
   "created_at": 1536700540000,
   "enabled": true,
   "id": "6836ba3c-12e0-4f2e-bdfd-88134eaa1786",
