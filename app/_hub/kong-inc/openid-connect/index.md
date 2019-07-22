@@ -2485,7 +2485,7 @@ On successful `HTTP 200 OK`, the response will be similar to:
 }
 ```
 
-#### 4. Attempt Unauthorized Access to the Service
+#### 4. Verify that Authorization is Now Required
 
 Attempt the following command without authorization:
 
