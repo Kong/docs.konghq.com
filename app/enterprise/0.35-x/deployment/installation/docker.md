@@ -99,6 +99,8 @@ welcome email. Once you have your license, you can set it in an environment vari
       -e "KONG_PASSWORD=password" \
       kong-ee kong migrations bootstrap
     ```
+    **NOTE the KONG_PASSWORD environment variable:** The value used for the 'KONG_PASSWORD' environment variable is going to be the password for the built in 'kong_admin' super user when Kong RBAC is turned on. We will cover the RBAC components later in the documentation but it is recomended to "seed" the super user password right now during the DB migrations step so you do not have to create this super user later. Please use a secure password here and keep this password accessible for when we turn RBAC on.  
+    
     **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
     variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
     For example, assuming you've saved your `license.json` file into `C:\temp`, 
@@ -129,53 +131,61 @@ welcome email. Once you have your license, you can set it in an environment vari
       -p 8004:8004 \
       kong-ee
     ```
+    **Note on Environment Variables being used:**
+    When running in docker all the Kong environment variables located in /etc/kong/kong.conf are prepended with KONG_ and you can specify the envionment varialbes you need to run the Kong cluster according to your needs. 
+    KONG_DATABASE is specifying the database used in the cluster
+    KONG_PG_HOST and KONG_CASSANDRA_CONTACT_POINTS are pointing to the kong-ee-database container. 
+    KONG_PROXY_ACCESS_LOG, KONG_ADMIN_ACCESS_LOG, KONG_PROXY_ERROR_LOG, and KONG_ADMIN_ERROR_LOG are specifying the location of the Kong logs. Note that you can tail the Kong containers logs by running the ''' docker logs -f kong-ee ''' command in a separate terminal once Kong has been started. 
+    KONG_ADMIN_LISTEN is being modified so we can send API calls to the Kong Admin API. For security reasons, the Admin API only listens on the local interface by default. We are overriding that setting with `KONG_ADMIN_LISTEN=0.0.0.0:8001` to listen on all interfaces so we can enable Kong Manager and Dev Portal to talk with the Kong
+    Admin API.
+    KONG_ADMIN_API_URI is not being set, however it should be noted that modifying the **admin_api_uri** directive in `kong.conf` updates the Javascript that is sent to the browser, so the browser knows where to send XHR requests. You may need to modify the 'admin_api_uri` with the correct uri if you are accessing the Kong container in a separate network. 
+    KONG_PORTAL=on is specifying that we want the Dev Portal turned on. 
+    KONG_LICENSE_DATA is specifying the Kong EE license. Without this Kong will not run properly. Please see further below for specific errors you will see due to incorrect license definition. 
+
+     **Note the KONG_LICENSE_DATA=$KONG_LICENSE_DATA environment variable ensures that the Kong license is properly referenced. There are a number of licensing related issues described below that can occur if you don't properly reference the Kong EE license** 
+    
+         Without a license properly referenced, you’ll get errors when you run migrations:
+
+        $ docker run -ti --rm ... kong migrations bootstrap
+        nginx: [alert] Error validating Kong license: license path environment variable not set
+
+        Also, without a license, you will get no output if you do a `docker run` in
+        "daemon mode"—the `-d` flag to `docker run`:
+
+        $ docker run -d ... kong start
+        26a995171e23e37f89a4263a10bb084120ab0dbed1aa11a71c888c8e0d74a0b6
+        
+
+        When you check the container, it won’t be running. Doing a `docker logs` will
+        show you:
+
+        $ docker logs <container name>
+        nginx: [alert] Error validating Kong license: license path environment variable not set
+
+
+        As awareness, another error that can occur due to the vagaries of the interactions
+        between text editors and copy & paste changing straight quotes (" or ') into curly
+        ones (“ or ” or ’ or ‘) is:
+
+            ​```
+            nginx: [alert] Error validating Kong license: could not decode license json
+            ​```
+
+        Your license data must contain only straight quotes to be considered valid JSON.
+
+    
     **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
     variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
     For example, assuming you've saved your `license.json` file into `C:\temp`, 
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-11. Kong Enterprise should now be installed and running. Test 
+11. Confirm Kong is Running. 
+
+Kong Enterprise should now be installed and running after the last step. Test 
 it by visiting Kong Manager at [http://localhost:8002](http://localhost:8002)
 (replace `localhost` with your server IP or hostname when running Kong on a 
 remote system), or by visiting the Default Dev Portal at 
 [http://127.0.0.1:8003/default](http://127.0.0.1:8003/default)
 
-## FAQs
 
-The Admin API only listens on the local interface by default. This was done as a
-security enhancement. Note that we are overriding that in the above example with
-`KONG_ADMIN_LISTEN=0.0.0.0:8001` because Docker container networking benefits from
-more open settings and enables Kong Manager and Dev Portal to talk with the Kong
-Admin API.
-
-Without a license properly referenced, you’ll get errors running migrations:
-
-    $ docker run -ti --rm ... kong migrations bootstrap
-    nginx: [alert] Error validating Kong license: license path environment variable not set
-
-Also, without a license, you will get no output if you do a `docker run` in
-"daemon mode"—the `-d` flag to `docker run`:
-
-    
-    $ docker run -d ... kong start
-    26a995171e23e37f89a4263a10bb084120ab0dbed1aa11a71c888c8e0d74a0b6
-    
-
-When you check the container, it won’t be running. Doing a `docker logs` will
-show you:
-
-
-    $ docker logs <container name>
-    nginx: [alert] Error validating Kong license: license path environment variable not set
-
-
-As awareness, another error that can occur due to the vagaries of the interactions
-between text editors and copy & paste changing straight quotes (" or ') into curly
-ones (“ or ” or ’ or ‘) is:
-
-​```
-nginx: [alert] Error validating Kong license: could not decode license json
-​```
-
-Your license data must contain only straight quotes to be considered valid JSON.
