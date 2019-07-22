@@ -311,4 +311,4 @@ Options:
 ---
 
 
-[configuration-reference]: enterprise/{{page.kong_version}}/property-reference/
+[configuration-reference]: /enterprise/{{page.kong_version}}/property-reference/
