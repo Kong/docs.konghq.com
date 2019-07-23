@@ -2507,7 +2507,7 @@ correctly set, since the identity provider should redirect the
 user back to this URI once authentication is successful. (The URI can be the same
 Service or a different one).
 
-You could also try another way; for example, password granT:
+You could also try another way; for example, password grant:
 
 ```bash
 $ http :8000 Authorization:"Basic <username>:<password>"
