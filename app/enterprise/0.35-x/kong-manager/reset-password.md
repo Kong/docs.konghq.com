@@ -32,6 +32,9 @@ Prerequisites:
 Steps:
 
 1. At the login page, click **Forgot Password** beneath the login field. 
+
+<img src="s3://kong-doc-assets/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-forgot-password.png">
+
 2. Enter the email address associated with the account.
 3. Click the link from the email. 
 4. Reset the password. Note that you will need to provide it again immediately after the reset is complete. 
