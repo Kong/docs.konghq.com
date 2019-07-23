@@ -2502,10 +2502,10 @@ HTTP 301 Moved Temporarily
 
 Now, at this point you could try to open the page using a browser and
 see if you can go through the authorization code flow, and after that
-get an reply from httpbin.org. Please check that your redirect URI is
-correctly registered as the identity provider should redirect the
-browser back to Kong URL where this Plugin is enabled (it can be the same
-Service or it can be different Service).
+get a reply from `httpbin.org`. Please check that your redirect URI parameter is
+correctly set, since the identity provider should redirect the
+user back to this URI once authentication is successful. (The URI can be the same
+Service or a different one).
 
 You could also try another way; for example, password granT:
 
