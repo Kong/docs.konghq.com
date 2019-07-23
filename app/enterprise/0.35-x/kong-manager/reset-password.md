@@ -45,7 +45,7 @@ Steps:
 
 4. Reset the password. Note that you will need to provide it again immediately after the reset is complete. 
 
-<img src="s3://kong-doc-assets/0.35/kong-manager/how-to-reset-passwords-and-rbac/reset-the-password.png">
+<img src="s3://kong-doc-assets/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-password.png">
 
 5. Log in with the new password. 
 
