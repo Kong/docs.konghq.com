@@ -86,6 +86,13 @@ Steps:
   <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/hover-select-profile.png">
 
 2. In the **Reset RBAC Token** section at the bottom, click **Reset Token**.
+
+  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-reset-token.png">
+  
 3. Type in a new token and click **Reset**. 
+
+  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-token.png">
+  
 4. To copy the token, click the **Copy** button at the right.
 
+  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/successful-reset.png">
