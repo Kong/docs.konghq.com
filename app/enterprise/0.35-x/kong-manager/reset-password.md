@@ -33,23 +33,23 @@ Steps:
 
 1. At the login page, click **Forgot Password** beneath the login field. 
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-forgot-password.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-forgot-password.png">
 
 2. Enter the email address associated with the account.
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-email-address.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-email-address.png">
 
 3. Click the link from the email. 
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-email-link.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-email-link.png">
 
 4. Reset the password. Note that you will need to provide it again immediately after the reset is complete. 
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-password.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-password.png">
 
 5. Log in with the new password.
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/reset-successful.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/reset-successful.png">
 
 ## How to Reset a Password from within Kong Manager
 
@@ -64,11 +64,11 @@ Steps:
 
 1. At the **top right corner**, after hovering over the **account name**, select **Profile**. 
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/hover-select-profile.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/hover-select-profile.png">
 
 2. In the **Reset Password** section, fill in the fields and click the **Reset Password** button.
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/reset-password.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/reset-password.png">
 
 ## How to Reset an RBAC Token in Kong Manager
 
@@ -83,16 +83,16 @@ Steps:
 
 1. At the **top right corner**, after hovering over the **account name**, select **Profile**. 
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/hover-select-profile.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/hover-select-profile.png">
 
 2. In the **Reset RBAC Token** section at the bottom, click **Reset Token**.
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-reset-token.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-reset-token.png">
   
 3. Type in a new token and click **Reset**. 
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-token.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-token.png">
   
 4. To copy the token, click the **Copy** button at the right.
 
-  <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/successful-reset.png">
+    <img src="https://kong-doc-assets.s3.us-east-2.amazonaws.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/successful-reset.png">
