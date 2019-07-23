@@ -12,6 +12,8 @@
       items:
         - text: Docker
           url: /deployment/installation/docker
+        - text: Ubuntu
+          url: /deployment/installation/ubuntu
         - text: CentOS
           url: /deployment/installation/centos
         - text: Amazon Linux
