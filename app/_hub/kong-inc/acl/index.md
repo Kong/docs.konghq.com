@@ -107,7 +107,7 @@ You can create ACL objects via the `acls:` entry in the declarative configuratio
 
 ``` yaml
 acls:
-  consumer: { consumer }
+- consumer: { consumer }
   group: group1
 ```
 
