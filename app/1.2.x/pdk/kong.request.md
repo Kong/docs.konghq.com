@@ -199,7 +199,7 @@ kong.request.get_forwarded_port() -- 1234
 ### kong.request.get_http_version()
 
 Returns the HTTP version used by the client in the request as a Lua
- number, returning values such as `"1.1"` and `"2.0."`, or `nil` for
+ number, returning values such as `1`, `1.1`, `2.0`, or `nil` for
  unrecognized values.
 
 **Phases**
@@ -208,13 +208,13 @@ Returns the HTTP version used by the client in the request as a Lua
 
 **Returns**
 
-* `string|nil` the http version
+* `number|nil` the http version
 
 
 **Usage**
 
 ``` lua
-kong.request.get_http_version() -- "1.1"
+kong.request.get_http_version() -- 1.1
 ```
 
 [Back to TOC](#table-of-contents)
