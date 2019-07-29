@@ -24,16 +24,25 @@ license_type: (Apache-2.0)
 # COMPATIBILITY
 
 kong_version_compatibility:
-  community_edition:
-    compatible:
-    - 1.x
-    incompatible:
-    - <= 0.14.x
-  enterprise_edition: # optional
-    compatible:
-    - 0.35.x
-    incompatible:
-    - 0.34.x
+    community_edition:
+      compatible:
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
+      incompatible:
+        - 0.14.x
+        - 0.13.x
+        - 0.12.x
+        - 0.11.x
+        - 0.10.x
+    enterprise_edition:
+      compatible:
+        - 0.35-x
+      incompatible:
+        - 0.34-x
+        - 0.33-x
+        - 0.32-x
+        - 0.31-x
 
 ###############################################################################
 # END YAML DATA
