@@ -9,7 +9,7 @@ type: integration
 
 desc: Backup, restore, diff and sync configuration to Kong
 description: |
-  decK helps manage Kong's configuration in a declaratice fashion.
+  decK helps manage Kong's configuration in a declarative fashion.
   It can sync configuration to a running Kong cluster, diff configuration
   to detect any drift or manual changes and backup your Kong's configuration.
   It also can manage Kong's configuration in a distributed way using tags,
@@ -31,9 +31,9 @@ kong_version_compatibility:
     - <= 0.14.x
   enterprise_edition: # optional
     compatible:
-    - >= 0.35.x
+    - 0.35.x
     incompatible:
-    - <= 0.34.x
+    - 0.34.x
 
 ###############################################################################
 # END YAML DATA
