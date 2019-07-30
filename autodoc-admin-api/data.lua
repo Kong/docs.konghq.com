@@ -408,6 +408,11 @@ return {
         Service. See the [Proxy Reference][proxy-reference] for a detailed explanation
         of how Kong proxies traffic.
       ]],
+
+      ["/services/:services/client_certificate"] = {
+        endpoint = false,
+      },
+
       fields = {
         id = { skip = true },
         created_at = { skip = true },
@@ -455,6 +460,12 @@ return {
             The timeout in milliseconds between two successive read operations
             for transmitting a request to the upstream server.
           ]]
+        },
+        client_certificate = {
+          description = [[
+            An optional id (a UUID) of the certificate with which to be used as client
+            certificate while TLS handshaking to the upstream server.
+          ]],
         },
         tags = {
           description = [[
@@ -600,6 +611,10 @@ return {
             `Location` header is injected by Kong if the field is set
             to 301, 302, 307 or 308.
           ]]
+        },
+        headers = {
+          description = "PLACEHOLDER",
+          example = "PLACEHOLDER",
         },
         tags = {
           description = [[
@@ -905,6 +920,7 @@ return {
         certificate, they should be concatenated together into one string according to
         the following order: main certificate on the top, followed by any intermediates.
       ]],
+
       fields = {
         id = { skip = true },
         created_at = { skip = true },
@@ -1082,6 +1098,19 @@ return {
         },
 
       },
+
+      ["/upstreams/:upstreams/targets/:targets/:address/healthy"] = {
+        GET = {
+          title = "PLACEHOLDER",
+        },
+      },
+
+      ["/upstreams/:upstreams/targets/:targets/:address/unhealthy"] = {
+        GET = {
+          title = "PLACEHOLDER",
+        },
+      },
+
       fields = {
         id = { skip = true },
         created_at = { skip = true },

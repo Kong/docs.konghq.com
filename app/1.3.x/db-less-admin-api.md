@@ -14,6 +14,7 @@ service_body: |
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
+    `client_certificate`<br>*optional* |  An optional id (a UUID) of the certificate with which to be used as client certificate while TLS handshaking to the upstream server.  With form-encoded, the notation is `client_certificate.id=<client_certificate_id>`. With JSON, use `"client_certificate":{"id":"<client_certificate_id>"}`.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
@@ -30,12 +31,13 @@ service_json: |
         "connect_timeout": 60000,
         "write_timeout": 60000,
         "read_timeout": 60000,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "client_certificate": {"id":"4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"}
     }
 
 service_data: |
     "data": [{
-        "id": "4e3ad2e4-0bc4-4638-8e34-c84a417ba39b",
+        "id": "a5fb8d9b-a99d-40e9-9d35-72d42a62d83a",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-service",
@@ -47,9 +49,10 @@ service_data: |
         "connect_timeout": 60000,
         "write_timeout": 60000,
         "read_timeout": 60000,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "client_certificate": {"id":"51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"}
     }, {
-        "id": "a5fb8d9b-a99d-40e9-9d35-72d42a62d83a",
+        "id": "fc73f2af-890d-4f9b-8363-af8945001f7f",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-service",
@@ -61,7 +64,8 @@ service_data: |
         "connect_timeout": 60000,
         "write_timeout": 60000,
         "read_timeout": 60000,
-        "tags": ["admin", "high-priority", "critical"]
+        "tags": ["admin", "high-priority", "critical"],
+        "client_certificate": {"id":"4506673d-c825-444c-a25b-602e3c2ec16e"}
     }],
 
 route_body: |
@@ -72,6 +76,7 @@ route_body: |
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set. 
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
+    `headers`<br>*optional* | PLACEHOLDER
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Defaults to `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
@@ -84,7 +89,7 @@ route_body: |
 
 route_json: |
     {
-        "id": "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515",
+        "id": "d35165e2-d03e-461a-bdeb-dad0a112abfe",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -92,17 +97,18 @@ route_json: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
+        "headers": "PLACEHOLDER",
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
-        "service": {"id":"fc73f2af-890d-4f9b-8363-af8945001f7f"}
+        "service": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"}
     }
 
 route_data: |
     "data": [{
-        "id": "4506673d-c825-444c-a25b-602e3c2ec16e",
+        "id": "a9daa3ba-8186-4a0d-96e8-00d80ce7240b",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -110,18 +116,20 @@ route_data: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
+        "headers": "PLACEHOLDER",
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
-        "service": {"id":"d35165e2-d03e-461a-bdeb-dad0a112abfe"}
+        "service": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"}
     }, {
-        "id": "af8330d3-dbdc-48bd-b1be-55b98608834b",
+        "id": "9aa116fd-ef4a-4efa-89bf-a0b17c4be982",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
         "protocols": ["tcp", "tls"],
+        "headers": "PLACEHOLDER",
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -130,7 +138,7 @@ route_data: |
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "tags": ["admin", "high-priority", "critical"],
-        "service": {"id":"a9daa3ba-8186-4a0d-96e8-00d80ce7240b"}
+        "service": {"id":"ba641b07-e74a-430a-ab46-94b61e5ea66b"}
     }],
 
 consumer_body: |
@@ -142,7 +150,7 @@ consumer_body: |
 
 consumer_json: |
     {
-        "id": "127dfc88-ed57-45bf-b77a-a9d3a152ad31",
+        "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
@@ -151,13 +159,13 @@ consumer_json: |
 
 consumer_data: |
     "data": [{
-        "id": "9aa116fd-ef4a-4efa-89bf-a0b17c4be982",
+        "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "ba641b07-e74a-430a-ab46-94b61e5ea66b",
+        "id": "01c23299-839c-49a5-a6d5-8864c09184af",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
@@ -173,13 +181,13 @@ plugin_body: |
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`. With form-encoded, the notation is `consumer.id=<consumer_id>`. With JSON, use `"consumer":{"id":"<consumer_id>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
     `run_on` |  Control on which Kong nodes this plugin will run, given a Service Mesh scenario. Accepted values are: * `first`, meaning "run on the first Kong node that is encountered by the request". On an API Getaway scenario, this is the usual operation, since there is only one Kong node in between source and destination. In a sidecar-to-sidecar Service Mesh scenario, this means running the plugin only on the Kong sidecar of the outbound connection. * `second`, meaning "run on the second node that is encountered by the request". This option is only relevant for sidecar-to-sidecar Service Mesh scenarios: this means running the plugin only on the Kong sidecar of the inbound connection. * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar scenario. This is useful for tracing/logging plugins.  Defaults to `"first"`.
-    `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["http", "https"]`.
+    `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http", "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Defaults to `true`.
     `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering. 
 
 plugin_json: |
     {
-        "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
+        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -194,7 +202,7 @@ plugin_json: |
 
 plugin_data: |
     "data": [{
-        "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
+        "id": "02621eee-8309-4bf6-b36b-a82017a5393e",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -206,7 +214,7 @@ plugin_data: |
         "enabled": true,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "01c23299-839c-49a5-a6d5-8864c09184af",
+        "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -229,7 +237,7 @@ certificate_body: |
 
 certificate_json: |
     {
-        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
+        "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
@@ -238,13 +246,13 @@ certificate_json: |
 
 certificate_data: |
     "data": [{
-        "id": "02621eee-8309-4bf6-b36b-a82017a5393e",
+        "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
+        "id": "a9b2107f-a214-47b3-add4-46b942187924",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
@@ -259,7 +267,7 @@ ca_certificate_body: |
 
 ca_certificate_json: |
     {
-        "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
+        "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "tags": ["user-level", "low-priority"]
@@ -267,12 +275,12 @@ ca_certificate_json: |
 
 ca_certificate_data: |
     "data": [{
-        "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
+        "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "a9b2107f-a214-47b3-add4-46b942187924",
+        "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "tags": ["admin", "high-priority", "critical"]
@@ -287,33 +295,33 @@ sni_body: |
 
 sni_json: |
     {
-        "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
+        "id": "91020192-062d-416f-a275-9addeeaffaf2",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"43429efd-b3a5-4048-94cb-5cc4029909bb"}
+        "certificate": {"id":"a2e013e8-7623-4494-a347-6d29108ff68b"}
     }
 
 sni_data: |
     "data": [{
-        "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
+        "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"91020192-062d-416f-a275-9addeeaffaf2"}
+        "certificate": {"id":"a3ad71a8-6685-4b03-a101-980a953544f6"}
     }, {
-        "id": "a2e013e8-7623-4494-a347-6d29108ff68b",
+        "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["admin", "high-priority", "critical"],
-        "certificate": {"id":"147f5ef0-1ed6-4711-b77f-489262f8bff7"}
+        "certificate": {"id":"4e8d95d4-40f2-4818-adcb-30e00c349618"}
     }],
 
 upstream_body: |
     Attributes | Description
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
-    `algorithm`<br>*optional* | What kinds of load balancing algorithm to use. One of: `round-robin`, `consistent-hashing`, or `least-connections`. Defaults to `"consistent"`.
+    `algorithm`<br>*optional* | What kinds of load balancing algorithm to use. One of: `round-robin`, `consistent-hashing`, or `least-connections`. Defaults to `"round-robin"`.
     `hash_on`<br>*optional* | What to use as hashing input: `none` (resulting in a weighted-round-robin scheme with no hashing), `consumer`, `ip`, `header`, or `cookie`. Defaults to `"none"`.
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified). One of: `none`, `consumer`, `ip`, `header`, or `cookie`. Not available if `hash_on` is set to `cookie`. Defaults to `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
@@ -346,10 +354,10 @@ upstream_body: |
 
 upstream_json: |
     {
-        "id": "a3ad71a8-6685-4b03-a101-980a953544f6",
+        "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
         "created_at": 1422386534,
         "name": "my-upstream",
-        "algorithm": "consistent",
+        "algorithm": "round-robin",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -394,10 +402,10 @@ upstream_json: |
 
 upstream_data: |
     "data": [{
-        "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
+        "id": "ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6",
         "created_at": 1422386534,
         "name": "my-upstream",
-        "algorithm": "consistent",
+        "algorithm": "round-robin",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -439,10 +447,10 @@ upstream_data: |
         },
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "4e8d95d4-40f2-4818-adcb-30e00c349618",
+        "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
         "name": "my-upstream",
-        "algorithm": "consistent",
+        "algorithm": "round-robin",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -494,9 +502,9 @@ target_body: |
 
 target_json: |
     {
-        "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
+        "id": "a3395f66-2af6-4c79-bea2-1b6933764f80",
         "created_at": 1422386534,
-        "upstream": {"id":"ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6"},
+        "upstream": {"id":"885a0392-ef1b-4de3-aacf-af3f1697ce2c"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
@@ -504,16 +512,16 @@ target_json: |
 
 target_data: |
     "data": [{
-        "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
+        "id": "f5a9c0ca-bdbb-490f-8928-2ca95836239a",
         "created_at": 1422386534,
-        "upstream": {"id":"a3395f66-2af6-4c79-bea2-1b6933764f80"},
+        "upstream": {"id":"173a6cee-90d1-40a7-89cf-0329eca780a6"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "885a0392-ef1b-4de3-aacf-af3f1697ce2c",
+        "id": "bdab0e47-4e37-4f0b-8fd0-87d95cc4addc",
         "created_at": 1422386534,
-        "upstream": {"id":"f5a9c0ca-bdbb-490f-8928-2ca95836239a"},
+        "upstream": {"id":"f00c6da4-3679-4b44-b9fb-36a19bd3ae83"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["admin", "high-priority", "critical"]
@@ -923,6 +931,15 @@ Services can be both [tagged and filtered by tags](#tags).
 ##### List All Services
 
 <div class="endpoint get">/services</div>
+
+
+##### List Services Associated to a Specific Certificate
+
+<div class="endpoint get">/certificates/{certificate name or id}/services</div>
+
+Attributes | Description
+---:| ---
+`certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Services are to be retrieved. When using this endpoint, only Services associated to the specified Certificate will be listed.
 
 
 *Response*
@@ -1694,6 +1711,14 @@ HTTP 200 OK
 }
 ```
 
+
+---
+
+### Placeholder
+
+---
+
+### Placeholder
 
 ---
 
