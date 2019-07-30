@@ -24,6 +24,8 @@ local title_exceptions = {
   ["sni"] = "SNI",
   ["snis"] = "SNIs",
   ["httpie"] = "HTTPie",
+  ["ca_certificates"] = "CA Certificates",
+  ["ca_certificate"] = "CA Certificate",
 }
 
 -- Chicago-style prepositions to be lowercased,
