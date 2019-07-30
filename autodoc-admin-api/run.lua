@@ -490,7 +490,7 @@ local function write_endpoint(outfd, endpoint, ep_data, methods)
   -- check for endpoint-specific overrides (useful for db-less)
   methods = methods and methods[endpoint] or methods
 
-  for i, method in ipairs(method_array) do
+  for _, method in ipairs(method_array) do
     if methods == nil or methods[method] == true then
 
     local meth_data = ep_data[method]
