@@ -50,12 +50,37 @@ From a high-level perspective, Kong listens for HTTP traffic on its configured
 proxy port(s) (`8000` and `8443` by default). Kong will evaluate any incoming
 HTTP request against the Routes you have configured and try to find a matching
 one. If a given request matches the rules of a specific Route, Kong will
-process proxying the request. Because each Route is linked to a Service, Kong
-will run the plugins you have configured on your Route and its associated
-Service, and then proxy the request upstream.
+process proxying the request.
 
-You can manage Routes via Kong's Admin API. The `hosts`, `paths`, and `methods`
-attributes of Routes define rules for matching incoming HTTP requests.
+Because each Route may be linked to a Service, Kong will run the plugins you
+have configured on your Route and its associated Service, and then proxy the
+request upstream. You can manage Routes via Kong's Admin API. Routes have
+special attributes that are used for routing - matching incoming HTTP requests.
+Routing attributes differ by subsystem (HTTP/HTTPS, gRPC/gRPCS, and TCP/TLS).
+
+Subsystems and routing attributes:
+- `http`: `methods`, `hosts`, `headers`, `paths` (and `snis`, if `https`)
+- `tcp`: `sources`, `destinations` (and `snis`, if `tls`)
+- `grpc`: `hosts`, `headers`, `paths` (and `snis`, if `grpcs`)
+
+If one attempts to configure a Route with a routing attribute it doesn't support
+(e.g., an `http` route with `sources` or `destinations` fields), an error message
+will be reported:
+
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+Server: kong/<x.x.x>
+
+{
+    "code": 2,
+    "fields": {
+        "sources": "cannot set 'sources' when 'protocols' is 'http' or 'https'"
+    },
+    "message": "schema violation (sources: cannot set 'sources' when 'protocols' is 'http' or 'https')",
+    "name": "schema violation"
+}
+```
 
 If Kong receives a request that it cannot match against any of the configured
 Routes (or if no Routes are configured), it will respond with:
@@ -155,9 +180,18 @@ upstream service untouched, with the exception of various headers such as
 
 ## Routes and matching capabilities
 
-Let's now discuss how Kong matches a request against the configured `hosts`,
-`paths` and `methods` properties (or fields) of a Route. Note that all three of
-these fields are **optional**, but at least **one of them** must be specified.
+Let's now discuss how Kong matches a request against the configured routing
+attributes.
+
+Kong supports native proxying of HTTP/HTTPS, TCL/TLS, and GRPC/GRPCS protocols;
+as mentioned earlier, each of these protocols accept a different set of routing
+attributes:
+- `http`: `methods`, `hosts`, `headers`, `paths` (and `snis`, if `https`)
+- `tcp`: `sources`, `destinations` (and `snis`, if `tls`)
+- `grpc`: `hosts`, `headers`, `paths` (and `snis`, if `grpcs`)
+
+Note that all three of these fields are **optional**, but at least **one of them**
+must be specified.
 
 For a request to match a Route:
 
@@ -217,12 +251,15 @@ All three of these requests satisfy only two of configured conditions. The
 first request's path is not a match for any of the configured `paths`, same for
 the second request's HTTP method, and the third request's Host header.
 
-Now that we understand how the `hosts`, `paths`, and `methods` properties work
-together, let's explore each property individually.
+Now that we understand how the routing properties work together, let's explore
+each property individually.
 
 [Back to TOC](#table-of-contents)
 
-### Request Host header
+### Request Header
+
+Since 1.3, Kong supports routing by arbitrary HTTP headers. A special case of this
+feature is routing by the Host header, which is described below.
 
 Routing a request based on its Host header is the most straightforward way to
 proxy traffic through Kong, especially since this is the intended usage of the
@@ -230,10 +267,7 @@ HTTP Host header. Kong makes it easy to do via the `hosts` field of the Route
 entity.
 
 `hosts` accepts multiple values, which must be comma-separated when specifying
-them via the Admin API:
-
-`hosts` accepts multiple values, which is straightforward to represent in a
-JSON payload:
+them via the Admin API, and is represented in a JSON payload:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/routes/ \
@@ -265,6 +299,21 @@ or:
 
 ```
 Host: foo-service.com
+```
+
+Similarly, any other header can be used for routing:
+
+```
+$ curl -i -X POST http://localhost:8001/routes/ \
+    -d 'headers.region=north'
+HTTP/1.1 201 Created
+```
+
+Incoming requests containing a `Region` header set to `North` will be routed to
+said Route.
+
+```
+Region: North
 ```
 
 [Back to TOC](#table-of-contents)
@@ -499,8 +548,8 @@ And the following request path:
 ```
 
 Kong will consider the request path a match, and if the overall Route is
-matched (considering the `hosts` and `methods` fields), the extracted capturing
-groups will be available from the plugins in the `ngx.ctx` variable:
+matched (considering other routing attributes), the extracted capturing groups
+will be available from the plugins in the `ngx.ctx` variable:
 
 ```lua
 local router_matches = ngx.ctx.router_matches
@@ -634,9 +683,52 @@ such requests).
 
 [Back to TOC](#table-of-contents)
 
+### Request Source
+
+The `sources` routing attribute only applies to TCP and TLS routes. It allows
+matching a route by a list of incoming connection IP and/or port sources.
+
+The following Route allows routing via a list of source IP/ports:
+
+```json
+{
+    "protocols": ["tcp", "tls"],
+    "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
+    "id": "...",
+}
+```
+
+TCP or TLS connections originating from IPs in CIDR range "10.1.0.0/16" or IP
+address "10.2.2.2" or Port "9123" would match such Route.
+
+### Request Destination
+
+`destinations` only applies to TCP and TLS routes. Similarly to `sources`, it
+allows matching a route by a list of incoming connection IP and/or port, but
+uses the destination of the TCP/TLS connection as routing attribute.
+
+### Request SNI
+
+When using secure protocols (`https`, `grpcs`, or `tls`), a [Server
+Name Indication][SNI] can be used as a routing attribute. The following Route
+allows routing via SNIs:
+
+```json
+{
+  "snis": ["foo.test", "example.com"],
+  "id": "..."
+}
+```
+
+Incoming requests with a matching hostname set in the TLS connection's SNI
+extension would be routed to this Route. As mentioned, SNI routing applies not
+only to TLS, but also to other protocols carried over TLS - such as HTTPS and
+gRPCs.
+
 ## Matching priorities
 
-A Route may define matching rules based on its `hosts`, `paths`, and `methods`
+A Route may define matching rules based on its `headers`, `hosts`, `paths`, and
+`methods` (plus `snis` for secure routes - `"https"`, `"grpcs"`, `"tls"`)
 fields. For Kong to match an incoming request to a Route, all existing fields
 must be satisfied. However, Kong allows for quite some flexibility by allowing
 two or more Routes to be configured with fields containing the same values -
@@ -939,11 +1031,11 @@ the `cert.pem` certificate previously configured.
 
 [Back to TOC](#table-of-contents)
 
-### Restricting the client protocol (HTTP/HTTPS/TCP/TLS)
+### Restricting the client protocol (HTTP/HTTPS, GRPC/GRPCS, TCP/TLS)
 
 Routes have a `protocols` property to restrict the client protocol they should
 listen for. This attribute accepts a set of values, which can be `"http"`,
-`"https"`, `"tcp"` or `"tls"`.
+`"https"`, `"grpc"`, `"grpcs"`, `"tcp"`, or `"tls"`.
 
 A Route with `http` and `https` will accept traffic in both protocols.
 
@@ -1085,6 +1177,17 @@ client, but proxy to the upstream service over plain text, or `ws`.
 
 [Back to TOC](#table-of-contents)
 
+## Proxy gRPC traffic
+
+Starting with version 1.3, gRPC proxying is natively supported in Kong. In order
+to manage gRPC services and proxy gRPC requests with Kong, create Services and
+Routes for your gRPC Services (check out the [Configuring a gRPC Service guide][conf-grpc-service]).
+
+Note that in Kong 1.3 only observability and logging plugins are supported with
+gRPC - plugins known to be supported with gRPC have "grpc" and "grpcs" listed
+under the supported protocols field in their Kong Hub page - for example,
+check out the [File Log][file-log] plugin's page.
+
 ## Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
@@ -1121,3 +1224,5 @@ just covered.
 [ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication
+[conf-grpc-service]: /{{page.kong_version}}/getting-started/configuring-a-grpc-service
+[file-log]: //file-log
