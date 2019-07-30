@@ -1422,21 +1422,21 @@ HTTP 200 OK
 
 ---
 
-## Ca_certificate Object
+## Ca Certificate Object
 
 A CA certificate object represents a trusted CA. These objects are used by Kong to
 verify the validity of a client or server certificate.
 
-Ca_certificates can be both [tagged and filtered by tags](#tags).
+CA Certificates can be both [tagged and filtered by tags](#tags).
 
 
 ```json
 {{ page.ca_certificate_json }}
 ```
 
-### List Ca_certificates
+### List Ca Certificates
 
-##### List All Ca_certificates
+##### List All CA Certificates
 
 <div class="endpoint get">/ca_certificates</div>
 
@@ -1457,15 +1457,15 @@ HTTP 200 OK
 
 ---
 
-### Retrieve Ca_certificate
+### Retrieve Ca Certificate
 
-##### Retrieve Ca_certificate
+##### Retrieve CA Certificate
 
 <div class="endpoint get">/ca_certificates/{ca_certificate id}</div>
 
 Attributes | Description
 ---:| ---
-`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to retrieve.
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to retrieve.
 
 
 *Response*

@@ -2081,21 +2081,21 @@ HTTP 204 No Content
 
 ---
 
-## Ca_certificate Object
+## Ca Certificate Object
 
 A CA certificate object represents a trusted CA. These objects are used by Kong to
 verify the validity of a client or server certificate.
 
-Ca_certificates can be both [tagged and filtered by tags](#tags).
+CA Certificates can be both [tagged and filtered by tags](#tags).
 
 
 ```json
 {{ page.ca_certificate_json }}
 ```
 
-### Add Ca_certificate
+### Add Ca Certificate
 
-##### Create Ca_certificate
+##### Create CA Certificate
 
 <div class="endpoint post">/ca_certificates</div>
 
@@ -2118,9 +2118,9 @@ HTTP 201 Created
 
 ---
 
-### List Ca_certificates
+### List Ca Certificates
 
-##### List All Ca_certificates
+##### List All CA Certificates
 
 <div class="endpoint get">/ca_certificates</div>
 
@@ -2141,15 +2141,15 @@ HTTP 200 OK
 
 ---
 
-### Retrieve Ca_certificate
+### Retrieve Ca Certificate
 
-##### Retrieve Ca_certificate
+##### Retrieve CA Certificate
 
 <div class="endpoint get">/ca_certificates/{ca_certificate id}</div>
 
 Attributes | Description
 ---:| ---
-`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to retrieve.
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to retrieve.
 
 
 *Response*
@@ -2165,15 +2165,15 @@ HTTP 200 OK
 
 ---
 
-### Update Ca_certificate
+### Update Ca Certificate
 
-##### Update Ca_certificate
+##### Update CA Certificate
 
 <div class="endpoint patch">/ca_certificates/{ca_certificate id}</div>
 
 Attributes | Description
 ---:| ---
-`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to update.
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to update.
 
 
 *Request Body*
@@ -2194,15 +2194,15 @@ HTTP 200 OK
 
 ---
 
-### Update Or Create Ca_certificate
+### Update Or Create Ca Certificate
 
-##### Create Or Update Ca_certificate
+##### Create Or Update CA Certificate
 
 <div class="endpoint put">/ca_certificates/{ca_certificate id}</div>
 
 Attributes | Description
 ---:| ---
-`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to create or update.
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to create or update.
 
 
 *Request Body*
@@ -2210,15 +2210,15 @@ Attributes | Description
 {{ page.ca_certificate_body }}
 
 
-Inserts (or replaces) the Ca_certificate under the requested resource with the
-definition specified in the body. The Ca_certificate will be identified via the `name
+Inserts (or replaces) the CA Certificate under the requested resource with the
+definition specified in the body. The CA Certificate will be identified via the `name
 or id` attribute.
 
-When the `name or id` attribute has the structure of a UUID, the Ca_certificate being
+When the `name or id` attribute has the structure of a UUID, the CA Certificate being
 inserted/replaced will be identified by its `id`. Otherwise it will be
 identified by its `name`.
 
-When creating a new Ca_certificate without specifying `id` (neither in the URL nor in
+When creating a new CA Certificate without specifying `id` (neither in the URL nor in
 the body), then it will be auto-generated.
 
 Notice that specifying a `name` in the URL and a different one in the request
@@ -2236,15 +2236,15 @@ See POST and PATCH responses.
 
 ---
 
-### Delete Ca_certificate
+### Delete Ca Certificate
 
-##### Delete Ca_certificate
+##### Delete CA Certificate
 
 <div class="endpoint delete">/ca_certificates/{ca_certificate id}</div>
 
 Attributes | Description
 ---:| ---
-`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to delete.
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to delete.
 
 
 *Response*

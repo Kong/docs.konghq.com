@@ -974,6 +974,8 @@ return {
     },
 
     ca_certificates = {
+      entity_title = "CA Certificate",
+      entity_title_plural = "CA Certificates",
       description = [[
         A CA certificate object represents a trusted CA. These objects are used by Kong to
         verify the validity of a client or server certificate.
