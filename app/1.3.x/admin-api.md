@@ -222,10 +222,10 @@ plugin_data: |
 certificate_body: |
     Attributes | Description
     ---:| ---
-    `cert` | PEM-encoded public certificate of the SSL key pair.
+    `cert` | PEM-encoded public certificate chain of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. 
 
 certificate_json: |
     {
@@ -251,41 +251,69 @@ certificate_data: |
         "tags": ["admin", "high-priority", "critical"]
     }],
 
+ca_certificate_body: |
+    Attributes | Description
+    ---:| ---
+    `cert` | PEM-encoded public certificate of the CA.
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
+
+ca_certificate_json: |
+    {
+        "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
+        "created_at": 1422386534,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+        "tags": ["user-level", "low-priority"]
+    }
+
+ca_certificate_data: |
+    "data": [{
+        "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
+        "created_at": 1422386534,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+        "tags": ["user-level", "low-priority"]
+    }, {
+        "id": "a9b2107f-a214-47b3-add4-46b942187924",
+        "created_at": 1422386534,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+        "tags": ["admin", "high-priority", "critical"]
+    }],
+
 sni_body: |
     Attributes | Description
     ---:| ---
-    `name` | The SNI name to associate with the given certificate. May contain a single wildcard in the leftmost (suffix) or rightmost (prefix) position. This can be helpful when maintaining multiple subdomains, as a single SNI configured with a wildcard name can be used to match multiple subdomains, instead of creating an SNI entity for each. Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`. Plain SNI names (no wildcard) take priority when matching, followed by prefix and then suffix.
+    `name` | The SNI name to associate with the given certificate.
     `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
-    `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
+    `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
 sni_json: |
     {
-        "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
+        "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6"}
+        "certificate": {"id":"43429efd-b3a5-4048-94cb-5cc4029909bb"}
     }
 
 sni_data: |
     "data": [{
-        "id": "a9b2107f-a214-47b3-add4-46b942187924",
+        "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"04fbeacf-a9f1-4a5d-ae4a-b0407445db3f"}
+        "certificate": {"id":"91020192-062d-416f-a275-9addeeaffaf2"}
     }, {
-        "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
+        "id": "a2e013e8-7623-4494-a347-6d29108ff68b",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["admin", "high-priority", "critical"],
-        "certificate": {"id":"d26761d5-83a4-4f24-ac6c-cff276f2b79c"}
+        "certificate": {"id":"147f5ef0-1ed6-4711-b77f-489262f8bff7"}
     }],
 
 upstream_body: |
     Attributes | Description
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
+    `algorithm`<br>*optional* | What kinds of load balancing algorithm to use. One of: `round-robin`, `consistent-hashing`, or `least-connections`. Defaults to `"consistent"`.
     `hash_on`<br>*optional* | What to use as hashing input: `none` (resulting in a weighted-round-robin scheme with no hashing), `consumer`, `ip`, `header`, or `cookie`. Defaults to `"none"`.
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified). One of: `none`, `consumer`, `ip`, `header`, or `cookie`. Not available if `hash_on` is set to `cookie`. Defaults to `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
@@ -318,9 +346,10 @@ upstream_body: |
 
 upstream_json: |
     {
-        "id": "91020192-062d-416f-a275-9addeeaffaf2",
+        "id": "a3ad71a8-6685-4b03-a101-980a953544f6",
         "created_at": 1422386534,
         "name": "my-upstream",
+        "algorithm": "consistent",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -365,9 +394,10 @@ upstream_json: |
 
 upstream_data: |
     "data": [{
-        "id": "a2e013e8-7623-4494-a347-6d29108ff68b",
+        "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
         "created_at": 1422386534,
         "name": "my-upstream",
+        "algorithm": "consistent",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -409,9 +439,10 @@ upstream_data: |
         },
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
+        "id": "4e8d95d4-40f2-4818-adcb-30e00c349618",
         "created_at": 1422386534,
         "name": "my-upstream",
+        "algorithm": "consistent",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -463,9 +494,9 @@ target_body: |
 
 target_json: |
     {
-        "id": "a3ad71a8-6685-4b03-a101-980a953544f6",
+        "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
         "created_at": 1422386534,
-        "upstream": {"id":"b87eb55d-69a1-41d2-8653-8d706eecefc0"},
+        "upstream": {"id":"ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
@@ -473,16 +504,16 @@ target_json: |
 
 target_data: |
     "data": [{
-        "id": "4e8d95d4-40f2-4818-adcb-30e00c349618",
+        "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
-        "upstream": {"id":"58c8ccbb-eafb-4566-991f-2ed4f678fa70"},
+        "upstream": {"id":"a3395f66-2af6-4c79-bea2-1b6933764f80"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6",
+        "id": "885a0392-ef1b-4de3-aacf-af3f1697ce2c",
         "created_at": 1422386534,
-        "upstream": {"id":"4fe14415-73d5-4f00-9fbc-c72a0fccfcb2"},
+        "upstream": {"id":"f5a9c0ca-bdbb-490f-8928-2ca95836239a"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["admin", "high-priority", "critical"]
@@ -525,27 +556,6 @@ with dotted keys. Example:
 config.limit=10&config.period=seconds
 ```
 
-Arrays and sets can be specified in various ways:
-
-1. Sending same parameter multiple times:
-    ```
-    hosts=example.com&hosts=example.org
-    ```
-2. Using array notation:
-    ```
-    hosts[1]=example.com&hosts[2]=example.org
-    ```
-    or 
-    ```
-    hosts[]=example.com&hosts[]=example.org
-    ```
-    Array and object notation can also be mixed:
-
-    ```
-    config.hosts[1]=example.com&config.hosts[2]=example.org
-    ```
-
-
 - **application/json**
 
 Handy for complex bodies (ex: complex plugin configuration), in that case simply send
@@ -556,18 +566,6 @@ a JSON representation of the data you want to send. Example:
     "config": {
         "limit": 10,
         "period": "seconds"
-    }
-}
-```
-
-JSON arrays can be specified as well:
-
-```json
-{
-    "config": {
-        "limit": 10,
-        "period": "seconds",
-        "hosts": [ "example.com", "example.org" ]
     }
 }
 ```
@@ -1904,11 +1902,14 @@ HTTP 200 OK
 
 ## Certificate Object
 
-A certificate object represents a public certificate, and can be optionally paired with the
-corresponding private key. These objects are used by Kong to handle SSL/TLS termination for
-encrypted requests, or for use as a trusted CA store when validating peer certificate of
-client/service. Certificates are optionally associated with SNI objects to
+A certificate object represents a public certificate/private key pair for an SSL
+certificate. These objects are used by Kong to handle SSL/TLS termination for
+encrypted requests. Certificates are optionally associated with SNI objects to
 tie a cert/key pair to one or more hostnames.
+
+If intermediate certificates are required in addition to the main
+certificate, they should be concatenated together into one string according to
+the following order: main certificate on the top, followed by any intermediates.
 
 Certificates can be both [tagged and filtered by tags](#tags).
 
@@ -2069,6 +2070,181 @@ See POST and PATCH responses.
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
+
+
+*Response*
+
+```
+HTTP 204 No Content
+```
+
+
+---
+
+## Ca_certificate Object
+
+A CA certificate object represents a trusted CA. These objects are used by Kong to
+verify the validity of a client or server certificate.
+
+Ca_certificates can be both [tagged and filtered by tags](#tags).
+
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+### Add Ca_certificate
+
+##### Create Ca_certificate
+
+<div class="endpoint post">/ca_certificates</div>
+
+
+*Request Body*
+
+{{ page.ca_certificate_body }}
+
+
+*Response*
+
+```
+HTTP 201 Created
+```
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+
+---
+
+### List Ca_certificates
+
+##### List All Ca_certificates
+
+<div class="endpoint get">/ca_certificates</div>
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+{{ page.ca_certificate_data }}
+    "next": "http://localhost:8001/ca_certificates?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+}
+```
+
+
+---
+
+### Retrieve Ca_certificate
+
+##### Retrieve Ca_certificate
+
+<div class="endpoint get">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to retrieve.
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+
+---
+
+### Update Ca_certificate
+
+##### Update Ca_certificate
+
+<div class="endpoint patch">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to update.
+
+
+*Request Body*
+
+{{ page.ca_certificate_body }}
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+
+---
+
+### Update Or Create Ca_certificate
+
+##### Create Or Update Ca_certificate
+
+<div class="endpoint put">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to create or update.
+
+
+*Request Body*
+
+{{ page.ca_certificate_body }}
+
+
+Inserts (or replaces) the Ca_certificate under the requested resource with the
+definition specified in the body. The Ca_certificate will be identified via the `name
+or id` attribute.
+
+When the `name or id` attribute has the structure of a UUID, the Ca_certificate being
+inserted/replaced will be identified by its `id`. Otherwise it will be
+identified by its `name`.
+
+When creating a new Ca_certificate without specifying `id` (neither in the URL nor in
+the body), then it will be auto-generated.
+
+Notice that specifying a `name` in the URL and a different one in the request
+body is not allowed.
+
+
+*Response*
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+See POST and PATCH responses.
+
+
+---
+
+### Delete Ca_certificate
+
+##### Delete Ca_certificate
+
+<div class="endpoint delete">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the Ca_certificate to delete.
 
 
 *Response*
