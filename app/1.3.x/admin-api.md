@@ -14,7 +14,7 @@ service_body: |
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
-    `client_certificate`<br>*optional* |  An optional id (a UUID) of the certificate with which to be used as client certificate while TLS handshaking to the upstream server.  With form-encoded, the notation is `client_certificate.id=<client_certificate_id>`. With JSON, use `"client_certificate":{"id":"<client_certificate_id>"}`.
+    `client_certificate`<br>*optional* |  An optional id (a UUID) of the certificate to be used as client certificate while TLS handshaking to the upstream server.  With form-encoded, the notation is `client_certificate.id=<client_certificate_id>`. With JSON, use `"client_certificate":{"id":"<client_certificate_id>"}`.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |

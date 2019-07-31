@@ -463,7 +463,7 @@ return {
         },
         client_certificate = {
           description = [[
-            An optional id (a UUID) of the certificate with which to be used as client
+            An optional id (a UUID) of the certificate to be used as client
             certificate while TLS handshaking to the upstream server.
           ]],
         },
