@@ -1439,7 +1439,7 @@ HTTP 200 OK
 
 ---
 
-## Ca Certificate Object
+## CA Certificate Object
 
 A CA certificate object represents a trusted CA. These objects are used by Kong to
 verify the validity of a client or server certificate.
@@ -1451,7 +1451,7 @@ CA Certificates can be both [tagged and filtered by tags](#tags).
 {{ page.ca_certificate_json }}
 ```
 
-### List Ca Certificates
+### List CA Certificates
 
 ##### List All CA Certificates
 
@@ -1474,7 +1474,7 @@ HTTP 200 OK
 
 ---
 
-### Retrieve Ca Certificate
+### Retrieve CA Certificate
 
 ##### Retrieve CA Certificate
 
