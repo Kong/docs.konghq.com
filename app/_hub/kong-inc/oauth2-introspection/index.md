@@ -2,7 +2,7 @@
 
 name: OAuth 2.0 Introspection
 publisher: Kong Inc.
-version: 0.35-x
+version: 0.36-x
 
 desc: Integrate Kong with a third-party OAuth 2.0 Authorization Server
 description: |
@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
 
@@ -86,7 +87,38 @@ params:
       value_in_examples:
       description: |
         A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false` then `OPTIONS` requests will always be allowed.
-
+    - name: consumer_by
+      required: false
+      default: username
+      value_in_examples: username
+      description: |
+        A string indicating whether to associate oauth2 `username` or `client_id`
+        with the consumer's username. Oauth2 `username` is mapped to a consumer's
+        `username` field, while an oauth2 `client_id` maps to a consumer's
+        `custom_id`
+    - name: introspect_request
+      required: false
+      default: false
+      value_in_examples:
+      description: |
+        A boolean indicating whether to forward information about the current 
+        downstream request to the introspect endpoint. If true, headers 
+        `X-Request-Path` and `X-Request-Http-Method` will be inserted in the
+        introspect request
+    - name: custom_introspection_headers
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        A list of custom headers to be added in the introspection request
+    - name: custom_claims_forward
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        A list of custom claims to be forwarded from the introspection response
+        to the upstream request. Claims are forwarded in headers with prefix
+        `X-Credential-{claim-name}`
 ---
 
 ### Flow
@@ -102,8 +134,8 @@ To associate the introspection response resolution to a Kong Consumer, you will 
 When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream API/Microservice, so that you can identify the consumer in your code:
 
 - `X-Consumer-ID`, the ID of the Consumer on Kong (if matched)
-- `X-Consumer-Custom-ID`, the custom_id of the Consumer (if matched and if existing)
-- `X-Consumer-Username`, the username of the Consumer (if matched and if existing)
+- `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if matched and if existing)
+- `X-Consumer-Username`, the `username of` the Consumer (if matched and if existing)
 - `X-Anonymous-Consumer`, will be set to true when authentication failed, and the 'anonymous' consumer was set instead.
 - `X-Credential-Scope`, as returned by the Introspection response (if any)
 - `X-Credential-Client-ID`, as returned by the Introspection response (if any)
@@ -116,5 +148,7 @@ When a client has been authenticated, the plugin will append some headers to the
 - `X-Credential-Aud`, as returned by the Introspection response (if any)
 - `X-Credential-Iss`, as returned by the Introspection response (if any)
 - `X-Credential-Jti`, as returned by the Introspection response (if any)
+
+Additionally, any claims specified in `config.custom_claims_forward` will also be forwarded with the `X-Credential-` prefix.
 
 Note: Aforementioned `X-Credential-*` headers are not set when authentication failed, and the 'anonymous' consumer was set instead.

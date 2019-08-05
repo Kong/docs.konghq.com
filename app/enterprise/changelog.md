@@ -3,6 +3,74 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 0.36
+**Release Date:** 2019/8/5
+
+### Notifications
+- **Kong Enterprise 0.36** inherits from **Kong 1.2.1**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/1.3.0rc1/CHANGELOG.md#121)
+for details.
+
+### Features
+
+#### Dev Portal
+
+- Adds *per workspace* **Session Config**. The Dev Portal will now allow 
+session configuration for every portal-per-workspace instance.
+- Adds **email verification**. Developers will be sent a verification link after
+requesting access to a Dev Portal.
+
+#### Plugins
+
+- **Request Validator**
+  - Adds support for JSON Schema Draft 4
+  - Adds support for parameter validation
+  - Adds the option to override validation for specific content types
+- **OAuth2 Introspection**
+  - Can now find and load consumers by `username` and `custom_id`. OAuth2
+  `username` maps to **Consumer's** `username`, while the `client_id` maps to a 
+  **Consumer's** `custom_id`
+  - New `consumer_by` configuration allows users to customize whether **Consumers**
+  are fetched by `client_id` or `username` (returned by the introspection request)
+  - New `introspect_request` configuration that causes the plugin to send 
+  information about the **current request** as **headers** in the **introspection endpoint**
+  **request**. Currently, the **request path** and **HTTP methods** are sent as `X-Request-Path` 
+  and `X-Request-Http-Method` headers
+  - New `custom_introspection_headers` configuration list of user-supplied
+  headers to be sent in the **introspection endpoint request**
+  - New `custom_claims_forward` configuration list of additional claims. The 
+  **introspection endpoint request** will return this list to forward as headers 
+  to the **upstream service request**.
+
+
+
+### Fixes
+
+#### Workspaces
+
+- Fixes a permission bug where an **Admin** with the **Role** of `workspace-super-admin` was 
+not able to access the **Workspace** that the **Role** was assigned to.
+
+#### Kong Manager
+
+- Fixes a bug where Kong Manager could only display **100 Workspaces**.
+
+#### Dev Portal
+
+- Fixes a bug in the sign-up meta fields
+
+#### Plugins
+
+- **Upstream-tls**
+  - Fixes an issue where bundled **certificates** in PEM format were not loaded into 
+  the certificate store correctly.
+
+### Changes
+
+- **Brain**
+  - Renames **Brain** to **Collector**
+
+
 ## 0.35-3
 **Release Date:** 2019/07/17
 
