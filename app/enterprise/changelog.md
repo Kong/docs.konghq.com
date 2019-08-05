@@ -48,12 +48,12 @@ requesting access to a Dev Portal.
 
 #### Workspaces
 
-- Fixes permission bug where **Admins** with `workspace-super-admin`**Role** were 
+- Fixes a permission bug where an **Admin** with the **Role** of `workspace-super-admin` was 
 not able to access the **Workspace** that the **Role** was assigned to.
 
 #### Kong Manager
 
-- Fixes a bug where Kong Manager could only display 100 **Workspaces**.
+- Fixes a bug where Kong Manager could only display **100 Workspaces**.
 
 #### Dev Portal
 
