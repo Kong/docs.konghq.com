@@ -223,11 +223,13 @@ local typedefs = require "kong.db.schema.typedefs"
 return {
   -- this plugin only results in one custom DAO, named `keyauth_credentials`:
   keyauth_credentials = {
-    name               = "keyauth_credentials", -- the actual table in the database
-    endpoint_key       = "key",
-    primary_key        = { "id" },
-    cache_key          = { "key" },
-    generate_admin_api = true,
+    name                  = "keyauth_credentials", -- the actual table in the database
+    endpoint_key          = "key",
+    primary_key           = { "id" },
+    cache_key             = { "key" },
+    generate_admin_api    = true,
+    admin_api_name        = "key-auths",
+    admin_api_nested_name = "key-auth",    
     fields = {
       {
         -- a value to be inserted by the DAO itself
@@ -300,6 +302,39 @@ Here is a description of some top-level properties:
     Contains the name of the fields used for generating the <code>cache_key</code>, a string which must
     unequivocally identify the entity inside Kong's cache. A unique field, like <code>key</code> in your example,
     is usually good candidate. In other cases a combination of several fields is preferable.
+  </td>
+</tr>
+<tr>
+  <td><code>generate_admin_api</code></td>
+  <td><code>boolean</code> (optional)</td>
+  <td>
+    Whether to auto-generate admin api for the entity or not. By default the admin api is generated for all
+    the daos, including the custom daos. If you want to create a fully customized admin api for the dao or
+    want to disable auto-generation for the dao altogether, set this option to <code>false</code>.
+  </td>
+</tr>
+<tr>
+  <td><code>admin_api_name</code></td>
+  <td><code>boolean</code> (optional)</td>
+  <td>
+    When <code>generate_admin_api</code> is enabled the admin api auto-generator uses the <code>name</code>
+    to derive the collection urls for the auto-generated admin api. Sometimes you may want to name the 
+    collection urls differently from the <code>name</code>. E.g. with DAO <code>keyauth_credentials</code>
+    we actually wanted the auto-generator to generate endpoints for this dao with alternate and more
+    url-friendly name <code>key-auths</code>, e.g. <code>http://&lt;KONG_ADMIN&gt;/key-auths</code> instead of
+    <code>http://&lt;KONG_ADMIN&gt;/keyauth_credentials</code>).
+  </td>
+</tr>
+<tr>
+  <td><code>admin_api_nested_name</code></td>
+  <td><code>boolean</code> (optional)</td>
+  <td>
+    Similar to <code>admin_api_name</code> the <code>admin_api_nested_name</code> specifies the name for
+    a dao that admin api auto-generator creates in nested contexts. You only need to use this parameter
+    if you are not happy with <code>name</code> or <code>admin_api_name</code>. Kong for legacy reasons
+    have urls like <code>http://&lt;KONG_ADMIN&gt;/consumers/john/key-auth</code> where <code>key-auth</code>
+    does not follow plural form of <code>http://&lt;KONG_ADMIN&gt;/key-auths</code>. <code>admin_api_nested_name</code>
+    enables you to specify different name in those cases.
   </td>
 </tr>
 <tr>
