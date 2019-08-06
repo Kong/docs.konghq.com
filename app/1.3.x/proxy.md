@@ -367,6 +367,44 @@ Host: service.com
 
 [Back to TOC](#table-of-contents)
 
+### Request headers (except Host)
+
+Since Kong 1.3.0, it is possible to route request by other headers besides `Host`.
+
+To do this, use the `headers` property in your Route:
+
+```json
+{
+    "headers": { "version": ["v1", "v2"] },
+    "service": {
+        "id": "..."
+    }
+}
+```
+
+Given a request with a header such as:
+
+```http
+GET / HTTP/1.1
+version: v1
+```
+
+This request will be routed through to the Service. The same will happen with this one:
+
+```http
+GET / HTTP/1.1
+version: v2
+```
+
+But this request will not be routed to the Service:
+
+```http
+GET / HTTP/1.1
+version: v3
+```
+
+[Back to TOC](#table-of-contents)
+
 ### Request path
 
 Another way for a Route to be matched is via request paths. To satisfy this
@@ -478,7 +516,7 @@ Prefix paths are always evaluated before regex paths.
 
 As usual, a request must still match a Route's `hosts` and `methods` properties
 as well, and Kong will traverse your Routes until it finds one that matches
-the most rules (see [Routing priorities][proxy-routing-priorities]).
+the most rules (see [Matching priorities][matching-priorities]).
 
 [Back to TOC](#table-of-contents)
 
@@ -684,6 +722,18 @@ Host: example.com
 Following this logic, if a third Route was to be configured with a `hosts`
 field, a `methods` field, and a `uris` field, it would be evaluated first by
 Kong.
+
+If the rule count for the given request is the same in two Routes `A` and
+`B`, then the following tiebreaker rules will be applied in the order they
+are listed. Route `A` will be selected over `B` if:
+
+* `A` has only "plain" Host headers and `B` has has one or more "wildcard"
+  host headers
+* `A` has more non-Host headers than `B`.
+* `A` has at least one "regex" paths and `B` has only "plain" paths.
+* `A`'s longer path is longer than `B`'s longer path.
+* `A.created_at < B.created_at`
+
 
 [Back to TOC](#table-of-contents)
 
@@ -902,8 +952,8 @@ associating the uploaded certificate to it.
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.ssl-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
 rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
-single `sni` configured with a wildcard name can be used to match multiple 
-subdomains, instead of creating an SNI for each. 
+single `sni` configured with a wildcard name can be used to match multiple
+subdomains, instead of creating an SNI for each.
 
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
