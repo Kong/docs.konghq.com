@@ -761,7 +761,16 @@ allows routing via SNIs:
 Incoming requests with a matching hostname set in the TLS connection's SNI
 extension would be routed to this Route. As mentioned, SNI routing applies not
 only to TLS, but also to other protocols carried over TLS - such as HTTPS and
-gRPCs.
+gRPCs. If more than one hostnames are specified, then any one of them can match
+with the incoming request (OR relationship between the names).
+
+SNI is determined at TLS handshake time and can not be modified after TLS connection
+has been established. This means keepalive connections that send multiple requests
+will have the same SNI hostnames while performing router match
+(regardless of the `Host` header).
+
+Please note that creating a route with mismatched SNI and `Host` header matcher
+is possible, but generally discouraged.
 
 ## Matching priorities
 
