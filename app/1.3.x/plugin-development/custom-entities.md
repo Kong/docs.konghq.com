@@ -309,7 +309,7 @@ Here is a description of some top-level properties:
   <td><code>boolean</code> (optional)</td>
   <td>
     Whether to auto-generate admin api for the entity or not. By default the admin api is generated for all
-    the daos, including the custom daos. If you want to create a fully customized admin api for the dao or
+   daos, including custom ones. If you want to create a fully customized admin api for the dao or
     want to disable auto-generation for the dao altogether, set this option to <code>false</code>.
   </td>
 </tr>
