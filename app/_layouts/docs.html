@@ -42,12 +42,10 @@ id: documentation
           </li>
           {% endfor %}
         </ul>
-        {% if page.edition == 'community' %}
         <div id="getkong-algolia-search" class="search-input">
           <i class="fa fa-search"></i>
           <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
         </div>
-        {% endif %}
       </div>
       {% endif %}
     </div>
@@ -143,12 +141,12 @@ id: documentation
     }
   }
 </style>
-{% if page.edition == 'community' %}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript">
   docsearch({
-    apiKey: '691286ef280379144076a4f8df47a1d1',
-    indexName: 'getkong',
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'test_DOCS',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
       hitsPerPage: 5,
@@ -164,4 +162,3 @@ id: documentation
   });
 
 </script>
-{% endif %}
