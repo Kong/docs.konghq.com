@@ -295,7 +295,7 @@ configuration, without dropping existing in-flight connections.
 
 ## Installing 1.1 on a Fresh Datastore
 
-For installing on a fresh datastore, Kong 1.1 have the `kong migrations
+For installing on a fresh datastore, Kong 1.1 has the `kong migrations
 bootstrap` command. The following commands can be run to prepare a new 1.1
 cluster from a fresh datastore:
 
