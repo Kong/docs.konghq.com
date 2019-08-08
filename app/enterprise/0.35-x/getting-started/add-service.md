@@ -66,7 +66,7 @@ information and **Activity** on the **Service**, as well as any **Routes** or
 [Step 1](#step-1---create-a-new-service), click the **Create New Route** button 
 located in the **Routes** tab at the bottom of the page.
 
-    ![Create Route Service ID](https://doc-assets.konghq.com0.35/getting-started/add-a-service/06-service-route-object.png)
+    ![Create Route Service ID](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/06-service-route-object.png)
 
 2. To create a **Route** you must provide the **Service** `name` and `id`, this
 will be automatically filled out if the form was accessed via the 
