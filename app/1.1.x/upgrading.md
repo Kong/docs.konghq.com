@@ -293,10 +293,10 @@ starts new workers, which take over from old workers before those old workers
 are terminated. In this way, Kong will serve new requests via the new
 configuration, without dropping existing in-flight connections.
 
-## Installing 1.0 on a Fresh Datastore
+## Installing 1.1 on a Fresh Datastore
 
-For installing on a fresh datastore, Kong 1.0 introduces the `kong migrations
-bootstrap` command. The following commands can be run to prepare a new 1.0
+For installing on a fresh datastore, Kong 1.1 has the `kong migrations
+bootstrap` command. The following commands can be run to prepare a new 1.1
 cluster from a fresh datastore:
 
 ```
