@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
         - 1.1.x
         - 1.0.x
         - 0.14.x
@@ -24,6 +25,7 @@ kong_version_compatibility:
         - 0.11.x
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
         - 0.33-x

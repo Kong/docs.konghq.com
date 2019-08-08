@@ -134,9 +134,15 @@ local Endpoints = require("kong.api.endpoints")
 -- Minimal boilerplate so that module files can be loaded
 _KONG = require("kong.meta")          -- luacheck: ignore
 kong = require("kong.global").new()   -- luacheck: ignore
+kong.configuration = {                -- luacheck: ignore
+  loaded_plugins = {},
+}
 kong.db = require("kong.db").new({    -- luacheck: ignore
   database = "postgres",
 })
+kong.configuration = { -- luacheck: ignore
+  loaded_plugins = {}
+}
 
 --------------------------------------------------------------------------------
 
@@ -451,11 +457,26 @@ local function bold_text_section(outfd, title, content)
   outfd:write("\n")
 end
 
+
+local titles = {}
+
+local function write_title(outfd, level, title)
+  if not title then
+    return
+  end
+  title = utils.titleize(title):gsub("^%s*", ""):gsub("%s*$", "")
+  table.insert(titles, {
+    level = level,
+    title = title,
+  })
+  outfd:write((("#"):rep(level) .. " " .. title .. "\n\n"))
+end
+
 local function section(outfd, title, content)
   if not content then
     return
   end
-  outfd:write(title and ("#### " .. utils.titleize(title) .. "\n\n") or "")
+  write_title(outfd, 4, title)
   outfd:write(unindent(content) .. "\n")
   outfd:write("\n")
 end
@@ -475,8 +496,7 @@ local function write_endpoint(outfd, endpoint, ep_data, methods)
     local meth_data = ep_data[method]
     if meth_data then
       assert(meth_data.title, "Missing autodoc info for " .. method .. " " .. endpoint)
-      outfd:write("### " .. utils.titleize(meth_data.title) .. "\n")
-      outfd:write("\n")
+      write_title(outfd, 3, meth_data.title)
       section(outfd, nil, meth_data.description)
       local fk_endpoints = meth_data.fk_endpoints or {}
       section(outfd, nil, meth_data.endpoint)
@@ -514,8 +534,7 @@ local function write_general_section(outfd, filename, all_endpoints, name, data_
     return
   end
 
-  outfd:write("## " .. utils.titleize(file_data.title) .. "\n")
-  outfd:write("\n")
+  write_title(outfd, 2, file_data.title)
 
   assert(file_data.description,
          "Missing autodoc general description for " .. filename)
@@ -645,8 +664,6 @@ local function prepare_entity(data, plural, entity_data)
   local subs = gen_template_subs_table(entity_data, plural, schema)
 
   local title = entity_data.title or (subs.Entity .. " Object")
-  table.insert(out, "## " .. utils.titleize(title) .. "\n")
-  table.insert(out, "\n")
 
   table.insert(out, unindent(entity_data.description))
 
@@ -683,6 +700,7 @@ local function prepare_entity(data, plural, entity_data)
     filename = filename,
     entity = plural,
     schema = schema,
+    title = title,
     intro = table.concat(out),
     data = entity_data,
     mod = mod,
@@ -792,7 +810,13 @@ local function write_admin_api(filename, data, title)
   end
   outfd:write("\n---\n")
 
-  outfd:write(unindent(assert(data.intro, "Missing intro string in data.lua")))
+  for _, ipart in ipairs(assert(data.intro, "Missing intro string in data.lua")) do
+    outfd:write("\n")
+    write_title(outfd, 2, ipart.title)
+    outfd:write(unindent(ipart.text))
+  end
+
+  outfd:write("\n---\n\n")
 
   outfd:write("---\n\n")
 
@@ -816,6 +840,7 @@ local function write_admin_api(filename, data, title)
   end
 
   for _, entity_info in ipairs(entity_infos) do
+    write_title(outfd, 2, entity_info.title)
     outfd:write(entity_info.intro)
     write_endpoints(outfd, entity_info, all_endpoints, data.entities.methods)
   end
@@ -843,6 +868,34 @@ end
 
 --------------------------------------------------------------------------------
 
+local function write_admin_api_nav(filename, data)
+  lfs.mkdir("autodoc-nav")
+  local outpath = "autodoc-nav/" .. filename
+
+  local outfd = assert(io.open(outpath, "w+"))
+
+  outfd:write("# Generated via autodoc-admin-api\n")
+  outfd:write(unindent(data.nav.header))
+
+  local level = 3
+  for _, t in ipairs(titles) do
+    if t.level <= level then
+      outfd:write("\n")
+    elseif t.level > level then
+      outfd:write(("    "):rep(level - 1) .. "  items:\n")
+    end
+    level = t.level
+    outfd:write(("    "):rep(level - 1) .. "- text: " .. t.title .. "\n")
+    outfd:write(("    "):rep(level - 1) .. "  url: /admin-api/#" .. t.title:lower():gsub(" ", "-") .. "\n")
+  end
+
+  outfd:close()
+
+  print("Wrote " .. outpath)
+end
+
+--------------------------------------------------------------------------------
+
 local function main()
   check_admin_api_modules(admin_api_data)
 
@@ -850,6 +903,11 @@ local function main()
     "admin-api.md",
     admin_api_data,
     "Admin API"
+  )
+
+  write_admin_api_nav(
+    "docs_nav_" .. KONG_VERSION .. ".yml.admin-api.in",
+    admin_api_data
   )
 
   write_admin_api(

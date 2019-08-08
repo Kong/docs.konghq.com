@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
         - 1.1.x
         - 1.0.x
         - 0.14.x
@@ -38,6 +39,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
         - 0.33-x
@@ -96,6 +98,12 @@ Every request will be logged separately in a JSON object, with the following for
             "accept": "*/*",
             "host": "httpbin.org",
             "user-agent": "curl/7.37.1"
+        },
+        "tls": {
+            "version": "TLSv1.2",
+            "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+            "supported_client_ciphers": "ECDHE-RSA-AES256-GCM-SHA384",
+            "client_verify": "NONE"
         }
     },
     "upstream_uri": "/",

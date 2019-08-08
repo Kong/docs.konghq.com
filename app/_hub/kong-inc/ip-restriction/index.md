@@ -14,6 +14,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.2.x
         - 1.1.x
         - 1.0.x
         - 0.14.x
@@ -29,6 +30,7 @@ kong_version_compatibility:
         - 0.4.x
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
         - 0.33-x
@@ -46,14 +48,14 @@ params:
     - name: whitelist
       required: semi
       default:
-      value_in_examples: 54.13.21.1, 143.1.0.0/24
+      value_in_examples: [ "54.13.21.1", "143.1.0.0/24" ]
       description: |
-        Comma separated list of IPs or CIDR ranges to whitelist. One of `config.whitelist` or `config.blacklist` must be specified.
+        List of IPs or CIDR ranges to whitelist. One of `config.whitelist` or `config.blacklist` must be specified.
     - name: blacklist
       required: semi
       default:
       description: |
-        Comma separated list of IPs or CIDR ranges to blacklist. One of `config.whitelist` or `config.blacklist` must be specified.
+        List of IPs or CIDR ranges to blacklist. One of `config.whitelist` or `config.blacklist` must be specified.
 
   extra: |
 

@@ -2,7 +2,7 @@
 
 name: LDAP Authentication Advanced
 publisher: Kong Inc.
-version: 0.35-x
+version: 0.36-x
 
 desc: Secure Kong clusters, routes and services with username and password protection
 description: |
@@ -18,6 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
 
@@ -26,7 +27,7 @@ params:
   api_id: true
   service_id: true
   route_id: true
-  consumer_id: true
+  consumer_id: false
   config:
     - name: ldap_host
       required:
@@ -115,10 +116,10 @@ params:
         Whether consumer is optional
     - name: consumer_by
       required: false
-      default: "`username`"
+      default: '`[ "username", "custom_id" ]`'
       value_in_examples:
       description: |
-        Whether to authenticate consumer based on `username` or `custom_id`
+        Whether to authenticate consumer based on `username` and/or `custom_id`
     - name: hide_credentials
       required: false
       default: "`false`"

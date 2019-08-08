@@ -1,15 +1,19 @@
 - title: Deployment
   items:
     - text: Licensing
+      url: /deployment/licensing
       items:
         - text: Overview
           url: /deployment/licensing
         - text: How to Access Your License
           url: /deployment/access-license
     - text: Installation
+      url: /deployment/installation/docker
       items:
         - text: Docker
           url: /deployment/installation/docker
+        - text: Ubuntu
+          url: /deployment/installation/ubuntu
         - text: CentOS
           url: /deployment/installation/centos
         - text: Amazon Linux
@@ -19,6 +23,8 @@
       absolute_url: true
     - text: Migrating to 0.35
       url: /deployment/migrations
+    - text: Migrating APIs to Services
+      url: /deployment/migrate-apis-cli
 
 - title: Getting Started
   url: /getting-started/
@@ -42,8 +48,19 @@
     - text: How to Enable the Dev Portal
       url: /getting-started/enable-dev-portal
 
-- title: Admin API
+- title: Guides & References
+  url: /property-reference
   items:
+    - text: Configuration Property Reference
+      url: /property-reference
+    - text: CLI Reference
+      url: /cli
+
+- title: Admin API
+  url: /admin-api
+  items:
+  - text: Overview
+    url: /admin-api
   - text: Workspaces
     url: /admin-api/workspaces/reference
   - text: RBAC
@@ -68,6 +85,7 @@
     url: /admin-api/audit-log
 
 - title: Kong Manager
+  url: /kong-manager/overview
   items:
     - text: Overview
       url: /kong-manager/overview
@@ -93,6 +111,8 @@
           url: /kong-manager/authentication/oidc
         - text: Sessions
           url: /kong-manager/authentication/sessions
+    - text: How to Reset Passwords and RBAC Tokens
+      url: /kong-manager/reset-password
     - text: Administration
       url: /kong-manager/administration/workspaces/workspaces
       items:
@@ -110,7 +130,7 @@
         - items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac/rbac
-          - text: How to Create a New Role with Custom Permissions
+          - text: How to Create a New Role
             url: /kong-manager/administration/rbac/new-role
         - text: Admins
           url: /kong-manager/administration/admins/invite
@@ -121,6 +141,7 @@
       url: /kong-manager/vitals
 
 - title: Kong Dev Portal
+  url: /developer-portal/introduction
   items:
     - text: Overview
       url: /developer-portal/introduction
@@ -137,6 +158,9 @@
             - text: OpenID Connect
               url: /developer-portal/configuration/authentication/oidc
             - text: Adding Custom Registration Fields
+              url: /developer-portal/configuration/authentication/adding-registration-fields
+            - text: Sessions
+              url: /developer-portal/configuration/authentication/sessions
         - text: SMTP
           url: /developer-portal/configuration/smtp
         - text: Running Multiple Dev Portals with Workspaces
@@ -146,7 +170,7 @@
     - text: Administration
       items:
         - text: Managing Developers
-          url: /developer-portal/management/developers
+          url: /developer-portal/administration/managing-developers
     - text: Theme Customization
       items:
           - text: Customizing the Dev Portal
@@ -159,6 +183,7 @@
       url: /developer-portal/faq
 
 - title: APIs and Plugins
+  url: https://konghq.com/hub
   items:
     - text: Plugin Reference
       items:
@@ -186,8 +211,12 @@
         url: /plugins/route-by-header
       - text: JWT Signer
         url: /plugins/jwt-signer
+      - text: Upstream TLS
+        url: /plugins/upstream-tls
       - text: Vault Auth
         url: /plugins/vault-auth
+      - text: Request Validator
+        url: /plugins/request-validator
     - text: Implementation
       items:
         - text: Multiple Authentication Methods
@@ -196,8 +225,3 @@
           url: /plugins/oidc-google
         - text: OpenID Connect with Auth0
           url: /plugins/oidc-auth0
-
-- title: Guides & References
-  items:
-    - text: Configuration Property Reference
-      url: /property-reference

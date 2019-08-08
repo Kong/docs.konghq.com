@@ -6,27 +6,27 @@ toc: false
 ### Introduction
 
 Thank you for installing Kong Enterprise! The following series of Getting Started
-guides are designed to help you familiarize yourself with Kong Enterprise's features
+guides is designed to help you familiarize yourself with Kong Enterprise's features
 and capabilities, with practical steps to start Kong Enterprise securely, access
 Kong Manager as a **Super Admin**, and create new entities such as **Services**.
 
 Each guide also contains links to more in-depth material. Note that Kong
- Enterprise 0.35 includes Kong 1.0 at its core, so CLI commands and most Admin 
+ Enterprise 0.35 includes Kong 1.0 at its core, so CLI commands and most Admin
  API endpoints are documented in standard [Kong documentation](/1.0.x/).
 
- If you have any issues or further questions, please 
+ If you have any issues or further questions, please
 [contact Support](https://support.konghq.com/support/s/) and they will be happy
  to help.
 
 ### Key Concepts
 
-The following concepts have a special meaning in Kong Enterprise: 
+The following concepts have a special meaning in Kong Enterprise:
 
 * **Plugin**: a plugin executing actions inside Kong before or after a request
  has been proxied to the upstream API.
 
-* **Workspace**: a private, segmented part of a shared Kong cluster that allows 
-a particular team to access its own Admin API entities separately from other teams. 
+* **Workspace**: a private, segmented part of a shared Kong cluster that allows
+a particular team to access its own Admin API entities separately from other teams.
 
 * **Admin**: a Kong Enterprise user capable of accessing Admin API entities based
  on a set of **Permissions**.
@@ -36,9 +36,9 @@ a particular team to access its own Admin API entities separately from other tea
 
 * **Role**: a set of **Permissions** that may be reused and assigned to **Admins**.
 
-* **Super Admin**: an **Admin** whose **Role** has the **Permission** to: 
+* **Super Admin**: an **Admin** whose **Role** has the **Permission** to:
   * invite and disable other **Admin** accounts
-  * assign and revoke **Roles** 
+  * assign and revoke **Roles**
   * create new **Roles** with custom **Permissions**
   * create new **Workspaces**
 
@@ -58,10 +58,10 @@ a particular team to access its own Admin API entities separately from other tea
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/0.35-x/getting-started/start-kong/">Start Kong Enterprise</a>
+        <a href="/enterprise/{{page.kong_version}}/getting-started/start-kong/">Start Kong Enterprise</a>
     </h3>
     <p>Learn to start Kong Enterprise securely with RBAC</p>
-    <a href="/enterprise/0.35-x/getting-started/start-kong/">
+    <a href="/enterprise/{{page.kong_version}}/getting-started/start-kong/">
         Start Kong Enterprise &rarr;
     </a>
   </div>

@@ -2,7 +2,7 @@
 
 name: Request Transformer Advanced
 publisher: Kong Inc.
-version: 0.35-x
+version: 0.36-x
 
 desc: Use powerful regular expressions, variables and templates to transform API requests
 description: |
@@ -25,6 +25,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
 

@@ -308,6 +308,26 @@ gulp.task('conf-docs', function (cb) {
   log('Re-generated Conf docs for ' + KONG_VERSION)
 })
 
+gulp.task('nav-docs', function (cb) {
+  var KONG_VERSION, cmd, obj, errLog
+
+  // 0 Obtain "env-var params"
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
+
+  // 1 Generate docs_nav_X.Y.x.yml
+  cmd = 'luajit autodoc-nav/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated navigation file for ' + KONG_VERSION)
+})
+
 gulp.task('clean', function () {
   ghPages.clean()
   return del(['dist', '.gh-pages'])

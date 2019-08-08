@@ -2,7 +2,7 @@
 
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 0.35-x
+version: 0.36-x
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
@@ -20,6 +20,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
 
@@ -47,7 +48,11 @@ params:
       default: consumer
       value_in_examples:
       description: |
-        How to define the rate limit key. Can be `ip`, `credential`, or `consumer`.
+        How to define the rate limit key. Can be `ip`, `credential`, `consumer`, `service`, or `header`.
+    - name: header_name
+      required: semi
+      description: |
+        Header name to use as the rate limit key when the `header` identifier is defined.
     - name: dictionary_name
       required:
       default: kong_rate_limiting_counters
@@ -92,7 +97,7 @@ params:
       default: 2000
       value_in_examples:
       description: |
-        Connection timeout to use for Redis connection when the `redis` strategy is defined
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined
     - name: redis.password
       required: semi
       default:
@@ -123,6 +128,12 @@ params:
       value_in_examples:
       description: |
         Sentinel addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.cluster_addresses
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
     - name: window_type
       required:
       default: sliding

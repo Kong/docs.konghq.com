@@ -1,5 +1,14 @@
 # Documentation Style Guide
 
+### active voice
+Use the active voice. See [personal pronouns](#personal-pronouns) for guidance 
+on when it is appropriate to use "you" and "your".
+
+* Bad: The files should be added to the directory by the owner.
+* **_Good_: The owner should add the files to the directory.**
+* Bad: To access a network's LDAP services, your computer must first be authenticated.
+* **_Good_: To access a network's LDAP services, a server that supports the protocol must first authenticate your computer.**
+
 ### Admin, admin
 Use proper case for the Kong entity, lowercase for the RBAC Role.
 
@@ -180,6 +189,11 @@ Do not write "httpie" or "HTTPIE".
 ### i.e.
 See e.g.; should only be used to specify a case, not offer possible examples.
 
+### images
+Included images should be 1200px wide. Introduce image concept *before* 
+showing the image, not after.
+See: [screenshots](#screenshots) and [videos](#vidoes)
+
 ### in-line code
 Use in-line code formatting for:
 * Command names, e.g., `kong start`
@@ -240,6 +254,8 @@ instead of "to" or "through".
 * *Bad*: This guide assumes steps one through three from the previous guide.
 * **_Good_: This guides assumes steps 1–3 from the previous guide.**
 
+### passive voice
+See [active voice](#active-voice).
 
 ### personal pronouns 
 Avoid "you" and "we" in favor of the specific role performing the task or the 
@@ -262,6 +278,10 @@ after.
 
 ### Routes
 Use proper case.
+
+### screenshots
+Screenshots should be 1200px wide, do not include browser tool bars, 
+title bars, url bars etc.
 
 ### serial comma 
 For safety, clarity, and sanity.
@@ -303,6 +323,12 @@ fancy synonym for "use".
 
 * *Bad*: The Admin may *utilize* the feature to observe traffic.
 * **_Good_: The Admin may *use* the feature to observe traffic.**
+
+### videos
+Videos should be less than 30 seconds in length, contain no voice-over
+narration, and must be approved by a Kong member.
+
+Include videos *after* the steps covered in the video have been introduced.
 
 ### Vitals
 Use proper case.

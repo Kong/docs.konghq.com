@@ -1,66 +1,280 @@
 ---
 title: Kong Enterprise Changelog
+layout: changelog
 ---
 
-## 0.35 - 2019/05/17
+## 0.36
+**Release Date:** 2019/8/5
 
-**Notifications**
-- **Kong Enterprise 0.35** inherits from **Kong 1.0.3**; read 1.0.0 - 1.0.3 changelogs for details:
-  - [1.0.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#100)
-  - [1.0.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#101)
-  - [1.0.2 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#102)
-  - [1.0.3 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
+### Notifications
+- **Kong Enterprise 0.36** inherits from **Kong 1.2.1**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/1.3.0rc1/CHANGELOG.md#121)
+for details.
 
-**CHANGES**
-- **Admin API**
-  - RBAC: Following Kong 1.0's changes, referenced (`foreign_key`) entities like RBAC Users and RBAC Roles are returned as nested JSON tables instead of flattened `role_id` or `user_id` fields in top-level entity.
-  - `user_token` must now be provided when creating a new RBAC user (in a POST request to rbac/users) and is no longer auto-generated if left blank
+### Features
 
-**FEATURES**
-- **Kong Manager**
-  - User information is no longer stored in local storage. A user exchanges credentials for a session. See the Session Plugin for details.
-  - Enable and view plugins in context of a route and a service
+#### Core
+
+- Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
+which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
+- Provides support in declarative configuration for **Workspaces** and **RBAC**.
+- Provides support for the Redis Cluster library.
+
+#### Dev Portal
+
+- Adds *per workspace* **Session Config**. The Dev Portal will now allow 
+session configuration for every portal-per-workspace instance.
+- Adds **email verification**. Developers will be sent a verification link after
+requesting access to a Dev Portal.
+
+#### Plugins
+
+- **Request Validator**
+  - Adds support for JSON Schema Draft 4
+  - Adds support for parameter validation
+  - Adds the option to override validation for specific content types
+- **OAuth2 Introspection**
+  - Can now find and load consumers by `username` and `custom_id`. OAuth2
+  `username` maps to **Consumer's** `username`, while the `client_id` maps to a 
+  **Consumer's** `custom_id`
+  - New `consumer_by` configuration allows users to customize whether **Consumers**
+  are fetched by `client_id` or `username` (returned by the introspection request)
+  - New `introspect_request` configuration that causes the plugin to send 
+  information about the **current request** as **headers** in the **introspection endpoint**
+  **request**. Currently, the **request path** and **HTTP methods** are sent as `X-Request-Path` 
+  and `X-Request-Http-Method` headers
+  - New `custom_introspection_headers` configuration list of user-supplied
+  headers to be sent in the **introspection endpoint request**
+  - New `custom_claims_forward` configuration list of additional claims. The 
+  **introspection endpoint request** will return this list to forward as headers 
+  to the **upstream service request**.
+
+
+
+### Fixes
+
+#### Workspaces
+
+- Fixes permission bug where an **Admin** with `workspace-super-admin` **Role** was 
+not able to access the **Workspace** that the **Role** was assigned to.
+
+#### Upstreams
+
+- Fixes an issue where it was not possible to delete an **Upstream** object if it had no associated **Target**.
+
+#### Kong Manager
+
+- Fixes a bug where Kong Manager could only display 100 **Workspaces**.
+- Fixes a bug where a **Route's** details would not include a link to a **Service** that did not have a name.
+
+#### Dev Portal
+
+- Fixes a bug in the sign-up meta fields that caused data to disappear when a **Developer** is updated.
+- Fixes an issue where clicking on a **Developer** after clicking the credentials section ACL causes a 500 error.
+
+#### Plugins
+
+- **Upstream-tls**
+  - Fixes an issue where bundled **certificates** in PEM format were not loaded into 
+  the certificate store correctly.
+
+### Changes
+
+- **Brain**
+  - Renames **Brain** to **Collector**
+
+
+## 0.35-3
+**Release Date:** 2019/07/17
+
+### Notifications
+- **Kong Enterprise 0.35-3** inherits from **Kong 1.0.3**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+for details.
+
+### Features
+
+#### Core
+- New CLI migrations command `migrate-apis` to convert all existing API objects to **Services and Routes**
+- New CLI migrations command `migrate-community-to-enterprise` for moving Core entities to Enterprise entities
+- Support for Redis Cluster as a backend for `rate-limiting-advanced` and `proxy-cache` plugins
+- Cache-warming configuration to load specified entities at startup to improve first request latency
+
+#### Kong Manager
+- New page to reset **RBAC** token and manage user password
+
+#### Plugins
+- `upstream-tls` - allows verification of upstream certificates, custom CA certificates, and verification depth
+
+### Fixes
+
+#### Core
+- Correctly count `workspace_entities` when moving from previous versions
+
+#### Dev Portal
+- Dev Portal Docs now point to 0.35
+- Unauthenticated Spec rendering is fixed
+
+#### Plugins
+- **`jwt-signer`** 
+  - Fix **IMPORTANT!** verify expiry and scopes checks on JWT tokens
+  - Fix finding Consumer by custom ID
+  - Fix runtime error on unexpected function, `kong.log.error` -> `kong.log.err`
+  - Change invalidation to happen locally, not cluster wide, each node invalidates on their own
+- **`openid-connect`**
+  - Change invalidations to local invalidation instead of cluster-wide invalidation
+  - Fix **Admin API** to properly call the cleanup function on entity endpoint
+  - Fix `hide_credentials` not clearing X-Access-Token header
+  - Change debug logging to not log about disabled authentication methods
+  - Change TTL code and fix some edge cases
+
+
+## 0.35-1
+**Release Date:** 2019/05/28
+
+### Notifications
+- **Kong Enterprise 0.35-1** inherits from **Kong 1.0.3**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+for details.
+
+### Features
+
+#### Plugins
+  - Allow **Redis** strategy configuration for **Rate Limiting Advanced**
+
+### Fixes
+
+#### Kong Manager
+- If a Kong Manager **Super Admin** was already created, setting 
+`KONG_PASSWORD` during `migrations up` to **0.35** would error. Running 
+migrations when **Super Admin** already exists and `KONG_PASSWORD` 
+environment variable is set is fixed.
+
+#### Dev Portal
+- Fixes Dev Portal documentation not showing after upgrading to 0.35
+- Fixes Dev Portal OAPI spec rendering of long request URL wrapping
+
+#### Plugins
+- `rate-limiting-advanced` schema validation rules prevented use of 
+Redis Sentinel (`config.strategy=redis` and 
+`config.redis.sentinel_addresses`) for counters datastore. Validation 
+rule is fixed.
+
+#### Core
+- Upgrade from **0.34-1** to **0.35** using **Cassandra** no longer creates 
+duplicate **Workspace**.
+- Migrations from **0.34-1**to **0.35** did not properly handle **Certificates** 
+and **SNIs** in context of **Workspaces**. Migrating from **0.34-1** with 
+this fix does not support zero downtime in this release. To get a fully 
+functional **0.35** instance with **Certificates**, you must run `migrations 
+finish`. Proper creation of **Workspace** links for **Certificates** and 
+**SNIs** is fixed.
+- **Cassandra** `read before write` pattern did not correctly use schema 
+defaults and prevented `PATCH` of the **Plugins** entity. Usage of schema 
+default values in **Cassandra** `read before write` pattern is fixed.
+- `plugins.run_on default` now correctly set on migrations upgrade.
+<hr/>
+
+## 0.35
+**Release Date:** 2019/05/17
+
+### Notifications
+- **Kong Enterprise 0.35** inherits from **Kong 1.0.3**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+for details.
+
+### Changes
+
+#### Admin API
+  - **RBAC**: Following Kong 1.0's changes, referenced (`foreign_key`) entities
+  like RBAC Users and RBAC Roles are returned as nested JSON tables instead of
+  flattened `role_id` or `user_id` fields in top-level entity.
+  - `user_token` must now be provided when creating a new **RBAC** user (in a
+  POST request to `rbac/users`) and is no longer auto-generated if left blank
+
+#### Core
+  - New **RBAC** user tokens are not stored in plaintext. If upgrading to this
+  version, any existing tokens will remain in plaintext until either a) the
+  token is used in an Admin API call or b) the `rbac_user` record is PATCHed 
+  even if the PATCH request includes the existing value of `user_token`).
+
+### Features
+
+#### Kong Manager
+  - User information is no longer stored in local storage. A user exchanges
+  credentials for a session. See the [**Session Plugin**](/hub/kong-inc/sessions)
+  for details.
+  - Enable and view **Plugins** in context of a **Service** and **Route**
   - Type-ahead service name/ID search on routes form
   - Easily scan/copy IDs in service table
   - Contextual help and error messages for forms
-  - Breadcrumbs to more easily tell where in app you are, navigate/pivot to other pages
-  - In-context doc links
-  - Global navigation links to docs and support portal
+  - Adds page breadcrumbs
+  - In-context documentation links
+  - Global navigation links to documentation and Support Portal
   - Improved Info tab for cluster & config info
-  - Detailed debug tracing can be enabled which outputs information about various portions of the request lifecycle, such as DB or DNS queries, plugin execution, core handler timing, etc
-- **Dev Portal**
-  - Developers can now sign up to multiple workspaces with the same email address.
-  - Developer Portal is disabled for each workspace by default.
-  - Default theme shipped with Kong Enterprise now supports IE11.
-  - User information is no longer stored in local storage. A user exchanges credentials for a session. See the Session Plugin for details.
-  - Developer Portal page, partial, and specification look-ups moved to server-side.
+  - Detailed debug tracing can be enabled which outputs information about 
+  various portions of the request lifecycle, such as DB or DNS queries, 
+  plugin execution, core handler timing, etc
+
+#### Dev Portal
+  - **Dev Portal** files now rendered server-side for increased performance.
+  - Developers can now sign up to multiple **Workspaces** with the same email
+  address.
+  - **Dev Portal** is disabled for each **Workspace** by default.
+  - Default theme shipped with **Kong Enterprise** now supports IE11.
+  - User information is no longer stored in local storage. A user exchanges
+  credentials for a session. See the [**Session Plugin**](/hub/kong-in/sessions)
+  for details.
+  - **Dev Portal** page, partial, and specification look-ups moved to
+  server-side.
   - Added support for OAS3 body parameters.
-  - Added CORS header configuration option to workspace portal configuration object to allow explicit CORS configuration.
-  - Added a live editor built on VSCode core for improved customization of Developer Portal within Kong Manager
-  - Added custom registration fields support and custom registration field interface.
-  - Added methods to links in the sidebar on documentation in the default portal theme.
-  - Added hover states to drop-downs in the sidebar of documentation in the default portal theme.
+  - Added CORS header configuration option to workspace portal configuration
+  object to allow explicit CORS configuration.
+  - Added a live editor built on VSCode core for improved customization of
+  **Dev Portal** within **Kong Manager**
+  - Added custom registration fields support and custom registration field
+  interface.
+  - Added methods to links in the sidebar on documentation in the default portal
+  theme.
+  - Added hover states to drop-downs in the sidebar of documentation in the
+  default portal theme.
   - Added a right border to the sidebar in the default portal theme.
-  - Changed "Full Name" registration field to be a custom registration field, and can be managed through the custom fields -   interface in Kong Manager.
-  - Changed custom checkbox to native checkbox in the default developer portal theme on the dashboard.
-- **Core**
-  - New RBAC user tokens are not stored in plaintext. If upgrading to this version, any existing tokens will remain in plaintext until either a) the token is used in an Admin API call or b) the rbac_user record is PATCHed (even if the PATCH request includes the existing value of `user_token`).
-- **Plugins**
-  - **Response Transformer Advanced** _new_: 
-    - Conditional transformations on response status through the new flag if_status, a subfield in all transformations (e.g., `add.if_status`, `remove.if_status`); the transformation only happens if the response code matches one of the codes in the `if_status field`
+  - Changed `full Name` registration field to be a custom registration field,
+  and can be managed through the custom fields interface in **Kong Manager**.
+  - Changed custom checkbox to native checkbox in the default **Dev Portal**
+  theme on the dashboard.
+
+#### Plugins
+  - **Response Transformer Advanced** (_NEW_): 
+    - Conditional transformations on response status through the new flag
+    if_status, a subfield in all transformations (e.g., `add.if_status`,
+    `remove.if_status`); the transformation only happens if the response code
+    matches one of the codes in the `if_status field`
     - Full-body replacement through the new config.replace.body
-    - Added a support of status code ranges for `if_status` configuration parameter. Now you can provide status code ranges and single status codes together (e.g., `201-204,401`)
-  - **Request Validator** _new_:
-    - Validate the request body against a JSON schema; if the payload is not valid JSON or if it doesn't conform to the schema, the plugin returns a 400 Bad Request response before the request reaches upstream
+    - Added a support of status code ranges for `if_status` configuration
+    parameter. Now you can provide status code ranges and single status codes
+    together (e.g., `201-204,401`)
+  - **Request Validator** (_NEW_):
+    - Validate the request body against a schema; if the payload is not
+    valid JSON or if it doesn't conform to the schema, the plugin returns a 400
+    Bad Request response before the request reaches upstream. This version of
+    the plugin **does not** support JSON Schema; it uses Kong's schema format
   - **Canary**:
-    - Healthchecks: new configuration upstream_fallback allows the plugin to skip applying the canary upstream if it's not healthy. Note: it only works if the host specified in upstream_host points to a Kong upstream, and if that upstream has healthchecks enabled on it)
+    - Healthchecks: new configuration upstream_fallback allows the plugin to
+    skip applying the canary upstream if it's not healthy. Note: it only works
+    if the host specified in upstream_host points to a Kong upstream, and if
+    that upstream has healthchecks enabled on it)
   - **Oauth2 Introspection**:
     - Set Id to Rate limiting may detect calls to introspection endpoint
     - Set credential id to allow rate limiting based on access token
   - **The Kong Session Plugin**:
-    - The Kong Session Plugin adds session support for Kong Manager and Dev Portal. Sessions can be stored via cookie or database. See the accompanying documentation for how to configure the plugin for use with Kong Manager.
+    - The Kong Session Plugin adds session support for **Kong Manager** and 
+    Dev Portal. Sessions can be stored via cookie or database. See the 
+    accompanying documentation for how to configure the plugin for use with 
+    **Kong Manager**.
   - **Vault-Auth**:
-    - Authenticate requests via Vault
+    - Authenticate requests via Vault. See
+    [**Vault Auth**](/hub/kong-inc/vault-auth) for details.
   - **OpenID Connect**:
     - Update `lua-resty-http` to `>= 0.13`
     - Update `lua-resty-session` to `2.23`
@@ -82,72 +296,114 @@ title: Kong Enterprise Changelog
     - Add `config.cache_ttl_resurrect`
     - Add `config.upstream_session_id_header`
     - Add `config.downstream_session_id_header`
-    - Add `tokens` option to `config.login_tokens` to return full token endpoint results with `response` or `redirect` specified in `config.login_action`
-    - Add `introspection` option to `config.login_tokens` to return introspection results with `response` or `redirect` specified in `config.login_action`
+    - Add `tokens` option to `config.login_tokens` to return full token endpoint
+    results with `response` or `redirect` specified in `config.login_action`
+    - Add `introspection` option to `config.login_tokens` to return
+    introspection results with `response` or `redirect` specified in
+    `config.login_action`
     - Change Kong 1.0 support
     - Change Refresh-token headers can now have `Bearer` in front of the token.
     - Change to forbid only unapproved developers
-    - Change `config.scopes_claim` is also searched in introspected jwt token results
-    - Change `config.audience_claim` is also searched in introspected jwt token results
-    - Change `config.consumer_claim` is also searched in introspected jwt token results
-    - Change `config.consumer_claim` is also searched with user info when `config.search_user_info` is enabled
+    - Change `config.scopes_claim` is also searched in introspected jwt token
+    results
+    - Change `config.audience_claim` is also searched in introspected jwt token
+    results
+    - Change `config.consumer_claim` is also searched in introspected jwt token
+    results
+    - Change `config.consumer_claim` is also searched with user info when
+    `config.search_user_info` is enabled
     - Change `config.credential_claim` is searched from `id token` as well
-    - Change `config.credential_claim` is also searched in introspected jwt token results
-    - Change `config.credential_claim` is also searched with user info when `config.search_user_info` is enabled
-    - Change `config.authenticated_groups_claim` is searched from `id token` as well
-    - Change `config.authenticated_groups_claim` is also searched with user info when `config.search_user_info` is enabled
-    - Change `config.upstream_headers_claims` and `config.downstream_headers_claims` are now searched from introspection results, jwt access token and id token, and user info when `config.search_user_info` is enabled
-    - Change `id_token` is not anymore copied over when refreshing tokens to prevent further claims verification errors. The token endpoint can return a new id token, or user info can be used instead.
+    - Change `config.credential_claim` is also searched in introspected jwt
+    token results
+    - Change `config.credential_claim` is also searched with user info when
+    `config.search_user_info` is enabled
+    - Change `config.authenticated_groups_claim` is searched from `id token`
+    as well
+    - Change `config.authenticated_groups_claim` is also searched with user
+    info when `config.search_user_info` is enabled
+    - Change `config.upstream_headers_claims` and
+    `config.downstream_headers_claims` are now searched from introspection
+    results, jwt access token and id token, and user info when
+    `config.search_user_info` is enabled
+    - Change `id_token` is not anymore copied over when refreshing tokens to
+    prevent further claims verification errors. The token endpoint can return a
+    new id token, or user info can be used instead.
     - Change hide `secret` from admin api
-    - Change `config.issuer` to semi-optional (you still need to specify it but code won't error if http request to issuer fails)
+    - Change `config.issuer` to semi-optional (you still need to specify it but
+    code won't error if http request to issuer fails)
     - Change more reentrant migrations
     - Change issuer to be optional
-    - Change signature verification to look suitable key by algorithm as well in case where key identifier is missing or cannot be found
+    - Change signature verification to look suitable key by algorithm as well
+    in case where key identifier is missing or cannot be found
     - Remove developer status/type check from plugin
     - Remove `daos` that were never used
-    - Remove all the sub-plugins (openid-connect-verification, openid-connect-authentication, and openid-connect-protection)
-    - Fix issue with Kong OAuth 2.0 and OpenID Connect sharing incompatible values with same cache key
+    - Remove all the sub-plugins (openid-connect-verification,
+    openid-connect-authentication, and openid-connect-protection)
+    - Fix issue with Kong OAuth 2.0 and OpenID Connect sharing incompatible
+    values with same cache key
   - **Forward Proxy**:
-    - Fix an issue preventing the plugin from working with requests using chunked TE
+    - Fix an issue preventing the plugin from working with requests using
+    chunked TE
   - **LDAP Auth Advanced**:
     - Added LDAPS protocol support
     - Added tests for multiple connection strategies
-    - Fixed an issue where plugin tries to start a secure connection on an existing pooled connection from previous requests
+    - Fixed an issue where plugin tries to start a secure connection on an
+    existing pooled connection from previous requests
   - **StatsD Advanced**
-    - Added filter by status code functionality for responses to be logged. Admin from now on can add status code ranges for responses which want to be logged and sent to StatsD server. If Admin doesn't provide any status code, all responses will be logged.
-- **Security**
-  - Set security headers in Kong Manager and Dev Portal
-  - Guard against frame misuse in Kong Manager and Dev Portal
+    - Added filter by status code functionality for responses to be logged.
+    Admins can add status code ranges for responses which want to be logged and
+    sent to StatsD server. If Admin doesn't provide any status code, all
+    responses will be logged.
+#### Security
+  - Set security headers in **Kong Manager** and **Dev Portal**
+  - Guard against frame misuse in **Kong Manager** and **Dev Portal**
 
-**FIXES**
+### Fixes
+
+#### Kong Manager
 - Clear option for turning off New Relic data collection
-- Keyword search bug fixed in Kong Manager
-- Info tab of Kong Manager no longer empty (shows license information)
-- Custom plugins viewable within plugin groupings
-- Error messages on workspace form don't remain longer than intended
-- Column overflow issue in services table in Kong Manager fixed
-- New routes were accidentally accepting strings for regex_priority when submitting a new Routes, fixed as part of 1.0 merge
-- Developers can now sign up to multiple portals
-- When configuring KONG_ADMIN_API_URI with a port CORS breaks
-- Fixed issue in the kong manager where the Developer Portal pages would display the wrong content when disabled from kong.conf.
-- Fixed issue in the kong manager and developer portal where email validation would accept in- valid inputs.
-- Fixed issue in the developer portal forgot email template where the URL pointed to the wrong location.
-- Fixed issue in the developer portal when loading content a CORS error would occur if improperly configured, content is now loaded server - side, and header added to make configuration easier.
-- Fixed issue in the default portal spec renderer where request bodies were not rendering properly.
-- Fixed issue in the default portal theme when loaded on Internet Explorer it would display a blank page.
-- Fixed issue in the default portal theme in sidebar where long names would overflow and stretch the sidebar.
-- Fixed issue in the default portal theme where the drop - down arrow would not rotate.
-- Fixed issue in the default portal theme where the sidebar would sometimes overlap content.
-- Fixed issue in the default portal theme where long content would stretch the container.
-- Fixed issue in the default portal theme where transitioning from the mobile to full-screen would retain the sidebar overlay.
-- Fixed issue in the default portal theme where links on documentation would not navigate due to spaces.
-- Fixed issue in the default portal theme where on logout a user would be redirected to the default workspace portal.
-- Fixed issue in the portal theme sync script where environment flags were not properly evaluated as booleans.
-- Fixed issue in the portal theme sync script where relative links would add the theme name to files inserted on a workspace.
+- Keyword search bug fixed in **Kong Manager**
+- Info tab of **Kong Manager** no longer empty (shows license information)
+- Custom **Plugins** viewable within plugin groupings
+- Error messages on **Workspace** form don't remain longer than intended
+- Column overflow issue in services table in **Kong Manager** fixed
+- New **Routes** were accidentally accepting strings for `regex_priority` when 
+submitting a new **Routes**, fixed as part of **Kong 1.0** merge
+- Fixes CORS breaking when configuring `KONG_ADMIN_API_URI` with a port.
+- Fixes issue in **Kong Manager** where **Dev Portal** pages would display
+the wrong content when disabled from `kong.conf`.
+- Fixes issue in **Kong Manager** where email validation would accept invalid 
+inputs.
 
-## 0.34-1 - 2018/12/19
+#### Dev Portal
+- Fixes issue in **Dev Portal** where email validation would accept invalid
+inputs.
+- Fixes **Dev Portal** "Forgot Email" template URL pointing to the wrong location.
+- Fixes CORS error shown when loading content if **Dev Portal** is improperly
+configured.
+- Fixes default spec renderer improperly rendering request bodies.
+- Fixes issues in the portal theme preventing loading in Internet Explorer
+- Fixes long titles overflowing and stretching the sidebar in the default
+portal theme.
+- Fixes sidebar drop-down arrow not rotating in default portal theme.
+- Fixes sidebar overlapping main body content in default portal theme.
+- Fixes main body content overflowing container in default portal theme.
+- Fixes issue in the default portal theme where transitioning from the mobile
+to full-screen would retain the sidebar overlay.
+- Fixes issue in the default portal theme where links on documentation would
+not navigate due to spaces.
+- Fixes issue in the default portal theme where on logout a user would be
+redirected to the default workspace portal.
+- Fixes issue in the portal theme sync script where environment flags were not
+properly evaluated as booleans.
+- Fixes issue in the portal theme sync script where relative links would add
+the theme name to files inserted on a workspace.
+<hr/>
 
-**Notifications**
+## 0.34-1
+**Release Date:** 2018/12/19
+
+### Notifications
 - **Kong EE 0.34** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
@@ -157,7 +413,7 @@ title: Kong Enterprise Changelog
       - **Dev Portal** requires Cassandra 3.0+
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 
-**CHANGES**
+### Changes
 - **Kong Manager**
   - Email addresses are stored in lower-case. These addresses must be case-insensitively unique. In previous versions, you could store mixed case email addresses. A migration for Postgres converts all existing email addresses to lower case. Cassandra users should review the email address of their admins and developers and update them to lower-case if necessary. Use the Kong Manager or the Admin API to make these updates.
 - **Plugins**
@@ -169,7 +425,7 @@ title: Kong Enterprise Changelog
     - Bump lua-resty-session to 2.23
     - Change token verification to check token types when requested
 
-**FEATURES**
+### Features
 - **Dev Portal**
   - [kong_portal_templates](https://github.com/Kong/kong-portal-templates) repository:
     - A public repository containing dev portal themes, examples, and dev tools for working with the Dev Portal template files.
@@ -201,7 +457,7 @@ title: Kong Enterprise Changelog
         DAOs. `cassandra_lb_policy` now supports two new
         policies RequestRoundRobin and RequestDCAwareRoundRobin.
 
-**FIXES**
+### Fixes
 - **Admin API**
   - Prevent creating or modifying developers and admins through the
     /consumers endpoints
@@ -250,10 +506,12 @@ title: Kong Enterprise Changelog
     - Use database-based redis connection pool to reduce unnecessary select call
   - **OpenID Connect**
     - Fix schema `self_check` to verify issuer only when given (e.g. when using `PATCH` to update configuration)
+<hr/>
 
-## 0.34 - 2018/11/17
+## 0.34
+**Release Date:** 2018/11/17
 
-**Notifications**
+### Notifications
 - **Kong EE 0.34** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
   - [0.13.1 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0131---20180423)
@@ -268,7 +526,7 @@ title: Kong Enterprise Changelog
 - **Licensing**
   - License expiration logs: Kong will start logging the license expiration date once a day - with a `WARN` log - 90 days before the expiry; 30 days before, the log severity increases to `ERR` and, after expiration, to `CRIT`
 
-**CHANGES**
+### Changes
 - **Admin API**
   - The system-generated `default` role for an RBAC user is no longer accessible via the Admin API
   - Auto-config OAPI endpoint available for Admin API (configure services & routes via Swagger)
@@ -311,7 +569,7 @@ title: Kong Enterprise Changelog
     - Optimize usage of ngx.ctx by loading it once and then passing it to functions
     - **Breaking change** - Change config.ssl_verify default to false.
 
-**FEATURES**
+### Features
 
 - **Dev Portal**
   - Filterable API list
@@ -370,7 +628,7 @@ title: Kong Enterprise Changelog
 - **Workspaces**
   - Added endpoint `/workspaces/:ws_id/meta` that provides info about workspace `ws_id`. Current counts of entities per entity type are returned
 
-**FIXES**
+### Fixes
 - **CORE**
   - **Plugin runloop**
     - Fix issue where Log phase plugins are not executed for request with non-matching routes.
@@ -412,10 +670,12 @@ title: Kong Enterprise Changelog
     - Fix expiry leeway counting when there is refresh token available and when there is not.
     - Fix issue when using password grant or client credentials grant with token caching enabled, and rotating keys on IdP that caused the cached tokens to give 403. The cached tokens will now be flushed and new tokens will be retrieved from the IdP.
     - Fix a bug that prevented sub-plugins from loading the issuer data.
+<hr/>
 
-## 0.33-2 - 2018/10/09
+## 0.33-2
+**Release Date:** 2018/10/09
 
-**Notifications**
+### Notifications
 
 - **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -427,7 +687,7 @@ title: Kong Enterprise Changelog
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
 
-**Fixes**
+### Fixes
 
 - **Core**
   - **DB**
@@ -691,10 +951,12 @@ title: Kong Enterprise Changelog
   - **LDAP Auth Advanced**
       - Fix an issue where the plugin fails to authenticate a user when the LDAP server doesn't return the user's password as part of the search result
       - Fix issue where the username field wasn't allowed to contain non-alaphanumeric characters
+<hr/>
 
-## 0.33-1 - 2018/09/05
+## 0.33-1
+**Release Date:** 2018/09/05
 
-**Notifications**
+### Notifications
 
 - **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -706,7 +968,7 @@ title: Kong Enterprise Changelog
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
 
-**Changes**
+### Changes
 
 - **Plugins**
   - **HMAC Auth**
@@ -715,7 +977,7 @@ title: Kong Enterprise Changelog
       - Improve performance when constructing the metrics key
       - Allow hostname to be written into the key prefix, based on a boolean plugin config flag
 
-**Fixes**
+### Fixes
 
 - **Core**
   - **RBAC**
@@ -762,9 +1024,10 @@ title: Kong Enterprise Changelog
       - Fix issue leading to cache key collision in some scenarios - e.g., for requests issued by the same consumer
       - Fix cache key for Routes and Services: previously, distinct routes/services entities would be given the same cache key
 
-## 0.33 - 2018/07/24
+## 0.33
+**Release Date:** 2018/07/24
 
-**Notifications**
+### Notifications
 
 - **Kong EE 0.33** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -778,7 +1041,7 @@ title: Kong Enterprise Changelog
   - **Galileo - DEPRECATED**: Galileo plugin is deprecated and will reach EOL soon
 - **Breaking**: Since 0.32, the `latest` tag in Kong Enterprise Docker repository **changed from CentOS to Alpine** - which might result in breakage if additional packages are assumed to be in the image pointed to by `latest`, as the Alpine image only contains a minimal set of packages installed by default
 
-**Changes**
+### Changes
 
 - **Vitals**
   - Internal proxies are no longer tracked
@@ -792,7 +1055,7 @@ title: Kong Enterprise Changelog
 - **OpenID Connect Plugin**
   - Change `config_consumer_claim` from string to array
 
-**Features**
+### Features
 
 - **Core**
   - **New RBAC implementation**, supporting both endpoint and entity-level
@@ -830,7 +1093,7 @@ title: Kong Enterprise Changelog
 - **Prometheus Plugin**
   - New plugin; see documentation [here][prometheus-docs]
 
-**Fixes**
+### Fixes
 
 - **Core**
   - **Healthchecks**: health status no longer resets when a Target is added to an Upstream
@@ -861,10 +1124,12 @@ title: Kong Enterprise Changelog
     ```
     lua_shared_dict kong_rate_limiting_counters 12m;
     ```
+<hr/>
 
-## 0.32 - 2018/05/24
+## 0.32
+**Release Date:** 2018/05/24
 
-**Notifications**
+### Notifications
 
 - **Kong EE 0.32** inherits from **Kong CE 0.13.1**; make sure to read 0.13.1 - and 0.13.0 - changelogs:
   - [0.13.0 Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322)
@@ -883,7 +1148,7 @@ title: Kong Enterprise Changelog
       - `openid-connect-protection`
       - `openid-connect-verification`
 
-**Changes**
+### Changes
 
 - **New Data Model** - Kong EE 0.32 is the first Enterprise version including the [**new model**](https://github.com/Kong/kong/blob/master/CHANGELOG.md#core-2), released with Kong CE 0.13, which includes Routes and Services
 - **Rate Limiting Advanced**
@@ -905,7 +1170,7 @@ title: Kong Enterprise Changelog
   - Remove multipart parsing of ID tokens - they were not proxy safe
   - Change expired or non-active access tokens to give `401` instead of `403`
 
-**Features**
+### Features
 
 - **Admin GUI**
   - New Listeners (Admin GUI + Developer Portal)
@@ -985,7 +1250,7 @@ title: Kong Enterprise Changelog
       - `config.downstream_headers_claims`
       - `config.downstream_headers_names`
 
-**Fixes**
+### Fixes
 
 - **Core**
   - **Healthchecks**
@@ -1015,11 +1280,12 @@ title: Kong Enterprise Changelog
   - Fix consumer mapping using introspection where the claim was searched in an inexistent location
   - Fix header values when their callbacks fail to get the value - instead of setting their values as `function ...`
   - Fix `config.scopes` when set to `null` or `""` so that it doesn't add an OpenID scope forcibly, as the plugin is not only OpenID Connect only, but also OAuth2
+<hr/>
 
+## 0.31-1
+**Release Date:** 2018/04/25
 
-## 0.31-1 - 2018/04/25
-
-**Changes**
+### Changes
 
 - New shared dictionaries named `kong_rl_counters` and `kong_db_cache_miss` were defined in Kong’s default template - customers using custom templates are encouraged to update them to include those, as they avoid the reuse of the `kong_cache` shared dict; such a reuse is known to be one of the culprits behind `no memory` errors - see diff below
 - The rate-limiting plugin now accepts a `dictionary_name` argument, which is used for temporarily storing rate-limiting counters
@@ -1043,17 +1309,18 @@ index 15682975..653a7ddd 100644
  lua_shared_dict kong_vitals_requests_consumers 50m;
 ```
 
-**Fixes**
+### Fixes
 
 - Bump mlcache to 2.0.2 and mitigates a number of issues known to be causing `no memory` errors
 - Fixes an issue where boolean values (and boolean values as strings) were not correctly marshalled when using Cassandra
 - Fixes an issue in Redis Sentinel configuration parsing
 
-## 0.31 - 2018/03/16
+## 0.31
+**Release Date:** 2018/03/16
 
 Kong Enterprise 0.31 is shipped with all the changes present in Kong Community Edition 0.12.3, as well as with the following additions:
 
-**Changes**
+### Changes
 - Galileo plugin is disabled by default in this version, needing to be explicitly enabled via the custom_plugins configuration
   - *NOTE*: If a user had the Galileo plugin applied in an older version and migrate to 0.31, Kong will fail to restart unless the user enables it via the [custom_plugins](/latest/configuration/#custom_plugins) configuration; however, it is still possible to enable the plugin per API or globally without adding it to custom_plugins
 - OpenID Connect plugin:
@@ -1064,7 +1331,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
 - Anonymous consumer now uses a simple cache key that is used in other plugins
 - In case of auth plugins concatenation, the OpenID Connect plugin now removes remnants of anonymous
 
-**Fixes**
+### Fixes
 - **Admin GUI**
   - Remove deprecated orderlist field from Admin GUI Upstreams entity settings
   - Fix issue where Admin GUI would break when running Kong in a custom prefix
@@ -1093,7 +1360,7 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
   - Fix issue that prevented cached requests from showing up in Vitals or Total Requests graphs
   - Fixes inherited from Kong Community Edition 0.12.3.
 
-**Features**
+### Features
 - Admin GUI
   - Add notification bar alerting users that their license is about to expire, and has expired.
   - Add new design to vitals overview, table breakdown, and a new tabbed chart interface.
@@ -1107,19 +1374,21 @@ Kong Enterprise 0.31 is shipped with all the changes present in Kong Community E
   - Not-production-ready feature preview of:
     - "Public only" Portal - no authentication (eg. the portal is fully accessible to anyone who can access it)
     - Authenticated Portal - Developers must log in, and then they can see what they are entitled to see
+<hr/>
 
-## 0.30 - 2018/01/24
+## 0.30
+**Release Date:** 2018/01/24
 
 Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community Edition 0.12.1](https://github.com/Kong/kong/blob/master/CHANGELOG.md#0121---20180118), as well as with the following additions:
 
-**Notifications**
+### Notifications
 
 - EE 0.30 inherits dependency **deprecation** notices from CE 0.12. See the "Deprecation Notes" section of Kong 0.12.0 changelog
 - ⚠️ By default, the Admin API now only listens on the local interface. We consider this change to be an improvement in the default security policy of Kong. If you are already using Kong, and your Admin API still binds to all interfaces, consider updating it as well. You can do so by updating the `admin_listen` configuration value, like so: `admin_listen = 127.0.0.1:8001`.
 
 - 🔴 Note to Docker users: Beware of this change as you may have to ensure that your Admin API is reachable via the host's interface. You can use the `-e KONG_ADMIN_LISTEN` argument when provisioning your container(s) to update this value; for example, `-e KONG_ADMIN_LISTEN=0.0.0.0:8001`.
 
-**Changes**
+### Changes
 - **Renaming of Enterprise plugin**
   - `request-transformer` becomes `request-transformer-advanced`
 
@@ -1197,7 +1466,7 @@ Kong Enterprise 0.30 is shipped with all the changes present in [Kong Community 
     - Logging plugins track unauthorized and rate-limited requests
     - And more...
 
-**Fixes**
+### Fixes
 - **Proxy Cache**
   - Better handling of input configuration data types. In some cases configuration sent from the GUI would case requests to be bypassed when they should have been cached.
 
