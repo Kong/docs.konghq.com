@@ -4,16 +4,16 @@ title: Migrating APIs to Services and Routes
 
 ## Overview
 
-The command `kong migrations migrate-apis` will by default migrate apis
-with bundled plugins to routes and services, but it will skip migrating
-apis with custom plugin(s). To migrate apis with custom plugins you can
-add -f or --force option. Verbose (debug) --vv will with Postgres also
-output each SQL transaction SQL statements when executing migration.
+The command `kong migrations migrate-apis` will, by default, migrate APIs
+with bundled plugins to Routes and Services, but it will skip migrating
+any API with a custom plugin. To migrate APIs with custom plugins you can
+add the `-f` or `--force` option. The verbose (debug) option, `--vv`, will also
+output each SQL transaction when executing migrations with Postgres.
 
 
 ### Prerequisites for Migrating APIs to Services and Routes
 
-* You must be on Kong EE 0.34-X
+* You must be on Kong Enterprise 0.34-X
 
 ### kong migrations command usage
 
@@ -64,3 +64,5 @@ Options:
  --vv             debug
 
 ```
+
+See more `kong` commands in the [Enterprise CLI reference](/enterprise/{{page.kong_version}}/cli/)
