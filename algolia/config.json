@@ -1,8 +1,14 @@
 {
-  "index_name": "test_DOCS",
+  "index_name": "prod_EE",
   "start_urls": [
     {
-      "url": "https://docs.konghq.com/"
+      "url": "https://docs.konghq.com/enterprise/(?P<version>.*?)/",
+      "variables": {
+        "version": {
+          "url": "https://docs.konghq.com/enterprise/",
+          "js": "var versions = $('ul[aria-labelledby=version-dropdown] a, button#version-dropdown').map(function(i, e) { return $(e).text().replace(/\\s+/g, '').replace(/Version/g, '').replace(/\\(latest\\)/g, ''); }).toArray(); return JSON.stringify(versions);"
+        }
+      }
     }
   ],
   "sitemap_urls": [
