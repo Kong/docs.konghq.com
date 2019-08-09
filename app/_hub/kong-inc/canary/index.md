@@ -145,7 +145,7 @@ Note that if the plugin is configured on a `route`, that all routes for the curr
 
 1. Update the `service` entity to point to _Service B_ by matching it to the url as 
 specified by `config.upstream_host`, `config.upstream_uri`, and  `config.upstream_port`.
-2. Remove the Canary plugin from the **Route** with a `DELETE` request.
+2. Remove the Canary plugin with a `DELETE` request.
 
 Removing or disabling the Canary Release plugin before the canary is complete will
 instantly switch all traffic to _Service A_.
