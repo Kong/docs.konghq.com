@@ -35,13 +35,13 @@ params:
       default:
       value_in_examples:
       description: |
-        Future time in seconds since epoch, when the release will start (ignored when `percentage` is set)
+        Future time in seconds since epoch, when the release will start (ignored when percentage is set, or when using whitelist or blacklist)
     - name: duration
       required:
       default: 3600
       value_in_examples:
       description: |
-        How long, in seconds, should the transition take (ignored when `percentage` is set)
+       How long, in seconds, should the transition take (ignored when percentage is set, or when using whitelist or blacklist)
     - name: percentage
       required:
       default:
@@ -89,32 +89,77 @@ params:
 
 ### Usage
 
-The plugin will route traffic to 2 different upstream services, referred to as A and B. The location of service A will be defined by the `upstream_url` property of the api the plugin is configured on. The location of service B is defined by the `config.upstream_host` or `config.upstream_uri` as configured on the plugin.
+The Canary Release plugin allows you to route traffic to two separate upstream 
+services, referred to as _Service A_ and _Service B_. The location of _Service A_
+is defined by the `upstream_url` property of the **Route** on which the Canary
+Release plugin is enabled. The location of _Service B_ is defined by the 
+`config.upstream_host`, `config.upstream_port`, and/or `config.upstream_uri` as
+configured on the plugin.
 
-There are 2 modes of operation:
+There are 3 modes of operation:
 
-1. Set a fixed percentage to be routed to destination B. See parameter `config.percentage`.
-2. Set a period over which (in linear time) the traffic will be moved over from destination A to B. See parameters `config.start` and `config.duration`.
+1. Set a fixed percentage to be routed to _Service B_. See parameter
+   `config.percentage`.
+2. Define a white- or blacklist group with consumers to use/not use destination
+   B. The consumer-group association can be configured using the ACL plugin.
+3. Set a period over which (in linear time) the traffic will be moved over
+   from _Service A_ to _Service B_. See parameters `config.start` and 
+   `config.duration`.
 
-### Determining where to route a request
+### Determining Where to Route a Request
 
-The plugin defines a number of "buckets" (`config.steps`). Each of those can be routed to either A or B. For example: 100 steps, and `percentage` at 10%. Then 100 buckets will be created, of which 10 will be routed to upstream B, and 90 will remain at A.
+(This does not apply to white/blacklisting)
 
-Which requests end up in a specific bucket is determined by the `config.hash` parameter. When set to consumer then it is made sure that each consumer will consistently end up in the same bucket. The effect being that once a bucket a consumer belongs to is switched to B, it will then always go to B, and a `consumer` will not "flip-flop" between A and B. Alternatively if it is set to `ip` then the same concept applies, but based on the originating ip address.
+The Canary Release plugin defines a number of "buckets" (`config.steps`). 
+Each of these buckets can be routed to either _Service A_ or _Service B_ 
 
-The downside of `consumer` and `ip` is that if any specific consumer or ip is responsible for a more than average part of the load, the migration is not nicely distributed. Eg. with percentage set to 50%, then 50% of either the consumers or ips are rerouted, but not necessarily 50% of the requests.
+For example: If you set `config.steps` to 100 steps, and `percentage` to 10%, 
+Canary will create 100 "buckets", 10 of which will be routed to _Service B_, 
+while the other 90 will remain routed to _Service A_.
 
-When set to `none` then the requests will be nicely distributed, each bucket will get the same number of requests, but in this case a consumer or ip might be flip-flopping between destination A and B on consecutive requests.
+Which requests end up in a specific bucket is determined by the `config.hash` 
+parameter. When set to `consumer`, Canary ensures each consumer will 
+consistently end up in the same bucket. The effect being that once a bucket a 
+consumer belongs to is switched to _Service B_, it will then always go to 
+_Service B_, and will not "flip-flop" between A and B. Alternatively if it is set to
+`ip` then the same concept applies, but based on the originating ip address.
 
-In any case there is an automatic fallback in case a consumer or ip could not be identified for some reason. The fall-back order will be `consumer`->`ip`->`none`.
+When using either the `consumer` or `ip` setting, if any specific consumer or ip 
+is responsible for more than the average percentage of traffic, the migration 
+may not be evenly distributed. Eg. if the percentage is set to 50%, then 50% of 
+either the consumers or ips will be rerouted, but not necessarily 50% of the total requests.
 
-### Finalizing the canary
+When set to `none` the requests will be evenly distributed, each bucket 
+will get the same number of requests, but a consumer or ip might flip-flop between 
+_Service A_ and _Service B_ on consecutive requests.
 
-Once the canary is complete, either going to 100% for a percent-based canary, or after the timed canary reached 100%, the configuration needs to be updated.
+Canary provides an automatic fallback if, for some reason, a consumer or ip can 
+not be identified. The fall-back order is be `consumer`->`ip`->`none`.
 
-This takes 2 steps:
+### Finalizing the Canary
 
-1. Update location A to point to location B. This can be done by a PATCH request on the API where the `upstream_url` property is updated to the url as specified by `config.upstream_host` or `config.upstream_uri` (or location B).
-2. Since now the location A and B are the same, the canary plugin can now be removed from the system with a `DELETE` request.
+Once the canary is complete, either going to 100% for a percent-based canary, 
+or the timed canary has reached 100%, the configuration will need to be updated:
 
-If the canary was not complete yet, then executing those steps prematurely, will instantly switch 100% of traffic to the new location (B).
+1. Update the `upstream_url` to point to _Service B_ by matching it the url as 
+specified by `config.upstream_host` or `config.upstream_uri`.
+2. Remove the Canary plugin from the **Route** with a `DELETE` request.
+
+Removing or disabling the Canary Release plugin before the canary is complete will
+instantly switch all traffic to _Service B_.
+
+
+### Upstream Healthchecks
+
+The configuration item `upstream_fallback` uses 
+[**Upstream Healthchecks**]({{page.kong_version}}/admin-api/#upstream-objects) 
+to skip applying the canary upstream if it does not have at least one healthy 
+target. For this configuration to take effect, the following conditions must be met:
+
+ - As this configuration relies on Kong's balancer (and healthchecks), 
+ the name specified in config.upstream_host must point to a valid Kong Upstream 
+ object
+ - [**Healthchecks**]({{page.kong_version}}/health-checks-circuit-breakers/) are 
+ enabled in the canary upstream - i.e., the upstream specified in `upstream_host` 
+ needs to have healthchecks enabled it. It works with both passive and active 
+ healthchecks.
