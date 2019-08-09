@@ -37,42 +37,48 @@ params:
       value_in_examples:
       description: |
         Future time in seconds since epoch, when the release will start (ignored when `percentage` is set)
-  config:
     - name: duration
       required:
       default: 3600
       value_in_examples:
       description: |
         How long, in seconds, should the transition take (ignored when `percentage` is set)
-  config:
     - name: percentage
       required:
       default:
       value_in_examples:
       description: |
         Fixed % of traffic to be routed to new target, if given overrides `start` and `duration`
-  config:
     - name: steps
       required:
       default: 1000
       value_in_examples:
       description: |
         Number of steps the release should be broken into
-  config:
     - name: upstream_host
       required:
       default:
       value_in_examples:
       description: |
         Target hostname where traffic will be routed, required if `upstream_uri` is not set
-  config:
-    - name: upstream_uri
+   - name: upstream_fallback
+     required:
+     default: false
+     value_in_examples:
+     description: |
+      Whether the plugin should fallback to the original upstream if the canary upstream doesn't have at least one healthy target. `upstream_host` must point to a valid Kong Upstream entity
+   - name: upstream_port
+     required:
+     default:
+     value_in_examples:
+     description: |
+      Target port where traffic will be routed, required if `upstream_uri/host` is not set
+   - name: upstream_uri
       required:
       default:
       value_in_examples:
       description: |
         Upstream URI where traffic will be routed, required if `upstream_host` is not set
-  config:
     - name: hash
       required:
       default: consumer
