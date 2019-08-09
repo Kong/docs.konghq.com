@@ -59,7 +59,7 @@ params:
       default:
       value_in_examples:
       description: |
-        Target hostname where traffic will be routed, required if `upstream_uri` is not set
+        Target hostname where traffic will be routed, required if `upstream_uri/port` is not set
     - name: upstream_fallback
       required:
       default: false
@@ -77,7 +77,7 @@ params:
       default:
       value_in_examples:
       description: |
-        Upstream URI where traffic will be routed, required if `upstream_host` is not set
+        Upstream URI where traffic will be routed, required if `upstream_host/port` is not set
     - name: hash
       required:
       default: consumer
@@ -91,8 +91,8 @@ params:
 
 The Canary Release plugin allows you to route traffic to two separate upstream 
 services, referred to as _Service A_ and _Service B_. The location of _Service A_
-is defined by the `upstream_url` property of the **Route** on which the Canary
-Release plugin is enabled. The location of _Service B_ is defined by the 
+is defined by the `service` entity for the request being proxied. The location
+of _Service B_ is defined by the 
 `config.upstream_host`, `config.upstream_port`, and/or `config.upstream_uri` as
 configured on the plugin.
 
@@ -139,14 +139,16 @@ not be identified. The fall-back order is be `consumer`->`ip`->`none`.
 ### Finalizing the Canary
 
 Once the canary is complete, either going to 100% for a percent-based canary, 
-or the timed canary has reached 100%, the configuration will need to be updated:
+or the timed canary has reached 100%, the configuration will need to be updated.
+Note that if the plugin is configured on a `route`, that all routes for the current
+`service` must have completed the canary. 
 
-1. Update the `upstream_url` to point to _Service B_ by matching it the url as 
-specified by `config.upstream_host` or `config.upstream_uri`.
+1. Update the `service` entity to point to _Service B_ by matching it to the url as 
+specified by `config.upstream_host`, `config.upstream_uri`, and  `config.upstream_port`.
 2. Remove the Canary plugin from the **Route** with a `DELETE` request.
 
 Removing or disabling the Canary Release plugin before the canary is complete will
-instantly switch all traffic to _Service B_.
+instantly switch all traffic to _Service A_.
 
 
 ### Upstream Healthchecks
