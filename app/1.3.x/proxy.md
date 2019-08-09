@@ -761,7 +761,7 @@ allows routing via SNIs:
 Incoming requests with a matching hostname set in the TLS connection's SNI
 extension would be routed to this Route. As mentioned, SNI routing applies not
 only to TLS, but also to other protocols carried over TLS - such as HTTPS and
-gRPCs. If more than one hostnames are specified, then any one of them can match
+If multiple SNIs are specified in the Route, any of them can match with the incoming request's SNI.
 with the incoming request (OR relationship between the names).
 
 SNI is determined at TLS handshake time and can not be modified after TLS connection
