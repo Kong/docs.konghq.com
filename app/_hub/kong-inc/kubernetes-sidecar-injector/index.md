@@ -18,6 +18,9 @@ kong_version_compatibility:
       compatible:
         - 1.2.x
         - 1.1.x
+    enterprise_edition:
+      compatible:
+        - 0.36-x
 
 params:
   name: kubernetes-sidecar-injector
