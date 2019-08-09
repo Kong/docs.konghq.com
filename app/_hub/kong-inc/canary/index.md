@@ -163,4 +163,3 @@ target. For this configuration to take effect, the following conditions must be 
  enabled in the canary upstream - i.e., the upstream specified in `upstream_host` 
  needs to have healthchecks enabled it. It works with both passive and active 
  healthchecks.
- 
