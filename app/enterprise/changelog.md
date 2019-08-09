@@ -13,6 +13,13 @@ for details.
 
 ### Features
 
+#### Core
+
+- Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
+which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
+- Provides support in declarative configuration for **Workspaces** and **RBAC**.
+- Provides support for the Redis Cluster library.
+
 #### Dev Portal
 
 - Adds *per workspace* **Session Config**. The Dev Portal will now allow 
@@ -48,16 +55,22 @@ requesting access to a Dev Portal.
 
 #### Workspaces
 
-- Fixes permission bug where **Admins** with `workspace-super-admin`**Role** were 
+- Fixes permission bug where an **Admin** with `workspace-super-admin` **Role** was 
 not able to access the **Workspace** that the **Role** was assigned to.
+
+#### Upstreams
+
+- Fixes an issue where it was not possible to delete an **Upstream** object if it had no associated **Target**.
 
 #### Kong Manager
 
 - Fixes a bug where Kong Manager could only display 100 **Workspaces**.
+- Fixes a bug where a **Route's** details would not include a link to a **Service** that did not have a name.
 
 #### Dev Portal
 
-- Fixes a bug in the sign-up meta fields
+- Fixes a bug in the sign-up meta fields that caused data to disappear when a **Developer** is updated.
+- Fixes an issue where clicking on a **Developer** after clicking the credentials section ACL causes a 500 error.
 
 #### Plugins
 
