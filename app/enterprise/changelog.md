@@ -3,6 +3,132 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 0.36
+**Release Date:** 2019/8/5
+
+### Notifications
+- **Kong Enterprise 0.36** inherits from **Kong 1.2.1**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/1.3.0rc1/CHANGELOG.md#121)
+for details.
+
+### Features
+
+#### Core
+
+- Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
+which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
+- Provides support in declarative configuration for **Workspaces** and **RBAC**.
+- Provides support for the Redis Cluster library.
+
+#### Dev Portal
+
+- Adds *per workspace* **Session Config**. The Dev Portal will now allow 
+session configuration for every portal-per-workspace instance.
+- Adds **email verification**. Developers will be sent a verification link after
+requesting access to a Dev Portal.
+
+#### Plugins
+
+- **Request Validator**
+  - Adds support for JSON Schema Draft 4
+  - Adds support for parameter validation
+  - Adds the option to override validation for specific content types
+- **OAuth2 Introspection**
+  - Can now find and load consumers by `username` and `custom_id`. OAuth2
+  `username` maps to **Consumer's** `username`, while the `client_id` maps to a 
+  **Consumer's** `custom_id`
+  - New `consumer_by` configuration allows users to customize whether **Consumers**
+  are fetched by `client_id` or `username` (returned by the introspection request)
+  - New `introspect_request` configuration that causes the plugin to send 
+  information about the **current request** as **headers** in the **introspection endpoint**
+  **request**. Currently, the **request path** and **HTTP methods** are sent as `X-Request-Path` 
+  and `X-Request-Http-Method` headers
+  - New `custom_introspection_headers` configuration list of user-supplied
+  headers to be sent in the **introspection endpoint request**
+  - New `custom_claims_forward` configuration list of additional claims. The 
+  **introspection endpoint request** will return this list to forward as headers 
+  to the **upstream service request**.
+
+
+
+### Fixes
+
+#### Workspaces
+
+- Fixes permission bug where an **Admin** with `workspace-super-admin` **Role** was 
+not able to access the **Workspace** that the **Role** was assigned to.
+
+#### Upstreams
+
+- Fixes an issue where it was not possible to delete an **Upstream** object if it had no associated **Target**.
+
+#### Kong Manager
+
+- Fixes a bug where Kong Manager could only display 100 **Workspaces**.
+- Fixes a bug where a **Route's** details would not include a link to a **Service** that did not have a name.
+
+#### Dev Portal
+
+- Fixes a bug in the sign-up meta fields that caused data to disappear when a **Developer** is updated.
+- Fixes an issue where clicking on a **Developer** after clicking the credentials section ACL causes a 500 error.
+
+#### Plugins
+
+- **Upstream-tls**
+  - Fixes an issue where bundled **certificates** in PEM format were not loaded into 
+  the certificate store correctly.
+
+### Changes
+
+- **Brain**
+  - Renames **Brain** to **Collector**
+
+
+## 0.35-3
+**Release Date:** 2019/07/17
+
+### Notifications
+- **Kong Enterprise 0.35-3** inherits from **Kong 1.0.3**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+for details.
+
+### Features
+
+#### Core
+- New CLI migrations command `migrate-apis` to convert all existing API objects to **Services and Routes**
+- New CLI migrations command `migrate-community-to-enterprise` for moving Core entities to Enterprise entities
+- Support for Redis Cluster as a backend for `rate-limiting-advanced` and `proxy-cache` plugins
+- Cache-warming configuration to load specified entities at startup to improve first request latency
+
+#### Kong Manager
+- New page to reset **RBAC** token and manage user password
+
+#### Plugins
+- `upstream-tls` - allows verification of upstream certificates, custom CA certificates, and verification depth
+
+### Fixes
+
+#### Core
+- Correctly count `workspace_entities` when moving from previous versions
+
+#### Dev Portal
+- Dev Portal Docs now point to 0.35
+- Unauthenticated Spec rendering is fixed
+
+#### Plugins
+- **`jwt-signer`** 
+  - Fix **IMPORTANT!** verify expiry and scopes checks on JWT tokens
+  - Fix finding Consumer by custom ID
+  - Fix runtime error on unexpected function, `kong.log.error` -> `kong.log.err`
+  - Change invalidation to happen locally, not cluster wide, each node invalidates on their own
+- **`openid-connect`**
+  - Change invalidations to local invalidation instead of cluster-wide invalidation
+  - Fix **Admin API** to properly call the cleanup function on entity endpoint
+  - Fix `hide_credentials` not clearing X-Access-Token header
+  - Change debug logging to not log about disabled authentication methods
+  - Change TTL code and fix some edge cases
+
+
 ## 0.35-1
 **Release Date:** 2019/05/28
 

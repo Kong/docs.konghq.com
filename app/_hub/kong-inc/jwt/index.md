@@ -43,6 +43,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
         - 0.33-x
@@ -281,7 +282,7 @@ has no JWT                     | no                       | 401
 missing or invalid `iss` claim | no                       | 401
 invalid signature              | no                       | 403
 valid signature                | yes                      | from the upstream service
-valid signature, invalid verified claim (**option**) | no                       | 403
+valid signature, invalid verified claim _optional_ | no                       | 401
 
 <div class="alert alert-warning">
   <strong>Note:</strong> When the JWT is valid and proxied to the upstream service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.

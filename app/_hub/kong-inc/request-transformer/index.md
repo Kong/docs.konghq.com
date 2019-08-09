@@ -39,6 +39,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
         - 0.33-x
@@ -85,10 +86,6 @@ params:
       required: false
       value_in_examples: [ "param-old:param-new", "param2-old:param2-new" ]
       description: List of parameter name:value pairs. Rename the parameter name if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
-    - name: append.headers
-      required: false
-      value_in_examples: [ "x-existing-header:some_value", "x-another-header:some_value" ]
-      description: List of headername:value pairs. If the header is not set, set it with the given value. If it is already set, a new header with the same name and the new value will be set.
     - name: replace.body
       required: false
       description: List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.

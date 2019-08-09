@@ -20,7 +20,7 @@ id: documentation
         <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg"
           alt="Documentation" />
       </div>
-      <div class="page-header-title {% if page.edition=='enterprise' %} page-header-title-enterprise {% endif %}">
+      <div class="page-header-title">
         <h1>{{page.title}}</h1>
       </div>
 
@@ -42,12 +42,10 @@ id: documentation
           </li>
           {% endfor %}
         </ul>
-        {% if page.edition == 'community' %}
         <div id="getkong-algolia-search" class="search-input">
           <i class="fa fa-search"></i>
           <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
         </div>
-        {% endif %}
       </div>
       {% endif %}
     </div>
@@ -143,12 +141,36 @@ id: documentation
     }
   }
 </style>
-{% if page.edition == 'community' %}
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+{% if page.edition == 'community' %}
 <script type="text/javascript">
   docsearch({
     apiKey: '691286ef280379144076a4f8df47a1d1',
     indexName: 'getkong',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 5,
+      'facetFilters': ["version: {{page.kong_version}}"]
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+{% endif %}
+
+{% if page.edition == 'enterprise' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_EE',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
       hitsPerPage: 5,

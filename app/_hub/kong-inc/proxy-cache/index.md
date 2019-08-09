@@ -8,7 +8,6 @@ desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.
 
-enterprise: true
 type: plugin
 categories:
   - traffic-control
@@ -19,6 +18,7 @@ kong_version_compatibility:
         - 1.2.x
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
 
@@ -137,6 +137,12 @@ params:
       value_in_examples:
       description: |
         Sentinel addresses to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.cluster_addresses
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
 
 ---
 ### Strategies
