@@ -15,6 +15,10 @@ title: Migrating to 0.36
 * Instances where the Portal and Files API are on different hostnames require that they at least share a common root, and that the `cookie_domain` setting of the Portal session configuration be that common root. For example, if the Portal itself is at `portal.kong.example` and the Files API is at `files.kong.example`, `cookie_domain=.kong.example`.
 * Portal-related `rbac_role_endpoints` will be updated to adhere to changes in the Dev Portal API. This only applies to Portal-related endpoints that were present in or set by Kong Manager; any user-generated endpoints will need to be updated manually.  The endpoints that will be updated automatically are as follows:
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> private_repo/master
 ```
 '/portal/*'                     => '/developers/*', '/files/*'
 '/portal/developers'            => '/developers/*'
