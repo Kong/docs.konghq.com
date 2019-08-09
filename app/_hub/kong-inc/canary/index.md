@@ -8,7 +8,10 @@ desc: Slowly roll out software changes to a subset of users
 description: |
   Reduce the risk of introducing a new software version in production by slowly rolling out the change to a small subset of users. This plugin also enables roll back to your original upstream service, or shift all traffic to the new version.
 
-  * [Detailed documentation for the Enterprise Canary Release Plugin](/enterprise/latest/plugins/canary-release/)
+enterprise: true
+type: plugin
+categories:
+  - traffic-control
 
 enterprise: true
 type: plugin
@@ -16,13 +19,9 @@ categories:
   - traffic-control
 
 kong_version_compatibility:
-    community_edition:
-      compatible:
     enterprise_edition:
       compatible:
         - 0.36-x
-        - 0.35-x
-        - 0.34-x
 
 params:
   name: canary
@@ -61,19 +60,19 @@ params:
       value_in_examples:
       description: |
         Target hostname where traffic will be routed, required if `upstream_uri` is not set
-   - name: upstream_fallback
-     required:
-     default: false
-     value_in_examples:
-     description: |
-      Whether the plugin should fallback to the original upstream if the canary upstream doesn't have at least one healthy target. `upstream_host` must point to a valid Kong Upstream entity
-   - name: upstream_port
-     required:
-     default:
-     value_in_examples:
-     description: |
-      Target port where traffic will be routed, required if `upstream_uri/host` is not set
-   - name: upstream_uri
+    - name: upstream_fallback
+      required:
+      default: false
+      value_in_examples:
+      description: |
+        Whether the plugin should fallback to the original upstream if the canary upstream doesn't have at least one healthy target. `upstream_host` must point to a valid Kong Upstream entity
+    - name: upstream_port
+      required:
+      default:
+      value_in_examples:
+      description: |
+        Target port where traffic will be routed, required if `upstream_uri/host` is not set
+    - name: upstream_uri
       required:
       default:
       value_in_examples:
