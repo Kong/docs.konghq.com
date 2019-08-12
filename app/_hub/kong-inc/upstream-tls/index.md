@@ -60,4 +60,4 @@ It can also be applied globally (for every Route, Service, or API) using the
 
 ### Known Issues
 
-Attempting a PATCH of the `trusted_certificates` configuration value requires a `kong reload` to be complete.
+PATCH requests to the `trust_certificates` configuration will not take affect until Kong is reloaded. This can be accomplished with the `kong reload` command.
