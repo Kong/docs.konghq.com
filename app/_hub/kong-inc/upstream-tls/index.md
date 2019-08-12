@@ -60,4 +60,4 @@ It can also be applied globally (for every Route, Service, or API) using the
 
 ### Known Issues
 
-Only one root CA cert can be used to verify against the upstream. If you upload a pem file with multiple certs it must be the first certificate in your uploaded pem file.
+Attempting a PATCH the `trusted_certificates` configuration value requires a `kong reload` to be complete.
