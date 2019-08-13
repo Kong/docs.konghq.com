@@ -155,8 +155,8 @@
     openresty: "1.13.6.2"
 -
   release: "1.2.x"
-  version: "1.2.1"
-  luarocks_version: "1.2.1-0"
+  version: "1.2.2"
+  luarocks_version: "1.2.2-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "2.4.3"
