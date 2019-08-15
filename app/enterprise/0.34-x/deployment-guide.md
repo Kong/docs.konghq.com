@@ -38,7 +38,7 @@ inconsistencies in the system.
 - Regardless of the datastore being adopted with Kong, the Kong nodes themselves
 need to join in a cluster. The Kong nodes will talk to each other via their
 connections to the database—PostgreSQL or Cassandra. Please refer to the
-[clustering reference](/0.13.x/clustering/) for more details.
+[clustering reference](/enterprise/{{page.kong_version}}/clustering/) for more details.
 
 ## Production System Requirements
 
@@ -77,7 +77,7 @@ Kong nodes in a cluster. Failure to join the Kong nodes in a Kong cluster will
 result in data inconsistencies and errors when processing requests. Kong
 automates joining a node in the cluster as long as the right configuration
 settings have been provided. For more information, we recommend reading the
-[clustering reference](/0.13.x/clustering/).
+[clustering reference](/enterprise/{{page.kong_version}}/clustering/).
 
 ## Kong Performance
 
@@ -115,10 +115,10 @@ firewall settings for Kong.
 
 These are the port settings in order for Kong to work:
 
-- Allow HTTP traffic to [`proxy_listen`](/0.13.x/configuration/#proxy_listen). By default, `8000`.
-- Allow HTTPS traffic to [`proxy_listen`](/0.13.x/configuration/#proxy_listen). By default, `8443`.
-- Allow HTTP traffic to [`admin_listen`](/0.13.x/configuration/#admin_listen). By default, `8001`.
-- Allow HTTPS traffic to [`admin_listen`](/0.13.x/configuration/#admin_listen). By default, `8444`.
+- Allow HTTP traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/configuration/#proxy_listen). By default, `8000`.
+- Allow HTTPS traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/configuration/#proxy_listen). By default, `8443`.
+- Allow HTTP traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/configuration/#admin_listen). By default, `8001`.
+- Allow HTTPS traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/configuration/#admin_listen). By default, `8444`.
 
 For Kong Manager:
 
@@ -135,7 +135,7 @@ By default, `8003`.
 By default, `8446`.
 
 **Note**: since Kong CE 0.13.0—and EE 0.32—listen directives have a new
-format, described [here](/0.13.x/configuration/#proxy_listen), where instead of
+format, described [here](/enterprise/{{page.kong_version}}/configuration/#proxy_listen), where instead of
 specifying SSL and non-SSL ports in different configuration directives—e.g.,
 `admin_listen` and `admin_listen_ssl`—only one is required: for example, the
 listen directive for the Admin API for SSL and non-SSL ports now looks like:
@@ -264,6 +264,6 @@ the Admin API won’t be available on the old cluster for the entire process.
 ---
 
 [cassandra-network-topology]: https://docs.datastax.com/en/cassandra/3.0/cassandra/architecture/archDataDistributeReplication.html
-[proxy]: /0.13.x/configuration/#proxy_listen
-[admin]: /0.13.x/configuration/#admin_listen
+[proxy]: /enterprise/{{page.kong_version}}/configuration/#proxy_listen
+[admin]: /enterprise/{{page.kong_version}}/configuration/#admin_listen
 [upgrade]: https://github.com/Kong/kong/blob/master/UPGRADE.md
