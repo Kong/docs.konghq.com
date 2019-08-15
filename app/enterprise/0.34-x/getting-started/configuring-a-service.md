@@ -141,5 +141,5 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
 [API]: /0.13.x/admin-api
 [enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins
-[proxy-port]: /0.13.x/configuration/#nginx-section
+[proxy-port]: /enterprise/{{page.kong_version}}/configuration/#nginx-section
 [mockbin]: https://mockbin.com/
