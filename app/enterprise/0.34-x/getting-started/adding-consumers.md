@@ -95,12 +95,12 @@ Plugins, feel free to read more on Kong in one of the following documents:
 
 
 [basic-auth]: /hub/kong-inc/basic-auth
-[API-consumers]: /0.13.x/admin-api#create-consumer
-[consumers]: /0.13.x/admin-api#consumer-object
+[API-consumers]: /enterprise/{{page.kong_version}}/admin-api#create-consumer
+[consumers]: /enterprise/{{page.kong_version}}/admin-api#consumer-object
 [enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins
 [enterprise-conf]: /enterprise/{{page.kong_version}}/property-reference
-[configuration]: /enterprise/{{page.kong_version}}/configuration
-[CLI]: /0.13.x/cli
-[proxy]: /0.13.x/proxy
-[API]: /0.13.x/admin-api
+[configuration]: /enterprise/{{page.kong_version}}/property-reference
+[CLI]: /enterprise/{{page.kong_version}}/cli
+[proxy]: /enterprise/{{page.kong_version}}/proxy
+[API]: /enterprise/{{page.kong_version}}/admin-api
 [cluster]: /enterprise/{{page.kong_version}}/clustering
