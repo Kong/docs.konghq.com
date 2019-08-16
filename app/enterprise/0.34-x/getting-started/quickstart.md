@@ -57,7 +57,7 @@ To set up the first account:
     ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to [your own configuration](/enterprise/{{page.kong_version}}/configuration/#configuration-loading).
+allowing you to point to [your own configuration](/enterprise/{{page.kong_version}}/property-reference/#configuration-loading).
 
 ## 2. Verify that Kong Enterprise has Started Successfully
 
@@ -104,10 +104,10 @@ and Kong Manager.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
-[CLI]: /0.13.x/cli
-[API]: /0.13.x/admin-api
+[CLI]: /enterprise/{{page.kong_version}}/cli
+[API]: /enterprise/{{page.kong_version}}/admin-api
 [kong-manager]: /enterprise/{{page.kong_version}}/kong-manager/overview
-[datastore-section]: /enterprise/{{page.kong_version}}/configuration/#datastore-section
+[datastore-section]: /enterprise/{{page.kong_version}}/property-reference/#datastore-section
 [configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /enterprise/{{page.kong_version}}/installation/centos/
