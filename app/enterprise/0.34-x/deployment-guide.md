@@ -115,10 +115,10 @@ firewall settings for Kong.
 
 These are the port settings in order for Kong to work:
 
-- Allow HTTP traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/configuration/#proxy_listen). By default, `8000`.
-- Allow HTTPS traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/configuration/#proxy_listen). By default, `8443`.
-- Allow HTTP traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/configuration/#admin_listen). By default, `8001`.
-- Allow HTTPS traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/configuration/#admin_listen). By default, `8444`.
+- Allow HTTP traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen). By default, `8000`.
+- Allow HTTPS traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen). By default, `8443`.
+- Allow HTTP traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/property-reference/#admin_listen). By default, `8001`.
+- Allow HTTPS traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/property-reference/#admin_listen). By default, `8444`.
 
 For Kong Manager:
 
@@ -135,7 +135,7 @@ By default, `8003`.
 By default, `8446`.
 
 **Note**: since Kong CE 0.13.0—and EE 0.32—listen directives have a new
-format, described [here](/enterprise/{{page.kong_version}}/configuration/#proxy_listen), where instead of
+format, described [here](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen), where instead of
 specifying SSL and non-SSL ports in different configuration directives—e.g.,
 `admin_listen` and `admin_listen_ssl`—only one is required: for example, the
 listen directive for the Admin API for SSL and non-SSL ports now looks like:
@@ -264,6 +264,6 @@ the Admin API won’t be available on the old cluster for the entire process.
 ---
 
 [cassandra-network-topology]: https://docs.datastax.com/en/cassandra/3.0/cassandra/architecture/archDataDistributeReplication.html
-[proxy]: /enterprise/{{page.kong_version}}/configuration/#proxy_listen
-[admin]: /enterprise/{{page.kong_version}}/configuration/#admin_listen
+[proxy]: /enterprise/{{page.kong_version}}/property-reference/#proxy_listen
+[admin]: /enterprise/{{page.kong_version}}/property-reference/#admin_listen
 [upgrade]: https://github.com/Kong/kong/blob/master/UPGRADE.md
