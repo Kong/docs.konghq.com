@@ -415,6 +415,6 @@ You can also see a real-world example of schema in [the Key-Auth plugin source c
 
 Next: [Accessing the Datastore &rsaquo;]({{page.book.next}})
 
-[Admin API]: /{{page.kong_version}}/admin-api
-[Plugin Development Kit]: /{{page.kong_version}}/pdk
+[Admin API]: /enterprise/{{page.kong_version}}/admin-api
+[Plugin Development Kit]: /enterprise/{{page.kong_version}}/pdk
 [the Key-Auth plugin source code]: https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/schema.lua

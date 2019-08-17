@@ -299,4 +299,4 @@ post-function               | -1000
 Next: [Plugin configuration &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
-[pdk]: /{{page.kong_version}}/pdk
+[pdk]: /enterprise/{{page.kong_version}}/pdk

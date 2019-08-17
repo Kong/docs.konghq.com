@@ -41,6 +41,6 @@ Below are the recommended firewall settings:
 * Your proxy will need have rules added for any TCP Stream listeners that you configure. For example, if you want Kong to manage traffic on port `4242`, your
   firewall will need to be allow traffic on said port.
 
-[proxy_listen]: /{{page.kong_version}}/configuration/#proxy_listen
-[admin_listen]: /{{page.kong_version}}/configuration/#admin_listen
-[secure_admin_api]: /{{page.kong_version}}/secure-admin-api
+[proxy_listen]: /enterprise/{{page.kong_version}}/property-reference/#proxy_listen
+[admin_listen]: /enterprise/{{page.kong_version}}/property-reference/#admin_listen
+[secure_admin_api]: /enterprise/{{page.kong_version}}/secure-admin-api
