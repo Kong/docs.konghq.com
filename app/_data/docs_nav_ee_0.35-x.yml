@@ -75,7 +75,7 @@
       url: /plugin-development
     - text: Plugin Development Kit
       url: /pdk
- 
+
 - title: Admin API
   url: /admin-api
   items:
