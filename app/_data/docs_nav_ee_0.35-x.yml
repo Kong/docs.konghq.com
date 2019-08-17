@@ -208,14 +208,17 @@
     - text: Networking
       url: /developer-portal/networking
     - text: Administration
+      url: /developer-portal/administration/managing-developers
       items:
         - text: Managing Developers
           url: /developer-portal/administration/managing-developers
     - text: Theme Customization
+      url: /developer-portal/theme-customization/customizing-dev-portal
       items:
           - text: Customizing the Dev Portal
             url: /developer-portal/theme-customization/customizing-dev-portal
     - text: Content Management
+      url: /developer-portal/content-management/file-management
       items:
           - text: File Management
             url: /developer-portal/content-management/file-management
@@ -226,6 +229,7 @@
   url: https://konghq.com/hub
   items:
     - text: Plugin Reference
+      url: /plugins/canary-release
       items:
       - text: Canary Release Plugin
         url: /plugins/canary-release
@@ -258,6 +262,7 @@
       - text: Request Validator
         url: /plugins/request-validator
     - text: Implementation
+      url: /plugins/allowing-multiple-authentication-methods
       items:
         - text: Multiple Authentication Methods
           url: /plugins/allowing-multiple-authentication-methods
