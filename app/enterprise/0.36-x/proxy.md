@@ -1102,16 +1102,16 @@ just covered.
 
 [Back to TOC](#table-of-contents)
 
-[plugin-configuration-object]: /{{page.kong_version}}/admin-api#plugin-object
-[plugin-development-guide]: /{{page.kong_version}}/plugin-development
-[plugin-association-rules]: /{{page.kong_version}}/admin-api/#precedence
-[load-balancing-reference]: /{{page.kong_version}}/loadbalancing
-[configuration-reference]: /{{page.kong_version}}/configuration-reference
-[configuration-trusted-ips]: /{{page.kong_version}}/configuration/#trusted_ips
-[configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
-[API]: /{{page.kong_version}}/admin-api
-[service-entity]: /{{page.kong_version}}/admin-api/#add-service
-[route-entity]: /{{page.kong_version}}/admin-api/#add-route
+[plugin-configuration-object]: /enterprise/{{page.kong_version}}/admin-api#plugin-object
+[plugin-development-guide]: /enterprise/{{page.kong_version}}/plugin-development
+[plugin-association-rules]: /enterprise/{{page.kong_version}}/admin-api/#precedence
+[load-balancing-reference]: /enterprise/{{page.kong_version}}/loadbalancing
+[configuration-reference]: /enterprise/{{page.kong_version}}/configuration-reference
+[configuration-trusted-ips]: /enterprise/{{page.kong_version}}/configuration/#trusted_ips
+[configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/configuring-a-service
+[API]: /enterprise/{{page.kong_version}}/admin-api
+[service-entity]: /enterprise/{{page.kong_version}}/admin-api/#add-service
+[route-entity]: /enterprise/{{page.kong_version}}/admin-api/#add-route
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
 [ngx-http-realip-module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html

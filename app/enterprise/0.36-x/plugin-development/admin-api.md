@@ -171,4 +171,4 @@ three functions:
 
 Next: [Write tests for your plugin]({{page.book.next}})
 
-[Admin API]: /{{page.kong_version}}/admin-api/
+[Admin API]: /enterprise/{{page.kong_version}}/admin-api/

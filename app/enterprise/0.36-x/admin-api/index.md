@@ -2830,10 +2830,10 @@ HTTP 200 OK
 
 ---
 
-[clustering]: /{{page.kong_version}}/clustering
-[cli]: /{{page.kong_version}}/cli
-[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /{{page.kong_version}}/proxy
+[clustering]: /enterprise/{{page.kong_version}}/clustering
+[cli]: /enterprise/{{page.kong_version}}/cli
+[active]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /enterprise/{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /enterprise/{{page.kong_version}}/proxy
 

@@ -345,5 +345,5 @@ extending the Admin API, which we will detail in the next chapter:
 
 Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
 
-[Admin API]: /{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /{{page.kong_version}}/pdk
+[Admin API]: /enterprise/{{page.kong_version}}/admin-api/
+[Plugin Development Kit]: /enterprise/{{page.kong_version}}/pdk

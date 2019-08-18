@@ -310,12 +310,12 @@ upstreams.
 
 [Back to TOC](#table-of-contents)
 
-[ringbalancer]: /{{page.kong_version}}/loadbalancing#ring-balancer
-[ringtarget]: /{{page.kong_version}}/loadbalancing#target
-[upstream]: /{{page.kong_version}}/loadbalancing#upstream
-[targetobject]: /{{page.kong_version}}/admin-api#target-object
-[addupstream]: /{{page.kong_version}}/admin-api#add-upstream
-[clustering]: /{{page.kong_version}}/clustering
-[upstreamobjects]: /{{page.kong_version}}/admin-api#upstream-objects
-[balancercaveats]: /{{page.kong_version}}/loadbalancing#balancing-caveats
-[dnscaveats]: /{{page.kong_version}}/loadbalancing#dns-caveats
+[ringbalancer]: /enterprise/{{page.kong_version}}/loadbalancing#ring-balancer
+[ringtarget]: /enterprise/{{page.kong_version}}/loadbalancing#target
+[upstream]: /enterprise/{{page.kong_version}}/loadbalancing#upstream
+[targetobject]: /enterprise/{{page.kong_version}}/admin-api#target-object
+[addupstream]: /enterprise/{{page.kong_version}}/admin-api#add-upstream
+[clustering]: /enterprise/{{page.kong_version}}/clustering
+[upstreamobjects]: /enterprise/{{page.kong_version}}/admin-api#upstream-objects
+[balancercaveats]: /enterprise/{{page.kong_version}}/loadbalancing#balancing-caveats
+[dnscaveats]: /enterprise/{{page.kong_version}}/loadbalancing#dns-caveats
