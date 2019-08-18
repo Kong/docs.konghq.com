@@ -8,7 +8,7 @@ will walk you through how to access your license file.
 
 **Note:** The following guide only pertains to paid versions of Kong Enterprise. For free trial information, check the email received after signing up.
 
-Log into [https://bintray.com/login?forwardedFrom=%2Fkong%2F](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
+Log into [bintray.com](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
 If you are unaware of your login credentials, reach out to your CSE and they'll 
 be able to assist you.
 
