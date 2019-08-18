@@ -228,7 +228,7 @@
       url: /developer-portal/faq
 
 - title: APIs and Plugins
-  url: https://konghq.com/hub
+  url: /plugins
   items:
     - text: Plugin Reference
       items:
