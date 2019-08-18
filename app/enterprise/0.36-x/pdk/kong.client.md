@@ -53,9 +53,9 @@ Returns the remote address of the client making the request.  Unlike
  returns a forwarded address or not depends on several Kong configuration
  parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](/enterprise/{{page.kong_version}}/property-reference/#trusted_ips)
+ * [real\_ip\_header](/enterprise/{{page.kong_version}}/property-reference/#real_ip_header)
+ * [real\_ip\_recursive](/enterprise/{{page.kong_version}}/property-reference/#real_ip_recursive)
 
 
 **Phases**
@@ -119,9 +119,9 @@ Returns the remote port of the client making the request.  Unlike
  when a load balancer is in front of Kong. Whether this function returns a
  forwarded port or not depends on several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](/enterprise/{{page.kong_version}}/property-reference/#trusted_ips)
+ * [real\_ip\_header](/enterprise/{{page.kong_version}}/property-reference/#real_ip_header)
+ * [real\_ip\_recursive](/enterprise/{{page.kong_version}}/property-reference/#real_ip_recursive)
 
 **Phases**
 

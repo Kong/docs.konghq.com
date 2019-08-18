@@ -99,9 +99,9 @@ Returns the scheme component of the request's URL, but also considers
  Whether this function considers `X-Forwarded-Proto` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](/enterprise/{{page.kong_version}}/property-reference/#trusted_ips)
+ * [real\_ip\_header](/enterprise/{{page.kong_version}}/property-reference/#real_ip_header)
+ * [real\_ip\_recursive](/enterprise/{{page.kong_version}}/property-reference/#real_ip_recursive)
 
  **Note**: support for the Forwarded HTTP Extension (RFC 7239) is not
  offered yet since it is not supported by ngx\_http\_realip\_module.
@@ -135,9 +135,9 @@ Returns the host component of the request's URL or the value of the "host"
  Whether this function considers `X-Forwarded-Proto` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](/enterprise/{{page.kong_version}}/property-reference/#trusted_ips)
+ * [real\_ip\_header](/enterprise/{{page.kong_version}}/property-reference/#real_ip_header)
+ * [real\_ip\_recursive](/enterprise/{{page.kong_version}}/property-reference/#real_ip_recursive)
 
  **Note**: we do not currently offer support for Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
@@ -170,9 +170,9 @@ Returns the port component of the request's URL, but also considers
  Whether this function considers `X-Forwarded-Proto` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
- * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+ * [trusted\_ips](/enterprise/{{page.kong_version}}/property-reference/#trusted_ips)
+ * [real\_ip\_header](/enterprise/{{page.kong_version}}/property-reference/#real_ip_header)
+ * [real\_ip\_recursive](/enterprise/{{page.kong_version}}/property-reference/#real_ip_recursive)
 
  **Note**: we do not currently offer support for Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
