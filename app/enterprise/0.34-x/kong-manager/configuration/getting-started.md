@@ -22,10 +22,10 @@ Once started, navigate to Kong Manager in the browser at `http://localhost:8002`
 If upgrading Kong Enterprise from version 0.33, read the 
 [0.34 Upgrade Guide](/enterprise/{{page.kong_version}}/deployment-guide/#upgrading-to-034), 
 as well as the upgrade notes for a list of new features in the 
-[Changelog](/enterprise/changelog). 
+[Changelog](/enterprise/changelog/#034). 
 
 ## Configuration for Kong Manager
 
-Kong Manager is configurable through the `kong.conf` file. For specific configuration options, refer to the properties described in the [Kong configuration reference](/enterprise/{{page.kong_version}}/property-reference) and [Kong Enterprise configuration reference](/enterprise/{{page.kong_version}}/property-reference).
+Kong Manager is configurable through the `kong.conf` file. For specific configuration options, refer to the properties described in the [Kong Enterprise configuration reference](/enterprise/{{page.kong_version}}/property-reference).
 
 Next: [Authentication &rsaquo;]({{page.book.next}})

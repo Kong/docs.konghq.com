@@ -66,6 +66,6 @@ Consumers to your API so we can continue proxying requests through Kong.
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
-[basic-auth]: enterprise/{{page.kong_version}}/plugins/key-authentication
-[plugins]: enterprise/{{page.kong_version}}/plugins
+[basic-auth]: https://docs.konghq.com/hub/kong-inc/basic-auth/
+[plugins]: https://docs.konghq.com/hub/
 [adding-consumers]: /enterprise/{{page.kong_version}}/getting-started/adding-consumers

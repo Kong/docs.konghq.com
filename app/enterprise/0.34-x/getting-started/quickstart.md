@@ -107,7 +107,7 @@ To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 [CLI]: /enterprise/{{page.kong_version}}/cli
 [API]: /enterprise/{{page.kong_version}}/admin-api
 [kong-manager]: /enterprise/{{page.kong_version}}/kong-manager/overview
-[datastore-section]: /enterprise/{{page.kong_version}}/property-reference/#datastore-section
+[datastore-section]: /enterprise/{{page.kong_version}}/property-reference/#datastore
 [configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [docker]: /enterprise/{{page.kong_version}}/installation/docker/
 [centos]: /enterprise/{{page.kong_version}}/installation/centos/

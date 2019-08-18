@@ -90,6 +90,6 @@ assigned to the Role will not be able to see the related navigation links.
 
 For more information about Admins and Roles, see [RBAC and Permissions](/enterprise/{{page.kong_version}}/kong-manager/organization-management/rbac-and-perms). For 
 information about how RBAC applies to specific Workspaces, see 
-[RBAC in Workspaces](/enterprise/{{page.kong_version}}/kong-manager/organization-management/rbac-in-workspaces)
+[RBAC in Workspaces](/enterprise/{{page.kong_version}}/kong-manager/organization-management/rbac-and-perms/#rbac-in-workspaces)
 
 Next: [RBAC and Permissions &rsaquo;]({{page.book.next}})

@@ -5,7 +5,7 @@ title: How to Access Your Kong Enterprise License
 Starting with Kong EE 0.29, Kong requires a license file to start. This guide 
 will walk you through accessing your license file. 
 
-Log into https://bintray.com/login?forwardedFrom=%2Fkong%2F
+Log into [bintray.com](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
 If you are unaware of your login credentials, reach out to your CSE and they'll 
 be able to assist you.
 
