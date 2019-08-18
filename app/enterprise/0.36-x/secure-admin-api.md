@@ -154,6 +154,6 @@ Enterprise offering by [contacting us](/enterprise).
 
 [acl]: /plugins/acl
 [basic-auth]: /plugins/basic-authentication/
-[custom-configuration]: /enterprise/{{page.kong_version}}/configuration/#custom-nginx-configuration
+[custom-configuration]: /enterprise/{{page.kong_version}}/property-reference/#custom-nginx-configuration
 [ip-restriction]: /plugins/ip-restriction
 [key-auth]: /plugins/key-authentication
