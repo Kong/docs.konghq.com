@@ -18,7 +18,7 @@ properties:
   Kong's configuration capabilities: the **Admin API** (`8001` by default).
 
 <div class="alert alert-warning">
-<p><strong>Note:</strong> Starting with 0.13.0, the API entity was
+<p><strong>Note:</strong> Starting with CE 0.13.0 and EE 0.32.0, the API entity was
 deprecated. This document will cover proxying with the new Routes and
 Services entities.</p>
 <p>See an older version of this document if you are using 0.12 or

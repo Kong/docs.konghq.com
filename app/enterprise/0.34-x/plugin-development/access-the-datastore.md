@@ -11,7 +11,7 @@ Kong interacts with the model layer through classes we refer to as "DAOs". This 
 Kong supports two primary datastores: [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) and [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/).
 
 <div class="alert alert-warning">
-  <strong>Note:</strong> As of 0.13.0, Kong is rolling out a new version of the DAO abstraction layer called `singletons.db`, which will gradually replace `singletons.dao`
+  <strong>Note:</strong> As of CE 0.13.0 and EE 0.32.0, Kong is rolling out a new version of the DAO abstraction layer called `singletons.db`, which will gradually replace `singletons.dao`
 </div>
 ---
 

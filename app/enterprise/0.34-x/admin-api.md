@@ -212,8 +212,8 @@ HTTP 200 OK
     "configuration" : {
         ...
     },
-    "tagline": "Welcome to Kong",
-    "version": "0.13.0"
+    "tagline": "Welcome to Kong Enterprise",
+    "version": "0.34.0"
 }
 ```
 
@@ -664,7 +664,7 @@ HTTP 204 No Content
 ## API Object
 
 <div class="alert alert-warning">
-  <p><strong>Note: The API entity was deprecated in Kong 0.13.0.</strong></p>
+  <p><strong>Note: The API entity was deprecated in Kong CE 0.13.0 and Kong EE 0.32.</strong></p>
   <p>It is strongly recommended to migrate your APIs to Routes and Services.</p>
 </div>
 
