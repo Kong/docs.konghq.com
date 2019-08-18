@@ -18,7 +18,7 @@ properties:
   Kong's configuration capabilities: the **Admin API** (`8001` by default).
 
 <div class="alert alert-warning">
-<p><strong>Note:</strong> Starting with 1.0.0, the API entity has been removed.
+<p><strong>Note:</strong> Starting with Kong 1.0.0 and Kong Enterprise 0.35, the API entity has been removed.
 This document will cover proxying with the new Routes and
 Services entities.</p>
 <p>See an older version of this document if you are using 0.12 or
@@ -981,7 +981,7 @@ Server: kong/x.y.z
 {"message":"Please use HTTPS protocol"}
 ```
 
-Since Kong 1.0 it's possible to create routes for raw TCP (not necessarily HTTP)
+Since Kong 1.0 and Kong Enterprise 0.35, it's possible to create routes for raw TCP (not necessarily HTTP)
 connections by using `"tcp"` in the `protocols` attribute:
 
 ```json
