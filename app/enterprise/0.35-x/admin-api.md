@@ -1,10 +1,5 @@
 ---
 title: Admin API
-toc: false
----
-
----
-title: Admin API
 
 toc: false
 
@@ -2544,65 +2539,12 @@ HTTP 200 OK
 }
 ```
 
-## Enterprise Exclusive Admin API
-
-<div class="docs-grid">
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/workspaces/reference">Workspaces</a>
-    </h3>
-    <p>Segment your cluster into Workspaces for specific teams.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/workspaces/reference">
-        View reference &rarr;
-    </a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/reference">RBAC</a>
-    </h3>
-    <p>Authenticate Kong Admins with Basic Auth, OIDC, LDAP, and Sessions. Authorize Admins with RBAC and Workspaces.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/reference">
-        Learn more &rarr;
-    </a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Admins</a>
-    </h3>
-    <p>Create and manage Admins for Kong Enterprise</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Learn more &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/vitals">Vitals</a>
-    </h3>
-    <p>Enable metrics about the health and performance of Kong.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/vitals">Learn more &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/audit-log">Audit Logging</a>
-    </h3>
-    <p>Generate and view audit logs.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/audit-log">Learn more &rarr;</a>
-  </div>
-</div>
-
 
 ---
 
-[clustering]: /enterprise/{{page.kong_version}}/clustering
-[cli]: /enterprise/{{page.kong_version}}/cli
-[active]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /enterprise/{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /enterprise/{{page.kong_version}}/proxy
+[clustering]: /{{page.kong_version}}/clustering
+[cli]: /{{page.kong_version}}/cli
+[active]: /{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /{{page.kong_version}}/proxy
