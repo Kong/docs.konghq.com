@@ -1,5 +1,6 @@
 ---
 title: Configuration Reference
+redirect_from: '/0.14.x/configuration/'
 ---
 
 ## Introduction
