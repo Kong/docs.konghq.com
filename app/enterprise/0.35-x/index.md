@@ -18,7 +18,7 @@ title: Kong Enterprise Documentation
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Install Kong Enterprise</a></h3>
     <p>Learn how to install Kong Enterprise with your chosen deployment method.</p>
-    <a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Chose Deployment Method &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Choose Deployment Method &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
