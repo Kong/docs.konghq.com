@@ -1,5 +1,7 @@
 ---
 title: Admin API
+redirect_from:
+  - /0.35-x/admin-api/
 toc: false
 ---
 
