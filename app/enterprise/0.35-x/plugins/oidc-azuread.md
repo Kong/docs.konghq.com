@@ -21,7 +21,7 @@ Azure AD provides two interfaces for its OAuth2/OIDC-related endpoints, v1.0 and
 
 ## Plugin Configuration
 
-Add a plugin with the configuration below to your route using an HTTP client or Kong Manager.
+Add a plugin with the configuration below to your route using an HTTP client or [Kong Manager][enable-plugin].
 
 ```bash
 $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name="openid-connect" \
@@ -85,3 +85,4 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
+[enable-plugin]: /enterprise/{{page.kong_version}}/getting-started/enable-plugin/
