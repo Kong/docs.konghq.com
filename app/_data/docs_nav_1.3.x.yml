@@ -266,6 +266,27 @@
         - text: Delete Certificate
           url: /admin-api/#delete-certificate
 
+    - text: CA Certificate Object
+      url: /admin-api/#ca-certificate-object
+      items:
+        - text: Add CA Certificate
+          url: /admin-api/#add-ca-certificate
+
+        - text: List CA Certificates
+          url: /admin-api/#list-ca-certificates
+
+        - text: Retrieve CA Certificate
+          url: /admin-api/#retrieve-ca-certificate
+
+        - text: Update CA Certificate
+          url: /admin-api/#update-ca-certificate
+
+        - text: Update Or Create CA Certificate
+          url: /admin-api/#update-or-create-ca-certificate
+
+        - text: Delete CA Certificate
+          url: /admin-api/#delete-ca-certificate
+
     - text: SNI Object
       url: /admin-api/#sni-object
       items:
@@ -322,6 +343,12 @@
 
         - text: Delete Target
           url: /admin-api/#delete-target
+
+        - text: Set Target Address As Healthy
+          url: /admin-api/#set-target-address-as-healthy
+
+        - text: Set Target Address As Unhealthy
+          url: /admin-api/#set-target-address-as-unhealthy
 
         - text: Set Target As Healthy
           url: /admin-api/#set-target-as-healthy
