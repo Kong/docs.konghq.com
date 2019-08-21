@@ -51,7 +51,7 @@ The configuration above allows users to authenticate and access the Route even t
 
 #### Domain Restrictions
 
-Azure AD does provide identity tokens with the `hd` claim, and as such the OIDC plugin's `domains` configuration cannot restrict users based on their domain. Using a [single-tenant][azure-tenant] application will restrict access to users in your directory only. Multi-tenant apps allow users with Microsoft accounts from other directories and optionally any Microsoft account (e.g. live.com or Xbox accounts) to sign in.
+Azure AD does not provide identity tokens with the `hd` claim, and as such the OIDC plugin's `domains` configuration cannot restrict users based on their domain. Using a [single-tenant][azure-tenant] application will restrict access to users in your directory only. Multi-tenant apps allow users with Microsoft accounts from other directories and optionally any Microsoft account (e.g. live.com or Xbox accounts) to sign in.
 
 #### Consumer Mapping
 
