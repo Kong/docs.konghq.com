@@ -53,6 +53,9 @@ The available commands are:
   db_import <file>                    Import a declarative config file into
                                       the Kong database.
 
+  db_export <file>                    Export the Kong database into a
+                                      declarative config file.
+
   parse <file>                        Parse a declarative config file (check
                                       its syntax) but do not load it into Kong.
 
