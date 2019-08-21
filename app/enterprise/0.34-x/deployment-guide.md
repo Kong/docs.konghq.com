@@ -38,9 +38,9 @@ redirect_from:
 ## Kong Cluster
 
 - Regardless of the datastore being adopted with Kong, the Kong nodes themselves
-  need to join in a cluster. The Kong nodes will talk to each other via their
-  connections to the database—PostgreSQL or Cassandra. Please refer to the
-  [clustering reference](/0.13.x/clustering/) for more details.
+need to join in a cluster. The Kong nodes will talk to each other via their
+connections to the database—PostgreSQL or Cassandra. Please refer to the
+[clustering reference](/enterprise/{{page.kong_version}}/clustering/) for more details.
 
 ## Production System Requirements
 
@@ -75,11 +75,11 @@ redirect_from:
   scale the system. Incoming HTTP/s requests can be processed by any server, and
   that also includes the Kong’s Admin API.
 - Every new Kong node should target the same datastore, and join the existing
-  Kong nodes in a cluster. Failure to join the Kong nodes in a Kong cluster will
-  result in data inconsistencies and errors when processing requests. Kong
-  automates joining a node in the cluster as long as the right configuration
-  settings have been provided. For more information, we recommend reading the
-  [clustering reference](/0.13.x/clustering/).
+Kong nodes in a cluster. Failure to join the Kong nodes in a Kong cluster will
+result in data inconsistencies and errors when processing requests. Kong
+automates joining a node in the cluster as long as the right configuration
+settings have been provided. For more information, we recommend reading the
+[clustering reference](/enterprise/{{page.kong_version}}/clustering/).
 
 ## Kong Performance
 
@@ -117,10 +117,10 @@ firewall settings for Kong.
 
 These are the port settings in order for Kong to work:
 
-- Allow HTTP traffic to [`proxy_listen`](/0.13.x/configuration/#proxy_listen). By default, `8000`.
-- Allow HTTPS traffic to [`proxy_listen`](/0.13.x/configuration/#proxy_listen). By default, `8443`.
-- Allow HTTP traffic to [`admin_listen`](/0.13.x/configuration/#admin_listen). By default, `8001`.
-- Allow HTTPS traffic to [`admin_listen`](/0.13.x/configuration/#admin_listen). By default, `8444`.
+- Allow HTTP traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen). By default, `8000`.
+- Allow HTTPS traffic to [`proxy_listen`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen). By default, `8443`.
+- Allow HTTP traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/property-reference/#admin_listen). By default, `8001`.
+- Allow HTTPS traffic to [`admin_listen`](/enterprise/{{page.kong_version}}/property-reference/#admin_listen). By default, `8444`.
 
 For Kong Manager:
 
@@ -137,7 +137,7 @@ For the Dev Portal:
   By default, `8446`.
 
 **Note**: since Kong CE 0.13.0—and EE 0.32—listen directives have a new
-format, described [here](/0.13.x/configuration/#proxy_listen), where instead of
+format, described [here](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen), where instead of
 specifying SSL and non-SSL ports in different configuration directives—e.g.,
 `admin_listen` and `admin_listen_ssl`—only one is required: for example, the
 listen directive for the Admin API for SSL and non-SSL ports now looks like:
@@ -235,11 +235,11 @@ the Admin API won’t be available on the old cluster for the entire process.
 
 #### Considerations before Upgrading to 0.34
 
-- Key Authentication is being deprecated in favor of Basic Authentication. _Before migrating to 0.34, anyone using Key Authentication in 0.33-x should create Basic Authentication credentials for all of their Admins._
-- Vitals will now be enabled by default. Any Admin who logs in to Kong Manager will have the ability to see charts and metrics for Workspaces they have access to.
-- The Dev Portal and Kong Manager no longer allow use of proxy ports in 0.34. Note that any previous proxies will need to be updated according to [Dev Portal Networking](enterprise/{{page.kong_version}}/developer-portal/configuration/networking/) and [Kong Manager Networking](enterprise/{{page.kong_version}}/kong-manager/configuration/networking/).
-- The Dev Portal now supports Workspaces. Existing Dev Portal configurations, files, URLs, and developers will be moved to the 'Default' Workspace. See [Working with Workspaces](/enterprise/{{page.kong_version}}/developer-portal/configuration/workspaces)
-- For a complete list of new features in 0.34, refer to the [Changelog](/enterprise/changelog).
+* Key Authentication is being deprecated in favor of Basic Authentication. *Before migrating to 0.34, anyone using Key Authentication in 0.33-x should create Basic Authentication credentials for all of their Admins.*
+* Vitals will now be enabled by default. Any Admin who logs in to Kong Manager will have the ability to see charts and metrics for Workspaces they have access to.
+* The Dev Portal and Kong Manager no longer allow use of proxy ports in 0.34. Note that any previous proxies will need to be updated according to [Dev Portal Networking](/enterprise/{{page.kong_version}}/developer-portal/configuration/networking/) and [Kong Manager Networking](/enterprise/{{page.kong_version}}/kong-manager/configuration/networking/).
+* The Dev Portal now supports Workspaces. Existing Dev Portal configurations, files, URLs, and developers will be moved to the 'Default' Workspace. See [Working with Workspaces](/enterprise/{{page.kong_version}}/developer-portal/configuration/workspaces)
+* For a complete list of new features in 0.34, refer to the [Changelog](/enterprise/changelog).
 
 #### How to Upgrade to 0.34
 
@@ -268,6 +268,6 @@ the Admin API won’t be available on the old cluster for the entire process.
 ---
 
 [cassandra-network-topology]: https://docs.datastax.com/en/cassandra/3.0/cassandra/architecture/archDataDistributeReplication.html
-[proxy]: /0.13.x/configuration/#proxy_listen
-[admin]: /0.13.x/configuration/#admin_listen
+[proxy]: /enterprise/{{page.kong_version}}/property-reference/#proxy_listen
+[admin]: /enterprise/{{page.kong_version}}/property-reference/#admin_listen
 [upgrade]: https://github.com/Kong/kong/blob/master/UPGRADE.md

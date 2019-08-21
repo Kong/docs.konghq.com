@@ -486,4 +486,4 @@ HTTP 204 No Content
 
 ---
 
-[admin api]: /{{page.kong_version}}/admin-api/
+[Admin API]: /enterprise/{{page.kong_version}}/admin-api/

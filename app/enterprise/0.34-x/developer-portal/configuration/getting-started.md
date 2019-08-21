@@ -42,7 +42,7 @@ included as subdomains e.g `http://default.localhost:8003`
 For more information on the Dev Portal properties available, checkout out the
 [Kong Enterprise Configuration Property Reference](/enterprise/{{page.kong_version}}/property-reference)
 
-> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](/0.13.x/configuration/) in order to implement this step.
+> Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](/enterprise/{{page.kong_version}}/property-reference/) in order to implement this step.
 
 <div>
  <h2>Next Steps</h2>
@@ -62,7 +62,7 @@ For more information on the Dev Portal properties available, checkout out the
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/configuration/developer-portal/smtp">SMTP Configuration</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/property-reference/developer-portal/smtp">SMTP Configuration</a></h3>
     <p>Learn how to configure the Dev Portal SMTP server.</p>
     <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/smtp">Learn more &rarr;</a>
   </div>

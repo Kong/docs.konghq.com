@@ -235,5 +235,5 @@ setup reach out to your **Support contact** or head over to the
 ## Next Steps
 
 Work through Kong Enterprise's series of 
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
+[Getting Started](/enterprise/{{page.kong_version}}/getting-started) guides to get the most
 out of Kong Enterprise.
