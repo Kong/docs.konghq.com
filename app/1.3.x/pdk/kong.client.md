@@ -231,31 +231,7 @@ kong.client.authenticate(consumer, credentials)
 [Back to TOC](#table-of-contents)
 
 
-### kong.client.get_subsystem()
-
-Returns the Nginx subsystem used by the client.  It can be
- "http" or "stream"
-
-
-**Phases**
-
-* access, header_filter, body_filter, log
-
-**Returns**
-
-* `string` a string with either `"http"` or `"stream"`
-
-
-**Usage**
-
-``` lua
-kong.client.get_subsystem() -- "http"
-```
-
-[Back to TOC](#table-of-contents)
-
-
-### _CLIENT.get_protocol(allow_terminated)
+### kong.client.get_protocol(allow_terminated)
 
 Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` or
  `"tls"`), or `nil`, if no route has been matched, which can happen when dealing with
@@ -271,9 +247,9 @@ Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` 
 
 **Returns**
 
-1.  `string|nil` `"http"`, `"https"`, `"tcp"`, `"tls"` or `nil` in case of failure
+1.  `string|nil` `"http"`, `"https"`, `"tcp"`, `"tls"` or `nil`
 
-1.  `nil|err` an error message when a failure happens. `nil` otherwise
+1.  `nil|err` nil if success, or error message if failure
 
 
 **Usage**

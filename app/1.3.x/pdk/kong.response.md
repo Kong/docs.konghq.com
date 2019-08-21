@@ -419,7 +419,12 @@ This function interrupts the current processing and produces a response.
  as-is.  It is the caller's responsibility to set the appropriate
  Content-Type header via the third argument.  As a convenience, `body` can
  be specified as a table; in which case, it will be JSON-encoded and the
- `application/json` Content-Type header will be set.
+ `application/json` Content-Type header will be set. On gRPC we cannot send
+ the `body` with this function at the moment at least, so what it does
+ instead is that it sends "body" in `grpc-message` header instead. If the
+ body is a table it looks for a field `message` in it, and uses that as a
+ `grpc-message` header. Though, if you have specified `Content-Type` header
+ starting with `application/grpc`, the body will be sent.
 
  The third, optional, `headers` argument can be a table specifying response
  headers to send. If specified, its behavior is similar to

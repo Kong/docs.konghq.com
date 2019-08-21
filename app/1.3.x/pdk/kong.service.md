@@ -87,3 +87,45 @@ kong.service.set_target("192.168.130.1", 80)
 
 [Back to TOC](#table-of-contents)
 
+
+### kong.service.set_tls_cert_key(chain, key)
+
+Sets the client certificate used while handshaking with the Service.
+
+ The `chain` argument is the client certificate and intermediate chain (if any)
+ returned by functions such as [ngx.ssl.parse\_pem\_cert](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl.md#parse_pem_cert).
+
+ The `key` argument is the private key corresponding to the client certificate
+ returned by functions such as [ngx.ssl.parse\_pem\_priv\_key](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/ssl.md#parse_pem_priv_key).
+
+
+**Phases**
+
+* `rewrite`, `access`, `balancer`
+
+**Parameters**
+
+* **chain** (cdata):  The client certificate chain
+* **key** (cdata):  The client certificate private key
+
+**Returns**
+
+1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+
+1.  `string|nil` An error message describing the error if there was one.
+
+
+**Usage**
+
+``` lua
+local chain = assert(ssl.parse_pem_cert(cert_data))
+local key = assert(ssl.parse_pem_priv_key(key_data))
+
+local ok, err = tls.set_cert_key(chain, key)
+if not ok then
+  -- do something with error
+end
+```
+
+[Back to TOC](#table-of-contents)
+
