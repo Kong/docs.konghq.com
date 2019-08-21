@@ -1,10 +1,11 @@
 ---
 title: Kong Dev Portal Documentation
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/enterprise/0.35-x/developer-portal/introduction/
 toc: false
 ---
+
 ![Welcome to the Kong Dev Portal](https://konghq.com/wp-content/uploads/2018/05/kong-portal-intro.png)
-
-
 
 <div class="docs-grid">
   <div class="docs-grid-block">
@@ -46,7 +47,5 @@ toc: false
     Edition Dev Portal.</p>
     <a href="/enterprise/changelog/#304">See changelog &rarr;</a>
   </div>
-
-
 
 </div>

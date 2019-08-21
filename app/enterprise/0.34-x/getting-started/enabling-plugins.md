@@ -1,5 +1,8 @@
 ---
 title: Enabling Plugins
+redirect_from:
+  - /enterprise/0.34-x/getting-started/enabling-plugins/enterprise/0.34-x/plugins/key-authentication
+  - /enterprise/0.34-x/getting-started/enabling-plugins/enterprise/0.34-x/plugins
 ---
 
 ## Introduction
@@ -35,7 +38,6 @@ Or, add your first plugin via Kong Manager on the "Plugins" page:
  Your browser does not support the video tag.
 </video>
 
-
 ## 2. Verify that the Plugin is Properly Configured
 
 Issue the following cURL request to verify that the [basic-auth][basic-auth]
@@ -47,7 +49,7 @@ $ curl -i -X GET \
   --header 'Host: example.com'
 ```
 
-Since you did not specify the required header or parameter, the response should 
+Since you did not specify the required header or parameter, the response should
 be `401 Unauthorized`:
 
 ```http

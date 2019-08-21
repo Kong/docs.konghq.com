@@ -1,5 +1,7 @@
 ---
 title: Admin API Audit Log
+redirect_from:
+  - /0.34-x/admin-api/
 ---
 
 ## Introduction
@@ -48,20 +50,20 @@ X-Kong-Admin-Request-ID: ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM
 {
     "database": {
         "reachable": true
-    }, 
+    },
     "server": {
-        "connections_accepted": 1, 
-        "connections_active": 1, 
-        "connections_handled": 1, 
-        "connections_reading": 0, 
-        "connections_waiting": 0, 
-        "connections_writing": 1, 
+        "connections_accepted": 1,
+        "connections_active": 1,
+        "connections_handled": 1,
+        "connections_reading": 0,
+        "connections_waiting": 0,
+        "connections_writing": 1,
         "total_requests": 1
     }
 }
 ```
 
-The above interaction with the Admin API would generate a correlating entry in the audit log table—querying the audit log via the Admin API returns the details of of the interaction above: 
+The above interaction with the Admin API would generate a correlating entry in the audit log table—querying the audit log via the Admin API returns the details of of the interaction above:
 
 ```
 $ http :8001/audit/requests
@@ -77,16 +79,16 @@ X-Kong-Admin-Request-ID: VXgMG1Y3rZKbjrzVYlSdLNPw8asVwhET
 {
     "data": [
         {
-            "client_ip": "127.0.0.1", 
-            "expire": 1544722367698, 
-            "method": "GET", 
-            "path": "/status", 
-            "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM", 
-            "request_timestamp": 1542130367699, 
-            "status": 200, 
+            "client_ip": "127.0.0.1",
+            "expire": 1544722367698,
+            "method": "GET",
+            "path": "/status",
+            "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM",
+            "request_timestamp": 1542130367699,
+            "status": 200,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
-    ], 
+    ],
     "total": 1
 }
 ```
@@ -105,17 +107,17 @@ Audit log entries are written with an awareness of the requested Workspace, and 
 {
     "data": [
         {
-            "client_ip": "127.0.0.1", 
-            "expire": 1544722999857, 
-            "method": "GET", 
-            "path": "/status", 
-            "rbac_user_id": "2e959b45-0053-41cc-9c2c-5458d0964331", 
-            "request_id": "QUtUa3RMbRLxomqcL68ilOjjl68h56xr", 
-            "request_timestamp": 1542130999858, 
-            "status": 200, 
+            "client_ip": "127.0.0.1",
+            "expire": 1544722999857,
+            "method": "GET",
+            "path": "/status",
+            "rbac_user_id": "2e959b45-0053-41cc-9c2c-5458d0964331",
+            "request_id": "QUtUa3RMbRLxomqcL68ilOjjl68h56xr",
+            "request_timestamp": 1542130999858,
+            "status": 200,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
-    ], 
+    ],
     "total": 1
 }
 ```
@@ -155,9 +157,9 @@ Transfer-Encoding: chunked
 X-Kong-Admin-Request-ID: 59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2
 
 {
-    "created_at": 1542131418000, 
-    "id": "16787ed7-d805-434a-9cec-5e5a3e5c9e4f", 
-    "type": 0, 
+    "created_at": 1542131418000,
+    "id": "16787ed7-d805-434a-9cec-5e5a3e5c9e4f",
+    "type": 0,
     "username": "bob"
 }
 
@@ -179,17 +181,17 @@ X-Kong-Admin-Request-ID: SpPaxLTkDNndzKaYiWuZl3xrxDUIiGRR
 {
     "data": [
         {
-            "client_ip": "127.0.0.1", 
-            "expire": 1544723418013, 
-            "method": "POST", 
-            "path": "/consumers", 
-            "payload": "{\"username\": \"bob\"}", 
-            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2", 
-            "request_timestamp": 1542131418014, 
-            "status": 201, 
+            "client_ip": "127.0.0.1",
+            "expire": 1544723418013,
+            "method": "POST",
+            "path": "/consumers",
+            "payload": "{\"username\": \"bob\"}",
+            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2",
+            "request_timestamp": 1542131418014,
+            "status": 201,
             "workspace": "fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2"
         }
-    ], 
+    ],
     "total": 1
 }
 ```
@@ -210,14 +212,14 @@ X-Kong-Admin-Request-ID: ZKra3QT0d3eJKl96jOUXYueLumo0ck8c
 {
     "data": [
         {
-            "dao_name": "consumers", 
-            "entity": "{\"created_at\":1542131418000,\"id\":\"16787ed7-d805-434a-9cec-5e5a3e5c9e4f\",\"username\":\"bob\",\"type\":0}", 
-            "entity_key": "16787ed7-d805-434a-9cec-5e5a3e5c9e4f", 
-            "expire": 1544723418009, 
-            "id": "7ebabee7-2b09-445d-bc1f-2092c4ddc4be", 
-            "operation": "create", 
+            "dao_name": "consumers",
+            "entity": "{\"created_at\":1542131418000,\"id\":\"16787ed7-d805-434a-9cec-5e5a3e5c9e4f\",\"username\":\"bob\",\"type\":0}",
+            "entity_key": "16787ed7-d805-434a-9cec-5e5a3e5c9e4f",
+            "expire": 1544723418009,
+            "id": "7ebabee7-2b09-445d-bc1f-2092c4ddc4be",
+            "operation": "create",
             "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2"
-        }, 
+        },
   ],
   "total": 1
 }
@@ -259,14 +261,14 @@ Audit log entries will now contain a field `signature`:
 
 ```
 {
-    "client_ip": "127.0.0.1", 
-    "expire": 1544724298663, 
-    "method": "GET", 
-    "path": "/status", 
-    "request_id": "Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0", 
-    "request_timestamp": 1542132298664, 
-    "signature": "ctD8DXJEfuFAVdlYuhay7f4kmcZhfRPjX8Q6HlSJ+67aHjJIzzrlSxWKfmxnJ7WKRvlF7bU8PX/rtu1ytLQwmzW2LpMd/WFt34PKmyOFUByslkxCdfKKNHadZ+FfINzD+JrecFdXNJrSxKKHHTxj8g6vglAcoJMmuSB6cMsAuVUbO+CL6N/WV9RfCquxxkQUfqGoyEA09EeU4uC0xa8gcYAr1FMGcu+TdRbazfBqZayrKxn8iMV/7LUefMgzUrVdC7UFjZORo5Q0wl9U/iQWU5sRGiTo/HTQmU/a7EdyX3c6Wbmg2khYJFzUIkg9JRL/YUla+yfe3AL4KwFSH90xTw==", 
-    "status": 200, 
+    "client_ip": "127.0.0.1",
+    "expire": 1544724298663,
+    "method": "GET",
+    "path": "/status",
+    "request_id": "Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0",
+    "request_timestamp": 1542132298664,
+    "signature": "ctD8DXJEfuFAVdlYuhay7f4kmcZhfRPjX8Q6HlSJ+67aHjJIzzrlSxWKfmxnJ7WKRvlF7bU8PX/rtu1ytLQwmzW2LpMd/WFt34PKmyOFUByslkxCdfKKNHadZ+FfINzD+JrecFdXNJrSxKKHHTxj8g6vglAcoJMmuSB6cMsAuVUbO+CL6N/WV9RfCquxxkQUfqGoyEA09EeU4uC0xa8gcYAr1FMGcu+TdRbazfBqZayrKxn8iMV/7LUefMgzUrVdC7UFjZORo5Q0wl9U/iQWU5sRGiTo/HTQmU/a7EdyX3c6Wbmg2khYJFzUIkg9JRL/YUla+yfe3AL4KwFSH90xTw==",
+    "status": 200,
     "workspace": "fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2"
 }
 ```
@@ -321,19 +323,19 @@ HTTP 200 OK
 
 ```json
 {
-    "data": [
-        {
-            "client_ip": "127.0.0.1",
-            "expire": 1544722367698,
-            "method": "GET", 
-            "path": "/status", 
-            "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM",
-            "request_timestamp": 1542130367699,
-            "status": 200, 
-            "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
-        }
-    ], 
-    "total": 1
+  "data": [
+    {
+      "client_ip": "127.0.0.1",
+      "expire": 1544722367698,
+      "method": "GET",
+      "path": "/status",
+      "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM",
+      "request_timestamp": 1542130367699,
+      "status": 200,
+      "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
+    }
+  ],
+  "total": 1
 }
 ```
 
@@ -351,16 +353,16 @@ HTTP 200 OK
 
 ```json
 {
-    "data": [
-        {
-            "dao_name": "consumers",
-            "entity": "{\"created_at\":1542131418000,\"id\":\"16787ed7-d805-434a-9cec-5e5a3e5c9e4f\",\"username\":\"bob\",\"type\":0}",
-            "entity_key": "16787ed7-d805-434a-9cec-5e5a3e5c9e4f",
-            "expire": 1544723418009,
-            "id": "7ebabee7-2b09-445d-bc1f-2092c4ddc4be",
-            "operation": "create",
-            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2"
-        },
+  "data": [
+    {
+      "dao_name": "consumers",
+      "entity": "{\"created_at\":1542131418000,\"id\":\"16787ed7-d805-434a-9cec-5e5a3e5c9e4f\",\"username\":\"bob\",\"type\":0}",
+      "entity_key": "16787ed7-d805-434a-9cec-5e5a3e5c9e4f",
+      "expire": 1544723418009,
+      "id": "7ebabee7-2b09-445d-bc1f-2092c4ddc4be",
+      "operation": "create",
+      "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2"
+    }
   ],
   "total": 1
 }
@@ -370,7 +372,7 @@ HTTP 200 OK
 
 ### Configuration Reference
 
-See the [Data & Admin Audit](/enterprise/{{page.kong_version}}/property-reference#data--admin-audit) 
+See the [Data & Admin Audit](/enterprise/{{page.kong_version}}/property-reference#data--admin-audit)
 section of Kong Enterprise's Configuration Property Reference.
 
 [Back to TOC](#table-of-contents)

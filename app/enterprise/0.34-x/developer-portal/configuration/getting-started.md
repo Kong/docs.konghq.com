@@ -1,13 +1,15 @@
 ---
 title: Getting Started with the Kong Dev Portal
+redirect_from:
+  - /enterprise/0.34-x/developer-portal/configuration/property-reference
 book: portal
 chapter: 3
 toc: false
 ---
 
-## Enable the Kong Dev Portal 
+## Enable the Kong Dev Portal
 
-To enable the Dev Portal, the following properties must be set in the Kong 
+To enable the Dev Portal, the following properties must be set in the Kong
 configuration file (`kong.conf`):
 
 ```
@@ -24,25 +26,23 @@ Kong must be **restarted** for these values to take effect.
 - The **Dev Portal Files endpoint** can be accessed at `:8001/files`
 - The **Public Dev Portal Files API** can be accessed at `:8004/files`
 
-
-*Optional*
+_Optional_
 
 ```
 smtp_mock = on
 portal_gui_use_subdomains = on
 ```
+
 When `smtp_mock` is enabled, Kong will not attempt to send actual emails. This
 is useful for testing purposes.
 
-When `portal_gui_use_subdomains` is enabled Dev Portal workspace urls will be 
+When `portal_gui_use_subdomains` is enabled Dev Portal workspace urls will be
 included as subdomains e.g `http://default.localhost:8003`
 
-For more information on the Dev Portal properties available, checkout out the 
+For more information on the Dev Portal properties available, checkout out the
 [Kong Enterprise Configuration Property Reference](/enterprise/{{page.kong_version}}/property-reference)
 
 > Note: Not all deployments of Kong utilize a configuration file, if this describes you (or you are unsure) please reference the [Kong configuration docs](/0.13.x/configuration/) in order to implement this step.
-
-
 
 <div>
  <h2>Next Steps</h2>
