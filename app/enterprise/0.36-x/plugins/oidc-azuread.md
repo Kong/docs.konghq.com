@@ -25,7 +25,7 @@ Add a plugin with the configuration below to your route using an HTTP client or 
 
 ```bash
 $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name="openid-connect" \
-  --data config.issuer="https://login.microsoftonline.com/YOUR_DIRECTORY_ID/.well-known/openid-configuration" \
+  --data config.issuer="https://login.microsoftonline.com/YOUR_DIRECTORY_ID/v2.0/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID" \
   --data config.client_secret="YOUR_CLIENT_SECRET" \
   --data config.redirect_uri="https://example.com/api" \
