@@ -1,5 +1,7 @@
 ---
 title: Plugin Development - Introduction
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/1.2.x/plugin-development/
 book: plugin_dev
 chapter: 1
 ---
@@ -12,11 +14,11 @@ especially how it integrates with Nginx and what Lua has to do with it.
 [lua-nginx-module] enables Lua scripting capabilities in Nginx. Instead of
 compiling Nginx with this module, Kong is distributed along with
 [OpenResty](https://openresty.org/), which already includes lua-nginx-module.
-OpenResty is *not* a fork of Nginx, but a bundle of modules extending its
+OpenResty is _not_ a fork of Nginx, but a bundle of modules extending its
 capabilities.
 
 Hence, Kong is a Lua application designed to load and execute Lua modules
-(which we more commonly refer to as "*plugins*") and provides an entire
+(which we more commonly refer to as "_plugins_") and provides an entire
 development environment for them, including an SDK, database abstractions,
 migrations, and more.
 
@@ -34,4 +36,4 @@ PDK, see the [Plugin Development Kit] reference.
 Next: [File structure of a plugin &rsaquo;]({{page.book.next}})
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
-[Plugin Development Kit]: /{{page.kong_version}}/pdk
+[plugin development kit]: /{{page.kong_version}}/pdk

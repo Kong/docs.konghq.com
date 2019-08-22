@@ -1,10 +1,12 @@
 ---
 title: Proxy Reference
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/1.2.x/proxy/
 ---
 
 ## Introduction
 
-In this document we will cover Kong's **proxying capabilities**  by explaining
+In this document we will cover Kong's **proxying capabilities** by explaining
 its routing capabilities and internal workings in details.
 
 Kong exposes several interfaces which can be tweaked by two configuration
@@ -27,7 +29,7 @@ below.</p>
 
 ## Terminology
 
-- `client`: Refers to the *downstream* client making requests to Kong's
+- `client`: Refers to the _downstream_ client making requests to Kong's
   proxy port.
 - `upstream service`: Refers to your own API/service sitting behind Kong, to
   which client requests are forwarded.
@@ -75,7 +77,7 @@ Server: kong/<x.x.x>
 ## Reminder: How to configure a Service
 
 The [Configuring a Service][configuring-a-service] quickstart guide explains
-how Kong is configured via the [Admin API][API].
+how Kong is configured via the [Admin API][api].
 
 Adding a Service to Kong is done by sending an HTTP request to the Admin API:
 
@@ -170,9 +172,9 @@ Let's go through a few examples. Consider a Route configured like this:
 
 ```json
 {
-    "hosts": ["example.com", "foo-service.com"],
-    "paths": ["/foo", "/bar"],
-    "methods": ["GET"]
+  "hosts": ["example.com", "foo-service.com"],
+  "paths": ["/foo", "/bar"],
+  "methods": ["GET"]
 }
 ```
 
@@ -287,7 +289,7 @@ A complete example would look like this:
 
 ```json
 {
-    "hosts": ["*.example.com", "service.com"]
+  "hosts": ["*.example.com", "service.com"]
 }
 ```
 
@@ -316,10 +318,10 @@ configured like so:
 
 ```json
 {
-    "hosts": ["service.com"],
-    "service": {
-        "id": "..."
-    }
+  "hosts": ["service.com"],
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -342,11 +344,11 @@ However, by explicitly configuring a Route with `preserve_host=true`:
 
 ```json
 {
-    "hosts": ["service.com"],
-    "preserve_host": true,
-    "service": {
-        "id": "..."
-    }
+  "hosts": ["service.com"],
+  "preserve_host": true,
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -377,7 +379,7 @@ For example, with a Route configured like so:
 
 ```json
 {
-    "paths": ["/service", "/hello/world"]
+  "paths": ["/service", "/hello/world"]
 }
 ```
 
@@ -418,7 +420,7 @@ For example, if we consider the following Route:
 
 ```json
 {
-    "paths": ["/users/\d+/profile", "/following"]
+  "paths": ["/users/d+/profile", "/following"]
 }
 ```
 
@@ -449,20 +451,20 @@ This means that considering the following Routes:
 
 ```json
 [
-    {
-        "paths": ["/status/\d+"],
-        "regex_priority": 0
-    },
-    {
-        "paths": ["/version/\d+/status/\d+"],
-        "regex_priority": 6
-    },
-    {
-        "paths": ["/version"],
-    },
-    {
-        "paths": ["/version/any/"],
-    }
+  {
+    "paths": ["/status/d+"],
+    "regex_priority": 0
+  },
+  {
+    "paths": ["/version/d+/status/d+"],
+    "regex_priority": 6
+  },
+  {
+    "paths": ["/version"]
+  },
+  {
+    "paths": ["/version/any/"]
+  }
 ]
 ```
 
@@ -529,7 +531,7 @@ HTTP/1.1 201 Created
 
 Note that `curl` does not automatically URL encode your payload, and note the
 usage of `--data-urlencode`, which prevents the `+` character to be URL decoded
-and interpreted as a space ` ` by Kong's Admin API.
+and interpreted as a space `` by Kong's Admin API.
 
 [Back to TOC](#table-of-contents)
 
@@ -541,11 +543,11 @@ property by configuring a Route like so:
 
 ```json
 {
-    "paths": ["/service"],
-    "strip_path": true,
-    "service": {
-        "id": "..."
-    }
+  "paths": ["/service"],
+  "strip_path": true,
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -572,11 +574,11 @@ Example:
 
 ```json
 {
-    "paths": ["/version/\d+/service"],
-    "strip_path": true,
-    "service": {
-        "id": "..."
-    }
+  "paths": ["/version/d+/service"],
+  "strip_path": true,
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -599,17 +601,17 @@ Host: ...
 ### Request HTTP method
 
 The `methods` field allows matching the requests depending on their HTTP
-method.  It accepts multiple values. Its default value is empty (the HTTP
+method. It accepts multiple values. Its default value is empty (the HTTP
 method is not used for routing).
 
 The following Route allows routing via `GET` and `HEAD`:
 
 ```json
 {
-    "methods": ["GET", "HEAD"],
-    "service": {
-        "id": "..."
-    }
+  "methods": ["GET", "HEAD"],
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -648,19 +650,19 @@ Routes with the most rules**.
 For example, if two Routes are configured like so:
 
 ```json
-{
-    "hosts": ["example.com"],
-    "service": {
-        "id": "..."
-    }
+({
+  "hosts": ["example.com"],
+  "service": {
+    "id": "..."
+  }
 },
 {
-    "hosts": ["example.com"],
-    "methods": ["POST"],
-    "service": {
-        "id": "..."
-    }
-}
+  "hosts": ["example.com"],
+  "methods": ["POST"],
+  "service": {
+    "id": "..."
+  }
+})
 ```
 
 The second Route has a `hosts` field **and** a `methods` field, so it will be
@@ -691,8 +693,8 @@ Kong.
 
 The proxying rules above detail how Kong forwards incoming requests to your
 upstream services. Below, we detail what happens internally between the time
-Kong *matches* an HTTP request with a registered Route, and the actual
-*forwarding* of the request.
+Kong _matches_ an HTTP request with a registered Route, and the actual
+_forwarding_ of the request.
 
 [Back to TOC](#table-of-contents)
 
@@ -738,10 +740,10 @@ properties of a Service:
   establishing a connection to your upstream service. Defaults to `60000`.
 - `upstream_send_timeout`: defines in milliseconds a timeout between two
   successive write operations for transmitting a request to your upstream
-  service.  Defaults to `60000`.
+  service. Defaults to `60000`.
 - `upstream_read_timeout`: defines in milliseconds a timeout between two
   successive read operations for receiving a request from your upstream
-  service.  Defaults to `60000`.
+  service. Defaults to `60000`.
 
 Kong will send the request over HTTP/1.1, and set the following headers:
 
@@ -795,7 +797,7 @@ the next upstream.
 There are two configurable elements here:
 
 1. The number of retries: this can be configured per Service using the
-   `retries` property. See the [Admin API][API] for more details on this.
+   `retries` property. See the [Admin API][api] for more details on this.
 
 2. What exactly constitutes an error: here Kong uses the Nginx defaults, which
    means an error or timeout occurring while establishing a connection with the
@@ -851,10 +853,10 @@ Here is an example of such a fallback Route:
 
 ```json
 {
-    "paths": ["/"],
-    "service": {
-        "id": "..."
-    }
+  "paths": ["/"],
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -873,7 +875,7 @@ wish on this Route.
 Kong provides a way to dynamically serve SSL certificates on a per-connection
 basis. SSL certificates are directly handled by the core, and configurable via
 the Admin API. Clients connecting to Kong over TLS must support the [Server
-Name Indication][SNI] extension to make use of this feature.
+Name Indication][sni] extension to make use of this feature.
 
 SSL certificates are handled by two resources in the Kong Admin API:
 
@@ -882,7 +884,7 @@ SSL certificates are handled by two resources in the Kong Admin API:
   Indication.
 
 You can find the documentation for those two resources in the
-[Admin API Reference][API].
+[Admin API Reference][api].
 
 Here is how to configure an SSL certificate on a given Route: first, upload
 your SSL certificate and key via the Admin API:
@@ -902,16 +904,16 @@ associating the uploaded certificate to it.
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.ssl-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
 rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
-single `sni` configured with a wildcard name can be used to match multiple 
-subdomains, instead of creating an SNI for each. 
+single `sni` configured with a wildcard name can be used to match multiple
+subdomains, instead of creating an SNI for each.
 
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
 Matching of `snis` respects the following priority:
 
- 1. plain (no wildcard)
- 2. prefix
- 3. suffix
+1.  plain (no wildcard)
+2.  prefix
+3.  suffix
 
 You must now register the following Route within Kong. We will match requests
 to this Route using only the Host header for convenience:
@@ -949,20 +951,20 @@ A Route with `http` and `https` will accept traffic in both protocols.
 
 ```json
 {
-    "hosts": ["..."],
-    "paths": ["..."],
-    "methods": ["..."],
-    "protocols": ["http", "https"],
-    "service": {
-        "id": "..."
-    }
+  "hosts": ["..."],
+  "paths": ["..."],
+  "methods": ["..."],
+  "protocols": ["http", "https"],
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
 Not specifying any protocol has the same effect, since routes default to
 `["http", "https"]`.
 
-However, a Route with *only* `https` would _only_ accept traffic over HTTPS. It
+However, a Route with _only_ `https` would _only_ accept traffic over HTTPS. It
 would _also_ accept unencrypted traffic _if_ SSL termination previously
 occurred from a trusted IP. SSL termination is considered valid when the
 request comes from one of the configured IPs in
@@ -971,13 +973,13 @@ header is set:
 
 ```json
 {
-    "hosts": ["..."],
-    "paths": ["..."],
-    "methods": ["..."],
-    "protocols": ["https"],
-    "service": {
-        "id": "..."
-    }
+  "hosts": ["..."],
+  "paths": ["..."],
+  "methods": ["..."],
+  "protocols": ["https"],
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -1000,13 +1002,13 @@ connections by using `"tcp"` in the `protocols` attribute:
 
 ```json
 {
-    "hosts": ["..."],
-    "paths": ["..."],
-    "methods": ["..."],
-    "protocols": ["tcp"],
-    "service": {
-        "id": "..."
-    }
+  "hosts": ["..."],
+  "paths": ["..."],
+  "methods": ["..."],
+  "protocols": ["tcp"],
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
@@ -1015,17 +1017,17 @@ the `"tls"` value:
 
 ```json
 {
-    "hosts": ["..."],
-    "paths": ["..."],
-    "methods": ["..."],
-    "protocols": ["tls"],
-    "service": {
-        "id": "..."
-    }
+  "hosts": ["..."],
+  "paths": ["..."],
+  "methods": ["..."],
+  "protocols": ["tls"],
+  "service": {
+    "id": "..."
+  }
 }
 ```
 
-A Route with *only* `TLS` would _only_ accept traffic over TLS.
+A Route with _only_ `TLS` would _only_ accept traffic over TLS.
 
 It is also possible to accept both TCP and TLS simultaneously:
 
@@ -1042,14 +1044,13 @@ It is also possible to accept both TCP and TLS simultaneously:
 
 ```
 
-
 [Back to TOC](#table-of-contents)
 
 ## Proxy WebSocket traffic
 
 Kong supports WebSocket traffic thanks to the underlying Nginx implementation.
 When you wish to establish a WebSocket connection between a client and your
-upstream services *through* Kong, you must establish a WebSocket handshake.
+upstream services _through_ Kong, you must establish a WebSocket handshake.
 This is done via the HTTP Upgrade mechanism. This is what your client request
 made to Kong would look like:
 
@@ -1109,10 +1110,9 @@ just covered.
 [configuration-reference]: /{{page.kong_version}}/configuration-reference
 [configuration-trusted-ips]: /{{page.kong_version}}/configuration/#trusted_ips
 [configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
-[API]: /{{page.kong_version}}/admin-api
+[api]: /{{page.kong_version}}/admin-api
 [service-entity]: /{{page.kong_version}}/admin-api/#add-service
 [route-entity]: /{{page.kong_version}}/admin-api/#add-route
-
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
 [ngx-http-realip-module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
 [ngx-remote-addr-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr
@@ -1120,4 +1120,4 @@ just covered.
 [ngx-host-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_host
 [ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
-[SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication
+[sni]: https://en.wikipedia.org/wiki/Server_Name_Indication
