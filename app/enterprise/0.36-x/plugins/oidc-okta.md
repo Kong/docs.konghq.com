@@ -20,18 +20,17 @@ In Okta, you must [register an Application][okta-register-app] and choose the ap
 
 ## Plugin Configuration
 
-Add a plugin with the configuration below to your route using an HTTP client or Kong Manager.
+Add a plugin with the configuration below to your route using an HTTP client or [Kong Manager][enable-plugin].
 
 ```bash
 $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name="openid-connect" \
-  --data config.issuer="https://{YOUR_OKTA_DOMAIN}/oauth2/${YOUR_AUTH_SERVER}/.well-known/openid-configuration" \
+  --data config.issuer="https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID" \
   --data config.client_secret="YOUR_CLIENT_SECRET" \
   --data config.redirect_uri="https://example.com/api" \
   --data config.scopes="openid" \
   --data config.scopes="email" \
   --data config.scopes="profile"
-
 ```
 
 Several pieces of configuration above must use values specific to your environment:
@@ -79,3 +78,4 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [add-certificate]: /1.0.x/admin-api/#add-certificate
 [add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
+[enable-plugin]: /enterprise/{{page.kong_version}}/getting-started/enable-plugin/

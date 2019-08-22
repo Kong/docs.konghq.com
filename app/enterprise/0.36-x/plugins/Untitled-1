@@ -31,6 +31,7 @@ $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name
   --data config.scopes="openid" \
   --data config.scopes="email" \
   --data config.scopes="profile"
+
 ```
 
 Several pieces of configuration above must use values specific to your environment:
