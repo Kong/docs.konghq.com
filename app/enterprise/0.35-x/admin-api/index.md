@@ -1,12 +1,5 @@
 ---
 title: Admin API
-toc: false
----
-
----
-title: Admin API
-
-toc: false
 
 service_body: |
     Attributes | Description
@@ -255,6 +248,29 @@ sni_data: |
         "name": "my-sni",
         "created_at": 1422386534,
         "certificate": {"id":"02621eee-8309-4bf6-b36b-a82017a5393e"}
+    }],
+
+certificate_authority_body: |
+    Attributes | Description
+    ---:| ---
+    `cert` | PEM-encoded public CA certificate.
+
+certificate_authority_json: |
+    {
+        "id": "322dce96-d434-4e0d-9038-311b3520f0a3",
+        "created_at": 1566597621,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+    }
+
+certificate_authority_data: |
+    "data": [{
+        "id": "322dce96-d434-4e0d-9038-311b3520f0a3",
+        "created_at": 1566597621,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+    }, {
+        "id": "43629afd-bda5-4248-94cb-5cc4029909bb",
+        "created_at": 1566597621,
+        "cert": "-----BEGIN CERTIFICATE-----...",
     }],
 
 upstream_body: |
@@ -2046,6 +2062,169 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
+---
+
+## Certificate Authority Object
+
+A certificate authority authority object represents a public CA certificate.
+These objects are used by Kong to verify client certificates presented to the mTLS plugin.
+
+
+```json
+{{ page.certificate_authority_json }}
+```
+
+### Add Certificate Authority
+
+##### Create Certificate Authority
+
+<div class="endpoint post">/ca_certificates</div>
+
+
+*Request Body*
+
+{{ page.certificate_authority_body }}
+
+
+*Response*
+
+```
+HTTP 201 Created
+```
+
+```json
+{{ page.certificate_authority_json }}
+```
+
+
+---
+
+### List Certificate Authorities
+
+##### List all Certificate Authorities
+
+<div class="endpoint get">/ca_certificates</div>
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+{{ page.certificate_authority_data }}
+    "next": "http://localhost:8001/ca_certificates?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+}
+```
+
+
+---
+
+### Retrieve Certificate Authority
+
+##### Retrieve Certificate Authority
+
+<div class="endpoint get">/ca_certificates/{certificate authority id}</div>
+
+Attributes | Description
+---:| ---
+`certificate authority id`<br>**required** | The unique identifier of the certificate authority to retrieve.
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.certificate_authority_json }}
+```
+
+
+---
+
+### Update Certificate Authority
+
+##### Update Certificate Authority
+
+<div class="endpoint patch">/ca_certificates/{certificate authority id}</div>
+
+Attributes | Description
+---:| ---
+`certificate authority id`<br>**required** | The unique identifier of the certificate authority to update.
+
+
+*Request Body*
+
+{{ page.certificate_authority_body }}
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.certificate_authority_json }}
+```
+
+
+---
+
+### Update or create Certificate Authority
+
+##### Create or update Certificate Authority
+
+<div class="endpoint put">/ca_certificates/{certificate authority id}</div>
+
+Attributes | Description
+---:| ---
+`certificate authority id`<br>**required** | The unique identifier of the certificate authority to create or update.
+
+
+*Request Body*
+
+{{ page.certificate_authority_body }}
+
+
+Inserts (or replaces) the certificate authority under the requested resource with the
+definition specified in the body. The certificate authority will be identified via the ` id` attribute.
+
+When creating a new certificate authority without specifying `id` (neither in the URL nor in
+the body), then it will be auto-generated.
+
+
+*Response*
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+See POST and PATCH responses.
+
+
+---
+
+### Delete Certificate Authority
+
+##### Delete Certificate Authority
+
+<div class="endpoint delete">/ca_certificates/{certificate authority id}</div>
+
+Attributes | Description
+---:| ---
+`certificate authority id`<br>**required** | The unique identifier of the certificate authority to delete.
+
+
+*Response*
+
+```
+HTTP 204 No Content
+```
 
 ---
 
