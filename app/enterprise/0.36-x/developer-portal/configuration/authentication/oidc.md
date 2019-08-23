@@ -130,5 +130,5 @@ portal_auth="openid-connect"
 Then set `portal_auth_conf` property to your
 customized [**Configuration JSON Object**](#/sample-configuration-object)
 
-This will set every Dev Portal to use OIDC by default when
+This configuration will set every Dev Portal to use OIDC by default when
 initialized, regardless of Workspace.
