@@ -28,7 +28,7 @@ OIDC for the Dev Portal can be enabled in three ways:
 
 Session Plugin Config does not apply when using OpenID Connect. Any session
 configuration is defined in the configuration object itself and not
-in a seperate portal session configuration object as it is with other Dev Portal authentication options.
+in a separate portal session configuration object as it is with other Dev Portal authentication options.
 
 ### Sample Configuration Object
 
