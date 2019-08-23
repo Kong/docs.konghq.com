@@ -82,7 +82,7 @@ Example:
 }
 ```
 
-The values above can be replaced with their corresponding values for a custom
+The values above must be replaced with their corresponding values for a custom
 OIDC configuration:
 * `<CLIENT_ID>` - Client ID provided by IdP. For Example, Google credentials can be found here: https://console.cloud.google.com/projectselector/apis/credentials
 * `<CLIENT_SECRET>` - Client secret provided by IdP
