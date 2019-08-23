@@ -21,10 +21,14 @@ OIDC for the Dev Portal can be enabled in three ways:
 - via the [the command line](#enable-oidc-via-the-command-line)
 - via the [the Kong configuration file](#enable-oidc-via-the-kongconf)
 
+**Warning:** Configuring OIDC authentication for Dev Portal via Kong Manger or with the Admin API will take precedence over any kong.conf 'portal_auth_conf' configuration. Be sure to use only one of the configuration methods.  
+
 
 ### Portal Session Plugin Config
 
-Session Plugin Config does not apply when using OpenID Connect.
+Session Plugin Config does not apply when using OpenID Connect. Any session
+configuration is defined in the configuration object itself and not
+in a seperate portal session configuration object as it is with other Dev Portal authentication options.
 
 ### Sample Configuration Object
 
@@ -40,8 +44,8 @@ Provder:
   "client_id": ["<CLIENT-ID>"],
   "login_action": "redirect",
   "logout_redirect_uri": ["http://localhost:8003 (http://localhost:8003/)"],
-  "ssl_verify": false,
   "consumer_claim": ["email"],
+  "redirect_uri": ["https://localhost:8004/auth"],
   "forbidden_redirect_uri": ["http://localhost:8003/unauthorized"],
   "client_secret": ["<CLIENT_SECRET>"],
   "issuer": "https://accounts.google.com/",
@@ -49,16 +53,7 @@ Provder:
   "login_redirect_uri": ["http://localhost:8003 (http://localhost:8003/)"],
   "login_redirect_mode": "query"
 }
-
 ```
-
-The values above can be replaced with their corresponding values for a custom
-OIDC configuration:
-
-  - `<CLIENT_ID>` - Client ID provided by IdP
-        * For Example, Google credentials can be found here:
-        https://console.cloud.google.com/projectselector/apis/credentials
-  - `<CLIENT_SECRET>` - Client secret provided by IdP
 
 If `portal_gui_host` and `portal_api_url` are set to share a domain but differ
 in regards to subdomain, `redirect_uri` and `session_cookie_domain` need to be
@@ -76,9 +71,8 @@ Example:
   "login_redirect_uri": ["https://example.portal.com (https://example.portal.com/)"],
   "login_action": "redirect",
   "logout_redirect_uri": ["https://example.portal.com (https://example.portal.com/)"],
-  "ssl_verify": false,
   "consumer_claim": ["email"],
-  "redirect_uri": ["https://exampleapi.portal.com/auth"],
+  "redirect_uri": ["https://example.portalapi.com/auth"],
   "session_cookie_domain": ".portal.com",
   "forbidden_redirect_uri": ["https://example.portal.com/unauthorized"],
   "client_secret": ["<CLIENT_SECRET"],
@@ -86,8 +80,14 @@ Example:
   "logout_methods": ["GET"],
   "login_redirect_mode": "query"
 }
-
 ```
+
+The values above can be replaced with their corresponding values for a custom
+OIDC configuration:
+* `<CLIENT_ID>` - Client ID provided by IdP. For Example, Google credentials can be found here: https://console.cloud.google.com/projectselector/apis/credentials
+* `<CLIENT_SECRET>` - Client secret provided by IdP
+* The `redirect_uri` the Portal API's '/auth' endpoint.
+* The `session_cookie_domain` is the shared domain of the portal GUI `portal_gui_host` and portal API `portal_api_url` if they have different subdomains.
 
 ### Enable OIDC via Kong Manager
 
@@ -112,8 +112,8 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   "config.portal_auth_conf=<REPLACE WITH JSON CONFIG OBJECT>
 ```
 
->**Warning** This will automatically authenticate the Dev Portal with Key
->Auth. Anyone currently viewing the Dev Portal will lose access on the
+>**Warning** This will automatically authenticate the Dev Portal with OIDC
+>. Anyone currently viewing the Dev Portal will lose access on the
 >next page refresh.
 
 ### Enable OIDC via the Kong.conf
@@ -130,5 +130,5 @@ portal_auth="openid-connect"
 Then set `portal_auth_conf` property to your
 customized [**Configuration JSON Object**](#/sample-configuration-object)
 
-This will set every Dev Portal to use Key Authentication by default when
+This will set every Dev Portal to use OIDC by default when
 initialized, regardless of Workspace.
