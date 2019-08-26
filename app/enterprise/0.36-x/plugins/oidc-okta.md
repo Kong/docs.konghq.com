@@ -60,7 +60,7 @@ $ curl -i -X POST http://admin.kong.example/consumers/ \
 
 $ curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_by="custom_id" \
-  --data config.consumer_claim="oid"
+  --data config.consumer_claim="sub"
 ```
 
 Now, if a user logs into an Okta account with the GUID `e5634b31-d67f-4661-a6fb-b6cb77849bcf`, Kong will apply configuration associated with the consumer `Yoda` to their requests. 
