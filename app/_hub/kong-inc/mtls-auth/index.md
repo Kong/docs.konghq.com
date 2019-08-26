@@ -57,6 +57,22 @@ then the response will be `HTTP 401` "No required TLS certificate was sent". Tha
 option was configured on the plugin, in which case the anonymous **Consumer** will be used
 and the request will be allowed to proceed.
 
+### Adding certificate authorities
+
+In order to use this plugin, you must add certificate authority certificates. These are stored in a separate ca-certificates store rather than the main certificates store, as they do not require private keys. To add one, obtain a PEM-encoded copy of your CA certificate and POST it to `/ca_certificates`:
+
+```bash
+$ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
+{
+  "tags": null,
+  "created_at": 1566597621,
+  "cert": "-----BEGIN CERTIFICATE-----\FullPEMOmittedForBrevity==\n-----END CERTIFICATE-----\n",
+  "id": "322dce96-d434-4e0d-9038-311b3520f0a3"
+}
+```
+
+The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
+
 ### Create manual mappings between certificate and Consumer object
 
 Sometimes you may not wish to use automatic Consumer lookup or you have certificates
