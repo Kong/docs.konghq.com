@@ -1,5 +1,6 @@
 ---
 title: RBAC Overview
+redirect_from: '/enterprise/0.33-x/plugins/rbac-api/'
 book: rbac
 chapter: 1
 ---
@@ -34,7 +35,7 @@ also allows Entity-Level permissions. As such, its configuration directive
 possible values is:
 
 - `on`: similarly to the previous RBAC implementation, applies Endpoint-level
-access control
+  access control
 - `entity`: applies **only** Entity-level access control
 - `both`: applies **both Endpoint and Entity level access control**
 - `off`: disables RBAC enforcement
@@ -138,19 +139,20 @@ As concrete examples, let's say we want to create a role implementing the
 following use cases:
 
 - A permission that allows a Role (or, more precisely, users in that role), to
-perform any action, over any workspace, and any endpoint:
-  * `endpoint`: `*` - the `*` matches **any** endpoint
-  * `actions`: `*` - the `*` matches **any** action
-  * `workspace`: `*` - the `*` matches **any** workspace
-  * `negative`: `false`
+  perform any action, over any workspace, and any endpoint:
+
+  - `endpoint`: `*` - the `*` matches **any** endpoint
+  - `actions`: `*` - the `*` matches **any** action
+  - `workspace`: `*` - the `*` matches **any** workspace
+  - `negative`: `false`
 
 - Now, I want to explicitly **disallow** write access to the `/rbac/users`
-endpoint, so that users in the Role cannot create, update, or delete my RBAC
-users:
-  * `endpoint`: `/rbac/users`
-  * `actions`: `create,update,delete`
-  * `workspace`: `*`
-  * `negative`: `true`
+  endpoint, so that users in the Role cannot create, update, or delete my RBAC
+  users:
+  - `endpoint`: `/rbac/users`
+  - `actions`: `create,update,delete`
+  - `workspace`: `*`
+  - `negative`: `true`
 
 For more examples, along with API calls, check out the
 [RBAC Examples Chapter][rbac-examples].
@@ -174,9 +176,9 @@ boilerplate RBAC entities. The default permissions are:
 
 - **read-only** This role has read access to all default Kong endpoints
 - **admin** This role has read, create, update, and delete access to all Kong
-endpoints, except for the RBAC Admin API
+  endpoints, except for the RBAC Admin API
 - **super-admin** This role has read, create, update, and delete access to all
-Kong endpoints, including the RBAC Admin API
+  Kong endpoints, including the RBAC Admin API
 
 Kong does not provide any users by default, as this would be a
 backdoor into Admin API security. As such, it the administrator's responsibility

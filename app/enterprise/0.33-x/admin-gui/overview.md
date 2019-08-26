@@ -1,5 +1,9 @@
 ---
 title: Welcome to the Kong Admin GUI
+redirect_from:
+  - /0.33-x/admin-api/
+  - /0.33-x/api-admin-gui/
+  - /enterprise/0.33-x/admin-gui
 book: admin_gui
 chapter: 1
 toc: false
@@ -13,8 +17,8 @@ Thank you for installing Kong Enterprise Edition. This document orients you to K
 
 ## Assumptions
 
-* You have installed a recent version of Kong Enterprise Edition.
-* You are a Kong Admin, and have Super Admin permissions in Kong RBAC.
-    * Or, the RBAC feature of Kong EE is disabled.
+- You have installed a recent version of Kong Enterprise Edition.
+- You are a Kong Admin, and have Super Admin permissions in Kong RBAC.
+  - Or, the RBAC feature of Kong EE is disabled.
 
 Next: [Getting Started &rsaquo;]({{page.book.next}})
