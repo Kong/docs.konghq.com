@@ -1,5 +1,7 @@
 ---
 title: Kong Vitals
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/enterprise/0.35-x/admin-api/vitals/
 ---
 
 ### Introduction
@@ -31,13 +33,14 @@ $ export KONG_VITALS=on
 $ export KONG_VITALS=off
 ```
 
-Kong must be restarted for these changes to take effect. 
+Kong must be restarted for these changes to take effect.
 
 ## Vitals Metrics
 
 Vitals metrics fall into two categories:
-* Health Metrics - for monitoring the health of a Kong cluster
-* Traffic Metrics — for monitoring the usage of upstream services
+
+- Health Metrics - for monitoring the health of a Kong cluster
+- Traffic Metrics — for monitoring the usage of upstream services
 
 Within these categories, Vitals collects the following metrics:
 
@@ -60,7 +63,7 @@ Within these categories, Vitals collects the following metrics:
     - [Total Status Codes per Consumer per Route](#total-status-codes-per-consumer-per-route)
 
 All metrics are collected at 1-second intervals and aggregated into 1-minute
-intervals. The 1-second intervals are retained for one hour. The 1-minute 
+intervals. The 1-second intervals are retained for one hour. The 1-minute
 intervals are retained for 25 hours.
 
 If longer retention times are needed, the Vitals API can be used to pull metrics
@@ -68,20 +71,20 @@ out of Kong and into a data retention tool.
 
 ### Health Metrics
 
-Health metrics give insight into the performance of a Kong cluster; for example, 
+Health metrics give insight into the performance of a Kong cluster; for example,
 how many requests it is processing and the latency on those requests.
 
 Health metrics are tracked for each node in a cluster as well as for the cluster
-as a whole. In Kong, a node is a running process with a unique identifier, 
-configuration, cache layout, and connections to both Kong’s datastores and the 
-upstream APIs it proxies. Note that node identifiers are unique to the process, 
-and not to the host on which the process runs. In other words, each Kong restart 
+as a whole. In Kong, a node is a running process with a unique identifier,
+configuration, cache layout, and connections to both Kong’s datastores and the
+upstream APIs it proxies. Note that node identifiers are unique to the process,
+and not to the host on which the process runs. In other words, each Kong restart
 results in a new node, and therefore a new node ID.
 
 #### Latency
 
-The Vitals API may return null for Latency metrics—this occurs when no API 
-requests were proxied during the timeframe. Null latencies are not graphed in 
+The Vitals API may return null for Latency metrics—this occurs when no API
+requests were proxied during the timeframe. Null latencies are not graphed in
 Kong Manager—periods with null latencies appear as gaps in Vitals charts.
 
 ##### Proxy Latency (Request)
@@ -122,7 +125,6 @@ Traffic metrics provide insight into which of your services are being used, and 
 
 ##### Total Requests
 
-
 This metric is the count of all API proxy requests received. This includes requests that were rejected due to rate-limiting, failed authentication, etc.
 
 This metric is referenced in the Vitals API with the following label: `requests_proxy_total`
@@ -154,16 +156,19 @@ This metric is the total count of each specific status code for a given route.
 This metric is referenced in the Vitals API with the following label: `status_codes_per_route_total`
 
 ##### Total Status Codes per Consumer
+
 This metric is the total count of each specific status code for a given consumer.
 
 This metric is referenced in the Vitals API with the following label: `status_codes_per_consumer_total`
 
 ##### Total Status Codes per Consumer Per Route
+
 This metric is the total count of each specific status code for a given consumer and route.
 
 This metric is referenced in the Vitals API with the following label: `status_codes_per_consumer_route_total`
 
 ## Vitals API
+
 Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the attached OAS (Open API Spec, formerly Swagger) file [vitalsSpec.yaml][vitals_spec]
 
 ## Vitals Data Visualization in Kong Manager
@@ -177,6 +182,7 @@ A timeframe selector adjacent to Vitals charts in Kong Manager controls the time
 Timestamps on the x-axis of Vitals charts are displayed either in the browser's local time zone, or in UTC, depending on the UTC option that appears adjacent to Vitals charts.
 
 ### Cluster and Node Data
+
 Metrics can be displayed on Vitals charts at both node and cluster level. Controls are available to show cluster-wide metrics and/or node-specific metrics. Clicking on individual nodes will toggle the display of data from those nodes. Nodes can be identified by a unique Kong node identifier, by hostname, or by a combination of the two.
 
 ### Status Code Data
@@ -188,7 +194,7 @@ Visualizations of cluster-wide status code classes (1xx, 2xx, 3xx, 4xx, 5xx) can
 Vitals data does not appear in Kong Manager or the Admin API.
 First, make sure Vitals is enabled. (`vitals = on` in your Kong configuration).
 
-Then, check your log files. If you see `[vitals] kong_vitals_requests_consumers cache is full` or `[vitals] error attempting to push to list: no memory`, then Vitals is no longer able to track requests because its cache is full.  This condition may resolve itself if traffic to the node subsides long enough for it to work down the cache. Regardless, the node will continue to proxy requests as usual.
+Then, check your log files. If you see `[vitals] kong_vitals_requests_consumers cache is full` or `[vitals] error attempting to push to list: no memory`, then Vitals is no longer able to track requests because its cache is full. This condition may resolve itself if traffic to the node subsides long enough for it to work down the cache. Regardless, the node will continue to proxy requests as usual.
 
 ### Limitations in Cassandra 2.x
 

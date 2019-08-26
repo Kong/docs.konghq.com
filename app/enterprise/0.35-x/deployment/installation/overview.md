@@ -1,5 +1,7 @@
 ---
 title: Installing Kong Enterprise
+redirect_from:
+  - /enterprise/0.35-x/deployment/installation/
 toc: false
 ---
 

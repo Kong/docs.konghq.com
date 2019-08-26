@@ -1,5 +1,8 @@
 ---
 title: Dev Portal SMTP Configuration
+redirect_from:
+  - /enterprise/0.34-x/configuration/developer-portal/smtp
+  - /enterprise/0.34-x/developer-portal/smtp
 toc: false
 ---
 
@@ -16,7 +19,6 @@ curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 If they are not modified manually, the Dev Portal will use the default value defined in the Kong Configuration file.
 
-
 **Note:** As of 0.34 the contents of the emails sent by the Dev Portal cannot be modified.
 
 ### portal_invite_email
@@ -27,6 +29,7 @@ If they are not modified manually, the Dev Portal will use the default value def
 When enabled, Kong Admins will be able to invite Developers to a Dev Portal by using the "Invite" button in the Kong Manager.
 
 **Email:**
+
 ```
 Subject: Invite to access Developer Portal <WORKSPACE_NAME>
 
@@ -52,7 +55,6 @@ Hello Admin!
 Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 ```
 
-
 ### portal_approved_email
 
 **Default:** `on`
@@ -76,7 +78,7 @@ Please visit <DEV PORTAL URL/login> to login.
 **Description:**
 When enabled, Developers will be able to use the "Reset Password" flow on a Dev Portal and will receive an email with password reset instructions.
 
-When disabled, Developers will *not* be able to reset their account passwords.
+When disabled, Developers will _not_ be able to reset their account passwords.
 
 ```
 Subject: Password Reset Instructions for Developer Portal <WORKSPACE_NAME>.
@@ -93,14 +95,12 @@ If you didn't make this request, keep your account secure by clicking
 the link above to change your password.
 ```
 
-
 ### portal_token_exp
 
 **Default:** `21600`
 
 **Description:**
 Duration in seconds for the expiration of the Dev Portal reset password token. Default `21600` is six hours.
-
 
 ### portal_reset_success_email
 
@@ -122,7 +122,6 @@ Click the link below to sign in with your new credentials.
 <DEV_PORTAL_URL>
 ```
 
-
 ### portal_emails_from
 
 **Default:** `nil`
@@ -136,14 +135,12 @@ The name and email address for the 'From' header included in all Dev Portal emai
 portal_emails_from = Your Name <example@example.com>
 ```
 
-
 ### portal_emails_reply_to
 
 **Default:** `nil`
 
 **Description:**
 The email address for the 'Reply-To' header included in all Dev Portal emails.
-
 
 **Example :**
 

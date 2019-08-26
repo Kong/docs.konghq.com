@@ -1,5 +1,7 @@
 ---
 title: Kong Enterprise Documentation
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/enterprise/
 ---
 
 ![Welcome to the Kong Enterprise](https://konghq.com/wp-content/themes/konghq/assets/img/home/buildings.svg)
