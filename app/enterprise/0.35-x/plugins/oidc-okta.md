@@ -15,7 +15,7 @@ If you have not yet [added a **Route** and a **Service**][add-service], go ahead
 
 ## Okta IDP Configuration
 
-In Okta, you must [register an Application][okta-register-app] and choose the application type. From there you will need to fill out the application's settings: a logi redirect uri that is handled by your Kong Route and select which grant types to allow. After creating your app, you will see that a Client ID and Client Secret (depending on the application type you selected) have been associated with your Okta application. This configuration assumes that you already have an [authorization servers defined and configured][okta-authorization-server].
+In Okta, you must [register an Application][okta-register-app] and choose the application type. From there you will need to fill out the application's settings: set a login redirect URI that is handled by your Kong Route and select which grant types to allow. After creating your app, you will see that a Client ID and Client Secret (depending on the application type you selected) have been associated with your Okta application. This configuration assumes that you already have an [authorization server defined and configured][okta-authorization-server].
 
 
 ## Plugin Configuration
