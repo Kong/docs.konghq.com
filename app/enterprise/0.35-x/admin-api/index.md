@@ -5,11 +5,6 @@ redirect_from:
 toc: false
 ---
 
----
-title: Admin API
-
-toc: false
-
 service_body: |
     Attributes | Description
     ---:| ---
