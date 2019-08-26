@@ -2069,7 +2069,7 @@ HTTP 204 No Content
 
 ## Certificate Authority Object
 
-A certificate authority authority object represents a public CA certificate.
+A certificate authority object represents a public CA certificate.
 These objects are used by Kong to verify client certificates presented to the mTLS plugin.
 
 
