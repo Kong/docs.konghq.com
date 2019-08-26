@@ -3,12 +3,6 @@ title: Admin API
 redirect_from:
   - /0.35-x/admin-api/
 toc: false
----
-
----
-title: Admin API
-
-toc: false
 
 service_body: |
     Attributes | Description
