@@ -1,5 +1,7 @@
 ---
 title: Admin API
+redirect_from:
+ - /Users/cat/docs.konghq.com/dist/1.2.x/admin-api/
 
 service_body: |
     Attributes | Description

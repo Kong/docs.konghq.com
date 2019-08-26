@@ -1,5 +1,7 @@
 ---
 title: Configuration Reference
+  - '/1.2.x/configuration-reference'
+  - /Users/cat/docs.konghq.com/dist/1.2.x/configuration/
 redirect_from: '/1.2.x/configuration-reference'
 ---
 

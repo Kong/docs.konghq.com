@@ -1,5 +1,7 @@
 ---
 title: Documentation for Kong
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/
 ---
 
 <div class="docs-grid">
@@ -80,6 +82,5 @@ title: Documentation for Kong
     <p>Looking for something Kong does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for Kong.</p>
     <a href="/{{page.kong_version}}/plugin-development">Read the plugin development guide &rarr;</a>
   </div>
-
 
 </div>

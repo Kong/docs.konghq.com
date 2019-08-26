@@ -1,5 +1,7 @@
 ---
 title: Configuring a Service
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/1.2.x/getting-started/configuring-a-service/
 ---
 
 <div class="alert alert-warning">
@@ -24,7 +26,7 @@ Service can have many Routes.
 
 After configuring the Service and the Route, you'll be able to make requests through Kong using them.
 
-Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, including adding Services and
+Kong exposes a [RESTful Admin API][api] on port `:8001`. Kong's configuration, including adding Services and
 Routes, is made via requests on that API.
 
 ## 1. Add your Service using the Admin API
@@ -61,7 +63,6 @@ Connection: keep-alive
    "write_timeout":60000
 }
 ```
-
 
 ## 2. Add a Route for the Service
 
@@ -131,7 +132,7 @@ Now that you've added your Service to Kong, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /{{page.kong_version}}/admin-api
+[api]: /{{page.kong_version}}/admin-api
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
 [proxy-port]: /{{page.kong_version}}/configuration/#nginx-section
 [mockbin]: https://mockbin.com/
