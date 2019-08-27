@@ -447,23 +447,25 @@ in the path (the root `/` character).
 As previously mentioned, Kong evaluates prefix paths by length: the longest
 prefix paths are evaluated first. However, Kong will evaluate regex paths based
 on the `regex_priority` attribute of Routes from highest priority to lowest.
-This means that considering the following Routes:
+Regex paths are furthermore evaluated before prefix paths.
+
+Consider the following Routes:
 
 ```json
 [
   {
-    "paths": ["/status/d+"],
+    "paths": ["/status/\d+"],
     "regex_priority": 0
   },
   {
-    "paths": ["/version/d+/status/d+"],
+    "paths": ["/version/\d+/status/\d+"],
     "regex_priority": 6
   },
   {
-    "paths": ["/version"]
+    "paths": ["/version"],
   },
   {
-    "paths": ["/version/any/"]
+    "paths": ["/version/any/"],
   }
 ]
 ```
@@ -471,16 +473,21 @@ This means that considering the following Routes:
 In this scenario, Kong will evaluate incoming requests against the following
 defined URIs, in this order:
 
-1. `/version/any/`
-2. `/version`
-3. `/version/\d+/status/\d+`
-4. `/status/\d+`
+1. `/version/\d+/status/\d+`
+2. `/status/\d+`
+3. `/version/any/`
+4. `/version`
 
-Prefix paths are always evaluated before regex paths.
+Take care to avoid writing regex rules that are overly broad and may consume
+traffic intended for a prefix rule. Adding a rule with the path `/version/.*` to
+the ruleset above would likely consume some traffic intended for the `/version`
+prefix path. If you see unexpected behavior, sending `X-Kong-Debug: 1` in your
+request headers will indicate the matched Route ID in the response headers for
+troubleshooting purposes.
 
 As usual, a request must still match a Route's `hosts` and `methods` properties
-as well, and Kong will traverse your Routes until it finds one that matches
-the most rules (see [Routing priorities][proxy-routing-priorities]).
+as well, and Kong will traverse your Routes until it finds one that [matches
+the most rules](#matching-priorities).
 
 [Back to TOC](#table-of-contents)
 
