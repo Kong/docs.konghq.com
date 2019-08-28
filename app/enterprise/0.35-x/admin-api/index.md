@@ -1,11 +1,7 @@
 ---
 title: Admin API
-toc: false
----
-
----
-title: Admin API
-
+redirect_from:
+  - /0.35-x/admin-api/
 toc: false
 
 service_body: |
