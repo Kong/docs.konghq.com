@@ -5,10 +5,10 @@ toc: false
 
 ### Table of contents
 
-* [Passwords and RBAC Tokens](passwords-and-rbac-tokens)
-* [How to Reset a Forgotten Password in Kong Manager](how-to-reset-a-forgotten-password-in-kong-manager)
-* [How to Reset a Password from within Kong Manager](how-to-reset-a-password-from-within-kong-manager)
-* [How to Reset an RBAC Token in Kong Manager](how-to-reset-an-rbac-token-in-kong-manager)
+* [Passwords and RBAC Tokens](#passwords-and-rbac-tokens)
+* [How to Reset a Forgotten Password in Kong Manager](#how-to-reset-a-forgotten-password-in-kong-manager)
+* [How to Reset a Password from within Kong Manager](#how-to-reset-a-password-from-within-kong-manager)
+* [How to Reset an RBAC Token in Kong Manager](#how-to-reset-an-rbac-token-in-kong-manager)
 
 ## Passwords and RBAC Tokens
 
