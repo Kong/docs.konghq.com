@@ -1910,6 +1910,16 @@ portal_emails_reply_to: noreply@example.com
 
 ⚠️ **IMPORTANT:** Some SMTP servers may require valid email addresses
 
+### portal_email_verification
+
+**Default:** `off`
+
+**Description:**
+
+When enabled Developers will recieve an email upon registration to verify their account.  Developers will not be able to use the Developer Portal untill they verify their account.
+
+**Note:** SMTP must be turned on in order to use this feature.
+
 
 ## Admin SMTP Configuration
 
