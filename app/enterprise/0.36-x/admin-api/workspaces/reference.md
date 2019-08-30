@@ -211,6 +211,8 @@ HTTP 200 OK
 }
 ```
 
+The behavior of `PUT` endpoints prevents the renaming of a **Workspace**.
+
 ### Retrieve a Workspace
 
 **Endpoint**
