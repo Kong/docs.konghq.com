@@ -3,6 +3,43 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 0.36-2
+**Release Date:** 2019/8/30
+
+### Notifications
+- **Kong Enterprise 0.36** inherits from **Kong 1.2.1**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/1.3.0rc1/CHANGELOG.md#121)
+for details.
+
+### Features
+
+#### Dev Portal
+  - Add `custom_id` field to developers to allow easier mapping 
+
+#### Plugins
+  - **Request-transformer**
+    - Allow rendering values from kong.ctx.shared
+
+### Fixes
+
+#### Plugins
+  - **Rate Limiting Advanced**
+    - Fix an issue where user failed to import Rate Limiting Advanced
+    declarative YAML file via `kong config db_import`
+
+#### Core
+  - **Workspaces**
+    - Fix and issue where user can rename a workspace with `PUT` request
+  - **Migrations**
+    - Fix an issue where migration from 0.35-x to 0.36-x making plugin `protocols`
+    field mandtory durin `PATCH` request.
+    - Fix an issue where unique fields of entites are not migrated properly when
+    migrating from Kong CE to EE using CLI `kong migrations migrate-community-to-enterprise`
+  - **Vitals**
+    - Fix an issue where Kong fails to remove old stats table when they are not part of public
+    schema 
+
+
 ## 0.36-1
 **Release Date:** 2019/8/19
 
