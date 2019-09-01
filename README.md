@@ -35,7 +35,7 @@ npm start
 
 ## Deploying
 
-The repository must be manually deploy to GitHub pages:
+The repository must be manually deployed to GitHub pages:
 
 >
 ```bash
