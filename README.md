@@ -14,7 +14,7 @@ make develop
 ### Prerequisites
 
 - [npm](https://www.npmjs.com/)
-- [Bundler](https://bundler.io/)
+- [Bundler](https://bundler.io/) (< 2.0.0) 
 - [Ruby](https://www.ruby-lang.org) (>= 2.0, < 2.3)
 - [Python](https://www.python.org) (>= 2.7.X, < 3)
 
