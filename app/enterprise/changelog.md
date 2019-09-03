@@ -6,11 +6,6 @@ layout: changelog
 ## 0.36-2
 **Release Date:** 2019/8/30
 
-### Notifications
-- **Kong Enterprise 0.36** inherits from **Kong 1.2.1**; read the
-[Kong Changelog](https://github.com/Kong/kong/blob/1.3.0rc1/CHANGELOG.md#121)
-for details.
-
 ### Features
 
 #### Dev Portal
@@ -43,11 +38,6 @@ for details.
 ## 0.36-1
 **Release Date:** 2019/8/19
 
-### Notifications
-- **Kong Enterprise 0.36** inherits from **Kong 1.2.1**; read the
-[Kong Changelog](https://github.com/Kong/kong/blob/1.3.0rc1/CHANGELOG.md#121)
-for details.
-
 ### Fixes
 
 - Fixes for NGINX CVEs: [CVE-2018-16843](https://nvd.nist.gov/vuln/detail/CVE-2018-16843), [CVE-2018-16844](https://nvd.nist.gov/vuln/detail/CVE-2018-16844), [CVE-2019-9511](https://nvd.nist.gov/vuln/detail/CVE-2019-9511), [CVE-2019-9513](https://nvd.nist.gov/vuln/detail/CVE-2019-9513), and [CVE-2019-9516](https://nvd.nist.gov/vuln/detail/CVE-2019-9516)
@@ -57,11 +47,6 @@ for details.
 
 ## 0.36
 **Release Date:** 2019/8/5
-
-### Notifications
-- **Kong Enterprise 0.36** inherits from **Kong 1.2.1**; read the
-[Kong Changelog](https://github.com/Kong/kong/blob/1.3.0rc1/CHANGELOG.md#121)
-for details.
 
 ### Features
 
