@@ -9,30 +9,30 @@ layout: changelog
 ### Features
 
 #### Dev Portal
-  - Add `custom_id` field to developers to allow easier mapping 
+- Adds `custom_id` field to developers to allow easier mapping 
 
 #### Plugins
-  - **Request-transformer**
-    - Allow rendering values from kong.ctx.shared
+- **Request-transformer**
+  - Allows rendering values from kong.ctx.shared
 
 ### Fixes
 
 #### Plugins
-  - **Rate Limiting Advanced**
-    - Fix an issue where user failed to import Rate Limiting Advanced
-    declarative YAML file via `kong config db_import`
+- **Rate Limiting Advanced**
+  - Fixes an issue where user failed to import Rate Limiting Advanced
+  declarative YAML file via `kong config db_import`
 
 #### Core
-  - **Workspaces**
-    - Fix and issue where user can rename a workspace with `PUT` request
-  - **Migrations**
-    - Fix an issue where migration from 0.35-x to 0.36-x making plugin `protocols`
-    field mandtory durin `PATCH` request.
-    - Fix an issue where unique fields of entites are not migrated properly when
-    migrating from Kong CE to EE using CLI `kong migrations migrate-community-to-enterprise`
-  - **Vitals**
-    - Fix an issue where Kong fails to remove old stats table when they are not part of public
-    schema 
+- **Workspaces**
+  - Fixes an issue where user can rename a workspace with `PUT` request
+- **Migrations**
+  - Fixes an issue where migration from 0.35-x to 0.36-x making plugin `protocols`
+  field mandtory durin `PATCH` request.
+  - Fixes an issue where unique fields of entites are not migrated properly when
+  migrating from Kong CE to EE using CLI `kong migrations migrate-community-to-enterprise`
+- **Vitals**
+  - Fixes an issue where Kong fails to remove old stats table when they are not part of public
+  schema 
 
 
 ## 0.36-1
