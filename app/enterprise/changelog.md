@@ -111,6 +111,29 @@ layout: changelog
   - `nginx_sproxy_*` (or `KONG_NGINX_SPROXY_*` environment variables)
     for injecting entries to the `server` block inside `stream`
 
+##### Admin API
+
+- Add a **schema validation endpoint for entities**: a new
+  endpoint `/schemas/:entity_name/validate` can be used to validate an instance
+  of any entity type in Kong without creating the entity itself.
+- Add **memory statistics** to the `/status` endpoint. The response
+  now includes a `memory` field, which contains the `lua_shared_dicts` and
+  `workers_lua_vms` fields with statistics on shared dictionaries and workers
+  Lua VM memory usage.
+- New Admin API endpoint: `/config` to replace the configuration of
+  Kong entities entirely, replacing it with the contents of a new
+  declarative config file
+  - When using the new `database=off` configuration option,
+    the Admin API endpoints for entities (such as `/routes` and
+    `/services`) are read-only, since the configuration can only
+    be updated via `/config`
+- Admin API endpoints now support searching by tag
+  (for example, `/consumers?tags=example_tag`)
+  - You can search by multiple tags:
+     - `/services?tags=serv1,mobile` to search for services matching tags `serv1` and `mobile`
+     - `/services?tags=serv1/serv2` to search for services matching tags `serv1` or `serv2`
+- New Admin API endpoint `/tags/` for listing entities by tag: `/tags/example_tag`
+
 #### Core
 
 - Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
