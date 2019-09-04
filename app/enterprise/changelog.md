@@ -210,6 +210,11 @@ layout: changelog
 - Address issue where field type "record" nested values reset on update
 - Correctly manage primary keys of type "foreign"
 
+#### Admin API
+
+- Proper support for `PUT /{entities}/{entity}/plugins/{plugin}`
+- Fix Admin API inferencing of map types using form-encoded
+- Accept UUID-like values in `/consumers?custom_id=`
 
 #### Dev Portal
 
