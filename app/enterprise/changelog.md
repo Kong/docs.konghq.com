@@ -103,11 +103,6 @@ layout: changelog
   concurrent queries to the database, and `pg_semaphore_timeout` allows for
   tuning the timeout when acquiring access to a database connection. The
   default behavior remains the same, with no concurrency limitation.
-- New option in `kong.conf`: `database=off` to start Kong without
-  a database
-- New option in `kong.conf`: `declarative_config=kong.yml` to
-  load a YAML file using Kong's new [declarative config
-  format](https://discuss.konghq.com/t/rfc-kong-native-declarative-config-format/2719)
 - New option in `kong.conf`: `pg_schema` to specify Postgres schema
   to be used
 - The Stream subsystem now supports Nginx directive injections
