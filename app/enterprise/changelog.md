@@ -155,6 +155,19 @@ layout: changelog
 - The Kubernetes Sidecar Injection plugin is now bundled into Kong for a 
   smoother K8s experience.
 - AWS Lambda now includes the AWS China region.
+
+#### CLI
+
+- **Bulk database import** using the same declarative
+  configuration format as the in-memory mode, using the new command:
+  `kong config db_import kong.yml`. This command upserts all
+  entities specified in the given `kong.yml` file in bulk
+- New command: `kong config init` to generate a template `kong.yml`
+  file to get you started
+- New command: `kong config parse kong.yml` to verify the syntax of
+  the `kong.yml` file before using it
+- New option `--wait` in `kong quit` to ease graceful termination when using orchestration tools.
+
 #### Core
 
 - Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
