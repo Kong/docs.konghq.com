@@ -143,6 +143,18 @@ layout: changelog
   in use during the current request
 - New PDK function: `kong.nginx.get_subsystem`, so plugins can detect whether
   they are running on the HTTP or Stream subsystem
+
+#### Plugins
+
+- Logging plugins: log request TLS version, cipher, and verification status.
+- Plugin development: inheriting from `BasePlugin` is now optional. Avoiding
+  the inheritance paradigm improves plugins' performance.
+- Support for ACL **authenticated groups**, so that authentication plugins
+  that use a 3rd party (other than Kong) to store credentials can benefit
+  from using a central ACL plugin to do authorization for them.
+- The Kubernetes Sidecar Injection plugin is now bundled into Kong for a 
+  smoother K8s experience.
+- AWS Lambda now includes the AWS China region.
 #### Core
 
 - Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
