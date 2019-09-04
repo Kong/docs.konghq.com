@@ -15,8 +15,35 @@ If you have not yet [added a **Route** and a **Service**][add-service], go ahead
 
 ## Okta IDP Configuration
 
-In Okta, you must [register an Application][okta-register-app] and choose the application type. From there you will need to fill out the application's settings: set a login redirect URI that is handled by your Kong Route and select which grant types to allow. After creating your app, you will see that a Client ID and Client Secret (depending on the application type you selected) have been associated with your Okta application. This configuration assumes that you already have an [authorization server defined and configured][okta-authorization-server].
+### Sample Okta Configuration Steps 
 
+1. [Register an Application][okta-register-app]. Select the **Applications** page, click 'Add Application'.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/01-add-application.png">
+
+2. Select 'Web' as the platform.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/02-web-app.png">
+
+3. Fill out the Application's Settings
+
+    **Login re-direct URIs** is a URI that corresponds to a Route you have configured in Kong that will use Okta to authenticate. **Group Assignment** defines who is allowed to use this application. **Grant Type Allowed** indicates the Grant types to allow for your application.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/03-app-settings.png">
+
+4. After you submit the Application configuration, you will see your client credentials displayed on the **General** page.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/04-client-id-secret.png">
+
+5. [Define and Configure an Authorization server][okta-authorization-server]. Select the **API** page and add an Authorization Server if you don't have an existing one.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/05-auth-server.png">
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/06-name-auth.png">
+
+6. Click 'Save' and view your Authorization Server Settings.
+
+    <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/07-auth-server-settings.png">
 
 ## Plugin Configuration
 
@@ -27,7 +54,7 @@ $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name
   --data config.issuer="https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID" \
   --data config.client_secret="YOUR_CLIENT_SECRET" \
-  --data config.redirect_uri="https://example.com/api" \
+  --data config.redirect_uri="https://kong.com/api" \
   --data config.scopes="openid" \
   --data config.scopes="email" \
   --data config.scopes="profile"
