@@ -40,10 +40,14 @@ layout: changelog
 
 ### Fixes
 
-- Fixes for NGINX CVEs: [CVE-2018-16843](https://nvd.nist.gov/vuln/detail/CVE-2018-16843), [CVE-2018-16844](https://nvd.nist.gov/vuln/detail/CVE-2018-16844), [CVE-2019-9511](https://nvd.nist.gov/vuln/detail/CVE-2019-9511), [CVE-2019-9513](https://nvd.nist.gov/vuln/detail/CVE-2019-9513), and [CVE-2019-9516](https://nvd.nist.gov/vuln/detail/CVE-2019-9516)
-- Fix: Enterprise will not start if configured with a stream listen directive
-- Fix: LuaPath not correctly configured and prevents use of Luarocks
-
+- Fixes NGINX CVEs:
+  * [CVE-2018-16843](https://nvd.nist.gov/vuln/detail/CVE-2018-16843)
+  * [CVE-2018-16844](https://nvd.nist.gov/vuln/detail/CVE-2018-16844)
+  * [CVE-2019-9511](https://nvd.nist.gov/vuln/detail/CVE-2019-9511)
+  * [CVE-2019-9513](https://nvd.nist.gov/vuln/detail/CVE-2019-9513)
+  * [CVE-2019-9516](https://nvd.nist.gov/vuln/detail/CVE-2019-9516)
+- Fixes issue in which Enterprise will not start if configured with a stream listen directive
+- Fixes issue in which LuaPath is not correctly configured and prevents use of Luarocks
 
 ## 0.36
 **Release Date:** 2019/8/5
