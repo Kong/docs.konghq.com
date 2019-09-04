@@ -50,9 +50,38 @@ layout: changelog
 - Fixes issue in which LuaPath is not correctly configured and prevents use of Luarocks
 
 ## 0.36
+
 **Release Date:** 2019/8/5
 
 ### Features
+
+##### Core
+
+- Support for **wildcard SNI matching**: the
+  `ssl_certificate_by_lua` phase and the stream `preread` phase) is now able to
+  match an client hello SNI against any registered wildcard SNI. This is
+  particularly helpful for deployments serving a certificate for multiple
+  subdomains.
+- **HTTPS Routes can now be matched by SNI**: the `snis` Route
+  attribute (previously only available for `tls` Routes) can now be set for
+  `https` Routes and is evaluated by the HTTP router.
+- **Native support for HTTPS redirects**: Routes have a new
+  `https_redirect_status_code` attribute specifying the status code to send
+  back to the client if a plain text request was sent to an `https` Route.
+- Schema fields can now be marked as immutable.
+- Support for loading custom DAO strategies from plugins.
+- Support for IPv6 to `tcp` and `tls` Routes.
+- **Transparent proxying** - the `service` attribute on
+  Routes is now optional; a Route without an assigned Service will
+  proxy transparently
+- Support for **tags** in entities
+  - Every core entity now adds a `tags` field
+- New `protocols` field in the Plugin entity, allowing plugin instances
+  to be set for specific protocols only (`http`, `https`, `tcp` or `tls`).
+  - It filters out plugins during execution according to their `protocols` field
+  - It throws an error when trying to associate a Plugin to a Route
+    which is not compatible, protocols-wise, or to a Service with no
+    compatible routes.
 
 #### Core
 
