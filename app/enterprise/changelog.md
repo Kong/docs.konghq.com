@@ -168,12 +168,48 @@ layout: changelog
   the `kong.yml` file before using it
 - New option `--wait` in `kong quit` to ease graceful termination when using orchestration tools.
 
+### Fixes
+
 #### Core
 
-- Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
-which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
+- Resolve hostnames properly during initialization of Cassandra contact points
+- Fix health checks for Targets that need two-level DNS resolution
+  (e.g. SRV → A → IP)
+- Fix serialization of map types in the Cassandra backend
+- Fix target cleanup and cascade-delete for Targets
+- Avoid crash when failing to obtain list of Upstreams
+- Disallow invalid timeout value of 0ms for attributes in Services
+- DAO fix for foreign fields used as primary keys
+- Fixes a memory usage growth issue in the `/config` endpoint when configuring
+  Upstream entities. This issue was mostly observed by users of the [Kong
+  Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller).
+- Cassandra: ensures serial consistency is `LOCAL_SERIAL` when a
+  datacenter-aware load balancing policy is in use. This fixes unavailability
+  exceptions sometimes experienced when connecting to a multi-datacenter
+  cluster with cross-datacenter connectivity issues.
+- Schemas: fixes an issue in the schema validator that would not allow specifying
+  `false` in some schema rules, such a `{ type = "boolean", eq = false }`.
+- Fixes an underlying issue with regards to database entities cache keys
+  generation.
+- Ensure the migration path for Cassandra does not corrupt the
+  database schema.
+- Allow the `kong config init` command to run without a pointing to a prefix
+  directory.
+- Adds support for [`db_cache_warmup_entities`](/enterprise/0.36-x/property-reference/#db_cache_warmup_entities), 
+  which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
 - Provides support in declarative configuration for **Workspaces** and **RBAC**.
 - Provides support for the Redis Cluster library.
+- Active healthchecks: `http` checks are not performed for `tcp` and `tls`
+  Services anymore; only `tcp` healthchecks are performed against such
+  Services.
+- Fix an issue where updates in migrations would not correctly populate default
+  values.
+- Improvements in the reentrancy of Cassandra migrations.
+- Fix an issue causing the PostgreSQL strategy to not bootstrap the schema when
+  using a PostgreSQL account with limited permissions.
+- Address issue where field type "record" nested values reset on update
+- Correctly manage primary keys of type "foreign"
+
 
 #### Dev Portal
 
