@@ -60,7 +60,7 @@
     "gulp-if": "2.0.2",
     "gulp-imagemin": "6.0.0",
     "gulp-less": "3.5.0",
-    "gulp-load-plugins": "1.6.0",
+    "gulp-load-plugins": "2.0.1",
     "gulp-minify": "3.1.0",
     "gulp-plumber": "1.2.1",
     "gulp-purifycss": "0.2.0",
