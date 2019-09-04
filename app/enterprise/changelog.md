@@ -106,7 +106,6 @@ layout: changelog
 - New option in `kong.conf`: `pg_schema` to specify Postgres schema
   to be used
 - The Stream subsystem now supports Nginx directive injections
-  [#4148](https://github.com/Kong/kong/pull/4148)
   - `nginx_stream_*` (or `KONG_NGINX_STREAM_*` environment variables)
     for injecting entries to the `stream` block
   - `nginx_sproxy_*` (or `KONG_NGINX_SPROXY_*` environment variables)
