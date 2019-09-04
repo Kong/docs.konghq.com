@@ -17,11 +17,11 @@ If you have not yet [added a **Route** and a **Service**][add-service], go ahead
 
 ### Sample Okta Configuration Steps
 
-1. [Register an Application][okta-register-app]. Select the **Applications** page, click 'Add Application'.
+1. [Register an Application][okta-register-app]. Select the **Applications** page, click **Add Application**.
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/01-add-application.png">
 
-2. Select 'Web' as the platform.
+2. Select **Web** as the platform.
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/02-web-app.png">
 
@@ -31,17 +31,17 @@ If you have not yet [added a **Route** and a **Service**][add-service], go ahead
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/03-app-settings.png">
 
-4. After you submit the Application configuration, you will see your client credentials displayed on the **General** page.
+4. After submitting the Application configuration, the client credentials will display on the **General** page.
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/04-client-id-secret.png">
 
-5. [Define and Configure an Authorization server][okta-authorization-server]. Select the **API** page and add an Authorization Server if you don't have an existing one to use.
+5. [Define and configure an Authorization server][okta-authorization-server]. Select the **API** page and add an Authorization Server if you don't have an existing one to use.
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/05-auth-server.png">
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/06-name-auth.png">
 
-6. Click 'Save' and view your Authorization Server Settings.
+6. Click **Save** and view your Authorization Server Settings.
 
     <img src="https://doc-assets.konghq.com/0.35/plugins/oidc-okta/07-auth-server-settings.png">
 
