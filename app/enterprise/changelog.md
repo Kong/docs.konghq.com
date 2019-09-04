@@ -244,10 +244,30 @@ requesting access to a Dev Portal.
   - New `custom_claims_forward` configuration list of additional claims. The 
   **introspection endpoint request** will return this list to forward as headers 
   to the **upstream service request**.
-
-
-
-### Fixes
+- basic-auth, ldap-auth, key-auth, jwt, hmac-auth: fixed
+  status code for unauthorized requests: they now return HTTP 401
+  instead of 403
+- tcp-log: remove spurious trailing carriage return
+- jwt: fix `typ` handling for supporting JOSE (JSON Object
+  Signature and Validation)
+- Fixes to the best-effort auto-converter for legacy plugin schemas
+- Ensures the `cassandra_local_datacenter` configuration property is specified
+  when a datacenter-aware Cassandra load balancing policy is in use.
+- request-transformer: fixes an issue that would prevent adding a body to
+  requests without one.
+- kubernetes-sidecar-injector: fixes an issue causing mutating webhook calls to
+  fail.
+- basic-auth: ignore password if nil on basic auth credential patch
+- http-log: Simplify queueing mechanism. Fixed a bug where traces were lost
+  in some cases.
+- request-transformer: validate header values in plugin configuration.
+- rate-limiting: added index on rate-limiting metrics.
+- **Upstream-tls**
+  - Fixes an issue where bundled **certificates** in PEM format were not loaded into 
+  the certificate store correctly.
+- ldap-auth: ensure TLS connections are reused.
+- oauth2: ensured access tokens preserve their `token_expiration` value when
+  migrating from previous Kong versions.
 
 #### Workspaces
 
