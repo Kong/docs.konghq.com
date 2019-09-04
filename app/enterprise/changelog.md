@@ -83,6 +83,40 @@ layout: changelog
     which is not compatible, protocols-wise, or to a Service with no
     compatible routes.
 
+##### Configuration
+
+- **Asynchronous router updates**: a new configuration property
+  `router_consistency` accepts two possible values: `strict` and `eventual`.
+  The former is the default setting and makes router rebuilds highly
+  consistent between Nginx workers. It can result in long tail latency if
+  frequent Routes and Services updates are expected. The latter helps
+  preventing long tail latency issues by instructing Kong to rebuild the router
+  asynchronously (with eventual consistency between Nginx workers).
+- **Database cache warmup**: Kong can now preload entities during
+  its initialization. A new configuration property (`db_cache_warmup_entities`)
+  was introduced, allowing users to specify which entities should be preloaded.
+  DB cache warmup allows for ahead-of-time DNS resolution for Services with a
+  hostname. This feature reduces first requests latency, improving the overall
+  P99 latency tail.
+- Improved PostgreSQL connection management: two new configuration properties
+  have been added: `pg_max_concurrent_queries` sets the maximum number of
+  concurrent queries to the database, and `pg_semaphore_timeout` allows for
+  tuning the timeout when acquiring access to a database connection. The
+  default behavior remains the same, with no concurrency limitation.
+- New option in `kong.conf`: `database=off` to start Kong without
+  a database
+- New option in `kong.conf`: `declarative_config=kong.yml` to
+  load a YAML file using Kong's new [declarative config
+  format](https://discuss.konghq.com/t/rfc-kong-native-declarative-config-format/2719)
+- New option in `kong.conf`: `pg_schema` to specify Postgres schema
+  to be used
+- The Stream subsystem now supports Nginx directive injections
+  [#4148](https://github.com/Kong/kong/pull/4148)
+  - `nginx_stream_*` (or `KONG_NGINX_STREAM_*` environment variables)
+    for injecting entries to the `stream` block
+  - `nginx_sproxy_*` (or `KONG_NGINX_SPROXY_*` environment variables)
+    for injecting entries to the `server` block inside `stream`
+
 #### Core
 
 - Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
