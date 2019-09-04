@@ -59,7 +59,7 @@ layout: changelog
 
 - Support for **wildcard SNI matching**: the
   `ssl_certificate_by_lua` phase and the stream `preread` phase) is now able to
-  match an client hello SNI against any registered wildcard SNI. This is
+  match a client hello SNI against any registered wildcard SNI. This is
   particularly helpful for deployments serving a certificate for multiple
   subdomains.
 - **HTTPS Routes can now be matched by SNI**: the `snis` Route
