@@ -288,11 +288,13 @@ not able to access the **Workspace** that the **Role** was assigned to.
 - Fixes a bug in the sign-up meta fields that caused data to disappear when a **Developer** is updated.
 - Fixes an issue where clicking on a **Developer** after clicking the credentials section ACL causes a 500 error.
 
-#### Plugins
+#### CLI
 
-- **Upstream-tls**
-  - Fixes an issue where bundled **certificates** in PEM format were not loaded into 
-  the certificate store correctly.
+- Fix `kong db_import` to support inserting entities without specifying a UUID
+  for their primary key. Entities with a unique identifier (e.g. `name` for
+  Services) can have their primary key omitted.
+- The `kong migrations [up|finish] -f` commands does not run anymore if there
+  are no previously executed migrations.
 
 ### Changes
 
