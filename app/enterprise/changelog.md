@@ -134,6 +134,15 @@ layout: changelog
      - `/services?tags=serv1/serv2` to search for services matching tags `serv1` or `serv2`
 - New Admin API endpoint `/tags/` for listing entities by tag: `/tags/example_tag`
 
+##### PDK
+
+- New function `kong.node.get_memory_stats()`. This function returns statistics
+  on shared dictionaries and workers Lua VM memory usage, and powers the memory
+  statistics newly exposed by the `/status` endpoint.
+- New PDK function: `kong.client.get_protocol` for obtaining the protocol
+  in use during the current request
+- New PDK function: `kong.nginx.get_subsystem`, so plugins can detect whether
+  they are running on the HTTP or Stream subsystem
 #### Core
 
 - Adds support for [`db_cache_warmup_entities`](/1.2.x/configuration/#db_cache_warmup_entities), 
