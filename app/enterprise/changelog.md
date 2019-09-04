@@ -120,9 +120,6 @@ layout: changelog
   now includes a `memory` field, which contains the `lua_shared_dicts` and
   `workers_lua_vms` fields with statistics on shared dictionaries and workers
   Lua VM memory usage.
-- New Admin API endpoint: `/config` to replace the configuration of
-  Kong entities entirely, replacing it with the contents of a new
-  declarative config file
   - When using the new `database=off` configuration option,
     the Admin API endpoints for entities (such as `/routes` and
     `/services`) are read-only, since the configuration can only
@@ -180,9 +177,6 @@ layout: changelog
 - Avoid crash when failing to obtain list of Upstreams
 - Disallow invalid timeout value of 0ms for attributes in Services
 - DAO fix for foreign fields used as primary keys
-- Fixes a memory usage growth issue in the `/config` endpoint when configuring
-  Upstream entities. This issue was mostly observed by users of the [Kong
-  Ingress Controller](https://github.com/Kong/kubernetes-ingress-controller).
 - Cassandra: ensures serial consistency is `LOCAL_SERIAL` when a
   datacenter-aware load balancing policy is in use. This fixes unavailability
   exceptions sometimes experienced when connecting to a multi-datacenter
