@@ -63,7 +63,6 @@
     "gulp-load-plugins": "1.6.0",
     "gulp-minify": "3.1.0",
     "gulp-plumber": "1.2.1",
-    "gulp-purifycss": "0.2.0",
     "gulp-rename": "1.4.0",
     "gulp-resource-hints": "0.2.1",
     "gulp-size": "3.0.0",
