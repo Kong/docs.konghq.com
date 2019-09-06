@@ -54,22 +54,22 @@ gulp.task('styles', function () {
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.less())
     .pipe($.autoprefixer())
-    .pipe($.purifycss([dest.html], {
-      whitelist: [
-        '.affix',
-        '.alert',
-        '.close',
-        '.collaps',
-        '.fade',
-        '.has',
-        '.help',
-        '.in',
-        '.modal',
-        '.open',
-        '.popover',
-        '.tooltip'
-      ]
-    }))
+    // .pipe($.purifycss([dest.html], {
+    //   whitelist: [
+    //     '.affix',
+    //     '.alert',
+    //     '.close',
+    //     '.collaps',
+    //     '.fade',
+    //     '.has',
+    //     '.help',
+    //     '.in',
+    //     '.modal',
+    //     '.open',
+    //     '.popover',
+    //     '.tooltip'
+    //   ]
+    // }))
     .pipe($.cleanCss({ compatibility: 'ie8' }))
     .pipe($.rename('styles.css'))
     .pipe($.if(dev, $.sourcemaps.write()))
