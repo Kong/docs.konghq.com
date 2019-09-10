@@ -19,9 +19,9 @@ baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterpris
 
 ```bash
 $ sudo yum install kong-enterprise-edition
-$ sudo yum install postgresql95 postgresql95-server
-$ sudo service postgresql95 initdb
-$ sudo service postgresql95 start
+$ sudo yum install postgresql postgresql-server
+$ sudo service postgresql initdb
+$ sudo service postgresql start
 $ sudo -i -u postgres (puts you into new shell)
 ```
 
