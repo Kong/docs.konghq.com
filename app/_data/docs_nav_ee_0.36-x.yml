@@ -78,6 +78,8 @@
       url: /plugin-development
     - text: Plugin Development Kit
       url: /pdk
+    - text : OpenAPI Spec to Kong Entities
+      url: /oasconfig
 
 - title: Admin API
   url: /admin-api
