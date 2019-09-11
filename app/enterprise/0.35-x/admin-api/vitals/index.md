@@ -1,7 +1,5 @@
 ---
 title: Kong Vitals
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/enterprise/0.35-x/admin-api/vitals/
 ---
 
 ### Introduction

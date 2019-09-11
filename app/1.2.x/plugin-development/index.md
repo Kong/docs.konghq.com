@@ -1,7 +1,5 @@
 ---
 title: Plugin Development - Introduction
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/plugin-development/
 book: plugin_dev
 chapter: 1
 ---

@@ -1,7 +1,5 @@
 ---
 title: Authentication Reference
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/auth/
 ---
 
 ## Introduction

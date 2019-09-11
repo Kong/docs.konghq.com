@@ -1,7 +1,5 @@
 ---
 title: Documentation for Kong
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/
 ---
 
 <div class="docs-grid">

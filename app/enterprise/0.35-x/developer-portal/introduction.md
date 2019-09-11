@@ -1,7 +1,5 @@
 ---
 title: Kong Dev Portal Documentation
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/enterprise/0.35-x/developer-portal/introduction/
 toc: false
 ---
 

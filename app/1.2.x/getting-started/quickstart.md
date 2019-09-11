@@ -1,7 +1,5 @@
 ---
 title: 5-minute Quickstart
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/getting-started/quickstart/
 ---
 
 <div class="alert alert-warning">
