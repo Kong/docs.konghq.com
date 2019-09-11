@@ -4,7 +4,7 @@ title: OpenAPI Spec to Kong Entities
 
 ## Introduction
 
-This Admin API endpoint allows you to convert an OpenAPI Spec to Kong Entities. The functionality is limited to creating Services and Routes in Kong. This endpoint is useful for testing or quick-start scenarios. It is not intended for more robust use cases or to be used in production. 
+This Admin API endpoint allows you to read an OpenAPI Spec into Kong to create the appropriate Services and Routes in an automated way. For now, the functionality is in the early stages and is limited to creating Services and Routes in Kong. This endpoint is useful for testing or quick-start scenarios. In future releases, it may be expanded. 
 
 ### Create Routes & Services using OAS
 **Endpoint**
