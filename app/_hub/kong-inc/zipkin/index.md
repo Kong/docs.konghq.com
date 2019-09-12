@@ -64,6 +64,12 @@ params:
       required: false
       description: |
         The default service name to override the unknown-service-name spans.
+    - name: include_credential
+      required: true
+      default: true
+      value_in_examples: true
+      description: |
+        Should the credential of the currently authenticated consumer be included in metadata sent to the Zipkin server?
 
 ---
 
