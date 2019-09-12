@@ -2,7 +2,7 @@
 
 name: Forward Proxy Advanced
 publisher: Kong Inc.
-version: 0.35-x
+version: 0.36-x
 
 desc: Allows Kong to connect to intermediary transparent HTTP proxies
 description: |
@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
 

@@ -38,7 +38,6 @@ network interface, but should only be accessed by a small subset of an IP range.
 In such a case, host-based firewalls (e.g. iptables) are useful in limiting
 input traffic ranges. For example:
 
-
 ```bash
 # assume that Kong is listening on the address defined below, as defined as a
 # /24 CIDR block, and only a select few hosts in this range should have access
@@ -131,7 +130,7 @@ For more information on integrating Kong into custom Nginx configurations, see
 
 [Back to TOC](#table-of-contents)
 
-## Role Based Access Control ##
+## Role Based Access Control
 
 <div class="alert alert-warning">
   <strong>Enterprise-Only</strong> This feature is only available with an
@@ -150,7 +149,6 @@ If you are not a Kong Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).
 
 [Back to TOC](#table-of-contents)
-
 
 [acl]: /plugins/acl
 [basic-auth]: /plugins/basic-authentication/

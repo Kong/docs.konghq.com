@@ -3,6 +3,309 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 0.36-2
+**Release Date:** 2019/8/30
+
+### Features
+
+#### Dev Portal
+- Adds `custom_id` field to developers to allow easier mapping 
+
+#### Plugins
+- **Request-transformer**
+  - Allows rendering values from kong.ctx.shared
+
+### Fixes
+
+#### Plugins
+- **Rate Limiting Advanced**
+  - Fixes an issue where user failed to import Rate Limiting Advanced
+  declarative YAML file via `kong config db_import`
+
+#### Core
+- **Workspaces**
+  - Fixes an issue where user can rename a workspace with `PUT` request
+- **Migrations**
+  - Fixes an issue where migration from 0.35-x to 0.36-x making plugin `protocols`
+  field mandtory durin `PATCH` request.
+  - Fixes an issue where unique fields of entites are not migrated properly when
+  migrating from Kong CE to EE using CLI `kong migrations migrate-community-to-enterprise`
+- **Vitals**
+  - Fixes an issue where Kong fails to remove old stats table when they are not part of public
+  schema 
+
+
+## 0.36-1
+**Release Date:** 2019/8/19
+
+### Fixes
+
+- Fixes NGINX CVEs:
+  * [CVE-2018-16843](https://nvd.nist.gov/vuln/detail/CVE-2018-16843)
+  * [CVE-2018-16844](https://nvd.nist.gov/vuln/detail/CVE-2018-16844)
+  * [CVE-2019-9511](https://nvd.nist.gov/vuln/detail/CVE-2019-9511)
+  * [CVE-2019-9513](https://nvd.nist.gov/vuln/detail/CVE-2019-9513)
+  * [CVE-2019-9516](https://nvd.nist.gov/vuln/detail/CVE-2019-9516)
+- Fixes issue in which Enterprise will not start if configured with a stream listen directive
+- Fixes issue in which LuaPath is not correctly configured and prevents use of Luarocks
+
+## 0.36
+
+**Release Date:** 2019/8/5
+
+### Features
+
+##### Core
+
+- Support for **wildcard SNI matching**: the
+  `ssl_certificate_by_lua` phase and the stream `preread` phase) is now able to
+  match a client hello SNI against any registered wildcard SNI. This is
+  particularly helpful for deployments serving a certificate for multiple
+  subdomains.
+- **HTTPS Routes can now be matched by SNI**: the `snis` Route
+  attribute (previously only available for `tls` Routes) can now be set for
+  `https` Routes and is evaluated by the HTTP router.
+- **Native support for HTTPS redirects**: Routes have a new
+  `https_redirect_status_code` attribute specifying the status code to send
+  back to the client if a plain text request was sent to an `https` Route.
+- Schema fields can now be marked as immutable.
+- Support for loading custom DAO strategies from plugins.
+- Support for IPv6 to `tcp` and `tls` Routes.
+- **Transparent proxying** - the `service` attribute on
+  Routes is now optional; a Route without an assigned Service will
+  proxy transparently
+- Support for **tags** in entities
+  - Every core entity now adds a `tags` field
+- New `protocols` field in the Plugin entity, allowing plugin instances
+  to be set for specific protocols only (`http`, `https`, `tcp` or `tls`).
+  - It filters out plugins during execution according to their `protocols` field
+  - It throws an error when trying to associate a Plugin to a Route
+    which is not compatible, protocols-wise, or to a Service with no
+    compatible routes.
+
+##### Configuration
+
+- **Asynchronous router updates**: a new configuration property
+  `router_consistency` accepts two possible values: `strict` and `eventual`.
+  The former is the default setting and makes router rebuilds highly
+  consistent between Nginx workers. It can result in long tail latency if
+  frequent Routes and Services updates are expected. The latter helps
+  preventing long tail latency issues by instructing Kong to rebuild the router
+  asynchronously (with eventual consistency between Nginx workers).
+- **Database cache warmup**: Kong can now preload entities during
+  its initialization. A new configuration property (`db_cache_warmup_entities`)
+  was introduced, allowing users to specify which entities should be preloaded.
+  DB cache warmup allows for ahead-of-time DNS resolution for Services with a
+  hostname. This feature reduces first requests latency, improving the overall
+  P99 latency tail.
+- Improved PostgreSQL connection management: two new configuration properties
+  have been added: `pg_max_concurrent_queries` sets the maximum number of
+  concurrent queries to the database, and `pg_semaphore_timeout` allows for
+  tuning the timeout when acquiring access to a database connection. The
+  default behavior remains the same, with no concurrency limitation.
+- New option in `kong.conf`: `pg_schema` to specify Postgres schema
+  to be used
+- The Stream subsystem now supports Nginx directive injections
+  - `nginx_stream_*` (or `KONG_NGINX_STREAM_*` environment variables)
+    for injecting entries to the `stream` block
+  - `nginx_sproxy_*` (or `KONG_NGINX_SPROXY_*` environment variables)
+    for injecting entries to the `server` block inside `stream`
+
+##### Admin API
+
+- Add a **schema validation endpoint for entities**: a new
+  endpoint `/schemas/:entity_name/validate` can be used to validate an instance
+  of any entity type in Kong without creating the entity itself.
+- Add **memory statistics** to the `/status` endpoint. The response
+  now includes a `memory` field, which contains the `lua_shared_dicts` and
+  `workers_lua_vms` fields with statistics on shared dictionaries and workers
+  Lua VM memory usage.
+  - When using the new `database=off` configuration option,
+    the Admin API endpoints for entities (such as `/routes` and
+    `/services`) are read-only, since the configuration can only
+    be updated via `/config`
+- Admin API endpoints now support searching by tag
+  (for example, `/consumers?tags=example_tag`)
+  - You can search by multiple tags:
+     - `/services?tags=serv1,mobile` to search for services matching tags `serv1` and `mobile`
+     - `/services?tags=serv1/serv2` to search for services matching tags `serv1` or `serv2`
+- New Admin API endpoint `/tags/` for listing entities by tag: `/tags/example_tag`
+
+##### PDK
+
+- New function `kong.node.get_memory_stats()`. This function returns statistics
+  on shared dictionaries and workers Lua VM memory usage, and powers the memory
+  statistics newly exposed by the `/status` endpoint.
+- New PDK function: `kong.client.get_protocol` for obtaining the protocol
+  in use during the current request
+- New PDK function: `kong.nginx.get_subsystem`, so plugins can detect whether
+  they are running on the HTTP or Stream subsystem
+
+#### Plugins
+
+- Logging plugins: log request TLS version, cipher, and verification status.
+- Plugin development: inheriting from `BasePlugin` is now optional. Avoiding
+  the inheritance paradigm improves plugins' performance.
+- Support for ACL **authenticated groups**, so that authentication plugins
+  that use a 3rd party (other than Kong) to store credentials can benefit
+  from using a central ACL plugin to do authorization for them.
+- The Kubernetes Sidecar Injection plugin is now bundled into Kong for a 
+  smoother K8s experience.
+- AWS Lambda now includes the AWS China region.
+
+#### CLI
+
+- **Bulk database import** using the same declarative
+  configuration format as the in-memory mode, using the new command:
+  `kong config db_import kong.yml`. This command upserts all
+  entities specified in the given `kong.yml` file in bulk
+- New command: `kong config init` to generate a template `kong.yml`
+  file to get you started
+- New command: `kong config parse kong.yml` to verify the syntax of
+  the `kong.yml` file before using it
+- New option `--wait` in `kong quit` to ease graceful termination when using orchestration tools.
+
+### Fixes
+
+#### Core
+
+- Resolve hostnames properly during initialization of Cassandra contact points
+- Fix health checks for Targets that need two-level DNS resolution
+  (e.g. SRV → A → IP)
+- Fix serialization of map types in the Cassandra backend
+- Fix target cleanup and cascade-delete for Targets
+- Avoid crash when failing to obtain list of Upstreams
+- Disallow invalid timeout value of 0ms for attributes in Services
+- DAO fix for foreign fields used as primary keys
+- Cassandra: ensures serial consistency is `LOCAL_SERIAL` when a
+  datacenter-aware load balancing policy is in use. This fixes unavailability
+  exceptions sometimes experienced when connecting to a multi-datacenter
+  cluster with cross-datacenter connectivity issues.
+- Schemas: fixes an issue in the schema validator that would not allow specifying
+  `false` in some schema rules, such a `{ type = "boolean", eq = false }`.
+- Fixes an underlying issue with regards to database entities cache keys
+  generation.
+- Ensure the migration path for Cassandra does not corrupt the
+  database schema.
+- Allow the `kong config init` command to run without a pointing to a prefix
+  directory.
+- Adds support for [`db_cache_warmup_entities`](/enterprise/0.36-x/property-reference/#db_cache_warmup_entities), 
+  which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
+- Provides support in declarative configuration for **Workspaces** and **RBAC**.
+- Provides support for the Redis Cluster library.
+- Active healthchecks: `http` checks are not performed for `tcp` and `tls`
+  Services anymore; only `tcp` healthchecks are performed against such
+  Services.
+- Fix an issue where updates in migrations would not correctly populate default
+  values.
+- Improvements in the reentrancy of Cassandra migrations.
+- Fix an issue causing the PostgreSQL strategy to not bootstrap the schema when
+  using a PostgreSQL account with limited permissions.
+- Address issue where field type "record" nested values reset on update
+- Correctly manage primary keys of type "foreign"
+
+#### Admin API
+
+- Proper support for `PUT /{entities}/{entity}/plugins/{plugin}`
+- Fix Admin API inferencing of map types using form-encoded
+- Accept UUID-like values in `/consumers?custom_id=`
+
+#### Dev Portal
+
+- Adds *per workspace* **Session Config**. The Dev Portal will now allow 
+session configuration for every portal-per-workspace instance.
+- Adds **email verification**. Developers will be sent a verification link after
+requesting access to a Dev Portal.
+
+#### Plugins
+
+- **Request Validator**
+  - Adds support for JSON Schema Draft 4
+  - Adds support for parameter validation
+  - Adds the option to override validation for specific content types
+- **OAuth2 Introspection**
+  - Can now find and load consumers by `username` and `custom_id`. OAuth2
+  `username` maps to **Consumer's** `username`, while the `client_id` maps to a 
+  **Consumer's** `custom_id`
+  - New `consumer_by` configuration allows users to customize whether **Consumers**
+  are fetched by `client_id` or `username` (returned by the introspection request)
+  - New `introspect_request` configuration that causes the plugin to send 
+  information about the **current request** as **headers** in the **introspection endpoint**
+  **request**. Currently, the **request path** and **HTTP methods** are sent as `X-Request-Path` 
+  and `X-Request-Http-Method` headers
+  - New `custom_introspection_headers` configuration list of user-supplied
+  headers to be sent in the **introspection endpoint request**
+  - New `custom_claims_forward` configuration list of additional claims. The 
+  **introspection endpoint request** will return this list to forward as headers 
+  to the **upstream service request**.
+- basic-auth, ldap-auth, key-auth, jwt, hmac-auth: fixed
+  status code for unauthorized requests: they now return HTTP 401
+  instead of 403
+- tcp-log: remove spurious trailing carriage return
+- jwt: fix `typ` handling for supporting JOSE (JSON Object
+  Signature and Validation)
+- Fixes to the best-effort auto-converter for legacy plugin schemas
+- Ensures the `cassandra_local_datacenter` configuration property is specified
+  when a datacenter-aware Cassandra load balancing policy is in use.
+- request-transformer: fixes an issue that would prevent adding a body to
+  requests without one.
+- kubernetes-sidecar-injector: fixes an issue causing mutating webhook calls to
+  fail.
+- basic-auth: ignore password if nil on basic auth credential patch
+- http-log: Simplify queueing mechanism. Fixed a bug where traces were lost
+  in some cases.
+- request-transformer: validate header values in plugin configuration.
+- rate-limiting: added index on rate-limiting metrics.
+- **Upstream-tls**
+  - Fixes an issue where bundled **certificates** in PEM format were not loaded into 
+  the certificate store correctly.
+- ldap-auth: ensure TLS connections are reused.
+- oauth2: ensured access tokens preserve their `token_expiration` value when
+  migrating from previous Kong versions.
+
+#### Workspaces
+
+- Fixes permission bug where an **Admin** with `workspace-super-admin` **Role** was 
+not able to access the **Workspace** that the **Role** was assigned to.
+
+#### Upstreams
+
+- Fixes an issue where it was not possible to delete an **Upstream** object if it had no associated **Target**.
+
+#### Kong Manager
+
+- Fixes a bug where Kong Manager could only display 100 **Workspaces**.
+- Fixes a bug where a **Route's** details would not include a link to a **Service** that did not have a name.
+
+#### Dev Portal
+
+- Fixes a bug in the sign-up meta fields that caused data to disappear when a **Developer** is updated.
+- Fixes an issue where clicking on a **Developer** after clicking the credentials section ACL causes a 500 error.
+
+#### CLI
+
+- Fix `kong db_import` to support inserting entities without specifying a UUID
+  for their primary key. Entities with a unique identifier (e.g. `name` for
+  Services) can have their primary key omitted.
+- The `kong migrations [up|finish] -f` commands does not run anymore if there
+  are no previously executed migrations.
+
+### Changes
+
+- **Brain**
+  - Renames **Brain** to **Collector**
+
+## 0.35-4
+**Release Date:** 2019/08/19
+
+### Notifications
+- **Kong Enterprise 0.35-3** inherits from **Kong 1.0.3**; read the
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+for details.
+
+### Fixes
+- Fixes for NGINX CVEs: [CVE-2018-16843](https://nvd.nist.gov/vuln/detail/CVE-2018-16843), [CVE-2018-16844](https://nvd.nist.gov/vuln/detail/CVE-2018-16844), [CVE-2019-9511](https://nvd.nist.gov/vuln/detail/CVE-2019-9511), [CVE-2019-9513](https://nvd.nist.gov/vuln/detail/CVE-2019-9513), and [CVE-2019-9516](https://nvd.nist.gov/vuln/detail/CVE-2019-9516)
+
 ## 0.35-3
 **Release Date:** 2019/07/17
 

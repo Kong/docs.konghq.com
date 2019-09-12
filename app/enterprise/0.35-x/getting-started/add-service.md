@@ -5,9 +5,7 @@ title: How to Add a Service and Route
 ### Introduction
 
 This guide walks through the creation and configuration of a 
-**Service and Route** via **Kong Manager** in **Kong Enterprise**. To do this with 
-via the **command line** read Kong's guide to 
-[Configuring a Service](/latest/getting-started/configuring-a-service/).
+**Service and Route** via **Kong Manager** in **Kong Enterprise**. 
 
 For the purpose of this guide, we’ll create a **Service** pointing to the Mockbin 
 API. Mockbin is an “echo” type public website that returns requests back to
@@ -20,10 +18,9 @@ including adding **Services and Routes**, is made via requests on to the
 
 ### Prerequisites
 
-- **Kong Enterprise** is [installed](/enterprise/{{page.kong_version}}/deployment/installation)
-- **Kong Enterprise** is [started](/enterprise/{{page.kong_version}}/getting-started/start-kong)
-- **Super Admin** or [**Admin**](/enterprise/{{page.kong_version}}/getting-started/add-admin)
-access to **Kong Manager**
+* [`enforce_rbac = on`](/enterprise/{{page.kong_version}}/property-reference/#enforce_rbac)
+* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/getting-started/start-kong)
+* Logged in to Kong Manager as a **Super Admin** 
 
 ### Step 1 - Create a New Service
 
@@ -66,7 +63,7 @@ information and **Activity** on the **Service**, as well as any **Routes** or
 [Step 1](#step-1---create-a-new-service), click the **Create New Route** button 
 located in the **Routes** tab at the bottom of the page.
 
-    ![Create Route Service ID](https://doc-assets.konghq.com0.35/getting-started/add-a-service/06-service-route-object.png)
+    ![Create Route Service ID](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/06-service-route-object.png)
 
 2. To create a **Route** you must provide the **Service** `name` and `id`, this
 will be automatically filled out if the form was accessed via the 

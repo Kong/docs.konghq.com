@@ -1,6 +1,8 @@
 ---
 name: Zipkin
 publisher: Kong Inc.
+redirect_from:
+  - /hub/kong-inc/zipkin/http-log/
 version: 1.0.0
 
 source_url: https://github.com/Kong/kong-plugin-zipkin
@@ -22,36 +24,38 @@ categories:
   - analytics-monitoring
 
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
-    enterprise_edition:
-      compatible:
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
+  community_edition:
+    compatible:
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+      - 0.14.x
+  enterprise_edition:
+    compatible:
+      - 0.36-x
+      - 0.35-x
+      - 0.34-x
+      - 0.33-x
+      - 0.32-x
 
 params:
   name: zipkin
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https", "tcp", "tls"]
+  protocols: ['http', 'https', 'tcp', 'tls', 'grpc', 'grpcs']
   dbless_compatible: yes
   config:
     - name: http_endpoint
       required: true
-      default: ""
+      default: ''
       value_in_examples: http://your.zipkin.collector:9411/api/v2/spans
       description: |
         The full HTTP(S) endpoint to which Zipkin spans should be sent by Kong.
     - name: sample_ratio
       required: false
-      default: "`0.001`"
+      default: '`0.001`'
       value_in_examples: 0.001
       description: |
         How often to sample requests that do not contain trace ids.
@@ -81,14 +85,12 @@ An opentracing "injector" adds trace information to an outgoing request. Current
 
 This plugin follows Zipkin's ["B3" specification](https://github.com/openzipkin/b3-propagation/) as to which HTTP headers to use. Additionally, it supports [Jaegar](http://jaegertracing.io/)-style `uberctx-` headers for propagating [baggage](https://github.com/opentracing/specification/blob/master/specification.md#set-a-baggage-item).
 
-
 ### Reporter
 
 An opentracing "reporter" is how tracing data is reported to another system.
 This plugin records tracing data for a given request, and sends it as a batch to a Zipkin server using [the Zipkin v2 API](https://zipkin.io/zipkin-api/#/default/post_spans). Note that zipkin version 1.31 or higher is required.
 
 The `http_endpoint` configuration variable must contain the full uri including scheme, host, port and path sections (i.e. your uri likely ends in `/api/v2/spans`).
-
 
 ## FAQ
 

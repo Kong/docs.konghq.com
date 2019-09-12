@@ -818,6 +818,8 @@ local function write_admin_api(filename, data, title)
 
   outfd:write("\n---\n\n")
 
+  outfd:write("---\n\n")
+
   local all_endpoints = {}
 
   for _, fullname in ipairs(data.known.general_files) do
