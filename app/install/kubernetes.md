@@ -129,9 +129,7 @@ plane node
 $ kubectl -n kong apply -f kong-ingress-data-plane-postgres.yaml
 ```
 
-If you are using installing the Kong Enterprise Trial, you will need to continue to [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users) before you move to the next step.
-
-Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
+If you are using installing the Kong Enterprise Trial, you will need to continue to [Additional PostgreSQL Steps for Kong Enterprise Trial Users](#additional-postgresql-steps-for-kong-enterprise-trial-users). Otherwise, continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
 
 ### Using Datastore Backed Kong
 
@@ -190,7 +188,7 @@ $ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o js
 
 Continue to [db-less and declarative configuration documentation page](/latest/db-less-and-declarative-config/)
 
-## Additional Steps for Kong Enterprise Trial Users
+## Additional PostgreSQL Steps for Kong Enterprise Trial Users
 
 1. **Publish a Kong Enterprise Docker image to your container registry**
 
@@ -233,7 +231,11 @@ Continue to [db-less and declarative configuration documentation page](/latest/d
       value: postgres.kong.svc.cluster.local
     ```
     
-4. **Deploy Kong Enterprise**
+Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
+    
+## Additional Steps for Kong Enterprise Trial Users
+
+1. **Deploy Kong Enterprise**
 
     Continue from step 4 in the **Kong or Kong Enterprise via Manifest Files**
     instruction above, using the `kong_trial_*` YAML files in the
