@@ -149,7 +149,7 @@ $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].st
 $ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
-If you are using installing the Kong Enterprise Trial, you will need to continue to [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users). Otherwise, continue to [configuring a service](/latest/getting-started/configuring-a-service/).
+If you are using installing the Kong Enterprise Trial, you will need to continue to [Final Steps for Kong Enterprise Trial Users](#final-steps-for-kong-enterprise-trial-users). Otherwise, continue to [configuring a service](/latest/getting-started/configuring-a-service/).
 
 ### Using Kong without a Database
 
@@ -233,7 +233,7 @@ Continue to [db-less and declarative configuration documentation page](/latest/d
     
 Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
     
-## Additional Steps for Kong Enterprise Trial Users
+## Final Steps for Kong Enterprise Trial Users
 
 1. **Deploy Kong Enterprise**
 
@@ -246,7 +246,9 @@ Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
     kubectl apply -n kong -f ee-trial/kong_trial_postgres.yaml
     ```
     
-    Once Kong Enterprise is running, you should be able to access the Kong Admin GUI
+2. **Access the Enterprise Dashboard**
+
+    Once Kong Enterprise is running, you should be able to access the Kong Admin UI. Use the BASH script below to obtain the URL's.
     
     ```bash
     hostname="$(kubectl get service kong-admin -n kong -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
