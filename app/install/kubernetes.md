@@ -149,7 +149,7 @@ $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].st
 $ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
-If you are using installing the Kong Enterprise Trial, you will need to continue to [Final Steps for Kong Enterprise Trial Users](#final-steps-for-kong-enterprise-trial-users). Otherwise, continue to [configuring a service](/latest/getting-started/configuring-a-service/).
+If you are installing the Kong Enterprise Trial, you will need to continue to [Final Steps for Kong Enterprise Trial Users](#final-steps-for-kong-enterprise-trial-users). Otherwise, continue to [configuring a service](/latest/getting-started/configuring-a-service/).
 
 ### Using Kong without a Database
 
@@ -224,7 +224,7 @@ Continue to [db-less and declarative configuration documentation page](/latest/d
 
 4. **Updating Postgres configuration (Optional)**
 
-    The migration job assumes that your Postgres instance is located in the default namespace. If you followed the steps above, you can skip this step. If you used a different namespace, you will need to updated the configuration. Update `kong_trial_migration_postgres.yaml` and set the `KONG_PG_HOST` env variable to `postgres.{namespace}.svc.cluster.local` so it looks like:
+    The migration job assumes that your Postgres instance is located in the default namespace. If you followed the steps above, you can skip this step. If you used a different namespace, you will need to update the configuration. Update `kong_trial_migration_postgres.yaml` and set the `KONG_PG_HOST` env variable to `postgres.{namespace}.svc.cluster.local` so it looks like:
     
     ```yaml
     - name: KONG_PG_HOST
