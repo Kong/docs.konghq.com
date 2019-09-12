@@ -216,7 +216,7 @@ Continue to [db-less and declarative configuration documentation page](/latest/d
 
     ```yaml
     - name: KONG_LICENSE_DATA
-    value: '{"license":{"signature":"alongstringofcharacters","payload":{"customer":"Test Company","license_creation_date":"2018-03-06","product_subscription":"Kong Only","admin_seats":"5","support_plan":"Premier","license_expiration_date":"2018-06-04","license_key":"anotherstringofcharacters"},"version":1}}'
+      value: '{"license":{"signature":"alongstringofcharacters","payload":{"customer":"Test Company","license_creation_date":"2018-03-06","product_subscription":"Kong Only","admin_seats":"5","support_plan":"Premier","license_expiration_date":"2018-06-04","license_key":"anotherstringofcharacters"},"version":1}}'
     ```
 
 3. **Use the Kong Enterprise image**
@@ -226,7 +226,12 @@ Continue to [db-less and declarative configuration documentation page](/latest/d
 
 4. **Updating Postgres configuration**
 
-    If you used `make run_postgres` to configure PostgreSQL, you will need to update `kong_trial_migration_postgres.yaml`. Set the `KONG_PG_HOST` env variable to `postgres.kong.svc.cluster.local`.
+    If you used `make run_postgres` to configure PostgreSQL, you will need to update `kong_trial_migration_postgres.yaml`. Set the `KONG_PG_HOST` env variable to `postgres.kong.svc.cluster.local`. It should look like:
+    
+    ```yaml
+    - name: KONG_PG_HOST
+      value: postgres.kong.svc.cluster.local
+    ```
     
 4. **Deploy Kong Enterprise**
 
