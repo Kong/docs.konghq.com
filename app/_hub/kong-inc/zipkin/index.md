@@ -60,6 +60,13 @@ params:
       description: |
         How often to sample requests that do not contain trace ids.
         Set to `0` to turn sampling off, or to `1` to sample **all** requests.
+    - name: include_credential
+      required: true
+      default: true
+      value_in_examples: true
+      description: |
+        Should the credential of the currently authenticated consumer be included in metadata sent to the Zipkin server?
+
 ---
 
 ## How it Works
