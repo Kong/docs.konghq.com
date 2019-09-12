@@ -1,7 +1,5 @@
 ---
 title: Plugin Development - Implementing Custom Logic
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/plugin-development/custom-logic/
 book: plugin_dev
 chapter: 3
 ---

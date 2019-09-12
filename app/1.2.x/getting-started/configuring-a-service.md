@@ -1,7 +1,5 @@
 ---
 title: Configuring a Service
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/getting-started/configuring-a-service/
 ---
 
 <div class="alert alert-warning">

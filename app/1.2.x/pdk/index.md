@@ -1,7 +1,5 @@
 ---
 title: PDK
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/pdk/
 pdk: true
 toc: true
 ---

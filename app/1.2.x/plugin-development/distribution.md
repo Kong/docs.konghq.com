@@ -1,7 +1,5 @@
 ---
 title: Plugin Development - (un)Installing your plugin
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/plugin-development/distribution/
 book: plugin_dev
 chapter: 10
 ---

@@ -1,7 +1,5 @@
 ---
 title: Securing the Admin API
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/secure-admin-api/
 ---
 
 ## Introduction
