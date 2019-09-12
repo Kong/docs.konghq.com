@@ -149,7 +149,7 @@ HTTP 201 Created
 
 ## Example of how to use the OAS Config Endpoint
 
-1. Define your OAS File for the services and routes you wish to create. Please validate your OAS file prior to submitting. The below is an abbreviated version of the sample Petstore specfication [https://petstore.swagger.io].
+1. Define your OAS File for the services and routes you wish to create. Please validate your OAS file prior to submitting. The below is an abbreviated version of the sample Petstore specification (https://petstore.swagger.io)[https://petstore.swagger.io].
 ```json
 {
     "swagger": "2.0",
