@@ -54,8 +54,8 @@ $ curl -i -X POST \
 ## 3. Verify Validity of Consumer Credentials 
 
 The authorization header must be base64 encoded. For example, if the credential 
-uses Aladdin as the username and OpenSesame as the password, then the field’s 
-value is the base64-encoding of Aladdin:OpenSesame, or QWxhZGRpbjpPcGVuU2VzYW1l.
+uses `Aladdin` as the username and `OpenSesame` as the password, then the field’s 
+value is the base64-encoding of `Aladdin:OpenSesame`, or `QWxhZGRpbjpPcGVuU2VzYW1l`.
 
 Then the Authorization (or Proxy-Authorization) header must appear as:
 

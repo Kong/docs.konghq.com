@@ -1,5 +1,7 @@
 ---
 title: Configuration Reference
+redirect_from: 
+  - '/1.2.x/configuration-reference'
 ---
 
 ## Configuration loading

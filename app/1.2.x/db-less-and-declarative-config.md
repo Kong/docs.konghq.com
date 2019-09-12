@@ -1,7 +1,8 @@
 ---
 title: DB-less and Declarative Configuration
+redirect_from:
+  - /Users/cat/docs.konghq.com/dist/1.2.x/db-less-and-declarative-config/
 ---
-
 
 ## Introduction
 
@@ -18,12 +19,12 @@ file, in YAML or JSON, using **declarative configuration**.
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
 
-* Reduced number of dependencies: no need to manage a database installation
+- Reduced number of dependencies: no need to manage a database installation
   if the entire setup for your use-cases fits in memory
-* it is a good fit for automation in CI/CD scenarios: configuration for
+- it is a good fit for automation in CI/CD scenarios: configuration for
   entities can be kept in a single source of truth managed via a Git
   repository
-* It enables more deployment options for Kong: for example, DB-less Kong
+- It enables more deployment options for Kong: for example, DB-less Kong
   is a natural fit for a lightweight sidecar in a Service Mesh scenario
 
 ## What Is Declarative Configuration
@@ -32,7 +33,7 @@ of benefits:
 may skip this section.</i>
 
 The key idea in declarative configuration is, as its name shows, the notion
-that it is *declarative*, as opposed to an *imperative* style of
+that it is _declarative_, as opposed to an _imperative_ style of
 configuration. "Imperative" means that a configuration is given as a series of
 orders: "do this, then to that". "Declative" means that the configuration is
 given all at once: "I declare this to be the state of the world".
@@ -43,7 +44,7 @@ one call to create a Service, another call to create a Route, another call to
 add a Plugin, and so on.
 
 Performing the configuration incrementally like this has the undesirable
-side-effect that *intermediate states* happen. In the above example, there is
+side-effect that _intermediate states_ happen. In the above example, there is
 a window of time in between creating a Route and adding the Plugin in which
 the Route did not have the Plugin applied.
 
@@ -91,7 +92,7 @@ Server: kong/1.1.0
 }
 ```
 
-Kong is running, but no declarative configuration was loaded yet. This 
+Kong is running, but no declarative configuration was loaded yet. This
 means that the configuration of this node is empty. There are no Routes,
 Services or entities of any kind:
 
@@ -107,7 +108,7 @@ Date: Wed, 27 Mar 2019 15:30:02 GMT
 Server: kong/1.1.0
 
 {
-    "data": [], 
+    "data": [],
     "next": null
 }
 ```
@@ -135,22 +136,22 @@ entities and their attributes. This is a small, yet, complete
 example, which illustrates a number of features:
 
 ```yaml
-_format_version: "1.1"
+_format_version: '1.1'
 
 services:
-- name: my-service
-  url: https://example.com
-  plugins:
-  - name: key-auth
-  routes:
-  - name: my-route
-    paths:
-    - /
+  - name: my-service
+    url: https://example.com
+    plugins:
+      - name: key-auth
+    routes:
+      - name: my-route
+        paths:
+          - /
 
 consumers:
-- username: my-user
-  keyauth_credentials:
-  - key: my-key
+  - username: my-user
+    keyauth_credentials:
+      - key: my-key
 ```
 
 The only mandatory piece of metadata is `_format_version: "1.1"`, which
@@ -160,8 +161,7 @@ This also matches the minimum version of Kong required to parse the file.
 At the top level, you can specify any Kong entity, be it a core entity such as
 `services` and `consumers` as in the above example, or custom entities created
 by Plugins, such as `keyauth_credentials`. (This makes the declarative
-configuration format inherently extensible, and it is the reason why `kong
-config` commands that process declarative configuration require `kong.conf` to
+configuration format inherently extensible, and it is the reason why `kong config` commands that process declarative configuration require `kong.conf` to
 be available, so that the `plugins` directive is taken into account.)
 
 When entities have a relationship, such as a Route which points to a Service,
@@ -178,9 +178,9 @@ a Consumer:
 
 ```yml
 plugins:
-- name: syslog
-  consumer: my-user
-  service: my-service
+  - name: syslog
+    consumer: my-user
+    service: my-service
 ```
 
 ## Checking The Declarative Configuration File
@@ -210,7 +210,7 @@ $ kong start -c kong.conf
 ```
 
 Alternatively, you can load a declarative configuration into a running
-Kong node via its Admin API, using the `/config` endpoint. The 
+Kong node via its Admin API, using the `/config` endpoint. The
 following example loads `kong.yml` using HTTPie:
 
 ```
@@ -265,38 +265,38 @@ entities.
 The following plugins only read from the database (most of them just to read
 their initial config) so they are fully compatible with DB-less:
 
-* `aws-lambda`
-* `azure-functions`
-* `bot-detection`
-* `correlation-id`
-* `cors`
-* `datadog`
-* `file-log`
-* `http-log`
-* `tcp-log`
-* `udp-log`
-* `syslog`
-* `ip-restriction`
-* `prometheus`
-* `zipkin`
-* `request-transformer`
-* `response-transformer`
-* `request-termination`
-* `kubernetes-sidecar-injector`
+- `aws-lambda`
+- `azure-functions`
+- `bot-detection`
+- `correlation-id`
+- `cors`
+- `datadog`
+- `file-log`
+- `http-log`
+- `tcp-log`
+- `udp-log`
+- `syslog`
+- `ip-restriction`
+- `prometheus`
+- `zipkin`
+- `request-transformer`
+- `response-transformer`
+- `request-termination`
+- `kubernetes-sidecar-injector`
 
 ##### Partial Compatibility
 
 Authentication plugins can be used insofar as the set of credentials
 used is static and specified as part of the declarative configuration.
 Admin API endpoints to dynamically create, update or delete credentials
-are not available in DB-less mode. Plugins that fall into this 
+are not available in DB-less mode. Plugins that fall into this
 category are:
 
-* `acl`
-* `basic-auth`
-* `hmac-auth`
-* `jwt`
-* `key-auth`
+- `acl`
+- `basic-auth`
+- `hmac-auth`
+- `jwt`
+- `key-auth`
 
 Rate limiting plugins bundled with Kong offer different policies for
 storing and coordinating counters: a `local` policy which stores counters
@@ -307,8 +307,8 @@ as a central coordination point for cluster-wide limits. In DB-less mode
 the `local` and `redis` policies are available, and `cluster` cannot be
 used. Plugins that fall into this category are:
 
-* `rate-limiting`
-* `response-ratelimiting`
+- `rate-limiting`
+- `response-ratelimiting`
 
 The `pre-function` and `post-function` plugins for serverless can be used
 in DB-less mode, with the caveat that if any configured functions attempt to
@@ -316,6 +316,6 @@ write to the database, the writes will fail.
 
 ##### Not Compatible
 
-* `oauth2` - For its regular work, the plugin needs to both generate and delete
+- `oauth2` - For its regular work, the plugin needs to both generate and delete
   tokens, and commit those changes to the database, which is not compatible with
   DB-less.

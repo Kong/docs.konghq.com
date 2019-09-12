@@ -16,9 +16,9 @@ Before going further into Kong, make sure you understand its [purpose and philos
 
 You’ve probably heard that Kong is built on Nginx, leveraging its stability and efficiency. But how is this possible exactly?
 
-To be more precise, Kong is a Lua application running in Nginx and made possible by the [lua-nginx-module](https://github.com/openresty/lua-nginx-module). Instead of compiling Nginx with this module, Kong is distributed along with [OpenResty](https://openresty.org/), which already includes lua-nginx-module. OpenResty is *not* a fork of Nginx, but a bundle of modules extending its capabilities.
+To be more precise, Kong is a Lua application running in Nginx and made possible by the [lua-nginx-module](https://github.com/openresty/lua-nginx-module). Instead of compiling Nginx with this module, Kong is distributed along with [OpenResty](https://openresty.org/), which already includes lua-nginx-module. OpenResty is _not_ a fork of Nginx, but a bundle of modules extending its capabilities.
 
-This sets the foundations for a pluggable architecture, where Lua scripts (referred to as *”plugins”*) can be enabled and executed at runtime. Because of this, we like to think of Kong as **a paragon of microservice architecture**: at its core, it implements database abstraction, routing and plugin management. Plugins can live in separate code bases and be injected anywhere into the request lifecycle, all in a few lines of code.
+This sets the foundations for a pluggable architecture, where Lua scripts (referred to as _”plugins”_) can be enabled and executed at runtime. Because of this, we like to think of Kong as **a paragon of microservice architecture**: at its core, it implements database abstraction, routing and plugin management. Plugins can live in separate code bases and be injected anywhere into the request lifecycle, all in a few lines of code.
 
 ## Next Steps
 

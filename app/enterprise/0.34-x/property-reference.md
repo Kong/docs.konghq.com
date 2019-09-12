@@ -5,6 +5,7 @@ toc: false
 
 ## Table of Contents
 
+* [Configuration Loading](#configuration-loading)
 * [General](#general)
 * [NGINX](#nginx)
 * [Datastore](#datastore)
@@ -20,8 +21,276 @@ toc: false
 * [General SMTP Configuration](#general-smtp-configuration)
 * [Data & Admin Audit](#data-&-admin-audit)
 
-## General
+## Configuration loading
 
+Kong comes with a default configuration file that can be found at
+`/etc/kong/kong.conf.default` if you installed Kong via one of the official
+packages. To start configuring Kong, you can copy this file:
+
+```bash
+$ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+```
+
+Kong will operate with default settings should all the values in your
+configuration be commented-out. Upon starting, Kong looks for several
+default locations that might contain a configuration file:
+
+```
+/etc/kong/kong.conf
+/etc/kong.conf
+```
+
+You can override this behavior by specifying a custom path for your
+configuration file using the `-c / --conf` argument in the CLI:
+
+```bash
+$ kong start --conf /path/to/kong.conf
+```
+
+The configuration format is straightforward: simply uncomment any property
+(comments are defined by the `#` character) and modify it to your needs.
+Booleans values can be specified as `on/off` or `true`/`false` for convenience.
+
+
+
+## Verifying your configuration
+
+You can verify the integrity of your settings with the `check` command:
+
+```bash
+$ kong check <path/to/kong.conf>
+configuration at <path/to/kong.conf> is valid
+```
+
+This command will take into account the environment variables you have
+currently set, and will error out in case your settings are invalid.
+
+Additionally, you can also use the CLI in debug mode to have more insight
+as to what properties Kong is being started with:
+
+```bash
+$ kong start -c <kong.conf> --vv
+2016/08/11 14:53:36 [verbose] no config file found at /etc/kong.conf
+2016/08/11 14:53:36 [verbose] no config file found at /etc/kong/kong.conf
+2016/08/11 14:53:36 [debug] admin_listen = "0.0.0.0:8001"
+2016/08/11 14:53:36 [debug] database = "postgres"
+2016/08/11 14:53:36 [debug] log_level = "notice"
+[...]
+```
+
+
+
+## Environment variables
+
+When loading properties out of a configuration file, Kong will also look for
+environment variables of the same name. This allows you to fully configure Kong
+via environment variables, which is very convenient for container-based
+infrastructures, for example.
+
+All environment variables prefixed with `KONG_`, capitalized and bearing the
+same name as a setting will override it.
+
+Example:
+
+```
+log_level = debug # in kong.conf
+```
+
+Can be overridden with:
+
+```bash
+$ export KONG_LOG_LEVEL=error
+```
+
+
+
+## Custom Nginx configuration & embedding Kong
+
+Tweaking the Nginx configuration is an essential part of setting up your Kong
+instances since it allows you to optimize its performance for your
+infrastructure, or embed Kong in an already running OpenResty instance.
+
+### Custom Nginx configuration
+
+Kong can be started, reloaded and restarted with an `--nginx-conf` argument,
+which must specify an Nginx configuration template. Such a template uses the
+[Penlight][Penlight] [templating engine][pl.template], which is compiled using
+the given Kong configuration, before being dumped in your Kong prefix
+directory, moments before starting Nginx.
+
+The default template can be found at:
+https://github.com/Kong/kong/tree/master/kong/templates. It is split in two
+Nginx configuration files: `nginx.lua` and `nginx_kong.lua`. The former is
+minimalistic and includes the latter, which contains everything Kong requires
+to run. When `kong start` runs, right before starting Nginx, it copies these
+two files into the prefix directory, which looks like so:
+
+```
+/usr/local/kong
+├── nginx-kong.conf
+├── nginx.conf
+```
+
+If you wish to include other `server` blocks in your Nginx configuration, or if
+you must tweak global settings that are not exposed by the Kong configuration,
+here is a suggestion:
+
+```
+# ---------------------
+# custom_nginx.template
+# ---------------------
+
+worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
+daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
+
+pid pids/nginx.pid;                      # this setting is mandatory
+error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
+
+events {
+    use epoll; # custom setting
+    multi_accept on;
+}
+
+http {
+    # include default Kong Nginx config
+    include 'nginx-kong.conf';
+
+    # custom server
+    server {
+        listen 8888;
+        server_name custom_server;
+
+        location / {
+          ... # etc
+        }
+    }
+}
+```
+
+You can then start Kong with:
+
+```bash
+$ kong start -c kong.conf --nginx-conf custom_nginx.template
+```
+
+If you wish to customize the Kong Nginx sub-configuration file to, eventually,
+add other Lua handlers or customize the `lua_*` directives, you can inline the
+`nginx_kong.lua` configuration in this `custom_nginx.template` example file:
+
+```
+# ---------------------
+# custom_nginx.template
+# ---------------------
+
+worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
+daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
+
+pid pids/nginx.pid;                      # this setting is mandatory
+error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
+
+events {}
+
+http {
+  resolver ${{ "{{DNS_RESOLVER" }}}} ipv6=off;
+  charset UTF-8;
+  error_log logs/error.log ${{ "{{LOG_LEVEL" }}}};
+  access_log logs/access.log;
+
+  ... # etc
+}
+```
+
+
+
+### Embedding Kong in OpenResty
+
+If you are running your own OpenResty servers, you can also easily embed Kong
+by including the Kong Nginx sub-configuration using the `include` directive
+(similar to the examples of the previous section). If you have a valid
+top-level NGINX configuration that simply includes the Kong-specific
+configuration:
+
+```
+# my_nginx.conf
+
+http {
+    include 'nginx-kong.conf';
+}
+```
+
+you can start your instance like so:
+
+```bash
+$ nginx -p /usr/local/openresty -c my_nginx.conf
+```
+
+And Kong will be running in that instance (as configured in `nginx-kong.conf`).
+
+
+
+### Serving both a website and your APIs from Kong
+
+A common use case for API providers is to make Kong serve both a website
+and the APIs themselves over the Proxy port &mdash; `80` or `443` in
+production. For example, `https://my-api.com` (Website) and
+`https://my-api.com/api/v1` (API).
+
+To achieve this, we cannot simply declare a new virtual server block,
+like we did in the previous section. A good solution is to use a custom
+Nginx configuration template which inlines `nginx_kong.lua` and adds a new
+`location` block serving the website alongside the Kong Proxy `location`
+block:
+
+```
+# ---------------------
+# custom_nginx.template
+# ---------------------
+
+worker_processes ${{ "{{NGINX_WORKER_PROCESSES" }}}}; # can be set by kong.conf
+daemon ${{ "{{NGINX_DAEMON" }}}};                     # can be set by kong.conf
+
+pid pids/nginx.pid;                      # this setting is mandatory
+error_log logs/error.log ${{ "{{LOG_LEVEL" }}}}; # can be set by kong.conf
+events {}
+
+http {
+  # here, we inline the contents of nginx_kong.lua
+  charset UTF-8;
+
+  # any contents until Kong's Proxy server block
+  ...
+
+  # Kong's Proxy server block
+  server {
+    server_name kong;
+
+    # any contents until the location / block
+    ...
+
+    # here, we declare our custom location serving our website
+    # (or API portal) which we can optimize for serving static assets
+    location / {
+      root /var/www/my-api.com;
+      index index.htm index.html;
+      ...
+    }
+
+    # Kong's Proxy location / has been changed to /api/v1
+    location /api/v1 {
+      set $upstream_host nil;
+      set $upstream_scheme nil;
+      set $upstream_uri nil;
+
+      # Any remaining configuration for the Proxy location
+      ...
+    }
+  }
+
+  # Kong's Admin server block goes below
+}
+```
+
+## General
 
 ### prefix
 

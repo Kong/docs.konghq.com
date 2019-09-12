@@ -19,8 +19,8 @@ works as follows:
 2. Create a `consumer` entity
 3. Provide the consumer with authentication credentials for the specific authentication method
 4. Now whenever a request comes in Kong will check the provided credentials (depends on the auth type) and
-it will either block the request if it cannot validate, or add consumer and credential details
-in the headers and forward the request
+   it will either block the request if it cannot validate, or add consumer and credential details
+   in the headers and forward the request
 
 The generic flow above does not always apply, for example when using external authentication like LDAP,
 then there is no consumer to be identified, and only the credentials will be added in the forwarded headers.
@@ -49,134 +49,134 @@ the corresponding route:
 
 1. ### Create an example Service and a Route
 
-    Issue the following cURL request to create `example-service` pointing to mockbin.org, which will echo
-    the request:
+   Issue the following cURL request to create `example-service` pointing to mockbin.org, which will echo
+   the request:
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/services/ \
-      --data 'name=example-service' \
-      --data 'url=http://mockbin.org/request'
-    ```
+   ```bash
+   $ curl -i -X POST \
+     --url http://localhost:8001/services/ \
+     --data 'name=example-service' \
+     --data 'url=http://mockbin.org/request'
+   ```
 
-    Add a route to the Service:
+   Add a route to the Service:
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/services/example-service/routes \
-      --data 'paths[]=/auth-sample'
-    ```
+   ```bash
+   $ curl -i -X POST \
+     --url http://localhost:8001/services/example-service/routes \
+     --data 'paths[]=/auth-sample'
+   ```
 
-    The url `http://localhost:8000/auth-sample` will now echo whatever is being requested.
+   The url `http://localhost:8000/auth-sample` will now echo whatever is being requested.
 
 2. ### Configure the key-auth Plugin for your Service
 
-    Issue the following cURL request to add a plugin to a Service:
+   Issue the following cURL request to add a plugin to a Service:
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/services/example-service/plugins/ \
-      --data 'name=key-auth'
-    ```
+   ```bash
+   $ curl -i -X POST \
+     --url http://localhost:8001/services/example-service/plugins/ \
+     --data 'name=key-auth'
+   ```
 
-    Be sure to note the created Plugin `id` - you'll need it in step 5.
+   Be sure to note the created Plugin `id` - you'll need it in step 5.
 
 3. ### Verify that the key-auth plugin is properly configured
 
-    Issue the following cURL request to verify that the [key-auth][key-auth]
-    plugin was properly configured on the Service:
+   Issue the following cURL request to verify that the [key-auth][key-auth]
+   plugin was properly configured on the Service:
 
-    ```bash
-    $ curl -i -X GET \
-      --url http://localhost:8000/auth-sample
-    ```
+   ```bash
+   $ curl -i -X GET \
+     --url http://localhost:8000/auth-sample
+   ```
 
-    Since you did not specify the required `apikey` header or parameter, and you have not yet
-    enabled anonymous access, the response should be `403 Forbidden`:
+   Since you did not specify the required `apikey` header or parameter, and you have not yet
+   enabled anonymous access, the response should be `403 Forbidden`:
 
-    ```http
-    HTTP/1.1 403 Forbidden
-    ...
+   ```http
+   HTTP/1.1 403 Forbidden
+   ...
 
-    {
-      "message": "No API key found in headers or querystring"
-    }
-    ```
+   {
+     "message": "No API key found in headers or querystring"
+   }
+   ```
 
 4. ### Create an anonymous Consumer
 
-    Every request proxied by Kong must be associated with a Consumer. You'll now create a Consumer
-    named `anonymous_users` (that Kong will utilize when proxying anonymous access) by issuing the
-    following request:
+   Every request proxied by Kong must be associated with a Consumer. You'll now create a Consumer
+   named `anonymous_users` (that Kong will utilize when proxying anonymous access) by issuing the
+   following request:
 
-    ```bash
-    $ curl -i -X POST \
-      --url http://localhost:8001/consumers/ \
-      --data "username=anonymous_users"
-    ```
+   ```bash
+   $ curl -i -X POST \
+     --url http://localhost:8001/consumers/ \
+     --data "username=anonymous_users"
+   ```
 
-    You should see a response similar to the one below:
+   You should see a response similar to the one below:
 
-    ```http
-    HTTP/1.1 201 Created
-    Content-Type: application/json
-    Connection: keep-alive
+   ```http
+   HTTP/1.1 201 Created
+   Content-Type: application/json
+   Connection: keep-alive
 
-    {
-      "username": "anonymous_users",
-      "created_at": 1428555626000,
-      "id": "bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
-    }
-    ```
+   {
+     "username": "anonymous_users",
+     "created_at": 1428555626000,
+     "id": "bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"
+   }
+   ```
 
-    Be sure to note the Consumer `id` - you'll need it in the next step.
+   Be sure to note the Consumer `id` - you'll need it in the next step.
 
 5. ### Enable anonymous access
 
-    You'll now re-configure the key-auth plugin to permit anonymous access by issuing the following
-    request (**replace the sample uuids below by the `id` values from step 2 and 4**):
+   You'll now re-configure the key-auth plugin to permit anonymous access by issuing the following
+   request (**replace the sample uuids below by the `id` values from step 2 and 4**):
 
-    ```bash
-    $ curl -i -X PATCH \
-      --url http://localhost:8001/plugins/<your-plugin-id> \
-      --data "config.anonymous=<your-consumer-id>"
-    ```
+   ```bash
+   $ curl -i -X PATCH \
+     --url http://localhost:8001/plugins/<your-plugin-id> \
+     --data "config.anonymous=<your-consumer-id>"
+   ```
 
-    The `config.anonymous=<your-consumer-id>` parameter instructs the key-auth plugin on this Service to permit
-    anonymous access, and to associate such access with the Consumer `id` we received in the previous step. It is
-    required that you provide a valid and pre-existing Consumer `id` in this step - validity of the Consumer `id`
-    is not currently checked when configuring anonymous access, and provisioning of a Consumer `id` that doesn't already
-    exist will result in an incorrect configuration.
+   The `config.anonymous=<your-consumer-id>` parameter instructs the key-auth plugin on this Service to permit
+   anonymous access, and to associate such access with the Consumer `id` we received in the previous step. It is
+   required that you provide a valid and pre-existing Consumer `id` in this step - validity of the Consumer `id`
+   is not currently checked when configuring anonymous access, and provisioning of a Consumer `id` that doesn't already
+   exist will result in an incorrect configuration.
 
 6. ### Check anonymous access
 
-    Confirm that your Service now permits anonymous access by issuing the following request:
+   Confirm that your Service now permits anonymous access by issuing the following request:
 
-    ```bash
-    $ curl -i -X GET \
-      --url http://localhost:8000/auth-sample
-    ```
+   ```bash
+   $ curl -i -X GET \
+     --url http://localhost:8000/auth-sample
+   ```
 
-    This is the same request you made in step #3, however this time the request should succeed, because you
-    enabled anonymous access in step #5.
+   This is the same request you made in step #3, however this time the request should succeed, because you
+   enabled anonymous access in step #5.
 
-    The response (which is the request as Mockbin received it) should have these elements:
+   The response (which is the request as Mockbin received it) should have these elements:
 
-    ```json
-    {
-      ...
-      "headers": {
-        ...
-        "x-consumer-id": "713c592c-38b8-4f5b-976f-1bd2b8069494",
-        "x-consumer-username": "anonymous_users",
-        "x-anonymous-consumer": "true",
-        ...
-      },
-      ...
-    }
-    ```
+   ```json
+   {
+     ...
+     "headers": {
+       ...
+       "x-consumer-id": "713c592c-38b8-4f5b-976f-1bd2b8069494",
+       "x-consumer-username": "anonymous_users",
+       "x-anonymous-consumer": "true",
+       ...
+     },
+     ...
+   }
+   ```
 
-    It shows the request was successful, but anonymous.
+   It shows the request was successful, but anonymous.
 
 ## Multiple Authentication
 

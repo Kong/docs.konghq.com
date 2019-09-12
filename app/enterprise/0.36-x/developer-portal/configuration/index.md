@@ -1,5 +1,7 @@
 ---
 title: Dev Portal Configuration
+redirect_from:
+  - /developer-portal/configuration/enable-the-dev-portal
 ---
 
 <div class="docs-grid">

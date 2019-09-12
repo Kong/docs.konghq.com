@@ -45,6 +45,32 @@
     - text: LDAP Auth Advanced Plugin
       url: /plugins/ldap-authentication-advanced
 
+- title: Admin API
+  url: /admin-api/
+  items:
+    - text: Supported Content Types
+      url: /admin-api/#supported-content-types
+    - text: Information
+      url: /admin-api/#information-routes
+    - text: Service Object
+      url: /admin-api/#service-object
+    - text: Route Object
+      url: /admin-api/#route-object
+    - text: API Object
+      url: /admin-api/#api-object
+    - text: Consumer Object
+      url: /admin-api/#consumer-object
+    - text: Plugin Object
+      url: /admin-api/#plugin-object
+    - text: Certificate Object
+      url: /admin-api/#certificate-object
+    - text: SNI Object
+      url: /admin-api/#sni-objects
+    - text: Upstream Object
+      url: /admin-api/#upstream-objects
+    - text: Target Object
+      url: /admin-api/#target-object
+
 - title: Workspaces
   items:
     - text: Overview

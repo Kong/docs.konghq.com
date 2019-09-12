@@ -13,6 +13,8 @@ cache:
 before_install:
   - rvm install 2.3.3
   - npm install -g yarn
+env:
+  - NODE_OPTIONS=--max_old_space_size=8192
 install:
   - bundle install
   - yarn

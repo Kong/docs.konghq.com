@@ -94,7 +94,7 @@ $ kong start [-c /path/to/kong.conf]
 ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to [your own configuration](/1.0.x/configuration/#configuration-loading).
+allowing you to point to [your own configuration](/enterprise/{{page.kong_version}}/property-reference/#configuration-loading).
 
 ## Step 4
 

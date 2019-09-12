@@ -53,7 +53,7 @@ $ kong migrations bootstrap [-c /path/to/kong.conf]
 $ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 
-**Note:** You may use `kong.conf.default` or create [your own configuration](/0.13.x/configuration/#configuration-loading).
+**Note:** You may use `kong.conf.default` or create [your own configuration](/enterprise/{{page.kong_version}}/property-reference/#configuration-loading).
 
 ## Install HTTPie to Make Commands more Easily
 

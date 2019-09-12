@@ -10,9 +10,7 @@ guides is designed to help you familiarize yourself with Kong Enterprise's featu
 and capabilities, with practical steps to start Kong Enterprise securely, access
 Kong Manager as a **Super Admin**, and create new entities such as **Services**.
 
-Each guide also contains links to more in-depth material. Note that Kong
- Enterprise 0.36 includes Kong 1.2 at its core, so CLI commands and most Admin
- API endpoints are documented in standard [Kong documentation](/1.0.x/).
+Each guide also contains links to more in-depth material.
 
  If you have any issues or further questions, please
 [contact Support](https://support.konghq.com/support/s/) and they will be happy

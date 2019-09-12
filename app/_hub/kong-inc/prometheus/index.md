@@ -20,6 +20,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.3.x
         - 1.2.x
         - 1.1.x
         - 1.0.x
@@ -31,7 +32,7 @@ params:
   name: prometheus
   service_id: true
   route_id: false
-  protocols: ["http", "https", "tcp", "tls"]
+  protocols: ["http", "https", "tcp", "tls", "grpc", "grpcs"]
   dbless_compatible: yes
   dbless_explanation: |
     The database will always be reported as “reachable” in prometheus with DB-less.
