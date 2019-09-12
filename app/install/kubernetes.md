@@ -149,7 +149,7 @@ $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].st
 $ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
-Continue to [configuring a service](/latest/getting-started/configuring-a-service/).
+If you are using installing the Kong Enterprise Trial, you will need to continue to [Additional PostgreSQL Steps for Kong Enterprise Trial Users](#additional-postgresql-steps-for-kong-enterprise-trial-users). Otherwise, continue to [configuring a service](/latest/getting-started/configuring-a-service/).
 
 ### Using Kong without a Database
 
@@ -222,13 +222,13 @@ Continue to [db-less and declarative configuration documentation page](/latest/d
     Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` and replace
     `image: kong` with `image: gcr.io/<project ID>/kong-ee`, using the same project ID as above.    
 
-4. **Updating Postgres configuration**
+4. **Updating Postgres configuration (Optional)**
 
-    If you used `make run_postgres` to configure PostgreSQL, you will need to update `kong_trial_migration_postgres.yaml`. Set the `KONG_PG_HOST` env variable to `postgres.kong.svc.cluster.local`. It should look like:
+    The migration job assumes that your Postgres instance is located in the default namespace. If you followed the steps above, you can skip this step. If you used a different namespace, you will need to updated the configuration. Update `kong_trial_migration_postgres.yaml` and set the `KONG_PG_HOST` env variable to `postgres.{namespace}.svc.cluster.local` so it looks like:
     
     ```yaml
     - name: KONG_PG_HOST
-      value: postgres.kong.svc.cluster.local
+      value: postgres.{namespace}.svc.cluster.local
     ```
     
 Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
@@ -247,4 +247,9 @@ Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
     ```
     
     Once Kong Enterprise is running, you should be able to access the Kong Admin GUI
-    at `<kong-admin-ip-address>:8002` or `https://<kong-ssl-admin-ip-address>:8445`.
+    
+    ```bash
+    hostname="$(kubectl get service kong-admin -n kong -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+    sslhostname="$(kubectl get service kong-admin-ssl -n kong -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+    echo "Access the Admin UI at http://$hostname:8002 or https://$sslhostname:8445."
+    ```
