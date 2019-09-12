@@ -129,6 +129,8 @@ plane node
 $ kubectl -n kong apply -f kong-ingress-data-plane-postgres.yaml
 ```
 
+If you are using installing the Kong Enterprise Trial, you will need to continue to [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users) before you move to the next step.
+
 Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
 
 ### Using Datastore Backed Kong
@@ -220,8 +222,12 @@ Continue to [db-less and declarative configuration documentation page](/latest/d
 3. **Use the Kong Enterprise image**
 
     Edit `kong_trial_postgres.yaml` and `kong_trial_migration_postgres.yaml` and replace
-    `image: kong` with `image: gcr.io/<project ID>/kong-ee`, using the same project ID as above.
+    `image: kong` with `image: gcr.io/<project ID>/kong-ee`, using the same project ID as above.    
 
+4. **Updating Postgres configuration**
+
+    If you used `make run_postgres` to configure PostgreSQL, you will need to update `kong_trial_migration_postgres.yaml`. Set the `KONG_PG_HOST` env variable to `postgres.kong.svc.cluster.local`.
+    
 4. **Deploy Kong Enterprise**
 
     Continue from step 4 in the **Kong or Kong Enterprise via Manifest Files**
