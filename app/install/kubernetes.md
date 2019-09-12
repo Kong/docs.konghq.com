@@ -149,7 +149,7 @@ $ export HOST=$(kubectl get nodes --namespace default -o jsonpath='{.items[0].st
 $ export ADMIN_PORT=$(kubectl get svc --namespace kong kong-control-plane  -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
-If you are using installing the Kong Enterprise Trial, you will need to continue to [Additional PostgreSQL Steps for Kong Enterprise Trial Users](#additional-postgresql-steps-for-kong-enterprise-trial-users). Otherwise, continue to [configuring a service](/latest/getting-started/configuring-a-service/).
+If you are using installing the Kong Enterprise Trial, you will need to continue to [Additional Steps for Kong Enterprise Trial Users](#additional-steps-for-kong-enterprise-trial-users). Otherwise, continue to [configuring a service](/latest/getting-started/configuring-a-service/).
 
 ### Using Kong without a Database
 
