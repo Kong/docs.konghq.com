@@ -255,3 +255,5 @@ Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
     sslhostname="$(kubectl get service kong-admin-ssl -n kong -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
     echo "Access the Admin UI at http://$hostname:8002 or https://$sslhostname:8445."
     ```
+    
+Continue to [configuring a service](/latest/getting-started/configuring-a-service/).
