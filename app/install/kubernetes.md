@@ -237,8 +237,14 @@ Continue to [Using Datastore Backed Kong](#using-datastore-backed-kong)
 
 1. **Deploy Kong Enterprise**
 
-    Continue from step 4 in the **Kong or Kong Enterprise via Manifest Files**
-    instruction above, using the `kong_trial_*` YAML files in the
+    You will need to deploy the `kong_trial_*` YAML files in the
     [Kong Enterprise Trial directory](https://github.com/Kong/kong-dist-kubernetes/tree/master/ee-trial).
+    using:
+    
+    ```yaml
+    kubectl apply -n kong -f ee-trial/kong_trial_migration_postgres.yaml
+    kubectl apply -n kong -f ee-trial/kong_trial_postgres.yaml
+    ```
+    
     Once Kong Enterprise is running, you should be able to access the Kong Admin GUI
     at `<kong-admin-ip-address>:8002` or `https://<kong-ssl-admin-ip-address>:8445`.
