@@ -5,17 +5,18 @@ header_title: Amazon Linux
 header_icon: /assets/images/icons/icn-installation.svg
 breadcrumbs:
   Installation: /install
+
 ---
 
-### Packages
+## Packages
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
-- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux/kong-{{site.data.kong_latest.version}}.aws.rpm)
+- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux/kong-{{site.data.kong_latest.version}}.aws.amd64.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
-### YUM Repositories
+## YUM Repositories
 
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
@@ -31,7 +32,7 @@ baseurl=https://kong.bintray.com/kong-rpm/amazonlinux/amazonlinux
 
 ----
 
-### Installation
+## Installation
 
 1. **Install Kong**
 

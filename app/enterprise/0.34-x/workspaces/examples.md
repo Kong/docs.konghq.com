@@ -489,4 +489,4 @@ Next: [RBAC Overview &rsaquo;](/enterprise/{{page.kong_version}}/rbac/overview)
 
 ---
 
-[services]: /{{page.kong_version}}/admin-api/#service-object
+[services]: /enterprise/{{page.kong_version}}/admin-api/#service-object

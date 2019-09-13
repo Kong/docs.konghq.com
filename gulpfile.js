@@ -43,42 +43,49 @@ var dest = {
   js: paths.dist + 'assets/app.js'
 }
 
-gulp.task('copycss', function () {
-  gulp.src(paths.assets + 'css/*.css')
-    .pipe(gulp.dest(paths.dist + 'assets'))
-})
+var reload = browserSync.reload
 
-gulp.task('styles', function () {
+
+/* Functions
+--------------------------------------- */
+
+// Basic Tasks
+function css() {
+  return gulp.src(paths.assets + 'css/*.css')
+    .pipe(gulp.dest(paths.dist + 'assets'))
+}
+
+function styles() {
   return gulp.src(paths.assets + 'stylesheets/index.less')
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.less())
     .pipe($.autoprefixer())
-    .pipe($.purifycss([dest.html], {
-      whitelist: [
-        '.affix',
-        '.alert',
-        '.close',
-        '.collaps',
-        '.fade',
-        '.has',
-        '.help',
-        '.in',
-        '.modal',
-        '.open',
-        '.popover',
-        '.tooltip'
-      ]
-    }))
+    // .pipe($.purifycss([dest.html], {
+    //   whitelist: [
+    //     '.affix',
+    //     '.alert',
+    //     '.close',
+    //     '.collaps',
+    //     '.fade',
+    //     '.has',
+    //     '.help',
+    //     '.in',
+    //     '.modal',
+    //     '.open',
+    //     '.popover',
+    //     '.tooltip'
+    //   ]
+    // }))
     .pipe($.cleanCss({ compatibility: 'ie8' }))
     .pipe($.rename('styles.css'))
     .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest(paths.dist + 'assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
-})
+}
 
-gulp.task('javascripts', function () {
+function js() {
   return gulp.src(sources.js)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
@@ -93,25 +100,25 @@ gulp.task('javascripts', function () {
     .pipe(gulp.dest('dist/assets'))
     .pipe($.size())
     .pipe(browserSync.stream())
-})
+}
 
-gulp.task('images', function () {
+function images() {
   return gulp.src(sources.images)
     .pipe($.plumber())
     .pipe($.imagemin())
     .pipe(gulp.dest(paths.dist + 'assets/images'))
     .pipe($.size())
-})
+}
 
-gulp.task('fonts', function () {
+function fonts() {
   return gulp.src(sources.fonts)
     .pipe($.plumber())
     .pipe(gulp.dest(paths.dist + 'assets/fonts'))
     .pipe($.size())
     .pipe(browserSync.stream())
-})
+}
 
-gulp.task('jekyll', function (cb) {
+function jekyll(cb) {
   var command = 'bundle exec jekyll build --config jekyll.yml --destination ' + paths.dist
 
   childProcess.exec(command, function (err, stdout, stderr) {
@@ -119,18 +126,20 @@ gulp.task('jekyll', function (cb) {
     log(stderr)
     cb(err)
   })
-})
+}
 
-gulp.task('html', ['jekyll'], function () {
+function html() {
   return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
     // Prefetch static assets
     // .pipe($.resourceHints())
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
-})
+}
 
-gulp.task('pdk-docs', function (cb) {
+
+// Lua Tasks
+function pdk_docs(cb) {
   var KONG_PATH, KONG_VERSION,
     navFilepath, doc, pdkRegex, newNav, newDoc,
     cmd, obj, errLog,
@@ -231,9 +240,9 @@ gulp.task('pdk-docs', function (cb) {
   confFilepath = 'app/_data/pdk_info.yml'
   fs.writeFileSync(confFilepath, 'sha1: ' + gitSha1 + '\n')
   log('git SHA-1 (' + gitSha1 + ') written to ' + confFilepath)
-})
+}
 
-gulp.task('admin-api-docs', function (cb) {
+function admin_api_docs(cb) {
   var KONG_PATH, KONG_VERSION, cmd, obj, errLog
 
   // 0 Obtain "env-var params"
@@ -256,9 +265,9 @@ gulp.task('admin-api-docs', function (cb) {
   }
 
   log('Re-generated Admin API docs for ' + KONG_VERSION)
-})
+}
 
-gulp.task('cli-docs', function (cb) {
+function cli_docs(cb) {
   var KONG_PATH, KONG_VERSION, cmd, obj, errLog
 
   // 0 Obtain "env-var params"
@@ -281,9 +290,9 @@ gulp.task('cli-docs', function (cb) {
   }
 
   log('Re-generated CLI docs for ' + KONG_VERSION)
-})
+}
 
-gulp.task('conf-docs', function (cb) {
+function conf_docs(cb) {
   var KONG_PATH, KONG_VERSION, cmd, obj, errLog
 
   // 0 Obtain "env-var params"
@@ -306,18 +315,30 @@ gulp.task('conf-docs', function (cb) {
   }
 
   log('Re-generated Conf docs for ' + KONG_VERSION)
-})
+}
 
-gulp.task('clean', function () {
-  ghPages.clean()
-  return del(['dist', '.gh-pages'])
-})
+function nav_docs(cb) {
+  var KONG_VERSION, cmd, obj, errLog
 
-gulp.task('build', ['javascripts', 'images', 'fonts', 'copycss'], function (cb) {
-  sequence('html', 'styles', cb)
-})
+  // 0 Obtain "env-var params"
+  KONG_VERSION = process.env.KONG_VERSION
+  if (KONG_VERSION === undefined) {
+    return cb('No KONG_VERSION environment variable set. Example: 1.0.x')
+  }
 
-gulp.task('browser-sync', function () {
+  // 1 Generate docs_nav_X.Y.x.yml
+  cmd = 'luajit autodoc-nav/run.lua'
+  obj = childProcess.spawnSync(cmd, { shell: true })
+  errLog = obj.stderr.toString()
+  if (errLog.length > 0) {
+    return cb(errLog)
+  }
+
+  log('Re-generated navigation file for ' + KONG_VERSION)
+}
+
+// Custom Tasks
+function browser_sync(done) {
   browserSync.init({
     logPrefix: ' ▶ ',
     minify: false,
@@ -325,9 +346,10 @@ gulp.task('browser-sync', function () {
     server: 'dist',
     open: false
   })
-})
+  done()
+}
 
-gulp.task('gh-pages', function (cb) {
+function gh_pages(cb) {
   var cmd = 'git rev-parse --short HEAD'
 
   childProcess.exec(cmd, function (err, stdout, stderr) {
@@ -339,9 +361,9 @@ gulp.task('gh-pages', function (cb) {
       message: 'Deploying ' + stdout + '(' + new Date().toISOString() + ')'
     }, cb)
   })
-})
+}
 
-gulp.task('cloudflare', function (cb) {
+function cloudflare(cb) {
   // configure cloudflare
   var cloudflare = require('cloudflare').createClient({
     email: process.env.MASHAPE_CLOUDFLARE_EMAIL,
@@ -355,39 +377,58 @@ gulp.task('cloudflare', function (cb) {
 
     cb()
   })
-})
+}
 
-gulp.task('deploy', function (cb) {
-  sequence('build', 'gh-pages', cb)
-})
+function clean() {
+  ghPages.clean()
+  return del(['dist', '.gh-pages'])
+}
 
-gulp.task('watch', function () {
-  gulp.watch(sources.content, ['html-watch'])
-  gulp.watch(sources.styles, ['styles'])
-  gulp.watch(sources.images, ['images-watch'])
-  gulp.watch(sources.js, ['javascripts'])
-  gulp.watch(paths.assets + 'css/hub.css', ['copycss'])
-})
+function watch_files() {
+  gulp.watch(sources.content, gulp.series(jekyll, html, reload))
+  gulp.watch(sources.styles, styles)
+  gulp.watch(sources.images, gulp.series(images, reload))
+  gulp.watch(sources.js, gulp.series(js, reload))
+  gulp.watch(paths.assets + 'css/hub.css', css)
+}
 
-gulp.task('html-watch', ['html'], function (cb) {
-  browserSync.reload()
-  cb()
-})
-
-gulp.task('images-watch', ['images'], function (cb) {
-  browserSync.reload()
-  cb()
-})
-
-gulp.task('default', ['clean'], function (cb) {
-  sequence('build', 'browser-sync', 'copycss', 'watch', cb)
-})
-
-gulp.task('setdev', function (cb) {
+function set_dev(cb) {
   dev = true
   cb()
-})
+}
 
-gulp.task('dev', ['setdev'], function (cb) {
-  sequence('default', cb)
-})
+/*----------------------------------------*/
+
+// Basic Tasks
+gulp.task("js", js)
+gulp.task("css", css)
+gulp.task("styles", styles)
+gulp.task("images", images)
+gulp.task("fonts", fonts)
+gulp.task("jekyll", jekyll)
+gulp.task("html", html)
+
+// Lua Tasks
+gulp.task("pdk_docs", pdk_docs)
+gulp.task("admin_api_docs", admin_api_docs)
+gulp.task("cli_docs", cli_docs)
+gulp.task("conf_docs", conf_docs)
+gulp.task("nav_docs", nav_docs)
+
+// Custom Tasks
+gulp.task("browser_sync", browser_sync)
+gulp.task("gh_pages", gh_pages)
+gulp.task("cloudflare", cloudflare)
+gulp.task("set_dev", set_dev)
+
+
+// Gulp Commands
+gulp.task("build", gulp.series(gulp.parallel(js, images, fonts, css), jekyll, html, styles))
+
+gulp.task("watch", gulp.series(browser_sync, watch_files))
+
+gulp.task("dev", gulp.series(set_dev, clean, gulp.parallel(js, images, fonts, css), jekyll, html, styles, browser_sync, watch_files))
+
+gulp.task('default', gulp.series(clean, gulp.parallel(js, images, fonts, css), jekyll, html, styles, browser_sync, watch_files))
+
+gulp.task("deploy", gulp.series(gulp.parallel(js, images, fonts, css), jekyll, html, styles, gh_pages))

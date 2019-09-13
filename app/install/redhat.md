@@ -9,16 +9,16 @@ breadcrumbs:
 
 {% capture cassandra_version %}{{site.data.kong_latest.dependencies.cassandra}}{% endcapture %}
 
-### Packages
+## Packages
 
 Start by downloading the corresponding package for your configuration:
 
-- [RHEL 6]({{ site.links.download }}/kong-rpm/download_file?file_path=rhel/6/kong-{{site.data.kong_latest.version}}.rhel6.noarch.rpm)
-- [RHEL 7]({{ site.links.download }}/kong-rpm/download_file?file_path=rhel/7/kong-{{site.data.kong_latest.version}}.rhel7.noarch.rpm)
+- [RHEL 6]({{ site.links.download }}/kong-rpm/download_file?file_path=rhel/6/kong-{{site.data.kong_latest.version}}.rhel6.amd64.rpm)
+- [RHEL 7]({{ site.links.download }}/kong-rpm/download_file?file_path=rhel/7/kong-{{site.data.kong_latest.version}}.rhel7.amd64.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
-### YUM Repositories
+## YUM Repositories
 
 You can also install Kong via YUM; follow the instructions on the "Set Me Up"
 section on the page below.
@@ -39,7 +39,7 @@ baseurl=https://kong.bintray.com/kong-rpm/rhel/7
 
 ----
 
-### Installation
+## Installation
 
 1. **Enable the EPEL repository**
 

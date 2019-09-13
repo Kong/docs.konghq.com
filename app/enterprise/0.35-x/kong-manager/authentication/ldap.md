@@ -33,7 +33,7 @@ admin_gui_auth_conf = {
     "start_tls":false,                                        \
     "timeout":10000,                                          \
     "verify_ldap_host":true                                   \
-    "consumer_by":"username",                                 \
+    "consumer_by":["username", "custom_id"],                  \
 }
 ```
 

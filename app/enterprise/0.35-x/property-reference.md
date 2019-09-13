@@ -5,7 +5,8 @@ toc: false
 
 ## Table of Contents
 
-* [General](#general)
+* [Configuration Loading](#configuration-loading)
+* [General Properties](#general-properties)
 * [NGINX](#nginx)
 * [Datastore](#datastore)
 * [Datastore Cache](#datastore-cache)
@@ -21,17 +22,93 @@ toc: false
 * [Data & Admin Audit](#data-&-admin-audit)
 * [Granular Tracing](#granular-tracing)
 
-## General
+## Configuration Loading
 
+Kong comes with a default configuration file that can be found at
+`/etc/kong/kong.conf.default` if you installed Kong via one of the official
+packages. To start configuring Kong, you can copy this file:
+
+```bash
+$ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+```
+
+Kong will operate with default settings should all the values in your
+configuration be commented out. Upon starting, Kong looks for several
+default locations that might contain a configuration file:
+
+```
+/etc/kong/kong.conf
+/etc/kong.conf
+```
+
+You can override this behavior by specifying a custom path for your
+configuration file using the `-c / --conf` argument in the CLI:
+
+```bash
+$ kong start --conf /path/to/kong.conf
+```
+
+The configuration format is straightforward: simply uncomment any property
+(comments are defined by the `#` character) and modify it to your needs.
+Boolean values can be specified as `on`/`off` or `true`/`false` for convenience.
+
+### Verifying Configuration
+
+You can verify the integrity of your settings with the `check` command:
+
+```bash
+$ kong check <path/to/kong.conf>
+configuration at <path/to/kong.conf> is valid
+```
+
+This command will take into account the environment variables you have
+currently set, and will error out in case your settings are invalid.
+
+Additionally, you can also use the CLI in debug mode to have more insight
+as to what properties Kong is being started with:
+
+```bash
+$ kong start -c <kong.conf> --vv
+2016/08/11 14:53:36 [verbose] no config file found at /etc/kong.conf
+2016/08/11 14:53:36 [verbose] no config file found at /etc/kong/kong.conf
+2016/08/11 14:53:36 [debug] admin_listen = "0.0.0.0:8001"
+2016/08/11 14:53:36 [debug] database = "postgres"
+2016/08/11 14:53:36 [debug] log_level = "notice"
+[...]
+```
+
+### Environment Variables
+
+When loading properties out of a configuration file, Kong will also look for
+environment variables of the same name. This allows you to fully configure Kong
+via environment variables, which is very convenient for container-based
+infrastructures, for example.
+
+To override a setting using an environment variable, declare an environment
+variable with the name of the setting, prefixed with `KONG_` and capitalized.
+
+For example:
+
+```
+log_level = debug # in kong.conf
+```
+
+can be overridden with:
+
+```bash
+$ export KONG_LOG_LEVEL=error
+```
+
+## General Properties
 
 ### prefix
 
 **Default:** `/usr/local/kong/`
 
-**Description:**  
+**Description:**
 
-Working directory. Equivalent to Nginx's prefix path, containing 
-temporary files and logs. Each Kong process must have a separate 
+Working directory. Equivalent to Nginx's prefix path, containing
+temporary files and logs. Each Kong process must have a separate
 working directory.
 
 
@@ -39,13 +116,13 @@ working directory.
 
 **Default:** `notice`
 
-**Description:**  
+**Description:**
 
-Log level of the Nginx server. Logs are found at 
+Log level of the Nginx server. Logs are found at
 `<prefix>/logs/error.log`.
 
-**Note:** See 
-http://nginx.org/en/docs/ngx_core_module.html#error_log for a list 
+**Note:** See
+http://nginx.org/en/docs/ngx_core_module.html#error_log for a list
 of accepted values.
 
 
@@ -53,20 +130,20 @@ of accepted values.
 
 **Default:** `logs/access.log`
 
-**Description:**  
+**Description:**
 
-Path for proxy port request access logs. Set this value to `off` to 
-disable logging proxy requests. If this value is a relative path, 
+Path for proxy port request access logs. Set this value to `off` to
+disable logging proxy requests. If this value is a relative path,
 it will be placed under the `prefix` location.
 
 
-### proxy_error_log 
+### proxy_error_log
 
 **Default:** `logs/error.log`
 
 **Description:**
 
-Path for proxy port request error logs. The granularity of these 
+Path for proxy port request error logs. The granularity of these
 logs is adjusted by the `log_level` directive.
 
 
@@ -77,7 +154,7 @@ logs is adjusted by the `log_level` directive.
 **Description:**
 
 Path for Admin API request access logs. Set this value to `off` to
-disable logging Admin API requests. If this value is a relative 
+disable logging Admin API requests. If this value is a relative
 path, it will be placed under the `prefix` location.
 
 
@@ -87,18 +164,18 @@ path, it will be placed under the `prefix` location.
 
 **Description:**
 
-Path for Admin API request error logs. The granularity of these 
+Path for Admin API request error logs. The granularity of these
 logs is adjusted by the `log_level` directive.
 
 
-### plugins 
+### plugins
 
 **Default:** `bundled`
 
 **Description:**
 
-Comma-separated list of plugins this node should load. 
-By default, only plugins bundled in official distributions are loaded via the `bundled` keyword.. Plugins will be loaded from the `kong.plugins.{name}.*` 
+Comma-separated list of plugins this node should load.
+By default, only plugins bundled in official distributions are loaded via the `bundled` keyword.. Plugins will be loaded from the `kong.plugins.{name}.*`
 namespace.
 
 
@@ -108,7 +185,7 @@ namespace.
 
 **Description:**
 
-Send anonymous usage data such as error stack traces to help 
+Send anonymous usage data such as error stack traces to help
 improve Kong.
 
 
@@ -121,22 +198,22 @@ improve Kong.
 
 **Description:**
 
-Comma-separated list of addresses and ports on which the proxy 
-server should listen. The proxy server is the public entrypoint of 
-Kong, which proxies traffic from your consumers to your backend 
+Comma-separated list of addresses and ports on which the proxy
+server should listen. The proxy server is the public entrypoint of
+Kong, which proxies traffic from your consumers to your backend
 services. This value accepts IPv4, IPv6, and hostnames.
- 
+
 Some suffixes can be specified for each pair:
 
-- `ssl` will require that all connections made through a particular 
+- `ssl` will require that all connections made through a particular
   address/port be made with TLS enabled.
-- `http2` will allow for clients to open HTTP/2 connections to Kong's proxy 
+- `http2` will allow for clients to open HTTP/2 connections to Kong's proxy
   server.
-- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a given 
+- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a given
   address/port.
 
-This value can be set to `off`, thus disabling the proxy port for this node, 
-enabling a 'control-plane' mode (without traffic proxying capabilities) which 
+This value can be set to `off`, thus disabling the proxy port for this node,
+enabling a 'control-plane' mode (without traffic proxying capabilities) which
 can configure a cluster of nodes connected to the same database.
 
 
@@ -144,7 +221,7 @@ can configure a cluster of nodes connected to the same database.
 
 **Default:** `NONE` (auto generated)
 
-**Description:**  
+**Description:**
 
 Here you may provide the lookup, or balancer,
 address for your Kong Proxy nodes.
@@ -174,7 +251,7 @@ Kong Manager and Dev Portal will use
 the window request host and append the resolved
 listener port depending on the requested protocol.
 
-**Note:** see http://nginx.org/en/docs/http/ngx_http_core_module.html#listen 
+**Note:** see http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
 for a description of the accepted formats for this and other *_listen values.
 
 **Note:** see https://www.nginx.com/resources/admin-guide/proxy-protocol/
@@ -205,13 +282,13 @@ stream_listen = [::1]:1234
 
 **Default:** `NONE` (auto generated)
 
-**Description:**  
+**Description:**
 
-Hierarchical part of a URI which is composed 
-optionally of a host, port, and path at which your 
-Admin interface API accepts HTTP or HTTPS traffic. 
-When this config is disabled, the gui will use the 
-window protocol + host and append the resolved 
+Hierarchical part of a URI which is composed
+optionally of a host, port, and path at which your
+Admin interface API accepts HTTP or HTTPS traffic.
+When this config is disabled, the gui will use the
+window protocol + host and append the resolved
 admin_gui_listen HTTP/HTTPS port.
 
 **Example:**
@@ -227,11 +304,11 @@ admin_api_uri = https://127.0.0.1:8444
 
 **Description:**
 
-Comma-separated list of addresses and ports on which the 
-Admin interface should listen. The Admin interface is 
-the API allowing you to configure and manage Kong. 
-Access to this interface should be *restricted* to Kong 
-administrators *only*. This value accepts IPv4, IPv6, 
+Comma-separated list of addresses and ports on which the
+Admin interface should listen. The Admin interface is
+the API allowing you to configure and manage Kong.
+Access to this interface should be *restricted* to Kong
+administrators *only*. This value accepts IPv4, IPv6,
 and hostnames.
 
 Some suffixes can be specified for each pair:
@@ -259,12 +336,12 @@ from the database.
 Defines user and group credentials used by
 worker processes. If group is omitted, a
 group whose name equals that of user is
-used. 
+used.
 
 **Example:** `[user] [group]`
 
 
-### nginx_worker_processes 
+### nginx_worker_processes
 
 **Default:** `auto`
 
@@ -307,7 +384,7 @@ Defines the TLS ciphers served by Nginx.
 Accepted values are `modern`,
 `intermediate`, `old`, or `custom`.
 
-**Note:** see https://wiki.mozilla.org/Security/Server_Side_TLS for detailed 
+**Note:** see https://wiki.mozilla.org/Security/Server_Side_TLS for detailed
 descriptions of each cipher suite.
 
 ### ssl_ciphers
@@ -457,7 +534,7 @@ To trust *all* /!\ IPs, set this value to
 If the special value `unix:` is specified,
 all UNIX-domain sockets will be trusted.
 
-**Note:** see http://nginx.org/en/docs/http/ngx_http_realip_module.html for 
+**Note:** see http://nginx.org/en/docs/http/ngx_http_realip_module.html for
 examples of accepted values.
 
 
@@ -477,8 +554,8 @@ If set to `proxy_protocol`, then at least
 one of the `proxy_listen` entries must
 have the `proxy_protocol` flag enabled.
 
-**Note:** see 
-http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header 
+**Note:** see
+http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
 for a description of this directive.
 
 
@@ -492,8 +569,8 @@ This value sets the ngx_http_realip_module
 directive of the same name in the Nginx
 configuration.
 
-**Note:** see 
-http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive 
+**Note:** see
+http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
 for a description of this directive.
 
 
@@ -511,7 +588,7 @@ respond with a 413 (Request Entity Too
 Large). Setting this value to 0 disables
 checking the request body size.
 
-Note: see 
+Note: see
 http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 for further description of this parameter. Numeric values may be suffixed
 with 'k' or 'm' to denote limits in terms of kilobytes or megabytes.
@@ -536,7 +613,7 @@ high-concurrency environments will require
 significant memory allocations to process
 many concurrent large request bodies.
 
-**Note:** see 
+**Note:** see
 http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
 for further description of this parameter. Numeric values may be suffixed
 with 'k' or 'm' to denote limits in terms of kilobytes or megabytes.
@@ -664,7 +741,7 @@ A comma-separated list of contact points to your cluster.
 
 **Description:**
 
-The port on which your nodes are listening on. All your nodes and contact 
+The port on which your nodes are listening on. All your nodes and contact
 points must listen on the same port.
 
 
@@ -864,7 +941,7 @@ this value can be safely set to 0.
 
 ### db_cache_ttl
 
-**Default:** `3600`
+**Default:** `0`
 
 **Description:**
 
@@ -882,15 +959,32 @@ never expire.
 **Description**
 
 Time (in seconds) for which stale entities from the datastore should be
-resurrected for when they cannot be refreshed (e.g., the datastore is 
+resurrected for when they cannot be refreshed (e.g., the datastore is
 unreachable). When this TTL expires, a new attempt to refresh the stale
 entities will be made.
 
+
+### db_cache_warmup_entities
+
+**Default:** `services, plugins`
+
+**Description**
+
+Entities to be pre-loaded from the datastore into the in-memory cache at Kong
+start-up.
+This speeds up the first access of endpoints that use the given entities.
+When the `services` entity is configured for warmup, the DNS entries for values
+in its `host` attribute are pre-resolved asynchronously as well.
+Cache size set in `mem_cache_size` should be set to a value large enough to
+hold all instances of the specified entities.
+If the size is insufficient, Kong will log a warning.
+
+
 ## DNS Resolver
 
-By default the DNS resolver will use the standard configuration files 
-`/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be 
-overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if 
+By default the DNS resolver will use the standard configuration files
+`/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be
+overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if
 they have been set.
 
 
@@ -1056,7 +1150,7 @@ connection pool associated with every remote
 server.
 
 
-### enforce_rbac 
+### enforce_rbac
 
 **Default:** `off`
 
@@ -1084,7 +1178,7 @@ resource.
 
 **Description:**
 
-Defines the name of the HTTP request header from which the Admin 
+Defines the name of the HTTP request header from which the Admin
 API will attempt to identify the RBAC user.
 
 
@@ -1095,14 +1189,14 @@ API will attempt to identify the RBAC user.
 
 **Default:** `0.0.0.0:8002, 0.0.0.0:8445 ssl`
 
-**Description:**  
+**Description:**
 Comma-separated list of addresses and ports on which
 
 Kong will expose the Admin GUI. This web application
 lets you configure and manage Kong, and therefore
 should be kept private and secured.
 
-Suffixes can be specified for each pair, similarly to 
+Suffixes can be specified for each pair, similarly to
 the `admin_listen` directive.
 
 **Example:**
@@ -1116,7 +1210,7 @@ admin_gui_listen = 0.0.0.0:8002, 0.0.0.0:8445 ssl
 
 **Default:** `NONE`
 
-**Description:**  
+**Description:**
 
 Here you may provide the lookup, or balancer,
 address for your admin application.
@@ -1148,9 +1242,9 @@ admin_gui_url = https://kong-admin.test
 
 **Default:** `NONE` (auto generated)
 
-**Description:**  
+**Description:**
 
-The absolute path to the SSL certificate for 
+The absolute path to the SSL certificate for
 `admin_gui_listen` values with SSL enabled.
 
 **Example:**
@@ -1164,7 +1258,7 @@ admin_gui_ssl_cert = /path/to/admin_gui_ssl.cert
 
 **Default:** `NONE` (auto-generated)
 
-**Description:**  
+**Description:**
 
 The absolute path to the SSL key for `admin_gui_listen` values with SSL
 enabled.
@@ -1180,7 +1274,7 @@ admin_gui_ssl_key = /path/to/admin_gui_ssl.key
 
 **Default:** `{}`
 
-**Description:**  
+**Description:**
 
 Alters the layout Admin GUI (JSON)
 
@@ -1189,7 +1283,7 @@ Alters the layout Admin GUI (JSON)
 
 **Default:** `logs/admin_gui_access.log`
 
-**Description:**  
+**Description:**
 
 Here you can set an absolute or relative path for the
 Kong Manager access logs. When the path is relative,
@@ -1203,14 +1297,14 @@ for Kong Manager.
 
 **Default:** `logs/admin_gui_error.log`
 
-**Description:**  
+**Description:**
 
 Here you can set an absolute or relative path for your
 Portal API access logs. When the path is relative,
 logs are placed in the `prefix` location.
 
 Setting this value to `off` disables error logs for
-Kong Manager. 
+Kong Manager.
 
 Granularity can be adjusted through the `log_level`
 directive.
@@ -1220,9 +1314,9 @@ directive.
 
 **Default:** `nil`
 
-**Description:**  
+**Description:**
 
-Here you may specify the configuration for the 
+Here you may specify the configuration for the
 authentication plugin you have chosen.
 
 * For Basic Authentication, set the value to `basic-auth`
@@ -1233,12 +1327,12 @@ authentication plugin you have chosen.
 
 **Default:** `nil`
 
-**Description:**  
+**Description:**
 
 Here you may specify the configuration for the
-authentication plugin you have chosen. 
+authentication plugin you have chosen.
 
-For information about Plugin Configuration consult 
+For information about Plugin Configuration consult
 the associated plugin documentation.
 
 **Example (for Basic Auth):**
@@ -1255,7 +1349,7 @@ admin_gui_auth_conf = { "hide_credentials": true }
 
 Session Plugin Config (JSON)
 Here you may specify the configuration for the Session plugin as used by
-Kong Manager. 
+Kong Manager.
 
 **Example:**
 
@@ -1269,7 +1363,7 @@ admin_gui_session_conf = { "cookie_name": "kookie", "secret": "changeme"}
 
 **Description:**
 
-Defines the name of the HTTP request header from which the Admin API will 
+Defines the name of the HTTP request header from which the Admin API will
 attempt to identify the Kong Admin user.
 
 ## Vitals
@@ -1279,16 +1373,16 @@ attempt to identify the Kong Admin user.
 
 **Default:** `on`
 
-**Description:**  
+**Description:**
 
-When enabled, Kong will store and report metrics about its performance.                                 
-When running Kong in a multi-node setup, `vitals` entails two 
+When enabled, Kong will store and report metrics about its performance.
+When running Kong in a multi-node setup, `vitals` entails two
 separate meanings depending on the node.
 
-On a Proxy-only node, `vitals` determines whether to collect data 
+On a Proxy-only node, `vitals` determines whether to collect data
 for Vitals.
 
-On an Admin-only node, `vitals` determines whether to display 
+On an Admin-only node, `vitals` determines whether to display
 Vitals metrics and visualizations on the dashboard.
 
 
@@ -1296,7 +1390,7 @@ Vitals metrics and visualizations on the dashboard.
 
 **Default:** `database`
 
-**Description:** 
+**Description:**
 
 Determines whether to use the Kong database
 (either PostgreSQL or Cassandra, as defined
@@ -1311,7 +1405,7 @@ or 'influxdb'.
 
 **Default:** `nil`
 
-**Description:**  
+**Description:**
 
 Defines the host and port of the TSDB server
 to which Vitals data is written and read.
@@ -1331,7 +1425,7 @@ and write source for Vitals data.
 
 **Default:** `nil`
 
-**Description:**  
+**Description:**
 
 Defines the host and port (and an optional
 protocol) of the StatsD server to which
@@ -1348,7 +1442,7 @@ instead of the UDP (default).
 
 **Default:** `kong`
 
-**Description:**  
+**Description:**
 
 Defines the prefix value attached to all
 Vitals StatsD events. This prefix is useful
@@ -1389,11 +1483,11 @@ Prometheus server.
 
 **Default:** `off`
 
-**Description:**  
+**Description:**
 
 Enable or disable the Dev Portal Interface and API
 
-When enabled, Kong will expose the Kong Dev Portal Files endpoint and the 
+When enabled, Kong will expose the Kong Dev Portal Files endpoint and the
 public Dev Portal Files API.
 
 **Example:**
@@ -1407,11 +1501,11 @@ portal = on
 
 **Default:** `0.0.0.0:8003, 0.0.0.0:8446 ssl`
 
-**Description:**  
+**Description:**
 
 Comma-separated list of addresses on which Kong will
 expose the Kong Dev Portal GUI. Suffixes can be
-specified for each pair, similar to the `admin_listen` 
+specified for each pair, similar to the `admin_listen`
 directive.
 
 **Example:**
@@ -1425,11 +1519,11 @@ portal_gui_listen = 0.0.0.0:8003, 0.0.0.0:8446 ssl
 
 **Default:** `http`
 
-**Description:**  
+**Description:**
 
 The Dev Portal URL protocol
 
-Provide the protocol used in conjunction with portal_gui_host to construct the 
+Provide the protocol used in conjunction with portal_gui_host to construct the
 lookup, or balancer address for Kong Proxy nodes.
 
 **Example:**
@@ -1447,7 +1541,7 @@ portal_gui_protocol = http
 
 Dev Portal GUI Host
 
-Provide the host unsed in conjunction with portal_gui_protocol to construct the 
+Provide the host unsed in conjunction with portal_gui_protocol to construct the
 lookup, or balancer address for Kong Proxy nodes.
 
 **Example:**
@@ -1476,12 +1570,12 @@ portal_cors_origins = http://localhost:8003, https://localhost:8004
 
 **Default** `Off`
 
-**Description** 
+**Description**
 
 Enable workspaced Dev Portals to use subdomains
 
-By default the Dev Portal will use the first namespace in the request path to 
-determine the workspace. By enabling subdomains, the Dev Portal will expect the 
+By default the Dev Portal will use the first namespace in the request path to
+determine the workspace. By enabling subdomains, the Dev Portal will expect the
 workspace to be included in the request url as a subdomain
 
 **Example**
@@ -1501,9 +1595,9 @@ portal_gui_use_subdomains = on
 
 **Default:** `NONE` (auto generated)
 
-**Description:**  
+**Description:**
 
-The absolute path to the SSL certificate for `portal_gui_listen` values with 
+The absolute path to the SSL certificate for `portal_gui_listen` values with
 SSL enabled.
 
 **Example:**
@@ -1517,9 +1611,9 @@ portal_gui_ssl_cert = /path/to/portal_gui_ssl.cert
 
 **Default:** `NONE` (auto-generated)
 
-**Description:**  
+**Description:**
 
-The absolute path to the SSL key for `portal_gui_listen` values with SSL 
+The absolute path to the SSL key for `portal_gui_listen` values with SSL
 enabled.
 
 **Example:**
@@ -1533,7 +1627,7 @@ portal_gui_ssl_key = /path/to/portal_gui_ssl.key
 
 **Default:** `0.0.0.0:8004, 0.0.0.0:8447 ssl`
 
-**Description:**  
+**Description:**
 Comma-separated list of addresses on which Kong will
 expose the Dev Portal API. Suffixes can be
 specified for each pair, similarly to
@@ -1548,12 +1642,11 @@ portal_api_listen = 0.0.0.0:8004, 0.0.0.0:8447 ssl
 
 **Default:** `nil`
 
-**Description:**  
+**Description:**
 
-The address on which the Dev Portal API is accessible by Kong. **ONLY**
-set this value if the Dev Portal API lives on a different node than the Kong Proxy.
+The address on which the Dev Portal API is accessible by Kong.
 
-When not provided, Kong will use the listeners defined on `portal_api_listen` as 
+When not provided, Kong will use the listeners defined on `portal_api_listen` as
 the value.
 
 **Example:**
@@ -1567,7 +1660,7 @@ portal_api_url = https://portal-api.domain.tld
 
 **Default:** `NONE` (auto generated)
 
-**Description:**  
+**Description:**
 
 Dev Portal API SSL Certificate.
 
@@ -1585,7 +1678,7 @@ portal_api_ssl_cert = /path/to/portal_api_ssl.cert
 
 **Default:** `NONE` (auto generated)
 
-**Description:**  
+**Description:**
 
 Dev Portal API SSL Certificate Key.
 
@@ -1603,11 +1696,11 @@ portal_api_ssl_cert_key = /path/to/portal_api_ssl_cert.key
 
 **Default:** `logs/portal_api_access.log`
 
-**Description:**  
+**Description:**
 
 Location of log containing all calls made to the Portal API.
 
-`portal_api_access.log` location can be absolute or relative. When using 
+`portal_api_access.log` location can be absolute or relative. When using
 relative pathing, logs will be placed under the `prefix` location.
 
 Setting this value to `off` will disable logging
@@ -1624,7 +1717,7 @@ portal_api_access_log = logs/portal_api_access.log
 
 **Default:** `logs/error.log`
 
-**Description:**  
+**Description:**
 
 Developer Portal API Error Log location.
 
@@ -1643,7 +1736,7 @@ directive.
 
 ## Default Dev Portal Authentication
 
-Referenced on workspace creation to set Dev Portal authentication defaults 
+Referenced on workspace creation to set Dev Portal authentication defaults
 in the database for that particular workspace.
 
 
@@ -1651,7 +1744,7 @@ in the database for that particular workspace.
 
 **Default:** `nil`
 
-**Description:**  
+**Description:**
 
 Use `portal_auth` to specify the authentication plugin
 to apply to your Dev Portal. Developers
@@ -1670,7 +1763,7 @@ portal_auth = basic-auth
 
 **Default:** `nil`
 
-**Description:**  
+**Description:**
 
 Here you can specify authentication plugin configuration
 via JSON Object format to be applied to your Developer
@@ -1690,8 +1783,8 @@ portal_auth_conf = { "hide_credentials": true }
 
 **Description:**
 
-When this flag is set to 'on', a developer will automatically be marked as 
-"approved" after completing registration. Access can still be revoked through the 
+When this flag is set to 'on', a developer will automatically be marked as
+"approved" after completing registration. Access can still be revoked through the
 Kong Manager or Admin API.
 
 
@@ -1708,7 +1801,7 @@ Dev Portal.
 
 **Example:**
 ```
-portal_session_conf= {"cookie_name": "portal_session", "secret":"changeme"}
+portal_session_conf= {"cookie_name": "portal_session", "secret":"changeme", "storage":"kong"}
 ```
 
 
@@ -1718,13 +1811,13 @@ portal_session_conf= {"cookie_name": "portal_session", "secret":"changeme"}
 
 **Description:**
 
-Duration in seconds for the expiration of the Dev Portal reset password token. 
+Duration in seconds for the expiration of the Dev Portal reset password token.
 Default `21600` is six hours.
 
 
 ## Default Dev Portal SMTP Configuration
 
-Referenced on workspace creation to set SMTP defaults in the database 
+Referenced on workspace creation to set SMTP defaults in the database
 for that particular workspace.
 
 
@@ -1734,7 +1827,7 @@ for that particular workspace.
 
 **Description:**
 
-When enabled, Admins will be able to invite Developers to a Dev Portal by 
+When enabled, Admins will be able to invite Developers to a Dev Portal by
 using the "Invite" button in the Kong Manager.
 
 
@@ -1744,7 +1837,7 @@ using the "Invite" button in the Kong Manager.
 
 **Description:**
 
-When enabled, Admins specified by `smtp_admin_emails` will receive an email 
+When enabled, Admins specified by `smtp_admin_emails` will receive an email
 when a Developer requests access to a Dev Portal.
 
 
@@ -1754,7 +1847,7 @@ when a Developer requests access to a Dev Portal.
 
 **Description:**
 
-When enabled, Developers will receive an email when access to a Dev Portal has 
+When enabled, Developers will receive an email when access to a Dev Portal has
 been approved.
 
 
@@ -1764,7 +1857,7 @@ been approved.
 
 **Description:**
 
-When enabled, Developers will be able to use the "Reset Password" flow on a 
+When enabled, Developers will be able to use the "Reset Password" flow on a
 Dev Portal and will receive an email with password reset instructions.
 
 When disabled, Developers will *not* be able to reset their account passwords.
@@ -1776,10 +1869,10 @@ When disabled, Developers will *not* be able to reset their account passwords.
 
 **Description:**
 
-When enabled, Developers will receive an email after successfully reseting 
+When enabled, Developers will receive an email after successfully reseting
 their Dev Portal account password.
 
-When disabled, Developers will still be able to reset their account passwords, 
+When disabled, Developers will still be able to reset their account passwords,
 but will not recieve a confirmation email.
 
 
@@ -1856,7 +1949,7 @@ admin_emails_reply_to = admin@example.com
 
 **Description:**
 
-Expiration time in seconds for Admin invitation links. Set to zero for no 
+Expiration time in seconds for Admin invitation links. Set to zero for no
 expiration.
 
 
@@ -1869,8 +1962,8 @@ expiration.
 
 **Description:**
 
-When enabled this flag will only mock the sending of emails and will not 
-attempt to send actual emails. This can be used for testing before the SMTP 
+When enabled this flag will only mock the sending of emails and will not
+attempt to send actual emails. This can be used for testing before the SMTP
 client is fully configured.
 
 **Examples:**
@@ -1902,7 +1995,7 @@ The port number on SMTP server to connect to.
 
 **Description:**
 
-When set to `on`, STARTTLS is used to encrypt communication with the SMTP 
+When set to `on`, STARTTLS is used to encrypt communication with the SMTP
 server. This is normally used in conjunction with port 587.
 
 
@@ -1930,7 +2023,7 @@ Password used for authentication with the SMTP server.
 
 **Description:**
 
-When set to `on` SMTPS is used to encrypt communication with the SMTP server. 
+When set to `on` SMTPS is used to encrypt communication with the SMTP server.
 This is normally used in conjunction with port 465.
 
 
@@ -1940,7 +2033,7 @@ This is normally used in conjunction with port 465.
 
 **Description:**
 
-The method used to authenticate with the SMTP server. Valid options are 
+The method used to authenticate with the SMTP server. Valid options are
 `plain`, `login`, or `nil`.
 
 
@@ -2010,7 +2103,7 @@ API and database traffic.
 
 **Description:**
 
-When enabled, Kong will log information about Admin API access and database 
+When enabled, Kong will log information about Admin API access and database
 row insertions, updates, and deletes.
 
 
@@ -2020,7 +2113,7 @@ row insertions, updates, and deletes.
 
 **Description:**
 
-Comma-separated list of HTTP methods that will not generate audit log entries. 
+Comma-separated list of HTTP methods that will not generate audit log entries.
 By default, all HTTP requests will be logged.
 
 
@@ -2030,7 +2123,7 @@ By default, all HTTP requests will be logged.
 
 **Description:**
 
-Comma-separated list of request paths that will not generate audit log entries. 
+Comma-separated list of request paths that will not generate audit log entries.
 By default, all HTTP requests will be logged.
 
 
@@ -2040,8 +2133,8 @@ By default, all HTTP requests will be logged.
 
 **Description:**
 
-Comma-separated list of database tables that will not generate audit log 
-entries. By default, updates to all database tables will be logged (the 
+Comma-separated list of database tables that will not generate audit log
+entries. By default, updates to all database tables will be logged (the
 term "updates" refers to the creation, update, or deletion of a row).
 
 
@@ -2051,7 +2144,7 @@ term "updates" refers to the creation, update, or deletion of a row).
 
 **Description:**
 
-Length, in seconds, of the TTL for audit log records. Records in the database 
+Length, in seconds, of the TTL for audit log records. Records in the database
 older than their TTL are automatically purged.
 
 
@@ -2061,9 +2154,9 @@ older than their TTL are automatically purged.
 
 **Description:**
 
-Defines the path to a private RSA signing key that can be used to insert a 
-signature of audit records, adjacent to the record. The corresponding public 
-key should be stored offline, and can be used the validate audit entries in 
+Defines the path to a private RSA signing key that can be used to insert a
+signature of audit records, adjacent to the record. The corresponding public
+key should be stored offline, and can be used the validate audit entries in
 the future. If this value is undefined, no signature will be generated.
 
 ## Granular Tracing
@@ -2088,9 +2181,9 @@ etc.
 **Description**
 
 Defines how Kong will write tracing data at the conclusion of the request. The
- default option, `file`, writes a human-readable depiction of tracing data to a 
- configurable location on the node's file system. Other strategies write tracing 
- data as a JSON document to the configured endpoint. Valid entries for this 
+ default option, `file`, writes a human-readable depiction of tracing data to a
+ configurable location on the node's file system. Other strategies write tracing
+ data as a JSON document to the configured endpoint. Valid entries for this
  option are `file`, `file_raw`, `http`, `tcp`, `tls`, and `udp`.
 
 ### tracing_write_endpoint
@@ -2099,11 +2192,11 @@ Defines how Kong will write tracing data at the conclusion of the request. The
 
 **Description:**
 
-Defines the endpoint to which tracing data will be written. For the 'file' and 
-'file_raw' tracing write strategies, this value must be a valid location on the 
+Defines the endpoint to which tracing data will be written. For the 'file' and
+'file_raw' tracing write strategies, this value must be a valid location on the
 node's file system to which Kong must have write access.
 
-For the `tcp`, `tls`, and `udp` strategies, this value is defined as a string in 
+For the `tcp`, `tls`, and `udp` strategies, this value is defined as a string in
 the form of:
 
 ```
@@ -2124,22 +2217,22 @@ the form of:
 **Description:**
 
 The minimum time, in microseconds, over which a trace must execute in order to
- write the trace data to the configured endpoint. This configuration can be used 
+ write the trace data to the configured endpoint. This configuration can be used
  to lower the noise present in trace data by removing trace objects that are not
- interesting from a timing perspective. The default value of '0' removes this 
+ interesting from a timing perspective. The default value of '0' removes this
  limitation, causing traces of any duration to be written.
 
 ### tracing_types
 
 **Default:** `all`
- 
+
 **Description:**
 
-Defines the types of traces that are written. Trace types not defined in this 
-list are ignored, regardless of their lifetime. The default special value of 
-'all' results in all trace types being written, regardless of type. Included 
+Defines the types of traces that are written. Trace types not defined in this
+list are ignored, regardless of their lifetime. The default special value of
+'all' results in all trace types being written, regardless of type. Included
 trace types are: `query`,`legacy_query`, `router`, `balancer.getPeer`, `
-balancer.toip`, `connect.toip`, `access.before`, and `access.after` 
+balancer.toip`, `connect.toip`, `access.before`, and `access.after`
 `cassandra_iterate`, and `plugin`.
 
 ### tracing_debug_header
@@ -2148,11 +2241,11 @@ balancer.toip`, `connect.toip`, `access.before`, and `access.after`
 
 **Description:**
 
-Defines the name of the HTTP request header that must be present in order to 
-generate traces within a request. Setting this value provides a mechanism to 
-selectively generate request traces at the client's request. Note that the value 
-of the header does not matter, only that the header is present in the request. 
-When this value is not set and tracing is enabled, Kong will generate trace data 
+Defines the name of the HTTP request header that must be present in order to
+generate traces within a request. Setting this value provides a mechanism to
+selectively generate request traces at the client's request. Note that the value
+of the header does not matter, only that the header is present in the request.
+When this value is not set and tracing is enabled, Kong will generate trace data
 for all requests flowing through the proxy and Admin API.
 
 ### generate_trace_details
@@ -2161,8 +2254,8 @@ for all requests flowing through the proxy and Admin API.
 
 **Description:**
 
-When enabled, Kong will write context-specific details into traces. Trace details 
-offer more data about the context of the trace. This can significantly increase 
-the size of trace reports. Note also that trace details may contain potentially 
-sensitive information, such as raw SQL queries; care should be taken to store 
+When enabled, Kong will write context-specific details into traces. Trace details
+offer more data about the context of the trace. This can significantly increase
+the size of trace reports. Note also that trace details may contain potentially
+sensitive information, such as raw SQL queries; care should be taken to store
 traces properly when this option is enabled.
