@@ -11,5 +11,4 @@ before_install:
   - mkdir node_modules
   - chmod -R 777 .
 script:
-  - make docker-test
   - make check-links
