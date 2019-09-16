@@ -43,7 +43,7 @@ section.
 StatsD exporter can run either on a separate node from Kong (to avoid resource
 competition with Kong), or on the same host with Kong (to reduce unnecessary
 network overhead). Note that feeding metrics from multiple Kong nodes into a single
-StatsD exporter is currently not supported, as this will result in metrics conflict.
+StatsD exporter is currently not supported, as it would result in a metrics conflict.
 It's also recommended to match the number of Kong nodes to StatsD exporters for
 better scalability.
 
