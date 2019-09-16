@@ -32,7 +32,8 @@ be downloaded at
 Then start StatsD exporter with
 
 ```bash
-$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml
+$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
+                    --statsd.listen-unixgram=''
 ```
 
 The StatsD mapping rules file must be configured to match the metrics sent from
@@ -155,6 +156,7 @@ using the following example to set read buffer to around 3 MB:
 
 ```
 $ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
+                    --statsd.listen-unixgram='' \
                     --statsd.read-buffer=30000000
 ```
 
