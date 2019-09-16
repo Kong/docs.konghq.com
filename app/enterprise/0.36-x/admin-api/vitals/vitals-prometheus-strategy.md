@@ -22,7 +22,8 @@ using default config that listens on port `9090`.
 
 The latest release of StatsD exporter can be found at the
 [Bintray](https://bintray.com/kong/statsd-exporter). The binary is distributed
-with some specific features like min/max gauges and Unix domain socket support.
+with some specific features like min/max gauges. Alternatively, a
+[Docker image](https://bintray.com/kong/statsd-exporter-docker) is also available.
 
 StatsD exporter needed to configured with a set of mapping rules to translate
 the StatsD UDP events to Prometheus metrics. A default set of mapping rules can
@@ -31,8 +32,7 @@ be downloaded at
 Then start StatsD exporter with
 
 ```bash
-$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
-                    --statsd.listen-unixgram=''
+$ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml
 ```
 
 The StatsD mapping rules file must be configured to match the metrics sent from
@@ -42,7 +42,10 @@ section.
 
 StatsD exporter can run either on a separate node from Kong (to avoid resource
 competition with Kong), or on the same host with Kong (to reduce unnecessary
-network overhead).
+network overhead). Note that feeding metrics from multiple Kong nodes into a single
+StatsD exporter is currently not supported, as this will result in metrics conflict.
+It's also recommended to match the number of Kong nodes to StatsD exporters for
+better scalability.
 
 In this guide, we assume StatsD exporter is running on hostname `statsd-node`,
 using default config that listens to UDP traffic on port `9125` and the metrics 
@@ -129,8 +132,8 @@ $ export KONG_VITALS_STATSD_PREFIX=kong-vitals
 ```yaml
 # in statsd.rules
 mappings:
-# by API
-- match: kong-vitals.api.*.request.count
+# by Service
+- match: kong.service.*.request.count
   name: "kong_requests_proxy"
   labels:
     job: "kong_metrics"
@@ -152,7 +155,6 @@ using the following example to set read buffer to around 3 MB:
 
 ```
 $ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
-                    --statsd.listen-unixgram='' \
                     --statsd.read-buffer=30000000
 ```
 
