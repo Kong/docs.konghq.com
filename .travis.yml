@@ -1,24 +1,12 @@
-language: node_js
-node_js:
-  - "8"
-
+dist: xenial
 sudo: false
+
+language: generic
 notifications:
   email: false
 
-cache:
-  bundler: true
-  yarn: true
-
 before_install:
-  - rvm install 2.3.3
-  - npm install -g yarn
-env:
-  - NODE_OPTIONS=--max_old_space_size=8192
-install:
-  - bundle install
-  - yarn
-before_script:
-  - npm test
-script:
-  - gulp build
+  - docker-compose build
+  - touch Gemfile.lock
+  - mkdir node_modules
+  - chmod -R 777 .
