@@ -90,7 +90,7 @@ A migration file is a Lua file which returns a table with the following structur
 ``` lua
 -- `<plugin_name>/migrations/000_base_my_plugin.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       CREATE TABLE IF NOT EXISTS "my_plugin_table" (
         "id"           UUID                         PRIMARY KEY,
