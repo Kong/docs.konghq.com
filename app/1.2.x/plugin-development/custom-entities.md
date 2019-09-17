@@ -550,7 +550,7 @@ The following example modifies the `key` field of an existing credential given t
 ``` lua
 local entity, err = kong.db.keyauth_credentials:update(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" },
-  { key = "updated_secret }
+  { key = "updated_secret" }
 )
 
 if not entity then
