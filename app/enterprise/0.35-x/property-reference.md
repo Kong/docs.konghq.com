@@ -5,7 +5,8 @@ toc: false
 
 ## Table of Contents
 
-* [General](#general)
+* [Configuration Loading](#configuration-loading)
+* [General Properties](#general-properties)
 * [NGINX](#nginx)
 * [Datastore](#datastore)
 * [Datastore Cache](#datastore-cache)
@@ -21,8 +22,84 @@ toc: false
 * [Data & Admin Audit](#data-&-admin-audit)
 * [Granular Tracing](#granular-tracing)
 
-## General
+## Configuration Loading
 
+Kong comes with a default configuration file that can be found at
+`/etc/kong/kong.conf.default` if you installed Kong via one of the official
+packages. To start configuring Kong, you can copy this file:
+
+```bash
+$ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+```
+
+Kong will operate with default settings should all the values in your
+configuration be commented out. Upon starting, Kong looks for several
+default locations that might contain a configuration file:
+
+```
+/etc/kong/kong.conf
+/etc/kong.conf
+```
+
+You can override this behavior by specifying a custom path for your
+configuration file using the `-c / --conf` argument in the CLI:
+
+```bash
+$ kong start --conf /path/to/kong.conf
+```
+
+The configuration format is straightforward: simply uncomment any property
+(comments are defined by the `#` character) and modify it to your needs.
+Boolean values can be specified as `on`/`off` or `true`/`false` for convenience.
+
+### Verifying Configuration
+
+You can verify the integrity of your settings with the `check` command:
+
+```bash
+$ kong check <path/to/kong.conf>
+configuration at <path/to/kong.conf> is valid
+```
+
+This command will take into account the environment variables you have
+currently set, and will error out in case your settings are invalid.
+
+Additionally, you can also use the CLI in debug mode to have more insight
+as to what properties Kong is being started with:
+
+```bash
+$ kong start -c <kong.conf> --vv
+2016/08/11 14:53:36 [verbose] no config file found at /etc/kong.conf
+2016/08/11 14:53:36 [verbose] no config file found at /etc/kong/kong.conf
+2016/08/11 14:53:36 [debug] admin_listen = "0.0.0.0:8001"
+2016/08/11 14:53:36 [debug] database = "postgres"
+2016/08/11 14:53:36 [debug] log_level = "notice"
+[...]
+```
+
+### Environment Variables
+
+When loading properties out of a configuration file, Kong will also look for
+environment variables of the same name. This allows you to fully configure Kong
+via environment variables, which is very convenient for container-based
+infrastructures, for example.
+
+To override a setting using an environment variable, declare an environment
+variable with the name of the setting, prefixed with `KONG_` and capitalized.
+
+For example:
+
+```
+log_level = debug # in kong.conf
+```
+
+can be overridden with:
+
+```bash
+$ export KONG_LOG_LEVEL=error
+```
+
+## General Properties
 
 ### prefix
 
@@ -885,6 +962,23 @@ Time (in seconds) for which stale entities from the datastore should be
 resurrected for when they cannot be refreshed (e.g., the datastore is
 unreachable). When this TTL expires, a new attempt to refresh the stale
 entities will be made.
+
+
+### db_cache_warmup_entities
+
+**Default:** `services, plugins`
+
+**Description**
+
+Entities to be pre-loaded from the datastore into the in-memory cache at Kong
+start-up.
+This speeds up the first access of endpoints that use the given entities.
+When the `services` entity is configured for warmup, the DNS entries for values
+in its `host` attribute are pre-resolved asynchronously as well.
+Cache size set in `mem_cache_size` should be set to a value large enough to
+hold all instances of the specified entities.
+If the size is insufficient, Kong will log a warning.
+
 
 ## DNS Resolver
 

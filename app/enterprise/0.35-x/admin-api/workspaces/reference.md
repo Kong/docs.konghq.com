@@ -3,14 +3,14 @@ title: Workspaces Reference
 book: workspaces
 
 workspace_body: |
-    Attribute | Description
-    ---:| ---
-    `name` | The **Workspace** name.
+  Attribute | Description
+  ---:| ---
+  `name` | The **Workspace** name.
 
 workspace_entities_body: |
-    Attribute | Description
-    ---:| ---
-    `entities`| Comma-delimited list of entity identifiers
+  Attribute | Description
+  ---:| ---
+  `entities`| Comma-delimited list of entity identifiers
 ---
 
 ## Introduction
@@ -149,22 +149,21 @@ HTTP 200 OK
 
 <div class="endpoint put">/workspaces/{id}</div>
 
-Attributes | Description
----:| ---
-`id`<br>**conditional** | The **Workspace's** unique ID, if replacing it.*
+|              Attributes | Description                                       |
+| ----------------------: | ------------------------------------------------- |
+| `id`<br>**conditional** | The **Workspace's** unique ID, if replacing it.\* |
 
-* The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`id` for Workspaces), the entity will be
-created with the given payload. If the request payload **does** contain an
-entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404
-NOT FOUND` will be returned.
+- The behavior of `PUT` endpoints is the following: if the request payload **does
+  not** contain an entity's primary key (`id` for Workspaces), the entity will be
+  created with the given payload. If the request payload **does** contain an
+  entity's primary key, the payload will "replace" the entity specified by the
+  given primary key. If the primary key is **not** that of an existing entity, `404 NOT FOUND` will be returned.
 
 #### Request Body
 
-Attribute | Description
----:| ---
-`name` | The **Workspace** name.
+| Attribute | Description             |
+| --------: | ----------------------- |
+|    `name` | The **Workspace** name. |
 
 **Response**
 
@@ -216,9 +215,9 @@ HTTP 200 OK
 
 <div class="endpoint get">/workspaces/{name or id}</div>
 
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve
+|                   Attributes | Description                                                            |
+| ---------------------------: | ---------------------------------------------------------------------- |
+| `name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve |
 
 **Response**
 
@@ -233,8 +232,8 @@ HTTP 200 OK
     "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]"
   },
   "created_at": 1557504202,
-    "id": "c663cca5-c6f6-474a-ae44-01f62aba16a9",
-    "meta": { },
+  "id": "c663cca5-c6f6-474a-ae44-01f62aba16a9",
+  "meta": {},
   "name": "rocket-team"
 }
 ```
@@ -245,9 +244,9 @@ HTTP 200 OK
 
 <div class="endpoint get">/workspaces/{name or id}/meta</div>
 
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve
+|                   Attributes | Description                                                            |
+| ---------------------------: | ---------------------------------------------------------------------- |
+| `name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve |
 
 #### Response
 
@@ -288,11 +287,11 @@ HTTP 200 OK
 
 <div class="endpoint delete">/workspaces/{name or id}</div>
 
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to delete
+|                   Attributes | Description                                                          |
+| ---------------------------: | -------------------------------------------------------------------- |
+| `name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to delete |
 
-**Note:** All entities within a **Workspace** must be deleted before the 
+**Note:** All entities within a **Workspace** must be deleted before the
 **Workspace** itself can be.
 
 **Response**
@@ -307,15 +306,15 @@ HTTP 204 No Content
 
 <div class="endpoint patch">/workspaces/{name or id}</div>
 
-Attributes | Description
----:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to patch
+|                   Attributes | Description                                                         |
+| ---------------------------: | ------------------------------------------------------------------- |
+| `name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to patch |
 
 #### Request Body
 
-Attributes | Description
----:| ---
-`comment` | A string describing the **Workspace**
+| Attributes | Description                           |
+| ---------: | ------------------------------------- |
+|  `comment` | A string describing the **Workspace** |
 
 The behavior of `PATCH` endpoints prevents the renaming of a **Workspace**.
 
@@ -431,7 +430,7 @@ HTTP 200 OK
 }
 ```
 
-In this case, the **Workspace** references two Services. 
+In this case, the **Workspace** references two Services.
 
 ### Delete entities from a Workspace
 
@@ -487,4 +486,4 @@ HTTP 204 No Content
 
 ---
 
-[Admin API]: /{{page.kong_version}}/admin-api/
+[Admin API]: /enterprise/{{page.kong_version}}/admin-api/

@@ -1,7 +1,7 @@
 ---
 name: Response Transformer Advanced
 publisher: Kong Inc.
-version: 0.35-x
+version: 0.36-x
 
 desc: Modify the upstream response before returning it to the client
 description: |
@@ -15,9 +15,11 @@ type: plugin
 categories:
   - transformations
 
+enterprise: true
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
 
 params:

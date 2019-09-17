@@ -1,5 +1,7 @@
 ---
 title: Configuration Reference
+redirect_from:
+  - /0.14.x/configuration-reference/
 ---
 
 ## Introduction
@@ -100,14 +102,14 @@ Any entry added to your `kong.conf` file that is prefixed by `nginx_http_`,
 directive by removing the prefix and added to the appropriate section of the
 Nginx configuration:
 
-* Entries prefixed with `nginx_http_` will be injected to the overall `http`
-block directive.
+- Entries prefixed with `nginx_http_` will be injected to the overall `http`
+  block directive.
 
-* Entries prefixed with `nginx_proxy_` will be injected to the `server` block
-directive handling Kong's proxy ports.
+- Entries prefixed with `nginx_proxy_` will be injected to the `server` block
+  directive handling Kong's proxy ports.
 
-* Entries prefixed with `nginx_admin_` will be injected to the `server` block
-directive handling Kong's Admin API ports.
+- Entries prefixed with `nginx_admin_` will be injected to the `server` block
+  directive handling Kong's Admin API ports.
 
 For example, if you add the following line to your `kong.conf` file:
 
@@ -211,14 +213,14 @@ files), without having to deal with custom Nginx configuration templates.
 There are two scenarios in which you may want to make use of custom Nginx
 configuration templates directly:
 
-* In the rare occasion that you may need to modify some of Kong's default
-Nginx configuration that are not adjustable via its standard `kong.conf`
-properties, you can still modify the template used by Kong for producing its
-Nginx configuration and launch Kong using your customized template.
+- In the rare occasion that you may need to modify some of Kong's default
+  Nginx configuration that are not adjustable via its standard `kong.conf`
+  properties, you can still modify the template used by Kong for producing its
+  Nginx configuration and launch Kong using your customized template.
 
-* If you need to embed Kong in an already running OpenResty instance, you
-can reuse Kong's generated configuration and include it in your existing
-configuration.
+- If you need to embed Kong in an already running OpenResty instance, you
+  can reuse Kong's generated configuration and include it in your existing
+  configuration.
 
 [Back to TOC](#table-of-contents)
 
@@ -226,7 +228,7 @@ configuration.
 
 Kong can be started, reloaded and restarted with an `--nginx-conf` argument,
 which must specify an Nginx configuration template. Such a template uses the
-[Penlight][Penlight] [templating engine][pl.template], which is compiled using
+[Penlight][penlight] [templating engine][pl.template], which is compiled using
 the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
@@ -450,11 +452,11 @@ Comma-separated list of names of plugins this node should load.
 
 Each item in the list can be:
 
-* A plugin name. Both bundled plugins (e.g. `key-auth`), and custom plugins
+- A plugin name. Both bundled plugins (e.g. `key-auth`), and custom plugins
   (e.g. `custom-rate-limting`) are accepted here.
-* The keyword `bundled`. This has the same meaning as including all the plugins
+- The keyword `bundled`. This has the same meaning as including all the plugins
   that are bundled with Kong (from the `kong.plugins.{name}.*` namespace).
-* The keyword `off`. When specified, Kong will not load any plugin, and none
+- The keyword `off`. When specified, Kong will not load any plugin, and none
   will be configurable via the Admin API.
 
 Note that Kong will not start if some plugins were previously configured (i.e.
@@ -465,11 +467,11 @@ Default: `bundled`
 
 Examples:
 
-* `plugins=bundled,custom-auth,custom-log` will include the bundled plugins
+- `plugins=bundled,custom-auth,custom-log` will include the bundled plugins
   plus two custom ones
-* `plugins=custom-auth,custom-log` will *only* include the `custom-auth` and
+- `plugins=custom-auth,custom-log` will _only_ include the `custom-auth` and
   `custom-log` plugins.
-* `plugins=off` will not include any plugins
+- `plugins=off` will not include any plugins
 
 **Note:** Limiting the amount of available plugins can improve P99 latency when
 experiencing LRU churning in the database cache (i.e. when the configured
@@ -522,8 +524,8 @@ Example: `0.0.0.0:80, 0.0.0.0:81 http2, 0.0.0.0:443 ssl, 0.0.0.0:444 http2 ssl`
 
 Comma-separated list of addresses and ports on which the Admin interface
 should listen. The Admin interface is the API allowing you to configure and
-manage Kong. Access to this interface should be *restricted* to Kong
-administrators *only*. This value accepts IPv4, IPv6, and hostnames. Some
+manage Kong. Access to this interface should be _restricted_ to Kong
+administrators _only_. This value accepts IPv4, IPv6, and hostnames. Some
 suffixes can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
@@ -724,20 +726,20 @@ Comma-separated list of headers Kong should inject in client responses.
 
 Accepted values are:
 
-* `Server`: Injects `Server: kong/x.y.z` on Kong-produced response (e.g. Admin
+- `Server`: Injects `Server: kong/x.y.z` on Kong-produced response (e.g. Admin
   API, rejected requests from auth plugin, etc...).
-* `Via`: Injects `Via: kong/x.y.z` for successfully proxied requests.
-* `X-Kong-Proxy-Latency`: Time taken (in milliseconds) by Kong to process
+- `Via`: Injects `Via: kong/x.y.z` for successfully proxied requests.
+- `X-Kong-Proxy-Latency`: Time taken (in milliseconds) by Kong to process
   a request and run all plugins before proxying the request upstream.
-* `X-Kong-Upstream-Latency`: Time taken (in milliseconds) by the upstream
+- `X-Kong-Upstream-Latency`: Time taken (in milliseconds) by the upstream
   service to send response headers.
-* `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
+- `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
   service. This is particularly useful for clients to distinguish upstream
   statuses if the response is rewritten by a plugin.
-* `server_tokens`: Same as specifying both `Server` and `Via`.
-* `latency_tokens`: Same as specifying both `X-Kong-Proxy-Latency` and
+- `server_tokens`: Same as specifying both `Server` and `Via`.
+- `latency_tokens`: Same as specifying both `X-Kong-Proxy-Latency` and
   `X-Kong-Upstream-Latency`.
-* `off`: Prevents Kong from injecting any of the above headers. Note that
+- `off`: Prevents Kong from injecting any of the above headers. Note that
   this does not prevent plugins from injecting headers of their own.
 
 Default: `server_tokens, latency_tokens`
@@ -755,7 +757,7 @@ This property also sets the `set_real_ip_from` directive(s) in the Nginx
 configuration. It accepts the same type of values (CIDR blocks) but as a
 comma-separated list.
 
-To trust *all* /!\ IPs, set this value to `0.0.0.0/0,::/0`.
+To trust _all_ /!\ IPs, set this value to `0.0.0.0/0,::/0`.
 
 If the special value `unix:` is specified, all UNIX-domain sockets will be
 trusted.
@@ -864,38 +866,38 @@ Default: `postgres`
 
 #### Postgres settings
 
-name                  |  description
-----------------------|-------------------
-**pg_host**           | Host of the Postgres server
-**pg_port**           | Port of the Postgres server
-**pg_user**           | Postgres user
-**pg_password**       | Postgres user's password
-**pg_database**       | Database to connect to. **must exist**
-**pg_ssl**            | Enable SSL connections to the server
-**pg_ssl_verify**     | If `pg_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
+| name              | description                                                                                                |
+| ----------------- | ---------------------------------------------------------------------------------------------------------- |
+| **pg_host**       | Host of the Postgres server                                                                                |
+| **pg_port**       | Port of the Postgres server                                                                                |
+| **pg_user**       | Postgres user                                                                                              |
+| **pg_password**   | Postgres user's password                                                                                   |
+| **pg_database**   | Database to connect to. **must exist**                                                                     |
+| **pg_ssl**        | Enable SSL connections to the server                                                                       |
+| **pg_ssl_verify** | If `pg_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting. |
 
 ---
 
 #### Cassandra settings
 
-name                            | description
---------------------------------|------------------
-**cassandra_contact_points**    | Comma-separated list of contacts points to your Cassandra cluster.
-**cassandra_port**              | Port on which your nodes are listening.
-**cassandra_keyspace**          | Keyspace to use in your cluster. Will be created if doesn't exist.
-**cassandra_consistency**       | Consistency setting to use when reading/writing.
-**cassandra_timeout**           | Timeout (in ms) for reading/writing.
-**cassandra_ssl**               | Enable SSL connections to the nodes.
-**cassandra_ssl_verify**        | If `cassandra_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
-**cassandra_username**          | Username when using the PasswordAuthenticator scheme.
-**cassandra_password**          | Password when using the PasswordAuthenticator scheme.
-**cassandra_consistency**       | Consistency setting to use when reading/writing to the Cassandra cluster.
-**cassandra_lb_policy**         | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin` and `DCAwareRoundRobin` and `RequestDCAwareRoundRobin`. Prefer the later two if and only if you are using a multi-datacenter cluster, and set the `cassandra_local_datacenter` if so.
-**cassandra_local_datacenter**  | When using the `DCAwareRoundRobin` or `RequestDCAwareRoundRobin` policy, you must specify the name of the cluster local (closest) to this Kong node.
-**cassandra_repl_strategy**     | If creating the keyspace for the first time, specify a replication strategy.
-**cassandra_repl_factor**       | Specify a replication factor for the `SimpleStrategy`.
-**cassandra_data_centers**      | Specify data centers for the `NetworkTopologyStrategy`.
-**cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations.
+| name                                   | description                                                                                                                                                                                                                                                                                                  |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **cassandra_contact_points**           | Comma-separated list of contacts points to your Cassandra cluster.                                                                                                                                                                                                                                           |
+| **cassandra_port**                     | Port on which your nodes are listening.                                                                                                                                                                                                                                                                      |
+| **cassandra_keyspace**                 | Keyspace to use in your cluster. Will be created if doesn't exist.                                                                                                                                                                                                                                           |
+| **cassandra_consistency**              | Consistency setting to use when reading/writing.                                                                                                                                                                                                                                                             |
+| **cassandra_timeout**                  | Timeout (in ms) for reading/writing.                                                                                                                                                                                                                                                                         |
+| **cassandra_ssl**                      | Enable SSL connections to the nodes.                                                                                                                                                                                                                                                                         |
+| **cassandra_ssl_verify**               | If `cassandra_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.                                                                                                                                                                                            |
+| **cassandra_username**                 | Username when using the PasswordAuthenticator scheme.                                                                                                                                                                                                                                                        |
+| **cassandra_password**                 | Password when using the PasswordAuthenticator scheme.                                                                                                                                                                                                                                                        |
+| **cassandra_consistency**              | Consistency setting to use when reading/writing to the Cassandra cluster.                                                                                                                                                                                                                                    |
+| **cassandra_lb_policy**                | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin` and `DCAwareRoundRobin` and `RequestDCAwareRoundRobin`. Prefer the later two if and only if you are using a multi-datacenter cluster, and set the `cassandra_local_datacenter` if so. |
+| **cassandra_local_datacenter**         | When using the `DCAwareRoundRobin` or `RequestDCAwareRoundRobin` policy, you must specify the name of the cluster local (closest) to this Kong node.                                                                                                                                                         |
+| **cassandra_repl_strategy**            | If creating the keyspace for the first time, specify a replication strategy.                                                                                                                                                                                                                                 |
+| **cassandra_repl_factor**              | Specify a replication factor for the `SimpleStrategy`.                                                                                                                                                                                                                                                       |
+| **cassandra_data_centers**             | Specify data centers for the `NetworkTopologyStrategy`.                                                                                                                                                                                                                                                      |
+| **cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations.                                                                                                                                                        |
 
 [Back to TOC](#table-of-contents)
 
@@ -1140,6 +1142,5 @@ Default: `30`
 [Back to TOC](#table-of-contents)
 
 [ngx_http_realip_module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
-
-[Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
+[penlight]: http://stevedonovan.github.io/Penlight/api/index.html
 [pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
