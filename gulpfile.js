@@ -409,7 +409,7 @@ function clean() {
 }
 
 function watch_files() {
-  gulp.watch(sources.content, gulp.series(jekyll_dev, html, reload))
+  gulp.watch(sources.content, gulp.series(jekyll, html, reload))
   gulp.watch(sources.styles, styles)
   gulp.watch(sources.images, gulp.series(images, reload))
   gulp.watch(sources.js, gulp.series(js, reload))
