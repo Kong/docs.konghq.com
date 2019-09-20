@@ -15,11 +15,10 @@ Plugin via the command line, checkout the
 
 ### Prerequisites
 
-- **Kong Enterprise** is [installed](/enterprise/{{page.kong_version}}/deployment/installation)
-- **Kong Enterprise** is [started](/enterprise/{{page.kong_version}}/getting-started/start-kong)
-- A [**Service and Route**](/enterprise/{{page.kong_version}}/getting-started/add-service)
-(optional)
-- **admin** or **super-admin** privileges
+* [`enforce_rbac = on`](/enterprise/{{page.kong_version}}/property-reference/#enforce_rbac)
+* Kong Enterprise has [started](/enterprise/{{page.kong_version}}/getting-started/start-kong)
+* Logged in to Kong Manager as a **Super Admin** 
+- _Optionally_ created a [**Service and Route**](/enterprise/{{page.kong_version}}/getting-started/add-service)
 
 ### How to Enable a Plugin in Kong Manager
 

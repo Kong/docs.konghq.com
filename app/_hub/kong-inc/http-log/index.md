@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.3.x
         - 1.2.x
         - 1.1.x
         - 1.0.x
@@ -51,7 +52,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
-  protocols: ["http", "https"]
+  protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: yes
   config:
     - name: http_endpoint

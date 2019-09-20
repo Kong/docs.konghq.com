@@ -5,10 +5,10 @@ toc: false
 
 ### Table of contents
 
-* [Passwords and RBAC Tokens](passwords-and-rbac-tokens)
-* [How to Reset a Forgotten Password in Kong Manager](how-to-reset-a-forgotten-password-in-kong-manager)
-* [How to Reset a Password from within Kong Manager](how-to-reset-a-password-from-within-kong-manager)
-* [How to Reset an RBAC Token in Kong Manager](how-to-reset-an-rbac-token-in-kong-manager)
+* [Passwords and RBAC Tokens](#passwords-and-rbac-tokens)
+* [How to Reset a Forgotten Password in Kong Manager](#how-to-reset-a-forgotten-password-in-kong-manager)
+* [How to Reset a Password from within Kong Manager](#how-to-reset-a-password-from-within-kong-manager)
+* [How to Reset an RBAC Token in Kong Manager](#how-to-reset-an-rbac-token-in-kong-manager)
 
 ## Passwords and RBAC Tokens
 
@@ -32,10 +32,24 @@ Prerequisites:
 Steps:
 
 1. At the login page, click **Forgot Password** beneath the login field. 
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-forgot-password.png">
+
 2. Enter the email address associated with the account.
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-email-address.png">
+
 3. Click the link from the email. 
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-email-link.png">
+
 4. Reset the password. Note that you will need to provide it again immediately after the reset is complete. 
-5. Log in with the new password. 
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-password.png">
+
+5. Log in with the new password.
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/reset-successful.png">
 
 ## How to Reset a Password from within Kong Manager
 
@@ -49,7 +63,12 @@ Prerequisites:
 Steps:
 
 1. At the **top right corner**, after hovering over the **account name**, select **Profile**. 
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/hover-select-profile.png">
+
 2. In the **Reset Password** section, fill in the fields and click the **Reset Password** button.
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/reset-password.png">
 
 ## How to Reset an RBAC Token in Kong Manager
 
@@ -63,7 +82,17 @@ Prerequisites:
 Steps:
 
 1. At the **top right corner**, after hovering over the **account name**, select **Profile**. 
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/hover-select-profile.png">
+
 2. In the **Reset RBAC Token** section at the bottom, click **Reset Token**.
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/click-reset-token.png">
+  
 3. Type in a new token and click **Reset**. 
+
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/enter-new-token.png">
+  
 4. To copy the token, click the **Copy** button at the right.
 
+    <img src="https://doc-assets.konghq.com/0.35/kong-manager/how-to-reset-passwords-and-rbac/successful-reset.png">

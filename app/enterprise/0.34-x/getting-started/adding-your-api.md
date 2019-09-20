@@ -91,7 +91,7 @@ Now that you've added your API to Kong Enterprise, let's learn how to enable plu
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /0.13.x/admin-api
+[API]: /enterprise/{{page.kong_version}}/admin-api
 [enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins
-[proxy-port]: /0.13.x/configuration/#nginx-section
+[proxy-port]: /enterprise/{{page.kong_version}}/property-reference/#nginx-section
 [mockbin]: https://mockbin.com/

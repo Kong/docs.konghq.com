@@ -30,7 +30,7 @@ To complete this guide you will need:
     Copy the file to your home directory:
 
     ```
-    $ scp kong-enterprise-edition-0.35.xxx.xxx.deb <ubuntu user>@<serverip:~
+    $ scp kong-enterprise-edition-36.xxx.xxx.deb <ubuntu user>@<serverip:~
     ```
 
 2. Obtain your Kong Enterprise license
@@ -59,7 +59,7 @@ To complete this guide you will need:
     ```
     $ sudo apt-get update
     $ sudo apt-get install openssl libpcre3 procps perl
-    $ sudo dpkg -i kong-enterprise-edition-0.35.xxx.xxx.deb
+    $ sudo dpkg -i kong-enterprise-edition-0.36.xxx.xxx.deb
     ```
   >Note: Your version may be different based on when you obtained the package
 
@@ -193,5 +193,5 @@ setup reach out to your **Support contact** or head over to the
 ## Next Steps
 
 Work through Kong Enterprise's series of 
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
+[Getting Started](/enterprise/{{page.kong_version}}/getting-started) guides to get the most
 out of Kong Enterprise.
