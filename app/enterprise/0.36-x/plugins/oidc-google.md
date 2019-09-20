@@ -1,8 +1,13 @@
 ---
 title: OpenID Connect with Google
-layout: oidc
-IDP: Google
 ---
+## Introduction
+
+This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using Google's identity provider.
+
+## Prerequisites
+
+Because OpenID Connect deals with user credentials, all transactions should take place over HTTPS. Although user passwords for third party identity providers are only submitted to those providers and not Kong, authentication tokens do grant access to a subset of user account data and protected APIs, and should be secured. As such, you should make Kong's proxy available via a fully-qualified domain name and [add a certificate][add-certificate] for it.
 
 ## Google IDP Configuration
 
@@ -10,6 +15,10 @@ Before configuring Kong, you'll need to set up a Google APIs project and create 
 application-specific state on the client, but for our purposes, any protected URI will work). Authorized JavaScript origins can be left blank.
 
 You can optionally customize the consent screen to inform clients who/what application is requesting authentication, but this is not required for testing. All steps after can be ignored, as Kong handles the server-side authentication request and token validation.
+
+## Kong Configuration
+
+If you have not yet [added a **Service**][add-service], go ahead and do so. Again, note that you should be able to secure this API with HTTPS, so if you are configuring a host, use a hostname you have a certificate for.
 
 ### Basic Plugin Configuration
 
