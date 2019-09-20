@@ -55,20 +55,60 @@
       url: /property-reference
     - text: CLI Reference
       url: /cli
+    - text: Proxy reference
+      url: /proxy
+    - text: Authentication reference
+      url: /auth
+    - text: Load balancing reference
+      url: /loadbalancing
+    - text: Health checks and circuit breakers reference
+      url: /health-checks-circuit-breakers
+    - text: Clustering reference
+      url: /clustering
+    - text: Logging reference
+      url: /logging
+    - text: Network &amp; Firewall
+      url: /network
+    - text: Securing the Admin API
+      url: /secure-admin-api
+    - text: Plugin Development Guide
+      url: /plugin-development
+    - text: Plugin Development Kit
+      url: /pdk
 
 - title: Admin API
   url: /admin-api
   items:
   - text: Overview
-    url: /admin-api
-  - text: Workspaces
+    url: /admin-api/
+  - text: Supported Content Types
+    url: /admin-api/#supported-content-types
+  - text: Information routes
+    url: /admin-api/#information-routes
+  - text: Service Object
+    url: /admin-api/#service-object
+  - text: Route Object
+    url: /admin-api/#route-object
+  - text: Consumer Object routes
+    url: /admin-api/#consumer-object
+  - text: Plugin Object routes
+    url: /admin-api/#plugin-object
+  - text: Certificate Object routes
+    url: /admin-api/#certificate-object
+  - text: SNI Object routes
+    url: /admin-api/#sni-objects
+  - text: Upstream Object routes
+    url: /admin-api/#upstream-objects
+  - text: Target Object routes
+    url: /admin-api/#target-object
+  - text: Workspace Object routes
     url: /admin-api/workspaces/reference
-  - text: RBAC
+  - text: RBAC Object routes
     url: /admin-api/rbac/reference
   - text: Admins
     url: /admin-api/admins/reference
     items:
-      - text: API Reference
+      - text: Admin Object routes
         url: /admin-api/admins/reference
       - text: Examples
         url: /admin-api/admins/examples
@@ -168,14 +208,17 @@
     - text: Networking
       url: /developer-portal/networking
     - text: Administration
+      url: /developer-portal/administration/managing-developers
       items:
         - text: Managing Developers
           url: /developer-portal/administration/managing-developers
     - text: Theme Customization
+      url: /developer-portal/theme-customization/customizing-dev-portal
       items:
           - text: Customizing the Dev Portal
             url: /developer-portal/theme-customization/customizing-dev-portal
     - text: Content Management
+      url: /developer-portal/content-management/file-management
       items:
           - text: File Management
             url: /developer-portal/content-management/file-management
@@ -183,9 +226,10 @@
       url: /developer-portal/faq
 
 - title: APIs and Plugins
-  url: https://konghq.com/hub
+  url: /plugins
   items:
     - text: Plugin Reference
+      url: /plugins/canary-release
       items:
       - text: Canary Release Plugin
         url: /plugins/canary-release
@@ -218,10 +262,15 @@
       - text: Request Validator
         url: /plugins/request-validator
     - text: Implementation
+      url: /plugins/allowing-multiple-authentication-methods
       items:
         - text: Multiple Authentication Methods
           url: /plugins/allowing-multiple-authentication-methods
+        - text: OpenID Connect with Azure AD
+          url: /plugins/oidc-azuread
         - text: OpenID Connect with Google
           url: /plugins/oidc-google
+        - text: OpenID Connect with Okta
+          url: /plugins/oidc-okta
         - text: OpenID Connect with Auth0
           url: /plugins/oidc-auth0

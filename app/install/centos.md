@@ -11,8 +11,8 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [CentOS 6]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/6/kong-{{site.data.kong_latest.version}}.el6.noarch.rpm)
-- [CentOS 7]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/7/kong-{{site.data.kong_latest.version}}.el7.noarch.rpm)
+- [CentOS 6]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/6/kong-{{site.data.kong_latest.version}}.el6.amd64.rpm)
+- [CentOS 7]({{ site.links.download }}/kong-rpm/download_file?file_path=centos/7/kong-{{site.data.kong_latest.version}}.el7.amd64.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
