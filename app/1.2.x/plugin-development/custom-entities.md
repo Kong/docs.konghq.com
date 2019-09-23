@@ -90,7 +90,7 @@ A migration file is a Lua file which returns a table with the following structur
 ``` lua
 -- `<plugin_name>/migrations/000_base_my_plugin.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       CREATE TABLE IF NOT EXISTS "my_plugin_table" (
         "id"           UUID                         PRIMARY KEY,
@@ -548,10 +548,10 @@ The returned entity will be the entity after the update takes place, or `nil` + 
 The following example modifies the `key` field of an existing credential given the credential's id:
 
 ``` lua
-local entity, err = kong.db.keyauth_credentials:update({
+local entity, err = kong.db.keyauth_credentials:update(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" },
-  { key = "updated_secret" },
-})
+  { key = "updated_secret" }
+)
 
 if not entity then
   kong.log.err("Error when updating keyauth credential: " .. err)
@@ -575,10 +575,10 @@ local entity, err, err_t = kong.db.<name>:upsert(primary_key, <values>)
 Given this code:
 
 ``` lua
-local entity, err = kong.db.keyauth_credentials:upsert({
+local entity, err = kong.db.keyauth_credentials:upsert(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" },
-  { consumer = { id = "a96145fb-d71e-4c88-8a5a-2c8b1947534c" } },
-})
+  { consumer = { id = "a96145fb-d71e-4c88-8a5a-2c8b1947534c" } }
+)
 
 if not entity then
   kong.log.err("Error when upserting keyauth credential: " .. err)
@@ -611,9 +611,9 @@ must do it manually, by checking with `select` before invoking `delete`.
 Example:
 
 ``` lua
-local ok, err = kong.db.keyauth_credentials:delete({
+local ok, err = kong.db.keyauth_credentials:delete(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" }
-})
+)
 
 if not ok then
   kong.log.err("Error when deleting keyauth credential: " .. err)

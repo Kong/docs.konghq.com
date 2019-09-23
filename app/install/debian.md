@@ -11,9 +11,9 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [7 Wheezy]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.wheezy.all.deb)
-- [8 Jessie]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.jessie.all.deb)
-- [9 Stretch]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.stretch.all.deb)
+- [7 Wheezy]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.wheezy.amd64.deb)
+- [8 Jessie]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.jessie.amd64.deb)
+- [9 Stretch]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.stretch.amd64.deb)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 

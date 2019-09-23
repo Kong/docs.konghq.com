@@ -30,7 +30,7 @@ To complete this guide you will need:
     Copy the file to your home directory:
 
     ```
-    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@<serverip:~
+    $ scp kong-enterprise-edition-0.36.el7.noarch.rpm <centos user>@<serverip:~
     ```
 
 2. Option 2. Download via **YUM**
@@ -67,7 +67,7 @@ To complete this guide you will need:
 1. Install Kong Enterprise
 
     ```
-    $ sudo yum install kong-enterprise-edition-0.35-1.el7.noarch.rpm
+    $ sudo yum install kong-enterprise-edition-0.36.el7.noarch.rpm
     ```
   >Note: Your version may be different based on when you obtained the rpm
 
@@ -235,5 +235,5 @@ setup reach out to your **Support contact** or head over to the
 ## Next Steps
 
 Work through Kong Enterprise's series of 
-[Getting Started](/enterprise/latest/getting-started) guides to get the most
+[Getting Started](/enterprise/{{page.kong_version}}/getting-started) guides to get the most
 out of Kong Enterprise.

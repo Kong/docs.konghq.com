@@ -12,7 +12,7 @@ breadcrumbs:
 
 Start by downloading the following package specifically built for the Amazon Linux AMI:
 
-- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux/kong-{{site.data.kong_latest.version}}.aws.rpm)
+- [Download]({{ site.links.download }}/kong-rpm/download_file?file_path=amazonlinux/amazonlinux/kong-{{site.data.kong_latest.version}}.aws.amd64.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 

@@ -66,7 +66,7 @@ $ curl -i -X POST \
 
 The authorization header must be base64 encoded. For example, if the credential 
 uses Aladdin as the username and OpenSesame as the password, then the field’s 
-value is the base64-encoding of Aladdin:OpenSesame, or QWxhZGRpbjpPcGVuU2VzYW1l.
+value is the base64-encoding of `Aladdin:OpenSesame`, or `QWxhZGRpbjpPcGVuU2VzYW1l`.
 
 Then the Authorization (or Proxy-Authorization) header must appear as:
 
@@ -86,8 +86,7 @@ $ curl http://kong:8000/{path matching a configured Route} \
 Now that we've covered the basics of adding APIs, Consumers and enabling
 Plugins, feel free to read more on Kong in one of the following documents:
 
-- [Configuration Reference for Kong][configuration]
-- [Configuration Property Reference for Kong Enterprise][enterprise-conf]
+- [Configuration Property Reference][enterprise-conf]
 - [CLI Reference][CLI]
 - [Proxy Reference][proxy]
 - [Admin API Reference][API]
@@ -95,12 +94,11 @@ Plugins, feel free to read more on Kong in one of the following documents:
 
 
 [basic-auth]: /hub/kong-inc/basic-auth
-[API-consumers]: /0.13.x/admin-api#create-consumer
-[consumers]: /0.13.x/admin-api#consumer-object
+[API-consumers]: /enterprise/{{page.kong_version}}/admin-api#create-consumer
+[consumers]: /enterprise/{{page.kong_version}}/admin-api#consumer-object
 [enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins
 [enterprise-conf]: /enterprise/{{page.kong_version}}/property-reference
-[configuration]: /0.13.x/configuration
-[CLI]: /0.13.x/cli
-[proxy]: /0.13.x/proxy
-[API]: /0.13.x/admin-api
-[cluster]: /0.13.x/clustering
+[CLI]: /enterprise/{{page.kong_version}}/cli
+[proxy]: /enterprise/{{page.kong_version}}/proxy
+[API]: /enterprise/{{page.kong_version}}/admin-api
+[cluster]: /enterprise/{{page.kong_version}}/clustering

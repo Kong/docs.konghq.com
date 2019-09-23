@@ -15,6 +15,7 @@ type: plugin
 categories:
   - transformations
 
+enterprise: true
 kong_version_compatibility:
     enterprise_edition:
       compatible:

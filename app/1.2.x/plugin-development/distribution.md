@@ -69,7 +69,7 @@ For a Kong node to be able to use the custom plugin, the custom plugin's Lua
 sources must be installed on your host's file system. There are multiple ways
 of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 
-1. Via LuaRocks from the created 'rock'
+1.  Via LuaRocks from the created 'rock'
 
     The `.rock` file is a self contained package that can be installed locally
     or from a remote server.
@@ -86,7 +86,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
     The filename can be a local name, or any of the supported methods, eg.
     `http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`
 
-2. Via LuaRocks from the source archive
+2.  Via LuaRocks from the source archive
 
     If the `luarocks` utility is installed in your system (this is likely the
     case if you used one of the official installation packages), you can
@@ -105,7 +105,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
     This will install the Lua sources in `kong/plugins/<plugin-name>` in your
     system's LuaRocks tree, where all the Kong sources are already present.
 
-3. Manually
+3.  Manually
 
     A more conservative way of installing your plugin's sources is
     to avoid "polluting" the LuaRocks tree, and instead, point Kong
@@ -123,13 +123,13 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 
     Where:
 
-    * `/<path-to-plugin-location>` is the path to the directory containing the
+    - `/<path-to-plugin-location>` is the path to the directory containing the
       extracted archive. It should be the location of the `kong` directory
       from the archive.
-    * `?` is a placeholder that will be replaced by
+    - `?` is a placeholder that will be replaced by
       `kong.plugins.<plugin-name>` when Kong will try to load your plugin. Do
       not change it.
-    * `;;` a placeholder for the "the default Lua path". Do not change it.
+    - `;;` a placeholder for the "the default Lua path". Do not change it.
 
     Example:
 
@@ -150,8 +150,8 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 
         lua_package_path = /path/to/plugin1/?.lua;/path/to/plugin2/?.lua;;
 
-    * `;` is the separator between directories.
-    * `;;` still means "the default Lua path".
+    - `;` is the separator between directories.
+    - `;;` still means "the default Lua path".
 
     Note: you can also set this property via its environment variable
     equivalent: `KONG_LUA_PACKAGE_PATH`.
@@ -174,7 +174,6 @@ Or, if you don't want to include the bundled plugins:
 
     plugins = <plugin-name>
 
-
 If you are using two or more custom plugins, insert commas in between, like so:
 
     plugins = bundled,plugin1,plugin2
@@ -190,14 +189,13 @@ Reminder: don't forget to update the `plugins` directive for each node
 in your Kong cluster.
 
 Reminder: the plugin will take effect after restart kong:
-    
-    kong restart
+  
+ kong restart
 
 But, if you want to apply plugin while kong never stop, you can use this:
 
     kong prepare
     kong reload
-    
 
 [Back to TOC](#table-of-contents)
 
@@ -222,7 +220,6 @@ Then, you should see the following log for each plugin being loaded:
 
     [debug] Loading plugin <plugin-name>
 
-
 [Back to TOC](#table-of-contents)
 
 ---
@@ -234,7 +231,7 @@ There are three steps to completely remove a plugin.
 1. Remove the plugin from your Kong Service or Route configuration. Make sure
    that it is no longer applied globally nor for any Service, Route, or
    consumer. This has to be done only once for the entire Kong cluster, no
-   restart/reload required.  This step in itself will make that the plugin is
+   restart/reload required. This step in itself will make that the plugin is
    no longer in use. But it remains available and it is still possible to
    re-apply the plugin.
 
@@ -268,7 +265,6 @@ also upload your module on LuaRocks and make it available to everyone!
 Here is an example rockspec which would use the "builtin" build type to define
 modules in Lua notation and their corresponding file:
 
-
 For an example see the [Kong plugin template][plugin-template], for more info
 about the format see the LuaRocks [documentation on rockspecs][rockspec].
 
@@ -281,19 +277,19 @@ about the format see the LuaRocks [documentation on rockspecs][rockspec].
 Kong can fail to start because of a misconfigured custom plugin for several
 reasons:
 
-* "plugin is in use but not enabled" -> You configured a custom plugin from
+- "plugin is in use but not enabled" -> You configured a custom plugin from
   another node, and that the plugin configuration is in the database, but the
   current node you are trying to start does not have it in its `plugins`
   directive. To resolve, add the plugin's name to the node's `plugins`
   directive.
 
-* "plugin is enabled but not installed" -> The plugin's name is present in the
+- "plugin is enabled but not installed" -> The plugin's name is present in the
   `plugins` directive, but that Kong is unable to load the `handler.lua`
   source file from the file system. To resolve, make sure that the
   [lua_package_path](/{{page.kong_version}}/configuration/#development-miscellaneous-section)
   directive is properly set to load this plugin's Lua sources.
 
-* "no configuration schema found for plugin" -> The plugin is installed,
+- "no configuration schema found for plugin" -> The plugin is installed,
   enabled in the `plugins` directive, but Kong is unable to load the
   `schema.lua` source file from the file system. To resolve, make sure that
   the `schema.lua` file is present alongside the plugin's `handler.lua` file.

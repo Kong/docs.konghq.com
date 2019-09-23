@@ -30,25 +30,25 @@ The plugins interface allows you to override any of the following methods in
 your `handler.lua` file to implement custom logic at various entry-points
 of the execution life-cycle of Kong:
 
-- **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
+- **[HTTP Module]** _is used for plugins written for HTTP/HTTPS requests_
 
-| Function name      | Phase             | Description
-|--------------------|-------------------|------------
-| `:init_worker()`   | [init_worker]     | Executed upon every Nginx worker process's startup.
-| `:certificate()`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
-| `:rewrite()`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. *NOTE* in this phase neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin!
-| `:access()`        | [access]          | Executed for every request from a client and before it is being proxied to the upstream service.
-| `:header_filter()` | [header_filter]   | Executed when all response headers bytes have been received from the upstream service.
-| `:body_filter()`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this method can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `:log()`           | [log]             | Executed when the last response byte has been sent to the client.
+| Function name      | Phase             | Description                                                                                                                                                                                                                                                                                                                           |
+| ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:init_worker()`   | [init_worker]     | Executed upon every Nginx worker process's startup.                                                                                                                                                                                                                                                                                   |
+| `:certificate()`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.                                                                                                                                                                                                                                                               |
+| `:rewrite()`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. _NOTE_ in this phase neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin!                                                                 |
+| `:access()`        | [access]          | Executed for every request from a client and before it is being proxied to the upstream service.                                                                                                                                                                                                                                      |
+| `:header_filter()` | [header_filter]   | Executed when all response headers bytes have been received from the upstream service.                                                                                                                                                                                                                                                |
+| `:body_filter()`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this method can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details. |
+| `:log()`           | [log]             | Executed when the last response byte has been sent to the client.                                                                                                                                                                                                                                                                     |
 
-- **[Stream Module]** *is used for plugins written for TCP stream connections*
+- **[Stream Module]** _is used for plugins written for TCP stream connections_
 
-| Function name      | Phase                                                                        | Description
-|--------------------|------------------------------------------------------------------------------|------------
-| `:init_worker()`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
-| `:preread()`       | [preread]                                                                    | Executed once for every connection.
-| `:log()`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
+| Function name    | Phase                                                                        | Description                                                 |
+| ---------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `:init_worker()` | [init_worker]                                                                | Executed upon every Nginx worker process's startup.         |
+| `:preread()`     | [preread]                                                                    | Executed once for every connection.                         |
+| `:log()`         | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed. |
 
 All of those functions, except `init_worker`, take one parameter which is given
 by Kong upon its invocation: the configuration of your plugin. This parameter
@@ -56,8 +56,8 @@ is a Lua table, and contains values defined by your users, according to your
 plugin's schema (described in the `schema.lua` module). More on plugins schemas
 in the [next chapter]({{page.book.next}}).
 
-[HTTP Module]: https://github.com/openresty/lua-nginx-module
-[Stream Module]: https://github.com/openresty/stream-lua-nginx-module
+[http module]: https://github.com/openresty/lua-nginx-module
+[stream module]: https://github.com/openresty/stream-lua-nginx-module
 [init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_by_lua_block
 [ssl_certificate]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
 [rewrite]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
@@ -192,7 +192,7 @@ local CustomHandler = BasePlugin:extend()
 
 
 CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 10 
+CustomHandler.PRIORITY = 10
 
 
 function CustomHandler:new()
@@ -259,41 +259,41 @@ regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
 
 The current order of execution for the bundled plugins is:
 
-Plugin                      | Priority
-----------------------------|----------
-pre-function                | `+inf`
-zipkin                      | 100000
-ip-restriction              | 3000
-bot-detection               | 2500
-cors                        | 2000
-session                     | 1900
-kubernetes-sidecar-injector | 1006
-jwt                         | 1005
-oauth2                      | 1004
-key-auth                    | 1003
-ldap-auth                   | 1002
-basic-auth                  | 1001
-hmac-auth                   | 1000
-request-size-limiting       | 951
-acl                         | 950
-rate-limiting               | 901
-response-ratelimiting       | 900
-request-transformer         | 801
-response-transformer        | 800
-aws-lambda                  | 750
-azure-functions             | 749
-prometheus                  | 13
-http-log                    | 12
-statsd                      | 11
-datadog                     | 10
-file-log                    | 9
-udp-log                     | 8
-tcp-log                     | 7
-loggly                      | 6
-syslog                      | 4
-request-termination         | 2
-correlation-id              | 1
-post-function               | -1000
+| Plugin                      | Priority |
+| --------------------------- | -------- |
+| pre-function                | `+inf`   |
+| zipkin                      | 100000   |
+| ip-restriction              | 3000     |
+| bot-detection               | 2500     |
+| cors                        | 2000     |
+| session                     | 1900     |
+| kubernetes-sidecar-injector | 1006     |
+| jwt                         | 1005     |
+| oauth2                      | 1004     |
+| key-auth                    | 1003     |
+| ldap-auth                   | 1002     |
+| basic-auth                  | 1001     |
+| hmac-auth                   | 1000     |
+| request-size-limiting       | 951      |
+| acl                         | 950      |
+| rate-limiting               | 901      |
+| response-ratelimiting       | 900      |
+| request-transformer         | 801      |
+| response-transformer        | 800      |
+| aws-lambda                  | 750      |
+| azure-functions             | 749      |
+| prometheus                  | 13       |
+| http-log                    | 12       |
+| statsd                      | 11       |
+| datadog                     | 10       |
+| file-log                    | 9        |
+| udp-log                     | 8        |
+| tcp-log                     | 7        |
+| loggly                      | 6        |
+| syslog                      | 4        |
+| request-termination         | 2        |
+| correlation-id              | 1        |
+| post-function               | -1000    |
 
 ---
 

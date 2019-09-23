@@ -2315,268 +2315,200 @@ not send confidential information to `httpbin.org` that is used here
 for illustrative purposes.
 
 
-#### 1. Creating the API
+#### 1. Creating a Service and Route
 
-To create an API we execute the following command:
+To create a Service, issue the following command:
 
 ```bash
-$ http post :8001/apis                          \
+$ http post :8001/services                      \
     name=openid-connect-demo                    \
-    uris=/                                      \
-    upstream_url=http://httpbin.org/anything -v
+    url=http://httpbin.org/anything
 ```
-```http
-POST /apis HTTP/1.1
-Accept: application/json, */*
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Content-Length: 91
-Content-Type: application/json
-Host: localhost:8001
-User-Agent: HTTPie/0.9.9
-```
+
+The response should be structured like so:
+
 ```json
 {
-    "name": "openid-connect-demo",
-    "upstream_url": "http://httpbin.org/anything",
-    "uris": "/"
-}
-```
-```http
-HTTP/1.1 201 Created
-Access-Control-Allow-Origin: *
-Connection: keep-alive
-Content-Type: application/json; charset=utf-8
-Date: Mon, 14 Aug 2017 17:09:43 GMT
-Server: kong/0.10.3
-Transfer-Encoding: chunked
-```
-```json
-{
-    "created_at": 1502730583000,
-    "http_if_terminated": false,
-    "https_only": false,
-    "id": "f5331dd8-4dc8-4272-8537-199598e660ad",
-    "name": "openid-connect-demo",
-    "preserve_host": false,
-    "retries": 5,
-    "strip_uri": true,
-    "upstream_connect_timeout": 60000,
-    "upstream_read_timeout": 60000,
-    "upstream_send_timeout": 60000,
-    "upstream_url": "http://httpbin.org/anything",
-    "uris": [
-        "/"
-    ]
+  "connect_timeout": 60000,
+  "created_at": 1535539722,
+  "host": "httpbin.org",
+  "id": "903978c9-2472-4a04-aff5-d9ba13821e64",
+  "name": "httpbin",
+  "path": "/anything",
+  "port": 80,
+  "protocol": "http",
+  "read_timeout": 60000,
+  "retries": 5,
+  "updated_at": 1535539722,
+  "write_timeout": 60000
 }
 ```
 
-
-#### 2. Checking the API
-
-Check that the API works by issuing the following command:
+Then, to add a Route, issue the following command:
 
 ```bash
-$ http :8000 -v
+$ http :8001/services/httpbin/routes paths:='["/"]' protocols:='["http"]'
 ```
 
-And you should get output similar to this:
+The response should be structured like so:
 
-```http
-GET / HTTP/1.1
-Accept: */*
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Host: localhost:8000
-User-Agent: HTTPie/0.9.9
-```
-```http
-HTTP/1.1 200 OK
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Origin: *
-Connection: keep-alive
-Content-Length: 390
-Content-Type: application/json
-Date: Mon, 14 Aug 2017 17:12:16 GMT
-Server: meinheld/0.6.1
-Via: kong/0.10.3
-X-Kong-Proxy-Latency: 181
-X-Kong-Upstream-Latency: 828
-X-Powered-By: Flask
-X-Processed-Time: 0.00134587287903
-```
 ```json
 {
-    "args": {},
-    "data": "",
-    "files": {},
-    "form": {},
-    "headers": {
-        "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate",
-        "Connection": "close",
-        "Host": "httpbin.org",
-        "User-Agent": "HTTPie/0.9.9",
-        "X-Forwarded-Host": "localhost"
-    },
-    "json": null,
-    "method": "GET",
-    "origin": "127.0.0.1, 37.33.72.184",
-    "url": "http://localhost/anything"
+  "created_at": 1536698521,
+  "hosts": null,
+  "id": "17b83376-b69d-4638-9b53-13184018eaf6",
+  "methods": null,
+  "paths": [
+    "/"
+  ],
+  "preserve_host": false,
+  "protocols": [
+    "http"
+  ],
+  "regex_priority": 0,
+  "service": {
+    "id": "903978c9-2472-4a04-aff5-d9ba13821e64"
+  },
+  "strip_path": true,
+  "updated_at": 1536698521
 }
 ```
 
-
-#### 3. Enabling the Plugin
-
-To enable `openid-connect` plugin for the API,
-execute the following command (on production you
-shouldn't disable SSL verification):
+Save the Route ID
 
 ```bash
-$ http post :8001/apis/openid-connect-demo/plugins  \
-    name=openid-connect                             \
-    config.issuer=<ISSUER>                          \
-    config.client_id=<CLIENT_ID>                    \
-    config.client_secret=<CLIENT_SECRET>            \
-    config.redirect_uri=<REDIRECT_URI>              \
-    config.ssl_verify=false -v
+$ export ROUTE_ID=<the id from the response above>
+$ echo $ROUTE_ID
+```
+ 
+#### 2. Verify Response with and without Kong 
+
+Verify that you can make a direct call to `http://httpbin.org/anything` _without_ proxying through Kong by issuing the following command:
+
+```bash
+$ http get http://httpbin.org/anything
 ```
 
-On successful call you will get output similar to this:
+The response should be `HTTP 200 OK` and appear like so:
 
-```http
-POST /apis/openid-connect-demo/plugins HTTP/1.1
-Accept: application/json, */*
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Content-Length: 256
-Content-Type: application/json
-Host: localhost:8001
-User-Agent: HTTPie/0.9.9
-```
 ```json
 {
-    "config.client_id": "ATdm9WUNmfGzdE0pyRApY66pnfHVJNMI",
-    "config.client_secret": "kaSFMAJSEQVlYl4Crvf4Sl9WIM0rP3gVxbhT3GAhPDTzRbzxKh3pxHnNWMhhRrcN",
-    "config.issuer": "https://kong-demo.eu.auth0.com/",
-    "config.ssl_verify": "false",
-    "name": "openid-connect"
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "close",
+    "Host": "httpbin.org",
+    "User-Agent": "HTTPie/0.9.9"
+  },
+  "json": null,
+  "method": "GET",
+  "origin": "52.70.213.138",
+  "url": "http://httpbin.org/anything"
+}
+
+```
+
+Verify that Kong successfully proxies through Kong by issuing the following command:
+
+```bash
+$ http get 127.0.0.1:8000
+```
+
+The response should be `HTTP 200 OK` and appear like so:
+
+```json
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "close",
+    "Host": "httpbin.org",
+    "User-Agent": "HTTPie/0.9.9",
+    "X-Forwarded-Host": "127.0.0.1"
+  },
+  "json": null,
+  "method": "GET",
+  "origin": "172.19.0.1, 23.96.32.228",
+  "url": "http://127.0.0.1/anything"
 }
 ```
-```http
-HTTP/1.1 201 Created
-Access-Control-Allow-Origin: *
-Connection: keep-alive
-Content-Type: application/json; charset=utf-8
-Date: Mon, 14 Aug 2017 17:22:27 GMT
-Server: kong/0.10.3
-Transfer-Encoding: chunked
+
+#### 3. Secure the Service with OIDC
+
+To enable the OIDC Plugin for the Service, execute the following 
+command, but note that SSL verification is disabled here for 
+testing purposes only:
+
+```bash
+http post :8001/services/httpbin/plugins \
+  name=openid-connect                             \
+  config.issuer=<ISSUER>                          \
+  config.client_id=<CLIENT_ID>                    \
+  config.client_secret=<CLIENT_SECRET>            \
+  config.redirect_uri=<REDIRECT_URI>              \
+  config.ssl_verify=false -v
 ```
+
+On successful `HTTP 200 OK`, the response will be similar to:
+
 ```json
 {
-    "api_id": "f5331dd8-4dc8-4272-8537-199598e660ad",
-    "config": {
-        "auth_methods": [
-            "password",
-            "client_credentials",
-            "authorization_code",
-            "bearer",
-            "introspection",
-            "kong_oauth2",
-            "refresh_token",
-            "session"
-        ],
-        "client_id": [
-            "<CLIENT_ID>"
-        ],
-        "client_secret": [
-            "<CLIENT_SECRET>"
-        ],
-        "consumer_by": [
-            "username",
-            "custom_id"
-        ],
-        "http_version": 1.1,
-        "id_token_param_type": [
-            "query",
-            "header",
-            "body"
-        ],
-        "issuer": "<ISSUER>",
-        "leeway": 0,
-        "login_action": "upstream",
-        "login_tokens": [
-            "id_token"
-        ],
-        "response_mode": "query",
-        "reverify": false,
-        "scopes": [
-            "openid"
-        ],
-        "ssl_verify": false,
-        "timeout": 10000,
-        "upstream_access_token_header": "authorization:bearer",
-        "verify_claims": true,
-        "verify_nonce": true,
-        "verify_parameters": true,
-        "verify_signature": true
-    },
-    "created_at": 1502731347000,
+  "config": {
+    "audience_claim": [
+      "aud"
+    ],
+    "client_id": [
+      "kong"
+    ],
+    "client_secret": [
+      "b8068d7d-d7bf-4b23-8724-881ee49bdbfd"
+    ],
+    "consumer_by": [
+      "username",
+      "custom_id"
+    ],
+    "introspect_jwt_tokens": false,
+    "introspection_hint": "access_token",
+    "issuer": "http://ip10-0-0-3-bec2g5kmeb6ge43qmuc0-8080.direct.konglabs-s3.simplru.com/auth/realms/master",
+    "created_at": 1536700540000,
     "enabled": true,
-    "id": "4a91a0ef-1632-491d-a4e3-b8f98f75dcda",
-    "name": "openid-connect"
+    "id": "6836ba3c-12e0-4f2e-bdfd-88134eaa1786",
+    "name": "openid-connect",
+    "service_id": "903978c9-2472-4a04-aff5-d9ba13821e64"
+  }
 }
 ```
 
+#### 4. Verify that Authorization is Now Required
 
-#### 4. Try the API
+Attempt the following command without authorization:
 
 ```bash
-$ http :8000 -v
+$ http get :8000/anything
 ```
 
-As you might have expected, it doesn't work anymore:
+It will result in:
 
-```http
-GET / HTTP/1.1
-Accept: */*
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Host: localhost:8000
-User-Agent: HTTPie/0.9.9
 ```
-
-as it gives this redirect as a reply:
-
-```http
-HTTP/1.1 302 Moved Temporarily
-Connection: keep-alive
-Content-Length: 167
-Content-Type: text/html
-Date: Mon, 14 Aug 2017 17:24:59 GMT
-Location: https://<ISSUER>/authorize?scope=openid&client_id=<CLIENT_ID>&response_mode=query&state=y2J74-KJFzogFXEtWgwDzl-Y&nonce=J-Ylp3E4dIQIhgutGFo3JOOU&redirect_uri=<REDIRECT_URI>&response_type=code
-Server: kong/0.10.3
-Set-Cookie: authorization=<COOKIE>; Path=/; HttpOnly
-```
-```html
-<html>
-  <head><title>302 Found</title></head>
-  <body bgcolor="white">
-    <center><h1>302 Found</h1></center>
-  </body>
-</html>
+HTTP 301 Moved Temporarily
 ```
 
 Now, at this point you could try to open the page using a browser and
 see if you can go through the authorization code flow, and after that
-get an reply from httpbin.org. Please check that your redirect uri is
-correctly registered as the identity provider should redirect the
-browser back to Kong url where this plugin is enabled (it can be the same
-API or it can be different API).
+get a reply from `httpbin.org`. Please check that your redirect URI parameter is
+correctly set, since the identity provider should redirect the
+user back to this URI once authentication is successful. (The URI can be the same
+Service or a different one).
 
-You could also try another ways, like for example password grant
-(and please try other authentication methods as well):
+You could also try another way; for example, password grant:
 
 ```bash
 $ http :8000 Authorization:"Basic <username>:<password>"
