@@ -217,7 +217,7 @@ Endpoint
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC user name or UUID. |
+| `name_or_id` | The RBAC role name or UUID. |
 
 **Response**
 
@@ -292,7 +292,7 @@ HTTP 201 Created or HTTP 200 OK
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC user or UUID. |
+| `name_or_id` | The RBAC role or UUID. |
 
 **Request Body**
 
@@ -340,7 +340,7 @@ ___
 
 | Attribute             | Description                               |
 | ---------             | -----------                               |
-| `name_or_id`          | The RBAC user name or UUID.                       |
+| `name_or_id`          | The RBAC role name or UUID.               |
 
 
 **Request Body**
@@ -396,11 +396,11 @@ HTTP 201 Created
 
 <div class="endpoint get">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
-| Attribute             | Description                                  |
-| ---------             | -----------                                  |
-| `name_or_id`          | The RBAC user name or UUID.                  |
+| Attribute              | Description                                   |
+| ---------              | -----------                                   |
+| `name_or_id`           | The RBAC role name or UUID.                   |
 | `workspace_name_or_id` | The workspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permission. |
+| `endpoint`             | The endpoint associated with this permission. |
 
 **Response**
 
@@ -433,7 +433,7 @@ HTTP 200 OK
 
 | Attribute         | Description                 |
 | ---------         | -----------                 |
-| `role_name_or_id` | The RBAC user name or UUID. |
+| `role_name_or_id` | The RBAC role name or UUID. |
 
 **Response**
 
@@ -477,11 +477,11 @@ HTTP 200 OK
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
-| Attribute             | Description                                  |
-| ---------             | -----------                                  |
-| `name_or_id`          | The RBAC user name or UUID.                  |
+| Attribute              | Description                                   |
+| ---------              | -----------                                   |
+| `name_or_id`           | The RBAC role name or UUID.                   |
 | `workspace_name_or_id` | The workspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permission. |
+| `endpoint`             | The endpoint associated with this permission. |
 
 **Request Body**
 | Attribute             | Description                                                                                                                     |
@@ -518,11 +518,11 @@ HTTP 200 OK
 
 <div class="endpoint delete">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
-| Attribute             | Description                                  |
-| ---------             | -----------                                  |
-| `name_or_id`          | The RBAC user name or UUID.                  |
+| Attribute              | Description                                   |
+| ---------              | -----------                                   |
+| `name_or_id`           | The RBAC role name or UUID.                   |
 | `workspace_name_or_id` | The workspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permission. |
+| `endpoint`             | The endpoint associated with this permission. |
 
 **Response**
 
@@ -554,7 +554,7 @@ HTTP 200 OK
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC user name or UUID. |
+| `name_or_id` | The RBAC role name or UUID. |
 
 **Request Body**
 
@@ -603,7 +603,7 @@ HTTP 201 Created
 
 | Attribute             | Description                                                                                                                     |
 | ---------             | -----------                                                                                                                     |
-| `name_or_id`          | The RBAC user name or UUID.                                                                                                |
+| `name_or_id`          | The RBAC role name or UUID.                                                                                                |
 | `entity_id`           | id of the entity associated with this permission.                                                                               |
 
 **Response**
@@ -638,7 +638,7 @@ HTTP 200 Ok
 
 | Attribute             | Description                                                                                                                     |
 | ---------             | -----------                                                                                                                     |
-| `name_or_id`          | The RBAC user name or UUID.                                                                                                |
+| `name_or_id`          | The RBAC role name or UUID.                                                                                                |
 
 **Response**
 
@@ -675,7 +675,7 @@ HTTP 200 Ok
 
 | Attribute             | Description                                                                                                                     |
 | ---------             | -----------                                                                                                                     |
-| `name_or_id`          | The RBAC user name or UUID.                                                                                                     |
+| `name_or_id`          | The RBAC role name or UUID.                                                                                                     |
 | `entity_id`           | The entity name or UUID.                                                                                                        |
 
 **Request Body**
@@ -713,7 +713,7 @@ HTTP 200 OK
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC user name or UUID. |
+| `name_or_id` | The RBAC role name or UUID. |
 | `entity_id`  | The entity name or UUID.    |
 
 **Response**
@@ -730,7 +730,7 @@ HTTP 204 No Content
 
 | Attribute    | Description                 |
 | ---------    | -----------                 |
-| `name_or_id` | The RBAC user name or UUID. |
+| `name_or_id` | The RBAC role name or UUID. |
 
 
 **Response**
