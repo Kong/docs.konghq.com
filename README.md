@@ -9,6 +9,13 @@ This repository is the source code for [Kong](https://github.com/Kong/kong)'s do
 make develop
 ```
 
+### Testing Links With Docker
+
+>
+```
+make check-links
+```
+
 ## Develop Locally Without Docker
 
 ### Prerequisites
@@ -46,8 +53,8 @@ npm run deploy
 
 ## Search
 
-We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our CE
-documentation search. The algolia index is maintained by Algolia through their
+We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our
+documentation search. The algolia index for Kong is maintained by Algolia through their
 docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
 runs every 24 hours. The config used by the scraper is open source for
 docs.konghq.com and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).

@@ -89,25 +89,41 @@ function js() {
   return gulp.src(sources.js)
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
-    .pipe($.minify({
-      noSource: true,
-      ext: {
-        min: '.js'
-      }
-    }))
     .pipe($.concat('app.js'))
     .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest('dist/assets'))
-    .pipe($.size())
     .pipe(browserSync.stream())
+}
+
+function js_min() {
+  return gulp.src(sources.js)
+  .pipe($.plumber())
+  .pipe($.if(dev, $.sourcemaps.init()))
+  .pipe($.minify({
+    noSource: true,
+    ext: {
+      min: '.js'
+    }
+  }))
+  .pipe($.concat('app.js'))
+  .pipe($.if(dev, $.sourcemaps.write()))
+  .pipe(gulp.dest('dist/assets'))
+  .pipe($.size())
+  .pipe(browserSync.stream())
 }
 
 function images() {
   return gulp.src(sources.images)
     .pipe($.plumber())
-    .pipe($.imagemin())
     .pipe(gulp.dest(paths.dist + 'assets/images'))
-    .pipe($.size())
+}
+
+function images_min() {
+  return gulp.src(sources.images)
+  .pipe($.plumber())
+  .pipe($.imagemin())
+  .pipe(gulp.dest(paths.dist + 'assets/images'))
+  .pipe($.size())
 }
 
 function fonts() {
@@ -119,7 +135,17 @@ function fonts() {
 }
 
 function jekyll(cb) {
-  var command = 'bundle exec jekyll build --config jekyll.yml --destination ' + paths.dist
+  var command = 'bundle exec jekyll build --config jekyll.yml --profile --destination ' + paths.dist
+
+  childProcess.exec(command, function (err, stdout, stderr) {
+    log(stdout)
+    log(stderr)
+    cb(err)
+  })
+}
+
+function jekyll_dev(cb) {
+  var command = 'bundle exec jekyll build --config jekyll-dev.yml --profile --destination ' + paths.dist
 
   childProcess.exec(command, function (err, stdout, stderr) {
     log(stdout)
@@ -131,8 +157,6 @@ function jekyll(cb) {
 function html() {
   return gulp.src(paths.dist + '/**/*.html')
     .pipe($.plumber())
-    // Prefetch static assets
-    // .pipe($.resourceHints())
     .pipe(gulp.dest(paths.dist))
     .pipe($.size())
 }
@@ -401,11 +425,14 @@ function set_dev(cb) {
 
 // Basic Tasks
 gulp.task("js", js)
+gulp.task("js_min", js_min)
 gulp.task("css", css)
 gulp.task("styles", styles)
 gulp.task("images", images)
+gulp.task("images_min", images_min)
 gulp.task("fonts", fonts)
 gulp.task("jekyll", jekyll)
+gulp.task("jekyll_dev", jekyll_dev)
 gulp.task("html", html)
 
 // Lua Tasks
@@ -429,6 +456,6 @@ gulp.task("watch", gulp.series(browser_sync, watch_files))
 
 gulp.task("dev", gulp.series(set_dev, clean, gulp.parallel(js, images, fonts, css), jekyll, html, styles, browser_sync, watch_files))
 
-gulp.task('default', gulp.series(clean, gulp.parallel(js, images, fonts, css), jekyll, html, styles, browser_sync, watch_files))
+gulp.task('default', gulp.series(clean, gulp.parallel(js, images, fonts, css), jekyll_dev, html, styles, browser_sync, watch_files))
 
-gulp.task("deploy", gulp.series(gulp.parallel(js, images, fonts, css), jekyll, html, styles, gh_pages))
+gulp.task("deploy", gulp.series(gulp.parallel(js_min, images_min, fonts, css), jekyll, html, styles, gh_pages))

@@ -22,7 +22,8 @@ using default config that listens on port `9090`.
 
 The latest release of StatsD exporter can be found at the
 [Bintray](https://bintray.com/kong/statsd-exporter). The binary is distributed
-with some specific features like min/max gauges and Unix domain socket support.
+with some specific features like min/max gauges. Alternatively, a
+[Docker image](https://bintray.com/kong/statsd-exporter-docker) is also available.
 
 StatsD exporter needed to configured with a set of mapping rules to translate
 the StatsD UDP events to Prometheus metrics. A default set of mapping rules can
@@ -42,7 +43,10 @@ section.
 
 StatsD exporter can run either on a separate node from Kong (to avoid resource
 competition with Kong), or on the same host with Kong (to reduce unnecessary
-network overhead).
+network overhead). Note that feeding metrics from multiple Kong nodes into a single
+StatsD exporter is currently not supported, as it would result in a metrics conflict.
+It's also recommended to match the number of Kong nodes to StatsD exporters for
+better scalability.
 
 In this guide, we assume StatsD exporter is running on hostname `statsd-node`,
 using default config that listens to UDP traffic on port `9125` and the metrics 
