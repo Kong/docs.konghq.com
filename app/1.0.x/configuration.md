@@ -896,6 +896,10 @@ datastore. Accepted values are `postgres` and `cassandra`.
 
 Default: `postgres`
 
+<div class="alert alert-warning">
+  Kong's configuration parser treats `#` characters as comments. If your database password contains a `#` character, escape it with `\#`.
+</div>
+
 ---
 
 #### Postgres settings

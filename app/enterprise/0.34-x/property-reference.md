@@ -873,6 +873,10 @@ The username to authenticate if required.
 
 The password to authenticate if required.
 
+<div class="alert alert-warning">
+  Kong's configuration parser treats `#` characters as comments. If your password contains a `#` character, escape it with `\#`.
+</div>
+
 
 ### pg_database
 
@@ -977,6 +981,10 @@ Username when using the `PasswordAuthenticator` scheme.
 **Description:**
 
 Password when using the `PasswordAuthenticator` scheme.
+
+<div class="alert alert-warning">
+  Kong's configuration parser treats `#` characters as comments. If your password contains a `#` character, escape it with `\#`.
+</div>
 
 
 ### cassandra_consistency
@@ -2102,6 +2110,10 @@ Username used for authentication with the SMTP server.
 **Description:**
 
 Password used for authentication with the SMTP server.
+
+<div class="alert alert-warning">
+  Kong's configuration parser treats `#` characters as comments. If your password contains a `#` character, escape it with `\#`.
+</div>
 
 
 ### smtp_ssl
