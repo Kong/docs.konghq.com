@@ -76,7 +76,7 @@ route_body: |
     `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. 
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
-    `headers`<br>*semi-optional* |  A list of headers that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. 
+    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. 
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Defaults to `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
@@ -97,7 +97,7 @@ route_json: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": ["/foo", "/bar"],
+        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
@@ -116,7 +116,7 @@ route_data: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
-        "headers": ["/foo", "/bar"],
+        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
