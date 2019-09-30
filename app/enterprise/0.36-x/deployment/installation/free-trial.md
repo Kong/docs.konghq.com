@@ -32,7 +32,7 @@ To complete this guide you will need:
     $ docker image load --input kong-enterprise-edition-ft-0.36.tar.gz 
     ```
 
-3. Run `docker images` to find the ID for the Kong Enterprise
+3. Run `docker images` to find the ID for the `kong-docker-kong-free-trials-enterprise-edition-docker.bintray.io/kong-enterprise-edition`, the Kong Enterprise trial
 image.
 
 4. Tag the image ID for easier use in the commands that follow:
