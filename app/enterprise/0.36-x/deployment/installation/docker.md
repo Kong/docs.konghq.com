@@ -70,10 +70,10 @@ image.
 
 5. Create a Docker network (_optional_)
 
-    Containers require a network in order to discover and communicate with each
-    other. If you would like to use this functionality, you can create a network
-    using the following command, replaying `kong-ee-net` with whatever you would
-    like to name your network:
+
+    Containers require a network in order to discover and communicate with each other. 
+    To use this functionality create a network using the following command, 
+    replacing kong-ee-net with the name of your network:
 
     ```
     $ docker network create kong-ee-net
