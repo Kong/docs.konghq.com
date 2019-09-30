@@ -6,7 +6,7 @@ title: How to Install Kong Enterprise with Docker
 
 This guide walks through downloading, installing, and start Kong Enterprise
 using Docker. The configuration shown in this guide is intended only as an 
-example -- you will want to modify and take additional measures to secure your 
+example. You will want to modify and take additional measures to secure your 
 Kong Enterprise system before moving to a production environment.
 
 Docker images for Kong Enterprise are hosted on [Bintray](https://bintray.com).
