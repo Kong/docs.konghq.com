@@ -89,7 +89,7 @@ params:
       description: |
         The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
     - name: policy
-      required: semi
+      required: false
       value_in_examples: "local"
       default: '`cluster`'
       description: |
