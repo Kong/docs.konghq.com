@@ -1,11 +1,11 @@
 ---
-title: Migrating to 0.36
+title: Migrating to 1.3-α
 ---
 
-### Prerequisites for Migrating to 0.36
+### Prerequisites for Migrating to 1.3-α
 
 * If running a version of **Kong Enterprise** earlier than 0.35, [migrate to 0.35](/enterprise/0.35-x/deployment/migrations/) first.
-* If running a version of **Kong** earlier than 1.2, [upgrade to Kong 1.2](/1.2.x/upgrading/) before upgrading to Kong Enterprise 0.36.
+* If running a version of **Kong** earlier than 1.2, [upgrade to Kong 1.2](/1.2.x/upgrading/) before upgrading to Kong Enterprise 1.3-α.
 
 ### Changes and Configuration to Consider before Upgrading
 
@@ -38,16 +38,16 @@ title: Migrating to 0.36
     5. Create or update partial `unauthenticated/assets/icons/search-widget` with contents of:
     [https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/search-widget.hbs](https://raw.githubusercontent.com/Kong/kong-portal-templates/master/themes/default-ie11/partials/unauthenticated/assets/icons/search-widget.hbs)
 
-### Migration Steps from 0.35 to 0.36
+### Migration Steps from 0.35 to 1.3-α
 
-For a no-downtime migration from a 0.35 cluster to a 0.36 cluster:
+For a no-downtime migration from a 0.35 cluster to a 1.3-α cluster:
 
-1. Download 0.36, and configure it to point to the same datastore as your 0.35 cluster.
-2. Run `kong migrations up`. Both 0.35 and 0.36 nodes can now run simultaneously on the same datastore.
-3. Start provisioning 0.36 nodes.
-4. Gradually divert traffic away from your 0.35 nodes, and into your 0.36 cluster. Monitor your traffic to make sure everything is going smoothly.
+1. Download 1.3-α, and configure it to point to the same datastore as your 0.35 cluster.
+2. Run `kong migrations up`. Both 0.35 and 1.3-α nodes can now run simultaneously on the same datastore.
+3. Start provisioning 1.3-α nodes.
+4. Gradually divert traffic away from your 0.35 nodes, and into your 1.3-α cluster. Monitor your traffic to make sure everything is going smoothly.
 5. When your traffic is fully migrated to the 0.35 cluster, decommission your 0.35 nodes.
-6. From your 0.36 cluster, run `kong migrations finish`. From this point on, it will not be possible to start 0.35 nodes pointing to the same datastore anymore. Only run this command when you are confident that your migration was successful. From now on, you can safely make Admin API requests to your 0.36 nodes.
+6. From your 1.3-α cluster, run `kong migrations finish`. From this point on, it will not be possible to start 0.35 nodes pointing to the same datastore anymore. Only run this command when you are confident that your migration was successful. From now on, you can safely make Admin API requests to your 1.3-α nodes.
 
 At any step of the way, you may run `kong migrations list` to get a report of the state of migrations. It will list whether there are missing migrations, if there are pending migrations (which have already started in the `kong migrations up` step and later need to finish in the `kong migrations finish` step) or if there are new migrations available. The status code of the process will also change accordingly:
 
@@ -57,15 +57,15 @@ At any step of the way, you may run `kong migrations list` to get a report of th
 * `4` - there are pending migrations: once your old cluster is decommissioned you should run `kong migrations finish` (step 5 above).
 * `5` - there are new migrations: you should start a migration sequence (beginning from step 1 above).
 
-### Migration Steps from Kong 1.2 to Kong Enterprise 0.36
+### Migration Steps from Kong 1.2 to Kong Enterprise 1.3-α
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This action is irreversible, therefore it is highly recommended to have a backup of production data.
 </div>
 
-Kong Enterprise 0.36 includes a command to migrate all Kong entities to Kong Enterprise. The following steps will guide you through the migration process.
+Kong Enterprise 1.3-α includes a command to migrate all Kong entities to Kong Enterprise. The following steps will guide you through the migration process.
 
-First download Kong Enterprise 0.36, and configure it to point to the same datastore as your Kong 1.2 node. The migration command expects the datastore to be up to date on any pending migration:
+First download Kong Enterprise 1.3-α, and configure it to point to the same datastore as your Kong 1.2 node. The migration command expects the datastore to be up to date on any pending migration:
 
 ```shell
 $ kong migrations up [-c config]
