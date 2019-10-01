@@ -15,6 +15,7 @@ yarn.lock
 # jekyll
 Gemfile.lock
 dist
+.jekyll-metadata
 
 # deploy
 .gh-pages
