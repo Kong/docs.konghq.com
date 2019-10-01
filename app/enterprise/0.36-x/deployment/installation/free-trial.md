@@ -1,62 +1,38 @@
 ---
-title: How to Install Kong Enterprise with Docker
+title: How to Install a Kong Enterprise Free Trial with Docker
 ---
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting Kong Enterprise
-using Docker. The configuration shown in this guide is intended only as an 
-example. You will want to modify and take additional measures to secure your 
-Kong Enterprise system before moving to a production environment.
-
-Docker images for Kong Enterprise are hosted on [Bintray](https://bintray.com).
-In order to download a Kong Enterprise Docker image, you will need valid Bintray
-credentials.
+This guide walks through downloading, installing, and starting a Kong Enterprise
+Free Trial using Docker. Your Free Trial license is active for 15 days. If you
+would like to extend your trial please contact your **Sales** associate.
 
 
 ## Prerequisites
 
 To complete this guide you will need:
 
+- A valid [Kong Enterprise Free Trial](https://konghq.com/free-trial)
 - Docker
-- [Bintray](https://bintray.com) credentials (Your **Sales** or **Support** 
-contact will email your Bintray credential to you.)
-- A valid Kong Enterprise license file (accessed via Bintray)
+- A Kong Enterprise Free Trial docker file (`.tar.gz`)
+- A valid Kong Enterprise Free Trial license file
 
 
-## Step 1. Download Kong Enterprise
+## Step 1. Load the Kong Enterprise Free Trial Docker Image
 
-1. Obtain your Bintray API Key
+1. Download the Kong Enterprise Trial Image file
 
-    Log in to [Bintray](https://bintray.com)
-
-    Hover over your user name in the top navigation bar and select "Edit Profile"
-    from the dropdown.
-
-
-    From the Profile page, select "API Key" from the sidebar.
-
-
-    Submit your Bintray password and copy your API key to your clipboard.
-
-
-2. Log in to Docker and pull the image
+    The `kong-enterprise-edition-ft-0.36.tar.gz` file can be downloaded by
+    clicking the Docker link in the Kong Enterprise Free Trial Welcome email.
+    
+2. Load the Kong Enterprise Trial Image:
 
     ```
-    $ docker login -u <bintray_username> -p <bintray_API_key>
-    kong-docker-kong-enterprise-edition-docker.bintray.io
-
-    $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
+    $ docker image load --input kong-enterprise-edition-ft-0.36.tar.gz 
     ```
 
-    This will pull the latest edition of Kong Enterprise. To pull a specific
-    version of Kong Enterprise add the `<VERSION>` to the url:
-
-    ```
-    $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition/<VERSION>
-    ```
-
-3. Run `docker images` to find the ID for the Kong Enterprise
+3. Run `docker images` to find the ID for the `kong-docker-kong-free-trials-enterprise-edition-docker.bintray.io/kong-enterprise-edition`, the Kong Enterprise trial
 image.
 
 4. Tag the image ID for easier use in the commands that follow:
@@ -67,9 +43,8 @@ image.
 
 5. Create a Docker network (_optional_)
 
-
-    Containers require a network in order to discover and communicate with each other. 
-    To use this functionality create a network using the following command, 
+    Containers require a network in order to discover and communicate with each 
+    other. To use this functionality create a network using the following command, 
     replacing kong-ee-net with the name of your network:
 
     ```
@@ -81,14 +56,8 @@ image.
 
 1. Download your license file
 
-    If you do not already have your license file, you can download it from your 
-    Kong repository in Bintray. This typically follows the following pattern,
-    with <YOUR_REPO_NAME> being your company name. 
-
-    `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
-
-    If you cannot locate your Kong repository on Bintray please contact your
-    **Sales** or **Support** contact.
+    Your license file can be found in the Kong Enterprise Free Trial Welcome
+    Email.
 
 2. Copy the license data in its entirety and export it as a shell variable:
 
