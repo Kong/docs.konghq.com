@@ -213,7 +213,94 @@ repository will allow you to do both easily.
 - Ensure `kong.response.add_header` works in the `rewrite` phase.
   [#4888](https://github.com/Kong/kong/pull/4888)
 
-### Enterprise Features
+#### Enterprise-Exclusive Features
+
+##### Kong Enterprise Gateway
+
+- gRPC support
+
+- Upstream mTLS support (API-only)
+
+- DB-export (API-only)
+
+- Routing by header
+
+##### Kong Manager
+
+- RBAC User Management (manage Admin API access within Kong Manager)
+
+- Service Directory Group to Kong Role Mapping (map AD groups or other service directory systems to roles & permission sets within Kong) - not available in the Alpha build
+
+- Service Map
+
+  - View requests flowing through Kong
+  - View Immunity notifications within Service Map, click to alert section
+
+- Immunity alert management & detail section
+  
+  - Filterable by entity, severity
+  - Links through to alerted entities
+
+##### Dev Portal
+
+- Easy theming within Kong Manager
+
+  - Easily set your color scheme, logo/branding, and go
+
+- Developer RBAC
+
+  - Decide what specs, or content within specs/portal, that different sets of developers can access.
+
+  - Permissions within single workspace/portal, will be expanding in coming releases
+
+- Separation of templates and user content
+
+  - Enable content editors to make changes with no coding required
+
+- Easier future release/upgrades path
+
+- Flat file system
+
+  - Full access to JS/assets, customers can load a single page app, or serverside rendered portal we offer out of the box
+
+- Full serverside rendering
+
+  - No need to hit the API via ajax for additional information in relationship to Kong, templating data object allows access to Kong data directly at load
+
+  - Enables more extensive caching of pages/assets
+
+- Declarative configuration out of the box
+
+  - Allows for more UI integrations
+
+  - Conf files allow for source controlled configuration of your dev portal, including
+
+    - Routing
+
+    - Auth config
+
+    - Permissions
+
+    - Theming (colors, logos, meta info)
+
+##### Plugins
+
+- gRPC support, API & Kong Manager
+
+- Upstream mTLS support, API-only
+
+- DB export, API-only
+
+- Routing by header, API-only
+
+#### Fixes
+
+##### Plugins
+
+###### OpenID Connect
+
+- Fix issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
+- Fix issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
 
 ## 0.36-2
 **Release Date:** 2019/8/30
