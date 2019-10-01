@@ -21,7 +21,7 @@
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
-    - text: Migrating to 0.36
+    - text: Migrating to 1.3-α
       url: /deployment/migrations
 
 
