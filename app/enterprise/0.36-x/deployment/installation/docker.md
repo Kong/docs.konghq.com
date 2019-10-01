@@ -33,15 +33,12 @@ contact will email your Bintray credential to you.)
     Hover over your user name in the top navigation bar and select "Edit Profile"
     from the dropdown.
 
-    _[insert screenshot]_
 
     From the Profile page, select "API Key" from the sidebar.
 
-    _[insert screenshot]_
 
     Submit your Bintray password and copy your API key to your clipboard.
 
-    _[insert screenshot]_
 
 2. Log in to Docker and pull the image
 
