@@ -209,7 +209,7 @@ the existing plugins for examples, and see additional advice in
 In this repository, `master` represents the current state of the website, and
 should constantly be deployed. Branch off of this branch for local development.
 
-If you have to write access to the GitHub repository, please follow the following
+If you have write access to the GitHub repository, please follow the following
 naming scheme when pushing your branch(es):
 
 - `docs/<ce|ee>-foo-bar` for updates to contents of the documentation (Markdown
