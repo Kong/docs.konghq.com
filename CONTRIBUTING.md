@@ -53,7 +53,7 @@ instead.
 
 ## Contributing to Kong documentation and the Kong Hub
 
-Improving the documentation is the most welcome form of a contribution to the Kong
+Improving the documentation is a most welcome form of contribution to the Kong
 community! You are encouraged to suggest edits, improvements, or fix any typo
 you may find on this website. Please read the below section about
 [submitting a patch](#submitting-a-patch).
