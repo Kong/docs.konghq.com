@@ -241,7 +241,7 @@ commit history? Will they find unrelated changes in a particular commit? They
 shouldn't!
 
 Writing meaningful commit messages that follow our commit message format will
-also, help you respect this mantra (see the below section).
+also help you respect this mantra (see the below section).
 
 [Back to TOC](#table-of-contents)
 
@@ -360,8 +360,8 @@ the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
 To inhibit the automatic addition of ToC, add the following to the front-matter
 `toc: false`
 
-This ToC generator depends on headings being correctly coded in the markdown
-the portion of the doc site files. If a page has an incorrectly-formatted ToC, be
+This ToC generator depends on headings being correctly coded in the markdown 
+portion of the doc site files. If a page has an incorrectly-formatted ToC, be
 sure to check:
 
 - Heading levels must be correctly nested. Thus, heading levels like this:
