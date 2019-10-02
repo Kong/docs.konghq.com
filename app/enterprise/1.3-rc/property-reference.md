@@ -7,6 +7,7 @@ toc: false
 
 * [General](#general)
 * [NGINX](#nginx)
+* [NGINX Injected Directives](#nginx-injected-directives)
 * [Datastore](#datastore)
 * [Datastore Cache](#datastore-cache)
 * [DNS Resolver](#dns-resolver)
@@ -20,6 +21,7 @@ toc: false
 * [General SMTP Configuration](#general-smtp-configuration)
 * [Data & Admin Audit](#data-&-admin-audit)
 * [Granular Tracing](#granular-tracing)
+* [Route Collision Detection and Prevention](#route-collision-detection-and-prevention)
 
 ## General
 
@@ -128,12 +130,19 @@ services. This value accepts IPv4, IPv6, and hostnames.
 
 Some suffixes can be specified for each pair:
 
-- `ssl` will require that all connections made through a particular
+- `ssl` requires that all connections made through a particular
   address/port be made with TLS enabled.
-- `http2` will allow for clients to open HTTP/2 connections to Kong's proxy
+- `http2` allows for clients to open HTTP/2 connections to Kong's proxy
   server.
-- Finally, `proxy_protocol` will enable usage of the PROXY protocol for a given
+- `proxy_protocol` enables usage of the PROXY protocol for a given
   address/port.
+- `transparent` causes Kong to listen to, and respond from, any and all 
+  IP addresses and ports you configure in `iptables`.
+- `deferred` instructs to use a deferred accept on Linux (the 
+  TCP_DEFER_ACCEPT socket option).
+- `bind` instructs to make a separate bind() call for a given `address:port` pair.
+- `reuseport` instructs to create an individual listening socket for each worker process,
+  allowing a kernel to distribute incoming connections between worker processes.
 
 This value can be set to `off`, thus disabling the proxy port for this node,
 enabling a 'control-plane' mode (without traffic proxying capabilities) which
@@ -190,7 +199,19 @@ proxy_url = https://127.0.0.1:8443
 
 **Description**
 
-Comma-separated list of addresses and ports on which stream mode should listen.
+Comma-separated list of addresses and ports on which the stream mode should listen.
+
+This value accepts IPv4, IPv6, and hostnames. Some suffixes can be specified for each pair:
+
+- `proxy_protocol` enables usage of the PROXY protocol for a given address/port.
+- `transparent` causes Kong Gateway to listen to (and respond from) any and all IP addresses and 
+  ports you configure in `iptables`. 
+- `bind` causes Kong Gateway to make a separate bind() call for a given `address:port` pair.
+- `reuseport` causes Kong Gateway to create an individual listening socket for each worker process 
+  allowing a kernel to distribute incoming connections between worker processes.
+
+**Note:** The `ssl` suffix is not supported, and each address/port will accept TCP with or 
+  without TLS enabled.
 
 **Default:** `off`
 
@@ -401,18 +422,6 @@ The absolute path to the SSL key for
 `admin_listen` values with SSL enabled.
 
 
-### upstream_keepalive
-
-**Default:** `60`
-
-**Description:**
-
-Sets the maximum number of idle keepalive
-connections to upstream servers that are
-preserved in the cache of each worker
-process. When this number is exceeded, the
-least recently used connections are closed.
-
 ### headers
 
 **Defaul:t** `server_tokens, latency_tokens`
@@ -554,6 +563,110 @@ is returning an error for the request.
 Accepted values are `text/plain`,
 `text/html`, `application/json`, and
 `application/xml`.
+
+
+## NGINX Injected Directives
+
+Nginx directives can be dynamically injected in the runtime nginx.conf file
+without requiring a custom Nginx configuration template.
+
+All configuration properties respecting the naming scheme
+`nginx_<namespace>_<directive>` will result in `<directive>` being injected in
+the Nginx configuration block corresponding to the property's `<namespace>`.
+
+Example:
+
+`nginx_proxy_large_client_header_buffers = 8 24k`
+
+Will inject the following directive in Kong's proxy `server {}` block:
+
+`large_client_header_buffers 8 24k;`
+
+The following namespaces are supported:
+
+- `nginx_http_<directive>`: Injects `<directive>` in Kong's `http {}` block.
+- `nginx_proxy_<directive>`: Injects `<directive>` in Kong's proxy
+  `server {}` block.
+- `nginx_http_upstream_<directive>`: Injects `<directive>` in Kong's proxy
+  `upstream {}` block.
+- `nginx_admin_<directive>`: Injects `<directive>` in Kong's Admin API
+  `server {}` block.
+- `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
+  `stream {}` block (only effective if `stream_listen` is enabled).
+- `nginx_sproxy_<directive>`: Injects `<directive>` in Kong's stream module
+  `server {}` block (only effective if `stream_listen` is enabled).
+
+As with other configuration properties, Nginx directives can be injected via
+environment variables when capitalized and prefixed with `KONG_`.
+
+Example:
+
+`KONG_NGINX_HTTP_SSL_PROTOCOLS` -> `nginx_http_ssl_protocols`
+
+Will inject the following directive in Kong's `http {}` block:
+
+`ssl_protocols <value>;`
+
+If different sets of protocols are desired between the proxy and Admin API
+server, you may specify `nginx_proxy_ssl_protocols` and/or
+`nginx_admin_ssl_protocols`, both of which taking precedence over the
+`http {}` block.
+
+### nginx_http_ssl_protocols
+
+**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
+
+**Description:** 
+
+Enables the specified protocols for
+client-side connections. The set of
+supported protocol versions also depends
+on the version of OpenSSL Kong was built
+with.
+
+See [http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols)
+
+### nginx_http_upstream_keepalive 
+
+**Default:** `60`
+
+**Description:** 
+
+Sets the maximum number of idle keepalive
+connections to upstream servers that are
+preserved in the cache of each worker
+process. When this number is exceeded, the
+least recently used connections are closed.
+A value of `NONE` will disable this behavior
+altogether, forcing each upstream request
+to open a new connection.
+
+See [http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive)
+
+### nginx_http_upstream_keepalive_requests
+
+**Default:** `100`
+
+**Description:** 
+
+Sets the maximum number of requests that can
+be served through one keepalive connection.
+After the maximum number of requests is
+made, the connection is closed.
+
+See [http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_requests](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_requests)
+
+### nginx_http_upstream_keepalive_timeout 
+
+**Default:** `60s`
+
+**Description:** 
+
+Sets a timeout during which an idle
+keepalive connection to an upstream server
+will stay open.
+
+See [http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_timeout](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_timeout)
 
 
 ## Datastore
@@ -1656,6 +1769,20 @@ the `prefix` location.
 Granularity can be adjusted through the `log_level`
 directive.
 
+### portal_is_legacy
+
+**Default:** `off`
+
+**Description:** 
+
+Developer Portal legacy support
+
+Setting this value to `on` causes all new
+portals to render using the legacy rendering system by default.
+
+Setting this value to `off` causes all new
+portals to render using the current rendering system.
+
 
 ## Default Dev Portal Authentication
 
@@ -1737,6 +1864,18 @@ portal_session_conf= {"cookie_name": "portal_session", "secret":"changeme", "sto
 Duration in seconds for the expiration of the Dev Portal reset password token.
 Default `21600` is six hours.
 
+### portal_email_verification 
+
+**Default:** `off`
+
+**Description:**
+
+When enabled, Developers receive an email upon
+registration to verify their account.  Developers are 
+not able to use the Developer Portal until they
+verify their account.
+
+Note: SMTP must be turned on in order to use this feature.
 
 ## Default Dev Portal SMTP Configuration
 
@@ -2171,6 +2310,8 @@ of the header does not matter, only that the header is present in the request.
 When this value is not set and tracing is enabled, Kong will generate trace data
 for all requests flowing through the proxy and Admin API.
 
+Note: Data from certificate handling phases is not logged when this setting is enabled.
+
 ### generate_trace_details
 
 **Default:** `off`
@@ -2182,3 +2323,36 @@ offer more data about the context of the trace. This can significantly increase
 the size of trace reports. Note also that trace details may contain potentially
 sensitive information, such as raw SQL queries; care should be taken to store
 traces properly when this option is enabled.
+
+
+## Route Collision Detection and Prevention
+
+### route_validation_strategy 
+
+**Default:** `smart` 
+
+The strategy used to validate
+routes when creating or updating them.
+Different strategies are available to tune
+how to enforce splitting traffic of
+workspaces.
+
+- 'smart' is the default option and uses the algorithm described in
+- 'off' disables any check
+- 'path' enforces routes to comply with the pattern described in config enforce_route_path_pattern
+
+### enforce_route_path_pattern 
+
+**Default:** `nil`
+
+Here you can specify Lua pattern to enforce 
+on a `path` attributes of a route object. You can also add a
+placeholder for workspace in pattern to render during runtime based 
+on the workspace to which the `route` belongs. It is a
+field if 'route_validation_strategy' is set to 'path'
+
+**Example:**
+For Pattern '/$(workspace)/v%d/.*' valid path are:
+
+1. '/group1/v1/' if route belongs to workspace 'group1'.
+2. '/group2/v1/some_path' if route belongs to workspace 'group2'.
