@@ -1,8 +1,8 @@
 {
-  "index_name": "prod_EE",
+  "index_name": "private_RC",
   "start_urls": [
     {
-      "url": "https://docs.konghq.com/enterprise/(?P<version>.*?)/",
+      "url": "https://kong-summit.netlify.com/enterprise/(?P<version>.*?)/",
       "variables": {
         "version": {
           "url": "https://docs.konghq.com/enterprise/",
@@ -12,7 +12,7 @@
     }
   ],
   "sitemap_urls": [
-    "https://docs.konghq.com/sitemap.xml"
+    "https://kong-summit.netlify.com/sitemap.xml"
   ],
   "stop_urls": [
 
