@@ -131,6 +131,8 @@
             url: /kong-manager/administration/rbac/rbac
           - text: How to Create a New Role
             url: /kong-manager/administration/rbac/new-role
+          - text: How to Create an RBAC User
+            url: /kong-manager/administration/rbac/add-user
         - text: Admins
           url: /kong-manager/administration/admins/invite
         - items:
