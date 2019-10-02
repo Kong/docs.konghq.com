@@ -1,5 +1,5 @@
 ---
-title: Kong Enterprise Documentation
+title: Kong Enterprise
 layout: docs
 ---
 
