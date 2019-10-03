@@ -4,11 +4,9 @@ This repository is the source code for [Kong](https://github.com/Kong/kong)'s do
 
 
 ## Hacktoberfest Guidelines 🦍 🎃
-Thank you for your interest in contributing to Kong’s documentation! 
+Thank you for contributing to Kong’s documentation! 
 
-Due to the number of Pull Requests received, we ask that you limit your PR’s to `issues` specified in the issues tab. Issues suitable for first time contributors will be labeled `good first issue`
-
-If you find a legitimate typo, please label your PR `typo` and assign **Team Docs** to review. PR's submitted making unnecessary grammatical changes will be marked as `invalid` and closed. 
+Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly.
 
 
 ## Develop Locally With Docker
