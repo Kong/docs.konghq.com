@@ -6,7 +6,7 @@ This repository is the source code for [Kong](https://github.com/Kong/kong)'s do
 ## Hacktoberfest Guidelines 🦍 🎃
 Thank you for contributing to Kong’s documentation! 
 
-Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly.
+Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed through Github and do not require pulling the repository and building locally.
 
 
 ## Develop Locally With Docker
