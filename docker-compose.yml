@@ -3,10 +3,12 @@ version: '3.4'
 services:
   jekyll:
     build: .
-    user: jekyll
+    user: ${JEKYLL_USER:-jekyll}
     command: ${COMMAND:-make run}
     volumes:
       - .:/srv/jekyll
     ports:
       - 3000:3000
       - 3001:3001
+    healthcheck:
+      test: curl --fail -I localhost:3000
