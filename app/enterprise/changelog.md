@@ -51,6 +51,10 @@ layout: changelog
 
 ## 0.36
 
+### Notifications
+- **Kong Enterprise 0.36** inherits from **Kong 1.2.1** with some exceptions:
+  * Declarative Configuration and DB-less mode of Kong Gateway is designed for limited scenarios that do not allow for the Kong Enterprise to function as-is. As such the mode is not available in Kong Enterprise today.
+
 **Release Date:** 2019/8/5
 
 ### Features
