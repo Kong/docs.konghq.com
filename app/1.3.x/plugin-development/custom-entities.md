@@ -646,9 +646,9 @@ must do it manually, by checking with `select` before invoking `delete`.
 Example:
 
 ``` lua
-local ok, err = kong.db.keyauth_credentials:delete({
+local ok, err = kong.db.keyauth_credentials:delete(
   { id = "2b6a2022-770a-49df-874d-11e2bf2634f5" }
-})
+)
 
 if not ok then
   kong.log.err("Error when deleting keyauth credential: " .. err)
