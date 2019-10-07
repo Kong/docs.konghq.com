@@ -37,4 +37,4 @@ docker-test: background-docker-up
 	docker-compose exec jekyll npm test
 
 check-links: background-docker-up
-	docker-compose exec jekyll yarn blc http://localhost:3000 -efr --exclude careers --exclude hub
+	docker-compose exec jekyll yarn blc http://localhost:3000 -efr --exclude careers --exclude hub --exclude request-demo --exclude kong-cloud
