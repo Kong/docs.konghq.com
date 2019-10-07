@@ -1,6 +1,13 @@
-# KONG Website
+# KONG's Documentation Website
 
 This repository is the source code for [Kong](https://github.com/Kong/kong)'s documentation website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
+
+
+## Hacktoberfest Guidelines 🦍 🎃
+Thank you for contributing to Kong’s documentation! 
+
+Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed through Github and do not require pulling the repository and building locally.
+
 
 ## Develop Locally With Docker
 
@@ -9,12 +16,19 @@ This repository is the source code for [Kong](https://github.com/Kong/kong)'s do
 make develop
 ```
 
+### Testing Links With Docker
+
+>
+```
+make check-links
+```
+
 ## Develop Locally Without Docker
 
 ### Prerequisites
 
 - [npm](https://www.npmjs.com/)
-- [Bundler](https://bundler.io/)
+- [Bundler](https://bundler.io/) (< 2.0.0) 
 - [Ruby](https://www.ruby-lang.org) (>= 2.0, < 2.3)
 - [Python](https://www.python.org) (>= 2.7.X, < 3)
 
@@ -33,19 +47,10 @@ npm install
 npm start
 ```
 
-## Deploying
-
-The repository must be manually deploy to GitHub pages:
-
->
-```bash
-npm run deploy
-```
-
 ## Search
 
-We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our CE
-documentation search. The algolia index is maintained by Algolia through their
+We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our
+documentation search. The algolia index for Kong is maintained by Algolia through their
 docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
 runs every 24 hours. The config used by the scraper is open source for
 docs.konghq.com and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
@@ -97,7 +102,7 @@ scraper to test out config changes.
 
 We encourage developers to list their Kong plugins and integrations (which
 we refer to collectively as "extensions") in the
-[Kong Hub](https://docs.konghq.com/hub), with documentation hosted
+[Kong Hub](https://docs.konghq.com/hub) with documentation hosted
 on the Kong website for ready access.
 
 See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.

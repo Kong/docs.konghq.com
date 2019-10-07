@@ -6,6 +6,7 @@ RUN apk add --update-cache --upgrade curl
 
 WORKDIR /srv/jekyll
 COPY Makefile /srv/jekyll/Makefile
+
 RUN make install-prerequisites
 
 RUN chmod -R 777 /usr/lib/node_modules \

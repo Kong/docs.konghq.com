@@ -8,7 +8,6 @@ desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.
 
-enterprise: true
 type: plugin
 categories:
   - traffic-control
@@ -16,8 +15,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.3.x
+        - 1.2.x
     enterprise_edition:
       compatible:
+        - 0.36-x
         - 0.35-x
         - 0.34-x
 
@@ -45,7 +47,7 @@ params:
       default: text/plain, application/json
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable
+        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned
     - name: vary_headers
       required: false
       default:
@@ -79,7 +81,7 @@ params:
     - name: strategy
       required:
       default:
-      value_in_examples:
+      value_in_examples: memory
       description: |
         The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
     - name: memory.dictionary_name
@@ -136,6 +138,12 @@ params:
       value_in_examples:
       description: |
         Sentinel addresses to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.cluster_addresses
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
 
 ---
 ### Strategies
@@ -200,7 +208,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint get">/proxy-cache/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------

@@ -7,19 +7,19 @@ breadcrumbs:
   Installation: /install
 ---
 
-### Packages
+## Packages
 
 Start by downloading the corresponding package for your configuration:
 
-- [12.04 Precise]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.precise.all.deb)
-- [14.04 Trusty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.trusty.all.deb)
-- [16.04 Xenial]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.xenial.all.deb)
-- [17.04 Zesty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.zesty.all.deb)
-- [18.04 Bionic]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.bionic.all.deb)
+- [12.04 Precise]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.precise.amd64.deb)
+- [14.04 Trusty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.trusty.amd64.deb)
+- [16.04 Xenial]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.xenial.amd64.deb)
+- [17.04 Zesty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.zesty.amd64.deb)
+- [18.04 Bionic]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.bionic.amd64.deb)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 
-### APT Repositories
+## APT Repositories
 
 You can also install Kong via APT; follow the instructions on the "Set Me Up"
 section on the page below, setting  *distribution* to the appropriate value ( lsb_release -sc )
@@ -29,7 +29,7 @@ section on the page below, setting  *distribution* to the appropriate value ( ls
 
 ----
 
-### Installation
+## Installation
 
 1. **Install Kong**
 

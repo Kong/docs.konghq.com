@@ -17,15 +17,13 @@ links:
     kong-dbless-pv : "https://s3.amazonaws.com/kong-cf-templates/latest/kong-elb-dbless-vpc-optional-pv.template"
 ---
 
-### Templates
-
-#### Kong with Cassandra
+## Kong with Cassandra
 
 This template will provision Kong instances in a new or existing VPC. You will
 need to provide the contact points of your Cassandra cluster during the
 deployment process.
 
-##### HVM AMI
+### HVM AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
@@ -36,7 +34,7 @@ deployment process.
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-hvm }})
 
-##### PV AMI
+### PV AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
@@ -47,13 +45,13 @@ deployment process.
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-pv&templateURL={{ page.links.templates.kong-pv }})
 
-#### Kong with PostgreSQL
+## Kong with PostgreSQL
 
 This template will provision Kong instances in a new or existing VPC. You can
 provide your own PostgreSQL instance, or if not, the template will create one
 on AWS RDS for you.
 
-##### HVM AMI
+### HVM AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-postgres-hvm&templateURL={{ page.links.templates.kong-postgres-hvm }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-postgres-hvm&templateURL={{ page.links.templates.kong-postgres-hvm }})
@@ -64,7 +62,7 @@ on AWS RDS for you.
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-postgres-hvm&templateURL={{ page.links.templates.kong-postgres-hvm }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-hvm&templateURL={{ page.links.templates.kong-postgres-hvm }})
 
-##### PV AMI
+### PV AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
@@ -75,14 +73,14 @@ on AWS RDS for you.
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-postgres-pv&templateURL={{ page.links.templates.kong-postgres-pv }})
 
-#### Kong in DB-less mode
+## Kong in DB-less mode
 
 Provisions Kong resources in a new VPC or existing VPC. 
 
 Note: User would need to provide an S3 bucket location where `kong.yml` is
 stored with the declarative configuration to bootstrap all the Kong instances.
 
-##### HVM AMI
+### HVM AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
@@ -93,7 +91,7 @@ stored with the declarative configuration to bootstrap all the Kong instances.
 - [ap-southeast-2]({{ page.links.aws }}?region=ap-southeast-2#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
 - [sa-east-1]({{ page.links.aws }}?region=sa-east-1#/stacks/new?stackName=kong-elb-dbless-hvm&templateURL={{ page.links.templates.kong-dbless-hvm }})
 
-##### PV AMI
+### PV AMI
 
 - [us-east-1]({{ page.links.aws }}?region=us-east-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
 - [us-west-1]({{ page.links.aws }}?region=us-west-1#/stacks/new?stackName=kong-elb-dbless-pv&templateURL={{ page.links.templates.kong-dbless-pv }})
@@ -106,12 +104,12 @@ stored with the declarative configuration to bootstrap all the Kong instances.
 
 
 ----
-### Recommended usage
+#### Recommended usage
 
-  <B>Use this cloud formation as a basis for your own, adjust the variables and template to better suit your needs.</B>
+  Use this cloud formation as a basis for your own, adjust the variables and template to better suit your needs.
 ----
 
-### Instructions
+## Setup Instructions
 
 1. **Initial Setup**
 

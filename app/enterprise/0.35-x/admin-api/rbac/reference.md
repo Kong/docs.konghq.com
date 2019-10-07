@@ -1,5 +1,7 @@
 ---
 title: RBAC Reference
+redirect_from:
+  - /enterprise/0.35-x/admin-api/rbac/rbac
 book: rbac
 ---
 
@@ -18,26 +20,25 @@ There are 4 basic entities involving RBAC.
   `developer`.
 - **role_endpoint**: A set of enabled or disabled (see `negative`
   parameter) actions (`read`, `create`, `update`, `delete`)
-  `endpoint`. Example: Role `developer` has 1 role_endpoint: `read &
-  write` to endpoint `/routes`
+  `endpoint`. Example: Role `developer` has 1 role_endpoint: `read & write` to endpoint `/routes`
 - **role_entity**: A set of enabled or disabled (see `negative`
   parameter) actions (`read`, `create`, `update`, `delete`)
-  `entity`. Example: Role `developer` has 1 role_entity: `read & write
-  & delete` to entity `283fccff-2d4f-49a9-8730-dc8b71ec2245`.
+  `entity`. Example: Role `developer` has 1 role_entity: `read & write & delete` to entity `283fccff-2d4f-49a9-8730-dc8b71ec2245`.
 
 ## Add a User
+
 **Endpoint**
 
 <div class="endpoint post">/rbac/users</div>
 
 **Request Body**
 
-| Attribute                | Description                                                                                                                         |
-| ---------                | -----------                                                                                                                         |
-| `name`                   | The RBAC user name.                                                                                                                 |
-| `user_token` | The authentication token to be presented to the Admin API. The value will be hashed and cannot be fetched in plaintext. |
-| `enabled`<br>optional    | A flag to enable or disable the user. By default, users are enabled.                                                                |
-| `comment`<br>optional    | A string describing the RBAC user object.                                                                                           |
+| Attribute             | Description                                                                                                             |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `name`                | The RBAC user name.                                                                                                     |
+| `user_token`          | The authentication token to be presented to the Admin API. The value will be hashed and cannot be fetched in plaintext. |
+| `enabled`<br>optional | A flag to enable or disable the user. By default, users are enabled.                                                    |
+| `comment`<br>optional | A string describing the RBAC user object.                                                                               |
 
 **Response**
 
@@ -56,15 +57,17 @@ HTTP 201 Created
   "user_token_ident": "4d870"
 }
 ```
-___
+
+---
 
 ## Retrieve a User
+
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
+| ------------ | --------------------------- |
 | `name_or_id` | The RBAC user name or UUID. |
 
 **Response**
@@ -83,9 +86,11 @@ HTTP 200 OK
   "user_token_ident": "4d870"
 }
 ```
-___
+
+---
 
 ## List Users
+
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/</div>
@@ -121,21 +126,28 @@ HTTP 200 OK
   "next": null
 }
 ```
-___
+
+⚠️ **Note**: **RBAC Users** associated with **Admins** will _not_ be
+listed with **`GET`** `/rbac/users`. Instead, use
+[**`GET`** `/admins`](/enterprise/{{page.kong_version}}/admin-api/admins/reference/#list-admins)
+to list all **Admins**.
+
+---
 
 ## Update a User
+
 **Endpoint**
 
 <div class="endpoint patch">/rbac/users/{name_or_id}</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
+| ------------ | --------------------------- |
 | `name_or_id` | The RBAC user name or UUID. |
 
 **Request Body**
 
 | Attribute                | Description                                                                                                                         |
-| ---------                | -----------                                                                                                                         |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `user_token`<br>optional | The authentication token to be presented to the Admin API. If this value is not present, the token will automatically be generated. |
 | `enabled`<br>optional    | A flag to enable or disable the user. By default, users are enabled.                                                                |
 | `comment`<br>optional    | A string describing the RBAC user object.                                                                                           |
@@ -157,15 +169,17 @@ HTTP 200 OK
   "user_token_ident": "4d870"
 }
 ```
-___
+
+---
 
 ## Delete a User
+
 **Endpoint**
 
 <div class="endpoint delete">/rbac/users/{name_or_id}</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
+| ------------ | --------------------------- |
 | `name_or_id` | The RBAC user name or UUID. |
 
 **Response**
@@ -173,15 +187,17 @@ ___
 ```
 HTTP 204 No Content
 ```
-___
+
+---
 
 ## Add a Role
+
 **Endpoint**
 
 <div class="endpoint post">/rbac/roles</div>
 
 | Attribute             | Description                               |
-| ---------             | -----------                               |
+| --------------------- | ----------------------------------------- |
 | `name`                | The RBAC role name.                       |
 | `comment`<br>optional | A string describing the RBAC user object. |
 
@@ -200,15 +216,17 @@ HTTP 201 Created
   "name": "service_reader"
 }
 ```
-___
+
+---
 
 ## Retrieve a Role
+
 Endpoint
 
 <div class="endpoint get">/rbac/roles/{name_or_id}</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
+| ------------ | --------------------------- |
 | `name_or_id` | The RBAC role name or UUID. |
 
 **Response**
@@ -225,9 +243,11 @@ HTTP 200 OK
   "name": "service_reader"
 }
 ```
-___
+
+---
 
 ## List Roles
+
 **Endpoint**
 
 <div class="endpoint get">/rbac/roles</div>
@@ -269,9 +289,11 @@ HTTP 200 OK
   "next": null
 }
 ```
-___
+
+---
 
 ## Update or Create a Role
+
 **Endpoint**
 
 <div class="endpoint put">/rbac/roles</div>
@@ -279,7 +301,7 @@ ___
 **Request Body**
 
 | Attribute             | Description                               |
-| ---------             | -----------                               |
+| --------------------- | ----------------------------------------- |
 | `name`                | The RBAC role name.                       |
 | `comment`<br>optional | A string describing the RBAC user object. |
 
@@ -287,8 +309,7 @@ The behavior of `PUT` endpoints is the following: if the request payload **does
 not** contain an entity's primary key (`id` for Users), the entity will be
 created with the given payload. If the request payload **does** contain an
 entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404
-NOT FOUND` will be returned.
+given primary key. If the primary key is **not** that of an existing entity, `404 NOT FOUND` will be returned.
 
 **Response**
 
@@ -315,18 +336,19 @@ HTTP 200 OK
 ```
 
 ## Update a Role
+
 **Endpoint**
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}</div>
 
-| Attribute    | Description                 |
-| ---------    | -----------                 |
+| Attribute    | Description            |
+| ------------ | ---------------------- |
 | `name_or_id` | The RBAC role or UUID. |
 
 **Request Body**
 
 | Attribute             | Description                               |
-| ---------             | -----------                               |
+| --------------------- | ----------------------------------------- |
 | `comment`<br>optional | A string describing the RBAC role object. |
 
 **Response**
@@ -344,40 +366,42 @@ HTTP 200 OK
   "name": "service_reader"
 }
 ```
-___
+
+---
 
 ## Delete a Role
+
 **Endpoint**
 
 <div class="endpoint delete">/rbac/role/{name_or_id}</div>
 
-| Attribute             | Description                               |
-| ---------             | -----------                               |
-| `name`                | The RBAC role name.                       |
+| Attribute | Description         |
+| --------- | ------------------- |
+| `name`    | The RBAC role name or UUID. |
 
 **Response**
 
 ```
 HTTP 204 No Content
 ```
-___
+
+---
 
 ## Add a Role Endpoint Permission
+
 **Endpoint**
 
 <div class="endpoint post">/rbac/roles/{name_or_id}/endpoints</div>
 
-
-| Attribute             | Description                               |
-| ---------             | -----------                               |
-| `name_or_id`          | The RBAC role name.                       |
-
+| Attribute    | Description         |
+| ------------ | ------------------- |
+| `name_or_id` | The RBAC role name or UUID. |
 
 **Request Body**
 
 | Attribute             | Description                                                                                                                     |
-| ---------             | -----------                                                                                                                     |
-| `workspace`           | Workspace tied to the endpoint. Defaults to the default permission. Special value of "*" means **all** workspaces are affected  |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `workspace`           | Workspace tied to the endpoint. Defaults to the default permission. Special value of "\*" means **all** workspaces are affected |
 | `endpoint`            | Endpoint associated with this permission.                                                                                       |
 | `negative`            | If true, explicitly disallow the actions associated with the permissions tied to this endpoint. By default this value is false. |
 | `actions`             | One or more actions associated with this permission. This is a comma separated string (read,create,update,delete)               |
@@ -387,12 +411,13 @@ ___
 exact matches, or contain wildcards, represented by `*`.
 
 - Exact matches; eg:
-  * /apis/
-  * /apis/foo
+
+  - /apis/
+  - /apis/foo
 
 - Wildcards; eg:
-  * /apis/*
-  * /apis/*/plugins
+  - /apis/\*
+  - /apis/\*/plugins
 
 Where `*` replaces exactly one segment between slashes (or the end of
 the path).
@@ -408,12 +433,7 @@ HTTP 201 Created
 
 ```json
 {
-  "actions": [
-    "delete",
-    "create",
-    "update",
-    "read"
-  ],
+  "actions": ["delete", "create", "update", "read"],
   "created_at": 1557764505,
   "endpoint": "/consumers",
   "negative": false,
@@ -427,15 +447,16 @@ HTTP 201 Created
 ---
 
 ## Retrieve a Role Endpoint Permission
+
 **Endpoint**
 
-<div class="endpoint get">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
+<div class="endpoint get">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
 | Attribute             | Description                                  |
-| ---------             | -----------                                  |
+| --------------------- | -------------------------------------------- |
 | `name_or_id`          | The RBAC role name or UUID.                  |
-| `worspace_name_or_id` | The worspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permisson. |
+| `workspace_name_or_id` | The workspace name or UUID.                   |
+| `endpoint`            | The endpoint associated with this permission. |
 
 **Response**
 
@@ -445,12 +466,7 @@ HTTP 200 OK
 
 ```json
 {
-  "actions": [
-    "delete",
-    "create",
-    "update",
-    "read"
-  ],
+  "actions": ["delete", "create", "update", "read"],
   "created_at": 1557764505,
   "endpoint": "/consumers",
   "negative": false,
@@ -463,15 +479,14 @@ HTTP 200 OK
 
 ---
 
-
-
 ## List Role Endpoints Permissions
+
 **Endpoint**
 
 <div class="endpoint get">/rbac/roles/{role_name_or_id}/endpoints</div>
 
 | Attribute         | Description                 |
-| ---------         | -----------                 |
+| ----------------- | --------------------------- |
 | `role_name_or_id` | The RBAC role name or UUID. |
 
 **Response**
@@ -484,12 +499,7 @@ HTTP 200 OK
 {
   "data": [
     {
-      "actions": [
-        "delete",
-        "create",
-        "update",
-        "read"
-      ],
+      "actions": ["delete", "create", "update", "read"],
       "created_at": 1557764505,
       "endpoint": "/consumers",
       "negative": false,
@@ -499,9 +509,7 @@ HTTP 200 OK
       "workspace": "default"
     },
     {
-      "actions": [
-        "read"
-      ],
+      "actions": ["read"],
       "created_at": 1557764438,
       "endpoint": "/services",
       "negative": false,
@@ -517,22 +525,23 @@ HTTP 200 OK
 ---
 
 ## Update a Role Endpoint Permission
+
 **Endpoint**
 
-<div class="endpoint patch">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
+<div class="endpoint patch">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
 | Attribute             | Description                                  |
-| ---------             | -----------                                  |
+| --------------------- | -------------------------------------------- |
 | `name_or_id`          | The RBAC role name or UUID.                  |
-| `worspace_name_or_id` | The worspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permisson. |
+| `workspace_name_or_id` | The workspace name or UUID.                   |
+| `endpoint`            | The endpoint associated with this permission. |
 
 **Request Body**
 
-| Attribute             | Description |
-| ---------             | ----------- |
-| `negative`            | If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false. |
-| `actions`             | One or more actions associated with this permission. |
+| Attribute  | Description                                                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `negative` | If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false. |
+| `actions`  | One or more actions associated with this permission.                                                                            |
 
 **Response**
 
@@ -542,12 +551,7 @@ HTTP 200 OK
 
 ```json
 {
-  "actions": [
-    "delete",
-    "create",
-    "update",
-    "read"
-  ],
+  "actions": ["delete", "create", "update", "read"],
   "created_at": 1557764438,
   "endpoint": "/services",
   "negative": false,
@@ -560,18 +564,17 @@ HTTP 200 OK
 
 ---
 
-
-
 ## Delete a Role Endpoint Permission
+
 **Endpoint**
 
-<div class="endpoint delete">/rbac/roles/{name_or_id}/endpoints/{worspace_name_or_id}/{endpoint}</div>
+<div class="endpoint delete">/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}</div>
 
 | Attribute             | Description                                  |
-| ---------             | -----------                                  |
+| --------------------- | -------------------------------------------- |
 | `name_or_id`          | The RBAC role name or UUID.                  |
-| `worspace_name_or_id` | The worspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permisson. |
+| `workspace_name_or_id` | The workspace name or UUID.                   |
+| `endpoint`            | The endpoint associated with this permission. |
 
 **Response**
 
@@ -581,20 +584,20 @@ HTTP 204 No Content
 
 ---
 
-
-
 ## Add a Role Entity Permission
+
 **Endpoint**
+
 <div class="endpoint post">/rbac/roles/{name_or_id}/entities</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
+| ------------ | --------------------------- |
 | `name_or_id` | The RBAC role name or UUID. |
 
 **Request Body**
 
 | Attribute             | Description                                                                                                                     |
-| ---------             | -----------                                                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `negative`            | If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false. |
 | `entity_id`           | id of the entity associated with this permission.                                                                               |
 | `actions`             | One or more actions associated with this permission.                                                                            |
@@ -606,7 +609,6 @@ workspace. Future entities belonging to that workspace will get the
 same permissions. A wildcard `*` will be interpreted as **all
 entities** in the system.
 
-
 **Response**
 
 ```
@@ -615,11 +617,7 @@ HTTP 201 Created
 
 ```json
 {
-  "actions": [
-    "delete",
-    "create",
-    "read"
-  ],
+  "actions": ["delete", "create", "read"],
   "created_at": 1557771505,
   "entity_id": "*",
   "entity_type": "wildcard",
@@ -633,13 +631,15 @@ HTTP 201 Created
 ---
 
 ## Retrieve a Role Entity Permission
+
 **Endpoint**
+
 <div class="endpoint get">/rbac/roles/{name_or_id}/entities/{entity_id}</div>
 
-| Attribute             | Description                                                                                                                     |
-| ---------             | -----------                                                                                                                     |
-| `name_or_id`          | The RBAC permission name or UUID.                                                                                                |
-| `entity_id`           | id of the entity associated with this permission.                                                                               |
+| Attribute    | Description                                       |
+| ------------ | ------------------------------------------------- |
+| `name_or_id` | The RBAC permission name or UUID.                 |
+| `entity_id`  | id of the entity associated with this permission. |
 
 **Response**
 
@@ -649,11 +649,7 @@ HTTP 200 Ok
 
 ```json
 {
-  "actions": [
-    "delete",
-    "create",
-    "read"
-  ],
+  "actions": ["delete", "create", "read"],
   "created_at": 1557771505,
   "entity_id": "*",
   "entity_type": "wildcard",
@@ -666,14 +662,15 @@ HTTP 200 Ok
 
 ---
 
-## List Entity Permissons
+## List Entity Permissions
 
 **Endpoint**
+
 <div class="endpoint get">/rbac/roles/{name_or_id}/entities</div>
 
-| Attribute             | Description                      |
-| ---------             | -----------                      |
-| `name_or_id`          | The RBAC permisson name or UUID. |
+| Attribute    | Description                      |
+| ------------ | -------------------------------- |
+| `name_or_id` | The RBAC role name or UUID. |
 
 **Response**
 
@@ -685,11 +682,7 @@ HTTP 200 Ok
 {
   "data": [
     {
-      "actions": [
-        "delete",
-        "create",
-        "read"
-      ],
+      "actions": ["delete", "create", "read"],
       "created_at": 1557771505,
       "entity_id": "*",
       "entity_type": "wildcard",
@@ -703,22 +696,24 @@ HTTP 200 Ok
 ```
 
 ---
+
 ## Update an Entity Permission
+
 **Endpoint**
 
 <div class="endpoint patch">/rbac/roles/{name_or_id}/entities/{entity_id}</div>
 
-| Attribute             | Description                 |
-| ---------             | -----------                 |
-| `name_or_id`          | The RBAC role name or UUID. |
-| `entity_id`           | The entity name or UUID.    |
+| Attribute    | Description                 |
+| ------------ | --------------------------- |
+| `name_or_id` | The RBAC role name or UUID. |
+| `entity_id`  | The entity name or UUID.    |
 
 **Request Body**
 
-| Attribute    | Description                 |
-| ---------    | -----------                 |
+| Attribute  | Description                                                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `negative` | If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false. |
-| `actions` | One or more actions associated with this permission. |
+| `actions`  | One or more actions associated with this permission.                                                                            |
 
 **Response**
 
@@ -728,9 +723,7 @@ HTTP 200 OK
 
 ```json
 {
-  "actions": [
-    "update"
-  ],
+  "actions": ["update"],
   "created_at": 1557771505,
   "entity_id": "*",
   "entity_type": "wildcard",
@@ -744,12 +737,13 @@ HTTP 200 OK
 ---
 
 ## Delete an Entity Permission
+
 **Endpoint**
 
 <div class="endpoint delete">/rbac/roles/{name_or_id}/entities/{entity_id}</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
+| ------------ | --------------------------- |
 | `name_or_id` | The RBAC role name or UUID. |
 | `entity_id`  | The entity name or UUID.    |
 
@@ -762,39 +756,31 @@ HTTP 204 No Content
 ---
 
 ## List Role Permissions
+
 **Endpoint**
+
 <div class="endpoint get">/rbac/roles/{name_or_id}/permissions/</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
+| ------------ | --------------------------- |
 | `name_or_id` | The RBAC role name or UUID. |
-
 
 **Response**
 
 ```
 HTTP 200 OK
 ```
+
 ```json
 {
   "endpoints": {
     "*": {
       "*": {
-        "actions": [
-          "delete",
-          "create",
-          "update",
-          "read"
-        ],
+        "actions": ["delete", "create", "update", "read"],
         "negative": false
       },
       "/*/rbac/*": {
-        "actions": [
-          "delete",
-          "create",
-          "update",
-          "read"
-        ],
+        "actions": ["delete", "create", "update", "read"],
         "negative": true
       }
     }
@@ -804,19 +790,19 @@ HTTP 200 OK
 ```
 
 ## Add a User to a Role
+
 **Endpoint**
 
 <div class="endpoint post">/rbac/users/{name_or_id}/roles</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
-
+| ------------ | --------------------------- |
+| `name_or_id` | The RBAC user name or UUID. |
 
 **Request Body**
 
-| Attribute | Description |
-| --------- | ----------- |
+| Attribute | Description                                               |
+| --------- | --------------------------------------------------------- |
 | `roles`   | Comma-separated list of role names to assign to the user. |
 
 **Response**
@@ -824,6 +810,7 @@ HTTP 200 OK
 ```
 HTTP 201 Created
 ```
+
 ```json
 {
   "roles": [
@@ -846,23 +833,24 @@ HTTP 201 Created
 ```
 
 ---
+
 ## List a User's Roles
+
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}/roles</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
-
+| ------------ | --------------------------- |
+| `name_or_id` | The RBAC user name or UUID. |
 
 **Response**
 
 ```
 HTTP 200 OK
 ```
-```json
 
+```json
 {
   "roles": [
     {
@@ -890,20 +878,21 @@ HTTP 200 OK
 ```
 
 ---
+
 ## Delete a Role from a User
+
 **Endpoint**
 
 <div class="endpoint delete">/rbac/users/{name_or_id}/roles</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
-
+| ------------ | --------------------------- |
+| `name_or_id` | The RBAC user name or UUID. |
 
 **Request Body**
 
 | Attribute | Description                                               |
-| --------- | -----------                                               |
+| --------- | --------------------------------------------------------- |
 | `roles`   | Comma-separated list of role names to assign to the user. |
 
 **Response**
@@ -915,32 +904,31 @@ HTTP 204 No Content
 ---
 
 ## List a User's Permissions
+
 **Endpoint**
 
 <div class="endpoint get">/rbac/users/{name_or_id}/permissions</div>
 
 | Attribute    | Description                 |
-| ---------    | -----------                 |
-| `name_or_id` | The RBAC role name or UUID. |
+| ------------ | --------------------------- |
+| `name_or_id` | The RBAC user name or UUID. |
 
 **Response**
 
 ```
 HTTP 200 OK
 ```
+
 ```json
 {
   "endpoints": {
     "*": {
       "*": {
-        "actions": [
-          "read"
-        ],
+        "actions": ["read"],
         "negative": false
       }
     }
   },
   "entities": {}
 }
-
 ```

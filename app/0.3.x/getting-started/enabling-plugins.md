@@ -1,5 +1,6 @@
 ---
 title: Enabling Plugins
+redirect_from: '/0.31-x/getting-started/enabling-plugins'
 ---
 
 ## Introduction
@@ -77,8 +78,8 @@ Now that you've enabled the **keyauth** plugin lets learn how to add consumers t
 
 Go to [Adding Consumers &rsaquo;][adding-consumers]
 
-[CLI]: /{{page.kong_version}}/cli
-[API]: /{{page.kong_version}}/admin-api
+[cli]: /{{page.kong_version}}/cli
+[api]: /{{page.kong_version}}/admin-api
 [keyauth]: /plugins/key-authentication
 [plugins]: /plugins
 [configuration]: /{{page.kong_version}}/configuration
