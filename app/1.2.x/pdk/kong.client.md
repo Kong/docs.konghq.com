@@ -11,7 +11,7 @@ Client information module
  Kong in the context of a given request.
 
  See also:
- [nginx.org/en/docs/http/ngx_http_realip_module.html](http://nginx.org/en/docs/http/ngx_http_realip_module.html)
+ [nginx.org/en/docs/http/ngx_http_realip_module.html](https://nginx.org/en/docs/http/ngx_http_realip_module.html)
 
 
 
