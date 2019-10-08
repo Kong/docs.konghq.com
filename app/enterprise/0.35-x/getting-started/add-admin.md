@@ -11,8 +11,6 @@ toc: false
 - [Step 2](#step-2)
 - [Step 3](#step-3)
 - [Step 4](#step-4)
-- [Step 5](#step-5)
-- [Step 6](#step-6)
 
 ### Introduction
 
