@@ -275,7 +275,7 @@ Some suffixes can be specified for each pair:
   PROXY protocol for a given address/port.
 - `transparent` causes Kong to listen to, and
   respond from, any and all IP addresses and ports
-  you configure in iptables.
+  you configure in `iptables`.
 
 **Default:** `off`
 
