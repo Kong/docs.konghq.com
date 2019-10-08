@@ -273,7 +273,7 @@ This value accepts IPv4, IPv6, and hostnames.
 Some suffixes can be specified for each pair:
 - `proxy_protocol` enables usage of the
   PROXY protocol for a given address/port.
-- `transparent` will cause kong to listen to, and
+- `transparent` causes Kong to listen to, and
   respond from, any and all IP addresses and ports
   you configure in iptables.
 
