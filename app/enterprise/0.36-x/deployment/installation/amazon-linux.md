@@ -1,5 +1,5 @@
 ---
-title: How to Install Kong Enterprise and PostgreSQL onto Amazon Linux
+title: How to Install Kong Enterprise and on Amazon Linux
 ---
 
 ## Installation Steps
@@ -19,15 +19,11 @@ baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterpris
 
 ```bash
 $ sudo yum install kong-enterprise-edition
-$ sudo yum install postgresql95 postgresql95-server
-$ sudo service postgresql95 initdb
-$ sudo service postgresql95 start
+$ sudo yum install postgresql postgresql-server
+$ sudo service postgresql-setup initdb
+$ sudo service postgresql start
 $ sudo -i -u postgres (puts you into new shell)
 ```
-
-**Note**: `<USERNAME>` is obtained from your access key, by appending a `%40kong`
-to it (encoded form of `@kong`). For example, if your access key is `bob-company`,
-your username will be `bob-company%40kong`.
 
 Create `kong` user
 
@@ -35,12 +31,13 @@ Create `kong` user
 $ psql
 > CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong'; 
 > \q
+> exit
 ```
 
 ```bash
 # Change entries from ident to md5
-$ sudo vi /var/lib/pgsql95/data/pg_hba.conf
-$ sudo service postgresql95 restart
+$ sudo vi /var/lib/pgsql/data/pg_hba.conf
+$ sudo service postgresql restart
 
 # add contents of license file
 $ sudo vi /etc/kong/license.json
@@ -55,19 +52,10 @@ $ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 
 **Note:** You may use `kong.conf.default` or create [your own configuration](/0.13.x/configuration/#configuration-loading).
 
-## Install HTTPie to Make Commands more Easily
-
-```bash
-$ sudo yum install python-pip
-$ sudo pip install --upgrade pip setuptools
-$ sudo pip install --upgrade httpie
-```
-
 ## Verify Kong Installation
 
 ```bash
-$ http :8001/apis name=demo uris=/ upstream_url=http://httpbin.org
-$ http :8000/ip
+$ curl -i -X GET --url http://localhost:8001/services
 ```
 
 ## Install Kong Manager
