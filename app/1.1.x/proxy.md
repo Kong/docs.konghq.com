@@ -1092,7 +1092,7 @@ just covered.
 [plugin-development-guide]: /{{page.kong_version}}/plugin-development
 [plugin-association-rules]: /{{page.kong_version}}/admin-api/#precedence
 [load-balancing-reference]: /{{page.kong_version}}/loadbalancing
-[configuration-reference]: /{{page.kong_version}}/configuration-reference
+[configuration-reference]: /{{page.kong_version}}/configuration/
 [configuration-trusted-ips]: /{{page.kong_version}}/configuration/#trusted_ips
 [configuring-a-service]: /{{page.kong_version}}/getting-started/configuring-a-service
 [API]: /{{page.kong_version}}/admin-api
