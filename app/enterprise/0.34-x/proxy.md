@@ -1058,7 +1058,7 @@ just covered.
 [plugin-development-guide]: /enterprise/{{page.kong_version}}/plugin-development
 [plugin-association-rules]: /enterprise/{{page.kong_version}}/admin-api/#precedence
 [load-balancing-reference]: /enterprise/{{page.kong_version}}/loadbalancing
-[configuration-reference]: /enterprise/{{page.kong_version}}/property-reference-reference
+[configuration-reference]: /enterprise/{{page.kong_version}}/property-reference
 [configuration-trusted-ips]: /enterprise/{{page.kong_version}}/property-reference/#trusted_ips
 [configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [API]: /enterprise/{{page.kong_version}}/admin-api

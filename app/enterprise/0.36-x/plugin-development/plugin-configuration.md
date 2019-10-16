@@ -306,7 +306,7 @@ return CustomHandler
 ```
 
 Note that the above example uses the
-[kong.log.inspect](http://localhost:3000/docs/0.14.x/pdk/kong.log/#kong_log_inspect)
+[kong.log.inspect](/enterprise/{{page.kong_version}}/pdk/kong.log/#kong_log_inspect)
 function of the [Plugin Development Kit] to print out those values to the Kong
 logs.
 

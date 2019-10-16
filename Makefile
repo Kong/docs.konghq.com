@@ -31,7 +31,7 @@ test: install
 
 background-docker-up:
 	docker-compose up -d
-	while [ `curl -s -o /dev/null -w ''%{http_code}'' localhost:3000` != 200 ]; do echo "waiting"; docker-compose logs --tail=10 jekyll; sleep 45; done
+	-while [ `curl -s -o /dev/null -w ''%{http_code}'' localhost:3000` != 200 ]; do echo "waiting"; docker-compose logs --tail=10 jekyll; sleep 45; done
 
 docker-test: background-docker-up
 	docker-compose exec jekyll npm test
