@@ -1002,7 +1002,7 @@ topic we just covered.
 [plugin-configuration-object]: /{{page.kong_version}}/admin-api#plugin-object
 [plugin-development-guide]: /{{page.kong_version}}/plugin-development
 [load-balancing-reference]: /{{page.kong_version}}/loadbalancing
-[configuration-reference]: /{{page.kong_version}}/configuration-reference
+[configuration-reference]: /{{page.kong_version}}/configuration/
 [adding-your-api]: /{{page.kong_version}}/getting-started/adding-your-api
 [API]: /{{page.kong_version}}/admin-api
 [api-entity]: /{{page.kong_version}}/admin-api/#add-api

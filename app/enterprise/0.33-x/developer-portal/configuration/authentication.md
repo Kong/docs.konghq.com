@@ -79,7 +79,7 @@ You should now be redirected to [http://127.0.0.1:8003/dashboard] where, as a De
 
 For more information and details on configuring other authentication methods, and [Logging In](#logging-in) keep reading!
 
-> If your Dev Portal does not render after following these steps, check out the <a href="/enterprise/{{page.kong_version}}/developer-portal/FAQ">FAQ</a>.
+> If your Dev Portal does not render after following these steps, check out the <a href="/enterprise/{{page.kong_version}}/developer-portal/faq/">FAQ</a>.
 
 ## Example configurations
 
