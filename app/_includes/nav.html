@@ -1,71 +1,206 @@
-<header class="site-header">
-  <div class="enterprise">
-    <div class="container">
-      <nav class="enterprise-sites one-half column">
-        <ul>
-          <li>
-            <a href="https://konghq.com/kong-enterprise-edition">Enterprise</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/kong-community-edition">Kong API Gateway</a>
-          </li>
-        </ul>
-      </nav>
-      <nav class="enterprise-contact one-half column">
-        <ul>
-          <li>
-            <a href="https://support.mashape.com/">Support</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/request-demo">Request Demo</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-  <!-- .enterprise -->
-  <div class="navbar">
-    <div class="container">
-      <a href="/" class="navbar-brand">
-        <!-- <img src="/assets/images/branding.svg" alt="Kong" width="99" height="32"> -->
-        <img src="/assets/images/Kogo.svg" alt="Kong">
+<header class="navbar navbar-inverse navbar-toggleable-lg kong-navbar flex-row align-items-center fixed-top lower_nav expand">
+    <div class="container d-flex">
+      <a href="https://konghq.com/" class="navbar-brand col col-xl-auto">
+      <img src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/themes/konghq/assets/img/gradient-logo.svg" alt="Kong Logo">
       </a>
-      <iframe class="header-star" src="https://ghbtns.com/github-btn.html?user=Mashape&amp;repo=kong&amp;type=star" frameborder="0"
-        scrolling="0" width="55" height="20"></iframe>
-      <button data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" class="navbar-toggle">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <button class="navbar-toggler align-self-center" type="button" data-toggle="kong-expand" data-target="#pagesNav" aria-controls="pagesNav" aria-expanded="false" aria-label="Toggle navigation">
+        <div></div>
+        <div></div>
+        <div></div>
       </button>
-      <nav id="navbar" class="navbar-nav">
-        <ul>
-          <li>
-            <a href="https://konghq.com/about-kong-inc/" {% if page.url contains "/about/" %} class="active" {% endif %}>About</a>
-          </li>
-          <li>
-            <a href="/docs/" {% if page.url contains "/docs/" %} class="active" {% endif %}>Docs</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/plugins" {% if page.url=="/plugins/" %} class="active" {% endif %}>Plugins</a>
-          </li>
-          <li>
-            <a href="/community/" {% if page.url=="/community/" %} class="active" {% endif %}>Community</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/kong-enterprise-edition/">Enterprise</a>
-          </li>
-          <li>
-            <a href="{{ site.repos.kong }}" target="_blank">GitHub</a>
-          </li>
-          <li class="hidden-lg">
-            <a href="https://support.mashape.com/">Support</a>
-          </li>
-          <li>
-            <a href="https://konghq.com/install" class="button button-dark{% if page.url == " /install/ " %} active{% endif %}" data-analytics='{"event": "Clicked download", "type": "button", "location": "header"}'>Installation</a>
-          </li>
-        </ul>
+      <nav class="navbar full-width">
+        <div class="collapse navbar-collapse col justify-content-md-end kong-navbar_nav">
+          <ul id="menu-primary-nav" class="menu">
+            <li class="btn menu-item menu-item-type-custom menu-item-object-custom menu-item-12447 navbar-item"><a href="https://konghq.com/request-demo" class="nav-link">Request Demo</a></li>
+            <li class="btn menu-item menu-item-type-custom menu-item-object-custom menu-item-12448 navbar-item"><a href="https://konghq.com/install" class="nav-link">Install</a></li>
+            <li class="two-row nav1 menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor menu-item-has-children menu-item-12449 navbar-item">
+              <a href="#" class="nav-link">Products</a>
+              <ul class="sub-menu">
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-12450 navbar-item">
+                  <a href="https://konghq.com/kong" class="nav-link">Kong Gateway</a>
+                  <div class="nav-btns"><a class="navbtn" href="https://konghq.com/install">Install Kong Open Source</a></div>
+                  <ul class="sub-menu">
+                    <li class="mobile-nav menu-item menu-item-type-custom menu-item-object-custom menu-item-12451 navbar-item"><a href="https://konghq.com/kong" class="nav-link">Overview</a></li>
+                    <li class="stacked menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-12452 navbar-item">
+                      <a href="https://konghq.com/products/kong-gateway/control-api" aria-current="page" class="nav-link">
+                        <img src="/assets/images/nav/control.svg"> Control API
+                        <p class="description">Own your Kong experience to customize your API and microservices workflows.</p>
+                      </a>
+                    </li>
+                    <li id="menu-item-12453" class="nav3 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12453 navbar-item">
+                      <a href="https://konghq.com/products/kong-gateway/kong-proxy" class="nav-link">
+                        <img src="/assets/images/nav/proxy.svg"> Kong Proxy
+                        <p class="description">Deliver performance needed for microservices, service mesh, and cloud native deployments.</p>
+                      </a>
+                      <ul class="sub-menu">
+                        <li class="mobile-nav menu-item menu-item-type-custom menu-item-object-custom menu-item-12466 navbar-item"><a href="https://konghq.com/products/kong-gateway/kong-proxy" class="nav-link">Overview</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12467 navbar-item"><a href="https://konghq.com/products/kong-enterprise/multi-protocol" class="nav-link">Multi-protocol</a></li>
+                      </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12454 navbar-item">
+                      <a href="https://konghq.com/products/kong-gateway/kong-plugins" class="nav-link">
+                        <img src="/assets/images/nav/plugins.svg"> Kong Plugins
+                        <p class="description">Unleash the full power of Kong with a robust ecosystem of plugins.</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12455 navbar-item">
+                  <a href="https://konghq.com/products/kong-enterprise" class="nav-link">Kong Enterprise</a>
+                  <div class="nav-btns"><span>Try</span><a class="navbtn" href="https://konghq.com/request-demo">On-Prem</a><a class="navbtn" href="https://konghq.com/kong-cloud">SaaS</a></div>
+                  <ul class="sub-menu">
+                    <li class="mobile-nav menu-item menu-item-type-custom menu-item-object-custom menu-item-12456 navbar-item"><a href="https://konghq.com/products/kong-enterprise" class="nav-link">Overview</a></li>
+                    <li class="nav3 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12457 navbar-item">
+                      <a href="https://konghq.com/products/kong-enterprise/kong-manager" class="nav-link">
+                        <img src="/assets/images/nav/manager.svg"> Kong Manager
+                        <p class="description">Monitor and manage all your services with a consumer-grade interface.</p>
+                      </a>
+                      <ul class="sub-menu">
+                        <li class="mobile-nav menu-item menu-item-type-custom menu-item-object-custom menu-item-12458 navbar-item"><a href="https://konghq.com/products/kong-enterprise/kong-manager" class="nav-link">Overview</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12459 navbar-item"><a href="https://konghq.com/products/kong-enterprise/enterprise-plugins/" class="nav-link">Enterprise Plugins</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12460 navbar-item"><a href="https://konghq.com/products/kong-enterprise/vitals/" class="nav-link">Vitals</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav3 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12461 navbar-item">
+                      <a href="https://konghq.com/products/kong-enterprise/teams" class="nav-link">
+                        <img src="/assets/images/nav/teams.svg"> Teams
+                        <p class="description">Organize developers and assign permissions to improve efficiency and compliance.</p>
+                      </a>
+                      <ul class="sub-menu">
+                        <li class="mobile-nav menu-item menu-item-type-custom menu-item-object-custom menu-item-12462 navbar-item"><a href="https://konghq.com/products/kong-enterprise/teams" class="nav-link">Overview</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12463 navbar-item"><a href="https://konghq.com/products/kong-enterprise/role-based-access-control/" class="nav-link">RBAC</a></li>
+                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12464 navbar-item"><a href="https://konghq.com/products/kong-enterprise/workspaces/" class="nav-link">Workspaces</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav3 menu-item menu-item-type-custom menu-item-object-custom menu-item-12465 navbar-item">
+                      <a href="https://konghq.com/products/kong-enterprise/kong-studio" class="nav-link">
+                        <img src="/assets/images/nav/studio.svg"> Kong Studio
+                        <p class="description">Empower your developers with the Kong Studio Integrated Development Environment.</p>
+                      </a>
+                    </li>
+                    <li class="border-top menu-item menu-item-type-custom menu-item-object-custom menu-item-12468 navbar-item">
+                      <a href="https://konghq.com/products/kong-enterprise/dev-portal" class="nav-link">
+                        <img src="/assets/images/nav/dev-portal.svg"> Dev Portal
+                        <p class="description">Accelerate innovation across your organization with the Kong Developer Portal.</p>
+                      </a>
+                    </li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12469 navbar-item">
+                      <a href="https://konghq.com/products/kong-enterprise/kong-brain" class="nav-link">
+                        <img src="/assets/images/nav/brain-updated.svg"> Brain
+                        <p class="description">Automatically standardize documentation and create a visual map of your services.</p>
+                      </a>
+                    </li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12470 navbar-item">
+                      <a href="https://konghq.com/products/kong-enterprise/kong-immunity" class="nav-link">
+                        <img src="/assets/images/nav/immunity.svg"> Immunity
+                        <p class="description">Autonomously identify service issues with machine learning-powered anomaly detection.</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="one-col nav1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12471 navbar-item">
+              <a href="#" class="nav-link">Solutions</a>
+              <ul class="sub-menu">
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12472 navbar-item">
+                  <a href="https://konghq.com/kong" class="nav-link">
+                    <img src="/assets/images/nav/api-gateway.svg"> API Gateway
+                    <p class="description">Take control of your microservices traffic with the world’s most popular API gateway.</p>
+                  </a>
+                </li>
+                <li id="menu-item-12473" class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12473 navbar-item">
+                  <a href="https://konghq.com/solutions/kubernetes-ingress" class="nav-link">
+                    <img src="/assets/images/nav/kubernetes.svg"> Kubernetes
+                    <p class="description">Own your Kubernetes cluster by extending Kong functionality as an ingress controller.</p>
+                  </a>
+                </li>
+                <li id="menu-item-12474" class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12474 navbar-item">
+                  <a href="https://konghq.com/solutions/service-mesh/" class="nav-link">
+                    <img src="/assets/images/nav/service-mesh.svg"> Service Mesh
+                    <p class="description">Inject Kong as a sidecar for your services to go from mess to mesh.</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12471 navbar-item">
+                <a href="/hub" class="nav-link">Plugins</a>
+            </li>
+            <li class="one-col nav1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12475 navbar-item">
+              <a href="#" class="nav-link">Open Source</a>
+              <ul class="sub-menu">
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12476 navbar-item"><a href="https://konghq.com/install" class="nav-link"><img src="/assets/images/nav/install.svg"> Install Kong Gateway</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12477 navbar-item"><a href="https://konghq.com/community/" class="nav-link"><img src="/assets/images/nav/community.svg"> Kong Community</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12478 navbar-item"><a target="_blank" href="https://github.com/Kong/kubernetes-ingress-controller" class="nav-link"><img src="/assets/images/nav/kubernetes.svg"> Kubernetes Ingress</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12479 navbar-item"><a target="_blank" href="https://kuma.io" class="nav-link"><img src="/assets/images/nav/kuma.svg"> Kuma</a></li>
+                <li class="nav2 hidden menu-item menu-item-type-custom menu-item-object-custom menu-item-12480 navbar-item"><a target="_blank" href="https://insomnia.rest/" class="nav-link"><img src="/assets/images/nav/insomnia.svg"> Insomnia</a></li>
+              </ul>
+            </li>
+            <li class="multicol wide nav1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12481 navbar-item">
+              <a target="_blank" href="https://docs.konghq.com" class="nav-link">Docs</a>
+              <ul class="sub-menu">
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12482 navbar-item">
+                  <a class="nav-link">Get Started</a>
+                  <ul class="sub-menu">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12484 navbar-item"><a href="https://konghq.com/install" class="nav-link"><img src="/assets/images/nav/install-thick.svg"> Install</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12485 navbar-item"><a target="_blank" href="https://docs.konghq.com/?_ga=2.154852088.1919773651.1569859116-132287075.1554308608" class="nav-link"><img src="/assets/images/nav/getting-started-thick.svg"> Kong Docs + Getting Started</a></li>
+                  </ul>
+                </li>
+                <li id="menu-item-12483" class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12483 navbar-item">
+                  <a class="nav-link">Learn</a>
+                  <ul class="sub-menu">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12486 navbar-item"><a target="_blank" href="https://docs.konghq.com/enterprise/?_ga=2.154852088.1919773651.1569859116-132287075.1554308608" class="nav-link"><img src="/assets/images/nav/deploy-plugins-master-launch.svg"> Deploy Kong Enterprise</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12487 navbar-item"><a target="_blank" href="https://docs.konghq.com/hub/" class="nav-link"><img src="/assets/images/nav/deploy-plugins-master-launch.svg"> Plugins</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12488 navbar-item"><a target="_blank" href="https://docs.konghq.com/enterprise/latest/admin-api/vitals/" class="nav-link"><img src="/assets/images/nav/deploy-plugins-master-launch.svg"> Master Kong Vitals</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12489 navbar-item"><a target="_blank" href="https://docs.konghq.com/enterprise/0.36-x/developer-portal/introduction/" class="nav-link"><img src="/assets/images/nav/deploy-plugins-master-launch.svg"> Launch Your Dev Portal</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="multicol nav1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12490 navbar-item">
+              <a href="#" class="nav-link">Resources</a>
+              <ul class="sub-menu">
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12491 navbar-item">
+                  <a class="nav-link">Downloads</a>
+                  <ul class="sub-menu">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12495 navbar-item"><a href="https://konghq.com/ebooks/" class="nav-link"><img src="/assets/images/nav/ebooks.svg"> eBooks</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12496 navbar-item"><a href="https://konghq.com/webinars/" class="nav-link"><img src="/assets/images/nav/webinars.svg"> Webinars</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12497 navbar-item"><a href="https://konghq.com/briefs" class="nav-link"><img src="/assets/images/nav/briefs.svg"> Briefs</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12494 navbar-item"><a href="https://konghq.com/blog/" class="nav-link"><img src="/assets/images/nav/blog.svg"> Blog</a></li>
+                  </ul>
+                </li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12492 navbar-item">
+                  <a class="nav-link">Community</a>
+                  <ul class="sub-menu">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12500 navbar-item"><a href="https://konghq.com/community/" class="nav-link"><img src="/assets/images/nav/meetups.svg"> Community</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12498 navbar-item"><a target="_blank" href="https://discuss.konghq.com/?_ga=2.147363831.1919773651.1569859116-132287075.1554308608" class="nav-link"><img src="/assets/images/nav/kong-nation.svg"> Kong Nation</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12501 navbar-item"><a href="https://konghq.com/kong-summit" class="nav-link"><img src="/assets/images/nav/summit.svg"> Kong Summit</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12499 navbar-item"><a target="_blank" href="https://github.com/Kong/" class="nav-link"><img src="/assets/images/nav/github.svg"> GitHub</a></li>
+                  </ul>
+                </li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12493 navbar-item">
+                  <a class="nav-link">Support</a>
+                  <ul class="sub-menu">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12502 navbar-item"><a target="_blank" href="https://support.konghq.com/s/" class="nav-link"><img src="/assets/images/nav/support-faqs.svg"> Enterprise Support Portal</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12503 navbar-item"><a href="https://konghq.com/faqs" class="nav-link"><img src="/assets/images/nav/support-faqs.svg"> FAQS</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li id="menu-item-12504" class="one-col icn-sm nav1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12504 navbar-item">
+              <a href="#" class="nav-link">Company</a>
+              <ul class="sub-menu">
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12505 navbar-item"><a href="https://konghq.com/about-kong-inc" class="nav-link"><img src="/assets/images/nav/about.svg"> About</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12506 navbar-item"><a href="https://konghq.com/investors" class="nav-link"><img src="/assets/images/nav/investors.svg"> Investors</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12507 navbar-item"><a href="https://konghq.com/careers/" class="nav-link"><img src="/assets/images/nav/careers.svg"> Careers</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12508 navbar-item"><a href="https://konghq.com/partners" class="nav-link"><img src="/assets/images/nav/partners.svg"> Partners</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12509 navbar-item"><a href="https://konghq.com/press-room" class="nav-link"><img src="/assets/images/nav/press.svg"> Press</a></li>
+                <li class="nav2 menu-item menu-item-type-custom menu-item-object-custom menu-item-12510 navbar-item"><a href="https://konghq.com/contact" class="nav-link"><img src="/assets/images/nav/contact.svg"> Contact</a></li>
+              </ul>
+            </li>
+            <li class="demo-btn menu-item menu-item-type-custom menu-item-object-custom menu-item-12511 navbar-item"><a href="https://konghq.com/request-demo" class="nav-link">Request Demo</a></li>
+          </ul>
+        </div>
       </nav>
     </div>
-  </div>
-  <!-- .navbar -->
-</header>
+  </header>

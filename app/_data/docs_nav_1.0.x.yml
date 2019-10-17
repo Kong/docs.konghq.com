@@ -1,0 +1,317 @@
+- title: Getting Started
+  items:
+    - text: Introduction
+      url: /getting-started/introduction
+
+    - text: Five-minute quickstart
+      url: /getting-started/quickstart
+
+    - text: Configuring a Service
+      url: /getting-started/configuring-a-service
+
+    - text: Enabling Plugins
+      url: /getting-started/enabling-plugins
+
+    - text: Adding Consumers
+      url: /getting-started/adding-consumers
+
+- title: Guides &amp; References
+  items:
+    - text: Configuration reference
+      url: /configuration
+
+    - text: CLI reference
+      url: /cli
+
+    - text: Proxy reference
+      url: /proxy
+
+    - text: Authentication reference
+      url: /auth
+
+    - text: Load balancing reference
+      url: /loadbalancing
+
+    - text: Health checks and circuit breakers reference
+      url: /health-checks-circuit-breakers
+
+    - text: Clustering reference
+      url: /clustering
+
+    - text: Logging reference
+      url: /logging
+
+    - text: Network &amp; Firewall
+      url: /network
+
+    - text: Securing the Admin API
+      url: /secure-admin-api
+
+    - text: Plugin Development Guide
+      url: /plugin-development
+      items:
+        - text: Introduction
+          url: /plugin-development
+
+        - text: File structure
+          url: /plugin-development/file-structure
+
+        - text: Implementing custom logic
+          url: /plugin-development/custom-logic
+
+        - text: Plugin configuration
+          url: /plugin-development/plugin-configuration
+
+        - text: Accessing the datastore
+          url: /plugin-development/access-the-datastore
+
+        - text: Storing custom entities
+          url: /plugin-development/custom-entities
+
+        - text: Caching custom entities
+          url: /plugin-development/entities-cache
+
+        - text: Extending the Admin API
+          url: /plugin-development/admin-api
+
+        - text: Writing tests
+          url: /plugin-development/tests
+
+        - text: (un)Installing your plugin
+          url: /plugin-development/distribution
+
+    - text: Plugin Development Kit
+      url: /pdk
+      items:
+
+      - text: kong.client
+        url: /pdk/kong.client
+
+      - text: kong.ctx
+        url: /pdk/kong.ctx
+
+      - text: kong.ip
+        url: /pdk/kong.ip
+
+      - text: kong.log
+        url: /pdk/kong.log
+
+      - text: kong.node
+        url: /pdk/kong.node
+
+      - text: kong.request
+        url: /pdk/kong.request
+
+      - text: kong.response
+        url: /pdk/kong.response
+
+      - text: kong.router
+        url: /pdk/kong.router
+
+      - text: kong.service
+        url: /pdk/kong.service
+
+      - text: kong.service.request
+        url: /pdk/kong.service.request
+
+      - text: kong.service.response
+        url: /pdk/kong.service.response
+
+      - text: kong.table
+        url: /pdk/kong.table
+
+
+- title: Admin API
+  url: /admin-api/
+  items:
+    - text: Supported Content Types
+      url: /admin-api/#supported-content-types
+
+    - text: Information routes
+      url: /admin-api/#information-routes
+      items:
+        - text: Retrieve node information
+          url: /admin-api/#retrieve-node-information
+
+        - text: Retrieve node status
+          url: /admin-api/#retrieve-node-status
+
+    - text: Service Object
+      url: /admin-api/#service-object
+      items:
+        - text: Add Service
+          url: /admin-api/#add-service
+
+        - text: Retrieve Service
+          url: /admin-api/#retrieve-service
+
+        - text: List Services
+          url: /admin-api/#list-services
+
+        - text: Update Service
+          url: /admin-api/#update-service
+
+        - text: Update or create Service
+          url: /admin-api/#update-or-create-service
+
+        - text: Delete Service
+          url: /admin-api/#delete-service
+
+    - text: Route Object
+      url: /admin-api/#route-object
+      items:
+        - text: Add Route
+          url: /admin-api/#add-route
+
+        - text: Retrieve Route
+          url: /admin-api/#retrieve-route
+
+        - text: List Routes
+          url: /admin-api/#list-routes
+
+        - text: List Routes associated to a Service
+          url: /admin-api/#list-routes-associated-to-a-service
+
+        - text: Update Route
+          url: /admin-api/#update-route
+
+        - text: Update or create Route
+          url: /admin-api/#update-or-create-route
+
+        - text: Delete Route
+          url: /admin-api/#delete-route
+
+    - text: Consumer Object routes
+      url: /admin-api/#consumer-object
+      items:
+        - text: Create Consumer
+          url: /admin-api/#create-consumer
+
+        - text: Retrieve Consumer
+          url: /admin-api/#retrieve-consumer
+
+        - text: List Consumers
+          url: /admin-api/#list-consumers
+
+        - text: Update Consumer
+          url: /admin-api/#update-consumer
+
+        - text: Update or create Consumer
+          url: /admin-api/#update-or-create-consumer
+
+        - text: Delete Consumer
+          url: /admin-api/#delete-consumer
+
+    - text: Plugin Object routes
+      url: /admin-api/#plugin-object
+      items:
+        - text: Add Plugin
+          url: /admin-api/#add-plugin
+
+        - text: Retrieve Plugin
+          url: /admin-api/#retrieve-plugin
+
+        - text: List all Plugins
+          url: /admin-api/#list-all-plugins
+
+        - text: Update Plugin
+          url: /admin-api/#update-plugin
+
+        - text: Update or Add Plugin
+          url: /admin-api/#update-or-add-plugin
+
+        - text: Delete Plugin
+          url: /admin-api/#delete-plugin
+
+        - text: Retrieve Enabled Plugins
+          url: /admin-api/#retrieve-enabled-plugins
+
+        - text: Retrieve Plugin Schema
+          url: /admin-api/#retrieve-plugin-schema
+
+    - text: Certificate Object routes
+      url: /admin-api/#certificate-object
+      items:
+        - text: Add Certificate
+          url: /admin-api/#add-certificate
+
+        - text: Retrieve Certificate
+          url: /admin-api/#retrieve-certificate
+
+        - text: List Certificates
+          url: /admin-api/#list-certificates
+
+        - text: Update Certificate
+          url: /admin-api/#update-certificate
+
+        - text: Update or Create Certificate
+          url: /admin-api/#update-or-create-certificate
+
+        - text: Delete Certificate
+          url: /admin-api/#delete-certificate
+
+    - text: SNI Object routes
+      url: /admin-api/#sni-objects
+      items:
+        - text: Add SNI
+          url: /admin-api/#add-sni
+
+        - text: Retrieve SNI
+          url: /admin-api/#retrieve-sni
+
+        - text: List SNIs
+          url: /admin-api/#list-snis
+
+        - text: Update SNI
+          url: /admin-api/#update-sni
+
+        - text: Update or Create SNI
+          url: /admin-api/#update-or-create-sni
+
+        - text: Delete SNI
+          url: /admin-api/#delete-sni
+
+    - text: Upstream Object routes
+      url: /admin-api/#upstream-objects
+      items:
+        - text: Add Upstream
+          url: /admin-api/#add-upstream
+
+        - text: Retrieve Upstream
+          url: /admin-api/#retrieve-upstream
+
+        - text: List all Upstreams
+          url: /admin-api/#list-upstreams
+
+        - text: Update Upstream
+          url: /admin-api/#update-upstream
+
+        - text: Update or create Upstream
+          url: /admin-api/#update-or-create-upstream
+
+        - text: Delete Upstream
+          url: /admin-api/#delete-upstream
+
+        - text: Show Upstream health for node
+          url: /admin-api/#show-upstream-health-for-node
+
+    - text: Target Object routes
+      url: /admin-api/#target-object
+      items:
+        - text: Add Target
+          url: /admin-api/#add-target
+
+        - text: List Targets
+          url: /admin-api/#list-targets
+
+        - text: List All Targets
+          url: /admin-api/#list-all-targets
+
+        - text: Delete Target
+          url: /admin-api/#delete-target
+
+        - text: Set Target as Healthy
+          url: /admin-api/#set-target-as-healthy
+
+        - text: Set Target as Unhealthy
+          url: /admin-api/#set-target-as-unhealthy
