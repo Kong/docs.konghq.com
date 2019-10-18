@@ -6,7 +6,7 @@ categories:
 type: plugin
 desc: Routing user request based on request cookies.
 description: |
-    Kong has several balancing algorithm options to forward user's request. Even though users will be routed consistently by Kong, but we cannot determine which user go to the certain host. This plugin will route user requests based on request cookies in deterministic way.
+    Kong has several balancing algorithm options to forward user's request. Even though users will be routed consistently by Kong, we cannot determine which users will go to the certain host. This plugin will route user requests based on request cookies in deterministic way.
 
     In short, it is like [Route by Header](https://docs.konghq.com/hub/kong-inc/route-by-header/), but it looks at the request cookie instead of request header.
 support_url: https://github.com/redhoyasa/kong-plugin-route-by-cookie/issues
@@ -138,4 +138,4 @@ $ curl -X POST http://localhost:8001/services/appService/plugins \
 {"created_at":1570980190, ... ,"id":"f3964aa9-bd3f-4044-94cb-49259e3e2349"}
 ```
 
-Now any user with cookie `APP_VERSION=2` will be routed to `v2.app.com`. If the cookie value does not match with the cookie value defined in config, the request would not forwarded to the target upstream.
+Now any user with cookie `APP_VERSION=2` will be routed to `v2.app.com`. If the cookie value does not match the cookie value defined in config, the request will not be forwarded to the target upstream.
