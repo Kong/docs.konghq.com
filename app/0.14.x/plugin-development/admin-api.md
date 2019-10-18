@@ -130,7 +130,7 @@ return {
 }
 ```
 
-See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua)
+See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/72cf66ad8db0e104b775f3b5e913a08b9d02e3b1/kong/plugins/key-auth/api.lua)
 for an extended version of this example.
 
 [Back to TOC](#table-of-contents)
