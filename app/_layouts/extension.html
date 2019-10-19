@@ -181,13 +181,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     <tr><td><code>name</code></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code></td></tr>
 
     {% if page.params.service_id %}
-      <tr><td><code>service_id</code></td><td>The id of the Service which this plugin will target.</td></tr>
+      <tr><td><code>service.id</code></td><td>The id of the Service which this plugin will target.</td></tr>
     {% endif %}
     {% if page.params.route_id %}
-      <tr><td><code>route_id</code></td><td>The id of the Route which this plugin will target.</td></tr>
+      <tr><td><code>route.id</code></td><td>The id of the Route which this plugin will target.</td></tr>
     {% endif %}
       <tr><td><code>enabled</code><br><br><strong>default value: </strong><code>true</code></td><td>Whether this plugin will be applied.</td></tr>
-    {% if page.params.consumer_id %}
+    {% if page.params.consumer.id %}
       <tr><td><code>consumer_id</code></td><td>The id of the Consumer which this plugin will target.</td></tr>
     {% endif %}
     {% if page.params.api_id %}
