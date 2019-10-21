@@ -57,7 +57,6 @@ you can accomplish this through Custom JS included as a handlebars partial.
 Currently the Kong Dev Portal can only render API specifications that are
 served by the File API.
 
-
-[file_types]: /enterprise/{{page.kong_version}}/developer-portal/file-management#file-types
-[property_portal]: /enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
+[file_types]: /enterprise/{{page.kong_version}}/developer-portal/management/file-management/
+[property_portal]: /enterprise/{{page.kong_version}}/property-reference/#dev-portal
 [configuration_network]: /enterprise/{{page.kong_version}}/developer-portal/configuration/networking

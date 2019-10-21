@@ -516,7 +516,7 @@ local router_matches = ngx.ctx.router_matches
 
 Next, it is worth noting that characters found in regexes are often
 reserved characters according to
-[RFC 3986](http://www.gbiv.com/protocols/uri/rfc/rfc3986.html) and as such,
+[RFC 3986](https://www.ietf.org/rfc/rfc3986.txt) and as such,
 should be percent-encoded. **When configuring Routes with regex paths via the
 Admin API, be sure to URL encode your payload if necessary**. For example,
 with `curl` and using an `application/x-www-form-urlencoded` MIME type:
@@ -1058,7 +1058,7 @@ just covered.
 [plugin-development-guide]: /enterprise/{{page.kong_version}}/plugin-development
 [plugin-association-rules]: /enterprise/{{page.kong_version}}/admin-api/#precedence
 [load-balancing-reference]: /enterprise/{{page.kong_version}}/loadbalancing
-[configuration-reference]: /enterprise/{{page.kong_version}}/property-reference-reference
+[configuration-reference]: /enterprise/{{page.kong_version}}/property-reference
 [configuration-trusted-ips]: /enterprise/{{page.kong_version}}/property-reference/#trusted_ips
 [configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/configuring-a-service
 [API]: /enterprise/{{page.kong_version}}/admin-api

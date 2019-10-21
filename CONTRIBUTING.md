@@ -6,8 +6,7 @@
 # Contributing to docs.konghq.com 📜 🦍
 
 Hello, and welcome! Whether you are looking for help, trying to report a bug,
-thinking about getting involved in the project or about to submit a patch, this
-document is for you!
+thinking about getting involved in the project or about to submit a patch, this document is for you!
 
 Consult the Table of Contents below, and jump to the desired section.
 
@@ -71,9 +70,8 @@ instead.
 When contributing, be aware of a few things:
 
 - Documentation for Kong Hub listings, which includes all Kong Inc.-published
-  and community-published plugins and integrations, lives in the `app/_hub`
-  and `app/_data/extensions` directories. **Versioning is optional, and thus
-  potentially inconsistent, for this part of the documentation**.
+  and community-published plugins and integrations lives in the `app/_hub`
+  and `app/_data/extensions` directories. **Versioning is optional, and thus potentially inconsistent, for this part of the documentation**.
 - Kong documentation lives in `app/x.x.x` and Kong Enterprise documentation
   lives in `app/enterprise/`. **These parts of the documentation are versioned**.
   When proposing a change in these parts of the documentation, consider proposing
@@ -85,7 +83,7 @@ When contributing, be aware of a few things:
 
 ### Kong's Technical Writing Guide & Style Guide
 
-In order to ensure consistency throughout all of Kong's documentation, we ask that all contributors reference our [Technical Writing Guide ](https://github.com/Kong/docs.konghq.com/blob/master/TECHNICAL-WRITING-GUIDE.md) and [Style Guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
+To ensure consistency throughout all of Kong's documentation, we ask that all contributors reference our [Technical Writing Guide ](https://github.com/Kong/docs.konghq.com/blob/master/TECHNICAL-WRITING-GUIDE.md) and [Style Guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
 
 ### Submitting a patch
 
@@ -136,16 +134,15 @@ Adding a new listing to the Kong Hub may be proposed by:
 
 1. Clone this repo
 1. Create a publisher directory at`_app/_hub/`, such as
- `_app/_hub/your-github-handle` (if you are contributing as an individual)
- or `_app/_hub/company-name` (if you are contributing as a company). See
- other Kong Hub listings for examples of publisher names.
+ `_app/_hub/your-GitHub-handle` (if you are contributing as an individual)
+ or `_app/_hub/company-name` (if you are contributing as a company). See other Kong Hub listings for examples of publisher names.
 1. Create a subdirectory for your extension within your publisher directory -
 such as `_app/_hub/your-name/your-extension`.
 1. Copy the `/app/_hub/_init/my-extension/index.md` file into your extension's
 subdirectory. If you are publishing a single version of your extension, which is typical to
 start with, then the file name `index.md` should remain.
 1. Edit your `index.md` file based on the guidance in comments in that file -
-you'll find lots of helpful examples in other extension's files. If you are
+you'll find lots of helpful examples in other extension files. If you are
 documenting a Kong plugin, be sure to see the next section.
 1. If you have a custom logo, add a square-format PNG file to
 `/app/_assets/images/icons/hub/` - the filename of your image should be
@@ -180,16 +177,16 @@ the existing plugins for examples, and see additional advice in
 * `type` (array, required) - what kind of extension this is: `plugin` or
 `integration` are supported at this time, though more types will be considered.
 * `params`
-  * `name` - name of the plugin as it is referred to in Kong's config and Kong's
+  * `name` - the name of the plugin as it is referred to in Kong's config and Kong's
   Admin API (not always the same spelling as the page name)
   * `api_id` - boolean - whether this plugin can be applied to an API.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `route_id` - boolean - whether this plugin can be applied to a Route.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `service_id` - boolean - whether this plugin can be applied to a Service.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `consumer_id` - boolean - whether this plugin can be applied to a Consumer.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `config` - the configuration table.
   Each entry is a configuration item with the following fields:
     * `name` - the field name as read by Kong
@@ -227,17 +224,17 @@ naming scheme when pushing your branch(es):
 
 #### Commit atomicity
 
-When submitting patches, it is important that you organize your commits in
+When submitting patches, you must organize your commits in
 logical units of work. You are free to propose a patch with one or many
 commits, as long as their atomicity is respected. This means that no unrelated
 changes should be included in a commit.
 
-For example: you are writing a patch to fix a bug, but in your endeavour, you
+For example, you are writing a patch to fix a bug, but in your endeavor, you
 spot another bug. **Do not fix both bugs in the same commit!**. Finish your
 work on the initial bug, propose your patch, and come back to the second bug
 later on. This is also valid for unrelated style fixes, refactorings, etc...
 
-You should use your best judgement when facing such decisions. A good approach
+You should use your best judgment when facing such decisions. A good approach
 for this is to put yourself in the shoes of the person who will review your
 patch: will they understand your changes and reasoning just by reading your
 commit history? Will they find unrelated changes in a particular commit? They
@@ -284,7 +281,7 @@ accepted types are:
 - **fix**: A website bug fix (related to the Ruby, JavaScript, HTML, or CSS
   assets). Typos and other fixes to the _contents_ of the documentation
   (markdown files) are not included in this scope
-- **style**: CSS fixes, formatting, missing semi colons, :nail_care:
+- **style**: CSS fixes, formatting, missing semicolons, :nail_care:
 - **refactor**: A code change that neither fixes a bug nor adds a feature, and
   is too big to be considered `chore`
 - **chore**: Maintenance changes related to code cleaning that isn't considered
@@ -340,7 +337,7 @@ $ npm run test
 ### Contributing images, videos, etc
 
 Binary files like images and videos should not be included in your pull
-request, with the exception of custom icons for the Kong Hub - any request
+request, except custom icons for the Kong Hub - any request
 including them will be rejected.
 
 Instead, please:
@@ -363,7 +360,7 @@ the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
 To inhibit the automatic addition of ToC, add the following to the front-matter
 `toc: false`
 
-This ToC generator depends on headings being correctly coded in the markdown
+This ToC generator depends on headings being correctly coded in the markdown 
 portion of the doc site files. If a page has an incorrectly-formatted ToC, be
 sure to check:
 

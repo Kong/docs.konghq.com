@@ -59,5 +59,5 @@ served by the File API.
 
 
 [file_types]: /enterprise/{{page.kong_version}}/developer-portal/content-management/file-management#file-types
-[property_portal]: /enterprise/{{page.kong_version}}/developer-portal/configuration/property-reference#portal
+[property_portal]: /enterprise/{{page.kong_version}}/property-reference/#dev-portal
 [configuration_network]: /enterprise/{{page.kong_version}}/developer-portal/networking
