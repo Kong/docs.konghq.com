@@ -1,7 +1,7 @@
 ---
 name: AWS Lambda
 publisher: Kong Inc.
-version: 1.0.0
+version: 3.0.0
 
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
@@ -52,23 +52,23 @@ params:
   dbless_compatible: yes
   config:
     - name: aws_key
-      required: true
+      required: false
       value_in_examples: AWS_KEY
       urlencode_in_examples: true
       default:
-      description: The AWS key credential to be used when invoking the function
+      description: The AWS key credential to be used when invoking the function. This value is required if `aws_secret` is defined.
     - name: aws_secret
-      required: true
+      required: false
       value_in_examples: AWS_SECRET
       urlencode_in_examples: true
       default:
-      description: The AWS secret credential to be used when invoking the function
+      description: The AWS secret credential to be used when invoking the function. This value is required if `aws_key` is defined.
     - name: aws_region
       required: true
       default:
       value_in_examples: AWS_REGION
       description: |
-        The AWS region where the Lambda function is located. Regions supported are: `us-east-1`, `us-east-2`, `ap-northeast-1`, `ap-northeast-2`, `ap-southeast-1`, `ap-southeast-2`, `eu-central-1`, `eu-west-1`
+        The AWS region where the Lambda function is located. Regions supported are: `ap-northeast-1`, `ap-northeast-2`, `ap-south-1`, `ap-southeast-1`, `ap-southeast-2`, `ca-central-1`, `cn-north-1`, `cn-northwest-1`, `eu-central-1`, `eu-west-1`, `eu-west-2`, `sa-east-1`, `us-east-1`, `us-east-2`, `us-gov-west-1`, `us-west-1`, `us-west-2`.
     - name: function_name
       required: true
       default:
@@ -93,6 +93,11 @@ params:
       required: false
       default: "`60000`"
       description: An optional timeout in milliseconds when invoking the function
+    - name: port
+      required: false
+      default: "`443`"
+      description: |
+        The TCP port that this plugin will use to connect to the server.
     - name: keepalive
       required: false
       default: "`60000`"
@@ -128,7 +133,26 @@ params:
       default: "`false`"
       description: |
         An optional value that defines whether the response format to receive from the Lambda to [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format). Note that the parameter `isBase64Encoded` is not implemented.
-
+    - name: awsgateway_compatible
+      required: false
+      default: "`false`"
+      description: |
+        An optional value that defines whether the plugin should wrap requests into the Amazon API gateway.
+    - name: proxy_url
+      required: semi
+      default:
+      description: |
+        An optional value that defines whether the plugin should connect through the given proxy server URL. This value is required if `proxy_scheme` is defined.
+    - name: proxy_scheme
+      required: semi
+      default:
+      description: |
+        An optional value that defines which HTTP protocol scheme to use in order to connect through the proxy server. The schemes supported are: `http` and `https`. This value is required if `proxy_url` is defined.
+    - name: skip_large_bodies
+      required: false
+      default: "`true`"
+      description: |
+        An optional value that defines whether very large bodies (that are buffered to disk) should be sent by Kong. Note that sending very large bodies will have an impact on the system memory.
 
   extra: |
     **Reminder**: curl by default sends payloads with an
@@ -147,6 +171,10 @@ Any form parameter sent along with the request, will be also sent as an
 argument to the AWS Lambda function.
 
 ### Known Issues
+
+### Notes
+
+When the IAM roles are used (default, if no `aws.key` / `aws.secret` is provided), the plugin will first try ECS metadata, and if not available it will fallback on EC2 metadata.
 
 #### Use a fake upstream service
 
