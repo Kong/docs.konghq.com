@@ -204,76 +204,64 @@
       $('button[data-toggle="kong-expand"]').on('click', function(e) {
         e.stopPropagation();
         var $this = $(this);
+        $('#oss_subnav.expand').toggleClass('slideup');
         $($this.data('target')).toggleClass('kong-navbar-collapse--expand');
+        $('nav.navbar.full-width').toggleClass('kong-navbar-collapse--expand');
         $this.toggleClass('active').attr('aria-expanded', true);
         $('.kong-navbar-collapse_section').removeClass('shift');
         $('.subnav, .trigger, .remove').removeClass('active');
+        setTimeout(function() {
+          $('#menu-primary-nav li').removeClass('active');
+          $('.active-tab').removeClass('active-tab');
+        }, 100);
       });
 
-      function closeMenu(e) {
-        var target = e.target; // Get target
-        var menu = $('nav#pagesNav'); // Get menu container
-        var header = $('header.navbar'); // Get header
-        var toggler = $('.navbar-toggler'); // Get menu toggle btn
+      var $window = $(window);
 
-        // if clicked target is not the menu container/decendent of menu container, toggler or header close
-        if (
-          !menu.has(target).length > 0 &&
-          !menu.is(target) &&
-          !header.is(e.target) &&
-          !toggler.is(e.target)
-        ) {
-          $('#pagesNav').removeClass('kong-navbar-collapse--expand');
-          $('button[data-toggle="kong-expand"]').removeClass('active');
+      function checkWidth() {
+        var windowsize = $window.width();
+        if (windowsize > 1080) {
+          $('.navbar').removeClass('mobile-triggers');
+          $('#menu-primary-nav li').removeClass('active');
+          $('.active-tab').removeClass('active-tab');
+        } else {
+          $('.navbar').addClass('mobile-triggers');
         }
       }
+      // Execute on load
+      checkWidth();
+      // Bind event listener
+      $(window).resize(checkWidth);
 
-      // Close mobile menu when clicked outside
-      $(window).on('click', function(e) {
-        closeMenu(e);
-      });
-
-      // Close mobile menu on esc click
-      $(document).keyup(function(e) {
-        if (e.keyCode == 27) {
-          closeMenu(e);
+      $('#menu-primary-nav .nav1 > a').click(function() {
+        if ($('nav.navbar').hasClass('mobile-triggers')) {
+          event.preventDefault();
+          $('.nav3').removeClass('active');
+          var position = $(this)
+            .parent()
+            .position();
+          $(this)
+            .parent()
+            .toggleClass('active');
+          $('body')
+            .get(0)
+            .style.setProperty(
+              '--navPosition',
+              (position.top - 75) * -1 + 'px'
+            );
+          $(this)
+            .parent()
+            .parent()
+            .toggleClass('active-tab');
         }
       });
 
-      // Offscreen Subnav Triggers
-
-      jQuery('.trigger').click(function() {
-        jQuery(this)
-          .next()
-          .addClass('active');
-        jQuery('.trigger, .remove').addClass('active');
-        jQuery('.kong-navbar-collapse_section').addClass('shift');
-      });
-      jQuery('.back').click(function() {
-        jQuery('.kong-navbar-collapse_section').removeClass('shift');
-        jQuery('.subnav, .trigger, .remove').removeClass('active');
-      });
-    </script>
-    <script>
-      // trigger overlay on nav hover
-      jQuery('.kong-navbar-dropdown').hover(
-        function(e) {
-          jQuery('.overlay').addClass('active');
-        }, // over
-        function(e) {
-          jQuery('.overlay').removeClass('active');
-        } // out
-      );
-      jQuery(window).load(function() {
-        jQuery('#oss_subnav').addClass('expand');
-      });
-      jQuery(window).scroll(function() {
-        var scroll = jQuery(window).scrollTop();
-
-        if (scroll >= 5) {
-          jQuery('#oss_subnav').addClass('collapsed');
-        } else {
-          jQuery('#oss_subnav').removeClass('collapsed');
+      $('#menu-primary-nav .nav3 > a').click(function() {
+        if ($('nav.navbar').hasClass('mobile-triggers')) {
+          event.preventDefault();
+          $(this)
+            .parent()
+            .toggleClass('active');
         }
       });
     </script>

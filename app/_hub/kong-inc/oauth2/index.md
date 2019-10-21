@@ -167,6 +167,8 @@ Endpoint                     | description
 ---                         | ---
 `/oauth2/authorize`          | The endpoint to the Authorization Server that provisions authorization codes for the [Authorization Code](https://tools.ietf.org/html/rfc6749#section-4.1) flow, or the access token when the [Implicit Grant](https://tools.ietf.org/html/rfc6749#section-4.2) flow is enabled. Only `POST` is supported.
 `/oauth2/token`              | The endpoint to the Authorization Server that provision access tokens. This is also the only endpoint to use for the [Client Credentials](https://tools.ietf.org/html/rfc6749#section-4.4) and [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.3) flows. Only `POST` is supported.
+`/oauth2_tokens`             | The endpoint to the Authorization Server that allows creating new tokens. Useful on migrations (see below).
+`/oauth2_tokens/:token_id`   | The endpoint to the Authorization Server that allows reading, modifying and deleting access tokens.
 
 The clients trying to authorize and request access tokens must use these endpoints. Remember that the endpoints above must be combined with the right URI path or headers that you normally use to match a configured Route through Kong.
 
@@ -233,6 +235,45 @@ form parameter                        | default | description
 `expires_in`                          |         | The expiration time (in seconds) of the access token.
 `scope`<br>*optional*                 |         | The authorized scope associated with the token.
 `authenticated_userid`<br>*optional*  |         | The custom ID of the user who authorized the application.
+
+## Viewing and Invalidating Access Tokens
+
+Active tokens can be listed and modified using the Admin API. A GET on the `/oauth2_tokens` endpoint returns the following:
+
+```bash
+$ curl -sX GET http://kong:8001/oauth2_tokens/
+{
+  "total": 2,
+  "data": [
+    {
+      "expires_in": 7200,
+      "created_at": 1523386491000,
+      "access_token": "FOEtUHwg0das9PhsasVmgMGbZn7nWSgK",
+      "credential_id": "2c74324f-fa2d-434b-b6de-bd138652158f",
+      "scope": "email",
+      "id": "610740e5-700a-45f0-889a-5c7f0422c48d",
+      "api_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
+      "token_type": "bearer"
+    },
+    {
+      "expires_in": 7200,
+      "created_at": 1523386680000,
+      "access_token": "58eat7UHEiPOmjNb16uQAxt4vu3fbu95",
+      "credential_id": "2c74324f-fa2d-434b-b6de-bd138652158f",
+      "scope": "email",
+      "id": "edff2fc7-1634-4fb5-b714-de9435531e10",
+      "api_id": "898dfc5f-20f9-4315-a028-2ecb0193f834",
+      "token_type": "bearer"
+    }
+  ]
+}
+```
+
+`credential_id` is the ID of the OAuth application at `kong:8001/consumers/{consumer_id}/oauth2` and `api_id` or `service_id` is the API or service that the token is valid for.
+
+Note that `expires_in` is static and does not decrement based on elapsed time: you must add it to `created_at` to calculate when the token will expire.
+
+`DELETE http://kong:8001/oauth2_tokens/<token ID>` allows you to immediately invalidate a token if needed.
 
 ## Upstream Headers
 

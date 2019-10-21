@@ -77,4 +77,4 @@ Once all Kong Enterprise migrations are up to date, the migration command can be
 $ kong migrations migrate-community-to-enterprise [-c config] [-f] [-y]
 ```
 
-Confirm now that all the entities are now available on your Kong Enterprise 0.35 node.
+Confirm now that all the entities are now available on your Kong Enterprise 0.36 node.

@@ -89,7 +89,7 @@ Plugins, feel free to read more on Kong in one of the following documents:
 [key-auth]: /plugins/key-authentication
 [API-consumers]: /0.12.x/admin-api#create-consumer
 [consumers]: /0.12.x/admin-api#consumer-object
-[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
+[enabling-plugins]: /enterprise/{{page.kong_version}}/getting-started/enabling-plugins
 [configuration]: /0.12.x/configuration
 [CLI]: /0.12.x/cli
 [proxy]: /0.12.x/proxy

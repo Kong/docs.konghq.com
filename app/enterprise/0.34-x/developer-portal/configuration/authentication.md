@@ -423,9 +423,9 @@ Dev Portal File API request based the `auth-store-types` value, until you
 </div> 
 <div class="docs-grid">
   <div class="docs-grid-block">
-    <h4><a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/smtp">SMTP</a></h4>
+    <h4><a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/smtp/">SMTP</a></h4>
     <p>Learn about SMTP and the Dev Portal.</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/smtp">Learn More &rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/smtp/">Learn More &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
