@@ -350,6 +350,7 @@ upstream_body: |
     `healthchecks.passive.healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Defaults to `0`.
     `healthchecks.passive.healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
     `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering. 
+    `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
 
 upstream_json: |
     {
@@ -396,7 +397,8 @@ upstream_json: |
                 }
             }
         },
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "host_header": "example.com"
     }
 
 upstream_data: |
@@ -444,7 +446,8 @@ upstream_data: |
                 }
             }
         },
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "host_header": "example.com"
     }, {
         "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
@@ -489,7 +492,8 @@ upstream_data: |
                 }
             }
         },
-        "tags": ["admin", "high-priority", "critical"]
+        "tags": ["admin", "high-priority", "critical"],
+        "host_header": "example.com"
     }],
 
 target_body: |
@@ -607,6 +611,10 @@ HTTP 200 OK
 
 
 ---
+
+## Health Routes
+
+
 
 ### Retrieve Node Status
 
@@ -961,11 +969,21 @@ HTTP 200 OK
 
 ##### Retrieve Service
 
-<div class="endpoint get">/services/{name or id}</div>
+<div class="endpoint get">/services/{service name or id}</div>
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
+
+
+##### Retrieve Service Associated to a Specific Certificate
+
+<div class="endpoint get">/certificates/{certificate id}/services/{service name or id}</div>
+
+Attributes | Description
+---:| ---
+`certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
 
 
 ##### Retrieve Service Associated to a Specific Route
@@ -1066,11 +1084,21 @@ HTTP 200 OK
 
 ##### Retrieve Route
 
-<div class="endpoint get">/routes/{name or id}</div>
+<div class="endpoint get">/routes/{route name or id}</div>
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
+`route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
+
+
+##### Retrieve Route Associated to a Specific Service
+
+<div class="endpoint get">/services/{service name or id}/routes/{route name or id}</div>
+
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
+`route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
 
 
 ##### Retrieve Route Associated to a Specific Plugin
@@ -1136,11 +1164,11 @@ HTTP 200 OK
 
 ##### Retrieve Consumer
 
-<div class="endpoint get">/consumers/{username or id}</div>
+<div class="endpoint get">/consumers/{consumer username or id}</div>
 
 Attributes | Description
 ---:| ---
-`username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
+`consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
 
 
 ##### Retrieve Consumer Associated to a Specific Plugin
@@ -1287,6 +1315,36 @@ HTTP 200 OK
 
 Attributes | Description
 ---:| ---
+`plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
+
+
+##### Retrieve Plugin Associated to a Specific Route
+
+<div class="endpoint get">/routes/{route name or id}/plugins/{plugin id}</div>
+
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
+`plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
+
+
+##### Retrieve Plugin Associated to a Specific Service
+
+<div class="endpoint get">/services/{service name or id}/plugins/{plugin id}</div>
+
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
+`plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
+
+
+##### Retrieve Plugin Associated to a Specific Consumer
+
+<div class="endpoint get">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+
+Attributes | Description
+---:| ---
+`consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
 `plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
 
 
@@ -1560,11 +1618,21 @@ HTTP 200 OK
 
 ##### Retrieve SNI
 
-<div class="endpoint get">/snis/{name or id}</div>
+<div class="endpoint get">/snis/{sni name or id}</div>
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
+`sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
+
+
+##### Retrieve SNI Associated to a Specific Certificate
+
+<div class="endpoint get">/certificates/{certificate id}/snis/{sni name or id}</div>
+
+Attributes | Description
+---:| ---
+`certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
+`sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
 
 
 *Response*
@@ -1626,11 +1694,11 @@ HTTP 200 OK
 
 ##### Retrieve Upstream
 
-<div class="endpoint get">/upstreams/{name or id}</div>
+<div class="endpoint get">/upstreams/{upstream name or id}</div>
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
 
 ##### Retrieve Upstream Associated to a Specific Target
