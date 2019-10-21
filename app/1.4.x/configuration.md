@@ -430,6 +430,27 @@ Default: `logs/error.log`
 
 ---
 
+#### status_access_log
+
+Path for Status API request access logs. The default value of `off` implies
+that loggin for this API is disabled by default.
+
+If this value is a relative path, it will be placed under the `prefix`
+location.
+
+Default: `off`
+
+---
+
+#### status_error_log
+
+Path for Status API request error logs. The granularity of these logs is
+adjusted by the `log_level` property.
+
+Default: `logs/status_error.log`
+
+---
+
 #### plugins
 
 Comma-separated list of plugins this node should load. By default, only plugins
@@ -472,6 +493,18 @@ Default: `bundled`
 Send anonymous usage data such as error stack traces to help improve Kong.
 
 Default: `on`
+
+---
+
+#### service_mesh
+
+When `on`, enable the built-in Service Mesh support of Kong.
+
+**Note:** Enabling service mesh causes upstream requests to HTTPS services to
+behave incorrectly. Service Mesh has been deprecated and will be removed in the
+next release of Kong.
+
+Default: `off`
 
 ---
 
@@ -600,9 +633,26 @@ This value can be set to `off`, thus disabling the Admin interface for this
 node, enabling a 'data-plane' mode (without configuration capabilities) pulling
 its configuration changes from the database.
 
-Example: `stream_listen = 127.0.0.1:8444 http2 ssl`
+Example: `admin_listen = 127.0.0.1:8444 http2 ssl`
 
 Default: `127.0.0.1:8001, 127.0.0.1:8444 ssl`
+
+---
+
+#### status_listen
+
+Comma-separated list of addresses and ports on which the Status API should
+listen.
+
+The Status API is a read-only endpoint allowing monitoring tools to retrieve
+metrics, healthiness, and other non-sensitive information of the current Kong
+node.
+
+This value can be set to `off`, disabling the Status API for this node.
+
+Example: `status_listen = 0.0.0.0:8100`
+
+Default: `off`
 
 ---
 
@@ -742,18 +792,24 @@ Comma-separated list of headers Kong should inject in client responses.
 Accepted values are:
 
 - `Server`: Injects `Server: kong/x.y.z` on Kong-produced response (e.g. Admin
-  API, rejected requests from auth plugin, etc...).
+  API, rejected requests from auth plugin).
 - `Via`: Injects `Via: kong/x.y.z` for successfully proxied requests.
 - `X-Kong-Proxy-Latency`: Time taken (in milliseconds) by Kong to process a
   request and run all plugins before proxying the request upstream.
+- `X-Kong-Response-Latency`: time taken (in millisecond) by Kong to produce a
+  response in case of e.g. plugin short-circuiting the request, or in in case of
+  an error.
 - `X-Kong-Upstream-Latency`: Time taken (in milliseconds) by the upstream
   service to send response headers.
+- `X-Kong-Admin-Latency`: Time taken (in milliseconds) by Kong to process an
+  Admin API request.
 - `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
   service. This is particularly useful for clients to distinguish upstream
   statuses if the response is rewritten by a plugin.
 - `server_tokens`: Same as specifying both `Server` and `Via`.
-- `latency_tokens`: Same as specifying both `X-Kong-Proxy-Latency` and
-  `X-Kong-Upstream-Latency`.
+- `latency_tokens`: Same as specifying `X-Kong-Proxy-Latency`,
+  `X-Kong-Response-Latency`, `X-Kong-Admin-Latency` and
+  `X-Kong-Upstream-Latency`
 
 In addition to those, this value can be set to `off`, which prevents Kong from
 injecting any of the above headers. Note that this does not prevent plugins from
@@ -1005,10 +1061,6 @@ Accepted values are `postgres`, `cassandra`, and `off`.
 
 Default: `postgres`
 
-<div class="alert alert-warning">
-  Kong's configuration parser treats <code class="highlighter-rouge">#</code> characters as comments. If your database password contains a <code class="highlighter-rouge">#</code> character, escape it with <code class="highlighter-rouge">\#</code>.
-</div>
-
 ---
 
 
@@ -1043,6 +1095,7 @@ name   | description  | default
 **cassandra_password** | Password when using the `PasswordAuthenticator` scheme. | none
 **cassandra_lb_policy** | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are: `RoundRobin`, `RequestRoundRobin`, `DCAwareRoundRobin`, and `RequestDCAwareRoundRobin`. Policies prefixed with "Request" make efficient use of established connections throughout the same request. Prefer "DCAware" policies if and only if you are using a multi-datacenter cluster. | `RequestRoundRobin`
 **cassandra_local_datacenter** | When using the `DCAwareRoundRobin` or `RequestDCAwareRoundRobin` load balancing policy, you must specify the name of the local (closest) datacenter for this Kong node. | none
+**cassandra_refresh_frequency** | Frequency (in seconds) at which the cluster topology will be checked for new or decommissioned nodes. A value of `0` will disable this check, and the cluster topology will never be refreshed. | `60`
 **cassandra_repl_strategy** | When migrating for the first time, Kong will use this setting to create your keyspace. Accepted values are `SimpleStrategy` and `NetworkTopologyStrategy`. | `SimpleStrategy`
 **cassandra_repl_factor** | When migrating for the first time, Kong will create the keyspace with this replication factor when using the `SimpleStrategy`. | `1`
 **cassandra_data_centers** | When migrating for the first time, will use this setting when using the `NetworkTopologyStrategy`. The format is a comma-separated list made of `<dc_name>:<repl_factor>`. | `dc1:2,dc2:3`
@@ -1284,6 +1337,20 @@ but may cause workers to route requests differently for a short period of time
 after Routes and Services updates.
 
 Default: `strict`
+
+---
+
+#### router_update_frequency
+
+Defines how often the router changes are checked with a background job. When a
+change is detected, a new router will be built. By default we check for changes
+every second.
+
+Raising this value will decrease the load on database servers and result in
+less jitter in proxy latency, with downside of longer converge time for router
+updates.
+
+Default: `1`
 
 ---
 
