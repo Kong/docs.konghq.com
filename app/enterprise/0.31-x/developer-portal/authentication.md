@@ -144,7 +144,7 @@ Congratulations! You have now authenticated your Dev Portal.
 
 For more information and details on configuring other authentication methods, keep reading!
 
-> If your Dev Portal does not render after following these steps, check out the [FAQ](/enterprise/{{ page.kong_version }}/developer-portal/FAQ).
+> If your Dev Portal does not render after following these steps, check out the [FAQ](/enterprise/{{ page.kong_version }}/developer-portal/faq/).
 
 ## Files
 

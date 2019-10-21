@@ -269,6 +269,13 @@ proxy_url = https://127.0.0.1:8443
 **Description**
 
 Comma-separated list of addresses and ports on which stream mode should listen.
+This value accepts IPv4, IPv6, and hostnames.
+Some suffixes can be specified for each pair:
+- `proxy_protocol` enables usage of the
+  PROXY protocol for a given address/port.
+- `transparent` causes Kong to listen to, and
+  respond from, any and all IP addresses and ports
+  you configure in `iptables`.
 
 **Default:** `off`
 
@@ -697,6 +704,10 @@ The username to authenticate if required.
 
 The password to authenticate if required.
 
+<div class="alert alert-warning">
+  Kong's configuration parser treats <code class="highlighter-rouge">#</code> characters as comments. If your password contains a <code class="highlighter-rouge">#</code> character, escape it with <code class="highlighter-rouge">\#</code>.
+</div>
+
 
 ### pg_database
 
@@ -801,6 +812,10 @@ Username when using the `PasswordAuthenticator` scheme.
 **Description:**
 
 Password when using the `PasswordAuthenticator` scheme.
+
+<div class="alert alert-warning">
+  Kong's configuration parser treats <code class="highlighter-rouge">#</code> characters as comments. If your password contains a <code class="highlighter-rouge">#</code> character, escape it with <code class="highlighter-rouge">\#</code>.
+</div>
 
 
 ### cassandra_consistency
@@ -2026,6 +2041,10 @@ Username used for authentication with the SMTP server.
 **Description:**
 
 Password used for authentication with the SMTP server.
+
+<div class="alert alert-warning">
+  Kong's configuration parser treats <code class="highlighter-rouge">#</code> characters as comments. If your password contains a <code class="highlighter-rouge">#</code> character, escape it with <code class="highlighter-rouge">\#</code>.
+</div>
 
 
 ### smtp_ssl

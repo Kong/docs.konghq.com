@@ -1,12 +1,16 @@
 dist: xenial
-sudo: false
-
 language: generic
+
+services:
+  - docker
+
 notifications:
   email: false
 
-before_install:
-  - docker-compose build
-  - touch Gemfile.lock
-  - mkdir node_modules
-  - chmod -R 777 .
+script:
+- make clean
+- docker-compose build
+- mkdir dist
+- sudo chmod -R 777 .
+- make docker-test
+- make check-links

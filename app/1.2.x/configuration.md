@@ -900,6 +900,10 @@ Accepted values are `postgres`, `cassandra`, and `off`.
 
 Default: `postgres`
 
+<div class="alert alert-warning">
+  Kong's configuration parser treats <code class="highlighter-rouge">#</code> characters as comments. If your database password contains a <code class="highlighter-rouge">#</code> character, escape it with <code class="highlighter-rouge">\#</code>.
+</div>
+
 ---
 
 

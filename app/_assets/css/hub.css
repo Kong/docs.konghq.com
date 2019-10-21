@@ -15079,79 +15079,32 @@ header.page-header {
     width: 0
 }
 
-/*** Nav Styles ***/
-
-
-body .kong-navbar-dropdown_column.col-md-6.offerings a:hover{
-    background:transparent !important;
+.kong-navbar .navbar-brand {
+    padding-left: 0px;
+    margin-top: 0px;
+    min-width: 112.5px;
+    max-width: 125px;
+    width:100%;
+    padding-top:0;
 }
 
-body .kong-navbar-collapse .kong-navbar-collapse_section .subnav h6{
-    margin-bottom:10px;
+@media (max-width:1080px){
+    body header.navbar.navbar-inverse.navbar-toggleable-lg.kong-navbar.flex-row.align-items-center .container {
+        max-width: 100%;
+        height: 52px;
+        align-items: center;
+    }
 }
 
-body .kong-navbar .navbar-toggler {
-    margin-top: 0 !important;
+@media (min-width: 1080px){
+    .navbar.full-width {
+        margin-top:5px;
+    }
+    .navbar.full-width .kong-navbar_nav #menu-primary-nav>li.demo-btn{
+        top:-2.5px;
+    }
 }
 
-body .navbar a.nav-link.btn.btn-outline-secondary.transparent {
-    margin-top: -20px;
-}
-
-body .kong-navbar .container.d-flex li.navbar-item .list-group{
-    top:54px;
-}
-
-body .list-group-item.flex-row.flex-nowrap.mega.row {
-    padding:0;
-}
-
-body .navbar .col-md-4, body .navbar .col-md-2, body .navbar .col-md-6, body .navbar .col-md-8 {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-body .list-group-item.flex-row.flex-nowrap {
-    padding: 0;
-}
-
-body .kong-navbar .solutions .list-item a{
-    border:0px solid;
-    background:transparent;
-}
-
-body .kong-navbar .list-item a:hover{
-    background:transparent !important;
-}
-
-body .kong-navbar .container.d-flex li.navbar-item .list-group a{
-    border:none;
-}
-
-body .kong-navbar .company .list-group-item .icon img {
-    top: 7.5px;
-}
-
-body .kong-navbar .company .list-group-item .icon img.partners{
-    top:1.5px;
-}
-
-body .kong-navbar .container.d-flex li.navbar-item .list-group .inner-wrap a{
-    background:transparent !important;
-}
-
-body .page-header{
-    padding-top:75px;
-}
-
-body .kong-navbar-collapse .kong-navbar-collapse_section .subnav .col-md-6{
-    padding-left:30px
-}
-
-body .kong-navbar-collapse .kong-navbar-collapse_section .subnav .col-md-6 a{
-    font-size:16px;
-    margin-bottom:0px
-}
 
 body .newsletter .logo img{
     margin-bottom:10px;

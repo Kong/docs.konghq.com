@@ -1,6 +1,13 @@
-# KONG Website
+# KONG's Documentation Website
 
 This repository is the source code for [Kong](https://github.com/Kong/kong)'s documentation website. It is a [Jekyll](https://jekyllrb.com/) website hosted on GitHub pages.
+
+
+## Hacktoberfest Guidelines 🦍 🎃
+Thank you for contributing to Kong’s documentation! 
+
+Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed through Github and do not require pulling the repository and building locally.
+
 
 ## Develop Locally With Docker
 
@@ -39,17 +46,6 @@ npm install
 ```bash
 npm start
 ```
-
-## Deploying
-
-The repository must be manually deployed to GitHub pages:
-
->
-```bash
-npm run deploy
-```
-
-
 
 ## Search
 
@@ -106,7 +102,7 @@ scraper to test out config changes.
 
 We encourage developers to list their Kong plugins and integrations (which
 we refer to collectively as "extensions") in the
-[Kong Hub](https://docs.konghq.com/hub), with documentation hosted
+[Kong Hub](https://docs.konghq.com/hub) with documentation hosted
 on the Kong website for ready access.
 
 See [CONTRIBUTING](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md#contributing-to-kong-documentation-and-the-kong-hub) for more information.

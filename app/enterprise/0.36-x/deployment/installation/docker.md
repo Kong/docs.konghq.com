@@ -1,146 +1,226 @@
 ---
-title: Installing Kong Enterprise Docker Image
+title: How to Install Kong Enterprise with Docker
 ---
 
-<img src="/assets/images/distributions/docker.svg"/>
+## Introduction
 
-## Installation Steps
+This guide walks through downloading, installing, and starting Kong Enterprise
+using Docker. The configuration shown in this guide is intended only as an 
+example. You will want to modify and take additional measures to secure your 
+Kong Enterprise system before moving to a production environment.
 
-A guide to installing Kong Enterprise—and its license file—using
-Docker. 
+Docker images for Kong Enterprise are hosted on [Bintray](https://bintray.com).
+In order to download a Kong Enterprise Docker image, you will need valid Bintray
+credentials.
 
-**Free trial users should skip directly to step 3**.
 
-1. Log in to <a href="https://bintray.com" target="_blank">bintray.com</a>. Your Sales or Support
-contact will email the credential to you.
+## Prerequisites
 
-2. In the upper right corner, click "Edit Profile' to retrieve your API
-key, which will be used in step 3. Alternatively, to retrieve it from
-Bintray, click <a href="https://bintray.com/profile/edit" target="_blank">here</a>.
+To complete this guide you will need:
 
-3. For **users with existing contracts**, add the Kong Docker repository and
-pull the image:
+- Docker
+- [Bintray](https://bintray.com) credentials (Your **Sales** or **Support** 
+contact will email your Bintray credential to you.)
+- A valid Kong Enterprise license file (accessed via Bintray)
+
+
+## Step 1. Download Kong Enterprise
+
+1. Obtain your Bintray API Key
+
+    Log in to [Bintray](https://bintray.com)
+
+    Hover over your user name in the top navigation bar and select "Edit Profile"
+    from the dropdown.
+
+
+    From the Profile page, select "API Key" from the sidebar.
+
+
+    Submit your Bintray password and copy your API key to your clipboard.
+
+
+2. Log in to Docker and pull the image
 
     ```
-    $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
+    $ docker login -u <bintray_username> -p <bintray_API_key>
+    kong-docker-kong-enterprise-edition-docker.bintray.io
+
     $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
     ```
 
-   For **trial users**, run the following, replacing `<your trial image URL>`
-with the URL you received in your welcome email:
+    This will pull the latest edition of Kong Enterprise. To pull a specific
+    version of Kong Enterprise add the `<VERSION>` to the url:
 
     ```
-    curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
-    docker load -i /tmp/kong-docker-ee.tar.gz
+    $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition/<VERSION>
     ```
 
-4. You should now have your Kong Enterprise image locally. Run
-`docker images` to verify and find the image ID matching your repository. 
+3. Run `docker images` to find the ID for the Kong Enterprise
+image.
 
-5. Tag the image ID for easier use in the commands that follow:
+4. Tag the image ID for easier use in the commands that follow:
 
     ```
-    docker tag <IMAGE ID> kong-ee
+    $ docker tag <IMAGE_ID> kong-ee
     ```
 
-    (Replace "IMAGE ID" with the one matching your repository, seen in step 4)
+5. Create a Docker network (_optional_)
 
-6. Create a Docker network
 
-    You will need to create a custom network to allow the containers to discover
-    and communicate with each other. In this example, `kong-ee-net` is the network name,
-    but you can use any name.
+    Containers require a network in order to discover and communicate with each other. 
+    To use this functionality create a network using the following command, 
+    replacing kong-ee-net with the name of your network:
 
-    ```bash
+    ```
     $ docker network create kong-ee-net
     ```
 
 
-7. Start your database
+## Step 2. Export your Kong Enterprise License
 
-    If using a Cassandra container:
+1. Download your license file
 
-    ```bash
-    $ docker run -d --name kong-ee-database \
-                  --network=kong-ee-net \
-                  -p 9042:9042 \
-                  cassandra:3
-    ```
+    If you do not already have your license file, you can download it from your 
+    Kong repository in Bintray. This typically follows the following pattern,
+    with <YOUR_REPO_NAME> being your company name. 
 
-    If using a PostgreSQL container:
+    `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-    ```bash
-    $ docker run -d --name kong-ee-database \
-                  --network=kong-ee-net \
-                  -p 5432:5432 \
-                  -e "POSTGRES_USER=kong" \
-                  -e "POSTGRES_DB=kong" \
-                  postgres:9.6
-    ```
+    If you cannot locate your Kong repository on Bintray please contact your
+    **Sales** or **Support** contact.
 
-8. To make the license data easier to handle, export it as a shell variable.
-Please note that **your license contents will differ**! Users with Bintray
-accounts should visit `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
-to retrieve their license. Trial users should download their license from their
-welcome email. Once you have your license, you can set it in an environment variable:
+2. Copy the license data in its entirety and export it as a shell variable:
 
     ```sh
     export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
     ```
 
-9. Run Kong migrations:
 
+## Step 3. Configure the Database
+
+Kong Enterprise requires a database and supports either Cassandra or PostgreSQL.
+
+1. Instantiate a database:
+
+    If you are using Cassandra:
+
+    ```bash
+    $ docker run -d --name kong-ee-database \
+        --network=kong-ee-net \
+        - p 9042:9042 \
+        cassandra:3
     ```
-    docker run --rm --network=kong-ee-net \
-      -e "KONG_DATABASE=postgres" \
+
+    If you are using PostgreSQL:
+
+    ```bash
+    $ docker run -d --name kong-ee-database \
+        --network=kong-ee-net \
+        -p 5432:5432 \
+        -e "POSTGRES_USER=kong" \
+        -e "POSTGRES_DB=kong" \
+        postgres:9.6
+    ```
+
+2. Run Kong migrations:
+
+   Cassandra: 
+
+   ```bash
+    $ docker run --rm --network=kong-ee-net \
+      -e "KONG_DATABASE=cassandra" \
       -e "KONG_PG_HOST=kong-ee-database" \
       -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
       kong-ee kong migrations bootstrap
     ```
-    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
-    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
-    For example, assuming you've saved your `license.json` file into `C:\temp`, 
-    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
-    license file.
 
-10. Start Kong:
+    PostgreSQL:
 
-    ```
-    docker run -d --name kong-ee --network=kong-ee-net \
+    ```bash
+    $ docker run --rm --network=kong-ee-net \
       -e "KONG_DATABASE=postgres" \
       -e "KONG_PG_HOST=kong-ee-database" \
-      -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
-      -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-      -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-      -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-      -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-      -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-      -e "KONG_PORTAL=on" \
       -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
-      -p 8000:8000 \
-      -p 8443:8443 \
-      -p 8001:8001 \
-      -p 8444:8444 \
-      -p 8002:8002 \
-      -p 8445:8445 \
-      -p 8003:8003 \
-      -p 8004:8004 \
-      kong-ee
+      kong-ee kong migrations bootstrap
     ```
+
     **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
     variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
     For example, assuming you've saved your `license.json` file into `C:\temp`, 
     use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
     license file.
 
-11. Kong Enterprise should now be installed and running. Test 
-it by visiting Kong Manager at [http://localhost:8002](http://localhost:8002)
-(replace `localhost` with your server IP or hostname when running Kong on a 
-remote system), or by visiting the Default Dev Portal at 
-[http://127.0.0.1:8003/default](http://127.0.0.1:8003/default)
 
-## FAQs
+## Step 5. Configure and Start Kong Enterprise
+
+1. Configure and Start Kong Enterprise:
+
+    Cassandra:
+
+    ```bash
+    $ docker run -d --name kong-ee --network=kong-ee-net \
+        -e "KONG_DATABASE=cassandra" \
+        -e "KONG_PG_HOST=kong-ee-database" \
+        -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
+        -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+        -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+        -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+        -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+        -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+        -e "KONG_PORTAL=on" \
+        -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
+        -p 8000:8000 \
+        -p 8443:8443 \
+        -p 8001:8001 \
+        -p 8444:8444 \
+        -p 8002:8002 \
+        -p 8445:8445 \
+        -p 8003:8003 \
+        -p 8004:8004 \
+        kong-ee
+    ```
+    
+    PostgreSQL:
+
+    ```bash
+    $ docker run -d --name kong-ee --network=kong-ee-net \
+        -e "KONG_DATABASE=postgres" \
+        -e "KONG_PG_HOST=kong-ee-database" \
+        -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+        -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+        -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+        -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+        -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+        -e "KONG_PORTAL=on" \
+        -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
+        -p 8000:8000 \
+        -p 8443:8443 \
+        -p 8001:8001 \
+        -p 8444:8444 \
+        -p 8002:8002 \
+        -p 8445:8445 \
+        -p 8003:8003 \
+        -p 8004:8004 \
+        kong-ee
+    ```
+
+    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment 
+    variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. 
+    For example, assuming you've saved your `license.json` file into `C:\temp`, 
+    use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the 
+    license file.
+
+2. Test that Kong Enterprise is running:
+
+    Visit the Kong Manager at [http://localhost:8002](http://localhost:8002)
+    (replace `localhost` with your server IP or hostname when running Kong on a 
+    remote system).
+
+
+
+## Troubleshooting
 
 The Admin API only listens on the local interface by default. This was done as a
 security enhancement. Note that we are overriding that in the above example with
