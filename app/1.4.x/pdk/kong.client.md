@@ -174,6 +174,39 @@ end
 [Back to TOC](#table-of-contents)
 
 
+### kong.client.load_consumer(consumer_id, search_by_username)
+
+Returns the consumer from the datastore (or cache).
+ Will look up the consumer by id, and optionally will do a second search by name.
+
+**Phases**
+
+* access, header_filter, body_filter, log
+
+**Parameters**
+
+* **consumer_id** (string):  The consumer id to look up.
+* **search_by_username** ([opt]):  boolean. If truthy,
+ then if the consumer was not found by id,
+ then a second search by username will be performed
+
+**Returns**
+
+1.  `table|nil` consumer entity or nil
+
+1.  `nil|err` nil if success, or error message if failure
+
+
+**Usage**
+
+``` lua
+local consumer_id = "john_doe"
+local consumer = kong.client.load_consumer(consumer_id, true)
+```
+
+[Back to TOC](#table-of-contents)
+
+
 ### kong.client.get_consumer()
 
 Returns the `consumer` entity of the currently authenticated consumer.
