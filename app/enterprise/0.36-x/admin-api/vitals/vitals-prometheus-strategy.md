@@ -72,6 +72,26 @@ multiple StatsD exporters in Prometheus. Please refer to the
 [scape_configs](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E)
 section of Prometheus document for further reading.
 
+By default, Vitals graph in Kong Manager uses the configured target address
+in legend, which is named `instance` in Prometheus metrics label. For some service
+discovery setup where `instance` is IP:PORT, user might want to relabel `instance`
+label to display more meaningful hostname in legend.
+To do so, user can also refer to [scape_configs](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E)
+section and rewrite `instance` label with corresponding meta label.
+
+For example, in a Kubernetes environment, use the following relabel rules:
+
+```yaml
+scrape_configs:
+  - job_name: 'vitals_statsd_exporter'
+    kubernetes_sd_configs:
+      # your SD config to filter statsd exporter pods
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: 'instance'
+
+
 
 ### Enable Vitals with Prometheus strategy in Kong
 
