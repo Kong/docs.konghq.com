@@ -52,13 +52,13 @@ params:
   dbless_compatible: yes
   config:
     - name: aws_key
-      required: false
+      required: semi
       value_in_examples: AWS_KEY
       urlencode_in_examples: true
       default:
       description: The AWS key credential to be used when invoking the function. This value is required if `aws_secret` is defined.
     - name: aws_secret
-      required: false
+      required: semi
       value_in_examples: AWS_SECRET
       urlencode_in_examples: true
       default:
