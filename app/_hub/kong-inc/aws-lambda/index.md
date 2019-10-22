@@ -174,7 +174,9 @@ argument to the AWS Lambda function.
 
 ### Notes
 
-When the IAM roles are used (default, if no `aws.key` / `aws.secret` is provided), the plugin will first try ECS metadata, and if not available it will fallback on EC2 metadata.
+If you do not provide `aws.key` or `aws.secret`, the plugin uses an IAM role inherited from the instance running Kong. 
+
+First, the plugin will try ECS metadata to get the role. If no ECS metadata is available, the plugin will fall back on EC2 metadata.
 
 #### Use a fake upstream service
 
