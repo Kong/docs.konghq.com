@@ -152,7 +152,7 @@ params:
       required: false
       default: "`true`"
       description: |
-        An optional value that defines whether very large bodies (that are buffered to disk) should be sent by Kong. Note that sending very large bodies will have an impact on the system memory.
+        An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
 
   extra: |
     **Reminder**: curl by default sends payloads with an
