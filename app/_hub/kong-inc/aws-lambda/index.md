@@ -1,7 +1,7 @@
 ---
 name: AWS Lambda
 publisher: Kong Inc.
-version: 1.0.0
+version: 3.0.0
 
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
@@ -24,6 +24,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
         - 1.3.x
         - 1.2.x
         - 1.1.x
@@ -52,23 +53,23 @@ params:
   dbless_compatible: yes
   config:
     - name: aws_key
-      required: true
+      required: semi
       value_in_examples: AWS_KEY
       urlencode_in_examples: true
       default:
-      description: The AWS key credential to be used when invoking the function
+      description: The AWS key credential to be used when invoking the function. This value is required if `aws_secret` is defined.
     - name: aws_secret
-      required: true
+      required: semi
       value_in_examples: AWS_SECRET
       urlencode_in_examples: true
       default:
-      description: The AWS secret credential to be used when invoking the function
+      description: The AWS secret credential to be used when invoking the function. This value is required if `aws_key` is defined.
     - name: aws_region
       required: true
       default:
       value_in_examples: AWS_REGION
       description: |
-        The AWS region where the Lambda function is located. Regions supported are: `us-east-1`, `us-east-2`, `ap-northeast-1`, `ap-northeast-2`, `ap-southeast-1`, `ap-southeast-2`, `eu-central-1`, `eu-west-1`
+        The AWS region where the Lambda function is located. Regions supported are: `ap-northeast-1`, `ap-northeast-2`, `ap-south-1`, `ap-southeast-1`, `ap-southeast-2`, `ca-central-1`, `cn-north-1`, `cn-northwest-1`, `eu-central-1`, `eu-west-1`, `eu-west-2`, `sa-east-1`, `us-east-1`, `us-east-2`, `us-gov-west-1`, `us-west-1`, `us-west-2`.
     - name: function_name
       required: true
       default:
@@ -93,6 +94,11 @@ params:
       required: false
       default: "`60000`"
       description: An optional timeout in milliseconds when invoking the function
+    - name: port
+      required: false
+      default: "`443`"
+      description: |
+        The TCP port that this plugin will use to connect to the server.
     - name: keepalive
       required: false
       default: "`60000`"
@@ -128,7 +134,26 @@ params:
       default: "`false`"
       description: |
         An optional value that defines whether the response format to receive from the Lambda to [this format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format). Note that the parameter `isBase64Encoded` is not implemented.
-
+    - name: awsgateway_compatible
+      required: false
+      default: "`false`"
+      description: |
+        An optional value that defines whether the plugin should wrap requests into the Amazon API gateway.
+    - name: proxy_url
+      required: semi
+      default:
+      description: |
+        An optional value that defines whether the plugin should connect through the given proxy server URL. This value is required if `proxy_scheme` is defined.
+    - name: proxy_scheme
+      required: semi
+      default:
+      description: |
+        An optional value that defines which HTTP protocol scheme to use in order to connect through the proxy server. The schemes supported are: `http` and `https`. This value is required if `proxy_url` is defined.
+    - name: skip_large_bodies
+      required: false
+      default: "`true`"
+      description: |
+        An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
 
   extra: |
     **Reminder**: curl by default sends payloads with an
@@ -147,6 +172,12 @@ Any form parameter sent along with the request, will be also sent as an
 argument to the AWS Lambda function.
 
 ### Known Issues
+
+### Notes
+
+If you do not provide `aws.key` or `aws.secret`, the plugin uses an IAM role inherited from the instance running Kong. 
+
+First, the plugin will try ECS metadata to get the role. If no ECS metadata is available, the plugin will fall back on EC2 metadata.
 
 #### Use a fake upstream service
 
