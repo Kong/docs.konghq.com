@@ -92,12 +92,166 @@
   lua_doc: true
 -
   release: "0.11.x"
-  version: "0.11.1"
-  luarocks_version: "0.11.1-0"
+  version: "0.11.2"
+  luarocks_version: "0.11.2-0"
   dependencies:
     luajit: "2.1.0-beta2"
     luarocks: "2.4.2"
     cassandra: "3.x.x"
     postgres: "9.4+"
     openresty: "1.11.2.4"
+  lua_doc: true
+-
+  release: "0.12.x"
+  version: "0.12.3"
+  luarocks_version: "0.12.3-0"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.11.2.5"
+  lua_doc: true
+-
+  release: "0.13.x"
+  version: "0.13.1"
+  luarocks_version: "0.13.1-0"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.11.2.5"
+  lua_doc: true
+-
+  release: "0.14.x"
+  version: "0.14.1"
+  luarocks_version: "0.14.1-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
+-
+  release: "1.0.x"
+  version: "1.0.3"
+  luarocks_version: "1.0.3-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
+-
+  release: "1.1.x"
+  version: "1.1.3"
+  luarocks_version: "1.1.3-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
+-
+  release: "1.2.x"
+  version: "1.2.2"
+  luarocks_version: "1.2.2-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
+-
+  release: "1.3.x"
+  version: "1.3.0"
+  luarocks_version: "1.3.0-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.1.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.15.8.1"
+-
+  release: "1.4.x"
+  version: "1.4.0"
+  luarocks_version: "1.4.0-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.1.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.15.8.1"
+-
+  release: "0.31-x"
+  version: "0.31"
+  edition: "enterprise"
+  luarocks_version: "0.31.x"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.11.2.5"
+  lua_doc: true
+-
+  release: "0.32-x"
+  version: "0.32"
+  edition: "enterprise"
+  luarocks_version: "0.32.x"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.11.2.5"
+  lua_doc: true
+-
+  release: "0.33-x"
+  version: "0.33"
+  edition: "enterprise"
+  luarocks_version: "0.33.x"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.11.2.5"
+  lua_doc: true
+-
+  release: "0.34-x"
+  version: "0.34"
+  edition: "enterprise"
+  luarocks_version: "0.34.x"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
+  lua_doc: true
+-
+  release: "0.35-x"
+  version: "0.35"
+  edition: "enterprise"
+  luarocks_version: "0.34.x"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
+  lua_doc: true
+-
+  release: "0.36-x"
+  version: "0.36"
+  edition: "enterprise"
+  luarocks_version: "0.34.x"
+  dependencies:
+    luajit: "2.1.0-beta2"
+    luarocks: "2.4.3"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.13.6.2"
   lua_doc: true

@@ -207,7 +207,7 @@
           url: /admin-api/#delete-sni
 
     - text: Upstream Object routes
-      url: /admin-api/#upstream-object
+      url: /admin-api/#upstream-objects
       items:
         - text: Add Upstream
           url: /admin-api/#add-upstream
