@@ -10,7 +10,7 @@ description: |
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
-    with versions of Kong prior to 0.11.0 differs from what is documented herein.
+    with versions of Kong prior to 1.4.0 differs from what is documented herein.
     Refer to the
     <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
@@ -77,21 +77,18 @@ params:
 ---
 
 ## Metrics
-
 Plugin currently logs following metrics to the Datadog server about a Service or Route.
 
 Metric                     | description | namespace
 ---                        | ---         | ---
-`request_count`            | tracks the request | kong.\<service_name>.request.count
-`request_size`             | tracks the request's body size in bytes | kong.\<service_name>.request.size
-`response_size`            | tracks the response's body size in bytes | kong.\<service_name>.response.size
-`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<service_name>.latency
-`status_count`             | tracks each status code returned as response | kong.\<service_name>.status.\<status>.count and kong.\<service_name>.status.\<status>.total
-`unique_users`             | tracks unique users made a request | kong.\<service_name>.user.uniques
-`request_per_user`         | tracks request/user | kong.\<service_name>.user.\<consumer_id>.count
-`upstream_latency`         | tracks the time it took for the final service to process the request | kong.\<service_name>.upstream_latency
-`kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.\<service_name>.kong_latency
-`status_count_per_user`    | tracks request/status/user | kong.\<service_name>.user.\<customer_id>.status.\<status> and kong.\<service_name>.user.\<customer_id>.status.total
+`request_count`            | tracks the request | kong.request.count
+`request_size`             | tracks the request's body size in bytes | kong.request.size
+`response_size`            | tracks the response's body size in bytes | kong.response.size
+`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.latency
+`upstream_latency`         | tracks the time it took for the final service to process the request | kong.upstream\_latency
+`kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.kong\_latency
+
+The metrics will be send with the tags `name` and `status` carrying the API name and HTTP status code respectively. If you specifying `consumer_identifier` with the metric, a tag `consumer` be added too.
 
 ### Metric fields
 
@@ -109,10 +106,20 @@ Field           | description                                           | allowe
 
 1.  by default all metrics get logged.
 2.  metric with `stat_type` as `counter` or `gauge` must have `sample_rate` defined as well.
-3.  `unique_users` metric only works with `stat_type` as `set`.
-4.  `status_count`, `status_count_per_user` and `request_per_user` work only with `stat_type`  as `counter`.
-5.  `status_count_per_user`, `request_per_user` and `unique_users` must have `customer_identifier` defined.
 
+## Migrating datadog queries
+With the plugin, the api, status and consumer specific metrics are replaced by a generic metric name.
+You have to change your datadog queries in dashboard and alerts to reflect this:
+
+For example the following query:
+```
+avg:kong.sample_service.latency.avg{*}
+```
+would need to change to:
+
+```
+avg:kong.latency.avg{name:sample-service}
+```
 
 ## Kong Process Errors
 
