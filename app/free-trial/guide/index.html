@@ -183,7 +183,7 @@ a {
 }
 
 .list-content p {
-  max-width: 480px;
+  width: 480px;
 }
 
 .bullet-cell {
@@ -212,7 +212,7 @@ a {
   margin: 32px auto 75px;
 }
 
-@media only screen and (max-width: 700px) {
+@media (max-width: 700px) {
   .main-column section>* {
     width: 90%;
   }
@@ -288,12 +288,12 @@ a {
       <h3>Step 4: Test your setup</h3>
       <p>Test your new Service by issuing the following cURL request to verify Kong is properly forwarding requests to the Service. A successful response means Kong is now forwarding requests made to the Service URL and is forwarding the response back. Kong
         knows to do this through the header defined in the above cURL request.</p>
-      <p>1. For the cURL request, enter the following into a terminal window. Be sure to replace &lt;your_trial_ID&gt; with the ID of your trial instance. For example, if the URL of your trial is <b>https://manager-kong773123.kong-cloud.com</b>, you will
-        replace &lt;your_trial_ID&gt; with <b>773123</b>.</p>
+      <p>1. For the cURL request, enter the following into a terminal window. Be sure to replace &lt;your_trial_ID&gt; with the ID of your trial instance. For example, if the URL of your trial is <b>https://manager-company123.kong-cloud.com</b>, you will
+        replace &lt;your_trial_ID&gt; with <b>company123</b>.</p>
       <div class="code-sample">
         <div class="block">
           curl -i -X GET \
-          <br> --url https://kong*&lt;your_trial_ID&gt;*.kong-cloud.com \
+          <br> --url https://&lt;your_trial_ID&gt;.kong-cloud.com \
           <br> --header <span class='highlight-1'>'Host: httpbin.com'</span>
         </div>
       </div>
