@@ -9,6 +9,9 @@
     - text: Configuring a Service
       url: /getting-started/configuring-a-service
 
+    - text: Configuring a gRPC Service
+      url: /getting-started/configuring-a-grpc-service
+      
     - text: Enabling Plugins
       url: /getting-started/enabling-plugins
 
