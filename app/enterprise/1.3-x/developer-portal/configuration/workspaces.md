@@ -43,7 +43,7 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 On intialization, Kong will populate the new Dev Portal with the [**Default Settings**](#defining-dev-portals-default-settings) defined in Kong's configuration file.
 
->*Note* A Workspace can only enable a Dev Portal if the Dev Portal feature has been enabled in Kong's configuration. See [Enabling the Dev Portal](/developer-portal/configuration/enable-the-dev-portal) for more information.
+>*Note* A Workspace can only enable a Dev Portal if the Dev Portal feature has been enabled in Kong's configuration. See [Enabling the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/enable-the-dev-portal) for more information.
 
 
 ## Defining the Dev Portal's URL structure
@@ -65,7 +65,7 @@ cannot be edited via the Kong Manager.
 
 ## Overriding Default Settings
 
-On initialization, the Dev Portal will be configured using the [**Default Portal Settings**](/developer-portal/configuration/enable-the-dev-portal#default-settings) defined in Kong's configuration file.
+On initialization, the Dev Portal will be configured using the [**Default Portal Settings**](/enterprise/{{page.kong_version}}/developer-portal/configuration/enable-the-dev-portal#default-settings) defined in Kong's configuration file.
 
 These settings can be manually overriden in the Dev Portals **Settings** tab
 in the Kong Manager or by patching the setting directly.
