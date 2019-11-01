@@ -173,13 +173,13 @@ must be modified to accept the correct PostgreSQL user and password.
 1. Make a copy of the default configuration file
 
     ```
-    $ cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+    $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
 2. Uncomment and update the PostgreSQL database properties inside the Kong conf:
 
     ```
-    $ sudo vi etc/kong/kong.conf
+    $ sudo vi /etc/kong/kong.conf
     ```
     ```
     pg_user = kong
