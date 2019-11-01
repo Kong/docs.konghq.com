@@ -6,22 +6,19 @@ title: How to Install Kong Enterprise and on Amazon Linux
 
 ```bash
 $ sudo yum update
-$ wget 'https://<BINTRAY_USER:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge
-$ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
 $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
-```
-
-Ensure `baseurl` is correct
-
-```bash
-baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
+[kong-enterprise]
+name = kong-enterprise
+baseurl = https://<BINTRAY_USER:<PASSWORD>@kong.bintray.com/kong-enterprise-edition-aws
+gpgcheck = 0
+enabled = 1
 ```
 
 ```bash
 $ sudo yum install kong-enterprise-edition
-$ sudo yum install postgresql postgresql-server
-$ sudo service postgresql-setup initdb
-$ sudo service postgresql start
+$ sudo yum install postgresql95 postgresql-server95
+$ sudo service postgresql95 initdb
+$ sudo service postgresql95 start
 $ sudo -i -u postgres (puts you into new shell)
 ```
 
@@ -36,21 +33,33 @@ $ psql
 
 ```bash
 # Change entries from ident to md5
-$ sudo vi /var/lib/pgsql/data/pg_hba.conf
-$ sudo service postgresql restart
+$ sudo vi /var/lib/pgsql95/data/pg_hba.conf
+$ sudo service postgresql95 restart
 
 # add contents of license file
 $ sudo vi /etc/kong/license.json
 
-# Uncomment and add 'kong' to pg_password line
-$ sudo vi [/path/to/kong.conf]
+# Make a copy of the default configuration file
+
+    ```
+    $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+    ```
+
+# Uncomment and update the PostgreSQL database properties inside the Kong conf:
+
+    ```
+    $ sudo vi /etc/kong/kong.conf
+    ```
+    ```
+    pg_user = kong
+    pg_password = kong
+    pg_database = kong
+    ```
 
 # Run migrations and start kong
-$ kong migrations bootstrap [-c /path/to/kong.conf]
-$ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
+$ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
+$ sudo /usr/local/bin/kong start /etc/kong/kong.conf
 ```
-
-**Note:** You may use `kong.conf.default` or create [your own configuration](/0.13.x/configuration/#configuration-loading).
 
 ## Verify Kong Installation
 
@@ -64,12 +73,11 @@ $ curl -i -X GET --url http://localhost:8001/services
 # Get the local IP address
 $ ifconfig 
 
-# Uncomment the admin_listen setting, and update to something like this `admin_listen = 172.31.3.8:8001`
-$ sudo vi [/path/to/kong.conf] 
+# Uncomment the admin_listen setting, and update to the network IP in the step before.  For example `admin_listen = 172.31.3.8:8001`
+$ sudo vi /etc/kong.conf
 
 # Restart kong
 $ sudo /usr/local/bin/kong stop 
-$ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
+$ sudo /usr/local/bin/kong start /etc/kong/kong.conf
 ```
-
 In a browser, load your server on port `8002`

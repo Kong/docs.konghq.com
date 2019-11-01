@@ -1042,9 +1042,9 @@ he created.
 
 ---
 
-[rbac-overview]: /enterprise/{{page.kong_version}}/rbac/overview
-[rbac-enforce]: /enterprise/{{page.kong_version}}/rbac/overview#enforcing-rbac
-[rbac-wildcard]: /enterprise/{{page.kong_version}}/rbac/examples/#wildcards-in-permissions
-[rbac-admin]: /enterprise/{{page.kong_version}}/rbac/admin-api
-[workspaces-examples]: /enterprise/{{page.kong_version}}/rbac/examples
-[getting-started-guide]: /enterprise/{{page.kong_version}}/getting-started/quickstart/#1-start-kong-enterprise
+[rbac-overview]: /enterprise/{{page.kong_version}}/secure-admin-api/#role-based-access-control
+[rbac-enforce]: /enterprise/{{page.kong_version}}/admin-api/rbac/examples/#enforcing-rbac
+[rbac-wildcard]: /enterprise/{{page.kong_version}}/admin-api/rbac/examples/#wildcards-in-permissions
+[rbac-admin]: /enterprise/{{page.kong_version}}/admin-api/rbac/reference
+[workspaces-examples]: /enterprise/{{page.kong_version}}/admin-api/rbac/examples
+[getting-started-guide]: /enterprise/{{page.kong_version}}/getting-started/start-kong/#step-1
