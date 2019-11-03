@@ -1,12 +1,12 @@
 > You are reviewing the contributing guidelines of docs.konghq.com. If you want to
-> contribute to Kong itself, then please go
+> contribute to Kong, then please go
 > [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md).
 
 
 # Contributing to docs.konghq.com 📜 🦍
 
-Hello, and welcome! Whether you are looking for help, trying to report a bug,
-thinking about getting involved in the project or about to submit a patch, this document is for you!
+Hello, and Welcome! Whether you are looking for help, trying to report a bug,
+thinking about getting involved in the project or about to submit a patch, this document is made for you!
 
 Consult the Table of Contents below, and jump to the desired section.
 
@@ -67,7 +67,7 @@ website), then please consult the [Kong Contributing
 Guideline](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributing)
 instead.
 
-When contributing, be aware of a few things:
+When contributing, be aware of these few things:
 
 - Documentation for Kong Hub listings, which includes all Kong Inc.-published
   and community-published plugins and integrations lives in the `app/_hub`
