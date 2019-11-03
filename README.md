@@ -6,7 +6,7 @@ This repository is the source code for [Kong](https://github.com/Kong/kong)'s do
 ## Hacktoberfest Guidelines 🦍 🎃
 Thank you for contributing to Kong’s documentation! 
 
-Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed through Github and do not require pulling the repository and building locally.
+Not sure where to start? Head on over to the `issues` tab and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed through Github and do not require pulling the repository and building locally.
 
 
 ## Develop Locally With Docker
@@ -50,7 +50,7 @@ npm start
 ## Search
 
 We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our
-documentation search. The algolia index for Kong is maintained by Algolia through their
+documentation search. The algolia index for Kong is maintained by Algolia, through their
 docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
 runs every 24 hours. The config used by the scraper is open source for
 docs.konghq.com and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
