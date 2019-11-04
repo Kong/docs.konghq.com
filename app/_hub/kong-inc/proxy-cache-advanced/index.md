@@ -1,6 +1,6 @@
 ---
 
-name: Proxy Cache
+name: Proxy Caching Advanced
 publisher: Kong Inc.
 version: 1.3-x
 
@@ -9,15 +9,13 @@ description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.
 
 type: plugin
+enterprise: true
 categories:
   - traffic-control
 
 kong_version_compatibility:
     community_edition:
       compatible:
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
     enterprise_edition:
       compatible:
         - 1.3-x
@@ -26,7 +24,7 @@ kong_version_compatibility:
         - 0.34-x
 
 params:
-  name: proxy-cache
+  name: proxy-cache-advanced
   api_id: true
   service_id: true
   route_id: true
@@ -85,19 +83,80 @@ params:
       default:
       value_in_examples: memory
       description: |
-        The backing data store in which to hold cache entities. Accepted values are; `memory`.
+        The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
     - name: memory.dictionary_name
       required:
       default: kong_cache
       value_in_examples:
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
+    - name: redis.host
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Host to use for Redis connection when the redis strategy is defined
+    - name: redis.port
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Port to use for Redis connection when the redis strategy is defined
+    - name: redis.timeout
+      required: semi
+      default: 2000
+      value_in_examples:
+      description: |
+        Connection timeout to use for Redis connection when the redis strategy is defined
+    - name: redis.password
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Password to use for Redis connection when the redis strategy is defined. If undefined, no AUTH commands are sent to Redis.
+    - name: redis.database
+      required: semi
+      default: 0
+      value_in_examples:
+      description: |
+        Database to use for Redis connection when the redis strategy is defined
+    - name: redis.sentinel_master
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Sentinel master to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_role
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Sentinel role to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_addresses
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Sentinel addresses to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.cluster_addresses
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
+    - name: bypass_on_err
+      required: false
+      default: false
+      value_in_examples:
+      description: |
+        Unhandled errors while trying to retrieve a cache entry (such as redis down) are resolved with `Bypass`, with the request going upstream.
 
 ---
 ### Strategies
 
-`kong-plugin-proxy-cache` is designed to support storing proxy cache data in different backend formats. Currently the following strategies are provided:
-- `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_cache`, is also used by other plugins and elements of Kong to store unrelated database cache entities. Using this dictionary is an easy way to bootstrap the proxy-cache plugin, but it is not recommended for large-scale installations as significant usage will put pressure on other facets of Kong's database caching operations. It is recommended to define a separate `lua_shared_dict` via a custom Nginx template at this time.
+`kong-plugin-enterprise-proxy-cache` is designed to support storing proxy cache data in different backend formats. Currently the following strategies are provided:
+- `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_cache`, is also used by other plugins and elements of Kong to store unrelated database cache entities. Using this dictionary is an easy way to bootstrap the proxy-cache-advanced plugin, but it is not recommended for large-scale installations as significant usage will put pressure on other facets of Kong's database caching operations. It is recommended to define a separate `lua_shared_dict` via a custom Nginx template at this time.
+- `redis`: Supports Redis and Redis Sentinel deployments.
 
 ### Cache Key
 
@@ -132,30 +191,30 @@ Kong can store resource entities in the storage engine longer than the prescribe
 
 ### Upstream Outages
 
-Due to an implementation in Kong's core request processing model, at this point the proxy-cache plugin cannot be used to serve stale cache data when an upstream is unreachable. To equip Kong to serve cache data in place of returning an error when an upstream is unreachable, we recommend defining a very large `storage_ttl` (on the order of hours or days) in order to keep stale data in the cache. In the event of an upstream outage, stale data can be considered "fresh" by increasing the `cache_ttl` plugin configuration value. By doing so, data that would have been previously considered stale is now served to the client, before Kong attempts to connect to a failed upstream service.
+Due to an implementation in Kong's core request processing model, at this point the proxy-cache-advanced plugin cannot be used to serve stale cache data when an upstream is unreachable. To equip Kong to serve cache data in place of returning an error when an upstream is unreachable, we recommend defining a very large `storage_ttl` (on the order of hours or days) in order to keep stale data in the cache. In the event of an upstream outage, stale data can be considered "fresh" by increasing the `cache_ttl` plugin configuration value. By doing so, data that would have been previously considered stale is now served to the client, before Kong attempts to connect to a failed upstream service.
 
 ### Admin API
 
-This plugin provides several endpoints to managed cache entities. These endpoints are assigned to the `proxy-cache` RBAC resource.
+This plugin provides several endpoints to managed cache entities. These endpoints are assigned to the `proxy-cache-advanced` RBAC resource.
 
 The following endpoints are provided on the Admin API to examine and purge cache entities:
 
 ### Retrieve a Cache Entity
 
-Two separate endpoints are available: one to look up a known plugin instance, and another that searches all proxy-cache plugins data stores for the given cache key. Both endpoints have the same return value.
+Two separate endpoints are available: one to look up a known plugin instance, and another that searches all proxy-cache-advanced plugins data stores for the given cache key. Both endpoints have the same return value.
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint get">/proxy-cache-advanced/:plugin_id/caches/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------
-|`plugin_id` | The UUID of the proxy-cache plugin
+|`plugin_id` | The UUID of the proxy-cache-advanced plugin
 | `cache_id` | The cache entity key as reported by the X-Cache-Key response header
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:cache_id</div>
+<div class="endpoint get">/proxy-cache-advanced/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------
@@ -177,20 +236,20 @@ HTTP 400 Not Found
 
 ### Delete Cache Entity
 
-Two separate endpoints are available: one to look up a known plugin instance, and another that searches all proxy-cache plugins data stores for the given cache key. Both endpoints have the same return value.
+Two separate endpoints are available: one to look up a known plugin instance, and another that searches all proxy-cache-advanced plugins data stores for the given cache key. Both endpoints have the same return value.
 
 **Endpoint**
 
-<div class="endpoint delete">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint delete">/proxy-cache-advanced/:plugin_id/caches/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------
-|`plugin_id` | The UUID of the proxy-cache plugin
+|`plugin_id` | The UUID of the proxy-cache-advanced plugin
 |`cache_id` | The cache entity key as reported by the `X-Cache-Key` response header
 
 **Endpoint**
 
-<div class="endpoint delete">/proxy-cache/:cache_id</div>
+<div class="endpoint delete">/proxy-cache-advanced/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------
@@ -213,7 +272,7 @@ HTTP 400 Not Found
 ### Purge All Cache Entities
 **Endpoint**
 
-<div class="endpoint delete">/proxy-cache/</div>
+<div class="endpoint delete">/proxy-cache-advanced/</div>
 
 **Response**
 
@@ -221,4 +280,4 @@ HTTP 400 Not Found
 HTTP 204 No Content
 ```
 
-Note that this endpoint purges all cache entities across all `proxy-cache` plugins.
+Note that this endpoint purges all cache entities across all `proxy-cache-advanced` plugins.
