@@ -10,7 +10,7 @@ type: integration
 desc: Terraform module to provision Kong and Kong Enterprise clusters on Amazon Web Services.
 
 description: |
-  Terraform module to provision Kong clusters in Amazong Web Service (AWS) using AWS best practices for architecture and security. Both Kong and Kong Enterprise are supported. Available under the Apache License 2.0 license. 
+  Terraform module to provision Kong clusters in Amazon Web Service (AWS) using AWS best practices for architecture and security. Both Kong and Kong Enterprise are supported. Available under the Apache License 2.0 license. 
 
 support_url: https://github.com/zillowgroup/kong-terraform/issues
 
