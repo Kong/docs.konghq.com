@@ -3,11 +3,11 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
-## 1.3-α
-**Private Alpha Release Date:** 2019/10/02
+## 1.3
+**Release Date:** 2019/11/05
 
 ### Kong Gateway
-- **Kong Enterprise 1.3-α** inherits the following changes from **Kong Gateway 1.3**:
+- **Kong Enterprise 1.3** inherits the following changes from **Kong Gateway 1.3**:
 
 #### Changes
 
@@ -213,7 +213,13 @@ repository will allow you to do both easily.
 - Ensure `kong.response.add_header` works in the `rewrite` phase.
   [#4888](https://github.com/Kong/kong/pull/4888)
 
-#### Enterprise-Exclusive Features
+#### Enterprise-Exclusive Updates
+
+#### Enterprise-Exclusive Changes
+
+Phone home logging now uses a new shared dict: lua_shared_dict kong_reports_workspaces 1m;  If you use a custom nginx template, make sure it's there if you use phl.
+
+#### Enterprise-Exclusive Feautres
 
 ##### Kong Enterprise Gateway
 
@@ -224,6 +230,22 @@ repository will allow you to do both easily.
 - DB-export (API-only)
 
 - Routing by header
+
+- Cassandra - refresh cluster topology
+
+- RPM packages are now signed with our own GPG keys. You can download our public key at https://bintray.com/user/downloadSubjectPublicKey?username=kong
+
+- Route validation strategy now configurable and can enforce a route pattern by configuration
+
+- OpenID Connect Library:
+    - Add support for ES256 signing and key generation
+    - Add support for ES384 signing and key generation
+    - Add support for ES512 signing and key generation
+    - Add support for PS256 signing and key generation
+    - Add support for PS384 signing and key generation
+    - Add support for PS512 signing and key generation
+    - Add support for EdDSA signing, key generation and verification
+    - Update `lua-resty-nettle` dependency to 1.0
 
 ##### Kong Manager
 
@@ -301,6 +323,8 @@ repository will allow you to do both easily.
 
 - Fix issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
 - Fix issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
+
+
 
 ## 0.36-2
 
