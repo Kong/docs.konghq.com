@@ -213,7 +213,7 @@ repository will allow you to do both easily.
 - Ensure `kong.response.add_header` works in the `rewrite` phase.
   [#4888](https://github.com/Kong/kong/pull/4888)
 
-#### Enterprise-Exclusives
+### Enterprise-Exclusives
 
 #### Changes
 
@@ -280,9 +280,7 @@ repository will allow you to do both easily.
 
 - Developer Permissions
 
-  - Decide what specs, or content within specs/portal, that different sets of developers can access.
-
-  - Permissions within single workspace/portal, will be expanding in coming releases
+  - Decide what specs or content different sets of developers can access.
 
 - Separation of templates and user content
 
