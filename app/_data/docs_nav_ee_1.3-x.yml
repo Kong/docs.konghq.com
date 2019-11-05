@@ -288,7 +288,11 @@
       items:
         - text: Multiple Authentication Methods
           url: /plugins/allowing-multiple-authentication-methods
+        - text: OpenID Connect with Azure AD
+          url: /plugins/oidc-azuread
         - text: OpenID Connect with Google
           url: /plugins/oidc-google
+        - text: OpenID Connect with Okta
+          url: /plugins/oidc-okta
         - text: OpenID Connect with Auth0
           url: /plugins/oidc-auth0
