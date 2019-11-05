@@ -22,6 +22,7 @@ toc: false
 * [Data & Admin Audit](#data-&-admin-audit)
 * [Granular Tracing](#granular-tracing)
 * [Route Collision Detection and Prevention](#route-collision-detection-and-prevention)
+* [Workspaces](#workspaces)
 
 ## General
 
@@ -2397,3 +2398,38 @@ For Pattern '/$(workspace)/v%d/.*' valid path are:
 
 1. '/group1/v1/' if route belongs to workspace 'group1'.
 2. '/group2/v1/some_path' if route belongs to workspace 'group2'.
+
+
+## Workspaces
+
+
+### route_validation_strategy
+
+**Default:** `smart`
+
+The strategy used to validate routes when creating or updating them.
+Different strategies are available to tune how to enforce splitting
+traffic of workspaces.
+
+- `smart` is the default option and uses the algorithm described in [this example](https://docs.konghq.com/enterprise/0.37-x/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces)
+
+- `off` disables all checks.
+
+- `path` enforces routes to comply with the pattern described in
+config enforce_route_path_pattern.
+
+### enforce_route_path_pattern
+
+**Default:** `nil`
+
+Here you can specify Lua pattern which will be enforced on a `path`
+attributes of a route object. You can also add a placeholder for
+workspace in pattern, which will be rendered during runtime based on
+workspace to which `route` belongs to. It a field if
+'route_validation_strategy' is set to 'path'
+
+Example:
+
+For Pattern `/$(workspace)/v%d/.*` valid path are:
+1. `/group1/v1/` if route belongs to workspace 'group1'.
+2. `/group2/v1/some_path` if route belongs to workspace 'group2'.
