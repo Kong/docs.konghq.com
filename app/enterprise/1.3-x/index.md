@@ -47,6 +47,12 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/brain-immunity/install-configure">Kong Brain & Kong Immunity</a></h3>
+    <p>Install and Configure Kong Brain and Kong Immunity.</p>
+    <a href="/enterprise/{{page.kong_version}}/brain-immunity/install-configure">Learn more &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/hub">APIs and Plugins</a></h3>
     <p>Expand Kong Enterprise's capabilities with additional APIs and Plugins.</p>
     <a href="/hub">Learn More &rarr;</a>
