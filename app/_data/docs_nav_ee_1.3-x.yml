@@ -295,6 +295,12 @@
         url: /plugins/vault-auth
       - text: Request Validator
         url: /plugins/request-validator
+      - text: DegraphQL
+        url: /plugins/degraphql
+      - text: GraphQL Proxy Cache Advanced
+        url: /plugins/graphql-proxy-cache-advanced
+      - text: GraphQL Rate Limiting Advanced
+        url: /plugins/graphql-rate-limiting-advanced
     - text: Implementation
       items:
         - text: Multiple Authentication Methods
