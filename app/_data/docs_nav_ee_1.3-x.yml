@@ -54,6 +54,31 @@
       url: /property-reference
     - text: CLI Reference
       url: /cli
+    - text: Rate Limiting Library
+      url: /enterprise/references/rate-limiting
+      absolute_url: true
+    - text: Proxy reference
+      url: /proxy
+    - text: Authentication reference
+      url: /auth
+    - text: Load balancing reference
+      url: /loadbalancing
+    - text: Health checks and circuit breakers reference
+      url: /health-checks-circuit-breakers
+    - text: Clustering reference
+      url: /clustering
+    - text: Logging reference
+      url: /logging
+    - text: Network &amp; Firewall
+      url: /network
+    - text: Securing the Admin API
+      url: /secure-admin-api
+    - text: Plugin Development Guide
+      url: /plugin-development
+    - text: Plugin Development Kit
+      url: /pdk
+    - text : OpenAPI Spec to Kong Entities
+      url: /oasconfig
 
 - title: Admin API
   url: /admin-api
