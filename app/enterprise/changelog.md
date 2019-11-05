@@ -217,6 +217,7 @@ repository will allow you to do both easily.
 
 #### Changes
 
+- Kong Service Mesh is transitioned and upgraded to our next-generation service mesh offering named “Kuma”. Go to [kuma.io][kuma.io] for more information about using Kuma.
 - Phone home logging now uses a new shared dict: lua_shared_dict kong_reports_workspaces 1m;  If you use a custom nginx template, make sure it's there if you use phl.
 
 #### Features
