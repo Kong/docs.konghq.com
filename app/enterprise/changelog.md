@@ -323,11 +323,11 @@ repository will allow you to do both easily.
 
 - gRPC support, API & Kong Manager
 
-- Upstream mTLS support, API-only
+- Upstream mTLS support
 
 - DB export, API-only
 
-- Routing by header, API-only
+- Routing by header
 
 - Request Size Limiting - enhanced units on size limit
 - Request Transformer Advanced - Support for filtering JSON body with new configration `config.whitelist.body`
