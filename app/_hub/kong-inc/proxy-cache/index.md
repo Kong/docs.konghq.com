@@ -1,8 +1,8 @@
 ---
 
-name: Proxy Caching
+name: Proxy Cache
 publisher: Kong Inc.
-version: 0.35-x
+version: 1.3-x
 
 desc: Cache and serve commonly requested responses in Kong
 description: |
@@ -20,6 +20,7 @@ kong_version_compatibility:
         - 1.2.x
     enterprise_edition:
       compatible:
+        - 1.3-x
         - 0.36-x
         - 0.35-x
         - 0.34-x
@@ -84,74 +85,19 @@ params:
       default:
       value_in_examples: memory
       description: |
-        The backing data store in which to hold cache entities. Accepted values are; `memory`, and `redis`.
+        The backing data store in which to hold cache entities. Accepted values are; `memory`.
     - name: memory.dictionary_name
       required:
       default: kong_cache
       value_in_examples:
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
-    - name: redis.host
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Host to use for Redis connection when the redis strategy is defined
-    - name: redis.port
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Port to use for Redis connection when the redis strategy is defined
-    - name: redis.timeout
-      required: semi
-      default: 2000
-      value_in_examples:
-      description: |
-        Connection timeout to use for Redis connection when the redis strategy is defined
-    - name: redis.password
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Password to use for Redis connection when the redis strategy is defined. If undefined, no AUTH commands are sent to Redis.
-    - name: redis.database
-      required: semi
-      default: 0
-      value_in_examples:
-      description: |
-        Database to use for Redis connection when the redis strategy is defined
-    - name: redis.sentinel_master
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Sentinel master to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
-    - name: redis.sentinel_role
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Sentinel role to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
-    - name: redis.sentinel_addresses
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Sentinel addresses to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
-    - name: redis.cluster_addresses
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Cluster addresses to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis cluster.
 
 ---
 ### Strategies
 
-`kong-plugin-enterprise-proxy-cache` is designed to support storing proxy cache data in different backend formats. Currently the following strategies are provided:
+`kong-plugin-proxy-cache` is designed to support storing proxy cache data in different backend formats. Currently the following strategies are provided:
 - `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_cache`, is also used by other plugins and elements of Kong to store unrelated database cache entities. Using this dictionary is an easy way to bootstrap the proxy-cache plugin, but it is not recommended for large-scale installations as significant usage will put pressure on other facets of Kong's database caching operations. It is recommended to define a separate `lua_shared_dict` via a custom Nginx template at this time.
-- `redis`: Supports Redis and Redis Sentinel deployments.
 
 ### Cache Key
 

@@ -45,6 +45,7 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 1.3-x
         - 0.36-x
         - 0.35-x
         - 0.34-x
@@ -65,5 +66,10 @@ params:
       default: "`128`"
       value_in_examples: 128
       description: Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
+    - name: size_unit
+      required: true
+      default: "`megabytes`"
+      description: Size unit can be set either in `bytes`, `kilobytes`, or `megabytes`.
+      Note- this configuration is only supported in Kong Enterprise 1.3 and above, and may eventually extend to Kong Gateway 
 
 ---

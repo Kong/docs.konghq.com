@@ -19,6 +19,7 @@ enterprise: true
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 1.3-x
         - 0.36-x
         - 0.35-x
 
@@ -72,6 +73,18 @@ params:
     - name: append.if_status
       required: false
       description: List of response status codes or status code ranges to which the transformation will apply. Empty means all response codes
+    - name: whitelist.json
+      required: false
+      default:
+      value_in_examples:
+      description: |
+        Set of parameter names. Only allows whitelisted parameters in the JSON response body.
+    - name: transform.functions
+      required: false
+      description: Set of Lua functions to perform arbitrary transforms in a response JSON body.
+    - name: transform.if_status
+      required: false
+      description: List of response status codes or ranges to which the arbitrary transformation applies. Leaving empty implies that the transformations apply to all response codes.
 
 ---
 
@@ -224,6 +237,39 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 
 **Note**: the plugin doesn't validate the value in `config.replace.body` against
 the content type as defined in the `Content-Type` response header.
+
+- Perform arbitrary transforms to a JSON body
+
+Use the power of embedding Lua to perform arbitrary transformations on JSON bodies. Transformation functions
+receive an argument with the JSON body, and must return the transformed response body:
+
+```lua
+-- transform.lua
+-- this function transforms
+-- { "foo": "something", "something": "else" }
+-- into
+-- { "foobar": "hello world", "something": "else" }
+return function (data)
+  if type(data) ~= "table" then
+    return data
+  end
+
+  -- remove foo key
+  data["foo"] = nil
+
+  -- add a new key
+  data["foobar"] = "hello world"
+
+  return data
+end
+```
+
+```bash
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  -F "name=response-transformer-advanced" \
+  -F "config.transform.functions=@transform.lua"
+  -F "config.transform.if_status=200"
+```
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object
