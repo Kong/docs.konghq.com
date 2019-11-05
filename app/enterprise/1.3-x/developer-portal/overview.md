@@ -164,7 +164,7 @@ Read the full Kong Enterprise 1.3 Changelog [here](/enterprise/changelog).
         <a href="/enterprise/{{ page.kong_version }}/developer-portal/administration/developer-permissions">Permissions</a>
     </h3>
     <p></p>
-    <a href="/enterprise/{{ page.kong_version }}/developer-portal/adminstration/developer-permissions">
+    <a href="/enterprise/{{ page.kong_version }}/developer-portal/administration/developer-permissions">
       Fine tune access to files with Developer Roles and Permissions &rarr;
     </a>
   </div>
