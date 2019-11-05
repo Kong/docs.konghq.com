@@ -1808,6 +1808,35 @@ Dev Portal.
 portal_auth = basic-auth
 ```
 
+### portal_auth_password_complexity
+
+**Default:** `nil`
+
+**Description:**
+
+Dev Portals that are authenticated with the **Basic Auth** plugin support password complexity enforcement using either a predned Kong preset or custom rules. 
+
+Kong's Preset requires passwords contain characters from at least three of the following categories:
+
+1. Uppercase characters (A through Z)
+2. Lowercase characters (a through z)
+3. Base-10 digits (0 through 9)
+4. Special characters (&, $, #, % etc)
+
+To write your own rules, see  (https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html) 
+
+>NOTE: Only the keywords "min", "max", and "passphrase"
+
+**Examples:**
+
+```
+portal_auth_password_complexity = { "kong-preset": "min_8"}
+```
+
+```
+portal_auth_password_complexity = { "min": "12", max: "24"}
+```
+
 
 ### portal_auth_conf
 
@@ -1825,6 +1854,18 @@ consult the associated plugin documentation.
 ```
 portal_auth_conf = { "hide_credentials": true }
 ```
+
+### portal_auth_login_attempts
+
+**Default:** 0
+
+**Description:**
+
+Dictates the number of times a user can attempt to log into the Developer Portal before the password must be reset.
+
+The default value of '0' allows infinite attempts.
+
+>NOTE: This configuration only applies to Developer Portals using `Basic Auth` for authentication. 
 
 
 ### portal_auto_approve

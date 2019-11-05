@@ -33,6 +33,15 @@ You have been invited to create a Developer Portal account at %s.
 Please visit `<DEV_PORTAL_URL/register>` to create your account.
 ```
 
+
+### portal_email_verification
+
+**Default:** `off`
+
+**Description:**
+When enabled Developers will receive an email upon registration to verify their account. Developers will not be able to use the Dev Portal until their account is verified, even if auto-approve is enabled. 
+
+
 ### portal_access_request_email
 
 **Default:** `on`

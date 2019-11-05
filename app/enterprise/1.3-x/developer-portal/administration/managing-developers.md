@@ -2,7 +2,7 @@
 title: Managing Developers
 ---
 
-## Developer Status
+### Developer Status
 
 A status represents the state of a developer and the access they have to the Dev
  Portal and APIs.
@@ -21,7 +21,7 @@ A status represents the state of a developer and the access they have to the Dev
 
 ![Managing Developers](https://konghq.com/wp-content/uploads/2018/05/gui-developer-tabs.png)
 
-## Approving Developers
+### Approving Developers
 
 Developers who have requested access to a Dev Portal will appear under the 
 **Requested Access** tab. From this tab you can choose to *Accept* or *Reject* 
@@ -29,24 +29,24 @@ the developer from the actions in the table row. After selecting an action the
 corresponding tab will update.
 
 
-## Viewing Approved Developers
+### Viewing Approved Developers
 
 To view all currently approved developers choose the **Approved** tab. From here you can choose to *Revoke* or *Delete* a particular developer. Additionally you can use this view to send an email to a developer with the **Email Developer** `mailto` link. See [Emailing Developers](#emailing-developers) for more info.
 
 
-## Viewing Revoked Developers
+### Viewing Revoked Developers
 
 To view all currently revoked developers choose the **Revoked** tab. From here you can choose to *Re-approve* or *Delete* a developer.
 
 
-## Viewing Rejected Developers
+### Viewing Rejected Developers
 
 To view all currently rejected developers choose the **Rejected** tab. Rejected developers completed the registration flow on your Dev Portal but were rejected from the **Request Access** tab. You may *Approve* or *Delete* a developer from this tab.
 
 
-## Emailing Developers
+### Emailing Developers
 
-### Inviting Developers to Register
+#### Inviting Developers to Register
 
 To invite a single or set of developers...
 
@@ -59,10 +59,10 @@ Each developer is bcc'd by default for privacy. You may choose to edit the messa
 ![Invite Developers](https://konghq.com/wp-content/uploads/2018/05/invite-developers.png)
 
 
-## Developer Management Property Reference
+### Developer Management Property Reference
 
 
-### portal_auto_approve
+#### portal_auto_approve
 
 **Default:** `off`
 
@@ -77,7 +77,7 @@ When set to `off`, a Kong Admin will have to manually approve the Developer via
 the Kong Manager or API.
 
 
-### portal_invite_email
+#### portal_invite_email
 
 **Default:** `on`
 
@@ -86,7 +86,7 @@ When enabled, Admins will be able to invite Developers to a Dev Portal by using
  the "Invite" button in the Kong Manager.
 
 
-### portal_access_request_email
+#### portal_access_request_email
 
 **Default:** `on`
 
@@ -98,7 +98,7 @@ When disabled, Kong Admins will have to manually check the Kong Manager to view
 any requests.
 
 
-### portal_approved_email
+#### portal_approved_email
 
 **Default:** `on`
 
@@ -111,7 +111,7 @@ approved. It is suggested to only disable this feature if`portal_auto_approve`
 is enabled.
 
 
-### portal_reset_email
+#### portal_reset_email
 
 **Default:** `on`
 
@@ -123,7 +123,7 @@ When disabled, Developers will *not* be able to reset their account passwords.
 Kong Admins will have to manually create new credentials for the Developer in 
 the Kong Manager.
 
-### portal_token_exp
+#### portal_token_exp
 
 **Default:** `21600`
 
@@ -132,13 +132,13 @@ Duration in seconds for the expiration of the Dev Portal reset password token.
 Default `21600` is six hours.
 
 
-### portal_reset_success_email
+#### portal_reset_success_email
 
 **Default:** `on`
 
 **Description:**
-When enabled, Developers will receive an email after successfully reseting their
+When enabled, Developers will receive an email after successfully resetting their
  Dev Portal account password. 
  
 When disabled, Developers will still be able to reset their account passwords, 
-but will not recieve a confirmation email.
+but will not receive a confirmation email.

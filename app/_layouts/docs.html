@@ -123,8 +123,8 @@ id: documentation
           {% assign filename = page.path | split: '/' | last %}
           {% if page.toc == true or
           page.toc != false and filename != "index.md" %}
-          <h2 id="table-of-contents">Table of Contents</h2>
-          {% include toc.html html=content anchor_class="scroll-to" h_max=4 %}
+          <h3 id="table-of-contents">Table of Contents</h3>
+          {% include toc.html html=content anchor_class="scroll-to" h_min=1 h_max=3 %}
           {% endif %}
 
           {{ content }}

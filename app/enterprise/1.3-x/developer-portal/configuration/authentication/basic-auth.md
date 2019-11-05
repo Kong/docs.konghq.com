@@ -4,7 +4,7 @@ title: How to Enable Basic Auth in the Dev Portal
 
 ### Introduction
 
-The Dev Portal can be fully or partially authenticated using HTTP protocol's Basic Authentication scheme. Requests will be sent with the Authorization header that
+The Kong Developer Portal can be fully or partially authenticated using HTTP protocol's Basic Authentication scheme. Requests will be sent with the Authorization header that
 contains the word `Basic` followed by the base64-encoded `username:password` string.
 
 Basic Authentication for the Dev Portal can be enabled in three ways:
@@ -38,10 +38,7 @@ portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", 
 3. Select **Basic Authentication** from the drop down
 4. Click the **Save Changes** button at the bottom of the form
 
->**Warning** This will automatically authenticate the Dev Portal with Basic
->Auth. Anyone currently viewing the Dev Portal will lose access on the
->next page refresh.
-
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ### Enable Basic Auth via the Command Line
 
@@ -52,9 +49,7 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   --data "config.portal_auth=basic-auth"
 ```
 
->**Warning** This will automatically authenticate the Dev Portal with Basic
->Auth. Anyone currently viewing the Dev Portal will lose access on the
->next page refresh.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ### Enable Basic Auth via the Kong.conf
 

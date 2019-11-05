@@ -13,7 +13,7 @@ to this form.
 
 ### Adding Additional Registration Fields
 
-1. In Kong Manager, navigate to the desired workspace's Dev Portal **Settings** page.
+1. In Kong Manager, navigate to the desired Workspace's Dev Portal **Settings** page.
 
 2. Click the **Developer Meta Fields** tab on the **Settings Page**
 
@@ -25,7 +25,6 @@ to this form.
 
 6. Click the **Save Changes** button a the bottom of the form.
 
-![Developer Meta Fields](https://konghq.com/wp-content/uploads/2019/05/developer-meta-fields.png)
 
 Once saved, the new field will automatically be added to the registration form.
 

@@ -167,13 +167,26 @@
     - text: Vitals
       url: /kong-manager/vitals
 
+
 - title: Kong Dev Portal
-  url: /developer-portal/introduction
+  url: /developer-portal
   items:
+    - text: Introduction
+      url: /developer-portal/
     - text: Overview
-      url: /developer-portal/introduction
+      url: /developer-portal/overview
+    - text: Migrating from Legacy
+      url: /developer-portal/legacy-migration
+    - text: Structure and File Types
+      url: /developer-portal/structure-and-file-types
+    - text: Working with Templates
+      url: /developer-portal/working-with-templates
+    - text: Using the Editor
+      url: /developer-portal/using-the-editor
+    - text: Networking
+      url: /developer-portal/networking
     - text: Configuration
-      url: /developer-portal/configuration/
+      url: /developer-portal/configuration
       items:
         - text: Authentication
           url: /developer-portal/configuration/authentication
@@ -182,32 +195,34 @@
               url: /developer-portal/configuration/authentication/basic-auth
             - text: Key Auth
               url: /developer-portal/configuration/authentication/key-auth
-            - text: OpenID Connect
+            - text: OIDC
               url: /developer-portal/configuration/authentication/oidc
-            - text: Adding Custom Registration Fields
-              url: /developer-portal/configuration/authentication/adding-registration-fields
             - text: Sessions
               url: /developer-portal/configuration/authentication/sessions
+            - text: Adding Custom Registration Fields
+              url: /developer-portal/configuration/authentication/adding-registration-fields
         - text: SMTP
           url: /developer-portal/configuration/smtp
-        - text: Running Multiple Dev Portals with Workspaces
+        - text: Workspaces
           url: /developer-portal/configuration/workspaces
-    - text: Networking
-      url: /developer-portal/networking
     - text: Administration
+      url: /developer-portal/administration/
       items:
         - text: Managing Developers
           url: /developer-portal/administration/managing-developers
+        - text: Developer Roles and Content Permissions
+          url: /developer-portal/administration/developer-permissions
     - text: Theme Customization
+      url: /developer-portal/theme-customization/easy-theme-editing
       items:
-          - text: Customizing the Dev Portal
-            url: /developer-portal/theme-customization/customizing-dev-portal
-    - text: Content Management
+        - text: Easy Theme Editing
+          url: /developer-portal/theme-customization/easy-theme-editing
+    - text: Helpers
+      url: /developer-portal/helpers/cli
       items:
-          - text: File Management
-            url: /developer-portal/content-management/file-management
-    - text: FAQ & Troubleshooting
-      url: /developer-portal/faq
+        - text: CLI
+          url: /developer-portal/helpers/cli
+
 
 - title: APIs and Plugins
   url: https://konghq.com/hub
