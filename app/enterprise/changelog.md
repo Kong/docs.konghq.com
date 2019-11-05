@@ -213,13 +213,13 @@ repository will allow you to do both easily.
 - Ensure `kong.response.add_header` works in the `rewrite` phase.
   [#4888](https://github.com/Kong/kong/pull/4888)
 
-#### Enterprise-Exclusive Updates
+#### Enterprise-Exclusives
 
-#### Enterprise-Exclusive Changes
+#### Changes
 
 - Phone home logging now uses a new shared dict: lua_shared_dict kong_reports_workspaces 1m;  If you use a custom nginx template, make sure it's there if you use phl.
 
-#### Enterprise-Exclusive Feautres
+#### Features
 
 ##### Kong Enterprise Gateway
 
