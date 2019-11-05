@@ -255,7 +255,7 @@ repository will allow you to do both easily.
 
 - RBAC User Management (manage Admin API access within Kong Manager)
 
-- Service Directory Group to Kong Role Mapping (map AD groups or other service directory systems to roles & permission sets within Kong) - not available in the Alpha build
+- Service Directory Group to Kong Role Mapping (map AD groups or other service directory systems to roles & permission sets within Kong)
 
 - Service Map
 
