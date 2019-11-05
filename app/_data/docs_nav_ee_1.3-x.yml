@@ -139,6 +139,8 @@
   items:
     - text: Overview
       url: /kong-manager/overview
+    - text: Service Directory Mapping
+      url: /kong-manager/service-directory-mapping
     - text: Networking
       url: /kong-manager/networking/configuration
       items:
@@ -247,6 +249,15 @@
       items:
         - text: CLI
           url: /developer-portal/helpers/cli
+
+
+- title: Kong Brain & Kong Immunity
+  url: /brain-immunity/install-configure
+  items:
+    - text: Installation and Configuration
+      url: /brain-immunity/install-configure
+    - text: Service Map
+      url: /brain-immunity/service-map
 
 
 - title: APIs and Plugins
