@@ -60,6 +60,32 @@
   items:
   - text: Overview
     url: /admin-api
+  - text: Supported Content Types
+    url: /admin-api/#supported-content-types
+  - text: Information Routes
+    url: /admin-api/#information-routes
+  - text: Tags
+    url: /admin-api/#tags
+  - text: Service Object
+    url: /admin-api/#service-object
+  - text: Route Object
+    url: /admin-api/#route-object
+  - text: Consumer Object
+    url: /admin-api/#consumer-object
+  - text: Plugin Object
+    url: /admin-api/#plugin-object
+  - text: Certificate Object
+    url: /admin-api/#certificate-object
+  - text: SNI Object
+    url: /admin-api/#sni-object
+  - text: Upstream Object
+    url: /admin-api/#upstream-object
+  - text: Target Object
+    url: /admin-api/#target-object
+  - text: Workspace Object routes
+    url: /admin-api/workspaces/reference
+  - text: RBAC Object routes
+    url: /admin-api/rbac/reference
   - text: Workspaces
     url: /admin-api/workspaces/reference
   - text: RBAC

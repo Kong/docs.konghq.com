@@ -3,11 +3,11 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
-## 1.3-α
-**Private Alpha Release Date:** 2019/10/02
+## 1.3
+**Release Date:** 2019/11/05
 
 ### Kong Gateway
-- **Kong Enterprise 1.3-α** inherits the following changes from **Kong Gateway 1.3**:
+- **Kong Enterprise 1.3** inherits the following changes from **Kong Gateway 1.3**:
 
 #### Changes
 
@@ -213,7 +213,14 @@ repository will allow you to do both easily.
 - Ensure `kong.response.add_header` works in the `rewrite` phase.
   [#4888](https://github.com/Kong/kong/pull/4888)
 
-#### Enterprise-Exclusive Features
+### Enterprise-Exclusives
+
+#### Changes
+
+- Kong Service Mesh is transitioned and upgraded to our next-generation service mesh offering named “Kuma”. Go to kuma.io for more information about using Kuma.
+- Phone home logging now uses a new shared dict: lua_shared_dict kong_reports_workspaces 1m;  If you use a custom nginx template, make sure it's there if you use phl.
+
+#### Features
 
 ##### Kong Enterprise Gateway
 
@@ -225,11 +232,31 @@ repository will allow you to do both easily.
 
 - Routing by header
 
+- Cassandra - refresh cluster topology
+
+- RPM packages are now signed with our own GPG keys. You can download our public key at https://bintray.com/user/downloadSubjectPublicKey?username=kong
+
+- Route validation strategy now configurable and can enforce a route pattern by configuration
+
+- OpenID Connect Library:
+    - Add support for ES256 signing and key generation
+    - Add support for ES384 signing and key generation
+    - Add support for ES512 signing and key generation
+    - Add support for PS256 signing and key generation
+    - Add support for PS384 signing and key generation
+    - Add support for PS512 signing and key generation
+    - Add support for EdDSA signing, key generation and verification
+    - Update `lua-resty-nettle` dependency to 1.0
+
+##### Docker
+
+- Improved security by allowing the CentOS and Alpine images to run as the `kong` user.
+
 ##### Kong Manager
 
 - RBAC User Management (manage Admin API access within Kong Manager)
 
-- Service Directory Group to Kong Role Mapping (map AD groups or other service directory systems to roles & permission sets within Kong) - not available in the Alpha build
+- Service Directory Group to Kong Role Mapping (map AD groups or other service directory systems to roles & permission sets within Kong)
 
 - Service Map
 
@@ -240,6 +267,11 @@ repository will allow you to do both easily.
   
   - Filterable by entity, severity
   - Links through to alerted entities
+  
+- Admin Password Strength Configuration
+  - Configure and enforce strong Admin passwords  
+- Admin Login Attempts
+  - Configure allowed login attempts to the Kong Manager
 
 ##### Dev Portal
 
@@ -247,17 +279,14 @@ repository will allow you to do both easily.
 
   - Easily set your color scheme, logo/branding, and go
 
-- Developer RBAC
+- Developer Permissions
 
-  - Decide what specs, or content within specs/portal, that different sets of developers can access.
-
-  - Permissions within single workspace/portal, will be expanding in coming releases
+  - Decide what specs or content different sets of developers can access.
 
 - Separation of templates and user content
 
   - Enable content editors to make changes with no coding required
-
-- Easier future release/upgrades path
+  - Easier future release/upgrades path
 
 - Flat file system
 
@@ -282,16 +311,50 @@ repository will allow you to do both easily.
     - Permissions
 
     - Theming (colors, logos, meta info)
+    
+- Developer Password Strength Configuration
+    - Configure and enforce strong Developer passwords  
+    
+- Developer Login Attempts
+    - Configure allowed login attempts to the Developer Portal
 
 ##### Plugins
 
 - gRPC support, API & Kong Manager
 
-- Upstream mTLS support, API-only
+- Upstream mTLS support
 
 - DB export, API-only
 
-- Routing by header, API-only
+- Routing by header
+
+- Request Size Limiting - enhanced units on size limit
+- Request Transformer Advanced - Support for filtering JSON body with new configration `config.whitelist.body`
+- Response Transformer Advanced:
+    - Support for filtering JSON body with new configration config.whitelist.body, Support arbitrary transformations via Lua functions
+    - Fixed a bug where the plugin was returning an empty body in the response for status codes outside of those specified in `config.replace.if_status`. For example, if we specified a `config.replace.if_status=404` and a body `config.replace.body=test` and the status code was 200, the response would be empty.
+
+- Route Transformer Advanced - New
+- GraphQL Proxy Cache Advanced - New
+- GraphQL Rate Limiting Advanced - New
+- Degraphql - New
+- Exit Transformer - New
+- Kafka Log - New
+- Kafka Upstream - New
+- mTLS Auth:
+    - Update cert request logic ask client cert when:
+      - To every route irrespective of workspace when plugin enabled in global scope
+      - To every route irrespective of workspace when plugin applied at service level but not all its routes have SNIs set
+      - To every route irrespective of workspace when plugin applied at route level but SNIs not set on route
+      - To specific route only when plugin applied at route level and it has SNIs set
+    - skip_consumer_lookup config to skip consumer lookup if request has trusted client certificate.
+    - authenticated_group_by config to block/allow validated certificate using ACL plugi
+- Key-Auth keys now support a ttl property and can expire
+- AWS Lambda plugin supports IAM roles
+- Session plugin can now store authenticated groups from other authentication plugins. 
+
+##### CLI
+- Adds runner
 
 #### Fixes
 
@@ -300,7 +363,24 @@ repository will allow you to do both easily.
 ###### OpenID Connect
 
 - Fix issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
-- Fix issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
+
+###### LDAP Auth Advanced
+
+- LDAP Auth Advanced - fixed issue where plugin tries to start a secure connection on an existing pooled connection from previous requests
+
+###### Request Transformer Advanced
+
+- Fixed a bug where the plugin was returning an empty body in the response for status codes outside of those specified in `config.replace.if_status`. For example, if we specified a `config.replace.if_status=404` and a body `config.replace.body=test` and the status code was 200, the response would be empty.
+
+##### Kong Enterprise Gateway
+
+- Fix: audit log entries did not include timestamps indicating when the event occurred.
+- Fix: allow put requests to nonexistent foreign entities.
+- Fix: granular tracing did not work when certain plugins (for example, the key-auth) were used.
+
+##### Docker
+
+- Fix: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
 
 ## 0.36-2
 

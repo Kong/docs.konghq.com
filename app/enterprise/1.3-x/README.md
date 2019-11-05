@@ -1,3 +1,3 @@
-# 0.35 Release
+# Enterprise 1.3 Release
 
-## Add your 0.35 documents to this folder
+## Add your 1.3 documents to this folder
