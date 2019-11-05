@@ -5,7 +5,7 @@ title: Configuring a gRPC Service
 Note: this guide assumes familiarity with gRPC; for learning how to set up
 Kong with an upstream REST API, check out the [Configuring a Service guide][conf-service].
 
-Starting with version 1.3, gRPC proxying is natively supported in Kong. In this
+Starting with Kong Enterprise 1.3, gRPC proxying is natively supported in Kong. In this
 section, you'll learn how to configure Kong to manage your gRPC services. For the
 purpose of this guide, we'll use [grpcurl][grpcurl] and [grpcbin][grpcbin] - they
 provide a gRPC client and gRPC services, respectively.
@@ -15,7 +15,7 @@ with multiple Routes. In the former, a single catch-all Route is configured, whi
 proxies all matching gRPC traffic to an upstream gRPC service; the latter demonstrates
 how to use a Route per gRPC method.
 
-In Kong 1.3, gRPC support assumes gRPC over HTTP/2 framing. As such, make sure
+In Kong Enterprise 1.3, gRPC support assumes gRPC over HTTP/2 framing. As such, make sure
 you have at least one HTTP/2 proxy listener (check out the [Configuration Reference][configuration-rerefence]
 for how to). In this guide, we will assume Kong is listening for HTTP/2 proxy
 requests on port 9080.
@@ -265,9 +265,9 @@ $ tail -f grpc-say-hello.log
 {"latencies":{"request":3,"kong":1,"proxy":1},"service":{"host":"localhost","created_at":1564527408,"connect_timeout":60000,"id":"74a95d95-fbe4-4ddb-a448-b8faf07ece4c","protocol":"grpc","name":"grpc","read_timeout":60000,"port":15002,"updated_at":1564527408,"write_timeout":60000,"retries":5},"request":{"querystring":{},"size":"46","uri":"\/hello.HelloService\/SayHello","url":"http:\/\/localhost:9080\/hello.HelloService\/SayHello","headers":{"host":"localhost:9080","content-type":"application\/grpc","kong-debug":"1","user-agent":"grpc-go\/1.20.0-dev","te":"trailers"},"method":"POST"},"client_ip":"127.0.0.1","tries":[{"balancer_latency":0,"port":15002,"balancer_start":1564527733555,"ip":"127.0.0.1"}],"response":{"headers":{"kong-route-id":"e49f2df9-3e8e-4bdb-8ce6-2c505eac4ab6","content-type":"application\/grpc","connection":"close","kong-service-name":"grpc","kong-service-id":"74a95d95-fbe4-4ddb-a448-b8faf07ece4c","kong-route-name":"say-hello","via":"kong\/1.2.1","x-kong-proxy-latency":"1","x-kong-upstream-latency":"1"},"status":200,"size":"298"},"route":{"id":"e49f2df9-3e8e-4bdb-8ce6-2c505eac4ab6","updated_at":1564527431,"protocols":["grpc"],"created_at":1564527431,"service":{"id":"74a95d95-fbe4-4ddb-a448-b8faf07ece4c"},"name":"say-hello","preserve_host":false,"regex_priority":0,"strip_path":false,"paths":["\/hello.HelloService\/SayHello"],"https_redirect_status_code":426},"started_at":1564527733554}
 ```
 
-[enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
-[conf-service]: /{{page.kong_version}}/getting-started/configuring-a-service
-[configuration-reference]: /{{page.kong_version}}/configuration-reference
+[enabling-plugins]: /enterprise//{{page.kong_version}}/getting-started/enable-plugin
+[conf-service]: /enterprise//{{page.kong_version}}/getting-started/add-service
+[configuration-reference]: /enterprise/{{page.kong_version}}/property-reference
 [grpcbin]: https://github.com/moul/grpcbin
 [grpcurl]: https://github.com/fullstorydev/grpcurl
 [protobuf]: https://raw.githubusercontent.com/moul/pb/master/hello/hello.proto
