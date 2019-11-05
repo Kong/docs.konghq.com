@@ -90,7 +90,7 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: 'instance'
-
+```
 
 ### Enable Vitals with Prometheus strategy in Kong
 
