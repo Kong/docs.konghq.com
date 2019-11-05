@@ -39,6 +39,7 @@ Check the validity of a given Kong configuration file.
 ---
 
 
+
 ### kong config
 
 ```
@@ -242,6 +243,22 @@ Options:
 [Back to TOC](#table-of-contents)
 
 ---
+
+### kong runner
+
+```
+Usage: kong runner [file] [args]
+
+Execute a lua file in a kong node. the `kong` variable is available to
+reach the DAO, PDK, etc. The variable `args` can be used to access all
+arguments (args[1] being the lua filename bein run).
+
+Example usage:
+  kong runner file.lua arg1 arg2
+  echo 'print("foo")' | kong runner
+
+```
+[Back to TOC](#table-of-contents)
 
 
 ### kong start
