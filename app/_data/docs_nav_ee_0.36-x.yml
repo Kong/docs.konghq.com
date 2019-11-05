@@ -58,8 +58,6 @@
     - text: Rate Limiting Library
       url: /enterprise/references/rate-limiting
       absolute_url: true
-    - text: CLI reference
-      url: /cli
     - text: Proxy reference
       url: /proxy
     - text: Authentication reference
