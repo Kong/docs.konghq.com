@@ -2,7 +2,7 @@
 
 name: Vault Authentication
 publisher: Kong Inc.
-version: 0.36-x
+version: 1.3-x
 
 desc: Add Vault authentication to your Services
 description: |
@@ -16,6 +16,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 1.3.x
         - 0.36-x
         - 0.35-x
 
@@ -251,3 +252,6 @@ $ vault write kong-auth/foo - <<EOF
 }
 EOF
 ```
+
+[consumer-object]: https://docs.konghq.com/enterprise/1.3-x/admin-api/#consumer-object
+[acl-associating]: https://docs.konghq.com/hub/kong-inc/acl/#associating-consumers
