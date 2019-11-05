@@ -1,18 +1,18 @@
 {
-  "index_name": "private_RC",
+  "index_name": "prod_EE",
   "start_urls": [
     {
-      "url": "https://kong-summit.netlify.com/enterprise/(?P<version>.*?)/",
+      "url": "https://docs.konghq.com/enterprise/(?P<version>.*?)/",
       "variables": {
         "version": {
-          "url": "https://kong-summit.netlify.com/enterprise/",
+          "url": "https://docs.konghq.com/enterprise/",
           "js": "var versions = $('ul[aria-labelledby=version-dropdown] a, button#version-dropdown').map(function(i, e) { return $(e).text().replace(/\\s+/g, '').replace(/Version/g, '').replace(/\\(latest\\)/g, ''); }).toArray(); return JSON.stringify(versions);"
         }
       }
     }
   ],
   "sitemap_urls": [
-    "https://kong-summit.netlify.com/sitemap.xml"
+    "https://docs.konghq.com/sitemap.xml"
   ],
   "stop_urls": [
 
