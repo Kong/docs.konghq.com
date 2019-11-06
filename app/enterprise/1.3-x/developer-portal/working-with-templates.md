@@ -249,7 +249,7 @@ Each configuration item is made up of a few parts:
 - ###### `route`
     - **required**: true
       - **type**: `boolean`
-      - **description**: The `layout` attribute determines what html layout the collections will use to render.  The path root is assessed from within the current themes `layouts` directory.
+      - **description**: The `layout` attribute determines what HTML layout the collections use to render.  The path root is assessed from within the current themes `layouts` directory.
 
 ##### `content/_posts/post1.md`
 
