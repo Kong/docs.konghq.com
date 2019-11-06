@@ -138,7 +138,7 @@ The first thing to notice in the example files contents are the two sets of `---
   - **description**: Used by `collection` config to determine custom routing.  You can read more about Collections in the collections section of the _working with templates_ guide.
 
 ##### body
-The information located under headmatter represents the content body.  Body content is freeform and will be parsed as by the file extension included in the file path.  In the case of the example above, the file is `.txt` and will be available in the template as such.
+The information located under headmatter represents the content body.  Body content is freeform and gets parsed as by the file extension included in the file path.  In the case of the example above, the file is `.txt` and is available in the template as such.
 
 ## Spec Files
 
