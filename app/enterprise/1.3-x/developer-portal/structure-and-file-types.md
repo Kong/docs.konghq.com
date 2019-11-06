@@ -65,7 +65,7 @@ collections:
 - `redirect`
   - **required**: true
   - **type**: `object`
-  - **description**: The redirect object informs kong how to redirect the user after certain actions.If one of these values is not set, Kong will serve a default template based off of the action. Each key represents the name of the action taking place, the value represents the route the user will be redirected to. 
+  - **description**: The redirect object informs kong how to redirect the user after certain actions. If one of these values is not set, Kong serves a default template based off of the action. Each key represents the name of the action taking place, the value represents the route to which the application redirects the user. 
 - `collections`
   - **required**: false
   - **type**: `object`
