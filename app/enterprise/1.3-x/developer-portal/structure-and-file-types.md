@@ -281,7 +281,7 @@ The example below shows the `header.html` partial referenced from the example ab
 - **file extensions:** `.yaml`
 
 ##### Description
-The Theme Configuration File determines color/font/image values a theme will make available for templates/css at time of render.  It is required in the root of every theme.  There can only be one Theme Configuration File, it must be named `theme.conf.yaml`, and it must be a direct child of the themes root directory.
+The Theme Configuration File determines color/font/image values a theme makes available for templates/CSS at the time of render.  It is required in the root of every theme.  There can only be one Theme Configuration File, it must be named `theme.conf.yaml`, and it must be a direct child of the themes root directory.
 
 
 
