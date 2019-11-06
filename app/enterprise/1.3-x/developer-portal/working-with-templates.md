@@ -207,3 +207,98 @@ description: Blocks are the future!
 </html>
 ```
 {% endraw %}
+
+### collections
+Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout.  Collections are configured in you portals `portal.conf.yaml` file.
+
+The example below shows all the necessary configuration/files needed to render a basic `blog` collection made up of individual `posts`.
+
+#### portal.conf.yaml
+
+{% raw %}
+```
+name: Kong Portal
+theme:
+  name: base
+collections:
+  posts:
+    output: true
+    route: /:stub/:collection/:name
+    layout: post.html
+```
+{% endraw %}
+
+Above you can see we have declared a `collections` object which is made up of individual collection configurations.  In this example we are configuring a collection called `posts`.  The renderer will look for a root directory called `_posts` within the `content` folder for individual pages to render.  If we created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
+
+Each configuration item is made up of a few parts:
+- ###### `output`
+  - **required**: false
+  - **type**: `boolean`
+  - **description**: This optional attribute detirmines whether the collections should render or not.  When set to `false` virtual routes for the collection will not be created.
+- ###### `route`
+  - **required**: true
+  - **type**: `string`
+  - **default**: `none`
+  - **description**: The `route` attribute is required and tells the renderer what pattern to generate collection routes from. A collection route should always include at least one valid dynamic namespace that will uniquely identify each collection member.
+    - Any namespace in the route declaration which begins with `:` is considered dynamic.
+    - Only certain dynamic namespaces are recognized by kong as valid:
+      - `:title`: Replaces namespac with a contents `title`, declared in headmatter.
+      - `:name`: Replaces namespace with the filename of a piece of content.
+      - `:collection`: Replaces namespace with name of current collection.
+      - `:stub`: Replaces namespace with value of `headmatter.stub` in each contents headmatter.
+- ###### `route`
+    - **required**: true
+      - **type**: `boolean`
+      - **description**: The `layout` attribute determines what html layout the collections will use to render.  The path root is assessed from within the current themes `layouts` directory.
+
+##### `content/_posts/post1.md`
+
+{% raw %}
+```
+---
+title: Post One
+stub: blog
+---
+
+This is my first post!
+```
+{% endraw %}
+
+
+##### `content/_posts/post2.md`
+
+{% raw %}
+```
+---
+title: Post Two
+stub: blog
+---
+
+This is my second post!
+```
+{% endraw %}
+
+##### `themes/base/layouts/post.html`
+
+{% raw %}
+```html
+<h1>{{ page.title }}</h1>
+<p>{* page.body *}</p>
+```
+{% endraw %}
+
+#### Output:
+
+##### `<kong_portal_gui_url>/blog/posts/post1`
+
+```html
+<h1>Post One</h1>
+<p>This is my first post!</p>
+```
+
+##### `<kong_portal_gui_url>/blog/posts/post2`
+
+```html
+<h1>Post Two</h1>
+<p>This is my second post!</p>
+```
