@@ -190,7 +190,7 @@ Specs are a collection meaning their `layout` and `route` are determined by the 
 
 ## Theme Files
 #### Themes Directory Structure
-The theme directory contains different instances of portal themes, each one of which determines the look and feel of the developer portal via html/css/js.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`.  (setting `theme.name` to `best-theme` will cause the portal to load theme files under `themes/best-theme/**`).
+The theme directory contains different instances of portal themes, each one of which determines the look and feel of the developer portal via html/css/js.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`.  (setting `theme.name` to `best-theme` causes the portal to load theme files under `themes/best-theme/**`).
 
 Each theme file is compromised of a few different folders:
 - **assets/**
