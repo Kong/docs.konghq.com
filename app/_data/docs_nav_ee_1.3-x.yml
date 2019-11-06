@@ -260,51 +260,13 @@
       url: /brain-immunity/service-map
 
 
-- title: APIs and Plugins
+- title: Plugins
   url: https://konghq.com/hub
   items:
-    - text: Plugin Reference
+    - text: OpenID Connect
       items:
-      - text: Canary Release Plugin
-        url: /plugins/canary-release
-      - text: Rate Limiting Plugin
-        url: /plugins/rate-limiting-advanced
-      - text: Request Transformer Plugin
-        url: /plugins/request-transformer
-      - text: OAuth2 Introspection Plugin
-        url: /plugins/oauth2-introspection
-      - text: OpenID Connect Plugin
-        url: /plugins/openid-connect
-      - text: HTTP Proxy Caching
-        url: /plugins/http-proxy-caching
-      - text: Forward Proxy
-        url: /plugins/forward-proxy
-      - text: StatsD Advanced Plugin
-        url: /plugins/statsd-advanced
-      - text: LDAP Auth Advanced Plugin
-        url: /plugins/ldap-authentication-advanced
-      - text: Session Plugin
-        url: /plugins/session
-      - text: Route By Header
-        url: /plugins/route-by-header
-      - text: JWT Signer
-        url: /plugins/jwt-signer
-      - text: Upstream TLS
-        url: /plugins/upstream-tls
-      - text: Vault Auth
-        url: /plugins/vault-auth
-      - text: Request Validator
-        url: /plugins/request-validator
-      - text: DegraphQL
-        url: /plugins/degraphql
-      - text: GraphQL Proxy Cache Advanced
-        url: /plugins/graphql-proxy-cache-advanced
-      - text: GraphQL Rate Limiting Advanced
-        url: /plugins/graphql-rate-limiting-advanced
-    - text: Implementation
-      items:
-        - text: Multiple Authentication Methods
-          url: /plugins/allowing-multiple-authentication-methods
+        - text: OpenID Connect Plugin
+          url: /plugins/openid-connect
         - text: OpenID Connect with Azure AD
           url: /plugins/oidc-azuread
         - text: OpenID Connect with Google
@@ -313,3 +275,53 @@
           url: /plugins/oidc-okta
         - text: OpenID Connect with Auth0
           url: /plugins/oidc-auth0
+    - text: GraphQL
+      items:
+        - text: DegraphQL
+          url: /plugins/degraphql
+        - text: GraphQL Proxy Cache Advanced
+          url: /plugins/graphql-proxy-cache-advanced
+        - text: GraphQL Rate Limiting Advanced
+          url: /plugins/graphql-rate-limiting-advanced
+    - text: Kafka
+        - text: Kafka Log Plugin
+          url: /plugins/kafka-log
+        - text: Kafka Upstream Plugin
+          url: /plugins/kafka-upstream
+    - text: Proxy Cache Advanced Plugin
+      url: /plugins/proxy-cache-advanced
+    - text: Canary Release Plugin
+      url: /plugins/canary-release
+    - text: Rate Limiting Plugin
+      url: /plugins/rate-limiting-advanced
+    - text: Request Transformer Plugin
+      url: /plugins/request-transformer
+    - text: Response Transformer Advanced Plugin
+      url: /plugins/response-transformer-advanced
+    - text: OAuth2 Introspection Plugin
+      url: /plugins/oauth2-introspection
+    - text: HTTP Proxy Caching
+      url: /plugins/http-proxy-caching
+    - text: Forward Proxy
+      url: /plugins/forward-proxy
+    - text: StatsD Advanced Plugin
+      url: /plugins/statsd-advanced
+    - text: LDAP Auth Advanced Plugin
+      url: /plugins/ldap-authentication-advanced
+    - text: Session Plugin
+      url: /plugins/session
+    - text: Route By Header Plugin
+      url: /plugins/route-by-header
+    - text: JWT Signer Plugin
+      url: /plugins/jwt-signer
+    - text: Upstream TLS Plugin
+      url: /plugins/upstream-tls
+    - text: Vault Auth Plugin
+      url: /plugins/vault-auth
+    - text: Request Validator Plugin
+      url: /plugins/request-validator
+    - text: Exit Transformer Plugin
+      url: /plugins/exit-transformer
+    - text: Implementation
+        - text: Multiple Authentication Methods
+          url: /plugins/allowing-multiple-authentication-methods
