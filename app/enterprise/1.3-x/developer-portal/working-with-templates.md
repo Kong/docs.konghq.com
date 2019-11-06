@@ -234,7 +234,7 @@ Each configuration item is made up of a few parts:
 - ###### `output`
   - **required**: false
   - **type**: `boolean`
-  - **description**: This optional attribute detirmines whether the collections should render or not.  When set to `false` virtual routes for the collection will not be created.
+  - **description**: This optional attribute determines whether the collections should render or not.  When set to `false` virtual routes for the collection are not created.
 - ###### `route`
   - **required**: true
   - **type**: `string`
