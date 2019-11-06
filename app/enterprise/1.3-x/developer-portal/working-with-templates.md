@@ -239,7 +239,7 @@ Each configuration item is made up of a few parts:
   - **required**: true
   - **type**: `string`
   - **default**: `none`
-  - **description**: The `route` attribute is required and tells the renderer what pattern to generate collection routes from. A collection route should always include at least one valid dynamic namespace that will uniquely identify each collection member.
+  - **description**: The `route` attribute is required and tells the renderer what pattern to generate collection routes from. A collection route should always include at least one valid dynamic namespace that uniquely identifies each collection member.
     - Any namespace in the route declaration which begins with `:` is considered dynamic.
     - Only certain dynamic namespaces are recognized by kong as valid:
       - `:title`: Replaces namespac with a contents `title`, declared in headmatter.
