@@ -16,7 +16,7 @@ Navigate to `workspaces/default` from the kong-portal-templates root directory t
 
 From `workspaces/default` we can see the different elements that make up a single instance of the kong developer portal:
 - **content/**
-  - The content directory contains files that determine both site structure of the Kong Dev Portal as well as the dynamic content that will be rendered within each page.
+  - The content directory contains files that determine both site structure of the Kong Dev Portal as well as the dynamic content that renders within each page.
 - **specs/**
   - Specs are similar to content in that they contain the data needed to render dynamic content on the page.  In the case of `specs` the files contain valid OAS or Swagger to be rendered as a spec.
 - **themes/**
