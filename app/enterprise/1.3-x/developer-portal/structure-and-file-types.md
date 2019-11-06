@@ -126,7 +126,7 @@ The first thing to notice in the example files contents are the two sets of `---
   - **required**: false
   - **type**: `string`
   - **description**: This optional attribute overrides the generated route Kong assigns to content, and replaces it with the route included here.
-  - **example**: `route: /example/dog` will render the example page above at `<url>/example/dog` instead of the auto generated `/homepage` route.
+  - **example**: `route: /example/dog` renders the example page above at `<url>/example/dog` instead of the auto generated `/homepage` route.
 - `output`
   - **required**: false
   - **type**: `boolean`
