@@ -186,7 +186,7 @@ x-headmatter:
 ...
 ```
 
-Specs are a collection meaning their `layout` and `route` are determined by portal configuration and not the file itself.  Specs are rendered by default by the `system/spec-renderer.html` layout, under the route pattern `/documentation/:name` where name is the name of the particular spec file.  So a spec with a path of `specs/myfirstspec.json` will render in the portal as `/documentation/myfirstspec`.  If you would like to overwrite the hard coded spec collection config, you can do so by including your own in `portal.conf.yaml`.  Check out the Collections section of our `Working with Templates` guide to learn more.
+Specs are a collection meaning their `layout` and `route` are determined by the portal configuration and not the file itself.  Specs are rendered by default by the `system/spec-renderer.html` layout, under the route pattern `/documentation/:name` where name is the name of the particular spec file.  So a spec with a path of `specs/myfirstspec.json` renders in the portal as `/documentation/myfirstspec`.  If you would like to overwrite the hardcoded spec collection config, you can do so by including your own in `portal.conf.yaml`.  Check out the Collections section of our `Working with Templates` guide to learn more.
 
 ## Theme Files
 #### Themes Directory Structure
