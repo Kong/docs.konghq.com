@@ -131,7 +131,7 @@ The first thing to notice in the example files contents are the two sets of `---
   - **required**: false
   - **type**: `boolean`
   - **default**: `true`
-  - **description**: This optional attribute is `true` by default and determines whether a piece of content should be rendered. (no route or page will be created when set to `false`)
+  - **description**: This optional attribute is `true` by default and determines whether a piece of content should be rendered. (no route or page gets created when this value is set to `false`)
 - `stub`
   - **required**: false
   - **type**: `string`
