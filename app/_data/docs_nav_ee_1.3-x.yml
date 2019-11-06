@@ -313,6 +313,8 @@
       url: /plugins/session
     - text: Route By Header Plugin
       url: /plugins/route-by-header
+    - text: Route Transformer Advanced
+      url: /plugins/route-transformer-advanced
     - text: JWT Signer Plugin
       url: /plugins/jwt-signer
     - text: Upstream TLS Plugin
