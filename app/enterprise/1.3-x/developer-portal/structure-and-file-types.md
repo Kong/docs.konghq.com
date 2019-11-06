@@ -78,7 +78,7 @@ collections:
 - **file extensions:** `.txt`, `.md`, `.html`, `.yaml`, `.json`
 
 #### Description
-Content files establish portal site structure, as well as provide its accompanying html layout with metadata and dynamic content at time of render. Content files can be nested in as many sub directories as desired as long as the parent directory is `content/`.
+Content files establish portal site structure, as well as provide its accompanying HTML layout with metadata and dynamic content at the time of render. Content files can be nested in as many subdirectories as desired as long as the parent directory is `content/`.
 
 In addition to providing metainfo and content for the current page at time of render, content files determine the path at which a piece of content can be accessed in the browser.
 
