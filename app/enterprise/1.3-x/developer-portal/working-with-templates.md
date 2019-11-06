@@ -228,7 +228,7 @@ collections:
 ```
 {% endraw %}
 
-Above you can see we have declared a `collections` object which is made up of individual collection configurations.  In this example we are configuring a collection called `posts`.  The renderer will look for a root directory called `_posts` within the `content` folder for individual pages to render.  If we created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
+Above you can see we have declared a `collections` object which is made up of individual collection configurations.  In this example, we are configuring a collection called `posts`.  The renderer looks for a root directory called `_posts` within the `content` folder for individual pages to render.  If we created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
 
 Each configuration item is made up of a few parts:
 - ###### `output`
