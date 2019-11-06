@@ -12,7 +12,7 @@ The Kong Portal templates have been completely revamped to allow for easier cust
 
 ## Directory Structure
 
-Navigate to `workspaces/default` from the kong-portal-templates root directory to access the default portals template files. The relative file structure in this directory will directly map to the file `path` schema attribute.  (`content/homepage.txt` here will map to `content/homepage.txt` in Kong).
+Navigate to `workspaces/default` from the kong-portal-templates root directory to access the default portals template files. The relative file structure in this directory directly maps to the file `path` schema attribute.  (`content/homepage.txt` here maps to `content/homepage.txt` in Kong).
 
 From `workspaces/default` we can see the different elements that make up a single instance of the kong developer portal:
 - **content/**
