@@ -2,12 +2,12 @@
   name: Docker
   type: package
 
-- id: dcos
-  name: DC/OS
-  type: cloud
-
 - id: kubernetes
   name: Kubernetes
+  type: cloud
+
+- id: dcos
+  name: DC/OS
   type: cloud
 
 - id: google-cloud
