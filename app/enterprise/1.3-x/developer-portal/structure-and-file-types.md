@@ -104,7 +104,7 @@ File contents can be broken down into two parts: `headmatter` and `body`
 
 ##### headmatter
 
-The first thing you will notice in the example files contents are the two sets of `---` delimeters at the start.  The text contained within these markers is called `headmatter` and will always be parsed and validated as valid `yaml`.  `headmatter` contains information necessary for a file to render successfully, as well as any information you would like to access within a template.  Any valid `yaml` key value pair will be parsed by Kong and made available within the contents coinciding html template. There are a few reserved attributes that have special meaning to Kong at time of render. They are as follows:
+The first thing to notice in the example files contents are the two sets of `---` delimiters at the start.  The text contained within these markers is called `headmatter` and always gets parsed and validated as valid `yaml`.  `headmatter` contains information necessary for a file to render successfully, as well as any information you would like to access within a template.  Kong parses any valid `yaml` key-value pair and becomes available within the content's coinciding HTML template. There are a few reserved attributes that have special meaning to Kong at the time of render. They are as follows:
 
 - `title`:
   - **required**: false
