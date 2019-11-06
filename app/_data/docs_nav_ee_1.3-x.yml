@@ -284,6 +284,7 @@
         - text: GraphQL Rate Limiting Advanced
           url: /plugins/graphql-rate-limiting-advanced
     - text: Kafka
+      items:
         - text: Kafka Log Plugin
           url: /plugins/kafka-log
         - text: Kafka Upstream Plugin
@@ -323,5 +324,6 @@
     - text: Exit Transformer Plugin
       url: /plugins/exit-transformer
     - text: Implementation
+      items:
         - text: Multiple Authentication Methods
           url: /plugins/allowing-multiple-authentication-methods
