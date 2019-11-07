@@ -23,6 +23,8 @@ From `workspaces/default` we can see the different elements that make up a singl
   - The theme directory contains different themes to be applied to the content of the portal.  Each theme contains html templates, assets, and a config file which sets global styles available to the theme.
 - **portal.conf.yaml**
   - This config file determines which theme the portal uses to render, the name of the portal, as well configuration for special behavior such as redirect paths for user actions like login/logout.
+- **router.conf.yaml (optional)**
+  - This optional config file overrides the portals default routing system with hardcoded values.  This is useful for implementing single page applications, as well as for setting a static site structure.
 
 ## Portal Configuration File
 
@@ -69,7 +71,26 @@ collections:
 - `collections`
   - **required**: false
   - **type**: `object`
-  - **description**: Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. For more information check out the collections section of the Working With Templates guide.
+  - **description**: Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. For more information check out the [collections](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates/#collections) section of our [Working with Templates](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates) guide.
+
+
+## Router Configuration File (Optional)
+
+#### Path
+- **format:** `router.conf.yaml`
+- **file extensions:** `.yaml`
+
+#### Description
+This optional config file overrides the portals default routing system with hardcoded values.  This is useful for implementing single page applications, as well as for setting a static site structure.  There can only be one Router Configuration File, it must be named `router.conf.yaml`, and it must be a direct child of the root directory.
+
+#### Example
+The `router.conf.yaml` file expects sets of key value pairs.  The key should be the route you wish to set, the value should be the content file path you wish that route to resolve to. Routes should begin with a backslash.  `/*` is a reserved route and acts as a catchall/wildcard, if the requested route is not explicitly defined in the config file the portal will resolve to the wildcard route if present.
+
+```yaml
+/*: content/index.html
+/about: content/about.html
+/dashboard: content/dashboard.html
+```
 
 ## Content Files
 
@@ -218,6 +239,8 @@ To access asset files from your templates, keep in mind that Kong assumes a path
 | `themes/light-theme/assets/js/my-script.js` | `<script src="assets/js/my-script.js"></script>` |
 | `themes/light-theme/assets/styles/my-styles.css` | `<link href="assets/styles/normalize.min.css" rel="stylesheet" />` |
 
+>Note: Image files uploaded to the `theme/*/assets/` directory should be `base64` encoded, the images will be decoded when served.
+
 #### Theme Layouts
 
 ##### Path
@@ -246,7 +269,7 @@ The example below shows what a typical layout could look like.
 ```
 {% endraw %}
 
-To learn more about the templating syntax used in this example check out the `templating` section.
+To learn more about the templating syntax used in this example check out our [templating guide](/enterprise/{{page.kong_version}}/developer-portal/working-with-templates).
 
 #### Theme Partials
 
