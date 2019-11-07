@@ -8,15 +8,15 @@ chapter: 4
 
 The Kong Portal templates have been completely revamped to allow for easier customization, clearer separation of concerns between content and layouts, and more powerful hooks into Kong lifecycle/data.  Under the hood we have implemented a flat file CMS built on top of the `https://github.com/bungle/lua-resty-template` library.  This system should feel familiar for anyone who has worked with projects like `jekyll`, `kirby cms`, or `vuepress` in the past.
 
->Note: To follow along with this guide, it is best you clone down the [portal-tempalates-repo](https://github.com/Kong/kong-portal-templates) and checkout the `master` branch. This guide will make the assumption that you are working within a single workspace (the templates repo can host many different sets of portal files per workspace).  Navigate to the `workspaces/default` directory from root to view the default workspaces portal files.
+>Note: To follow along with this guide, it is best to clone the [portal-tempalates-repo](https://github.com/Kong/kong-portal-templates) and check out the `master` branch. This guide makes the assumption that you are working within a single workspace (the templates repo can host many different sets of portal files per workspace).  Navigate to the `workspaces/default` directory from root to view the default workspaces portal files.
 
 ## Directory Structure
 
-Navigate to `workspaces/default` from the kong-portal-templates root directory to access the default portals template files. The relative file structure in this directory will directly map to the file `path` schema attribute.  (`content/homepage.txt` here will map to `content/homepage.txt` in Kong).
+Navigate to `workspaces/default` from the kong-portal-templates root directory to access the default portals template files. The relative file structure in this directory directly maps to the file `path` schema attribute.  (`content/homepage.txt` here maps to `content/homepage.txt` in Kong).
 
 From `workspaces/default` we can see the different elements that make up a single instance of the kong developer portal:
 - **content/**
-  - The content directory contains files that determine both site structure of the Kong Dev Portal as well as the dynamic content that will be rendered within each page.
+  - The content directory contains files that determine both site structure of the Kong Dev Portal as well as the dynamic content that renders within each page.
 - **specs/**
   - Specs are similar to content in that they contain the data needed to render dynamic content on the page.  In the case of `specs` the files contain valid OAS or Swagger to be rendered as a spec.
 - **themes/**
@@ -67,7 +67,7 @@ collections:
 - `redirect`
   - **required**: true
   - **type**: `object`
-  - **description**: The redirect object informs kong how to redirect the user after certain actions.If one of these values is not set, Kong will serve a default template based off of the action. Each key represents the name of the action taking place, the value represents the route the user will be redirected to. 
+  - **description**: The redirect object informs kong how to redirect the user after certain actions. If one of these values is not set, Kong serves a default template based off of the action. Each key represents the name of the action taking place, the value represents the route to which the application redirects the user. 
 - `collections`
   - **required**: false
   - **type**: `object`
@@ -99,7 +99,7 @@ The `router.conf.yaml` file expects sets of key value pairs.  The key should be 
 - **file extensions:** `.txt`, `.md`, `.html`, `.yaml`, `.json`
 
 #### Description
-Content files establish portal site structure, as well as provide its accompanying html layout with metadata and dynamic content at time of render. Content files can be nested in as many sub directories as desired as long as the parent directory is `content/`.
+Content files establish portal site structure, as well as provide its accompanying HTML layout with metadata and dynamic content at the time of render. Content files can be nested in as many subdirectories as desired as long as the parent directory is `content/`.
 
 In addition to providing metainfo and content for the current page at time of render, content files determine the path at which a piece of content can be accessed in the browser.
 
@@ -125,7 +125,7 @@ File contents can be broken down into two parts: `headmatter` and `body`
 
 ##### headmatter
 
-The first thing you will notice in the example files contents are the two sets of `---` delimeters at the start.  The text contained within these markers is called `headmatter` and will always be parsed and validated as valid `yaml`.  `headmatter` contains information necessary for a file to render successfully, as well as any information you would like to access within a template.  Any valid `yaml` key value pair will be parsed by Kong and made available within the contents coinciding html template. There are a few reserved attributes that have special meaning to Kong at time of render. They are as follows:
+The first thing to notice in the example files contents are the two sets of `---` delimiters at the start.  The text contained within these markers is called `headmatter` and always gets parsed and validated as valid `yaml`.  `headmatter` contains information necessary for a file to render successfully, as well as any information you would like to access within a template.  Kong parses any valid `yaml` key-value pair and becomes available within the content's coinciding HTML template. There are a few reserved attributes that have special meaning to Kong at the time of render. They are as follows:
 
 - `title`:
   - **required**: false
@@ -147,19 +147,19 @@ The first thing you will notice in the example files contents are the two sets o
   - **required**: false
   - **type**: `string`
   - **description**: This optional attribute overrides the generated route Kong assigns to content, and replaces it with the route included here.
-  - **example**: `route: /example/dog` will render the example page above at `<url>/example/dog` instead of the auto generated `/homepage` route.
+  - **example**: `route: /example/dog` renders the example page above at `<url>/example/dog` instead of the auto generated `/homepage` route.
 - `output`
   - **required**: false
   - **type**: `boolean`
   - **default**: `true`
-  - **description**: This optional attribute is `true` by default and determines whether a piece of content should be rendered. (no route or page will be created when set to `false`)
+  - **description**: This optional attribute is `true` by default and determines whether a piece of content should be rendered. (no route or page gets created when this value is set to `false`)
 - `stub`
   - **required**: false
   - **type**: `string`
   - **description**: Used by `collection` config to determine custom routing.  You can read more about Collections in the collections section of the _working with templates_ guide.
 
 ##### body
-The information located under headmatter represents the content body.  Body content is freeform and will be parsed as by the file extension included in the file path.  In the case of the example above, the file is `.txt` and will be available in the template as such.
+The information located under headmatter represents the content body.  Body content is freeform and gets parsed as by the file extension included in the file path.  In the case of the example above, the file is `.txt` and is available in the template as such.
 
 ## Spec Files
 
@@ -207,11 +207,11 @@ x-headmatter:
 ...
 ```
 
-Specs are a collection meaning their `layout` and `route` are determined by portal configuration and not the file itself.  Specs are rendered by default by the `system/spec-renderer.html` layout, under the route pattern `/documentation/:name` where name is the name of the particular spec file.  So a spec with a path of `specs/myfirstspec.json` will render in the portal as `/documentation/myfirstspec`.  If you would like to overwrite the hard coded spec collection config, you can do so by including your own in `portal.conf.yaml`.  Check out the Collections section of our `Working with Templates` guide to learn more.
+Specs are a collection meaning their `layout` and `route` are determined by the portal configuration and not the file itself.  Specs are rendered by default by the `system/spec-renderer.html` layout, under the route pattern `/documentation/:name` where name is the name of the particular spec file.  So a spec with a path of `specs/myfirstspec.json` renders in the portal as `/documentation/myfirstspec`.  If you would like to overwrite the hardcoded spec collection config, you can do so by including your own in `portal.conf.yaml`.  Check out the Collections section of our `Working with Templates` guide to learn more.
 
 ## Theme Files
 #### Themes Directory Structure
-The theme directory contains different instances of portal themes, each one of which determines the look and feel of the developer portal via html/css/js.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`.  (setting `theme.name` to `best-theme` will cause the portal to load theme files under `themes/best-theme/**`).
+The theme directory contains different instances of portal themes, each one of which determines the look and feel of the developer portal via html/css/js.  Which theme is used at time of render is determined by setting `theme.name` within `portal.conf.yaml`.  (setting `theme.name` to `best-theme` causes the portal to load theme files under `themes/best-theme/**`).
 
 Each theme file is compromised of a few different folders:
 - **assets/**
@@ -304,7 +304,7 @@ The example below shows the `header.html` partial referenced from the example ab
 - **file extensions:** `.yaml`
 
 ##### Description
-The Theme Configuration File determines color/font/image values a theme will make available for templates/css at time of render.  It is required in the root of every theme.  There can only be one Theme Configuration File, it must be named `theme.conf.yaml`, and it must be a direct child of the themes root directory.
+The Theme Configuration File determines color/font/image values a theme makes available for templates/CSS at the time of render.  It is required in the root of every theme.  There can only be one Theme Configuration File, it must be named `theme.conf.yaml`, and it must be a direct child of the themes root directory.
 
 
 

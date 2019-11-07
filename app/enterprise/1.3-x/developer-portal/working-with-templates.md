@@ -228,18 +228,18 @@ collections:
 ```
 {% endraw %}
 
-Above you can see we have declared a `collections` object which is made up of individual collection configurations.  In this example we are configuring a collection called `posts`.  The renderer will look for a root directory called `_posts` within the `content` folder for individual pages to render.  If we created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
+Above you can see we have declared a `collections` object which is made up of individual collection configurations.  In this example, we are configuring a collection called `posts`.  The renderer looks for a root directory called `_posts` within the `content` folder for individual pages to render.  If we created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
 
 Each configuration item is made up of a few parts:
 - ###### `output`
   - **required**: false
   - **type**: `boolean`
-  - **description**: This optional attribute detirmines whether the collections should render or not.  When set to `false` virtual routes for the collection will not be created.
+  - **description**: This optional attribute determines whether the collections should render or not.  When set to `false` virtual routes for the collection are not created.
 - ###### `route`
   - **required**: true
   - **type**: `string`
   - **default**: `none`
-  - **description**: The `route` attribute is required and tells the renderer what pattern to generate collection routes from. A collection route should always include at least one valid dynamic namespace that will uniquely identify each collection member.
+  - **description**: The `route` attribute is required and tells the renderer what pattern to generate collection routes from. A collection route should always include at least one valid dynamic namespace that uniquely identifies each collection member.
     - Any namespace in the route declaration which begins with `:` is considered dynamic.
     - Only certain dynamic namespaces are recognized by kong as valid:
       - `:title`: Replaces namespac with a contents `title`, declared in headmatter.
@@ -249,7 +249,7 @@ Each configuration item is made up of a few parts:
 - ###### `route`
     - **required**: true
       - **type**: `boolean`
-      - **description**: The `layout` attribute determines what html layout the collections will use to render.  The path root is assessed from within the current themes `layouts` directory.
+      - **description**: The `layout` attribute determines what HTML layout the collections use to render.  The path root is assessed from within the current themes `layouts` directory.
 
 ##### `content/_posts/post1.md`
 
