@@ -239,7 +239,7 @@ To access asset files from your templates, keep in mind that Kong assumes a path
 | `themes/light-theme/assets/js/my-script.js` | `<script src="assets/js/my-script.js"></script>` |
 | `themes/light-theme/assets/styles/my-styles.css` | `<link href="assets/styles/normalize.min.css" rel="stylesheet" />` |
 
->Note: Image files uploaded to the `theme/*/assets/` directory should be `base64` encoded, the images will be decoded when served.
+>Note: Image files uploaded to the `theme/*/assets/` directory should either be a svg text string or `base64` encoded, 'base64` images will be decoded when served.
 
 #### Theme Layouts
 
