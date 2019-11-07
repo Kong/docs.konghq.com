@@ -170,7 +170,7 @@ The information located under headmatter represents the content body.  Body cont
 #### Description
 Specs are similar to `content` files in that they provide the dynamic data needed to render a page, as well as any metadata a user wishes to provide as `headmatter`.  The format in which these are provided to the Portal differs from `content` files, which can be seen in the example below.
 
->It is recommended to keep spec folder structure flat.  Spec files must be valid OAS or Swagger `.yaml` or `.json` files.
+>It is recommended to keep spec folder structure flat.  Spec files must be valid OAS or Swagger `.yaml`/`.yml` or `.json` files.
 
 #### Contents
 
