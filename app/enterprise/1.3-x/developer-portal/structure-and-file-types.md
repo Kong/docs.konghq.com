@@ -189,7 +189,7 @@ x-headmatter
 ...
 ```
 
-Spec file contents themselves should be valid OAS or Swagger specifications.  If you would like to inject headmatter into the specification, you can do so by including an `x-headmatter` key to the root of the spec object.  This may be useful if you wanted to for example provide your own renderer template via `headmatter.layout` or override the specs default route via `headmatter.route`. 
+Spec file contents themselves should be valid OAS or Swagger specifications.  If you would like to inject headmatter into the specification, you can do so by including an `x-headmatter` key to the root of the spec object.  This may be useful if you wanted to for example provide your own renderer template via `x-headmatter.layout` or override the specs default route via `x-headmatter.route`. 
 
 Example:
 ```
