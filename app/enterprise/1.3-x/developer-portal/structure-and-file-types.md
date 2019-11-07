@@ -89,7 +89,7 @@ The `router.conf.yaml` file expects sets of key value pairs.  The key should be 
 ```yaml
 /*: content/index.txt
 /about: content/about/index.txt
-/dashboard: content/dashboard.html
+/dashboard: content/dashboard.txt
 ```
 
 ## Content Files
