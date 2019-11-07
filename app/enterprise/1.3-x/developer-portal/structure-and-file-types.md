@@ -87,7 +87,7 @@ This optional config file overrides the portals default routing system with hard
 The `router.conf.yaml` file expects sets of key value pairs.  The key should be the route you wish to set, the value should be the content file path you wish that route to resolve to. Routes should begin with a backslash.  `/*` is a reserved route and acts as a catchall/wildcard, if the requested route is not explicitly defined in the config file the portal will resolve to the wildcard route if present.
 
 ```yaml
-/*: content/index.html
+/*: content/index.txt
 /about: content/about.html
 /dashboard: content/dashboard.html
 ```
