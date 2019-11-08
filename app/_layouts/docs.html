@@ -14,17 +14,17 @@ id: documentation
       <nav class="docs-navigation">
         <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong</a>
         <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
+        <a href="/studio" {% if page.edition=='studio' %} class="active" {% endif %}>Kong Studio</a>
         <span class="sidebar-toggle">Open Sidebar</span>
       </nav>
       <div class="page-header-icon">
-        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{%else%}-ce{% endif %}.svg"
+        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{% else if page.edition == 'studio' %}-studio{% else %}-ce{% endif %}.svg"
           alt="Documentation" />
       </div>
       <div class="page-header-title">
         <h1>{{page.title}}</h1>
       </div>
 
-      {% if page.kong_versions.size > 1 %}
       <div class="versions-dropdown dropdown page-header-right {% if page.edition=='enterprise' %} page-header-right-enterprise {% endif %}">
         <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
@@ -47,7 +47,6 @@ id: documentation
           <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
         </div>
       </div>
-      {% endif %}
     </div>
   </header>
 
@@ -56,8 +55,10 @@ id: documentation
       <span class="close-sidebar"></span>
       {% if page.edition == 'community' %}
       {% assign docs_url = '/' | append: page.kong_version %}
-      {% else %}
+      {% else if page.edition == 'enterprise' %}
       {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
+      {% else if page.edition == 'studio' %}
+      {% assign docs_url = '/' | append: 'studio/' | append: page.kong_version %}
       {% endif %}
 
       {% for nav in page.nav_items %}
@@ -171,7 +172,30 @@ id: documentation
   docsearch({
     appId: 'T5JKD83LWT',
     apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'private_RC',
+    indexName: 'prod_EE',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 5,
+      'facetFilters': ["version: {{page.kong_version}}"]
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+
+</script>
+{% endif %}
+
+{% if page.edition == 'enterprise' %}
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_Studio',
     inputSelector: '#getkong-algolia-search-input',
     algoliaOptions: {
       hitsPerPage: 5,

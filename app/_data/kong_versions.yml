@@ -267,3 +267,7 @@
     postgres: "9.5+"
     openresty: "1.13.6.2"
   lua_doc: true
+-
+  release: "1.0.x"
+  version: "1.0"
+  edition: "studio"

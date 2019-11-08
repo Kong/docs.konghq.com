@@ -64,8 +64,4 @@ DEPENDENCIES
   rouge (= 3.12.0)
 
 BUNDLED WITH
-<<<<<<< HEAD
-   1.17.3
-=======
    2.0.2
->>>>>>> public_repo/master
