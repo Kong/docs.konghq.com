@@ -143,7 +143,8 @@ repository will allow you to do both easily.
 - [azure-functions](https://github.com/Kong/kong-plugin-azure-functions):
   Bumped to 0.4 for minor fixes and performance improvements.
 - [kubernetes-sidecar-injector](https://github.com/Kong/kubernetes-sidecar-injector):
-  The plugin is now more resilient to Kubernetes schema changes.
+  The plugin is now more resilient to Kubernetes schema changes. Note that it is
+  now deprecated, and that Kong recommends using kuma.io instead.
 - [serverless-functions](https://github.com/Kong/kong-plugin-serverless-functions):
     - Bumped to 0.3 for minor performance improvements.
     - Functions can now have upvalues.

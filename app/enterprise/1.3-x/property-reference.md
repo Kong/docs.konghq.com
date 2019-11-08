@@ -1403,6 +1403,52 @@ admin_gui_session_conf = { "cookie_name": "kookie", "secret": "changeme"}
 Defines the name of the HTTP request header from which the Admin API will
 attempt to identify the Kong Admin user.
 
+<<<<<<< HEAD
+=======
+### admin_gui_auth_password_complexity
+
+**Default:** `nil`
+
+**Description:**
+
+When `admin_gui_auth = basic-auth`, this property defines
+the rules required for Kong Manager passwords. Choose
+from preset rules or write your own.
+
+Example using preset rules:
+
+`admin_gui_auth_password_complexity = { "kong-preset": "min_8" }`
+
+All values for kong-preset require the password to contain
+characters from at least three of the following categories:
+1) Uppercase characters (A through Z)
+2) Lowercase characters (a through z)
+3) Base-10 digits (0 through 9)
+4) Special characters (for example, &, $, #, %)
+
+|Value to Use | Minimum Length|
+|-------------|---------------|
+|min_8        |     8         |
+|min_12       |    12         |
+|min_20       |    20         |
+
+To write your own rules, see
+https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html.
+
+NOTE: Only keywords "min", "max" and "passphrase" are supported.
+
+Example:
+
+`admin_gui_auth_password_complexity = { "min": "disabled,24,11,9,8" }`
+
+### admin_gui_auth_login_attempts 
+
+**Default:** `0`
+
+Number of times a user can attempt to log in to Kong Manager. `0` entails that 
+infinite attempts are allowed.
+
+>>>>>>> public_repo/master
 ## Vitals
 
 

@@ -8,7 +8,7 @@ description: |
 
 type: plugin
 categories:
-  - multi-protocol
+  - logging
 
 kong_version_compatibility:
     community_edition:

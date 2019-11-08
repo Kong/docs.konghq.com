@@ -29,7 +29,7 @@ For Kong Enterprise `<= 0.36`, or for `legacy mode` on Kong Enterprise `>= 1.3` 
 
 ### Usage
 
-The easiest way to start is by cloning the [portal-templates repo][templates] dev-master branch locally.
+The easiest way to start is by cloning the [portal-templates repo][templates] master branch locally.
 
 Then edit `workspaces/default/cli.conf.yaml` to set workspace `name` and `rbac_token` to match your setup.
 
