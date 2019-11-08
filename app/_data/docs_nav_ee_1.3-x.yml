@@ -277,6 +277,8 @@
           url: /plugins/oidc-auth0
     - text: GraphQL
       items:
+        - text: GraphQL Quickstart
+          url: /plugins/graphql-quickstart
         - text: DegraphQL
           url: /plugins/degraphql
         - text: GraphQL Proxy Cache Advanced
