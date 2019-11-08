@@ -52,7 +52,7 @@ $ curl -i -X POST http://kong:8001/services/example-service/plugins \
 
 The GraphQL Rate Limiting Advanced plugin supports two rate-limiting strategies. The default strategy will try to estimate cost on queries by counting the nesting of nodes. The default strategy is meant as a good middle ground for general GraphQL queries, where it's difficult to assert a clear cost strategy, so every operation has a cost of 1.
 
-A more advanced strategy is available for GraphQL schemas that enforce quantifier arguments on any connection, providing a good approximation on the number of nodes visited for satisfying a query. Any query without decorated quantifiers has a cost of 1. It is roughly based on GitHub's GraphQL resource limits.
+A more advanced strategy is available for GraphQL schemas that enforce quantifier arguments on any connection, providing a good approximation on the number of nodes visited for satisfying a query. Any query without decorated quantifiers has a cost of 1. It is roughly based on [GitHub's GraphQL resource limits](https://developer.github.com/v4/guides/resource-limitations/).
 
 Read more about rate-limiting here: [GraphQL Rate Limiting Advanced Plugin](/enterprise/{page.kong_version}/plugins/
 
