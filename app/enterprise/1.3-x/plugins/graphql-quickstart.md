@@ -58,4 +58,4 @@ Read more about rate-limiting here: [GraphQL Rate Limiting Advanced Plugin](/ent
 
 ### New upstream
 
-We have prepared a quickstart guide that will help you build your new GraphQL service on top of Kong and Apollo.
+We have prepared a [quickstart guide](https://github.com/Kong/kong-apollo-quickstart) that will help you build your new GraphQL service on top of Kong and Apollo.
