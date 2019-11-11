@@ -1,4 +1,4 @@
 - title: Kong Studio
   items:
-    - text: Release Notes
-      url: /release-notes
+    - text: Deploy to Dev Portal
+      url: /deploy-to-dev-portal
