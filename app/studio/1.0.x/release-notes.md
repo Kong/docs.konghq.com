@@ -11,10 +11,10 @@ The capability to download Kong Studio is included with you Kong Enterprise plan
 
 ## Notable Features
 
-* [OpenAPI Spec Editor](/openapi-spec-editor)
-* [Git Sync](/git-sync)
-* [Generate Requests from Specs](/generate-requests-from-specs)
-* [Deploy To Kong's Developer Portal](/deploy-to-kongs-developer-portal)
+* [OpenAPI Spec Editor](/#openapi-spec-editor)
+* [Git Sync](/#git-sync)
+* [Generate Requests from Specs](/#generate-requests-from-specs)
+* [Deploy To Kong's Developer Portal](/#deploy-to-kongs-developer-portal)
 
 
 ### OpenAPI Spec Editor
@@ -28,7 +28,9 @@ Kong Studio ships with a built-in editor and includes the features you need for 
 
 ### Git Sync
 
-Kong Studio is built for the API DevOps lifecycle, where infrastructure and configuration is code. We enable this through a tight integration with git. Regardless of whether you’re using Github, Bitbucket, or Gitlab, you can import, commit, create branches, swap branches, and more directly from Kong Studio. [Learn More...](/studio/{{page.kong_version}}/git-sync)
+Kong Studio is built for the API DevOps lifecycle, where infrastructure and configuration is code. We enable this through a tight integration with git. Regardless of whether you’re using Github, Bitbucket, or Gitlab, you can import, commit, create branches, swap branches, and more directly from Kong Studio.
+
+[Learn More...](/studio/{{page.kong_version}}/git-sync)
 
 ![Git Sync](https://doc-assets.konghq.com/studio/1.0/release-notes/gitsync.gif)
 

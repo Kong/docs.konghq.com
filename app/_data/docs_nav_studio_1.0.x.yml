@@ -1,7 +1,18 @@
 - title: Kong Studio
+  url: /overview
   items:
     - text: Release Notes
       url: /release-notes
+    - text: Getting Started
+      url: /getting-started
+    - text: Download Kong Studio
+      url: /download-kong-studio
+    - text: Installation
+      url: /installation
+    - text: Editing Spec Files
+      url: /editing-spec-files
+    - text: Debugging with Insomnia
+      url: /debugging-with-insomnia
     - text: Git Sync with Studio
       url: /git-sync
     - text: Deploy to Dev Portal

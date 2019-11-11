@@ -25,6 +25,7 @@ To configure a repository, click the “Setup Git Sync” button at the bottom o
 
 Once complete, click “Done” and the repository settings will be persisted for future operations. Author details and token can be updated after if needed.
 
+
 ### Cloning an Existing Repository
 
 If a team member has already pushed a Studio project to a remote repository, it can be cloned via the main menu in the top-left of the application. Here, you will see the same Repository Settings dialog to configure remote access.
@@ -49,6 +50,7 @@ Once we create the commit, we can view it in the repository history.
 And once we have committed resources to the repository, the next time we modify them they will appear as modified objects instead of unversioned and will be automatically selected as candidates for the commit.
 
 ![Modify Object](https://doc-assets.konghq.com/studio/1.0/git-sync/06-commits-history.png)
+
 
 ### Pushing Changes Remotely
 
