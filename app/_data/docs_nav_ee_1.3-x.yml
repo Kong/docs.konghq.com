@@ -18,6 +18,8 @@
           url: /deployment/installation/centos
         - text: Amazon Linux
           url: /deployment/installation/amazon-linux
+    - text: Kong Cloud
+      url: /kong-cloud
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
