@@ -5,7 +5,7 @@ layout: reference
 
 ## Kong Cloud Proxy TLS
 
-Kong Cloud enforces HTTPS for all of the services that it operates, including Admin API, Kong Manager, and Kong Developer Portal. Kong Cloud does not enforce HTTPS for traffic destined for the customer's proxy, since certificate management and associated domains are under the customer's control. To enforce HTTPS on upstream traffic, use the certificate and SNI objects through the Admin API.
+Kong Cloud enforces HTTPS for all of the services that it operates, including Admin API, Kong Manager, and Kong Developer Portal. Kong Cloud does not enforce HTTPS for traffic destined for the customer's proxy, since certificate management and associated domains are under the customer's control. To enforce HTTPS on upstream traffic, use the [certificate](https://docs.konghq.com/enterprise/1.3-x/admin-api/#certificate-object) and [SNI](https://docs.konghq.com/enterprise/1.3-x/admin-api/#sni-object.) objects through the Admin API.
 
 For non-proxy traffic, Kong Cloud is the terminus for the request, and Kong controls the protocol and shape of traffic carefully. Additionally, Kong generally considers non-proxy traffic to be sensitive (e.g., Admin API requests, login credentials to Kong Manager). Kong Cloud accomplishes enforcement through HTTP → HTTPS redirects, and the use of the HSTS response header. Because Kong Cloud controls the domain hosting the endpoints for these services, e.g., https://manager-client.kong-cloud.com, Kong Cloud maintains the TLS certificate for this service since Kong owns the domain.
 
