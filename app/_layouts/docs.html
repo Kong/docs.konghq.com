@@ -18,8 +18,15 @@ id: documentation
         <span class="sidebar-toggle">Open Sidebar</span>
       </nav>
       <div class="page-header-icon">
-        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{% else if page.edition == 'studio' %}-studio{% else %}-ce{% endif %}.svg"
-          alt="Documentation" />
+          {% if page.edition == 'community' %}
+          <img src="/assets/images/icons/icn-documentation-ce.svg" alt="Documentation" />
+          {% endif %}
+          {% if page.edition == 'enterprise' %}
+          <img src="/assets/images/icons/icn-documentation-ee.svg" alt="Documentation" />
+          {% endif %}
+          {% if page.edition == 'studio' %}
+          <img src="/assets/images/icons/icn-documentation-studio.svg" alt="Documentation" />
+          {% endif %}
       </div>
       <div class="page-header-title">
         <h1>{{page.title}}</h1>
@@ -55,9 +62,11 @@ id: documentation
       <span class="close-sidebar"></span>
       {% if page.edition == 'community' %}
       {% assign docs_url = '/' | append: page.kong_version %}
-      {% else if page.edition == 'enterprise' %}
+      {% endif %}
+      {% if page.edition == 'enterprise' %}
       {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
-      {% else if page.edition == 'studio' %}
+      {% endif %}
+      {% if page.edition == 'studio' %}
       {% assign docs_url = '/' | append: 'studio/' | append: page.kong_version %}
       {% endif %}
 
