@@ -1,9 +1,9 @@
 ---
-title: Git Sync Studio
+title: Git Sync with Kong Studio
 ---
 
 
-### Introduction
+## Introduction
 
 Kong Studio is a collaborative tool for creating, managing, and sharing API specifications. This collaboration is built on the ubiquitous version control system [Git](https://git-scm.com/), which was chosen to allow Kong Studio to fit within the existing editing, review, testing, and deployment workflows that companies and teams already have in place for source code.
 
