@@ -18,7 +18,7 @@ id: documentation
         <span class="sidebar-toggle">Open Sidebar</span>
       </nav>
       <div class="page-header-icon">
-        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{% else if page.edition == 'studio' %}-studio{% else %}-ce{% endif %}.svg"
+        <img src="/assets/images/icons/icn-documentation{% if page.edition == 'enterprise' %}-ee{% else if page.edition == 'community' %}-ce{% else %}-studio{% endif %}.svg"
           alt="Documentation" />
       </div>
       <div class="page-header-title">
@@ -55,9 +55,11 @@ id: documentation
       <span class="close-sidebar"></span>
       {% if page.edition == 'community' %}
       {% assign docs_url = '/' | append: page.kong_version %}
-      {% else if page.edition == 'enterprise' %}
+      {% endif %}
+      {% if page.edition == 'enterprise' %}
       {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
-      {% else if page.edition == 'studio' %}
+      {% endif %}
+      {% if page.edition == 'studio' %}
       {% assign docs_url = '/' | append: 'studio/' | append: page.kong_version %}
       {% endif %}
 
