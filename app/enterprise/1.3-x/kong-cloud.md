@@ -1,5 +1,6 @@
 ---
 title: Kong Cloud
+toc: false
 ---
 
 ## Kong Cloud Proxy TLS
