@@ -18,13 +18,13 @@ layout: changelog
   installing Kong from one of our distribution packages, you are not affected
   by this change. See [#4382](https://github.com/Kong/kong/pull/4382).
   With this new version comes a number of improvements:
-  1. The new [ngx\_http\_grpc\_module](https://nginx.org/en/docs/http/ngx_http_grpc_module.html).
-  2. Configurable of upstream keepalive connections by timeout or number of
-     requests.
-  3. Support for ARM64 architectures.
-  4. LuaJIT GC64 mode for x86_64 architectures, raising the LuaJIT GC-managed
-     memory limit from 2GB to 128TB and producing more predictable GC
-     performance.
+  * The new [ngx\_http\_grpc\_module](https://nginx.org/en/docs/http/ngx_http_grpc_module.html).
+  * Configurable of upstream keepalive connections by timeout or number of
+    requests.
+  * Support for ARM64 architectures.
+  * LuaJIT GC64 mode for x86_64 architectures, raising the LuaJIT GC-managed
+    memory limit from 2GB to 128TB and producing more predictable GC
+    performance.
 - From this version on, the new
   [lua-kong-nginx-module](https://github.com/Kong/lua-kong-nginx-module) Nginx
   module is **required** to be built into OpenResty for Kong to function
