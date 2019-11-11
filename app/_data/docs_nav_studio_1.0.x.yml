@@ -1,4 +1,6 @@
 - title: Kong Studio
   items:
+    - text: Git Sync with Studio
+      url: /git-sync
     - text: Deploy to Dev Portal
       url: /deploy-to-dev-portal
