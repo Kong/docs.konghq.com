@@ -4,7 +4,7 @@
     - text: Release Notes
       url: /release-notes
     - text: Changelog
-      url: /changelog
+      url: /studio/changelog
       absolute_url: true
 - title: Getting Started
   url: /overview
