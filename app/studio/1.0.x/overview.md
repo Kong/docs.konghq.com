@@ -38,8 +38,19 @@ Design, edit, and debug API specification files with Kong Studio! Features in Ko
         <a href="/studio/1.0.x/editing-specs">Editing Spec Files</a>
     </h3>
     <p></p>
-    <a href="/studio/1.0.x/download-kong-studio">
+    <a href="/studio/1.0.x/editing-specs">
         Install Kong Studio on Mac, Windows, or Linux &rarr;
+    </a>
+  </div>
+
+  <div class="docs-grid-block">
+    <h3>
+        <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
+        <a href="/studio/1.0.x/graphql">GraphQL</a>
+    </h3>
+    <p></p>
+    <a href="/studio/1.0.x/graphql">
+        Use GraphQL with Kong Studio and Insomnia &rarr;
     </a>
   </div>
 

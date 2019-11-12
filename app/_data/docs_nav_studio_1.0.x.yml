@@ -13,6 +13,8 @@
       url: /download-install
     - text: Editing Spec Files
       url: /editing-spec
+    - text: Using GraphQL
+      url: /graphql
     - text: Debugging with Insomnia
       url: /debugging-with-insomnia
     - text: Git Sync with Studio

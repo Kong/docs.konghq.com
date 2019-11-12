@@ -26,7 +26,6 @@ Kong Studio ships with a built-in editor and includes the features you need for 
 
 ![OpenAPI Spec Editor](https://doc-assets.konghq.com/studio/1.0/release-notes/openapi-spec-editor.gif)
 
-
 ### Git Sync
 
 Kong Studio is built for the API DevOps lifecycle, where infrastructure and configuration is code. We enable this through tight integration with Git. Regardless of whether you’re using GitHub, Bitbucket, or GitLab, you can import, commit, create branches, swap branches, and more directly from Kong Studio.
@@ -43,6 +42,13 @@ Kong Studio also provides tight integration with the Insomnia core, as you desig
 [Learn More...](/studio/{{page.kong_version}}/debugging-with-insomnia)
 
 ![Debug Specs](https://doc-assets.konghq.com/studio/1.0/release-notes/debug.gif)
+
+
+### GraphQL Support
+
+Kong Studio will detect GraphQL and automatically format requests and responses.
+
+[Learn More...](/studio/{{page.kong_version}}/graphql)
 
 
 ### Deploy to Kong's Developer Portal
