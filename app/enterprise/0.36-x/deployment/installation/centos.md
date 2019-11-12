@@ -64,6 +64,22 @@ To complete this guide you will need:
 
 ## Step 2. Install Kong Enterprise
 
+1. Verify the Kong Enterprise Signature
+
+    Kong's official Key ID is 2cac36c51d5f3726. Verify it by querying the package file:
+
+    ```
+    $ rpm -qpi kong-enterprise-edition-0.36.el7.noarch.rpm | grep Signature
+    ```
+    
+    Download Kong's official public key and ensure the integrity of the package:
+    
+    ```
+    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ rpm --import kong.key
+    $ rpm -K kong-enterprise-edition-0.36.el7.noarch.rpm
+    ```
+
 1. Install Kong Enterprise
 
     ```
