@@ -1,5 +1,3 @@
 ---
 title: Download Kong Studio
 ---
-
-

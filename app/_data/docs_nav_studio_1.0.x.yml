@@ -10,7 +10,7 @@
     - text: Installation
       url: /installation
     - text: Editing Spec Files
-      url: /editing-spec-files
+      url: /editing-spec
     - text: Debugging with Insomnia
       url: /debugging-with-insomnia
     - text: Git Sync with Studio
