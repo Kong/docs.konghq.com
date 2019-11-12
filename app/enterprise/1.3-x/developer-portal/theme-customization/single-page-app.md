@@ -19,7 +19,7 @@ To view the basic example Angular template from this guide visit the [`example/s
 
 A Single Page App (SPA) is a website that loads all HTML, Javascript, and CSS on the first load. Instead of loading subsequent pages from the server, javascript is used to dynamically change the page content. You may wish to use a SPA in Dev Portal if you have a preexisting SPA you want to integrate with portal, or you are trying to achieve a more application like experience across many pages. A SPA takes control of routing from the server, and handles it client-side instead.
 
-If you simply wish to add interactive javascript to a few pages, it may make more sense to add the javascript to only layouts that require it, and maintain server side rendering. [Learn more](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/adding-javascript-assets) about adding Javascipt to a layout without implementing a SPA.
+Custom javascript can also be added to run only on specific layouts, allowing you to maintain server-side rendering. [Learn more](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/adding-javascript-assets) about adding javascript to a layout without implementing a SPA.
 
 ### Making Choices
 
@@ -28,7 +28,8 @@ We recommend Catalog and Spec routes not be handled by SPA
 If you are using Authentication, then you probably also want to leave server-side rendering for any account pages
 
 ### Getting Started
-Clone down the portal-templates repo
+
+Clone the [portal-templates](https://github.com/Kong/kong-portal-templates) repo
 
 Create a file called `router.conf.yaml` in `workspaces/default` This file will override the default routing, allowing you to control routing via javascript.
 
@@ -137,6 +138,4 @@ From the root folder of the templates repo
 ```
 portal deploy default
 ```
-
-
 
