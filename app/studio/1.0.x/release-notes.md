@@ -12,7 +12,7 @@ The capability to download Kong Studio is included with your Kong Enterprise pla
 ## Notable Features
 
 * [OpenAPI Spec Editor](#openapi-spec-editor)
-* [GraphQL Support](#graphl-support)
+* [GraphQL Support](#graphql-support)
 * [Git Sync](#git-sync)
 * [Generate Requests from Specs](#generate-requests-from-specs)
 * [Deploy To Kong's Developer Portal](#deploy-to-kongs-developer-portal)
