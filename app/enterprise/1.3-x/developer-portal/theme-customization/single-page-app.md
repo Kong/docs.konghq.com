@@ -17,7 +17,7 @@ To view the basic example Angular template from this this guide view the [`examp
 
 ### What is a SPA
 
-A Single Page App(SPA) is a website that loads all the HTML, Javascript, and CSS on the first load. Instead of loading subsequent pages from the server, javascript is used to dynamically change the page content. You may wish to use a SPA in Dev Portal if you have a preexisting SPA you want to integrate with portal, or you are trying to achieve a more application like experience across many pages. A SPA takes control of routing from the server, and handles it client side instead.
+A Single Page App (SPA) is a website that loads all HTML, Javascript, and CSS on the first load. Instead of loading subsequent pages from the server, javascript is used to dynamically change the page content. You may wish to use a SPA in Dev Portal if you have a preexisting SPA you want to integrate with portal, or you are trying to achieve a more application like experience across many pages. A SPA takes control of routing from the server, and handles it client-side instead.
 
 If you simplify wish to add interactive javascript to a few pages, it may make more sense to add the javascript to only layouts that require it, and maintain server side rendering. [Learn more about adding Javascipt to a layout without implementing a SPA.](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/adding-javascript-assets)
 
