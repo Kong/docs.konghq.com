@@ -1,7 +1,10 @@
 ---
-title: Download Kong Studio
+title: Download and Install Kong Studio
 toc: false
 ---
+
+
+## Download Kong Studio
 
 <div class="docs-grid">
   <div class="docs-grid-block">
@@ -20,3 +23,25 @@ toc: false
     </h3>
   </div>
 </div>
+
+## Install Kong Studio
+
+### MacOS
+
+1. Download and open the `Kong-Studio.dmg` file
+
+2. Copy Kong Studio into the Application folder
+
+
+### Windows
+
+1. Download and open the `Kong-Studio.exe` file
+
+2. Follow the Kong Studio Setup and Installation Wizard
+
+
+### Linux
+
+1. Download and open the `Kong-Studio.AppImage` file
+
+2. Follow the Kong Studio Setup and Installation Wizard

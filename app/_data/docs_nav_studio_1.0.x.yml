@@ -9,10 +9,8 @@
 - title: Getting Started
   url: /overview
   items:
-    - text: Download Kong Studio
-      url: /download-kong-studio
-    - text: Installation
-      url: /installation
+    - text: Download & Install Kong Studio
+      url: /download-install
     - text: Editing Spec Files
       url: /editing-spec
     - text: Debugging with Insomnia

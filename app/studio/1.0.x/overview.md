@@ -24,22 +24,11 @@ Design, edit, and debug API specification files with Kong Studio! Features in Ko
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-quickstart.svg" />
-        <a href="/studio/1.0.x/download-kong-studio">Download Kong Studio</a>
+        <a href="/studio/1.0.x/download-install">Download & Install</a>
     </h3>
     <p></p>
-    <a href="/studio/1.0.x/download-kong-studio">
-        Download the latest version of Kong Studio &rarr;
-    </a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-quickstart.svg" />
-        <a href="/studio/1.0.x/installation">Install Kong Studio</a>
-    </h3>
-    <p></p>
-    <a href="/studio/1.0.x/download-kong-studio">
-        Install Kong Studio on Mac, Windows, or Linux &rarr;
+    <a href="/studio/1.0.x/download-install">
+        Download and Install Kong Studio &rarr;
     </a>
   </div>
 
