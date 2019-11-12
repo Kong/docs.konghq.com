@@ -2,6 +2,8 @@
 title: Kong Studio
 ---
 
+![Kong Studio](https://doc-assets.konghq.com/studio/1.0/kong-studio-welcome.png)
+
 Kong Studio enables spec-first development for all REST and GraphQL services. With Kong Studio, organizations can accelerate design and test workflows via automated testing, direct Git sync, and inspection of all response types. Teams 
 of all sizes can use Kong Studio to increase development velocity, reduce deployment risk, and increase collaboration.
 
