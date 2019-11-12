@@ -4,8 +4,8 @@ title: Migrating to 1.3
 
 ### Prerequisites for Migrating to 1.3
 
-* If running a version of **Kong Enterprise** earlier than 0.36, [migrate to 0.36](/enterprise/0.35-x/deployment/migrations/) first.
-* If running a version of **Kong** earlier than 1.3, [upgrade to Kong 1.3](/1.2.x/upgrading/) before upgrading to Kong Enterprise 1.3.
+* If running a version of **Kong Enterprise** earlier than 0.36, [migrate to 0.36](/enterprise/0.36-x/deployment/migrations/) first.
+* If running a version of **Kong** earlier than 1.3, [upgrade to Kong 1.3](/1.3.x/upgrading/) before upgrading to Kong Enterprise 1.3.
 
 ### Changes and Configuration to Consider before Upgrading
 

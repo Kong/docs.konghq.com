@@ -18,6 +18,8 @@
           url: /deployment/installation/centos
         - text: Amazon Linux
           url: /deployment/installation/amazon-linux
+    - text: Kong Cloud
+      url: /kong-cloud
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
@@ -277,6 +279,8 @@
           url: /plugins/oidc-auth0
     - text: GraphQL
       items:
+        - text: GraphQL Quickstart
+          url: /plugins/graphql-quickstart
         - text: DegraphQL
           url: /plugins/degraphql
         - text: GraphQL Proxy Cache Advanced
@@ -313,6 +317,8 @@
       url: /plugins/session
     - text: Route By Header Plugin
       url: /plugins/route-by-header
+    - text: Route Transformer Advanced
+      url: /plugins/route-transformer-advanced
     - text: JWT Signer Plugin
       url: /plugins/jwt-signer
     - text: Upstream TLS Plugin
