@@ -23,7 +23,6 @@ If you simply wish to add interactive javascript to a few pages, it may make mor
 
 ### Making Choices
 
-Decide what pages routing should be handled by SPA and what is handled by content files.
 
 We recommend Catalog and Spec routes not be handled by SPA
 If you are using Authentication, then you probably also want to leave server-side rendering for any account pages
