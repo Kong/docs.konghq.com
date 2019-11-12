@@ -34,7 +34,7 @@ If you are using Authentication, then you probably also want to leave server-sid
 
 `router.conf.yaml` must be a yaml file, where the key is each route, and the value a content or spec path. `/*` Is a catch-all wildcard for all routes not specified in `router.conf.yaml`, it will overwrite all default routing set by collections or set in headmatter.
 
-The following example `router.conf.yaml` will route all paths to the `content/index.txt`, other then routes needed for authentication and spec handling.
+In the `router.conf.yaml` example below, we are hardcoding routing for all kong related functionality and deferring to SPA routing for all other routes.  The `/*` route at the bottom of the file is a wildcard route. The wildcard route, in this case, tells Kong to serve `content/index.txt' for any request that is not handled by the route declarations above.
 
 ```
 /login: content/login.txt
