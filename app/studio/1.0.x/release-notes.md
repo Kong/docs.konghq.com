@@ -15,6 +15,7 @@ The capability to download Kong Studio is included with your Kong Enterprise pla
 * [OpenAPI GraphQL Support](#openapi-graphql-support)
 * [Git Sync](#git-sync)
 * [Generate Requests from Specs](#generate-requests-from-specs)
+* [OpenAPI GraphQL Support](#openapi-graphql-support)
 * [Deploy To Kong's Developer Portal](#deploy-to-kongs-developer-portal)
 
 
@@ -46,9 +47,14 @@ Kong Studio also provides tight integration with the Insomnia core, as you desig
 
 ### OpenAPI GraphQL Support
 
-Kong Studio will detect GraphQL and automatically format requests and responses.
+Kong Studio believes that documentation support could be better, with that in mind, it comes with auto-detection for GraphQL APIs even when documented through OpenAPI.
 
 [Learn More...](/studio/{{page.kong_version}}/graphql)
+
+<video width="100%" autoplay loop controls>
+ <source src="https://doc-assets.konghq.com/studio/1.0/graphql/graphql-support.mp4" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
 
 
 ### Deploy to Kong's Developer Portal
