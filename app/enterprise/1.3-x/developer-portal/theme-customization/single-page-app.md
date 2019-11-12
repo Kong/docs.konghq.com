@@ -28,9 +28,9 @@ We recommend Catalog and Spec routes not be handled by SPA
 If you are using Authentication, then you probably also want to leave server-side rendering for any account pages
 
 ### Getting Started
-1. Clone down the portal-templates repo
+Clone down the portal-templates repo
 
-2. Create a file called `router.conf.yaml` in `workspaces/default` This file will override the default routing, allowing you to control routing via javascript.
+Create a file called `router.conf.yaml` in `workspaces/default` This file will override the default routing, allowing you to control routing via javascript.
 
 `router.conf.yaml` must be a yaml file, where the key is each route, and the value a content or spec path. `/*` Is a catch-all wildcard for all routes not specified in `router.conf.yaml`, it will overwrite all default routing set by collections or set in headmatter.
 
