@@ -12,7 +12,7 @@
     - text: Download & Install Kong Studio
       url: /download-install
     - text: Editing Spec Files
-      url: /editing-spec
+      url: /editing-specs
     - text: Using GraphQL
       url: /graphql
     - text: Debugging with Insomnia
