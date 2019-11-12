@@ -20,7 +20,7 @@ The Kong Developer Portal ships with Vue, React, and jQuery already loaded. In o
 > Warning: Due to compatibility issues, avoid using any React version other than React 15 on the `layouts/system/spec-render.html` layout. We recommend using the version of React included by the default base theme. 
 
 To add javascript assets:
-1. Clone down the kong-portal-templates repo.
+1. Clone the [kong-portal-templates](https://github.com/Kong/kong-portal-templates) repo.
 2. Add any javascript files to the `themes/base/js` folder.
 3. Deploy using the kong-portal-cli-tool.
 
