@@ -1403,8 +1403,6 @@ admin_gui_session_conf = { "cookie_name": "kookie", "secret": "changeme"}
 Defines the name of the HTTP request header from which the Admin API will
 attempt to identify the Kong Admin user.
 
-<<<<<<< HEAD
-=======
 ### admin_gui_auth_password_complexity
 
 **Default:** `nil`
@@ -1448,7 +1446,6 @@ Example:
 Number of times a user can attempt to log in to Kong Manager. `0` entails that 
 infinite attempts are allowed.
 
->>>>>>> public_repo/master
 ## Vitals
 
 
