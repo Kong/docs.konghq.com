@@ -14,7 +14,7 @@ The following documentation series will guide you through downloading and instal
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/studio/{{page.kong_version}}/getting-started">Get Started &rarr;</a>
+        <a href="/studio/{{page.kong_version}}/overview">Get Started &rarr;</a>
     </h3>
   </div>
 </div>
