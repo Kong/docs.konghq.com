@@ -13,12 +13,18 @@ module Jekyll
         elem["edition"] && elem["edition"] == "enterprise"
       end
 
+      studioVersions = site.data["kong_versions"].select do |elem|
+        elem["edition"] && elem["edition"] == 'studio'
+      end
+
       site.data["kong_versions"] = ceVersions
       site.data["kong_versions_ee"] = eeVersions
+      site.data["kong_versions_studio"] = studioVersions
 
       # Retrieve the latest version and put it in `site.data.kong_latest.version`
       latestVersion = ceVersions.last
       latestVersionEE = eeVersions.last
+      latestVersionStudio = studioVersions.last
 
       site.data["kong_latest"] = latestVersion
 
@@ -28,7 +34,7 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         page.data["has_version"] = true
         # Only apply those rules to documentation pages
-        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/))
+        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio')
           if(parts[0] == 'enterprise')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
@@ -36,6 +42,13 @@ module Jekyll
             page.data["kong_latest"] = latestVersionEE
             page.data["nav_items"] = site.data['docs_nav_ee_' + parts[1].gsub(/\./, '')]
             createAliases(page, '/enterprise', 1, parts, latestVersionEE["release"])
+          elsif(parts[0] == 'studio')
+            page.data["edition"] = parts[0]
+            page.data["kong_version"] = parts[1]
+            page.data["kong_versions"] = studioVersions
+            page.data["kong_latest"] = latestVersionStudio
+            page.data["nav_items"] = site.data['docs_nav_studio_' + parts[1].gsub(/\./, '')]
+            createAliases(page, '/studio', 1, parts, latestVersionStudio["release"])
           else
             page.data["edition"] = "community"
             page.data["kong_version"] = parts[0]
@@ -44,6 +57,7 @@ module Jekyll
             page.data["nav_items"] = site.data['docs_nav_' + parts[0].gsub(/\./, '')]
             createAliases(page, '', 0, parts, latestVersion["release"])
           end
+
 
           # Helpful boolean in templates. If version has .md, then it is not versioned
           if page.data["kong_version"].include? ".md"

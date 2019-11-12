@@ -1,18 +1,18 @@
 {
-  "index_name": "private_RC",
+  "index_name": "prod_Studio",
   "start_urls": [
     {
-      "url": "https://kong-summit.netlify.com/enterprise/(?P<version>.*?)/",
+      "url": "https://docs.konghq.com/studio/(?P<version>.*?)/",
       "variables": {
         "version": {
-          "url": "https://kong-summit.netlify.com/enterprise/",
+          "url": "https://docs.konghq.com/studio/",
           "js": "var versions = $('ul[aria-labelledby=version-dropdown] a, button#version-dropdown').map(function(i, e) { return $(e).text().replace(/\\s+/g, '').replace(/Version/g, '').replace(/\\(latest\\)/g, ''); }).toArray(); return JSON.stringify(versions);"
         }
       }
     }
   ],
   "sitemap_urls": [
-    "https://kong-summit.netlify.com/sitemap.xml"
+    "https://docs.konghq.com/sitemap.xml"
   ],
   "stop_urls": [
 
@@ -21,7 +21,7 @@
     "lvl0": {
       "selector": ".docs-navigation > a.active",
       "global": true,
-      "default_value": "Kong"
+      "default_value": "Kong Studio"
     },
     "lvl1": ".content h1",
     "lvl2": ".content h2",
