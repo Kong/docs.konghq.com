@@ -6,7 +6,7 @@ title: Hosting Single Page App out of Kong Dev Portal
 
 The Kong Developer Portal ships with a default server side rendered theme, however it is possible to replace this with a Single Page App (SPA). Our example is in Angular using the Angular CLI Tool, but you can follow along with any other javascript framework with just a few tweaks.
 
-To view the basic example Angular template from this this guide view the [`example/spa-angular` branch from the kong-portal-templates branch](https://github.com/Kong/kong-portal-templates/tree/example/spa-angular).
+To view the basic example Angular template from this guide visit the [`example/spa-angular`](https://github.com/Kong/kong-portal-templates/tree/example/spa-angular) branch from the kong-portal-templates branch.
 
 ### Prerequisites
 
