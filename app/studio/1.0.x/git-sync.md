@@ -10,7 +10,7 @@ Kong Studio is a collaborative tool for creating, managing, and sharing API spec
 To demonstrate the various features of Git Sync, we will be using the demo Swagger Petstore API.
 
 
-![Introduction]((https://doc-assets.konghq.com/studio/1.0/git-sync/01-intro.png)
+![Introduction](https://doc-assets.konghq.com/studio/1.0/git-sync/01-intro.png)
 
 
 ### Remote Repository Settings
@@ -18,7 +18,7 @@ To demonstrate the various features of Git Sync, we will be using the demo Swagg
 To configure a repository, click the “Setup Git Sync” button at the bottom of the sidebar.  
 
 * **Git URI** – The URI of the git repository you wish to connect to. Note, only `https` URLs are supported.
-* **Author Name/Email** – Git author metadata that will be store with each commit
+* **Author Name/Email** – Git author metadata that will be stored with each commit
 * **Authentication Token** – The token needed to authenticate with remote repository provider (GitHub, Bintray, etc)
 
 ![Repo Settings](https://doc-assets.konghq.com/studio/1.0/git-sync/02-repo-settings.png)
@@ -88,7 +88,7 @@ If a team member makes a change to the remote repository, they will need to be �
 
 ### Conflict Resolution
 
-Studio does not currently support the ability to resolve conflicts. If changes were made locally *and *remotely, a pull may fail.
+Studio does not currently support the ability to resolve conflicts. If changes were made locally *and* remotely, a pull may fail.
 
 Here are some strategies to help with conflicts:
 

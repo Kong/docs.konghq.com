@@ -7,7 +7,7 @@ toc: false
 
 Announcing Kong Studio 1.0, our spec-first development tool for APIs leveraging the power of Insomnia! In this release you’ll find the ability to design specifications, sync with git, convert your spec into requests for debugging purposes, and more.
 
-The capability to download Kong Studio is included with you Kong Enterprise plan. To download the latest version of Kong Studio, visit the download page located on [Bintray](https://bintray.com/kong/studio).
+The capability to download Kong Studio is included with your Kong Enterprise plan. To download the latest version of Kong Studio, visit the download page located on [Bintray](https://bintray.com/kong/studio).
 
 ## Notable Features
 
@@ -20,7 +20,7 @@ The capability to download Kong Studio is included with you Kong Enterprise plan
 
 ### OpenAPI Spec Editor
 
-Kong Studio ships with a built-in editor and includes the features you need for highly productive spec design. Features include navigation, and linting of your OpenAPI spec as you design.
+Kong Studio ships with a built-in editor and includes the features you need for highly productive spec design. Features include navigation and linting of your OpenAPI spec as you design.
 
 [Learn More...](/studio/{{page.kong_version}}/editing-specs)
 
@@ -29,7 +29,7 @@ Kong Studio ships with a built-in editor and includes the features you need for 
 
 ### Git Sync
 
-Kong Studio is built for the API DevOps lifecycle, where infrastructure and configuration is code. We enable this through a tight integration with git. Regardless of whether you’re using Github, Bitbucket, or Gitlab, you can import, commit, create branches, swap branches, and more directly from Kong Studio.
+Kong Studio is built for the API DevOps lifecycle, where infrastructure and configuration is code. We enable this through tight integration with Git. Regardless of whether you’re using GitHub, Bitbucket, or GitLab, you can import, commit, create branches, swap branches, and more directly from Kong Studio.
 
 [Learn More...](/studio/{{page.kong_version}}/git-sync)
 
