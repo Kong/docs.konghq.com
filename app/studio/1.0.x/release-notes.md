@@ -12,7 +12,7 @@ The capability to download Kong Studio is included with your Kong Enterprise pla
 ## Notable Features
 
 * [OpenAPI Spec Editor](#openapi-spec-editor)
-* [GraphQL Support](#graphql-support)
+* [OpenAPI GraphQL Support](#openapi-graphql-support)
 * [Git Sync](#git-sync)
 * [Generate Requests from Specs](#generate-requests-from-specs)
 * [Deploy To Kong's Developer Portal](#deploy-to-kongs-developer-portal)
@@ -44,7 +44,7 @@ Kong Studio also provides tight integration with the Insomnia core, as you desig
 ![Debug Specs](https://doc-assets.konghq.com/studio/1.0/release-notes/debug.gif)
 
 
-### GraphQL Support
+### OpenAPI GraphQL Support
 
 Kong Studio will detect GraphQL and automatically format requests and responses.
 

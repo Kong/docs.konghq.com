@@ -57,7 +57,7 @@ The **Editor** view in Kong Studio allows you to edit spec files. As you edit, K
 
 ![Error Alert](https://doc-assets.konghq.com/studio/1.0/editing-specs/spec-error.png)
 
-Once you are ready to debug your spec file with **Insomnia**, click to the **Debug** tab or click **Debug** in the top right corner of the **Editor**. To learn how to debug spec files with **Insomnia** check out [Debugging with Insomnia Documentation](/studio/{{page.kong_verions}}/debugging-with-insomnia)
+Once you are ready to debug your spec file with **Insomnia**, click to the **Debug** tab or click **Debug** in the top right corner of the **Editor**. To learn how to debug spec files with **Insomnia** check out [Debugging with Insomnia Documentation](/studio/{{page.kong_version}}/debugging-with-insomnia)
 
 
 
