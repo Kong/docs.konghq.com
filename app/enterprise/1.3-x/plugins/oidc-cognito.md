@@ -7,22 +7,23 @@ Amazon Cognito has two significant components: Identity Pools and User Pools. Id
 
 In this configuration, we use User Pools.
 
-Login to AWS Console.
-Navigate to AWS Cognito Service.
-Click on “Manage User Pools”.
-Click the “Create a user pool” button on the right-hand side.
-Enter a pool name; we use “test-pool” for this example.
-Click “Step Through Settings”.
-Select “Email address or phone number”, under that, select “Allow email addresses”. Select the following standard attributes as required: email, family name, given name.
-Click “Next step”.
-Accept the defaults for “MFA and verifications”, click “Next step”.
-Accept the defaults for “Message customizations”, click “Next step”.
-On the next screen, we are not going to create any tags. Click “Next step”.
-Select “No” for “Do you want to remember your user’s devices”, click “Next step”.
-We will create an application definition a bit later. Keeping things simple right now, click “Next step”.
-We don’t have any need for Triggers or customized Sign Up/Sign In behavior for this example. Scroll down and click “Save Changes”.
-Click “Create pool”. Wait a little while, and you will see the success message.
-Make a note of the Pool ID. You will need this when configuring the application later.
+1. Log in to AWS Console.
+1. Navigate to the Amazon Cognito Service.
+1. Click on **Manage User Pools**.
+1. Click the **Create a user pool** button on the right-hand side.
+1. Enter a pool name; we use “test-pool” for this example.
+1. Click **Step Through Settings**.
+1. Select **Email address or phone number**, and under that, select **Allow email addresses**. Select the following standard attributes as required: email, family name, given name.
+1. Click **Next step**.
+1. Accept the defaults for **MFA and verifications**, then click **Next step**.
+1. Accept the defaults for **Message customizations**, click **Next step**.
+1. On the next screen, we are not going to create any tags. Click **Next step**.
+1. Select **No** for **Do you want to remember your user’s devices**, then click **Next step**.
+1. We can create an application definition later. Keep things simple for now and click **Next step**.
+1. We don’t have any need for Triggers or customized Sign Up/Sign In behavior for this example. Scroll down and click **Save Changes**.
+1. Click **Create pool**. Wait a moment for the success message.
+1. Make a note of the **Pool ID**. You will need this when configuring the application later.
+
 Application Definition
 You need to add an OAuth2 application definition to the User Pool we just created.
 Go to the App clients screen in the AWS Cognito management screen for the User Pool we just created.
