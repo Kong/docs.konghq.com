@@ -12,6 +12,7 @@ The capability to download Kong Studio is included with you Kong Enterprise plan
 ## Notable Features
 
 * [OpenAPI Spec Editor](/#openapi-spec-editor)
+* [GraphQL Support](/#graphl-support)
 * [Git Sync](/#git-sync)
 * [Generate Requests from Specs](/#generate-requests-from-specs)
 * [Deploy To Kong's Developer Portal](/#deploy-to-kongs-developer-portal)

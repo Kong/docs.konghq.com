@@ -5,10 +5,11 @@
       url: /release-notes
     - text: Getting Started
       url: /getting-started
-    - text: Download Kong Studio
-      url: /download-kong-studio
-    - text: Installation
-      url: /installation
+      items:
+        - text: Download Kong Studio
+          url: /download-kong-studio
+        - text: Installation
+          url: /installation
     - text: Editing Spec Files
       url: /editing-spec
     - text: Debugging with Insomnia
