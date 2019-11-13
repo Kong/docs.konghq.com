@@ -14,10 +14,25 @@ In this configuration, we use User Pools.
     <img src="https://doc-assets.konghq.com/oidc/cognito/cognito1.png">
 
 1. Click on **Manage User Pools**.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito2.png">
+
 1. Click the **Create a user pool** button on the right-hand side.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito3.png">
+
 1. Enter a pool name; we use “test-pool” for this example.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito4.png">
+
 1. Click **Step Through Settings**.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito5.png">
+    
 1. Select **Email address or phone number**, and under that, select **Allow email addresses**. Select the following standard attributes as required: email, family name, given name.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito6.png">
+    
 1. Click **Next step**.
 1. Accept the defaults for **MFA and verifications**, then click **Next step**.
 1. Accept the defaults for **Message customizations**, click **Next step**.
@@ -25,8 +40,13 @@ In this configuration, we use User Pools.
 1. Select **No** for **Do you want to remember your user’s devices**, then click **Next step**.
 1. We can create an application definition later. Keep things simple for now and click **Next step**.
 1. We don’t have any need for Triggers or customized Sign Up/Sign In behavior for this example. Scroll down and click **Save Changes**.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito7.png">
+
 1. Click **Create pool**. Wait a moment for the success message.
 1. Make a note of the **Pool ID**. You will need this when configuring the application later.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito8.png">
 
 ## Application Definition
 
