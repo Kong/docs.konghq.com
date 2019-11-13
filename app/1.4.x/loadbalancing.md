@@ -120,9 +120,10 @@ entities.
 
 Each upstream gets its own ring-balancer. Each `upstream` can have many
 `target` entries attached to it, and requests proxied to the 'virtual hostname'
-will be load balanced over the targets. A ring-balancer has a pre-defined
-number of slots, and based on the target weights the slots get assigned to the
-targets of the upstream.
+(which can be overwritten before proxying, using `upstream`'s property
+`host_header`) will be load balanced over the targets. A ring-balancer has a
+pre-defined number of slots, and based on the target weights the slots get
+assigned to the targets of the upstream.
 
 Adding and removing targets can be done with a simple HTTP request on the
 Admin API. This operation is relatively cheap. Changing the upstream
