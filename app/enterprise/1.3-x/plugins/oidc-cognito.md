@@ -10,6 +10,7 @@ In this configuration, we use User Pools.
 
 1. Log in to AWS Console.
 1. Navigate to the Amazon Cognito Service.
+  <img src="https://doc-assets.konghq.com/oidc/cognito/cognito1.png">
 1. Click on **Manage User Pools**.
 1. Click the **Create a user pool** button on the right-hand side.
 1. Enter a pool name; we use “test-pool” for this example.
