@@ -53,7 +53,7 @@ In the `router.conf.yaml` example below, we are hardcoding routing for all kong 
 
 ```
 
-### Creating Your SPA
+#### 1. Creating Your SPA
 
 Create SPA app in the javascript framework of your choice
 As a example, we will be using angular.
@@ -74,7 +74,7 @@ Copy the build output JS and CSS files to a folder inside `workspaces/default/th
 
 For this example we placed the angular build inside a `workspaces/default/themes/assets/js/ng`
 
-### Mounting a SPA
+#### 2. Mounting a SPA
 
 In order to load our js we need to mount the JS, to do this let’s create a new layout page, for this example we will call it `spa.html`
 
@@ -117,7 +117,7 @@ This is what our layout ended up as:
 
 If your SPA build process creates a css file edit the head.html partial to include your css file.
 
-### Loading your layout
+#### 3. Loading your layout
 
 In order to use our layout modify `workspaces/default/content/index.txt` to use our layout,
 The title we set here will be the one that displays until the JS set title loads.
@@ -131,6 +131,7 @@ title: Home
 ```
 {% endraw %}
 
+#### 4. Deploy the Portal
 
 Now using the kong-portal-cli tool we can deploy this portal
 
