@@ -248,7 +248,17 @@ a {
         <br> c. Enter <b>http://httpbin.org</b> in the <em>URL</em> field. The <em>Add using URL</em> is selected by default.
         <br> d. Click <b>Create</b>. The <em>Services details page</em> displays for your new trial-service. This page has information about the Service and any related Routes and Plugins that are connected to the Service.
       </p>
+      <p>
+        3. Create a <b>Route</b>. A <em>Route</em> is the entity that defines rules to match client requests. 
+      </p>
+      <p class="subsection">
+        a. Click <b>Add a Route</b> in the <em>Route</em> tile. The <em>Create Route</em> page displays.
+        <br> b. Enter <b>trial-route</b> in the <em>Name</em> field.
+        <br> c. Click <b>Add a Path</b> under <b>Path(s)</> and enter <b>/</b> in the <em>Path</em> field.
+        <br> d. Click <b>Create</b>. The <em>Route details page</em> displays for your new trial-route. This page has information about the Route.
+      </p>
     </div>
+    
     <div class="step">
       <h3>Step 3: Add a Plugin on the Service</h3>
       <p>Add a Kong Plugin to extend the functionality of Kong Enterprise. Kong’s Plugin architecture supports a broad range of functionality, such as logging, rate-limiting, authentication, and more.
@@ -278,26 +288,49 @@ a {
       <div class="code-sample">
         <div class="block">
           curl -i -X GET \
-          <br> --url https://&lt;your_trial_ID&gt;.kong-cloud.com \
-          <br> --header <span class='highlight-1'>'Host: httpbin.com'</span>
+          <br> http://&lt;your_trial_ID&gt;.kong-cloud.com/get \
+          <br> -d http://httpbin.org
         </div>
       </div>
       <p>2. A successful response should look like this:</p>
       <div class="code-sample">
         <div class="block">
-          <span class='highlight-2'>&lt;html&gt;</span>
+          HTTP/1.1 200 OK
+          <br> Content-Type: application/json
+          <br> Content-Length: 385
+          <br> Connection: keep-alive
+          <br> X-RateLimit-Limit-minute: 10
+          <br> X-RateLimit-Remaining-minute: 9
+          <br> X-RateLimit-Limit-hour: 100
+          <br> X-RateLimit-Remaining-hour: 68.097777777778
+          <br> Access-Control-Allow-Credentials: true
+          <br> Access-Control-Allow-Origin: *
+          <br> Date: Wed, 13 Nov 2019 18:05:28 GMT
+          <br> Referrer-Policy: no-referrer-when-downgrade
+          <br> Server: nginx
+          <br> X-Content-Type-Options: nosniff
+          <br> X-Frame-Options: DENY
+          <br> X-XSS-Protection: 1; mode=block
+          <br> X-Kong-Upstream-Status: 200
+          <br> X-Kong-Upstream-Latency: 3
+          <br> X-Kong-Proxy-Latency: 61
+          <br> Via: kong/1.3-enterprise-edition
+          <br> Kong-Cloud-Request-ID: 5f22acefc395433af3affb5f11ef9e54
           <br>
-          <span class='highlight-2'>&lt;head&gt;&lt;title&gt;</span>302 Found<span class='highlight-2'>&lt;/title&gt;&lt;/head&gt;</span>
-          <br>
-          <span class='highlight-2'>&lt;body&gt;</span>
-          <br>
-          <span class='highlight-2'>&lt;center&gt;&lt;h1&gt;</span>302 Found<span class='highlight-2'>&lt;/h1&gt;&lt;/center&gt;</span>
-          <br>
-          <span class='highlight-2'>&lt;hr&gt;&lt;center&gt;</span>openresty/1.XX.8.2<span class='highlight-2'>&lt;/center&gt;</span>
-          <br>
-          <span class='highlight-2'>&lt;/body&gt;</span>
-          <br>
-          <span class='highlight-2'>&lt;/html&gt;</span>
+          <br> {
+          <br>   "args": {}, 
+          <br>   "headers": {
+          <br>     "Accept": "*/*", 
+          <br>     "Content-Length": "18", 
+          <br>     "Content-Type": "application/x-www-form-urlencoded", 
+          <br>     "Host": "httpbin.org", 
+          <br>     "User-Agent": "curl/7.54.0", 
+          <br>     "X-Forwarded-Host": "&lt;your_trial_ID&gt;.kong-cloud.com"
+          <br>   }, 
+          <br>   "origin": "127.0.0.1, 54.209.226.208, 127.0.0.1", 
+          <br>   "url": "https://&lt;your_trial_ID&gt;.kong-cloud.com/get"
+          <br> }
+
         </div>
       </div>
     </div>
