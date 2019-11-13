@@ -279,6 +279,8 @@
           url: /plugins/oidc-okta
         - text: OpenID Connect with Auth0
           url: /plugins/oidc-auth0
+        - text: OpenID Connect with Cognito
+          url: /plugins/oidc-cognito
     - text: GraphQL
       items:
         - text: GraphQL Quickstart
