@@ -51,28 +51,64 @@ In this configuration, we use User Pools.
 ## Application Definition
 
 You need to add an OAuth2 application definition to the User Pool we just created.
-Go to the App clients screen in the AWS Cognito management screen for the User Pool we just created.
+
+1. Go to the App clients screen in the AWS Cognito management screen for the User Pool we just created.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito9.png">
 
 1. Click “Add an app client”.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito10.png">
+
 1. Enter an App client name. This demo is using “kong-api”
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito11.png">
+    
 1. Enter a Refresh token expiration (in days). We will use the default of 30 days.
 1. Do not select “Generate client secret”. This example will use a public client.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito12.png">
+    
 1. Do not select any other checkboxes.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito13.png">
+    
 1. Click the “Set attribute read and write permissions” button.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito14.png">
+    
 1. Let’s make this simple and only give the user read and write access to the required attributes. So, uncheck everything except the email, given name, and family name fields.
+    
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito15.png">
+    
 1. Click “Create app client”
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito16.png">
+
 1. Click “Show Details”.
-1. Take note of the app client id. We will need that later.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito17.png">
+
+1. Take note of the App client ID. We will need that later.
 1. Go to the App integration -> App client settings screen.
 1. Click the “Cognito User Pool” checkbox under Enabled Identity Providers.
 1. Add “https://kong-ee:8446/default, https://kong-ee:8447/default/, https://kong-ee:8447/default/auth, https://kong-ee:8443/cognito” to the Callback URLs field. Note that AWS Cognito doesn’t support HTTP callback URLs. This field should include the API and Dev Portal URLs that you want to secure using AWS Cognito.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito18.png">
+
 1. Click the “Authorization code grant” checkbox under Allowed OAuth Flows.
+
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito19.png">
+    
 1. Click the checkboxes next to email, OpenID, aws.cognito.signin.user.admin, and profile.
 1. Click the “Save changes” button.
 1. Click on the domain name tab.
-1. Add a sub-domain called `blogdemo` or an available name.
+1. Add a sub-domain name.
 1. Click the Check Availability button.
 1. As long as it reports “This domain is available”, the name you have chosen will work.
+    
+    <img src="https://doc-assets.konghq.com/oidc/cognito/cognito21.png">
+    
 1. Click the “Save changes” button.
 
 Now that you have created an Amazon Cognito User Pool and Application Definition, we can configure the OpenID Connect plugin in Kong. We can then test integration between Dev Portal and Amazon Cognito. 
