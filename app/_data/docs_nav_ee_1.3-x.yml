@@ -81,6 +81,8 @@
       url: /pdk
     - text : OpenAPI Spec to Kong Entities
       url: /oasconfig
+    - text : Control Kong through systemd
+      url: /systemd
 
 - title: Admin API
   url: /admin-api
