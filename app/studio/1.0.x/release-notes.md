@@ -7,7 +7,7 @@ toc: false
 
 Announcing Kong Studio 1.0, our spec-first development tool for APIs leveraging the power of Insomnia! In this release you’ll find the ability to design specifications, sync with git, convert your spec into requests for debugging purposes, and more.
 
-The capability to download Kong Studio is included with your Kong Enterprise plan. To download the latest version of Kong Studio, visit the download page located on [Bintray](https://bintray.com/kong/studio).
+Kong Studio is available to download for Kong Enterprise customers. Please reach out to your account executive for more information about adding Kong Studio as part of your Kong Enterprise subscription.
 
 ## Notable Features
 
