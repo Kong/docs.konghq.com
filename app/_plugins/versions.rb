@@ -6,7 +6,7 @@ module Jekyll
 
     def generate(site)
       ceVersions = site.data["kong_versions"].select do |elem|
-        !(elem["edition"] && elem["edition"] == "enterprise")
+        elem["edition"] && elem["edition"] == "community"
       end
 
       eeVersions = site.data["kong_versions"].select do |elem|
@@ -34,7 +34,7 @@ module Jekyll
         parts = Pathname(page.path).each_filename.to_a
         page.data["has_version"] = true
         # Only apply those rules to documentation pages
-        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio')
+        if (parts[0] == "enterprise" || parts[0].match(/[0-3]\.[0-9]{1,2}(\..*)?$/) || parts[0] == 'studio' || parts[0] == 'community')
           if(parts[0] == 'enterprise')
             page.data["edition"] = parts[0]
             page.data["kong_version"] = parts[1]
