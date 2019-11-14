@@ -7,14 +7,15 @@ toc: false
 
 Announcing Kong Studio 1.0, our spec-first development tool for APIs leveraging the power of Insomnia! In this release you’ll find the ability to design specifications, sync with git, convert your spec into requests for debugging purposes, and more.
 
-The capability to download Kong Studio is included with your Kong Enterprise plan. To download the latest version of Kong Studio, visit the download page located on [Bintray](https://bintray.com/kong/studio).
+Kong Studio is available to download for Kong Enterprise customers. Please reach out to your account executive for more information about adding Kong Studio as part of your Kong Enterprise subscription.
 
 ## Notable Features
 
 * [OpenAPI Spec Editor](#openapi-spec-editor)
-* [GraphQL Support](#graphl-support)
+* [OpenAPI GraphQL Support](#openapi-graphql-support)
 * [Git Sync](#git-sync)
 * [Generate Requests from Specs](#generate-requests-from-specs)
+* [OpenAPI GraphQL Support](#openapi-graphql-support)
 * [Deploy To Kong's Developer Portal](#deploy-to-kongs-developer-portal)
 
 
@@ -44,11 +45,16 @@ Kong Studio also provides tight integration with the Insomnia core, as you desig
 ![Debug Specs](https://doc-assets.konghq.com/studio/1.0/release-notes/debug.gif)
 
 
-### GraphQL Support
+### OpenAPI GraphQL Support
 
-Kong Studio will detect GraphQL and automatically format requests and responses.
+Kong Studio believes that documentation support could be better, with that in mind, it comes with auto-detection for GraphQL APIs even when documented through OpenAPI.
 
 [Learn More...](/studio/{{page.kong_version}}/graphql)
+
+<video width="100%" autoplay loop controls>
+ <source src="https://doc-assets.konghq.com/studio/1.0/graphql/graphql-support.mp4" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
 
 
 ### Deploy to Kong's Developer Portal

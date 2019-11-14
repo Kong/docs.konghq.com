@@ -1,5 +1,4 @@
 - title: Kong Studio
-  url: /index
   items:
     - text: Release Notes
       url: /release-notes
@@ -13,7 +12,8 @@
       url: /download-install
     - text: Editing Spec Files
       url: /editing-specs
-    - text: Using GraphQL
+
+    - text: OpenAPI GraphQL Support
       url: /graphql
     - text: Debugging with Insomnia
       url: /debugging-with-insomnia

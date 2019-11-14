@@ -195,7 +195,7 @@ multiple authentication credentials. The key to the behaviour is the `config.ano
   authentication fails, it will not return a `40x` response, but set the anonymous consumer as the consumer. This
   results in a logical `OR` + 'anonymous access' when multiple auth plugins are being invoked.
 
-**NOTE 1**: Either all or none of the auth plugins must be configured for anonymous access. The behaviour is
+**NOTE 1**: Either all or none of the auth plugins must be configured for anonymous access. The behavior is
 undefined if they are mixed.
 
 **NOTE 2**: When using the `AND` method, the last plugin executed will be the one setting the credentials

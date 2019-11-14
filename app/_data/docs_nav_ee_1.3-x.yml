@@ -81,6 +81,8 @@
       url: /pdk
     - text : OpenAPI Spec to Kong Entities
       url: /oasconfig
+    - text : Control Kong through systemd
+      url: /systemd
 
 - title: Admin API
   url: /admin-api
@@ -241,11 +243,15 @@
           url: /developer-portal/administration/managing-developers
         - text: Developer Roles and Content Permissions
           url: /developer-portal/administration/developer-permissions
-    - text: Theme Customization
+    - text: Customization
       url: /developer-portal/theme-customization/easy-theme-editing
       items:
         - text: Easy Theme Editing
           url: /developer-portal/theme-customization/easy-theme-editing
+        - text: Adding and Using Javascript Assets
+          url: /developer-portal/theme-customization/adding-javascript-assets
+        - text: Single Page App in Dev Portal
+          url: /developer-portal/theme-customization/single-page-app
     - text: Helpers
       url: /developer-portal/helpers/cli
       items:
@@ -277,6 +283,8 @@
           url: /plugins/oidc-okta
         - text: OpenID Connect with Auth0
           url: /plugins/oidc-auth0
+        - text: OpenID Connect with Cognito
+          url: /plugins/oidc-cognito
     - text: GraphQL
       items:
         - text: GraphQL Quickstart

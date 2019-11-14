@@ -46,7 +46,11 @@ Design, edit, and debug API specification files with Kong Studio! Features in Ko
   <div class="docs-grid-block">
     <h3>
         <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
+<<<<<<< HEAD
         <a href="/studio/1.0.x/graphql">GraphQL</a>
+=======
+        <a href="/studio/1.0.x/graphql">OpenAPI GraphQL</a>
+>>>>>>> public_repo/master
     </h3>
     <p></p>
     <a href="/studio/1.0.x/graphql">

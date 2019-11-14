@@ -30,6 +30,10 @@ Once complete, click “Done” and the repository settings will be persisted fo
 
 If a team member has already pushed a Studio project to a remote repository, it can be cloned via the main menu in the top-left of the application. Here, you will see the same Repository Settings dialog to configure remote access.
 
+<div class="alert alert-warning">
+<strong>Note:</strong> Studio does not currently support repositories that contain files outside the root ".studio" folder.
+</div>
+
 In order to clone, the repository must exist and also contain the root  `.studio/` folder. 
 
 ![Cloning a Repo](https://doc-assets.konghq.com/studio/1.0/git-sync/03-clone-repo.png)
