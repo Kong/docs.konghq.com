@@ -88,7 +88,7 @@ params:
       required: false
       default: '`consumer`'
       description: |
-        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`. If the `consumer` or the `credential` cannot be determined, the system will always fallback to `ip`.
+        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`. If the `consumer`, the `credential` or the `service` cannot be determined, the system will always fallback to `ip`.
     - name: policy
       required: false
       value_in_examples: "local"
