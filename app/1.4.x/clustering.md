@@ -216,6 +216,9 @@ Additionally, you might want to configure `cassandra_consistency` to a value
 like `QUORUM` or `LOCAL_QUORUM`, to ensure that values being cached by your
 Kong nodes are up-to-date values from your database.
 
+Setting the `cassandra_refresh_frequency` option to `0` is not advised, as a Kong
+restart will be required to discover any changes to the Cassandra cluster topology.
+
 [Back to TOC](#table-of-contents)
 
 ## Interacting with the cache via the Admin API
