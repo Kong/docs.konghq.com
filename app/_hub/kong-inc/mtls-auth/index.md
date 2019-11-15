@@ -2,7 +2,7 @@
 
 name: Mutual TLS Authentication
 publisher: Kong Inc.
-version: 0.37-x
+version: 1.3-x
 
 desc: Secure routes and services with client certificate and mutual TLS authentication
 description: |
@@ -18,8 +18,8 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 1.3-x
         - 0.36-x
-        - 0.37-x
 
 params:
   name: mtls-auth
