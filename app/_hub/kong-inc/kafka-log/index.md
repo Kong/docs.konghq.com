@@ -7,6 +7,7 @@ description: |
    Publish request and response logs to a [Kafka](https://kafka.apache.org/) topic.
 
 type: plugin
+enterprise: true
 categories:
   - logging
 
