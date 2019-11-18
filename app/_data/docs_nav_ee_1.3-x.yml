@@ -8,7 +8,7 @@
         - text: How to Access Your License
           url: /deployment/access-license
     - text: Installation
-      url: /deployment/installation/docker
+      url: /deployment/installation/overview
       items:
         - text: Docker
           url: /deployment/installation/docker
@@ -258,6 +258,17 @@
         - text: CLI
           url: /developer-portal/helpers/cli
 
+- title: Kong for Kubernetes Enterprise
+  url: /kong-kubernetes/
+  items:
+    - text: Overview
+      url:  /kong-kubernetes/overview
+    - text: Installation
+      url: /kong-kubernetes/install
+    - text: Using Kong for Kubernetes
+      url: /kong-kubernetes/using-kong-for-kubernetes
+    - text: Changelog
+      url: /kong-kubernetes/changelog
 
 - title: Kong Brain & Kong Immunity
   url: /brain-immunity/install-configure
