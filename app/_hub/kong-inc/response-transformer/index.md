@@ -35,6 +35,7 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 1.3-x
         - 0.36-x
         - 0.35-x
         - 0.34-x
@@ -58,6 +59,9 @@ params:
       required: false
       value_in_examples: "json-key-toremove, another-json-key"
       description: List of property names. Remove the property from the JSON body if it is present.
+    - name: rename.headers
+      required: false
+      description: List of original_header_name:new_header_name pairs. If the header `original_headername` is already set, rename it to `new_headername`. Ignored if the header is not already set.
     - name: replace.headers
       required: false
       description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
@@ -88,7 +92,7 @@ Note: if the value contains a `,` then the comma separated format for lists cann
 
 Plugin performs the response transformation in following order
 
-remove --> replace --> add --> append
+remove --> rename --> replace --> add --> append
 
 ## Examples
 

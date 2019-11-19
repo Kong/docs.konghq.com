@@ -17,9 +17,6 @@ categories:
   - traffic-control
 
 kong_version_compatibility:
-    community_edition:
-      compatible:
-        - 1.3.x
     enterprise_edition:
       compatible:
         - 1.3-x

@@ -28,6 +28,8 @@ kong_version_compatibility:
         - 0.14.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
 
 params:
   name: prometheus
