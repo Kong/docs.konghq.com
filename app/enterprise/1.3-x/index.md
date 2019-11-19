@@ -47,6 +47,12 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/kong-kubernetes/overview">Kong for Kubernetes Enterprise</a></h3>
+    <p>Get started with Kong for Kubernetes Enterprise.</p>
+    <a href="/enterprise/{{page.kong_version}}/kong-kubernetes/">Learn more &rarr;</a>
+  </div>
+
+  <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/brain-immunity/install-configure">Kong Brain & Kong Immunity</a></h3>
     <p>Install and Configure Kong Brain and Kong Immunity.</p>
     <a href="/enterprise/{{page.kong_version}}/brain-immunity/install-configure">Learn more &rarr;</a>
