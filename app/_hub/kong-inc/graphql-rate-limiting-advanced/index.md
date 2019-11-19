@@ -25,7 +25,7 @@ params:
   config:
     - name: cost_strategy
       required:
-      default: `default`
+      default: "default"
       value_in_examples:
       description: |
         Strategy to use to evaluate query costs.
@@ -75,9 +75,9 @@ params:
       value_in_examples:
       description: |
         How often to sync counter data to the central data store. A value of 0
-         results in synchronous behavior; a value of -1 ignores sync behavior
-         entirely and only stores counters in node memory. A value greater than
-         0 will sync the counters in that many number of seconds.
+        results in synchronous behavior; a value of -1 ignores sync behavior
+        entirely and only stores counters in node memory. A value greater than
+        0 will sync the counters in that many number of seconds.
     - name: namespace
       required: false
       default: random string
