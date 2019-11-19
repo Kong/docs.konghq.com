@@ -16,7 +16,7 @@ For information about using Kong for Kubernetes Enterprise, see the documentatio
 
 
 ### Concepts
-Kong for Kubernetes concepts include:
+Kong for Kubernetes Enterprisee concepts include:
 
 #### Architecture
 The [design](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/concepts/design.md) document explains how Kong Ingress Controller works inside a Kubernetes cluster and configures Kong to proxy traffic as per rules defined in the Ingress resources.
