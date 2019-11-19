@@ -17,6 +17,11 @@ For information about using Kong for Kubernetes, see the documentation listed be
 
 ### Concepts
 Kong for Kubernetes concepts include:
+- [Architecture](#architecture)
+- [Custom Resources](#custom-resources)
+- [Deployment Methods](#deployment-methods)
+- [High-availability and Scaling](#high-availability-and-scaling)
+- [Security](#security)
 
 #### Architecture
 The [design](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/concepts/design.md) document explains how Kong Ingress Controller works inside a Kubernetes cluster and configures Kong to proxy traffic as per rules defined in the Ingress resources.
