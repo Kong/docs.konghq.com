@@ -13,7 +13,7 @@
         - text: Docker
           url: /deployment/installation/docker
         - text: Kubernetes
-          url: /deployment/kong-kubernetes/install
+          url: /kong-kubernetes/install
         - text: Ubuntu
           url: /deployment/installation/ubuntu
         - text: CentOS
