@@ -1,5 +1,5 @@
 ---
-title: Kong for Kuberentes
+title: Kong for Kubernetes
 ---
 
 **Kong for Kubernetes includes the following features:**
