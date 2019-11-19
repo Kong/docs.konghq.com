@@ -47,7 +47,7 @@ title: Kong Enterprise Documentation
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/kong-kubernetes/overview">Kong for Kubernetes Enterprise</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/kong-kubernetes/">Kong for Kubernetes Enterprise</a></h3>
     <p>Get started with Kong for Kubernetes Enterprise.</p>
     <a href="/enterprise/{{page.kong_version}}/kong-kubernetes/">Learn more &rarr;</a>
   </div>
