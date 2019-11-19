@@ -22,9 +22,9 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/hub/kong-inc/kubernetes-sidecar-injector/">Kubernetes &amp; Service Mesh</a></h3>
-    <p>Use our sidecar injector plugin to run Kong as a service mesh on Kubernetes</p>
-    <a href="/hub/kong-inc/kubernetes-sidecar-injector/">Read the plugin guide &rarr;</a>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/kong-kubernetes/">Kong for Kubernetes</a></h3>
+    <p>Get Started with Kong for Kubernetes</p>
+    <a href="{{page.kong_version}}/kong-kubernetes/">Learn More &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
