@@ -2,7 +2,7 @@
 title: Download and Install Kong Studio
 toc: false
 ---
-Kong Studio is available to download for Kong Enterprise customers. You must have access to the Kong repository on Bintray to access the Kong Studio download files listed below. If you do not have access, contact your Kong account representative for more information about adding Kong Studio as part of your Kong Enterprise subscription.
+Kong Studio is available to download for Kong Enterprise customers. You must have access to the Kong repository on Bintray to access the Kong Studio download files listed below. If you do not have access, contact Kong Support.
 
 ## Download Kong Studio
 
