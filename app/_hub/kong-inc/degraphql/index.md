@@ -37,8 +37,11 @@ needs to be activated on a service that points to a GraphQL endpoint
 ### 1. Create a Service and a Route in Kong:
 
   ```bash
-  $ http :8001/services name=github url=https://api.github.com
-  $ http -f :8001/services/github/routes paths=/api
+  $ curl -X POST http://localhost:8001/services \
+    --data name="github" \
+    --data url="https://api.github.com"
+  $ curl -X POST http://localhost:8001/services/github/routes \
+    --data paths="/api"
   ```
 
 ### 2. Configure the Plugin on the Service
@@ -48,7 +51,8 @@ our REST api and not the graphql endpoint itself. It will return a 404 Not Found
 if no DeGraphQL routes have been configured.
 
   ```bash
-  $ http :8001/services/github/plugins name=degraphql
+  $ curl -X POST http://localhost:8001/services/github/plugins \
+    --data name="degraphql"
   ```
 
 ### 3. Configure DeGraphQL Routes on the Service
@@ -57,10 +61,12 @@ Once the Plugin is activated on a Service, we can add our own routes to build
 our service, by defining uris and associating them to GraphQL queries.
 
   ```bash
-  $ http :8001/services/github/degraphql/routes uri='/me' \
-          query='query { viewer { login } }'
+  $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
+    --data uri="/me" \
+    --data query="query { viewer { login } }"
 
-  $ http :8000/api/me "Authorization: Bearer some-token"
+  $ curl http://localhost:8000/api/me \
+    --header "Authorization: Bearer some-token"
   {
       "data": {
           "viewer": {
@@ -73,16 +79,18 @@ our service, by defining uris and associating them to GraphQL queries.
 GraphQL Query Variables can be defined on uris
 
   ```bash
-  $ http :8001/services/github/degraphql/routes uri='/:owner/:name' \
-       query='query ($owner:String! $name:String!){
-                repository(owner:$owner, name:$name) {
-                  name
-                  forkCount
-                  description
-                }
-              }'
+  $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
+    --data uri='/:owner/:name' \
+    --data query='query ($owner:String! $name:String!){
+                    repository(owner:$owner, name:$name) {
+                      name
+                      forkCount
+                      description
+                   }
+                 }'
 
-  $ http :8000/api/kong/kong "Authorization: Bearer some-token"
+  $ curl http://localhost:8000/api/kong/kong \
+    --header "Authorization: Bearer some-token"
   {
     "data": {
         "repository": {
@@ -97,17 +105,18 @@ GraphQL Query Variables can be defined on uris
 The same Variables can also be provided as GET arguments
 
   ```bash
-  $ http :8001/services/github/degraphql/routes uri='/repo' \
-       query='query ($owner:String! $name:String!){
-                repository(owner:$owner, name:$name) {
-                  name
-                  forkCount
-                  description
-                }
-              }'
+  $ curl -X POST http://localhost:8001/services/github/degraphql/routes \
+    --data uri='/repo' \
+    --data query='query ($owner:String! $name:String!){
+                    repository(owner:$owner, name:$name) {
+                      name
+                      forkCount
+                      description
+                    }
+                  }'
 
-  $ http GET :8000/api/repo "Authorization: Bearer some-token" \
-         owner=kong name=kuma
+  $ curl "http://localhost:8000/api/repo?owner=kong&name=kuma" \
+    --header "Authorization: Bearer some-token"
   {
     "data": {
         "repository": {
