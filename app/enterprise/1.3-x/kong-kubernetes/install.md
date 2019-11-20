@@ -16,7 +16,7 @@ Before installing Kong for Kubernetes Enterprise, be sure you have the following
 - A valid Kong Enterprise License
   * If you have a license, see [https://docs.konghq.com/enterprise/latest/deployment/licensing/](https://docs.konghq.com/enterprise/latest/deployment/licensing/)
   * If you need a license, request a demo at [https://konghq.com/request-demo/](https://konghq.com/request-demo/)
-  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at https://kubecon.konglabs.io/
+  * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
 - [Kong Enterprise Docker registry access](https://github.com/Kong/kubernetes-ingress-controller-private/blob/kong-for-kubernetes/docs/deployment/k4k8s-enterprise.md#kong-enterprise-docker-registry-access)
 
 
