@@ -379,7 +379,7 @@ Cost decoration schema looks like:
 
 | Form Parameter    | default   | description
 |-------------------|-----------|-------------
-| `type_path        |           | Path to node to decorate
+| `type_path`        |           | Path to node to decorate
 | `add_constant`    | `1`       | Node weight when added
 | `add_arguments`   | `[]`      | List of arguments to add to add_constant
 | `mul_constant`    | `1`       | Node weight multiplier value
