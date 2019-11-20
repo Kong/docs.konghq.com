@@ -396,15 +396,15 @@ Cost decoration is available on the following routes:
 
 #### `/graphql-rate-limiting-advanced/costs`
 
-* GET: list of all costs on any service
-* PUT, POST: add a cost to a service schema
+* **GET**: list of all costs on any service
+* **PUT**, **POST**: add a cost to a service schema
 
 
 #### `/graphql-rate-limiting-advanced/costs/{cost_id}`
 
-* GET: get cost associated by id
-* PATCH: modify cost associated by id
-* DELETE: delete cost associated by id
+* **GET**: get cost associated by id
+* **PATCH**: modify cost associated by id
+* **DELETE**: delete cost associated by id
 
 
 For example:
