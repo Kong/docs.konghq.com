@@ -159,7 +159,7 @@ params:
 
 ---
 
-The GraphQL Rate limiting advanced plugin is an extension of the
+**GraphQL Rate Limiting Advanced** is an extension of
 enterprise rate-limiting plugin that provides rate-limiting for
 GraphQL queries.
 
