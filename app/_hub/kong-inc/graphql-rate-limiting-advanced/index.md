@@ -391,7 +391,7 @@ Cost decoration is available on the following routes:
 #### `/services/{service}/graphql-rate-limiting-advanced/costs`
 
 * **GET**: list of costs associated to a service schema
-* PUT, POST: add a cost to a service schema
+* **PUT**, **POST**: add a cost to a service schema
 
 
 #### `/graphql-rate-limiting-advanced/costs`
