@@ -151,7 +151,7 @@ params:
       description: |
         This sets the time window to either `sliding` or `fixed`
   extra: |
-    **Note:  Redis configuration values are ignored if the `cluster` strategy is used.**
+    > Note:  Redis configuration values are ignored if the `cluster` strategy is used.
 
     **Note: PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
 
