@@ -394,6 +394,16 @@ Cost decoration is available on the following routes:
 * **PUT**, **POST**: add a cost to a service schema
 
 
+For example:
+
+```
+http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Query.allPeople" mul_arguments="first"
+http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Person.vehicleConnection" mul_arguments="first" add_constant=42
+http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Vehicle.filmConnection" mul_arguments="first"
+http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Film.characterConnection" mul_arguments="first"
+```
+
+
 #### `/graphql-rate-limiting-advanced/costs`
 
 * **GET**: list of all costs on any service
@@ -406,15 +416,6 @@ Cost decoration is available on the following routes:
 * **PATCH**: modify cost associated by id
 * **DELETE**: delete cost associated by id
 
-
-For example:
-
-```
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Query.allPeople" mul_arguments="first"
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Person.vehicleConnection" mul_arguments="first" add_constant=42
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Vehicle.filmConnection" mul_arguments="first"
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Film.characterConnection" mul_arguments="first"
-```
 
 ### Changing the default strategy
 
