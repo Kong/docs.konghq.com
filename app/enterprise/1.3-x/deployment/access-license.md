@@ -3,8 +3,7 @@ title: How to Access Your Kong Enterprise License
 toc: false
 ---
 
-Starting with Kong EE 0.29, Kong requires a license file to start. This guide 
-will walk you through how to access your license file. 
+Kong Enterprise requires a license file. This guide walks you through how to access your license file. 
 
 **Note:** The following guide only pertains to paid versions of Kong Enterprise. For free trial information, check the email received after signing up.
 
