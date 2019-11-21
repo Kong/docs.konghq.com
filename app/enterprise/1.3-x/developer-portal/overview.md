@@ -37,7 +37,7 @@ version the biggest changes are as follows:
 ### Breaking Changes
 
 The new Developer Portal is not compatible with previous Developer Portal 
-versions and templates.  The legacy Developer Portal will supported through the 
+versions and templates.  The legacy Developer Portal will be supported through the 
 next few releases allowing current users to make the switch over before deprecation. 
 The release will include the functionality needed to support legacy deployments, 
 but will not be available via the demo build.
