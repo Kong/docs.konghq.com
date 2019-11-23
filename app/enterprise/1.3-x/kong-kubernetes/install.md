@@ -14,8 +14,8 @@ Before installing Kong for Kubernetes Enterprise, be sure you have the following
 - **Kubernetes cluster**: You can use [Minikube](https://kubernetes.io/docs/setup/minikube/) or a [GKE](https://cloud.google.com/kubernetes-engine/) cluster. Kong is compatible with all distributions of Kubernetes. 
 - **kubectl access**: You should have `kubectl` installed and configured to communicate to your Kubernetes cluster.
 - A valid Kong Enterprise License
-  * If you have a license, continue to ["Step 1. Set Kong Enterprise License"](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support. 
-  * If you need a license, request a trial license through our request a demo page at [https://konghq.com/request-demo/](https://konghq.com/request-demo/)
+  * If you have a license, continue to [Step 1. Set Kong Enterprise License](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support. 
+  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page. 
   * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
 - [Kong Enterprise Docker registry access](https://github.com/Kong/kubernetes-ingress-controller-private/blob/kong-for-kubernetes/docs/deployment/k4k8s-enterprise.md#kong-enterprise-docker-registry-access)
 
