@@ -14,7 +14,7 @@ service_body: |
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
-    `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server.  With form-encoded, the notation is `client_certificate.id=<client_certificate_id>`. With JSON, use `"client_certificate":{"id":"<client_certificate_id>"}`.
+    `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
@@ -85,7 +85,7 @@ route_body: |
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
     `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
     `tags`<br>*optional* |  An optional set of strings associated with the Route, for grouping and filtering. 
-    `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to.  With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
+    `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to. With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
 
 route_json: |
     {
@@ -175,9 +175,9 @@ plugin_body: |
     Attributes | Description
     ---:| ---
     `name` |  The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately. 
-    `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Defaults to `null`. With form-encoded, the notation is `route.id=<route_id>`. With JSON, use `"route":{"id":"<route_id>"}`.
-    `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Defaults to `null`. With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
-    `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`. With form-encoded, the notation is `consumer.id=<consumer_id>`. With JSON, use `"consumer":{"id":"<consumer_id>"}`.
+    `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Defaults to `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
+    `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Defaults to `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
+    `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
     `run_on` |  Control on which Kong nodes this plugin will run, given a Service Mesh scenario. Accepted values are: * `first`, meaning "run on the first Kong node that is encountered by the request". On an API Getaway scenario, this is the usual operation, since there is only one Kong node in between source and destination. In a sidecar-to-sidecar Service Mesh scenario, this means running the plugin only on the Kong sidecar of the outbound connection. * `second`, meaning "run on the second node that is encountered by the request". This option is only relevant for sidecar-to-sidecar Service Mesh scenarios: this means running the plugin only on the Kong sidecar of the inbound connection. * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar scenario. This is useful for tracing/logging plugins.  Defaults to `"first"`.
     `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http", "https"]`.
@@ -290,7 +290,7 @@ sni_body: |
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
     `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
-    `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
+    `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use "`"certificate":{"id":"<certificate id>"}`.
 
 sni_json: |
     {
@@ -756,6 +756,13 @@ To learn more about the file format, please read the
 Attributes | Description
 ---:| ---
 `config`<br>**required** | The config data (in YAML or JSON format) to be loaded.
+
+
+*Request Querystring Parameters*
+
+Attributes | Description
+---:| ---
+`check_hash`<br>*optional* | If set to 1, Kong will compare the hash of the input config data against that of the previous one. If the configuration is identical, it will not reload it and will return HTTP 304.
 
 
 *Response*
