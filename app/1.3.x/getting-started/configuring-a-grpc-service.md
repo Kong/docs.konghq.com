@@ -248,9 +248,13 @@ Notice that the `kong-route-id` response header now carries a different value
 and refers to the second Route created in this page.
 
 **Note:**
-[gRPC reflection requests](https://github.com/grpc/grpc/blob/master/doc/server_reflection_tutorial.md)
-will still be routed to the first route we created (the "catch-all" route), since
-the request matches neither `SayHello` nor `LotsOfReplies` routes.
+Some gRPC clients (typically CLI clients) issue ["gRPC Reflection Requests"][grpc-reflection]
+as a means of determining what methods a server exports and how those methods are called.
+Said requests have a particular path; for example, `/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo`
+is a valid reflection path. As with any proxy request, Kong needs to know how to
+route these; in the current example, they would be routed to the catch-all route
+(whose path is `/`, matching any path). If no route matches the gRPC reflection
+request, Kong will respond, as expected, with a `404 Not Found` response.
 
 ## 3. Enabling Plugins
 
@@ -276,6 +280,7 @@ $ tail -f grpc-say-hello.log
 [enabling-plugins]: /{{page.kong_version}}/getting-started/enabling-plugins
 [conf-service]: /{{page.kong_version}}/getting-started/configuring-a-service
 [configuration-reference]: /{{page.kong_version}}/configuration-reference
+[grpc-reflection]: https://github.com/grpc/grpc/blob/master/doc/server_reflection_tutorial.md
 [grpcbin]: https://github.com/moul/grpcbin
 [grpcurl]: https://github.com/fullstorydev/grpcurl
 [protobuf]: https://raw.githubusercontent.com/moul/pb/master/hello/hello.proto
