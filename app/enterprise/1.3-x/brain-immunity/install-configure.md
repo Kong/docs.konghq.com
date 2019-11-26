@@ -10,14 +10,16 @@ When you purchase Kong Brain and/or Kong Immunity, you obtain both add-ons toget
 * Kong Brain
 * Kong Immunity
 
+![Kong Brain and Kong Immunity] (https://doc-assets.konghq.com/1.3/brain_immunity/KongBrainImmunity_overview.png)
+
 This guide provides information about how to install, configure, and use Kong Brain and/or Kong Immunity and its components on Kong Enterprise. Sections in this guide include:
 
-* Overview
-* Prerequisites
-* Configure the Collector App and Collector Plugin
-* Monitor the Collector
-* Using Kong Brain
-* Using Kong Immunity
+- [Overview] (#overview)
+- [Prerequisites] (#prerequisites)
+- [Configure the Collector App and Collector Plugin] (#configure-the-collector-app-and-collector-plugin)
+- [Monitor the Collector] (#monitor-the-collector)
+- [Using Kong Brain] (#using-kong-brain)
+- [Using Kong Immunity] (#using-kong-immunity)
 
 ### Overview
 Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using a Collector App and a Collector Plugin to communicate with Kong Enterprise. The diagram illustrates how the Kong components work together, and are described below:
@@ -46,13 +48,13 @@ To enable Kong Brain (Brain) and/or Kong Immunity (Immunity), you must first con
 * Testing the configuration to confirm everything is up and running. 
 
 Steps are:
-* Step 1. Enable the Collector Plugin
-* Step 2. Set up the Collector App
-* Step 3: Set up with Docker Compose
-* Step 4. (Optional) Opt-Out of Har Redaction
-* Step 5. (Optional) Using different Postgres and Redis instances
-* Step 6. Confirm the Collector App is working
-* Step 7. Configure Kong Routes to send data to the Collector
+- [Step 1. Enable the Collector Plugin] (#Step-1.-Enable-the-Collector-Plugin)
+- [Step 2. Set up the Collector App] (#Step-2.-Set-up-the-Collector-App)
+- [Step 3: Set up with Docker Compose] (#Step-3:-Set-up-with-Docker-Compose)
+- [Step 4. (Optional) Opt-Out of HAR Redaction] (#Step-4.-(Optional)-Opt-Out-of-HAR-Redaction)
+- [Step 5. (Optional) Using different Postgres and Redis instances] (#Step-5.-(Optional)-Using-different-Postgres-and-Redis-instances)
+- [Step 6. Confirm the Collector App is working] (#Step-6.-Confirm-the-Collector-App-is-working)
+- [Step 7. Configure Kong Routes to send data to the Collector] (#Step-7.-Configure-Kong-Routes-to-send-data-to-the-Collector)
 
 #### Step 1. Set up the Collector Plugin 
 Enable the Collector Plugin using the Admin API:
@@ -121,8 +123,8 @@ KONG_HOST=<KONG HOST> KONG_PORT=<8001> SQLALCHEMY_DATABASE_URI=<postgres://kong@
    * ```KONG_PORT```: Usually 8001, but may be set otherwise 
 * You are adding A postgres database
 
-#### Step 4. (Advanced Configuration) Opt-Out of Har Redaction
-**Note**: You must specifically opt-out, or turn off, Har Redaction in order to store all of your data. The Default setting is to redact.
+#### Step 4. (Advanced Configuration) Opt-Out of HAR Redaction
+**Note**: You must specifically opt-out, or turn off, HAR Redaction in order to store all of your data. The Default setting is to redact.
 
 The Collector App default does not store body data values and attachments in traffic data. In the ```Har['postData']['text']``` field, all values are replaced with the value's type. This does not affect the performance of Brain or Immunity, however, this can impact your ability to investigate some Immunity related alerts by looking at the offending HARs that created those alerts.
 
