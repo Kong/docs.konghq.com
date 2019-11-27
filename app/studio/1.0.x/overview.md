@@ -39,7 +39,7 @@ Design, edit, and debug API specification files with Kong Studio! Features in Ko
     </h3>
     <p></p>
     <a href="/studio/1.0.x/editing-specs">
-        Install Kong Studio on Mac, Windows, or Linux &rarr;
+        Edit OpenAPI specifications with Kong Studio &rarr;
     </a>
   </div>
 

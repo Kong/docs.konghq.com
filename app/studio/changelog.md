@@ -3,6 +3,35 @@ title: Kong Studio Changelog
 layout: changelog
 ---
 
+### 1.1.0
+**Released on 11/27/2019**
+
+#### Added
+
+* Added Live Preview functionality while editing OpenAPI specs to Editor view
+* Added Import by Clipboard functionality to import dropdown under Data settings
+* Added new dark theme to compliment existing light theme
+* Added ability to scroll to the Editor Navigation
+* Added support for Enums to GraphQL documentation explorer
+* Added automatic parsing of query parameters for CURL import
+
+#### Changed
+
+* Changed activity bar icons
+* Changed activity bar active and hover states for improved visual cue
+* Changed underlying parsing of the OpenAPI specification for Editor Navigation
+* Changed responses in request history to be grouped by time
+
+#### Fixed
+
+* Fixed an issue where Editor Navigation didn’t support empty arrays / objects.
+* Fixed an issue where Editor Navigation would only navigate to the first key found.
+* Fixed an issue where Editor Navigation wouldn’t navigate properly to paths.
+* Fixed an issue where Editor Navigation wouldn’t navigate to array elements.
+* Fixed an issue where OpenAPI specifications with lots of members caused the Git Sync bar to disappear
+* Fixed an issue where OAuth 2.0 login dialog was not using correct User-Agent
+* Fixed an issue where empty OpenAPI property objects caused import to fail
+
 ### 1.0.1
 **Released on 11/20/2019**
 
