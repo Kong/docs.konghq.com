@@ -49,7 +49,7 @@ Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterp
 
 ```
 $ kubectl create secret -n kong docker-registry kong-enterprise-docker \
-    --docker-server=kong-docker-kong-enterprise-lite-docker.bintray.io \
+    --docker-server=kong-docker-kong-enterprise-k8s.bintray.io \
     --docker-username=<your-username> \
     --docker-password=<your-password>
 ```
