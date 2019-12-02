@@ -452,6 +452,8 @@ GET / HTTP/1.1
 version: v3
 ```
 
+**Note**: The `headers` keys are a logical `AND` and their values a logical `OR`.
+
 [Back to TOC](#table-of-contents)
 
 ### Request path
