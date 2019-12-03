@@ -1196,6 +1196,7 @@ body {
         padding: 75px 4px 150vh;
         max-width: 768px;
         transform: translateX(-50%);
+        overflow-x: hidden;
         a {
           cursor: pointer;
         }
@@ -1412,6 +1413,139 @@ body {
 
 body {
   --navPosition: 0px;
+}
+
+// Compressed vertical space queries for subnav
+
+@media (max-height: 662px) and (min-width: 1080px) {
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    .page-subscriptions
+    table
+    thead
+    th.description,
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    p.description,
+  .page-subscriptions
+    table
+    thead
+    .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    th.description {
+    display: none;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    > ul
+    li.menu-item-has-children
+    > ul {
+    position: absolute;
+    bottom: -2.5px;
+    left: 0;
+    width: 75%;
+    left: 0%;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    > ul
+    > li {
+    padding: 25px 10px 35px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    .sub-menu
+    .nav2:nth-of-type(1)
+    > ul
+    > li {
+    padding-top: 15px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    .sub-menu
+    .nav2:nth-of-type(1)
+    > ul
+    > li
+    > ul
+    > li {
+    padding-top: 0px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    .two-row
+    ul
+    li.nav2
+    > a {
+    padding-top: 10px;
+    padding-bottom: 60px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    .two-row
+    ul
+    li.nav2:last-of-type
+    > a {
+    padding-top: 20px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    .two-row
+    ul
+    li.nav2:last-of-type
+    .nav-btns {
+    top: 65px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    .nav-btns {
+    top: 55px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    > ul
+    > li
+    > a
+    img {
+    width: 30px;
+    left: -40px;
+    top: -6.5px;
+  }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    ul.sub-menu
+    > li
+    > ul
+    > li
+    > a {
+    transform: translateX(30px);
+  }
 }
 
 // Add maring to page while cookie policy is open
