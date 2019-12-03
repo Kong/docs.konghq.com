@@ -24,9 +24,9 @@ toc: false
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/kong-kubernetes/install">Kong for Kubernetes Enterprise</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install">Kong for Kubernetes Enterprise</a></h3>
     <p></p>
-    <a href="/enterprise/{{page.kong_version}}/kong-kubernetes/install">Go to Guide&rarr;</a>
+    <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install">Go to Guide&rarr;</a>
   </div>
   
   <div class="docs-grid-block">
