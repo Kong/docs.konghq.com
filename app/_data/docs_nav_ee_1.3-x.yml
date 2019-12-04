@@ -264,7 +264,7 @@
   url: /kong-for-kubernetes/
   items:
     - text: Overview
-      url:  /kong-for-kubernetes/overview
+      url:  /kong-for-kubernetes
     - text: Installation
       url: /kong-for-kubernetes/install
     - text: Using Kong for Kubernetes
