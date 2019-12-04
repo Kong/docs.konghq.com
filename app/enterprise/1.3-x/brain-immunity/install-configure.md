@@ -22,7 +22,7 @@ This guide provides information about how to install, configure, and use Kong Br
 ### Overview
 Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using a Collector App and a Collector Plugin to communicate with Kong Enterprise. The diagram illustrates how the Kong components work together, and are described below:
 
-![Kong Brain and Kong Immunity] (https://doc-assets.konghq.com/brain_immunity/KongBrainImmunity_overview.png)
+![Kong Brain and Kong Immunity](https://doc-assets.konghq.com/brain_immunity/KongBrainImmunity_overview.png)
 
 * **Kong Enterprise**
 * **Kong Brain** (Brain) and/or **Kong Immunity** (Immunity) add-ons, according to your purchase.
