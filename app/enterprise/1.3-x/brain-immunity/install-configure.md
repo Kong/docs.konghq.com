@@ -21,6 +21,9 @@ This guide provides information about how to install, configure, and use Kong Br
 
 ### Overview
 Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using a Collector App and a Collector Plugin to communicate with Kong Enterprise. The diagram illustrates how the Kong components work together, and are described below:
+
+![Kong Brain and Kong Immunity] (https://doc-assets.konghq.com/brain_immunity/KongBrainImmunity_overview.png)
+
 * **Kong Enterprise**
 * **Kong Brain** (Brain) and/or **Kong Immunity** (Immunity) add-ons, according to your purchase.
 * **Collector App** enables communication between Kong Enterprise and Brain and/or Immunity. The Kong Collector App comes with your purchase of Bran and/or Immunity. 
@@ -154,7 +157,7 @@ Once you have the Collector plugin and infrastructure up and running, Kong Brain
 
 #### Generated Open-API Spec files
 
-To create Brain's Swagger files, the Collector endpoint /swagger returns a swagger file, generated considering traffic that match the submited filter parameters: `host`, `route_id`, `service_id` and `workspace_name`. Also, it fills the fields `title`, `version` and `description` within the swagger file with the respective submited parameters.
+To create Brain's Swagger files, the Collector endpoint /swagger returns a swagger file, generated considering traffic that match the submitted filter parameters: `host`, `route_id`, `service_id` and `workspace_name`. Also, it fills the fields `title`, `version` and `description` within the swagger file with the respective submitted parameters.
 
 #### **http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/swagger?host=<request_host>&openapi_version=<2|3>&route_id=<route_id>&service_id=<service_id>&workspace_name=<workspace_name>?title=**
 
