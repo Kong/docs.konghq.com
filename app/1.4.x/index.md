@@ -22,9 +22,9 @@ title: Documentation for Kong
   </div>
 
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/kong-kubernetes/">Kong for Kubernetes</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/kong-for-kubernetes/">Kong for Kubernetes</a></h3>
     <p>Get Started with Kong for Kubernetes</p>
-    <a href="{{page.kong_version}}/kong-kubernetes/">Learn More &rarr;</a>
+    <a href="{{page.kong_version}}/kong-for-kubernetes/">Learn More &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

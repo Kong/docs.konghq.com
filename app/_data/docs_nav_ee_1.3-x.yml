@@ -13,7 +13,7 @@
         - text: Docker
           url: /deployment/installation/docker
         - text: Kubernetes
-          url: /kong-kubernetes/install
+          url: /kong-for-kubernetes/install
         - text: Ubuntu
           url: /deployment/installation/ubuntu
         - text: CentOS
@@ -261,16 +261,16 @@
           url: /developer-portal/helpers/cli
 
 - title: Kong for Kubernetes Enterprise
-  url: /kong-kubernetes/
+  url: /kong-for-kubernetes/
   items:
     - text: Overview
-      url:  /kong-kubernetes/overview
+      url:  /kong-for-kubernetes
     - text: Installation
-      url: /kong-kubernetes/install
+      url: /kong-for-kubernetes/install
     - text: Using Kong for Kubernetes
-      url: /kong-kubernetes/using-kong-for-kubernetes
+      url: /kong-for-kubernetes/using-kong-for-kubernetes
     - text: Changelog
-      url: /kong-kubernetes/changelog
+      url: /kong-for-kubernetes/changelog
 
 - title: Kong Brain & Kong Immunity
   url: /brain-immunity/install-configure
