@@ -30,7 +30,7 @@ Workspace displayed beneath the **Vitals** chart.
 The list of **Workspaces** may be rendered as cards or a table, 
 depending on preference.
 
-![Workspace List](https://konghq.com/wp-content/uploads/2018/11/km-ws-list.png)
+![Workspace List](https://doc-assets.konghq.com/1.3/manager/kong-manager-workspaces-grid.png)
 
 ## Workspace Access
 
