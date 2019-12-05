@@ -296,7 +296,7 @@ HTTP 200 OK
 
 **Endpoint**
 
-<div class="endpoint put">/rbac/roles</div>
+<div class="endpoint put">/rbac/roles/{name_or_id}</div>
 
 **Request Body**
 
@@ -305,11 +305,11 @@ HTTP 200 OK
 | `name`                | The RBAC role name.                       |
 | `comment`<br>optional | A string describing the RBAC user object. |
 
-The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`id` for Users), the entity will be
-created with the given payload. If the request payload **does** contain an
-entity's primary key, the payload will "replace" the entity specified by the
-given primary key. If the primary key is **not** that of an existing entity, `404 NOT FOUND` will be returned.
+The behavior of `PUT` endpoints is the following: if the request
+payload **does** contain an entity's primary key, the payload will
+"replace" the entity specified by the given primary key. If the
+primary key is **not** that of an existing entity, the entity will be
+created with the given payload.
 
 **Response**
 
