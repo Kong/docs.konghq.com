@@ -32,10 +32,17 @@ id: documentation
         <h1>{{page.title}}</h1>
       </div>
 
+      <div class="dropdown page-header-right" id="searchBar">
+        <div id="getkong-algolia-search" class="search-input">
+          <i class="fa fa-search"></i>
+          <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
+        </div>
+      </div>
       <div class="versions-dropdown dropdown page-header-right {% if page.edition=='enterprise' %} page-header-right-enterprise {% endif %}">
         <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           Version {{page.kong_version}}
+          {% if page.kong_version == "1.3-x" %}(2020){% endif %}
           {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
           <span class="caret"></span>
         </button>
@@ -44,15 +51,13 @@ id: documentation
           <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
             <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}" {% if ver.release==page.kong_version
               %} class="active" {% endif %}>
-              {{ver.release}} {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+              {{ver.release}}
+              {% if ver.release == "1.3-x" %}(2020){% endif %}
+              {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
             </a>
           </li>
           {% endfor %}
         </ul>
-        <div id="getkong-algolia-search" class="search-input">
-          <i class="fa fa-search"></i>
-          <input type="text" placeholder="Search" id="getkong-algolia-search-input" />
-        </div>
       </div>
     </div>
   </header>

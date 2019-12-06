@@ -53,9 +53,14 @@
 
   .page-header-btn {
     &#version-dropdown{
+      width: 220px;
+      float: right;
       @media screen and (max-width:476px){
         float:left;
       }
+    }
+    &#searchBar {
+      width: 220px;
     }
     &:extend(.button all);
     border-color: #d4d7d9;
@@ -93,7 +98,7 @@
     right: 0;
     top: 75%;
     margin-top: 0px;
-    min-width:360px;
+    min-width:220px;
 
     @media (max-width: 1080px) {
       position: static;
@@ -101,10 +106,10 @@
       display: inline-block;
       vertical-align: bottom;
     }
-  }
 
-  .page-header-right-enterprise {
-    min-width: 180px;
+    &#searchBar {
+      top: 50%;
+    }
   }
 
   .dropdown .dropdown-menu {
