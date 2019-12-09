@@ -80,7 +80,7 @@ params:
       required: false
       default: "`true`"
       description: |
-        The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)
+        Flag to enable asynchronous mode
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"
