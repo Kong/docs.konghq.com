@@ -31,17 +31,10 @@ depending on preference.
 ## Creating New Workspaces
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace** 
-button at the top right to see the **Create Workspace** form.
+button at the top right to see the **Create Workspace** form. Name and choose a 
+color / icon for the new Workspace.
 
-    ![New Workspace Form](https://konghq.com/wp-content/uploads/2018/11/km-new-workspace.png)
-
-2. Name the new Workspace.
-    
-    ![Name the New Workspace](https://konghq.com/wp-content/uploads/2018/11/km-name-ws.png)
-
-    ⚠️ **WARNING**: Each Workspace name should be unique, regardless of letter 
-    case. For example, naming one Workspace "Payments" and another one 
-    "payments" will create two different workspaces that look identical.
+    ![New Workspace Form](https://doc-assets.konghq.com/1.3/manager/workspaces/01-create-new-workspace.png)
 
     ⚠️ **WARNING**: Do not name Workspaces the same as these major routes in Kong 
     Manager:
@@ -60,27 +53,10 @@ button at the top right to see the **Create Workspace** form.
     • Vitals
     ```
 
-3. Select a color or avatar to make each **Workspace** easier to distinguish, or 
-accept the default color. 
-
-    ![Select Workspace Color](https://konghq.com/wp-content/uploads/2018/11/km-color-ws.png)
-
 4. Click the "Create New Workspace" button. Upon creation, the application will 
-navigate to the new Workspace's "Dashboard" page.
+navigate to the new Workspace's dashboard.
 
-    ![New Dashboard](https://konghq.com/wp-content/uploads/2018/11/km-new-dashboard.png)
-
-5. On the left sidebar, click the "Admins" link in the "Security" section. If 
-the sidebar is collapsed, hover over the security badge icon at the bottom and 
-click the "Admins" link. 
-
-    ![Admins Hover Over](https://konghq.com/wp-content/uploads/2018/11/admins-section.png)
-
-6. The "Admins" page displays a list of current Admins and Roles. Four default 
-Roles specific to the new Workspace are already visible, and new Roles specific 
-to the Workspace can be assigned from this page. 
-
-    ![New Workspace Admins](https://konghq.com/wp-content/uploads/2018/11/km-ws-admins.png)
+    ![New Dashboard](https://doc-assets.konghq.com/1.3/manager/workspaces/02-workspace-dashboard.png)
 
 
 ## Delete or Edit a Workspace
@@ -91,7 +67,7 @@ page.
 
 1. Within the Workspace, navigate to the "Dashboard" page.
 
-    ![Workspace Dashboard](https://konghq.com/wp-content/uploads/2018/11/km-dashboard.png)
+    ![Workspace Dashboard](https://doc-assets.konghq.com/1.3/manager/workspaces/02-workspace-dashboard.png)
 
 2. At the top right, click the "Settings" button.
 
