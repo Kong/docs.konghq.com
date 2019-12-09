@@ -245,4 +245,3 @@ The following guidelines assume that both `Kong` and `Kafka` have been installed
 
     You should receive a `200 { message: "message sent" }` response, and should see the request bodies appear on
     the Kafka consumer console you started on the previous step.
-
