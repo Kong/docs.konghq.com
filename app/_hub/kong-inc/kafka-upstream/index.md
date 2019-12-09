@@ -34,83 +34,90 @@ params:
       value_in_examples: TOPIC
       urlencode_in_examples: true
       default:
-      description: The Kafka topic to publish to
+      description: |
+         The Kafka topic to publish to
     - name: timeout
       required: false
       default: "`10000`"
       value_in_examples: TIMEOUT
-      description: Socket timeout in milliseconds.
+      description: |
+         Socket timeout in milliseconds.
     - name: keepalive
       required: false
       default: "`60000`"
       value_in_examples: KEEPALIVE
-      description: Keepalive timeout in milliseconds.
+      description: |
+         Keepalive timeout in milliseconds.
     - name: forward_method
       required: false
       default: "`false`"
       description: | 
-      Include the request method in the message.
+         Include the request method in the message.
     - name: forward_uri
       required: false
       default: "`false`"
       description: | 
-      Include the request URI and URI arguments (i.e., query arguments) in the message.
+         Include the request URI and URI arguments (i.e., query arguments) in the message.
     - name: forward_headers
       required: false
       default: "`false`"
-      description: | 
-      Include the request headers in the message
+      description: |
+         Include the request headers in the message
     - name: forward_body
       required: false
       default: "`true`"
-      description: | 
-      Include the request headers in the message
+      description: |
+         Include the request headers in the message
     - name: producer_request_acks
       required: false
       default: "`1`"
       value_in_examples: PRODUCER_REQUEST_ACKS
       description: |
-        The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values: 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR
+         The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values are 0 for no acknowledgments, 1 for only the leader, and -1 for the full ISR
     - name: producer_request_timeout
       required: false
       default: "`2000`"
       value_in_examples: PRODUCER_REQUEST_TIMEOUT
       description: |
-        Time to wait for a Produce response in milliseconds
+         Time to wait for a Produce response in milliseconds
     - name: producer_request_limits_messages_per_request
       required: false
       default: "`200`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_MESSAGES_PER_REQUEST
-      description: Maximum number of messages to include into a single Produce request
+      description: |
+         Maximum number of messages to include into a single Produce request
     - name: producer_request_limits_bytes_per_request
       required: false
       default: "`1048576`"
       value_in_examples: PRODUCER_REQUEST_LIMITS_BYTES_PER_REQUEST
-      description: Maximum size of a Produce request in bytes
+      description: |
+         Maximum size of a Produce request in bytes
     - name: producer_request_retries_max_attempts
       required: false
       default: "`10`"
       value_in_examples: PRODUCER_REQUEST_RETRIES_MAX_ATTEMPTS
-      description: Maximum number of retry attempts per single Produce request
+      description: |
+         Maximum number of retry attempts per single Produce request
     - name: producer_request_retries_backoff_timeout
       required: false
       default: "`100`"
-      description: Backoff interval between retry attempts in milliseconds.
+      description: |
+       Backoff interval between retry attempts in milliseconds.
     - name: producer_async
       required: false
       default: "`true`"
       description: |
-        Flag to enable asynchronous mode
+         Flag to enable asynchronous mode.
     - name: producer_async_flush_timeout
       required: false
       default: "`1000`"
       description: |
-        Maximum time interval in milliseconds between buffer flushes in asynchronous mode.
+         Maximum time interval in milliseconds between buffer flushes in asynchronous mode.
     - name: producer_async_buffering_limits_messages_in_memory
       required: false
       default: "`50000`"
       description: |
-        Maximum number of messages that can be buffered in memory in asynchronous mode.
+         Maximum number of messages that can be buffered in memory in asynchronous mode.
 
 ---
 
