@@ -1,5 +1,5 @@
 ---
-title: Kafka Upstream Plugin
+redirect_to: /hub/kong-inc/kafka-upstream
 ---
 
 This plugin transforms requests into [Kafka](https://kafka.apache.org/) messages in a topic.
