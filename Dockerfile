@@ -7,6 +7,9 @@ RUN apk add --update-cache --upgrade curl
 WORKDIR /srv/jekyll
 COPY Makefile /srv/jekyll/Makefile
 
+# To handle 'not get uid/gid'
+RUN npm config set unsafe-perm true
+
 RUN make install-prerequisites
 
 RUN chmod -R 777 /usr/lib/node_modules \
