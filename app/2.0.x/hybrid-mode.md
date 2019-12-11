@@ -29,25 +29,58 @@ Deploying using Hybrid mode has a number of benefits:
 
 ## Topology
 
-<INSERT TYPICAL CP/DP TOPOLOGY HERE>
+![Example Hybrid Mode Topology](/assets/images/docs/hybrid-mode.png "Example Hybrid Mode Topology")
+
+## Generating Certificate/Key Pair
+
+Before using the Hybrid Mode, it is necessary to have a shared certificate/key pair generated
+so that the communication security between CP and DP nodes can be established.
+
+This certificate/key pair is shared by both CP and DP nodes, mutual TLS handshake (mTLS) is used
+for authentication so the actual private key is never transferred on the network.
+
+<div class="alert alert-warning">
+  <strong>Protect the Private Key!</strong> Ensure the private key file can only be accessed by
+  Kong nodes belonging to the cluster. If key is suspected to be compromised it is necessary to
+  re-generate and replace certificate and keys on all the CP/DP nodes.
+</div>
+
+To create a certificate/key pair:
+
+```
+kong hybrid gen_cert
+```
+
+This will generate `cluster.crt` and `cluster.key` files and save them to the current directory.
+By default it is valid for 3 years, but can be set longer or shorter with the `--days` option.
+
+See `kong hybrid --help` for more usage information.
+
+The `cluster.crt` and `cluster.key` file need to be transferred to both Kong CP and DP nodes.
+Observe proper permission setting on the key file to ensure it can only be read by Kong.
 
 ## Setting Up Kong Control Plane Nodes
 
 Starting the Control Plane is fairly simple. Aside from the database configuration
-which is the same as today, we need to specify the "role" of the node to "admin".
-This will cause Kong to listen on `0.0.0.0:8002` by default for Data Plane
-connections. The `8002` port on the Control Plane will need to be
+which is the same as today, we need to specify the "role" of the node to "control\_plane".
+This will cause Kong to listen on `0.0.0.0:8005` by default for Data Plane
+connections. The `8005` port on the Control Plane will need to be
 accessible by all the Data Plane it controls through any firewalls you may have
 in place.
 
+In addition, the `cluster_cert` and `cluster_cert_key` configuration need to point to
+the certificate/key pair that was generated above.
+
 ```
-KONG_ROLE=admin kong start
+KONG_ROLE=control_plane KONG_CLUSTER_CERT=cluster.crt KONG_CLUSTER_CERT_KEY=cluster.key kong start
 ```
 
 Or in `kong.conf`:
 
 ```
-role = admin
+role = control_plane
+cluster_cert = cluster.crt
+cluster_cert_key = cluster.key
 ```
 
 Note that Control Plane still needs a database (Postgres or Cassandra) to store the
@@ -60,23 +93,32 @@ and redundancy as long as they points to the same backend database.
 Now we have a Control Plane running, it is not much useful if no Data Plane nodes are
 talking to it and serving traffic (remember Control Plane nodes can not be used
 for proxying). To start the Data Plane, all we need to do is to specify the "role"
-to "proxy", give it the address and port of where the Control Plane can be reached
+to "data\_plane", give it the address and port of where the Control Plane can be reached
 and the node automatically connects and syncs itself up with the current configuration.
+
+Similar to the CP config above, the `cluster_cert` and `cluster_cert_key` configuration need to
+point to the same files as the CP has. In addition the `cluster.crt` file need to be listed
+as trusted by OpenResty through the `lua_ssl_trusted_certificate` configuration. If you
+have already specified a different `lua_ssl_trusted_certificate`, then adding the content
+of `cluster.crt` into that file will achieve the same result.
 
 **Note:** In this release of the Hybrid Mode, the Data Plane receives updates from the Control
 Plane via a format that is similar to the Declarative Config, therefore the `storage`
 property has to be set to `memory` for Kong to start up properly.
 
 ```
-KONG_ROLE=proxy KONG_CLUSTER_CONTROL_PLANE=control-plane.example.com:8002 KONG_STORAGE=memory kong start
+KONG_ROLE=data_plane KONG_CLUSTER_CONTROL_PLANE=control-plane.example.com:8005 KONG_CLUSTER_CERT=cluster.crt KONG_CLUSTER_CERT_KEY=cluster.key KONG_LUA_SSL_TRUSTED_CERTIFICATE=cluster.crt KONG_DATABASE=off kong start
 ```
 
 Or in `kong.conf`:
 
 ```
-role = proxy
-cluster_control_plane = control-plane.example.com:8002
-storage = memory
+role = data_plane
+cluster_control_plane = control-plane.example.com:8005
+database = off
+cluster_cert = cluster.crt
+cluster_cert_key = cluster.key
+lua_ssl_trusted_certificate = cluster.crt
 ```
 
 ## Checking the status of the cluster
