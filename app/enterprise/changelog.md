@@ -699,7 +699,7 @@ not able to access the **Workspace** that the **Role** was assigned to.
 for details.
 
 ### Fixes
-- Fixes for NGINX CVEs: [CVE-2018-16843](https://nvd.nist.gov/vuln/detail/CVE-2018-16843), [CVE-2018-16844](https://nvd.nist.gov/vuln/detail/CVE-2018-16844), [CVE-2019-9511](https://nvd.nist.gov/vuln/detail/CVE-2019-9511), [CVE-2019-9513](https://nvd.nist.gov/vuln/detail/CVE-2019-9513), and [CVE-2019-9516](https://nvd.nist.gov/vuln/detail/CVE-2019-9516)
+- Fixes for NGINX CVEs resolving security vulnerabilities in the HTTP/2 protocol which may cause excessive memory consumption and CPU usage: [CVE-2018-16843](https://nvd.nist.gov/vuln/detail/CVE-2018-16843), [CVE-2018-16844](https://nvd.nist.gov/vuln/detail/CVE-2018-16844), [CVE-2019-9511](https://nvd.nist.gov/vuln/detail/CVE-2019-9511), [CVE-2019-9513](https://nvd.nist.gov/vuln/detail/CVE-2019-9513), and [CVE-2019-9516](https://nvd.nist.gov/vuln/detail/CVE-2019-9516)
 
 ## 0.35-3
 **Release Date:** 2019/07/17
