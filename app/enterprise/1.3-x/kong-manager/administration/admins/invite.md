@@ -18,7 +18,18 @@ invitation, they will only be able to log in with that email address. Assign the
     permissions. 
 
     ⚠️ **IMPORTANT**: The **Super Admin** can see all available roles across 
-    **Workspaces** on the **Roles** tab of the **Organization** page. 
+    **Workspaces** on the **Roles** tab of the **Organization** page.
+    
+    ⚠️ **IMPORTANT**: By default, the registration link will expire after 259,200 
+    seconds (3 days). This time frame can be configured with the `kong.conf` 
+    file in `admin_invitation_expiry`.
+ 
+    ⚠️ **IMPORTANT**: If an email fails to send, either due to an incorrect email 
+    address or an external error, it will be possible to resend an invitation.
+
+    ⚠️ **IMPORTANT**: If SMTP is not enabled or the invitation email fails to send, 
+    it is possible for the Super Admin to copy and provide a registration link 
+    directly. See the next section.
 
 
 4. On the **Teams** page, the new invitee will appear on the **Admins** list with the under **Invited**. Once they accept the invitation, the user will be listed in the main **Admins** list. 
