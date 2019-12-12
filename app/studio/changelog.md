@@ -3,6 +3,32 @@ title: Kong Studio Changelog
 layout: changelog
 ---
 
+### 1.1.1
+**Released on 12/13/2019**
+
+#### Added
+
+* Added support for importing security scheme blocks when importing OpenAPI v3
+* Added ability to use `X-HTTP-Method-Override` header to switch to GraphQL
+* Added support for code folding persistence when switching between requests
+* Added right click context menu to explorer sidebar
+* Added option to download prettified JSON response
+* Added support for importing WSDL
+
+#### Changed
+
+* Changed underlying navigation keys to avoid issues when duplicate keys exist
+* Changed GraphQL to wait until schema is fetched before linting
+* Changed renaming requests behavior to prompt for new name
+
+#### Fixed
+
+* Fixed an issue where duplicate paths / keys in a spec caused the editor to crash without ability to recover
+* Fixed a potential white screen issue when creating a workspace
+* Fixed Github requests from erring during OAuth flow by adding a User Agent header
+
+
+
 ### 1.1.0
 **Released on 11/27/2019**
 
