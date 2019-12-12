@@ -1,3 +1,3 @@
 ---
-redirect_to: /enterprise/latest/kong-manager/workspaces/#delete-or-edit-a-workspace
+redirect_to: /enterprise/1.3-x/kong-manager/workspaces/#delete-or-edit-a-workspace
 ---
