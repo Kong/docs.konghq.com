@@ -384,6 +384,36 @@ repository will allow you to do both easily.
 
 - Fix: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
 
+
+## 0.36-3
+
+**Release Date:** 2019/11/18
+
+### Features
+
+- Adds an endpoint `/entities/migrate` for migrating entities from Community Edition to Enterprise Edition.
+
+#### Plugins
+
+- **`kong-openid-connect`**
+    - Add support for ES256 signing and key generation
+    - Add support for ES384 signing and key generation
+    - Add support for ES512 signing and key generation
+    - Add support for PS256 signing and key generation
+    - Add support for PS384 signing and key generation
+    - Add support for PS512 signing and key generation
+    - Add support for EdDSA signing, key generation and verification
+    - Update lua-resty-nettle dependency to 1.0
+    - Change verification JWT header's typ claim by adding support for at+jwtthat for example IdentityServer4 
+    is using by default.
+    - Change issuer verification bit more permissive (e.g. the difference in ending slash (present or absent) 
+    does not make the verification to fail)
+
+### Fixes
+
+- Fixes router proxy path issues.
+
+
 ## 0.36-2
 
 ### Notifications
