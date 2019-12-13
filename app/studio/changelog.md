@@ -27,6 +27,7 @@ layout: changelog
 * Fixed a potential white screen issue when creating a workspace
 * Fixed Github requests from erring during OAuth flow by adding a User Agent header
 * Fixed Git Sync for Windows
+* Fixed issue where specs uploaded with a forward slash in the beginning of the filename threw errors
 
 
 ### 1.1.0
