@@ -41,7 +41,6 @@ color / icon for the new Workspace.
 
     ```
     • Admins
-    • APIs
     • Certificates
     • Consumers
     • Plugins
