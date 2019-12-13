@@ -1,7 +1,5 @@
 ---
 title: DB-less and Declarative Configuration
-redirect_from:
-  - /Users/cat/docs.konghq.com/dist/1.2.x/db-less-and-declarative-config/
 ---
 
 ## Introduction
