@@ -385,6 +385,22 @@ repository will allow you to do both easily.
 - Fix: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
 
 
+## 0.36-4
+
+**Release Date:** 2019/12/12
+
+### Fixes
+
+- `migrate-community-to-enterprise` script changed from batch query execution to multiple single queries 
+for Cassandra strategy.
+- Fixed workspace counters calculation logic when you run `migrate-community-to-enterprise` script.
+- Fixed DAO fetching functionality to fetch all requested records from the database instead of first `1000` 
+records that was before.
+- Updated Nettle version from `3.4.1` to `3.5.1` which is required by the plugins that use `OIDC` library to work properly.
+- Fixed an issue where enabling tracing and setting a tracing header caused all HTTPS requests to fail immediately when 
+attempting to fetch headers during the ssl_cert phase.
+
+
 ## 0.36-3
 
 **Release Date:** 2019/11/18
