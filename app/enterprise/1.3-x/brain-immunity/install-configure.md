@@ -224,7 +224,7 @@ In general, if a endpoint + method combination model does not appear on the retu
 Immunity automatically sets up training jobs when it first starts up, and retrains all models on an optimized schedule based on time since data started flowing through Immunity. If you have experienced large changes in the type of data you expect to be coming through Immunity and do not feel comfortable choosing an "optimal" time period to use for retraining with the /trainer endpoint, you can re-trigger Immunity's auto-training by posting to the /trainer/reset endpoint. Immunity will then recreate its retraining schedule as if it was just being started and newly ingesting data.
 
 ```
-`curl -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/reset`
+curl -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/reset
 ```
 
 #### Configuring Auto-Training Rules
@@ -361,6 +361,7 @@ Immunity provides default severity levels based on the alert type, and these def
 #### Creating or Updated New Rules
 
 Of course, we think you know your system best and you can adjust the severities of your alerts to varying degrees of specificity. Users of Immunity will be able to configure alert severity on alert type, kong `route_id` or `service_id`, or any combination of the two.
+
 For example, if you decide that for your system, `unknown_parameter` alerts are always system-breaking you can set the severity configuration for `unknown_parameter` alerts to high. Let's say after doing so, you find that while usually an unknown_parameter alert is what you consider high-severity, there's one route where it's actually more of a medium. You can then specify a medium severity for `unknown_parameter` alerts generated only on that route and preserve the high-severity setting for the rest of `unknown_parameters` for the rest of your system.
 
 
@@ -433,15 +434,26 @@ In return you'll get back a json like this, where each row is a configuration ru
 
 ```json
 [
-  {'alert_name': null, 'kong_entity': 'route-id-1', 'severity': 'low'},
-  {'alert_name': 'traffic', 'kong_entity': null, 'severity': 'high'},
-  {'alert_name': 'value_type', 'kong_entity': 'route-id-2', 'severity': 'medium'}
+  {"alert_name": null, "kong_entity": "route-id-1", "severity": "low"},
+  {"alert_name": "traffic", "kong_entity": null, "severity": "high"},
+  {"alert_name": "value_type", "kong_entity": "route-id-2", "severity": "medium"}
 ]
 ```
 
-Any kong entity plus alert type rule will be represented by a json object with both alert_name and kong_entity are not null. In the example above, that would be 
-`{'alert_name': 'value_type', 'kong_entity': 'route-id-2', 'severity': 'medium'}`. An alert type wide rule will be represented by an json object where the `alert_name` is not null but the `kong_entity` is, like 
-`{'alert_name': 'traffic', 'kong_entity': null, 'severity': 'high'}`.A kong entity wide rule is the reverse with a json object that has a non-null kong_entity value but a null alert_name value like `{'alert_name': null, 'kong_entity': 'route-id-1', 'severity': 'low'}`
+Any kong entity plus alert type rule will be represented by a json object with both `alert_name` and `kong_entity` are not null. In the example above, that would be 
+```json
+{"alert_name": "value_type", "kong_entity": "route-id-2", "severity": "medium"}
+``` 
+
+An alert type wide rule will be represented by an json object where the `alert_name` is not null but the `kong_entity` is, like 
+```json
+{"alert_name": "traffic", "kong_entity": null, "severity": "high"}
+```
+
+A kong entity wide rule is the reverse with a json object that has a non-null `kong_entity` value but a null `alert_name` value like
+```json
+{"alert_name": null, "kong_entity": "route-id-1", "severity": "low"}
+```
 
 #### Looking at Offending Hars
 
