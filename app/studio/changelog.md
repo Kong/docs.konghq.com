@@ -26,7 +26,7 @@ layout: changelog
 * Fixed an issue where duplicate paths / keys in a spec caused the editor to crash without ability to recover
 * Fixed a potential white screen issue when creating a workspace
 * Fixed Github requests from erring during OAuth flow by adding a User Agent header
-
+* Fixed Git Sync for Windows
 
 
 ### 1.1.0
