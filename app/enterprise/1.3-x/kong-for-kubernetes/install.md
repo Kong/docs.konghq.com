@@ -5,6 +5,8 @@ title: Installing Kong for Kubernetes Enterprise
 ### Introduction
 This installation topic guides you through installing and deploying Kong for Kubernetes Enterprise (K4K8S-Enterprise), then directs you to the documentation for configuring and using the product.
 
+<img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">
+
 >Note: Installation steps in this topic include installing Kong for Kubernetes Enterprise using YAML. Other deployment options, such as using Helm Chart and Kustomize, will be available at a later time.
 
 
