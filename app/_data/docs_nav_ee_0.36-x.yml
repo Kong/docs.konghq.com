@@ -10,8 +10,6 @@
     - text: Installation
       url: /deployment/installation/docker
       items:
-        - text: Docker Free Trial
-          url: /deployment/installation/free-trial
         - text: Docker
           url: /deployment/installation/docker
         - text: Ubuntu
