@@ -2,7 +2,7 @@
 
 name: Rate Limiting Advanced
 publisher: Kong Inc.
-version: 1.3-x
+version: 0.37-x
 
 desc: Upgrades Kong Rate Limiting with more flexibility and higher performance
 description: |
