@@ -5,7 +5,7 @@ title: How to Install Kong Enterprise on CentOS
 ## Introduction
 
 This guide walks through downloading, installing, and starting Kong Enterprise
-using CentOS and PostgreSQL 9.5. The configuration shown in this guide is
+using CentOS and PostgreSQL 9.6. The configuration shown in this guide is
 intended only as an example -- you will want to modify and take additional
 measures to secure your Kong Enterprise system before moving to a production
 environment.
@@ -30,7 +30,7 @@ To complete this guide you will need:
     Copy the file to your home directory:
 
     ```
-    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@<serverip:~
+    $ scp kong-enterprise-edition-<VERSION_NUMBER>.el7.noarch.rpm <centos user>@<serverip:~
     ```
 
 2. Option 2. Download via **YUM**
@@ -67,7 +67,7 @@ To complete this guide you will need:
 1. Install Kong Enterprise
 
     ```
-    $ sudo yum install kong-enterprise-edition-0.35-1.el7.noarch.rpm
+    $ sudo yum install kong-enterprise-edition-<VERSION_NUMBER>.el7.noarch.rpm
     ```
   >Note: Your version may be different based on when you obtained the rpm
 
@@ -86,20 +86,20 @@ To complete this guide you will need:
     ```
     $ sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
-    $ sudo yum install postgresql95 postgresql95-server
+    $ sudo yum install postgresql96 postgresql96-server
     ```
 
 2. Initialize the PostgreSQL Database
 
     ```
-    $ sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
+    $ sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
     ```
 
 3. Start PostgreSQL and Enable Automatic Start
 
     ```
-    $ sudo systemctl enable postgresql-9.5
-    $ sudo systemctl start postgresql-9.5
+    $ sudo systemctl enable postgresql-9.6
+    $ sudo systemctl start postgresql-9.6
     ```
 
 
