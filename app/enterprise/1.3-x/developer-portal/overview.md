@@ -46,6 +46,8 @@ Existing files will need to be manually migrated to the new Developer Portal,
 learn more in the [Migrating from Legacy](/enterprise/1.3-x/developer-portal/legacy-migration)
 guide.
 
+> Note: Enterprise MIGRATIONS must be completed before migrating the Dev Portal, see [The Migration Guide](/enterprise/1.3-x/deployment/migrations/) for more information.
+
 Read the full Kong Enterprise 1.3 Changelog [here](/enterprise/changelog).
 
 
