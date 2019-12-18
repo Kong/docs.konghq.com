@@ -2,14 +2,14 @@
 title: Kong for Kubernetes
 ---
 
-**Kong for Kubernetes includes the following features:**
+Kong for Kubernetes (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (Deployments, RepliaSets, etc.) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster. 
 
-- Kong is configured dynamically and responds to the changes in your infrastructure.
-- Kong is deployed onto Kubernetes with a Controller, which is responsible for configuring Kong.
-- All of Kong’s configuration is done using Kubernetes resources, stored in Kubernetes’ data-store (etcd).
-- Use the power of kubectl (or any custom tooling around kubectl) to configure Kong and get benefits of all Kubernetes, such as declarative configuration, cloud-provider agnostic deployments, RBAC, reconciliation of desired state, and elastic scalability.
-- Kong is configured using a combination of Ingress Resource and Custom Resource Definitions(CRDs).
-- DB-less by default, meaning Kong has the capability of running without a database and using only memory storage for entities.
+For example, if an application deployed to Kubernetes exposes an API that needs to be used by Web or mobile client applications (a very common use case) or service in another cluster, then a Kubernetes Ingress Controller is required. It is important for the Ingress Controller to secure and manage traffic according to various policies that can be changed on the fly based on the use-case and application.
+
+Kong for Kubernetes stores all of the configuration in Kubernetes datastore (etcd) using Custom Resource Definitions (CRDs), meaning you can use Kubernetes native tools to manage Kong and benefit from Kubernetes declarative configuration, RBAC, namespacing and scalability. Also, because configuration is stored in Kubernetes, no database needs to be deployed for Kong. Kong runs in in-memory mode, making it operationally easy to run, upgrade and backup Kong.
+
+Kong for Kubernetes natively integrates with the Cloud Native Computing Foundation (CNCF) eco-system to provide out-of-the-box monitoring, logging, certificate management, tracing and scaling.
+
 
 <img src="https://doc-assets.konghq.com/kubernetes/Kong-for-Kubernetes-Diagram.png" alt="Kong for Kubernetes control diagram">
 
