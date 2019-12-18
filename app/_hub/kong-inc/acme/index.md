@@ -16,7 +16,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
-        - 1.4.x
+        - 2.0.x
     enterprise_edition:
       compatible:
 
@@ -61,16 +61,16 @@ params:
         The backend storage type to use, choice of `"kong"`, `"shm"`, `"redis"`, `"consul"` or `"vault"`. In dbless mode, `"kong"` storage is unavailable.
     - name: storage_config
       required: false
-      default: "<See Below>"
+      default:
       description: |
-        Storage configs for each backend storage.
+        Storage configs for each backend storage. See below for its default value.
     - name: tos_accepted
       required: false
       default: "`false`"
       description: |
         If you are using Let's Encrypt, you must set this to true to agree the [Terms of Service](https://letsencrypt.org/repository/).
   extra: |
-    `config.storage_config` is a hash for all posisble storage types, by default it is:
+    `config.storage_config` is a table for all posisble storage types, by default it is:
     ```lua
         storage_config = {
             kong = {},
@@ -125,13 +125,17 @@ Ubuntu/Debian and `/etc/ssl/certs/ca-bundle.crt` for CentOS/Fedora/RHEL.
 
 #### Enable the Plugin
 ```bash
-$ curl http://localhost:8001/plugins -d name=acme -d config.account_email=yourname@yourdomain.com \
-                                     -d config.tos_accepted=true \
-                                     -d config.domains[]=my.secret.domains.com
+$ curl http://localhost:8001/plugins \
+        -d name=acme \
+        -d config.account_email=yourname@yourdomain.com \
+        -d config.tos_accepted=true \
+        -d config.domains[]=my.secret.domains.com
 ```
 
-**This plugin can only be configured as a global plugin.** To create certificate only for
-certain domains, please refer to the [Plugin Config](#plugin-config) section.
+**This plugin can only be configured as a global plugin.** The plugin terminats
+`/.well-known/acme-challenge/` path for matching domains. To create certificate
+and terminates challenge only for certain domains, please refer to the
+[Plugin Config](#plugin-config) section.
 
 #### Trigger creation of certificate
 
