@@ -4,6 +4,8 @@ book: developer-portal
 chapter: 3
 ---
 
+> Note: Enterprise MIGRATIONS must be completed before migrating the Dev Portal, see [The Migration Guide](/enterprise/1.3-x/deployment/migrations/) for more information.
+
 ### Introduction
 
 Starting in Kong Enterprise 1.3, the Kong Developer Portal supports a new
