@@ -132,7 +132,7 @@ $ curl http://localhost:8001/plugins \
         -d config.domains[]=my.secret.domains.com
 ```
 
-**This plugin can only be configured as a global plugin.** The plugin terminats
+**This plugin can only be configured as a global plugin.** The plugin terminates
 `/.well-known/acme-challenge/` path for matching domains. To create certificate
 and terminates challenge only for certain domains, please refer to the
 [Plugin Config](#plugin-config) section.
