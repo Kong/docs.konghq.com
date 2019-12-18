@@ -6,11 +6,11 @@ categories:
 type: plugin
 desc: Routing user request based on request cookies.
 description: |
-    Kong has several balancing algorithm options to forward user's request. Even though users will be routed consistently by Kong, but we cannot determine which user go to the certain host. This plugin will route user requests based on request cookies in deterministic way.
+  Kong has several balancing algorithm options to forward user's request. Even though users will be routed consistently by Kong, we cannot determine which users will go to the certain host. This plugin will route user requests based on request cookies in deterministic way.
 
-    In short, it is like [Route by Header](https://docs.konghq.com/hub/kong-inc/route-by-header/), but it looks at the request cookie instead of request header.
+  In short, it is like [Route by Header](https://docs.konghq.com/hub/kong-inc/route-by-header/), but it looks at the request cookie instead of request header.
 support_url: https://github.com/redhoyasa/kong-plugin-route-by-cookie/issues
-source_url:  https://github.com/redhoyasa/kong-plugin-route-by-cookie
+source_url: https://github.com/redhoyasa/kong-plugin-route-by-cookie
 license_type: MIT
 license_url: https://github.com/redhoyasa/kong-plugin-route-by-cookie/blob/master/LICENSE
 
@@ -39,20 +39,20 @@ params:
 
   config:
     - name: target_upstream
-      required: 'yes'
-      value_in_examples: 'new-upstream'
+      required: "yes"
+      value_in_examples: "new-upstream"
       description: |
         Kong Upstream which we want to route the request to
-        
+
     - name: cookie_name
-      required: 'yes'
-      value_in_examples: 'COOKIE_NAME'
+      required: "yes"
+      value_in_examples: "COOKIE_NAME"
       description: |
         Cookie name which we will check at
-        
+
     - name: cookie_val
-      required: 'yes'
-      value_in_examples: 'value'
+      required: "yes"
+      value_in_examples: "value"
       description: |
         If user's cookie value equals this, Kong will route the user to `target_upstream`.
         Otherwise, it will route the user to the upstream of the service.
@@ -74,7 +74,7 @@ custom_plugins = route-by-cookie
 
 ## Example
 
-Suppose we want to release the new version of web app to the certain user group. Users from that group will receive cookie `APP_VERSION=2` after they are authenticated. 
+Suppose we want to release the new version of web app to the certain user group. Users from that group will receive cookie `APP_VERSION=2` after they are authenticated.
 
 This section shows how this plugin can achieve our goal.
 
@@ -124,7 +124,7 @@ HTTP/1.1 201 Created
 {"id":"d63c22e8-3ce0-4498-a59d-93ff803ba24a", ... ,"created_at":1570979704}
 ```
 
-At this point, any request to `appService` will be forwarded to the upstream `v1.app.com`. 
+At this point, any request to `appService` will be forwarded to the upstream `v1.app.com`.
 
 Let's enable to plugin on `appService` to forward incoming requests from users with cookie `APP_VERSION=2` to the upstream `v2.app.com`:
 
@@ -138,4 +138,4 @@ $ curl -X POST http://localhost:8001/services/appService/plugins \
 {"created_at":1570980190, ... ,"id":"f3964aa9-bd3f-4044-94cb-49259e3e2349"}
 ```
 
-Now any user with cookie `APP_VERSION=2` will be routed to `v2.app.com`. If the cookie value does not match with the cookie value defined in config, the request would not forwarded to the target upstream.
+Now any user with cookie `APP_VERSION=2` will be routed to `v2.app.com`. If the cookie value does not match the cookie value defined in config, the request will not be forwarded to the target upstream.
