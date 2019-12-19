@@ -48,7 +48,7 @@ params:
       required: false
       default: "`[]`"
       description: |
-        The list of domains to create certificate for. Wildcard domain like `*.example.com` is also supported. Regex pattern is not supported.
+        The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`. Regex pattern is not supported.
     - name: renew_threshold_days
       required: false
       default: "`14`"
@@ -71,39 +71,30 @@ params:
         If you are using Let's Encrypt, you must set this to true to agree the [Terms of Service](https://letsencrypt.org/repository/).
   extra: |
     `config.storage_config` is a table for all posisble storage types, by default it is:
-    ```lua
-        storage_config = {
-            kong = {},
-            shm = {
-                shm_name = kong
-            },
-            redis = {
-                host = '127.0.0.1',
-                port = 6379,
-                database = 0,
-                -- Redis authentication key
-                auth = nil,
-            },
-            consul = {
-                host = '127.0.0.1',
-                port = 8500,
-                -- kv prefix path
-                kv_path = "acme",
-                -- Consul ACL token
-                token = nil,
-                -- timeout in ms
-                timeout = 2000,
-            }
-            vault = {
-                host = '127.0.0.1',
-                port = 8200,
-                -- secrets kv prefix path
-                kv_path = "acme",
-                -- Vault token
-                token = nil,
-                -- timeout in ms
-                timeout = 2000,
-            },
+    ```json
+        "storage_config": {
+          "kong": {},
+          "shm": {
+            "shm_name": "kong"
+          },
+          "redis": {
+            "auth": null,
+            "port": 6379,
+            "database": 0,
+            "host": "127.0.0.1"
+          },
+          "consul": {
+            "host": "127.0.0.1",
+            "port": 8500,
+            "token": null,
+            "kv_path": "acme"
+          },
+          "vault": {
+            "host": "127.0.0.1",
+            "port": 8200,
+            "token": null,
+            "kv_path": "acme"
+          },
         }
     ```
 
@@ -119,7 +110,7 @@ params:
 #### Configure Kong
 
 - Kong needs to listen 80 port or proxied by a load balancer that listens for 80 port.
-- `lua_ssl_trusted_certificate` needs to be set in `kong.conf` to ensure the plugin can properly
+- `nginx_proxy_lua_ssl_trusted_certificate` needs to be set in `kong.conf` to ensure the plugin can properly
 verify Let's Encrypt API. The CA-bundle file is usually `/etc/ssl/certs/ca-certificates.crt` for
 Ubuntu/Debian and `/etc/ssl/certs/ca-bundle.crt` for CentOS/Fedora/RHEL.
 
