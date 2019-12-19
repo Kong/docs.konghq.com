@@ -15,6 +15,8 @@ curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 If they are not modified manually, the Dev Portal will use the default value defined in the Kong Configuration file.
 
+In 1.3.0.1 or greater [Developer Portal email content and styling can be customized via template files](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/emails/)
+
 
 ### portal_invite_email
 
@@ -39,7 +41,7 @@ Please visit `<DEV_PORTAL_URL/register>` to create your account.
 **Default:** `off`
 
 **Description:**
-When enabled Developers will receive an email upon registration to verify their account. Developers will not be able to use the Dev Portal until their account is verified, even if auto-approve is enabled. 
+When enabled Developers will receive an email upon registration to verify their account. Developers will not be able to use the Dev Portal until their account is verified, even if auto-approve is enabled.
 
 
 ### portal_access_request_email
