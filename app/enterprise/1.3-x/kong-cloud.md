@@ -1,12 +1,74 @@
 ---
 title: Kong Cloud
-toc: false
+toc: true
 ---
 
-## Kong Cloud Proxy TLS
+# Kong Cloud Overview
+Kong Cloud is our managed Kong Enterprise offering, based on the proven Kong Enterprise Gateway (Kong API Gateway). Fully automated, forget about scaling, data persistence, high availability configurations, and failure recovery. [Start a free trial](https://konghq.com/products/kong-enterprise/free-trial) today and end your operational worries.
 
-Kong Cloud enforces HTTPS for all of the services that it operates, including Admin API, Kong Manager, and Kong Developer Portal. Kong Cloud does not enforce HTTPS for traffic destined for the customer's proxy, since certificate management and associated domains are under the customer's control. To enforce HTTPS on upstream traffic, use the [certificate](https://docs.konghq.com/enterprise/{{page.kong_version}}/admin-api/#certificate-object) and [SNI](https://docs.konghq.com/enterprise/{{page.kong_version}}/admin-api/#sni-object.) objects through the Admin API.
+# Kong Cloud  differences from on-premise
+Kong Cloud, while being our hosted Kong Enterprise solution, has a few key differences from a self-hosted, on-premise Kong Enterprise cluster.
 
-For non-proxy traffic, Kong Cloud is the terminus for the request, and Kong controls the protocol and shape of traffic carefully. Additionally, Kong generally considers non-proxy traffic to be sensitive (e.g., Admin API requests, login credentials to Kong Manager). Kong Cloud accomplishes enforcement through HTTP → HTTPS redirects, and the use of the HSTS response header. Because Kong Cloud controls the domain hosting the endpoints for these services, e.g., `https://manager-client.kong-cloud.com`, Kong Cloud maintains the TLS certificate for this service since Kong owns the domain.
+## Security
+By default, RBAC is enabled on both the Kong Manager and Kong Gateway Admin API to prevent unauthorized access to your Kong Enterprise cluster.
 
-For dedicated production Kong Cloud clusters (e.g., clusters setup for paying customers), proxy traffic is funneled through a network load balancer to Kong nodes, which then pass the request to the customer's upstream. Kong Cloud does not enforce any protocol or application layer behaviors here, because this traffic would be specific to the customer's upstream APIs. Thus, securing proxy traffic on a production Kong Cloud cluster is the customer's responsibility (e.g., setting up TLS certificates through Kong's Admin API/Manager). Customers generally use their own domain name for production API (e.g., api.example.com), so Kong does not provide a TLS certificate to use out-of-the-box for production proxy traffic. Kong would have no way to enforce TLS traffic and no manageable certificate/key to provide. Thus, securing production proxy traffic via TLS is the customer's responsibility.
+A root account named **kong_admin** will be created and provisioned on sign up.
+
+## Kong Manager
+In Kong Manager, some parts of the interface that aren’t relevant for a hosted setting due to being either irrelevant, ephemeral or inaccessible from outside of the private network are hidden or disabled. These include license details, database details, and cluster node details.
+
+Certain plugins and plugin fields are also disabled. See plugins section below.
+
+## Plugins
+Not all plugins bundled with Kong Enterprise are available in Kong Cloud. 
+
+### List of Unavailable Plugins on Kong Cloud
+
+#### Logging Plugins
+Since Kong Cloud has its own Log API that customers can request access to which contains all logs necessary for customers to ingest and analyze the following plugins are unavailable:
+
+* prometheus
+* datadog
+* file-log
+* http-log
+* kafka-log
+* loggly
+* statsd
+* statsd-advanced
+* syslog
+* tcp-log
+* udp-log
+
+#### Serverless Plugins
+The following plugins allow executing arbitrary code on the Kong Enterprise Gateway (Kong API Gateway) and are disabled to ensure a secure hosted environment:
+
+* pre_function
+* post_function
+
+#### Other Plugins
+Plugins not categorized above which have been made unavailable for various reasons:
+
+* request-size-limiting - Disabled for a potential memory exhaustion.
+* rate-limiting - Open source version only. Rate limiting advanced is available for use in its place.
+* kubernetes-sidecar-injector - Kong Cloud does not run in a Kubernetes environment.
+zipkin
+
+#### Third-party / Custom Plugins
+Third-party and custom plugins are currently not supported on Kong Cloud. Any plugin deployed on Kong Cloud must first be thoroughly vetted for scalability, and security before being allowed to run in the hosted environment.
+
+## Vitals
+Kong Cloud only displays vital metrics for the 5 minute timeframe.
+
+Per-node statistics are disabled, only cluster-level metrics are available.
+
+# Kong Cloud IP Addresses for Firewall Configuration
+All traffic from Kong Cloud originates from the following list of providers IP addresses.
+
+## AWS
+#### us-west-1
+* 54.177.235.50/32
+* 13.57.90.100/32
+
+#### us-east-1
+* 18.204.28.183/32
+* 54.209.226.208/32
