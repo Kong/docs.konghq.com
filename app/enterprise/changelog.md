@@ -83,8 +83,8 @@ layout: changelog
     * Fixes issue that incorrectly added `body-validation`
 * **Request Validator**
     * Fixes size limitation on the number of validation rules
-
-
+* **MTLS Authentication**
+    * Fixes issue where disbaled mtls-auth plugins being not correctly ignored while creating SNIs map
 
 ## 1.3
 **Release Date:** 2019/11/05
