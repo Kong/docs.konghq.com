@@ -66,7 +66,7 @@ params:
 
 ## Usage
 
-Prior to creating this plugin, Kong's encryption keyring must be enabled. See the [keyring Getting Started guide](/latest/enterprise/db-encryption/#getting-started) for more details.
+Prior to creating this plugin, Kong's encryption keyring must be enabled. See the [keyring Getting Started guide](/enterprise/latest/db-encryption#getting-started) for more details.
 
 ### Create a Consumer
 
