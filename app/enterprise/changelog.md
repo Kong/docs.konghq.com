@@ -3,6 +3,89 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.3.0.1
+**Release Date:** 2019/12/19
+
+### Features
+
+* Kong Enterprise now officially supports RHEL 8
+* (Alpha feature) Kong Enterprise can now perform encryption-at-rest for sensitive fields within the data store (Postgres or Cassandra).
+* (Alpha feature) Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
+
+#### Kong Developer Portal:
+
+* Adds ability to customize the email templates used by the Kong Developer Portal
+* **Portal-CLI**
+    * Adds more robust support for Windows
+    * Adds command line support for optional arguments to override the CLI configuration file
+
+#### Kong Manager:
+
+* RBAC token control: A new property `rbac_token_enabled` on an Admin allows you to control whether that Admin can use and reset their RBAC token. When it is true, the Admin can log in to Kong Manager and can use their RBAC token on the Admin API. When it is false, the Admin can only use the Admin API in conjunction with a valid session.
+
+#### Plugins
+
+* **OpenAPI2Kong**: 
+    - Adds trace to errors to identify the originating YAML/JSON element that caused the error.
+
+
+### Changes
+
+* Removes the openapi2kong API endpoint
+
+#### Kong Manager:
+
+* Adds icons for new Plugins
+* Adds ability for read-only admins to view plugin configurations
+
+### Fixes
+
+* Fixes issue where settings in the kong configuration file did not always update `.kong_env `
+* Fixes issue where updating a plugin with a similar payload as its initial configuration resulted in a schema violation
+* Fixes issue where `db_export` erred on exporting the `keyauth_credentials` table
+* Fixes issue where `db_import` would fail due to missing libraries
+
+#### Kong Developer Portal
+
+* Fixes various spec formatting issues
+* Fixes issue where URLs were rendering incorrectly in code snippets
+* Fixes issue where numeric keys were incorrectly parsed in yaml spec files
+* Fixes issue where certain Swagger paths erred when header parameters were included
+* Fixes issue where code snippets ignored JSON
+* Fixes issue where Admins could not create new `portal.conf.yaml` or `router.conf.yaml` files from the Editor
+* **Portal-CLI**
+    * Fixes issue where `deploy` did not remove files remotely that had been removed locally
+
+#### Kong Manager
+
+* Fixes issue where breadcrumbs for Routes and Services showed the `uuid` instead of the name
+* Fixes issue where the JWT plugin did not include `RS512` in the list of supported algorithms
+* Fixes issue where users with no role saw a blank page on the “Dev Portals” tab
+* Fixes issue where Service Map did not show the correct line colors indicating traffic time
+* Fixes issue where Service Map showed incorrect placeholder text for selecting a Workspace
+* Fixes issue where viewing an RBAC user in Workspace redirected to a blank page
+* Fixes issue where registration links would not generate if RBAC was disabled
+* Fixes issue where resetting a password did not enforce password complexity rules
+* Fixes issue where LDAP Auth would not accept CamelCase in group names
+* Fixes issue where `Average Error Rate` was incorrectly displayed on the Workspace Overview
+* Fixes issue where schemas and validation endpoints were not scoped correctly to Workspaces, resulting in incorrectly denying users permission to certain resources. Roles that allow Create and Update on an entity must include Read permission on the schema and validation endpoints for that entity.
+* Fixes formatting issue where Dev Portal URLs would overflow their containers on the Dev Portal Overview page 
+
+#### Plugins
+
+* **AWS Lambda**:
+    * Fixes issue where Kong Enterprise did not package the AWS Lambda plugin with IAM Role support (versions less than 3.0.1). Now Kong Enterprise packages the latest version of the plugin, 3.0.1.
+* **JWT**:
+    * Fixes schema issue where colons in string values were incorrectly parsed
+* **OpenAPI2Kong**:
+    * Fixes unsupported OAuth 2.0 security flows to handle an array instead of an object
+    * Fixes issue where an array was added to empty routes, this fix will improve compatibility with decK
+    * Fixes issue that incorrectly added `body-validation`
+* **Request Validator**
+    * Fixes size limitation on the number of validation rules
+
+
+
 ## 1.3
 **Release Date:** 2019/11/05
 
@@ -223,6 +306,8 @@ repository will allow you to do both easily.
 - To configure Upstream TLS, use the NGINX directives [`proxy_ssl_trusted_certificate`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate), [`proxy_ssl_verify`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify), and [`proxy_ssl_verify_depth`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify_depth) instead of the Upstream TLS plugin. The plugin is only functional for versions 0.35 and 0.36.
 
 #### Features
+
+- (Alpha feature) Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
 
 ##### Kong Enterprise Gateway
 
