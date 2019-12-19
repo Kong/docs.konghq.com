@@ -307,6 +307,8 @@ repository will allow you to do both easily.
 
 #### Features
 
+- (Alpha feature) Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
+
 ##### Kong Enterprise Gateway
 
 - gRPC support
