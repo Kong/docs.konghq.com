@@ -294,6 +294,10 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         <hr>
       {% endif %}
 
+      {% if page.alpha %}
+      <div class="alert alert-red">WARNING: This functionality is released as an alpha-quality feature. Please proceed with caution.</div>
+      {% endif %}
+
       {{ page.description | markdownify }}
 
       {% if page.type == "plugin" %}
