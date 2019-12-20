@@ -22,6 +22,18 @@ To be more precise, Kong is a Lua application running in Nginx and made possible
 
 This sets the foundations for a pluggable architecture, where Lua scripts (referred to as *”plugins”*) can be enabled and executed at runtime. Because of this, we like to think of Kong as **a paragon of microservice architecture**: at its core, it implements database abstraction, routing and plugin management. Plugins can live in separate code bases and be injected anywhere into the request lifecycle, all in a few lines of code.
 
+### What are the advantages of using Kong?
+
+- One of the core principals of Kong is its extensibility through plugins. Plugins allow to easily add new features and tackle complex code, these plugins are written in LUA language. Kong also comes with a lot of useful plugins which can be used directly or you can even make your own plugins!
+
+- Kong supports very flexible gateway routing which can be fully configured by using Routes. These define if traffic should be by Host-header, Method, URI path or a combination of those.
+
+- Besides traditional DNS-based balancing, Kong provides a Ring-based balancer where you can either use round-robin or a customized hash-based balancer following the Ketama principle.
+
+- Kong also provides analytics for all your APIs which in turn help you make your website even more powerful by diagnosing issues and optimizing it.
+
+- Kong has a huge community of fans, users and contributors - so whether you have a doubt, problem or you need any kind of assistance, we have got you covered!
+  
 ## Next Steps
 
 Now, lets get familiar with learning how to "start" and "stop" Kong.
