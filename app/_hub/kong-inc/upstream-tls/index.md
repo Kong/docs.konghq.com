@@ -15,7 +15,6 @@ type: plugin
 kong_version_compatibility:
     enterprise_edition:
       compatible:
-        - 1.3-x
         - 0.36-x
         - 0.35-x
 
