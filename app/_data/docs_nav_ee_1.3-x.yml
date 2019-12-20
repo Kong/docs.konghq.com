@@ -345,8 +345,6 @@
       url: /plugins/route-transformer-advanced
     - text: JWT Signer Plugin
       url: /plugins/jwt-signer
-    - text: Upstream TLS Plugin
-      url: /plugins/upstream-tls
     - text: Vault Auth Plugin
       url: /plugins/vault-auth
     - text: Request Validator Plugin
