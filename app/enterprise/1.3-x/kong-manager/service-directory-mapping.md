@@ -9,9 +9,9 @@ Service Directory Mapping allows organizations to use their LDAP Directory for a
 After starting Kong Enterprise with the desired configuration, you can create new Admins whose usernames match those in your LDAP directory. Those users will then be able to accept invitations to join Kong Manager and log in with their LDAP credentials.
 
 How Service Directory Mapping works in Kong:
-* Roles are created in Kong Enterprise using the Admin API or Kong Manager.
-* Groups are created and roles are associated with the groups.
-* When users log in to Kong Manager, they get permissions based on the group(s) they belong to.
+Roles are created in Kong Enterprise using the Admin API or Kong Manager.
+Groups are created and roles are associated with the groups.
+When users log in to Kong Manager, they get permissions based on the group(s) they belong to.
 
 For example, if a User's Group changes in the Service Directory, their Kong Admin account's associated Role also changes in Kong Enterprise the next time they log in to Kong Manager. The mapping removes the task of manually managing access in Kong Enterprise, as it makes the Service Directory the system of record.
 
