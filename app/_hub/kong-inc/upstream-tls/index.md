@@ -2,7 +2,7 @@
 
 name: Upstream TLS
 publisher: Kong Inc.
-version: 1.3-x
+version: 0.36-x
 
 desc: Add TLS to your Services
 description: |
