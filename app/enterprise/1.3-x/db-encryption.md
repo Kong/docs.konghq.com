@@ -16,16 +16,16 @@ This document provides a brief introduction to leveraging Kong Enterprise symmet
 
 ### Generate a Management RSA Key Pair
 
-Before enabling database encryption, we strongly recommend you generate an RSA key pair for use in exporting and recovering keyring material. If keyring material gets lost, it is impossible to recover any sensitive data fields written to the database with a key on that keyring.
+Before enabling database encryption, we strongly recommend you generate an RSA key pair for use in exporting and recovering keyring material. If keyring material is lost, it is impossible to recover any sensitive data fields written to the database with a key on that keyring.
 
-Generating an RSA keypair is straightforward via the `openssl` CLI:
+Generating an RSA key pair is straightforward via the `openssl` CLI:
 
 ```bash
 $ openssl genrsa -out key.pem 2048
 $ openssl rsa -in key.pem -pubout -out cert.pem
 ```
 
-This keypair will be provided to Kong in order to faciliate exporting and re-importing the keyring. The public `cert.pem` and private `key.pem` should stored securely in accordance with your existing secrets management policies. Details on secure storage of RSA key pairs is outside the scope of this documentation.
+This key pair will be provided to Kong in order to faciliate exporting and re-importing the keyring. The public `cert.pem` and private `key.pem` should be stored securely in accordance with your existing secrets management policies. Details on secure storage of RSA key pairs is outside the scope of this documentation.
 
 ### Configure Kong for database encryption
 
@@ -49,6 +49,13 @@ export KONG_KEYRING_PRIVATE_KEY=/path/to/generated/key.pem
 
 All nodes in the Kong cluster should share the same `keyring_enabled` and `keyring_strategy` configuration values. Not every node needs to be provided the management RSA key pair, as that key pair is only used for backup and recovery processes. It does not need to be present for regular database read/write operations.
 
+Note that the user under which Kong worker processes run (as defined by the `nginx_user` Kong configuration option) must have read access to the public and private keys in order to be able to perform keyring export and import operations. We recommend restricting access to these files as tightly as possible. For example:
+
+```bash
+# chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated/key.pem
+# chmod 400 /path/to/generated/cert.pem /path/to/generated/key.pem
+```
+
 ### Start Kong
 
 Once all Kong nodes in the cluster have been configured, start each node:
@@ -60,6 +67,8 @@ $ kong start
 When encryption is enabled on a Kong node, it checks the status of the cluster keyring on boot. If it detects that no keys are present in the keyring, it will generate a key automatically. This process allows encryption/decryption operations to begin immediately.
 
 For all other nodes, the generated key will be automatically distributed within a few seconds.
+
+Note that encryption keys are held _only_ in memory, and will not persist past a restart of the Kong process (e.g., running `kong restart`). Because of this, you must export the keyring following it's initialization, or any sensitive fields written with the keyring will not be recoverable if all Kong nodes in a cluster restart simultaneously. Key material _will_ persist after a soft reload of Kong (e.g., `kong reload`).
 
 ### Verify the Cluster Keyring
 
@@ -284,7 +293,7 @@ When the Kong node restarts, it sends a broadcast request for the keyring, but a
 
 ### Encryption/Decryption
 
-Kong Enterprise uses 256-bit AES encryption in GCM mode. Nonces for each encryption route execution are derived from the kernel CSPRNG (`/dev/urandom`). The AES routines used by Kong are provided by the OpenSSL library bundled with the Kong Enterprise package.
+Kong Enterprise uses 256-bit AES encryption in GCM mode. Cryptographic nonce values for each encryption routine execution are derived from the kernel CSPRNG (`/dev/urandom`). The AES routines used by Kong are provided by the OpenSSL library bundled with the Kong Enterprise package.
 
 ### Key Generation and Lifecycle
 
@@ -293,6 +302,14 @@ Kong Enterprise's keyring handling mechanisms allow for more than one key to be 
 Through the kernel CSPRNG, Kong derives keyring material generated through the `/keyring/generate` Admin API endpoint. Kong stores keyring material in a shared memory zone that all Kong worker processes access. To prevent key material from being written to disk as part of memory paging operations, we recommend that swap be disabled on systems running Kong 
 
 When operating in `cluster` mode, keyring material propagates automatically among all nodes in the Kong cluster. Because Kong nodes do not have a notion of direct peer-to-peer communication, the underlying datastore (Cassandra or PostgreSQL) serves as a communication channel to transmit messages. When a Kong node starts, it generates an ephemeral RSA key pair. The node's public keys propagate to all other active nodes in the cluster. When an active node sees a message request for keyring material, it wraps the in-memory keyring material in the presented public key, and transmits the payload back over the central messaging channel provided by the underlying data store. This process allows each node in the cluster to broadcast keyring material to new nodes, without sending key material in plaintext over the wire. This model requires that at least one node be running at all times within the cluster; a failure of all nodes requires manually re-importing the keyring to one node during an outage recovery.
+
+### Encrypted Fields
+
+The following fields are encrypted as rest by the keyring module:
+
+* `key` fields of `certificate` objects (corresponding to the private key of a TLS certificate)
+* `password` fields of `basic-auth` plugin credential objects (note that passwords are also hashed by a one-way hashing function)
+* `key` fields of `key-auth-enc` plugin credential objects
 
 ## Vault Integration
 
