@@ -10,6 +10,29 @@ Manipulation of the request to the Service
 
 
 
+### kong.service.request.enable_buffering()
+
+Enables buffered proxying that allows plugins to access service body and
+ response headers at the same time
+
+**Phases**
+
+* `rewrite`, `access`
+
+**Returns**
+
+*  Nothing
+
+
+**Usage**
+
+``` lua
+kong.service.request.enable_buffering()
+```
+
+[Back to TOC](#table-of-contents)
+
+
 ### kong.service.request.set_scheme(scheme)
 
 Sets the protocol to use when proxying the request to the Service.
