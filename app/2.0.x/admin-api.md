@@ -6,7 +6,7 @@ service_body: |
     ---:| ---
     `name`<br>*optional* | The Service name.
     `retries`<br>*optional* | The number of retries to execute upon failure to proxy. Defaults to `5`.
-    `protocol` |  The protocol used to communicate with the upstream. It can be one of `http` or `https`.  Defaults to `"http"`.
+    `protocol` |  The protocol used to communicate with the upstream.  Accepted values are: `"grpc"`, `"grpcs"`, `"http"`, `"https"`, `"tcp"`, `"tls"`.  Defaults to `"http"`.
     `host` | The host of the upstream server.
     `port` | The upstream server port. Defaults to `80`.
     `path`<br>*optional* | The path to be used in requests to the upstream server.
@@ -77,9 +77,10 @@ route_body: |
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
     `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. 
-    `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Defaults to `426`.
+    `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Accepted values are: `426`, `301`, `302`, `307`, `308`.  Defaults to `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
+    `path_handling`<br>*optional* |  Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.  Accepted values are: `"v0"`, `"v1"`.  Defaults to `"v0"`.
     `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`. 
     `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. 
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
@@ -101,6 +102,7 @@ route_json: |
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
+        "path_handling": "v0",
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
         "service": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"}
@@ -120,6 +122,7 @@ route_data: |
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
+        "path_handling": "v0",
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
         "service": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"}
@@ -132,6 +135,7 @@ route_data: |
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
+        "path_handling": "v0",
         "preserve_host": false,
         "snis": ["foo.test", "example.com"],
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
@@ -179,8 +183,7 @@ plugin_body: |
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Defaults to `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
-    `run_on` |  Control on which Kong nodes this plugin will run, given a Service Mesh scenario. Accepted values are: * `first`, meaning "run on the first Kong node that is encountered by the request". On an API Getaway scenario, this is the usual operation, since there is only one Kong node in between source and destination. In a sidecar-to-sidecar Service Mesh scenario, this means running the plugin only on the Kong sidecar of the outbound connection. * `second`, meaning "run on the second node that is encountered by the request". This option is only relevant for sidecar-to-sidecar Service Mesh scenarios: this means running the plugin only on the Kong sidecar of the inbound connection. * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar scenario. This is useful for tracing/logging plugins.  Defaults to `"first"`.
-    `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http", "https"]`.
+    `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http", "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Defaults to `true`.
     `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering. 
 
@@ -193,7 +196,6 @@ plugin_json: |
         "service": null,
         "consumer": null,
         "config": {"hour":500, "minute":20},
-        "run_on": "first",
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"]
@@ -208,7 +210,6 @@ plugin_data: |
         "service": null,
         "consumer": null,
         "config": {"hour":500, "minute":20},
-        "run_on": "first",
         "protocols": ["http", "https"],
         "enabled": true,
         "tags": ["user-level", "low-priority"]
@@ -220,7 +221,6 @@ plugin_data: |
         "service": null,
         "consumer": null,
         "config": {"hour":500, "minute":20},
-        "run_on": "first",
         "protocols": ["tcp", "tls"],
         "enabled": true,
         "tags": ["admin", "high-priority", "critical"]
@@ -320,9 +320,9 @@ upstream_body: |
     Attributes | Description
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
-    `algorithm`<br>*optional* | Which load balancing algorithm to use. One of: `round-robin`, `consistent-hashing`, or `least-connections`. Defaults to `"round-robin"`.
-    `hash_on`<br>*optional* | What to use as hashing input: `none` (resulting in a weighted-round-robin scheme with no hashing), `consumer`, `ip`, `header`, or `cookie`. Defaults to `"none"`.
-    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified). One of: `none`, `consumer`, `ip`, `header`, or `cookie`. Not available if `hash_on` is set to `cookie`. Defaults to `"none"`.
+    `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`.  Defaults to `"round-robin"`.
+    `hash_on`<br>*optional* | What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Defaults to `"none"`.
+    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Defaults to `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
     `hash_fallback_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
     `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
@@ -341,14 +341,15 @@ upstream_body: |
     `healthchecks.active.healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Defaults to `0`.
     `healthchecks.active.https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
     `healthchecks.active.concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Defaults to `10`.
-    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Possible values are `tcp`, `http` or `https`. Defaults to `"http"`.
+    `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Defaults to `"http"`.
     `healthchecks.passive.unhealthy.http_failures`<br>*optional* | Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
     `healthchecks.passive.unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[429, 500, 503]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an Array.
     `healthchecks.passive.unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
     `healthchecks.passive.unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
-    `healthchecks.passive.type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. Possible values are `tcp`, `http` or `https` (in passive checks, `http` and `https` options are equivalent.). Defaults to `"http"`.
+    `healthchecks.passive.type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Defaults to `"http"`.
     `healthchecks.passive.healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Defaults to `0`.
     `healthchecks.passive.healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
+    `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Defaults to `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering. 
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
 
@@ -395,7 +396,8 @@ upstream_json: |
                     "successes": 0,
                     "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 }
-            }
+            },
+            "threshold": 0
         },
         "tags": ["user-level", "low-priority"],
         "host_header": "example.com"
@@ -444,7 +446,8 @@ upstream_data: |
                     "successes": 0,
                     "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 }
-            }
+            },
+            "threshold": 0
         },
         "tags": ["user-level", "low-priority"],
         "host_header": "example.com"
@@ -490,7 +493,8 @@ upstream_data: |
                     "successes": 0,
                     "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
                 }
-            }
+            },
+            "threshold": 0
         },
         "tags": ["admin", "high-priority", "critical"],
         "host_header": "example.com"
@@ -1202,6 +1206,32 @@ following attributes must be set:
 * For `tls`, at least one of `sources`, `destinations` or `snis`;
 * For `grpc`, at least one of `hosts`, `headers` or `paths`;
 * For `grpcs`, at least one of `hosts`, `headers`, `paths` or `snis`.
+
+#### Path handling algorithms
+
+`"v0"` is the behavior used in Kong 0.x and 2.x. It treats `service.path`, `route.path` and request path as
+*segments* of a url. It will always join them via slashes. Given a service path `/s`, route path `/r`
+and request path `/re`, the concatenated path will be `/s/re`. If the resulting path is a single slash,
+no further transformation is done to it. If it's longer, then the trailing slash is removed.
+
+`"v1"` is the behavior used in Kong 1.x. It treats `service.path` as a *prefix*, and ignores the initial
+slashes of the request and route paths. Given service path `/s`, route path `/r` and request path `/re`,
+the concatenated path will be `/sre`.
+
+Both versions of the algorithm detect "double slashes" when combining paths, replacing them by single
+slashes.
+
+| `service.path` | `route.path` | `route.strip_path` | `route.path_handling` | request path | proxied path  |
+|----------------|--------------|--------------------|-----------------------|--------------|---------------|
+| `/s`           | `/fv0`       | `false`            | `v0`                  | `/fv0req`    | `/s/fv0req`   |
+| `/s`           | `/fv1`       | `false`            | `v1`                  | `/fv1req`    | `/sfv1req`    |
+| `/s`           | `/tv0`       | `true`             | `v0`                  | `/tv0req`    | `/s/req`      |
+| `/s`           | `/tv1`       | `true`             | `v1`                  | `/tv1req`    | `/sreq`       |
+| `/s`           | `/fv0/`      | `false`            | `v0`                  | `/fv0/req`   | `/s/fv0/req`  |
+| `/s`           | `/fv1/`      | `false`            | `v1`                  | `/fv1/req`   | `/sfv1/req`   |
+| `/s`           | `/tv0/`      | `true`             | `v0`                  | `/tv0/req`   | `/s/req`      |
+| `/s`           | `/tv1/`      | `true`             | `v1`                  | `/tv1/req    | `/sreq`       |
+
 
 Routes can be both [tagged and filtered by tags](#tags).
 
@@ -2957,15 +2987,15 @@ HTTP 204 No Content
 
 ### Show Upstream Health for Node
 
-Displays the health status for all Targets of a given Upstream, according to
-the perspective of a specific Kong node. Note that, being node-specific
-information, making this same request to different nodes of the Kong cluster
-may produce different results. For example, one specific node of the Kong
-cluster may be experiencing network issues, causing it to fail to connect to
-some Targets: these Targets will be marked as unhealthy by that node
-(directing traffic from this node to other Targets that it can successfully
-reach), but healthy to all others Kong nodes (which have no problems using that
-Target).
+Displays the health status for all Targets of a given Upstream, or for
+the whole Upstream, according to the perspective of a specific Kong node.
+Note that, being node-specific information, making this same request
+to different nodes of the Kong cluster may produce different results.
+For example, one specific node of the Kong cluster may be experiencing
+network issues, causing it to fail to connect to some Targets: these
+Targets will be marked as unhealthy by that node (directing traffic from
+this node to other Targets that it can successfully reach), but healthy
+to all others Kong nodes (which have no problems using that Target).
 
 The `data` field of the response contains an array of Target objects.
 The health for each Target is returned in its `health` field:
@@ -2984,12 +3014,24 @@ The health for each Target is returned in its `health` field:
   its status is displayed as `UNHEALTHY`. The load balancer is not directing
   any traffic to this Target via this Upstream.
 
+When the request query parameter `balancer_health` is set to `1`, the
+`data` field of the response refers to the whole Upstream, and its `health`
+attribute is defined by the state of all of Upstream's Targets, according
+to the field [health checker's threshold][healthchecks.threshold].
+
 
 <div class="endpoint get">/upstreams/{name or id}/health/</div>
 
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream for which to display Target health.
+
+
+*Request Querystring Parameters*
+
+Attributes | Description
+---:| ---
+`balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the whole Upstream.
 
 
 *Response*
@@ -3020,6 +3062,22 @@ HTTP 200 OK
             "weight": 200
         }
     ]
+}
+```
+
+If `balancer_health=1`:
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "data": {
+        "health": "HEALTHY",
+        "id": "07131005-ba30-4204-a29f-0927d53257b4"
+    },
+    "next": null,
+    "node_id": "cbb297c0-14a9-46bc-ad91-1d0ef9b42df9"
 }
 ```
 
