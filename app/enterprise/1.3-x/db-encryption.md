@@ -52,8 +52,8 @@ All nodes in the Kong cluster should share the same `keyring_enabled` and `keyri
 Note that the user under which Kong worker processes run (as defined by the `nginx_user` Kong configuration option) must have read access to the public and private keys in order to be able to perform keyring export and import operations. We recommend restricting access to these files as tightly as possible. For example:
 
 ```bash
-# chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated/key.pem
-# chmod 400 /path/to/generated/cert.pem /path/to/generated/key.pem
+$ chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated/key.pem
+$ chmod 400 /path/to/generated/cert.pem /path/to/generated/key.pem
 ```
 
 ### Start Kong
