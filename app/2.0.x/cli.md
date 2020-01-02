@@ -47,14 +47,18 @@ Usage: kong config COMMAND [OPTIONS]
 Use declarative configuration files with Kong.
 
 The available commands are:
-  init                                Generate an example config file to
-                                      get you started.
+  init [<file>]                       Generate an example config file to
+                                      get you started. If a filename
+                                      is not given, ./kong.yml is used
+                                      by default.
 
   db_import <file>                    Import a declarative config file into
                                       the Kong database.
 
-  db_export <file>                    Export the Kong database into a
-                                      declarative config file.
+  db_export [<file>]                  Export the Kong database into a
+                                      declarative config file. If a filename
+                                      is not given, ./kong.yml is used
+                                      by default.
 
   parse <file>                        Parse a declarative config file (check
                                       its syntax) but do not load it into Kong.
@@ -79,6 +83,31 @@ Check if the necessary services are running for this node.
 
 Options:
  -p,--prefix      (optional string) prefix at which Kong should be running
+
+```
+
+[Back to TOC](#table-of-contents)
+
+---
+
+
+### kong hybrid
+
+```
+Usage: kong hybrid COMMAND [OPTIONS]
+
+Hybrid mode utilities for Kong.
+
+The available commands are:
+  gen_cert [<cert> <key>]           Generate a certificate/key pair that is suitable
+                                    for use in hybrid mode deployment.
+                                    Cert and key will be written to
+                                    './cluster.crt' and './cluster.key' inside
+                                    the current directory unless filenames are given.
+
+Options:
+ -d,--days        (optional number) Override certificate validity duration.
+                                    Default: 1095 days (3 years)
 
 ```
 
