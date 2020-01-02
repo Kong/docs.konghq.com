@@ -488,6 +488,17 @@ Default: `bundled`
 
 ---
 
+#### go_plugins_dir
+
+Directory for installing Kong plugins written in Go.
+
+This value can be set to `off`, thus disabling the plugin server and Go plugin
+loading.
+
+Default: `off`
+
+---
+
 #### anonymous_reports
 
 Send anonymous usage data such as error stack traces to help improve Kong.
@@ -496,15 +507,70 @@ Default: `on`
 
 ---
 
-#### service_mesh
 
-When `on`, enable the built-in Service Mesh support of Kong.
+### Hybrid Mode section
 
-**Note:** Enabling service mesh causes upstream requests to HTTPS services to
-behave incorrectly. Service Mesh has been deprecated and will be removed in the
-next release of Kong.
+#### role
 
-Default: `off`
+Use this setting to enable Hybrid Mode, This allows running some Kong nodes in
+a control plane role with a database and have them deliver configuration updates
+to other nodes running to DB-less running in a Data Plane role.
+
+Valid values to this setting are:
+
+- `traditional`: do not use Hybrid Mode.
+- `control_plane`: this node runs in a control plane role. It can use a
+  database and will deliver configuration updates to data plane nodes.
+- `data_plane`: this is a data plane node. It runs DB-less and receives
+  configuration updates from a control plane node.
+
+Default: `traditional`
+
+---
+
+#### cluster_cert
+
+Filename of the cluster certificate to use when establishing secure
+communication between control and data plane nodes.
+
+You can use the `kong hybrid` command to generate the certificate/key pair.
+
+Default: none
+
+---
+
+#### cluster_cert_key
+
+Filename of the cluster certificate key to use when establishing secure
+communication between control and data plane nodes.
+
+You can use the `kong hybrid` command to generate the certificate/key pair.
+
+Default: none
+
+---
+
+#### cluster_control_plane
+
+To be used by data plane nodes only: address of the control plane node from
+which configuration updates will be fetched, in `host:port` format.
+
+Default: none
+
+---
+
+#### cluster_listen
+
+Comma-separated list of addresses and ports on which the cluster control plane
+server should listen for data plane connections.
+
+The cluster communication port of the control plane must be accessible by all
+the data planes within the same cluster. This port is mTLS protected to ensure
+end-to-end security and integrity.
+
+This setting has no effect if `role` is not set to `control_plane`.
+
+Default: `0.0.0.0:8005`
 
 ---
 
@@ -528,15 +594,20 @@ Some suffixes can be specified for each pair:
   server.
 - `proxy_protocol` will enable usage of the PROXY protocol for a given
   address/port.
-- `transparent` will cause kong to listen to, and respond from, any and all IP
-  addresses and ports you configure in iptables.
 - `deferred` instructs to use a deferred accept on Linux (the TCP_DEFER_ACCEPT
   socket option).
 - `bind` instructs to make a separate bind() call for a given address:port
   pair.
 - `reuseport` instructs to create an individual listening socket for each
-  worker process allowing a kernel to distribute incoming connections between
-  worker processes
+  worker process allowing the Kernel to better distribute incoming connections
+  between worker processes
+- `backlog=N` sets the maximum length for the queue of pending TCP connections.
+  This number should not be too small in order to prevent clients seeing
+  "Connection refused" error connecting to a busy Kong instance. **Note:** on
+  Linux, this value is limited by the setting of `net.core.somaxconn` Kernel
+  parameter. In order for the larger `backlog` set here to take effect it is
+  necessary to raise `net.core.somaxconn` at the same time to match or exceed
+  the `backlog` number set.
 
 This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port for
 this node.
@@ -557,7 +628,7 @@ details about the `proxy_protocol` parameter.
 Not all `*_listen` values accept all formats specified in nginx's
 documentation.
 
-Default: `0.0.0.0:8000, 0.0.0.0:8443 ssl`
+Default: `0.0.0.0:8000 reuseport backlog=16384, 0.0.0.0:8443 ssl reuseport backlog=16384`
 
 ---
 
@@ -572,13 +643,18 @@ Some suffixes can be specified for each pair:
 
 - `proxy_protocol` will enable usage of the PROXY protocol for a given
   address/port.
-- `transparent` will cause kong to listen to, and respond from, any and all IP
-  addresses and ports you configure in iptables.
 - `bind` instructs to make a separate bind() call for a given address:port
   pair.
 - `reuseport` instructs to create an individual listening socket for each
-  worker process allowing a kernel to distribute incoming connections between
-  worker processes
+  worker process allowing the Kernel to better distribute incoming connections
+  between worker processes
+- `backlog=N` sets the maximum length for the queue of pending TCP connections.
+  This number should not be too small in order to prevent clients seeing
+  "Connection refused" error connecting to a busy Kong instance. **Note:** on
+  Linux, this value is limited by the setting of `net.core.somaxconn` Kernel
+  parameter. In order for the larger `backlog` set here to take effect it is
+  necessary to raise `net.core.somaxconn` at the same time to match or exceed
+  the `backlog` number set.
 
 **Note:** The `ssl` suffix is not supported, and each address/port will accept
 TCP with or without TLS enabled.
@@ -586,9 +662,9 @@ TCP with or without TLS enabled.
 Examples:
 
 ```
-stream_listen = 127.0.0.1:7000
-stream_listen = 0.0.0.0:989, 0.0.0.0:20
-stream_listen = [::1]:1234
+stream_listen = 127.0.0.1:7000 reuseport backlog=16384
+stream_listen = 0.0.0.0:989 reuseport backlog=65536, 0.0.0.0:20
+stream_listen = [::1]:1234 backlog=16384
 ```
 
 By default this value is set to `off`, thus disabling the stream proxy port for
@@ -619,15 +695,20 @@ Some suffixes can be specified for each pair:
   server.
 - `proxy_protocol` will enable usage of the PROXY protocol for a given
   address/port.
-- `transparent` will cause kong to listen to, and respond from, any and all IP
-  addresses and ports you configure in iptables.
 - `deferred` instructs to use a deferred accept on Linux (the TCP_DEFER_ACCEPT
   socket option).
 - `bind` instructs to make a separate bind() call for a given address:port
   pair.
 - `reuseport` instructs to create an individual listening socket for each
-  worker process allowing a kernel to distribute incoming connections between
-  worker processes
+  worker process allowing the Kernel to better distribute incoming connections
+  between worker processes
+- `backlog=N` sets the maximum length for the queue of pending TCP connections.
+  This number should not be too small in order to prevent clients seeing
+  "Connection refused" error connecting to a busy Kong instance. **Note:** on
+  Linux, this value is limited by the setting of `net.core.somaxconn` Kernel
+  parameter. In order for the larger `backlog` set here to take effect it is
+  necessary to raise `net.core.somaxconn` at the same time to match or exceed
+  the `backlog` number set.
 
 This value can be set to `off`, thus disabling the Admin interface for this
 node, enabling a 'data-plane' mode (without configuration capabilities) pulling
@@ -635,7 +716,7 @@ its configuration changes from the database.
 
 Example: `admin_listen = 127.0.0.1:8444 http2 ssl`
 
-Default: `127.0.0.1:8001, 127.0.0.1:8444 ssl`
+Default: `127.0.0.1:8001 reuseport backlog=16384, 127.0.0.1:8444 ssl reuseport backlog=16384`
 
 ---
 
@@ -707,7 +788,7 @@ Accepted values are `modern`, `intermediate`, `old`, or `custom`.
 See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
 of each cipher suite.
 
-Default: `modern`
+Default: `intermediate`
 
 ---
 
@@ -980,9 +1061,50 @@ Enables the specified protocols for client-side connections. The set of
 supported protocol versions also depends on the version of OpenSSL Kong was
 built with.
 
+This value is ignored if `ssl_cipher_suite` is not `custom`.
+
 See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
 
 Default: `TLSv1.1 TLSv1.2 TLSv1.3`
+
+---
+
+#### nginx_http_ssl_prefer_server_ciphers
+
+Specifies that server ciphers should be preferred over client ciphers when
+using the SSLv3 and TLS protocols
+
+This value is ignored if `ssl_cipher_suite` is not `custom`.
+
+See
+http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
+
+Default: `on`
+
+---
+
+#### nginx_http_ssl_session_tickets
+
+Enables or disables session resumption through TLS session tickets. This is has
+no impact when used with TLSv1.3.
+
+Kong enables this by default for performance reasons, but it has security
+implications: https://github.com/mozilla/server-side-tls/issues/135
+
+See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets
+
+Default: `on`
+
+---
+
+#### nginx_http_ssl_session_timeout
+
+Specifies a time during which a client may reuse the session parameters. See
+the rationale: https://github.com/mozilla/server-side-tls/issues/198
+
+See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
+
+Default: `1d`
 
 ---
 
