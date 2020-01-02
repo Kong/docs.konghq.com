@@ -49,7 +49,7 @@ export KONG_KEYRING_PRIVATE_KEY=/path/to/generated/key.pem
 
 All nodes in the Kong cluster should share the same `keyring_enabled` and `keyring_strategy` configuration values. Not every node needs to be provided the management RSA key pair, as that key pair is only used for backup and recovery processes. It does not need to be present for regular database read/write operations.
 
-Note that the user under which Kong worker processes run (as defined by the `nginx_user` Kong configuration option) must have read access to the public and private keys in order to be able to perform keyring export and import operations. We recommend restricting access to these files as tightly as possible. For example:
+Note that the user under which Kong worker processes run must have read access to the public and private keys in order to be able to perform keyring export and import operations. This user is defined by the `nginx_user` Kong configuration option. We recommend restricting access to these files as tightly as possible. For example:
 
 ```bash
 $ chown <nginx_user>:<nginx_user> /path/to/generated/cert.pem /path/to/generated/key.pem
