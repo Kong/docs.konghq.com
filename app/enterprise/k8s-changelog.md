@@ -2,20 +2,36 @@
 title: Kong Enterprise k8s Changelog
 ---
 
-## 1.3.0.0
+## 1.4.2.0
 
-**Release on 2019/11/19**
+> Released on 2020/01/02
 
 ### Summary
 
-Kong Enterprise k8s 1.3 is the debut release for this package.
+Kong Enterprise k8s 1.4.2.0 is based on Kong Gateway 1.4.2.
 
 ### Kong Gateway
 
-Kong Enterprise k8s 1.3 is based on Kong 1.3.0,
-meaning it inherits all the changes from it.
+Kong Enterprise k8s 1.4.2.0 is based on Kong Gateway 1.4.2,
+meaning it inherits all new features and changes between Kong Gateway 1.3.0 and
+1.4.2.
 Please checkout changelog for
-[Kong 1.3.0](https://github.com/Kong/kong/blob/master/CHANGELOG.md#130).
+[Kong Gateway 1.4.0](https://github.com/Kong/kong/blob/master/CHANGELOG.md#140).
+
+## 1.3.0.0
+
+> Released on 2019/11/19
+
+### Summary
+
+Kong Enterprise k8s 1.3.0.0 is the debut release for this package.
+
+### Kong Gateway
+
+Kong Enterprise k8s 1.3.0.0 is based on Kong Gateway 1.3.0,
+meaning it inherits all the features and changes from it.
+Please checkout changelog for
+[Kong Gateway 1.3.0](https://github.com/Kong/kong/blob/master/CHANGELOG.md#130).
 
 ### Enterprise plugins
 
@@ -34,4 +50,5 @@ The following plugins are included with this release:
 * jwt-signer
 * collector
 * mtls-auth
+* request-validator
 
