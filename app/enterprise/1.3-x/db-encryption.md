@@ -305,7 +305,7 @@ When operating in `cluster` mode, keyring material propagates automatically amon
 
 ### Encrypted Fields
 
-The following fields are encrypted as rest by the keyring module:
+The keyring module encrypts the following fields at rest:
 
 * `key` fields of `certificate` objects (corresponding to the private key of a TLS certificate)
 * `password` fields of `basic-auth` plugin credential objects (note that passwords are also hashed by a one-way hashing function)
