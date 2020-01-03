@@ -27,6 +27,8 @@ layout: changelog
 
 * **OpenAPI2Kong**: 
     - Adds trace to errors to identify the originating YAML/JSON element that caused the error.
+* **Key Authentication - Encrypted**:
+    - Provides key authentication for Routes and Services, with authentication tokens stored in a format that is encrypted at rest.
 
 
 ### Changes
