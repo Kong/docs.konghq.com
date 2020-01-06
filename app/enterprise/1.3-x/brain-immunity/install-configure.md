@@ -10,16 +10,16 @@ When you purchase Kong Brain and/or Kong Immunity, you obtain both add-ons toget
 * Kong Brain
 * Kong Immunity
 
-![Kong Brain and Kong Immunity] (https://doc-assets.konghq.com/1.3/brain_immunity/KongBrainImmunity_overview.png)
+![Kong Brain and Kong Immunity](https://doc-assets.konghq.com/1.3/brain_immunity/KongBrainImmunity_overview.png)
 
 This guide provides information about how to install, configure, and use Kong Brain and/or Kong Immunity and its components on Kong Enterprise. Sections in this guide include:
 
-- [Overview] (#overview)
-- [Prerequisites] (#prerequisites)
-- [Configure the Collector App and Collector Plugin] (#configure-the-collector-app-and-collector-plugin)
-- [Monitor the Collector] (#monitor-the-collector)
-- [Using Kong Brain] (#using-kong-brain)
-- [Using Kong Immunity] (#using-kong-immunity)
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Configure the Collector App and Collector Plugin](#configure-the-collector-app-and-collector-plugin)
+- [Monitor the Collector](#monitor-the-collector)
+- [Using Kong Brain](#using-kong-brain)
+- [Using Kong Immunity](#using-kong-immunity)
 
 ### Overview
 Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using a Collector App and a Collector Plugin to communicate with Kong Enterprise. The diagram illustrates how the Kong components work together, and are described below:
@@ -30,7 +30,7 @@ Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using 
 
 ### Prerequisites
 Prerequisites for installing and configuring Brain and/or Immunity with Kong Enterprise include:
-* Kong Enterprise version 0.35.3+ or later, with a minimum of one Kong node and a working datastore (PostgreSQL).
+* **Kong Enterprise** version 0.35.3+ or later, with a minimum of one Kong node and a working datastore (PostgreSQL).
 * Access to a platform for the Collector App with Docker installed. This system must be networked to communicate with the Kong Enterprise system where you have the Collector Plugin installed.
 * Access to Kong Bintray repository (https://bintray.com/kong), including your access credentials supplied by Kong. (BINTRAY_USERNAME, BINTRAY_API_KEY)
 * Docker compose file of your purchased version of Brain and/or Immunity, which display in Bintray as one of the following:
@@ -63,7 +63,7 @@ Enable the Collector Plugin using the Admin API:
 $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector config.service_token=foo config.host=<COLLECTOR_HOST> config.port=<COLLECTOR_PORT> config.https=false config.log_bodies=true
 ```
 
-(Optional) It is possible to set up the Collector Plugin to only be applied to specific routes or services, by adding route.id=<ROUTE_ID> or service.id=<SERVICE_ID> to the request.
+>(Optional) It is possible to set up the Collector Plugin to only be applied to specific routes or services, by adding `route.id=<ROUTE_ID>` or `service.id=<SERVICE_ID>` to the request.
 
 ```
 $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector config.service_token=foo config.host=<COLLECTOR_HOST> config.port=<COLLECTOR_PORT> config.https=false config.log_bodies=true route.id=<ROUTE_ID>
@@ -84,7 +84,7 @@ Access download files to run and install Brain and/or Immunity from Bintray.
 4. Click **API Key** to get your BINTRAY_API_KEY. 
 
 #### Step 3: Set up with Docker Compose 
-**Note**: Using Docker Compose is recommended to deploy Brain and Immunity, as documented in this guide. You can also use Docker Swarm or Kubernetes for deployment, although steps are not currently included in this guide.
+>Note: Using Docker Compose is recommended to deploy Brain and Immunity, as documented in this guide. You can also use Docker Swarm or Kubernetes for deployment, although steps are not currently included in this guide.
 
 The information you need to run the Collector App, Brain and/or Immunity is included in the docker-compose files. The steps in this section will start several Docker containers, including a collector, a worker, and a scheduler.
 
@@ -133,14 +133,14 @@ If you want to store body data in the Collector App, you can do so by setting th
 ```
 $ REDACT_BODY_DATA=False docker-compose -f docker-compose.yml -f with-redis.yml up
 ```
-#### Step 5. (Optional) Using a different Redis instance
+#### Step 5. Using a different Redis instance _(optional)_
 To use your own instance of Redis instead of the one provided by the container, change the command to use your database, Redis, or both.
 
 ```
 $ REDIS_URI=<redis://localhost:6379/> KONG_HOST=<KONG HOST> KONG_PORT=<8001> docker-compose -f docker-compose.yml up
 ```
 
-**Note**: Remove all instances of ```--remove orphans``` and ```--remove orphans a``` 
+**Note**: Remove all instances of `--remove orphans` and `--remove orphans a`
 
 
 #### Step 6. Confirm the Collector App is working
