@@ -6,9 +6,9 @@ Kong for Kubernetes (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ing
 
 For example, if an application deployed to Kubernetes exposes an API that needs to be used by Web or mobile client applications (a very common use case) or service in another cluster, then a Kubernetes Ingress Controller is required. It is important for the Ingress Controller to secure and manage traffic according to various policies that can be changed on the fly based on the use-case and application.
 
-Kong for Kubernetes stores all of the configuration in Kubernetes datastore (etcd) using Custom Resource Definitions (CRDs), meaning you can use Kubernetes native tools to manage Kong and benefit from Kubernetes declarative configuration, RBAC, namespacing and scalability. Also, because configuration is stored in Kubernetes, no database needs to be deployed for Kong. Kong runs in in-memory mode, making it operationally easy to run, upgrade and backup Kong.
+Kong for Kubernetes stores all of the configuration in the Kubernetes datastore (etcd) using Custom Resource Definitions (CRDs), meaning you can use Kubernetes' native tools to manage Kong and benefit from Kubernetes' declarative configuration, RBAC, namespacing, and scalability. Also, because the configuration is stored in Kubernetes, no database needs to be deployed for Kong. Kong runs in in-memory mode, making it operationally easy to run, upgrade, and backup Kong.
 
-Kong for Kubernetes natively integrates with the Cloud Native Computing Foundation (CNCF) eco-system to provide out-of-the-box monitoring, logging, certificate management, tracing and scaling.
+Kong for Kubernetes natively integrates with the Cloud Native Computing Foundation (CNCF) eco-system to provide out-of-the-box monitoring, logging, certificate management, tracing, and scaling.
 
 
 <img src="https://doc-assets.konghq.com/kubernetes/Kong-for-Kubernetes-Diagram.png" alt="Kong for Kubernetes control diagram">
