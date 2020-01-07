@@ -5,56 +5,49 @@ title: Kong Brain & Kong Immunity Installation and Configuration Guide
 
 **Kong Brain** and **Kong Immunity** help automate the entire API and service development life cycle. By automating processes for configuration, traffic analysis and the creation of documentation, Kong Brain and Kong Immunity help organizations improve efficiency, governance, reliability and security. Kong Brain automates API and service documentation and Kong Immunity uses advanced machine learning to analyze traffic patterns to diagnose and improve security. 
 
-When you purchase Kong Brain and/or Kong Immunity, you obtain both add-ons together or individually:
-* Kong Brain and Kong Immunity
-* Kong Brain
-* Kong Immunity
+When you purchase Kong Brain and Kong Immunity, you obtain both add-ons together. The diagram illustrates how the Kong components work together.
 
 ![Kong Brain and Kong Immunity](https://doc-assets.konghq.com/1.3/brain_immunity/KongBrainImmunity_overview.png)
 
-This guide provides information about how to install, configure, and use Kong Brain and/or Kong Immunity and its components on Kong Enterprise. Sections in this guide include:
+This guide provides information about how to install, configure, and use Kong Brain and Kong Immunity and its components on Kong Enterprise. Sections in this guide include:
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Configure the Collector App and Collector Plugin](#configure-the-collector-app-and-collector-plugin)
-- [Monitor the Collector](#monitor-the-collector)
 - [Using Kong Brain](#using-kong-brain)
 - [Using Kong Immunity](#using-kong-immunity)
 
 ### Overview
-Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using a Collector App and a Collector Plugin to communicate with Kong Enterprise. The diagram illustrates how the Kong components work together, and are described below:
+Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using the Collector App and the Collector Plugin to communicate with Kong Enterprise. Components include:
 * **Kong Enterprise**
-* **Kong Brain** (Brain) and/or **Kong Immunity** (Immunity) add-ons, according to your purchase.
-* **Collector App** enables communication between Kong Enterprise and Brain and/or Immunity. The Kong Collector App comes with your purchase of Bran and/or Immunity. 
-* **Collector Plugin** enables communication between Kong Enterprise and Kong Collector App.  The Kong Collector Plugin comes with your purchase of Brain and/or Immunity. 
+* **Kong Brain** (Brain) and **Kong Immunity** (Immunity) add-ons.
+* **Collector App** enables communication between Kong Enterprise and Brain and Immunity. The Kong Collector App comes with your purchase of Brain and Immunity. 
+* **Collector Plugin** enables communication between Kong Enterprise and Kong Collector App.  The Kong Collector Plugin comes with your purchase of Brain and Immunity. 
 
 ### Prerequisites
-Prerequisites for installing and configuring Brain and/or Immunity with Kong Enterprise include:
+Prerequisites for installing and configuring Brain and Immunity with Kong Enterprise include:
 * **Kong Enterprise** version 0.35.3+ or later, with a minimum of one Kong node and a working datastore (PostgreSQL).
 * Access to a platform for the Collector App with Docker installed. This system must be networked to communicate with the Kong Enterprise system where you have the Collector Plugin installed.
 * Access to Kong Bintray repository (https://bintray.com/kong), including your access credentials supplied by Kong. (BINTRAY_USERNAME, BINTRAY_API_KEY)
-* Docker compose file of your purchased version of Brain and/or Immunity, which display in Bintray as one of the following:
-   * kong/kong-brain-immunity-base
-   * kong/kong-brain-base
-   * kong/kong-immunity-base
-* Redis instance, which is included with Brain and/or Immunity. 
-* Swagger, which is included with Brain and/or Immunity.
+* Docker compose file of your purchased version of Brain and Immunity, which display in Bintray as kong/kong-brain-immunity-base.
+* Redis instance, which is included with Brain and Immunity. 
+* Swagger, which is included with Brain and Immunity.
 
 ### Configure the Collector App and Collector Plugin
-To enable Kong Brain (Brain) and/or Kong Immunity (Immunity), you must first configure the Collector App and the Collector Plugin. This includes:
+To enable Kong Brain (Brain) and Kong Immunity (Immunity), you must first configure the Collector App and the Collector Plugin. This includes:
 * Deploying the Collector Plugin, which captures and sends traffic to the Collector App for data collection and processing.
 * Deploying the Collector App on your Docker aware platform.
 * Configuring the Collector Plugin and the Collector App to talk to each other. 
 * Testing the configuration to confirm everything is up and running. 
 
 Steps are:
-- [Step 1. Enable the Collector Plugin] (#Step-1.-Enable-the-Collector-Plugin)
-- [Step 2. Set up the Collector App] (#Step-2.-Set-up-the-Collector-App)
-- [Step 3: Set up with Docker Compose] (#Step-3:-Set-up-with-Docker-Compose)
-- [Step 4. (Optional) Opt-Out of HAR Redaction] (#Step-4.-(Optional)-Opt-Out-of-HAR-Redaction)
-- [Step 5. (Optional) Using different Postgres and Redis instances] (#Step-5.-(Optional)-Using-different-Postgres-and-Redis-instances)
-- [Step 6. Confirm the Collector App is working] (#Step-6.-Confirm-the-Collector-App-is-working)
-- [Step 7. Configure Kong Routes to send data to the Collector] (#Step-7.-Configure-Kong-Routes-to-send-data-to-the-Collector)
+- [Step 1. Enable the Collector Plugin](#Step-1.-Enable-the-Collector-Plugin)
+- [Step 2. Set up the Collector App](#Step-2.-Set-up-the-Collector-App)
+- [Step 3: Set up with Docker Compose](#Step-3:-Set-up-with-Docker-Compose)
+- [Step 4. (Optional) Opt-Out of HAR Redaction](#Step-4.-(Optional)-Opt-Out-of-HAR-Redaction)
+- [Step 5. (Optional) Using different Postgres and Redis instances](#Step-5.-(Optional)-Using-different-Postgres-and-Redis-instances)
+- [Step 6. Confirm the Collector App is working](#Step-6.-Confirm-the-Collector-App-is-working)
+- [Step 7. Configure Kong Routes to send data to the Collector](#Step-7.-Configure-Kong-Routes-to-send-data-to-the-Collector)
 
 #### Step 1. Set up the Collector Plugin 
 Enable the Collector Plugin using the Admin API:
@@ -76,26 +69,26 @@ $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector co
 ```
 
 #### Step 2. Set up the Collector App
-Access download files to run and install Brain and/or Immunity from Bintray. 
-**Note:** You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact from **Kong Support**.
+Access download files to run and install Brain and Immunity from Bintray. 
+**Note:** You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact **Kong Support**.
 1. Log in to **Bintray** and retrieve your BINTRAY_USERNAME and BINTRAY_API_KEY. 
 2. Click your **username** to get the dropdown menu. 
 3. Click **Edit Profile** to get your BINTRAY_USERNAME.
 4. Click **API Key** to get your BINTRAY_API_KEY. 
 
 #### Step 3: Set up with Docker Compose 
->Note: Using Docker Compose is recommended to deploy Brain and Immunity, as documented in this guide. You can also use Docker Swarm or Kubernetes for deployment, although steps are not currently included in this guide.
+**Note:** Using Docker Compose is recommended to deploy Brain and Immunity, as documented in this guide. You can also use Docker Swarm or Kubernetes for deployment, although steps are not currently included in this guide.
 
-The information you need to run the Collector App, Brain and/or Immunity is included in the docker-compose files. The steps in this section will start several Docker containers, including a collector, a worker, and a scheduler.
+The information you need to run the Collector App, Brain and Immunity is included in the docker-compose files. The steps in this section will start several Docker containers, including a collector, a worker, and a scheduler.
 
 Kong provides a private Docker image that is used by the compose files. This image is distributed by Bintray, and the following is required for access:
 * Your Bintray User ID
 * Your Bintray API Key
-* A server where you want to run Brain and/or Immunity with Docker installed
+* A server where you want to run Brain and Immunity with Docker installed
 
 Your Bintray credentials are provided to you with your purchase of Kong Enterprise. If you do not have these credentials, contact **Kong Support**.
 
-1. SSH/PuTTY into your running instance where you want to install Brain and/or Immunity.
+1. SSH/PuTTY into your running instance where you want to install Brain and Immunity.
 
 2. Log into Docker, and enter the repo you have access to. For example, ```kong-docker-kong-brain-immunity-base```. 
 
@@ -112,7 +105,7 @@ wget https://<BINTRAY_USERNAME>:<BINTRAY_API_KEY>@kong.bintray.com/<kong-brain-i
 
 4. Unzip the package into the directory of your choice.
 
-5. Run Docker Compose using the files to start Brain and/or Immunity.
+5. Run Docker Compose using the files to start Brain and Immunity.
 
 ```
 KONG_HOST=<KONG HOST> KONG_PORT=<8001> SQLALCHEMY_DATABASE_URI=<postgres://kong@localhost:5432/collector> docker-compose -f docker-compose.yml -f with-redis.yml up
@@ -144,7 +137,7 @@ $ REDIS_URI=<redis://localhost:6379/> KONG_HOST=<KONG HOST> KONG_PORT=<8001> doc
 
 
 #### Step 6. Confirm the Collector App is working
-Requests to the status endpoint will confirm the Collector App is up and running in addition to providing Brain and/or Immunity status and version number. 
+Requests to the status endpoint will confirm the Collector App is up and running in addition to providing Brain and Immunity status and version number. 
 
 ```
 curl http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/status
@@ -197,13 +190,15 @@ Additionally, you can specify the kong service_id or route_id of the urls you wo
 
 #### Checking Models Trained
 
-Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use **http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints** which will give back a list of all models in the system. Each item in this list contains the following identifying information for the model:
+Only endpoints plus method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use **http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints** which will give back a list of all models in the system. Each item in this list contains the following identifying information for the model:
 
 
 
 * **base_url**: The url of the traffic used to train the model. 
 * **method**: The method of the traffic used to train the model. 
-* **route_id**: The Kong route_id that the traffic used to train the model is associated with. **service_id**: The Kong service_id that the traffic used to train the model is associated with. **model_version_id**: The model version number of the current, active model. 
+* **route_id**: The Kong route_id that the traffic used to train the model is associated with. 
+**service_id**: The Kong service_id that the traffic used to train the model is associated with. 
+**model_version_id**: The model version number of the current, active model. 
 * **active_models**: A json object containing information on the active status of each of the 6 core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type). 
 
 
