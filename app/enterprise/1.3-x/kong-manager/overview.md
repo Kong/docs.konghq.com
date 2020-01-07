@@ -5,7 +5,7 @@ toc: false
 
 # Welcome to Kong Manager
 
-![Welcome to Kong Manager](https://konghq.com/wp-content/uploads/2018/11/km-overview.png)
+![Welcome to Kong Manager](https://doc-assets.konghq.com/1.3/manager/kong-manager-workspaces-overview.png)
 
 <div class="docs-grid">
   <div class="docs-grid-block">

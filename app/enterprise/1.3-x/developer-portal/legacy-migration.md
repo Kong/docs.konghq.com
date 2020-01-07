@@ -4,11 +4,13 @@ book: developer-portal
 chapter: 3
 ---
 
+> Note: Enterprise MIGRATIONS must be completed before migrating the Dev Portal, see [The Migration Guide](/enterprise/1.3-x/deployment/migrations/) for more information.
+
 ### Introduction
 
 Starting in Kong Enterprise 1.3, the Kong Developer Portal supports a new
 templating and file system. Because of these changes, existing Developer Portals
-on 0.36 or earlier are no longer compatible and must me manually migrated to the 
+on 0.36 or earlier are no longer compatible and must be manually migrated to the 
 new file system.
 
 To learn more about the changes to the Developer Portal check out the 

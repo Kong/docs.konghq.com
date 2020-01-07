@@ -64,14 +64,31 @@ To complete this guide you will need:
 
 ## Step 2. Install Kong Enterprise
 
-1. Install Kong Enterprise
+1. Verify the Kong Enterprise Signature
+
+    Kong's official Key ID is 2cac36c51d5f3726. Verify it by querying the RPM package:
+    
+    ```
+    $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
+    ```
+    
+    Download Kong's official public key and ensure the RPM package's integrity:
 
     ```
-    $ sudo yum install kong-enterprise-edition-0.35-1.el7.noarch.rpm
+    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+    $ rpm --import kong.key
+    $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
-  >Note: Your version may be different based on when you obtained the rpm
+    
 
-2. Copy the license file to the `/etc/kong` directory
+2. Install Kong Enterprise
+
+    ```
+    $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
+    ```
+  >Note: Your version may be different based on when you obtained the RPM
+
+3. Copy the license file to the `/etc/kong` directory
 
     ```
     $ sudo cp kong-se-license.json /etc/kong/license.json

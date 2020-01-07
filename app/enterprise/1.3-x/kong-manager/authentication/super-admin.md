@@ -27,10 +27,6 @@ click the email address of the user in order to view them.
 
 6. Copy the link for later use after completing the account setup.
 
-<video width="100%" autoplay loop controls>
-  <source src="https://konghq.com/wp-content/uploads/2019/02/org-super-admin-ent-34.mov" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 ## How to Create Your First Super Admin Account Post Installation
 

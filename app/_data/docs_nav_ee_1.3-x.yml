@@ -13,7 +13,7 @@
         - text: Docker
           url: /deployment/installation/docker
         - text: Kubernetes
-          url: /kong-kubernetes/install
+          url: /kong-for-kubernetes/install
         - text: Ubuntu
           url: /deployment/installation/ubuntu
         - text: CentOS
@@ -85,6 +85,8 @@
       url: /oasconfig
     - text : Control Kong through systemd
       url: /systemd
+    - text : Keyring and Data Encryption
+      url: /db-encryption
 
 - title: Admin API
   url: /admin-api
@@ -139,6 +141,8 @@
         url: /admin-api/vitals/vitals-prometheus-strategy
   - text: Audit Logging
     url: /admin-api/audit-log
+  - text: Keyring and Data Encryption
+    url: /admin-api/db-encryption
 
 - title: Kong Manager
   url: /kong-manager/overview
@@ -174,20 +178,13 @@
     - text: Administration
       url: /kong-manager/administration/workspaces/workspaces
       items:
-        - text: Workspaces
+        - text: Workspaces in Kong Manager
           url: /kong-manager/administration/workspaces/workspaces
-        - items:
-          - text: Workspaces in Kong Manager
-            url: /kong-manager/administration/workspaces/workspaces
-          - text: How to Create a Workspace
-            url: /kong-manager/administration/workspaces/create-workspace
-          - text: How to Update a Workspace
-            url: /kong-manager/administration/workspaces/update-workspace
         - text: RBAC
-          url: /kong-manager/administration/rbac/rbac
+          url: /kong-manager/administration/rbac
         - items:
           - text: RBAC in Kong Manager
-            url: /kong-manager/administration/rbac/rbac
+            url: /kong-manager/administration/rbac
           - text: How to Create a New Role
             url: /kong-manager/administration/rbac/new-role
           - text: How to Create an RBAC User
@@ -250,6 +247,8 @@
       items:
         - text: Easy Theme Editing
           url: /developer-portal/theme-customization/easy-theme-editing
+        - text: Customizing Portal Emails
+          url: /developer-portal/theme-customization/emails
         - text: Adding and Using Javascript Assets
           url: /developer-portal/theme-customization/adding-javascript-assets
         - text: Single Page App in Dev Portal
@@ -261,16 +260,16 @@
           url: /developer-portal/helpers/cli
 
 - title: Kong for Kubernetes Enterprise
-  url: /kong-kubernetes/
+  url: /kong-for-kubernetes/
   items:
     - text: Overview
-      url:  /kong-kubernetes/overview
+      url:  /kong-for-kubernetes
     - text: Installation
-      url: /kong-kubernetes/install
+      url: /kong-for-kubernetes/install
     - text: Using Kong for Kubernetes
-      url: /kong-kubernetes/using-kong-for-kubernetes
+      url: /kong-for-kubernetes/using-kong-for-kubernetes
     - text: Changelog
-      url: /kong-kubernetes/changelog
+      url: /kong-for-kubernetes/changelog
 
 - title: Kong Brain & Kong Immunity
   url: /brain-immunity/install-configure
@@ -282,9 +281,10 @@
 
 
 - title: Plugins
-  url: https://konghq.com/hub
   items:
     - text: OpenID Connect
+      url: /hub/kong-inc/openid-connect
+      absolute_url: true
       items:
         - text: OpenID Connect Plugin
           url: /plugins/openid-connect
@@ -299,6 +299,7 @@
         - text: OpenID Connect with Cognito
           url: /plugins/oidc-cognito
     - text: GraphQL
+      url: /plugins/graphql-quickstart
       items:
         - text: GraphQL Quickstart
           url: /plugins/graphql-quickstart
@@ -309,6 +310,8 @@
         - text: GraphQL Rate Limiting Advanced
           url: /plugins/graphql-rate-limiting-advanced
     - text: Kafka
+      url: /hub/kong-inc/kafka-log
+      absolute_url: true
       items:
         - text: Kafka Log Plugin
           url: /plugins/kafka-log
@@ -342,14 +345,14 @@
       url: /plugins/route-transformer-advanced
     - text: JWT Signer Plugin
       url: /plugins/jwt-signer
-    - text: Upstream TLS Plugin
-      url: /plugins/upstream-tls
     - text: Vault Auth Plugin
       url: /plugins/vault-auth
     - text: Request Validator Plugin
       url: /plugins/request-validator
     - text: Exit Transformer Plugin
       url: /plugins/exit-transformer
+    - text: Key Auth (encrypted)
+      url: /plugins/key-auth-enc
     - text: Implementation
       items:
         - text: Multiple Authentication Methods

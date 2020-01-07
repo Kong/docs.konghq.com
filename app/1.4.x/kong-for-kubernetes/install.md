@@ -45,7 +45,7 @@ For more information about using a Helm Chart, see Helm’s [Hub](https://hub.he
 Kong’s manifests for Kubernetes can be declaratively patched using Kubernetes’ [kustomize](https://kustomize.io/). An example of a remote custom build is:
 
 ```
-kustomize build bit.ly/kong-kustomize-base
+kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/base
 ```
 
 kustomizations are available in Kong’s [repository](https://github.com/Kong/kubernetes-ingress-controller/tree/master/deploy/manifests) for different types of deployments.
@@ -66,4 +66,4 @@ If you decide to use a database, we recommend that you run the database outside 
 We do not recommend using Kong with Cassandra on Kubernetes deployments, as the features covered by Kong’s use of Cassandra are handled by other means in Kubernetes.
 
 ## Next steps…
-See [Using Kong for Kubernetes](/{{page.kong_version}}/kong-kubernetes/using-kong-for-kubernetes) for information about Concepts, How-to guides, and Reference guides.
+See [Using Kong for Kubernetes](/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about Concepts, How-to guides, and Reference guides.

@@ -37,7 +37,7 @@ version the biggest changes are as follows:
 ### Breaking Changes
 
 The new Developer Portal is not compatible with previous Developer Portal 
-versions and templates.  The legacy Developer Portal will supported through the 
+versions and templates.  The legacy Developer Portal will be supported through the 
 next few releases allowing current users to make the switch over before deprecation. 
 The release will include the functionality needed to support legacy deployments, 
 but will not be available via the demo build.
@@ -45,6 +45,8 @@ but will not be available via the demo build.
 Existing files will need to be manually migrated to the new Developer Portal, 
 learn more in the [Migrating from Legacy](/enterprise/1.3-x/developer-portal/legacy-migration)
 guide.
+
+> Note: Enterprise MIGRATIONS must be completed before migrating the Dev Portal, see [The Migration Guide](/enterprise/1.3-x/deployment/migrations/) for more information.
 
 Read the full Kong Enterprise 1.3 Changelog [here](/enterprise/changelog).
 
