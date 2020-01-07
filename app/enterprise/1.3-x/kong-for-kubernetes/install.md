@@ -28,7 +28,7 @@ The steps in this section include installing Kong for Kubernetes Enterprise usin
 Installation steps include:
 - [Step 1. Set Kong Enterprise License ](#step-1-set-kong-enterprise-license)
 - [Step 2. Configure Kong Enterprise Docker registry access](#step-2-configure-kong-enterprise-docker-registry-access)
-- [Step 3. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enter)
+- [Step 3. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enterprise)
 
 
 
