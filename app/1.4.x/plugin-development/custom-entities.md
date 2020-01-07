@@ -509,7 +509,7 @@ end
 ### Iterating over all the entities
 
 ``` lua
-for entity, err on kong.db.<name>:each(entities_per_page) do
+for entity, err in kong.db.<name>:each(entities_per_page) do
   if err then
     ...
   end
