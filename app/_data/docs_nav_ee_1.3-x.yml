@@ -18,8 +18,10 @@
           url: /deployment/installation/ubuntu
         - text: CentOS
           url: /deployment/installation/centos
-        - text: Amazon Linux
+        - text: Amazon Linux 1
           url: /deployment/installation/amazon-linux
+        - text: Amazon Linux 2
+          url: /deployment/installation/amazon-linux-2
     - text: Kong Cloud
       url: /kong-cloud
     - text: Changelog
