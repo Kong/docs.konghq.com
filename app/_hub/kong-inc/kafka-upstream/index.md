@@ -121,9 +121,6 @@ params:
 
 ---
 
-## Configuration
-
-
 ### Enabling on a serviceless route
 
 ```bash
