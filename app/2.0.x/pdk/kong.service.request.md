@@ -458,3 +458,35 @@ local ok, err = kong.service.request.set_body({
 
 [Back to TOC](#table-of-contents)
 
+
+### kong.service.request.disable_tls()
+
+Disables the TLS handshake to upstream for [ngx\_stream\_proxy\_module](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html).
+ Effectively this overrides [proxy\_ssl](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl) directive to `off` setting
+ for the current stream session.
+
+ Note that once this function has been called it is not possible to re-enable TLS handshake for the current session.
+
+
+**Phases**
+
+* `preread`, `balancer`
+
+**Returns**
+
+1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+
+1.  `string|nil` An error message describing the error if there was one.
+
+
+**Usage**
+
+``` lua
+local ok, err = kong.service.request.disable_tls()
+if not ok then
+  -- do something with error
+end
+```
+
+[Back to TOC](#table-of-contents)
+
