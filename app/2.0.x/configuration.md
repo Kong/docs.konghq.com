@@ -488,6 +488,15 @@ Default: `bundled`
 
 ---
 
+#### go_pluginserver_exe
+
+Path for the go-pluginserver executable, used for running Kong plugins written
+in Go.
+
+Default: `/usr/local/bin/go-pluginserver`
+
+---
+
 #### go_plugins_dir
 
 Directory for installing Kong plugins written in Go.
@@ -628,7 +637,7 @@ details about the `proxy_protocol` parameter.
 Not all `*_listen` values accept all formats specified in nginx's
 documentation.
 
-Default: `0.0.0.0:8000 reuseport backlog=16384, 0.0.0.0:8443 ssl reuseport backlog=16384`
+Default: `0.0.0.0:8000 reuseport backlog=16384, 0.0.0.0:8443 http2 ssl reuseport backlog=16384`
 
 ---
 
@@ -716,7 +725,7 @@ its configuration changes from the database.
 
 Example: `admin_listen = 127.0.0.1:8444 http2 ssl`
 
-Default: `127.0.0.1:8001 reuseport backlog=16384, 127.0.0.1:8444 ssl reuseport backlog=16384`
+Default: `127.0.0.1:8001 reuseport backlog=16384, 127.0.0.1:8444 http2 ssl reuseport backlog=16384`
 
 ---
 
@@ -1027,17 +1036,25 @@ Will inject the following directive in Kong's proxy `server {}` block:
 
 The following namespaces are supported:
 
+- `nginx_main_<directive>`: Injects `<directive>` in Kong's configuration
+  `main` context.
+- `nginx_events_<directive>`: Injects `<directive>` in Kong's `events {}`
+  block.
 - `nginx_http_<directive>`: Injects `<directive>` in Kong's `http {}` block.
 - `nginx_proxy_<directive>`: Injects `<directive>` in Kong's proxy `server {}`
   block.
-- `nginx_http_upstream_<directive>`: Injects `<directive>` in Kong's proxy
-  `upstream {}` block.
+- `nginx_upstream_<directive>`: Injects `<directive>` in Kong's proxy `upstream
+  {}` block.
 - `nginx_admin_<directive>`: Injects `<directive>` in Kong's Admin API `server
   {}` block.
+- `nginx_status_<directive>`: Injects `<directive>` in Kong's Status API
+  `server {}` block (only effective if `status_listen` is enabled).
 - `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
   `stream {}` block (only effective if `stream_listen` is enabled).
 - `nginx_sproxy_<directive>`: Injects `<directive>` in Kong's stream module
   `server {}` block (only effective if `stream_listen` is enabled).
+- `nginx_supstream_<directive>`: Injects `<directive>` in Kong's stream module
+  `upstream {}` block.
 
 As with other configuration properties, Nginx directives can be injected via
 environment variables when capitalized and prefixed with `KONG_`.
@@ -1108,7 +1125,7 @@ Default: `1d`
 
 ---
 
-#### nginx_http_upstream_keepalive
+#### nginx_upstream_keepalive
 
 Sets the maximum number of idle keepalive connections to upstream servers that
 are preserved in the cache of each worker process. When this number is exceeded,
@@ -1123,7 +1140,7 @@ Default: `60`
 
 ---
 
-#### nginx_http_upstream_keepalive_requests
+#### nginx_upstream_keepalive_requests
 
 Sets the maximum number of requests that can be served through one keepalive
 connection.
@@ -1137,7 +1154,7 @@ Default: `100`
 
 ---
 
-#### nginx_http_upstream_keepalive_timeout
+#### nginx_upstream_keepalive_timeout
 
 Sets a timeout during which an idle keepalive connection to an upstream server
 will stay open.
