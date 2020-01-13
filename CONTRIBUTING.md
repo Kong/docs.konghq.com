@@ -383,14 +383,4 @@ will cause a broken ToC, and should be corrected to:
 [Back to TOC](#table-of-contents)
 
 
-### Contributor T-shirt
-
-If your contribution to this repository was accepted and fixes a bug, adds
-functionality, or makes it significantly easier to use or understand Kong,
-congratulations! You are eligible to receive the very special Contributor
-T-shirt! Find out how to request your shirt
-[here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributor-t-shirt).
-
-Thank you for contributing!
-
 [Back to TOC](#table-of-contents)
