@@ -7,15 +7,17 @@ title: Proxy Reference
 In this document we will cover Kong's **proxying capabilities**  by explaining
 its routing capabilities and internal workings in details.
 
-Kong exposes several interfaces which can be tweaked by two configuration
+Kong exposes several interfaces which can be tweaked by three configuration
 properties:
 
 - `proxy_listen`, which defines a list of addresses/ports on which Kong will
-  accept **public traffic** from clients and proxy it to your upstream services
-  (`8000` by default).
+  accept **public HTTP (gRPC, WebSocket, etc) traffic** from clients and proxy
+  it to your upstream services (`8000` by default).
 - `admin_listen`, which also defines a list of addresses and ports, but those
   should be restricted to only be accessed by administrators, as they expose
   Kong's configuration capabilities: the **Admin API** (`8001` by default).
+- `stream_listen`, which is similar to `proxy_listen` but for Layer 4 (TCP, TLS)
+  generic proxy. This is turned off by default.
 
 <div class="alert alert-warning">
 <p><strong>Note:</strong> Starting with 1.0.0, the API entity has been removed.
@@ -30,7 +32,7 @@ below.</p>
 - `client`: Refers to the *downstream* client making requests to Kong's
   proxy port.
 - `upstream service`: Refers to your own API/service sitting behind Kong, to
-  which client requests are forwarded.
+  which client requests/connections are forwarded.
 - `Service`: Service entities, as the name implies, are abstractions of each of
   your own upstream services. Examples of Services would be a data
   transformation microservice, a billing API, etc.
@@ -47,8 +49,9 @@ below.</p>
 ## Overview
 
 From a high-level perspective, Kong listens for HTTP traffic on its configured
-proxy port(s) (`8000` and `8443` by default). Kong will evaluate any incoming
-HTTP request against the Routes you have configured and try to find a matching
+proxy port(s) (`8000` and `8443` by default) and L4 traffic on explicitly configured
+`stream_listen` ports. Kong will evaluate any incoming
+HTTP request or L4 connection against the Routes you have configured and try to find a matching
 one. If a given request matches the rules of a specific Route, Kong will
 process proxying the request.
 
@@ -732,7 +735,11 @@ such requests).
 
 ### Request Source
 
-The `sources` routing attribute only applies to TCP and TLS routes. It allows
+<div class="alert alert-warning">
+    **Note:** This section only applies to TCP and TLS routes.
+</div>
+
+The `sources` routing attribute allows
 matching a route by a list of incoming connection IP and/or port sources.
 
 The following Route allows routing via a list of source IP/ports:
@@ -750,7 +757,11 @@ address "10.2.2.2" or Port "9123" would match such Route.
 
 ### Request Destination
 
-`destinations` only applies to TCP and TLS routes. Similarly to `sources`, it
+<div class="alert alert-warning">
+    **Note:** This section only applies to TCP and TLS routes.
+</div>
+
+The `destinations` attribute, similarly to `sources`,
 allows matching a route by a list of incoming connection IP and/or port, but
 uses the destination of the TCP/TLS connection as routing attribute.
 
@@ -773,7 +784,8 @@ only to TLS, but also to other protocols carried over TLS - such as HTTPS and
 If multiple SNIs are specified in the Route, any of them can match with the incoming request's SNI.
 with the incoming request (OR relationship between the names).
 
-The SNI is indicated at TLS handshake time and cannot be modified after the TLS connection has been established. This means, for example, that multiple requests reusing the same keepalive connection
+The SNI is indicated at TLS handshake time and cannot be modified after the TLS connection has
+been established. This means, for example, that multiple requests reusing the same keepalive connection
 will have the same SNI hostname while performing router match, regardless of the `Host` header.
 has been established. This means keepalive connections that send multiple requests
 will have the same SNI hostnames while performing router match
@@ -1029,14 +1041,14 @@ wish on this Route.
 
 [Back to TOC](#table-of-contents)
 
-## Configuring SSL for a Route
+## Configuring TLS for a Route
 
-Kong provides a way to dynamically serve SSL certificates on a per-connection
-basis. SSL certificates are directly handled by the core, and configurable via
+Kong provides a way to dynamically serve TLS certificates on a per-connection
+basis. TLS certificates are directly handled by the core, and configurable via
 the Admin API. Clients connecting to Kong over TLS must support the [Server
 Name Indication][SNI] extension to make use of this feature.
 
-SSL certificates are handled by two resources in the Kong Admin API:
+TLS certificates are handled by two resources in the Kong Admin API:
 
 - `/certificates`, which stores your keys and certificates.
 - `/snis`, which associates a registered certificate with a Server Name
@@ -1045,14 +1057,14 @@ SSL certificates are handled by two resources in the Kong Admin API:
 You can find the documentation for those two resources in the
 [Admin API Reference][API].
 
-Here is how to configure an SSL certificate on a given Route: first, upload
-your SSL certificate and key via the Admin API:
+Here is how to configure an TLS certificate on a given Route: first, upload
+your TLS certificate and key via the Admin API:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/certificates \
     -F "cert=@/path/to/cert.pem" \
     -F "key=@/path/to/cert.key" \
-    -F "snis=*.ssl-example.com,other-ssl-example.com"
+    -F "snis=*.tls-example.com,other-tls-example.com"
 HTTP/1.1 201 Created
 ...
 ```
@@ -1061,7 +1073,7 @@ The `snis` form parameter is a sugar parameter, directly inserting an SNI and
 associating the uploaded certificate to it.
 
 Note that one of the SNI names defined in `snis` above contains a wildcard
-(`*.ssl-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
+(`*.tls-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
 rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
 single `sni` configured with a wildcard name can be used to match multiple
 subdomains, instead of creating an SNI for each.
@@ -1079,7 +1091,7 @@ to this Route using only the Host header for convenience:
 
 ```bash
 $ curl -i -X POST http://localhost:8001/routes \
-    -d 'hosts=prefix.ssl-example.com,other-ssl-example.com' \
+    -d 'hosts=prefix.tls-example.com,other-tls-example.com' \
     -d 'service.id=d54da06c-d69f-4910-8896-915c63c270cd'
 HTTP/1.1 201 Created
 ...
@@ -1089,14 +1101,15 @@ You can now expect the Route to be served over HTTPS by Kong:
 
 ```bash
 $ curl -i https://localhost:8443/ \
-  -H "Host: prefix.ssl-example.com"
+  -H "Host: prefix.tls-example.com"
 HTTP/1.1 200 OK
 ...
 ```
 
-When establishing the connection and negotiating the SSL handshake, if your
-client sends `prefix.ssl-example.com` as part of the SNI extension, Kong will serve
-the `cert.pem` certificate previously configured.
+When establishing the connection and negotiating the TLS handshake, if your
+client sends `prefix.tls-example.com` as part of the SNI extension, Kong will serve
+the `cert.pem` certificate previously configured. This is the same for both HTTPS and
+TLS connections.
 
 [Back to TOC](#table-of-contents)
 
@@ -1124,8 +1137,8 @@ Not specifying any protocol has the same effect, since routes default to
 `["http", "https"]`.
 
 However, a Route with *only* `https` would _only_ accept traffic over HTTPS. It
-would _also_ accept unencrypted traffic _if_ SSL termination previously
-occurred from a trusted IP. SSL termination is considered valid when the
+would _also_ accept unencrypted traffic _if_ TLS termination previously
+occurred from a trusted IP. TLS termination is considered valid when the
 request comes from one of the configured IPs in
 [trusted_ips][configuration-trusted-ips] and if the `X-Forwarded-Proto: https`
 header is set:
@@ -1143,7 +1156,7 @@ header is set:
 ```
 
 If a Route such as the above matches a request, but that request is in
-plain-text without valid prior SSL termination, Kong responds with:
+plain-text without valid prior TLS termination, Kong responds with:
 
 ```http
 HTTP/1.1 426 Upgrade Required
@@ -1203,6 +1216,11 @@ It is also possible to accept both TCP and TLS simultaneously:
 
 ```
 
+For L4 TLS proxy to work, it is necessary to create route that accepts
+the `tls` `protocol`, as well as having the appropriate TLS certificate
+uploaded and their `sni` attribute properly set to match incoming connection's
+SNI. Please refer to the [Configuring TLS for a Route](#configuring-tls-for-a-route)
+section above for instructions on setting this up.
 
 [Back to TOC](#table-of-contents)
 
@@ -1241,7 +1259,7 @@ Service `protocol` property, and the proper port (usually 443). To connect
 without TLS (`ws`), then the `http` protocol and port (usually 80) should be
 used in `protocol` instead.
 
-If you want Kong to terminate SSL/TLS, you can accept `wss` only from the
+If you want Kong to terminate TLS, you can accept `wss` only from the
 client, but proxy to the upstream service over plain text, or `ws`.
 
 [Back to TOC](#table-of-contents)
@@ -1257,12 +1275,48 @@ gRPC - plugins known to be supported with gRPC have "grpc" and "grpcs" listed
 under the supported protocols field in their Kong Hub page - for example,
 check out the [File Log][file-log] plugin's page.
 
+[Back to TOC](#table-of-contents)
+
+## Proxy TCP/TLS traffic
+
+Starting with version 1.0, TCP and TLS proxying is natively supported in Kong.
+
+In this mode, data of incoming connections reaching the `stream_listen` endpoints will
+be passed through to the upstream. It is possible to terminate TLS connections
+from clients using this mode as well.
+
+To use this mode, aside from defining `stream_listen`, appropriate Route/Service
+object with protocol types of `tcp` or `tls` should be created.
+
+If TLS termination by Kong is desired, the following conditions must be met:
+
+1. The Kong port where TLS connection connects to must have the `ssl` flag enabled
+2. A certificate/key that can be used for TLS termination must be present inside Kong,
+   as shown in [Configuring TLS for a Route](#configuring-tls-for-a-route)
+
+Kong will use the connecting client's TLS SNI server name extension to find
+the appropriate TLS certificate to use.
+
+On the Service side, depends on whether connection between Kong and the upstream
+service need to be encrypted, `tcp` or `tls` protocol types can be set accordingly.
+This means all of the below setup are supported in this mode:
+
+1. Client <- TLS -> Kong <- TLS -> Upstream
+2. Client <- TLS -> Kong <- Cleartext -> Upstream
+3. Client <- Cleartext -> Kong <- TLS -> Upstream
+
+**Note:** In L4 proxy mode, only plugins that has `tcp` or `tls` in the supported
+protocol list are supported. This list can be found in their respective documentations
+on [Kong Hub](https://docs.konghq.com/hub/).
+
+[Back to TOC](#table-of-contents)
+
 ## Conclusion
 
 Through this guide, we hope you gained knowledge of the underlying proxying
 mechanism of Kong, from how does a request match a Route to be routed to its
 associated Service, on to how to allow for using the WebSocket protocol or
-setup dynamic SSL certificates.
+setup dynamic TLS certificates.
 
 This website is Open-Source and can be found at
 [github.com/Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com/).
