@@ -36,7 +36,7 @@ To complete this installation guide you will need:
 1. Download the RPM package from Bintray
   ```
   $ sudo yum update
-  $ wget 'https://<BINTRAY_USERNAME:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge`
+  $ wget 'https://<BINTRAY_USERNAME>:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge`
   ```
   > Note: this command requires your Bintray account PASSWORD, **not** your API KEY, 
   > If you receive the error “BAD PORT” ensure your password does not contain any shell meta-characters like $,@, or / 
@@ -46,26 +46,24 @@ To complete this installation guide you will need:
   $ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
   ```
 
-3. Open the package to and add your Bintray credentials to the `baseurl` value (See [Getting your Bintray Credentials] for help)
+3. Open the package to and add your Bintray credentials to the `baseurl` value.
   ```
   $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
   ```
   ```
   baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
   ```
+  > Note: Unlike step 1, this command requires your Bintray account API KEY, **not** your PASSWORD.
 
-4. Obtain your Kong Enterprise license file
+4. Obtain your Kong Enterprise license file.
+  If you do not already have your license file, you can download it from your account files in Bintray *`https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`*. See [How you Access Your Enterprise License](/enterprise/latest/deployment/access-license) for help.
 
-  If you do not already have your license file, you can download it from your account files in Bintray *`https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`. *See [How you Access Your Enterprise License](/enterprise/latest/deployment/access-license) for help.
-
-
-    Ensure your license file is in proper *`JSON`*:
-
-    ```
+5. Ensure your license file is in proper *`JSON`*:
+  ```
     {"license":{"signature":"91e6dd9716d12ffsn4a5ckkb16a556dbebdbc4d0a66d9b2c53f8c8d717eb93dd2bdbe2cb3ef51c20806f14345128907da35","payload":{"customer":"Kong Inc","license_creation_date":"2019-05-07","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2021-04-01","license_key":"00Q1K00000zuUAwUAM_a1V1K000005kRhuUAE"},"version":1}}
-    ```
+  ```
 
-5. Securely copy the license file to the EC2 instance
+6. Securely copy the license file to the EC2 instance
   ```
   $ scp license.json <ec2-username>@<serverip>:~
   ```
@@ -87,7 +85,7 @@ To complete this installation guide you will need:
 
 ## Step 3. Install and Initialize the Database
 
-**Kong Enterprise** on Amazon Linux 2 supports:
+**Kong Enterprise** on Amazon Linux  supports:
 
 - [PostgreSQL](/#postgresql)
 - Cassandra
@@ -202,7 +200,7 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ### Enable RBAC
 
-  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Sessions plugin](/hub/sessions).
+  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Session plugin](/hub/kong-inc/session).
 
   ```
   enforce_rbac = on

@@ -53,23 +53,20 @@ To complete this installation guide you will need:
   ```
   baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
   ```
-    > Note: Unlike step 1, this command requires your Bintray account API KEY, **not** your PASSWORD, 
+    > Note: Unlike step 1, this command requires your Bintray account API KEY, **not** your PASSWORD.
 
-4. Obtain your Kong Enterprise license file
-
+4. Obtain your Kong Enterprise license file.
   If you do not already have your license file, you can download it from your account files in Bintray *`https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`*. See [How you Access Your Enterprise License](/enterprise/latest/deployment/access-license) for help.
 
-
-    Ensure your license file is in proper *`JSON`*:
-
-    ```
+5. Ensure your license file is in proper *`JSON`*:
+  ```
     {"license":{"signature":"91e6dd9716d12ffsn4a5ckkb16a556dbebdbc4d0a66d9b2c53f8c8d717eb93dd2bdbe2cb3ef51c20806f14345128907da35","payload":{"customer":"Kong Inc","license_creation_date":"2019-05-07","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2021-04-01","license_key":"00Q1K00000zuUAwUAM_a1V1K000005kRhuUAE"},"version":1}}
-    ```
+  ```
 
-5. Securely copy the license file to the EC2 instance
+6. Securely copy the license file to the EC2 instance
   ```
   $ scp license.json <ec2-username>@<serverip>:~
-  ```
+  ``
 
 
 ## Step 2. Install Kong Enterprise
