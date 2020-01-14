@@ -39,14 +39,14 @@ Provder:
   "logout_query_arg": "logout",
   "client_id": ["<CLIENT-ID>"],
   "login_action": "redirect",
-  "logout_redirect_uri": ["http://localhost:8003 (http://localhost:8003/)"],
+  "logout_redirect_uri": ["http://localhost:8003"],
   "ssl_verify": false,
   "consumer_claim": ["email"],
   "forbidden_redirect_uri": ["http://localhost:8003/unauthorized"],
   "client_secret": ["<CLIENT_SECRET>"],
   "issuer": "https://accounts.google.com/",
   "logout_methods": ["GET"],
-  "login_redirect_uri": ["http://localhost:8003 (http://localhost:8003/)"],
+  "login_redirect_uri": ["http://localhost:8003"],
   "login_redirect_mode": "query"
 }
 
@@ -73,9 +73,9 @@ Example:
   "scopes": ["openid","profile","email","offline_access"],
   "logout_query_arg": "logout",
   "client_id": ["<CLIENT_ID>"],
-  "login_redirect_uri": ["https://example.portal.com (https://example.portal.com/)"],
+  "login_redirect_uri": ["https://example.portal.com],
   "login_action": "redirect",
-  "logout_redirect_uri": ["https://example.portal.com (https://example.portal.com/)"],
+  "logout_redirect_uri": ["https://example.portal.com"],
   "ssl_verify": false,
   "consumer_claim": ["email"],
   "redirect_uri": ["https://exampleapi.portal.com/auth"],

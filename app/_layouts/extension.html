@@ -138,10 +138,10 @@ plugins:
 In both cases, `{consumer}` is the `id` or `username` of the Consumer that this plugin configuration will target.
 
 {% if page.params.service_id or page.params_route_id or page.params.api_id %}
-  You can combine `consumer_id` and {% if page.params.service_id %}
-    `service_id`
+  You can combine `consumer.id` and {% if page.params.service_id %}
+    `service.id`
   {% elsif page.params.route_id %}
-    `route_id`
+    `route.id`
   {% elsif page.params.api_id %}
     `api_id`
   {% endif %}
@@ -181,15 +181,15 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     <tr><td><code>name</code></td><td>The name of the plugin to use, in this case <code>{{ page.params.name }}</code></td></tr>
 
     {% if page.params.service_id %}
-      <tr><td><code>service.id</code></td><td>The id of the Service which this plugin will target.</td></tr>
+      <tr><td><code>service.id</code></td><td>The ID of the Service the plugin targets.</td></tr>
     {% endif %}
     {% if page.params.route_id %}
-      <tr><td><code>route.id</code></td><td>The id of the Route which this plugin will target.</td></tr>
+      <tr><td><code>route.id</code></td><td>The ID of the Route the plugin targets.</td></tr>
+    {% endif %}
+    {% if page.params.consumer_id %}
+      <tr><td><code>consumer.id</code></td><td>The ID of the Consumer the plugin targets.</td></tr>
     {% endif %}
       <tr><td><code>enabled</code><br><br><strong>default value: </strong><code>true</code></td><td>Whether this plugin will be applied.</td></tr>
-    {% if page.params.consumer.id %}
-      <tr><td><code>consumer_id</code></td><td>The id of the Consumer which this plugin will target.</td></tr>
-    {% endif %}
     {% if page.params.api_id %}
     <tr><td><code>api_id</code></td><td>The id of the API which this plugin will target. <strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td></tr>
     {% endif %}
@@ -313,7 +313,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
             <li><code>Route</code>: the Kong entity representing a way to map downstream requests to upstream services.</li>
           {% endif %}
           {% if page.params.consumer_id %}
-            <li><code>Consumer</code>: the Kong entity representing a developer or machine using the API. When using Kong, a Consumer only communicates with Kong which proxies every call to the said upstream API.</li>
+            <li><code>Consumer</code>: an entity that makes requests for Kong to proxy; it represents either a user or an external service.</li>
             <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
           {% endif %}
             <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
