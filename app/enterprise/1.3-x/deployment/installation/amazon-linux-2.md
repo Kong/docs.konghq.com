@@ -9,7 +9,9 @@ This guide will walk you through installing and running **Kong Enterprise** on a
 **Supported Database Options:**
 
 * PostgreSQL 9.6, 10, and 11
-* Cassandra 3.x
+* Cassandra 3.11
+
+Due to the nature of setting up a Kong cluster with Cassandra, this documentation only covers Postgres. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
 
 ## Prerequisites
@@ -17,15 +19,15 @@ This guide will walk you through installing and running **Kong Enterprise** on a
 To complete this installation guide you will need:
 
 
-* A valid *Bintray* account. You will need your *username*, account *password* and account *API KEY*. See [Getting your Bintray Credentials](/enterprise/bintray-credentials) or contact your Sales Representative for assistance.
+* A valid *Bintray* account. You will need your *username*, account *password* and account *API KEY*.
     * Example:
         * Bintray Access key = `john-company`
         * Bintray username = `john-company@kong`
         * Bintray password = `12345678`
         * Bintray API KEY = `12234e314356291a2b11058591bba195830`
 * SSH access to a running EC2 instance
-* A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Downloading your Kong License File](/#step-3-download-your-kong-enterprise-license-file)
-* HTTPIE with Python3 _(optional)_ - this allows for making easier commands to Kong, see [Step 6. Set up HTTPIE](/#step-6-set-up-httpie-optional) for details.
+* A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license))
+* HTTPIE with Python3 _(optional)_ - this allows for making easier commands to Kong, see [Step 6. Set up HTTPIE](/#step-6-verfiy-kong-is-receiving-requests) for details.
 
 
 
@@ -333,3 +335,4 @@ If you did not receive a `200` check out the troubleshooting section below or co
 
 ## Next Steps
 
+Now that Kong Enterprise is up and running, checkout our [Getting Started](/enterprise/{{page.kong_version}}/getting-started) guide.
