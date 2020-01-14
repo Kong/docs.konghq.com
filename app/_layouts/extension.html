@@ -138,10 +138,10 @@ plugins:
 In both cases, `{consumer}` is the `id` or `username` of the Consumer that this plugin configuration will target.
 
 {% if page.params.service_id or page.params_route_id or page.params.api_id %}
-  You can combine `consumer_id` and {% if page.params.service_id %}
-    `service_id`
+  You can combine `consumer.id` and {% if page.params.service_id %}
+    `service.id`
   {% elsif page.params.route_id %}
-    `route_id`
+    `route.id`
   {% elsif page.params.api_id %}
     `api_id`
   {% endif %}
