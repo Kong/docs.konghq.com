@@ -251,11 +251,11 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ##### Install HTTPie to easily send requests to Kong *(optional)*
   ```
-  sudo yum install python3
+  sudo yum install python36
 
-  sudo pip3 install --upgrade pip setuptools
+  sudo pip-3.6 install --upgrade pip setuptools
 
-  sudo /usr/local/bin/pip3 install --upgrade httpie
+  sudo /usr/local/bin/pip3.6 install --upgrade httpie
   ```
 
 #### Test your connection to Kong
