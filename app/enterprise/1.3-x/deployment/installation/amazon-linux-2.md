@@ -105,12 +105,18 @@ This configuration supports PostgreSQL 9.6, 10, and 11 via [Amazon Linux Extras]
 
 **i. Install and Start PostgreSQL**
 
+The examples below will use the most up-to-date version of Postgres, Postgres 11. To use 9.6 or 10, append "96" or "10" to every `postgres` command. 
+
 1. Install PostgreSQL
   ```
   $ sudo amazon-linux-extras install postgresql9.6
+  ```
   or
+  ```
   $ sudo amazon-linux-extras install posgresql10
+  ```
   or
+  ```
   $ sudo amazon-linux-extras install postgresql11
   ```
 
@@ -131,7 +137,7 @@ This configuration supports PostgreSQL 9.6, 10, and 11 via [Amazon Linux Extras]
 
 5. Start PostgreSQL
   ```
-  $ sudo systemctl start postgresql                                               
+  $ sudo systemctl start postgresql
   ```
 
 **ii. Create a Kong user and database**
