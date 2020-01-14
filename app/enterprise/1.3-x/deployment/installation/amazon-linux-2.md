@@ -317,7 +317,7 @@ If you did not receive a `200` check out the troubleshooting section below or co
 ## Troubleshooting
 
 ##### I receive an error when downloading the RPM Package
-  Ensure that you are using your Bintray Username and Bintray account **password **in the `wget` request - note that this is different from your Bintray API KEY. See [Getting your Bintray Credentials](/enterprise/bintray-credentials) or contact your Sales Representative for assistance.
+  Ensure that you are using your Bintray Username and Bintray account **password **in the `wget` request - note that this is different from your Bintray API KEY.
 
 
 ##### HTTP 401 - Unauthorized
