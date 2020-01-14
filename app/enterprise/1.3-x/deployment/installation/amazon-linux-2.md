@@ -80,7 +80,7 @@ To complete this installation guide you will need:
   ```
   $ sudo cp kong-se-license.json /etc/kong/license.json
   ```
-  Kong will look for a valid license in this location.
+  Kong will look for a valid license in `/etc/kong/license.json`.
 
 
 ## Step 3. Install and Initialize the Database
