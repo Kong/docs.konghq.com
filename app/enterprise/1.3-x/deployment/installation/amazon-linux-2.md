@@ -1,15 +1,15 @@
 --- 
-title: Install Kong Enterprise with Amazon Linux 1
+title: Install Kong Enterprise with Amazon Linux 2
 ---
 
 ## Introduction
 
-This guide will walk you through installing and running **Kong Enterprise** on an existing **Amazon Linux 1 EC2** instance. Click [HERE](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2) for installing on Amazon Linux **2**.
+This guide will walk you through installing and running **Kong Enterprise** on an existing **Amazon Linux 2 EC2** instance.
 
 **Supported Database Options:**
 
-* PostgreSQL 9.5, 9.6
-* Cassandra 3
+* PostgreSQL 9.6, 10, and 11
+* Cassandra 3.11
 
 Due to the nature of setting up a Kong cluster with Cassandra, this documentation only covers Postgres. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
@@ -26,8 +26,8 @@ To complete this installation guide you will need:
         * Bintray password = `12345678`
         * Bintray API KEY = `12234e314356291a2b11058591bba195830`
 * SSH access to a running EC2 instance
-* A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/{{page.kong_version}}/deployment/access-license))
-* HTTPIE with Python3 _(optional)_ - this allows for making easier commands to Kong, see [Step 6. Set up HTTPIE](/#step-6-verify-kong-is-receiving-requests) for details.
+* A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license))
+* HTTPIE with Python3 _(optional)_ - this allows for making easier commands to Kong, see [Step 6. Set up HTTPIE](/#step-6-verfiy-kong-is-receiving-requests) for details.
 
 
 
@@ -46,14 +46,14 @@ To complete this installation guide you will need:
   $ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
   ```
 
-3. Open the package to and add your Bintray credentials to the `baseurl` value.
+3. Open the package to and add your Bintray credentials to the `baseurl` value (See [Getting your Bintray Credentials] for help)
   ```
   $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
   ```
   ```
   baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
   ```
-  > Note: Unlike step 1, this command requires your Bintray account API KEY, **not** your PASSWORD.
+    > Note: Unlike step 1, this command requires your Bintray account API KEY, **not** your PASSWORD.
 
 4. Obtain your Kong Enterprise license file.
   If you do not already have your license file, you can download it from your account files in Bintray *`https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`*. See [How you Access Your Enterprise License](/enterprise/latest/deployment/access-license) for help.
@@ -66,7 +66,7 @@ To complete this installation guide you will need:
 6. Securely copy the license file to the EC2 instance
   ```
   $ scp license.json <ec2-username>@<serverip>:~
-  ```
+  ``
 
 
 ## Step 2. Install Kong Enterprise
@@ -80,12 +80,12 @@ To complete this installation guide you will need:
   ```
   $ sudo cp kong-se-license.json /etc/kong/license.json
   ```
-  Kong will look for a valid license in this location.
+  Kong will look for a valid license in `/etc/kong/license.json`.
 
 
 ## Step 3. Install and Initialize the Database
 
-**Kong Enterprise** on Amazon Linux  supports:
+**Kong Enterprise** on Amazon Linux 2 supports:
 
 - [PostgreSQL](/#postgresql)
 - Cassandra
@@ -93,7 +93,8 @@ To complete this installation guide you will need:
 
 ### PostgreSQL
 
-This configuration supports PostgreSQL 9.5 and 9.6.
+This configuration supports PostgreSQL 9.6, 10, and 11 via [Amazon Linux Extras](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#extras-library).
+
 
 **Steps for this section:**
 
@@ -104,19 +105,40 @@ This configuration supports PostgreSQL 9.5 and 9.6.
 
 **i. Install and Start PostgreSQL**
 
+The examples below will use the most up-to-date version of Postgres, Postgres 11. To use 9.6 or 10, append "96" or "10" to every `postgres` command. 
+
 1. Install PostgreSQL
   ```
-  $ sudo yum install postgresql96 postgresql96-server
+  $ sudo amazon-linux-extras install postgresql9.6
   ```
-2. Initialize the database
+  or
   ```
-  $ sudo service postgresql96 initdb
+  $ sudo amazon-linux-extras install posgresql10
   ```
-3. Start PostgreSQL
+  or
   ```
-  $ sudo service postgresql96 start
+  $ sudo amazon-linux-extras install postgresql11
   ```
 
+2. Install the PostgreSQL Server
+  ```
+  $ sudo yum install postgresql postgresql-server
+  ```
+
+3. Enable the PostgreSQL service
+  ```
+  $ sudo systemctl enable postgresql.service
+  ```
+
+4. Initialize the database
+  ```
+  $ sudo /usr/bin/postgresql-setup --initdb
+  ```
+
+5. Start PostgreSQL
+  ```
+  $ sudo systemctl start postgresql
+  ```
 
 **ii. Create a Kong user and database**
 
@@ -155,7 +177,7 @@ Postgres uses `ident` authentication by default, to allow the `kong` user to com
 
 1. Open the configuration file:
   ```
-  $ sudo vi /var/lib/pgsql96/data/pg_hba.conf
+  $ sudo vi /var/lib/pgsql/data/pg_hba.conf
   ```
 
 2. Change the `IPV4` local connection method to `md5`
@@ -169,7 +191,7 @@ Postgres uses `ident` authentication by default, to allow the `kong` user to com
 
 3. Save and exit the file, then restart Postgres
   ```
-  $ sudo service postgresql96 restart
+  $ sudo systemctl restart postgresql
   ```
 
 Now that the database is set up, Kong must be given credentials to access the database. This is done by adding the Postgres user and password information to Kong’s configuration file.
@@ -200,7 +222,7 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ### Enable RBAC
 
-  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Session plugin](/hub/kong-inc/session).
+  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Session plugin](/hub/kong-inc/session/).
 
   ```
   enforce_rbac = on
@@ -217,7 +239,7 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ### Enable Kong Manager
 
-  Kong Enterprise's Graphical User Interface **Kong Manager** can be connected by setting the `admin_gui_url` property to the EC2 instances `IPv4` address
+  Kong Enterprise's Graphical User Interface, **Kong Manager**, can be connected by setting the `admin_gui_url` property to the EC2 instance's `IPv4` address
 
   ```
   admin_gui_url = http://ec2-xx-xxx-xx-xx.us-east-2.compute.amazonaws.com:8002
@@ -249,11 +271,11 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ##### Install HTTPie to easily send requests to Kong *(optional)*
   ```
-  sudo yum install python36
+  sudo yum install python3
 
-  sudo pip-3.6 install --upgrade pip setuptools
+  sudo pip3 install --upgrade pip setuptools
 
-  sudo /usr/local/bin/pip3.6 install --upgrade httpie
+  sudo /usr/local/bin/pip3 install --upgrade httpie
   ```
 
 #### Test your connection to Kong
