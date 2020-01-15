@@ -18,13 +18,12 @@ file, in YAML or JSON, using **declarative configuration**.
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
 
-* Reduced number of dependencies: no need to manage a database installation
+* reduced number of dependencies: no need to manage a database installation
   if the entire setup for your use-cases fits in memory
 * it is a good fit for automation in CI/CD scenarios: configuration for
   entities can be kept in a single source of truth managed via a Git
   repository
-* It enables more deployment options for Kong: for example, DB-less Kong
-  is a natural fit for a lightweight sidecar in a Service Mesh scenario
+* it enables more deployment options for Kong
 
 ## What Is Declarative Configuration
 
