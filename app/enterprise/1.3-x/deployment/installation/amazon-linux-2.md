@@ -65,8 +65,8 @@ To complete this installation guide you will need:
 
 6. Securely copy the license file to the EC2 instance
   ```
-  $ scp license.json <ec2-username>@<serverip>:~
-  ``
+    $ scp license.json <ec2-username>@<serverip>:~
+  ```
 
 
 ## Step 2. Install Kong Enterprise
