@@ -69,7 +69,6 @@ All the plugins inherit some default fields which are:
 | `route`         | `table`    | Route to which plugin is bound, if any.
 | `service`       | `table`    | Service to which plugin is bound, if any.
 | `consumer`      | `table`    | Consumer to which plugin is bound when possible, if any.
-| `run_on`        | `string`   | Determines on which node the plugin should run on service mesh.
 | `protocols`     | `table`    | The plugin will run on specified protocol(s).
 | `enabled`       | `boolean`  | Whether or not the plugin is enabled.
 | `tags`          | `table`    | The tags for the plugin.
@@ -89,13 +88,6 @@ return {
     {
       -- this plugin will only be applied to Services or Routes
       consumer = typedefs.no_consumer
-    },
-    {
-      -- this plugin will only be executed on the first Kong node
-      -- if a request comes from a service mesh (when acting as
-      -- a non-service mesh gateway, the nodes are always considered
-      -- to be "first".
-      run_on = typedefs.run_on_first
     },
     {
       -- this plugin will only run within Nginx HTTP module
@@ -217,9 +209,6 @@ return {
   fields = {
     {
       consumer = typedefs.no_consumer
-    },
-    {
-      run_on = typedefs.run_on_first
     },
     {
       protocols = typedefs.protocols_http
