@@ -14,7 +14,7 @@ In Kong 2.0, we introduced a new method of deploying Kong which is
 called the **Hybrid mode**, also known as **Control Plane / Data Plane Separation (CP/DP)**.
 
 In this mode Kong nodes in a cluster are separated into two roles: Control Plane (CP)
-and Data Plane (DP). Each DP is connected to one of the CP. Instead of accessing the
+and Data Plane (DP), which serves traffic for the proxy. Each DP node is connected to one of the CP nodes. Instead of accessing the
 database contents directly in the traditional deployment method, the DP nodes maintains
 connection with CP nodes and receives the latest configuration from the DP nodes.
 
