@@ -16,7 +16,7 @@ called the **Hybrid mode**, also known as **Control Plane / Data Plane Separatio
 In this mode Kong nodes in a cluster are separated into two roles: Control Plane (CP), where configuration is stored and the Admin API is served
 and Data Plane (DP), which serves traffic for the proxy. Each DP node is connected to one of the CP nodes. Instead of accessing the
 database contents directly in the traditional deployment method, the DP nodes maintains
-connection with CP nodes and receives the latest configuration from the DP nodes.
+connection with CP nodes, and receives the latest configuration.
 
 Deploying using Hybrid mode has a number of benefits:
 
