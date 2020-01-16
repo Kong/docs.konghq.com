@@ -10,7 +10,7 @@ Postgres or Cassandra, to store its configured entities such as Routes,
 Services and Plugins. In Kong 1.1 we added the capability to run Kong without
 a database, using only in-memory storage for entities: we call this **DB-less mode**.
 
-For Kong 2.0, we introduced a new method of deploying cluster of Kong which is
+In Kong 2.0, we introduced a new method of deploying Kong which is
 called the **Hybrid mode**, also known as **Control Plane / Data Plane Separation (CP/DP)**.
 
 In this mode Kong nodes in a cluster are separated into two roles: Control Plane (CP)
