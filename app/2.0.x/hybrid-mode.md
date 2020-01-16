@@ -20,7 +20,7 @@ connection with CP nodes, and receives the latest configuration.
 
 Deploying using Hybrid mode has a number of benefits:
 
-* Reduce the amount of traffic on the database, since only CP needs
+* Drastically reduce the amount of traffic on the database, since only CP nodes need a
   direct connection to the database.
 * Increased security, in an event where one of the DP nodes gets intruded, an attacker
   won't be able to affect other nodes in the Kong cluster.
