@@ -9,6 +9,8 @@
       url: /best-practices
     - text: User Interface
       url: /user-interface
+    - text: Linting in Kong Studio
+      url: /linting
 - title: Getting Started
   url: /overview
   items:
