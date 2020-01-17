@@ -5,28 +5,30 @@
     - text: Changelog
       url: /studio/changelog
       absolute_url: true
-    - text: Best Practices
-      url: /best-practices
-    - text: User Interface
-      url: /user-interface
-    - text: Linting in Kong Studio
-      url: /linting
-    - text: Generating Kong Declarative Config with Kong Studio
-      url: /dec-conf-studio
 - title: Getting Started
   url: /overview
   items:
     - text: Download & Install Kong Studio
       url: /download-install
+    - text: User Interface
+      url: /user-interface
     - text: Editing Spec Files
       url: /editing-specs
     - text: Enabling Live Preview Mode
       url: /live-preview
-    - text: OpenAPI GraphQL Support
-      url: /graphql
     - text: Debugging with Insomnia
       url: /debugging-with-insomnia
     - text: Git Sync with Studio
       url: /git-sync
     - text: Deploy to Dev Portal
       url: /deploy-to-dev-portal
+    - text: Linting in Kong Studio
+      url: /linting
+- title: Guides & References
+  items:
+    - text: API Design Best Practices
+      url: /best-practices
+    - text: Generating Kong Declarative Config with Kong Studio
+      url: /dec-conf-studio
+    - text: OpenAPI GraphQL Support
+      url: /graphql
