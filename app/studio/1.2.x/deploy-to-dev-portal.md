@@ -30,7 +30,7 @@ From Kong Studio:
 
 
 1. Enter your API URL.
-    * >Note: The URL here is the **ADMIN** **API** url set by the `admin_api_uri` property
+    >Note: The URL here is the **ADMIN** **API** url set by the `admin_api_uri` property
 1. Enter the Workspace for the Developer Portal you want to upload the spec to.
 1. If your Admin API uses RBAC, enter the Token for to access the Workspace.
 
