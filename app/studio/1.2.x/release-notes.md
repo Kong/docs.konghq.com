@@ -13,7 +13,7 @@ A new year, a new release of Kong Studio! The team has been hard at work to deli
 
 You can now generate Kong Declarative Config from your specifications directly from inside of Kong Studio. Click the “Generate Config” button in the Editor view and let us handle the hard work. We even added a button there so you can quickly copy it to your clipboard. Amazing. 
 
-[Learn more.](/dec-conf-studio)
+[Learn more.](/studio/{{page.kong_version}}/dec-conf-studio)
 
 ![Declarative config](https://doc-assets.konghq.com/studio/1.2/declarative-config.gif)
 
@@ -21,7 +21,7 @@ You can now generate Kong Declarative Config from your specifications directly f
 
 We’ve aggregated all of your linter warnings and errors into one location at the bottom of the code editor to make it easier to see what’s wrong with your specification.
 
-[Learn more.](/linting)
+[Learn more.](/studio/{{page.kong_version}}/linting)
 
 ![Lint warnings](https://doc-assets.konghq.com/studio/1.2/lint-warnings.gif)
 
