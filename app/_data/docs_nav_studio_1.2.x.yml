@@ -11,6 +11,8 @@
       url: /user-interface
     - text: Linting in Kong Studio
       url: /linting
+    - text: Generating Kong Declarative Config with Kong Studio
+      url: /dec-conf-studio
 - title: Getting Started
   url: /overview
   items:
