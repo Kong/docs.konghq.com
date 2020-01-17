@@ -20,24 +20,24 @@ and from your Dev Portal.
 
 From Kong Studio:
 
-* Open the spec you want to deploy to the Developer Portal
-* Click on the **caret menu** and select **Deploy to Kong Portal**
+1. Open the spec you want to deploy to the Developer Portal.
+2. Click on the **caret menu** and select **Deploy to Kong Portal**.
 
 ![Menu](https://doc-assets.konghq.com/studio/1.0/dev-portal/01-menu.png)
 
 
-Kong Studio will prompt you for information to connect to your **Kong Admin API**
+Kong Studio will prompt you for information to connect to your **Kong Admin API**.
 
 
-* Enter your API URL
+3. Enter your API URL.
     * >Note: The URL here is the **ADMIN** **API** url set by the `admin_api_uri` property
-* Enter the Workspace for the Developer Portal you want to upload the spec  to
-* If your Admin API uses RBAC, enter the Token for to access the Workspace
+4. Enter the Workspace for the Developer Portal you want to upload the spec  to.
+5. If your Admin API uses RBAC, enter the Token for to access the Workspace.
 
 
 ![Connect to Kong](https://doc-assets.konghq.com/studio/1.0/dev-portal/02-connect-to-kong.png)
 
-* Click **Connect to Kong** to validate Kong Studio’s connection. 
+6. Click **Connect to Kong** to validate Kong Studio’s connection. 
 
 
 ### Step 2. Deploy a Spec file
@@ -46,5 +46,5 @@ If successful, Kong Studio will then prompt you to specify a file name for the s
 
 ![Deploy Spec](https://doc-assets.konghq.com/studio/1.0/dev-portal/03-deploy-spec.png)
 
-* Click **Upload to Kong Portal** to upload the spec file
-*  If there is an existing file with the same name Kong Studio will prompt you to overwrite the existing file or cancel
+1. Click **Upload to Kong Portal** to upload the spec file.
+2. If there is an existing file with the same name, Kong Studio will prompt you to overwrite the existing file or cancel.
