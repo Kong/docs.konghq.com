@@ -34,11 +34,13 @@ Adjust “knobs” based on your use case:
 Kong has an official Helm Chart. To deploy Kong onto your Kubernetes cluster with Helm, use:
 
 ```
-helm repo update # get the latest charts
-helm install stable/kong
+helm repo add kong https://charts.konghq.com
+helm repo update
+helm install kong/kong
 ```
 
-For more information about using a Helm Chart, see Helm’s [Hub](https://hub.helm.sh/charts/stable/kong).
+For more information about using a Helm Chart, see Kong's
+[Charts repo](https://github.com/Kong/charts/blob/master/charts/kong/README.md).
 
 
 ### Kustomize
