@@ -3,6 +3,25 @@ title: Kong Studio Changelog
 layout: changelog
 ---
 
+### 1.2.0
+**Released on 1/17/2020**
+
+#### Added
+
+* Added the ability to generate Declarative Configuration for Kong Gateway.
+* Added new Linter Tray in the Editor view that shows all validation and linting errors associated with your currently open document.
+* Added setting to disable clickable links in Explorer responses
+* Added ability to bulk-edit query parameters
+
+#### Changed
+
+* Improved Editor performance by performing updates less frequently
+* Improved support for dark themes when previewing documents
+
+#### Fixed
+
+* Fixed an issue where theme styling was causing issues with the Preview Pane OAuth dialog
+
 ### 1.1.1
 **Released on 12/13/2019**
 
