@@ -34,20 +34,20 @@ Kong Studio is available to download for Kong Enterprise customers. You must hav
 
 ### MacOS
 
-1. Download and open the `Kong-Studio.dmg` file
+1. Download and open the `Kong-Studio.dmg` file.
 
-2. Copy Kong Studio into the Application folder
+2. Copy Kong Studio into the Application folder.
 
 
 ### Windows
 
-1. Download and open the `Kong-Studio.exe` file
+1. Download and open the `Kong-Studio.exe` file.
 
-2. Follow the Kong Studio Setup and Installation Wizard
+2. Follow the Kong Studio Setup and Installation Wizard.
 
 
 ### Linux
 
-1. Download and open the `Kong-Studio.AppImage` file
+1. Download and open the `Kong-Studio.AppImage` file.
 
-2. Follow the Kong Studio Setup and Installation Wizard
+2. Follow the Kong Studio Setup and Installation Wizard.
