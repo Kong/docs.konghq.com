@@ -1,56 +1,44 @@
 ---
-title: Kong Studio 1.1.x Release Notes
+title: Kong Studio 1.2.x Release Notes
 toc: false
 ---
 
-# Introduction
+# Generate Config, Linter Panel, and more!
 
-Welcome to the 1.1.0 release of Kong Studio. In this release we focused on 
-improving the editing experience and addressing some feedback from the previous 
-release.
+A new year, a new release of Kong Studio! The team has been hard at work to deliver some big updates in this release around configuration and validation, as if you couldn’t tell from the title! Let’s get right into it.
 
 # What’s New?
 
-## Live Preview
+## Generate Kong Declarative Config
 
-You can now preview a visual form of your OpenAPI spec as you edit directly from 
-inside Kong Studio. It is a separate pane to the right of the editor that can be 
-shown / hidden from view as you edit. Live Preview makes it easier to see whether 
-changes are valid, and give a better idea of the final output.
+You can now generate Kong Declarative Config from your specifications directly from inside of Kong Studio. Click the “Generate Config” button in the Editor view and let us handle the hard work. We even added a button there so you can quickly copy it to your clipboard. Amazing. 
 
-![Live Preview](https://doc-assets.konghq.com/studio/1.1/Studio_LivePreview_110.gif)
+[Learn more.](/dec-conf-studio)
 
-## Improved Editor Navigation
+![Declarative config](https://doc-assets.konghq.com/studio/1.2/declarative-config.gif)
 
-We fixed many issues with the Editor Navigation. Editor Navigation now fully 
-supports arrays and objects. A full list of fixes can be found below under the 
-Fixed issues list.
+## Added a Linter Panel
 
-![Improved Editor Navigation](https://doc-assets.konghq.com/studio/1.1/Studio_ImprovedEditorNav_110.gif)
+We’ve aggregated all of your linter warnings and errors into one location at the bottom of the code editor to make it easier to see what’s wrong with your specification.
 
-## Improved Activity Bar
+[Learn more.](/linting)
 
-We’ve updated the Activity Bar with a refreshed look and new icons to improve 
-navigation. Now it’s easier to tell where, and what activity you’re on from a 
-glance.
+![Lint warnings](https://doc-assets.konghq.com/studio/1.2/lint-warnings.gif)
 
-![Improved Activity Bar](https://doc-assets.konghq.com/studio/1.1/Studio_ImprovedActivityBar_110.png)
+## Disable previewing links in responses
 
-## Kong Studio Dark Theme
+You can disable URLs from becoming hyperlinks in the response pane in the Explorer view. No more accidentally clicking on a link when you’re just trying to copy-paste. Nice.
 
-One of the great things about Kong Studio is themes, with the initial release we 
-had a dedicated Kong Studio Light theme. Now, with the second release comes the 
-official Kong Studio Dark Theme. ✨
+![Disable links](https://doc-assets.konghq.com/studio/1.2/disable-links.gif)
 
-You can set your theme by: **Application > Preferences (CTRL+, or CMD+,) > Themes > Studio Dark**
+## Added ability to bulk edit query parameters
 
-![Kong Studio Dark Theme](https://doc-assets.konghq.com/studio/1.1/Studio_DarkTheme_110.png)
+Now you can edit queries in bulk without having to click each individual input field. It’s what you’ve *always* wanted but didn’t know you did, until *now*.
 
-## Import by Clipboard
+![Bulk query](https://doc-assets.konghq.com/studio/1.2/bulk-query.gif)
 
-It is now even easier to import data into Studio directly from your clipboard. 
-This one comes directly from an Insomnia open source contribution! 🤗
+## Bug Fixes
 
-![Import by Clipboard](https://doc-assets.konghq.com/studio/1.1/Studio_ImportByClipboard_110.gif)
-  
-**Have feedback?** Let us know on the [feedback github](https://github.com/kong/studio-feedback) repo! 💖
+* Fixed an issue where theme styling caused problems with the Preview Pane OAuth dialog
+
+Want to read the full [changelog](https://docs.konghq.com/studio/changelog/)?
