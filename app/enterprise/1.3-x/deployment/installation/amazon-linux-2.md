@@ -216,21 +216,13 @@ Now that the database is set up, Kong must be given credentials to access the da
   > Note: If you used different values for the user and database name, uncomment the pg_user and pg_datastore variables and add the username and datastore values
 
 
-## Step 4. Customize Your Configuration
-Before starting Kong, you can further modify Kong’s configuration file to enable a host of different features:
+## Step 4. Enable Kong Manager and Developer portal
+Before starting Kong, you can further modify Kong’s configuration file to enable Kong Manager (a graphical user interface for administrators) and the Developer Portal. 
 
 
-### Enable RBAC
+### Seed Super Admin Password
 
-  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Session plugin](/hub/kong-inc/session/).
-
-  ```
-  enforce_rbac = on
-
-  admin_gui_auth = basic-auth
-
-  admin_gui_session_conf = {"secret":"password", "cookie_secure": false, "cookie_samesite": "off", "cookie_name": "admin_session", "storage": "kong"}
-  ```
+Kong has a built in super admin account (kong_admin) that you will use when configuring RBAC. In order to provision the kong_admin account correctly during the initial installation, we need to seed the password. Please secure this password and save it for future configuration when we enable RBAC functionality in Kong. 
 
   Export the KONG_PASSWORD environment variable:
   ```
@@ -239,7 +231,7 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ### Enable Kong Manager
 
-  Kong Enterprise's Graphical User Interface, **Kong Manager**, can be connected by setting the `admin_gui_url` property to the EC2 instance's `IPv4` address
+  Kong Enterprise's Graphical User Interface, **Kong Manager**, can be connected by setting the `admin_gui_url` property to the EC2 instance's `IPv4` address. Enter the fully qualified domain name used in the browser to access the Kong Manager service for the `admin_gui_url` property (the scheme and port are required). 
 
   ```
   admin_gui_url = http://ec2-xx-xxx-xx-xx.us-east-2.compute.amazonaws.com:8002
@@ -247,7 +239,7 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ### Enable the Dev Portal
 
-  Kong Enterprise's **Developer Portal** can be connected by setting the `portal` property to `on` and setting the `portal_gui_host` property to the EC2 instance's `IPv4` address
+  Kong Enterprise's **Developer Portal** can be connected by setting the `portal` property to `on` and setting the `portal_gui_host` property to the EC2 instance's `IPv4` address. Enter the fully qualified domain name used in the browser to access the Developer portal service for the `portal_gui_host` setting. 
 
   ```
   portal = on
@@ -269,51 +261,13 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ## Step 6. Verify Kong is Receiving Requests
 
-##### Install HTTPie to easily send requests to Kong *(optional)*
-  ```
-  sudo yum install python3
-
-  sudo pip3 install --upgrade pip setuptools
-
-  sudo /usr/local/bin/pip3 install --upgrade httpie
-  ```
-
 #### Test your connection to Kong
 
-**httpie**
-  ```
-  http :8001/services 
-  
-  if RBAC is enabled:
-  *http :8001/services Kong-Admin-Token:$KONG_PASSWORD
-  ```
-
-**curl**
   ```
   curl -i -X GET --url http://localhost:8001/services
-
-  if RBAC is enabled:
-  curl -i -X GET --url http://localhost:8001/services --header 'kong-admin-token:<KONG_PASSWORD>'
+  
   ```
-
-
-You should receive a `200 OK` response:
-
-```
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: *
-Connection: keep-alive
-Content-Length: 23
-Content-Type: application/json; charset=utf-8
-Date:
-Server: kong/kong-enterprise-edition
-X-Kong-Admin-Request-ID: 
-
-{
-    "data": [],
-    "next": null
-}
-```
+You should receive a `200 OK` response. 
 
 If you did not receive a `200` check out the troubleshooting section below or contact your Sales or Support Representative for assistance.
 
@@ -326,11 +280,6 @@ If you did not receive a `200` check out the troubleshooting section below or co
 
 ##### HTTP 401 - Unauthorized
   If you have enabled RBAC all request must be sent with the `kong-admin-token` header 
-
-  **httpie**
-    ```
-    Kong-Admin-Token:$KONG_PASSWORD
-    ```
 
   **curl**
     ```
