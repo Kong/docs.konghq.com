@@ -293,3 +293,7 @@
   release: "1.1.x"
   version: "1.1"
   edition: "studio"
+-
+  release: "1.2.x"
+  version: "1.2"
+  edition: "studio"
