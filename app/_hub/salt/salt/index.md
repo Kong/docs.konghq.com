@@ -52,8 +52,8 @@ kong_version_compatibility:
       - 0.12.x
   enterprise_edition:
     compatible:
+      - 0.35-x
       - 0.34-x
-      - 0.33-x
 
 #########################
 
@@ -74,7 +74,7 @@ params:
       required: 'yes'
       default: 443
       value_in_examples:
-      description: Salt beckend port
+      description: Salt backend port
     - name: salt_token
       required: 'yes'
       default: 
@@ -101,11 +101,11 @@ params:
 
 ### Installation
 
-Salt security is easy to deploy as a Kong module.
+Salt Security is easy to deploy as a Kong module.
 
 #### Install the plugin: [Follow this link if you need help](https://docs.konghq.com/1.0.x/plugin-development/distribution/#installing-the-plugin)
 
-Once the .rock file has been obtained from your Salt Security distributor it can be installed using the luarocks package manager.
+Once you have obtained the `.rock` file from your Salt Security distributor, it can be installed using the LuaRocks package manager.
 
 ```shell
 $ luarocks install kong-plugin-salt-agent-0.1.0-1.all.rock
@@ -113,7 +113,7 @@ $ luarocks install kong-plugin-salt-agent-0.1.0-1.all.rock
 
 #### Plugin configuration
 
-Register Salt Security backend as a Kong service:
+Register the Salt Security backend as a Kong service:
 
 ```shell
 $ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/plugins/ \
@@ -129,4 +129,4 @@ $ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/
 3. [salt_token] - company token
 ```
 
-> Notice: installation might be different between kong versions
+> Notice: installation might be different between Kong versions
