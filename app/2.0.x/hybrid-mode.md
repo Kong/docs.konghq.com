@@ -176,5 +176,9 @@ is down, and still proxy traffic normally.
 
 This version of Hybrid Mode uses declarative config as the config sync format which
 means it has the same limitations as declarative config as of today. Please refer
-to the [Plugin Compatibility section](db-less-and-declarative-config#plugin-compatibility)
+to the [Plugin Compatibility section][plugin-compat]
 of declarative config documentation for more information.
+
+---
+
+[plugin-compat]: /{{page.kong_version}}/db-less-and-declarative-config#plugin-compatibility
