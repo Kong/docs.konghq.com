@@ -786,10 +786,13 @@ Default: `on`
 
 #### mem_cache_size
 
-Size of the in-memory cache for database entities. The accepted units are `k`
-and `m`, with a minimum recommended value of a few MBs.
+Size of each of the two in-memory caches for database entities. The accepted
+units are `k` and `m`, with a minimum recommended value of a few MBs.
 
 Default: `128m`
+
+**Note:** As this option controls the size of two different cache entries, the
+total memory Kong uses to cache entities might be double this value.
 
 ---
 
