@@ -36,6 +36,12 @@
     - text: Health checks and circuit breakers reference
       url: /health-checks-circuit-breakers
 
+    - text: Hybrid Mode
+      url: /hybrid-mode
+
+    - text: Go Plugins
+      url: /go
+
     - text: Clustering reference
       url: /clustering
 
