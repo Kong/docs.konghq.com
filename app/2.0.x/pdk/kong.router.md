@@ -29,11 +29,8 @@ Returns the current `route` entity.  The request was matched against this
 **Usage**
 
 ``` lua
-if kong.router.get_route() then
-  -- routed by route & service entities
-else
-  -- routed by a legacy API entity
-end
+local route = kong.router.get_route()
+local protocols = route.protocols
 ```
 
 [Back to TOC](#table-of-contents)
@@ -60,7 +57,7 @@ Returns the current `service` entity.  The request will be targetted to this
 if kong.router.get_service() then
   -- routed by route & service entities
 else
-  -- routed by a legacy API entity
+  -- routed by a route without a service
 end
 ```
 
