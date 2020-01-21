@@ -71,6 +71,11 @@ params:
       default: "`false`"
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
+    - name: ldaps
+      required: true
+      default: "`false`"
+      description: | 
+        Set it to `true` to connect using the LDAPS protocol (LDAP over TLS)
     - name: base_dn
       required: true
       default:
