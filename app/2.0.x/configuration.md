@@ -738,11 +738,6 @@ The Status API is a read-only endpoint allowing monitoring tools to retrieve
 metrics, healthiness, and other non-sensitive information of the current Kong
 node.
 
-The following suffix can be specified for each pair:
-
-- `ssl` will require that all connections made through a particular
-  address/port be made with TLS enabled.
-
 This value can be set to `off`, disabling the Status API for this node.
 
 Example: `status_listen = 0.0.0.0:8100`
@@ -789,10 +784,10 @@ Default: `on`
 Size of each of the two in-memory caches for database entities. The accepted
 units are `k` and `m`, with a minimum recommended value of a few MBs.
 
-Default: `128m`
-
-**Note:** As this option controls the size of two different cache entries, the
+**Note**: As this option controls the size of two different cache entries, the
 total memory Kong uses to cache entities might be double this value.
+
+Default: `128m`
 
 ---
 
@@ -878,23 +873,6 @@ Default: none
 #### admin_ssl_cert_key
 
 The absolute path to the SSL key for `admin_listen` values with SSL enabled.
-
-Default: none
-
----
-
-#### status_ssl_cert
-
-The absolute path to the SSL certificate for `status_listen` values with SSL
-enabled.
-
-Default: none
-
----
-
-#### status_ssl_cert_key
-
-The absolute path to the SSL key for `status_listen` values with SSL enabled.
 
 Default: none
 
