@@ -31,7 +31,7 @@ A human-readable string containing the version number of the currently
 **Usage**
 
 ``` lua
-print(kong.version) -- "0.14.0"
+print(kong.version) -- "2.0.0"
 ```
 
 [Back to TOC](#table-of-contents)
