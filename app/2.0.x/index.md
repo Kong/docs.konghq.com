@@ -91,6 +91,6 @@ title: Documentation for Kong
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/hybrid-mode">Hybrid Mode</a></h3>
     <p>Get started with Hybrid Mode, through which you can configure Kong nodes with dedicated roles: you can have Control Plane nodes using a database and Data Plane nodes using DB-less mode.</p>
     <a href="/{{page.kong_version}}/hybrid-mode">Read the tutorial &rarr;</a>
-s  </div>
+  </div>
 
 </div>
