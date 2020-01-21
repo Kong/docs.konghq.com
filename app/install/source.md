@@ -12,6 +12,17 @@ redirect_from: /install/compile/
 {% capture luarocks_version %}{{site.data.kong_latest.dependencies.luarocks}}{% endcapture %}
 {% capture openresty_version %}{{site.data.kong_latest.dependencies.openresty}}{% endcapture %}
 
+Kong can run either with or without a database.
+
+When using a database, you will use the `kong.conf` configuration file for setting Kong's
+configuration properties at start-up and the database as storage of all configured entities,
+such as the Routes and Services to which Kong proxies.
+
+When not using a database, you will use `kong.conf` its configuration properties and a `kong.yml`
+file for specifying the entities as a declarative configuration.
+
+## With a Database
+
 1. **Install the dependencies**
 
     [OpenResty {{openresty_version}}](https://openresty.org/en/installation.html).
@@ -24,9 +35,8 @@ redirect_from: /install/compile/
     ```bash
     $ ./configure \
       --with-pcre-jit \
-      --with-ipv6 \
-      --with-http_realip_module \
       --with-http_ssl_module \
+      --with-http_realip_module \
       --with-http_stub_status_module \
       --with-http_v2_module
     ```
@@ -53,7 +63,7 @@ redirect_from: /install/compile/
       --with-lua-include=/usr/local/openresty/luajit/include/luajit-2.1
     ```
 
-2. **Install Kong**
+1. **Install Kong**
 
     Now that OpenResty is installed, we can use Luarocks to install Kong's Lua sources:
 
@@ -64,33 +74,98 @@ redirect_from: /install/compile/
     **Or**:
 
     ```bash
-    $ git clone git@github.com:Mashape/kong.git
+    $ git clone git@github.com:Kong/kong.git
+    $ cd kong
     $ [sudo] make install # this simply runs the `luarocks make kong-*.rockspec` command
     ```
 
     Finally, place the `bin/kong` script in your `$PATH`.
 
-3. **Prepare your database**
+1. **Add `kong.conf`**
+
+    **Note**: This step is **required** if you are using Cassandra; it is **optional** for Postgres users.
+
+    By default, Kong is configured to communicate with a local Postgres instance.
+    If you are using Cassandra, or need to modify any settings, download the [`kong.conf.default`](https://raw.githubusercontent.com/Kong/kong/master/kong.conf.default) file and [adjust][configuration] it as necessary.
+    Then, as root, add it to `/etc`:
+
+    ```bash
+    $ sudo mkdir -p /etc/kong
+    $ sudo cp kong.conf.default /etc/kong/kong.conf
+    ```
+
+1. **Prepare your database**
 
     [Configure][configuration] Kong so it can connect to your database. Kong
     supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
     and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/)
     as its datastore.
 
-    If you are using Postgres, please provision a database and a user before starting Kong, ie:
+    If you are using Postgres, provision a database and a user before starting Kong:
 
     ```sql
     CREATE USER kong; CREATE DATABASE kong OWNER kong;
     ```
 
-    Now, run the Kong migrations:
+    Next, run the Kong migrations:
 
     ```bash
-    $ kong migrations up [-c /path/to/kong.conf]
+    $ kong migrations bootstrap [-c /path/to/kong.conf]
     ```
 
-    **Note**: migrations should never be run concurrently; only
-    one Kong nodes should be performing migrations at a time.
+    **Note for Kong < 0.15**: with Kong versions below 0.15 (up to 0.14), use
+    the `up` sub-command instead of `bootstrap`. Also note that with Kong <
+    0.15, migrations should never be run concurrently; only one Kong node
+    should be performing migrations at a time. This limitation is lifted for
+    Kong 0.15, 1.0, and above.
+
+1. **Start Kong**
+
+    ```bash
+    $ kong start [-c /path/to/kong.conf]
+    ```
+
+1. **Use Kong**
+
+    Verify that Kong is running:
+
+    ```bash
+    $ curl -i http://localhost:8001/
+    ```
+
+    Quickly learn how to use Kong with the [5-minute Quickstart](/latest/getting-started/quickstart).
+
+
+## Without a database
+
+1. Follow steps 1 and 2 (Install Dependencies, Install Kong) from the list above.
+
+2. **Write declarative configuration file**
+
+    The following command will generate a `kong.yml`
+    file in your current folder. It contains instructions about how to fill it up.
+    Follow the [Declarative Configuration Format]: /{{site.data.kong_latest.release}}/db-less-and-declarative-config/#the-declarative-configuration-format instructions while doing so.
+
+    ``` bash
+    $ kong config init
+    ```
+
+    We'll assume the file is named `kong.yml`.
+
+
+3. **Add `kong.conf`**
+
+    Download [`kong.conf.default`](https://raw.githubusercontent.com/Kong/kong/master/kong.conf.default) file and [adjust][configuration] it as necessary.
+
+    In particular, make sure to set the `database` config option to `off` and the `declarative_config` option to
+    the absolute path to `kong.yml`:
+
+    ```conf
+    database = off
+    ...
+    declarative_config = /path/to/kong.yml
+
+    ```
 
 4. **Start Kong**
 
@@ -100,12 +175,10 @@ redirect_from: /install/compile/
 
 5. **Use Kong**
 
-    Kong is running:
+    Verify that Kong is running and it has the entities detailed in the declarative config file:
 
     ```bash
     $ curl -i http://localhost:8001/
     ```
 
-    Quickly learn how to use Kong with the [5-minute Quickstart](/docs/latest/getting-started/quickstart).
-
-[configuration]: /docs/{{site.data.kong_latest.release}}/configuration#database
+[configuration]: /{{site.data.kong_latest.release}}/configuration#database

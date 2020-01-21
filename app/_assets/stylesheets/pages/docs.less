@@ -1,6 +1,43 @@
+.docs-navigation {
+  display: flex;
+  margin-top: -15px;
+  margin-bottom: 6rem;
+  border-bottom: 1px solid @black-10;
+  a {
+    padding: 0 10px 16px;
+    font-size: 16px;
+    color: @black-70;
+    &.active {
+      color: @blue;
+      border-bottom: 2px solid @blue;
+    }
+    &:hover {
+      border-bottom: 2px solid @black-40;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  & ~ .page-header-title h1 {
+    color: @navy-darker;
+  }
+}
+
+.edit-this-page {
+  position: absolute;
+  right: 0;
+
+  @media (max-width: 1100px) {
+    top: 135px;
+    left: 0px;
+  }
+  @media (max-width: 400px) {
+    left: 20px;
+  }
+}
+
 #documentation {
   .content {
-
     ol {
       padding-left: 2rem;
     }
@@ -23,17 +60,17 @@
       }
     }
 
-    // titles proportions overriden from base.less
+    // titles proportions overridden from base.less
 
     h1 {
-      font-size: 33px;
+      font-size: 38px;
       font-weight: 400;
     }
 
     h2 {
       margin-top: 1.2em;
-      margin-bottom: .8em;
-      font-size: 28px;
+      margin-bottom: 0.8em;
+      font-size: 30px;
       font-weight: 400;
     }
 
@@ -56,26 +93,56 @@
       font-size: 20px;
       font-weight: 200;
     }
+  }
+}
 
-    // anchor links for titles
-    h1, h2, h3, h4, h5, h6 {
-      a.header-link {
-        margin-left: -.9em;
-        padding-right: .2em;
-        color: inherit;
-
-        i {
-          font-size: 70%;
-          visibility: hidden;
-        }
-      }
-
-      &:hover {
-        .header-link i {
-          visibility: visible;
-        }
-      }
+#getkong-algolia-search {
+  input {
+    vertical-align: inherit !important;
+    height: 40px;
+    margin-bottom: 0;
+  }
+  float: right;
+  margin-left: 10px;
+  /* auto complete */
+  .algolia-autocomplete {
+    width: 220px;
+  }
+  /* Bottom border of each suggestion */
+  .algolia-docsearch-suggestion {
+    border-bottom-color: @blue-light;
+  }
+  /* Highlighted search terms */
+  .algolia-docsearch-suggestion--highlight {
+    color: @blue-light;
+  }
+  /* Currently selected suggestion */
+  .aa-cursor .algolia-docsearch-suggestion--content {
+    color: @blue-light;
+  }
+  @media (max-width: @navbar-collapse-point) {
+    float: initial;
+    display: inline-block;
+    margin-right: 5px;
+    .algolia-docsearch-suggestion--subcategory-column {
+      display: none !important;
     }
+  }
+  @media (max-width: 476px) {
+    margin: 10px 0 0;
+    float: left;
+    clear: both;
+  }
+}
 
+.search-input {
+  i {
+    position: absolute;
+    z-index: 1;
+    padding: 11px 0 0 12px;
+  }
+  input {
+    width: 100%;
+    padding-left: 34px;
   }
 }

@@ -2,12 +2,12 @@
   name: Docker
   type: package
 
-- id: dcos
-  name: DC/OS
+- id: kubernetes
+  name: Kubernetes
   type: cloud
 
-- id: kubernetes
-  name: kubernetes
+- id: dcos
+  name: DC/OS
   type: cloud
 
 - id: google-cloud
@@ -42,8 +42,8 @@
   name: Ubuntu
   type: package
 
-- id: osx
-  name: OS X
+- id: macos
+  name: macOS
   type: package
 
 - id: vagrant

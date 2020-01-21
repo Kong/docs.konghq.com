@@ -5,7 +5,7 @@ module Jekyll
 
       site.pages.each do |page|
         if page.data.key?("book")
-          (books["#{Pathname(page.path).dirname}/#{page.data["book"]}"] ||= []).push(page)
+          (books["#{page.data["edition"]}/#{page.data["kong_version"]}/#{page.data["book"]}"] ||= []).push(page)
         end
       end
 

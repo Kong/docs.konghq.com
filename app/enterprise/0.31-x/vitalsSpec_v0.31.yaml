@@ -1,0 +1,551 @@
+swagger: '2.0'
+info:
+  description: Vitals API
+  version: 1.0.0
+  title: Vitals API
+basePath: /vitals
+tags:
+  - name: nodes
+    description: Node level stats
+  - name: cluster
+    description: Cluster level stats
+schemes:
+  - http
+paths:
+  /:
+    get:
+      tags:
+        - vitals
+      summary: Get general information about Kong vitals
+      description: ''
+      operationId: getVitalsInfo
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/VitalsInfo'
+  /cluster:
+    get:
+      tags:
+        - cluster
+      summary: Get aggregated stats for the cluster
+      description: ''
+      operationId: getClusterStats
+      produces:
+        - application/json
+      parameters:
+        - name: interval
+          in: query
+          description: Interval length of requested stats
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ClusterVitalsTimeSeriesWithMetadata'
+        '400':
+          description: Invalid query params
+  /cluster/status_codes:
+    get:
+      tags:
+        - cluster
+      summary: Get status code stats for the cluster
+      description: ''
+      operationId: getClusterStatusCodeStats
+      produces:
+        - application/json
+      parameters:
+        - name: interval
+          in: query
+          description: Interval length of requested status code stats
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ClusterVitalsStatusCodesWithMetadata'
+        '400':
+          description: Invalid query params
+  /nodes:
+    get:
+      tags:
+        - nodes
+      summary: Get individual stats for all nodes
+      description: ''
+      operationId: getAllNodeStats
+      produces:
+        - application/json
+      parameters:
+        - name: interval
+          in: query
+          description: Interval length of requested stats
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/NodeVitalsTimeSeriesWithMetadata'
+        '400':
+          description: Invalid query params
+  '/nodes/{nodeUUID}':
+    get:
+      tags:
+        - nodes
+      summary: Get stats for a specific node by UUID
+      description: ''
+      operationId: getNodeStatsByUUID
+      produces:
+        - application/json
+      parameters:
+        - name: nodeUUID
+          type: string
+          in: path
+          description: Node UUID to retrieve stats for
+          required: true
+        - name: interval
+          in: query
+          description: Interval length of requested stats
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/NodeVitalsTimeSeriesWithMetadata'
+        '400':
+          description: Invalid query params
+        '404':
+          description: Unable to find requested node UUID
+  '/consumers/{consumerUUID}/cluster':
+    get:
+      tags:
+        - cluster
+      summary: Get count of requests for the given consumer across entire cluster
+      description: ''
+      operationId: getConsumerClusterStats
+      produces:
+        - application/json
+      parameters:
+        - name: consumerUUID
+          type: string
+          in: path
+          description: Consumer UUID to retrieve stats for
+          required: true
+        - name: interval
+          type: string
+          in: query
+          description: Interval length of requested stats
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ClusterConsumersTimeSeriesWithMetadata'
+        '400':
+          description: Invalid query params
+        '404':
+          description: Unable to find requested consumer UUID
+  '/consumers/{consumerUUID}/nodes':
+    get:
+      tags:
+        - nodes
+      summary: Get count of requests for the given consumer on each node
+      description: ''
+      operationId: getConsumerNodeStats
+      produces:
+        - application/json
+      parameters:
+        - name: consumerUUID
+          type: string
+          in: path
+          description: Consumer UUID to retrieve stats for
+          required: true
+        - name: interval
+          type: string
+          in: query
+          description: Interval length of requested stats
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/NodeConsumersTimeSeriesWithMetadata'
+        '400':
+          description: Invalid query params
+        '404':
+          description: Unable to find requested consumer UUID
+definitions:
+  ClusterVitalsMetadata:
+    properties:
+      level:
+        type: string
+        example: cluster
+        enum:
+          - cluster
+          - node
+      interval:
+        type: string
+        example: seconds
+        enum:
+          - seconds
+          - minutes
+      earliest_ts:
+        type: integer
+        example: 1514508300
+      latest_ts:
+        type: integer
+        example: 1514508480
+      stat_labels:
+        type: array
+        items:
+          type: string
+        example:
+          - cache_datastore_hits_total
+          - cache_datastore_misses_total
+          - latency_proxy_request_min_ms
+          - latency_proxy_request_max_ms
+          - latency_upstream_min_ms
+          - latency_upstream_max_ms
+          - requests_proxy_total
+          - latency_proxy_request_avg_ms
+          - latency_upstream_avg_ms
+  ClusterVitalsStatusCodesMetadata:
+    properties:
+      level:
+        type: string
+        example: cluster
+        enum:
+          - cluster
+      interval:
+        type: string
+        example: seconds
+        enum:
+          - seconds
+          - minutes
+      earliest_ts:
+        type: integer
+        example: 1514508300
+      latest_ts:
+        type: integer
+        example: 1514508480
+  ClusterVitalsStats:
+    properties:
+      cluster:
+        type: object
+        properties:
+          <timestamp_n>:
+            type: array
+            items:
+              type: integer
+            description: >-
+              List of stat values collected at "timestamp_n", in same order
+              as "meta.stat_labels"
+            example:
+              - 999
+              - 130
+              - 0
+              - 35
+              - 142
+              - 528
+              - 1146
+              - 110
+              - 156
+  ClusterVitalsStatusCodesStats:
+    properties:
+      cluster:
+        type: object
+        description: Vitals status codes data available at the cluster level
+        properties:
+          <timestamp_n>:
+            type: object
+            properties:
+              <status_code_class>:
+                type: integer
+                description: >-
+                  The total count of a particular status code class for the time period
+                example: 1824
+  ClusterVitalsTimeSeriesWithMetadata:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/ClusterVitalsMetadata'
+      stats:
+        $ref: '#/definitions/ClusterVitalsStats'
+  ClusterVitalsStatusCodesWithMetadata:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/ClusterVitalsStatusCodesMetadata'
+      stats:
+        $ref: '#/definitions/ClusterVitalsStatusCodesStats'
+  ClusterConsumersMetadata:
+    properties:
+      level:
+        type: string
+        example: cluster
+        enum:
+          - cluster
+          - node
+      interval:
+        type: string
+        example: seconds
+        enum:
+          - seconds
+          - minutes
+      earliest_ts:
+        type: integer
+        example: 1514508300
+      latest_ts:
+        type: integer
+        example: 1514508480
+      stat_labels:
+        type: array
+        items:
+          type: string
+        example:
+          - requests_consumer_total
+  ClusterConsumersStats:
+    properties:
+      cluster:
+        type: object
+        properties:
+          <timestamp_n>:
+            type: integer
+            description: >-
+              List of stat values collected at "timestamp_n", in same order
+              as "meta.stat_labels"
+            example: 47
+  ClusterConsumersTimeSeriesWithMetadata:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/ClusterConsumersMetadata'
+      stats:
+        $ref: '#/definitions/ClusterConsumersStats'
+  NodeVitalsMetadata:
+    properties:
+      level:
+        type: string
+        example: node
+        enum:
+          - cluster
+          - node
+      interval:
+        type: string
+        example: seconds
+        enum:
+          - seconds
+          - minutes
+      earliest_ts:
+        type: integer
+        example: 1514508300
+      latest_ts:
+        type: integer
+        example: 1514508480
+      stat_labels:
+        type: array
+        items:
+          type: string
+        example:
+          - cache_datastore_hits_total
+          - cache_datastore_misses_total
+          - latency_proxy_request_min_ms
+          - latency_proxy_request_max_ms
+          - latency_upstream_min_ms
+          - latency_upstream_max_ms
+          - requests_proxy_total
+          - latency_proxy_request_avg_ms
+          - latency_upstream_avg_ms
+      nodes:
+        type: object
+        description: >-
+          table of node ids that contributed to this time series. This
+          element is not included on cluster-level requests.
+        properties:
+          <node_id>:
+            type: object
+            description: The id of a node included in this time series.
+            properties:
+              hostname:
+                type: string
+                description: The name of the host where this node runs
+  NodeVitalsStats:
+    properties:
+      <node_id>:
+        type: object
+        description: >-
+          The node this time series is for, or "cluster" if it's a
+          cluster-level time series.
+        properties:
+          <timestamp_n>:
+            type: array
+            items:
+              type: integer
+            description: >-
+              List of stat values collected at "timestamp_n", in same order
+              as "meta.stat_labels"
+            example:
+              - 999
+              - 130
+              - 0
+              - 35
+              - 142
+              - 528
+              - 1146
+              - 110
+              - 156
+  NodeVitalsTimeSeriesWithMetadata:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/NodeVitalsMetadata'
+      stats:
+        $ref: '#/definitions/NodeVitalsStats'
+  NodeConsumersMetadata:
+    properties:
+      level:
+        type: string
+        example: node
+        enum:
+          - cluster
+          - node
+      interval:
+        type: string
+        example: seconds
+        enum:
+          - seconds
+          - minutes
+      earliest_ts:
+        type: integer
+        example: 1514508300
+      latest_ts:
+        type: integer
+        example: 1514508480
+      stat_labels:
+        type: array
+        items:
+          type: string
+        example:
+          - requests_consumer_total
+      nodes:
+        type: object
+        description: >-
+          table of node ids that contributed to this time series. This
+          element is not included on cluster-level requests.
+        properties:
+          <node_id>:
+            type: object
+            description: The id of a node included in this time series.
+            properties:
+              hostname:
+                type: string
+                description: The name of the host where this node runs
+  NodeConsumersStats:
+    properties:
+      <node_id>:
+        type: object
+        description: >-
+          The node this time series is for, or "cluster" if it's a
+          cluster-level time series.
+        properties:
+          <timestamp_n>:
+            type: integer
+            description: >-
+              List of stat values collected at "timestamp_n", in same order
+              as "meta.stat_labels"
+            example: 47
+  NodeConsumersTimeSeriesWithMetadata:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/NodeConsumersMetadata'
+      stats:
+        $ref: '#/definitions/NodeConsumersStats'
+  VitalsInfo:
+    type: object
+    example:
+      stats:
+        cache_datastore_hits_total:
+          levels:
+            cluster:
+              intervals:
+                minutes:
+                  retention_period_seconds: 90000
+                seconds:
+                  retention_period_seconds: 3600
+            nodes:
+              intervals:
+                minutes:
+                  retention_period_seconds: 90000
+                seconds:
+                  retention_period_seconds: 3600
+    properties:
+      stats:
+        type: object
+        properties:
+          <stat_label>:
+            type: object
+            properties:
+              levels:
+                type: object
+                description: >-
+                  Vitals data is tracked and aggregated at different levels (per
+                  cluster, per node)
+                properties:
+                  cluster:
+                    type: object
+                    description: Vitals data available at the cluster level
+                    properties:
+                      intervals:
+                        type: object
+                        description: >-
+                          Vitals data is available at different intervals
+                          (seconds, minutes)
+                        properties:
+                          minutes:
+                            type: object
+                            properties:
+                              retention_period_seconds:
+                                type: integer
+                                description: >-
+                                  Configured retention period (in seconds) for
+                                  the minutes interval
+                          seconds:
+                            type: object
+                            properties:
+                              retention_period_seconds:
+                                type: integer
+                                description: >-
+                                  Configured retention period (in seconds) for
+                                  the seconds interval
+                  nodes:
+                    type: object
+                    description: Vitals data available at the node level
+                    properties:
+                      intervals:
+                        type: object
+                        description: >-
+                          Vitals data is available at different intervals
+                          (seconds, minutes)
+                        properties:
+                          minutes:
+                            type: object
+                            properties:
+                              retention_period_seconds:
+                                type: integer
+                                description: >-
+                                  Configured retention period (in seconds) for
+                                  the minutes interval
+                          seconds:
+                            type: object
+                            properties:
+                              retention_period_seconds:
+                                type: integer
+                                description: >-
+                                  Configured retention period (in seconds) for
+                                  the seconds interval
