@@ -45,6 +45,9 @@
     - text: Clustering reference
       url: /clustering
 
+    - text: DB-less &amp; Declarative Configuration Format
+      url: /db-less-and-declarative-config
+
     - text: Logging reference
       url: /logging
 
@@ -138,9 +141,6 @@
   items:
     - text: DB-less
       url: /db-less-admin-api
-
-    - text: Declarative Configuration
-      url: /db-less-admin-api/#declarative-configuration
 
     - text: Supported Content Types
       url: /admin-api/#supported-content-types

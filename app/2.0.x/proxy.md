@@ -1057,7 +1057,7 @@ TLS certificates are handled by two resources in the Kong Admin API:
 You can find the documentation for those two resources in the
 [Admin API Reference][API].
 
-Here is how to configure an TLS certificate on a given Route: first, upload
+Here is how to configure a TLS certificate on a given Route: first, upload
 your TLS certificate and key via the Admin API:
 
 ```bash
@@ -1306,7 +1306,7 @@ This means all of the below setup are supported in this mode:
 3. Client <- Cleartext -> Kong <- TLS -> Upstream
 
 **Note:** In L4 proxy mode, only plugins that has `tcp` or `tls` in the supported
-protocol list are supported. This list can be found in their respective documentations
+protocol list are supported. This list can be found in their respective documentation
 on [Kong Hub](https://docs.konghq.com/hub/).
 
 [Back to TOC](#table-of-contents)

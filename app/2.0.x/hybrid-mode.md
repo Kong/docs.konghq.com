@@ -8,7 +8,7 @@ title: Hybrid Mode Deployment
 Traditionally, Kong has always required a database, which could be either
 Postgres or Cassandra, to store its configured entities such as Routes,
 Services and Plugins. In Kong 1.1 we added the capability to run Kong without
-a database, using only in-memory storage for entities: we call this **DB-less mode**.
+a database, using only in-memory storage for entities: we call this [**DB-less mode**][db-less]
 
 In Kong 2.0, we introduced a new method of deploying Kong which is
 called the **Hybrid mode**, also known as **Control Plane / Data Plane Separation (CP/DP)**.
@@ -56,7 +56,7 @@ By default it is valid for 3 years, but can be set longer or shorter with the `-
 
 See `kong hybrid --help` for more usage information.
 
-The `cluster.crt` and `cluster.key` file need to be transferred to both Kong CP and DP nodes.
+The `cluster.crt` and `cluster.key` files need to be transferred to both Kong CP and DP nodes.
 Observe proper permission setting on the key file to ensure it can only be read by Kong.
 
 ## Setting Up Kong Control Plane Nodes
@@ -96,7 +96,7 @@ for proxying). To start the Data Plane, all we need to do is to specify the "rol
 to "data\_plane", give it the address and port of where the Control Plane can be reached
 and the node automatically connects and syncs itself up with the current configuration.
 
-Similar to the CP config above, the `cluster_cert` and `cluster_cert_key` configuration need to
+Similar to the CP config above, `cluster_cert` and `cluster_cert_key` configuration need to
 point to the same files as the CP has. In addition the `cluster.crt` file need to be listed
 as trusted by OpenResty through the `lua_ssl_trusted_certificate` configuration. If you
 have already specified a different `lua_ssl_trusted_certificate`, then adding the content
@@ -123,7 +123,7 @@ lua_ssl_trusted_certificate = cluster.crt
 
 ## Checking the status of the cluster
 
-We may want to check the status of the Kong cluster from time to time, such as
+You may want to check the status of the Kong cluster from time to time, such as
 checking to see the which nodes are actively receiving config updates from
 Control Plane, or when was it last updated. This can be achieved by using the
 Control Plane's new Cluster Status API:
