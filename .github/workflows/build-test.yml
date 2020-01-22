@@ -2,6 +2,8 @@ name: Build and Test
 on: [push]
 jobs:
   build:
+    env:
+      COMPOSE_INTERACTIVE_NO_CLI: 1
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
