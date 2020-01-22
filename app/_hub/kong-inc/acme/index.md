@@ -7,7 +7,7 @@ source_url: https://github.com/Kong/kong-plugin-acme
 
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
-  This plugin allows Kong to apply cerificates from Let's Encrypt or any other ACMEv2 service and serve dynamically. Renew is handled with a configurable threshold time.
+  This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve dynamically. Renew is handled with a configurable threshold time.
 
 type: plugin
 categories:
