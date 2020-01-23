@@ -15,35 +15,67 @@ environment.
 
 To complete this guide you will need:
 
-- A CentOS 6 or 7 system with root equivalent access.
-- The ability to SSH to the system.
-
+* A CentOS 6 or 7 system with root equivalent access.
+* The ability to SSH to the system.
+* A valid *Bintray* account. You will need your *username*, account *password* and account *API KEY*.
+    * Example:
+        * Bintray Access key = `john-company`
+        * Bintray username = `john-company@kong`
+        * Bintray password = `12345678`
+        * Bintray API KEY = `12234e314356291a2b11058591bba195830`
+* A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
 ## Step 1. Download Kong Enterprise
 
-1. Option 1. Download via **Packages**
+1. Option 1. Download RPM Package via **Bintray**
 
     Log in to [Bintray](http://bintray.com) to download the latest Kong 
     Enterprise RPM for CentOS. Your **Sales** or **Support** contact will
     email this credential to you.
     
-    Copy the file to your home directory:
+    Once logged in:
+    - go to: https://bintray.com/beta/#/kong/kong-enterprise-edition-rpm/centos?tab=overview
+    - The available Kong Enterprise versions are listed in reverse chronological order.
+    - Select the Kong version you wish to install from the list.
+    - From the Kong version detail page, select the files tab
+    - Select the centos version appropriate for your environment.  E.g. centos -> 7
+    - Save the rpm available: E.g. kong-enterprise-edition-1.3.0.1.el7.noarch.rpm
+
+    Securely copy the rpm file to your home directory on the CentOS system
 
     ```
-    $ scp kong-enterprise-edition-0.35-1.el7.noarch.rpm <centos user>@<serverip:~
+    $ scp kong-enterprise-edition-1.3.0.1.el7.noarch.rpm <centos user>@<server>:~
     ```
 
 2. Option 2. Download via **YUM**
 
-    Edit the `baseurl` field in the yum repository file `/etc/yum.repos.d` :
+    Log in to [Bintray](http://bintray.com) to download the latest Kong 
+    Enterprise RPM for CentOS. Your **Sales** or **Support** contact will
+    email this credential to you.
+
+    Once logged in, save the repo file (bintray--kong-kong-enterprise-edition-rpm.repo) available from this URL: https://bintray.com/kong/kong-enterprise-edition-rpm/rpm to your local file system.
+
+    Edit the repo file using your preferred editor and alter the baseurl line as follows
+    
+    ```
+    baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-rpm/centos/RELEASEVER
+    ```
+    
+    - Replace USERNAME with your Bintray account user name.
+    - Replace API_KEY with your Bintray API key.  You may find your key on your Bintray profile page a at https://bintray.com/profile/edit and selecting the API Key menu item.
+    - Replace RELEASEVER with the major CentOS version number on your target system.  For example, for version 7.7.1908, the appropriate RELEASEVER replacement is 7.
+
+    The result should look something like this:
+    ```
+    baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-rpm/centos/7
+    ```
+    
+    Securely copy the changed repo file to your home directory on the CentOS system
 
     ```
-    baseurl=https://<USERNAME>:<API_KEY>@kong.bintray.com/kong-enterprise-edition-rpm/centos/$releasever
+    $ scp bintray--kong-kong-enterprise-edition-rpm.repo <centos user>@<server>:
     ```
-    Replace `<USERNAME>` with your Bintray account information
-
-    Set `$releasever` to the correct CentOS version (e.g. `6` or `7`)
-
+    
 3. Obtain your Kong Enterprise license
 
    If you do not already have your license file, you can download it from your
@@ -55,23 +87,25 @@ To complete this guide you will need:
    ```json
     {"license":{"signature":"91e6dd9716d12ffsn4a5ckkb16a556dbebdbc4d0a66d9b2c53f8c8d717eb93dd2bdbe2cb3ef51c20806f14345128907da35","payload":{"customer":"Kong Inc","license_creation_date":"2019-05-07","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2021-04-01","license_key":"00Q1K00000zuUAwUAM_a1V1K000005kRhuUAE"},"version":1}}
    ```
-4. Securely copy the license file to the CentOS system
+4. Securely copy the license file to your home directory on the CentOS system
 
     ```
-    $ scp license.json <centos username>@<serverip>:~
+    $ scp license.json <centos username>@<server>:~
     ```
-
 
 ## Step 2. Install Kong Enterprise
 
-1. Verify the Kong Enterprise Signature
+1. If installing via a downloaded RPM package, please verify the Kong Enterprise Signature.
 
     Kong's official Key ID is 2cac36c51d5f3726. Verify it by querying the RPM package:
     
     ```
     $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
     ```
-    
+    >Note: Your version may be different based on when you obtained the RPM
+  
+    Verify the Signature line contains the correct Key ID.
+
     Download Kong's official public key and ensure the RPM package's integrity:
 
     ```
@@ -80,13 +114,23 @@ To complete this guide you will need:
     $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
     
-
+    Verify you get an OK check.  You should have an output similar to this:
+    kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
+      
 2. Install Kong Enterprise
-
+    
+    If you are installing via a downloaded rpm, execute a command similar to the following.
+    
     ```
     $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
-  >Note: Your version may be different based on when you obtained the RPM
+
+    If you are installing via the yum repository, then move the repo file to the /etc/yum.repos.d/ directory
+
+    ```
+    $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
+    $ sudo yum install kong-enterprise-edition
+    ```
 
 3. Copy the license file to the `/etc/kong` directory
 
