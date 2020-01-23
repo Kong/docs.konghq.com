@@ -36,6 +36,8 @@
   items:
     - text: Overview
       url: /getting-started/
+    - text: Connor Has a Cool Page
+      url: /getting-started/cool-page
     - text: How to Start Kong Enterprise
       url: /getting-started/start-kong
     - text: How to Add a Workspace
