@@ -73,7 +73,7 @@ To complete this guide you will need:
     Securely copy the changed repo file to your home directory on the CentOS system
 
     ```
-    $ scp bintray--kong-kong-enterprise-edition-rpm.repo <centos user>@<server>:
+    $ scp bintray--kong-kong-enterprise-edition-rpm.repo <centos user>@<server>:~
     ```
     
 3. Obtain your Kong Enterprise license
