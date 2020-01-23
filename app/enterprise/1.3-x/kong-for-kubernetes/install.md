@@ -97,7 +97,7 @@ See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kon
 
 ## Optional: Installing Kong Enterprise on Kubernetes
 
-> Note: The recommended installation is [Kong for Kubernetes Enterprise](#Introduction).
+> Note: The recommended installation is [Kong for Kubernetes Enterprise](#introduction).
 
 To install Kong Enterprise on Kubernetes, instead of installing Kong for Kubernetes, see the following diagram. (Steps to be provided at a later time.)
 
