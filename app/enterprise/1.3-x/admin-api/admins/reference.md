@@ -22,13 +22,15 @@ HTTP 200 OK
     "updated_at": 1556638385,
     "status": 4,
     "username": "test-admin",
-    "email": "test@test.com"
+    "email": "test@test.com",
+    "rbac_token_enabled": true
   }, {
     "created_at": 1556563122,
     "id": "a93ff120-9e6c-4198-b47e-f779104c7eac",
     "updated_at": 1556563122,
     "status": 0,
-    "username": "kong_admin"
+    "username": "kong_admin",
+    "rbac_token_enabled": false
   }],
   "next": null
 }
@@ -44,6 +46,7 @@ HTTP 200 OK
 | `email` | The **Admin**'s email address |
 | `username` | The **Admin**'s username |
 | `custom_id` <br>optional | The **Admin**'s custom ID |
+| `rbac_token_enabled` | Allows the **Admin** to use and reset their RBAC token; `true` by default |
 
 **Response**
 
@@ -59,7 +62,8 @@ HTTP 200 OK
     "updated_at": 1556638641,
     "status": 4,
     "username": "test-case-3",
-    "email": "test3@test.com"
+    "email": "test3@test.com",
+    "rbac_token_enabled": true
   }
 }
 ```
@@ -143,7 +147,8 @@ HTTP 200 OK
   "updated_at": 1556638385,
   "status": 4,
   "username": "test-admin",
-  "email": "test@test.com"
+  "email": "test@test.com",
+  "rbac_token_enabled": true
 }
 ```
 
@@ -158,6 +163,7 @@ HTTP 200 OK
 | `email` <br>optional | The **Admin**'s new email address |
 | `username` <br>optional | The **Admin**'s new username |
 | `custom_id` <br>optional | The **Admin**'s new custom ID |
+| `rbac_token_enabled` | Allows the **Admin** to use and reset their RBAC token; `true` by default |
 
 **Response**
 
@@ -173,6 +179,7 @@ HTTP 200 OK
   "status": 4,
   "username": "test-renamed",
   "email": "test@test.com"
+  "rbac_token_enabled": true
 }
 ```
 
@@ -318,4 +325,3 @@ HTTP 200 OK
   }
 }]
 ```
-

@@ -133,6 +133,17 @@ chat with Kong's CTO, Marco Palladino - email him at marco@konghq.com.
 Adding a new listing to the Kong Hub may be proposed by:
 
 1. Clone this repo
+    ```
+    git clone https://github.com/Kong/docs.konghq.com.git
+    ```
+1. Move into the repo's directory
+    ```
+    cd docs.konghq.com
+    ```
+1. Create a [separate branch from master](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
+    ```
+    git checkout -b [name_of_your_new_branch]
+    ```
 1. Create a publisher directory at`_app/_hub/`, such as
  `_app/_hub/your-GitHub-handle` (if you are contributing as an individual)
  or `_app/_hub/company-name` (if you are contributing as a company). See other Kong Hub listings for examples of publisher names.
@@ -152,8 +163,11 @@ an existing default logo file, and rename it as noted above.
 1. Be sure to run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
 `localhost:3000/hub`
-1. Once you are happy with your listing, make a Pull Request to add it to
-the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
+1. Once you are happy with your listing, push your branch to the GitHub repository
+  ```
+  git push --set-upstream origin [name_of_your_new_branch]
+  ```
+1. Find [your branch](https://github.com/Kong/docs.konghq.com/branches/yours) and make [a Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to add your documentation to the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
 
 Kong staff will review your PR, suggest improvements and adjustments as
 necessary, and once approved, will merge and deploy your Kong Hub addition!

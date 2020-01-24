@@ -99,4 +99,4 @@ kong_version_compatibility:
 
 ### Installation
 
-See https://docs.signalsciences.net/install-guides/kong/ for installation instructions.
+See https://docs.signalsciences.net/install-guides/other-modules/kong/ for installation instructions.

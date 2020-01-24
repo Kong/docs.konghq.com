@@ -9,9 +9,9 @@ Service Directory Mapping allows organizations to use their LDAP Directory for a
 After starting Kong Enterprise with the desired configuration, you can create new Admins whose usernames match those in your LDAP directory. Those users will then be able to accept invitations to join Kong Manager and log in with their LDAP credentials.
 
 How Service Directory Mapping works in Kong:
-Roles are created in Kong Enterprise using the Admin API or Kong Manager.
-Groups are created and roles are associated with the groups.
-When users log in to Kong Manager, they get permissions based on the group(s) they belong to.
+* Roles are created in Kong Enterprise using the Admin API or Kong Manager.
+* Groups are created and roles are associated with the groups.
+* When users log in to Kong Manager, they get permissions based on the group(s) they belong to.
 
 For example, if a User's Group changes in the Service Directory, their Kong Admin account's associated Role also changes in Kong Enterprise the next time they log in to Kong Manager. The mapping removes the task of manually managing access in Kong Enterprise, as it makes the Service Directory the system of record.
 
@@ -112,7 +112,7 @@ Kong Enterprise will not write to the Service Directory, for example, a Kong Ent
 
 To map a Service Directory **User** to a Kong **Admin**, you must configure the **Admin's** username as the value of the **User's** name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an **Admin** account in [_Kong Manager_](https://docs.konghq.com/enterprise/latest/getting-started/add-admin/) or using the [_Admin API_](https://docs.konghq.com/enterprise/latest/admin-api/admins/reference/#invite-an-admin).
 
-For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](https://github.com/Kong/docs.konghq.com-private/diffs/0?base_sha=51610257bfe352f3848bc43a98afb75c78951603&commentable=true&pull_number=339&sha1=51610257bfe352f3848bc43a98afb75c78951603&sha2=e8fcb3b1020e46603edee2c28bec7f20e4c61c94&short_path=8fcaf76&unchanged=expanded&utf8=%E2%9C%93#how-to-set-up-a-directory-user-as-the-first-super-admin).
+For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](https://docs.konghq.com/enterprise/1.3-x/kong-manager/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
 
 If you already have **Admins** with assigned **Roles** and want to use **Group** mapping instead, it is necessary to first remove all of their Roles. The Service Directory will serve as the system of record for **User** privileges. Assigned **Roles** will affect a user's privileges in addition to any roles mapped from **Groups.**
 

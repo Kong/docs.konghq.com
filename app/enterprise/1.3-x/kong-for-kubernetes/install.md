@@ -19,7 +19,7 @@ Before installing Kong for Kubernetes Enterprise, be sure you have the following
   * If you have a license, continue to [Step 1. Set Kong Enterprise License](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support. 
   * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page. 
   * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
-- [Kong Enterprise Docker registry access](https://github.com/Kong/kubernetes-ingress-controller-private/blob/kong-for-kubernetes/docs/deployment/k4k8s-enterprise.md#kong-enterprise-docker-registry-access)
+- Kong Enterprise Docker registry access
 
 
 ## Installing Kong for Kubernetes Enterprise
@@ -28,7 +28,7 @@ The steps in this section include installing Kong for Kubernetes Enterprise usin
 Installation steps include:
 - [Step 1. Set Kong Enterprise License ](#step-1-set-kong-enterprise-license)
 - [Step 2. Configure Kong Enterprise Docker registry access](#step-2-configure-kong-enterprise-docker-registry-access)
-- [Step 3. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enter)
+- [Step 3. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enterprise)
 
 
 
@@ -97,7 +97,7 @@ See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kon
 
 ## Optional: Installing Kong Enterprise on Kubernetes
 
-> Note: The recommended installation is [Kong for Kubernetes Enterprise](#Introduction).
+> Note: The recommended installation is [Kong for Kubernetes Enterprise](#introduction).
 
 To install Kong Enterprise on Kubernetes, instead of installing Kong for Kubernetes, see the following diagram. (Steps to be provided at a later time.)
 

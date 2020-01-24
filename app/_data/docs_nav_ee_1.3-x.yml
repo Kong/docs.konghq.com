@@ -18,8 +18,10 @@
           url: /deployment/installation/ubuntu
         - text: CentOS
           url: /deployment/installation/centos
-        - text: Amazon Linux
+        - text: Amazon Linux 1
           url: /deployment/installation/amazon-linux
+        - text: Amazon Linux 2
+          url: /deployment/installation/amazon-linux-2
     - text: Kong Cloud
       url: /kong-cloud
     - text: Changelog
@@ -85,6 +87,8 @@
       url: /oasconfig
     - text : Control Kong through systemd
       url: /systemd
+    - text : Keyring and Data Encryption
+      url: /db-encryption
 
 - title: Admin API
   url: /admin-api
@@ -139,6 +143,8 @@
         url: /admin-api/vitals/vitals-prometheus-strategy
   - text: Audit Logging
     url: /admin-api/audit-log
+  - text: Keyring and Data Encryption
+    url: /admin-api/db-encryption
 
 - title: Kong Manager
   url: /kong-manager/overview
@@ -243,6 +249,8 @@
       items:
         - text: Easy Theme Editing
           url: /developer-portal/theme-customization/easy-theme-editing
+        - text: Customizing Portal Emails
+          url: /developer-portal/theme-customization/emails
         - text: Adding and Using Javascript Assets
           url: /developer-portal/theme-customization/adding-javascript-assets
         - text: Single Page App in Dev Portal
@@ -339,14 +347,14 @@
       url: /plugins/route-transformer-advanced
     - text: JWT Signer Plugin
       url: /plugins/jwt-signer
-    - text: Upstream TLS Plugin
-      url: /plugins/upstream-tls
     - text: Vault Auth Plugin
       url: /plugins/vault-auth
     - text: Request Validator Plugin
       url: /plugins/request-validator
     - text: Exit Transformer Plugin
       url: /plugins/exit-transformer
+    - text: Key Auth (encrypted)
+      url: /plugins/key-auth-enc
     - text: Implementation
       items:
         - text: Multiple Authentication Methods

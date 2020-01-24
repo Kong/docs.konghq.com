@@ -1,0 +1,19 @@
+name: Build and Test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Clean environment and files
+      run: make clean
+    - name: Build docker-compose stack
+      run: docker-compose build
+    - name: Create dist folder
+      run: mkdir dist
+    - name: Set permissions
+      run: sudo chmod -R 777 .
+    - name: Run tests
+      run: make docker-test
+    - name: Check links
+      run: make check-links

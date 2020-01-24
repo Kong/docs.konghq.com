@@ -474,6 +474,12 @@
       background-color: hsl(51, 100%, 96%);
     }
 
+    &.alert-red {
+      color: red;
+      border-color: red;
+      background-color: #fdf3f2;
+    }
+
     ol {
       list-style: none;
       margin-bottom: 0;
@@ -513,6 +519,19 @@
         padding-right: 25px;
       }
 
+      &.docs-grid-install {
+        text-align: center;
+        border-bottom: none !important;
+        h3 {
+          text-align: center
+        }
+        .install-icon {
+          width: 150px;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
       // &:nth-child(even) {
       //   padding-left: 25px;
       // }
@@ -521,9 +540,6 @@
         height: 200px;
         border-bottom: none;
       }
-    }
-    .install-icon {
-      width: 75px;
     }
   }
 
