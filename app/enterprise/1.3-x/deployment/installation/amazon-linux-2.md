@@ -239,10 +239,11 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
 ### Enable Kong Manager
 
-  Kong Enterprise's Graphical User Interface, **Kong Manager**, can be connected by setting the `admin_gui_url` property to the EC2 instance's `IPv4` address
+  Kong Enterprise's Graphical User Interface **Kong Manager** can be connected by setting the `admin_gui_url` property to the EC2 instances `IPv4` address and the `admin_listen` property to allow **Kong Manager** to communicate with the Admin API.
 
   ```
   admin_gui_url = http://ec2-xx-xxx-xx-xx.us-east-2.compute.amazonaws.com:8002
+  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
   ```
 
 ### Enable the Dev Portal
