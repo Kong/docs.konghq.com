@@ -243,6 +243,7 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
   ```
   admin_gui_url = http://ec2-xx-xxx-xx-xx.us-east-2.compute.amazonaws.com:8002
+  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
   ```
 
 ### Enable the Dev Portal
