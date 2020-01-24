@@ -27,7 +27,7 @@ To complete this guide you will need:
     Enterprise RPM for CentOS. Your **Sales** or **Support** contact will
     email this credential to you.
     
-    Copy the file to your home directory:
+    Copy the file to your home directory and ensure the correct `<VERSION_NUMBER>`, e.g., `1.3.0.1`:
 
     ```
     $ scp kong-enterprise-edition-<VERSION_NUMBER>.el7.noarch.rpm <centos user>@<serverip:~
