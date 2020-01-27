@@ -271,16 +271,28 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     
 ## Step 6. Finalize your configuration - enable Kong Manager and Developer Portal
 
-You can further modify Kong’s configuration file to enable a different features:
+### Enable and Configure Kong Manager
 
-### Configure Kong Manager
-
-  To access Kong Enterprise's Graphical User Interface, **Kong Manager**, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the address of the CentOS system.  For example:
+  To access Kong Enterprise's Graphical User Interface, **Kong Manager**, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the CentOS system.  For example:
 
   ```
-  admin_gui_url = http://hostxyz.com:8002 , http://ipaddress:8002
+  admin_gui_url = http://DNSorIP:8002
+  ```
+  
+  This setting needs to resolve to a network path that will reach the CentOS host.
+  
+  It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host.  A setting of 0.0.0.0:8001 will listen on port 8001 on all available network interfaces.
+  
+  ```
+  admin_listen = 0.0.0.0:8001, 0.0.0.1:8444 ssl
+  ```
+  
+  You may also list network interfaces separatley as in this example:
+  
+  ```
   admin_listen = 0.0.0.0:8001, 0.0.0.1:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
   ```
+  
   Restart Kong for the setting to take effect; note that the default port is **8002**:
 
   ```
@@ -291,11 +303,11 @@ You can further modify Kong’s configuration file to enable a different feature
 
 ### Enable the Dev Portal
 
-  Kong Enterprise's **Developer Portal** can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the to the address of the CentOS system
+  Kong Enterprise's **Developer Portal** can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system.  For example:
 
   ```
   portal = on
-  portal_gui_host = http://hostxyz.com:8003
+  portal_gui_host = http://DNSorIP:8003
   ```
 
   Restart Kong for the setting to take effect; note that the default port is **8003**:
