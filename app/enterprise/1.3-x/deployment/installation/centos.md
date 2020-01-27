@@ -269,7 +269,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     
     You should receive an HTTP/1.1 200 OK message.
     
-## Step 6. Customize Your Configuration - enable optional features
+## Step 6. Finalize your configuration - enable Kong Manager and Developer Portal
 
 You can further modify Kong’s configuration file to enable a different features:
 
@@ -278,9 +278,8 @@ You can further modify Kong’s configuration file to enable a different feature
   To access Kong Enterprise's Graphical User Interface, **Kong Manager**, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the address of the CentOS system.  For example:
 
   ```
-  admin_gui_url = http://hostxyz.com
-  admin_gui_url = http://hostxyz.com:8080
-  admin_gui_url = http://hostxyz.com:8002
+  admin_gui_url = http://hostxyz.com:8002 , http://ipaddress:8002
+  admin_listen = 0.0.0.0:8001, 0.0.0.1:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
   ```
   Restart Kong for the setting to take effect; note that the default port is **8002**:
 
@@ -296,8 +295,6 @@ You can further modify Kong’s configuration file to enable a different feature
 
   ```
   portal = on
-  portal_gui_host = http://hostxyz.com
-  portal_gui_host = http://hostxyz.com:8083
   portal_gui_host = http://hostxyz.com:8003
   ```
 
@@ -309,25 +306,6 @@ You can further modify Kong’s configuration file to enable a different feature
   
   You may now access the Developer Portal via the URL specified.
 
-
-### Enable RBAC
-
-  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Session plugin](/hub/kong-inc/session/).
-
-  ```
-  enforce_rbac = on
-
-  admin_gui_auth = basic-auth
-
-  admin_gui_session_conf = {"secret":"password", "cookie_secure": false, "cookie_samesite": "off", "cookie_name": "admin_session", "storage": "kong"}
-  ```
-
-Note the setting in the admin_gui_session_conf property.
-- secret: this should be a secret key, as it is used for HMAC generation.
-- cookie-secure: if using HTTPS, set to `true`, otherwise leave as `false`
-- cookie_samesite: refer to [Session plugin](/hub/kong-inc/session/) for more details.  The `off` setting is used here.
-- cookie_name: This will be the cookie name in for HTTP session.  A default value is provided.
-- storage: the `kong` setting indcates that the session data will be stored in Kong's data store.
 
 ## Troubleshooting
 
