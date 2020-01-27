@@ -4,56 +4,54 @@ title: How to Install Kong Enterprise on CentOS
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting Kong Enterprise on CentOS.
+This guide walks through downloading, installing, and starting **Kong Enterprise** on **CentOS**.
 
 The configuration shown in this guide is intended only as an example. Depending on your
-environment, you may need to make some modifications, and take measures to properly conclude
+environment, you may need to make modifications, and take measures to properly conclude
 the installation and configuration.
 
-Kong can run either with or without a database.
-
-Kong supports both PostgreSQL 9.5+ and Cassandra 3.x.x as its datastore.  In this guide, we
+Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore.  In this guide, we
 show steps to configure PostgreSQL.
+
+Due to the nature of setting up a Kong cluster with Cassandra, this documentation only covers Postgres.
+For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
 ## Prerequisites
 
 To complete this guide you will need:
 
-* A supported CentOS system with root equivalent access.
 * A valid *Bintray* account. You will need your *username*, account *password* and account *API KEY*.
     * Example:
         * Bintray Access key = `john-company`
         * Bintray username = `john-company@kong`
         * Bintray password = `12345678`
         * Bintray API KEY = `12234e314356291a2b11058591bba195830`
+* A supported CentOS system with root equivalent access.
 * A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
 ## Step 1. Prepare to install Kong Enterprise and your download your license file
 
 1a. There are two options to install Kong Enterprise on CentOS.  Both will require a login to **Bintray**.
 
-   Log in to [Bintray](http://bintray.com) to download the latest Kong 
-   Enterprise RPM for CentOS. Your **Sales** or **Support** contact will
-   email this credential to you.
+   Log in to [Bintray](http://bintray.com). Your **Sales** or **Support** contact will assign credentials to you.
 
-1b. Option 1. Download RPM Package from **Bintray**
+1b. Option 1. Download RPM file
 
    In the **Bintray** UI:
    
    - go to: https://bintray.com/kong/kong-enterprise-edition-rpm
-   - Select the CentOS folder
+   - Select the CentOS folder.
    - Kong Enterprise versions are listed in reverse chronological order.
    - Select the Kong version you wish to install from the list.
-   - From the Kong version detail page, select the 'Files' tab
-   - Select the CentOS version appropriate for your environment.  E.g. centos -> 7
+   - From the Kong version detail page, select the 'Files' tab.
+   - Select the CentOS version appropriate for your environment.  E.g. centos -> 7.
    - Save the rpm file available: E.g. kong-enterprise-edition-1.3.0.1.el7.noarch.rpm
    - Kong's official Key ID is 2cac36c51d5f3726. Verify it by querying the RPM package:
-    
+   
    ```
    $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
    ```
-   >Note: Update the command to examin the file you downloaded.
-  
+   
    - Verify the Signature line contains the correct Key ID: 2cac36c51d5f3726.
    - Download Kong's official public key to ensure the RPM package's integrity:
 
@@ -120,15 +118,20 @@ To complete this guide you will need:
 ## Step 2. Install Kong Enterprise
 
 2a. Option 1.  If installing via a downloaded rpm package
-
-   - Go to your home directory on the target CentOS system
-   - Execute a command similar to the following, using the appropriate rpm file name.
-    
+ 
+   - Install EPEL (Extra Packages for Enterprise Linux), if not already installed
+   
+   ```
+   $ sudo yum install epel-release
+   ```
+   
+   - Execute a command similar to the following, using the appropriate rpm file name you downloaded
+   
    ```
    $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
    ```
 
-2b. Option 2. Install Kong Enterprise via the **YUM** repository
+2b. Option 2. If installing via the **YUM** repository
    
    - Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
@@ -139,6 +142,7 @@ To complete this guide you will need:
    - Then begin the installation via the **YUM** repository:
     
    ```
+   $ sudo yum update - y
    $ sudo yum install kong-enterprise-edition
    ```    
 
@@ -150,14 +154,7 @@ To complete this guide you will need:
 
 ## Step 3. Setup PostgreSQL
 
-When using a database, you will use the `kong.conf` configuration file for setting Kong’s 
-configuration properties at start-up and the database as storage of all configured
-entities, such as the Routes and Services to which Kong proxies.
-
-When not using a database, you will use `kong.conf` and a kong.yml file for specifying
-the entities as a declarative configuration.
-
-1. Install PostgreSQL
+3a. Install PostgreSQL
 
    Follow the instructions avaialble at: https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL.  Kong support version 9.5 and higher.  As an example, you may run a command set similat to:
 
@@ -168,7 +165,7 @@ the entities as a declarative configuration.
     ```
    You now have installed the PostgreSQL client and server packages.
 
-2. Initialize the PostgreSQL Database and enable Automatic Start
+3b. Initialize the PostgreSQL Database and enable Automatic Start
 
     ```
     $ sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
@@ -176,16 +173,14 @@ the entities as a declarative configuration.
     $ sudo systemctl start postgresql-9.5
     ```
 
-## Step 4. Create a Kong database and user
-
-1. Switch to PostgreSQL user and launch PostgreSQL
+3c. Switch to PostgreSQL user and launch PostgreSQL
 
     ```
     $ sudo -i -u postgres
     $ psql
     ```
 
-2. Create a kong database with a username and password
+3d. Create a kong database with a username and password
 
     >⚠️**Note**: Make sure the username and password for the Kong Database are
     >kept safe. We have used a simple example for illustration purposes only.
@@ -197,17 +192,17 @@ the entities as a declarative configuration.
     --  Set the password of the Kong user to 'kong'
 
     ```
-    $ CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
+    $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
     ```
 
-3. Exit from PostgreSQL and return to your terminal account
+3e. Exit from PostgreSQL and return to your terminal account
 
     ```
-    $ \q
+    $ psql> \q
     $ exit
     ```
 
-4. Edit the the PostgreSQL configuration file using your prefered editor.
+3f. Edit the the PostgreSQL configuration file using your prefered editor.
 
    The file location is:
     ```
@@ -222,64 +217,117 @@ Under IPv4 local connections replace `ident` with `md5`
     | # IPv6 local connections:                      |
     | host | all      | all  | ::1/128      | ident  |
 
-5. Restart PostgreSQL
+Postgres uses `ident` authentication by default, to allow the `kong` user to communicate with the database locally we must change the authentication method to `md5` by modifying the Postgres configuration file. 
+
+3g. Restart PostgreSQL
 
     ```
     $ sudo systemctl restart postgresql-9.5
     ```
 
-## Step 5. Modify Kong's configuration file to work with PostgreSQL
+## Step 4. Modify Kong's configuration file to work with PostgreSQL
 
-1. Make a copy of the default configuration file
+1. Make a copy of Kong's default configuration file
 
     ```
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
-2. Uncomment and update the PostgreSQL database properties inside the Kong conf using your preferred text editor.
+2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.
 
-    ```
-    Edit the file: /etc/kong/kong.conf updating these lines with the appropriate values
-    ```
     ```
     pg_user = kong
     pg_password = kong
     pg_database = kong
     ```
 
-## Step 6. Seed the Super Admin _(optional)_
+## Step 5. Seed the Super Admin password and boostrap Kong
 
-For the added security of Role-Based Access Control (RBAC), it is best to seed 
-the **Super Admin** before initial start-up.
+Setting a password for the **Super Admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
-Create an environment variable with the desired **Super Admin** password:
+1. Create an environment variable with the desired **Super Admin** password:
 
     $ export KONG_PASSWORD=<password-only-you-know>
 
-This will be used during migrations to seed the initial **Super Admin** 
-password within Kong.
-
-## Step 7. Start Kong
-
-1. Run migrations to prepare the Kong database
+2. Run migrations to prepare the Kong database
 
     ```
     $ kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
-2. Start Kong
+3. Start Kong
 
     ```
     $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
     ```
 
-3. Verify Kong is working
+4. Verify Kong is working
 
     ```
     curl -i -X GET --url http://localhost:8001/services
     ```
     
     You should receive an HTTP/1.1 200 OK message.
+    
+## Step 6. Customize Your Configuration - enable optional features
+
+You can further modify Kong’s configuration file to enable a different features:
+
+### Configure Kong Manager
+
+  To access Kong Enterprise's Graphical User Interface, **Kong Manager**, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the address of the CentOS system.  For example:
+
+  ```
+  admin_gui_url = http://hostxyz.com
+  admin_gui_url = http://hostxyz.com:8080
+  admin_gui_url = http://hostxyz.com:8002
+  ```
+  Restart Kong for the setting to take effect; note that the default port is **8002**:
+
+  ```
+  $ sudo /usr/local/bin/kong restart
+  ```
+  
+  You may now access Kong Manager via the URL specified.
+
+### Enable the Dev Portal
+
+  Kong Enterprise's **Developer Portal** can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the to the address of the CentOS system
+
+  ```
+  portal = on
+  portal_gui_host = http://hostxyz.com
+  portal_gui_host = http://hostxyz.com:8083
+  portal_gui_host = http://hostxyz.com:8003
+  ```
+
+  Restart Kong for the setting to take effect; note that the default port is **8003**:
+
+  ```
+  $ sudo /usr/local/bin/kong restart
+  ```
+  
+  You may now access the Developer Portal via the URL specified.
+
+
+### Enable RBAC
+
+  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Session plugin](/hub/kong-inc/session/).
+
+  ```
+  enforce_rbac = on
+
+  admin_gui_auth = basic-auth
+
+  admin_gui_session_conf = {"secret":"password", "cookie_secure": false, "cookie_samesite": "off", "cookie_name": "admin_session", "storage": "kong"}
+  ```
+
+Note the setting in the admin_gui_session_conf property.
+- secret: this should be a secret key, as it is used for HMAC generation.
+- cookie-secure: if using HTTPS, set to `true`, otherwise leave as `false`
+- cookie_samesite: refer to [Session plugin](/hub/kong-inc/session/) for more details.  The `off` setting is used here.
+- cookie_name: This will be the cookie name in for HTTP session.  A default value is provided.
+- storage: the `kong` setting indcates that the session data will be stored in Kong's data store.
 
 ## Troubleshooting
 
