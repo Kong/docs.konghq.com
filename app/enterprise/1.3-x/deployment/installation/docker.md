@@ -9,7 +9,6 @@ title: Installing Kong Enterprise Docker Image
 A guide to installing Kong Enterprise—and its license file—using
 Docker. 
 
-**Free trial users should skip directly to step 3**.
 
 1. Log in to <a href="https://bintray.com" target="_blank">bintray.com</a>. Your Sales or Support
 contact will email the credential to you.
@@ -18,7 +17,7 @@ contact will email the credential to you.
 key, which will be used in step 3. Alternatively, to retrieve it from
 Bintray, click <a href="https://bintray.com/profile/edit" target="_blank">here</a>.
 
-3. For **users with existing contracts**, add the Kong Docker repository and
+3. Add the Kong Docker repository and
 pull the image:
 
     ```
@@ -26,13 +25,6 @@ pull the image:
     $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
     ```
 
-   For **trial users**, run the following, replacing `<your trial image URL>`
-with the URL you received in your welcome email:
-
-    ```
-    curl -Lsv "<your trial image URL>" -o /tmp/kong-docker-ee.tar.gz
-    docker load -i /tmp/kong-docker-ee.tar.gz
-    ```
 
 4. You should now have your Kong Enterprise image locally. Run
 `docker images` to verify and find the image ID matching your repository. 

@@ -5,7 +5,7 @@ title: How to Install Kong Enterprise on Ubuntu
 ## Introduction
 
 This guide walks through downloading, installing, and starting Kong Enterprise
-using Ubuntu and PostgreSQL 9.5. The configuration shown in this guide is
+using Ubuntu and PostgreSQL 9.6. The configuration shown in this guide is
 intended only as an example -- you will want to modify and take additional
 measures to secure your Kong Enterprise system before moving to a production
 environment.
@@ -30,7 +30,7 @@ To complete this guide you will need:
     Copy the file to your home directory:
 
     ```
-    $ scp kong-enterprise-edition-0.35.xxx.xxx.deb <ubuntu user>@<serverip:~
+    $ scp kong-enterprise-edition-<VERSION_NUMBER>.deb <ubuntu user>@<serverip:~
     ```
 
 2. Obtain your Kong Enterprise license
@@ -59,7 +59,7 @@ To complete this guide you will need:
     ```
     $ sudo apt-get update
     $ sudo apt-get install openssl libpcre3 procps perl
-    $ sudo dpkg -i kong-enterprise-edition-0.35.xxx.xxx.deb
+    $ sudo dpkg -i kong-enterprise-edition-<VERSION_NUMBER>.deb
     ```
   >Note: Your version may be different based on when you obtained the package
 
@@ -76,7 +76,7 @@ To complete this guide you will need:
 1. Install PostgreSQL
 
     ```
-    $ sudo apt-get install postgresql-9.5 postgresql-contrib
+    $ sudo apt-get install postgresql-9.6 postgresql-contrib
     ```
 
 
