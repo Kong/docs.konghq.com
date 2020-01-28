@@ -270,7 +270,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     
     You should receive an HTTP/1.1 200 OK message.
     
-## Step 6. Finalize your configuration - enable Kong Manager and Developer Portal
+## Step 6. Finalize your configuration and verify Kong was successfully installed
 
 ### Enable and Configure Kong Manager
 
