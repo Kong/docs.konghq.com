@@ -125,7 +125,7 @@ The license data must contain only straight quotes to be considered valid JSON.
    
    **Replace DNSorIP with the DNS name or IP of the Docker host**
 
-## Step 7. Finalize Configuration and Verify Kong was successfully installed
+## Step 7. Finalize Configuration and verify Kong was successfully installed
     
    Verify Kong is running:
    
