@@ -106,8 +106,6 @@ The license data must contain only straight quotes to be considered valid JSON.
      -e "KONG_PORTAL=on" \
      -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
      -e "KONG_PASSWORD=<password-only-you-know>" \
-     -e "KONG_ADMIN_GUI_AUTH=basic-auth" \
-     -e 'KONG_ADMIN_GUI_SESSION_CONF={"secret":"secret","storage":"kong","cookie_secure":false}' \
      -e "KONG_PORTAL_GUI_HOST=DNSorIP:8003" \
      -e "KONG_ADMIN_GUI_URL=http://DNSorIP:8002" \
      -p 8000:8000 \
