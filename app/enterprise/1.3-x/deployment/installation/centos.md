@@ -26,6 +26,7 @@ To complete this guide you will need:
         * Bintray username = `john-company@kong`
         * Bintray password = `12345678`
         * Bintray API KEY = `12234e314356291a2b11058591bba195830`
+            *Can be obtained by visiting https://bintray.com/profile/edit and selecting "API Key"
 * A supported CentOS system with root equivalent access.
 * A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
