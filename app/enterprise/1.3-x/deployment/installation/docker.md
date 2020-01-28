@@ -125,14 +125,22 @@ The license data must contain only straight quotes to be considered valid JSON.
    
    **Replace DNSorIP with the DNS name or IP of the Docker host**
 
-## Step 7. Verify Kong was successfully installed
+## Step 7. Finalize Configuration and Verify Kong was successfully installed
+    
+   Verify Kong is running:
    
    ```
    curl -i -X GET --url http://localhost:8001/services
    ```
    You should receive an HTTP/1.1 200 OK message.
+      
+   Verify Kong Manager is running by accessing via the URL specified in KONG_ADMIN_GUI_URL in Step 6.
    
-   You may now access Kong Manager via the URL specified in KONG_ADMIN_GUI_URL and Kong Developer Portal via the URL specified in KONG_PORTAL_GUI_HOST in Step 6.
+   Enable the Kong Developer Portal
+   ```
+   $ curl -X PATCH http://HOST:8001/workspaces/default   --data "config.portal=true"
+   ```
+   Verify Kong Developer Portal via the URL specified in KONG_PORTAL_GUI_HOST in Step 6.
    
 
 ## Troubleshooting
