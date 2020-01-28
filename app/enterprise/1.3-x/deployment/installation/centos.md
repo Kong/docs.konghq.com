@@ -308,7 +308,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
   ```
   portal = on
-  portal_gui_host = http://DNSorIP:8003
+  portal_gui_host = DNSorIP:8003
   ```
 
   Restart Kong for the setting to take effect; note that the default port is **8003**:
@@ -317,8 +317,17 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
   $ sudo /usr/local/bin/kong restart
   ```
   
-  You may now access the Developer Portal via the URL specified.
-
+  The final step is to enable the Developer Portal on the default workspace.  To do this, execute the following command, updating HOST to reflect the IP, or valid DNS for the CentOS system.
+  
+  ```
+  $ curl -X PATCH http://HOST:8001/workspaces/default   --data "config.portal=true"
+  ```
+  
+  You may now access the Developer Portal on the default workspace with a URL like:
+  
+  ```
+  http://HOST:8003/default
+  ```
 
 ## Troubleshooting
 
