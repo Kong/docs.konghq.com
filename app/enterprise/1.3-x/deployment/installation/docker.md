@@ -138,7 +138,7 @@ The license data must contain only straight quotes to be considered valid JSON.
    
    Enable the Kong Developer Portal
    ```
-   $ curl -X PATCH http://HOST:8001/workspaces/default   --data "config.portal=true"
+   $ curl -X PATCH http://DNSorIP:8001/workspaces/default   --data "config.portal=true"
    ```
    Verify Kong Developer Portal via the URL specified in KONG_PORTAL_GUI_HOST in Step 6.
    
