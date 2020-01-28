@@ -136,7 +136,7 @@ The license data must contain only straight quotes to be considered valid JSON.
       
    Verify Kong Manager is running by accessing via the URL specified in KONG_ADMIN_GUI_URL in Step 6.
    
-   Enable the Kong Developer Portal
+   The final step is to enable the Developer Portal. To do this, execute the following command, updating DNSorIP to reflect the IP, or valid DNS of the Docker host. 
    ```
    $ curl -X PATCH http://DNSorIP:8001/workspaces/default   --data "config.portal=true"
    ```
