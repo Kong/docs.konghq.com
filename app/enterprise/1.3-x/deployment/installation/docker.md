@@ -52,16 +52,7 @@ Create a custom network to allow the containers to discover and communicate with
 
 ## Step 3. Start a Database
 
-If using a Cassandra container:
-
-   ```bash
-   $ docker run -d --name kong-ee-database \
-                 --network=kong-ee-net \
-                 -p 9042:9042 \
-                 cassandra:3
-   ```
-
-   If using a PostgreSQL container:
+   Let's use a PostgreSQL container:
 
    ```bash
    $ docker run -d --name kong-ee-database \
@@ -86,7 +77,6 @@ The license data must contain only straight quotes to be considered valid JSON.
    docker run --rm --network=kong-ee-net \
      -e "KONG_DATABASE=postgres" \
      -e "KONG_PG_HOST=kong-ee-database" \
-     -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
      -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
      kong-ee kong migrations bootstrap
    ```
@@ -97,7 +87,6 @@ The license data must contain only straight quotes to be considered valid JSON.
    docker run -d --name kong-ee --network=kong-ee-net \
      -e "KONG_DATABASE=postgres" \
      -e "KONG_PG_HOST=kong-ee-database" \
-     -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
      -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
      -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
      -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
@@ -119,7 +108,7 @@ The license data must contain only straight quotes to be considered valid JSON.
      kong-ee
    ```
   
-   **Please note <password-only-you-know> is replaced with a valid password.  KONG_PORAL_GUI_HOST should not h 
+   **Please note <password-only-you-know> is replaced with a valid password.  KONG_PORAL_GUI_HOST should not have http in parameter whereas KONG_ADMIN_GUI_URL should have http in the parameter. 
   
    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
    
@@ -134,13 +123,13 @@ The license data must contain only straight quotes to be considered valid JSON.
    ```
    You should receive an HTTP/1.1 200 OK message.
       
-   Verify Kong Manager is running by accessing via the URL specified in KONG_ADMIN_GUI_URL in Step 6.
+   Verify Kong Manager is running by accessing it via the URL specified in KONG_ADMIN_GUI_URL in Step 6.
    
    The final step is to enable the Developer Portal. To do this, execute the following command, updating DNSorIP to reflect the IP, or valid DNS of the Docker host. 
    ```
    $ curl -X PATCH http://DNSorIP:8001/workspaces/default   --data "config.portal=true"
    ```
-   Verify Kong Developer Portal via the URL specified in KONG_PORTAL_GUI_HOST in Step 6.
+   Verify Kong Developer Portal is running by accessing it via the URL specified in the KONG_PORTAL_GUI_HOST variable in Step 6.
    
 
 ## Troubleshooting
