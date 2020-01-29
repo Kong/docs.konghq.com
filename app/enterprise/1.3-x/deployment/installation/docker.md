@@ -119,6 +119,8 @@ The license data must contain only straight quotes to be considered valid JSON.
      kong-ee
    ```
   
+   **Please note <password-only-you-know> is replaced with a valid password.  KONG_PORAL_GUI_HOST should not h 
+  
    **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
    
    **Replace DNSorIP with the DNS name or IP of the Docker host**
