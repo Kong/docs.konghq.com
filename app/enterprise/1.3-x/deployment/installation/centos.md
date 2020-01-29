@@ -152,16 +152,16 @@ You now should have two files in your home directory on the target CentOS system
 
     ```
     $ sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-    $ sudo yum install postgresql95
-    $ sudo yum install postgresql95-server
+    $ sudo yum install postgresql96
+    $ sudo yum install postgresql96-server
     ```
 
 2. Initialize the PostgreSQL database and enable automatic start
 
     ```
-    $ sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
-    $ sudo systemctl enable postgresql-9.5
-    $ sudo systemctl start postgresql-9.5
+    $ sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
+    $ sudo systemctl enable postgresql-9.6
+    $ sudo systemctl start postgresql-9.6
     ```
 
 3. Switch to PostgreSQL user and launch PostgreSQL
@@ -187,7 +187,7 @@ You now should have two files in your home directory on the target CentOS system
     $ exit
     ```
 
-6. Edit the the PostgreSQL configuration file `/var/lib/pgsql/9.5/data/pg_hba.conf` using your preferred editor.
+6. Edit the the PostgreSQL configuration file `/var/lib/pgsql/9.6/data/pg_hba.conf` using your preferred editor.
 
 Under IPv4 local connections replace `ident` with `md5`
 
@@ -202,7 +202,7 @@ Postgres uses `ident` authentication by default. To allow the `kong` user to com
 7. Restart PostgreSQL
 
     ```
-    $ sudo systemctl restart postgresql-9.5
+    $ sudo systemctl restart postgresql-9.6
     ```
 
 ## Step 4. Modify Kong's configuration file to work with PostgreSQL
@@ -249,7 +249,7 @@ Setting a password for the **super admin** before initial start-up is strongly r
     curl -i -X GET --url http://localhost:8001/services
     ```
     
-    You should receive an `HTTP/1.1 200 OK` message.
+    You should receive a `HTTP/1.1 200 OK` message.
     
 ## Step 6. Finalize your configuration and verify Kong was successfully installed
 
@@ -266,22 +266,22 @@ This setting needs to resolve to a network path that will reach the CentOS host.
 It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
   ```
-  admin_listen = 0.0.0.0:8001, 0.0.0.1:8444 ssl
+  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
   ```
   
   You may also list network interfaces separately as in this example:
   
   ```
-  admin_listen = 0.0.0.0:8001, 0.0.0.1:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
+  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
   ```
   
-  Restart Kong for the setting to take effect; note that the default port is `8002`:
+  Restart Kong for the setting to take effect:
 
   ```
   $ sudo /usr/local/bin/kong restart
   ```
   
-  You may now access Kong Manager via the URL specified.
+  You may now access Kong Manager on port 8002.
 
 ### Enable the Dev Portal
 
@@ -292,7 +292,7 @@ It is necessary to update the administration API setting to listen on the needed
   portal_gui_host = <DNSorIP>:8003
   ```
 
-  Restart Kong for the setting to take effect; note that the default port is `8003`:
+  Restart Kong for the setting to take effect:
 
   ```
   $ sudo /usr/local/bin/kong restart
