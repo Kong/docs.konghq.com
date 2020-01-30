@@ -225,7 +225,7 @@ Postgres uses `ident` authentication by default. To allow the `kong` user to com
 
 Setting a password for the **super admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
-1. Create an environment variable with the desired **super admin** password:
+1. Create an environment variable with the desired **super admin** password and keep password in a safe place:
 
    ```
     $ export KONG_PASSWORD=<password-only-you-know>
