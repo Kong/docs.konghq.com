@@ -35,25 +35,24 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 ### Option 1: Download RPM file
    
-1. Go to: https://bintray.com/kong/kong-enterprise-edition-rpm. 
-2. Select the `centos` folder. Kong Enterprise versions are listed in reverse chronological order.
-3. Select the latest Kong version from the list.
-4. From the Kong version detail page, select the **Files** tab.
-5. Select the CentOS version appropriate for your environment. e.g. `centos` -> `7`.
-6. Save the rpm file available: e.g. `kong-enterprise-edition-1.3.0.1.el7.noarch.rpm`
-7. Copy the rpm file to your home directory on the CentOS system. You may use a command like:
+1. Go to: https://bintray.com/kong/kong-enterprise-edition-rpm/centos. 
+2. Select the latest Kong version from the list.
+3. From the Kong version detail page, select the **Files** tab.
+4. Select the CentOS version appropriate for your environment. e.g. `centos` -> `7`.
+5. Save the rpm file available: e.g. `kong-enterprise-edition-1.3.0.1.el7.noarch.rpm`
+6. Copy the rpm file to your home directory on the CentOS system. You may use a command like:
 
    ```
    $ scp kong-enterprise-edition-1.3.0.1.el7.noarch.rpm <centos user>@<server>:~
    ```
    
-8. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
+7. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
    
    ```
    $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
    ```
    
-9. Download Kong's official public key to ensure the RPM package's integrity:
+8. Download Kong's official public key to ensure the RPM package's integrity:
 
    ```
    $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
@@ -61,7 +60,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
    ```
     
-10. Verify you get an OK check. You should have an output similar to this:
+9. Verify you get an OK check. You should have an output similar to this:
  
    ```
    kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
