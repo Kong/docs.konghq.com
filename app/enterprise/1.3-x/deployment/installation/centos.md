@@ -234,7 +234,7 @@ Setting a password for the **super admin** before initial start-up is strongly r
 2. Run migrations to prepare the Kong database
 
     ```
-    $ kong migrations bootstrap -c /etc/kong/kong.conf
+    $ sudo /usr/local/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
 3. Start Kong
