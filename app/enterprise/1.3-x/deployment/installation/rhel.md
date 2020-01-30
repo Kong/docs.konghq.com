@@ -4,7 +4,7 @@ title: How to Install Kong Enterprise on RHEL
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting **Kong Enterprise** on ****.
+This guide walks through downloading, installing, and starting **Kong Enterprise** on **RHEL**.
 
 The configuration shown in this guide is intended only as an example. Depending on your
 environment, you may need to make modifications and take measures to properly conclude
