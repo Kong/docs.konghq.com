@@ -37,7 +37,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    
 1. Go to: https://bintray.com/kong/kong-enterprise-edition-rpm. 
 2. Select the `centos` folder. Kong Enterprise versions are listed in reverse chronological order.
-3. Select the Kong version you wish to install from the list.
+3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab.
 5. Select the CentOS version appropriate for your environment. e.g. `centos` -> `7`.
 6. Save the rpm file available: e.g. `kong-enterprise-edition-1.3.0.1.el7.noarch.rpm`
