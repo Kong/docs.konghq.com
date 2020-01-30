@@ -1,228 +1,268 @@
 --- 
-title: Install Kong Enterprise with Amazon Linux 1
+title: How to Install Kong Enterprise on Amazon Linux 1
 ---
 
 ## Introduction
 
-This guide will walk you through installing and running **Kong Enterprise** on an existing **Amazon Linux 1 EC2** instance. Click [HERE](/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2) for installing on Amazon Linux **2**.
+This guide walks through downloading, installing, and starting **Kong Enterprise** on **Amazon Linux 1**.
 
-**Supported Database Options:**
+The configuration shown in this guide is intended only as an example. Depending on your
+environment, you may need to make modifications and take measures to properly conclude
+the installation and configuration.
 
-* PostgreSQL 9.5, 9.6
-* Cassandra 3
-
-Due to the nature of setting up a Kong cluster with Cassandra, this documentation only covers Postgres. For assistance in setting up Cassandra, please contact your Sales or Support representative.
-
+Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. In this guide, we
+show steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Sales or Support representative.
 
 ## Prerequisites
 
 To complete this installation guide you will need:
 
 
-* A valid *Bintray* account. You will need your *username*, account *password* and account *API KEY*.
+* A valid *Bintray* account. You will need your **username**, account **password** and account **API KEY**.
     * Example:
-        * Bintray Access key = `john-company`
-        * Bintray username = `john-company@kong`
-        * Bintray password = `12345678`
-        * Bintray API KEY = `12234e314356291a2b11058591bba195830`
-* SSH access to a running EC2 instance
-* A valid **Kong Enterprise License** JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/{{page.kong_version}}/deployment/access-license))
-* HTTPIE with Python3 _(optional)_ - this allows for making easier commands to Kong, see [Step 6. Set up HTTPIE](/#step-6-verify-kong-is-receiving-requests) for details.
+        * **Bintray Access key**: `john-company`
+        * **Bintray username**: `john-company@kong`
+        * **Bintray password**: `12345678`
+        * **Bintray API KEY**: `12234e314356291a2b11058591bba195830`
+* A supported Amazon Linux 1 system with root equivalent access.
+* A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
+## Step 1. Prepare to install Kong Enterprise and download your license file
 
+There are two options to install Kong Enterprise on Amazon Linux 1. Both will require a login to Bintray.
 
-## Step 1. Download Kong Enterprise
+Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 
-1. Download the RPM package from Bintray
-  ```
-  $ sudo yum update
-  $ wget 'https://<BINTRAY_USERNAME>:<PASSWORD>@bintray.com/kong/kong-enterprise-edition-aws/rpm' -O bintray-kong-kong-enterprise-edition-aws.repo --auth-no-challenge`
-  ```
-  > Note: this command requires your Bintray account PASSWORD, **not** your API KEY, 
-  > If you receive the error “BAD PORT” ensure your password does not contain any shell meta-characters like $,@, or / 
+### Option 1: Download RPM file
+   
+1. Go to: https://bintray.com/kong/kong-enterprise-edition-aws/aws. 
+2. Kong Enterprise versions are listed in reverse chronological order.
+3. Select the latest Kong version from the list.
+4. From the Kong version detail page, select the **Files** tab and click the dist folder. 
+5. Save the rpm file available: e.g. `kong-enterprise-edition-1.3.0.1.aws.rpm`
+6. Copy the rpm file to your home directory on the Amazon Linux 1 system. You may use a command like:
 
-2. Move the package into `/etc/yum.repos.d/`
-  ```
-  $ sudo mv bintray-kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
-  ```
+   ```
+   $ scp kong-enterprise-edition-1.3.0.1.aws.rpm <amazon user>@<server>:~
+   ```
+   
+7. Download Kong's official public key to ensure the RPM package's integrity:
 
-3. Open the package to and add your Bintray credentials to the `baseurl` value.
-  ```
-  $ sudo vi /etc/yum.repos.d/bintray-kong-kong-enterprise-edition-aws.repo
-  ```
-  ```
-  baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterprise-edition-aws
-  ```
-  > Note: Unlike step 1, this command requires your Bintray account API KEY, **not** your PASSWORD.
+   ```
+   $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+   $ sudo rpm --import kong.key
+   $ sudo rpm -K kong-enterprise-edition-1.3.0.1.aws.rpm
+   ```
+    
+8. Verify you get an OK check. You should have an output similar to this:
+ 
+   ```
+   kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: sha1 md5 OK
+   ```  
+### Option 2: Download the Kong repo file and add it to your Yum repository
+   
+1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-aws/rpm.
+2. Edit the repo file using your preferred editor and alter the baseurl line as follows
+    
+   ```
+   baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-aws
+   ```
+   
+   - Replace `USERNAME` with your Bintray account user name.
+   - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
 
-4. Obtain your Kong Enterprise license file.
-  If you do not already have your license file, you can download it from your account files in Bintray *`https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`*. See [How you Access Your Enterprise License](/enterprise/latest/deployment/access-license) for help.
+   The result should look something like this:
+   ```
+   baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-aws
 
-5. Ensure your license file is in proper *`JSON`*:
-  ```
-    {"license":{"signature":"91e6dd9716d12ffsn4a5ckkb16a556dbebdbc4d0a66d9b2c53f8c8d717eb93dd2bdbe2cb3ef51c20806f14345128907da35","payload":{"customer":"Kong Inc","license_creation_date":"2019-05-07","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2021-04-01","license_key":"00Q1K00000zuUAwUAM_a1V1K000005kRhuUAE"},"version":1}}
-  ```
+   ```
+    
+3. Securely copy the changed repo file to your home directory on the Amazon Linux 1 system. You may use a command like:
 
-6. Securely copy the license file to the EC2 instance
-  ```
-    $ scp license.json <ec2-username>@<serverip>:~
-  ```
+   ```
+   $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
+   ```
+### Download your Kong Enterprise license
+   
+- Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
+- Securely copy the license file to your home directory on the Amazon Linux system. You may use a command like:
+
+   ```
+   $ scp license.json <amazon username>@<server>:~
+   ```
+### Result
+
+You now should have two files in your home directory on the target Amazon system:
+- Either the Kong RPM or Kong Yum repo file.
+- The license file `license.json`
 
 ## Step 2. Install Kong Enterprise
 
-1. Install Kong Enterprise
-  ```
-  $ sudo yum install kong-enterprise-edition
-  ```
+### Option 1: If installing via a downloaded rpm package
+ 
+   - Execute a command similar to the following, using the appropriate rpm file name you downloaded
+   
+   ```
+   $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
+   ```
+   
+### Option 2: If installing via the Yum repository
+   
+   - Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
-2. Copy the license file to `/etc/kong/license.json`
-  ```
-  $ sudo cp kong-se-license.json /etc/kong/license.json
-  ```
-  Kong will look for a valid license in this location.
+   ```
+   $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
+   ```
+    
+   - Begin the installation via the Yum repository:
+    
+   ```
+   $ sudo yum update -y
+   $ sudo yum install kong-enterprise-edition -y
+   ```    
 
+### Copy the license file from your home directory to the `/etc/kong` directory
 
-## Step 3. Install and Initialize the Database
+    ```
+    $ sudo cp license.json /etc/kong/license.json
+    ```
 
-**Kong Enterprise** on Amazon Linux  supports:
-
-- [PostgreSQL](/#postgresql)
-- Cassandra
-
-
-### PostgreSQL
-
-This configuration supports PostgreSQL 9.5 and 9.6.
-
-**Steps for this section:**
-
-- i. [Install and Start Postgres](/#install-and-start-postgresql)
-- ii. [Create a Kong user and database](/#create-a-kong-user-and-database)
-- iii. [Connect Kong to the Postgres database](/#connect-kong-to-the-postgresql-database)
-
-
-**i. Install and Start PostgreSQL**
+## Step 3. Setup PostgreSQL
 
 1. Install PostgreSQL
+
+   Follow the instructions avaialble at: https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you may run a command set similar to:
+   
   ```
   $ sudo yum install postgresql96 postgresql96-server
   ```
-2. Initialize the database
+2. Initialize the PostgreSQL database and enable automatic start
+
   ```
   $ sudo service postgresql96 initdb
-  ```
-3. Start PostgreSQL
-  ```
   $ sudo service postgresql96 start
   ```
+  
+3. Switch to PostgreSQL user and launch PostgreSQL
 
-
-**ii. Create a Kong user and database**
-
-The user and database can easily be created via the command line by using PostgreSQL’s command line tool `psql`
-
-1. Change to the `postgres` user
   ```
   $ sudo -i -u postgres
-  ```
-
-2. Launch the PostgreSQL command line tool `psql`
-  ```
   $ psql
   ```
 
-3. Create the `kong` user and database
+4. Create a Kong database with a username and password
+
+> ⚠️**Note**: Make sure the username and password for the Kong Database are
+> kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later. 
+
   ```
   $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
   ```
-  > ⚠️Note: Make sure the username and password for the Kong Database are kept safe. We have used a simple example for illustration purposes only.
 
-4. Exit `psql`
+5. Exit from PostgreSQL and return to your terminal account
+
   ```
   $ psql> \q
-  ```
-
-5. Return to the terminal
-  ```
   $ exit
   ```
 
-**iii. Connect Kong to the PostgreSQL database**
+6. Edit the the PostgreSQL configuration file `/var/lib/pgsql96/data/pg_hba.conf` using your preferred editor.
 
-Postgres uses `ident` authentication by default, to allow the `kong` user to communicate with the database locally we must change the authentication method to `md5` by modifying the Postgres configuration file. 
+Under IPv4 local connections replace `ident` with `md5`
 
-
-1. Open the configuration file:
-  ```
-  $ sudo vi /var/lib/pgsql96/data/pg_hba.conf
-  ```
-
-2. Change the `IPV4` local connection method to `md5`
-  ```
     | TYPE | DATABASE | USER | ADDRESS      | METHOD |
     | # IPv4 local connections:                      |
-    | host | all      | all  | 127.0.0.1/32 |  md5   |
+    | host | all      | all  | 127.0.0.1/32 | **md5**|
     | # IPv6 local connections:                      |
     | host | all      | all  | ::1/128      | ident  |
-  ```
 
-3. Save and exit the file, then restart Postgres
+Postgres uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the Postgres configuration file.
+
+7. Save and exit the file and restart PostgreSQL
+
   ```
   $ sudo service postgresql96 restart
   ```
+## Step 4. Modify Kong's configuration file to work with PostgreSQL
 
-Now that the database is set up, Kong must be given credentials to access the database. This is done by adding the Postgres user and password information to Kong’s configuration file.
+1. Make a copy of Kong's default configuration file
 
+    ```
+    $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+    ```
 
-1. Make a copy of Kong’s configuration file
+2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.  Replace pg_user, pg_password and pg_database with the values 
+
+    ```
+    pg_user = kong
+    pg_password = kong
+    pg_database = kong
+    ```
+  > Note: If you used different values for the user and database name, use those values for the user and database name. 
+
+## Step 5. Seed the super admin password and boostrap Kong
+
+Setting a password for the **super admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
+
+1. Create an environment variable with the desired **super admin** password and keep password in a safe place:
+
+   ```
+    $ export KONG_PASSWORD=<password-only-you-know>
+   ```
+
+2. Run migrations to prepare the Kong database
+
+    ```
+    $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
+    ```
+
+3. Start Kong
+
+    ```
+    $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
+    ```
+
+4. Verify Kong is working
+
+    ```
+    curl -i -X GET --url http://localhost:8001/services
+    ```
+    
+    You should receive a `HTTP/1.1 200 OK` message.
+
+## Step 6. Finalize your configuration and verify Kong was successfully installed
+
+### Enable and Configure Kong Manager
+
+To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the CentOS system. For example:
+
   ```
-  sudo cp /etc/kong/kong.conf.default kong.conf
+  admin_gui_url = http://<DNSorIP>:8002
   ```
-
-2. Open the new configuration file
+  
+This setting needs to resolve to a network path that will reach the Amazon Linux host.
+  
+It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+  
   ```
-  sudo vi /etc/kong/kong.conf
-  ```
-
-3. Search for `pg_password` under `DATASTORE,` uncomment `pg_password` and add the value. 
-  ```
-  #pg_user = kong
-  pg_password = kong
-  #pg_datastore = kong
-  ```
-  > Note: If you used different values for the user and database name, uncomment the pg_user and pg_datastore variables and add the username and datastore values
-
-
-## Step 4. Customize Your Configuration
-Before starting Kong, you can further modify Kong’s configuration file to enable a host of different features:
-
-
-### Enable RBAC
-
-  Kong Enterprise allows applying RBAC to all requests. To enable RBAC, you must set RBAC to `on`, select an authentication plugin for Kong Manager, and configure the [Session plugin](/hub/kong-inc/session).
-
-  ```
-  enforce_rbac = on
-
-  admin_gui_auth = basic-auth
-
-  admin_gui_session_conf = {"secret":"password", "cookie_secure": false, "cookie_samesite": "off", "cookie_name": "admin_session", "storage": "kong"}
-  ```
-
-  Export the KONG_PASSWORD environment variable:
-  ```
-  export KONG_PASSWORD=kong
-  ```
-
-### Enable Kong Manager
-
-  Kong Enterprise's Graphical User Interface **Kong Manager** can be connected by setting the `admin_gui_url` property to the EC2 instances `IPv4` address and the `admin_listen` property to allow **Kong Manager** to communicate with the Admin API.
-
-  ```
-  admin_gui_url = http://ec2-xx-xxx-xx-xx.us-east-2.compute.amazonaws.com:8002
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
   ```
+  
+  You may also list network interfaces separately as in this example:
+  
+  ```
+  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
+  ```
+  
+  Restart Kong for the setting to take effect:
+
+  ```
+  $ sudo /usr/local/bin/kong restart
+  ```
+  
+  You may now access Kong Manager on port 8002.
+  
 
 ### Enable the Dev Portal
 
@@ -230,92 +270,36 @@ Before starting Kong, you can further modify Kong’s configuration file to enab
 
   ```
   portal = on
-  portal_gui_host = http://ec2-xx-xxx-xx-xx.us-east-2.compute.amazonaws.com:8003
+  portal_gui_host = <DNSorIP>:8003
   ```
 
-
-## Step 5. Start Kong
-
-1. Run migrations
+ Restart Kong for the setting to take effect:
+ 
+   ```
+  $ sudo /usr/local/bin/kong restart
   ```
-  kong migrations bootstrap -c /etc/kong/kong.conf
-  ```
-2. Start Kong
-  ```
-  sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
-  ```
-
-
-## Step 6. Verify Kong is Receiving Requests
-
-##### Install HTTPie to easily send requests to Kong *(optional)*
-  ```
-  sudo yum install python36
-
-  sudo pip-3.6 install --upgrade pip setuptools
-
-  sudo /usr/local/bin/pip3.6 install --upgrade httpie
-  ```
-
-#### Test your connection to Kong
-
-**httpie**
-  ```
-  http :8001/services 
   
-  if RBAC is enabled:
-  *http :8001/services Kong-Admin-Token:$KONG_PASSWORD
+  The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the Amazon Linux system.
+  
   ```
-
-**curl**
+  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
   ```
-  curl -i -X GET --url http://localhost:8001/services
-
-  if RBAC is enabled:
-  curl -i -X GET --url http://localhost:8001/services --header 'kong-admin-token:<KONG_PASSWORD>'
+  
+  You can now access the Developer Portal on the default workspace with a URL like:
+  
   ```
-
-
-You should receive a `200 OK` response:
-
-```
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: *
-Connection: keep-alive
-Content-Length: 23
-Content-Type: application/json; charset=utf-8
-Date:
-Server: kong/kong-enterprise-edition
-X-Kong-Admin-Request-ID: 
-
-{
-    "data": [],
-    "next": null
-}
-```
-
-If you did not receive a `200` check out the troubleshooting section below or contact your Sales or Support Representative for assistance.
-
+  http://<DNSorIP>:8003/default
+  ```
 
 ## Troubleshooting
 
-##### I receive an error when downloading the RPM Package
-  Ensure that you are using your Bintray Username and Bintray account **password **in the `wget` request - note that this is different from your Bintray API KEY.
+If you did not receive an `HTTP/1.1 200 OK` message, or need assistance completing
+setup reach out to your Kong Support contact or head over to the
+[Support Portal](https://support.konghq.com/support/s/).
 
-
-##### HTTP 401 - Unauthorized
-  If you have enabled RBAC all request must be sent with the `kong-admin-token` header 
-
-  **httpie**
-    ```
-    Kong-Admin-Token:$KONG_PASSWORD
-    ```
-
-  **curl**
-    ```
-    --header 'kong-admin-token:<KONG_PASSWORD>'
-    ```
 
 ## Next Steps
 
-Now that Kong Enterprise is up and running, checkout our [Getting Started](/enterprise/{{page.kong_version}}/getting-started) guide.
+Check out Kong Enterprise's series of 
+[Getting Started](/enterprise/latest/getting-started) guides to get the most
+out of Kong Enterprise.
