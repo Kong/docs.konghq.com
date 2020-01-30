@@ -52,10 +52,9 @@ The available commands are:
                                       get you started.
 
   db_import <file>                    Import a declarative config file into
-                                      the Kong database.
-                                      
-  db_export <file>                    Export the Kong database into a
-                                      declarative config file.
+                                      the Kong database. db_import supports 
+                                      most Admin API entities except for Admins,
+                                      RBAC users, roles, and permissions. 
 
   parse <file>                        Parse a declarative config file (check
                                       its syntax) but do not load it into Kong.
@@ -65,6 +64,8 @@ Options:
  -p,--prefix      (optional string)   Override prefix directory.
 
 ```
+
+*Note:* `db_export` is not currently supported in Kong Enterprise.
 
 [Back to TOC](#table-of-contents)
 
