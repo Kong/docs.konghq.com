@@ -227,9 +227,9 @@ Setting a password for the **super admin** before initial start-up is strongly r
 
 1. Create an environment variable with the desired **super admin** password:
 
-```
+   ```
     $ export KONG_PASSWORD=<password-only-you-know>
-```
+   ```
 
 2. Run migrations to prepare the Kong database
 
