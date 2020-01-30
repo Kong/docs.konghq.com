@@ -134,7 +134,7 @@ You now should have two files in your home directory on the target CentOS system
    - Begin the installation via the Yum repository:
     
    ```
-   $ sudo yum update - y
+   $ sudo yum update -y
    $ sudo yum install kong-enterprise-edition
    ```    
 
@@ -174,7 +174,7 @@ You now should have two files in your home directory on the target CentOS system
 4. Create a Kong database with a username and password
 
 > ⚠️**Note**: Make sure the username and password for the Kong Database are
-> kept safe. We have used a simple example for illustration purposes only.
+> kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later.  
 
     ```
     $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
@@ -213,7 +213,7 @@ Postgres uses `ident` authentication by default. To allow the `kong` user to com
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
-2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.
+2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.  Replace pg_user, pg_password and pg_database with the values 
 
     ```
     pg_user = kong
