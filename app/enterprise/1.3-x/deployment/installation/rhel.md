@@ -297,7 +297,7 @@ It is necessary to update the administration API setting to listen on the needed
   $ sudo /usr/local/bin/kong restart
   ```
   
-  The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the CentOS system.
+  The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the RHEL system.
   
   ```
   $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
