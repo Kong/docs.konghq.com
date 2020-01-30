@@ -141,7 +141,7 @@ You now should have two files in your home directory on the target CentOS system
 ### Copy the license file from your home directory to the `/etc/kong` directory
 
     ```
-    $ sudo cp kong-se-license.json /etc/kong/license.json
+    $ sudo cp license.json /etc/kong/license.json
     ```
 
 ## Step 3. Setup PostgreSQL
