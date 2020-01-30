@@ -121,8 +121,6 @@ docker run -d --name kong-ee --network=kong-ee-net \
 **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
 
 ## Step 7. Finalize Configuration and Verify Success of Kong Installation
-    
-Verify Kong is running:
 
 ```bash
 $ curl -i -X GET --url http://localhost:8001/services
