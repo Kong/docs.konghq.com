@@ -284,7 +284,7 @@ It is necessary to update the administration API setting to listen on the needed
 
 ### Enable the Dev Portal
 
-  Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
+  Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the RHEL system. For example:
 
   ```
   portal = on
