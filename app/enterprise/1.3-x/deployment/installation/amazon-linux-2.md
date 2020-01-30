@@ -27,7 +27,7 @@ To complete this guide you will need:
 * A supported Amazon Linux 2 system with root equivalent access.
 * A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
-## Step 1. Prepare to install Kong Enterprise and your download your license file
+## Step 1. Prepare to install Kong Enterprise and download your license file
 
 There are two options to install Kong Enterprise on Amazon Linux 2. Both will require a login to Bintray.
 
@@ -78,7 +78,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
    ```
     
-3. Securely copy the changed repo file to your home directory on the Amazon Linux 2 system
+3. Securely copy the changed repo file to your home directory on the Amazon Linux 2 system. You may use a command like:
 
    ```
    $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
@@ -88,7 +88,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    
 - Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-- Securely copy the license file to your home directory on the Amazon Linux system
+- Securely copy the license file to your home directory on the Amazon Linux system. You may use a command like:
 
    ```
    $ scp license.json <amazon username>@<server>:~
@@ -206,7 +206,8 @@ Postgres uses `ident` authentication by default. To allow the `kong` user to com
     pg_password = kong
     pg_database = kong
     ```
-
+  > Note: If you used different values for the user and database name, use those values for the user and database name. 
+  
 ## Step 5. Seed the super admin password and boostrap Kong
 
 Setting a password for the **super admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
@@ -249,7 +250,7 @@ To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `
   
 This setting needs to resolve to a network path that will reach the CentOS host.
   
-It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
   ```
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
@@ -271,7 +272,7 @@ It is necessary to update the administration API setting to listen on the needed
 
 ### Enable the Dev Portal
 
-  Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
+  Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the Amazon Linux system. For example:
 
   ```
   portal = on
@@ -284,7 +285,7 @@ It is necessary to update the administration API setting to listen on the needed
   $ sudo /usr/local/bin/kong restart
   ```
   
-  The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the CentOS system.
+  The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the Amazon Linux system.
   
   ```
   $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
