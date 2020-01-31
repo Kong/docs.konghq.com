@@ -22,13 +22,13 @@ To complete this guide you will need:
       * **Bintray Access key**: `john-company`
       * **Bintray username**: `john-company@kong`
       * **Bintray password**: `12345678`
-      * **Bintray API Key**: `12234e314356291a2b11058591bba195830`
-   * The API Key can be obtained by visiting https://bintray.com/profile/edit and selecting "API Key"
+      * **Bintray API key**: `12234e314356291a2b11058591bba195830`
+   * The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting **API Key**
 * A supported Ubuntu system with root equivalent access.
 * A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
 
-## Step 1. Prepare to Install Kong Enterprise and Download your License File
+## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
 Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 

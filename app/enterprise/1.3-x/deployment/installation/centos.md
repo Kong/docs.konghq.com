@@ -19,16 +19,16 @@ show steps to configure PostgreSQL. For assistance in setting up Cassandra, plea
 To complete this guide you will need:
 
 * A valid Bintray account. You will need your **username**, account **password** and account **API Key**.
-   * Example:
-      * **Bintray Access key**: `john-company`
-      * **Bintray username**: `john-company@kong`
-      * **Bintray password**: `12345678`
-      * **Bintray API Key**: `12234e314356291a2b11058591bba195830`
-   * The API Key can be obtained by visiting https://bintray.com/profile/edit and selecting "API Key"
+  * Example:
+    * **Bintray Access key**: `john-company`
+    * **Bintray username**: `john-company@kong`
+    * **Bintray password**: `12345678`
+    * **Bintray API key**: `12234e314356291a2b11058591bba195830`
+  * The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting **API Key**
 * A supported CentOS system with root equivalent access.
 * A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
-## Step 1. Prepare to install Kong Enterprise and your download your license file
+## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
 There are two options to install Kong Enterprise on CentOS. Both will require a login to Bintray.
 
@@ -48,7 +48,6 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    ```
    
 *Optional:* Steps 7-9 are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
-
 
 7. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
    
@@ -143,7 +142,10 @@ You now should have two files in your home directory on the target CentOS system
    $ sudo yum install kong-enterprise-edition
    ```    
 
-### Copy the license file from your home directory to the `/etc/kong` directory
+### Copy the License File
+ 
+Copy the license file from your home directory to the `/etc/kong` directory like so:
+
 
     ```
     $ sudo cp license.json /etc/kong/license.json

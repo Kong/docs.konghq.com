@@ -18,16 +18,16 @@ show steps to configure PostgreSQL. For assistance in setting up Cassandra, plea
 To complete this installation guide you will need:
 
 
-* A valid *Bintray* account. You will need your **username**, account **password** and account **API KEY**.
-    * Example:
-        * **Bintray Access key**: `john-company`
-        * **Bintray username**: `john-company@kong`
-        * **Bintray password**: `12345678`
-        * **Bintray API KEY**: `12234e314356291a2b11058591bba195830`
+* A valid *Bintray* account. You will need your **username**, account **password** and account **API Key**.
+  * Example:
+    * **Bintray Access key**: `john-company`
+    * **Bintray username**: `john-company@kong`
+    * **Bintray password**: `12345678`
+    * **Bintray API key**: `12234e314356291a2b11058591bba195830`
 * A supported Amazon Linux 1 system with root equivalent access.
 * A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
-## Step 1. Prepare to install Kong Enterprise and download your license file
+## Step 1. Prepare to Install Kong Enterprise and Download the License File
 
 There are two options to install Kong Enterprise on Amazon Linux 1. Both will require a login to Bintray.
 
@@ -122,7 +122,10 @@ You now should have two files in your home directory on the target Amazon system
    $ sudo yum install kong-enterprise-edition -y
    ```    
 
-### Copy the license file from your home directory to the `/etc/kong` directory
+### Copy the License File
+ 
+Copy the license file from your home directory to the `/etc/kong` directory like so:
+
 
     ```
     $ sudo cp license.json /etc/kong/license.json
