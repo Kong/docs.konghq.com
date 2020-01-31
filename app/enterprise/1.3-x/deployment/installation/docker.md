@@ -67,7 +67,7 @@ $ docker run -d --name kong-ee-database \
    postgres:9.6
 ```
 
-## Step 4. Export the license key to a variable
+## Step 4. Export the License Key to a Variable
 
 ```bash
 $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
@@ -85,7 +85,7 @@ docker run --rm --network=kong-ee-net \
   kong-ee kong migrations bootstrap
 ```
 
-## Step 6. Start Kong with Kong Manager and Developer Portal Enabled
+## Step 6. Start Kong Enterprise with Kong Manager and Kong Developer Portal Enabled
 
 ```
 docker run -d --name kong-ee --network=kong-ee-net \
@@ -128,7 +128,7 @@ $ curl -i -X GET --url http://localhost:8001/services
 
 You should receive an `HTTP/1.1 200 OK` message.
       
-Verify Kong Manager is running by accessing it via the URL specified in KONG_ADMIN_GUI_URL in [Step 6](#step-6-start-kong-with-kong-manager-and-developer-portal-enabled).
+Verify Kong Manager is running by accessing it via the URL specified in KONG_ADMIN_GUI_URL in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
 The final step is to enable the Developer Portal. To do so, execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host. 
 
@@ -136,7 +136,7 @@ The final step is to enable the Developer Portal. To do so, execute the followin
 $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
 ```
 
-Verify the Developer Portal is running by accessing it at the URL specified in the `KONG_PORTAL_GUI_HOST` variable in [Step 6](#step-6-start-kong-with-kong-manager-and-developer-portal-enabled).
+Verify the Developer Portal is running by accessing it at the URL specified in the `KONG_PORTAL_GUI_HOST` variable in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
 
 ## Troubleshooting
