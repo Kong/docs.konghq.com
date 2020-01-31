@@ -198,7 +198,7 @@ You may now access Kong Manager on port 8002.
 
 ### Enable the Dev Portal
 
-Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS or IP address of the system. For example:
+Enable Kong Enterprise's Developer Portal by updating `/etc/kong/kong.conf` to set the `portal` property to `on` the `portal_gui_host` property to the DNS or IP address of the system. For example:
 
 ```
 portal = on
