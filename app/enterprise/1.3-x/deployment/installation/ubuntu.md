@@ -18,17 +18,17 @@ show steps to configure PostgreSQL. For assistance in setting up Cassandra, plea
 To complete this guide you will need:
 
 * A valid Bintray account. You will need your **username**, account **password** and account **API Key**.
-    * Example:
-        * **Bintray Access key**: `john-company`
-        * **Bintray username**: `john-company@kong`
-        * **Bintray password**: `12345678`
-        * **Bintray API Key**: `12234e314356291a2b11058591bba195830`
-            *Can be obtained by visiting https://bintray.com/profile/edit and selecting "API Key"
+   * Example:
+      * **Bintray Access key**: `john-company`
+      * **Bintray username**: `john-company@kong`
+      * **Bintray password**: `12345678`
+      * **Bintray API Key**: `12234e314356291a2b11058591bba195830`
+   * The API Key can be obtained by visiting https://bintray.com/profile/edit and selecting "API Key"
 * A supported Ubuntu system with root equivalent access.
 * A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
 
-## Step 1. Prepare to install Kong Enterprise and download your license file
+## Step 1. Prepare to Install Kong Enterprise and Download your License File
 
 Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 
@@ -103,7 +103,7 @@ $ psql> \q
 $ exit
 ```
 
-## Step 4. Modify Kong's configuration file
+## Step 4. Modify Kong's Configuration File
 
 1. Make a copy of Kong's default configuration file
 ```
@@ -116,7 +116,7 @@ pg_password = kong
 pg_database = kong
 ```
 
-## Step 5. Seed the super admin password and boostrap Kong
+## Step 5. Seed the Super Admin's Password and Boostrap Kong
 
 Setting a password for the **super admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
@@ -138,7 +138,7 @@ curl -i -X GET --url http://localhost:8001/services
 ```
 You should receive a `HTTP/1.1 200 OK` message.
 
-## Step 6. Finalize your configuration and verify Kong was successfully installed
+## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
 
 ### Enable and Configure Kong Manager
 
@@ -170,7 +170,7 @@ $ sudo /usr/local/bin/kong restart
 
 You may now access Kong Manager on port 8002.
 
-### Enable the Dev Portal
+### Enable the Developer Portal
 
 Enable Kong Enterprise's Developer Portal by updating `/etc/kong/kong.conf` to set the `portal` property to `on` and the `portal_gui_host` property to the DNS or IP address of the system. For example:
 
