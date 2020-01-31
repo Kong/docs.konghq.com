@@ -34,11 +34,11 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 ### Download the Debian package
 
-1. Go to: https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu. 
+1. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu). 
 2. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
-4. From the Kong version detail page, select the **Files** tab.
-5. Click the .deb file matching your target Ubuntu OS version. e.g. `kong-enterprise-edition-1.3.0.1.bionic.all.deb` for the Ubuntu Bionic Beaver release.
-6. Copy the .deb file to your home directory on the Ubuntu system. You may use a command like:
+3. From the Kong version detail page, select the **Files** tab.
+4. Click the .deb file matching your target Ubuntu OS version. e.g. `kong-enterprise-edition-1.3.0.1.bionic.all.deb` for the Ubuntu Bionic Beaver release.
+5. Copy the .deb file to your home directory on the Ubuntu system. You may use a command like:
 
 ```
 $ scp kong-enterprise-edition-1.3.0.1.bionic.all.deb <ubuntu_user>@<server>:~
@@ -46,9 +46,9 @@ $ scp kong-enterprise-edition-1.3.0.1.bionic.all.deb <ubuntu_user>@<server>:~
 
 ### Download your Kong Enterprise license
    
-- Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
+1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-- Securely copy the license file to your home directory on the Ubuntu system
+2. Securely copy the license file to your home directory on the Ubuntu system
 
 ```
 $ scp license.json <ubuntu_username>@<server>:~
@@ -63,26 +63,20 @@ You now should have two files in your home directory on the target system:
 ## Step 2. Install Kong Enterprise
 
 1. Update APT and install dependencies
-
 ```
 $ sudo apt-get update
 $ sudo apt-get install openssl libpcre3 procps perl
 ```
-
 2. Install Kong Enterprise
-
 ```
 $ sudo dpkg -i kong-enterprise-edition-<VERSION_NUMBER>.deb
 ```
 > Note: Your version may be different based on when you obtained the package
-
 3. Copy the license file to the `/etc/kong` directory
-
 ```
 $ sudo cp license.json /etc/kong/license.json
 ```
 Kong will look for a valid license in this location.
-
 
 ## Step 3. Set up PostgreSQL
 
@@ -95,25 +89,19 @@ Install PostgreSQL. This command may not work on all version of Ubuntu.
 ```
 $ sudo apt-get install postgresql postgresql-contrib
 ```
-
 2. Switch to PostgreSQL user and launch PostgreSQL
-
 ```
 $ sudo -i -u postgres
 $ psql
 ```
-
 3. Create a Kong database with a username and password
-
 > ⚠️ **Note**: Make sure the username and password for the Kong Database are
 > kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later.  
 
 ```
 $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 ```
-
 4. Exit from PostgreSQL and return to your terminal account
-
 ```
 $ psql> \q
 $ exit
@@ -122,11 +110,9 @@ $ exit
 ## Step 4. Modify Kong's configuration file
 
 1. Make a copy of Kong's default configuration file
-
 ```
 $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 ```
-
 2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.  Replace `pg_user`, `pg_password`, and `pg_database` with the values 
 
 ```
@@ -140,25 +126,18 @@ pg_database = kong
 Setting a password for the **super admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
 1. Create an environment variable with the desired **super admin** password and keep password in a safe place:
-
 ```
 $ export KONG_PASSWORD=<password-only-you-know>
 ```
-
 2. Run migrations to prepare the Kong database
-
 ```
 $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
 ```
-
 3. Start Kong
-
 ```
 $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
 ```
-
 4. Verify Kong is working
-
 ```
 curl -i -X GET --url http://localhost:8001/services
 ```
@@ -170,9 +149,9 @@ You should receive a `HTTP/1.1 200 OK` message.
 
 To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS or IP address of the system. For example:
 
-  ```
-  admin_gui_url = http://<DNSorIP>:8002
-  ```
+```
+admin_gui_url = http://<DNSorIP>:8002
+```
   
 This setting needs to resolve to a network path that will reach the host.
   
