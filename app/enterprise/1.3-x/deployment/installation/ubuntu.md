@@ -80,12 +80,9 @@ Kong will look for a valid license in this location.
 
 ## Step 3. Set up PostgreSQL
 
-1. Install PostgreSQL
+PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is then supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. Kong supports version 9.5 and higher. Ensure the distribution of PostgreSQL for your version of Ubuntu is a supported version. More information about PostgreSQL on Ubuntu can be found here: [https://www.postgresql.org/download/linux/ubuntu/](https://www.postgresql.org/download/linux/ubuntu/). 
 
-PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is then supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. Kong supports version 9.5 and higher. Ensure the distribution of PostgreSQL for your version of Ubuntu is a supported version. More information about PostgreSQL on Ubuntu can be found here: https://www.postgresql.org/download/linux/ubuntu/. 
-
-Install PostgreSQL. This command may not work on all version of Ubuntu.
-
+1. Install PostgreSQL. This command may not work on all version of Ubuntu.
 ```
 $ sudo apt-get install postgresql postgresql-contrib
 ```
@@ -95,12 +92,11 @@ $ sudo -i -u postgres
 $ psql
 ```
 3. Create a Kong database with a username and password
-> ⚠️ **Note**: Make sure the username and password for the Kong Database are
-> kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later.  
-
 ```
 $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 ```
+> ⚠️ **Note**: Make sure the username and password for the Kong Database are
+> kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later.  
 4. Exit from PostgreSQL and return to your terminal account
 ```
 $ psql> \q
@@ -113,8 +109,7 @@ $ exit
 ```
 $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 ```
-2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.  Replace `pg_user`, `pg_password`, and `pg_database` with the values 
-
+2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.  Replace `pg_user`, `pg_password`, and `pg_database` with the values: 
 ```
 pg_user = kong
 pg_password = kong
