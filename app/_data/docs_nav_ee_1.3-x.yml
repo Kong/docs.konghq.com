@@ -22,7 +22,7 @@
           url: /deployment/installation/amazon-linux
         - text: Amazon Linux 2
           url: /deployment/installation/amazon-linux-2
-        - text: Red Hat Enterpirse Linux
+        - text: Red Hat Enterprise Linux
           url: /deployment/installation/rhel
     - text: Kong Cloud
       url: /kong-cloud
