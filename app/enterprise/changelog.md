@@ -44,7 +44,6 @@ layout: changelog
 
 * Fixes issue where settings in the kong configuration file did not always update `.kong_env `
 * Fixes issue where updating a plugin with a similar payload as its initial configuration resulted in a schema violation
-* Fixes issue where `db_export` erred on exporting the `keyauth_credentials` table
 * Fixes issue where `db_import` would fail due to missing libraries
 
 #### Kong Developer Portal
@@ -686,7 +685,10 @@ attempting to fetch headers during the ssl_cert phase.
 - **Bulk database import** using the same declarative
   configuration format as the in-memory mode, using the new command:
   `kong config db_import kong.yml`. This command upserts all
-  entities specified in the given `kong.yml` file in bulk
+  entities specified in the given `kong.yml` file in bulk.
+   * Known issue for db_import/db_export in Kong Enterprise
+      - `db_import` supports all API Gateway entities, with the exception of Admins and RBAC users and roles. This limitation is because credentials are hashed.
+      - `db_export` is not supported at all.
 - New command: `kong config init` to generate a template `kong.yml`
   file to get you started
 - New command: `kong config parse kong.yml` to verify the syntax of

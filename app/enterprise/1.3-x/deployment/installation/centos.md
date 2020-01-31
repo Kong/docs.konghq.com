@@ -4,7 +4,8 @@ title: How to Install Kong Enterprise on CentOS
 
 ## Introduction
 
-This guide walks through downloading, installing, and starting **Kong Enterprise** on **CentOS**.
+
+This guide walks through downloading, installing, and starting **Kong Enterprise** on **CentOS**
 
 The configuration shown in this guide is intended only as an example. Depending on your
 environment, you may need to make modifications and take measures to properly conclude
@@ -47,6 +48,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    ```
    
 *Optional:* Steps 7-9 are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
+
 
 7. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
    
