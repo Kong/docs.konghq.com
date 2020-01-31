@@ -18,12 +18,12 @@ show steps to configure PostgreSQL. For assistance in setting up Cassandra, plea
 To complete this guide you will need:
 
 * A valid Bintray account. You will need your **username**, account **password** and account **API Key**.
-    * Example:
-        * **Bintray Access key**: `john-company`
-        * **Bintray username**: `john-company@kong`
-        * **Bintray password**: `12345678`
-        * **Bintray API Key**: `12234e314356291a2b11058591bba195830`
-            *Can be obtained by visiting https://bintray.com/profile/edit and selecting "API Key"
+   * Example:
+      * **Bintray Access key**: `john-company`
+      * **Bintray username**: `john-company@kong`
+      * **Bintray password**: `12345678`
+      * **Bintray API Key**: `12234e314356291a2b11058591bba195830`
+   * The API Key can be obtained by visiting https://bintray.com/profile/edit and selecting "API Key"
 * A supported CentOS system with root equivalent access.
 * A valid Kong Enterprise license JSON file, this can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
@@ -247,7 +247,7 @@ Setting a password for the **super admin** before initial start-up is strongly r
 4. Verify Kong is working
 
     ```
-    curl -i -X GET --url http://localhost:8001/services
+    $ curl -i -X GET --url http://localhost:8001/services
     ```
     
     You should receive a `HTTP/1.1 200 OK` message.
@@ -266,50 +266,50 @@ This setting needs to resolve to a network path that will reach the CentOS host.
   
 It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
-  ```
-  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
-  ```
-  
-  You may also list network interfaces separately as in this example:
-  
-  ```
-  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
-  ```
-  
-  Restart Kong for the setting to take effect:
+```
+admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
+```
 
-  ```
-  $ sudo /usr/local/bin/kong restart
-  ```
-  
-  You may now access Kong Manager on port 8002.
+You may also list network interfaces separately as in this example:
+
+```
+admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
+```
+
+Restart Kong for the setting to take effect:
+
+```
+$ sudo /usr/local/bin/kong restart
+```
+
+You may now access Kong Manager on port 8002.
 
 ### Enable the Dev Portal
 
-  Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
+Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
 
-  ```
-  portal = on
-  portal_gui_host = <DNSorIP>:8003
-  ```
+```
+portal = on
+portal_gui_host = <DNSorIP>:8003
+```
 
-  Restart Kong for the setting to take effect:
+Restart Kong for the setting to take effect:
 
-  ```
-  $ sudo /usr/local/bin/kong restart
-  ```
-  
-  The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the CentOS system.
-  
-  ```
-  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
-  ```
-  
-  You can now access the Developer Portal on the default workspace with a URL like:
-  
-  ```
-  http://<DNSorIP>:8003/default
-  ```
+```
+$ sudo /usr/local/bin/kong restart
+```
+
+The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the CentOS system.
+
+```
+$ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
+```
+
+You can now access the Developer Portal on the default workspace with a URL like:
+
+```
+http://<DNSorIP>:8003/default
+```
 
 ## Troubleshooting
 
