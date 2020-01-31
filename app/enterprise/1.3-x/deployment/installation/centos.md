@@ -46,6 +46,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    $ scp kong-enterprise-edition-1.3.0.1.el7.noarch.rpm <centos user>@<server>:~
    ```
    
+*Optional:* Steps 7-9 are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
+
 7. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
    
    ```
@@ -252,7 +254,7 @@ Setting a password for the **super admin** before initial start-up is strongly r
     
     You should receive a `HTTP/1.1 200 OK` message.
     
-## Step 6. Finalize your configuration and verify Kong was successfully installed
+## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
 
 ### Enable and Configure Kong Manager
 
@@ -284,7 +286,7 @@ $ sudo /usr/local/bin/kong restart
 
 You may now access Kong Manager on port 8002.
 
-### Enable the Dev Portal
+### Enable the Developer Portal
 
 Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
 
