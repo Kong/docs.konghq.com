@@ -160,8 +160,8 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 4. Create a Kong database with a username and password.
 
-> ⚠️**Note**: Make sure the username and password for the Kong Database are
-> kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
+  > ⚠️**Note**: Make sure the username and password for the Kong Database are
+  > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
   ```bash
   $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
@@ -185,7 +185,7 @@ Under IPv4 local connections replace `ident` with `md5`:
 
 PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file.
 
-7. Save and exit the file and restart PostgreSQL
+7. Save and exit the file and restart PostgreSQL.
 
   ```bash
   $ sudo service postgresql96 restart
@@ -198,7 +198,7 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
-2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace pg_user, pg_password and pg_database with the values 
+2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace pg_user, pg_password and pg_database with the values:
 
     ```
     pg_user = kong
