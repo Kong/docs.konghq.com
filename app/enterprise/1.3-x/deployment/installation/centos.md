@@ -221,11 +221,12 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
 
 2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace pg_user, pg_password and pg_database with the values: 
 
-    ```
-    pg_user = kong
-    pg_password = kong
-    pg_database = kong
-    ```
+  ```
+  pg_user = kong
+  pg_password = kong
+  pg_database = kong
+  ```
+
 
 ## Step 5. Seed the Super Admin password and boostrap Kong
 
