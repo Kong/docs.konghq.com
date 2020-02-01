@@ -105,26 +105,26 @@ You should now have two files in your home directory on the target Amazon system
 
 ### Option 1: If installing via a downloaded RPM package
  
-   - Execute a command similar to the following, using the appropriate RPM file name you downloaded.
-   
-   ```
-   $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
-   ```
+  - Execute a command similar to the following, using the appropriate RPM file name you downloaded.
+  
+  ```
+  $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
+  ```
    
 ### Option 2: If installing via the Yum repository
    
-   - Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
+  - Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
-   ```
-   $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
-   ```
-    
-   - Begin the installation via the Yum repository:
-    
-   ```
-   $ sudo yum update -y
-   $ sudo yum install kong-enterprise-edition -y
-   ```    
+  ```
+  $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
+  ```
+  
+  - Begin the installation via the Yum repository:
+  
+  ```
+  $ sudo yum update -y
+  $ sudo yum install kong-enterprise-edition -y
+  ```
 
 ### Copy the License File
  
