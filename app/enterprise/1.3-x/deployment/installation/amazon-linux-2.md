@@ -42,7 +42,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 5. Save the RPM file available: e.g. `kong-enterprise-edition-1.3.0.1.aws.rpm`
 6. Copy the RPM file to your home directory on the Amazon Linux 2 system. You may use a command like:
 
-  ```
+  ```bash
   $ scp kong-enterprise-edition-1.3.0.1.aws.rpm <amazon user>@<server>:~
   ```
    
@@ -83,7 +83,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 3. Securely copy the changed repo file to your home directory on the Amazon Linux 2 system. You may use a command such as:
 
-  ```
+  ```bash
   $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
   ```
     
@@ -97,7 +97,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 2. Securely copy the license file to your home directory on the Amazon Linux system. You may use a command like:
 
-  ```
+  ```bash
   $ scp license.json <amazon username>@<server>:~
   ```
 
@@ -114,7 +114,7 @@ You should now have two files in your home directory on the target Amazon system
  
   Execute a command similar to the following, using the appropriate RPM file name you downloaded.
   
-  ```
+  ```bash
   $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
   ```
 
@@ -122,13 +122,13 @@ You should now have two files in your home directory on the target Amazon system
    
 1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
-  ```
+  ```bash
   $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
   ```
 
 2. Begin the installation via the Yum repository:
 
-  ```
+  ```bash
   $ sudo yum update -y
   $ sudo yum install kong-enterprise-edition -y
   ```    
@@ -137,7 +137,7 @@ You should now have two files in your home directory on the target Amazon system
  
 Copy the license file from your home directory to the `/etc/kong` directory like so:
 
-  ```
+  ```bash
   $ sudo cp license.json /etc/kong/license.json
   ```
 

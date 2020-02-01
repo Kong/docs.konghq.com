@@ -141,19 +141,19 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
    Follow the instructions avaialble at: https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you may run a command set similar to:
    
-  ```
+  ```bash
   $ sudo yum install postgresql96 postgresql96-server
   ```
 2. Initialize the PostgreSQL database and enable automatic start.
 
-  ```
+  ```bash
   $ sudo service postgresql96 initdb
   $ sudo service postgresql96 start
   ```
   
 3. Switch to PostgreSQL user and launch PostgreSQL.
 
-  ```
+  ```bash
   $ sudo -i -u postgres
   $ psql
   ```
@@ -163,13 +163,13 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 > ⚠️**Note**: Make sure the username and password for the Kong Database are
 > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
-  ```
+  ```bash
   $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
   ```
 
 5. Exit from PostgreSQL and return to your terminal account.
 
-  ```
+  ```bash
   $ psql> \q
   $ exit
   ```
@@ -187,7 +187,7 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
 
 7. Save and exit the file and restart PostgreSQL
 
-  ```
+  ```bash
   $ sudo service postgresql96 restart
   ```
 ## Step 4. Modify Kong's configuration file to work with PostgreSQL
@@ -263,7 +263,7 @@ It is necessary to update the administration API setting to listen on the needed
   
   Restart Kong for the setting to take effect:
 
-  ```
+  ```bash
   $ sudo /usr/local/bin/kong restart
   ```
   
@@ -281,13 +281,13 @@ It is necessary to update the administration API setting to listen on the needed
 
  Restart Kong for the setting to take effect:
  
-   ```
+   ```bash
   $ sudo /usr/local/bin/kong restart
   ```
   
   The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the Amazon Linux system.
   
-  ```
+  ```bash
   $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
   ```
   

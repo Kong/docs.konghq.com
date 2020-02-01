@@ -280,7 +280,7 @@ It is necessary to update the administration API setting to listen on the needed
     
   Restart Kong for the setting to take effect:
 
-  ```
+  ```bash
   $ sudo /usr/local/bin/kong restart
   ```
   
@@ -297,13 +297,13 @@ It is necessary to update the administration API setting to listen on the needed
 
   Restart Kong for the setting to take effect:
 
-  ```
+  ```bash
   $ sudo /usr/local/bin/kong restart
   ```
   
   The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the RHEL system.
   
-  ```
+  ```bash
   $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
   ```
   
