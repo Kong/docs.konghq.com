@@ -82,7 +82,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    ```
    $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
    ```
-### Download your Kong Enterprise license
+### Download your Kong Enterprise License
    
 - Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 

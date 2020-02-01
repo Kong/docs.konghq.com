@@ -44,7 +44,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 $ scp kong-enterprise-edition-1.3.0.1.bionic.all.deb <ubuntu_user>@<server>:~
 ```
 
-### Download your Kong Enterprise license
+### Download your Kong Enterprise License
    
 1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
