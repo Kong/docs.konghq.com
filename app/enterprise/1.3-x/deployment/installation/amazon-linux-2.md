@@ -147,25 +147,25 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
   Follow the instructions avaialble at: https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you may run a command set similar to:
 
-    ```bash
-    $ sudo amazon-linux-extras install postgresql9.6
-    $ sudo yum install postgresql postgresql-server
-    ```
+  ```bash
+  $ sudo amazon-linux-extras install postgresql9.6
+  $ sudo yum install postgresql postgresql-server
+  ```
 
 2. Initialize the PostgreSQL database and enable automatic start.
 
-    ```bash
-    $ sudo /usr/bin/postgresql-setup --initdb
-    $ sudo systemctl enable postgresql.service
-    $ sudo systemctl start postgresql
-    ```
+  ```bash
+  $ sudo /usr/bin/postgresql-setup --initdb
+  $ sudo systemctl enable postgresql.service
+  $ sudo systemctl start postgresql
+  ```
     
 3. Switch to PostgreSQL user and launch PostgreSQL.
 
-    ```bash
-    $ sudo -i -u postgres
-    $ psql
-    ```
+  ```bash
+  $ sudo -i -u postgres
+  $ psql
+  ```
 
 4. Create a Kong database with a username and password.
 

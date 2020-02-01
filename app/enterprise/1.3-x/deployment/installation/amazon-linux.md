@@ -194,9 +194,9 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
 
 1. Make a copy of Kong's default configuration file.
 
-    ```bash
-    $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
-    ```
+  ```bash
+  $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+  ```
 
 2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace pg_user, pg_password and pg_database with the values:
 

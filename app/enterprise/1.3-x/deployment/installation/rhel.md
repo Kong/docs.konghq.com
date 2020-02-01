@@ -156,40 +156,40 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
   Follow the instructions avaialble at: https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you may run a command set similar to:
 
-    ```bash
-    $ sudo dnf install postgresql-server
-    ```
+  ```bash
+  $ sudo dnf install postgresql-server
+  ```
 
 2. Initialize the PostgreSQL database and enable automatic start.
 
-    ```bash
-    $ sudo /usr/bin/postgresql-setup initdb
-    $ sudo systemctl enable postgresql
-    $ sudo systemctl start postgresql
-    ```
+  ```bash
+  $ sudo /usr/bin/postgresql-setup initdb
+  $ sudo systemctl enable postgresql
+  $ sudo systemctl start postgresql
+  ```
 
 3. Switch to PostgreSQL user and launch PostgreSQL.
 
-    ```bash
-    $ sudo -i -u postgres
-    $ psql
-    ```
+  ```bash
+  $ sudo -i -u postgres
+  $ psql
+  ```
 
 4. Create a Kong database with a username and password.
 
   > ⚠️**Note**: Make sure the username and password for the Kong Database are
   > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
-    ```bash
-    $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
-    ```
+  ```bash
+  $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
+  ```
 
 5. Exit from PostgreSQL and return to your terminal account.
 
-    ```bash
-    $ psql> \q
-    $ exit
-    ```
+  ```bash
+  $ psql> \q
+  $ exit
+  ```
 
 6. Edit the the PostgreSQL configuration file `/var/lib/pgsql/data/pg_hba.conf` using your preferred editor.
 
@@ -204,17 +204,17 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
 
 7. Restart PostgreSQL.
 
-    ```bash
-    $ sudo systemctl restart postgresql
-    ```
+  ```bash
+  $ sudo systemctl restart postgresql
+  ```
 
 ## Step 4. Modify Kong's configuration file to work with PostgreSQL
 
 1. Make a copy of Kong's default configuration file.
 
-    ```bash
-    $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
-    ```
+  ```bash
+  $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+  ```
 
 2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.
 
@@ -231,9 +231,9 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 
-    ```bash
-    $ export KONG_PASSWORD=<password-only-you-know>
-    ```
+  ```bash
+  $ export KONG_PASSWORD=<password-only-you-know>
+  ```
 
 2. Run migrations to prepare the Kong database.
 
@@ -253,7 +253,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
   $ curl -i -X GET --url http://localhost:8001/services
   ```
     
-  You should receive a `HTTP/1.1 200 OK` message.
+You should receive a `HTTP/1.1 200 OK` message.
     
 ## Step 6. Finalize Configuration and Verify Installation
 
@@ -302,13 +302,13 @@ This setting needs to resolve to a network path that will reach the RHEL host.
   $ sudo /usr/local/bin/kong restart
   ```
   
-  The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the RHEL system.
+  4. The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the RHEL system.
   
   ```bash
   $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
   ```
   
-  You can now access the Developer Portal on the default workspace with a URL like:
+  5. You can now access the Developer Portal on the default workspace with a URL like:
   
   ```
   http://<DNSorIP>:8003/default
