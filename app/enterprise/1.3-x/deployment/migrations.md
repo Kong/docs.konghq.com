@@ -36,7 +36,7 @@ database in the final expected state for Kong Enterprise 1.3).
 2. Once that finishes running, both the old and new (1.3) clusters can now run
    simultaneously on the same datastore. Start provisioning 1.3 nodes, but do
    not use their Admin API yet. If you need to perform Admin API requests,
-   these should be made to the old cluster's nodes.  The reason is to prevent
+   these should be made to the old cluster's nodes. The reason is to prevent
    the new cluster from generating data that is not understood by the old
    cluster.
 3. Gradually divert traffic away from your old nodes, and into
@@ -44,7 +44,7 @@ database in the final expected state for Kong Enterprise 1.3).
    is going smoothly.
 4. When your traffic is fully migrated to the 1.3 cluster, decommission your
    old nodes.
-5. From your 1.3 cluster, run: `kong migrations finish`.  From this point on,
+5. From your 1.3 cluster, run: `kong migrations finish`. From this point on,
    it will not be possible to start nodes in the old cluster pointing to the
    same datastore anymore. Only run this command when you are confident that
    your migration was successful. From now on, you can safely make Admin API

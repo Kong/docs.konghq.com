@@ -96,7 +96,7 @@ $ psql
 $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 ```
 > ⚠️ **Note**: Make sure the username and password for the Kong Database are
-> kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later.  
+> kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 4. Exit from PostgreSQL and return to your terminal account.
 ```
 $ psql> \q
@@ -109,7 +109,7 @@ $ exit
 ```
 $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 ```
-2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor.  Replace `pg_user`, `pg_password`, and `pg_database` with the values: 
+2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace `pg_user`, `pg_password`, and `pg_database` with the values: 
 ```
 pg_user = kong
 pg_password = kong
@@ -118,7 +118,7 @@ pg_database = kong
 
 ## Step 5. Seed the Super Admin's Password and Boostrap Kong
 
-Setting a password for the **Super Admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
+Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
 1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 ```

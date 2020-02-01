@@ -10,7 +10,7 @@ The configuration shown in this guide is intended only as an example. Depending 
 environment, you may need to make modifications, and take measures to properly conclude
 the installation and configuration.
 
-Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore.  In this guide, we
+Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. In this guide, we
 show steps to configure PostgreSQL.
 
 
