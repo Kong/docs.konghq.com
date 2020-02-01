@@ -267,7 +267,7 @@ It is necessary to update the administration API setting to listen on the needed
   You may now access Kong Manager on port 8002.
   
 
-### Enable the Dev Portal
+### Enable the Developer Portal
 
   Kong Enterprise's **Developer Portal** can be connected by setting the `portal` property to `on` and setting the `portal_gui_host` property to the EC2 instance's `IPv4` address
 
