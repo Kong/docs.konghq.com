@@ -1,3 +1,3 @@
 ---
-title: Install Kong Enterprise
+redirect_to: /deployment/installation/overview
 ---
