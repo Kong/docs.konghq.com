@@ -174,11 +174,10 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 Under IPv4 local connections replace `ident` with `md5`
 
-    | TYPE | DATABASE | USER | ADDRESS      | METHOD |
-    | # IPv4 local connections:                      |
-    | host | all      | all  | 127.0.0.1/32 | **md5**|
-    | # IPv6 local connections:                      |
-    | host | all      | all  | ::1/128      | ident  |
+  | Protocol   	| Type 	| Database 	| User 	| Address      	| Method 	|
+  |------------	|------	|----------	|------	|--------------	|--------	|
+  | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
+  | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
 
 PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file.
 

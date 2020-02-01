@@ -31,7 +31,7 @@ To complete this guide you will need:
 
 ## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image
 
-```
+```bash
 $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
 $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
 ```
@@ -40,7 +40,7 @@ You should now have your Kong Enterprise image locally. Run `docker images` to v
    
 Tag the image ID for easier use:
 
-```
+```bash
 $ docker tag <IMAGE ID> kong-ee
 ```
 
@@ -77,8 +77,8 @@ Note: the license data must contain only straight quotes to be considered valid 
 
 ## Step 5. Prepare the Kong Database
 
-```
-docker run --rm --network=kong-ee-net \
+```bash
+$ docker run --rm --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
   -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
@@ -87,8 +87,8 @@ docker run --rm --network=kong-ee-net \
 
 ## Step 6. Start Kong Enterprise with Kong Manager and Kong Developer Portal Enabled
 
-```
-docker run -d --name kong-ee --network=kong-ee-net \
+```bash
+$ docker run -d --name kong-ee --network=kong-ee-net \
    -e "KONG_DATABASE=postgres" \
    -e "KONG_PG_HOST=kong-ee-database" \
    -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
@@ -132,7 +132,7 @@ Verify Kong Manager is running by accessing it via the URL specified in KONG_ADM
 
 The final step is to enable the Developer Portal. To do so, execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host. 
 
-```
+```bash
 $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
 ```
 
