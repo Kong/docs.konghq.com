@@ -46,6 +46,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    $ scp kong-enterprise-edition-1.3.0.1.aws.rpm <amazon user>@<server>:~
    ```
    
+*Optional:* Steps 7 and 8 are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
+
 7. Download Kong's official public key to ensure the RPM package's integrity:
 
    ```
@@ -58,30 +60,32 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
  
    ```
    kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: sha1 md5 OK
-   ```  
+   ```
+
 ### Option 2: Download the Kong Repo File and Add to Yum Repo
    
 1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-aws/rpm.
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows
     
-   ```
-   baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-aws
-   ```
-   
-   - Replace `USERNAME` with your Bintray account user name.
-   - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
+  ```
+  baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-aws
+  ```
+  
+  - Replace `USERNAME` with your Bintray account user name.
+  - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
 
-   The result should look something like this:
-   ```
-   baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-aws
-
-   ```
+  The result should look something like this:
+  
+  ```
+  baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-aws
+  ```
     
 3. Securely copy the changed repo file to your home directory on the Amazon Linux 1 system. You may use a command like:
 
-   ```
-   $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
-   ```
+  ```bash
+  $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
+  ```
+
 ### Download your Kong Enterprise License
    
 - Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
