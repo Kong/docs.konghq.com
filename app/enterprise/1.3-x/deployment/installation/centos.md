@@ -180,8 +180,8 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 4. Create a Kong database with a username and password.
 
-> ⚠️**Note**: Make sure the username and password for the Kong Database are
-> kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
+  > ⚠️**Note**: Make sure the username and password for the Kong Database are
+  > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
     ```bash
     $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';

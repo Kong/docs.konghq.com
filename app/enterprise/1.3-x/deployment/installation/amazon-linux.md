@@ -143,6 +143,7 @@ Copy the license file from your home directory to the `/etc/kong` directory like
   ```bash
   $ sudo yum install postgresql96 postgresql96-server
   ```
+
 2. Initialize the PostgreSQL database and enable automatic start.
 
   ```bash
