@@ -180,7 +180,7 @@ Under IPv4 local connections replace `ident` with `md5`
     | # IPv6 local connections:                      |
     | host | all      | all  | ::1/128      | ident  |
 
-Postgres uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the Postgres configuration file.
+PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file.
 
 7. Save and exit the file and restart PostgreSQL
 
