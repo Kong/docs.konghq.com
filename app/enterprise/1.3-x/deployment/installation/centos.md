@@ -121,7 +121,7 @@ You should now have two files in your home directory on the target CentOS system
    $ sudo yum install epel-release
    ```
    
-   - Execute a command similar to the following, using the appropriate RPM file name you downloaded
+   - Execute a command similar to the following, using the appropriate RPM file name you downloaded.
    
    ```
    $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm

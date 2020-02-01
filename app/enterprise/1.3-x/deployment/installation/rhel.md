@@ -120,7 +120,7 @@ You should now have two files in your home directory on the target RHEL system:
    $ sudo yum install epel-release -y 
    ```
    
-   - Execute a command similar to the following, using the appropriate RPM file name you downloaded
+   - Execute a command similar to the following, using the appropriate RPM file name you downloaded.
    
    ```
    $ sudo yum install kong-enterprise-edition-1.3.0.1.rhel8.noarch.rpm -y 

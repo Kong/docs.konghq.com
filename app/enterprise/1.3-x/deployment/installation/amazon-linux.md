@@ -105,7 +105,7 @@ You should now have two files in your home directory on the target Amazon system
 
 ### Option 1: If installing via a downloaded RPM package
  
-   - Execute a command similar to the following, using the appropriate RPM file name you downloaded
+   - Execute a command similar to the following, using the appropriate RPM file name you downloaded.
    
    ```
    $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
