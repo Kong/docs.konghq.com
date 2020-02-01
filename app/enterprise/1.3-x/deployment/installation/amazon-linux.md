@@ -93,7 +93,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    ```
 ### Result
 
-You now should have two files in your home directory on the target Amazon system:
+You should now have two files in your home directory on the target Amazon system:
 - Either the Kong RPM or Kong Yum repo file.
 - The license file `license.json`
 

@@ -56,7 +56,7 @@ $ scp license.json <ubuntu_username>@<server>:~
 
 ### Result
 
-You now should have two files in your home directory on the target system:
+You should now have two files in your home directory on the target system:
 - The Kong .deb package file
 - The license file `license.json`
 
