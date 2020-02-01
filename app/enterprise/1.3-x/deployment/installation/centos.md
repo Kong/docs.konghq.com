@@ -74,7 +74,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 ### Option 2: Download the Kong Repo File and Add to Yum Repo
    
 1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-rpm/rpm.
-2. Edit the repo file using your preferred editor and alter the baseurl line as follows
+2. Edit the repo file using your preferred editor and alter the baseurl line as follows:
     
    ```
    baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-rpm/centos/RELEASEVER
