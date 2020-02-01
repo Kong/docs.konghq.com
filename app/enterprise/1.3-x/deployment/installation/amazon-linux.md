@@ -39,8 +39,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 2. Kong Enterprise versions are listed in reverse chronological order.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab and click the dist folder. 
-5. Save the rpm file available: e.g. `kong-enterprise-edition-1.3.0.1.aws.rpm`
-6. Copy the rpm file to your home directory on the Amazon Linux 1 system. You may use a command like:
+5. Save the RPM file available: e.g. `kong-enterprise-edition-1.3.0.1.aws.rpm`
+6. Copy the RPM file to your home directory on the Amazon Linux 1 system. You may use a command like:
 
    ```
    $ scp kong-enterprise-edition-1.3.0.1.aws.rpm <amazon user>@<server>:~
@@ -99,9 +99,9 @@ You now should have two files in your home directory on the target Amazon system
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing via a downloaded rpm package
+### Option 1: If installing via a downloaded RPM package
  
-   - Execute a command similar to the following, using the appropriate rpm file name you downloaded
+   - Execute a command similar to the following, using the appropriate RPM file name you downloaded
    
    ```
    $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm

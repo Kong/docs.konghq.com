@@ -40,8 +40,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 2. Select the latest Kong version from the list.
 3. From the Kong version detail page, select the **Files** tab.
 4. Select the CentOS version appropriate for your environment. e.g. `centos` -> `7`.
-5. Save the rpm file available: e.g. `kong-enterprise-edition-1.3.0.1.el7.noarch.rpm`
-6. Copy the rpm file to your home directory on the CentOS system. You may use a command like:
+5. Save the RPM file available: e.g. `kong-enterprise-edition-1.3.0.1.el7.noarch.rpm`
+6. Copy the RPM file to your home directory on the CentOS system. You may use a command like:
 
    ```
    $ scp kong-enterprise-edition-1.3.0.1.el7.noarch.rpm <centos user>@<server>:~
@@ -113,7 +113,7 @@ You now should have two files in your home directory on the target CentOS system
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing via a downloaded rpm package
+### Option 1: If installing via a downloaded RPM package
  
    - Install EPEL (Extra Packages for Enterprise Linux), if not already installed
    
@@ -121,7 +121,7 @@ You now should have two files in your home directory on the target CentOS system
    $ sudo yum install epel-release
    ```
    
-   - Execute a command similar to the following, using the appropriate rpm file name you downloaded
+   - Execute a command similar to the following, using the appropriate RPM file name you downloaded
    
    ```
    $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
