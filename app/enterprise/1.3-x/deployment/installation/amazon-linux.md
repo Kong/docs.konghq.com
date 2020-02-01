@@ -200,11 +200,12 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
 
 2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace pg_user, pg_password and pg_database with the values:
 
-    ```
-    pg_user = kong
-    pg_password = kong
-    pg_database = kong
-    ```
+  ```
+  pg_user = kong
+  pg_password = kong
+  pg_database = kong
+  ```
+
   > Note: If you used different values for the user and database name, use those values for the user and database name. 
 
 ## Step 5. Seed the Super Admin password and boostrap Kong
@@ -213,29 +214,29 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 
-   ```
-    $ export KONG_PASSWORD=<password-only-you-know>
-   ```
+  ```bash
+  $ export KONG_PASSWORD=<password-only-you-know>
+  ```
 
-2. Run migrations to prepare the Kong database
+2. Run migrations to prepare the Kong database.
 
-    ```bash
-    $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
-    ```
+  ```bash
+  $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
+  ```
 
-3. Start Kong
+3. Start Kong Enterprise:
 
-    ```bash
-    $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
-    ```
+  ```bash
+  $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
+  ```
 
-4. Verify Kong is working
+4. Verify Kong Enterprise is working:
 
-    ```
-    curl -i -X GET --url http://localhost:8001/services
-    ```
+  ```bash
+  $ curl -i -X GET --url http://localhost:8001/services
+  ```
     
-    You should receive a `HTTP/1.1 200 OK` message.
+  You should receive a `HTTP/1.1 200 OK` message.
 
 ## Step 6. Finalize Configuration and Verify Installation
 
@@ -249,25 +250,25 @@ To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `
   
 This setting needs to resolve to a network path that will reach the Amazon Linux host.
   
-It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+1. It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
   ```
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
   ```
   
-  You may also list network interfaces separately as in this example:
+2. You may also list network interfaces separately as in this example:
   
   ```
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
   ```
   
-  Restart Kong for the setting to take effect:
+3. Restart Kong for the setting to take effect:
 
   ```bash
   $ sudo /usr/local/bin/kong restart
   ```
   
-  You may now access Kong Manager on port 8002.
+You may now access Kong Manager on port 8002.
   
 
 ### Enable the Developer Portal

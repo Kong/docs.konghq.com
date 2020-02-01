@@ -228,7 +228,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
   $ export KONG_PASSWORD=<password-only-you-know>
   ```
 
-2. Run migrations to prepare the Kong database:
+2. Run migrations to prepare the Kong database.:
 
   ```bash
   $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
@@ -260,19 +260,19 @@ To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `
   
 This setting needs to resolve to a network path that will reach the CentOS host.
   
-It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+1. It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
   ```
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
   ```
   
-  You may also list network interfaces separately as in this example:
+  2. You may also list network interfaces separately as in this example:
   
   ```
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
   ```
   
-  Restart Kong for the setting to take effect:
+  3. Restart Kong for the setting to take effect:
 
   ```bash
   $ sudo /usr/local/bin/kong restart
@@ -289,7 +289,7 @@ It is necessary to update the administration API setting to listen on the needed
   portal_gui_host = <DNSorIP>:8003
   ```
 
-2. Restart Kong for the setting to take effect:
+2. 3. Restart Kong for the setting to take effect:
 
   ```bash
   $ sudo /usr/local/bin/kong restart
