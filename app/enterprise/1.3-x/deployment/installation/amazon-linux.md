@@ -131,7 +131,7 @@ You should now have two files in your home directory on the target Amazon system
 Copy the license file from your home directory to the `/etc/kong` directory like so:
 
 
-    ```
+    ```bash
     $ sudo cp license.json /etc/kong/license.json
     ```
 
@@ -194,7 +194,7 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
 
 1. Make a copy of Kong's default configuration file.
 
-    ```
+    ```bash
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
     ```
 
@@ -219,13 +219,13 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 2. Run migrations to prepare the Kong database
 
-    ```
+    ```bash
     $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
 3. Start Kong
 
-    ```
+    ```bash
     $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
     ```
 
