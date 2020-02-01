@@ -59,7 +59,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    ```
    kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: sha1 md5 OK
    ```  
-### Option 2: Download the Kong repo file and add it to your Yum repository
+### Option 2: Download the Kong Repo File and Add to Yum Repo
    
 1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-aws/rpm.
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows
