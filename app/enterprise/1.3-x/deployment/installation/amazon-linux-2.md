@@ -125,9 +125,9 @@ You should now have two files in your home directory on the target Amazon system
   ```
   $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
   ```
-    
+
 2. Begin the installation via the Yum repository:
-    
+
   ```
   $ sudo yum update -y
   $ sudo yum install kong-enterprise-edition -y
@@ -143,31 +143,31 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 ## Step 3. Setup PostgreSQL
 
-1. Install PostgreSQL
+1. Install PostgreSQL.
 
    Follow the instructions avaialble at: https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you may run a command set similar to:
 
-    ```
+    ```bash
     $ sudo amazon-linux-extras install postgresql9.6
     $ sudo yum install postgresql postgresql-server
     ```
 
-2. Initialize the PostgreSQL database and enable automatic start
+2. Initialize the PostgreSQL database and enable automatic start.
 
-    ```
+    ```bash
     $ sudo /usr/bin/postgresql-setup --initdb
     $ sudo systemctl enable postgresql.service
     $ sudo systemctl start postgresql
     ```
     
-3. Switch to PostgreSQL user and launch PostgreSQL
+3. Switch to PostgreSQL user and launch PostgreSQL.
 
-    ```
+    ```bash
     $ sudo -i -u postgres
     $ psql
     ```
 
-4. Create a Kong database with a username and password
+4. Create a Kong database with a username and password.
 
 > ⚠️**Note**: Make sure the username and password for the Kong Database are
 > kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later.  
@@ -176,7 +176,7 @@ Copy the license file from your home directory to the `/etc/kong` directory like
   $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
   ```
 
-5. Exit from PostgreSQL and return to your terminal account
+5. Exit from PostgreSQL and return to your terminal account.
 
   ```bash
   $ psql> \q
@@ -185,7 +185,7 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 6. Edit the the PostgreSQL configuration file `/var/lib/pgsql/data/pg_hba.conf` using your preferred editor.
 
-Under IPv4 local connections replace `ident` with `md5`
+Under IPv4 local connections replace `ident` with `md5`:
 
   | Protocol   	| Type 	| Database 	| User 	| Address      	| Method 	|
   |------------	|------	|----------	|------	|--------------	|--------	|
@@ -194,7 +194,7 @@ Under IPv4 local connections replace `ident` with `md5`
 
 PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file. 
 
-7. Restart PostgreSQL
+7. Restart PostgreSQL.
 
   ```bash
   $ sudo systemctl restart postgresql
@@ -202,7 +202,7 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
 
 ## Step 4. Modify Kong's configuration file to work with PostgreSQL
 
-1. Make a copy of Kong's default configuration file
+1. Make a copy of Kong's default configuration file.
 
   ```bash
   $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
@@ -220,7 +220,7 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
   
 ## Step 5. Seed the Super Admin password and boostrap Kong
 
-Setting a password for the **Super Admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
+Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
 1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 

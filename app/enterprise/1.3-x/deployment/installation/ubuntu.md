@@ -91,13 +91,13 @@ $ sudo apt-get install postgresql postgresql-contrib
 $ sudo -i -u postgres
 $ psql
 ```
-3. Create a Kong database with a username and password
+3. Create a Kong database with a username and password.
 ```
 $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 ```
 > ⚠️ **Note**: Make sure the username and password for the Kong Database are
 > kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later.  
-4. Exit from PostgreSQL and return to your terminal account
+4. Exit from PostgreSQL and return to your terminal account.
 ```
 $ psql> \q
 $ exit
@@ -105,7 +105,7 @@ $ exit
 
 ## Step 4. Modify Kong's Configuration File
 
-1. Make a copy of Kong's default configuration file
+1. Make a copy of Kong's default configuration file.
 ```
 $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 ```

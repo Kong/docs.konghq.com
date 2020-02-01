@@ -140,21 +140,21 @@ Copy the license file from your home directory to the `/etc/kong` directory like
   ```
   $ sudo yum install postgresql96 postgresql96-server
   ```
-2. Initialize the PostgreSQL database and enable automatic start
+2. Initialize the PostgreSQL database and enable automatic start.
 
   ```
   $ sudo service postgresql96 initdb
   $ sudo service postgresql96 start
   ```
   
-3. Switch to PostgreSQL user and launch PostgreSQL
+3. Switch to PostgreSQL user and launch PostgreSQL.
 
   ```
   $ sudo -i -u postgres
   $ psql
   ```
 
-4. Create a Kong database with a username and password
+4. Create a Kong database with a username and password.
 
 > ⚠️**Note**: Make sure the username and password for the Kong Database are
 > kept safe. We have used a simple username and password for illustration purposes only.  Note the database name, username and password for later. 
@@ -163,7 +163,7 @@ Copy the license file from your home directory to the `/etc/kong` directory like
   $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
   ```
 
-5. Exit from PostgreSQL and return to your terminal account
+5. Exit from PostgreSQL and return to your terminal account.
 
   ```
   $ psql> \q
@@ -172,7 +172,7 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 6. Edit the the PostgreSQL configuration file `/var/lib/pgsql96/data/pg_hba.conf` using your preferred editor.
 
-Under IPv4 local connections replace `ident` with `md5`
+Under IPv4 local connections replace `ident` with `md5`:
 
   | Protocol   	| Type 	| Database 	| User 	| Address      	| Method 	|
   |------------	|------	|----------	|------	|--------------	|--------	|
@@ -188,7 +188,7 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
   ```
 ## Step 4. Modify Kong's configuration file to work with PostgreSQL
 
-1. Make a copy of Kong's default configuration file
+1. Make a copy of Kong's default configuration file.
 
     ```
     $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
