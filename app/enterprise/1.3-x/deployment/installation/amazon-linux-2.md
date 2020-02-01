@@ -182,10 +182,11 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 Under IPv4 local connections replace `ident` with `md5`
 
-  | Protocol   	| Type 	| Database 	| User 	| Address      	| Method 	|
-  |------------	|------	|----------	|------	|--------------	|--------	|
-  | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
-  | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
+    | TYPE | DATABASE | USER | ADDRESS      | METHOD |
+    | # IPv4 local connections:                      |
+    | host | all      | all  | 127.0.0.1/32 | **md5**|
+    | # IPv6 local connections:                      |
+    | host | all      | all  | ::1/128      | ident  |
 
 Postgres uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the Postgres configuration file. 
 
@@ -212,11 +213,11 @@ Postgres uses `ident` authentication by default. To allow the `kong` user to com
     ```
   > Note: If you used different values for the user and database name, use those values for the user and database name. 
   
-## Step 5. Seed the super admin password and boostrap Kong
+## Step 5. Seed the Super Admin password and boostrap Kong
 
-Setting a password for the **super admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
+Setting a password for the **Super Admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
-1. Create an environment variable with the desired **super admin** password and keep password in a safe place:
+1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 
    ```
     $ export KONG_PASSWORD=<password-only-you-know>

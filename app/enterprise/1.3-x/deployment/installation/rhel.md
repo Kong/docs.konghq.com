@@ -224,11 +224,11 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
     pg_database = kong
     ```
 
-## Step 5. Seed the super admin password and boostrap Kong
+## Step 5. Seed the Super Admin password and boostrap Kong
 
-Setting a password for the **super admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
+Setting a password for the **Super Admin** before initial start-up is strongly recommended.  This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
-1. Create an environment variable with the desired **super admin** password and keep password in a safe place:
+1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 
     ```
     $ export KONG_PASSWORD=<password-only-you-know>
