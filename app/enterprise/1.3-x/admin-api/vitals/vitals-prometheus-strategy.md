@@ -2,8 +2,40 @@
 title: Kong Vitals with Prometheus
 ---
 
+This document covers integrating Kong Vitals with a new or existing Prometheus
+time series server or cluster. Leveraging a time series database for Vitals data
+can improve request and Vitals performance in very-high traffic Kong Enterprise
+clusters (such as environments handling tens or hundreds of thousands of
+requests per second), without placing addition write load on the database
+backing the Kong cluster.
+
 For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra), 
 please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals/).
+
+## Lifecycle Overview
+
+Kong Vitals integrates with Prometheus via an intermediary data exporter, the [Prometheus StatsD exporter](https://github.com/prometheus/statsd_exporter).
+This allows Kong to efficiently ship Vitals metrics to an outside process where data points
+can be aggregated and made available for consumption by Prometheus, without impeding performance
+within the Kong proxy itself. In this design, Kong writes Vitals metrics to the StatsD exporter
+as [StatsD metrics](https://github.com/statsd/statsd/blob/master/docs/metric_types.md). Prometheus
+scrapes this exporter as it would any other endpoint. Kong then queries prometheus to retrive and
+display Vitals data via the API and Kong Manager. Prometheus does not ever directly scrape the Kong
+nodes for time series data. A trivialized workflow looks as follows:
+
+![Single Node Example Data Flow](/assets/images/docs/ee/vitals-prometheus/single.png)
+
+It is not uncommon to separate Kong functionality amongst a cluster of nodes. For example,
+one or more nodes serve only proxy traffic, while another node is responsible for serving the
+Kong Admin API and Kong Manager. In this case, the node responsible for proxy traffic writes
+the data to a StatsD exporter, and the node responsible for Admin API reads from Prometheus:
+
+![Multi Node Example Data Flow](/assets/images/docs/ee/vitals-prometheus/read-write.png)
+
+In either case, the StatsD exporter process can be run either as a standalone process/container,
+or as a sidecar/adjacent process within a VM. Note that in high-traffic environments, data aggregation
+within the StatsD exporter process can cause significant CPU usage; in such cases it is recommended to
+run Kong and StatsD processes on separate hardware/VM/container environments to avoid saturating CPU usage.
 
 ## Setup Prometheus environment for Vitals
 
@@ -212,6 +244,16 @@ $ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
                     --statsd.unixsocket-umask="777" 
 ```
 
+## Exported Metrics
+
+With the above configuration, the Prometheus StatsD exporter will make available all
+metrics as provided by the [standard Vitals configuration](/enterprise/{{page.kong_version}}/admin-api/vitals/#vitals-metrics).
+
+Additionally, the exporter process makes available the default metrics exposed by the [Golang
+Prometheus client library](https://prometheus.io/docs/guides/go-application/). These are
+prefixed with `go_` and `process_` metric names. These data points are related specifically
+to the StatsD exporter process itself, not Kong. Infrastructure teams may find this data
+useful, but they are of limited value with respect to monitoring Kong behavior.
 
 ## Accessing Vitals metrics from Prometheus
 
