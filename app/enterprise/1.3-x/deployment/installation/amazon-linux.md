@@ -139,7 +139,7 @@ $ sudo cp license.json /etc/kong/license.json
 
 1. Install PostgreSQL.
 
-    Follow the instructions avaialble at https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you may run a command set similar to:
+    Follow the instructions avaialble at https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you can run a command set similar to:
 
     ```bash
     $ sudo yum install postgresql96 postgresql96-server
