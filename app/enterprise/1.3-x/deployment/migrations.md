@@ -12,7 +12,7 @@ title: Migrating to 1.3
 * If using RBAC with Kong Manager, it will be necessary to manually add the [Session Plugin configuration values](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-kong-manager).
 * Kong Manager and the Admin API must share the same domain in order to use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies" target="_blank">SameSite</a> directive. If they are on separate domains, `cookie_samesite` must be set to `“off”`. Learn more in [Session Security](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-kong-manager)
 * Kong Manager must be served over HTTPS in order for the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Secure_and_HttpOnly_cookies" target="_blank">Secure</a> directive to work. If using Kong Manager with only HTTP, e.g. on `localhost`, then `cookie_secure` must be set to `false`. Learn more in [Session Security](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/#session-security)
-* The Kong Developer Portal has undergone a number of **Breaking Changes**, if you are currently using the Dev Portal, it will no longer work without manually migrating files, or enabling **Legacy Mode**. Learn more in [Kong Developer Portal - Whats new in 1.3](/enterprise/{{page.kong_version}}/developer-portal/overview)
+* The Kong Developer Portal has undergone a number of **Breaking Changes**, if you are currently using the Developer Portal, it will no longer work without manually migrating files, or enabling **Legacy Mode**. Learn more in [Kong Developer Portal - Whats new in 1.3](/enterprise/{{page.kong_version}}/developer-portal/overview)
 
 
 
@@ -27,7 +27,7 @@ the data, but this also means that they are designed in such a way so that
 the new version of Kong Enterprise is able to use the data as it is migrated, and to do
 it in a way so that the old Kong cluster keeps working until it is finally
 time to decommission it. For this reason, the full migration is now split into
-two steps, which are performed via commands `kong migrations up` (which does
+two steps, which are performed using commands `kong migrations up` (which does
 only non-destructive operations) and `kong migrations finish` (which puts the
 database in the final expected state for Kong Enterprise 1.3).
 
@@ -36,7 +36,7 @@ database in the final expected state for Kong Enterprise 1.3).
 2. Once that finishes running, both the old and new (1.3) clusters can now run
    simultaneously on the same datastore. Start provisioning 1.3 nodes, but do
    not use their Admin API yet. If you need to perform Admin API requests,
-   these should be made to the old cluster's nodes.  The reason is to prevent
+   these should be made to the old cluster's nodes. The reason is to prevent
    the new cluster from generating data that is not understood by the old
    cluster.
 3. Gradually divert traffic away from your old nodes, and into
@@ -44,7 +44,7 @@ database in the final expected state for Kong Enterprise 1.3).
    is going smoothly.
 4. When your traffic is fully migrated to the 1.3 cluster, decommission your
    old nodes.
-5. From your 1.3 cluster, run: `kong migrations finish`.  From this point on,
+5. From your 1.3 cluster, run: `kong migrations finish`. From this point on,
    it will not be possible to start nodes in the old cluster pointing to the
    same datastore anymore. Only run this command when you are confident that
    your migration was successful. From now on, you can safely make Admin API

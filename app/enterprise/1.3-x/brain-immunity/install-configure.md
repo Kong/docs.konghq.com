@@ -92,7 +92,7 @@ The information you need to run the Collector App, Brain and/or Immunity is incl
 
 Kong provides a private Docker image that is used by the compose files. This image is distributed by Bintray, and the following is required for access:
 * Your Bintray User ID
-* Your Bintray API Key
+* Your Bintray API key
 * A server where you want to run Brain and/or Immunity with Docker installed
 
 Your Bintray credentials are provided to you with your purchase of Kong Enterprise. If you do not have these credentials, contact **Kong Support**.
