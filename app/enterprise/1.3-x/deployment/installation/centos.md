@@ -16,7 +16,7 @@ show steps to configure PostgreSQL. For assistance in setting up Cassandra, plea
 
 ## Prerequisites
 
-To complete this guide you will need:
+To complete this installation you will need:
 
 * A valid Bintray account. You will need your **username**, account **password** and account **API Key**.
   * Example:
