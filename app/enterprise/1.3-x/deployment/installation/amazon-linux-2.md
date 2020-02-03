@@ -258,7 +258,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     admin_gui_url = http://<DNSorIP>:8002
     ```
     
-    This setting needs to resolve to a network path that will reach the CentOS host.
+    This setting needs to resolve to a network path that will reach the Amazon Linux host.
   
 2. It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   

@@ -252,7 +252,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
   
     This setting needs to resolve to a network path that will reach the Amazon Linux host.
   
-2. It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+2. It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
     ```
     admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
