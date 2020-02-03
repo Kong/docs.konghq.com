@@ -136,7 +136,7 @@ PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snap
 
 ## Step 5. Seed the Super Admin's Password and bootstrap Kong
 
-Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
+Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
 1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 
