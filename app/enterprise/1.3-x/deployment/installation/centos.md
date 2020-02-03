@@ -114,7 +114,7 @@ You should now have two files in your home directory on the target CentOS system
 
 ### Option 1: If installing using a downloaded RPM package
  
-1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed
+1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
 
     ```bash
     $ sudo yum install epel-release
@@ -255,7 +255,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     
 5. You should receive a `HTTP/1.1 200 OK` message.
     
-## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
+## Step 6. Finalize your Configuration and Verify Kong was Successfully installed:
 
 ### Enable and Configure Kong Manager
 

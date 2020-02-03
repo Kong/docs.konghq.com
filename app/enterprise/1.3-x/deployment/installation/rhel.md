@@ -114,7 +114,7 @@ You should now have two files in your home directory on the target RHEL system:
 
 ### Option 1: If installing using a downloaded RPM package
  
-- Install EPEL (Extra Packages for Enterprise Linux), if not already installed
+- Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
 
 ```bash
 $ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
