@@ -48,7 +48,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    
 *Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-using-a-downloaded-rpm-package).
 
-7. Download Kong's official public key to ensure the RPM package's integrity:
+7. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong

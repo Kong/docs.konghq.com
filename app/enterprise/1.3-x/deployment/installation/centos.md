@@ -55,7 +55,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
     ```
    
-2. Download Kong's official public key to ensure the RPM package's integrity:
+2. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
