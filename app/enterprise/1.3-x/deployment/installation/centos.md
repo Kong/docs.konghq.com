@@ -47,7 +47,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     $ scp kong-enterprise-edition-1.3.0.1.el7.noarch.rpm <centos user>@<server>:~
     ```
    
-*Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
+*Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-using-a-downloaded-rpm-package).
 
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
    
@@ -112,7 +112,7 @@ You should now have two files in your home directory on the target CentOS system
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing via a downloaded RPM package
+### Option 1: If installing using a downloaded RPM package
  
 1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed
 
@@ -126,7 +126,7 @@ You should now have two files in your home directory on the target CentOS system
     $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
 
-### Option 2: If installing via the Yum repository
+### Option 2: If installing using the Yum repository
    
 1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
@@ -134,7 +134,7 @@ You should now have two files in your home directory on the target CentOS system
     $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
     ```
     
-2. Begin the installation via the Yum repository:
+2. Begin the installation using the Yum repository:
     
     ```bash
     $ sudo yum update -y

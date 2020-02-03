@@ -27,7 +27,7 @@ the data, but this also means that they are designed in such a way so that
 the new version of Kong Enterprise is able to use the data as it is migrated, and to do
 it in a way so that the old Kong cluster keeps working until it is finally
 time to decommission it. For this reason, the full migration is now split into
-two steps, which are performed via commands `kong migrations up` (which does
+two steps, which are performed using commands `kong migrations up` (which does
 only non-destructive operations) and `kong migrations finish` (which puts the
 database in the final expected state for Kong Enterprise 1.3).
 

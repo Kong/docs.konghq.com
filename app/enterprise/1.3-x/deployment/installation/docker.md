@@ -128,7 +128,7 @@ $ curl -i -X GET --url http://localhost:8001/services
 
 You should receive an `HTTP/1.1 200 OK` message.
       
-- Verify Kong Manager is running by accessing it via the URL specified in KONG_ADMIN_GUI_URL in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
+- Verify Kong Manager is running by accessing it using the URL specified in KONG_ADMIN_GUI_URL in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
 - The final step is to enable the Developer Portal. To do so, execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host. 
 

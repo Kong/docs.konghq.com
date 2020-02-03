@@ -46,7 +46,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
   $ scp kong-enterprise-edition-1.3.0.1.aws.rpm <amazon user>@<server>:~
   ```
    
-*Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
+*Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-using-a-downloaded-rpm-package).
 
 1. Download Kong's official public key to ensure the RPM package's integrity:
 
@@ -104,7 +104,7 @@ You should now have two files in your home directory on the target Amazon system
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing via a downloaded RPM package
+### Option 1: If installing using a downloaded RPM package
  
 - Execute a command similar to the following, using the appropriate RPM file name you downloaded.
 
@@ -112,7 +112,7 @@ You should now have two files in your home directory on the target Amazon system
 $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
 ```
    
-### Option 2: If installing via the Yum repository
+### Option 2: If installing using the Yum repository
    
 - Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
@@ -120,7 +120,7 @@ $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
 $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
 ```
 
-- Begin the installation via the Yum repository:
+- Begin the installation using the Yum repository:
 
 ```bash
 $ sudo yum update -y
