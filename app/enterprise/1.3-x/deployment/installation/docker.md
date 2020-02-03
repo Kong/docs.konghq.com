@@ -6,7 +6,7 @@ title: Install Kong Enterprise on Docker
 
 This guide walks through downloading, installing, and starting **Kong Enterprise** on **Docker**.
 
-The configuration shown in this guide is intended only as an example. Depending on your
+The configuration shown in this guide is intended as an example. Depending on your
 environment, you may need to make modifications, and take measures to properly conclude
 the installation and configuration.
 
