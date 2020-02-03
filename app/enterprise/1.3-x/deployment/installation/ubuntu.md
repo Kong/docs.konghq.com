@@ -11,7 +11,7 @@ environment, you may need to make modifications and take measures to properly co
 the installation and configuration.
 
 Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
-show steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Kong Sales or Support representative.
+steps to configure PostgreSQL. For assistance in setting up Cassandra, please contact your Kong Sales or Support representative.
 
 ## Prerequisites
 
