@@ -1,5 +1,5 @@
 ---
-title: How to Install Kong Enterprise on RHEL
+title: Install Kong Enterprise on RHEL
 ---
 
 ## Introduction

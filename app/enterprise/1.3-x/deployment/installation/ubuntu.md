@@ -1,5 +1,5 @@
 ---
-title: How to Install Kong Enterprise on Ubuntu
+title: Install Kong Enterprise on Ubuntu
 ---
 
 ## Introduction

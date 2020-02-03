@@ -1,5 +1,5 @@
 ---
-title: How to Install Kong Enterprise on Docker
+title: Install Kong Enterprise on Docker
 ---
 
 ## Introduction
