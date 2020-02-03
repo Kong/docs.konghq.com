@@ -146,7 +146,7 @@ params:
       value_in_examples:
       description: |
         Sets the attribute holding the name of a group, typically called `name` 
-        (for example, for Active Directory) or `cn` (for example, for OpenLDAP).
+        (in Active Directory) or `cn` (in OpenLDAP).
     - name: group_member_attribute
       required:
       default: "`memberOf`"

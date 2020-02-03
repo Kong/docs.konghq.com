@@ -96,7 +96,7 @@ admin_gui_auth_conf = {
 * `ldap_password`:`<ENTER_YOUR_LDAP_PASSWORD_HERE>`: LDAP password
     * *Important*: As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
 * `group_base_dn`:`<ENTER_YOUR_BASE_DN_HERE>`: Sets a distinguished name for the entry where LDAP searches for groups begin. The default is the value from `conf.base_dn`.
-* `group_name_attribute`: `<ENTER_YOUR_GROUP_NAME_ATTRIBUTE_HERE>`: Sets the attribute holding the name of a group, typically called name (for example, for Active Directory) or cn (for example, for OpenLDAP). The default is the value from `conf.attribute`.
+* `group_name_attribute`: `<ENTER_YOUR_GROUP_NAME_ATTRIBUTE_HERE>`: Sets the attribute holding the name of a group, typically called `name` (in Active Directory) or `cn` (in OpenLDAP). The default is the value from `conf.attribute`.
 * `group_member_attribute`:`<ENTER_YOUR_GROUP_MEMBER_ATTRIBUTE_HERE>`: Sets the attribute holding the members of the LDAP group. The default is `memberOf`.
 
 ### Define Roles with Permissions 
@@ -158,7 +158,6 @@ Alternatives:
 * Start Kong with RBAC turned off, map a Group to the super-admin Role, and then create an Admin to correspond to a User belonging to that Group. Doing so ensures that the Super Admin's privileges are entirely tied to the Directory Group, whereas bootstrapping a Super Admin only uses the Directory for authentication.
 
 Create all Admin accounts for matching Directory Users and ensure that their existing Groups map to appropriate Roles before enforcing RBAC.
-
 
 
 
