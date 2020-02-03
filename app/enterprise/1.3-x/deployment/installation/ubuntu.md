@@ -40,9 +40,9 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 4. Click the .deb file matching your target Ubuntu OS version. e.g. `kong-enterprise-edition-1.3.0.1.bionic.all.deb` for the Ubuntu Bionic Beaver release.
 5. Copy the .deb file to your home directory on the Ubuntu system. You may use a command like:
 
-  ```
-  $ scp kong-enterprise-edition-1.3.0.1.bionic.all.deb <ubuntu_user>@<server>:~
-  ```
+    ```bash
+    $ scp kong-enterprise-edition-1.3.0.1.bionic.all.deb <ubuntu_user>@<server>:~
+    ```
 
 ### Download your Kong Enterprise License
    
@@ -50,9 +50,9 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 2. Securely copy the license file to your home directory on the Ubuntu system
 
-  ```
-  $ scp license.json <ubuntu_username>@<server>:~
-  ```
+    ```bash
+    $ scp license.json <ubuntu_username>@<server>:~
+    ```
 
 ### Result
 
@@ -64,24 +64,24 @@ You should now have two files in your home directory on the target system:
 
 1. Update APT and install dependencies
 
-  ```
-  $ sudo apt-get update
-  $ sudo apt-get install openssl libpcre3 procps perl
-  ```
+    ```bash
+    $ sudo apt-get update
+    $ sudo apt-get install openssl libpcre3 procps perl
+    ```
 
 2. Install Kong Enterprise
 
-  ```
-  $ sudo dpkg -i kong-enterprise-edition-<VERSION_NUMBER>.deb
-  ```
+    ```bash
+    $ sudo dpkg -i kong-enterprise-edition-<VERSION_NUMBER>.deb
+    ```
   
-  > Note: Your version may be different based on when you obtained the package
+    > Note: Your version may be different based on when you obtained the package
 
 3. Copy the license file to the `/etc/kong` directory
 
-  ```
-  $ sudo cp license.json /etc/kong/license.json
-  ```
+    ```bash
+    $ sudo cp license.json /etc/kong/license.json
+    ```
 
 4. Kong will look for a valid license in this location.
 
@@ -91,48 +91,48 @@ PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snap
 
 1. Install PostgreSQL. This command may not work on all version of Ubuntu.
 
-  ```
-  $ sudo apt-get install postgresql postgresql-contrib
-  ```
+    ```bash
+    $ sudo apt-get install postgresql postgresql-contrib
+    ```
 
 2. Switch to PostgreSQL user and launch PostgreSQL
 
-  ```
-  $ sudo -i -u postgres
-  $ psql
-  ```
+    ```bash
+    $ sudo -i -u postgres
+    $ psql
+    ```
 
 3. Create a Kong database with a username and password.
 
-  ```
-  $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
-  ```
+    ```bash
+    $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
+    ```
 
-  > ⚠️ **Note**: Make sure the username and password for the Kong Database are
-  > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
+    > ⚠️ **Note**: Make sure the username and password for the Kong Database are
+    > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
 4. Exit from PostgreSQL and return to your terminal account.
 
-  ```
-  $ psql> \q
-  $ exit
-  ```
+    ```bash
+    $ psql> \q
+    $ exit
+    ```
 
 ## Step 4. Modify Kong's Configuration File
 
 1. Make a copy of Kong's default configuration file.
 
-  ```
-  $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
-  ```
+    ```bash
+    $ sudo cp /etc/kong/kong.conf.default /etc/kong/kong.conf
+    ```
 
 2. Uncomment and update the PostgreSQL database properties in `/etc/kong/kong.conf` using your preferred text editor. Replace `pg_user`, `pg_password`, and `pg_database` with the values: 
 
-  ```
-  pg_user = kong
-  pg_password = kong
-  pg_database = kong
-  ```
+    ```
+    pg_user = kong
+    pg_password = kong
+    pg_database = kong
+    ```
 
 ## Step 5. Seed the Super Admin's Password and Boostrap Kong
 
@@ -140,27 +140,27 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
 
-  ```
-  $ export KONG_PASSWORD=<password-only-you-know>
-  ```
+    ```bash
+    $ export KONG_PASSWORD=<password-only-you-know>
+    ```
 
 2. Run migrations to prepare the Kong database.
 
-  ```
-  $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
-  ```
+    ```bash
+    $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
+    ```
 
 3. Start Kong Enterprise:
 
-  ```
-  $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
-  ```
+    ```bash
+    $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
+    ```
 
 4. Verify Kong Enterprise is working:
 
-  ```
-  $ curl -i -X GET --url http://localhost:8001/services
-  ```
+    ```bash
+    $ curl -i -X GET --url http://localhost:8001/services
+    ```
 
 5. You should receive a `HTTP/1.1 200 OK` message.
 
@@ -170,29 +170,29 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS or IP address of the system. For example:
 
-  ```
-  admin_gui_url = http://<DNSorIP>:8002
-  ```
+    ```
+    admin_gui_url = http://<DNSorIP>:8002
+    ```
   
-  This setting needs to resolve to a network path that will reach the host.
+    This setting needs to resolve to a network path that will reach the host.
   
 2. It is necessary to update the administration API setting to listen on the needed network interfaces on the host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
-  ```
-  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
-  ```
+    ```
+    admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ```
 
 3. You may also list network interfaces separately as in this example:
 
-  ```
-  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
-  ```
+    ```
+    admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
+    ```
 
 4. Restart Kong for the setting to take effect:
 
-  ```bash
-  $ sudo /usr/local/bin/kong restart
-  ```
+    ```bash
+    $ sudo /usr/local/bin/kong restart
+    ```
 
 5. You may now access Kong Manager on port `8002`.
 
@@ -200,28 +200,28 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 1. Enable Kong Enterprise's Developer Portal by updating `/etc/kong/kong.conf` to set the `portal` property to `on` and the `portal_gui_host` property to the DNS or IP address of the system. For example:
 
-  ```
-  portal = on
-  portal_gui_host = <DNSorIP>:8003
-  ```
+    ```
+    portal = on
+    portal_gui_host = <DNSorIP>:8003
+    ```
 
 2. Restart Kong for the setting to take effect:
 
-  ```bash
-  $ sudo /usr/local/bin/kong restart
-  ```
+    ```bash
+    $ sudo /usr/local/bin/kong restart
+    ```
 
 3. The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the system.
 
-  ```
-  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default --data "config.portal=true"
-  ```
+    ```bash
+    $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default --data "config.portal=true"
+    ```
 
 4. You can now access the Developer Portal on the default workspace with a URL like:
 
-  ```
-  http://<DNSorIP>:8003/default
-  ```
+    ```
+    http://<DNSorIP>:8003/default
+    ```
 
 ## Troubleshooting
 
