@@ -255,7 +255,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     
 5. You should receive a `HTTP/1.1 200 OK` message.
     
-## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
+## Step 6. Finalize your Configuration and Verify Kong is Successfully Installed
 
 ### Enable and Configure Kong Manager
 
