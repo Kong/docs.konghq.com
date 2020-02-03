@@ -48,7 +48,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    
 1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-2. Securely copy the license file to your home directory on the Ubuntu system
+2. Securely copy the license file to your home directory on the Ubuntu system:
 
     ```bash
     $ scp license.json <ubuntu_username>@<server>:~

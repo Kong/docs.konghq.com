@@ -88,7 +88,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-rpm/centos/7
     ```
     
-3. Securely copy the changed repo file to your home directory on the CentOS system
+3. Securely copy the changed repo file to your home directory on the CentOS system:
 
     ```
     $ scp bintray--kong-kong-enterprise-edition-rpm.repo <centos user>@<server>:~
@@ -98,7 +98,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    
 - Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-- Securely copy the license file to your home directory on the CentOS system
+- Securely copy the license file to your home directory on the CentOS system:
 
     ```bash
     $ scp license.json <centos username>@<server>:~

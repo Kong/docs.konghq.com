@@ -88,7 +88,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-rpm/rhel/8
     ```
     
-3. Securely copy the changed repo file to your home directory on the RHEL system
+3. Securely copy the changed repo file to your home directory on the RHEL system:
 
     ```bash
     $ scp bintray--kong-kong-enterprise-edition-rpm.repo <rhel user>@<server>:~
@@ -98,7 +98,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    
 - Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-- Securely copy the license file to your home directory on the RHEL system
+- Securely copy the license file to your home directory on the RHEL system:
 
     ```
     $ scp license.json <rhel username>@<server>:~
