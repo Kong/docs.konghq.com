@@ -19,15 +19,15 @@ show steps to configure PostgreSQL.
 To complete this guide you will need:
 
 * A valid *Bintray* account. You will need your *username*, account *password* and account *API Key*.
-   - Example:
-      * Bintray Access key = `john-company`
-      * Bintray username = `john-company@kong`
-      * Bintray password = `12345678`
-      * Bintray API key = `12234e314356291a2b11058591bba195830`
-   - The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting **API Key**
+  - Example:
+    * Bintray Access key = `john-company`
+    * Bintray username = `john-company@kong`
+    * Bintray password = `12345678`
+    * Bintray API key = `12234e314356291a2b11058591bba195830`
+  - The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting **API Key**
 * A Docker-enabled system with proper Docker access.
 * A valid **Kong Enterprise License** JSON file. 
-   - The license file can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
+  - The license file can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
 ## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image
 
@@ -60,11 +60,11 @@ Use a PostgreSQL container:
 
 ```bash
 $ docker run -d --name kong-ee-database \
-   --network=kong-ee-net \
-   -p 5432:5432 \
-   -e "POSTGRES_USER=kong" \
-   -e "POSTGRES_DB=kong" \
-   postgres:9.6
+  --network=kong-ee-net \
+  -p 5432:5432 \
+  -e "POSTGRES_USER=kong" \
+  -e "POSTGRES_DB=kong" \
+  postgres:9.6
 ```
 
 ## Step 4. Export the License Key to a Variable
@@ -89,34 +89,34 @@ $ docker run --rm --network=kong-ee-net \
 
 ```bash
 $ docker run -d --name kong-ee --network=kong-ee-net \
-   -e "KONG_DATABASE=postgres" \
-   -e "KONG_PG_HOST=kong-ee-database" \
-   -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-   -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-   -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-   -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-   -e "KONG_PORTAL=on" \
-   -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
-   -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
-   -e "KONG_PORTAL_GUI_HOST=<DNSorIP>:8003" \
-   -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
-   -p 8000:8000 \
-   -p 8443:8443 \
-   -p 8001:8001 \
-   -p 8444:8444 \
-   -p 8002:8002 \
-   -p 8445:8445 \
-   -p 8003:8003 \
-   -p 8004:8004 \
-   kong-ee
+  -e "KONG_DATABASE=postgres" \
+  -e "KONG_PG_HOST=kong-ee-database" \
+  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+  -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+  -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+  -e "KONG_PORTAL=on" \
+  -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
+  -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
+  -e "KONG_PORTAL_GUI_HOST=<DNSorIP>:8003" \
+  -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
+  -p 8000:8000 \
+  -p 8443:8443 \
+  -p 8001:8001 \
+  -p 8444:8444 \
+  -p 8002:8002 \
+  -p 8445:8445 \
+  -p 8003:8003 \
+  -p 8004:8004 \
+  kong-ee
 ```
   
 **Notes** 
 - For `KONG_PASSWORD`, replace <SOMETHING-YOU-KNOW> with a valid password that only you know.
 - For `KONG_PORAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
-   * The DNS or IP address for `KONG_PORAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
-   * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`. 
+  * The DNS or IP address for `KONG_PORAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
+  * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`. 
   
 **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
 
@@ -128,16 +128,15 @@ $ curl -i -X GET --url http://localhost:8001/services
 
 You should receive an `HTTP/1.1 200 OK` message.
       
-Verify Kong Manager is running by accessing it via the URL specified in KONG_ADMIN_GUI_URL in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
+- Verify Kong Manager is running by accessing it via the URL specified in KONG_ADMIN_GUI_URL in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
-The final step is to enable the Developer Portal. To do so, execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host. 
+- The final step is to enable the Developer Portal. To do so, execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host. 
 
-```bash
-$ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
-```
+  ```bash
+  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
+  ```
 
-Verify the Developer Portal is running by accessing it at the URL specified in the `KONG_PORTAL_GUI_HOST` variable in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
-
+- Verify the Developer Portal is running by accessing it at the URL specified in the `KONG_PORTAL_GUI_HOST` variable in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
 ## Troubleshooting
 

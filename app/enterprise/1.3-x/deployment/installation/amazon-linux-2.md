@@ -46,21 +46,21 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
   $ scp kong-enterprise-edition-1.3.0.1.aws.rpm <amazon user>@<server>:~
   ```
    
-*Optional:* Steps 7 and 8 are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
+*Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
 
 7. Download Kong's official public key to ensure the RPM package's integrity:
 
-   ```
-   $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
-   $ sudo rpm --import kong.key
-   $ sudo rpm -K kong-enterprise-edition-1.3.0.1.aws.rpm
-   ```
+  ```
+  $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+  $ sudo rpm --import kong.key
+  $ sudo rpm -K kong-enterprise-edition-1.3.0.1.aws.rpm
+  ```
     
 8. Verify you get an OK check. You should have an output similar to this:
  
-   ```
-   kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: sha1 md5 OK
-   ```
+  ```
+  kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: sha1 md5 OK
+  ```
 
 ### Option 2: Download the Kong Repo File and Add to Yum Repo
    
@@ -185,14 +185,14 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 6. Edit the the PostgreSQL configuration file `/var/lib/pgsql/data/pg_hba.conf` using your preferred editor.
 
-Under IPv4 local connections replace `ident` with `md5`:
+  Under IPv4 local connections replace `ident` with `md5`:
 
-  | Protocol   	| Type 	| Database 	| User 	| Address      	| Method 	|
-  |------------	|------	|----------	|------	|--------------	|--------	|
-  | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
-  | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
+    | Protocol   	| Type 	| Database 	| User 	| Address      	| Method 	|
+    |------------	|------	|----------	|------	|--------------	|--------	|
+    | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
+    | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
 
-PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file. 
+  PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file. 
 
 7. Restart PostgreSQL.
 
@@ -246,39 +246,39 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
   $ curl -i -X GET --url http://localhost:8001/services
   ```
   
-  You should receive a `HTTP/1.1 200 OK` message.
+  5. You should receive a `HTTP/1.1 200 OK` message.
 
 ## Step 6. Finalize Configuration and Verify Installation
 
 ### Enable and Configure Kong Manager
 
-To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the CentOS system. For example:
+1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the CentOS system. For example:
 
   ```
   admin_gui_url = http://<DNSorIP>:8002
   ```
   
-This setting needs to resolve to a network path that will reach the CentOS host.
+  This setting needs to resolve to a network path that will reach the CentOS host.
   
-1. It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+2. It is necessary to update the administration API setting to listen on the needed network interfaces on the Amazon Linux host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
   ```
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
   ```
   
-  2. You may also list network interfaces separately as in this example:
+3. You may also list network interfaces separately as in this example:
   
   ```
   admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
   ```
   
-  3. Restart Kong for the setting to take effect:
+4. Restart Kong for the setting to take effect:
 
   ```bash
   $ sudo /usr/local/bin/kong restart
   ```
   
-  You may now access Kong Manager on port 8002.
+5. You may now access Kong Manager on port `8002`.
 
 ### Enable the Kong Developer Portal
 
@@ -289,7 +289,7 @@ This setting needs to resolve to a network path that will reach the CentOS host.
   portal_gui_host = <DNSorIP>:8003
   ```
 
-2. 3. Restart Kong for the setting to take effect:
+2. Restart Kong for the setting to take effect:
 
   ```bash
   $ sudo /usr/local/bin/kong restart
@@ -301,18 +301,17 @@ This setting needs to resolve to a network path that will reach the CentOS host.
   $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
   ```
 
-You can now access the Developer Portal on the default workspace with a URL like:
+4. You can now access the Developer Portal on the default workspace with a URL like:
 
-```
-http://<DNSorIP>:8003/default
-```
+  ```
+  http://<DNSorIP>:8003/default
+  ```
 
 ## Troubleshooting
 
 If you did not receive an `HTTP/1.1 200 OK` message, or need assistance completing
 setup reach out to your Kong Support contact or head over to the
 [Support Portal](https://support.konghq.com/support/s/).
-
 
 ## Next Steps
 

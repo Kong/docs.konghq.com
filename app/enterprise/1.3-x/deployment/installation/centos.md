@@ -47,47 +47,45 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
    $ scp kong-enterprise-edition-1.3.0.1.el7.noarch.rpm <centos user>@<server>:~
    ```
    
-*Optional:* Steps 7-9 are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
+*Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-via-a-downloaded-rpm-package).
 
-7. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
+1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
    
-   ```
-   $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
-   ```
+  ```
+  $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
+  ```
    
-8. Download Kong's official public key to ensure the RPM package's integrity:
+2. Download Kong's official public key to ensure the RPM package's integrity:
 
-   ```
-   $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
-   $ rpm --import kong.key
-   $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
-   ```
+  ```
+  $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
+  $ rpm --import kong.key
+  $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
+  ```
     
-9. Verify you get an OK check. You should have an output similar to this:
+3. Verify you get an OK check. You should have an output similar to this:
  
-   ```
-   kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
-   ```  
-   
-
+  ```
+  kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
+  ```  
 
 ### Option 2: Download the Kong Repo File and Add to Yum Repo
    
 1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-rpm/rpm.
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows:
     
-   ```
-   baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-rpm/centos/RELEASEVER
-   ```
-   
-   - Replace `USERNAME` with your Bintray account user name.
-   - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
-   - Replace `RELEASEVER` with the major CentOS version number on your target system. For example, for version 7.7.1908, the appropriate `RELEASEVER` replacement is 7.
+  ```
+  baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-rpm/centos/RELEASEVER
+  ```
+  
+  - Replace `USERNAME` with your Bintray account user name.
+  - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
+  - Replace `RELEASEVER` with the major CentOS version number on your target system. For example, for version 7.7.1908, the appropriate `RELEASEVER` replacement is 7.
 
-   The result should look something like this:
-   ```
-   baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-rpm/centos/7
-   ```
+  The result should look something like this:
+  ```
+  baseurl=https://john-company:12234e314356291a2b11058591bba195830@kong.bintray.com/kong-enterprise-edition-rpm/centos/7
+  ```
     
 3. Securely copy the changed repo file to your home directory on the CentOS system
 
@@ -101,9 +99,9 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 - Securely copy the license file to your home directory on the CentOS system
 
-   ```
-   $ scp license.json <centos username>@<server>:~
-   ```
+  ```
+  $ scp license.json <centos username>@<server>:~
+  ```
 
 ### Result
 
@@ -115,41 +113,40 @@ You should now have two files in your home directory on the target CentOS system
 
 ### Option 1: If installing via a downloaded RPM package
  
-   - Install EPEL (Extra Packages for Enterprise Linux), if not already installed
-   
-   ```
-   $ sudo yum install epel-release
-   ```
-   
-   - Execute a command similar to the following, using the appropriate RPM file name you downloaded.
-   
-   ```
-   $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
-   ```
+1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed
+
+  ```
+  $ sudo yum install epel-release
+  ```
+
+2. Execute a command similar to the following, using the appropriate RPM file name you downloaded.
+
+  ```
+  $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
+  ```
 
 ### Option 2: If installing via the Yum repository
    
-   - Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
+1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
-   ```
-   $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
-   ```
+  ```
+  $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
+  ```
     
-   - Begin the installation via the Yum repository:
+2. Begin the installation via the Yum repository:
     
-   ```
-   $ sudo yum update -y
-   $ sudo yum install kong-enterprise-edition
-   ```    
+  ```
+  $ sudo yum update -y
+  $ sudo yum install kong-enterprise-edition
+  ```    
 
 ### Copy the License File
  
 Copy the license file from your home directory to the `/etc/kong` directory like so:
 
-
-  ```bash
-  $ sudo cp license.json /etc/kong/license.json
-  ```
+```bash
+$ sudo cp license.json /etc/kong/license.json
+```
 
 ## Step 3. Setup PostgreSQL
 
@@ -196,14 +193,14 @@ Copy the license file from your home directory to the `/etc/kong` directory like
 
 6. Edit the the PostgreSQL configuration file `/var/lib/pgsql/9.6/data/pg_hba.conf` using your preferred editor.
 
-Under IPv4 local connections replace `ident` with `md5`:
+  Under IPv4 local connections replace `ident` with `md5`:
 
   | Protocol   	| Type 	| Database 	| User 	| Address      	| Method 	|
   |------------	|------	|----------	|------	|--------------	|--------	|
   | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
   | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
 
-PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file. 
+  PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file. 
 
 7. Restart PostgreSQL.
 
@@ -226,7 +223,6 @@ PostgreSQL uses `ident` authentication by default. To allow the `kong` user to c
   pg_password = kong
   pg_database = kong
   ```
-
 
 ## Step 5. Seed the Super Admin password and boostrap Kong
 
@@ -256,66 +252,66 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
   $ curl -i -X GET --url http://localhost:8001/services
   ```
     
-  You should receive a `HTTP/1.1 200 OK` message.
+5. You should receive a `HTTP/1.1 200 OK` message.
     
 ## Step 6. Finalize your Configuration and Verify Kong was Successfully Installed
 
 ### Enable and Configure Kong Manager
 
-To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the CentOS system. For example:
+1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the CentOS system. For example:
 
   ```
   admin_gui_url = http://<DNSorIP>:8002
   ```
   
-This setting needs to resolve to a network path that will reach the CentOS host.
+  This setting needs to resolve to a network path that will reach the CentOS host.
   
-1. It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
+2. It is necessary to update the administration API setting to listen on the needed network interfaces on the CentOS host. A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
   
-```
-admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
-```
+  ```
+  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
+  ```
 
-2. You may also list network interfaces separately as in this example:
+3. You may also list network interfaces separately as in this example:
 
-```
-admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
-```
+  ```
+  admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl, 127.0.0.1:8001, 127.0.0.1:8444 ssl
+  ```
 
-Restart Kong for the setting to take effect:
+4. Restart Kong for the setting to take effect:
 
-```
-$ sudo /usr/local/bin/kong restart
-```
+  ```bash
+  $ sudo /usr/local/bin/kong restart
+  ```
 
-You may now access Kong Manager on port 8002.
+5. You may now access Kong Manager on port `8002`.
 
 ### Enable the Developer Portal
 
-Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
+1. Kong Enterprise's Developer Portal can be enabled by setting the `portal` property to `on` and setting the `portal_gui_host` property to the DNS, or IP address, of the CentOS system. For example:
 
-```
-portal = on
-portal_gui_host = <DNSorIP>:8003
-```
+  ```
+  portal = on
+  portal_gui_host = <DNSorIP>:8003
+  ```
 
-Restart Kong for the setting to take effect:
+2. Restart Kong for the setting to take effect:
 
-```
-$ sudo /usr/local/bin/kong restart
-```
+  ```bash
+  $ sudo /usr/local/bin/kong restart
+  ```
 
-The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the CentOS system.
+3. The final step is to enable the Developer Portal. To do this, execute the following command, updating `DNSorIP` to reflect the IP or valid DNS for the CentOS system.
 
-```
-$ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
-```
+  ```bash
+  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
+  ```
 
-You can now access the Developer Portal on the default workspace with a URL like:
+4. You can now access the Developer Portal on the default workspace with a URL like:
 
-```
-http://<DNSorIP>:8003/default
-```
+  ```
+  http://<DNSorIP>:8003/default
+  ```
 
 ## Troubleshooting
 

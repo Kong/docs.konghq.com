@@ -1,3 +1,3 @@
 ---
-redirect_to: /enterprise/{{page.kong_version}}/deployment/installation/overview
+redirect_to: /enterprise/1.3-x/deployment/installation/overview
 ---
