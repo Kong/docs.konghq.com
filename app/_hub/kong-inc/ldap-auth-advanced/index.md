@@ -134,6 +134,25 @@ params:
       description: |
         The DN to bind to. Used to perform LDAP search of user. This bind_dn 
         should have permissions to search for the user being authenticated.
+    - name: group_base_dn
+      required:
+      default: "matches `conf.base_dn`"
+      value_in_examples:
+      description: |
+        Sets a distinguished name for the entry where LDAP searches for groups begin.
+    - name: group_name_attribute
+      required:
+      default: "matches `conf.attribute`"
+      value_in_examples:
+      description: |
+        Sets the attribute holding the name of a group, typically called `name` 
+        (for example, for Active Directory) or `cn` (for example, for OpenLDAP).
+    - name: group_member_attribute
+      required:
+      default: "`memberOf`"
+      value_in_examples:
+      description: |
+        Sets the attribute holding the members of the LDAP group.
 
 ---
 
