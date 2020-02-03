@@ -78,9 +78,9 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-rpm/centos/RELEASEVER
     ```
     
-    - Replace `USERNAME` with your Bintray account user name.
-    - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
-    - Replace `RELEASEVER` with the major CentOS version number on your target system. For example, for version 7.7.1908, the appropriate `RELEASEVER` replacement is 7.
+    Replace `USERNAME` with your Bintray account user name.
+    Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
+    Replace `RELEASEVER` with the major CentOS version number on your target system. For example, for version 7.7.1908, the appropriate `RELEASEVER` replacement is 7.
 
     The result should look something like this:
 

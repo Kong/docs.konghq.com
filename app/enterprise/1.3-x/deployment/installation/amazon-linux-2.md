@@ -72,8 +72,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     baseurl=https://USERNAME:API_KEY@kong.bintray.com/kong-enterprise-edition-aws
     ```
   
-    - Replace `USERNAME` with your Bintray account user name.
-    - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
+    Replace `USERNAME` with your Bintray account user name.
+    Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
 
     The result should look something like this:
 
