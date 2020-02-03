@@ -179,7 +179,7 @@ $ sudo cp license.json /etc/kong/license.json
 4. Create a Kong database with a username and password.
 
     > ⚠️**Note**: Make sure the username and password for the Kong Database are
-    > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
+    > kept safe. This example uses a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
     ```bash
     $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
@@ -201,7 +201,7 @@ $ sudo cp license.json /etc/kong/license.json
     | IPv4 local 	| host 	| all      	| all  	| 127.0.0.1/32 	| md5    	|
     | IPv6 local 	| host 	| all      	| all  	| 1/128        	| ident  	|
 
-    PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, we must change the authentication method to `md5` by modifying the PostgreSQL configuration file. 
+    PostgreSQL uses `ident` authentication by default. To allow the `kong` user to communicate with the database locally, change the authentication method to `md5` by modifying the PostgreSQL configuration file. 
 
 7. Restart PostgreSQL.
 
@@ -225,7 +225,7 @@ $ sudo cp license.json /etc/kong/license.json
     pg_database = kong
     ```
 
-## Step 5. Seed the Super Admin password and boostrap Kong
+## Step 5. Seed the Super Admin password and bootstrap Kong
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 

@@ -109,7 +109,7 @@ PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snap
     ```
 
     > ⚠️ **Note**: Make sure the username and password for the Kong Database are
-    > kept safe. We have used a simple username and password for illustration purposes only. Note the database name, username and password for later. 
+    > kept safe. This example uses a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
 4. Exit from PostgreSQL and return to your terminal account.
 
@@ -134,7 +134,7 @@ PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snap
     pg_database = kong
     ```
 
-## Step 5. Seed the Super Admin's Password and Boostrap Kong
+## Step 5. Seed the Super Admin's Password and bootstrap Kong
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC(Role Based Access Control) at a later time, if needed.
 
