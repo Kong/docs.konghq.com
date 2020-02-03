@@ -252,7 +252,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 ### Enable and Configure Kong Manager
 
-1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file the to the DNS, or IP address, of the CentOS system. For example:
+1. To access Kong Enterprise's Graphical User Interface, Kong Manager, update the `admin_gui_url` property in `/etc/kong/kong.conf` file to the DNS, or IP address, of the Amazon Linux system. For example:
 
     ```
     admin_gui_url = http://<DNSorIP>:8002
