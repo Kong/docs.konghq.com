@@ -317,7 +317,7 @@ portal_gui_host = <DNSorIP>:8003
 ## Troubleshooting
 
 If you did not receive an `HTTP/1.1 200 OK` message, or need assistance completing
-setup reach out to your Kong Support contact or head over to the
+your setup, reach out to your Kong Support contact or go to the
 [Support Portal](https://support.konghq.com/support/s/).
 
 ## Next Steps
