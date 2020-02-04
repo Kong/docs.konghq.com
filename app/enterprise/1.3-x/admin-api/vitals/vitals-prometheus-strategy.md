@@ -19,7 +19,7 @@ This integration allows Kong to efficiently ship Vitals metrics to an outside pr
 can be aggregated and made available for consumption by Prometheus, without impeding performance
 within the Kong proxy itself. In this design, Kong writes Vitals metrics to the StatsD exporter
 as [StatsD metrics](https://github.com/statsd/statsd/blob/master/docs/metric_types.md). Prometheus
-scrapes this exporter as it would any other endpoint. Kong then queries prometheus to retrive and
+scrapes this exporter as it would any other endpoint. Kong then queries Prometheus to retrieve and
 display Vitals data via the API and Kong Manager. Prometheus does not ever directly scrape the Kong
 nodes for time series data. A trivialized workflow looks as follows:
 
@@ -32,9 +32,9 @@ the data to a StatsD exporter, and the node responsible for Admin API reads from
 
 ![Multi Node Example Data Flow](/assets/images/docs/ee/vitals-prometheus/read-write.png)
 
-In either case, the StatsD exporter process can be run either as a standalone process/container,
+In either case, the StatsD exporter process can be run either as a standalone process/container
 or as a sidecar/adjacent process within a VM. Note that in high-traffic environments, data aggregation
-within the StatsD exporter process can cause significant CPU usage; in such cases it is recommended to
+within the StatsD exporter process can cause significant CPU usage. In such cases, we recommend to
 run Kong and StatsD processes on separate hardware/VM/container environments to avoid saturating CPU usage.
 
 ## Setup Prometheus environment for Vitals
@@ -249,9 +249,9 @@ $ ./statsd_exporter --statsd.mapping-config=statsd.rules.yaml \
 With the above configuration, the Prometheus StatsD exporter will make available all
 metrics as provided by the [standard Vitals configuration](/enterprise/{{page.kong_version}}/admin-api/vitals/#vitals-metrics).
 
-Additionally, the exporter process makes available the default metrics exposed by the [Golang
-Prometheus client library](https://prometheus.io/docs/guides/go-application/). These are
-prefixed with `go_` and `process_` metric names. These data points are related specifically
+Additionally, the exporter process provides access to the default metrics exposed by the [Golang
+Prometheus client library](https://prometheus.io/docs/guides/go-application/). These metric names
+include the `go_` and `process_` prefixes. These data points are related specifically
 to the StatsD exporter process itself, not Kong. Infrastructure teams may find this data
 useful, but they are of limited value with respect to monitoring Kong behavior.
 
