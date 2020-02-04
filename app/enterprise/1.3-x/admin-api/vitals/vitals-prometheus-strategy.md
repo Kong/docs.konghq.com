@@ -15,7 +15,7 @@ please refer to [Kong Vitals](/enterprise/{{page.kong_version}}/admin-api/vitals
 ## Lifecycle Overview
 
 Kong Vitals integrates with Prometheus via an intermediary data exporter, the [Prometheus StatsD exporter](https://github.com/prometheus/statsd_exporter).
-This allows Kong to efficiently ship Vitals metrics to an outside process where data points
+This integration allows Kong to efficiently ship Vitals metrics to an outside process where data points
 can be aggregated and made available for consumption by Prometheus, without impeding performance
 within the Kong proxy itself. In this design, Kong writes Vitals metrics to the StatsD exporter
 as [StatsD metrics](https://github.com/statsd/statsd/blob/master/docs/metric_types.md). Prometheus
