@@ -529,14 +529,6 @@ target_data: |
 
 ---
 
-<div class="alert alert-info.blue" role="alert">
-  This page refers to the Admin API for running Kong configured with a
-  database (Postgres or Cassandra). For using the Admin API for Kong
-  in DB-less mode, please refer to the
-  <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
-  page.
-</div>
-
 Kong comes with an **internal** RESTful Admin API for administration purposes.
 Requests to the Admin API can be sent to any node in the cluster, and Kong will
 keep the configuration consistent across all nodes.
