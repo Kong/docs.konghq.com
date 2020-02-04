@@ -30,7 +30,8 @@ service_json: |
         "connect_timeout": 60000,
         "write_timeout": 60000,
         "read_timeout": 60000,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "client_certificate": {"id":"4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"}
     }
 
 service_data: |
