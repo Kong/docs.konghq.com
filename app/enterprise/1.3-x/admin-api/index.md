@@ -14,6 +14,7 @@ service_body: |
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
+    `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server.  With form-encoded, the notation is `client_certificate.id=<client_certificate_id>`. With JSON, use `"client_certificate":{"id":"<client_certificate_id>"}`.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
@@ -36,7 +37,7 @@ service_json: |
 
 service_data: |
     "data": [{
-        "id": "4e3ad2e4-0bc4-4638-8e34-c84a417ba39b",
+        "id": "a5fb8d9b-a99d-40e9-9d35-72d42a62d83a",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-service",
@@ -48,9 +49,10 @@ service_data: |
         "connect_timeout": 60000,
         "write_timeout": 60000,
         "read_timeout": 60000,
-        "tags": ["user-level", "low-priority"]
+        "tags": ["user-level", "low-priority"],
+        "client_certificate": {"id":"51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"}
     }, {
-        "id": "a5fb8d9b-a99d-40e9-9d35-72d42a62d83a",
+        "id": "fc73f2af-890d-4f9b-8363-af8945001f7f",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-service",
@@ -62,7 +64,8 @@ service_data: |
         "connect_timeout": 60000,
         "write_timeout": 60000,
         "read_timeout": 60000,
-        "tags": ["admin", "high-priority", "critical"]
+        "tags": ["admin", "high-priority", "critical"],
+        "client_certificate": {"id":"4506673d-c825-444c-a25b-602e3c2ec16e"}
     }],
 
 route_body: |
@@ -70,22 +73,23 @@ route_body: |
     ---:| ---
     `name`<br>*optional* | The name of the Route.
     `protocols` |  A list of the protocols this Route should allow. When set to `["https"]`, HTTP requests are answered with a request to upgrade to HTTPS.  Defaults to `["http", "https"]`.
-    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set. 
-    `hosts`<br>*semi-optional* |  A list of domain names that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
-    `paths`<br>*semi-optional* |  A list of paths that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
+    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. 
+    `hosts`<br>*semi-optional* |  A list of domain names that match this Route.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
+    `paths`<br>*semi-optional* |  A list of paths that match this Route.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
+    `headers`<br>*semi-optional* |  One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. 
     `https_redirect_status_code` |  The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308.  Defaults to `426`.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
     `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`. 
-    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
-    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
-    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
+    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. 
+    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
+    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
     `tags`<br>*optional* |  An optional set of strings associated with the Route, for grouping and filtering. 
     `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to.  With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
 
 route_json: |
     {
-        "id": "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515",
+        "id": "d35165e2-d03e-461a-bdeb-dad0a112abfe",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -93,17 +97,18 @@ route_json: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
+        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
-        "service": {"id":"fc73f2af-890d-4f9b-8363-af8945001f7f"}
+        "service": {"id":"af8330d3-dbdc-48bd-b1be-55b98608834b"}
     }
 
 route_data: |
     "data": [{
-        "id": "4506673d-c825-444c-a25b-602e3c2ec16e",
+        "id": "a9daa3ba-8186-4a0d-96e8-00d80ce7240b",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -111,14 +116,15 @@ route_data: |
         "methods": ["GET", "POST"],
         "hosts": ["example.com", "foo.test"],
         "paths": ["/foo", "/bar"],
+        "headers": {"x-another-header":["bla"], "x-my-header":["foo", "bar"]},
         "https_redirect_status_code": 426,
         "regex_priority": 0,
         "strip_path": true,
         "preserve_host": false,
         "tags": ["user-level", "low-priority"],
-        "service": {"id":"d35165e2-d03e-461a-bdeb-dad0a112abfe"}
+        "service": {"id":"127dfc88-ed57-45bf-b77a-a9d3a152ad31"}
     }, {
-        "id": "af8330d3-dbdc-48bd-b1be-55b98608834b",
+        "id": "9aa116fd-ef4a-4efa-89bf-a0b17c4be982",
         "created_at": 1422386534,
         "updated_at": 1422386534,
         "name": "my-route",
@@ -131,7 +137,7 @@ route_data: |
         "sources": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "destinations": [{"ip":"10.1.0.0/16", "port":1234}, {"ip":"10.2.2.2"}, {"port":9123}],
         "tags": ["admin", "high-priority", "critical"],
-        "service": {"id":"a9daa3ba-8186-4a0d-96e8-00d80ce7240b"}
+        "service": {"id":"ba641b07-e74a-430a-ab46-94b61e5ea66b"}
     }],
 
 consumer_body: |
@@ -143,7 +149,7 @@ consumer_body: |
 
 consumer_json: |
     {
-        "id": "127dfc88-ed57-45bf-b77a-a9d3a152ad31",
+        "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
@@ -152,13 +158,13 @@ consumer_json: |
 
 consumer_data: |
     "data": [{
-        "id": "9aa116fd-ef4a-4efa-89bf-a0b17c4be982",
+        "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "ba641b07-e74a-430a-ab46-94b61e5ea66b",
+        "id": "01c23299-839c-49a5-a6d5-8864c09184af",
         "created_at": 1422386534,
         "username": "my-username",
         "custom_id": "my-custom-id",
@@ -174,13 +180,13 @@ plugin_body: |
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`. With form-encoded, the notation is `consumer.id=<consumer_id>`. With JSON, use `"consumer":{"id":"<consumer_id>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
     `run_on` |  Control on which Kong nodes this plugin will run, given a Service Mesh scenario. Accepted values are: * `first`, meaning "run on the first Kong node that is encountered by the request". On an API Getaway scenario, this is the usual operation, since there is only one Kong node in between source and destination. In a sidecar-to-sidecar Service Mesh scenario, this means running the plugin only on the Kong sidecar of the outbound connection. * `second`, meaning "run on the second node that is encountered by the request". This option is only relevant for sidecar-to-sidecar Service Mesh scenarios: this means running the plugin only on the Kong sidecar of the inbound connection. * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar scenario. This is useful for tracing/logging plugins.  Defaults to `"first"`.
-    `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["http", "https"]`.
+    `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http", "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Defaults to `true`.
     `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering. 
 
 plugin_json: |
     {
-        "id": "ec1a1f6f-2aa4-4e58-93ff-b56368f19b27",
+        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -195,7 +201,7 @@ plugin_json: |
 
 plugin_data: |
     "data": [{
-        "id": "a4407883-c166-43fd-80ca-3ca035b0cdb7",
+        "id": "02621eee-8309-4bf6-b36b-a82017a5393e",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -207,7 +213,7 @@ plugin_data: |
         "enabled": true,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "01c23299-839c-49a5-a6d5-8864c09184af",
+        "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
         "name": "rate-limiting",
         "created_at": 1422386534,
         "route": null,
@@ -223,14 +229,14 @@ plugin_data: |
 certificate_body: |
     Attributes | Description
     ---:| ---
-    `cert` | PEM-encoded public certificate of the SSL key pair.
+    `cert` | PEM-encoded public certificate chain of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
     `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
 
 certificate_json: |
     {
-        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
+        "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
@@ -239,77 +245,82 @@ certificate_json: |
 
 certificate_data: |
     "data": [{
-        "id": "02621eee-8309-4bf6-b36b-a82017a5393e",
+        "id": "d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4",
+        "id": "a9b2107f-a214-47b3-add4-46b942187924",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
         "key": "-----BEGIN RSA PRIVATE KEY-----...",
         "tags": ["admin", "high-priority", "critical"]
     }],
 
+ca_certificate_body: |
+    Attributes | Description
+    ---:| ---
+    `cert` | PEM-encoded public certificate of the CA.
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
+
+ca_certificate_json: |
+    {
+        "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
+        "created_at": 1422386534,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+        "tags": ["user-level", "low-priority"]
+    }
+
+ca_certificate_data: |
+    "data": [{
+        "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
+        "created_at": 1422386534,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+        "tags": ["user-level", "low-priority"]
+    }, {
+        "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
+        "created_at": 1422386534,
+        "cert": "-----BEGIN CERTIFICATE-----...",
+        "tags": ["admin", "high-priority", "critical"]
+    }],
+
 sni_body: |
     Attributes | Description
     ---:| ---
-    `name` | The SNI name to associate with the given certificate. May contain a single wildcard in the leftmost (suffix) or rightmost (prefix) position. This can be helpful when maintaining multiple subdomains, as a single SNI configured with a wildcard name can be used to match multiple subdomains, instead of creating an SNI entity for each. Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`. Plain SNI names (no wildcard) take priority when matching, followed by prefix and then suffix.
+    `name` | The SNI name to associate with the given certificate.
     `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
     `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
 sni_json: |
     {
-        "id": "7fca84d6-7d37-4a74-a7b0-93e576089a41",
+        "id": "91020192-062d-416f-a275-9addeeaffaf2",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"d044b7d4-3dc2-4bbc-8e9f-6b7a69416df6"}
+        "certificate": {"id":"a2e013e8-7623-4494-a347-6d29108ff68b"}
     }
 
 sni_data: |
     "data": [{
-        "id": "a9b2107f-a214-47b3-add4-46b942187924",
+        "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["user-level", "low-priority"],
-        "certificate": {"id":"04fbeacf-a9f1-4a5d-ae4a-b0407445db3f"}
+        "certificate": {"id":"a3ad71a8-6685-4b03-a101-980a953544f6"}
     }, {
-        "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
+        "id": "b87eb55d-69a1-41d2-8653-8d706eecefc0",
         "name": "my-sni",
         "created_at": 1422386534,
         "tags": ["admin", "high-priority", "critical"],
-        "certificate": {"id":"d26761d5-83a4-4f24-ac6c-cff276f2b79c"}
-    }],
-
-certificate_authority_body: |
-    Attributes | Description
-    ---:| ---
-    `cert` | PEM-encoded public CA certificate.
-
-certificate_authority_json: |
-    {
-        "id": "322dce96-d434-4e0d-9038-311b3520f0a3",
-        "created_at": 1566597621,
-        "cert": "-----BEGIN CERTIFICATE-----...",
-    }
-
-certificate_authority_data: |
-    "data": [{
-        "id": "322dce96-d434-4e0d-9038-311b3520f0a3",
-        "created_at": 1566597621,
-        "cert": "-----BEGIN CERTIFICATE-----...",
-    }, {
-        "id": "43629afd-bda5-4248-94cb-5cc4029909bb",
-        "created_at": 1566597621,
-        "cert": "-----BEGIN CERTIFICATE-----...",
+        "certificate": {"id":"4e8d95d4-40f2-4818-adcb-30e00c349618"}
     }],
 
 upstream_body: |
     Attributes | Description
     ---:| ---
     `name` | This is a hostname, which must be equal to the `host` of a Service.
+    `algorithm`<br>*optional* | Which load balancing algorithm to use. One of: `round-robin`, `consistent-hashing`, or `least-connections`. Defaults to `"round-robin"`.
     `hash_on`<br>*optional* | What to use as hashing input: `none` (resulting in a weighted-round-robin scheme with no hashing), `consumer`, `ip`, `header`, or `cookie`. Defaults to `"none"`.
     `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified). One of: `none`, `consumer`, `ip`, `header`, or `cookie`. Not available if `hash_on` is set to `cookie`. Defaults to `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
@@ -342,9 +353,10 @@ upstream_body: |
 
 upstream_json: |
     {
-        "id": "91020192-062d-416f-a275-9addeeaffaf2",
+        "id": "58c8ccbb-eafb-4566-991f-2ed4f678fa70",
         "created_at": 1422386534,
         "name": "my-upstream",
+        "algorithm": "round-robin",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -389,9 +401,10 @@ upstream_json: |
 
 upstream_data: |
     "data": [{
-        "id": "a2e013e8-7623-4494-a347-6d29108ff68b",
+        "id": "ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6",
         "created_at": 1422386534,
         "name": "my-upstream",
+        "algorithm": "round-robin",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -433,9 +446,10 @@ upstream_data: |
         },
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "147f5ef0-1ed6-4711-b77f-489262f8bff7",
+        "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
         "name": "my-upstream",
+        "algorithm": "round-robin",
         "hash_on": "none",
         "hash_fallback": "none",
         "hash_on_cookie_path": "/",
@@ -487,9 +501,9 @@ target_body: |
 
 target_json: |
     {
-        "id": "a3ad71a8-6685-4b03-a101-980a953544f6",
+        "id": "a3395f66-2af6-4c79-bea2-1b6933764f80",
         "created_at": 1422386534,
-        "upstream": {"id":"b87eb55d-69a1-41d2-8653-8d706eecefc0"},
+        "upstream": {"id":"885a0392-ef1b-4de3-aacf-af3f1697ce2c"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
@@ -497,16 +511,16 @@ target_json: |
 
 target_data: |
     "data": [{
-        "id": "4e8d95d4-40f2-4818-adcb-30e00c349618",
+        "id": "f5a9c0ca-bdbb-490f-8928-2ca95836239a",
         "created_at": 1422386534,
-        "upstream": {"id":"58c8ccbb-eafb-4566-991f-2ed4f678fa70"},
+        "upstream": {"id":"173a6cee-90d1-40a7-89cf-0329eca780a6"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6",
+        "id": "bdab0e47-4e37-4f0b-8fd0-87d95cc4addc",
         "created_at": 1422386534,
-        "upstream": {"id":"4fe14415-73d5-4f00-9fbc-c72a0fccfcb2"},
+        "upstream": {"id":"f00c6da4-3679-4b44-b9fb-36a19bd3ae83"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["admin", "high-priority", "critical"]
@@ -514,6 +528,14 @@ target_data: |
 
 
 ---
+
+<div class="alert alert-info.blue" role="alert">
+  This page refers to the Admin API for running Kong configured with a
+  database (Postgres or Cassandra). For using the Admin API for Kong
+  in DB-less mode, please refer to the
+  <a href="/{{page.kong_version}}/db-less-admin-api">Admin API for DB-less Mode</a>
+  page.
+</div>
 
 Kong comes with an **internal** RESTful Admin API for administration purposes.
 Requests to the Admin API can be sent to any node in the cluster, and Kong will
@@ -541,27 +563,6 @@ with dotted keys. Example:
 config.limit=10&config.period=seconds
 ```
 
-Arrays and sets can be specified in various ways:
-
-1. Sending same parameter multiple times:
-    ```
-    hosts=example.com&hosts=example.org
-    ```
-2. Using array notation:
-    ```
-    hosts[1]=example.com&hosts[2]=example.org
-    ```
-    or 
-    ```
-    hosts[]=example.com&hosts[]=example.org
-    ```
-    Array and object notation can also be mixed:
-
-    ```
-    config.hosts[1]=example.com&config.hosts[2]=example.org
-    ```
-
-
 - **application/json**
 
 Handy for complex bodies (ex: complex plugin configuration), in that case simply send
@@ -572,18 +573,6 @@ a JSON representation of the data you want to send. Example:
     "config": {
         "limit": 10,
         "period": "seconds"
-    }
-}
-```
-
-JSON arrays can be specified as well:
-
-```json
-{
-    "config": {
-        "limit": 10,
-        "period": "seconds",
-        "hosts": [ "example.com", "example.org" ]
     }
 }
 ```
@@ -905,6 +894,15 @@ Services can be both [tagged and filtered by tags](#tags).
 <div class="endpoint post">/services</div>
 
 
+##### Create Service Associated to a Specific Certificate
+
+<div class="endpoint post">/certificates/{certificate name or id}/services</div>
+
+Attributes | Description
+---:| ---
+`certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created Service.
+
+
 *Request Body*
 
 {{ page.service_body }}
@@ -928,6 +926,15 @@ HTTP 201 Created
 ##### List All Services
 
 <div class="endpoint get">/services</div>
+
+
+##### List Services Associated to a Specific Certificate
+
+<div class="endpoint get">/certificates/{certificate name or id}/services</div>
+
+Attributes | Description
+---:| ---
+`certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Services are to be retrieved. When using this endpoint, only Services associated to the specified Certificate will be listed.
 
 
 *Response*
@@ -1135,6 +1142,18 @@ The combination of Routes and Services (and the separation of concerns between
 them) offers a powerful routing mechanism with which it is possible to define
 fine-grained entry-points in Kong leading to different upstream services of
 your infrastructure.
+
+You need at least one matching rule that applies to the protocol being matched
+by the Route. Depending on the protocols configured to be matched by the Route
+(as defined with the `protocols` field), this means that at least one of the
+following attributes must be set:
+
+* For `http`, at least one of `methods`, `hosts`, `headers` or `paths`;
+* For `https`, at least one of `methods`, `hosts`, `headers`, `paths` or `snis`;
+* For `tcp`, at least one of `sources` or `destinations`;
+* For `tls`, at least one of `sources`, `destinations` or `snis`;
+* For `grpc`, at least one of `hosts`, `headers` or `paths`;
+* For `grpcs`, at least one of `hosts`, `headers`, `paths` or `snis`.
 
 Routes can be both [tagged and filtered by tags](#tags).
 
@@ -1926,6 +1945,10 @@ encrypted requests, or for use as a trusted CA store when validating peer certif
 client/service. Certificates are optionally associated with SNI objects to
 tie a cert/key pair to one or more hostnames.
 
+If intermediate certificates are required in addition to the main
+certificate, they should be concatenated together into one string according to
+the following order: main certificate on the top, followed by any intermediates.
+
 Certificates can be both [tagged and filtered by tags](#tags).
 
 
@@ -2085,6 +2108,181 @@ See POST and PATCH responses.
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
+
+
+*Response*
+
+```
+HTTP 204 No Content
+```
+
+
+---
+
+## CA Certificate Object
+
+A CA certificate object represents a trusted CA. These objects are used by Kong to
+verify the validity of a client or server certificate.
+
+CA Certificates can be both [tagged and filtered by tags](#tags).
+
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+### Add CA Certificate
+
+##### Create CA Certificate
+
+<div class="endpoint post">/ca_certificates</div>
+
+
+*Request Body*
+
+{{ page.ca_certificate_body }}
+
+
+*Response*
+
+```
+HTTP 201 Created
+```
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+
+---
+
+### List CA Certificates
+
+##### List All CA Certificates
+
+<div class="endpoint get">/ca_certificates</div>
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+{{ page.ca_certificate_data }}
+    "next": "http://localhost:8001/ca_certificates?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
+}
+```
+
+
+---
+
+### Retrieve CA Certificate
+
+##### Retrieve CA Certificate
+
+<div class="endpoint get">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to retrieve.
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+
+---
+
+### Update CA Certificate
+
+##### Update CA Certificate
+
+<div class="endpoint patch">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to update.
+
+
+*Request Body*
+
+{{ page.ca_certificate_body }}
+
+
+*Response*
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.ca_certificate_json }}
+```
+
+
+---
+
+### Update Or Create CA Certificate
+
+##### Create Or Update CA Certificate
+
+<div class="endpoint put">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to create or update.
+
+
+*Request Body*
+
+{{ page.ca_certificate_body }}
+
+
+Inserts (or replaces) the CA Certificate under the requested resource with the
+definition specified in the body. The CA Certificate will be identified via the `name
+or id` attribute.
+
+When the `name or id` attribute has the structure of a UUID, the CA Certificate being
+inserted/replaced will be identified by its `id`. Otherwise it will be
+identified by its `name`.
+
+When creating a new CA Certificate without specifying `id` (neither in the URL nor in
+the body), then it will be auto-generated.
+
+Notice that specifying a `name` in the URL and a different one in the request
+body is not allowed.
+
+
+*Response*
+
+```
+HTTP 201 Created or HTTP 200 OK
+```
+
+See POST and PATCH responses.
+
+
+---
+
+### Delete CA Certificate
+
+##### Delete CA Certificate
+
+<div class="endpoint delete">/ca_certificates/{ca_certificate id}</div>
+
+Attributes | Description
+---:| ---
+`ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to delete.
 
 
 *Response*
@@ -2287,171 +2485,6 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
-
----
-
-## Certificate Authority Object
-
-A certificate authority object represents a public CA certificate.
-These objects are used by Kong to verify client certificates presented to the mTLS plugin.
-
-
-```json
-{{ page.certificate_authority_json }}
-```
-
-### Add Certificate Authority
-
-##### Create Certificate Authority
-
-<div class="endpoint post">/ca_certificates</div>
-
-
-*Request Body*
-
-{{ page.certificate_authority_body }}
-
-
-*Response*
-
-```
-HTTP 201 Created
-```
-
-```json
-{{ page.certificate_authority_json }}
-```
-
-
----
-
-### List Certificate Authorities
-
-##### List all Certificate Authorities
-
-<div class="endpoint get">/ca_certificates</div>
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{
-{{ page.certificate_authority_data }}
-    "next": "http://localhost:8001/ca_certificates?offset=6378122c-a0a1-438d-a5c6-efabae9fb969"
-}
-```
-
-
----
-
-### Retrieve Certificate Authority
-
-##### Retrieve Certificate Authority
-
-<div class="endpoint get">/ca_certificates/{certificate authority id}</div>
-
-Attributes | Description
----:| ---
-`certificate authority id`<br>**required** | The unique identifier of the certificate authority to retrieve.
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.certificate_authority_json }}
-```
-
-
----
-
-### Update Certificate Authority
-
-##### Update Certificate Authority
-
-<div class="endpoint patch">/ca_certificates/{certificate authority id}</div>
-
-Attributes | Description
----:| ---
-`certificate authority id`<br>**required** | The unique identifier of the certificate authority to update.
-
-
-*Request Body*
-
-{{ page.certificate_authority_body }}
-
-
-*Response*
-
-```
-HTTP 200 OK
-```
-
-```json
-{{ page.certificate_authority_json }}
-```
-
-
----
-
-### Update or create Certificate Authority
-
-##### Create or update Certificate Authority
-
-<div class="endpoint put">/ca_certificates/{certificate authority id}</div>
-
-Attributes | Description
----:| ---
-`certificate authority id`<br>**required** | The unique identifier of the certificate authority to create or update.
-
-
-*Request Body*
-
-{{ page.certificate_authority_body }}
-
-
-Inserts (or replaces) the certificate authority under the requested resource with the
-definition specified in the body. The certificate authority will be identified via the ` id` attribute.
-
-When creating a new certificate authority without specifying `id` (neither in the URL nor in
-the body), then it will be auto-generated.
-
-
-*Response*
-
-```
-HTTP 201 Created or HTTP 200 OK
-```
-
-See POST and PATCH responses.
-
-
----
-
-### Delete Certificate Authority
-
-##### Delete Certificate Authority
-
-<div class="endpoint delete">/ca_certificates/{certificate authority id}</div>
-
-Attributes | Description
----:| ---
-`certificate authority id`<br>**required** | The unique identifier of the certificate authority to delete.
-
-
-*Response*
-
-```
-HTTP 204 No Content
-```
-
 
 
 ---
@@ -2689,7 +2722,7 @@ Target).
 The `data` field of the response contains an array of Target objects.
 The health for each Target is returned in its `health` field:
 
-* If a Target fails to be activated in the ring balancer due to DNS issues,
+* If a Target fails to be activated in the balancer due to DNS issues,
   its status displays as `DNS_ERROR`.
 * When [health checks][healthchecks] are not enabled in the Upstream
   configuration, the health status for active Targets is displayed as
@@ -2697,7 +2730,7 @@ The health for each Target is returned in its `health` field:
 * When health checks are enabled and the Target is determined to be healthy,
   either automatically or [manually](#set-target-as-healthy),
   its status is displayed as `HEALTHY`. This means that this Target is
-  currently included in this Upstream's load balancer ring.
+  currently included in this Upstream's load balancer execution.
 * When a Target has been disabled by either active or passive health checks
   (circuit breakers) or [manually](#set-target-as-unhealthy),
   its status is displayed as `UNHEALTHY`. The load balancer is not directing
@@ -2843,10 +2876,81 @@ HTTP 204 No Content
 
 ---
 
+### Set Target Address As Healthy
+
+Set the current health status of an individual address resolved by a target
+in the load balancer to "healthy" in the entire Kong cluster.
+
+This endpoint can be used to manually re-enable an address resolved by a
+target that was previously disabled by the upstream's [health checker][healthchecks].
+Upstreams only forward requests to healthy nodes, so this call tells Kong
+to start using this address again.
+
+This resets the health counters of the health checkers running in all workers
+of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
+status is propagated to the whole Kong cluster.
+
+
+<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/{address}/healthy</div>
+
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
+`target or id`<br>**required** | The host/port combination element of the target to set as healthy, or the `id` of an existing target entry.
+`address`<br>**required** | The host/port combination element of the address to set as healthy.
+
+
+*Response*
+
+```
+HTTP 204 No Content
+```
+
+
+---
+
+### Set Target Address As Unhealthy
+
+Set the current health status of an individual address resolved by a target
+in the load balancer to "unhealthy" in the entire Kong cluster.
+
+This endpoint can be used to manually disable an address and have it stop
+responding to requests. Upstreams only forward requests to healthy nodes, so
+this call tells Kong to start skipping this address.
+
+This call resets the health counters of the health checkers running in all
+workers of the Kong node, and broadcasts a cluster-wide message so that the
+"unhealthy" status is propagated to the whole Kong cluster.
+
+[Active health checks][active] continue to execute for unhealthy
+addresses. Note that if active health checks are enabled and the probe detects
+that the address is actually healthy, it will automatically re-enable it again.
+To permanently remove a target from the balancer, you should [delete a
+target](#delete-target) instead.
+
+
+<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
+`target or id`<br>**required** | The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
+
+
+*Response*
+
+```
+HTTP 204 No Content
+```
+
+
+---
+
 ### Set Target As Healthy
 
 Set the current health status of a target in the load balancer to "healthy"
-in the entire Kong cluster.
+in the entire Kong cluster. This sets the "healthy" status to all addresses
+resolved by this target.
 
 This endpoint can be used to manually re-enable a target that was previously
 disabled by the upstream's [health checker][healthchecks]. Upstreams only
@@ -2878,12 +2982,12 @@ HTTP 204 No Content
 ### Set Target As Unhealthy
 
 Set the current health status of a target in the load balancer to "unhealthy"
-in the entire Kong cluster.
+in the entire Kong cluster. This sets the "unhealthy" status to all addresses
+resolved by this target.
 
 This endpoint can be used to manually disable a target and have it stop
 responding to requests. Upstreams only forward requests to healthy nodes, so
-this call tells Kong to start skipping this target in the ring-balancer
-algorithm.
+this call tells Kong to start skipping this target.
 
 This call resets the health counters of the health checkers running in all
 workers of the Kong node, and broadcasts a cluster-wide message so that the
@@ -2892,7 +2996,7 @@ workers of the Kong node, and broadcasts a cluster-wide message so that the
 [Active health checks][active] continue to execute for unhealthy
 targets. Note that if active health checks are enabled and the probe detects
 that the target is actually healthy, it will automatically re-enable it again.
-To permanently remove a target from the ring-balancer, you should [delete a
+To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
 
@@ -2955,74 +3059,13 @@ HTTP 200 OK
 }
 ```
 
-## Enterprise Exclusive Admin API
-
-<div class="alert alert-ee">
-  <div class="alert-body">
-    <div class="left">
-      <img src="/assets/images/icons/icn-buildings.svg" />
-    </div>
-    <p>The following documentation refers to Kong Enterprise specific Admin API functionality. For a complete reference checkout the <a href="/latest/admin-api">Kong Admin API Reference</a>.</p>
-  </div>
-</div>
-
-<div class="docs-grid">
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/workspaces/reference">Workspaces</a>
-    </h3>
-    <p>Segment your cluster into Workspaces for specific teams.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/workspaces/reference">
-        View reference &rarr;
-    </a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/reference">RBAC</a>
-    </h3>
-    <p>Authenticate Kong Admins with Basic Auth, OIDC, LDAP, and Sessions. Authorize Admins with RBAC and Workspaces.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/rbac/reference">
-        Learn more &rarr;
-    </a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Admins</a>
-    </h3>
-    <p>Create and manage Admins for Kong Enterprise</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/admins/reference">Learn more &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/vitals">Vitals</a>
-    </h3>
-    <p>Enable metrics about the health and performance of Kong.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/vitals">Learn more &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-window.svg" />
-        <a href="/enterprise/{{page.kong_version}}/admin-api/audit-log">Audit Logging</a>
-    </h3>
-    <p>Generate and view audit logs.</p>
-    <a href="/enterprise/{{page.kong_version}}/admin-api/audit-log">Learn more &rarr;</a>
-  </div>
-</div>
 
 ---
 
-[clustering]: /enterprise/{{page.kong_version}}/clustering
-[cli]: /enterprise/{{page.kong_version}}/cli
-[active]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /enterprise/{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /enterprise/{{page.kong_version}}/proxy
-
+[clustering]: /enterpirse/{{page.kong_version}}/clustering
+[cli]: /enterpirse/{{page.kong_version}}/cli
+[active]: /enterpirse/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /enterpirse/{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /enterpirse/{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /enterpirse/{{page.kong_version}}/proxy
+[db-less-admin-api]: /enterpirse/{{page.kong_version}}/db-less-admin-api
