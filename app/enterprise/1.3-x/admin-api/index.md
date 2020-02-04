@@ -3062,10 +3062,9 @@ HTTP 200 OK
 
 ---
 
-[clustering]: /enterpirse/{{page.kong_version}}/clustering
-[cli]: /enterpirse/{{page.kong_version}}/cli
-[active]: /enterpirse/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /enterpirse/{{page.kong_version}}/health-checks-circuit-breakers
-[secure-admin-api]: /enterpirse/{{page.kong_version}}/secure-admin-api
-[proxy-reference]: /enterpirse/{{page.kong_version}}/proxy
-[db-less-admin-api]: /enterpirse/{{page.kong_version}}/db-less-admin-api
+[clustering]: /enterprise/{{page.kong_version}}/clustering
+[cli]: /enterprise/{{page.kong_version}}/cli
+[active]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /enterprise/{{page.kong_version}}/health-checks-circuit-breakers
+[secure-admin-api]: /enterprise/{{page.kong_version}}/secure-admin-api
+[proxy-reference]: /enterprise/{{page.kong_version}}/proxy
