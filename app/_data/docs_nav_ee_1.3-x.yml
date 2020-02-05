@@ -113,6 +113,8 @@
     url: /admin-api/#plugin-object
   - text: Certificate Object
     url: /admin-api/#certificate-object
+  - text: CA Certificate Object
+    urk: /admin-api/#ca-certificate-object
   - text: SNI Object
     url: /admin-api/#sni-object
   - text: Upstream Object
