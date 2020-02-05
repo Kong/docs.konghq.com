@@ -217,7 +217,9 @@ Do not use in-line formatting for anything that should be in
 [bold text](#bold-text).
 
 ### indentation
-Do not add indentation unless it's functionally relevant (e.g. in yaml files). This can potentially conflict with styling that the .css applies to the markdown. In general, keep the markdown free of styling as much as possible, outside of what's already documented here for things like inline code, entities, etc. 
+Do not add indentation unless it's functionally relevant, e.g., in YAML files, sub-bulleted lists. 
+
+Unnecessary indentation can potentially conflict with styling that CSS applies to the markdown. In general, keep the markdown free of styling as much as possible, outside of what's already documented here for things like inline code, entities, etc.
 
 ### Kong
 Use proper case.
@@ -299,10 +301,7 @@ Joined as a noun/modifier, separated as a phrasal verb.
 Use proper case.
 
 ### spaces after a period. one, not two (or three or four)
-Contrary to what you may have been taught, most current style guides dictate the use of **one** space after a period, not two.
-If you want to read more about this:
-* [How Many Spaces Should Be After a Period? (One vs. Two)](https://www.instructionalsolutions.com/blog/one-space-vs-two-after-period)
-* [No, You Still Shouldn't Put Two Spaces After a Period](https://lifehacker.com/no-you-still-shouldnt-put-two-spaces-after-a-period-1825662114)
+Use one space after a period, not two.
 
 ### super admin
 Use lowercase, hyphen as a compound modifier. Note that an 
