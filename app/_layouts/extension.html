@@ -42,11 +42,7 @@ breadcrumbs:
 %}{% endcapture %}
 
 {% if page.params.service_id %}
-{% capture plugin_config_for_service %}
-### Enabling the plugin on a Service
-
-{% tabs %}
-{% tab With a database %}
+{% capture plugin_config_for_service_with_db %}
 
 Configure this plugin on a [Service](/latest/admin-api/#service-object) by
 making the following request:
@@ -55,6 +51,22 @@ making the following request:
 $ curl -X POST http://kong:8001/services/{service}/plugins \
     --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
+{% endcapture %}
+
+{% capture plugin_config_for_service %}
+### Enabling the plugin on a Service
+
+{% if page.enterprise %}
+
+{{ plugin_config_for_service_with_db }}
+
+{% else %}
+
+{% tabs %}
+{% tab With a database %}
+
+{{ plugin_config_for_service_with_db }}
+
 {% tab Without a database %}
 
 Configure this plugin on a [Service](/latest/admin-api/#service-object) by
@@ -68,17 +80,16 @@ plugins:
 ```
 {% endtabs %}
 
-In both cases, `{service}` is the `id` or `name` of the Service that this plugin configuration will target.
+{% endif %}
+
+`{service}` is the `id` or `name` of the Service that this plugin configuration will target.
 
 {% endcapture %}
 {% endif %}
 
 {% if page.params.route_id %}
-{% capture plugin_config_for_route %}
-### Enabling the plugin on a Route
 
-{% tabs %}
-{% tab With a database %}
+{% capture plugin_config_for_route_with_db %}
 
 Configure this plugin on a [Route](/latest/admin-api/#Route-object) with:
 
@@ -86,6 +97,21 @@ Configure this plugin on a [Route](/latest/admin-api/#Route-object) with:
 $ curl -X POST http://kong:8001/routes/{route}/plugins \
     --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
+{% endcapture %}
+
+{% capture plugin_config_for_route %}
+### Enabling the plugin on a Route
+
+{% if page.enterprise %}
+
+{{ plugin_config_for_route_with_db }}
+
+{% else %}
+
+{% tabs %}
+{% tab With a database %}
+
+{{ plugin_config_for_route_with_db }}
 
 {% tab Without a database %}
 
@@ -99,18 +125,15 @@ plugins:
   {{ config_required_fields_yaml }}
 ```
 {% endtabs %}
+{% endif %}
 
-In both cases, `{route}` is the `id` or `name` of the Route that this plugin configuration will target.
+`{route}` is the `id` or `name` of the Route that this plugin configuration will target.
 
 {% endcapture %}
 {% endif %}
 
 {% if page.params.consumer_id %}
-{% capture plugin_config_for_consumer %}
-### Enabling the plugin on a Consumer
-
-{% tabs %}
-{% tab With a database %}
+{% capture plugin_config_for_consumer_with_db %}
 
 You can use the `http://localhost:8001/plugins` endpoint to enable this plugin
 on specific [Consumers](/latest/admin-api/#Consumer-object):
@@ -120,6 +143,21 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/plugins \
     --data "name={{page.params.name}}" \
     {{ config_required_fields }}
 ```
+{% endcapture %}
+
+{% capture plugin_config_for_consumer %}
+### Enabling the plugin on a Consumer
+
+{% if page.enterprise %}
+
+{{ plugin_config_for_consumer_with_db }}
+
+{% else %}
+{% tabs %}
+
+{% tab With a database %}
+
+{{ plugin_config_for_consumer_with_db }}
 
 {% tab Without a database %}
 
@@ -134,18 +172,16 @@ plugins:
 ```
 
 {% endtabs %}
+{% endif %}
 
-In both cases, `{consumer}` is the `id` or `username` of the Consumer that this plugin configuration will target.
+`{consumer}` is the `id` or `username` of the Consumer that this plugin configuration will target.
 
 {% if page.params.service_id or page.params_route_id or page.params.api_id %}
-  You can combine `consumer.id` and {% if page.params.service_id %}
-    `service.id`
-  {% elsif page.params.route_id %}
-    `route.id`
-  {% elsif page.params.api_id %}
-    `api_id`
-  {% endif %}
-  in the same request, to furthermore narrow the scope of the plugin.
+You can combine `consumer.id` and {%
+  if page.params.service_id %}`service.id`{%
+  elsif page.params.route_id %}`route.id`{%
+  elsif page.params.api_id %}`api_id`{%
+  endif %} in the same request, to furthermore narrow the scope of the plugin.
 {% endif %}
 
 {% endcapture %}
