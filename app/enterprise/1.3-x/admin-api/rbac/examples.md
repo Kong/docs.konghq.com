@@ -1047,4 +1047,4 @@ he created.
 [rbac-wildcard]: /enterprise/{{page.kong_version}}/rbac/examples/#wildcards-in-permissions
 [rbac-admin]: /enterprise/{{page.kong_version}}/rbac/admin-api
 [workspaces-examples]: /enterprise/{{page.kong_version}}/rbac/examples
-[getting-started-guide]: /enterprise/{{page.kong_version}}/getting-started/quickstart/#1-start-kong-enterprise
+[getting-started-guide]: /enterprise/{{page.kong_version}}/getting-started/
