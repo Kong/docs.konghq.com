@@ -2422,7 +2422,7 @@ Different strategies are available to tune
 how to enforce splitting traffic of
 workspaces.
 
-- 'smart' is the default option and uses the algorithm described in
+- 'smart' is the default option and uses the algorithm described in [this example](/enterprise/{{page.kong_version}}/admin-api/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces).
 - 'off' disables any check
 - 'path' enforces routes to comply with the pattern described in config enforce_route_path_pattern
 
@@ -2454,7 +2454,7 @@ The strategy used to validate routes when creating or updating them.
 Different strategies are available to tune how to enforce splitting
 traffic of workspaces.
 
-- `smart` is the default option and uses the algorithm described in [this example](https://docs.konghq.com/enterprise/0.37-x/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces)
+- `smart` is the default option and uses the algorithm described in [this example](/enterprise/{{page.kong_version}}/admin-api/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces).
 
 - `off` disables all checks.
 
