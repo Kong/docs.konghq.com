@@ -48,6 +48,9 @@
     - text: DB-less &amp; Declarative Configuration Format
       url: /db-less-and-declarative-config
 
+    - text: Resource Sizing Guidelines
+      url: /sizing-guidelines
+
     - text: Logging reference
       url: /logging
 
