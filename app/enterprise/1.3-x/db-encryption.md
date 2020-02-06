@@ -310,6 +310,7 @@ The keyring module encrypts the following fields at rest:
 * `key` fields of `certificate` objects (corresponding to the private key of a TLS certificate)
 * `password` fields of `basic-auth` plugin credential objects (note that passwords are also hashed by a one-way hashing function)
 * `key` fields of `key-auth-enc` plugin credential objects
+* `client_id` and `client_secret` fields of the `openid-connect` plugin
 
 ## Vault Integration
 
