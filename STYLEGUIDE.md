@@ -216,6 +216,11 @@ For multiple lines of code or an example command, use a
 Do not use in-line formatting for anything that should be in 
 [bold text](#bold-text).
 
+### indentation
+Do not add indentation unless it's functionally relevant, e.g., in YAML files, sub-bulleted lists. 
+
+Unnecessary indentation can potentially conflict with styling that CSS applies to the markdown. In general, keep the markdown free of styling as much as possible, outside of what's already documented here for things like inline code, entities, etc.
+
 ### Kong
 Use proper case.
 
@@ -294,6 +299,9 @@ Joined as a noun/modifier, separated as a phrasal verb.
 
 ### Services
 Use proper case.
+
+### spaces after a period. one, not two (or three or four)
+Use one space after a period, not two.
 
 ### super admin
 Use lowercase, hyphen as a compound modifier. Note that an 

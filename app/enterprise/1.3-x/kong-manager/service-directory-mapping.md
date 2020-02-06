@@ -95,9 +95,9 @@ admin_gui_auth_conf = {
     * For example, `ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com`
 * `ldap_password`:`<ENTER_YOUR_LDAP_PASSWORD_HERE>`: LDAP password
     * *Important*: As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
-* `group_base_dn`:`<ENTER_YOUR_BASE_DN_HERE>`: The default is `conf.base_dn`
-* `group_name_attribute`: `<ENTER_YOUR_GROUP_NAME_ATTRIBUTE_HERE>`: The default is `conf.attribute`
-* `group_member_attribute`:`<ENTER_YOUR_GROUP_MEMBER_ATTRIBUTE_HERE>`: The default is `memberOf`
+* `group_base_dn`:`<ENTER_YOUR_BASE_DN_HERE>`: Sets a distinguished name for the entry where LDAP searches for groups begin. The default is the value from `conf.base_dn`.
+* `group_name_attribute`: `<ENTER_YOUR_GROUP_NAME_ATTRIBUTE_HERE>`: Sets the attribute holding the name of a group, typically called `name` (in Active Directory) or `cn` (in OpenLDAP). The default is the value from `conf.attribute`.
+* `group_member_attribute`:`<ENTER_YOUR_GROUP_MEMBER_ATTRIBUTE_HERE>`: Sets the attribute holding the members of the LDAP group. The default is `memberOf`.
 
 ### Define Roles with Permissions 
 
@@ -112,7 +112,7 @@ Kong Enterprise will not write to the Service Directory, for example, a Kong Ent
 
 To map a Service Directory **User** to a Kong **Admin**, you must configure the **Admin's** username as the value of the **User's** name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an **Admin** account in [_Kong Manager_](https://docs.konghq.com/enterprise/latest/getting-started/add-admin/) or using the [_Admin API_](https://docs.konghq.com/enterprise/latest/admin-api/admins/reference/#invite-an-admin).
 
-For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](https://github.com/Kong/docs.konghq.com-private/diffs/0?base_sha=51610257bfe352f3848bc43a98afb75c78951603&commentable=true&pull_number=339&sha1=51610257bfe352f3848bc43a98afb75c78951603&sha2=e8fcb3b1020e46603edee2c28bec7f20e4c61c94&short_path=8fcaf76&unchanged=expanded&utf8=%E2%9C%93#how-to-set-up-a-directory-user-as-the-first-super-admin).
+For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](https://docs.konghq.com/enterprise/1.3-x/kong-manager/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
 
 If you already have **Admins** with assigned **Roles** and want to use **Group** mapping instead, it is necessary to first remove all of their Roles. The Service Directory will serve as the system of record for **User** privileges. Assigned **Roles** will affect a user's privileges in addition to any roles mapped from **Groups.**
 
@@ -158,7 +158,6 @@ Alternatives:
 * Start Kong with RBAC turned off, map a Group to the super-admin Role, and then create an Admin to correspond to a User belonging to that Group. Doing so ensures that the Super Admin's privileges are entirely tied to the Directory Group, whereas bootstrapping a Super Admin only uses the Directory for authentication.
 
 Create all Admin accounts for matching Directory Users and ensure that their existing Groups map to appropriate Roles before enforcing RBAC.
-
 
 
 

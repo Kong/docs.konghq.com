@@ -87,7 +87,6 @@ different priority in the plugin chain.
 1. Create a file named `custom-auth.lua` with the following content:
 
     ```lua
-    return function()
       -- Get list of request headers
       local custom_auth = kong.request.get_header("x-custom-auth")
 
@@ -99,7 +98,6 @@ different priority in the plugin chain.
 
       -- Remove custom authentication header from request
       kong.service.request.clear_header('x-custom-auth')
-    end
     ```
 
 4. Ensure the file contents:
@@ -156,19 +154,17 @@ different priority in the plugin chain.
     - name: pre-function
       config:
         functions: |
-          return function()
-            -- Get list of request headers
-            local custom_auth = kong.request.get_header("x-custom-auth")
+          -- Get list of request headers
+          local custom_auth = kong.request.get_header("x-custom-auth")
 
-            -- Terminate request early if our custom authentication header
-            -- does not exist
-            if not custom_auth then
-              return kong.response.exit(401, "Invalid Credentials")
-            end
-
-            -- Remove custom authentication header from request
-            kong.service.request.clear_header('x-custom-auth')
+          -- Terminate request early if our custom authentication header
+          -- does not exist
+          if not custom_auth then
+            return kong.response.exit(401, "Invalid Credentials")
           end
+
+          -- Remove custom authentication header from request
+          kong.service.request.clear_header('x-custom-auth')
     ```
 
 2. Test that our Lua code will terminate the request when no header is passed:
