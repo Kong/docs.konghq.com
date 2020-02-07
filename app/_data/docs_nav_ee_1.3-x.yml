@@ -33,6 +33,19 @@
       url: /deployment/migrations
 
 
+- title: Kong for Kubernetes Enterprise
+  url: /kong-for-kubernetes/
+  items:
+    - text: Overview
+      url:  /kong-for-kubernetes
+    - text: Installation
+      url: /kong-for-kubernetes/install
+    - text: Using Kong for Kubernetes
+      url: /kong-for-kubernetes/using-kong-for-kubernetes
+    - text: Changelog
+      url: /kong-for-kubernetes/changelog
+
+
 - title: Getting Started
   url: /getting-started/
   items:
@@ -265,17 +278,6 @@
         - text: CLI
           url: /developer-portal/helpers/cli
 
-- title: Kong for Kubernetes Enterprise
-  url: /kong-for-kubernetes/
-  items:
-    - text: Overview
-      url:  /kong-for-kubernetes
-    - text: Installation
-      url: /kong-for-kubernetes/install
-    - text: Using Kong for Kubernetes
-      url: /kong-for-kubernetes/using-kong-for-kubernetes
-    - text: Changelog
-      url: /kong-for-kubernetes/changelog
 
 - title: Kong Brain & Kong Immunity
   url: /brain-immunity/install-configure
