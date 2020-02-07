@@ -1,8 +1,9 @@
 ---
 title: Configuration Reference
+redirect_from: '/0.31-x/configuration/'
 ---
 
-# Configuration Reference
+## Introduction
 
 The Kong configuration file is a [YAML][yaml] file that can be specified when using Kong through the [CLI][cli-reference]. This file allows you
 to configure and customize Kong to your needs. From the ports it uses, the database it conncts to, and even the internal NGINX server itself.
@@ -88,8 +89,6 @@ nginx_working_dir: /usr/local/kong/
 
 ### `plugins_available`
 
-
-
 A list of plugins installed on this node that Kong will load and try to execute during the lifetime of a request. Kong will look for a [`plugin configuration`](/{{page.kong_version}}/admin-api/#plugin-object) entry for each plugin in this list during each request to determine whether the plugin should be executed. Removing plugins from this list will reduce load on your Kong instance.
 
 **Default:**
@@ -134,66 +133,66 @@ Currently, Kong only supports [Cassandra v{{site.data.kong_latest.dependencies.c
 databases_available:
   cassandra:
     properties:
-      hosts: "localhost"
+      hosts: 'localhost'
       port: 9042
       timeout: 1000
       keyspace: kong
       keepalive: 60000
 ```
 
-  **`databases_available.*.properties`**
+**`databases_available.*.properties`**
 
-  A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
+A dictionary of properties needed for Kong to connect to a given database (where `.*` is the name of the database).
 
-  **`databases_available.*.properties.hosts`**
+**`databases_available.*.properties.hosts`**
 
-  The hosts(s) on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list. If Kong must connect to another port than the one specified in `properties` for one of your nodes, you can override it for that particular node.
+The hosts(s) on which Kong should connect to for accessing your Cassandra cluster. Can either be a string or a list. If Kong must connect to another port than the one specified in `properties` for one of your nodes, you can override it for that particular node.
 
-  **Example:**
+**Example:**
 
 ```yaml
 properties:
   port: 9042
   hosts:
-    - "52.5.149.55"      # will connect on port 9042
-    - "52.5.149.56:9000" # will connect on port 9000
+    - '52.5.149.55' # will connect on port 9042
+    - '52.5.149.56:9000' # will connect on port 9000
 ```
 
-  **`databases_available.*.properties.port`**
+**`databases_available.*.properties.port`**
 
-  The default port on which Kong should connect on your hosts.
+The default port on which Kong should connect on your hosts.
 
-  **Default:**
+**Default:**
 
 ```yaml
 port: 9042
 ```
 
-  **`databases_available.*.properties.timeout`**
+**`databases_available.*.properties.timeout`**
 
-  Sets the timeout (in milliseconds) for sockets performing operations between Kong and Cassandra.
+Sets the timeout (in milliseconds) for sockets performing operations between Kong and Cassandra.
 
-  **Default:**
+**Default:**
 
 ```yaml
 timeout: 1000
 ```
 
-  **`databases_available.*.properties.keyspace`**
+**`databases_available.*.properties.keyspace`**
 
-  The keyspace in which Kong operates on your cluster.
+The keyspace in which Kong operates on your cluster.
 
-  **Default:**
+**Default:**
 
 ```yaml
 keyspace: kong
 ```
 
-  **`databases_available.*.properties.keepalive`**
+**`databases_available.*.properties.keepalive`**
 
-  The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
+The time (in milliseconds) during which Cassandra sockets can be reused by Kong before being closed.
 
-  **Default:**
+**Default:**
 
 ```yaml
 keepalive: 60000

@@ -3,6 +3,8 @@
 'use strict'
 
 $(function () {
+  var NAV_HEIGHT = 56
+
   var $window = $(window)
   var $docs = $('#documentation')
 
@@ -13,9 +15,13 @@ $(function () {
 
   $('.scroll-to').on('click', function (e) {
     e.preventDefault()
-
+    if ($(window).width() <= 1000) {
+      var offset = NAV_HEIGHT + 40
+    } else {
+      var offset = NAV_HEIGHT
+    }
     $('html, body').animate({
-      scrollTop: $($(this).attr('href')).offset().top - 107 // Header height
+      scrollTop: $($(this).attr('href')).offset().top - offset // Header height
     }, 700)
   })
 
@@ -294,6 +300,15 @@ $(function () {
     }
 
     $navItems.on('click', setNavItemActive)
+
+    if ($(window).width() <= 800) {
+      $('.sidebar-toggle').click(function () {
+        $('.page-navigation').addClass('sidebar-open')
+      })
+      $('.page-navigation > .close-sidebar').click(function () {
+        $('.page-navigation').removeClass('sidebar-open')
+      })
+    }
   }
 
   // Analytics
@@ -335,7 +350,7 @@ $(function () {
   // Add Smooth scroll when link with attr clicked
   $('a[data-link="scroll"]').click(function () {
     $('html, body').animate({
-      scrollTop: $($.attr(this, 'href')).offset().top - 150 // Add spacing on top after scroll
+      scrollTop: $($.attr(this, 'href')).offset().top - NAV_HEIGHT // Add spacing on top after scroll
     }, 600) // Adjust scroll speed
     // Remove any active classes that may already be applied
     $('a[data-link="scroll"').removeClass('active')
@@ -346,9 +361,14 @@ $(function () {
 
   // Smooth scroll if hash in URL
   if (window.location.hash) {
+    if ($(window).width() <= 1000) {
+      var offset = NAV_HEIGHT + 40
+    } else {
+      var offset = NAV_HEIGHT
+    }
     $('html, body').scrollTop(0).show()
     $('html, body').animate({
-      scrollTop: $(window.location.hash).offset().top - 220 // Add spacing on top after scroll
+      scrollTop: $(window.location.hash).offset().top - offset // Add spacing on top after scroll
     }, 600) // Adjust scroll speed
   }
 
@@ -383,4 +403,30 @@ $(function () {
       })
     }
   })
+
+  // Responsive Tables
+  if($window.width() <= 1099) {
+    mobileTable()
+  }
+
+  $window.resize(function (){
+    if($window.width() <= 1099) {
+      mobileTable()
+    }
+  })
+
+  function mobileTable () {
+    $('table').each(function (index, value) {
+      var headerCount = $(this).find('thead th').length
+
+      for (i = 0; i <= headerCount; i++) {
+        var headerLabel = $(this).find('thead th:nth-child(' + i + ')').text()
+
+        $(this).find('tr td:not([colspan]):nth-child(' + i + ')').replaceWith(
+          function () {
+            return $('<td data-label="' + headerLabel + '">').append($(this).contents())
+          })
+      }
+    })
+  }
 })

@@ -2,11 +2,11 @@
 > contribute to Kong itself, then please go
 > [here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md).
 
+
 # Contributing to docs.konghq.com 📜 🦍
 
 Hello, and welcome! Whether you are looking for help, trying to report a bug,
-thinking about getting involved in the project or about to submit a patch, this
-document is for you!
+thinking about getting involved in the project or about to submit a patch, this document is for you!
 
 Consult the Table of Contents below, and jump to the desired section.
 
@@ -16,6 +16,7 @@ Consult the Table of Contents below, and jump to the desired section.
 - [Where to seek help?](#where-to-seek-help)
 - [Where to report bugs?](#where-to-report-bugs)
 - [Contributing to Kong documentation and the Kong Hub](#contributing-to-kong-documentation-and-the-kong-hub)
+  - [Technical Writing and Style Guide](#kongs-technical-writing-and-style-guide)
   - [Submitting a patch](#submitting-a-patch)
   - [Kong Hub contributions](#kong-hub-contributions)
   - [Writing plugin documentation](#writing-plugin-documentation)
@@ -27,6 +28,7 @@ Consult the Table of Contents below, and jump to the desired section.
   - [Table of Contents generator](#table-of-contents-generator)
   - [Versioning Configuration](#versioning-configuration)
   - [Contributor T-shirt](#contributor-t-shirt)
+
 
 ## Where to seek help?
 
@@ -69,9 +71,8 @@ instead.
 When contributing, be aware of a few things:
 
 - Documentation for Kong Hub listings, which includes all Kong Inc.-published
-  and community-published plugins and integrations, lives in the `app/_hub`
-  and `app/_data/extensions` directories. **Versioning is optional, and thus
-  potentially inconsistent, for this part of the documentation**.
+  and community-published plugins and integrations lives in the `app/_hub`
+  and `app/_data/extensions` directories. **Versioning is optional, and thus potentially inconsistent, for this part of the documentation**.
 - Kong documentation lives in `app/x.x.x` and Kong Enterprise documentation
   lives in `app/enterprise/`. **These parts of the documentation are versioned**.
   When proposing a change in these parts of the documentation, consider proposing
@@ -81,6 +82,9 @@ When contributing, be aware of a few things:
 
 [Back to TOC](#table-of-contents)
 
+### Kong's Technical Writing Guide & Style Guide
+
+To ensure consistency throughout all of Kong's documentation, we ask that all contributors reference our [Technical Writing Guide ](https://github.com/Kong/docs.konghq.com/blob/master/TECHNICAL-WRITING-GUIDE.md) and [Style Guide](https://github.com/Kong/docs.konghq.com/blob/master/STYLEGUIDE.md).
 
 ### Submitting a patch
 
@@ -102,6 +106,7 @@ to verify a few things:
    linear)
 - The linting is succeeding: run `npm run test` (see the development
   documentation for additional details)
+- You've tagged "Team Docs" as reviewers
 
 If the above guidelines are respected, your Pull Request has all its chances
 to be considered and will be reviewed by a maintainer.
@@ -124,39 +129,52 @@ a build, which should generally happen right after your patch was merged.
 
 If you are planning on producing a new Kong plugin or integration, with the
 intent to list it in the Kong Hub, you are encouraged to have a quick
-call with Kong's Director of Ecosystem, Cooper Marcus -
-[book a time](http://meetme.so/cooper), or email him at cooper@konghq.com.
+chat with Kong's CTO, Marco Palladino - email him at marco@konghq.com.
 
 Adding a new listing to the Kong Hub may be proposed by:
 
 1. Clone this repo
+    ```
+    git clone https://github.com/Kong/docs.konghq.com.git
+    ```
+1. Move into the repo's directory
+    ```
+    cd docs.konghq.com
+    ```
+1. Create a [separate branch from master](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
+    ```
+    git checkout -b [name_of_your_new_branch]
+    ```
 1. Create a publisher directory at`_app/_hub/`, such as
- `_app/_hub/your-github-handle` (if you are contributing as an individual)
- or `_app/_hub/company-name` (if you are contributing as a company). See
- other Kong Hub listings for examples of publisher names.
+ `_app/_hub/your-GitHub-handle` (if you are contributing as an individual)
+ or `_app/_hub/company-name` (if you are contributing as a company). See other Kong Hub listings for examples of publisher names.
 1. Create a subdirectory for your extension within your publisher directory -
 such as `_app/_hub/your-name/your-extension`.
 1. Copy the `/app/_hub/_init/my-extension/index.md` file into your extension's
 subdirectory. If you are publishing a single version of your extension, which is typical to
 start with, then the file name `index.md` should remain.
 1. Edit your `index.md` file based on the guidance in comments in that file -
-you'll find lots of helpful examples in other extension's files. If you are
+you'll find lots of helpful examples in other extension files. If you are
 documenting a Kong plugin, be sure to see the next section.
 1. If you have a custom logo, add a square-format PNG file to
 `/app/_assets/images/icons/hub/` - the filename of your image should be
 `publisher_extension` using the "publisher" and "extension" name from step 2.
 Custom logos are optional. If you don't have a custom logo, please duplicate
-an existing default logo file, and rename it as noted above. 
+an existing default logo file, and rename it as noted above.
 1. Be sure to run the docs site locally per the instructions in
 the README - you should find your Hub contribution listed at
 `localhost:3000/hub`
-1. Once you are happy with your listing, make a Pull Request to add it to
-the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
+1. Once you are happy with your listing, push your branch to the GitHub repository
+  ```
+  git push --set-upstream origin [name_of_your_new_branch]
+  ```
+1. Find [your branch](https://github.com/Kong/docs.konghq.com/branches/yours) and make [a Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to add your documentation to the Kong Hub. [Having trouble, or have questions?](#where-to-seek-help)
 
 Kong staff will review your PR, suggest improvements and adjustments as
 necessary, and once approved, will merge and deploy your Kong Hub addition!
 
 [Back to TOC](#table-of-contents)
+
 
 ### Writing plugin documentation
 
@@ -174,16 +192,16 @@ the existing plugins for examples, and see additional advice in
 * `type` (array, required) - what kind of extension this is: `plugin` or
 `integration` are supported at this time, though more types will be considered.
 * `params`
-  * `name` - name of the plugin as it is referred to in Kong's config and Kong's
+  * `name` - the name of the plugin as it is referred to in Kong's config and Kong's
   Admin API (not always the same spelling as the page name)
   * `api_id` - boolean - whether this plugin can be applied to an API.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `route_id` - boolean - whether this plugin can be applied to a Route.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `service_id` - boolean - whether this plugin can be applied to a Service.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `consumer_id` - boolean - whether this plugin can be applied to a Consumer.
-  Affects generation of examples and config table.
+  Affects the generation of examples and config table.
   * `config` - the configuration table.
   Each entry is a configuration item with the following fields:
     * `name` - the field name as read by Kong
@@ -199,6 +217,7 @@ the existing plugins for examples, and see additional advice in
     Use YAML's pipe notation if writing longer Markdown text.
 
 [Back to TOC](#table-of-contents)
+
 
 #### Git branches
 
@@ -220,17 +239,17 @@ naming scheme when pushing your branch(es):
 
 #### Commit atomicity
 
-When submitting patches, it is important that you organize your commits in
+When submitting patches, you must organize your commits in
 logical units of work. You are free to propose a patch with one or many
 commits, as long as their atomicity is respected. This means that no unrelated
 changes should be included in a commit.
 
-For example: you are writing a patch to fix a bug, but in your endeavour, you
+For example, you are writing a patch to fix a bug, but in your endeavor, you
 spot another bug. **Do not fix both bugs in the same commit!**. Finish your
 work on the initial bug, propose your patch, and come back to the second bug
 later on. This is also valid for unrelated style fixes, refactorings, etc...
 
-You should use your best judgement when facing such decisions. A good approach
+You should use your best judgment when facing such decisions. A good approach
 for this is to put yourself in the shoes of the person who will review your
 patch: will they understand your changes and reasoning just by reading your
 commit history? Will they find unrelated changes in a particular commit? They
@@ -277,7 +296,7 @@ accepted types are:
 - **fix**: A website bug fix (related to the Ruby, JavaScript, HTML, or CSS
   assets). Typos and other fixes to the _contents_ of the documentation
   (markdown files) are not included in this scope
-- **style**: CSS fixes, formatting, missing semi colons, :nail_care:
+- **style**: CSS fixes, formatting, missing semicolons, :nail_care:
 - **refactor**: A code change that neither fixes a bug nor adds a feature, and
   is too big to be considered `chore`
 - **chore**: Maintenance changes related to code cleaning that isn't considered
@@ -333,7 +352,7 @@ $ npm run test
 ### Contributing images, videos, etc
 
 Binary files like images and videos should not be included in your pull
-request, with the exception of custom icons for the Kong Hub - any request
+request, except custom icons for the Kong Hub - any request
 including them will be rejected.
 
 Instead, please:
@@ -347,6 +366,7 @@ Instead, please:
 
 [Back to TOC](#table-of-contents)
 
+
 ### Table of Contents generator
 
 Almost all pages have an automatic Table of Contents (ToC) added to the top of
@@ -355,7 +375,7 @@ the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
 To inhibit the automatic addition of ToC, add the following to the front-matter
 `toc: false`
 
-This ToC generator depends on headings being correctly coded in the markdown
+This ToC generator depends on headings being correctly coded in the markdown 
 portion of the doc site files. If a page has an incorrectly-formatted ToC, be
 sure to check:
 
@@ -427,17 +447,15 @@ _**The versions are iterated in reverse order**_, so for all versions below `0.1
 > Note: For a renamed article, specify the latest slug under `slug`, and other slugs under `aliases`.
 > Specify the old renamed slug under the latest version that it existed in.
 
+
 ### Contributor T-shirt
 
-If your Pull Request to
-[Kong/docs.konghq.com](https://github.com/Kong/docs.konghq.com) was accepted,
-congratulations, you are eligible to receive the very special Contributor
-T-shirt! Go ahead and fill-out the [Contributors Submissions
-form](https://goo.gl/forms/5w6mxLaE4tz2YM0L2).
+If your contribution to this repository was accepted and fixes a bug, adds
+functionality, or makes it significantly easier to use or understand Kong,
+congratulations! You are eligible to receive the very special Contributor
+T-shirt! Find out how to request your shirt
+[here](https://github.com/Kong/kong/blob/master/CONTRIBUTING.md#contributor-t-shirt).
 
-Proudly wear your T-shirt and show it to us by tagging
-[@thekonginc](https://twitter.com/thekonginc) on Twitter!
-
-![Kong Contributor T-shirt](https://konghq.com/wp-content/uploads/2018/04/100-contributor-t-shirt-1024x768.jpg)
+Thank you for contributing!
 
 [Back to TOC](#table-of-contents)

@@ -2,8 +2,6 @@
 title: Configuration Reference
 ---
 
-# Configuration Reference
-
 ## Configuration loading
 
 Kong comes with a default configuration file that can be found at

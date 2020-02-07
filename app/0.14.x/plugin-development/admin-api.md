@@ -26,6 +26,8 @@ level of abstraction makes it easy for you to add endpoints.
 kong.plugins.<plugin_name>.api
 ```
 
+[Back to TOC](#table-of-contents)
+
 ## Adding endpoints to the Admin API
 
 Kong will detect and load your endpoints if they are defined in a module named:
@@ -73,6 +75,8 @@ other keys:
   by Kong. See Lapis' [capturing recoverable
   errors](http://leafo.net/lapis/reference/exception_handling.html#capturing-recoverable-errors)
   documentation.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -126,8 +130,10 @@ return {
 }
 ```
 
-See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/api.lua)
+See the [complete Admin API of the Key-Auth plugin](https://github.com/Kong/kong/blob/72cf66ad8db0e104b775f3b5e913a08b9d02e3b1/kong/plugins/key-auth/api.lua)
 for an extended version of this example.
+
+[Back to TOC](#table-of-contents)
 
 ---
 

@@ -2,7 +2,7 @@
 title: Proxy Reference
 ---
 
-# Proxy Reference
+## Introduction
 
 Kong listens for traffic on four ports, which by default are:
 
@@ -452,7 +452,7 @@ local router_matches = ngx.ctx.router_matches
 
 Next, it is worth noting that characters found in regexes are often
 reserved characters according to
-[RFC 3986](http://www.gbiv.com/protocols/uri/rfc/rfc3986.html) and as such,
+[RFC 3986](https://www.ietf.org/rfc/rfc3986.txt) and as such,
 should be percent-encoded. **When configuring APIs with regex URIs via the
 Admin API, be sure to URL encode your payload if necessary**. For example,
 with `curl` and using an `application/x-www-form-urlencoded` MIME type:
@@ -1002,7 +1002,7 @@ topic we just covered.
 [plugin-configuration-object]: /{{page.kong_version}}/admin-api#plugin-object
 [plugin-development-guide]: /{{page.kong_version}}/plugin-development
 [load-balancing-reference]: /{{page.kong_version}}/loadbalancing
-[configuration-reference]: /{{page.kong_version}}/configuration-reference
+[configuration-reference]: /{{page.kong_version}}/configuration/
 [adding-your-api]: /{{page.kong_version}}/getting-started/adding-your-api
 [API]: /{{page.kong_version}}/admin-api
 [api-entity]: /{{page.kong_version}}/admin-api/#add-api

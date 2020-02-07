@@ -355,6 +355,10 @@ a:focus,a:hover {
     text-decoration: underline
 }
 
+.navbar-nav a:hover,.navbar-nav a:focus {
+    text-decoration: none
+}
+
 a:not([href]):not([tabindex]),a:not([href]):not([tabindex]):focus,a:not([href]):not([tabindex]):hover {
     /* color: inherit; */
     text-decoration: none;
@@ -15073,4 +15077,42 @@ header.page-header {
     color: #fff;
     padding: 7px;
     width: 0
+}
+
+.kong-navbar .navbar-brand {
+    padding-left: 0px;
+    margin-top: 0px;
+    min-width: 112.5px;
+    max-width: 125px;
+    width:100%;
+    padding-top:0;
+}
+
+@media (max-width:1080px){
+    body header.navbar.navbar-inverse.navbar-toggleable-lg.kong-navbar.flex-row.align-items-center .container {
+        max-width: 100%;
+        height: 52px;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1080px){
+    .navbar.full-width {
+        margin-top:5px;
+    }
+    .navbar.full-width .kong-navbar_nav #menu-primary-nav>li.demo-btn{
+        top:-2.5px;
+    }
+}
+
+
+body .newsletter .logo img{
+    margin-bottom:10px;
+}
+
+
+body footer.marketing-footer--light-gray{
+    padding-top:4rem !important;
+    padding-bottom:1rem;
+    margin-top:50px;
 }

@@ -1,4 +1,6 @@
 .DS_Store
+install
+.env
 .che
 .vagrant
 .buildpath
@@ -8,14 +10,16 @@
 .ruby-version
 .ruby-gemset
 *.log
+.vscode/
 yarn.lock
 
 # jekyll
-Gemfile.lock
 dist
+.jekyll-metadata
 
 # deploy
 .gh-pages
 
 # package managers
 node_modules
+vendor

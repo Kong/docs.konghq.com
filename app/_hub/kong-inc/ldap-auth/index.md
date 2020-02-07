@@ -1,10 +1,11 @@
 ---
 name: LDAP Authentication
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Integrate Kong with a LDAP server
 description: |
-  Add LDAP Bind Authentication to a Route (or the deprecated API entity) with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
+  Add LDAP Bind Authentication to a Route with username and password protection. The plugin will check for valid credentials in the `Proxy-Authorization` and `Authorization` header (in this order).
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -21,6 +22,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -30,6 +36,8 @@ kong_version_compatibility:
         - 0.8.x
     enterprise_edition:
       compatible:
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -37,10 +45,11 @@ kong_version_compatibility:
 
 params:
   name: ldap-auth
-  api_id: true
   service_id: false
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: hide_credentials
       required: false
@@ -62,6 +71,11 @@ params:
       default: "`false`"
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
+    - name: ldaps
+      required: true
+      default: "`false`"
+      description: | 
+        Set it to `true` to connect using the LDAPS protocol (LDAP over TLS)
     - name: base_dn
       required: true
       default:
@@ -125,7 +139,6 @@ When a client has been authenticated, the plugin will append some headers to the
 * `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
 * `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
 
-[api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

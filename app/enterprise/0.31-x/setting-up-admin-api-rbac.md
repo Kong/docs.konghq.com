@@ -1,8 +1,9 @@
 ---
 title: Setting Up Admin API RBAC
 ---
-# Setting Up Admin API RBAC
-## Overview
+
+## Introduction
+
 Kong Enterprise provides an additional layer of security for the Admin API in the form of role-based access control (RBAC). RBAC allows for fine-grained control over resource access based on a model of user roles and permissions. Users are assigned to one or more roles, which each in turn possess one or more permissions granting or denying access to a particular resource. In this way, fine-grained control over specific Admin API resources can be enforced, while scaling to allow complex, case-specific uses.
 
 ## Terms and Concepts
@@ -142,9 +143,9 @@ Server: kong/0.11.0rc2
 
 ## Extending RBAC
 
-The default RBAC roles and permissions shipped with Kong are a great starting point for shaping a basic enforcement policy, but they may not fit all use cases. [The Admin API](/enterprise/0.31-x/plugins/rbac-api) provides a comprehensive set of endpoints to create, edit, and delete RBAC users, roles, and permissions.
+The default RBAC roles and permissions shipped with Kong are a great starting point for shaping a basic enforcement policy, but they may not fit all use cases. [The Admin API](/enterprise/{{page.kong_version}}/plugins/rbac-api) provides a comprehensive set of endpoints to create, edit, and delete RBAC users, roles, and permissions.
 
-Additionally, third-party plugin developers can register their own Admin API RBAC resources as part of the [Admin API extension](/latest/plugin-development/admin-api). This is done by defining a "resource" value associated with each API endpoint, like so:
+Additionally, third-party plugin developers can register their own Admin API RBAC resources as part of the [Admin API extension](/0.12.x/plugin-development/admin-api). This is done by defining a "resource" value associated with each API endpoint, like so:
 
 ```lua
 return {

@@ -2,7 +2,7 @@
 title: Welcome to Kong
 ---
 
-# Welcome to Kong
+## Introduction
 
 <div class="alert alert-warning">
   <strong>Before you start:</strong> Make sure you've <a href="https://konghq.com/install/">installed Kong</a> &mdash; It should only take a minute!
@@ -14,7 +14,7 @@ Before going further into Kong, make sure you understand its [purpose and philos
 - [Adding and consuming APIs][adding-your-api].
 - [Installing plugins on Kong][enabling-plugins].
 
-## What is Kong, technically?
+### What is Kong, technically?
 
 You’ve probably heard that Kong is built on Nginx, leveraging its stability and efficiency. But how is this possible exactly?
 

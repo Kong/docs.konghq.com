@@ -1,6 +1,7 @@
 ---
 name: Response Rate Limiting
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Rate-limiting based on a custom response header value
 description: |
@@ -23,6 +24,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -35,6 +41,9 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -46,6 +55,14 @@ params:
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    The plugin will run fine with the `local` policy (which doesn't use the database) or
+    the `redis` policy (which uses an independent Redis, so it is compatible with DB-less).
+
+    The plugin will not work with the `cluster` policy, which requires writes to the database.
+
   config:
     - name: limits.{limit_name}
       required: true

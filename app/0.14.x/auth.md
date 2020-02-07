@@ -27,6 +27,8 @@ then there is no consumer to be identified, and only the credentials will be add
 
 The authentication method specific elements and examples can be found in each [plugin's documentation][plugins].
 
+[Back to TOC](#table-of-contents)
+
 ## Consumers
 
 The easiest way to think about consumers is to map them one-on-one to users. Yet, to Kong this does not matter.
@@ -35,6 +37,8 @@ So you might have mobile apps, and define one consumer for each app, or version 
 platform, e.g. an android consumer, an iOS consumer, etc.
 
 It is an opaque concept to Kong and hence they are called "consumers" and not "users".
+
+[Back to TOC](#table-of-contents)
 
 ## Anonymous Access
 
@@ -178,6 +182,8 @@ the corresponding route:
 
     It shows the request was successful, but anonymous.
 
+[Back to TOC](#table-of-contents)
+
 ## Multiple Authentication
 
 Kong supports multiple authentication plugins for a given Service, allowing
@@ -210,6 +216,8 @@ tokens etc. will require authentication by the other configured auth plugins.
   anonymous access be forbidden, then the <a href="/plugins/request-termination"><tt>request-termination</tt> plugin</a> should be
   configured on the anonymous consumer. Failure to do so will allow unauthorized requests.
 </div>
+
+[Back to TOC](#table-of-contents)
 
 [plugins]: https://konghq.com/plugins/
 [key-auth]: /plugins/key-authentication

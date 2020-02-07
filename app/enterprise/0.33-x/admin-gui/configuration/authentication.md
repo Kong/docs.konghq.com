@@ -28,7 +28,7 @@ Knowing that we will follow these steps:
 5. [Restart Kong](#fifth)
 
 
-In this example we will configure authentication on the Admin GUI using [Key Authentication](https://getkong.org/plugins/key-authentication).
+In this example we will configure authentication on the Admin GUI using [Key Authentication](/plugins/key-authentication).
 
 <a name="first"></a>
 **First, we will add an Admin entity using the Admin API:**
@@ -169,7 +169,7 @@ The Admin GUI supports other Authentication plugins which are explained in more 
 under [Example configurations](#example-configs):
 
 * [LDAP Authentication Advanced](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced)
-* [Basic Authentication](https://getkong.org/plugins/basic-authentication)
+* [Basic Authentication](/plugins/basic-authentication)
 
 ## Add a Credential
 
@@ -188,16 +188,16 @@ only to admins.
 
 Check out the section [Enabling Authentication](#enable-authentication) for a
 step by step guide on setting up
-[Key Authentication](https://getkong.org/plugins/key-authentication).
+[Key Authentication](/plugins/key-authentication).
 
 ### LDAP Authentication
 
 The [LDAP Authentication Advanced plugin](/enterprise/{{page.kong_version}}/plugins/ldap-authentication-advanced)
-allows Admins to use their own LDAP server
-to bind authentication to the Admin API with username and password protection.
-Note: You must use `Basic` as your `header_type` in the `admin_gui_auth_config`
-Kong configuration. Here is an example configuration (update the following in your
-Kong Configuration, then restart Kong):
+allows Admins to use their own LDAP server to bind authentication to the Admin 
+API with username and password protection. Note: You must use `Basic` as your 
+`header_type` in the `admin_gui_auth_config` Kong configuration. Here is an 
+example configuration (update the following in your Kong Configuration, then 
+restart Kong):
 
 ```
 admin_gui_auth = ldap-auth-advanced
@@ -208,6 +208,7 @@ enforce_rbac = on
 admin_gui_auth_conf={                                     \
 "anonymous":"",                                           \
 "attribute":"uid",                                        \
+"bind_dn":"<ENTER_YOUR_BIND_DN_HERE>",                    \
 "base_dn":"<ENTER_YOUR_BASE_DN_HERE>",                    \
 "cache_ttl": 2,                                           \
 "header_type":"Basic",                                    \
@@ -223,8 +224,12 @@ admin_gui_auth_conf={                                     \
 The values above can be replaced with their corresponding values for your custom
 LDAP configuration:
 
+  - `<ENTER_YOUR_BIND_DN_HERE>` - Your LDAP Bind DN (Distinguished Name)
+        * Used to perform LDAP search of user. This bind_dn should have 
+          permissions to search for the user being authenticated.
+        * For Example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
   - `<ENTER_YOUR_BASE_DN_HERE>` - Your LDAP Base DN (Distinguished Name)
-        * For Example, `ou=scientists,dc=ldap,dc=kong,dc=com`
+        * For Example, `ou=scientists,dc=ldap,dc=com`
   - `<ENTER_YOUR_LDAP_HOST_HERE>` - LDAP Host domain
         * For Example, `ec2"-XX-XXX-XX-XXX.compute-1.amazonaws.com`
 
@@ -234,7 +239,7 @@ your remote LDAP server.
 
 ### Basic Authentication
 
-The [Basic Authentication Plugin](https://getkong.org/plugins/basic-authentication)
+The [Basic Authentication Plugin](/plugins/basic-authentication)
 allows Admins to use username and password to authenticate requests, and can be
 used to authenticate the Admin GUI.
 

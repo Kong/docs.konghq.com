@@ -1,6 +1,7 @@
 ---
 name: Apache OpenWhisk
 publisher: Kong Inc.
+version: 1.0.0
 
 source_url: https://github.com/Kong/kong-plugin-openwhisk
 
@@ -29,7 +30,6 @@ installation: |
 
 params:
   name: openwhisk
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
@@ -112,7 +112,9 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
     ok: created action hello
     ```
 
-2. Create a Service or Route (or use the depreciated API entity)
+2. Create a Service or Route
+
+    **With a database**
 
     Create a Service.
 
@@ -137,21 +139,25 @@ Openwhisk platform using [`wsk cli`](https://github.com/openwhisk/openwhisk-cli)
 
     ```
 
-    Or you could use the API entity.
+    **Without a database**
 
-    ```bash
-    $ curl -i -X  POST http://localhost:8001/apis/ \
-      --data "name=openwhisk-test" -d "hosts=example.com" \
-      --data "upstream_url=http://example.com"
+    Add a Service and an associated Route on the declarative config file:
 
-    HTTP/1.1 201 Created
-    ...
+    ``` yaml
+    services:
+    - name: openwhisk-test
+      url: http://example.com
 
+    routes:
+    - service: openwhisk-test
+      paths: ["/"]
     ```
 
 3. Enable the `openwhisk` plugin on the Route
 
-Plugins can be enabled on a Service or a Route. This example uses a Service.
+    **With a database**
+
+    Plugins can be enabled on a Service or a Route. This example uses a Service.
 
     ```bash
     $ curl -i -X POST http://localhost:8001/services/openwhisk-test/plugins \
@@ -164,6 +170,21 @@ Plugins can be enabled on a Service or a Route. This example uses a Service.
     HTTP/1.1 201 Created
     ...
 
+    ```
+
+    **Without a database**
+
+    Add an entry to the `plugins: ` declarative configuration yaml entry.
+    It can be associated to a Service or Route. This example uses a Service:
+
+    ``` yaml
+    plugins:
+    - name: openwhisk
+      config:
+        host: 192.168.33.13
+        service_token: username:key
+        action: hello
+        path: /api/v1/namespaces/guest
     ```
 
 4. Make a request to invoke the action
@@ -286,13 +307,7 @@ be specified for the entity to be validated by Kong. The `host` property in
 particular must either be an IP address, or a hostname that gets resolved by
 your nameserver.
 
-When the plugin is added to an API entity (which is deprecated as of 0.13.0),
-it is the `upsream_url` property which must be specified and resolvable as well
-(but ignored).
-
 #### Response plugins
 
 There is a known limitation in the system that prevents some response plugins
 from being executed. We are planning to remove this limitation in the future.
-
-[api-object]: /latest/admin-api/#api-object

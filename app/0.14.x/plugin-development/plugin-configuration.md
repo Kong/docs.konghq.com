@@ -41,6 +41,10 @@ the appropriate error messages.
 kong.plugins.<plugin_name>.schema
 ```
 
+[Back to TOC](#table-of-contents)
+
+---
+
 ## schema.lua specifications
 
 This module is to return a Lua table with properties that will define how your plugins can later be configured by users. Available properties are:
@@ -76,6 +80,10 @@ return {
   end
 }
 ```
+
+[Back to TOC](#table-of-contents)
+
+---
 
 ## Describing your configuration schema
 
@@ -166,7 +174,7 @@ return CustomHandler
 ```
 
 Note that the above example uses the
-[kong.log.inspect](http://localhost:3000/docs/0.14.x/pdk/kong.log/#kong_log_inspect)
+[kong.log.inspect](/{{page.kong_version}}/pdk/kong.log/#kong_log_inspect)
 function of the [Plugin Development Kit] to print out those values to the Kong
 logs.
 
@@ -239,6 +247,8 @@ return CustomHandler
 ```
 
 You can also see a real-world example of schema in [the Key-Auth plugin source code].
+
+[Back to TOC](#table-of-contents)
 
 ---
 

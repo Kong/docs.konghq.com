@@ -10,7 +10,7 @@ chapter: 4
 
 ## Enable Authentication
 
-First, we will configure the portal using [Basic Authentication](https://getkong.org/plugins/basic-authentication). Update the following in your Kong Configuration, then restart Kong:
+First, we will configure the portal using [Basic Authentication](/plugins/basic-authentication). Update the following in your Kong Configuration, then restart Kong:
 
 ```
 portal_auth = basic-auth
@@ -22,8 +22,8 @@ The Dev Portal templates are now aware that the Dev Portal is authenticated. Bro
 
 The Dev Portal supports other Authentication plugins which are explained in more detail under [Example configurations](#example-configs):
 
-* [Key Authentication](https://getkong.org/plugins/key-authentication)
-* [OpenID Connect-EE](https://getkong.org/plugins/ee-openid-connect/)
+* [Key Authentication](/plugins/key-authentication)
+* [OpenID Connect-EE](/plugins/ee-openid-connect/)
 
 ## Developer Registration
 
@@ -79,17 +79,17 @@ You should now be redirected to [http://127.0.0.1:8003/dashboard] where, as a De
 
 For more information and details on configuring other authentication methods, and [Logging In](#logging-in) keep reading!
 
-> If your Dev Portal does not render after following these steps, check out the <a href="/enterprise/{{page.kong_version}}/developer-portal/FAQ">FAQ</a>.
+> If your Dev Portal does not render after following these steps, check out the <a href="/enterprise/{{page.kong_version}}/developer-portal/faq/">FAQ</a>.
 
 ## Example configurations
 
 ### Basic Authentication
 
-Check out the section "**Enabling Authentication"** for a step by step guide on setting up [Basic Authentication](https://getkong.org/plugins/basic-authentication).
+Check out the section "**Enabling Authentication"** for a step by step guide on setting up [Basic Authentication](/plugins/basic-authentication).
 
 ### Key Authentication
 
-The [Key Authentication Plugin](https://getkong.org/plugins/key-authentication) allows developers to use API keys to authenticate requests, and can be used to authenticate the developer portal. This is useful when you would prefer a Developer to only have a single API Key to login, rather than a username/password.
+The [Key Authentication Plugin](/plugins/key-authentication) allows developers to use API keys to authenticate requests, and can be used to authenticate the developer portal. This is useful when you would prefer a Developer to only have a single API Key to login, rather than a username/password.
 
 Update the following in your Kong Configuration, then restart Kong:
 

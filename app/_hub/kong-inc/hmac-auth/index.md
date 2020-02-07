@@ -1,10 +1,11 @@
 ---
 name: HMAC Authentication
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Add HMAC Authentication to your APIs
+desc: Add HMAC Authentication to your Services
 description: |
-  Add HMAC Signature authentication to a Service or a Route (or the deprecated API entity)
+  Add HMAC Signature authentication to a Service or a Route
   to establish the integrity of incoming requests. The plugin will validate the
   digital signature sent in the `Proxy-Authorization` or `Authorization` header
   (in this order). This plugin implementation is based off the
@@ -27,6 +28,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -39,6 +45,9 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -46,10 +55,15 @@ kong_version_compatibility:
 
 params:
   name: hmac-auth
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    Consumers and Credentials can be created with declarative configuration.
+
+    Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials will not work on DB-less mode.
   config:
     - name: hide_credentials
       required: false
@@ -80,7 +94,7 @@ params:
       description: |
         A list of HMAC digest algorithms which the user wants to support. Allowed values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, and `hmac-sha512`
   extra: |
-    Once applied, any user with a valid credential can access the Service/API.
+    Once applied, any user with a valid credential can access the Service/Route.
     To restrict usage to only some of the authenticated users, also add the
     [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
     blacklist groups of users.
@@ -97,22 +111,38 @@ update or remove any request parameter used in HMAC signature before this plugin
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object]
-object. To create a Consumer, you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object.
+A Consumer can have many credentials.
+
+{% tabs %}
+{% tab With a Database %}
+To create a Consumer, you can execute the following request:
 
 ```bash
-$ curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
+{% tab Without a Database %}
+Your declarative configuration file will need to have one or more Consumers. You can create them
+on the `consumers:` yaml section:
+
+``` yaml
+consumers:
+- username: user123
+  custom_id: SOME_CUSTOM_ID
+```
+{% endtabs %}
+
+In both cases, the parameters are as described below:
 
 parameter                       | description
 ---                             | ---
 `username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
-A [Consumer][consumer-object] can have many credentials.
-
 ### Create a Credential
 
+{% tabs %}
+{% tab With a database %}
 You can provision new username/password credentials by making the following
 HTTP request:
 
@@ -122,11 +152,22 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
     --data "secret=secret456"
 ```
 
-`consumer`: The `id` or `username` property of the [Consumer][consumer-object]
-entity to associate the credentials to.
+{% tab Without a database %}
+You can add credentials on your declarative config file on the `hmacauth_credentials` yaml entry:
 
-form parameter             | description
+``` yaml
+hmacauth_credentials:
+- consumer: {consumer}
+  username: bob
+  secret: secret456
+```
+{% endtabs %}
+
+In both cases the fields/parameters work as follows:
+
+field/parameter            | description
 ---                        | ---
+`{consumer}`               | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 `username`                 | The username to use in the HMAC Signature verification.
 `secret`<br>*optional*     | The secret to use in the HMAC Signature verification. Note that if this parameter isn't provided, Kong will generate a value for you and send it as part of the response body.
 
@@ -211,7 +252,7 @@ include all of the headers and a `digest` of the body.
 
 ### HMAC Example
 
-The HMAC plugin can be enabled on a Service or a Route (or the deprecated API entity).
+The HMAC plugin can be enabled on a Service or a Route.
 
   **Create a Service**
 
@@ -228,23 +269,7 @@ The HMAC plugin can be enabled on a Service or a Route (or the deprecated API en
 
   ```bash
   $ curl -i -f -X POST http://localhost:8001/services/example-service/routes \
-      -d "name=hmac-test" \
       -d "paths[]=/"
-  HTTP/1.1 201 Created
-  ...
-
-  ```
-
-
-  **Add an API**
-
-For versions below 0.13.0, you would use now-deprecated API entity:
-
-  ```bash
-  $ curl -i -X POST http://localhost:8001/apis \
-      -d "name=hmac-test" \
-      -d "hosts=hmac.com" \
-      -d "upstream_url=http://example.com"
   HTTP/1.1 201 Created
   ...
 
@@ -263,24 +288,6 @@ For versions below 0.13.0, you would use now-deprecated API entity:
   ...
 
   ```
-
-  **Enabling the plugin on an API**
-
-  ```bash
-  $ curl -i -X POST http://localhost:8001/apis/hmac-test/plugins \
-      -d "name=hmac-auth" \
-      -d "config.enforce_headers=date, request-line" \
-      -d "config.algorithms=hmac-sha1, hmac-sha256"
-  HTTP/1.1 201 Created
-  ...
-
-  ```
-
-  Here we are enabling the `hmac-auth` plugin on API the `hmac-test`.
-  `config.enforce_headers` is set to force the client to at least use `date`
-  and `request-line` in the HTTP signature creation. Also we are setting the
-  `config.algorithms` to force the client to only use `hmac-sha1` or
-  `hmac-sha256` for hashing the signing string.
 
   **Add a Consumer**
 
@@ -303,7 +310,7 @@ For versions below 0.13.0, you would use now-deprecated API entity:
 
   ```
 
-  **Request to the API**
+  **Making an authorized request**
 
   ```bash
   $ curl -i -X GET http://localhost:8000/requests \
@@ -338,7 +345,7 @@ For versions below 0.13.0, you would use now-deprecated API entity:
   to `true`:
 
   The following example works the same way, whether the plugin was added to
-  a Service or a Route (or an API).
+  a Service or a Route.
 
   ```bash
   $ curl -i -X PATCH http://localhost:8001/plugins/{plugin-id} \
@@ -410,35 +417,46 @@ $ curl -X GET http://kong:8001/hmac-auths
             "id": "75695322-e8a0-4109-aed4-5416b0308d85",
             "secret": "wQazJ304DW5huJklHgUfjfiSyCyTAEDZ",
             "username": "foo",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         },
         {
             "created_at": 1509419793000,
             "id": "11d5cbfb-31b9-4a6d-8496-2f4a76500643",
             "secret": "zi6YHyvLaUCe21XMXKesTYiHSWy6m6CW",
             "username": "bar",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         },
         {
             "created_at": 1509681215000,
             "id": "eb0365bc-88ae-4568-be7c-db1eb7c16e5e",
             "secret": "NvHDTg5mp0ySFVJsITurtgyhEq1Cxbnv",
             "username": "baz",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the hmac-auth credential `id` field.
-`username`<br>*optional*                 | A filter on the list based on the hmac-auth credential `username` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the hmac-auth credential `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/hmac-auths
+
+{
+    "total": 1,
+    "data": [
+        {
+            "created_at": 1509419793000,
+            "id": "11d5cbfb-31b9-4a6d-8496-2f4a76500643",
+            "secret": "zi6YHyvLaUCe21XMXKesTYiHSWy6m6CW",
+            "username": "bar",
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose credentials need to be listed
 
 ### Retrieve the Consumer associated with a Credential
 

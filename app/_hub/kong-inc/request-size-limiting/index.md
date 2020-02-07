@@ -1,11 +1,12 @@
 ---
 name: Request Size Limiting
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Block requests with bodies greater than a specified size
 description: |
   <div class="alert alert-warning">
-    For security reasons we suggest enabling this plugin for any API you add to Kong to prevent a DOS (Denial of Service) attack.
+    For security reasons we suggest enabling this plugin for any Service you add to Kong to prevent a DOS (Denial of Service) attack.
   </div>
 
   Block incoming requests whose body is greater than a specific size in megabytes.
@@ -13,7 +14,7 @@ description: |
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
     with versions of Kong prior to 0.9.0
-    differs from what is documented herein. Refer to the 
+    differs from what is documented herein. Refer to the
     <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md">CHANGELOG</a>
     for details.
   </div>
@@ -25,6 +26,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -39,6 +45,9 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -46,15 +55,20 @@ kong_version_compatibility:
 
 params:
   name: request-size-limiting
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: allowed_payload_size
       required: true
       default: "`128`"
       value_in_examples: 128
       description: Allowed request payload size in megabytes, default is `128` (128000000 Bytes)
+    - name: size_unit
+      required: true
+      default: "`megabytes`"
+      description: Size unit can be set either in `bytes`, `kilobytes`, or `megabytes`. Note- this configuration is only supported in Kong Enterprise 1.3 and above, and may eventually extend to Kong Gateway 
 
 ---

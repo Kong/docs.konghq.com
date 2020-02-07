@@ -1,8 +1,9 @@
 ---
 title: Enabling Plugins
+redirect_from: '/0.32-x/getting-started/enabling-plugins'
 ---
 
-# Enabling Plugins
+## Introduction
 
 In this section, you'll learn how to configure Kong plugins. One of the core
 principles of Kong is its extensibility through [plugins][plugins]. Plugins

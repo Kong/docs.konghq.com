@@ -122,6 +122,8 @@ Note:
    and does not limit the response. *Failing to do so might lead to health
    checks not being executed.*
 
+[Back to TOC](#table-of-contents)
+
 ## Types of health checks
 
 ### Active health checks
@@ -191,6 +193,8 @@ passive health checks to monitor the target health based solely on its
 traffic, and only use active health checks while the target is unhealthy,
 in order to re-enable it automatically.
 
+[Back to TOC](#table-of-contents)
+
 ## Enabling and disabling health checks
 
 ### Enabling active health checks
@@ -239,6 +243,8 @@ probes to consider a target unhealthy.
 active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to
 consider a target unhealthy.
 
+[Back to TOC](#table-of-contents)
+
 ### Enabling passive health checks
 
 Passive health checks do not feature a probe, as they work by interpreting
@@ -258,6 +264,8 @@ traffic to consider a target unhealthy, as observed by passive health checks.
 * `healthchecks.passive.unhealthy.http_failures` - Number of HTTP failures in
 proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`)
 to consider a target unhealthy, as observed by passive health checks.
+
+[Back to TOC](#table-of-contents)
 
 ### Disabling health checks
 

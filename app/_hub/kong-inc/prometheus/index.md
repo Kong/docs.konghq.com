@@ -1,6 +1,7 @@
 ---
 name: Prometheus
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Expose metrics related to Kong and proxied upstream services in Prometheus exposition format
 description: |
@@ -13,15 +14,25 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
 
 params:
   name: prometheus
-  api_id: true
   service_id: true
-  route_id: true
+  route_id: false
+  protocols: ["http", "https", "tcp", "tls", "grpc", "grpcs"]
+  dbless_compatible: yes
+  dbless_explanation: |
+    The database will always be reported as “reachable” in prometheus with DB-less.
 
 ---
 

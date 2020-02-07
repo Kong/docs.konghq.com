@@ -37,6 +37,10 @@ under heavy load).
 kong.plugins.<plugin_name>.daos
 ```
 
+[Back to TOC](#table-of-contents)
+
+---
+
 ## Caching custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in
@@ -137,6 +141,8 @@ the datastore, and the data cached in the Kong nodes' memory. To avoid this
 inconsistency, we need to evict the cached entity from the in-memory store and
 force Kong to request it again from the datastore. We refer to this process as
 cache invalidation.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -275,6 +281,10 @@ kong.worker_events.register(function(data)
 end, "crud", "consumers")
 ```
 
+[Back to TOC](#table-of-contents)
+
+---
+
 ## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with
@@ -283,6 +293,8 @@ able to interact with the custom entities you implemented for your plugin (for
 example, creating and deleting API keys). The way you would do this is by
 extending the Admin API, which we will detail in the next chapter: [Extending
 the Admin API]({{page.book.next}}).
+
+[Back to TOC](#table-of-contents)
 
 ---
 

@@ -25,6 +25,7 @@ categories: # (required) Uncomment all that apply.
   #- analytics-monitoring
   #- transformations
   #- logging
+  #- deployment
 # Array format only; uncomment the one most-applicable category. Contact cooper@konghq.com to propose a new category, if necessary.
 
 type: # (required) String, one of:
@@ -146,6 +147,16 @@ params: # metadata about your plugin
   route_id:
     # whether this plugin can be applied to a Route.
     # Affects generation of examples and config table.
+  protocols:
+    # List of protocols this plugin is compatible with.
+    # Valid values: "http", "https", "tcp", "tls"
+    # Example: ["http", "https"]
+  dbless_compatible:
+    # Degree of compatibility with DB-less mode. Three values allowed:
+    # 'yes', 'no' or 'partially'
+  dbless_explanation:
+    # Optional free-text explanation, usually containing details about the degree of
+    # compatibility with DB-less.
 
   config: # Configuration settings for your plugin
     - name: # setting name
@@ -180,4 +191,4 @@ params: # metadata about your plugin
 # BEGIN MARKDOWN CONTENT
 ---
 
-### Your first heading will go here
+## Your first heading will go here

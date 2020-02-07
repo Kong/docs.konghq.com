@@ -1,5 +1,5 @@
 ---
-title: How to install Kong Enterprise and PostgreSQL onto Amazon Linux
+title: How to install Kong Enterprise and on Amazon Linux
 ---
 
 ## Installation Steps
@@ -19,11 +19,15 @@ baseurl=https://<BINTRAY_USER>:<BINTRAY_API_KEY>@kong.bintray.com/kong-enterpris
 
 ```bash
 $ sudo yum install kong-enterprise-edition
-$ sudo yum install postgresql95 postgresql95-server
-$ sudo service postgresql95 initdb
-$ sudo service postgresql95 start
+$ sudo yum install postgresql postgresql-server
+$ sudo service postgresql-setup initdb
+$ sudo service postgresql start
 $ sudo -i -u postgres (puts you into new shell)
 ```
+
+**Note**: `<USERNAME>` is obtained from your access key, by appending a `%40kong`
+to it (encoded form of `@kong`). For example, if your access key is `bob-company`,
+your username will be `bob-company%40kong`.
 
 Create `kong` user
 
@@ -31,23 +35,26 @@ Create `kong` user
 $ psql
 > CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
 > \q
+> quit
 ```
 
 ```bash
 # Change entries from ident to md5
-$ sudo vi /var/lib/pgsql95/data/pg_hba.conf
-$ sudo service postgresql95 restart
+$ sudo vi /var/lib/pgsql/data/pg_hba.conf
+$ sudo service postgresql restart
 
 # add contents of license file
 $ sudo vi /etc/kong/license.json
 
 # Uncomment and add 'kong' to pg_password line
-$ sudo vi /etc/kong/kong.conf.default
+$ sudo vi [/path/to/kong.conf]
 
 # Run migrations and start kong
-$ kong migrations up -c /etc/kong/kong.conf.default
-$ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
+$ kong migrations up [-c /path/to/kong.conf]
+$ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
+
+**Note:** You may use `kong.conf.default` or create [your own configuration](/0.13.x/configuration/#configuration-loading).
 
 ## Setup HTTPie to make commands easier
 
@@ -71,11 +78,11 @@ $ http :8000/ip
 $ ifconfig
 
 # Uncomment the admin_listen setting, and update to something like this `admin_listen = 172.31.3.8:8001`
-$ sudo vi /etc/kong/kong.conf.default
+$ sudo vi [/path/to/kong.conf]
 
 # Restart kong
 $ sudo /usr/local/bin/kong stop
-$ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf.default
+$ sudo /usr/local/bin/kong start [-c /path/to/kong.conf]
 ```
 
 In a browser, load your server on port `8002`

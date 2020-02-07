@@ -2,7 +2,7 @@
 
 name: LDAP Authentication Advanced
 publisher: Kong Inc.
-version: 0.33-x
+version: 1.3-x
 
 desc: Secure Kong clusters, routes and services with username and password protection
 description: |
@@ -18,14 +18,17 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
-        - 0.33-x
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
+        - 0.34-x
 
 params:
   name: ldap-auth-advanced
   api_id: true
   service_id: true
   route_id: true
-  consumer_id: true
+  consumer_id: false
   config:
     - name: ldap_host
       required:
@@ -51,6 +54,13 @@ params:
       value_in_examples:
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection
+    - name: ldaps
+      required:
+      default: "`false`"
+      value_in_examples:
+      description: |
+        Set it to `true` to use `ldaps`, a secure protocol (that can be configured 
+        to TLS) to connect to the LDAP server.
     - name: base_dn
       required:
       default:
@@ -107,10 +117,10 @@ params:
         Whether consumer is optional
     - name: consumer_by
       required: false
-      default: "`username`"
+      default: '`[ "username", "custom_id" ]`'
       value_in_examples:
       description: |
-        Whether to authenticate consumer based on `username` or `custom_id`
+        Whether to authenticate consumer based on `username` and/or `custom_id`
     - name: hide_credentials
       required: false
       default: "`false`"
@@ -122,7 +132,27 @@ params:
       default:
       value_in_examples:
       description: |
-        The DN to bind to
+        The DN to bind to. Used to perform LDAP search of user. This bind_dn 
+        should have permissions to search for the user being authenticated.
+    - name: group_base_dn
+      required:
+      default: "matches `conf.base_dn`"
+      value_in_examples:
+      description: |
+        Sets a distinguished name for the entry where LDAP searches for groups begin.
+    - name: group_name_attribute
+      required:
+      default: "matches `conf.attribute`"
+      value_in_examples:
+      description: |
+        Sets the attribute holding the name of a group, typically called `name` 
+        (in Active Directory) or `cn` (in OpenLDAP).
+    - name: group_member_attribute
+      required:
+      default: "`memberOf`"
+      value_in_examples:
+      description: |
+        Sets the attribute holding the members of the LDAP group.
 
 ---
 
@@ -139,13 +169,36 @@ credential for future requests for the duration specified in
 
 #### Upstream Headers
 
-When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the consumer in your code:
+When a client has been authenticated, the plugin will append some headers to the
+ request before proxying it to the upstream service, so that you can identify 
+ the consumer in your code:
 
-* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
-* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if authentication failed and 'anonymous' was set)
-* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
-* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
+* `X-Credential-Username`, the `username` of the Credential (only if the 
+consumer is not the 'anonymous' consumer)
+* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and 
+the 'anonymous' consumer was set instead.
+* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if 
+authentication failed and 'anonymous' was set)
+* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if 
+authentication failed and 'anonymous' was set)
+* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if 
+authentication failed and 'anonymous' was set)
+
+
+#### LDAP Search and config.bind_dn
+
+LDAP directory searching is performed during the request/plugin lifecycle. It is
+used to retrieve the fully qualified DN of the user so a bind 
+request can be performed with the user's given LDAP username and password. The 
+search for the user being authenticated uses the `config.bind_dn` property. The 
+search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
+`base_dn=<config.base_dn>`. Here is an example of how it performs the search 
+using the `ldapsearch` command line utility:
+
+```bash
+$ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b 
+"<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"
+```
 
 [api-object]: /latest/admin-api/#api-object
 [configuration]: /latest/configuration

@@ -21,7 +21,7 @@ With new regulations surrounding protecting private data like GDPR, there is a c
 
 For this example, let’s say you want to remove any instances of an email address from your kong logs. The emails addresses may come through in different ways, for example something like `/apiname/v2/verify/alice@example.com` or `/v3/verify?alice@example.com`. In order to keep these from being added to the logs, we will need to use a custom NGINX template.
 
-To start using a custom NGINX template, first get a copy of our template. This can be found [https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong](https://docs.konghq.com/latest/configuration/#custom-nginx-templates-embedding-kong) or copied from below
+To start using a custom NGINX template, first get a copy of our template. This can be found [https://docs.konghq.com/latest/configuration/#custom-nginx-templates--embedding-kong](https://docs.konghq.com/latest/configuration/#custom-nginx-templates--embedding-kong) or copied from below
 
 ```
 # ---------------------
@@ -142,3 +142,5 @@ proxy_access_log=logs/access.log show_everything if=$keeplog
 The final step in the process to make all the changes take effect is to restart kong. you can use the `kong restart` command to do so.
 
 Now, any requests made with an email address in it will no longer be logged. Of course, we can use this logic to remove anything we want from the logs on a conditional manner.
+
+[Back to TOC](#table-of-contents)

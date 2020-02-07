@@ -1,6 +1,7 @@
 ---
 name: Correlation ID
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Correlate requests and responses using a unique ID
 description: |
@@ -13,6 +14,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -22,6 +28,9 @@ kong_version_compatibility:
         - 0.8.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -29,10 +38,11 @@ kong_version_compatibility:
 
 params:
   name: correlation-id
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: header_name
       required: false

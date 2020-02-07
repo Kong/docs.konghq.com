@@ -1,7 +1,20 @@
-FROM jekyll/jekyll:3.1.0
+# This should mirror the jekyll version in the Gemfile
+FROM jekyll/jekyll:3.8.6
+
+RUN apk add --update autoconf automake file build-base nasm musl libpng-dev zlib-dev curl
+RUN apk add --update-cache --upgrade curl
 
 WORKDIR /srv/jekyll
+COPY Makefile /srv/jekyll/Makefile
 
-COPY entrypoint.sh /entrypoint.sh
+# To handle 'not get uid/gid'
+RUN npm config set unsafe-perm true
 
-ENTRYPOINT ["/entrypoint.sh"]
+RUN make install-prerequisites
+
+RUN chmod -R 777 /usr/lib/node_modules \
+  && usermod -a -G root jekyll
+
+EXPOSE 3000 3001
+
+HEALTHCHECK CMD curl --fail http://localhost:5000/ || exit 1

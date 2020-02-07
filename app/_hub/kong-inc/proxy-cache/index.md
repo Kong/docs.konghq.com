@@ -1,14 +1,13 @@
 ---
 
-name: Proxy Caching
+name: Proxy Cache
 publisher: Kong Inc.
-version: 0.33-x
+version: 1.3-x
 
 desc: Cache and serve commonly requested responses in Kong
 description: |
   This plugin provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.
 
-enterprise: true
 type: plugin
 categories:
   - traffic-control
@@ -16,9 +15,15 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
     enterprise_edition:
       compatible:
-        - 0.33-x
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
+        - 0.34-x
 
 params:
   name: proxy-cache
@@ -41,18 +46,18 @@ params:
         Downstream request methods considered cacheable
     - name: content_type
       required:
-      default: text/plain
+      default: text/plain, application/json
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable
+        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned
     - name: vary_headers
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
         Relevant headers considered for the cache key. If undefined, none of the headers are taken into consideration.
     - name: vary_query_params
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
@@ -70,7 +75,7 @@ params:
       description: |
         When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2)
     - name: storage_ttl
-      required:
+      required: false
       default:
       value_in_examples:
       description: |
@@ -78,70 +83,21 @@ params:
     - name: strategy
       required:
       default:
-      value_in_examples:
+      value_in_examples: memory
       description: |
-        The backing data store in which to hold cache entities
+        The backing data store in which to hold cache entities. Accepted values are; `memory`.
     - name: memory.dictionary_name
       required:
       default: kong_cache
       value_in_examples:
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
-    - name: redis.host
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Host to use for Redis connection when the redis strategy is defined
-    - name: redis.port
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Port to use for Redis connection when the redis strategy is defined
-    - name: redis.timeout
-      required: semi
-      default: 2000
-      value_in_examples:
-      description: |
-        Connection timeout to use for Redis connection when the redis strategy is defined
-    - name: redis.password
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Password to use for Redis connection when the redis strategy is defined. If undefined, no AUTH commands are sent to Redis.
-    - name: redis.database
-      required: semi
-      default: 0
-      value_in_examples:
-      description: |
-        Database to use for Redis connection when the redis strategy is defined
-    - name: redis.sentinel_master
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Sentinel master to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
-    - name: redis.sentinel_role
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Sentinel role to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
-    - name: redis.sentinel_addresses
-      required: semi
-      default:
-      value_in_examples:
-      description: |
-        Sentinel addresses to use for Redis connection when the redis strategy is defined. Defining this value implies using Redis Sentinel.
 
 ---
 ### Strategies
 
-`kong-plugin-enterprise-proxy-cache` is designed to support storing proxy cache data in different backend formats. Currently the following strategies are provided:
+`kong-plugin-proxy-cache` is designed to support storing proxy cache data in different backend formats. Currently the following strategies are provided:
 - `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_cache`, is also used by other plugins and elements of Kong to store unrelated database cache entities. Using this dictionary is an easy way to bootstrap the proxy-cache plugin, but it is not recommended for large-scale installations as significant usage will put pressure on other facets of Kong's database caching operations. It is recommended to define a separate `lua_shared_dict` via a custom Nginx template at this time.
-- `redis`: Supports Redis and Redis Sentinel deployments.
 
 ### Cache Key
 
@@ -199,7 +155,7 @@ Two separate endpoints are available: one to look up a known plugin instance, an
 
 **Endpoint**
 
-<div class="endpoint get">/proxy-cache/:plugin_id/caches/:cache_id</div>
+<div class="endpoint get">/proxy-cache/:cache_id</div>
 
 | Attributes | Description
 | -------------- | -------

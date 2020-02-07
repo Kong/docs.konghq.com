@@ -1,9 +1,10 @@
 ---
 title: PDK
 pdk: true
+toc: true
 ---
 
-# Plugin Development Kit
+## Plugin Development Kit
 
 The Plugin Development Kit (or "PDK") is set of Lua functions and variables
  that can be used by plugins to implement their own logic.  The PDK is a
@@ -20,34 +21,9 @@ The Plugin Development Kit (or "PDK") is set of Lua functions and variables
  `kong.request`, `kong.log`, etc...
 
 
-## Table of Contents
-
-* [kong.version](#kong_version)
-* [kong.version_num](#kong_version_num)
-* [kong.pdk_major_version](#kong_pdk_major_version)
-* [kong.pdk_version](#kong_pdk_version)
-* [kong.configuration](#kong_configuration)
-* [kong.ctx](kong.ctx)
-* [kong.client](kong.client)
-* [kong.request](kong.request)
-* [kong.service](kong.service)
-* [kong.service.request](kong.service.request)
-* [kong.service.response](kong.service.response)
-* [kong.response](kong.response)
-* [kong.dao](#kong_dao)
-* [kong.db](#kong_db)
-* [kong.dns](#kong_dns)
-* [kong.worker_events](#kong_worker_events)
-* [kong.cluster_events](#kong_cluster_events)
-* [kong.cache](#kong_cache)
-* [kong.ip](kong.ip)
-* [kong.table](kong.table)
-* [kong.log](kong.log)
 
 
-
-
-### <a name="kong_version"></a>kong.version
+### kong.version
 
 A human-readable string containing the version number of the currently
  running node.
@@ -61,7 +37,7 @@ print(kong.version) -- "0.14.0"
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_version_num"></a>kong.version_num
+### kong.version_num
 
 An integral number representing the version number of the currently running
  node, useful for comparison and feature-existence checks.
@@ -77,7 +53,7 @@ end
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_pdk_major_version"></a>kong.pdk_major_version
+### kong.pdk_major_version
 
 A number representing the major version of the current PDK (e.g.
  `1`). Useful for feature-existence checks or backwards-compatible behavior
@@ -95,7 +71,7 @@ end
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_pdk_version"></a>kong.pdk_version
+### kong.pdk_version
 
 A human-readable string containing the version number of the current PDK.
 
@@ -108,7 +84,7 @@ print(kong.pdk_version) -- "0.1.0"
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_configuration"></a>kong.configuration
+### kong.configuration
 
 A read-only table containing the configuration of the current Kong node,
  based on the configuration file and environment variables.
@@ -133,7 +109,7 @@ kong.configuration.custom_plugins = "foo"
 
 
 
-### <a name="kong_dao"></a>kong.dao
+### kong.dao
 
 Instance of Kong's legacy DAO.  This has the same interface as the object
  returned by `new(config, db)` in the core's `kong.dao.factory` module.
@@ -146,7 +122,7 @@ Instance of Kong's legacy DAO.  This has the same interface as the object
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_db"></a>kong.db
+### kong.db
 
 Instance of Kong's DAO (the new `kong.db` module).  Contains accessor objects
  to various entities.
@@ -166,7 +142,7 @@ kong.db.routes:select()
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_dns"></a>kong.dns
+### kong.dns
 
 Instance of Kong's DNS resolver, a client object from the
  [lua-resty-dns-client](https://github.com/kong/lua-resty-dns-client) module.
@@ -178,7 +154,7 @@ Instance of Kong's DNS resolver, a client object from the
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_worker_events"></a>kong.worker_events
+### kong.worker_events
 
 Instance of Kong's IPC module for inter-workers communication from the
  [lua-resty-worker-events](https://github.com/Kong/lua-resty-worker-events)
@@ -191,7 +167,7 @@ Instance of Kong's IPC module for inter-workers communication from the
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_cluster_events"></a>kong.cluster_events
+### kong.cluster_events
 
 Instance of Kong's cluster events module for inter-nodes communication.
 
@@ -202,7 +178,7 @@ Instance of Kong's cluster events module for inter-nodes communication.
 [Back to TOC](#table-of-contents)
 
 
-### <a name="kong_cache"></a>kong.cache
+### kong.cache
 
 Instance of Kong's database caching object, from the `kong.cache` module.
 

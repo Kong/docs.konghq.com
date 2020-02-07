@@ -1,8 +1,7 @@
 ---
 title: Configuration Reference
+redirect_from: '/0.13.x/configuration-reference/'
 ---
-
-# Configuration Reference
 
 ## Configuration loading
 
@@ -97,7 +96,7 @@ infrastructure, or embed Kong in an already running OpenResty instance.
 
 Kong can be started, reloaded and restarted with an `--nginx-conf` argument,
 which must specify an Nginx configuration template. Such a template uses the
-[Penlight][Penlight] [templating engine][pl.template], which is compiled using
+[Penlight][penlight] [templating engine][pl.template], which is compiled using
 the given Kong configuration, before being dumped in your Kong prefix
 directory, moments before starting Nginx.
 
@@ -394,8 +393,8 @@ Example: `0.0.0.0:80, 0.0.0.0:81 http2, 0.0.0.0:443 ssl, 0.0.0.0:444 http2 ssl`
 
 Comma-separated list of addresses and ports on which the Admin interface
 should listen. The Admin interface is the API allowing you to configure and
-manage Kong. Access to this interface should be *restricted* to Kong
-administrators *only*. This value accepts IPv4, IPv6, and hostnames. Some
+manage Kong. Access to this interface should be _restricted_ to Kong
+administrators _only_. This value accepts IPv4, IPv6, and hostnames. Some
 suffixes can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
@@ -577,7 +576,7 @@ This property also sets the `set_real_ip_from` directive(s) in the Nginx
 configuration. It accepts the same type of values (CIDR blocks) but as a
 comma-separated list.
 
-To trust *all* /!\ IPs, set this value to `0.0.0.0/0,::/0`.
+To trust _all_ /!\ IPs, set this value to `0.0.0.0/0,::/0`.
 
 If the special value `unix:` is specified, all UNIX-domain sockets will be
 trusted.
@@ -691,38 +690,38 @@ Default: `postgres`
 
 #### Postgres settings
 
-name                  |  description
-----------------------|-------------------
-**pg_host**           | Host of the Postgres server
-**pg_port**           | Port of the Postgres server
-**pg_user**           | Postgres user
-**pg_password**       | Postgres user's password
-**pg_database**       | Database to connect to. **must exist**
-**pg_ssl**            | Enable SSL connections to the server
-**pg_ssl_verify**     | If `pg_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
+| name              | description                                                                                                |
+| ----------------- | ---------------------------------------------------------------------------------------------------------- |
+| **pg_host**       | Host of the Postgres server                                                                                |
+| **pg_port**       | Port of the Postgres server                                                                                |
+| **pg_user**       | Postgres user                                                                                              |
+| **pg_password**   | Postgres user's password                                                                                   |
+| **pg_database**   | Database to connect to. **must exist**                                                                     |
+| **pg_ssl**        | Enable SSL connections to the server                                                                       |
+| **pg_ssl_verify** | If `pg_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting. |
 
 ---
 
 #### Cassandra settings
 
-name                            | description
---------------------------------|------------------
-**cassandra_contact_points**    | Comma-separated list of contacts points to your Cassandra cluster.
-**cassandra_port**              | Port on which your nodes are listening.
-**cassandra_keyspace**          | Keyspace to use in your cluster. Will be created if doesn't exist.
-**cassandra_consistency**       | Consistency setting to use when reading/writing.
-**cassandra_timeout**           | Timeout (in ms) for reading/writing.
-**cassandra_ssl**               | Enable SSL connections to the nodes.
-**cassandra_ssl_verify**        | If `cassandra_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.
-**cassandra_username**          | Username when using the PasswordAuthenticator scheme.
-**cassandra_password**          | Password when using the PasswordAuthenticator scheme.
-**cassandra_consistency**       | Consistency setting to use when reading/writing to the Cassandra cluster.
-**cassandra_lb_policy**         | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin` and `DCAwareRoundRobin`. Prefer the later if and only if you are using a multi-datacenter cluster, and set the `cassandra_local_datacenter` if so.
-**cassandra_local_datacenter**  | When using the `DCAwareRoundRobin` policy, you must specify the name of the cluster local (closest) to this Kong node.
-**cassandra_repl_strategy**     | If creating the keyspace for the first time, specify a replication strategy.
-**cassandra_repl_factor**       | Specify a replication factor for the `SimpleStrategy`.
-**cassandra_data_centers**      | Specify data centers for the `NetworkTopologyStrategy`.
-**cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations.
+| name                                   | description                                                                                                                                                                                                                                                               |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **cassandra_contact_points**           | Comma-separated list of contacts points to your Cassandra cluster.                                                                                                                                                                                                        |
+| **cassandra_port**                     | Port on which your nodes are listening.                                                                                                                                                                                                                                   |
+| **cassandra_keyspace**                 | Keyspace to use in your cluster. Will be created if doesn't exist.                                                                                                                                                                                                        |
+| **cassandra_consistency**              | Consistency setting to use when reading/writing.                                                                                                                                                                                                                          |
+| **cassandra_timeout**                  | Timeout (in ms) for reading/writing.                                                                                                                                                                                                                                      |
+| **cassandra_ssl**                      | Enable SSL connections to the nodes.                                                                                                                                                                                                                                      |
+| **cassandra_ssl_verify**               | If `cassandra_ssl` is enabled, toggle server certificate verification. See `lua_ssl_trusted_certificate` setting.                                                                                                                                                         |
+| **cassandra_username**                 | Username when using the PasswordAuthenticator scheme.                                                                                                                                                                                                                     |
+| **cassandra_password**                 | Password when using the PasswordAuthenticator scheme.                                                                                                                                                                                                                     |
+| **cassandra_consistency**              | Consistency setting to use when reading/writing to the Cassandra cluster.                                                                                                                                                                                                 |
+| **cassandra_lb_policy**                | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are `RoundRobin` and `DCAwareRoundRobin`. Prefer the later if and only if you are using a multi-datacenter cluster, and set the `cassandra_local_datacenter` if so. |
+| **cassandra_local_datacenter**         | When using the `DCAwareRoundRobin` policy, you must specify the name of the cluster local (closest) to this Kong node.                                                                                                                                                    |
+| **cassandra_repl_strategy**            | If creating the keyspace for the first time, specify a replication strategy.                                                                                                                                                                                              |
+| **cassandra_repl_factor**              | Specify a replication factor for the `SimpleStrategy`.                                                                                                                                                                                                                    |
+| **cassandra_data_centers**             | Specify data centers for the `NetworkTopologyStrategy`.                                                                                                                                                                                                                   |
+| **cassandra_schema_consensus_timeout** | Define the timeout (in ms) for the waiting period to each a schema consensus between your Cassandra nodes. This value is only used during migrations.                                                                                                                     |
 
 [Back to TOC](#table-of-contents)
 
@@ -956,6 +955,5 @@ Default: `30`
 [Back to TOC](#table-of-contents)
 
 [ngx_http_realip_module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html
-
-[Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
+[penlight]: http://stevedonovan.github.io/Penlight/api/index.html
 [pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html

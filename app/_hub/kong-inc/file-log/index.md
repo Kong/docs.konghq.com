@@ -1,6 +1,7 @@
 ---
 name: File Log
 publisher: Kong Inc.
+version: 1.0.0
 
 desc: Append request and response data to a log file on disk
 description: |
@@ -27,6 +28,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -41,6 +47,9 @@ kong_version_compatibility:
         - 0.3.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -48,10 +57,11 @@ kong_version_compatibility:
 
 params:
   name: file-log
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https", "grpc", "grpcs"]
+  dbless_compatible: yes
   config:
     - name: path
       required: true
@@ -83,6 +93,12 @@ Every request will be logged separately in a JSON object separated by a new line
             "accept": "*/*",
             "host": "httpbin.org",
             "user-agent": "curl/7.37.1"
+        },
+        "tls": {
+            "version": "TLSv1.2",
+            "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+            "supported_client_ciphers": "ECDHE-RSA-AES256-GCM-SHA384",
+            "client_verify": "NONE"
         }
     },
     "upstream_uri": "/",
@@ -149,6 +165,12 @@ Every request will be logged separately in a JSON object separated by a new line
         "updated_at": 1521554518,
         "write_timeout": 60000
     },
+    "workspaces": [
+        {
+            "id":"b7cac81a-05dc-41f5-b6dc-b87e29b6c3a3",
+            "name": "default"
+        }
+    ],
     "consumer": {
         "username": "demo",
         "created_at": 1491847011000,
@@ -172,6 +194,7 @@ A few considerations on the above JSON object:
 * `route` contains Kong properties about the specific Route requested
 * `service` contains Kong properties about the Service associated with the requested Route
 * `authenticated_entity` contains Kong properties about the authenticated credential (if an authentication plugin has been enabled)
+* `workspaces` contains Kong properties of the Workspaces associated with the requested Route. **Only in Kong Enterprise version >= 0.34**.
 * `consumer` contains the authenticated Consumer (if an authentication plugin has been enabled)
 * `latencies` contains some data about the latencies involved:
   * `proxy` is the time it took for the final service to process the request

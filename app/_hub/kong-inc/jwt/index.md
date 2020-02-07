@@ -8,7 +8,7 @@ description: |
 
   - a query string parameter,
   - a cookie,
-  - or the Authorization header.
+  - or HTTP request headers
 
   Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
@@ -28,6 +28,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -40,6 +45,9 @@ kong_version_compatibility:
         - 0.5.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -47,10 +55,15 @@ kong_version_compatibility:
 
 params:
   name: jwt
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: false
+  protocols: ["http", "https"]
+  dbless_compatible: partially
+  dbless_explanation: |
+    Consumers and JWT secrets can be created with declarative configuration.
+
+    Admin API endpoints which do POST, PUT, PATCH or DELETE on secrets are not available on DB-less mode.
   config:
     - name: uri_param_names
       required: false
@@ -60,6 +73,10 @@ params:
       required: false
       default:
       description: A list of cookie names that Kong will inspect to retrieve JWTs.
+    - name: header_names
+      required: false
+      default: "`Authorization`"
+      description: A list of HTTP header names that Kong will inspect to retrieve JWTs.
     - name: claims_to_verify
       required: false
       default:
@@ -89,7 +106,7 @@ params:
       required: false
       default: 0
       description: |
-        An integer limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime will rejected (HTTP 403). If this valeu is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this value.
+        An integer limiting the lifetime of the JWT to `maximum_expiration` seconds in the future. Any JWT that has a longer lifetime will rejected (HTTP 403). If this value is specified, `exp` must be specified as well in the `claims_to_verify` property. The default value of `0` represents an indefinite period. Potential clock skew should be considered when configuring this setting.
 
   extra: |
     <div class="alert alert-warning">
@@ -104,24 +121,39 @@ In order to use the plugin, you first need to create a Consumer and associate on
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
+You need to associate a credential to an existing [Consumer][consumer-object] object.
+A Consumer can have many credentials.
+
+{% tabs %}
+{% tab With a Database %}
+To create a Consumer, you can execute the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers \
-    --data "username=<USERNAME>" \
-    --data "custom_id=<CUSTOM_ID>"
-HTTP/1.1 201 Created
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
 ```
+{% tab Without a Database %}
+Your declarative configuration file will need to have one or more Consumers. You can create them
+on the `consumers:` yaml section:
 
-form parameter                  | default | description
----                             | ---     | ---
-`username`<br>*semi-optional*   |         | The username for this Consumer. Either this field or `custom_id` must be specified.
-`custom_id`<br>*semi-optional*  |         | A custom identifier used to map the Consumer to an external database. Either this field or `username` must be specified.
+``` yaml
+consumers:
+- username: user123
+  custom_id: SOME_CUSTOM_ID
+```
+{% endtabs %}
 
-A [Consumer][consumer-object] can have many JWT credentials.
+In both cases, the parameters are as described below:
+
+parameter                       | description
+---                             | ---
+`username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
+`custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
+
 
 ### Create a JWT credential
 
+{% tabs %}
+{% tab With a database %}
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
@@ -136,11 +168,20 @@ HTTP/1.1 201 Created
     "secret": "e71829c351aa4242c2719cbfbe671c09"
 }
 ```
+{% tab Without a database %}
+You can add JWT credentials on your declarative config file on the `jwt_secrets:` yaml entry:
 
-- `consumer`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
+``` yaml
+jwt_secrets:
+- consumer: {consumer}
+```
+{% endtabs %}
 
-form parameter                 | default         | description
+In both cases the fields/parameters work as follows:
+
+field/parameter                | default         | description
 ---                            | ---             | ---
+`{consumer}`                   |                 | The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
 `algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, or `ES256`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256` or `ES256`, the public key (in PEM format) to use to verify the token's signature.
@@ -221,7 +262,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWN
 
 ### Send a request with the JWT
 
-The JWT can now be included in a request to Kong by adding it to the `Authorization` header:
+The JWT can now be included in a request to Kong by adding it as a header, if configured in `config.header_names` (which contains `Authorization` by default):
 
 ```bash
 $ curl http://kong:8000/{route path} \
@@ -248,7 +289,7 @@ has no JWT                     | no                       | 401
 missing or invalid `iss` claim | no                       | 401
 invalid signature              | no                       | 403
 valid signature                | yes                      | from the upstream service
-valid signature, invalid verified claim (**option**) | no                       | 403
+valid signature, invalid verified claim _optional_ | no                       | 401
 
 <div class="alert alert-warning">
   <strong>Note:</strong> When the JWT is valid and proxied to the upstream service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
@@ -284,12 +325,6 @@ $ curl -X PATCH http://kong:8001/routes/{route id}/plugins/{jwt plugin id} \
     --data "config.secret_is_base64=true"
 ```
 
-or patch an existing API:
-
-```bash
-$ curl -X PATCH http://kong:8001/apis/{api}/plugins/{jwt plugin id} \
-    --data "config.secret_is_base64=true"
-```
 Then, base64 encode your consumers' secrets:
 
 ```bash
@@ -369,8 +404,8 @@ heavily on JWTs. Auth0 relies on RS256, does not base64 encode, and publicly
 hosts the public key certificate used to sign tokens. Account name is referred
 to "COMPANYNAME" for the sake of the guide.
 
-To get started, create a Service, a Route that uses that Service, *or* create
-an API. _Note: Auth0 does not use base64 encoded secrets._
+To get started, create a Service and a Route that uses that Service.
+_Note: Auth0 does not use base64 encoded secrets._
 
 Create a Service:
 
@@ -388,29 +423,12 @@ $ curl -i -f -X POST http://localhost:8001/routes \
     --data "paths[]=/example_path"
 ```
 
-
-or create an API, note these are depreciated:
-
-```bash
-$ curl -i -X POST http://localhost:8001/apis \
-    --data "name={api}" \
-    --data "hosts=example.com" \
-    --data "upstream_url=http://httpbin.org"
-```
-
 Add the JWT Plugin:
 
 Add the plugin to your Route:
 
 ```bash
 $ curl -X POST http://localhost:8001/route/{route id}/plugins \
-    --data "name=jwt"
-```
-
-Add the plugin to your API:
-
-```bash
-$ curl -X POST http://localhost:8001/apis/{api}/plugins \
     --data "name=jwt"
 ```
 
@@ -487,7 +505,7 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "HS256",
             "key": "UHVwIly5ZxZH7g52E0HRlFkFC09v9yI0",
             "secret": "KMWyDsTTcZgqqyOGgRWTDgZtIyWeEtJh",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         },
         {
             "created_at": 1511389527000,
@@ -495,7 +513,7 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "ES256",
             "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
             "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
-            "consumer_id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880"
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
         },
         {
             "created_at": 1509593912000,
@@ -503,21 +521,35 @@ $ curl -X GET http://kong:8001/jwts
             "algorithm": "HS256",
             "key": "SqSNfg9ARmPnpycyJSMAc2uR6nxdmc9S",
             "secret": "CCh6ZIcwDSOIWacqkkWoJ0FWdZ5eTqrx",
-            "consumer_id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941"
+            "consumer": { "id": "3c2c8fc1-7245-4fbb-b48b-e5947e1ce941" }
         }
     ]
 }
 ```
 
-You can filter the list using the following query parameters:
+You can filter the list by consumer by using this other path:
 
-Attributes | Description
----:| ---
-`id`<br>*optional*                       | A filter on the list based on the JWT credential `id` field.
-`key`<br>*optional*                 	 | A filter on the list based on the JWT credential `key` field.
-`consumer_id`<br>*optional*              | A filter on the list based on the JWT credential `consumer_id` field.
-`size`<br>*optional, default is __100__* | A limit on the number of objects to be returned.
-`offset`<br>*optional*                   | A cursor used for pagination. `offset` is an object identifier that defines a place in the list.
+```bash
+$ curl -X GET http://kong:8001/consumers/{username or id}/jwts
+
+{
+    "total": 1,
+    "data": [
+        {
+            "created_at": 1511389527000,
+            "id": "0dfc969b-02be-42ae-9d98-e04ed1c05850",
+            "algorithm": "ES256",
+            "key": "vcc1NlsPfK3N6uU03YdNrDZhzmFF4S19",
+            "secret": "b65Rs6wvnWPYaCEypNU7FnMOZ4lfMGM7",
+            "consumer": { "id": "c0d92ba9-8306-482a-b60d-0cfdd2f0e880" }
+
+        }
+    ]
+}
+```
+
+`username or id`: The username or id of the consumer whose jwts need to be listed
+
 
 ### Retrieve the Consumer associated with a JWT
 

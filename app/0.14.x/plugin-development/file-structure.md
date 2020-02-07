@@ -57,6 +57,8 @@ optional, and will allow the plugin to implement some extra-functionalities
 Now let's describe exactly what are the modules you can implement and what
 their purpose is.
 
+[Back to TOC](#table-of-contents)
+
 ---
 
 ## Basic plugin modules
@@ -75,6 +77,8 @@ simple-plugin
 - [schema.lua]: your plugin probably has to retain some configuration entered
   by the user. This module holds the *schema* of that configuration and defines
   rules on it, so that the user can only enter valid configuration values.
+
+[Back to TOC](#table-of-contents)
 
 ---
 
@@ -110,6 +114,8 @@ master each one of them.
 
 The [Key-Auth plugin] is an example of plugin with this file structure. See
 [its source code] for more details.
+
+[Back to TOC](#table-of-contents)
 
 ---
 

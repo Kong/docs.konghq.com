@@ -1,10 +1,11 @@
 ---
 name: Datadog
 publisher: Kong Inc.
+version: 1.0.0
 
-desc: Visualize API metrics on Datadog
+desc: Visualize metrics on Datadog
 description: |
-  Log [metrics](#metrics) for a Service, Route (or the deprecated API entity) to a local
+  Log [metrics](#metrics) for a Service, Route to a local
   [Datadog agent](http://docs.datadoghq.com/guides/basic_agent_usage/).
 
   <div class="alert alert-warning">
@@ -22,6 +23,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 1.4.x
+        - 1.3.x
+        - 1.2.x
+        - 1.1.x
+        - 1.0.x
         - 0.14.x
         - 0.13.x
         - 0.12.x
@@ -33,6 +39,9 @@ kong_version_compatibility:
         - 0.6.x
     enterprise_edition:
       compatible:
+        - 1.3-x
+        - 0.36-x
+        - 0.35-x
         - 0.34-x
         - 0.33-x
         - 0.32-x
@@ -40,10 +49,11 @@ kong_version_compatibility:
 
 params:
   name: datadog
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
+  protocols: ["http", "https"]
+  dbless_compatible: yes
   config:
     - name: host
       required: false
@@ -69,20 +79,20 @@ params:
 
 ## Metrics
 
-Plugin currently logs following metrics to the Datadog server about a Service, Route, or an API entity (which is deprecated since 0.13.0).
+Plugin currently logs following metrics to the Datadog server about a Service or Route.
 
 Metric                     | description | namespace
 ---                        | ---         | ---
-`request_count`            | tracks the request | kong.\<api_name>.request.count
-`request_size`             | tracks the request's body size in bytes | kong.\<api_name>.request.size
-`response_size`            | tracks the response's body size in bytes | kong.\<api_name>.response.size
-`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<api_name>.latency
-`status_count`             | tracks each status code returned as response | kong.\<api_name>.status.\<status>.count and kong.\<api_name>.status.\<status>.total
-`unique_users`             | tracks unique users made a request to the api | kong.\<api_name>.user.uniques
-`request_per_user`         | tracks request/user | kong.\<api_name>.user.\<consumer_id>.count
-`upstream_latency`         | tracks the time it took for the final service to process the request | kong.\<api_name>.upstream_latency
-`kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.\<api_name>.kong_latency
-`status_count_per_user`    | tracks request/status/user | kong.\<api_name>.user.\<customer_id>.status.\<status> and kong.\<api_name>.user.\<customer_id>.status.total
+`request_count`            | tracks the request | kong.\<service_name>.request.count
+`request_size`             | tracks the request's body size in bytes | kong.\<service_name>.request.size
+`response_size`            | tracks the response's body size in bytes | kong.\<service_name>.response.size
+`latency`                  | tracks the time interval between the request started and response received from the upstream server | kong.\<service_name>.latency
+`status_count`             | tracks each status code returned as response | kong.\<service_name>.status.\<status>.count and kong.\<service_name>.status.\<status>.total
+`unique_users`             | tracks unique users made a request | kong.\<service_name>.user.uniques
+`request_per_user`         | tracks request/user | kong.\<service_name>.user.\<consumer_id>.count
+`upstream_latency`         | tracks the time it took for the final service to process the request | kong.\<service_name>.upstream_latency
+`kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.\<service_name>.kong_latency
+`status_count_per_user`    | tracks request/status/user | kong.\<service_name>.user.\<customer_id>.status.\<status> and kong.\<service_name>.user.\<customer_id>.status.total
 
 ### Metric fields
 
