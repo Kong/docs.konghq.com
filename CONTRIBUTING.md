@@ -26,6 +26,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
   - [Table of Contents generator](#table-of-contents-generator)
+  - [Versioning Configuration](#versioning-configuration)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 
@@ -394,7 +395,57 @@ will cause a broken ToC, and should be corrected to:
 ### Sub-sub-heading Level 3
 ```
 
-[Back to TOC](#table-of-contents)
+### Versioning Configuration
+
+Kong documentation and enterprise pages are versioned, and include a dropdown to allow easy switching between different versions of a page. To facilitate this, the configuration for such a page needs to be updated if:
+
+- [A new page is created](#a-new-page-is-created)
+- [An existing page is removed](#an-existing-page-is-removed)
+- [An existing page is renamed](#an-existing-page-is-renamed)
+
+If your contribution includes any of the above changes, then an update to [ce_docs_version_timeline.yml](https://github.com/Kong/docs.konghq.com/blob/master/app/_data/ce_docs_version_timeline.yml) / [ee_docs_version_timeline.yml](https://github.com/Kong/docs.konghq.com/blob/master/app/_data/ee_docs_version_timeline.yml) is required.
+
+Configuration format:
+```yml
+slug: <article's slug>
+aliases: list of article's renamed slugs (if any)
+timeline: (specify versions in reverse order)
+  <release_version>: <slug_override>
+  ...
+  ...
+```
+
+#### A new page is created
+If a new documentation page (e.g. [Proxy Reference](https://docs.konghq.com/0.14.x/proxy)) is added in a version (e.g. `0.4.x`), then its timeline must be specified as such:
+```yml
+-
+  slug: "proxy"
+  timeline:
+    0.4.x:  "PAGE_CREATED"
+```
+
+#### An existing page is removed
+If a documentation page (e.g. [Authenticating the Developer Portal in 0.31-x](https://docs.konghq.com/enterprise/0.31-x/developer-portal/authentication/)) is deleted in a subsequent version (e.g. `0.32-x`), then its timeline must be specified as such:
+```yml
+-
+  slug: "developer-portal/authentication"
+  timeline:
+    0.32-x:  "PAGE_DELETED"
+```
+
+#### An existing page is renamed
+If a documentation page (e.g. [Adding your API in 0.11.x](https://docs.konghq.com/0.11.x/getting-started/adding-your-api/)) is renamed in a subsequent version (e.g. `0.13.x`), then its timeline must be specified as such:
+```yml
+-
+  slug: "getting-started/configuring-a-service"
+  aliases: ["getting-started/adding-your-api"]
+  timeline:
+    0.12.x: "getting-started/adding-your-api"
+```
+_**The versions are iterated in reverse order**_, so for all versions below `0.13.x`, the _Configuring Your Service_ page will be correctly pointed to _Adding Your API_.
+
+> Note: For a renamed article, specify the latest slug under `slug`, and other slugs under `aliases`.
+> Specify the old renamed slug under the latest version that it existed in.
 
 
 ### Contributor T-shirt
