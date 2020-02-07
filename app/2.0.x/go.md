@@ -23,7 +23,8 @@ To write your own Go plugins:
 
 * A Kong development environment as usual.
 * A Go development environment.
-* The Go-PDK package: `go get github.com/Kong/go-pdk`
+* A go-pluginserver executable built with the same compiler and libraries.  The easiest way is to get it from source (`go get github.com/Kong/go-pluginserver`) and copy the new executable (found in `$GOPATH/bin` or `$(go env GOPATH)/bin`) to `/usr/local/bin`.
+* The Go-PDK package: `import "github.com/Kong/go-pdk"`.
 
 ## Development
 
@@ -35,22 +36,9 @@ To write a Kong plugin in Go, you need to:
 * Compile like: `go build -buildmode=plugin`.
 * Put the resulting library (the `.so` file) into the `go_plugins_dir` directory.
 
-Go support for binary plugins requires very tight matching of compiler and library versions
-between the executable and plugin.  We've used Go compiler version 1.13.5 although this might
-change frequently.
-If you get startup errors complaining about version
-mismatch, you can recompile the `go-pluginserver` executable:
-
-```bash
-# git clone https://github.com/Kong/go-pluginserver
-# cd go-pluginserver
-# make
-```
 
 **Note**: check out [this repository](https://github.com/Kong/go-plugins)
 for example Go plugins.
-
-Point the `go_pluginserver_exe` configuration variable to your new version.
 
 ### Configuration Structure
 
