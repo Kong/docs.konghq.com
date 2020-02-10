@@ -8,7 +8,7 @@ title: Hybrid Mode Deployment
 Traditionally, Kong has always required a database, which could be either
 Postgres or Cassandra, to store its configured entities such as Routes,
 Services and Plugins. In Kong 1.1 we added the capability to run Kong without
-a database, using only in-memory storage for entities: we call this [**DB-less mode**][db-less]
+a database, using only in-memory storage for entities: we call this [**DB-less mode**][db-less].
 
 In Kong 2.0, we introduced a new method of deploying Kong which is
 called the **Hybrid mode**, also known as **Control Plane / Data Plane Separation (CP/DP)**.
@@ -182,3 +182,4 @@ of declarative config documentation for more information.
 ---
 
 [plugin-compat]: /{{page.kong_version}}/db-less-and-declarative-config#plugin-compatibility
+[db-less]: /{{page.kong_version}}/db-less-and-declarative-config
