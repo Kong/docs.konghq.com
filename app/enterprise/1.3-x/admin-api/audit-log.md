@@ -280,7 +280,7 @@ audit_log_ignore_tables = consumers
 
 ## Digital Signatures
 
-To provide nonrepudiation, audit logs may be signed with a private RSA key. When 
+To provide nonrepudiation, audit logs may be signed with a private RSA key. When
 enabled, a lexically sorted representation of each audit log entry is signed by 
 the defined private key; the signature is stored in an additional field within 
 the record itself. The public key should be stored elsewhere and can be used 
@@ -292,6 +292,12 @@ Generate a private key via the `openssl` tool:
 
 ```bash
 $ openssl genrsa -out private.pem 2048
+```
+
+Extract the public key for future audit verification:
+
+```
+$ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
 Configure Kong to sign audit log records:
@@ -310,7 +316,7 @@ Audit log entries will now contain a field `signature`:
     "path": "/status", 
     "request_id": "Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0", 
     "request_timestamp": 1542132298664, 
-    "signature": "ctD8DXJEfuFAVdlYuhay7f4kmcZhfRPjX8Q6HlSJ+67aHjJIzzrlSxWKfmxnJ7WKRvlF7bU8PX/rtu1ytLQwmzW2LpMd/WFt34PKmyOFUByslkxCdfKKNHadZ+FfINzD+JrecFdXNJrSxKKHHTxj8g6vglAcoJMmuSB6cMsAuVUbO+CL6N/WV9RfCquxxkQUfqGoyEA09EeU4uC0xa8gcYAr1FMGcu+TdRbazfBqZayrKxn8iMV/7LUefMgzUrVdC7UFjZORo5Q0wl9U/iQWU5sRGiTo/HTQmU/a7EdyX3c6Wbmg2khYJFzUIkg9JRL/YUla+yfe3AL4KwFSH90xTw==", 
+    "signature": "l2LWYaRIHfXglFa5ehFc2j9ijfERazxisKVtJnYa+QUz2ckcytxfOLuA4VKEWHgY7cCLdn5C7uRJzE6es5V2SoOV59NOpskkr5lTt9kzao64UEw5UNOdeZYZKwyhG9Ge7IsxTK6haW0iG3a9dHqlKlwvnHZTbFM8TUV/umg8sJ1QJ/5ivXecbyHYtD5luKAI6oEgIdZPtQexRkwxlzvfR8lzeC/dDc2slSrjWRbBxNFlgfRKhDdVzVzgu8pEucgKggu67PKLkJ+bQEkxX1+Yg3czIpJyC3t6cgoggb0UNtBq1uUpswe0wdueKh6G5Gzz6XrmOjlv7zSz4gtVyEHZgg==",
     "status": 200, 
     "workspace": "fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2"
 }
@@ -320,16 +326,33 @@ Audit log entries will now contain a field `signature`:
 
 ### Validating Signatures
 
-Record signatures can be regenerated and verified by `openssl` or other 
-cryptographic tools to confirm the validity of the signature. Re-generating the 
-signature requires serializing the record into a string format that can be 
-signed. The following is a canonical implementation written in Lua:
+To verify record signatures, use the `openssl` utility, or other cryptographic
+tools that are capable of validating RSA digital signatures.
+
+Signatures are generated using a 256-bit SHA digest. The following example
+demonstrates how to verify the audit log record shown above. First, store the
+record signature on disk, after stripping the Base64
+encoding:
+
+```bash
+$ cat <<EOF | base64 -d > record_signature
+> l2LWYaRIHfXglFa5ehFc2j9ijfERazxisKVtJnYa+QUz2ckcytxfOLuA4VKEWHgY7cCLdn5C7uRJzE6es5V2SoOV59NOpskkr5lTt9kzao64UEw5UNOdeZYZKwyhG9Ge7IsxTK6haW0iG3a9dHqlKlwvnHZTbFM8TUV/umg8sJ1QJ/5ivXecbyHYtD5luKAI6oEgIdZPtQexRkwxlzvfR8lzeC/dDc2slSrjWRbBxNFlgfRKhDdVzVzgu8pEucgKggu67PKLkJ+bQEkxX1+Yg3czIpJyC3t6cgoggb0UNtBq1uUpswe0wdueKh6G5Gzz6XrmOjlv7zSz4gtVyEHZgg==
+> EOF
+```
+
+Next, the audit record must be transformed into its canonical format used for
+signature generation. This transformation requires serializing the record into
+a string format that can be verified. The format is a lexically-sorted,
+pipe-delimited string of each audit log record part, _without the signature
+field_. The following is a canonical implementation written in Lua:
 
 ```lua
 local pl_sort = require "pl.tablex".sort
 
 local function serialize(data)
   local p = {}
+
+  data.signature = nil
 
   for k, v in pl_sort(data) do
     if type(v) == "table" then
@@ -345,10 +368,20 @@ end
 table.concat(serialize(data), "|")
 ```
 
-The contents of the record itself can be fed to this implementation (minus the 
-`signature` field) in order to derive the value passed to the RSA key signing 
-facility. Note that the `signature` field within each record is a Base-64 
-encoded representation of the RSA signature itself.
+For example, the canonical format of the audit record above is:
+
+```
+$ cat canonical_record.txt
+127.0.0.1|1544724298663|GET|/status|Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0|1542132298664|200|fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2
+```
+
+Once these two elements are in place, the signature can be verified:
+
+```bash
+$ openssl dgst -sha256 -verify public.pem -signature record_signature canonical_record.txt
+Verified OK
+```
+
 
 [Back to TOC](#table-of-contents)
 
