@@ -75,6 +75,8 @@
       url: /health-checks-circuit-breakers
     - text: Clustering reference
       url: /clustering
+    - text: Resource Sizing Guidelines
+      url: /sizing-guidelines
     - text: Logging reference
       url: /logging
     - text: Network &amp; Firewall
