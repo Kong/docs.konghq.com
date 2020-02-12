@@ -35,7 +35,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 ### Option 1: Download RPM File
    
-1. Go to: https://bintray.com/kong/kong-enterprise-edition-aws. 
+1. Go to: [https://bintray.com/kong/kong-enterprise-edition-aws](https://bintray.com/kong/kong-enterprise-edition-aws). 
 2. Select the `aws` folder. Kong Enterprise versions are listed in reverse chronological order.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab and click the distribution folder. 
@@ -45,9 +45,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     ```bash
     $ scp kong-enterprise-edition-1.3.0.1.aws.rpm <amazon user>@<server>:~
     ```
-   
 *Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-using-a-downloaded-rpm-package).
-
 7. Download Kong's official public key to ensure the integrity of the RPM package:
 
     ```bash
@@ -64,7 +62,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 
 ### Option 2: Download the Kong Repo File and Add to Yum Repo
    
-1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-aws/rpm.
+1. Click this URL to download the Kong Enterprise RPM repo file: [https://bintray.com/kong/kong-enterprise-edition-aws/rpm](https://bintray.com/kong/kong-enterprise-edition-aws/rpm).
 
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows::
     
@@ -73,7 +71,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     ```
   
     Replace `USERNAME` with your Bintray account user name.
-    Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
+    Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting the API Key menu item.
 
     The result should look something like this:
 
@@ -169,12 +167,11 @@ $ sudo cp license.json /etc/kong/license.json
 
 4. Create a Kong database with a username and password.
 
-  > ⚠️**Note**: Make sure the username and password for the Kong Database are
-  > kept safe. This example uses a simple username and password for illustration purposes only. Note the database name, username and password for later. 
-
     ```bash
     $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
     ```
+> ⚠️**Note**: Make sure the username and password for the Kong Database are
+> kept safe. This example uses a simple username and password for illustration purposes only. Note the database name, username and password for later. 
 
 5. Exit from PostgreSQL and return to your terminal account.
 
@@ -215,7 +212,6 @@ $ sudo cp license.json /etc/kong/license.json
     pg_password = kong
     pg_database = kong
     ```
-
   > Note: If you used different values for the user and database name, use those values for the user and database name. 
   
 ## Step 5. Seed the Super Admin password and bootstrap Kong
@@ -241,11 +237,9 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
     ```
 
 4. Verify Kong Enterprise is working:
-
   ```bash
   $ curl -i -X GET --url http://localhost:8001/services
   ```
-  
 5. You should receive a `HTTP/1.1 200 OK` message.
 
 ## Step 6. Finalize Configuration and Verify Installation
@@ -309,7 +303,7 @@ Setting a password for the **Super Admin** before initial start-up is strongly r
 
 ## Troubleshooting
 
-If you did not receive an `HTTP/1.1 200 OK` message, or need assistance completing
+If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the
 [Support Portal](https://support.konghq.com/support/s/).
 
