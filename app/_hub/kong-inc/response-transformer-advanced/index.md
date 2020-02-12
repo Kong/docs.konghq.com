@@ -31,8 +31,8 @@ params:
   config:
     - name: remove.headers
       required: false
-      value_in_examples: "x-toremove, x-another-one"
-      description: List of header names. Unset the header(s) with the given name.
+      value_in_examples: "x-toremove, x-another-one:application/json, x-list-of-values:v1,v2,v3, Set-Cookie:/JSESSIONID=.*/, x-another-regex://status/$/, x-one-more-regex:/^/begin//"
+      description: List of <header_name>[:<header_value>]. If only <header_name> is given, unset the header field with the given <header_name>. If <header_name>:<header_value> is given, remove a specific <header_value>. If <header_value> starts and ends with a '/' (slash character), then it is considered to be a regular expression. Note that as per https://httpwg.org/specs/rfc7230.html#field.order multiple header values with the same header name are allowed if the entire field value for that header field is defined as a comma-separated list or the header field is a Set-Cookie header field.
     - name: remove.json
       required: false
       value_in_examples: "json-key-toremove, another-json-key"
