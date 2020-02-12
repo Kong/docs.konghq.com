@@ -156,13 +156,35 @@ Workspace). To this end, the `audit_log_ignore_methods` and
 ```bash
 audit_log_ignore_methods = GET,OPTIONS 
 # do not generate an audit log entry for GET or OPTIONS HTTP requests
-audit_log_ignore_paths = /foo,/status 
-# do not generate an audit log entry for requests that match the strings '/foo' or '/status'
+audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/
+# do not generate an audit log entry for requests that match the above regular expressions
 ```
 
-Note that `audit_log_ignore_paths` values matched via simple string matching; 
-regular expression or anchored searching for ignored paths is not supported at 
-this time.
+The values of `audit_log_ignore_paths` are matched via a Perl compatible regular expression.
+
+For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/`, the following request paths do not generate an audit-log entry in the databse:
+
+- `/status`
+- `/status/`
+- `/foo`
+- `/foo/`
+- `/services`
+- `/services/example/`
+- `/one/services/two`
+- `/one/test/two`
+- `/routes`
+- `/plugins/routes`
+- `/one/routes/two`
+- `/upstreams/`
+- `bad400request`
+
+The following request paths generate an audit-log entry in the database:
+
+- `/example/services`
+- `/routes/plugins`
+- `/one/two`
+- `/routes/`
+- `/upstreams`
 
 [Back to TOC](#table-of-contents)
 
