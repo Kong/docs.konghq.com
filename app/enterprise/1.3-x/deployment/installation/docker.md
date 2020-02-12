@@ -82,8 +82,11 @@ $ docker run --rm --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
   -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
+  -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
   kong-ee kong migrations bootstrap
 ```
+**Notes** 
+- For `KONG_PASSWORD`, replace `<SOMETHING-YOU-KNOW>` with a valid password that only you know.
 
 ## Step 6. Start Kong Enterprise with Kong Manager and Kong Developer Portal Enabled
 
@@ -98,7 +101,6 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
   -e "KONG_PORTAL=on" \
   -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
-  -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
   -e "KONG_PORTAL_GUI_HOST=<DNSorIP>:8003" \
   -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
   -p 8000:8000 \
@@ -113,7 +115,6 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
 ```
   
 **Notes** 
-- For `KONG_PASSWORD`, replace <SOMETHING-YOU-KNOW> with a valid password that only you know.
 - For `KONG_PORTAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
   * The DNS or IP address for `KONG_PORTAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
   * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`. 
