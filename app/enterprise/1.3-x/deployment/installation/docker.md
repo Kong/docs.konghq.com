@@ -7,7 +7,7 @@ title: Install Kong Enterprise on Docker
 This guide walks through downloading, installing, and starting **Kong Enterprise** on **Docker**.
 
 The configuration shown in this guide is intended as an example. Depending on your
-environment, you may need to make modifications, and take measures to properly conclude
+environment, you may need to make modifications and take measures to properly conclude
 the installation and configuration.
 
 Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
@@ -41,10 +41,10 @@ You should now have your Kong Enterprise image locally. Run `docker images` to v
 Tag the image ID for easier use:
 
 ```bash
-$ docker tag <IMAGE ID> kong-ee
+$ docker tag <IMAGE_ID> kong-ee
 ```
 
-(Replace `IMAGE ID` with the one matching your repository, as seen in [step 4](#step-4-export-the-license-key-to-a-variable))
+(Replace `<IMAGE_ID>` with the one matching your repository, as seen in [step 4](#step-4-export-the-license-key-to-a-variable))
 
 ## Step 2. Create a Docker Network
 
@@ -114,8 +114,8 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   
 **Notes** 
 - For `KONG_PASSWORD`, replace <SOMETHING-YOU-KNOW> with a valid password that only you know.
-- For `KONG_PORAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
-  * The DNS or IP address for `KONG_PORAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
+- For `KONG_PORTAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
+  * The DNS or IP address for `KONG_PORTAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
   * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`. 
   
 **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
@@ -128,19 +128,19 @@ $ curl -i -X GET --url http://localhost:8001/services
 
 You should receive an `HTTP/1.1 200 OK` message.
       
-- Verify Kong Manager is running by accessing it using the URL specified in KONG_ADMIN_GUI_URL in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
+- Verify Kong Manager is running by accessing it using the URL specified in `KONG_ADMIN_GUI_URL` in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
 - The final step is to enable the Developer Portal. To do so, execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host. 
 
   ```bash
-  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default   --data "config.portal=true"
+  $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default --data "config.portal=true"
   ```
 
 - Verify the Developer Portal is running by accessing it at the URL specified in the `KONG_PORTAL_GUI_HOST` variable in [Step 6](#step-6-start-kong-enterprise-with-kong-manager-and-kong-developer-portal-enabled).
 
 ## Troubleshooting
 
-If you did not receive an `HTTP/1.1 200 OK` message, or need assistance completing
+If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 setup, reach out to your **Support contact** or head over to the
 [Support Portal](https://support.konghq.com/support/s/).
 
