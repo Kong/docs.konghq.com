@@ -145,7 +145,7 @@ params:
 
 ### Template as Value
 
-User can use any of the the current request headers, query params, and captured URI named groups as template to populate above supported config fields.
+User can use any of the the current request headers, query params, and captured URI groups as template to populate above supported config fields.
 
 | Request Param | Template
 | --------- | -----------
@@ -169,6 +169,14 @@ $ curl -X POST http://localhost:8001/apis \
     --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
     --data "strip_uri=false"
 ```
+
+<div class="alert alert-info.blue" role="alert">
+  **Kubernetes users:** version `v1beta1` of the Ingress specification does not
+  allow the use of named regex capture groups in paths. If you use the ingress
+  controller, you should use unnamed groups, e.g. `(\w+)/` instead of
+  `(?<user_id>\w+)`. You can access these based on their order in the URL path,
+  e.g. `$(uri_captures[1])` will obtain the value of the first capture group.
+</div>
 
 Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
 and its value is being set with the value sent with header `x-user-id` or
