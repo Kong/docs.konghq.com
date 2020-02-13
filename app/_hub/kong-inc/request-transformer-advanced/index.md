@@ -174,7 +174,7 @@ $ curl -X POST http://localhost:8001/apis \
   <strong>Kubernetes users:</strong> version <code>v1beta1</code> of the Ingress
   specification does not allow the use of named regex capture groups in paths.
   If you use the ingress controller, you should use unnamed groups, e.g.
-  <code>(\w+)/</code> instead of <code>(?<user_id>\w+)</code>. You can access
+  <code>(\w+)/</code> instead of <code>(?&lt;user_id&gt;\w+)</code>. You can access
   these based on their order in the URL path, e.g. <code>$(uri_captures[1])</code>
   will obtain the value of the first capture group.
 </div>
