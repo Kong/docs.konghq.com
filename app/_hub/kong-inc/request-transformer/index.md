@@ -140,6 +140,15 @@ remove --> rename --> replace --> add --> append
 
 ## Examples
 
+<div class="alert alert-info.blue" role="alert">
+  <strong>Kubernetes users:</strong> version <code>v1beta1</code> of the Ingress
+  specification does not allow the use of named regex capture groups in paths.
+  If you use the ingress controller, you should use unnamed groups, e.g.
+  <code>(\w+)/</code> instead of <code>(?&lt;user_id&gt;\w+)</code>. You can access
+  these based on their order in the URL path, e.g. <code>$(uri_captures[1])</code>
+  will obtain the value of the first capture group.
+</div>
+
 In these examples we have the plugin enabled on a Service. This would work
 similarly for Routes.
 
