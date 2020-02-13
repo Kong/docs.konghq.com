@@ -91,13 +91,15 @@ X-Kong-Admin-Request-ID: VXgMG1Y3rZKbjrzVYlSdLNPw8asVwhET
 {
     "data": [
         {
-            "client_ip": "127.0.0.1", 
-            "expire": 1544722367698, 
-            "method": "GET", 
-            "path": "/status", 
-            "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM", 
-            "request_timestamp": 1542130367699, 
-            "status": 200, 
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "path": "/status",
+            "payload": null,
+            "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM",
+            "request_timestamp": 1581617463,
+            "signature": null,
+            "status": 200,
+            "ttl": 2591995,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
     ], 
@@ -127,13 +129,15 @@ written to the `rbac_user_id` field in the audit log entry:
     "data": [
         {
             "client_ip": "127.0.0.1", 
-            "expire": 1544722999857, 
             "method": "GET", 
-            "path": "/status", 
+            "path": "/status",
+            "payload": null,
             "rbac_user_id": "2e959b45-0053-41cc-9c2c-5458d0964331", 
-            "request_id": "QUtUa3RMbRLxomqcL68ilOjjl68h56xr", 
-            "request_timestamp": 1542130999858, 
+            "request_id": "QUtUa3RMbRLxomqcL68ilOjjl68h56xr",
+            "request_timestamp": 1581617463,
+            "signature": null,
             "status": 200, 
+            "ttl": 2591995,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
     ], 
@@ -235,14 +239,15 @@ X-Kong-Admin-Request-ID: SpPaxLTkDNndzKaYiWuZl3xrxDUIiGRR
 {
     "data": [
         {
-            "client_ip": "127.0.0.1", 
-            "expire": 1544723418013, 
-            "method": "POST", 
-            "path": "/consumers", 
-            "payload": "{\"username\": \"bob\"}", 
-            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2", 
-            "request_timestamp": 1542131418014, 
-            "status": 201, 
+            "client_ip": "127.0.0.1",
+            "method": "POST",
+            "path": "/consumers",
+            "payload": "{\"username\": \"bob\"}",
+            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2",
+            "request_timestamp": 1581617463,
+            "signature": null,
+            "status": 201,
+            "ttl": 2591995,
             "workspace": "fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2"
         }
     ], 
@@ -273,7 +278,8 @@ X-Kong-Admin-Request-ID: ZKra3QT0d3eJKl96jOUXYueLumo0ck8c
             "expire": 1544723418009, 
             "id": "7ebabee7-2b09-445d-bc1f-2092c4ddc4be", 
             "operation": "create", 
-            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2"
+            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2",
+            "request_timestamp": 1581617463,
         }, 
   ],
   "total": 1
@@ -333,13 +339,14 @@ Audit log entries will now contain a field `signature`:
 ```
 {
     "client_ip": "127.0.0.1", 
-    "expire": 1544724298663, 
     "method": "GET", 
     "path": "/status", 
-    "request_id": "Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0", 
-    "request_timestamp": 1542132298664, 
+    "payload": null,
+    "request_id": "Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0",
+    "request_timestamp": 1581617463,
     "signature": "l2LWYaRIHfXglFa5ehFc2j9ijfERazxisKVtJnYa+QUz2ckcytxfOLuA4VKEWHgY7cCLdn5C7uRJzE6es5V2SoOV59NOpskkr5lTt9kzao64UEw5UNOdeZYZKwyhG9Ge7IsxTK6haW0iG3a9dHqlKlwvnHZTbFM8TUV/umg8sJ1QJ/5ivXecbyHYtD5luKAI6oEgIdZPtQexRkwxlzvfR8lzeC/dDc2slSrjWRbBxNFlgfRKhDdVzVzgu8pEucgKggu67PKLkJ+bQEkxX1+Yg3czIpJyC3t6cgoggb0UNtBq1uUpswe0wdueKh6G5Gzz6XrmOjlv7zSz4gtVyEHZgg==",
     "status": 200, 
+    "ttl": 2591995,
     "workspace": "fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2"
 }
 ```
@@ -365,21 +372,25 @@ $ cat <<EOF | base64 -d > record_signature
 Next, the audit record must be transformed into its canonical format used for
 signature generation. This transformation requires serializing the record into
 a string format that can be verified. The format is a lexically-sorted,
-pipe-delimited string of each audit log record part, _without the signature
-field_. The following is a canonical implementation written in Lua:
+pipe-delimited string of each audit log record part, _without_ the `signature`,
+`ttl`, or `expire` fields. The following is a canonical
+implementation written in Lua:
 
 ```lua
+local cjson = require "cjson"
 local pl_sort = require "pl.tablex".sort
 
 local function serialize(data)
   local p = {}
 
   data.signature = nil
+  data.expire = nil
+  data.ttl = nil
 
   for k, v in pl_sort(data) do
     if type(v) == "table" then
       p[#p + 1] = serialize(v)
-    else
+    elseif v ~= cjson.null then
       p[#p + 1] = v
     end
   end
@@ -396,6 +407,12 @@ For example, the canonical format of the audit record above is:
 $ cat canonical_record.txt
 127.0.0.1|1544724298663|GET|/status|Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0|1542132298664|200|fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2
 ```
+
+<div class="alert alert-warning">
+Ensure that the contents of the canonical record file on disk match the expected
+canonical record format exactly. The presence of any addditional bytes, such as
+a trailing newline `\n`, will cause a validation failure in the next step.
+</div>
 
 Once these two elements are in place, the signature can be verified:
 
@@ -430,12 +447,14 @@ HTTP 200 OK
     "data": [
         {
             "client_ip": "127.0.0.1",
-            "expire": 1544722367698,
-            "method": "GET", 
-            "path": "/status", 
+            "method": "GET",
+            "path": "/status",
+            "payload": null,
             "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM",
-            "request_timestamp": 1542130367699,
-            "status": 200, 
+            "request_timestamp": 1581617463,
+            "signature": null,
+            "status": 200,
+            "ttl": 2591995,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
     ], 
