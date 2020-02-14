@@ -8,8 +8,7 @@ Kong Enterprise provides a granular logging facility on its Admin API. This
 allows cluster administrators to keep detailed track of changes made to the 
 cluster configuration throughout its lifetime, aiding in compliance efforts and 
 providing valuable data points during forensic investigations. Generated audit 
-log trails are [Workspace](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference)
-- and [RBAC](/enterprise/{{page.kong_version}}/admin-api/rbac/reference)-aware, 
+log trails are [Workspace](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference) and [RBAC](/enterprise/{{page.kong_version}}/admin-api/rbac/reference)-aware, 
 providing Kong operators a deep and wide look into changes happening within 
 the cluster.
 
@@ -17,16 +16,16 @@ the cluster.
 
 ## Getting Started
 
-Audit logging is disabled by default. It is configured via the Kong configuration:
+Audit logging is disabled by default. It is configured via the Kong configuration (e.g. `kong.conf`):
 
 ```bash
-# via Kong configuration file, e.g., kong.conf
 audit_log = on # audit logging is enabled
 audit_log = off # audit logging is disabled
 ```
 
+or via environment variables:
+
 ```bash
-# or via environmental variables
 $ export KONG_AUDIT_LOG=on
 $ export KONG_AUDIT_LOG=off
 ```
@@ -74,8 +73,7 @@ X-Kong-Admin-Request-ID: ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM
 ```
 
 The above interaction with the Admin API would generate a correlating entry in 
-the audit log table—querying the audit log via the Admin API returns the details 
-of of the interaction above: 
+the audit log table. Querying the audit log via Admin API returns the details of the interaction above: 
 
 ```
 $ http :8001/audit/requests
@@ -152,8 +150,8 @@ Note also the presence of the `workspace` field. This is the UUID of the Workspa
 ### Limiting Audit Log Generation
 
 It may be desirable to ignore audit log generation for certain Admin API 
-requests, such as innocuous requests to the `/status` endpoint for 
-healthchecking, or to ignore requests for a given path prefix (e.g., a given 
+requests such as innocuous requests to the `/status` endpoint for 
+healthchecking or to ignore requests for a given path prefix (e.g. a given 
 Workspace). To this end, the `audit_log_ignore_methods` and 
 `audit_log_ignore_paths` configuration options are presented:
 
@@ -164,7 +162,7 @@ audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams
 # do not generate an audit log entry for requests that match the above regular expressions
 ```
 
-The values of `audit_log_ignore_paths` are matched via a Perl compatible regular expression.
+The values of `audit_log_ignore_paths` are matched via a Perl-compatible regular expression.
 
 For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/`, the following request paths do not generate an audit-log entry in the databse:
 
@@ -182,7 +180,7 @@ For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/on
 - `/upstreams/`
 - `bad400request`
 
-The following request paths generate an audit-log entry in the database:
+The following request paths generate an audit log entry in the database:
 
 - `/example/services`
 - `/routes/plugins`
@@ -198,7 +196,7 @@ The following request paths generate an audit-log entry in the database:
 
 In addition to Admin API request data, Kong will generate granular audit log 
 entries for all insertions, updates, and deletions to the cluster database. 
-Database updates audit logs are also associated with Admin API request unique 
+Database update audit logs are also associated with Admin API request unique 
 IDs. Consider the following request to create a Consumer:
 
 ```
@@ -255,7 +253,7 @@ X-Kong-Admin-Request-ID: SpPaxLTkDNndzKaYiWuZl3xrxDUIiGRR
 }
 ```
 
-Additionally, additional audit logs are generated to track the creation of the 
+Additionally, audit logs are generated to track the creation of the 
 database entity:
 
 ```
@@ -308,7 +306,7 @@ audit_log_ignore_tables = consumers
 
 ## Digital Signatures
 
-To provide nonrepudiation, audit logs may be signed with a private RSA key. When
+To provide non-repudiation, audit logs may be signed with a private RSA key. When
 enabled, a lexically sorted representation of each audit log entry is signed by 
 the defined private key; the signature is stored in an additional field within 
 the record itself. The public key should be stored elsewhere and can be used 
@@ -360,7 +358,7 @@ tools that are capable of validating RSA digital signatures.
 
 Signatures are generated using a 256-bit SHA digest. The following example
 demonstrates how to verify the audit log record shown above. First, store the
-record signature on disk, after stripping the Base64
+record signature on disk after stripping the Base64
 encoding:
 
 ```bash
