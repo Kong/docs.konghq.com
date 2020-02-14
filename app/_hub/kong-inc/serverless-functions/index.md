@@ -16,6 +16,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.0.x
+        - 1.5.x      
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -32,7 +34,7 @@ kong_version_compatibility:
         - 0.32-x
 
 params:
-  name: serverless-functions
+  name: pre-function OR post-function
   service_id: true
   route_id: true
   consumer_id: false
