@@ -30,8 +30,8 @@ $ export KONG_AUDIT_LOG=on
 $ export KONG_AUDIT_LOG=off
 ```
 
-As with other Kong configurations, changes take effect on kong reload or kong 
-restart.
+As with other Kong configurations, changes take effect on `kong reload` or `kong 
+restart`.
 
 [Back to TOC](#table-of-contents)
 
