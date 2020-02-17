@@ -140,7 +140,7 @@ http {
 }
 ```
 
-The last thing we need to do is tell Kong to use the newly created log, `show_everything`. To do this, we will be altering the Kong variable `prpxy_access_log`. Either by opening and editing `etc/kong/kong.conf` or by using an environmental variable `KONG_PROXY_ACCESS_LOG=` you will want to mend the default location to show
+The last thing we need to do is tell Kong to use the newly created log, `show_everything`. To do this, we will be altering the Kong variable `proxy_access_log`. Either by opening and editing `etc/kong/kong.conf` or by using an environmental variable `KONG_PROXY_ACCESS_LOG=` you will want to mend the default location to show
 
 ```
 proxy_access_log=logs/access.log show_everything if=$keeplog
