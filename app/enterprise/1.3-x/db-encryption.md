@@ -94,23 +94,18 @@ Before going further, export the keyring. The exported material can be re-import
 ```bash
 $ curl -XPOST -s localhost:8001/keyring/export | jq
 {
-  "data": "Oh7kO1rl1GcEKQ708LtbExISROgtCMJ8fIEGH1GzUZB2d/mvCWBLRM1XDaiDMCYIQlHQ95PXPHy7clLc4s+yGQdOpjX6P/aP2SoCXOwvqCaHNmGiu12iIAEFqeI5HuhaJCGCXnpRrlLTnhHJqxfjeZiPtTbAx6EQR5gWK2w3hGtzpIiSxcOEeLcx7wvdn+b4JnOikRA6GMyywTsyXHeMoTu4gzV4wasxVTzXOnn6oHYYDbHzWonSw7nuw0CRxJB7A+Y1XEAolzn2yP3rTAXKFJDMpKyVvf689oi3L+zBPJeXInCAasxN8P+/2S6tazO/jzpnNKGZzS0p/inie5ZEEg=="
+  "data": "eyJrIjoiV1JZeTdubDlYeFZpR3VVQWtWTXBcL0JiVW1jMWZrWHluc0dKd3N4M1c0MlIxWE5XM05lZ05sdFdIVmJ1d0ZnaVZSTnFSdmM1WERscGY3b0NIZ1ZDQ3JvTFJ4czFnRURhOXpJT0tVV0prM2lhd0VLMHpKTXdwRDd5ZjV2VFYzQTY0Y2UxcVl1emJoSTI4VUZ1ZExRZWljVjd2T3BYblVvU3dOY3IzblhJQWhyWlcxc1grWXE3aHM1RzhLRXY2OWlRamJBTXAwbHZmTWNFWWxTOW9NUjdnSm5xZWlST0J1Q09iMm5tSXg0Qk1uaTJGalZzQzBtd2R2dmJyYWxYa3VLYXhpRWZvQm9EODk3MEtVcDYzY05lWGdJclpjang4YmJDV1lDRHlEVmExdGt5c0g1TjBJM0hTNDRQK1dyT2JkcElCUk5vSVZVNis1QWdcLzdZM290RUdzN1E9PSIsImQiOiIxWEZJOXZKQ05CTW5uVTB5c0hQenVjSG5nc2c5UURxQmcxZ3g1VVYxNWNlOEVTTlZXTmthYm8zdlUzS2VRTURcL0RUYXdzZCtJWHB5SllBTkRtanZNcytqU2lrVTFiRkpyMEVcLzBSRlg2emJrT0oybTR2bXlxdVE9PSIsIm4iOiJUUmRLK01Qajh6MkdHTmtyIn0="
 }
+
 ```
 
-The response generated is a Base64-encoded representation of the keyring, including the definition of the active key in the keyring, as well as the key material itself. This can be examined via the `openssl` CLI:
+The response generated is an opaque blob containing the keyring, encrypted with
+a randomly-generated symmetric key. This random key is encrypted with the public
+RSA key defined via the `keyring_public_key` Kong configuration value.
 
-```bash
-$ curl -XPOST -s localhost:8001/keyring/export | jq .data -r | base64 -d | openssl rsautl -decrypt -inkey /path/to/generated/key.pem | jq
-{
-  "active": "LaW1urRQ",
-  "keys": {
-    "LaW1urRQ": "jUGuI1xWuQWkOkAZYbmj317n6QISVhx6R9DAUmWkXJQ="
-  }
-}
-```
-
-The exported keyring should be stored in a safe location for disaster recovery purposes.
+The exported keyring should be stored in a safe location for disaster recovery
+purposes. It is not designed to be modified or decrypted before being used during
+a disaster recovery process.
 
 ### Exercise the Encryption Routines
 
@@ -175,19 +170,13 @@ $ kong restart
 ```
 
 ```bash
-$ curl localhost:8001/keyring/import -d data=jUGuI1xWuQWkOkAZYbmj317n6QISVhx6R9DAUmWkXJQ -d id=LaW1urRQ
+$ curl localhost:8001/keyring/import -d data=<exported data>
 ```
 
-Once the key has been imported, we can examine the keyring and read back previously written encrypted fields:
-
-```bash
-$ curl -s localhost:8001/keyring | jq
-{
-  "ids": [
-    "LaW1urRQ"
-  ]
-}
-```
+This operation requires that the `keyring_private_key` point to the private RSA
+key associated with the public key used during the initial keyring export. Once
+this is complete, Admin API operations that require the keyring for encryption/
+decryption can be verified:
 
 ```bash
 $ curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a777350a8a2 | jq
@@ -199,24 +188,6 @@ $ curl -s localhost:8001/consumers/bob/basic-auth/fc46ce48-c1d6-4078-9f51-5a7773
   "id": "fc46ce48-c1d6-4078-9f51-5a777350a8a2",
   "password": "da61c0083b6d19ef3db2490d0da96a71572da0fa",
   "username": "bob"
-}
-```
-
-Note that the Admin API response to the `/keyring` endpoint listed the imported ID in the keyring, but it does not list an active key. Active keys are used for write (encryption) operations to the data store. In order to use the imported key for write, activate the key via the `/keyring/activate` API:
-
-```bash
-$ curl -s localhost:8001/keyring/activate -d key=LaW1urRQ
-```
-
-And the `/keyring` endpoint will now show the active key ID:
-
-```bash
-curl -s localhost:8001/keyring | jq
-{
-  "ids": [
-    "LaW1urRQ"
-  ],
-  "active": "LaW1urRQ"
 }
 ```
 
