@@ -3,6 +3,57 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.3.0.2
+**Release Date:** 2020/02/18
+
+### Fixes
+
+#### **Kong Gateway**
+
+* Fixes a condition that could put a target of an upstream into an improper `DNS_ERROR` state
+* Resolves a problem when using routes with custom header based routing that could lead to incorrect route matching
+* Compiles NGINX OpenTracing module with Kong
+* Improves `LUA_CPATH` handling
+* Improves behavior and log messages when rate-limiting counter shared dict is out of space
+* Adds support for regex expressions when using `audit_log_ignore_paths`
+* Provides a default logrotate configuration file
+* Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server 
+
+#### Kong Developer Portal
+
+* Fixes a bug that could lead to a stack overflow in certain conditions
+
+#### Kong Manager
+
+* Fixes incorrect schema violation error `claims_to_verify` when entering configuration for JWT plugin
+* Kafka plugins can now be configured
+* Kong and Kong Manager now start correctly from a custom prefix
+
+#### **Plugins**
+
+* OpenID Connect
+    * Fixes header encoding to use Base64 (non-URL variant) with padding
+    * Adds support for keyring encryption of `client_id` and `client_secret`
+    * Adds support for None with `config.session_cookie_samesite` and `config.authorization_cookie_samesite`
+    * Adds support for `config.session_cookie_maxsize`
+    * Bumps `lua-resty-session` dependency to 2.26
+* Rate Limiting Advanced
+    * Adds support for authentication when using Redis Sentinel node
+* Response Transformer Advanced
+    * Adds support for removal of specific header values of a given header field, including with regular expression
+* Request Validator
+    * Adds configuration to plugin which allows it to return validation error back to the client as part of request response
+* Mutual TLS Authentication
+    * Bug fixes related to configuration and ACL plugin usage
+* Key Authentication - Encrypted
+    * Initial release for support of encrypting the key auth key at rest in the database
+* AWS Lambda
+    * Additional AWS regions support
+* OpenAPI2Kong
+    * Fixes a bug related to garbage collection
+* Proxy Caching Advanced
+    * Fixes to allow Kong to properly cache responses when requests are passed through an additional NGINX before reaching Kong
+
 ## 1.3.0.1
 **Release Date:** 2019/12/19
 
