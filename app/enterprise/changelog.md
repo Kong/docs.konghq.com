@@ -11,8 +11,9 @@ layout: changelog
 #### **Kong Gateway**
 
 * Fixes a condition that could put a target of an upstream into an improper `DNS_ERROR` state
+* Added support for Amazon Linux 2
 * Resolves a problem when using routes with custom header based routing that could lead to incorrect route matching
-* Compiles NGINX OpenTracing module with Kong
+* Compiles NGINX OpenTracing module with Kong (currently only available for Amazon Linux 2)
 * Improves `LUA_CPATH` handling
 * Improves behavior and log messages when rate-limiting counter shared dict is out of space
 * Adds support for regex expressions when using `audit_log_ignore_paths`
