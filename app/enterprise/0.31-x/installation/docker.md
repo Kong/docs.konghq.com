@@ -39,6 +39,7 @@ A guide to installing Kong Enterprise Edition (and its license file) as a Docker
         -p 5432:5432 \
         -e "POSTGRES_USER=kong" \
         -e "POSTGRES_DB=kong" \
+        -e "POSTGRES_PASSWORD=kong" \
         postgres:9.5
 
 7. To make the license data easier to handle, export it as a shell variable. Please note that your `KONG_LICENSE_DATA` will differ! Users with Bintray accounts should visit [https://bintray.com/kong/&lt;YOUR_REPO_NAME&gt;/license#files](https://bintray.com/kong/<YOUR_REPO_NAME>/license#files) to retrieve their license. Trial users should download their license from their welcome email. Once you have your license, you can set it in an environment variable:
