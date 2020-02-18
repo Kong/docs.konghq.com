@@ -121,6 +121,7 @@ Kong Enterprise requires a database and supports either Cassandra or PostgreSQL.
         -e "POSTGRES_USER=kong" \
         -e "POSTGRES_DB=kong" \
         -e "POSTGRES_PASSWORD=kong" \
+        -e "POSTGRES_HOST_AUTH_METHOD: trust" \
         postgres:9.6
     ```
 
