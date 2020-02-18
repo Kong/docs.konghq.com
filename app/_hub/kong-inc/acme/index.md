@@ -48,7 +48,7 @@ params:
       required: false
       default: "`[]`"
       description: |
-        The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`. Regex pattern is not supported.
+        The list of domains to create certificate for. To match subdomains under `example.com`, use `*.example.com`. Regex pattern is not supported. Note this config is only used to match domains, not to specify the Common Name or Subject Alternative Name to create certifcates; each domain will have its own certificate.
     - name: renew_threshold_days
       required: false
       default: "`14`"
@@ -205,3 +205,5 @@ Certificate entity is already defined in Kong, they will be overrided from
 response.
 - The plugin only supports http-01 challenge, meaning user will need a public
 IP and setup resolvable DNS. And Kong needs to accept proxy traffic from 80 port.
+And wildcard or star certificate is not supported, each domain will have its
+own certificate.
