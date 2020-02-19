@@ -11,7 +11,7 @@ layout: changelog
 #### **Kong Gateway**
 
 * Fixes a condition that could put a target of an upstream into an improper `DNS_ERROR` state
-* Added support for Amazon Linux 2
+* Adds support for Amazon Linux 2
 * Resolves a problem when using routes with custom header based routing that could lead to incorrect route matching
 * Compiles NGINX OpenTracing module with Kong (currently only available for Amazon Linux 2)
 * Improves `LUA_CPATH` handling
@@ -19,8 +19,8 @@ layout: changelog
 * Adds support for regular expressions when using `audit_log_ignore_paths`
 * Provides a default logrotate configuration file
 * Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server 
-* Resolve possible database deadlock situation when under high load consitions
-* Resolve possible race condition on Cassandra when under high load of Admin API CRUD operations
+* Resolves possible database deadlock situation when under high load conditions
+* Resolves possible race condition on Cassandra when under high load of Admin API CRUD operations
 
 #### Kong Developer Portal
 
