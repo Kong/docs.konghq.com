@@ -16,7 +16,7 @@ layout: changelog
 * Compiles NGINX OpenTracing module with Kong (currently only available for Amazon Linux 2)
 * Improves `LUA_CPATH` handling
 * Improves behavior and log messages when rate-limiting counter shared dict is out of space
-* Adds support for regex expressions when using `audit_log_ignore_paths`
+* Adds support for regular expressions when using `audit_log_ignore_paths`
 * Provides a default logrotate configuration file
 * Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server 
 
