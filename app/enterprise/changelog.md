@@ -19,6 +19,8 @@ layout: changelog
 * Adds support for regular expressions when using `audit_log_ignore_paths`
 * Provides a default logrotate configuration file
 * Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server 
+* Resolve possible database deadlock situation when under high load consitions
+* Resolve possible race condition on Cassandra when under high load of Admin API CRUD operations
 
 #### Kong Developer Portal
 
