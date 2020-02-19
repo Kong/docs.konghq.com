@@ -299,9 +299,9 @@
   edition: "studio"
 -
   release: "1.5.x"
-  version: "1.5.0"
+  version: "1.5.1"
   edition: "community"
-  luarocks_version: "1.5.0-0"
+  luarocks_version: "1.5.1-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.2.1"
