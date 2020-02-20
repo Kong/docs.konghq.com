@@ -31,8 +31,8 @@ params:
   config:
     - name: remove.headers
       required: false
-      value_in_examples: "x-toremove, x-another-one:application/json, x-list-of-values:v1,v2,v3, Set-Cookie:/JSESSIONID=.*/, x-another-regex://status/$/, x-one-more-regex:/^/begin//"
-      description: List of <header_name>[:<header_value>]. If only <header_name> is given, unset the header field with the given <header_name>. If <header_name>:<header_value> is given, remove a specific <header_value>. If <header_value> starts and ends with a '/' (slash character), then it is considered to be a regular expression. Note that as per https://httpwg.org/specs/rfc7230.html#field.order multiple header values with the same header name are allowed if the entire field value for that header field is defined as a comma-separated list or the header field is a Set-Cookie header field.
+      value_in_examples: "x-toremove, x-another-one:application/json, x-list-of-values:v1,v2,v3 Set-Cookie:/JSESSIONID=.*/, x-another-regex://status/$/, x-one-more-regex:/^/begin//"
+      description: List of header_name[:header_value]. If only header_name is given, unset the header field with the given header_name. If header_name:header_value is given, remove a specific header_value. If header_value starts and ends with a '/' (slash character), then it is considered to be a regular expression. Note that as per https://httpwg.org/specs/rfc7230.html#field.order multiple header values with the same header name are allowed if the entire field value for that header field is defined as a comma-separated list or the header field is a Set-Cookie header field.
     - name: remove.json
       required: false
       value_in_examples: "json-key-toremove, another-json-key"
@@ -270,6 +270,58 @@ $ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   -F "config.transform.functions=@transform.lua"
   -F "config.transform.if_status=200"
 ```
+
+- Remove the entire header field with a given header name
+
+```
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1, h2" \
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:v1,v2,v3   | {} |
+|h2:v2  | {} |
+
+- Remove a specific header value of a given header field
+
+```
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1:v1, h1:v2" \
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:v1,v2,v3   | h1:v3 |
+
+- Remove a specific header value from a comma-separated list of a header values
+
+```
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1:v1, h1:v2" \
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:v1,v2,v3   | h1:v3 |
+
+**Note**: the plugin doesn't remove header values if the values are not separated by commas, unless it's a Set-Cookie header field. RFC reference: https://httpwg.org/specs/rfc7230.html#field.order
+
+- Remove a specific header value defined by a regular expression
+
+```
+$ curl -X POST http://localhost:8001/routes/{route id}/plugins \
+  --data "name=response-transformer-advanced" \
+  --data "config.remove.headers=h1:/JSESSIONID=.*/, h2://status/$/" \
+```
+
+|upstream response headers | proxied response headers |
+|---           | --- |
+|h1:JSESSIONID=1876832,path=/   | h1:path=/ |
+|h2:/match/status/,/status/no-match/   | h2:/status/no-match/ |
 
 [api-object]: /latest/admin-api/#api-object
 [consumer-object]: /latest/admin-api/#consumer-object
