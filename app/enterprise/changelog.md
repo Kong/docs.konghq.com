@@ -4,7 +4,7 @@ layout: changelog
 ---
 
 ## 1.3.0.2
-**Release Date:** 2020/02/18
+**Release Date:** 2020/02/20
 
 ### Features
 
@@ -12,12 +12,12 @@ layout: changelog
 
 * Adds support for Amazon Linux 2
 * Compiles NGINX OpenTracing module with Kong (currently only available for Amazon Linux 2 and Docker Alpine)
-  * Include a Datadog tracer for Amazon Linux 2 at /usr/local/kong/lib/libdd_opentracing_plugin.so
-  * Include a Jaeger tracer for Docker Alpine at /usr/local/kong/lib/libjaegertracing.so
+  * Includes a Datadog tracer for Amazon Linux 2 at /usr/local/kong/lib/libdd_opentracing_plugin.so
+  * Includes a Jaeger tracer for Docker Alpine at /usr/local/kong/lib/libjaegertracing.so
 * Provides a default logrotate configuration file
 * Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server 
 * Adds support for regular expressions when using `audit_log_ignore_paths`
-* Allow the Kong Enterprise systemd service to be reloaded with systemctl reload kong-enterprise-edition
+* Allows the Kong Enterprise systemd service to be reloaded with systemctl reload kong-enterprise-edition
 
 #### Kong Manager
 
