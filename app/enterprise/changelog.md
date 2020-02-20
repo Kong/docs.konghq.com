@@ -39,6 +39,8 @@ layout: changelog
 
 ### Fixes
 
+#### Kong Gateway
+
 * Fixes a condition that could put a target of an upstream into an improper `DNS_ERROR` state
 * Resolves a problem when using routes with custom header based routing that could lead to incorrect route matching
 * Improves `LUA_CPATH` handling
