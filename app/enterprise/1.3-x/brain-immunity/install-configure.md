@@ -3,7 +3,7 @@ title: Kong Brain & Kong Immunity Installation and Configuration Guide
 ---
 
 
-**Kong Brain** and **Kong Immunity** help automate the entire API and service development life cycle. By automating processes for configuration, traffic analysis and the creation of documentation, Kong Brain and Kong Immunity help organizations improve efficiency, governance, reliability and security. Kong Brain automates API and service documentation and Kong Immunity uses advanced machine learning to analyze traffic patterns to diagnose and improve security. 
+**Kong Brain** and **Kong Immunity** help automate the entire API and service development life cycle. By automating processes for configuration, traffic analysis and the creation of documentation, Kong Brain and Kong Immunity help organizations improve efficiency, governance, reliability and security. Kong Brain automates API and service documentation and Kong Immunity uses advanced machine learning to analyze traffic patterns to diagnose and improve security.
 
 When you purchase Kong Brain and/or Kong Immunity, you obtain both add-ons together or individually:
 * Kong Brain and Kong Immunity
@@ -25,8 +25,8 @@ This guide provides information about how to install, configure, and use Kong Br
 Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using a Collector App and a Collector Plugin to communicate with Kong Enterprise. The diagram illustrates how the Kong components work together, and are described below:
 * **Kong Enterprise**
 * **Kong Brain** (Brain) and/or **Kong Immunity** (Immunity) add-ons, according to your purchase.
-* **Collector App** enables communication between Kong Enterprise and Brain and/or Immunity. The Kong Collector App comes with your purchase of Bran and/or Immunity. 
-* **Collector Plugin** enables communication between Kong Enterprise and Kong Collector App.  The Kong Collector Plugin comes with your purchase of Brain and/or Immunity. 
+* **Collector App** enables communication between Kong Enterprise and Brain and/or Immunity. The Kong Collector App comes with your purchase of Bran and/or Immunity.
+* **Collector Plugin** enables communication between Kong Enterprise and Kong Collector App.  The Kong Collector Plugin comes with your purchase of Brain and/or Immunity.
 
 ### Prerequisites
 Prerequisites for installing and configuring Brain and/or Immunity with Kong Enterprise include:
@@ -37,15 +37,15 @@ Prerequisites for installing and configuring Brain and/or Immunity with Kong Ent
    * kong/kong-brain-immunity-base
    * kong/kong-brain-base
    * kong/kong-immunity-base
-* Redis instance, which is included with Brain and/or Immunity. 
+* Redis instance, which is included with Brain and/or Immunity.
 * Swagger, which is included with Brain and/or Immunity.
 
 ### Configure the Collector App and Collector Plugin
 To enable Kong Brain (Brain) and/or Kong Immunity (Immunity), you must first configure the Collector App and the Collector Plugin. This includes:
 * Deploying the Collector Plugin, which captures and sends traffic to the Collector App for data collection and processing.
 * Deploying the Collector App on your Docker aware platform.
-* Configuring the Collector Plugin and the Collector App to talk to each other. 
-* Testing the configuration to confirm everything is up and running. 
+* Configuring the Collector Plugin and the Collector App to talk to each other.
+* Testing the configuration to confirm everything is up and running.
 
 Steps are:
 - [Step 1. Set up the Collector Plugin](#step-1-set-up-the-collector-plugin)
@@ -56,7 +56,7 @@ Steps are:
 - [Step 6. Confirm the Collector App is working](#step-6-confirm-the-collector-app-is-working)
 
 
-#### Step 1. Set up the Collector Plugin 
+#### Step 1. Set up the Collector Plugin
 Enable the Collector Plugin using the Admin API:
 
 ```
@@ -69,7 +69,7 @@ $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector co
 $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector config.service_token=foo config.host=<COLLECTOR_HOST> config.port=<COLLECTOR_PORT> config.https=false config.log_bodies=true route.id=<ROUTE_ID>
 ```
 
-* The port and host are configurable, but must match the Collector App. 
+* The port and host are configurable, but must match the Collector App.
 * Confirm this step. Hit one of the URLs mapped through the Collector App. For example,
 ```
 /<workspace name>/collector/alerts
@@ -77,12 +77,12 @@ $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector co
 
 
 #### Step 2. Set up the Collector App
-Access download files to run and install Brain and/or Immunity from Bintray. 
+Access download files to run and install Brain and/or Immunity from Bintray.
 **Note:** You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact from **Kong Support**.
-1. Log in to **Bintray** and retrieve your BINTRAY_USERNAME and BINTRAY_API_KEY. 
-2. Click your **username** to get the dropdown menu. 
+1. Log in to **Bintray** and retrieve your BINTRAY_USERNAME and BINTRAY_API_KEY.
+2. Click your **username** to get the dropdown menu.
 3. Click **Edit Profile** to get your BINTRAY_USERNAME.
-4. Click **API Key** to get your BINTRAY_API_KEY. 
+4. Click **API Key** to get your BINTRAY_API_KEY.
 
 
 #### Step 3: Set up with Docker Compose
@@ -99,7 +99,7 @@ Your Bintray credentials are provided to you with your purchase of Kong Enterpri
 
 1. SSH/PuTTY into your running instance where you want to install Brain and/or Immunity.
 
-2. Log into Docker, and enter the repo you have access to. For example, ```kong-docker-kong-brain-immunity-base```. 
+2. Log into Docker, and enter the repo you have access to. For example, ```kong-docker-kong-brain-immunity-base```.
 
 ```
 docker login -u <BINTRAY_USERNAME> -p <BINTRAY_API_KEY> <enter your repo here>.bintray.io
@@ -123,7 +123,7 @@ KONG_HOST=<KONG HOST> KONG_PORT=<8001> SQLALCHEMY_DATABASE_URI=<postgres://kong@
 
 * Replace KONG_HOST and KONG_PORT with the host and port of your kong admin api
    * ```KONG_HOST```: the public IP address or Hostname of the system which is running Brain
-   * ```KONG_PORT```: Usually 8001, but may be set otherwise 
+   * ```KONG_PORT```: Usually 8001, but may be set otherwise
 * You are adding A postgres database
 
 
@@ -148,7 +148,7 @@ $ REDIS_URI=<redis://localhost:6379/> KONG_HOST=<KONG HOST> KONG_PORT=<8001> doc
 
 
 #### Step 6. Confirm the Collector App is working
-Requests to the status endpoint will confirm the Collector App is up and running in addition to providing Brain and/or Immunity status and version number. 
+Requests to the status endpoint will confirm the Collector App is up and running in addition to providing Brain and/or Immunity status and version number.
 
 ```
 curl http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/status
@@ -208,10 +208,10 @@ Only endpoints + method combinations that have a model trained can be monitored 
 
 
 
-* `base_url`: The url of the traffic used to train the model. 
-* `method`: The method of the traffic used to train the model. 
-* `route_id`: The Kong route_id that the traffic used to train the model is associated with. **service_id**: The Kong service_id that the traffic used to train the model is associated with. **model_version_id**: The model version number of the current, active model. 
-* `active_models`: A json object containing information on the active status of each of the 6 core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type). 
+* `base_url`: The url of the traffic used to train the model.
+* `method`: The method of the traffic used to train the model.
+* `route_id`: The Kong route_id that the traffic used to train the model is associated with. **service_id**: The Kong service_id that the traffic used to train the model is associated with. **model_version_id**: The model version number of the current, active model.
+* `active_models`: A json object containing information on the active status of each of the 6 core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type).
 
 
 
@@ -370,11 +370,17 @@ For example, if you decide that for your system, `unknown_parameter` alerts are 
 
 To set a severity configuration on alerts, Immunity provides a /alerts/config endpoint. Posting to /alerts/config will create a new configuration, and requires these parameters:
 
-* `alert_name`: one of the alert types from ['traffic', 'value_type', 'unknown_parameter', 'latency_ms', 'traffic', 'statuscode'], or null.
-* `kong_entity`: a route_id or service_id for the entity you want to create the configuration for, or null.
+* `workspace_name`: The workspace name of the workspace that the configuration will be applied to.  This parameter is required for proper functioning of the endpont.
 * `severity`: the severity you want this rule to make, must be one of ['low', 'medium', 'high', 'ignored']. No other severity options will be accepted.
 
+Optional parameters for greater specificity are:
 
+* `alert_type`: one of the alert types from ['traffic', 'value_type', 'unknown_parameter', 'latency_ms', 'traffic', 'statuscode']. When this parameter is not passed, the created configuration will apply to all alert_types.
+* `route_id`: the route_id for the entity you want to create the configuration for. If you make a configuration for a route, do not pass the service_id parameter with your request.
+* `service_id`: the service_id for the entity you want to create the configuration for.
+* `method`: the method of the service or route that you want to create the configuration for. When this parameter is not passed, the resulting configuration will apply to all methods.
+
+Some restrictions: If you want to set a severity configuration for a route, provide just the route_id and not the service_id.
 
 In the example above, to set the first alert type wide rule for all `unknown_parameter` alerts in your system, you would pass `unknown_parameter` to the `alert_name` parameter and null to the `kong_entity` parameter. Here's an example of what that curl would look like:
 
@@ -443,12 +449,12 @@ In return you'll get back a json like this, where each row is a configuration ru
 ]
 ```
 
-Any kong entity plus alert type rule will be represented by a json object with both `alert_name` and `kong_entity` are not null. In the example above, that would be 
+Any kong entity plus alert type rule will be represented by a json object with both `alert_name` and `kong_entity` are not null. In the example above, that would be
 ```json
 {"alert_name": "value_type", "kong_entity": "route-id-2", "severity": "medium"}
-``` 
+```
 
-An alert type wide rule will be represented by an json object where the `alert_name` is not null but the `kong_entity` is, like 
+An alert type wide rule will be represented by an json object where the `alert_name` is not null but the `kong_entity` is, like
 ```json
 {"alert_name": "traffic", "kong_entity": null, "severity": "high"}
 ```
