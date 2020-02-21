@@ -616,6 +616,111 @@ HTTP 200 OK
 
 ---
 
+### List Available Endpoints
+
+List all available endpoints provided by the Admin API.
+
+<div class="endpoint get">/endpoints</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "data": [
+        "/",
+        "/acls",
+        "/acls/{acls}",
+        "/acls/{acls}/consumer",
+        "/basic-auths",
+        "/basic-auths/{basicauth_credentials}",
+        "/basic-auths/{basicauth_credentials}/consumer",
+        "/ca_certificates",
+        "/ca_certificates/{ca_certificates}",
+        "/cache",
+        "/cache/{key}",
+        "..."
+    ]
+}
+```
+
+
+---
+
+### Validate A Configuration against A Schema
+
+Check validity of a configuration against its entity schema.
+This allows you to test your input before submitting a request
+to the entity endpoints of the Admin API.
+
+Note that this only performs the schema validation checks,
+checking that the input configuration is well-formed.
+A requests to the entity endpoint using the given configuration
+may still fail due to other reasons, such as invalid foreign
+key relationships or uniqueness check failures against the
+contents of the data store.
+
+
+<div class="endpoint post">/schemas/{entity}/validate</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "message": "schema validation successful"
+}
+```
+
+
+---
+
+### Retrieve Entity Schema
+
+Retrieve the schema of an entity. This is useful to
+understand what fields an entity accepts, and can be used for building
+third-party integrations to the Kong.
+
+
+<div class="endpoint get">/schemas/{entity name}</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "fields": [
+        {
+            "id": {
+                "auto": true,
+                "type": "string",
+                "uuid": true
+            }
+        },
+        {
+            "created_at": {
+                "auto": true,
+                "timestamp": true,
+                "type": "integer"
+            }
+        },
+        ...
+    ]
+}
+```
+
+
+---
+
 ## Health Routes
 
 
@@ -891,7 +996,7 @@ The list of entities will not be restricted to a single entity type: all the
 entities tagged with tags will be present on this list.
 
 
-<div class="endpoint get">/tags/:tags</div>
+<div class="endpoint get">/tags/{tags}</div>
 
 #### Response
 
