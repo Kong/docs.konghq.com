@@ -48,15 +48,53 @@ To enable Kong Brain (Brain) and/or Kong Immunity (Immunity), you must first con
 * Testing the configuration to confirm everything is up and running.
 
 Steps are:
-- [Step 1. Set up the Collector Plugin](#step-1-set-up-the-collector-plugin)
-- [Step 2. Set up the Collector App](#step-2-set-up-the-collector-app)
+- [Step 1. Set up the Collector App](#step-1-set-up-the-collector-app)
+- [Step 2. Set up the Collector Plugin](#step-2-set-up-the-collector-plugin)
 - [Step 3: Set up with Docker Compose](#step-3-set-up-with-docker-compose)
 - [Step 4. (Optional) Opt-Out of HAR Redaction](#step-4-advanced-configuration-opt-out-of-har-redaction)
 - [Step 5. (Optional) Using a different Redis instance](#step-5-using-a-different-redis-instances-optional)
 - [Step 6. Confirm the Collector App is working](#step-6-confirm-the-collector-app-is-working)
 
 
-#### Step 1. Set up the Collector Plugin
+#### Step 1. Set up the Collector App
+Access release-script files to run and install Brain and/or Immunity from Bintray.
+**Note:** You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact from **Kong Support**.
+1. Log in to **Bintray** and retrieve your BINTRAY_USERNAME and BINTRAY_API_KEY.
+2. Click your **username** to get the dropdown menu.
+3. Click **Edit Profile** to get your BINTRAY_USERNAME.
+4. Click **API Key** to get your BINTRAY_API_KEY.
+
+The release-scripts given are:
+1. **docker-compose.yml** - sets up collector app
+2. **with-db.yml** - creates postgres container that collector app will use if database instance not already provided.
+3. **with-redis.yml** - creates redis instance that collector app will use if redis instance not already provided.
+
+
+##### Docker login
+To download the bintray you will first need to docker login to Bintray to the brain/immunity repo
+```docker login -u BINTRAY_USERNAME -p BINTRAY_API_KEY kong-docker-kong-brain-immunity-base.bintray.io```
+
+Also login to docker:
+```docker login```
+Then follow the login steps when prompted.
+
+##### Bringing up Collector App with Redis and Db
+To bring up the full Collector app with it's own database and redis, run:
+```
+KONG_HOST={KONG HOST URL} KONG_PORT={KONG PORT} KONG_MANAGER_PORT={KONG MANAGER PORT} KONG_MANAGER_URL={KONG MANAGER URL} docker-compose -f docker-compose.yml -f with-db.yml -f with-redis.yml up -d
+```
+
+##### Bringing up Collector App alone
+If you already have an outside database and would not like to bring up Postgres with the collector up, first make sure you have a collector table in the database
+```psql -U user -c "CREATE DATABASE collector;"```
+
+If the postgres and redis instances are
+Then you can bring up collector with:
+```
+SQLALCHEMY_DATABASE_URI=postgres://{POSTGRES-USER}:{POSTGRES-PASSWORD}@{POSTGRES HOST}:{POSTGRES POST}/collector CELERY_BROKER_URL={REDIS URI} docker-compose -f docker-compose.yml up -d
+```
+
+#### Step 2. Set up the Collector Plugin
 Enable the Collector Plugin using the Admin API:
 
 ```
@@ -74,15 +112,6 @@ $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector co
 ```
 /<workspace name>/collector/alerts
 ```
-
-
-#### Step 2. Set up the Collector App
-Access download files to run and install Brain and/or Immunity from Bintray.
-**Note:** You should receive your Bintray credentials with your purchase of Kong Enterprise. If you need Bintray credentials, contact from **Kong Support**.
-1. Log in to **Bintray** and retrieve your BINTRAY_USERNAME and BINTRAY_API_KEY.
-2. Click your **username** to get the dropdown menu.
-3. Click **Edit Profile** to get your BINTRAY_USERNAME.
-4. Click **API Key** to get your BINTRAY_API_KEY.
 
 
 #### Step 3: Set up with Docker Compose
