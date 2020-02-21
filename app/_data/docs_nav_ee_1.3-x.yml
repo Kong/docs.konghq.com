@@ -7,6 +7,8 @@
           url: /deployment/licensing
         - text: How to Access Your License
           url: /deployment/access-license
+        - text: Monitor License Usage
+          url: /deployment/licenses/report
     - text: Installation
       url: /deployment/installation/overview
       items:
