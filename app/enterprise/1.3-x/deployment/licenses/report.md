@@ -12,7 +12,7 @@ What the license report module **does not** do:
 *   The license report module does not automatically generate a report or send any data to any Kong servers.
 *   The license report module does not track or generate any data other than the data that is returned in the response after you send a request to the endpoint.
 
-## Generate a license report
+## Generate a License Report
 Run the license report module and share the output information with your Kong representative for a deployment analysis.
 
 **Prerequisites**: You must have Admin privileges to generate a license report.
