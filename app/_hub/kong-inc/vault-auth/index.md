@@ -35,7 +35,7 @@ params:
       required: true
       default:
       description: |
-        A reference to an existing `vault` objection within the database. `vault` entities define the connection and authentication parameters used to connection to a Vault HTTP(S) API.
+        A reference to an existing `vault` objecti within the database. `vault` entities define the connection and authentication parameters used to connection to a Vault HTTP(S) API.
     - name: secret_token_name
       required: true
       default: "`access_token`"
