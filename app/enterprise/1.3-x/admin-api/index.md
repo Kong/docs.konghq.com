@@ -858,7 +858,7 @@ HTTP 200 OK
 
 ## Service Object
 
-Service entities, as the name implies, are abstractions of each of your own
+Service objects, as the name implies, are abstractions of each of your own
 upstream services. Examples of Services would be a data transformation
 microservice, a billing API, etc.
 
@@ -1125,7 +1125,7 @@ HTTP 204 No Content
 
 ## Route Object
 
-Route entities define rules to match client requests. Each Route is
+Route objects define rules to match client requests. Each Route is
 associated with a Service, and a Service may have multiple Routes associated to
 it. Every request matching a given Route will be proxied to its associated
 Service.
@@ -1568,7 +1568,7 @@ HTTP 204 No Content
 
 ## Plugin Object
 
-A Plugin entity represents a plugin configuration that will be executed during
+A Plugin object represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
 to Services that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
