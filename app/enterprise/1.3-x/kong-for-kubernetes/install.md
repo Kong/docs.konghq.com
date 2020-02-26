@@ -30,7 +30,13 @@ Installation steps include:
 - [Step 2. Configure Kong Enterprise Docker registry access](#step-2-configure-kong-enterprise-docker-registry-access)
 - [Step 3. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enterprise)
 
+In order to create the secrets for license and Docker registry access,
+let's provision the `kong` namespace first:
 
+```bash
+$ kubectl create namespace kong
+namespace/kong created
+```
 
 ### Step 1. Set Kong Enterprise License
 Kong for Kubernetes Enterprise requires a valid license.
