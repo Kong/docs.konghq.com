@@ -94,8 +94,14 @@ Then you can bring up collector with:
 SQLALCHEMY_DATABASE_URI=postgres://{POSTGRES-USER}:{POSTGRES-PASSWORD}@{POSTGRES HOST}:{POSTGRES POST}/collector CELERY_BROKER_URL={REDIS URI} docker-compose -f docker-compose.yml up -d
 ```
 
-#### Step 2. Set up the Collector Plugin
-Enable the Collector Plugin using the Admin API:
+#### Step 2. Set up the Collector Plugin and Kong GUI
+Enable Immunity/Brain GUI changes on Kong Manager by editing the kong.conf file to have:
+```
+admin_gui_flags={"IMMUNITY_ENABLED":true}
+```
+Then restart Kong to see the changes take effect.
+
+Next, enable the Collector Plugin using the Admin API:
 
 ```
 $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector config.service_token=foo config.host=<COLLECTOR_HOST> config.port=<COLLECTOR_PORT> config.https=false config.log_bodies=true
