@@ -31,7 +31,7 @@ Installation steps include:
 - [Step 3. Deploy Kong for Kubernetes Enterprise](#step-3-deploy-kong-for-kubernetes-enterprise)
 
 In order to create the secrets for license and Docker registry access,
-let's provision the `kong` namespace first:
+first provision the `kong` namespace:
 
 ```bash
 $ kubectl create namespace kong
