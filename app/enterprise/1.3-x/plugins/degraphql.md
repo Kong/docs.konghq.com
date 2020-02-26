@@ -1,3 +1,3 @@
 ---
-redirect_to: /hub/kong-inc/degraphql
+redirect_to: /hub/kong-inc/degraqhql
 ---
