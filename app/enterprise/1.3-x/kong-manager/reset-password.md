@@ -48,7 +48,7 @@ Steps:
 Prerequisites: 
 
 * `enforce_rbac = on`
-* [`admin_gui_auth` is set](/enterprise/{{page.kong_version}}/kong-manager/security/#authentication-with-plugins).
+* [`admin_gui_auth` is set](/{{page.kong_version}}/enterprise/kong-manager/security/#authentication-with-plugins).
 * [`admin_gui_session_conf` is configured](/enterprise/{{page.kong_version}}/kong-manager/authentication/sessions/).
 * Already logged in to Kong Manager
 
