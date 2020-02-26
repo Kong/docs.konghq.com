@@ -12,6 +12,8 @@
     - text: Installation
       url: /deployment/installation/overview
       items:
+        - text: Unicorn
+          url: /deployment/installation/unicorn
         - text: Docker
           url: /deployment/installation/docker
         - text: Kubernetes
