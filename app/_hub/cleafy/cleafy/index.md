@@ -24,7 +24,7 @@ support_url: https://www.cleafy.com
 
 license_type: Included in the standard Cleafy license
 
-privacy_policy_url: "https://www.iubenda.com/privacy-policy/31282315"
+privacy_policy_url: https://www.iubenda.com/privacy-policy/31282315
 
 kong_version_compatibility:
   community_edition:
