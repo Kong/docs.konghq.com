@@ -62,7 +62,7 @@ params:
 Plugin installation mainly depends on where your Kong installation runs:
 
 ## Standalone Installation
-Once the .rock file has been obtained from youir Cleafy diustributor it can be installed using the luarocks package manager.
+Once the .rock file has been obtained from your Cleafy distributor it can be installed using the luarocks package manager.
 ```
 luarocks install cleafy-plugin-for-kong-VERSION.rock
 ```
