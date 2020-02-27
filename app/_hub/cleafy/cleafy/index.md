@@ -41,7 +41,7 @@ params:
   api_id: false
   service_id: false
   consumer_id: false
-  route_id: false
+  route_id: true
 
   config:
     - name: api_address
