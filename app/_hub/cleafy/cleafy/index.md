@@ -44,7 +44,7 @@ params:
   route_id: false
 
   config:
-    - name: "api_address"
+    - name: api_address
       required: "yes"
       default: ""
       value_in_examples: "http://cleafy.com"
