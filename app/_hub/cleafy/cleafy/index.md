@@ -68,7 +68,7 @@ Once the .rock file has been obtained from your Cleafy distributor it can be ins
 luarocks install cleafy-plugin-for-kong-VERSION.rock
 ```
 
-## Typical configuration (via curl)
+### Typical configuration (via curl)
 
 Register Cleafy backend as a Kong service:
 
