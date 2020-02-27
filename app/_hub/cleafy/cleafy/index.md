@@ -45,7 +45,7 @@ params:
 
   config:
     - name: api_address
-      required: "yes"
+      required: yes
       default: ""
       value_in_examples: "http://cleafy.com"
       description: "Specifies the URL pointing to the Cleafy API."
