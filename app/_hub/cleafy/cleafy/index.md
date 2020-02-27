@@ -16,7 +16,7 @@ description: |
 
   Cleafy real-time continuous risk assessment prevents sensitive data loss and payment fraud while minimizing false positives and operational impact. Cleafy threat visibility also makes possible to implement automated threat responses and an adaptive security posture.
 
-Cleafy is client-less and does not require any change to the monitored applications. Cleafy passively monitors application traffic by integrating into any application delivery architecture, typically at ADC or API Gateway level. Cleafy plugin for Kong allows Cleafy to smoothly integrate into any Kong-powered architecture. 
+  Cleafy is client-less and does not require any change to the monitored applications. Cleafy passively monitors application traffic by integrating into any application delivery architecture, typically at ADC or API Gateway level. Cleafy plugin for Kong allows Cleafy to smoothly integrate into any Kong-powered architecture. 
 
 For more details visit https://cleafy.com/resources."
 
