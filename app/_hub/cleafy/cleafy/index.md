@@ -9,7 +9,7 @@ categories:
 
 type: plugin
 
-desc: "Integrate Kong API GW with Cleafy threat detection & protection for API-based apps"
+desc: Integrate Kong API GW with Cleafy threat detection & protection for API-based apps
 
 description: "Cleafy protects online services against today’s targeted attacks. Cleafy patented real-time threat detection & protection technology is effective in detecting account takeover and transaction tampering leveraging Man-In-The-Browser (MITB), Man-In-The-Middle (MITM), Mobile Overlay, SIM Swap, API Abuse and others advanced techniques.
 
