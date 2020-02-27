@@ -1,6 +1,6 @@
 ---
 name: Cleafy plugin for Kong
-id: cleafy-plugin-for-kong
+publisher: Cleafy
 
 #header_icon: #FIXME # (optional) Uncomment only if you are submitting an icon
 
