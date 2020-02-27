@@ -37,7 +37,7 @@ kong_version_compatibility:
 kong_legacy_api: false
 
 params:
-  name: "cleafy-plugin-for-kong"
+  name: cleafy-plugin-for-kong
   api_id: false
   service_id: false
   consumer_id: false
