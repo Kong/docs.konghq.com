@@ -22,29 +22,33 @@ While the OpenID Connect Plugin can suit many different use cases and extends to
 ## How does the Authorization Code flow work with the OpenID Connect Plugin and Okta? 
 
 **Sign In**
-[Image: OIDCsignin.png]
+
+![OIDC signin flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsignin.png)
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
 3. the client redirects to Okta so the user can sign in.
 4. Okta responds with an **authorization code** and a location to redirect (with Kong as the header).
 
-At this point, the client has successfully signed in and has an **authorization code** (from Okta) and an **authorization cookie **(from Kong).
+At this point, the client has successfully signed in and has an **authorization code** (from Okta) and an** authorization cookie** (from Kong).
 
 **Access**
-[Image: OIDCaccess2.png]
-1. The client redirects to Kong and automatically sends the **authorization code** (from Okta) and an **authorization cookie **(from Kong).
+
+![OIDC access flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCaccess.png)
+
+1. The client redirects to Kong and automatically sends the **authorization code** (from Okta) and an **authorization cookie** (from Kong).
 2. Kong verifies the **authorization code** with Okta.
-3. Okta sends and **access token **and **ID token **to Kong.
+3. Okta sends and **access token** and **ID token** to Kong.
 4. Kong proxies the client request with the **access token** from Okta.
 5. Kong receives a service response.
-6. Kong sends the service response to the client, along with a **session cookie **for future access.
+6. Kong sends the service response to the client, along with a **session cookie** for future access.
 
 At this point, the client now has a **session** with Kong that allows mediated access to the service. 
 
 **Session**
 
-[Image: OIDCsession.png]
+![OIDC session flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsession.png)
+
 1. The client sends requests with a **session cookie.**
 2. Kong matches the session cookie to the associate **access token** and proxies the request.
 3. Kong gets a response from the service.
@@ -59,8 +63,8 @@ Kong’s session with the client ensures that the client does not need to make c
 * Prerequisites
 * Steps in Okta
 * Steps in Enterprise
-    * Using Kong Manager
-    * Using Admin API
+  * Using Kong Manager
+  * Using Admin API
 
 ### Prerequisites
 
@@ -90,7 +94,7 @@ Group Assignment defines who is allowed to use this application. Grant Type Allo
 
 1. After submitting the Application configuration, the client credentials are generated and display on the Dashboard page. You will use these credentials for configuring the Kong OIDC Plugin.
 2. [Image: image.png]
-3. Add an Authorization Server. Go to the **API > Authorization Server** and create a server named **Kong API Management **and** **include an audience and description. Click **Save**. 
+3. Add an Authorization Server. Go to the **API > Authorization Server** and create a server named **Kong API Management** and include an audience and description. Click **Save**. 
 4. [Image: image.png]
 5. [Image: image.png]
 6. On the **Kong API Management** > **Settings** page, note the **Issuer** address which you will use for configuring the Kong OIDC Plugin.
@@ -121,18 +125,18 @@ For a basic out-of-the-box use case with the Authorization Code as the auth meth
 
 1. Scroll to the bottom of the page and click the **Plugins** tab. 
 2. Click **Add Plugin**. 
-3. On the Plugins page, enable the **OpenID Connect **plugin.
+3. On the Plugins page, enable the **OpenID Connect** plugin.
 
 [Image: Screen Shot 2019-12-13 at 3.05.44 PM.png]
 1. Configure OpenID Connect’s parameters with the following values:
 
-    1.  **config.issuer: **[https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration](https://your_okta_domain/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration)
-    2. **config.client_id: **YOUR_CLIENT_ID
-    3. **config.client_secret: **YOUR_CLIENT_SECRET
-    4. **config.redirect_uri: **https://kong.com/api
-    5. **config.scopes: **openid
-    6. **config.scopes: **email
-    7. **config.scopes: **profile
+    1.  **config.issuer:** [https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration](https://your_okta_domain/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration)
+    2. **config.client_id:** YOUR_CLIENT_ID
+    3. **config.client_secret:** YOUR_CLIENT_SECRET
+    4. **config.redirect_uri:** https://kong.com/api
+    5. **config.scopes:** openid
+    6. **config.scopes:** email
+    7. **config.scopes:** profile
 
 [Image: Screen Shot 2019-12-13 at 3.06.03 PM.png]
 1. After enabling OpenID Connect, a list of all the plugins displays.
