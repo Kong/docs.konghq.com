@@ -1,5 +1,5 @@
 ---
-title: How to Enable LDAP for Kong Manager
+title: Enable LDAP for Kong Manager
 book: admin_gui
 toc: false
 ---

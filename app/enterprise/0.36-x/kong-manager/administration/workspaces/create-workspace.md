@@ -1,5 +1,5 @@
 ---
-title: How to Create a New Workspace in Kong Manager
+title: Create a New Workspace in Kong Manager
 book: admin_gui
 toc: false
 ---

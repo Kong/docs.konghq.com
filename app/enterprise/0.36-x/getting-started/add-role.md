@@ -1,5 +1,5 @@
 ---
-title: How to Add a Role and Permissions
+title: Add a Role and Permissions
 toc: false
 ---
 #### Table of Contents

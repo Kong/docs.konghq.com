@@ -1,5 +1,5 @@
 ---
-title: How to Install Kong Enterprise on CentOS
+title: Install Kong Enterprise on CentOS
 ---
 
 ## Installation Steps

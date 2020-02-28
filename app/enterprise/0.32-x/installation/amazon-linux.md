@@ -1,5 +1,5 @@
 ---
-title: How to install Kong Enterprise and PostgreSQL onto Amazon Linux
+title: install Kong Enterprise and PostgreSQL onto Amazon Linux
 ---
 
 ## Introduction

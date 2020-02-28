@@ -1,5 +1,5 @@
 ---
-title: How to Add a Consumer
+title: Add a Consumer
 ---
 
 ## 1. Create a Consumer

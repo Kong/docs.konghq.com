@@ -1,5 +1,5 @@
 ---
-title: How to Create a Super Admin
+title: Create a Super Admin
 book: admin_gui
 toc: false
 ---
