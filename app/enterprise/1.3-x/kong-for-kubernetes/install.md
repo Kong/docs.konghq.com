@@ -56,10 +56,17 @@ $ kubectl create secret generic kong-enterprise-license --from-file=./license
 Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterprise Docker image, which is hosted as a private repository. You receive credentials for the Kong Enterprise Docker image when you sign up for Kong Enterprise.
 
 ```
-$ kubectl create secret -n kong docker-registry kong-enterprise-docker \
+$ kubectl create secret -n kong docker-registry kong-enterprise-k8s-docker \
     --docker-server=kong-docker-kong-enterprise-k8s.bintray.io \
-    --docker-username=<BINTRAY-USERNAME> \
-    --docker-password=<BINTRAY-APIKEY>
+    --docker-username=<your-bintray-username@kong> \
+    --docker-password=<your-bintray-api-key>
+secret/kong-enterprise-k8s-docker created
+
+$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
+    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
+    --docker-username=<your-bintray-username@kong> \
+    --docker-password=<your-bintray-api-key>
+secret/kong-enterprise-edition-docker created
 ```
 For future reference, make a note of the namespace in which you are deploying Kong.
 Once these credentials are created, you are ready to deploy Kong Enterprise Ingress Controller.
