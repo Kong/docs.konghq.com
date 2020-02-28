@@ -10,7 +10,6 @@ Besides delegating responsibility to an identity provider, OpenID Connect also m
 
 Finally, enterprises may want to manage access control for many applications from one central system of record. For example, they may want employees to be able to access many different applications using their email address and password. They may want to also change access (e.g. if an employee separates or changes roles) from one central point. OpenID Connect addresses this challenge by providing a way for many different applications to authenticate users through the same third-party identity provider. 
 
-
 ## What does Kong’s OpenID Connect Plugin do? 
 
 Just as OpenID Connect enables developers to offload authentication to another party, Kong enables developers to separate entire processes from their applications. Rather than needing to hand write the code for OpenID Connect *within* a service, developers can place Kong in front of the service and have Kong handle authentication. This separation allows developers to focus on the business logic within their application. It also allows them to easily swap out services while preserving authentication at the front door, and to effortlessly spread the same authentication to *new* services.
@@ -30,7 +29,7 @@ While the OpenID Connect Plugin can suit many different use cases and extends to
 3. the client redirects to Okta so the user can sign in.
 4. Okta responds with an **authorization code** and a location to redirect (with Kong as the header).
 
-At this point, the client has successfully signed in and has an **authorization code** (from Okta) and an** authorization cookie** (from Kong).
+At this point, the client has successfully signed in and has an **authorization code** (from Okta) and an **authorization cookie** (from Kong).
 
 **Access**
 
@@ -49,7 +48,7 @@ At this point, the client now has a **session** with Kong that allows mediated a
 
 ![OIDC session flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsession.png)
 
-1. The client sends requests with a **session cookie.**
+1. The client sends requests with a **session cookie**.
 2. Kong matches the session cookie to the associate **access token** and proxies the request.
 3. Kong gets a response from the service.
 4. Kong sends the response to the client.
@@ -81,22 +80,33 @@ The steps in the guide offer an example of configuring OIDC with Okta on a speci
 
 1. [Register](https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/) the application you are using Kong to proxy. 
 2. Select Applications > **Add Application**.
+
     ![Okta 1](/assets/images/docs/ee/plugins/oidc-use-case/okta1.png)
+
 3. Select **Web** as the platform.
+
     ![Okta 2](/assets/images/docs/ee/plugins/oidc-use-case/okta2.png)
+
 4. Complete the Application Settings dialog and click **Submit**.
-    1. **Login redirect** **URIs** is a URI that corresponds to a route you have configured in Kong that uses Okta to authenticate. 
+    1. **Login redirect URIs** is a URI that corresponds to a route you have configured in Kong that uses Okta to authenticate. 
     2. **Group Assignment** defines which groups of users are allowed to use this application. 
-    3. **Grant Type** **Allowed** indicates the grant types to allow for your application.
+    3. **Grant Type Allowed** indicates the grant types to allow for your application.
+
     ![Okta 3](/assets/images/docs/ee/plugins/oidc-use-case/okta3.png)
+
   Group Assignment defines who is allowed to use this application. Grant Type Allowed indicates the Grant types to allow for your application.
 
 5. After submitting the Application configuration, the client credentials are generated and display on the Dashboard page. You will use these credentials for configuring the Kong OIDC Plugin.
+
     ![Okta 4](/assets/images/docs/ee/plugins/oidc-use-case/okta4.png)
+
 6. Add an Authorization Server. Go to the **API > Authorization Server** and create a server named **Kong API Management** and include an audience and description. Click **Save**. 
+
     ![Okta 5](/assets/images/docs/ee/plugins/oidc-use-case/okta5.png)
+
     ![Okta 6](/assets/images/docs/ee/plugins/oidc-use-case/okta6.png)
-7. On the **Kong API Management** > **Settings** page, note the **Issuer** address which you will use for configuring the Kong OIDC Plugin.
+
+7. On the **Kong API Management > Settings** page, note the **Issuer** address which you will use for configuring the Kong OIDC Plugin.
 
     ![Okta 7](/assets/images/docs/ee/plugins/oidc-use-case/okta7.png)
 
