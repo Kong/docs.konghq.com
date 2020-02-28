@@ -5,8 +5,8 @@ title: How to Add a Service and Route
 ### Introduction
 
 This guide walks through the creation and configuration of a 
-**Service and Route** via **Kong Manager** in **Kong Enterprise**. To do this with 
-via the **command line** read Kong's guide to 
+**Service and Route** using **Kong Manager** in **Kong Enterprise**. To do this with 
+using the **command line** read Kong's guide to 
 [Configuring a Service](/latest/getting-started/configuring-a-service/).
 
 For the purpose of this guide, we’ll create a **Service** pointing to the Mockbin 
@@ -27,13 +27,13 @@ access to **Kong Manager**
 
 ### Step 1 - Create a New Service
 
-1. Chose the desired **Workspace** in **Kong Manager** and navigate to the
+1. Choose the desired **Workspace** in **Kong Manager** and navigate to the
 **Services** tab under **API Gateway**.
 
     ![Service Page](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/01-service-page.png)
 
-2. Click the **Create a New Service** button to open the **Create Service** form.
-Fill in a **name** and a **URL** for the **Service**.<br/><br/>For example, set the 
+2. Click the **New Service** button to open the **Create Service** dialog.
+Fill in a **Name** and a **URL** for the **Service**.<br/><br/>For example, set the 
 name to `test-service` with the URL `http://mockbin.org`.
 
     ![Create Service Form](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/02-service-name.png)
@@ -51,8 +51,7 @@ edited later.
     ![Advanced Fields](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/04-service-advanced-fields.png)
 
 
-3. Create the **Service** by clicking the **Create Service** button at the bottom of
-the form.<br/><br/>If successful, you will be automatically redirected to the 
+3. Create the **Service** by clicking the **Create**.<br/><br/>If successful, you are automatically redirected to the 
 **Service's Overview** page.<br/><br/>The **Service Overview** page displays 
 information and **Activity** on the **Service**, as well as any **Routes** or 
 **Plugins** that have been connected to the **Service**.
@@ -81,7 +80,7 @@ desired **Service's Id** field.
 3. The **Route** will also need a name, and at least one of the following fields:
 **Host**, **Methods**, or **Paths**<br/>To continue with the Mockbin example,
 name the **Route** `test-route` with the **Host** `example.com`. Once completed,
-click the **Create Route** button at the bottom of the form.
+click the **Create Route**.
 
     ![Create Route Form](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/08-route-form-example.png)
 
