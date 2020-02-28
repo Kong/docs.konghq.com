@@ -1,10 +1,10 @@
 ---
-title: How to Add a Service and Route
+title: Add a Service and Route
 ---
 
 ### Introduction
 
-This guide walks through the creation and configuration of a 
+This topic walks through the creation and configuration of a 
 **Service and Route** using **Kong Manager** in **Kong Enterprise**. To do this with 
 using the **command line** read Kong's guide to 
 [Configuring a Service](/latest/getting-started/configuring-a-service/).
