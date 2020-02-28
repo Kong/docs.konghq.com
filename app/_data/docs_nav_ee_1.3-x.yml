@@ -1,14 +1,5 @@
 - title: Deployment
   items:
-    - text: Licensing
-      url: /deployment/licensing
-      items:
-        - text: Overview
-          url: /deployment/licensing
-        - text: Access Your License
-          url: /deployment/access-license
-        - text: Monitor License Usage
-          url: /deployment/licenses/report
     - text: Installation
       url: /deployment/installation/overview
       items:
@@ -26,14 +17,22 @@
           url: /deployment/installation/amazon-linux-2
         - text: Red Hat Enterprise Linux
           url: /deployment/installation/rhel
-    - text: Kong Cloud
-      url: /kong-cloud
+    - text: Licensing
+      url: /deployment/licensing
+      items:
+        - text: Overview
+          url: /deployment/licensing
+        - text: Access Your License
+          url: /deployment/access-license
+        - text: Monitor License Usage
+          url: /deployment/licenses/report
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
     - text: Migrating to 1.3
       url: /deployment/migrations
-
+    - text: Kong Cloud
+      url: /kong-cloud
 
 - title: Getting Started
   url: /getting-started/
