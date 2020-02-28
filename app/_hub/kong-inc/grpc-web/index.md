@@ -44,7 +44,7 @@ params:
 
 ## Purpose
 
-A service that presents a gRPC API can be used by clients written in many languages, but the network specifications are oriented primarily to connections within a datacenter.  In order to expose the API to the Internet, and to be called from brower-based JS apps, [gRPC-Web] was developed.
+A service that presents a gRPC API can be used by clients written in many languages, but the network specifications are oriented primarily to connections within a datacenter. [gRPC-Web] allows exposing such API to the Internet, and be consumed by brower-based JS apps.
 
 This plugin translates requests and responses between gRPC-Web and "real" gRPC.  Supports both HTTP/1.1 and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
 
