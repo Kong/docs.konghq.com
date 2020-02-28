@@ -1,5 +1,5 @@
 ---
-title: How to Access Your Kong Enterprise License
+title: Access Your Kong Enterprise License
 ---
 
 Starting with Kong EE 0.29, Kong requires a license file to start. This guide 

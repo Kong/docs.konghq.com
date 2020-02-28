@@ -1,5 +1,5 @@
 ---
-title: How to Add an Admin
+title: Add an Admin
 toc: false
 ---
 #### Table of Contents

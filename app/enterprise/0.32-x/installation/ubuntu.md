@@ -1,5 +1,5 @@
 ---
-title: How to install Kong Enterprise and PostgreSQL onto Ubuntu
+title: install Kong Enterprise and PostgreSQL onto Ubuntu
 ---
 
 ## Install Kong Enterprise

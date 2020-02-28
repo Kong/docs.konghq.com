@@ -1,5 +1,5 @@
 ---
-title: How to Enable OpenId Connect in the Dev Portal
+title: Enable OpenId Connect in the Dev Portal
 ---
 
 ### Introduction

@@ -1,5 +1,5 @@
 ---
-title: How to Reset Passwords and RBAC Tokens in Kong Manager
+title: Reset Passwords and RBAC Tokens in Kong Manager
 toc: false
 ---
 

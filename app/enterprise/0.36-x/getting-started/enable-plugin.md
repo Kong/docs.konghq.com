@@ -1,5 +1,5 @@
 ---
-title: How to Enable a Plugin
+title: Enable a Plugin
 ---
 
 ### Introduction

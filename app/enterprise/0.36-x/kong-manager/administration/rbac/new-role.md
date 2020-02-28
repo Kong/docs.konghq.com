@@ -1,5 +1,5 @@
 ---
-title: How to Create a New Role with Custom Permissions
+title: Create a New Role with Custom Permissions
 book: admin_gui
 toc: false
 ---
