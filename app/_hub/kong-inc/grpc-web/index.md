@@ -46,7 +46,7 @@ params:
 
 A service that presents a gRPC API can be used by clients written in many languages, but the network specifications are oriented primarily to connections within a datacenter. [gRPC-Web] allows exposing such API to the Internet, and be consumed by brower-based JS apps.
 
-This plugin translates requests and responses between [gRPC-Web](https://github.com/grpc/grpc-web) and ["real" gRPC](https://github.com/grpc/grpc).  Supports both HTTP/1.1 and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
+This plugin translates requests and responses between [gRPC-Web] and ["real" gRPC](https://github.com/grpc/grpc).  Supports both HTTP/1.1 and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
 
 ## Usage
 
@@ -144,9 +144,13 @@ $ curl -XPOST localhost:8001/routes/web-service/plugins \
 
 With this setup, we can support gRPC-Web/JSON clients using `Content-Type` headers like `application/grpc-web+json` or `application/grpc-web-text+json`.
 
-Additionaly, non-gRPC-Web clients can do simple POST requests with `Content-Type: application/json`.  In this case, the data payloads are simple JSON objects, without gPRC frames.  This allows clients to perform calls without using the gRPC-Web library, but streaming responses are delivered as a continous stream of JSON objects.  It's up to the client to split into separate objects if it has to support multiple response messages.
+Note that, even using JSON encoding, the [gRPC-Web protocol] specifies that both request and response data consist of a series of frames, in a similar way to the full [gRPC protocol].  The [gRPC-Web] library performs this framing as expected.
+
+As an extension, this plugin also allows "naked" JSON requests with POST method and `Content-Type: application/json` header.  These requests will be encoded to ProtocolBuffer, framed and forwarded to the gRPC service.  The responses are transformed in the same way back, allowing any HTTP client to use a gRPC service without special libraries.  This feature is limited to unary (non-streaming) requests.  Streaming responses are encoded into multiple JSON objects; it's up to the client to split into separate records if it has to support multiple response messages.
+
 
 [Kong]: https://konghq.com
+[gRPC protocol]: https://github.com/grpc/grpc
 [gRPC-Web]: https://github.com/grpc/grpc-web
 [gRPC-Web protocol]: https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2
 [lua-protobuf]: https://github.com/starwing/lua-protobuf
