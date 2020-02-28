@@ -40,7 +40,7 @@
   items:
     - text: Overview
       url: /getting-started/
-    - text: Start Kong Enterprise
+    - text: Start Kong Enterprise Securely
       url: /getting-started/start-kong
     - text: Add a Workspace
       url: /getting-started/add-workspace
