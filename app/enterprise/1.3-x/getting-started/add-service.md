@@ -80,7 +80,7 @@ desired **Service's Id** field.
 3. The **Route** will also need a name, and at least one of the following fields:
 **Host**, **Methods**, or **Paths**<br/>To continue with the Mockbin example,
 name the **Route** `test-route` with the **Host** `example.com`. Once completed,
-click the **Create Route**.
+click **Create Route**.
 
     ![Create Route Form](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/08-route-form-example.png)
 
