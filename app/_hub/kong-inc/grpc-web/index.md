@@ -46,7 +46,7 @@ params:
 
 A service that presents a gRPC API can be used by clients written in many languages, but the network specifications are oriented primarily to connections within a datacenter. [gRPC-Web] allows exposing such API to the Internet, and be consumed by brower-based JS apps.
 
-This plugin translates requests and responses between gRPC-Web and "real" gRPC.  Supports both HTTP/1.1 and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
+This plugin translates requests and responses between [gRPC-Web](https://github.com/grpc/grpc-web) and ["real" gRPC](https://github.com/grpc/grpc).  Supports both HTTP/1.1 and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
 
 ## Usage
 
