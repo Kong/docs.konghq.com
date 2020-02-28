@@ -245,8 +245,9 @@ return {
                   connections waiting for a request.
             * `database`: Metrics about the database.
                 * `reachable`: A boolean value reflecting the state of the
-                  database connection. Please note that this flag **does not**
-                  reflect the health of the database itself.
+                  main database connection. Please note that this flag **does not**
+                  reflect the health of the database itself nor does it reflect the
+                  state of the read-only connection (if enabled).
           ]],
         },
       }
