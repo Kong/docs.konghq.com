@@ -293,7 +293,9 @@
       url: /hub/kong-inc/openid-connect
       absolute_url: true
       items:
-        - text: OpenID Connect Plugin
+        - text: OpenID Connect Use Case
+          url: /plugins/oidc-use-case
+        - text: OpenID Connect Plugin Reference
           url: /plugins/openid-connect
         - text: OpenID Connect with Azure AD
           url: /plugins/oidc-azuread
