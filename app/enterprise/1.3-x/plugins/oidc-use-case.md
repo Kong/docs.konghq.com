@@ -160,14 +160,14 @@ With an HTTP Client, enter the following cURL command and parameters to configur
 
 ```bash
 $ curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins 
-  --data name*=*"openid-connect"                                                                             \
-  --data config.issuer*=*"https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration" \
-  --data config.client_id*=*"YOUR_CLIENT_ID"                                                                 \
-  --data config.client_secret*=*"YOUR_CLIENT_SECRET"                                                         \
-  --data config.redirect_uri*=*"https://kong.com/api"                                                        \
-  --data config.scopes*=*"openid"                                                                            \
-  --data config.scopes*=*"email"                                                                             \
-  --data config.scopes*=*"profile"
+  --data name="openid-connect"                                                                             \
+  --data config.issuer="https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration" \
+  --data config.client_id="YOUR_CLIENT_ID"                                                                 \
+  --data config.client_secret="YOUR_CLIENT_SECRET"                                                         \
+  --data config.redirect_uri="https://kong.com/api"                                                        \
+  --data config.scopes="openid"                                                                            \
+  --data config.scopes="email"                                                                             \
+  --data config.scopes="profile"
 ```
 
 ### Test Your Configuration
