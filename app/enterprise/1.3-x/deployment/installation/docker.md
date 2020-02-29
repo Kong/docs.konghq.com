@@ -37,7 +37,7 @@ $ docker pull kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterpr
 ```
 
 You should now have your Kong Enterprise image locally. Run `docker images` to verify and find the image ID matching your repository.
-   
+
 Tag the image ID for easier use:
 
 ```bash
@@ -65,7 +65,6 @@ $ docker run -d --name kong-ee-database \
   -e "POSTGRES_USER=kong" \
   -e "POSTGRES_DB=kong" \
   -e "POSTGRES_PASSWORD=kong" \
-  -e "POSTGRES_HOST_AUTH_METHOD=trust" \
   postgres:9.6
 ```
 
@@ -83,6 +82,7 @@ Note: the license data must contain only straight quotes to be considered valid 
 $ docker run --rm --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
+  -e "KONG_PG_PASSWORD=kong" \
   -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
   -e "KONG_PASSWORD=<SOMETHING-YOU-KNOW>" \
   kong-ee kong migrations bootstrap
@@ -96,6 +96,7 @@ $ docker run --rm --network=kong-ee-net \
 $ docker run -d --name kong-ee --network=kong-ee-net \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
+  -e "KONG_PG_PASSWORD=kong" \
   -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
   -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
@@ -115,12 +116,13 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   -p 8004:8004 \
   kong-ee
 ```
-  
+
 **Notes** 
 - For `KONG_PORTAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
   * The DNS or IP address for `KONG_PORTAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
   * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`. 
   
+
 **Docker on Windows users:** Instead of the `KONG_LICENSE_DATA` environment variable, use the [volume bind](https://docs.docker.com/engine/reference/commandline/run/#options) option. For example, assuming you've saved your `license.json` file into `C:\temp`, use `--volume /c/temp/license.json:/etc/kong/license.json` to specify the license file.
 
 ## Step 7. Finalize Configuration and Verify Success of Kong Installation
