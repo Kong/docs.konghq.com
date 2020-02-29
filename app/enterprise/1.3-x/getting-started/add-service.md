@@ -5,8 +5,8 @@ title: Add a Service and Route
 ### Introduction
 
 This topic walks through the creation and configuration of a 
-**Service and Route** using **Kong Manager** in **Kong Enterprise**. To do this with 
-using the **command line** read Kong's guide to 
+**Service and Route** using **Kong Manager** in **Kong Enterprise**. To do this
+using the **command line**, read Kong's guide to 
 [Configuring a Service](/latest/getting-started/configuring-a-service/).
 
 For the purpose of this guide, we’ll create a **Service** pointing to the Mockbin 
