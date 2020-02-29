@@ -51,7 +51,7 @@ edited later.
     ![Advanced Fields](https://doc-assets.konghq.com/0.35/getting-started/add-a-service/04-service-advanced-fields.png)
 
 
-3. Create the **Service** by clicking the **Create**.<br/><br/>If successful, you are automatically redirected to the 
+3. Create the **Service** by clicking the **Create** button.<br/><br/>If successful, you are automatically redirected to the 
 **Service's Overview** page.<br/><br/>The **Service Overview** page displays 
 information and **Activity** on the **Service**, as well as any **Routes** or 
 **Plugins** that have been connected to the **Service**.
