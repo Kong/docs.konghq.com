@@ -41,20 +41,20 @@ Plugins provide advanced functionality and extend the use of Kong Enterprise, al
 ## Proxy
 Kong is a reverse proxy that manages traffic between clients and hosts. As a gateway, Kong’s proxy functionality evaluates any incoming HTTP request against the Routes you have configured to find a matching one. If a given request matches the rules of a specific Route, Kong processes proxying the request. Because each Route is linked to a Service, Kong runs the plugins you have configured on your Route and its associated Service and then proxies the request upstream.
 
-![Proxy](/assets/images/docs/ee/concepts/proxy.png)
+![Proxy](/assets/images/docs/ee/proxy.png)
 
 ## Proxy Caching
 One of the key benefits of using a reverse proxy is the ability to cache frequently-accessed content. The benefit is that upstream services do not need to waste computation on repeated requests.
 
-One of the ways Kong delivers performance is through Proxy Caching, using the [Proxy Cache Advanced Plugin](/proxy-cache-advanced/). This plugin supports performance efficiency by providing the ability to cache responses based on requests, response codes and content type.
+One of the ways Kong delivers performance is through Proxy Caching, using the [Proxy Cache Advanced Plugin](/hub/kong-inc/proxy-cache-advanced/). This plugin supports performance efficiency by providing the ability to cache responses based on requests, response codes and content type.
 
 Kong receives a response from a service and stores it in the cache within a specific timeframe.
 
-![Proxy caching](/assets/images/docs/ee/concepts/proxy-caching.png)
+![Proxy caching](/assets/images/docs/ee/proxy-caching.png)
 
 For future requests within the timeframe, Kong responds from the cache instead of the service.
 
-![Proxy caching without service](/assets/images/docs/ee/concepts/proxy-caching2.png)
+![Proxy caching without service](/assets/images/docs/ee/proxy-caching2.png)
 
 The cache timeout is configurable. Once the time expires, Kong forwards the request to the upstream again, caches the result, and then responds from the cache until the next timeout.
 
@@ -63,14 +63,14 @@ The plugin can store cached data in-memory. The tradeoff is that it competes for
 ## Rate Limiting
 Rate Limiting allows you to restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API. Rate limiting protects the APIs from inadvertent or malicious overuse. Without rate limiting, each user may request as often as they like, which can lead to spikes of requests that starve other consumers. After rate limiting is enabled, API calls are limited to a fixed number of requests per second.  
 
-![Rate limiting](/assets/images/docs/ee/concepts/rate-limiting.png)
+![Rate limiting](/assets/images/docs/ee/rate-limiting.png)
 
-In this workflow, we are going to enable the [Rate Limiting Advanced Plugin](/rate-limiting-advanced/). This plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries and adds Redis support for greater performance.  
+In this workflow, we are going to enable the [Rate Limiting Advanced Plugin](/hub/kong-inc/rate-limiting-advanced/). This plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries and adds Redis support for greater performance.  
 
 ## Role
 A Role is a set of permissions that may be reused and assigned to Admins. For example, this diagram shows multiple admins assigned to a single shared role that defines permissions for a set of objects in a workspace.
 
-![Role](/assets/images/docs/ee/concepts/role.png)
+![Role](/assets/images/docs/ee/role.png)
 
 ## Route
 A Route, also referred to as Route object, defines rules to match client requests to upstream services. Each Route is associated with a Service, and a Service may have multiple Routes associated with it. Routes are entry-points in Kong and define rules to match client requests. Once a Route is matched, Kong proxies the request to its associated Service. See the [Proxy Reference](/enterprise/{{page.kong_version}}/proxy) for a detailed explanation of how Kong proxies traffic.
@@ -87,7 +87,7 @@ A Super Admin, or any Role with read and write access to the `/admins` and `/rba
 * Create new Roles with custom Permissions
 * Create new Workspaces
 
-![Super Admin](/assets/images/docs/ee/concepts/super-admin.png)
+![Super Admin](/assets/images/docs/ee/super-admin.png)
 
 ## Tags
 Tags are customer defined labels that let you manage, search for, and filter core entities using the `?tags` querystring parameter. Each tag must be composed of one or more alphanumeric characters, `\_\`, `-`, `.` or `~`. Most core entities can be tagged via their tags attribute, upon creation or edition.
@@ -103,4 +103,4 @@ Workspaces enable an organization to segment objects and admins into namespaces.
 
 Many organizations have strict security requirements. For example, organizations need the ability to segregate the duties of an administrator to ensure that a mistake or malicious act by one administrator does not cause an outage.
 
-![Workspaces](/assets/images/docs/ee/concepts/workspaces.png)
+![Workspaces](/assets/images/docs/ee/workspaces.png)
