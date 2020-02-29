@@ -39,6 +39,8 @@
   items:
     - text: Overview
       url: /getting-started/
+    - text: Key Concepts
+      url: /getting-started/key-concepts
     - text: Start Kong Enterprise Securely
       url: /getting-started/start-kong
     - text: Add a Workspace
