@@ -82,7 +82,7 @@ DNS Clients, including Kongs, will then make a second request over TCP to retrie
 list of entries. 
 - Some nameservers by default do not respond with the truncate flag, but trim the response
 to be under 512 byte UDP size. 
-Consul is an example. Consul in its default configuration Consul returns up to the first 
+Consul is an example. Consul in its default configuration returns up to the first 
 three entries only and does not set the truncate flag to indicate there remaining entries unsent. 
 Consul includes an option to enable the truncate flag. Please refer to consul documentation
 for more information: https://www.consul.io/docs/agent/options.html#enable_truncate
