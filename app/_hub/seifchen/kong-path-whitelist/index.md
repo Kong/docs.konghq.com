@@ -1,5 +1,5 @@
 ---
-name: Kong Path White Lists
+name: Kong Path White List
 publisher: Seifchen
 
 categories:
@@ -10,8 +10,7 @@ type: plugin
 desc: Determine if the path is in the path whitelist, if not, return 403
 
 description: |
-
-  Determine if the path is in the path whitelist, if not, return 403 Support regex.
+  Add Kong Path White List to a Service or a Route or consumer with paths. The plugin will check the path is in the path whitelist, if not return 403.
 
 support_url: https://github.com/seifchen/kong-path-whitelist/issues
 
