@@ -1,5 +1,5 @@
 ---
-title: Kong Concepts
+title: Key Concepts
 toc: true
 ---
 
