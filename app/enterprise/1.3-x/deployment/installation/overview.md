@@ -1,6 +1,7 @@
 ---
 title: Install Kong Enterprise
 toc: false
+skip_read_time: true
 ---
 
 <div class="docs-grid">
@@ -46,7 +47,7 @@ toc: false
     <h3>Kong for Kubernetes</h3>
     </a>
   </div>
-  
+
   <div class="docs-grid-block docs-grid-install">
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/rhel">
     <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="redhat" />
