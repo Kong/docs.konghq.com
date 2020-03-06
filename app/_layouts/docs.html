@@ -136,7 +136,8 @@ id: documentation
           {% endif %}
 
           {% if page.edition == 'enterprise' %}
-          {% unless page.skip_read_time == true %}{% include read_time.html %}{% endunless %}
+          {% unless page.skip_read_time == true or page.path contains '/1.3-x/admin-api/'
+          or page.path contains '/1.3-x/pdk/' %}{% include read_time.html %}{% endunless %}
           {% endif %}
 
           {% assign filename = page.path | split: '/' | last %}
