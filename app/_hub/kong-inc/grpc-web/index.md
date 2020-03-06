@@ -146,7 +146,7 @@ With this setup, we can support gRPC-Web/JSON clients using `Content-Type` heade
 
 Note that, even using JSON encoding, the [gRPC-Web protocol] specifies that both request and response data consist of a series of frames, in a similar way to the full [gRPC protocol].  The [gRPC-Web] library performs this framing as expected.
 
-As an extension, this plugin also allows "naked" JSON requests with POST method and `Content-Type: application/json` header.  These requests will be encoded to ProtocolBuffer, framed and forwarded to the gRPC service.  The responses are transformed in the same way back, allowing any HTTP client to use a gRPC service without special libraries.  This feature is limited to unary (non-streaming) requests.  Streaming responses are encoded into multiple JSON objects; it's up to the client to split into separate records if it has to support multiple response messages.
+As an extension, this plugin also allows "naked" JSON requests with POST method and `Content-Type: application/json` header.  These requests are encoded to ProtocolBuffer, framed, and forwarded to the gRPC service.  Likewise, the responses are transformed on the way back, allowing any HTTP client to use a gRPC service without special libraries.  This feature is limited to unary (non-streaming) requests.  Streaming responses are encoded into multiple JSON objects; it's up to the client to split into separate records if it has to support multiple response messages.
 
 
 [Kong]: https://konghq.com
