@@ -17,7 +17,6 @@ This guide provides information about how to install, configure, and use Kong Br
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Configure the Collector App and Collector Plugin](#configure-the-collector-app-and-collector-plugin)
-- [Monitor the Collector](#monitor-the-collector)
 - [Using Kong Brain](#using-kong-brain)
 - [Using Kong Immunity](#using-kong-immunity)
 
@@ -49,7 +48,7 @@ To enable Kong Brain (Brain) and/or Kong Immunity (Immunity), you must first con
 
 Steps are:
 - [Step 1. Set up the Collector App](#step-1-set-up-the-collector-app)
-- [Step 2. Set up the Collector Plugin](#step-2-set-up-the-collector-plugin)
+- [Step 2. Set up the Collector Plugin and Kong GUI](#step-2-set-up-the-collector-plugin-and-kong-gui)
 - [Step 3: Set up with Docker Compose](#step-3-set-up-with-docker-compose)
 - [Step 4. (Optional) Opt-Out of HAR Redaction](#step-4-advanced-configuration-opt-out-of-har-redaction)
 - [Step 5. (Optional) Using a different Redis instance](#step-5-using-a-different-redis-instances-optional)
