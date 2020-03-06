@@ -50,7 +50,7 @@ This plugin translates requests and responses between [gRPC-Web] and ["real" gRP
 
 ## Usage
 
-This plugin is intended to be used in a Kong Route between an HTTP endpoint and a gRPC service.
+This plugin should be enabled on a Kong `Route` that serves the `http(s)` protocol but proxies to a `Service` with the `grpc(s)` protocol.
 
 Sample configuration via declarative (YAML):
 
