@@ -161,6 +161,16 @@ mappings:
 # ...
 ```
 
+### Install Grafana dashboard
+
+In your Grafana installation, click the **+** button in the sidebar, and choose **Import**.
+
+On the **Import** screen, find the **Grafana.com Dashboard** field and enter `11870`. Then, click **Load**. Optionally, you
+can also download the JSON model from [https://grafana.com/grafana/dashboards/11870](https://grafana.com/grafana/dashboards/11870) and import it manually.
+
+On the next screen, select the **Prometheus** datasource that is configured to scrape `statsd-exporter`, then
+click **Import**.
+
 ## Tuning and Optimization
 
 ### StatsD exporter UDP buffer
