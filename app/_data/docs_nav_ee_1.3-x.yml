@@ -124,10 +124,6 @@
     url: /admin-api/#upstream-object
   - text: Target Object
     url: /admin-api/#target-object
-  - text: Workspace Object routes
-    url: /admin-api/workspaces/reference
-  - text: RBAC Object routes
-    url: /admin-api/rbac/reference
   - text: Workspaces
     url: /admin-api/workspaces/reference
   - text: RBAC
