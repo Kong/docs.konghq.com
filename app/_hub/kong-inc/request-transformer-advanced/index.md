@@ -143,7 +143,7 @@ params:
 
 ---
 
-### Template as Value
+## Template as Value
 
 User can use any of the the current request headers, query params, and captured URI groups as template to populate above supported config fields.
 
@@ -156,9 +156,9 @@ User can use any of the the current request headers, query params, and captured 
 To escape a template, wrap it inside quotes and pass inside another template.<br>
 Ex. $('$(some_needs_to_escaped)')
 
-Note: Plugin creates a non mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
+Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
 
-#### Examples Using Template as Value
+### Examples Using Template as Value
 
 Add an API `test` with `uris` configured with a named capture group `user_id`
 
@@ -207,13 +207,13 @@ $ curl -i -X GET localhost:8000/requests/user/foo \
 This time plugin will add a new header `x-consumer-id` with value sent along
 with header `x-user-id`, i.e.`bob`
 
-### Order of Execution
+## Order of Execution
 
-Plugin performs the response transformation in following order
+This plugin performs the response transformation in the following order:
 
 remove –> replace –> add –> append
 
-### Configuration Examples
+## Configuration Examples
 
 Add multiple headers by passing each header:value pair separately:
 
