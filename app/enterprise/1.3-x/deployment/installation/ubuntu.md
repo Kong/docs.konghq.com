@@ -138,31 +138,26 @@ PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snap
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
-1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
+1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place.  Run migrations to prepare the Kong database.
+:
 
     ```bash
-    $ export KONG_PASSWORD=<password-only-you-know>
+    $ sudo KONG_PASSWORD=<password-only-you-know> /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
-2. Run migrations to prepare the Kong database.
-
-    ```bash
-    $ sudo /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
-    ```
-
-3. Start Kong Enterprise:
+2. Start Kong Enterprise:
 
     ```bash
     $ sudo /usr/local/bin/kong start -c /etc/kong/kong.conf
     ```
 
-4. Verify Kong Enterprise is working:
+3. Verify Kong Enterprise is working:
 
     ```bash
     $ curl -i -X GET --url http://localhost:8001/services
     ```
 
-5. You should receive a `HTTP/1.1 200 OK` message.
+4. You should receive a `HTTP/1.1 200 OK` message.
 
 ## Step 6. Finalize your Configuration and Verify Kong was Successfully installed:
 
