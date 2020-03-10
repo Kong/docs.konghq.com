@@ -15,7 +15,7 @@ Authentication is the process by which a system validates the identity of a user
 API gateway authentication is an important way to control the data that is allowed to be transmitted to and from your APIs. An API may have a restricted list of identities that are authorized to access it. Authentication is the process of proving an identity.
 
 ## Authorization
-Authorization is the system of defining access to certain resources. In Kong Enterprise, RBAC is the main authorization mode. To define authorization to an API, it is possible to use the ACL Plugin in conjunction with an authentication plugin.
+Authorization is the system of defining access to certain resources. In Kong Enterprise, Role-Based Access Control (RBAC) is the main authorization mode. To define authorization to an API, it is possible to use the ACL Plugin in conjunction with an authentication plugin.
 
 ## Client
 A Kong Client refers to the downstream client making requests to Kong’s proxy port. It could be another service in a distributed application, a user’s identity, a user’s browser, or a specific device.
@@ -94,7 +94,7 @@ A Super Admin, or any Role with read and write access to the `/admins` and `/rba
 Tags are customer defined labels that let you manage, search for, and filter core entities using the `?tags` querystring parameter. Each tag must be composed of one or more alphanumeric characters, `\_\`, `-`, `.` or `~`. Most core entities can be tagged via their tags attribute, upon creation or edition.
 
 ## Teams
-Teams organize developers into working groups, implements policies across entire environments, and onboards new users while ensuring compliance. Role-Based Access Control and Workspaces allow users to assign administrative privileges and grant or limit access privileges to individual users and consumers, entire teams, and environments across the Kong platform.
+Teams organize developers into working groups, implements policies across entire environments, and onboards new users while ensuring compliance. Role-Based Access Control (RBAC) and Workspaces allow users to assign administrative privileges and grant or limit access privileges to individual users and consumers, entire teams, and environments across the Kong platform.
 
 ## Upstream
 An Upstream object refers to your upstream API/service sitting behind Kong, to which client requests are forwarded. An Upstream object represents a virtual hostname and can be used to load balance incoming requests over multiple services (targets). For example, an Upstream named `service.v1.xyz` for a Service object whose host is `service.v1.xyz`. Requests for this Service object would be proxied to the targets defined within the upstream.
