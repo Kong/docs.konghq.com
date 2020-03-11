@@ -92,7 +92,7 @@ $ curl -XPOST localhost:8001/routes/web-service/plugins \
 
 In these examples we don't set any configuration for the plugin.  This minimal setup works for the default varieties of the [gRPC-Web protocol], which use ProtocolBuffer messages either directly in binary or with base64 encoding.  The related `Content-Type` headers are `application/grpc-web` or `application/grpc-web+proto` for binary and `application/grpc-web-text` or `application/grpc-web-text+proto`.
 
-If we wish to use JSON encoding, we have to provide the gRPC specification in a .proto file, which needs to be installed in the Kong node running the plugin.  For example:
+If we wish to use JSON encoding, we have to provide the gRPC specification in a .proto file, which needs to be installed in the Kong node running the plugin.  A path starting with a `/` is considered absolute, otherwise it will be interpreted relative to the Kong's prefix (`/usr/local/kong/` by default).  For example:
 
 ```protobuf
 syntax = "proto2";
