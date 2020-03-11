@@ -1,13 +1,13 @@
 ---
 name: ACME
 publisher: Kong Inc.
-version: 0.2.0
+version: 0.2.2
 
 source_url: https://github.com/Kong/kong-plugin-acme
 
 desc: Let's Encrypt and ACMEv2 integration with Kong
 description: |
-  This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve dynamically. Renew is handled with a configurable threshold time.
+  This plugin allows Kong to apply certificates from Let's Encrypt or any other ACMEv2 service and serve dynamically. Renewal is handled with a configurable threshold time.
 
 type: plugin
 categories:
@@ -38,7 +38,7 @@ params:
       required: false
       default: "`https://acme-v02.api.letsencrypt.org`"
       description: |
-        The ACMEv2 API endpoint to use, user might use [Let's Encrypt staging environemnt](https://letsencrypt.org/docs/staging-environment/) during testing.
+        The ACMEv2 API endpoint to use. You can use the [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) during testing. Note that Kong doesn't automatically delete staging certificates: if you use same domain to test and use in production, you will need to delete those certificates manually after testing.
     - name: cert_type
       required: false
       default: "`rsa`"
@@ -115,7 +115,24 @@ verify Let's Encrypt API. The CA-bundle file is usually `/etc/ssl/certs/ca-certi
 Ubuntu/Debian and `/etc/ssl/certs/ca-bundle.crt` for CentOS/Fedora/RHEL.
 
 #### Enable the Plugin
+
+For each the domain that needs a certificate, make sure `DOMAIN/.well-known/acme-challenge`
+is mapped to a Route in Kong. You can check this by sending
+`curl KONG_IP/.well-known/acme-challenge/x -H "host:DOMAIN"` and getting the response `Not found`.
+If not, add a Route and a dummy Service to catch this route.
 ```bash
+# add a dummy service if needed
+$ curl http://localhost:8001/service \
+        -d name=acme-dummy \
+        -d url=http://127.0.0.1:65535
+
+# add a dummy route if needed
+$ curl http://localhost:8001/routes \
+        -d name=acme-dummy \
+        -d paths[]=/.well-known/acme-challenge \
+        -d service.name=acme-dummy
+
+# add the plugin
 $ curl http://localhost:8001/plugins \
         -d name=acme \
         -d config.account_email=yourname@yourdomain.com \
