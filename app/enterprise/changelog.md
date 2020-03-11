@@ -75,8 +75,8 @@ layout: changelog
 ### Features
 
 * Kong Enterprise now officially supports RHEL 8
+* Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
 * (Alpha feature) Kong Enterprise can now perform encryption-at-rest for sensitive fields within the data store (Postgres or Cassandra).
-* (Alpha feature) Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
 
 #### Kong Developer Portal:
 
