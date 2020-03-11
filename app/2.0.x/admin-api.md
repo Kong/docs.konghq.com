@@ -183,7 +183,7 @@ plugin_body: |
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Defaults to `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
-    `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http", "https"]`.
+    `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Defaults to `true`.
     `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering. 
 
@@ -328,27 +328,27 @@ upstream_body: |
     `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
     `hash_on_cookie_path`<br>*semi-optional* | The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`. Defaults to `"/"`.
     `slots`<br>*optional* | The number of slots in the loadbalancer algorithm (`10`-`65536`). Defaults to `10000`.
-    `healthchecks.active.https_verify_certificate`<br>*optional* | Whether to check the validity of the SSL certificate of the remote host when performing active health checks using HTTPS. Defaults to `true`.
-    `healthchecks.active.unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Defaults to `[429, 404, 500, 501, 502, 503, 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
-    `healthchecks.active.unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Defaults to `0`.
-    `healthchecks.active.unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Defaults to `0`.
-    `healthchecks.active.unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Defaults to `0`.
-    `healthchecks.active.unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Defaults to `0`.
-    `healthchecks.active.http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Defaults to `"/"`.
-    `healthchecks.active.timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Defaults to `1`.
-    `healthchecks.active.healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Defaults to `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
-    `healthchecks.active.healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Defaults to `0`.
-    `healthchecks.active.healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Defaults to `0`.
-    `healthchecks.active.https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
-    `healthchecks.active.concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Defaults to `10`.
+    `healthchecks.active.`<wbr>`https_verify_certificate`<br>*optional* | Whether to check the validity of the SSL certificate of the remote host when performing active health checks using HTTPS. Defaults to `true`.
+    `healthchecks.active.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. Defaults to `[429, 404, 500, 501, 502, 503,`<wbr>` 504, 505]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in active probes to consider a target unhealthy. Defaults to `0`.
+    `healthchecks.active.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in active probes to consider a target unhealthy. Defaults to `0`.
+    `healthchecks.active.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to consider a target unhealthy. Defaults to `0`.
+    `healthchecks.active.`<wbr>`unhealthy.interval`<br>*optional* | Interval between active health checks for unhealthy targets (in seconds). A value of zero indicates that active probes for unhealthy targets should not be performed. Defaults to `0`.
+    `healthchecks.active.`<wbr>`http_path`<br>*optional* | Path to use in GET HTTP request to run as a probe on active health checks. Defaults to `"/"`.
+    `healthchecks.active.`<wbr>`timeout`<br>*optional* | Socket timeout for active health checks (in seconds). Defaults to `1`.
+    `healthchecks.active.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. Defaults to `[200, 302]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an Array.
+    `healthchecks.active.`<wbr>`healthy.interval`<br>*optional* | Interval between active health checks for healthy targets (in seconds). A value of zero indicates that active probes for healthy targets should not be performed. Defaults to `0`.
+    `healthchecks.active.`<wbr>`healthy.successes`<br>*optional* | Number of successes in active probes (as defined by `healthchecks.active.healthy.http_statuses`) to consider a target healthy. Defaults to `0`.
+    `healthchecks.active.`<wbr>`https_sni`<br>*optional* | The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
+    `healthchecks.active.`<wbr>`concurrency`<br>*optional* | Number of targets to check concurrently in active health checks. Defaults to `10`.
     `healthchecks.active.type`<br>*optional* | Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Defaults to `"http"`.
-    `healthchecks.passive.unhealthy.http_failures`<br>*optional* | Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
-    `healthchecks.passive.unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[429, 500, 503]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an Array.
-    `healthchecks.passive.unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
-    `healthchecks.passive.unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
-    `healthchecks.passive.type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Defaults to `"http"`.
-    `healthchecks.passive.healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Defaults to `0`.
-    `healthchecks.passive.healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
+    `healthchecks.passive.`<wbr>`unhealthy.http_failures`<br>*optional* | Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
+    `healthchecks.passive.`<wbr>`unhealthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[429, 500, 503]`. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an Array.
+    `healthchecks.passive.`<wbr>`unhealthy.tcp_failures`<br>*optional* | Number of TCP failures in proxied traffic to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
+    `healthchecks.passive.`<wbr>`unhealthy.timeouts`<br>*optional* | Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks. Defaults to `0`.
+    `healthchecks.passive.`<wbr>`type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, `http` and `https` options are equivalent. Accepted values are: `"tcp"`, `"http"`, `"https"`, `"grpc"`, `"grpcs"`.  Defaults to `"http"`.
+    `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Defaults to `0`.
+    `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
     `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Defaults to `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering. 
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
@@ -597,7 +597,7 @@ Retrieve generic details about a node.
 
 <div class="endpoint get">/</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -651,7 +651,7 @@ of nginx, every existing nginx monitoring tool or agent can be used.
 
 <div class="endpoint get">/status</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -804,7 +804,7 @@ have been tagged with the same tag, the tag will appear in several items of this
 
 <div class="endpoint get">/tags</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -847,7 +847,7 @@ entities tagged with tags will be present on this list.
 
 <div class="endpoint get">/tags/:tags</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -903,24 +903,25 @@ Services can be both [tagged and filtered by tags](#tags).
 
 ##### Create Service
 
-<div class="endpoint post">/services</div>
+<div class="endpoint post indent">/services</div>
 
 
 ##### Create Service Associated to a Specific Certificate
 
-<div class="endpoint post">/certificates/{certificate name or id}/services</div>
+<div class="endpoint post indent">/certificates/{certificate name or id}/services</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created Service.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.service_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -937,19 +938,20 @@ HTTP 201 Created
 
 ##### List All Services
 
-<div class="endpoint get">/services</div>
+<div class="endpoint get indent">/services</div>
 
 
 ##### List Services Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate name or id}/services</div>
+<div class="endpoint get indent">/certificates/{certificate name or id}/services</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Services are to be retrieved. When using this endpoint, only Services associated to the specified Certificate will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -969,8 +971,9 @@ HTTP 200 OK
 
 ##### Retrieve Service
 
-<div class="endpoint get">/services/{service name or id}</div>
+<div class="endpoint get indent">/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
@@ -978,8 +981,9 @@ Attributes | Description
 
 ##### Retrieve Service Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate id}/services/{service name or id}</div>
+<div class="endpoint get indent">/certificates/{certificate id}/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
@@ -988,8 +992,9 @@ Attributes | Description
 
 ##### Retrieve Service Associated to a Specific Route
 
-<div class="endpoint get">/routes/{route name or id}/service</div>
+<div class="endpoint get indent">/routes/{route name or id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be retrieved.
@@ -997,14 +1002,15 @@ Attributes | Description
 
 ##### Retrieve Service Associated to a Specific Plugin
 
-<div class="endpoint get">/plugins/{plugin id}/service</div>
+<div class="endpoint get indent">/plugins/{plugin id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1021,8 +1027,9 @@ HTTP 200 OK
 
 ##### Update Service
 
-<div class="endpoint patch">/services/{service name or id}</div>
+<div class="endpoint patch indent">/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to update.
@@ -1030,8 +1037,9 @@ Attributes | Description
 
 ##### Update Service Associated to a Specific Certificate
 
-<div class="endpoint patch">/certificates/{certificate id}/services/{service name or id}</div>
+<div class="endpoint patch indent">/certificates/{certificate id}/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
@@ -1040,8 +1048,9 @@ Attributes | Description
 
 ##### Update Service Associated to a Specific Route
 
-<div class="endpoint patch">/routes/{route name or id}/service</div>
+<div class="endpoint patch indent">/routes/{route name or id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be updated.
@@ -1049,19 +1058,20 @@ Attributes | Description
 
 ##### Update Service Associated to a Specific Plugin
 
-<div class="endpoint patch">/plugins/{plugin id}/service</div>
+<div class="endpoint patch indent">/plugins/{plugin id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.service_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1078,8 +1088,9 @@ HTTP 200 OK
 
 ##### Create Or Update Service
 
-<div class="endpoint put">/services/{service name or id}</div>
+<div class="endpoint put indent">/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
@@ -1087,8 +1098,9 @@ Attributes | Description
 
 ##### Create Or Update Service Associated to a Specific Certificate
 
-<div class="endpoint put">/certificates/{certificate id}/services/{service name or id}</div>
+<div class="endpoint put indent">/certificates/{certificate id}/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
@@ -1097,8 +1109,9 @@ Attributes | Description
 
 ##### Create Or Update Service Associated to a Specific Route
 
-<div class="endpoint put">/routes/{route name or id}/service</div>
+<div class="endpoint put indent">/routes/{route name or id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be created or updated.
@@ -1106,14 +1119,15 @@ Attributes | Description
 
 ##### Create Or Update Service Associated to a Specific Plugin
 
-<div class="endpoint put">/plugins/{plugin id}/service</div>
+<div class="endpoint put indent">/plugins/{plugin id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be created or updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.service_body }}
 
@@ -1133,7 +1147,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1148,8 +1162,9 @@ See POST and PATCH responses.
 
 ##### Delete Service
 
-<div class="endpoint delete">/services/{service name or id}</div>
+<div class="endpoint delete indent">/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
@@ -1157,8 +1172,9 @@ Attributes | Description
 
 ##### Delete Service Associated to a Specific Certificate
 
-<div class="endpoint delete">/certificates/{certificate id}/services/{service name or id}</div>
+<div class="endpoint delete indent">/certificates/{certificate id}/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
@@ -1167,14 +1183,15 @@ Attributes | Description
 
 ##### Delete Service Associated to a Specific Route
 
-<div class="endpoint delete">/routes/{route name or id}/service</div>
+<div class="endpoint delete indent">/routes/{route name or id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be deleted.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -1221,16 +1238,18 @@ the concatenated path will be `/sre`.
 Both versions of the algorithm detect "double slashes" when combining paths, replacing them by single
 slashes.
 
-| `service.path` | `route.path` | `route.strip_path` | `route.path_handling` | request path | proxied path  |
-|----------------|--------------|--------------------|-----------------------|--------------|---------------|
-| `/s`           | `/fv0`       | `false`            | `v0`                  | `/fv0req`    | `/s/fv0req`   |
-| `/s`           | `/fv1`       | `false`            | `v1`                  | `/fv1req`    | `/sfv1req`    |
-| `/s`           | `/tv0`       | `true`             | `v0`                  | `/tv0req`    | `/s/req`      |
-| `/s`           | `/tv1`       | `true`             | `v1`                  | `/tv1req`    | `/sreq`       |
-| `/s`           | `/fv0/`      | `false`            | `v0`                  | `/fv0/req`   | `/s/fv0/req`  |
-| `/s`           | `/fv1/`      | `false`            | `v1`                  | `/fv1/req`   | `/sfv1/req`   |
-| `/s`           | `/tv0/`      | `true`             | `v0`                  | `/tv0/req`   | `/s/req`      |
-| `/s`           | `/tv1/`      | `true`             | `v1`                  | `/tv1/req    | `/sreq`       |
+On the following table, `s` is the Service and `r` is the Route.
+
+| `s.path` | `r.path` | `r.strip_path` | `r.path_handling` | request path | proxied path  |
+|----------|----------|----------------|-------------------|--------------|---------------|
+| `/s`     | `/fv0`   | `false`        | `v0`              | `/fv0req`    | `/s/fv0req`   |
+| `/s`     | `/fv1`   | `false`        | `v1`              | `/fv1req`    | `/sfv1req`    |
+| `/s`     | `/tv0`   | `true`         | `v0`              | `/tv0req`    | `/s/req`      |
+| `/s`     | `/tv1`   | `true`         | `v1`              | `/tv1req`    | `/sreq`       |
+| `/s`     | `/fv0/`  | `false`        | `v0`              | `/fv0/req`   | `/s/fv0/req`  |
+| `/s`     | `/fv1/`  | `false`        | `v1`              | `/fv1/req`   | `/sfv1/req`   |
+| `/s`     | `/tv0/`  | `true`         | `v0`              | `/tv0/req`   | `/s/req`      |
+| `/s`     | `/tv1/`  | `true`         | `v1`              | `/tv1/req`   | `/sreq`       |
 
 
 Routes can be both [tagged and filtered by tags](#tags).
@@ -1244,24 +1263,25 @@ Routes can be both [tagged and filtered by tags](#tags).
 
 ##### Create Route
 
-<div class="endpoint post">/routes</div>
+<div class="endpoint post indent">/routes</div>
 
 
 ##### Create Route Associated to a Specific Service
 
-<div class="endpoint post">/services/{service name or id}/routes</div>
+<div class="endpoint post indent">/services/{service name or id}/routes</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service that should be associated to the newly-created Route.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.route_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -1278,19 +1298,20 @@ HTTP 201 Created
 
 ##### List All Routes
 
-<div class="endpoint get">/routes</div>
+<div class="endpoint get indent">/routes</div>
 
 
 ##### List Routes Associated to a Specific Service
 
-<div class="endpoint get">/services/{service name or id}/routes</div>
+<div class="endpoint get indent">/services/{service name or id}/routes</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service whose Routes are to be retrieved. When using this endpoint, only Routes associated to the specified Service will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1310,8 +1331,9 @@ HTTP 200 OK
 
 ##### Retrieve Route
 
-<div class="endpoint get">/routes/{route name or id}</div>
+<div class="endpoint get indent">/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
@@ -1319,8 +1341,9 @@ Attributes | Description
 
 ##### Retrieve Route Associated to a Specific Service
 
-<div class="endpoint get">/services/{service name or id}/routes/{route name or id}</div>
+<div class="endpoint get indent">/services/{service name or id}/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
@@ -1329,14 +1352,15 @@ Attributes | Description
 
 ##### Retrieve Route Associated to a Specific Plugin
 
-<div class="endpoint get">/plugins/{plugin id}/route</div>
+<div class="endpoint get indent">/plugins/{plugin id}/route</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1353,8 +1377,9 @@ HTTP 200 OK
 
 ##### Update Route
 
-<div class="endpoint patch">/routes/{route name or id}</div>
+<div class="endpoint patch indent">/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to update.
@@ -1362,8 +1387,9 @@ Attributes | Description
 
 ##### Update Route Associated to a Specific Service
 
-<div class="endpoint patch">/services/{service name or id}/routes/{route name or id}</div>
+<div class="endpoint patch indent">/services/{service name or id}/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to update.
@@ -1372,19 +1398,20 @@ Attributes | Description
 
 ##### Update Route Associated to a Specific Plugin
 
-<div class="endpoint patch">/plugins/{plugin id}/route</div>
+<div class="endpoint patch indent">/plugins/{plugin id}/route</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.route_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1401,8 +1428,9 @@ HTTP 200 OK
 
 ##### Create Or Update Route
 
-<div class="endpoint put">/routes/{route name or id}</div>
+<div class="endpoint put indent">/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
@@ -1410,8 +1438,9 @@ Attributes | Description
 
 ##### Create Or Update Route Associated to a Specific Service
 
-<div class="endpoint put">/services/{service name or id}/routes/{route name or id}</div>
+<div class="endpoint put indent">/services/{service name or id}/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
@@ -1420,14 +1449,15 @@ Attributes | Description
 
 ##### Create Or Update Route Associated to a Specific Plugin
 
-<div class="endpoint put">/plugins/{plugin id}/route</div>
+<div class="endpoint put indent">/plugins/{plugin id}/route</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be created or updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.route_body }}
 
@@ -1447,7 +1477,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1462,8 +1492,9 @@ See POST and PATCH responses.
 
 ##### Delete Route
 
-<div class="endpoint delete">/routes/{route name or id}</div>
+<div class="endpoint delete indent">/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
@@ -1471,15 +1502,16 @@ Attributes | Description
 
 ##### Delete Route Associated to a Specific Service
 
-<div class="endpoint delete">/services/{service name or id}/routes/{route name or id}</div>
+<div class="endpoint delete indent">/services/{service name or id}/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -1506,15 +1538,15 @@ Consumers can be both [tagged and filtered by tags](#tags).
 
 ##### Create Consumer
 
-<div class="endpoint post">/consumers</div>
+<div class="endpoint post indent">/consumers</div>
 
 
-*Request Body*
+#### Request Body
 
 {{ page.consumer_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -1531,10 +1563,10 @@ HTTP 201 Created
 
 ##### List All Consumers
 
-<div class="endpoint get">/consumers</div>
+<div class="endpoint get indent">/consumers</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1554,8 +1586,9 @@ HTTP 200 OK
 
 ##### Retrieve Consumer
 
-<div class="endpoint get">/consumers/{consumer username or id}</div>
+<div class="endpoint get indent">/consumers/{consumer username or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
@@ -1563,14 +1596,15 @@ Attributes | Description
 
 ##### Retrieve Consumer Associated to a Specific Plugin
 
-<div class="endpoint get">/plugins/{plugin id}/consumer</div>
+<div class="endpoint get indent">/plugins/{plugin id}/consumer</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1587,8 +1621,9 @@ HTTP 200 OK
 
 ##### Update Consumer
 
-<div class="endpoint patch">/consumers/{consumer username or id}</div>
+<div class="endpoint patch indent">/consumers/{consumer username or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to update.
@@ -1596,19 +1631,20 @@ Attributes | Description
 
 ##### Update Consumer Associated to a Specific Plugin
 
-<div class="endpoint patch">/plugins/{plugin id}/consumer</div>
+<div class="endpoint patch indent">/plugins/{plugin id}/consumer</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.consumer_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1625,8 +1661,9 @@ HTTP 200 OK
 
 ##### Create Or Update Consumer
 
-<div class="endpoint put">/consumers/{consumer username or id}</div>
+<div class="endpoint put indent">/consumers/{consumer username or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to create or update.
@@ -1634,14 +1671,15 @@ Attributes | Description
 
 ##### Create Or Update Consumer Associated to a Specific Plugin
 
-<div class="endpoint put">/plugins/{plugin id}/consumer</div>
+<div class="endpoint put indent">/plugins/{plugin id}/consumer</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be created or updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.consumer_body }}
 
@@ -1661,7 +1699,7 @@ Notice that specifying a `username` in the URL and a different one in the reques
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -1676,14 +1714,15 @@ See POST and PATCH responses.
 
 ##### Delete Consumer
 
-<div class="endpoint delete">/consumers/{consumer username or id}</div>
+<div class="endpoint delete indent">/consumers/{consumer username or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to delete.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -1760,13 +1799,14 @@ would have otherwise matched config B.
 
 ##### Create Plugin
 
-<div class="endpoint post">/plugins</div>
+<div class="endpoint post indent">/plugins</div>
 
 
 ##### Create Plugin Associated to a Specific Route
 
-<div class="endpoint post">/routes/{route id}/plugins</div>
+<div class="endpoint post indent">/routes/{route id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route id`<br>**required** | The unique identifier of the Route that should be associated to the newly-created Plugin.
@@ -1774,8 +1814,9 @@ Attributes | Description
 
 ##### Create Plugin Associated to a Specific Service
 
-<div class="endpoint post">/services/{service id}/plugins</div>
+<div class="endpoint post indent">/services/{service id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service id`<br>**required** | The unique identifier of the Service that should be associated to the newly-created Plugin.
@@ -1783,19 +1824,20 @@ Attributes | Description
 
 ##### Create Plugin Associated to a Specific Consumer
 
-<div class="endpoint post">/consumers/{consumer id}/plugins</div>
+<div class="endpoint post indent">/consumers/{consumer id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer id`<br>**required** | The unique identifier of the Consumer that should be associated to the newly-created Plugin.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.plugin_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -1812,13 +1854,14 @@ HTTP 201 Created
 
 ##### List All Plugins
 
-<div class="endpoint get">/plugins</div>
+<div class="endpoint get indent">/plugins</div>
 
 
 ##### List Plugins Associated to a Specific Route
 
-<div class="endpoint get">/routes/{route id}/plugins</div>
+<div class="endpoint get indent">/routes/{route id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route id`<br>**required** | The unique identifier of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
@@ -1826,8 +1869,9 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Service
 
-<div class="endpoint get">/services/{service id}/plugins</div>
+<div class="endpoint get indent">/services/{service id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service id`<br>**required** | The unique identifier of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
@@ -1835,14 +1879,15 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Consumer
 
-<div class="endpoint get">/consumers/{consumer id}/plugins</div>
+<div class="endpoint get indent">/consumers/{consumer id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer id`<br>**required** | The unique identifier of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1862,8 +1907,9 @@ HTTP 200 OK
 
 ##### Retrieve Plugin
 
-<div class="endpoint get">/plugins/{plugin id}</div>
+<div class="endpoint get indent">/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
@@ -1871,8 +1917,9 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Route
 
-<div class="endpoint get">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">/routes/{route name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
@@ -1881,8 +1928,9 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Service
 
-<div class="endpoint get">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">/services/{service name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
@@ -1891,15 +1939,16 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Consumer
 
-<div class="endpoint get">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
 `plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1916,8 +1965,9 @@ HTTP 200 OK
 
 ##### Update Plugin
 
-<div class="endpoint patch">/plugins/{plugin id}</div>
+<div class="endpoint patch indent">/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin to update.
@@ -1925,8 +1975,9 @@ Attributes | Description
 
 ##### Update Plugin Associated to a Specific Route
 
-<div class="endpoint patch">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint patch indent">/routes/{route name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to update.
@@ -1935,8 +1986,9 @@ Attributes | Description
 
 ##### Update Plugin Associated to a Specific Service
 
-<div class="endpoint patch">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint patch indent">/services/{service name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to update.
@@ -1945,20 +1997,21 @@ Attributes | Description
 
 ##### Update Plugin Associated to a Specific Consumer
 
-<div class="endpoint patch">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint patch indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to update.
 `plugin id`<br>**required** | The unique identifier of the Plugin to update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.plugin_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1975,8 +2028,9 @@ HTTP 200 OK
 
 ##### Create Or Update Plugin
 
-<div class="endpoint put">/plugins/{plugin id}</div>
+<div class="endpoint put indent">/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin to create or update.
@@ -1984,8 +2038,9 @@ Attributes | Description
 
 ##### Create Or Update Plugin Associated to a Specific Route
 
-<div class="endpoint put">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint put indent">/routes/{route name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
@@ -1994,8 +2049,9 @@ Attributes | Description
 
 ##### Create Or Update Plugin Associated to a Specific Service
 
-<div class="endpoint put">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint put indent">/services/{service name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
@@ -2004,15 +2060,16 @@ Attributes | Description
 
 ##### Create Or Update Plugin Associated to a Specific Consumer
 
-<div class="endpoint put">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint put indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to create or update.
 `plugin id`<br>**required** | The unique identifier of the Plugin to create or update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.plugin_body }}
 
@@ -2032,7 +2089,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -2047,8 +2104,9 @@ See POST and PATCH responses.
 
 ##### Delete Plugin
 
-<div class="endpoint delete">/plugins/{plugin id}</div>
+<div class="endpoint delete indent">/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin to delete.
@@ -2056,8 +2114,9 @@ Attributes | Description
 
 ##### Delete Plugin Associated to a Specific Route
 
-<div class="endpoint delete">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint delete indent">/routes/{route name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
@@ -2066,8 +2125,9 @@ Attributes | Description
 
 ##### Delete Plugin Associated to a Specific Service
 
-<div class="endpoint delete">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint delete indent">/services/{service name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
@@ -2076,15 +2136,16 @@ Attributes | Description
 
 ##### Delete Plugin Associated to a Specific Consumer
 
-<div class="endpoint delete">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint delete indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to delete.
 `plugin id`<br>**required** | The unique identifier of the Plugin to delete.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -2099,7 +2160,7 @@ Retrieve a list of all installed plugins on the Kong node.
 
 <div class="endpoint get">/plugins/enabled</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2150,7 +2211,7 @@ third-party integrations to the Kong's plugin system.
 
 <div class="endpoint get">/plugins/schema/{plugin name}</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2198,15 +2259,15 @@ Certificates can be both [tagged and filtered by tags](#tags).
 
 ##### Create Certificate
 
-<div class="endpoint post">/certificates</div>
+<div class="endpoint post indent">/certificates</div>
 
 
-*Request Body*
+#### Request Body
 
 {{ page.certificate_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -2223,10 +2284,10 @@ HTTP 201 Created
 
 ##### List All Certificates
 
-<div class="endpoint get">/certificates</div>
+<div class="endpoint get indent">/certificates</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2246,14 +2307,15 @@ HTTP 200 OK
 
 ##### Retrieve Certificate
 
-<div class="endpoint get">/certificates/{certificate id}</div>
+<div class="endpoint get indent">/certificates/{certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2270,19 +2332,20 @@ HTTP 200 OK
 
 ##### Update Certificate
 
-<div class="endpoint patch">/certificates/{certificate id}</div>
+<div class="endpoint patch indent">/certificates/{certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.certificate_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2299,14 +2362,15 @@ HTTP 200 OK
 
 ##### Create Or Update Certificate
 
-<div class="endpoint put">/certificates/{certificate id}</div>
+<div class="endpoint put indent">/certificates/{certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.certificate_body }}
 
@@ -2326,7 +2390,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -2341,14 +2405,15 @@ See POST and PATCH responses.
 
 ##### Delete Certificate
 
-<div class="endpoint delete">/certificates/{certificate id}</div>
+<div class="endpoint delete indent">/certificates/{certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -2373,15 +2438,15 @@ CA Certificates can be both [tagged and filtered by tags](#tags).
 
 ##### Create CA Certificate
 
-<div class="endpoint post">/ca_certificates</div>
+<div class="endpoint post indent">/ca_certificates</div>
 
 
-*Request Body*
+#### Request Body
 
 {{ page.ca_certificate_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -2398,10 +2463,10 @@ HTTP 201 Created
 
 ##### List All CA Certificates
 
-<div class="endpoint get">/ca_certificates</div>
+<div class="endpoint get indent">/ca_certificates</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2421,14 +2486,15 @@ HTTP 200 OK
 
 ##### Retrieve CA Certificate
 
-<div class="endpoint get">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint get indent">/ca_certificates/{ca_certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2445,19 +2511,20 @@ HTTP 200 OK
 
 ##### Update CA Certificate
 
-<div class="endpoint patch">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint patch indent">/ca_certificates/{ca_certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.ca_certificate_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2474,14 +2541,15 @@ HTTP 200 OK
 
 ##### Create Or Update CA Certificate
 
-<div class="endpoint put">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint put indent">/ca_certificates/{ca_certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to create or update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.ca_certificate_body }}
 
@@ -2501,7 +2569,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -2516,14 +2584,15 @@ See POST and PATCH responses.
 
 ##### Delete CA Certificate
 
-<div class="endpoint delete">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint delete indent">/ca_certificates/{ca_certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to delete.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -2550,24 +2619,25 @@ SNIs can be both [tagged and filtered by tags](#tags).
 
 ##### Create SNI
 
-<div class="endpoint post">/snis</div>
+<div class="endpoint post indent">/snis</div>
 
 
 ##### Create SNI Associated to a Specific Certificate
 
-<div class="endpoint post">/certificates/{certificate name or id}/snis</div>
+<div class="endpoint post indent">/certificates/{certificate name or id}/snis</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created SNI.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.sni_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -2584,19 +2654,20 @@ HTTP 201 Created
 
 ##### List All SNIs
 
-<div class="endpoint get">/snis</div>
+<div class="endpoint get indent">/snis</div>
 
 
 ##### List SNIs Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate name or id}/snis</div>
+<div class="endpoint get indent">/certificates/{certificate name or id}/snis</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2616,8 +2687,9 @@ HTTP 200 OK
 
 ##### Retrieve SNI
 
-<div class="endpoint get">/snis/{sni name or id}</div>
+<div class="endpoint get indent">/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
@@ -2625,15 +2697,16 @@ Attributes | Description
 
 ##### Retrieve SNI Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint get indent">/certificates/{certificate id}/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2650,8 +2723,9 @@ HTTP 200 OK
 
 ##### Update SNI
 
-<div class="endpoint patch">/snis/{sni name or id}</div>
+<div class="endpoint patch indent">/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to update.
@@ -2659,20 +2733,21 @@ Attributes | Description
 
 ##### Update SNI Associated to a Specific Certificate
 
-<div class="endpoint patch">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint patch indent">/certificates/{certificate id}/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.sni_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2689,8 +2764,9 @@ HTTP 200 OK
 
 ##### Create Or Update SNI
 
-<div class="endpoint put">/snis/{sni name or id}</div>
+<div class="endpoint put indent">/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to create or update.
@@ -2698,15 +2774,16 @@ Attributes | Description
 
 ##### Create Or Update SNI Associated to a Specific Certificate
 
-<div class="endpoint put">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint put indent">/certificates/{certificate id}/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to create or update.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.sni_body }}
 
@@ -2726,7 +2803,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -2741,8 +2818,9 @@ See POST and PATCH responses.
 
 ##### Delete SNI
 
-<div class="endpoint delete">/snis/{sni name or id}</div>
+<div class="endpoint delete indent">/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to delete.
@@ -2750,15 +2828,16 @@ Attributes | Description
 
 ##### Delete SNI Associated to a Specific Certificate
 
-<div class="endpoint delete">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint delete indent">/certificates/{certificate id}/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to delete.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -2790,15 +2869,15 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 
 ##### Create Upstream
 
-<div class="endpoint post">/upstreams</div>
+<div class="endpoint post indent">/upstreams</div>
 
 
-*Request Body*
+#### Request Body
 
 {{ page.upstream_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -2815,10 +2894,10 @@ HTTP 201 Created
 
 ##### List All Upstreams
 
-<div class="endpoint get">/upstreams</div>
+<div class="endpoint get indent">/upstreams</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2838,8 +2917,9 @@ HTTP 200 OK
 
 ##### Retrieve Upstream
 
-<div class="endpoint get">/upstreams/{upstream name or id}</div>
+<div class="endpoint get indent">/upstreams/{upstream name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
@@ -2847,14 +2927,15 @@ Attributes | Description
 
 ##### Retrieve Upstream Associated to a Specific Target
 
-<div class="endpoint get">/targets/{target host:port or id}/upstream</div>
+<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2871,8 +2952,9 @@ HTTP 200 OK
 
 ##### Update Upstream
 
-<div class="endpoint patch">/upstreams/{upstream name or id}</div>
+<div class="endpoint patch indent">/upstreams/{upstream name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
@@ -2880,19 +2962,20 @@ Attributes | Description
 
 ##### Update Upstream Associated to a Specific Target
 
-<div class="endpoint patch">/targets/{target host:port or id}/upstream</div>
+<div class="endpoint patch indent">/targets/{target host:port or id}/upstream</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.upstream_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -2909,8 +2992,9 @@ HTTP 200 OK
 
 ##### Create Or Update Upstream
 
-<div class="endpoint put">/upstreams/{upstream name or id}</div>
+<div class="endpoint put indent">/upstreams/{upstream name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
@@ -2918,14 +3002,15 @@ Attributes | Description
 
 ##### Create Or Update Upstream Associated to a Specific Target
 
-<div class="endpoint put">/targets/{target host:port or id}/upstream</div>
+<div class="endpoint put indent">/targets/{target host:port or id}/upstream</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be created or updated.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.upstream_body }}
 
@@ -2945,7 +3030,7 @@ Notice that specifying a `name` in the URL and a different one in the request
 body is not allowed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created or HTTP 200 OK
@@ -2960,8 +3045,9 @@ See POST and PATCH responses.
 
 ##### Delete Upstream
 
-<div class="endpoint delete">/upstreams/{upstream name or id}</div>
+<div class="endpoint delete indent">/upstreams/{upstream name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
@@ -2969,14 +3055,15 @@ Attributes | Description
 
 ##### Delete Upstream Associated to a Specific Target
 
-<div class="endpoint delete">/targets/{target host:port or id}/upstream</div>
+<div class="endpoint delete indent">/targets/{target host:port or id}/upstream</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be deleted.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -3020,21 +3107,22 @@ attribute is defined by the state of all of Upstream's Targets, according
 to the field [health checker's threshold][healthchecks.threshold].
 
 
-<div class="endpoint get">/upstreams/{name or id}/health/</div>
+<div class="endpoint get indent">/upstreams/{name or id}/health/</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream for which to display Target health.
 
 
-*Request Querystring Parameters*
+#### Request Querystring Parameters
 
 Attributes | Description
 ---:| ---
 `balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the whole Upstream.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -3107,19 +3195,20 @@ Targets can be both [tagged and filtered by tags](#tags).
 
 ##### Create Target Associated to a Specific Upstream
 
-<div class="endpoint post">/upstreams/{upstream host:port or id}/targets</div>
+<div class="endpoint post indent">/upstreams/{upstream host:port or id}/targets</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream that should be associated to the newly-created Target.
 
 
-*Request Body*
+#### Request Body
 
 {{ page.target_body }}
 
 
-*Response*
+#### Response
 
 ```
 HTTP 201 Created
@@ -3136,14 +3225,15 @@ HTTP 201 Created
 
 ##### List Targets Associated to a Specific Upstream
 
-<div class="endpoint get">/upstreams/{upstream host:port or id}/targets</div>
+<div class="endpoint get indent">/upstreams/{upstream host:port or id}/targets</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream whose Targets are to be retrieved. When using this endpoint, only Targets associated to the specified Upstream will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -3165,15 +3255,16 @@ Disable a target in the load balancer. Under the hood, this method creates
 a new entry for the given target definition with a `weight` of 0.
 
 
-<div class="endpoint delete">/upstreams/{upstream name or id}/targets/{host:port or id}</div>
+<div class="endpoint delete indent">/upstreams/{upstream name or id}/targets/{host:port or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to delete the target.
 `host:port or id`<br>**required** | The host:port combination element of the target to remove, or the `id` of an existing target entry.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -3197,8 +3288,9 @@ of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/{address}/healthy</div>
+<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/{address}/healthy</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
@@ -3206,7 +3298,7 @@ Attributes | Description
 `address`<br>**required** | The host/port combination element of the address to set as healthy.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -3235,15 +3327,16 @@ To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
 `target or id`<br>**required** | The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -3268,15 +3361,16 @@ of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
 `target or id`<br>**required** | The host/port combination element of the target to set as healthy, or the `id` of an existing target entry.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -3306,15 +3400,16 @@ To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
 `target or id`<br>**required** | The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -3330,14 +3425,15 @@ target may be returned, showing the history of changes for a specific target.
 The target object with the latest `created_at` is the current definition.
 
 
-<div class="endpoint get">/upstreams/{name or id}/targets/all/</div>
+<div class="endpoint get indent">/upstreams/{name or id}/targets/all/</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
