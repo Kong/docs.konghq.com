@@ -163,6 +163,8 @@ mappings:
 
 ### Install Grafana dashboard
 
+If you use Grafana, you can import the Kong Vitals Prometheus dashboard to visualize the data.
+
 In your Grafana installation, click the **+** button in the sidebar, and choose **Import**.
 
 On the **Import** screen, find the **Grafana.com Dashboard** field and enter `11870`. Then, click **Load**. Optionally, you
