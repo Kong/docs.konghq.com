@@ -14,9 +14,9 @@ Otherwise, if `enforce_rbac=off`, you may create your first
 You may also use this guide to create additional **Super Admins** once
 you have an account and `enforce_rbac=on`.
 
-1. Go to the "Organization" tab in Kong Manager.
+1. Go to the "Teams" tab in Kong Manager.
 
-2. Click "+ Invite User" and fill out the form.
+2. Click "+ Invite Admin" and fill out the form.
 
 3. Give the user the `super-admin` role in the `default` workspace.
 
