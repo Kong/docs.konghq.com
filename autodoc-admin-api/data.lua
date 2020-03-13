@@ -245,8 +245,9 @@ return {
                   connections waiting for a request.
             * `database`: Metrics about the database.
                 * `reachable`: A boolean value reflecting the state of the
-                  database connection. Please note that this flag **does not**
-                  reflect the health of the database itself.
+                  main database connection. Please note that this flag **does not**
+                  reflect the health of the database itself nor does it reflect the
+                  state of the read-only connection (if enabled).
           ]],
         },
       }
@@ -851,21 +852,6 @@ return {
           If set, the plugin will activate only for requests where the specified has been authenticated.
           (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin
           to activate regardless of the authenticated consumer.
-        ]] },
-        run_on = { description = [[
-          Control on which Kong nodes this plugin will run, given a Service Mesh scenario.
-          Accepted values are:
-          * `first`, meaning "run on the first Kong node that is encountered by the request".
-            On an API Getaway scenario, this is the usual operation, since there is only
-            one Kong node in between source and destination. In a sidecar-to-sidecar Service
-            Mesh scenario, this means running the plugin only on the
-            Kong sidecar of the outbound connection.
-          * `second`, meaning "run on the second node that is encountered by the request".
-            This option is only relevant for sidecar-to-sidecar Service
-            Mesh scenarios: this means running the plugin only on the
-            Kong sidecar of the inbound connection.
-          * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar
-            scenario. This is useful for tracing/logging plugins.
         ]] },
         protocols = {
           description = [[

@@ -22,6 +22,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.0.x
+        - 1.5.x      
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -66,7 +68,7 @@ params:
         List of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
     - name: methods
       required: false
-      default: "`GET, HEAD, PUT, PATCH, POST`"
+      default: "`GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS, TRACE, CONNECT`"
       value_in_examples: [ "GET", "POST" ]
       description:
         Value for the `Access-Control-Allow-Methods` header

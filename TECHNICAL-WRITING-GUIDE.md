@@ -103,8 +103,7 @@ a specific concept.
 
 ### How-to Guides
 
-How-to guides should solve an explicit problem or accomplish a specific task
-such as “How to Delete an Admin”
+How-to guides should solve an explicit problem or accomplish a specific task.
 
 They should follow the following structure:
 
@@ -123,7 +122,8 @@ a starting point.
 
 *Title [h1]*
 
-How-to guide titles typically follow the “How to [X] using [Y]” format.
+How-to guide titles typically follow the “[imperative verb] + [object] + [details]” format, e.g.,
+"Delete an Admin," "Install Kong on Amazon Linux"
 
 *Table of Contents [h4]*
  

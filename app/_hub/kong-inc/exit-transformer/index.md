@@ -135,7 +135,7 @@ end
 3. Configure the `exit-transformer` plugin with `transform.lua`
 
     ```bash
-    $ http :8001/services/example.com/plugins \
+    $ http -f :8001/services/example.com/plugins \
         name=exit-transformer \
         config.functions=@transform.lua
     ```

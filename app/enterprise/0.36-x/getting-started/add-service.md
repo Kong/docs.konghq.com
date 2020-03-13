@@ -1,5 +1,5 @@
 ---
-title: How to Add a Service and Route
+title: Add a Service and Route
 ---
 
 ### Introduction

@@ -249,6 +249,12 @@
     border-right: none;
     margin-right: 0;
   }
+
+  .reading-time {
+      font-style: italic;
+      display: block;
+      color: rgb(133, 137, 140);
+  }
 }
 
 .content {
@@ -519,6 +525,19 @@
         padding-right: 25px;
       }
 
+      &.docs-grid-install {
+        text-align: center;
+        border-bottom: none !important;
+        h3 {
+          text-align: center
+        }
+        .install-icon {
+          width: 150px;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
       // &:nth-child(even) {
       //   padding-left: 25px;
       // }
@@ -527,9 +546,6 @@
         height: 200px;
         border-bottom: none;
       }
-    }
-    .install-icon {
-      width: 75px;
     }
   }
 

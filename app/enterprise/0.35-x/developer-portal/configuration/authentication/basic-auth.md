@@ -1,5 +1,5 @@
 ---
-title: How to Enable Basic Auth in the Dev Portal
+title: Enable Basic Auth in the Dev Portal
 ---
 
 ### Introduction

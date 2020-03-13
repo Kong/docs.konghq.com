@@ -8,8 +8,7 @@ Kong Enterprise provides a granular logging facility on its Admin API. This
 allows cluster administrators to keep detailed track of changes made to the 
 cluster configuration throughout its lifetime, aiding in compliance efforts and 
 providing valuable data points during forensic investigations. Generated audit 
-log trails are [Workspace](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference)
-- and [RBAC](/enterprise/{{page.kong_version}}/admin-api/rbac/reference)-aware, 
+log trails are [Workspace](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference) and [RBAC](/enterprise/{{page.kong_version}}/admin-api/rbac/reference)-aware, 
 providing Kong operators a deep and wide look into changes happening within 
 the cluster.
 
@@ -17,22 +16,22 @@ the cluster.
 
 ## Getting Started
 
-Audit logging is disabled by default. It is configured via the Kong configuration:
+Audit logging is disabled by default. It is configured via the Kong configuration (e.g. `kong.conf`):
 
 ```bash
-# via Kong configuration file, e.g., kong.conf
 audit_log = on # audit logging is enabled
 audit_log = off # audit logging is disabled
 ```
 
+or via environment variables:
+
 ```bash
-# or via environmental variables
 $ export KONG_AUDIT_LOG=on
 $ export KONG_AUDIT_LOG=off
 ```
 
-As with other Kong configurations, changes take effect on kong reload or kong 
-restart.
+As with other Kong configurations, changes take effect on `kong reload` or `kong 
+restart`.
 
 [Back to TOC](#table-of-contents)
 
@@ -74,8 +73,7 @@ X-Kong-Admin-Request-ID: ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM
 ```
 
 The above interaction with the Admin API would generate a correlating entry in 
-the audit log table—querying the audit log via the Admin API returns the details 
-of of the interaction above: 
+the audit log table. Querying the audit log via Admin API returns the details of the interaction above: 
 
 ```
 $ http :8001/audit/requests
@@ -91,13 +89,15 @@ X-Kong-Admin-Request-ID: VXgMG1Y3rZKbjrzVYlSdLNPw8asVwhET
 {
     "data": [
         {
-            "client_ip": "127.0.0.1", 
-            "expire": 1544722367698, 
-            "method": "GET", 
-            "path": "/status", 
-            "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM", 
-            "request_timestamp": 1542130367699, 
-            "status": 200, 
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "path": "/status",
+            "payload": null,
+            "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM",
+            "request_timestamp": 1581617463,
+            "signature": null,
+            "status": 200,
+            "ttl": 2591995,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
     ], 
@@ -127,13 +127,15 @@ written to the `rbac_user_id` field in the audit log entry:
     "data": [
         {
             "client_ip": "127.0.0.1", 
-            "expire": 1544722999857, 
             "method": "GET", 
-            "path": "/status", 
+            "path": "/status",
+            "payload": null,
             "rbac_user_id": "2e959b45-0053-41cc-9c2c-5458d0964331", 
-            "request_id": "QUtUa3RMbRLxomqcL68ilOjjl68h56xr", 
-            "request_timestamp": 1542130999858, 
+            "request_id": "QUtUa3RMbRLxomqcL68ilOjjl68h56xr",
+            "request_timestamp": 1581617463,
+            "signature": null,
             "status": 200, 
+            "ttl": 2591995,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
     ], 
@@ -148,21 +150,43 @@ Note also the presence of the `workspace` field. This is the UUID of the Workspa
 ### Limiting Audit Log Generation
 
 It may be desirable to ignore audit log generation for certain Admin API 
-requests, such as innocuous requests to the `/status` endpoint for 
-healthchecking, or to ignore requests for a given path prefix (e.g., a given 
+requests such as innocuous requests to the `/status` endpoint for 
+healthchecking or to ignore requests for a given path prefix (e.g. a given 
 Workspace). To this end, the `audit_log_ignore_methods` and 
 `audit_log_ignore_paths` configuration options are presented:
 
 ```bash
 audit_log_ignore_methods = GET,OPTIONS 
 # do not generate an audit log entry for GET or OPTIONS HTTP requests
-audit_log_ignore_paths = /foo,/status 
-# do not generate an audit log entry for requests that match the strings '/foo' or '/status'
+audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/
+# do not generate an audit log entry for requests that match the above regular expressions
 ```
 
-Note that `audit_log_ignore_paths` values matched via simple string matching; 
-regular expression or anchored searching for ignored paths is not supported at 
-this time.
+The values of `audit_log_ignore_paths` are matched via a Perl-compatible regular expression.
+
+For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/`, the following request paths do not generate an audit-log entry in the databse:
+
+- `/status`
+- `/status/`
+- `/foo`
+- `/foo/`
+- `/services`
+- `/services/example/`
+- `/one/services/two`
+- `/one/test/two`
+- `/routes`
+- `/plugins/routes`
+- `/one/routes/two`
+- `/upstreams/`
+- `bad400request`
+
+The following request paths generate an audit log entry in the database:
+
+- `/example/services`
+- `/routes/plugins`
+- `/one/two`
+- `/routes/`
+- `/upstreams`
 
 [Back to TOC](#table-of-contents)
 
@@ -172,7 +196,7 @@ this time.
 
 In addition to Admin API request data, Kong will generate granular audit log 
 entries for all insertions, updates, and deletions to the cluster database. 
-Database updates audit logs are also associated with Admin API request unique 
+Database update audit logs are also associated with Admin API request unique 
 IDs. Consider the following request to create a Consumer:
 
 ```
@@ -213,14 +237,15 @@ X-Kong-Admin-Request-ID: SpPaxLTkDNndzKaYiWuZl3xrxDUIiGRR
 {
     "data": [
         {
-            "client_ip": "127.0.0.1", 
-            "expire": 1544723418013, 
-            "method": "POST", 
-            "path": "/consumers", 
-            "payload": "{\"username\": \"bob\"}", 
-            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2", 
-            "request_timestamp": 1542131418014, 
-            "status": 201, 
+            "client_ip": "127.0.0.1",
+            "method": "POST",
+            "path": "/consumers",
+            "payload": "{\"username\": \"bob\"}",
+            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2",
+            "request_timestamp": 1581617463,
+            "signature": null,
+            "status": 201,
+            "ttl": 2591995,
             "workspace": "fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2"
         }
     ], 
@@ -228,7 +253,7 @@ X-Kong-Admin-Request-ID: SpPaxLTkDNndzKaYiWuZl3xrxDUIiGRR
 }
 ```
 
-Additionally, additional audit logs are generated to track the creation of the 
+Additionally, audit logs are generated to track the creation of the 
 database entity:
 
 ```
@@ -251,7 +276,8 @@ X-Kong-Admin-Request-ID: ZKra3QT0d3eJKl96jOUXYueLumo0ck8c
             "expire": 1544723418009, 
             "id": "7ebabee7-2b09-445d-bc1f-2092c4ddc4be", 
             "operation": "create", 
-            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2"
+            "request_id": "59fpTWlpUtHJ0qnAWBzQRHRDv7i5DwK2",
+            "request_timestamp": 1581617463,
         }, 
   ],
   "total": 1
@@ -280,7 +306,7 @@ audit_log_ignore_tables = consumers
 
 ## Digital Signatures
 
-To provide nonrepudiation, audit logs may be signed with a private RSA key. When 
+To provide non-repudiation, audit logs may be signed with a private RSA key. When
 enabled, a lexically sorted representation of each audit log entry is signed by 
 the defined private key; the signature is stored in an additional field within 
 the record itself. The public key should be stored elsewhere and can be used 
@@ -294,6 +320,12 @@ Generate a private key via the `openssl` tool:
 $ openssl genrsa -out private.pem 2048
 ```
 
+Extract the public key for future audit verification:
+
+```
+$ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+```
+
 Configure Kong to sign audit log records:
 
 ```
@@ -305,13 +337,14 @@ Audit log entries will now contain a field `signature`:
 ```
 {
     "client_ip": "127.0.0.1", 
-    "expire": 1544724298663, 
     "method": "GET", 
     "path": "/status", 
-    "request_id": "Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0", 
-    "request_timestamp": 1542132298664, 
-    "signature": "ctD8DXJEfuFAVdlYuhay7f4kmcZhfRPjX8Q6HlSJ+67aHjJIzzrlSxWKfmxnJ7WKRvlF7bU8PX/rtu1ytLQwmzW2LpMd/WFt34PKmyOFUByslkxCdfKKNHadZ+FfINzD+JrecFdXNJrSxKKHHTxj8g6vglAcoJMmuSB6cMsAuVUbO+CL6N/WV9RfCquxxkQUfqGoyEA09EeU4uC0xa8gcYAr1FMGcu+TdRbazfBqZayrKxn8iMV/7LUefMgzUrVdC7UFjZORo5Q0wl9U/iQWU5sRGiTo/HTQmU/a7EdyX3c6Wbmg2khYJFzUIkg9JRL/YUla+yfe3AL4KwFSH90xTw==", 
+    "payload": null,
+    "request_id": "Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0",
+    "request_timestamp": 1581617463,
+    "signature": "l2LWYaRIHfXglFa5ehFc2j9ijfERazxisKVtJnYa+QUz2ckcytxfOLuA4VKEWHgY7cCLdn5C7uRJzE6es5V2SoOV59NOpskkr5lTt9kzao64UEw5UNOdeZYZKwyhG9Ge7IsxTK6haW0iG3a9dHqlKlwvnHZTbFM8TUV/umg8sJ1QJ/5ivXecbyHYtD5luKAI6oEgIdZPtQexRkwxlzvfR8lzeC/dDc2slSrjWRbBxNFlgfRKhDdVzVzgu8pEucgKggu67PKLkJ+bQEkxX1+Yg3czIpJyC3t6cgoggb0UNtBq1uUpswe0wdueKh6G5Gzz6XrmOjlv7zSz4gtVyEHZgg==",
     "status": 200, 
+    "ttl": 2591995,
     "workspace": "fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2"
 }
 ```
@@ -320,21 +353,42 @@ Audit log entries will now contain a field `signature`:
 
 ### Validating Signatures
 
-Record signatures can be regenerated and verified by `openssl` or other 
-cryptographic tools to confirm the validity of the signature. Re-generating the 
-signature requires serializing the record into a string format that can be 
-signed. The following is a canonical implementation written in Lua:
+To verify record signatures, use the `openssl` utility, or other cryptographic
+tools that are capable of validating RSA digital signatures.
+
+Signatures are generated using a 256-bit SHA digest. The following example
+demonstrates how to verify the audit log record shown above. First, store the
+record signature on disk after stripping the Base64
+encoding:
+
+```bash
+$ cat <<EOF | base64 -d > record_signature
+> l2LWYaRIHfXglFa5ehFc2j9ijfERazxisKVtJnYa+QUz2ckcytxfOLuA4VKEWHgY7cCLdn5C7uRJzE6es5V2SoOV59NOpskkr5lTt9kzao64UEw5UNOdeZYZKwyhG9Ge7IsxTK6haW0iG3a9dHqlKlwvnHZTbFM8TUV/umg8sJ1QJ/5ivXecbyHYtD5luKAI6oEgIdZPtQexRkwxlzvfR8lzeC/dDc2slSrjWRbBxNFlgfRKhDdVzVzgu8pEucgKggu67PKLkJ+bQEkxX1+Yg3czIpJyC3t6cgoggb0UNtBq1uUpswe0wdueKh6G5Gzz6XrmOjlv7zSz4gtVyEHZgg==
+> EOF
+```
+
+Next, the audit record must be transformed into its canonical format used for
+signature generation. This transformation requires serializing the record into
+a string format that can be verified. The format is a lexically-sorted,
+pipe-delimited string of each audit log record part, _without_ the `signature`,
+`ttl`, or `expire` fields. The following is a canonical
+implementation written in Lua:
 
 ```lua
+local cjson = require "cjson"
 local pl_sort = require "pl.tablex".sort
 
 local function serialize(data)
   local p = {}
 
+  data.signature = nil
+  data.expire = nil
+  data.ttl = nil
+
   for k, v in pl_sort(data) do
     if type(v) == "table" then
       p[#p + 1] = serialize(v)
-    else
+    elseif v ~= cjson.null then
       p[#p + 1] = v
     end
   end
@@ -345,10 +399,26 @@ end
 table.concat(serialize(data), "|")
 ```
 
-The contents of the record itself can be fed to this implementation (minus the 
-`signature` field) in order to derive the value passed to the RSA key signing 
-facility. Note that the `signature` field within each record is a Base-64 
-encoded representation of the RSA signature itself.
+For example, the canonical format of the audit record above is:
+
+```
+$ cat canonical_record.txt
+127.0.0.1|1544724298663|GET|/status|Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0|1542132298664|200|fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2
+```
+
+<div class="alert alert-warning">
+Ensure that the contents of the canonical record file on disk match the expected
+canonical record format exactly. The presence of any addditional bytes, such as
+a trailing newline `\n`, will cause a validation failure in the next step.
+</div>
+
+Once these two elements are in place, the signature can be verified:
+
+```bash
+$ openssl dgst -sha256 -verify public.pem -signature record_signature canonical_record.txt
+Verified OK
+```
+
 
 [Back to TOC](#table-of-contents)
 
@@ -375,12 +445,14 @@ HTTP 200 OK
     "data": [
         {
             "client_ip": "127.0.0.1",
-            "expire": 1544722367698,
-            "method": "GET", 
-            "path": "/status", 
+            "method": "GET",
+            "path": "/status",
+            "payload": null,
             "request_id": "ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM",
-            "request_timestamp": 1542130367699,
-            "status": 200, 
+            "request_timestamp": 1581617463,
+            "signature": null,
+            "status": 200,
+            "ttl": 2591995,
             "workspace": "0da4afe7-44ad-4e81-a953-5d2923ce68ae"
         }
     ], 

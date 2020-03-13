@@ -1,5 +1,5 @@
 ---
-title: How to Enable Key Auth in the Dev Portal
+title: Enable Key Auth in the Dev Portal
 ---
 
 ### Introduction

@@ -1,5 +1,5 @@
 ---
-title: How to Create an RBAC User
+title: Create an RBAC User
 book: admin_gui
 toc: true
 ---

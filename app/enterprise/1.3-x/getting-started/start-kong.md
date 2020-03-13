@@ -1,5 +1,5 @@
 ---
-title: How to Start Kong Enterprise Securely
+title: Start Kong Enterprise Securely
 toc: false
 ---
 #### Table of Contents
@@ -47,7 +47,8 @@ Started guides:
 ```
 enforce_rbac = on
 admin_gui_auth = basic-auth
-admin_gui_session_conf = { "secret":"set-your-string-here" }
+admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":false}
+admin_listen = 0.0.0.0:8001, 0.0.0.0:8444 ssl
 ```
 
 ⚠️**Important:** the **Sessions Plugin** requries a secret and is configured securely by default. 

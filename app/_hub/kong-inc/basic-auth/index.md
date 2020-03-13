@@ -22,6 +22,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.0.x
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -228,7 +230,7 @@ $ curl -X GET http://kong:8001/basic-auths
 You can filter the list by consumer by using this other path:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/basic-auths
+$ curl -X GET http://kong:8001/consumers/{username or id}/basic-auth
 
 {
     "total": 1,

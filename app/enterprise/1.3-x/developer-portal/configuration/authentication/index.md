@@ -22,12 +22,6 @@ toc: false
     <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/oidc">
     Secure the Dev Portal with the OpenID Connect Authentication Plugin &rarr;</a>
   </div>
-    <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-plugin.svg" />
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/oidc">OIDC</a></h3>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/oidc">
-    Secure the Dev Portal with the OpenID Connect Authentication Plugin &rarr;</a>
-  </div>
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
     <a href="/enterprise/{{page.kong_version}}/developer-portal/configuration/authentication/adding-registration-fields">

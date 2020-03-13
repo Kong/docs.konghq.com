@@ -1,5 +1,5 @@
 ---
-title: How to Access Your Kong Enterprise Edition License
+title: Access Your Kong Enterprise Edition License
 ---
 
 Starting with Kong EE v .29, Kong requires a license file to start. This guide will walk you through accessing your license file. 

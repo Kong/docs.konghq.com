@@ -1,5 +1,5 @@
 ---
-title: How to Access Your Kong Enterprise License
+title: Access Your Kong Enterprise License
 toc: false
 ---
 

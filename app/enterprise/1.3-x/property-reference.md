@@ -1,5 +1,6 @@
 ---
 title: Configuration Property Reference for Kong Enterprise
+skip_read_time: true
 toc: false
 ---
 
@@ -137,9 +138,9 @@ Some suffixes can be specified for each pair:
   server.
 - `proxy_protocol` enables usage of the PROXY protocol for a given
   address/port.
-- `transparent` causes Kong to listen to, and respond from, any and all 
+- `transparent` causes Kong to listen to, and respond from, any and all
   IP addresses and ports you configure in `iptables`.
-- `deferred` instructs to use a deferred accept on Linux (the 
+- `deferred` instructs to use a deferred accept on Linux (the
   TCP_DEFER_ACCEPT socket option).
 - `bind` instructs to make a separate bind() call for a given `address:port` pair.
 - `reuseport` instructs to create an individual listening socket for each worker process,
@@ -205,13 +206,13 @@ Comma-separated list of addresses and ports on which the stream mode should list
 This value accepts IPv4, IPv6, and hostnames. Some suffixes can be specified for each pair:
 
 - `proxy_protocol` enables usage of the PROXY protocol for a given address/port.
-- `transparent` causes Kong Gateway to listen to (and respond from) any and all IP addresses and 
-  ports you configure in `iptables`. 
+- `transparent` causes Kong Gateway to listen to (and respond from) any and all IP addresses and
+  ports you configure in `iptables`.
 - `bind` causes Kong Gateway to make a separate bind() call for a given `address:port` pair.
-- `reuseport` causes Kong Gateway to create an individual listening socket for each worker process 
+- `reuseport` causes Kong Gateway to create an individual listening socket for each worker process
   allowing a kernel to distribute incoming connections between worker processes.
 
-**Note:** The `ssl` suffix is not supported, and each address/port will accept TCP with or 
+**Note:** The `ssl` suffix is not supported, and each address/port will accept TCP with or
   without TLS enabled.
 
 **Default:** `off`
@@ -617,7 +618,7 @@ server, you may specify `nginx_proxy_ssl_protocols` and/or
 
 **Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
 
-**Description:** 
+**Description:**
 
 Enables the specified protocols for
 client-side connections. The set of
@@ -627,11 +628,11 @@ with.
 
 See [http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols)
 
-### nginx_http_upstream_keepalive 
+### nginx_http_upstream_keepalive
 
 **Default:** `60`
 
-**Description:** 
+**Description:**
 
 Sets the maximum number of idle keepalive
 connections to upstream servers that are
@@ -648,7 +649,7 @@ See [http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive](http
 
 **Default:** `100`
 
-**Description:** 
+**Description:**
 
 Sets the maximum number of requests that can
 be served through one keepalive connection.
@@ -657,11 +658,11 @@ made, the connection is closed.
 
 See [http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_requests](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_requests)
 
-### nginx_http_upstream_keepalive_timeout 
+### nginx_http_upstream_keepalive_timeout
 
 **Default:** `60s`
 
-**Description:** 
+**Description:**
 
 Sets a timeout during which an idle
 keepalive connection to an upstream server
@@ -1439,11 +1440,11 @@ Example:
 
 `admin_gui_auth_password_complexity = { "min": "disabled,24,11,9,8" }`
 
-### admin_gui_auth_login_attempts 
+### admin_gui_auth_login_attempts
 
 **Default:** `0`
 
-Number of times a user can attempt to log in to Kong Manager. `0` entails that 
+Number of times a user can attempt to log in to Kong Manager. `0` entails that
 infinite attempts are allowed.
 
 ## Vitals
@@ -1817,7 +1818,7 @@ directive.
 
 **Default:** `off`
 
-**Description:** 
+**Description:**
 
 Developer Portal legacy support
 
@@ -1858,7 +1859,7 @@ portal_auth = basic-auth
 
 **Description:**
 
-Dev Portals that are authenticated with the **Basic Auth** plugin support password complexity enforcement using either a predned Kong preset or custom rules. 
+Dev Portals that are authenticated with the **Basic Auth** plugin support password complexity enforcement using either a predned Kong preset or custom rules.
 
 Kong's Preset requires passwords contain characters from at least three of the following categories:
 
@@ -1867,7 +1868,7 @@ Kong's Preset requires passwords contain characters from at least three of the f
 3. Base-10 digits (0 through 9)
 4. Special characters (&, $, #, % etc)
 
-To write your own rules, see  (https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html) 
+To write your own rules, see  (https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html)
 
 >NOTE: Only the keywords "min", "max", and "passphrase"
 
@@ -1909,7 +1910,7 @@ Dictates the number of times a user can attempt to log into the Developer Portal
 
 The default value of '0' allows infinite attempts.
 
->NOTE: This configuration only applies to Developer Portals using `Basic Auth` for authentication. 
+>NOTE: This configuration only applies to Developer Portals using `Basic Auth` for authentication.
 
 
 ### portal_auto_approve
@@ -1949,14 +1950,14 @@ portal_session_conf= {"cookie_name": "portal_session", "secret":"changeme", "sto
 Duration in seconds for the expiration of the Dev Portal reset password token.
 Default `21600` is six hours.
 
-### portal_email_verification 
+### portal_email_verification
 
 **Default:** `off`
 
 **Description:**
 
 When enabled, Developers receive an email upon
-registration to verify their account.  Developers are 
+registration to verify their account.  Developers are
 not able to use the Developer Portal until they
 verify their account.
 
@@ -2412,9 +2413,9 @@ traces properly when this option is enabled.
 
 ## Route Collision Detection and Prevention
 
-### route_validation_strategy 
+### route_validation_strategy
 
-**Default:** `smart` 
+**Default:** `smart`
 
 The strategy used to validate
 routes when creating or updating them.
@@ -2422,17 +2423,17 @@ Different strategies are available to tune
 how to enforce splitting traffic of
 workspaces.
 
-- 'smart' is the default option and uses the algorithm described in
+- 'smart' is the default option and uses the algorithm described in [this example](/enterprise/{{page.kong_version}}/admin-api/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces).
 - 'off' disables any check
 - 'path' enforces routes to comply with the pattern described in config enforce_route_path_pattern
 
-### enforce_route_path_pattern 
+### enforce_route_path_pattern
 
 **Default:** `nil`
 
-Here you can specify Lua pattern to enforce 
+Here you can specify Lua pattern to enforce
 on a `path` attributes of a route object. You can also add a
-placeholder for workspace in pattern to render during runtime based 
+placeholder for workspace in pattern to render during runtime based
 on the workspace to which the `route` belongs. It is a
 field if 'route_validation_strategy' is set to 'path'
 
@@ -2454,7 +2455,7 @@ The strategy used to validate routes when creating or updating them.
 Different strategies are available to tune how to enforce splitting
 traffic of workspaces.
 
-- `smart` is the default option and uses the algorithm described in [this example](https://docs.konghq.com/enterprise/0.37-x/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces)
+- `smart` is the default option and uses the algorithm described in [this example](/enterprise/{{page.kong_version}}/admin-api/workspaces/examples/#important-note-conflicting-apis-or-routes-in-workspaces).
 
 - `off` disables all checks.
 

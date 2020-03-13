@@ -1,5 +1,5 @@
 ---
-title: How to Add a Workspace
+title: Add a Workspace
 toc: false
 ---
 #### Table of Contents

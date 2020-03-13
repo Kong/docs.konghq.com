@@ -11,10 +11,7 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [12.04 Precise]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.precise.amd64.deb)
-- [14.04 Trusty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.trusty.amd64.deb)
 - [16.04 Xenial]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.xenial.amd64.deb)
-- [17.04 Zesty]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.zesty.amd64.deb)
 - [18.04 Bionic]({{ site.links.download }}/kong-deb/download_file?file_path=kong-{{site.data.kong_latest.version}}.bionic.amd64.deb)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.

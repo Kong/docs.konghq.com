@@ -28,7 +28,7 @@ description: |
 
   Additionally with [Power Rules and Network Learning Exchange](https://labs.signalsciences.com/product-launch-2018-power-rules-and-network-learning-exchange), Signal Sciences provides protections beyond what WAFs have traditionally been able to provide.
 
-  Installation is simple, using a NGINX lua module and a local agent that feed data into Signal Sciences Cloud Engine.
+  Installation is simple, using a native NGINX module and a local agent that feed data into Signal Sciences Cloud Engine.
 
   For a free trial of Signal Sciences, visit: https://info.signalsciences.com/request-a-trial-kong-signal-sciences-0
 
@@ -99,4 +99,4 @@ kong_version_compatibility:
 
 ### Installation
 
-See https://docs.signalsciences.net/install-guides/kong/ for installation instructions.
+See https://docs.signalsciences.net/install-guides/other-modules/kong/ for installation instructions.

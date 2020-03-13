@@ -8,7 +8,7 @@ description: |
 
   - a query string parameter,
   - a cookie,
-  - or the Authorization header.
+  - or HTTP request headers
 
   Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
 
@@ -28,6 +28,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.0.x
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -73,6 +75,10 @@ params:
       required: false
       default:
       description: A list of cookie names that Kong will inspect to retrieve JWTs.
+    - name: header_names
+      required: false
+      default: "`Authorization`"
+      description: A list of HTTP header names that Kong will inspect to retrieve JWTs.
     - name: claims_to_verify
       required: false
       default:
@@ -258,7 +264,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMzZjMzA0OWIzNjI0OWEzYzlmODg5MWN
 
 ### Send a request with the JWT
 
-The JWT can now be included in a request to Kong by adding it to the `Authorization` header:
+The JWT can now be included in a request to Kong by adding it as a header, if configured in `config.header_names` (which contains `Authorization` by default):
 
 ```bash
 $ curl http://kong:8000/{route path} \
@@ -526,7 +532,7 @@ $ curl -X GET http://kong:8001/jwts
 You can filter the list by consumer by using this other path:
 
 ```bash
-$ curl -X GET http://kong:8001/consumers/{username or id}/jwts
+$ curl -X GET http://kong:8001/consumers/{username or id}/jwt
 
 {
     "total": 1,
