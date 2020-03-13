@@ -82,6 +82,7 @@ The provided `docker-compose.yml` file has these variables set to defaults that 
 5. **SQLALCHEMY_DATABASE_URI**: The SQLAlchemy formatted URI that points to the Postgres Database that Collector App is using as a backend. The format is: `postgresql://<USER>:<PASSWORD>@<POSTGRES-HOST>:<POSTGRES-PORT>/collector`.
 6. **SLACK_WEBHOOK_URL**: The url of the Slack channel that Immunity alert notifications should be sent to. This url will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
 
+
 ##### Docker login
 To download the bintray you will first need to docker login to Bintray to the brain/immunity repo
 ```docker login -u BINTRAY_USERNAME -p BINTRAY_API_KEY kong-docker-kong-brain-immunity-base.bintray.io```
@@ -564,7 +565,7 @@ That will redirect you to a page where you can select the channel the webhook wi
 
 Configuring Slack Channels Immunity provides the endpoint /notifications/slack/config for adding, deleting, and viewing your slack configurations.
 
-#### Adding a Slack Configuration
+#### Adding-a-Slack-Configuration
 
 To add your first Slack configuration, copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL). Then, simply create a POST request to /notifications/slack/config with an endpoint parameter equal to the webhook URL. Here's an example via curl:
 
