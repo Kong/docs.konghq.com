@@ -69,6 +69,19 @@ The release-scripts given are:
 3. **with-redis.yml** - creates redis instance that collector app will use if redis instance not already provided.
 
 
+##### Collector App Environment Variables
+The Collector App relies on several environment variables that need to be configured well for proper function.  These are the most impactful environment variables that should be specified to match the overall Kong and deployment environment, and what impact the variable has on Collector App.
+
+The provided `docker-compose.yml` file has these variables set to defaults that assume deployment with `docker-compose` on the same network that Kong is deployed. However, if this is not the case for your planned deployment of Collector App, please adjust the variables in the `docker-compose.yml` file, or specify the values of the variables with `docker-compose up`:
+```ENVVAR=somevalue ENVVAR=anothervalue docker-compose up```
+
+1. **KONG_PROTOCOL**: The protocol that the Kong Admin API can be reached at. The possible values are http or https.
+2. **KONG_HOST**: The hostname that the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the compose file. If Kong Admin has been exposed behind a web address, KONG_HOST must be that web address.
+3. **KONG_PORT**: The port where Kong Admin can be found.  Collector App requires this setting, along with KONG_PROTOCOL and KONG_HOST, to communicate with Kong Admin.
+4. **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for Kong Admin API, if configured.
+5. **SQLALCHEMY_DATABASE_URI**: The SQLAlchemy formatted URI that points to the Postgres Database that Collector App is using as a backend. The format is: `postgresql://<USER>:<PASSWORD>@<POSTGRES-HOST>:<POSTGRES-PORT>/collector`.
+6. **SLACK_WEBHOOK_URL**: The url of the Slack channel that Immunity alert notifications should be sent to. This url will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
+
 ##### Docker login
 To download the bintray you will first need to docker login to Bintray to the brain/immunity repo
 ```docker login -u BINTRAY_USERNAME -p BINTRAY_API_KEY kong-docker-kong-brain-immunity-base.bintray.io```
