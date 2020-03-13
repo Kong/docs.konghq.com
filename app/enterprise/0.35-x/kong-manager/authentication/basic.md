@@ -1,5 +1,5 @@
 ---
-title: How to Enable Basic Auth for Kong Manager
+title: Enable Basic Auth for Kong Manager
 book: admin_gui
 toc: false
 ---

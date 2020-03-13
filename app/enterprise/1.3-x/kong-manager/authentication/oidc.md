@@ -1,5 +1,5 @@
 ---
-title: How to Enable OIDC for Kong Manager
+title: Enable OIDC for Kong Manager
 book: admin_gui
 toc: false
 ---

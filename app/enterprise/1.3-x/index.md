@@ -1,5 +1,6 @@
 ---
 title: Kong Enterprise Documentation
+skip_read_time: true
 ---
 
 <div class="docs-grid">

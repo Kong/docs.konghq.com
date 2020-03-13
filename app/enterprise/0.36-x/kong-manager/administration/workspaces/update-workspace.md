@@ -1,5 +1,5 @@
 ---
-title: How to Update or Delete a Workspace
+title: Update or Delete a Workspace
 book: admin_gui
 toc: false
 ---

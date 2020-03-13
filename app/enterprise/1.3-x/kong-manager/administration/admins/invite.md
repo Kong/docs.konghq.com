@@ -1,5 +1,5 @@
 ---
-title: How to Invite an Admin
+title: Invite an Admin
 book: admin_gui
 ---
 

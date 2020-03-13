@@ -8,6 +8,7 @@ description: |
   Add Key Authentication (also sometimes referred to as an API key) to a Service or a Route. Consumers then add their key either in a querystring parameter or a header to authenticate their requests. This plugin is functionally identical to the open source `key-auth` plugin, with the exception that API keys are stored in an encrypted format within the Kong data stored.
 
 enterprise: true
+alpha: true
 type: plugin
 categories:
   - authentication
@@ -66,7 +67,7 @@ params:
 
 ## Usage
 
-Prior to creating this plugin, Kong's encryption keyring must be enabled. See the [keyring Getting Started guide](/latest/enterprise/db-encryption/#getting-started) for more details.
+Prior to creating this plugin, Kong's encryption keyring must be enabled. See the [keyring Getting Started guide](/enterprise/latest/db-encryption#getting-started) for more details.
 
 ### Create a Consumer
 

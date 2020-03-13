@@ -2,22 +2,25 @@
 
 name: Upstream TLS
 publisher: Kong Inc.
-version: 1.3-x
+version: 0.36-x
 
 desc: Add TLS to your Services
 description: |
   Enable TLS on upstream traffic by providing Kong with a list of trusted
   certificates.
+  <div class="alert alert-warning">
+    <p><strong>This plugin has been deprecated.</strong></p>
+    <br>
+    <p><strong>Starting with <a href="https://docs.konghq.com/enterprise/changelog/#changes-2">Kong 1.3.0.0</a>:</strong></p>
+    <p>To configure Upstream TLS, use the NGINX directives <code>proxy_ssl_trusted_certificate</code>, <code>proxy_ssl_verify</code>, and <code>proxy_ssl_verify_depth</code> instead of the Upstream TLS plugin. This plugin is <strong>only functional for Enterprise versions 0.35 and 0.36</strong>.</p>
+  </div>
 
 enterprise: true
 type: plugin
-categories:
-  - authentication
 
 kong_version_compatibility:
     enterprise_edition:
       compatible:
-        - 1.3-x
         - 0.36-x
         - 0.35-x
 
@@ -43,7 +46,7 @@ params:
 
 ---
 
-Upstream TLS can be added on top of an existing Service by executing the 
+In Enterprise versions 0.35 and 0.36, Upstream TLS can be added on top of an existing Service by executing the 
 following request on your Kong server:
 
 ```bash

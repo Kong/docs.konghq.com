@@ -1,5 +1,5 @@
 ---
-title: How to Start Kong Enterprise Securely
+title: Start Kong Enterprise Securely
 toc: false
 ---
 #### Table of Contents

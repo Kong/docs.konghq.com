@@ -143,9 +143,9 @@ params:
 
 ---
 
-### Template as Value
+## Template as Value
 
-User can use any of the the current request headers, query params, and captured URI named groups as template to populate above supported config fields.
+User can use any of the the current request headers, query params, and captured URI groups as template to populate above supported config fields.
 
 | Request Param | Template
 | --------- | -----------
@@ -156,9 +156,9 @@ User can use any of the the current request headers, query params, and captured 
 To escape a template, wrap it inside quotes and pass inside another template.<br>
 Ex. $('$(some_needs_to_escaped)')
 
-Note: Plugin creates a non mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
+Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
 
-#### Examples Using Template as Value
+### Examples Using Template as Value
 
 Add an API `test` with `uris` configured with a named capture group `user_id`
 
@@ -169,6 +169,15 @@ $ curl -X POST http://localhost:8001/apis \
     --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
     --data "strip_uri=false"
 ```
+
+<div class="alert alert-info.blue" role="alert">
+  <strong>Kubernetes users:</strong> version <code>v1beta1</code> of the Ingress
+  specification does not allow the use of named regex capture groups in paths.
+  If you use the ingress controller, you should use unnamed groups, e.g.
+  <code>(\w+)/</code> instead of <code>(?&lt;user_id&gt;\w+)</code>. You can access
+  these based on their order in the URL path, e.g. <code>$(uri_captures[1])</code>
+  will obtain the value of the first capture group.
+</div>
 
 Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
 and its value is being set with the value sent with header `x-user-id` or
@@ -198,13 +207,13 @@ $ curl -i -X GET localhost:8000/requests/user/foo \
 This time plugin will add a new header `x-consumer-id` with value sent along
 with header `x-user-id`, i.e.`bob`
 
-### Order of Execution
+## Order of Execution
 
-Plugin performs the response transformation in following order
+This plugin performs the response transformation in the following order:
 
 remove –> replace –> add –> append
 
-### Configuration Examples
+## Configuration Examples
 
 Add multiple headers by passing each header:value pair separately:
 

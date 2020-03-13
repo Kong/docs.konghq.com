@@ -1,12 +1,5 @@
 - title: Deployment
   items:
-    - text: Licensing
-      url: /deployment/licensing
-      items:
-        - text: Overview
-          url: /deployment/licensing
-        - text: How to Access Your License
-          url: /deployment/access-license
     - text: Installation
       url: /deployment/installation/overview
       items:
@@ -18,37 +11,51 @@
           url: /deployment/installation/ubuntu
         - text: CentOS
           url: /deployment/installation/centos
-        - text: Amazon Linux
+        - text: Amazon Linux 1
           url: /deployment/installation/amazon-linux
-    - text: Kong Cloud
-      url: /kong-cloud
+        - text: Amazon Linux 2
+          url: /deployment/installation/amazon-linux-2
+        - text: Red Hat Enterprise Linux
+          url: /deployment/installation/rhel
+    - text: Licensing
+      url: /deployment/licensing
+      items:
+        - text: Overview
+          url: /deployment/licensing
+        - text: Access Your License
+          url: /deployment/access-license
+        - text: Monitor License Usage
+          url: /deployment/licenses/report
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
     - text: Migrating to 1.3
       url: /deployment/migrations
-
+    - text: Kong Cloud
+      url: /kong-cloud
 
 - title: Getting Started
   url: /getting-started/
   items:
     - text: Overview
       url: /getting-started/
-    - text: How to Start Kong Enterprise
+    - text: Key Concepts
+      url: /getting-started/key-concepts
+    - text: Start Kong Enterprise Securely
       url: /getting-started/start-kong
-    - text: How to Add a Workspace
+    - text: Add a Workspace
       url: /getting-started/add-workspace
-    - text: How to Add a Role and Permissions
+    - text: Add a Role and Permissions
       url: /getting-started/add-role
-    - text: How to Add an Admin
+    - text: Add an Admin
       url: /getting-started/add-admin
-    - text: How to Add a Service and Route
+    - text: Add a Service and Route
       url: /getting-started/add-service
-    - text: How to Enable a Plugin
+    - text: Enable a Plugin
       url: /getting-started/enable-plugin
-    - text: How to Add a Consumer
+    - text: Add a Consumer
       url: /getting-started/add-consumer
-    - text: How to Enable the Dev Portal
+    - text: Enable the Dev Portal
       url: /getting-started/enable-dev-portal
 
 - title: Guides & References
@@ -71,6 +78,8 @@
       url: /health-checks-circuit-breakers
     - text: Clustering reference
       url: /clustering
+    - text: Resource Sizing Guidelines
+      url: /sizing-guidelines
     - text: Logging reference
       url: /logging
     - text: Network &amp; Firewall
@@ -81,8 +90,6 @@
       url: /plugin-development
     - text: Plugin Development Kit
       url: /pdk
-    - text : OpenAPI Spec to Kong Entities
-      url: /oasconfig
     - text : Control Kong through systemd
       url: /systemd
     - text : Keyring and Data Encryption
@@ -109,16 +116,14 @@
     url: /admin-api/#plugin-object
   - text: Certificate Object
     url: /admin-api/#certificate-object
+  - text: CA Certificate Object
+    urk: /admin-api/#ca-certificate-object
   - text: SNI Object
     url: /admin-api/#sni-object
   - text: Upstream Object
     url: /admin-api/#upstream-object
   - text: Target Object
     url: /admin-api/#target-object
-  - text: Workspace Object routes
-    url: /admin-api/workspaces/reference
-  - text: RBAC Object routes
-    url: /admin-api/rbac/reference
   - text: Workspaces
     url: /admin-api/workspaces/reference
   - text: RBAC
@@ -163,7 +168,7 @@
     - text: Authentication
       url: /kong-manager/authentication/super-admin
       items:
-        - text: How to Create a Super Admin
+        - text: Create a Super Admin
           url: /kong-manager/authentication/super-admin
         - text: Basic Auth
           url: /kong-manager/authentication/basic
@@ -173,7 +178,7 @@
           url: /kong-manager/authentication/oidc
         - text: Sessions
           url: /kong-manager/authentication/sessions
-    - text: How to Reset Passwords and RBAC Tokens
+    - text: Reset Passwords and RBAC Tokens
       url: /kong-manager/reset-password
     - text: Administration
       url: /kong-manager/administration/workspaces/workspaces
@@ -185,14 +190,14 @@
         - items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac
-          - text: How to Create a New Role
+          - text: Create a New Role
             url: /kong-manager/administration/rbac/new-role
-          - text: How to Create an RBAC User
+          - text: Create an RBAC User
             url: /kong-manager/administration/rbac/add-user
         - text: Admins
           url: /kong-manager/administration/admins/invite
         - items:
-          - text: How to Invite an Admin
+          - text: Invite an Admin
             url: /kong-manager/administration/admins/invite
     - text: Vitals
       url: /kong-manager/vitals
@@ -286,7 +291,9 @@
       url: /hub/kong-inc/openid-connect
       absolute_url: true
       items:
-        - text: OpenID Connect Plugin
+        - text: OpenID Connect Use Case
+          url: /plugins/oidc-use-case
+        - text: OpenID Connect Plugin Reference
           url: /plugins/openid-connect
         - text: OpenID Connect with Azure AD
           url: /plugins/oidc-azuread
@@ -345,8 +352,6 @@
       url: /plugins/route-transformer-advanced
     - text: JWT Signer Plugin
       url: /plugins/jwt-signer
-    - text: Upstream TLS Plugin
-      url: /plugins/upstream-tls
     - text: Vault Auth Plugin
       url: /plugins/vault-auth
     - text: Request Validator Plugin

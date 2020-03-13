@@ -1,5 +1,5 @@
 ---
-title: How to Install Kong Enterprise and on Amazon Linux
+title: Install Kong Enterprise and on Amazon Linux
 ---
 
 ## Installation Steps

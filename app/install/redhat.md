@@ -13,8 +13,8 @@ breadcrumbs:
 
 Start by downloading the corresponding package for your configuration:
 
-- [RHEL 6]({{ site.links.download }}/kong-rpm/download_file?file_path=rhel/6/kong-{{site.data.kong_latest.version}}.rhel6.amd64.rpm)
 - [RHEL 7]({{ site.links.download }}/kong-rpm/download_file?file_path=rhel/7/kong-{{site.data.kong_latest.version}}.rhel7.amd64.rpm)
+- [RHEL 8]({{ site.links.download }}/kong-rpm/download_file?file_path=rhel/7/kong-{{site.data.kong_latest.version}}.rhel8.amd64.rpm)
 
 **Enterprise trial users** should download their package from their welcome email and save their license to `/etc/kong/license.json` after step 1.
 

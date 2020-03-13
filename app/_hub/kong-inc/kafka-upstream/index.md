@@ -121,38 +121,6 @@ params:
 
 ---
 
-## Installation
-
-Manually download and install:
-
-```
-$ git clone https://github.com/kong/kong-plugin-kafka-upstream.git /path/to/kong/plugins/kong-plugin-kafka-upstream
-$ cd /path/to/kong/plugins/kong-plugin-kafka-upstream
-$ luarocks make *.rockspec
-```
-
-In both cases, you need to change your Kong [`plugins` configuration option](https://docs.konghq.com/1.3.x/configuration/#plugins)
-to include this plugin:
-
-```
-plugins = bundled,kafka-upstream
-```
-
-Or, if you don't want to activate any of the bundled plugins:
-
-```
-plugins = kafka-upstream
-```
-
-Then reload kong:
-
-```
-kong reload
-```
-
-## Configuration
-
-
 ### Enabling on a serviceless route
 
 ```bash

@@ -64,7 +64,8 @@ HTTP 200 OK
 }
 ```
 
-## Import Key
+## Import Exported Keyring
+>>>>>>> public_repo/master
 
 *This endpoint is only available with the `cluster` keyring strategy.*
 
@@ -78,8 +79,32 @@ HTTP 200 OK
 
 | Attribute        | Description                   |
 | ---------        | -----------                   |
+| `data`           | Base64-encoded keyring export material. |
+
+
+**Response**
+
+```
+HTTP 201 Created
+```
+
+## Import Key
+
+*This endpoint is only available with the `cluster` keyring strategy.*
+
+*The endpoint requires that the `keyring_public_key` and `keyring_private_key` Kong configuration values are defined.*
+
+**Endpoint**
+
+<div class="endpoint post">/keyring/import/raw</div>
+
+**Request Body**
+
+| Attribute        | Description                   |
+| ---------        | -----------                   |
 | `id`             | 8-byte key identifier.        |
-| `data`           | Base64-encoded key material.  |
+| `data`           | Base64-encoded keyring export material. |
+>>>>>>> public_repo/master
 
 
 **Response**

@@ -22,6 +22,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.0.x
+        - 1.5.x      
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -71,6 +73,11 @@ params:
       default: "`false`"
       description: |
         Set it to `true` to issue StartTLS (Transport Layer Security) extended operation over `ldap` connection.
+    - name: ldaps
+      required: true
+      default: "`false`"
+      description: | 
+        Set it to `true` to connect using the LDAPS protocol (LDAP over TLS)
     - name: base_dn
       required: true
       default:

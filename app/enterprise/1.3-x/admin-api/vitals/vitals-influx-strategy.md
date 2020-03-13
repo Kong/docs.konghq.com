@@ -26,19 +26,12 @@ local InfluxDB instance is possible via Docker:
 ```bash
 $ docker run -p 8086:8086 \
       -v $PWD:/var/lib/influxdb \
+      -e INFLUXDB_DB=kong \
       influxdb
 ```
 
-Writing Vitals data to InfluxDB requires that the `kong` database is created.
-Currently, this operation must be done manually. This can be done via the
-`influx` CLI:
-
-```bash
-influx> create database kong;
-```
-
-Alternatively the [InfluxDB API](https://docs.influxdata.com/influxdb/v1.7/tools/api/#query-http-endpoint)
-may be queried directly to create the database.
+Writing Vitals data to InfluxDB requires that the `kong` database is created, 
+this is done using the `INFLUXDB_DB` variable.
 
 ### Configuring Kong
 

@@ -16,6 +16,8 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.0.x
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
