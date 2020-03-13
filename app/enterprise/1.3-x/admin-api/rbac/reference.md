@@ -6,7 +6,7 @@ book: rbac
 ## Introduction
 
 Kong Enterprise's RBAC feature is configurable through Kong's [Admin
-API](enterprise/{{page.kong_version}}/admin-api/) or via the [Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/overview/).
+API](/enterprise/{{page.kong_version}}/admin-api/) or via the [Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/overview/).
 
 There are 4 basic entities involving RBAC.
 
