@@ -5,7 +5,7 @@ toc: false
 
 ### Step 1 - Enable Dev Portal in the Kong Configuration
 
-To enable the Dev Portal, the following properties must be set in the Kong 
+To enable the Dev Portal, the following properties must be set in the Kong
 configuration file (`kong.conf`):
 
 ```
@@ -25,7 +25,7 @@ To enable the default Workspace's Dev Portal via Kong Manager:
 
 It may take a few seconds for the Settings page to populate.
 
-![Dev Portal Settings](https://konghq.com/wp-content/uploads/2019/05/Screen-Shot-2019-05-17-at-12.27.56-PM.png)
+![Dev Portal Settings](/assets/images/docs/ee/getting-started/dev-portal-settings.png)
 
 
 To enable the default Workspace's Dev portal via the command line:
