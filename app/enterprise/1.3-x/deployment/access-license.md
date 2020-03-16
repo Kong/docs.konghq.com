@@ -11,7 +11,7 @@ Log into [https://bintray.com/login?forwardedFrom=%2Fkong%2F](https://bintray.co
 If you are unaware of your login credentials, reach out to your CSE and they'll 
 be able to assist you.
 
-You will notice that along with Kong Enterprise and Gelato, there is a new 
+You will notice that along with Kong Enterprise, there is a new 
 repository that has the same name as your company. Click on that repo.
 
 In the repo, click on the file called **license**.
@@ -24,13 +24,39 @@ Click into the **Files** section
 
 Click any file you would like to download.
 
-Alternatively, you can run this command in your terminal
+## Programmatically accessing your license file
 
+For programmatic access you'll need 3 pieces of information:
+
+ - username (was provided to by email by your CSE)
+ - repository name (the Bintray repository, visible in the GUI, usually named after your company name)
+ - the Bintray API key for the account (see below)
+
+To get the API key follow these steps:
+
+ - [Log into Bintray](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
+ - Open the Profile settings (click the username at the top-right and select "Edit Profile")
+ - On the left select "API Key", and provide your password again
+
+To access the license try this:
 ```bash
-curl -L -u<$UserName>@kong<$API_KEY> "https://kong.bintray.com/<$repoName>/license.json" -o <FILE.EXT>
+BINTRAY_USERNAME="your_user_name@kong" && \
+BINTRAY_REPO="your_repo_name" && \
+BINTRAY_APIKEY="your_api_key" && \
+curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json"
+```
+If successful it will display the downloaded license.
+
+To download the license file (as `license.json`) use this command:
+```bash
+curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json" -o license.json
 ```
 
-> Note: Your UserName and key were emailed to you by your CSE. You will need to get the repo name from the GUI
+To export the license as an environment variable try:
+```bash
+export KONG_LICENSE_DATA=$(curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json")
+```
+
 
  
 
