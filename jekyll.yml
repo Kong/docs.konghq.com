@@ -78,6 +78,11 @@ defaults:
       layout: 'docs'
 
   - scope:
+      path: 'enterprise'
+    values:
+      layout: 'docs-ee'
+
+  - scope:
       path: 'install'
     values:
       layout: 'install'

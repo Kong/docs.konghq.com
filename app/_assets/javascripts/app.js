@@ -304,6 +304,12 @@ $(function () {
     if ($(window).width() <= 800) {
       $('.sidebar-toggle').click(function () {
         $('.page-navigation').addClass('sidebar-open')
+        const docsSidebar = $('.docs-sidebar')
+        if (docsSidebar.hasClass('sidebar-open')) {
+          docsSidebar.removeClass('sidebar-open')
+        } else {
+          docsSidebar.addClass('sidebar-open')
+        }
       })
       $('.page-navigation > .close-sidebar').click(function () {
         $('.page-navigation').removeClass('sidebar-open')
