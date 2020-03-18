@@ -50,7 +50,7 @@ If successful, it will display the downloaded license.
 
 To use the license either as a file or as a variable, replace the last command with either of these examples:
 
-- To download the license file as `license.json`):
+- To download the license file as `license.json`:
 
     ```bash
     curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json" -o license.json
