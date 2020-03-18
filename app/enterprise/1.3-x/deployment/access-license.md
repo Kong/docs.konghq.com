@@ -38,7 +38,7 @@ To get the API key follow these steps:
 2. Open the Profile settings (click the username at the top-right and select "Edit Profile")
 3. On the left select "API Key", and provide your password again
 
-To Access the license:
+To access the license:
 
 ```bash
 BINTRAY_USERNAME="your_user_name" && \
