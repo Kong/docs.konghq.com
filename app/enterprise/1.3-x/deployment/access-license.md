@@ -36,7 +36,7 @@ To get the API key follow these steps:
 
 1. [Log into Bintray](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
 2. Open the profile settings: click or hover over the username at the top right and select **Edit Profile**.
-3. On the left select "API Key", and provide your password again
+3. On the left select **API Key**, and if prompted, provide your password again. Click the copy icon to copy the key to your clipboard. 
 
 To access the license:
 
