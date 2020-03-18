@@ -48,7 +48,7 @@ curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY
 ```
 If successful, it will display the downloaded license.
 
-To use the liicense either as a file or as a variable replace the last command with either of these examples:
+To use the license either as a file or as a variable, replace the last command with either of these examples:
 
 - To download the license file as `license.json`):
 
