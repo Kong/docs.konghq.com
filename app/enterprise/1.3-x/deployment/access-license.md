@@ -28,36 +28,39 @@ Click any file you would like to download.
 
 For programmatic access you'll need 3 pieces of information:
 
- - username (was provided to by email by your CSE)
+ - username (was provided by email by your CSE)
  - repository name (the Bintray repository, visible in the GUI, usually named after your company name)
  - the Bintray API key for the account (see below)
 
 To get the API key follow these steps:
 
- - [Log into Bintray](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
- - Open the Profile settings (click the username at the top-right and select "Edit Profile")
- - On the left select "API Key", and provide your password again
+1. [Log into Bintray](https://bintray.com/login?forwardedFrom=%2Fkong%2F)
+2. Open the Profile settings (click the username at the top-right and select "Edit Profile")
+3. On the left select "API Key", and provide your password again
 
-To access the license try this:
+To Access the license:
+
 ```bash
-BINTRAY_USERNAME="your_user_name@kong" && \
+BINTRAY_USERNAME="your_user_name" && \
 BINTRAY_REPO="your_repo_name" && \
 BINTRAY_APIKEY="your_api_key" && \
 curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json"
 ```
-If successful it will display the downloaded license.
+If successful, it will display the downloaded license.
 
-To download the license file (as `license.json`) use this command:
-```bash
-curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json" -o license.json
-```
+To use the liicense either as a file or as a variable replace the last command with either of these examples:
 
-To export the license as an environment variable try:
-```bash
-export KONG_LICENSE_DATA=$(curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json")
-```
+- To download the license file as `license.json`):
+
+    ```bash
+    curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json" -o license.json
+    ```
+
+- To export the license as an environment variable:
+
+    ```bash
+    export KONG_LICENSE_DATA=$(curl -L -u"$BINTRAY_USERNAME:$BINTRAY_APIKEY" "https://kong.bintray.com/$BINTRAY_REPO/license.json")
+    ```
 
 
  
-
-
