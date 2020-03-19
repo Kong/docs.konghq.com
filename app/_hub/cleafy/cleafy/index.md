@@ -29,10 +29,21 @@ privacy_policy_url: https://www.iubenda.com/privacy-policy/31282315
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 2.0.1
+      - 0.13.x
+      - 0.14.x
+      - 1.0.x
+      - 1.1.x
+      - 1.2.x
+      - 1.3.x
+      - 1.4.x
+      - 1.5.x
+      - 2.0.x
   enterprise_edition:
     compatible:
-      - 1.3.0
+      - 0.33-x
+      - 0.34-x
+      - 0.35-x
+      - 0.36-x
 
 kong_legacy_api: false
 
