@@ -1238,7 +1238,7 @@ the concatenated path will be `/sre`.
 Both versions of the algorithm detect "double slashes" when combining paths, replacing them by single
 slashes.
 
-On the following table, `s` is the Service and `r` is the Route.
+In the following table, `s` is the Service and `r` is the Route.
 
 | `s.path` | `r.path` | `r.strip_path` | `r.path_handling` | request path | proxied path  |
 |----------|----------|----------------|-------------------|--------------|---------------|
