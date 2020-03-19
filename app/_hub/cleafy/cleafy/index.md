@@ -66,7 +66,7 @@ params:
       default:
       value_in_examples:
       description: Specifies the type of encoding accepted from the backend server. This plugin does not support gzip-encoded requests.
-
+---
 ### Cleafy-Stream Kong plugin
 
 ### Installation
