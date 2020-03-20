@@ -5,19 +5,19 @@ title: Documentation for Kong
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="https://konghq.com/install/">Installation</a></h3>
-    <p>You can install Kong on most Linux distributions and macOS. We even provide the source so you can compile yourself.</p>
+    <p>You can install Kong on most Linux distributions and MacOS. We even provide the source so you can compile it yourself.</p>
     <a href="https://konghq.com/install/">Install Kong &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-quickstart.svg" /><a href="/{{page.kong_version}}/getting-started/quickstart">5-minute Quickstart</a></h3>
-    <p>Learn how to start Kong, add a Service, enable plugins, and add consumers in under thirty seconds.</p>
+    <p>Learn how to start Kong, add a Service, Enable plugins, and add consumers in under thirty seconds.</p>
     <a href="/{{page.kong_version}}/getting-started/quickstart">Start using Kong &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/db-less-and-declarative-config">DB-less &amp; Declarative Configuration</a></h3>
-    <p>Learn how to leverage the declarative configuration format for using Kong without a database, using in-memory storage only.</p>
+    <p>Learn how to leverage the declarative configuration format for using Kong without a database, using an in-memory storage only.</p>
     <a href="/{{page.kong_version}}/db-less-and-declarative-config">Read the tutorial &rarr;</a>
   </div>
 
