@@ -2,28 +2,27 @@
 name: Cleafy plugin for Kong
 publisher: Cleafy
 
+#header_icon: #FIXME # (optional) Uncomment only if you are submitting an icon
+
 categories:
   - security
 
 type: plugin
 
-desc: Integrate Kong API Gateway with Cleafy threat detection & protection for API-based apps
-description: |
-  Cleafy patented threat detection & protection technology protects web and mobile
-  apps against the most advanced attacks from malware based on Man-In-The-Browser
-  (MITB), Man-In-The-Middle (MITM), RAT-in-The-Browser, Mobile Overlay,
-  SMS Grabbing and other vectors. Cleafy is client-less and does neither impact
-  the user experience nor the endpoint performance. Cleafy is application-transparent
-  and does not require any change to the monitored application. Cleafy smoothly
-  integrates into any application delivery architecture, typically at ADC or API
-  Gateway level. Cleafy plugin for Kong makes possible to leverage Cleafy in any
-  Kong-powered architecture. For more details visit https://cleafy.com/resources.
+desc: Integrate Kong API GW with Cleafy threat detection & protection for API-based apps
+
+description: | 
+  Cleafy protects online services against today’s targeted attacks. Cleafy patented real-time threat detection and protection technology is effective in detecting account takeover and transaction tampering leveraging Man-In-The-Browser (MITB), Man-In-The-Middle (MITM), Mobile Overlay, SIM Swap, API Abuse, and others advanced techniques.
+
+  Cleafy real-time continuous risk assessment prevents sensitive data loss and payment fraud while minimizing false positives and operational impact. Cleafy threat visibility also makes possible to implement automated threat responses and an adaptive security posture.
+
+  Cleafy is client-less and does not require any change to the monitored applications. Cleafy passively monitors application traffic by integrating into any application delivery architecture, typically at ADC or API Gateway level. Cleafy plugin for Kong allows Cleafy to smoothly integrate into any Kong-powered architecture. 
+
+  For more details visit https://cleafy.com/resources.
 
 support_url: https://www.cleafy.com
 
-# license_type: "Included in the standard Cleafy license"
-  # (Optional) For open source, use the abbreviations in parentheses at:
-  # https://opensource.org/licenses/alphabetical
+license_type: Included in the standard Cleafy license
 
 privacy_policy_url: https://www.iubenda.com/privacy-policy/31282315
 
@@ -32,18 +31,28 @@ kong_version_compatibility:
     compatible:
       - 0.13.x
       - 0.14.x
+      - 1.0.x
+      - 1.1.x
+      - 1.2.x
+      - 1.3.x
+      - 1.4.x
+      - 1.5.x
+      - 2.0.x
   enterprise_edition:
     compatible:
       - 0.33-x
       - 0.34-x
+      - 0.35-x
+      - 0.36-x
+
+kong_legacy_api: false
 
 params:
-  name: cleafy
-  api_id: true
-  service_id: true
-  consumer_id: true
+  name: cleafy-plugin-for-kong
+  api_id: false
+  service_id: false
+  consumer_id: false
   route_id: true
-
   config:
     - name: api_address
       required: yes
@@ -54,20 +63,8 @@ params:
       required: no
       default:
       value_in_examples:
-      description: |
-        Specifies the type of encoding accepted from the backend server. This
-        plugin does not support gzip-encoded requests.
-
-###############################################################################
-# END YAML DATA
-# Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
-#
-# The remainder of this file is for free-form description, instruction, and
-# reference matter.
-# Your headers must be Level 3 or 4 (parsing to h3 or h4 tags in HTML).
-# This is represented by ### or #### notation preceding the header text.
-###############################################################################
-# BEGIN MARKDOWN CONTENT
+      description: Specifies the type of encoding accepted from the backend server. This plugin does not support gzip-encoded requests.
+      
 ---
 
 ### Cleafy-Stream Kong plugin
