@@ -53,20 +53,20 @@ params:
   service_id: false
   consumer_id: false
   route_id: true
-
   config:
     - name: api_address
       required: yes
       default:
       value_in_examples: http://cleafy.com
       description: Specifies the URL pointing to the Cleafy API.
-
     - name: accept_encoding
       required: no
       default:
       value_in_examples:
       description: Specifies the type of encoding accepted from the backend server. This plugin does not support gzip-encoded requests.
+      
 ---
+
 ### Cleafy-Stream Kong plugin
 
 ### Installation
