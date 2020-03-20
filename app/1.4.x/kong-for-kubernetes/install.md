@@ -34,14 +34,18 @@ Adjust “knobs” based on your use case:
 Kong has an official Helm Chart. To deploy Kong onto your Kubernetes cluster with Helm, use:
 
 ```
-helm repo add kong https://charts.konghq.com
-helm repo update
-helm install kong/kong
+$ helm repo add kong https://charts.konghq.com
+$ helm repo update
+
+# Helm 2
+$ helm install kong/kong
+
+# Helm 3
+$ helm install kong/kong --generate-name --set ingressController.installCRDs=false
 ```
 
-For more information about using a Helm Chart, see Kong's
-[Charts repo](https://github.com/Kong/charts/blob/master/charts/kong/README.md).
-
+For more information about using a Helm Chart, see chart
+[documentation](https://github.com/Kong/charts/blob/master/charts/kong/README.md).
 
 ### Kustomize
 Kong’s manifests for Kubernetes can be declaratively patched using Kubernetes’ [kustomize](https://kustomize.io/). An example of a remote custom build is:
