@@ -34,6 +34,9 @@ id: documentation
       <div class="title-version-search-container">
         <div class="page-header-title">
           <h1>{{page.title}}</h1>
+          {% if is_homepage %}
+          <h2>Welcome to Kong Enterprise Documentation!<br/>Whether you're just getting started or a Kong expert you can find everything you need here.</h2>
+          {% endif %}
         </div>
         <div class="search-version-row">
           <div class="versions-dropdown dropdown no-right-border">
