@@ -17,7 +17,7 @@ title: Documentation for Kong
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-doc-reference.svg" /><a href="/{{page.kong_version}}/db-less-and-declarative-config">DB-less &amp; Declarative Configuration</a></h3>
-    <p>Learn how to leverage the declarative configuration format for using Kong without a database, using an in-memory storage only.</p>
+    <p>Learn how to leverage the declarative configuration format for using Kong without a database, using in-memory storage only.</p>
     <a href="/{{page.kong_version}}/db-less-and-declarative-config">Read the tutorial &rarr;</a>
   </div>
 
