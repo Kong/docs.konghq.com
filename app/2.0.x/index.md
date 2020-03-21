@@ -11,7 +11,7 @@ title: Documentation for Kong
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-quickstart.svg" /><a href="/{{page.kong_version}}/getting-started/quickstart">5-minute Quickstart</a></h3>
-    <p>Learn how to start Kong, add a Service, Enable plugins, and add consumers in under thirty seconds.</p>
+    <p>Learn how to start Kong, add a Service, enable plugins, and add consumers in under thirty seconds.</p>
     <a href="/{{page.kong_version}}/getting-started/quickstart">Start using Kong &rarr;</a>
   </div>
 
