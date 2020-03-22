@@ -933,8 +933,8 @@ HTTP 200 OK
         },
         ...
       ],
-      "offset" = "c47139f3-d780-483d-8a97-17e9adc5a7ab",
-      "next" = "/tags?offset=c47139f3-d780-483d-8a97-17e9adc5a7ab",
+      "offset": "c47139f3-d780-483d-8a97-17e9adc5a7ab",
+      "next": "/tags?offset=c47139f3-d780-483d-8a97-17e9adc5a7ab"
     }
 }
 ```
@@ -972,8 +972,8 @@ HTTP 200 OK
         },
         ...
       ],
-      "offset" = "1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9",
-      "next" = "/tags/example?offset=1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9",
+      "offset": "1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9",
+      "next": "/tags/example?offset=1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9"
     }
 }
 ```
