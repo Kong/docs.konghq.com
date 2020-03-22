@@ -1974,12 +1974,12 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Service
 
-<div class="endpoint get indent">/services/{service id}/plugins</div>
+<div class="endpoint get indent">/services/{service name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`service id`<br>**required** | The unique identifier of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
+`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
 
 
 ##### List Plugins Associated to a Specific Consumer
