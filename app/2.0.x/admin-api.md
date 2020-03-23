@@ -1964,12 +1964,12 @@ HTTP 201 Created
 
 ##### List Plugins Associated to a Specific Route
 
-<div class="endpoint get indent">/routes/{route id}/plugins</div>
+<div class="endpoint get indent">/routes/{route name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`route id`<br>**required** | The unique identifier of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
 
 
 ##### List Plugins Associated to a Specific Service
@@ -1984,12 +1984,12 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Consumer
 
-<div class="endpoint get indent">/consumers/{consumer id}/plugins</div>
+<div class="endpoint get indent">/consumers/{consumer username or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`consumer id`<br>**required** | The unique identifier of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
+`consumer username or id`<br>**required** | The unique identifier or the `username` of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
 
 
 #### Response
