@@ -8640,7 +8640,7 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
 }
 
 .fa-check:before {
-    content: "";
+    content: ""
 }
 
 .fa-close:before,.fa-remove:before,.fa-times:before {
