@@ -8641,7 +8641,6 @@ a.text-gray-dark:focus,a.text-gray-dark:hover {
 
 .fa-check:before {
     content: "";
-    color: #21A959
 }
 
 .fa-close:before,.fa-remove:before,.fa-times:before {
