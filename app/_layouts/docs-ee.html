@@ -73,6 +73,13 @@ id: documentation
   <div class="container">
     {% include docs-sidebar.html %}
 
+    {% if page.toc == true or page.toc != false and filename != "index.md" and is_homepage == false %}
+    <aside class="docs-toc">
+      <div class="docs-toc-title">On this page</div>
+      {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=5 %}
+    </aside>
+    {% endif %}
+
     <div class="page-content-container enterprise" id="documentation">
       <div class="page-content">
         <div class="content show-anchor-links">
@@ -95,11 +102,6 @@ id: documentation
           {% endunless %}
 
           {% assign filename = page.path | split: '/' | last %}
-
-          {% if page.toc == true or page.toc != false and filename != "index.md" %}
-          <h2 id="table-of-contents">Table of Contents</h2>
-          {% include toc.html html=content anchor_class="scroll-to" h_max=3 %}
-          {% endif %}
 
           {{ content }}
 

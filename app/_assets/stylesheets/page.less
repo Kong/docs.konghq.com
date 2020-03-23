@@ -51,6 +51,24 @@
       }
     }
 
+    .page-content-container {
+      padding-left: 348px;
+
+      .page-content {
+        padding-left: 75px;
+        border-left: 1px solid @gray;
+      }
+
+      @media (max-width: 800px) {
+        padding-left: 0;
+        padding-right: 0;
+
+        .page-content {
+          border-left: none;
+        }
+      }
+    }
+
     &:not(.homepage) {
       .page-header {
         background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #effeff);
@@ -93,6 +111,18 @@
         .content {
           padding-top: 32px;
         }
+      }
+    }
+  }
+
+  &:not(.enterprise) {
+    .page-content-container {
+      padding-right: 230px;
+
+      .page-content {
+        padding-right: 50px;
+        border-right: 1px solid @gray;
+        margin-right: 25px;
       }
     }
   }

@@ -435,4 +435,30 @@ $(function () {
       }
     })
   }
+
+  // watch scroll and update active scroll-to anchor links
+  $window.scroll(() => {
+    const anchors = $('a.header-link')
+    const scrollToLinks = $('a.scroll-to')
+    if (!anchors.length || !scrollToLinks.length) {
+      return
+    }
+
+    let activeSet = false
+    scrollToLinks.removeClass('active')
+    $(anchors.get().reverse()).each((index, element) => {
+      const $element = $(element)
+
+      // window top + header section
+      if ((window.scrollY + NAV_HEIGHT + 80) >= $element.offset().top) {
+        $(`a.scroll-to[href$="${$element.attr('href')}"]`).addClass('active')
+        activeSet = true
+        return false
+      }
+    })
+
+    if (!activeSet) {
+      scrollToLinks.first().addClass('active')
+    }
+  })
 })

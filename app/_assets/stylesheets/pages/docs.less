@@ -346,3 +346,50 @@
     }
   }
 }
+
+.docs-toc {
+  float: right;
+  width: 300px;
+  padding: 32px 16px;
+  position: sticky;
+  top: 56px;
+  height: ~"calc(100vh - 120px)";
+  overflow-y: auto;
+
+  .docs-toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0;
+
+      a {
+        img {
+          display: none;
+        }
+
+        font-size: 16px;
+        line-height: 33px;
+        color: rgba(0, 0, 0, 0.8);
+        opacity: 0.6;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &.active {
+          font-weight: 600;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
