@@ -33,6 +33,24 @@
       }
     }
 
+    .page-content-container {
+      padding-left: 348px;
+
+      .page-content {
+        padding-left: 32px;
+        border-left: 1px solid @gray;
+      }
+
+      @media (max-width: 800px) {
+        padding-left: 0;
+        padding-right: 0;
+
+        .page-content {
+          border-left: none;
+        }
+      }
+    }
+
     &:not(.homepage) {
       .page-header {
         background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #effeff);
@@ -52,6 +70,15 @@
         }
       }
 
+      .page-content-container {
+        padding-right: 300px;
+
+        .page-content {
+          padding-left: 75px;
+          padding-right: 75px;
+        }
+      }
+
       > .container {
         max-width: none;
       }
@@ -60,6 +87,24 @@
     &.homepage {
       .title-version-search-container {
         flex-direction: column;
+      }
+
+      .page-content {
+        .content {
+          padding-top: 32px;
+        }
+      }
+    }
+  }
+
+  &:not(.enterprise) {
+    .page-content-container {
+      padding-right: 230px;
+
+      .page-content {
+        padding-right: 50px;
+        border-right: 1px solid @gray;
+        margin-right: 25px;
       }
     }
   }
@@ -347,33 +392,6 @@
       border-left: none;
       margin-right: 0;
       margin-left: 0;
-    }
-  }
-
-  &.enterprise {
-    padding-left: 348px;
-
-    .page-content {
-      padding-left: 50px;
-      border-left: 1px solid @gray;
-    }
-
-    @media (max-width: 800px) {
-      padding-left: 0;
-
-      .page-content {
-        border-left: none;
-      }
-    }
-  }
-
-  &:not(.enterprise) {
-    padding-right: 230px;
-
-    .page-content {
-      padding-right: 50px;
-      border-right: 1px solid @gray;
-      margin-right: 25px;
     }
   }
 
@@ -848,8 +866,9 @@ Generic Styling for Desktop
 }
 
 .alert-ee {
-  background-color: #EBF7FF;
-  border-left: solid 3px #7CC9FF;
+  background-color: #e5f4ff;
+  border: none;
+  border-left: solid 3px #b3dfff;
   border-radius: 0;
 
   .alert-body {
@@ -862,12 +881,50 @@ Generic Styling for Desktop
     margin: 0 20px 0;
   }
 
+  .tag {
+    padding: 2px 8px;
+    margin-right: 16px;
+    border-radius: 11px;
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    background: @blue;
+    color: white;
+
+    &.green {
+      background: #35cb05;
+    }
+  }
+
   p {
     padding: 0 25px 0 75px;
+    font-size: 14px;
   }
 
   a {
-    text-decoration: underline;
+    text-decoration: none;
+    color: @blue-light;
+  }
+
+  &.condensed {
+    padding: 6px 8px;
+
+    .alert-body {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    p {
+      flex-grow: 1;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  &.margin-bigger {
+    margin-bottom: 32px;
   }
 }
 

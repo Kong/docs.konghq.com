@@ -78,8 +78,15 @@ id: documentation
         <div class="content show-anchor-links">
           {% if page.kong_version != page.kong_latest.release and page.has_version %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/latest">here</a>
+            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/enterprise/latest">here</a>
             to browse the documentation for the latest version.
+          </div>
+          {% elsif is_homepage == true %}
+          <div class="alert alert-ee condensed margin-bigger">
+            <div class="alert-body">
+              <div class="tag green">NEW</div>
+              <p>Kong Enterprise {{page.kong_version}} released! We added a ton of <a href="/enterprise/{{page.kong_version}}/whats-new">New Features</a> and updated docs!</p>
+            </div>
           </div>
           {% endif %}
 
