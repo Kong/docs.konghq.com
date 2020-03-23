@@ -461,4 +461,28 @@ $(function () {
       scrollToLinks.first().addClass('active')
     }
   })
+
+  // navtabs
+  const navtabs = $('div[data-navtab-id]')
+  navtabs.click(function () {
+    const navtabTitle = $(this)
+    const navtabID = navtabTitle.data('navtab-id')
+    const navtabContent = $(`div[data-navtab-content='${navtabID}']`)
+
+    if (navtabContent.length === 0) {
+      console.err(`No navtab content found for navtab=${navtabID}`)
+      return
+    }
+
+    navtabTitle.siblings().removeClass('active')
+    navtabTitle.addClass('active')
+    navtabContent.siblings().css('display', 'none')
+    navtabContent.css('display', 'block')
+  })
+  // set first navtab as active
+  $('.navtabs').each(function (index, navtabs) {
+    const navtabsTabs = $(navtabs).find('div[data-navtab-id]')
+    navtabsTabs.first().addClass('active')
+    $(`div[data-navtab-content='${navtabsTabs.first().data('navtab-id')}']`).css('display', 'block')
+  })
 })
