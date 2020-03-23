@@ -59,23 +59,23 @@ scraper to test out config changes.
 
 ## Generating the Plugin Development Kit documentation
 
-- Have a local clone of Kong
-- Install Luarocks (comes with Kong)
+- Have a local clone of Kong.
+- Install Luarocks (comes with Kong).
 - Install `ldoc` using Luarocks: `luarocks install ldoc 1.4.6`
-- In the Kong repository, check out the desired branch/tag/release
+- In the Kong repository, check out the desired branch/tag/release.
 - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp pdk-docs`
 - This command will attempt to:
   * Obtain an updated list of modules from your local PDK and put it inside
-    your nav file
+    your nav file.
   * Generate documentation for all the modules in your PDK (where possible) and
-    put in a folder inside your version docs
+    put in a folder inside your version docs.
 
 ## Generating the Admin API, CLI and Configuration Documentation
 
-- Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them)
-- Several Lua rocks are needed. The easiest way to get all of them is to execute `make dev` in the Kong folder
-- Have a local clone of Kong
-- In the Kong repository, check out the desired branch/tag/release
+- Make sure that the `resty` and `luajit` executables are in your `$PATH` (installing kong should install them).
+- Several Lua rocks are needed. The easiest way to get them all is to execute `make dev` in the Kong folder
+- Have a local clone of Kong.
+- In the Kong repository, check out the desired branch/tag/release.
 - To generate the Admin API docs:
   - Run: `KONG_PATH=path/to/your/kong/folder KONG_VERSION=0.14.x gulp admin-api-docs`
   - This command will attempt to:
