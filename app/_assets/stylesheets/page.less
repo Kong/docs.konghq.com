@@ -1,5 +1,11 @@
 .page {
   &.enterprise {
+    .container {
+      @media screen and (max-width: 1600px) {
+        width: 99%;
+      }
+    }
+
     .page-header {
       margin-top: 55px;
       padding-top: 40px;
@@ -95,6 +101,18 @@
           padding-left: 75px;
           padding-right: 75px;
         }
+
+        @media screen and (max-width: 1080px) {
+          padding-right: 0;
+
+          .page-content {
+            padding: 0 32px;
+
+            .content {
+              padding-top: 32px;
+            }
+          }
+        }
       }
 
       > .container {
@@ -108,6 +126,8 @@
       }
 
       .page-content {
+        padding-left: 32px;
+
         .content {
           padding-top: 32px;
         }
@@ -299,6 +319,8 @@
   display: none;
   margin-left: auto;
   font-size: 14px;
+  cursor: pointer;
+
   @media (max-width: 800px) {
     display: flex;
   }
