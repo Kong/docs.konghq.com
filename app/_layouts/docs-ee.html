@@ -109,6 +109,9 @@ id: documentation
       </div>
     </div>
   </div>
+  {% if is_homepage == false and page.feedback != false %}
+  {% include feedback-widget.html %}
+  {% endif %}
 </div>
 <style>
   @media (max-width: 768px) {
