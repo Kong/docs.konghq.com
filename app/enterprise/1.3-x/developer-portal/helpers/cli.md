@@ -70,10 +70,10 @@ Available environment variables include:
   - `KONG_ADMIN_URL` Kong Admin URL the CLI should target for uploading files
   - `KONG_ADMIN_TOKEN` Kong Admin Token token used to authenticate with the Kong Admin API
 
-[clipanion]: https://github.com/arcanis/clipanion	```
-[sync-script]: https://github.com/Kong/kong-portal-templates/blob/81382f2c7887cf57bb040a6af5ca716b83cc74f3/bin/sync.js	KONG_ADMIN_URL=http://new-admin-url.com portal deploy default
-[cli-support]: https://github.com/Kong/kong-portal-cli/issues/new	```
+[clipanion]: https://github.com/arcanis/clipanion
+[sync-script]: https://github.com/Kong/kong-portal-templates/blob/81382f2c7887cf57bb040a6af5ca716b83cc74f3/bin/sync.js
+[cli-support]: https://github.com/Kong/kong-portal-cli/issues/new
 [cli-license]: https://github.com/Kong/kong-portal-cli/blob/master/LICENSE	
-[cli-contributors]: (https://github.com/Kong/kong-portal-cli/contributors)	Environment variables are useful for scripting as well as temporarily overriding particular settings.
+[cli-contributors]: (https://github.com/Kong/kong-portal-cli/contributors)
 [kong-support]: https://support.konghq.com/support/s/	
 [templates]: https://github.com/Kong/kong-portal-templates
