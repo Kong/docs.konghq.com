@@ -3,6 +3,18 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.5
+**Release Date:** 2020/04/07
+
+### Features
+
+### Kong Gateway
+
+**Kong Enterprise 1.5** inherits the following changes from **Kong Gateway 2.0**:
+
+* The `\certificates\` endpoint now has an optional `passphrase` attribute, which lets you load an encrypted private key into Kong. 
+
+
 ## 1.3.0.2
 **Release Date:** 2020/02/20
 
