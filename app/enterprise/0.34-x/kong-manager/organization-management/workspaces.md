@@ -54,7 +54,7 @@ chapter: 5
     the sidebar is collapsed, hover over the security badge icon at the bottom and
     click the "Admins" link.
 
-        ![Admins Hover Over](https://konghq.com/wp-content/uploads/2018/11/admins-section.png)
+    ![Admins Hover Over](https://konghq.com/wp-content/uploads/2018/11/admins-section.png)
 
 6.  The "Admins" page displays a list of current Admins and Roles. Four default Roles specific to the new Workspace are already visible, and new Roles specific to the Workspace can be assigned from this page.
 

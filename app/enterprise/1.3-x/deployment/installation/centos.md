@@ -229,16 +229,10 @@ $ sudo cp license.json /etc/kong/license.json
 
 Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
 
-1. Create an environment variable with the desired **Super Admin** password and keep password in a safe place:
+1. Create an environment variable with the desired **Super Admin** password and store the password in a safe place. Run migrations to prepare the Kong database:
 
     ```bash
-    $ export KONG_PASSWORD=<password-only-you-know>
-    ```
-
-2. Run migrations to prepare the Kong database.
-
-    ```bash
-    $ sudo /usr/local/kong migrations bootstrap -c /etc/kong/kong.conf
+    $ sudo KONG_PASSWORD=<password-only-you-know> /usr/local/bin/kong migrations bootstrap -c /etc/kong/kong.conf
     ```
 
 3. Start Kong Enterprise:

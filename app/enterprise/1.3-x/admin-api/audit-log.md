@@ -72,7 +72,7 @@ X-Kong-Admin-Request-ID: ZuUfPfnxNn7D2OTU6Xi4zCnQkavzMUNM
 }
 ```
 
-The above interaction with the Admin API would generate a correlating entry in 
+The above interaction with the Admin API generates a correlating entry in 
 the audit log table. Querying the audit log via Admin API returns the details of the interaction above: 
 
 ```
@@ -190,6 +190,19 @@ The following request paths generate an audit log entry in the database:
 
 [Back to TOC](#table-of-contents)
 
+### Audit Log Retention
+
+Request audit records are kept in the database for a duration defined by the
+`audit_log_record_ttl` [Kong configuration property](https://docs.konghq.com/enterprise/1.3-x/property-reference/#audit_log_record_ttl).
+Records in the database older than `audit_log_record_ttl` seconds are automatically
+purged. In Cassandra databases, record deletion is handled automatically via the
+Cassandra TTL mechanism. In Postgres databases, records are purged via the stored
+procedure that is executed on insert into the record database. Thus, request
+audit records may exist in the database longer than the configured TTL, if no new
+records are inserted to the audit table following the expiration timestamp.
+
+[Back to TOC](#table-of-contents)
+
 ## Database Audits
 
 ### Generating and Viewing Audit Logs
@@ -301,6 +314,19 @@ for certain database tables. This is configurable via the
 audit_log_ignore_tables = consumers 
 # do not generate database audit logs for changes to the consumers table
 ```
+
+[Back to TOC](#table-of-contents)
+
+### Audit Log Retention
+
+Database audit records are kept in the database for a duration defined by the
+`audit_log_record_ttl` [Kong configuration property](https://docs.konghq.com/enterprise/1.3-x/property-reference/#audit_log_record_ttl).
+Records in the database older than `audit_log_record_ttl` seconds are automatically
+purged. In Cassandra databases, record deletion is handled automatically via the
+Cassandra TTL mechanism. In Postgres databases, records are purged via the stored
+procedure that is executed on insert into the record database. Thus, database
+audit records may exist in the database longer than the configured TTL, if no new
+records are inserted to the audit table following the expiration timestamp.
 
 [Back to TOC](#table-of-contents)
 
