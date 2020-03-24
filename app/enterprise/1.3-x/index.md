@@ -74,15 +74,15 @@ skip_read_time: true
 <div class="knowledge-base-section">
     <div class="knowledge-base-section-title">Visit our other Knowledge base</div>
     <div class="knowledge-base-links">
-        <a class="knowledge-base-link">
-            <div class="knowledge-base-link-title">Documentation</div>
+        <a class="knowledge-base-link" href="https://support.konghq.com/" target="_blank">
+            <div class="knowledge-base-link-title">Enterprise Support</div>
             <img src="/assets/images/icons/documentation/icn-documentation.svg" />
         </a>
-        <a class="knowledge-base-link">
+        <a class="knowledge-base-link" href="https://discuss.konghq.com/" target="_blank">
             <div class="knowledge-base-link-title">Community</div>
             <img src="/assets/images/icons/documentation/icn-kongnation-md.svg" />
         </a>
-        <a class="knowledge-base-link">
+        <a class="knowledge-base-link" href="https://learn.konghq.com/account/login/" target="_blank">
             <div class="knowledge-base-link-title">Kong University</div>
             <img src="/assets/images/icons/documentation/icn-learning.svg" />
         </a>
