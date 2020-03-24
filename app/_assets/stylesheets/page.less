@@ -43,26 +43,13 @@
       padding-left: 348px;
 
       .page-content {
-        padding-left: 32px;
-        border-left: 1px solid @gray;
-      }
-
-      @media (max-width: 800px) {
-        padding-left: 0;
-        padding-right: 0;
-
-        .page-content {
-          border-left: none;
-        }
-      }
-    }
-
-    .page-content-container {
-      padding-left: 348px;
-
-      .page-content {
         padding-left: 75px;
         border-left: 1px solid @gray;
+
+        .welcome-text {
+          margin-bottom: 32px;
+          font-size: 16px;
+        }
       }
 
       @media (max-width: 800px) {
@@ -80,12 +67,12 @@
         background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #effeff);
         padding-bottom: 24px;
 
-        .title-version-search-container {
-          justify-content: space-between;
-        }
-
         .page-header-title {
           margin-bottom: 8px;
+        }
+
+        .title-version-search-container {
+          justify-content: space-between;
         }
 
         .search-version-row {
