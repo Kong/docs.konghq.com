@@ -45,11 +45,16 @@ module Jekyll
         super
 
         navtabs_id = SecureRandom.uuid
-        template = ERB.new <<-EOF
+        template = ERB.new get_template
+        template.result(binding)
+      end
+
+      def get_template
+        <<-EOF
 <div class="navtabs <%= @class %>">
   <div class="navtab-titles">
   <% environment['navtabs'].each_with_index do |(title, value), index| %>
-  	<div data-navtab-id="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-title">
+    <div data-navtab-id="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-title">
       <%= title %>
     </div>
   <% end %>
@@ -63,7 +68,6 @@ module Jekyll
   </div>
 </div>
         EOF
-        template.result(binding)
       end
     end
 
