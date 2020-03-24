@@ -718,22 +718,6 @@ Generic Styling for Desktop
         padding-right: 25px;
       }
 
-      &.docs-grid-install {
-        text-align: center;
-        border-bottom: none !important;
-
-        h3 {
-          text-align: center
-        }
-
-        .install-icon {
-          width: 150px;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-
       // &:nth-child(even) {
       //   padding-left: 25px;
       // }
@@ -742,6 +726,65 @@ Generic Styling for Desktop
         height: 200px;
         border-bottom: none;
       }
+    }
+  }
+
+  .docs-grid-install {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+
+    .docs-grid-install-block {
+      border: 1px solid #9dc6e3;
+      border-radius: 4px;
+      text-align: center;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      padding: 16px;
+      text-decoration: none;
+
+      .install-icon {
+        height: 50px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+
+      .install-text {
+        font-size: 14px;
+        line-height: 20px;
+        color: rgba(0, 0, 0, .85);
+        font-weight: 900;
+        transition: .2s ease-in-out;
+      }
+
+      &:hover {
+        .install-text {
+          color: @blue;
+        }
+      }
+    }
+
+    @media (max-width: 1360px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));;
     }
   }
 
