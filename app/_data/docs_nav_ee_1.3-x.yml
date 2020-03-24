@@ -232,7 +232,35 @@
         - text: CLI
           url: /developer-portal/helpers/cli
 
-- title: APIs And Plugins
+- title: Kong for Kubernetes Enterprise
+  icon: /assets/images/icons/documentation/icn-manager-color.svg
+  url: /kong-for-kubernetes/
+  items:
+    - text: Overview
+      url:  /kong-for-kubernetes
+    - text: Installation
+      url: /kong-for-kubernetes/install
+    - text: Using Kong for Kubernetes
+      url: /kong-for-kubernetes/using-kong-for-kubernetes
+    - text: Changelog
+      url: /kong-for-kubernetes/changelog
+
+- title: Kong Brain & Kong Immunity
+  url: /brain-immunity/install-configure
+  items:
+    - text: Installation and Configuration
+      url: /brain-immunity/install-configure
+    - text: Alerts
+      url: /brain-immunity/alerts
+    - text: Auto-Generated API Documentation
+      url: /brain-immunity/auto-generated-specs
+    - text: Service Map
+      url: /brain-immunity/service-map
+    - text: Troubleshooting
+      url: /brain-immunity/troubleshooting
+
+
+- title: Plugins
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
   items:
     - text: OpenID Connect

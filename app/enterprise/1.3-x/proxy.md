@@ -479,7 +479,7 @@ defined URIs, in this order:
 Take care to avoid writing regex rules that are overly broad and may consume
 traffic intended for a prefix rule. Adding a rule with the path `/version/.*` to
 the ruleset above would likely consume some traffic intended for the `/version`
-prefix path. If you see unexpected behavior, sending `X-Kong-Debug: 1` in your
+prefix path. If you see unexpected behavior, sending `Kong-Debug: 1` in your
 request headers will indicate the matched Route ID in the response headers for
 troubleshooting purposes.
 
