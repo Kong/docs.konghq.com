@@ -40,22 +40,22 @@ Now from root folder of the templates repo you can run:
 ```portal <command> <workspace>```
 
 Where `<command>` is one of:
- - `config`    Output or change configuration of the portal on the given
+ - `config`    Output or change configuration of the portal on the given workspace.
  - `deploy`    Deploy changes made locally under the given workspace upstream.
- - `disable`   Enable the portal on the given workspace.
+ - `disable`   Disable the portal on the given workspace.
  - `enable`    Enable the portal on the given workspace.
  - `fetch`     Fetches content and themes from the given workspace.
  - `serve`     Run the portal of a given workspace locally.
- - `wipe`      Deletes all content and themes from upstream workspace
+ - `wipe`      Deletes all content and themes from upstream workspace.
 
  Where `<workspace>` indicates the directory/workspace pairing you would like to operate on.
 
 ### For `deploy`
-- Add `-W` or `--watch` to make changes reactive
-- Add `-P` or `--preserve` to avoid deleting files upstream that you do not have locally
+- Add `-W` or `--watch` to make changes reactive.
+- Add `-P` or `--preserve` to avoid deleting files upstream that you do not have locally.
 
 ### For `fetch`
-- Add `-K` or `--keep-encode` to make keep binary assets as base64 encoded strings locally
+- Add `-K` or `--keep-encode` to keep binary assets as base64 encoded strings locally.
 
 ### Using Environment Variables
 You can override config values set in `cli.conf.yaml` via environment variables.  If you wanted to override the kong admin url for example, you can run:
@@ -67,8 +67,8 @@ KONG_ADMIN_URL=http://new-admin-url.com portal deploy default
 Environment variables are useful for scripting as well as temporarily overriding particular settings.
 
 Available environment variables include:
-  - `KONG_ADMIN_URL` Kong Admin URL the CLI should target for uploading files
-  - `KONG_ADMIN_TOKEN` Kong Admin Token token used to authenticate with the Kong Admin API
+  - `KONG_ADMIN_URL` Kong Admin URL the CLI should target for uploading files.
+  - `KONG_ADMIN_TOKEN` Kong Admin Token token used to authenticate with the Kong Admin API.
 
 [clipanion]: https://github.com/arcanis/clipanion
 [sync-script]: https://github.com/Kong/kong-portal-templates/blob/81382f2c7887cf57bb040a6af5ca716b83cc74f3/bin/sync.js
