@@ -1,7 +1,7 @@
 ---
 name: Request Transformer
 publisher: Kong Inc.
-version: 1.0.0
+version: 1.2.5
 
 desc: Modify the request before hitting the upstream server
 description: |
@@ -117,6 +117,8 @@ params:
       description: List of paramname:value pairs. If the content-type is one the following [`application/json`, `application/x-www-form-urlencoded`], add a new parameter with the given value if the parameter is not present, otherwise if it is already present, the two values (old and new) will be aggregated in an array.
   extra: |
     Note: if the value contains a `,` then the comma-separated format for lists cannot be used. The array notation must be used instead.
+
+    Note: the `X-Forwarded-*` are non-standard header fields written by Nginx to inform the upstream about client details and can't be overwritten by this plugin. If overwriting these header fields is needed, please see [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
 
 ---
 
