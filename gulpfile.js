@@ -43,8 +43,10 @@ var dest = {
   js: paths.dist + 'assets/app.js'
 }
 
-var reload = browserSync.reload
-
+var reload = done => {
+  browserSync.reload()
+  done()
+}
 
 /* Functions
 --------------------------------------- */

@@ -304,6 +304,12 @@ $(function () {
     if ($(window).width() <= 800) {
       $('.sidebar-toggle').click(function () {
         $('.page-navigation').addClass('sidebar-open')
+        const docsSidebar = $('.docs-sidebar')
+        if (docsSidebar.hasClass('sidebar-open')) {
+          docsSidebar.removeClass('sidebar-open')
+        } else {
+          docsSidebar.addClass('sidebar-open')
+        }
       })
       $('.page-navigation > .close-sidebar').click(function () {
         $('.page-navigation').removeClass('sidebar-open')
@@ -429,4 +435,90 @@ $(function () {
       }
     })
   }
+
+  // watch scroll and update active scroll-to anchor links
+  $window.scroll(() => {
+    const anchors = $('a.header-link')
+    const scrollToLinks = $('a.scroll-to')
+    if (!anchors.length || !scrollToLinks.length) {
+      return
+    }
+
+    let activeSet = false
+    scrollToLinks.removeClass('active')
+    $(anchors.get().reverse()).each((index, element) => {
+      const $element = $(element)
+
+      // window top + header section
+      if ((window.scrollY + NAV_HEIGHT + 80) >= $element.offset().top) {
+        $(`a.scroll-to[href$="${$element.attr('href')}"]`).addClass('active')
+        activeSet = true
+        return false
+      }
+    })
+
+    if (!activeSet) {
+      scrollToLinks.first().addClass('active')
+    }
+  })
+
+  // navtabs
+  const navtabs = $('div[data-navtab-id]')
+  navtabs.click(function () {
+    const navtabTitle = $(this)
+    const navtabID = navtabTitle.data('navtab-id')
+    const navtabContent = $(`div[data-navtab-content='${navtabID}']`)
+
+    if (navtabContent.length === 0) {
+      console.err(`No navtab content found for navtab=${navtabID}`)
+      return
+    }
+
+    navtabTitle.siblings().removeClass('active')
+    navtabTitle.addClass('active')
+    navtabContent.siblings().css('display', 'none')
+    navtabContent.css('display', 'block')
+  })
+  // set first navtab as active
+  $('.navtabs').each(function (index, navtabs) {
+    const navtabsTabs = $(navtabs).find('div[data-navtab-id]')
+    navtabsTabs.first().addClass('active')
+    $(`div[data-navtab-content='${navtabsTabs.first().data('navtab-id')}']`).css('display', 'block')
+  })
+
+  // feedback widget
+  function sendFeedback (result, comment = '') {
+    $.ajax({
+      type: 'POST',
+      url: 'https://script.google.com/macros/s/AKfycbzA9EgTcX2aEcfHoChlTNA-MKX75DAOt4gtwx9WMcuMBNHHAQ4/exec',
+      data: JSON.stringify([result, comment, window.location.pathname])
+    })
+
+    $('.feedback-thankyou').css('visibility', 'visible')
+    setTimeout(() => {
+      $('#feedback-widget-checkbox').prop('checked', false)
+    }, 2000)
+  }
+
+  $('#feedback-comment-button-back').click(function () {
+    $('.feedback-options').css('visibility', 'visible')
+    $('.feedback-comment').css('visibility', 'hidden')
+  })
+
+  $('#feedback-comment-button-submit').click(function () {
+    $('.feedback-comment').css('visibility', 'hidden')
+    sendFeedback('no', $('#feedback-comment-text').val())
+  })
+
+  $('.feedback-options-button').click(function () {
+    const button = $(this)
+    const result = button.data('feedback-result')
+
+    $('.feedback-options').css('visibility', 'hidden')
+    if (result === 'yes') {
+      sendFeedback('yes')
+    } else {
+      $('.feedback-comment').css('visibility', 'visible')
+    }
+  })
 })

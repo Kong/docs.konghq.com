@@ -3,29 +3,48 @@
   margin-top: -15px;
   margin-bottom: 6rem;
   border-bottom: 1px solid @black-10;
+
   a {
     padding: 0 10px 16px;
     font-size: 16px;
     color: @black-70;
+
     &.active {
       color: @blue;
       border-bottom: 2px solid @blue;
     }
+
     &:hover {
       border-bottom: 2px solid @black-40;
     }
+
     &:first-child {
       padding-left: 0;
     }
   }
+
   & ~ .page-header-title h1 {
     color: @navy-darker;
+  }
+
+  &.enterprise {
+    margin-bottom: 32px;
+
+    @media (max-width: 1100px) {
+      margin-bottom: 56px;
+    }
   }
 }
 
 .edit-this-page {
   position: absolute;
   right: 0;
+
+  &.enterprise {
+    a {
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
 
   @media (max-width: 1100px) {
     top: 135px;
@@ -99,6 +118,42 @@
       font-weight: 200;
     }
   }
+
+  &.enterprise {
+    .docs-grid {
+      .docs-grid-section-title {
+        margin: 0;
+        float: left;
+        width: 100%;
+        font-size: 28px;
+        font-weight: lighter;
+        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: rgba(0, 0, 0, 0.7);
+
+        &:not(:first-of-type) {
+          margin-top: 32px;
+        }
+      }
+
+      a {
+        color: @blue;
+      }
+
+      .docs-grid-block {
+        padding-top: 32px;
+        padding-right: 32px;
+        height: 220px;
+
+        &:last-of-type {
+          border-bottom: 1px solid #eee;
+        }
+
+        h3 {
+          font-size: 24px !important;
+        }
+      }
+    }
+  }
 }
 
 #getkong-algolia-search {
@@ -107,24 +162,52 @@
     height: 40px;
     margin-bottom: 0;
   }
+
   float: right;
   margin-left: 10px;
   /* auto complete */
+
   .algolia-autocomplete {
     width: 220px;
   }
+
   /* Bottom border of each suggestion */
+
   .algolia-docsearch-suggestion {
     border-bottom-color: @blue-light;
   }
+
   /* Highlighted search terms */
+
   .algolia-docsearch-suggestion--highlight {
     color: @blue-light;
   }
+
   /* Currently selected suggestion */
+
   .aa-cursor .algolia-docsearch-suggestion--content {
     color: @blue-light;
   }
+
+  &.enterprise {
+    margin-left: 0;
+    float: none;
+
+    .algolia-autocomplete {
+      width: 450px;
+
+      @media (max-width: @navbar-collapse-point) {
+        width: 250px;
+      }
+    }
+
+    &.small {
+      .algolia-autocomplete {
+        width: 150px;
+      }
+    }
+  }
+
   @media (max-width: @navbar-collapse-point) {
     float: initial;
     display: inline-block;
@@ -141,13 +224,181 @@
 }
 
 .search-input {
-  i {
+  i,
+  .icon {
     position: absolute;
     z-index: 1;
     padding: 11px 0 0 12px;
   }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    padding-top: 13px;
+  }
+
   input {
     width: 100%;
     padding-left: 34px;
+  }
+
+  &.enterprise {
+    input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+.search-version-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.docs-sidebar {
+  float: left;
+  width: 348px;
+  position: sticky;
+  top: 56px;
+  height: ~"calc(100vh - 56px)";
+  overflow-y: auto;
+
+  ul.items {
+    margin: 0;
+    padding: 16px 0;
+
+    li {
+      list-style: none;
+      margin: 0;
+
+      ul {
+        margin: 0
+      }
+
+      a {
+        font-size: 16px;
+        line-height: 34px;
+        color: rgba(0, 0, 0, 0.45);
+
+        &.active {
+          color: #4c4c4c;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    padding: 0;
+    height: ~"calc(100% - 56px)";
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, .15);
+    border: 0 none;
+    background: #fff;
+    overflow-y: auto;
+    z-index: 100;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transition: all 300ms ease-in-out;
+
+    &.sidebar-open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.knowledge-base-section {
+  margin-top: 32px;
+
+  .knowledge-base-section-title {
+    text-align: center;
+    font-size: 28px;
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: lighter;
+  }
+
+  .knowledge-base-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+
+    .knowledge-base-link {
+      margin: 0 50px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+
+      .knowledge-base-link-title {
+        text-align: center;
+        color: @blue;
+        font-size: 16px;
+        font-weight: 600;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+
+      img {
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      flex-direction: column;
+    }
+  }
+}
+
+.docs-toc {
+  float: right;
+  width: 300px;
+  padding: 32px 16px;
+  position: sticky;
+  top: 56px;
+  height: ~"calc(100vh - 120px)";
+  overflow-y: auto;
+
+  .docs-toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0;
+
+      a {
+        img {
+          display: none;
+        }
+
+        font-size: 16px;
+        line-height: 33px;
+        color: rgba(0, 0, 0, 0.8);
+        opacity: 0.6;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &.active {
+          font-weight: 600;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1080px) {
+    display: none;
   }
 }

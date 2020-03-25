@@ -1,0 +1,142 @@
+---
+layout: default
+sitemap: true
+id: documentation
+---
+
+{% if page.url == "/enterprise/" %}
+{% assign is_homepage = true %}
+{% else %}
+{% assign is_homepage = false %}
+{% endif %}
+
+<div class="page enterprise {{ page.class }} {% if is_homepage %}homepage{% endif %}">
+  <header class="page-header">
+    {% if is_homepage %}
+    <div class="page-header-bg">
+      <img class="page-header-bg-image-left" src="/assets/images/docs/bg-left.png" alt="left-bg-image">
+      <img class="page-header-bg-image-right" src="/assets/images/docs/bg-right.png" alt="right-bg-image">
+    </div>
+    {% endif %}
+    <div class="container">
+      <div class="edit-this-page enterprise">
+        <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+          Edit this Page
+        </a>
+      </div>
+      <nav class="docs-navigation enterprise">
+        <a href="/">Kong</a>
+        <a href="/enterprise" class="active">Kong Enterprise</a>
+        <a href="/studio">Kong Studio</a>
+        <span class="sidebar-toggle">Open Sidebar</span>
+      </nav>
+
+      <div class="title-version-search-container">
+        <div class="page-header-title">
+          <h1>{{page.title}}</h1>
+        </div>
+        <div class="search-version-row">
+          <div class="versions-dropdown dropdown no-right-border">
+            <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+              Version {{page.kong_version}}
+              {% if page.kong_version == "1.3-x" %}(2020){% endif %}
+              {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+              {% for ver in page.kong_versions reversed %}
+              <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+                <a href="/enterprise/{{ver.release}}" {% if ver.release==page.kong_version %} class="active" {% endif %}>
+                  {{ver.release}}
+                  {% if ver.release == "1.3-x" %}(2020){% endif %}
+                  {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="dropdown" id="searchBar">
+            <div id="getkong-algolia-search" class="search-input enterprise {% unless is_homepage %}small{% endunless %}">
+              <img class="icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
+              <input type="text" placeholder="Type to search {% if is_homepage %}documentation...{% endif %}" id="getkong-algolia-search-input" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    {% include docs-sidebar.html %}
+
+    {% if page.toc == true or page.toc != false and filename != "index.md" and is_homepage == false %}
+    <aside class="docs-toc">
+      <div class="docs-toc-title">On this page</div>
+      {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
+    </aside>
+    {% endif %}
+
+    <div class="page-content-container enterprise" id="documentation">
+      <div class="page-content">
+        <div class="content show-anchor-links">
+          {% if page.kong_version != page.kong_latest.release and page.has_version %}
+          <div class="alert alert-warning">
+            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong. Go <a href="/enterprise/latest">here</a>
+            to browse the documentation for the latest version.
+          </div>
+          {% elsif is_homepage == true %}
+          <div class="alert alert-ee condensed margin-bigger">
+            <div class="alert-body">
+              <div class="tag green">NEW</div>
+              <p>Kong Enterprise {{page.kong_version}} released! We added a ton of <a href="/enterprise/{{page.kong_version}}/whats-new">New Features</a> and updated docs!</p>
+            </div>
+          </div>
+          <div class="welcome-text">Welcome to Kong Enterprise Documentation!<br/>Whether you're just getting started or a Kong expert you can find everything you need here.</div>
+          {% endif %}
+
+          {% unless page.skip_read_time == true or page.path contains '/1.3-x/admin-api/' or page.path contains '/1.3-x/pdk/' %}
+          {% include read_time.html %}
+          {% endunless %}
+
+          {% assign filename = page.path | split: '/' | last %}
+
+          {{ content }}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if is_homepage == false and page.feedback != false %}
+  {% include feedback-widget.html %}
+  {% endif %}
+</div>
+<style>
+  @media (max-width: 768px) {
+    .algolia-docsearch-suggestion--subcategory-column{
+      display: none !important;
+    }
+  }
+</style>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+<script type="text/javascript">
+  docsearch({
+    appId: 'T5JKD83LWT',
+    apiKey: '1390283021f26e36117242934deb8d9d',
+    indexName: 'prod_EE',
+    inputSelector: '#getkong-algolia-search-input',
+    algoliaOptions: {
+      hitsPerPage: 5,
+      'facetFilters': ["version: {{page.kong_version}}"]
+    },
+    // Override selected event to allow for local environment navigation
+    handleSelected: function (input, event, suggestion) {
+      input.setVal('');
+      window.location.href = window.location.protocol + "//" + window.location.host + suggestion.url.split(
+        "docs.konghq.com")[1]
+    }
+    // ,debug: true // Set debug to true if you want to inspect the dropdown
+  });
+</script>
