@@ -23,7 +23,9 @@ response;
 the ongoing traffic being proxied and determines the health of targets based
 on their behavior responding requests.
 
-## Healthy and unhealthy targets
+## Healthy and unhealthy
+
+### Targets
 
 The objective of the health checks functionality is to dynamically mark
 targets as healthy or unhealthy, **for a given Kong node**. There is
@@ -121,6 +123,43 @@ Note:
    sure the DNS server always returns the full set of IP addresses for a name,
    and does not limit the response. *Failing to do so might lead to health
    checks not being executed.*
+
+### Upstreams
+
+Besides the individual targets having a notion of health, also the Upstreams
+have a notion of health. The health of an Upstream is determined based on the
+status of its Targets.
+
+The configuration of the Upstream health is done though the property
+`healthchecks.threshold`. This is a percentage of minimum available target
+"weight" (capacity) for the Upstream to be considered healthy.
+
+A simple example:
+
+- assume an Upstream configured with `healthchecks.threshold=55`
+- it has 5 targets, all with a `weight=100`, so total weight is 500 in the ring-balancer
+
+Now failures start to occur, and the circuit-breaker for the first target trips.
+It is now considered unhealthy. This now means that in the ring-balancer 20% of
+the capacity is unhealthy (100 weight out of 500). This is still above the
+threshold of 55, so the remaining targets will serve the traffic of the failed
+one.
+
+When a second failure occurs, another target fails, and another 100 weight is lost
+as unhealthy. Now the ring-balancer operates at 60% of its capacity, but still
+within the threshold configured.
+
+If we assume that the 2 failures occured due to a system overload, we can now assume
+that the remaining 60% will also not be able to cope with the full load and soon a third
+node will fail, reducing healthy capacity to 40%. At this point the Upstream health
+will be less than it's threshold, and it will now be marked as unhealthy itself.
+
+It will only return errors while in this unhealthy state. This allows the
+targets/services to recover from the cascading failure they were experiencing.
+
+Once the Targets start recovering, the health status of the ring-balancer will
+automatically be updated once the available capacity passes the threshold again.
+
 
 ## Types of health checks
 
