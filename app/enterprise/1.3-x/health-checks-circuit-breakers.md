@@ -157,7 +157,7 @@ will be less than its threshold, and it will be marked as unhealthy itself.
 Once it enters an unhealthy state, the Upstream will only return errors. This lets the
 targets/services recover from the cascading failure they were experiencing.
 
-Once the Targets start recovering, the health status of the ring-balancer will
+Once the Targets start recovering and the Upstream's available capacity passes the threshold again, the health status of the ring-balancer will
 automatically be updated.
 
 
