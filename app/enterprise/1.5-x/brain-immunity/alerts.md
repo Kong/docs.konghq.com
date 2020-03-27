@@ -16,6 +16,67 @@ Immunity is working behind the scenes to monitor all the traffic that comes thro
 For more information, see the [Kong Brain and Kong Immunity Installation and Configuration Guide](/enterprise/{{page.kong_version}}/brain-immunity/install-configure).
 
 
+### Immunity Generated Alerts
+
+Immunity evaluates your traffic every minute, and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic and consumer traffic.
+
+* `Endpoint alerts` are generated from traffic belonging to one specific endpoint, for example, `GET www.testendpoint/start`.
+* `Consumer alerts` are generated from any traffic in a Workspace belonging to a registered Kong consumer. This traffic is identified by the consumer id.
+
+
+There are six types of alerts that Immunity can create for either endpoints or consumers:
+* `value_type`: These alerts are triggered when incoming requests have a parameter value of a different type (such as `Int` instead of `Str`) than seen historically.
+* `unknown_parameter`: These alerts are triggered when requests include parameters not seen before.
+* `abnormal_value`: These alerts are triggered when requests contain values different from historical values seen paired with its parameter.
+* `latency_ms`: These alerts are triggered when incoming requests are significantly slower than historical records.
+* `traffic`: These alerts are triggered when Immunity sees a rise in 4XX and 5XX error codes for incoming traffic, or when the overall traffic experiences an abnormal spike or dip.
+* `statuscode`: These alerts are triggered when the proportion of 4XX or 5XX error codes is increasing, regardless of traffic volume.
+
+
+#### Retrieving Generated Alerts
+
+You can monitor the created alerts by running the following commands:
+
+```
+curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00"}' \
+ -H "Content-Type: application/json" \
+ -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts
+```
+
+Or, you can access the alerts via browser, passing in the end and start values as parameters like this:
+
+```
+http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts?start=2019-01-01 00:00:00&end=2019-01-02 00:00:00
+```
+
+The /alerts endpoint takes these parameters and you can mix and match them to your monitoring needs:
+* `start and end`: Returns only alerts generated between the values in start and end parameters passed.
+* `alert_type`: Returns only alerts of the alert_type in specified in alert_type parameter. This parameter does not accept lists of alert types. The value passed must be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
+* `url`: Returns only the alerts associated with the endpoint specified with url parameter.
+* `method`: Returns only alerts with the method specified. Must be one of these values: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, or TRACE. Full capitalization is necessary.
+* `workspace_name`: The name of the Kong workspace for the alerts you want returned.
+* `route_id`: The Kong Route id for the alerts you want returned
+* `service_id`: The Kong Service id for the alerts you want returned
+* `system_restored`: A true/false value indicated you only want returned alerts where the system_restored value is matching the boolean value passed into this parameter.
+* `severity`: One of "low", "medium", "high" which will restrict returned alerts of severities matching the value provided with this parameter.
+
+#### Alerts Object
+
+Two types of data are returned by the /alerts endpoint. The first is a list of the alerts generated, which are structured like this:
+* `id`: The alert_id of the alert.
+* `detected_at`: The time in which the generated alert was detected at. This time also correlates with the last time point in the data time series that generated this alert. For example, if the alert was generated on data from 1:00 pm to 1:01 pm, then the detected_at time would correspond with the most recent time point of 1:01 pm in the data used to make that alert.
+* `detected_at_unix`: The time from detected_at expressed in unix time.
+* `url`: The url who’s data generated this alert.
+* `alert_type`: the type of alert generated, will be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
+* `summary`: The summary of the alert generated, includes a description of the anomalous event for clarity.
+* `system_restored`: This parameter takes True or False as a value, and will return notifications where the anomalous event’s system_restored status matches the value passed in the parameter.
+* `severity`: The severity level of this alert, values within [low, medium, high].
+
+#### Alerts Metadata
+
+The second type of data returned is alerts metadata which describes the overall count of alerts and breaks down counts by alert type, severity, system_restored, and filtered_total.
+
+
 ### Immunity Model Training
 
 Immunity automatically starts training its models once it is up and running and receiving data. Immunity will create a unique model for every unique endpoint + method combination it sees in incoming traffic. For example, if you have an endpoint [www.test-website.com/buy](http://www.test-website.com/buy) and traffic comes in with both GET and POST requests for that endpoint, Immunity will create two models one for the endpoint + GET traffic and one for the endpoint + POST traffic.
@@ -131,63 +192,6 @@ If you would like to delete all the configurations you create, you can do so by 
 ```
 curl -X http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
 ```
-
-### Immunity Generated Alerts
-
-Immunity evaluates your traffic every minute, and creates an alert when an anomalous event is detected.
-
-#### Types of Generated Alerts
-
-Immunity is monitoring different types of data points in all traffic coming through Kong. Alerts generated will be based on these data points. Here are the alert types of violations Immunity is looking for:
-* `value_type`: These alerts are triggered when incoming requests have a value to a parameter of a different type (such as Int instead of Str) than seen historically.
-* `unknown_parameter`: These alerts are triggered when requests include parameters not seen before.
-* `abnormal_value`: These alerts are triggered when requests contain values abnormal to historical values seen paired with its parameter.
-* `latency_ms`: These alerts are triggered when incoming requests are significantly slower than historical records.
-* `traffic`: These alerts are triggered when Immunity sees a rise on 4XX and 5XX codes for incoming traffic, or when the overall traffic experiences an abnormal spike or dip.
-* `statuscode`: When the proportion of 4XX or 5XX codes is increasing, regardless of traffic volume
-
-#### Retrieving Generated Alerts
-
-You can monitor the created alerts by running the following commands:
-
-```
-curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00"}' \
- -H "Content-Type: application/json" \
- -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts
-```
-
-Or, you can access the alerts via browser, passing in the end and start values as parameters like this:
-
-```
-http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts?start=2019-01-01 00:00:00&end=2019-01-02 00:00:00
-```
-
-The /alerts endpoint takes these parameters and you can mix and match them to your monitoring needs:
-* `start and end`: Returns only alerts generated between the values in start and end parameters passed.
-* `alert_type`: Returns only alerts of the alert_type in specified in alert_type parameter. This parameter does not accept lists of alert types. The value passed must be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
-* `url`: Returns only the alerts associated with the endpoint specified with url parameter.
-* `method`: Returns only alerts with the method specified. Must be one of these values: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, or TRACE. Full capitalization is necessary.
-* `workspace_name`: The name of the Kong workspace for the alerts you want returned.
-* `route_id`: The Kong Route id for the alerts you want returned
-* `service_id`: The Kong Service id for the alerts you want returned
-* `system_restored`: A true/false value indicated you only want returned alerts where the system_restored value is matching the boolean value passed into this parameter.
-* `severity`: One of "low", "medium", "high" which will restrict returned alerts of severities matching the value provided with this parameter.
-
-#### Alerts Object
-
-Two types of data are returned by the /alerts endpoint. The first is a list of the alerts generated, which are structured like this:
-* `id`: The alert_id of the alert.
-* `detected_at`: The time in which the generated alert was detected at. This time also correlates with the last time point in the data time series that generated this alert. For example, if the alert was generated on data from 1:00 pm to 1:01 pm, then the detected_at time would correspond with the most recent time point of 1:01 pm in the data used to make that alert.
-* `detected_at_unix`: The time from detected_at expressed in unix time.
-* `url`: The url who’s data generated this alert.
-* `alert_type`: the type of alert generated, will be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
-* `summary`: The summary of the alert generated, includes a description of the anomalous event for clarity.
-* `system_restored`: This parameter takes True or False as a value, and will return notifications where the anomalous event’s system_restored status matches the value passed in the parameter.
-* `severity`: The severity level of this alert, values within [low, medium, high].
-
-#### Alerts Metadata
-
-The second type of data returned is alerts metadata which describes the overall count of alerts and breaks down counts by alert type, severity, system_restored, and filtered_total.
 
 ### Configure Alert Severity
 

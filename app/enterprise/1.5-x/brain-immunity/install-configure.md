@@ -75,7 +75,8 @@ The provided `docker-compose.yml` file has these variables set to defaults that 
 6. **SLACK_WEBHOOK_URL**: The url of the Slack channel that Immunity alert notifications should be sent to. This url will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
 
 
-##### Docker login
+##### Setting up Collector App via Docker-Compose
+###### Docker login
 To download the bintray you will first need to docker login to Bintray to the brain/immunity repo
 ```docker login -u BINTRAY_USERNAME -p BINTRAY_API_KEY kong-docker-kong-brain-immunity-base.bintray.io```
 
@@ -83,13 +84,13 @@ Also login to docker:
 ```docker login```
 Then follow the login steps when prompted.
 
-##### Bringing up Collector App with Redis and Db
+###### Bringing up Collector App with Redis and Db
 To bring up the full Collector app with it's own database and redis, run:
 ```
 KONG_HOST={KONG HOST URL} KONG_PORT={KONG PORT} KONG_MANAGER_PORT={KONG MANAGER PORT} KONG_MANAGER_URL={KONG MANAGER URL} docker-compose -f docker-compose.yml -f with-db.yml -f with-redis.yml up -d
 ```
 
-##### Bringing up Collector App alone
+###### Bringing up Collector App alone
 If you already have an outside database and would not like to bring up Postgres with the collector up, first make sure you have a collector table in the database
 ```psql -U user -c "CREATE DATABASE collector;"```
 
@@ -98,6 +99,9 @@ Then you can bring up collector with:
 ```
 SQLALCHEMY_DATABASE_URI=postgres://{POSTGRES-USER}:{POSTGRES-PASSWORD}@{POSTGRES HOST}:{POSTGRES POST}/collector CELERY_BROKER_URL={REDIS URI} docker-compose -f docker-compose.yml up -d
 ```
+
+##### Setting up Collector App via Helm
+There is a public helm chart for setting up Collector App and all its dependencies on Kubernetes.  Instructions for setup can be found on the public repo at: https://github.com/Kong/kong-collector-helm/blob/master/README.md
 
 #### Step 2. Set up the Collector Plugin and Kong GUI
 Enable Immunity/Brain GUI changes on Kong Manager by editing the kong.conf file to have:
