@@ -158,7 +158,7 @@ Once it enters an unhealthy state, the Upstream will only return errors. This le
 targets/services recover from the cascading failure they were experiencing.
 
 Once the Targets start recovering, the health status of the ring-balancer will
-automatically be updated once the available capacity passes the threshold again.
+automatically be updated.
 
 
 ## Types of health checks
