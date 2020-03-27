@@ -75,22 +75,26 @@ the algorithm performant, e.g., 2 weights of 17 and 31 would result in a structu
 with 527 entries, whereas weights 16 and 32 (or their smallest relative
 counterparts 1 and 2) would result in a structure with merely 3 entries,
 especially with a very small (or even 0) `ttl` value.
+
 - DNS is carried over UDP with a default limit of 512 Bytes. If there are many entries
-to be returned a DNS Server will respond with partial data and set a truncate flag, 
+to be returned, a DNS Server will respond with partial data and set a truncate flag, 
 indicating there are more entries unsent.
-DNS Clients, including Kongs, will then make a second request over TCP to retrieve the full 
+DNS clients, including Kong's, will then make a second request over TCP to retrieve the full 
 list of entries. 
+
 - Some nameservers by default do not respond with the truncate flag, but trim the response
 to be under 512 byte UDP size. 
-Consul is an example. Consul in its default configuration returns up to the first 
-three entries only and does not set the truncate flag to indicate there remaining entries unsent. 
-Consul includes an option to enable the truncate flag. Please refer to consul documentation
-for more information: https://www.consul.io/docs/agent/options.html#enable_truncate
-- If a name server deployed does not provide the trucate flag it is possible that the pool 
-of upstream instances will be loaded inconsistently, because the Kong node is effectively 
+   - Consul is an example. Consul, in its default configuration, returns up to the first 
+three entries only, and does not set the truncate flag to indicate there are remaining entries unsent. 
+Consul includes an option to enable the truncate flag. Please refer to [Consul documentation](https://www.consul.io/docs/agent/options.html#enable_truncate)
+for more information.
+
+- If a deployed nameserver does not provide the truncate flag, the pool 
+of upstream instances might be loaded inconsistently. The Kong node is effectively 
 unaware of some of the instances, due to the limited information provided by the nameserver. 
-To mitigate this use a different nameserver, use IP addresses instead of names, or make sure 
-you use enough Kong nodes to still have all upstream services being used.
+To mitigate this, use a different nameserver, use IP addresses instead of names, or make sure 
+you use enough Kong nodes to still keep all upstream services in use.
+
 - When the nameserver returns a `3 name error`, then that is a valid response
 for Kong. If this is unexpected, first validate the correct name is being
 queried for, and second check your nameserver configuration.
@@ -115,6 +119,7 @@ entities.
     service resides, eg. "192.168.100.12:80". Each target gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
+    
   - `upstream`: a 'virtual hostname' which can be used in a Route `host`
     field, e.g., an upstream named `weather.v2.service` would get all requests
     from a Service with `host=weather.v2.service`.
