@@ -141,7 +141,7 @@ Here is a simple example:
 
 When failures start to occur, the circuit-breaker for the first target trips.
 It is now considered unhealthy. This means that in the ring-balancer, 20% of
-the capacity is unhealthy (100 weight out of 500). This is still above the
+the capacity is now unhealthy (100 weight out of 500). This is still above the
 threshold of 55, so the remaining targets will serve the traffic of the failed
 one.
 
