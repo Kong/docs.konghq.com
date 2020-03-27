@@ -130,7 +130,7 @@ Along with health check functionality on individual targets, Upstreams also
 have a notion of health. The health of an Upstream is determined based on the
 status of its Targets.
 
-The configuration of the Upstream health is done though the property
+Configuration of the Upstream's health is done though the property
 `healthchecks.threshold`. This is a percentage of minimum available target
 "weight" (capacity) for the Upstream to be considered healthy.
 
