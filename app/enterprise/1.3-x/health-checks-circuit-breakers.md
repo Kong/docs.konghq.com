@@ -102,14 +102,16 @@ field is included in the [Admin API][addupstream] reference documentation.
                 "tcp_failures": 0,
                 "timeouts": 0
             }
-        }
+        },
+        "threshold": 0
     },
     "slots": 10
 }
 ```
 
-If all targets of an upstream are unhealthy, Kong will respond to requests
-to the upstream with `503 Service Unavailable`.
+If an upstream is unhealthy (the available capacity % is less than the configured
+threshold), Kong will respond to requests to the upstream with
+`503 Service Unavailable`.
 
 Note:
 
@@ -157,8 +159,8 @@ will be less than its threshold, and it will be marked as unhealthy itself.
 Once it enters an unhealthy state, the Upstream will only return errors. This lets the
 targets/services recover from the cascading failure they were experiencing.
 
-Once the Targets start recovering and the Upstream's available capacity passes the threshold again, the health status of the ring-balancer will
-automatically be updated.
+Once the Targets start recovering and the Upstream's available capacity passes the
+threshold again, the health status of the ring-balancer will automatically be updated.
 
 
 ## Types of health checks
