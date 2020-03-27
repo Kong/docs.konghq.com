@@ -147,7 +147,7 @@ one.
 
 When a second failure occurs, another target fails, and another 100 weight is lost
 as unhealthy. Now the ring-balancer operates at 60% of its capacity, but still
-within the threshold configured.
+within the configured threshold.
 
 If we assume that the 2 failures occured due to a system overload, we can now assume
 that the remaining 60% will also not be able to cope with the full load and soon a third
