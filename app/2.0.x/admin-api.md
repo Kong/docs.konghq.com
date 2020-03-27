@@ -559,17 +559,7 @@ of methods to secure the Admin API.
 
 ## Supported Content Types
 
-The Admin API accepts 2 content types on every endpoint:
-
-- **application/x-www-form-urlencoded**
-
-Simple enough for basic request bodies, you will probably use it most of the time.
-Note that when sending nested values, Kong expects nested objects to be referenced
-with dotted keys. Example:
-
-```
-config.limit=10&config.period=seconds
-```
+The Admin API accepts 3 content types on every endpoint:
 
 - **application/json**
 
@@ -585,7 +575,26 @@ a JSON representation of the data you want to send. Example:
 }
 ```
 
----
+
+- **application/x-www-form-urlencoded**
+
+Simple enough for basic request bodies, you will probably use it most of the time.
+Note that when sending nested values, Kong expects nested objects to be referenced
+with dotted keys. Example:
+
+```
+config.limit=10&config.period=seconds
+```
+
+
+- **multipart/form-data**
+
+Similar to url-encoded, you will use dotted keys to reference nested objects.
+
+```
+    -F "config.limit=10"
+    -F "config.period=seconds" 
+```
 
 ## Information Routes
 
