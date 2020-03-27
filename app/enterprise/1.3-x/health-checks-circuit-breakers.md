@@ -152,7 +152,7 @@ within the configured threshold.
 If we assume that the 2 failures occured due to a system overload, we can now assume
 that the remaining 60% will also not be able to cope with the full load and soon a third
 node will fail, reducing healthy capacity to 40%. At this point, the Upstream health
-will be less than it's threshold, and it will now be marked as unhealthy itself.
+will be less than its threshold, and it will be marked as unhealthy itself.
 
 It will only return errors while in this unhealthy state. This allows the
 targets/services to recover from the cascading failure they were experiencing.
