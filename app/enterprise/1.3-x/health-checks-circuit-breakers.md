@@ -139,7 +139,7 @@ Here is a simple example:
 - Assume an Upstream configured with `healthchecks.threshold=55`.
 - It has 5 targets, each with `weight=100`, so the total weight in the ring-balancer is 500.
 
-Now failures start to occur, and the circuit-breaker for the first target trips.
+When failures start to occur, the circuit-breaker for the first target trips.
 It is now considered unhealthy. This now means that in the ring-balancer 20% of
 the capacity is unhealthy (100 weight out of 500). This is still above the
 threshold of 55, so the remaining targets will serve the traffic of the failed
