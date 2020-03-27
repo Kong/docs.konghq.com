@@ -559,17 +559,7 @@ of methods to secure the Admin API.
 
 ## Supported Content Types
 
-The Admin API accepts 2 content types on every endpoint:
-
-- **application/x-www-form-urlencoded**
-
-Simple enough for basic request bodies, you will probably use it most of the time.
-Note that when sending nested values, Kong expects nested objects to be referenced
-with dotted keys. Example:
-
-```
-config.limit=10&config.period=seconds
-```
+The Admin API accepts 3 content types on every endpoint:
 
 - **application/json**
 
@@ -583,6 +573,29 @@ a JSON representation of the data you want to send. Example:
         "period": "seconds"
     }
 }
+```
+
+
+- **application/x-www-form-urlencoded**
+
+Simple enough for basic request bodies, you will probably use it most of the time.
+Note that when sending nested values, Kong expects nested objects to be referenced
+with dotted keys. Example:
+
+```
+config.limit=10&config.period=seconds
+```
+
+
+- **multipart/form-data**
+
+Similar to url-encoded, you will use dotted keys to reference nested objects.
+Here is an example of sending a Lua file to the pre-function Kong plugin.
+
+```
+curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
+     -F "name=pre-function" \
+     -F "config.functions=@custom-auth.lua"
 ```
 
 ---
