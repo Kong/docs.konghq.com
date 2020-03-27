@@ -22,19 +22,39 @@ Refer to the the plugin via its filename (without the `.so` suffix).
 To write your own Go plugins:
 
 * A Kong development environment as usual.
-* A Go development environment.
-* A `go-pluginserver` executable built with the same compiler and libraries.  The most direct way is to get it from source with `go get github.com/Kong/go-pluginserver`
-* Copy the new executable to `/usr/local/bin`, with `cp $(go env GOPATH)/bin/go-pluginserver /usr/local/bin`. Alternatively, you can specify the `go_pluginserver_exe` property with the path to the `go-pluginserver` binary
-* The Go-PDK package: `import "github.com/Kong/go-pdk"`.
+* The `kong/go-plugin-tool:<version>` Docker image, where `<version>` is the same version as the Kong package you want to deploy on.
 
 ## Development
+
+### Environment consistency constraints
+
+Golang development is well known for its low entry barrier and ease of deployment; even complex programs written in Go might be distributed as a single executable that you can copy anywhere and run directly.  To make this possible, the compiler generates statically linked executables by default.  A significant drawback of this choice is that it makes very difficult to extend a "finished" Go program.  There are several ways around this limitation, but most of them involve some form of interprocess communication.  Since this is really well supported by the language and basic libraries, it's usually a very good solution; but this isn't always the case.
+
+The extension strategy chosen for Kong is one very common in other languages: a plugin is a dynamically loaded module.  To allow this, the compiler no longer produces fully static programs, now the executable and plugins depend on the system libraries.
+
+This is a relatively recent feature in Golang, and has some rough edges in tooling and deployability.  In particular, it's essential that the loading executable (`go-pluginserver` in our case) and the plugins have exactly the same linking behaviour.  This involves at least:
+
+* The same version of any common library, including:
+    * our `Kong/go-pdk`.
+    * all standard Go libraries (like `fmt`, `rpc`, `reflect`, etc)
+    * OS libraries, like `libpthread`, `libc`, `ld-xxxx`, etc.
+* the exact same version of the Go compiler.
+* the same Go environment variables like `$GOROOT` and `$GOPATH`
+
+The first point is somewhat alleviated with `go.mod` dependency management, but that introduces more complex issues on the environment variables requirement.
+
+The last point, `$GOPATH` is a real problem, not only because one of the recommended patterns is `$HOME/go`, which includes the developer's username in their own system, but also because it's common that production builds (Dockerfiles, build scripts, CI/CD systems) use a very different pattern.
+
+To guarantee this consistency, the `kong/go-plugin-tool` is used as a wrapper to the Go compiler.  Kong distribution packages and images use it to compile the included `go-pluginserver`.
+
+### Development process
 
 To write a Kong plugin in Go, you need to:
 
 * Define a structure type to hold configuration.
 * Write a `New()` function to create instances of your structure.
 * Add methods on that structure to handle events.
-* Compile like: `go build -buildmode=plugin`.
+* Compile like: `docker run --rm -v $(pwd):/plugins kong/go-plugin-tool:<version> build <source>`.
 * Put the resulting library (the `.so` file) into the `go_plugins_dir` directory.
 
 
