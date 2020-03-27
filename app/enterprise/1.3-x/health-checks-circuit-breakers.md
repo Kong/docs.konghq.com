@@ -23,7 +23,7 @@ response;
 the ongoing traffic being proxied and determines the health of targets based
 on their behavior responding requests.
 
-## Healthy and unhealthy
+## Defining healthy and unhealthy
 
 ### Targets
 
