@@ -2,6 +2,30 @@
 title: Kong Enterprise k8s Changelog
 ---
 
+## 2.0.2.0
+
+> Released on 2020/03/27
+
+### Summary
+
+Kong Enterprise k8s 2.0.2.0 is based on Kong Gateway 2.0.2.
+
+### Kong Gateway
+
+Kong Enterprise k8s 2.0.2.0 is based on Kong Gateway 2.0.2,
+meaning it inherits all new features and changes between Kong Gateway 1.4.2 and
+2.0.2.
+Please review the changelog for
+[Kong Gateway](https://github.com/Kong/kong/blob/master/CHANGELOG.md).
+
+### Plugins
+
+Follow new enterprise-only plugins have been added in this release:
+
+* degraphql
+* graphql-rate-limiting-advanced
+* graphql-proxy-cache-advanced
+
 ## 1.4.2.0
 
 > Released on 2020/01/02
