@@ -126,7 +126,7 @@ Note:
 
 ### Upstreams
 
-Besides the individual targets having a notion of health, also the Upstreams
+Along with health check functionality on individual targets, Upstreams also
 have a notion of health. The health of an Upstream is determined based on the
 status of its Targets.
 
