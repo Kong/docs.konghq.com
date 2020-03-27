@@ -137,7 +137,7 @@ Configuration of the Upstream's health is done though the property
 Here is a simple example:
 
 - Assume an Upstream configured with `healthchecks.threshold=55`.
-- it has 5 targets, all with a `weight=100`, so total weight is 500 in the ring-balancer
+- It has 5 targets, each with `weight=100`, so the total weight in the ring-balancer is 500.
 
 Now failures start to occur, and the circuit-breaker for the first target trips.
 It is now considered unhealthy. This now means that in the ring-balancer 20% of
