@@ -155,7 +155,7 @@ node will fail, reducing healthy capacity to 40%. At this point, the Upstream he
 will be less than its threshold, and it will be marked as unhealthy itself.
 
 Once it enters an unhealthy state, the Upstream will only return errors. This lets the
-targets/services to recover from the cascading failure they were experiencing.
+targets/services recover from the cascading failure they were experiencing.
 
 Once the Targets start recovering, the health status of the ring-balancer will
 automatically be updated once the available capacity passes the threshold again.
