@@ -23,7 +23,9 @@ response;
 the ongoing traffic being proxied and determines the health of targets based
 on their behavior responding requests.
 
-## Healthy and unhealthy targets
+## Defining healthy and unhealthy
+
+### Targets
 
 The objective of the health checks functionality is to dynamically mark
 targets as healthy or unhealthy, **for a given Kong node**. There is
@@ -100,14 +102,16 @@ field is included in the [Admin API][addupstream] reference documentation.
                 "tcp_failures": 0,
                 "timeouts": 0
             }
-        }
+        },
+        "threshold": 0
     },
     "slots": 10
 }
 ```
 
-If all targets of an upstream are unhealthy, Kong will respond to requests
-to the upstream with `503 Service Unavailable`.
+If an upstream is unhealthy (the available capacity % is less than the configured
+threshold), Kong will respond to requests to the upstream with
+`503 Service Unavailable`.
 
 Note:
 
@@ -121,6 +125,43 @@ Note:
    sure the DNS server always returns the full set of IP addresses for a name,
    and does not limit the response. *Failing to do so might lead to health
    checks not being executed.*
+
+### Upstreams
+
+Along with health check functionality on individual targets, Upstreams also
+have a notion of health. The health of an Upstream is determined based on the
+status of its Targets.
+
+Configuration of the Upstream's health is done though the property
+`healthchecks.threshold`. This is a percentage of minimum available target
+"weight" (capacity) for the Upstream to be considered healthy.
+
+Here is a simple example:
+
+- Assume an Upstream configured with `healthchecks.threshold=55`.
+- It has 5 targets, each with `weight=100`, so the total weight in the ring-balancer is 500.
+
+When failures start to occur, the circuit-breaker for the first target trips.
+It is now considered unhealthy. This means that in the ring-balancer, 20% of
+the capacity is now unhealthy (100 weight out of 500). This is still above the
+threshold of 55, so the remaining targets will serve the traffic of the failed
+one.
+
+When a second failure occurs, another target fails, and another 100 weight is lost
+as unhealthy. Now the ring-balancer operates at 60% of its capacity, but still
+within the configured threshold.
+
+If we assume that the 2 failures occured due to a system overload, we can now assume
+that the remaining 60% will also not be able to cope with the full load and soon a third
+node will fail, reducing healthy capacity to 40%. At this point, the Upstream health
+will be less than its threshold, and it will be marked as unhealthy itself.
+
+Once it enters an unhealthy state, the Upstream will only return errors. This lets the
+targets/services recover from the cascading failure they were experiencing.
+
+Once the Targets start recovering and the Upstream's available capacity passes the
+threshold again, the health status of the ring-balancer will automatically be updated.
+
 
 ## Types of health checks
 
