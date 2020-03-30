@@ -18,9 +18,9 @@ meaning it inherits all new features and changes between Kong Gateway 1.4.2 and
 Please review the changelog for
 [Kong Gateway](https://github.com/Kong/kong/blob/master/CHANGELOG.md).
 
-### Plugins
+### Enterprise Plugins
 
-Follow new enterprise-only plugins have been added in this release:
+The following plugins are included in this release:
 
 * degraphql
 * graphql-rate-limiting-advanced
