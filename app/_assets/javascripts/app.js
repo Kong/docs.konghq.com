@@ -481,6 +481,8 @@ $(function () {
   })
   // set first navtab as active
   $('.navtabs').each(function (index, navtabs) {
+    $(navtabs).find('div[data-navtab-content]').css('display', 'none')
+
     const navtabsTabs = $(navtabs).find('div[data-navtab-id]')
     navtabsTabs.first().addClass('active')
     $(`div[data-navtab-content='${navtabsTabs.first().data('navtab-id')}']`).css('display', 'block')
