@@ -45,6 +45,15 @@ functions.
 Kong -> f(status, body, headers) -> ... -> exit(status, body, headers)
 ```
 
+<div class="alert alert-warning">
+  <strong>Warning</strong>
+  <code>kong.response.exit()</code> requires a <code>status</code> argument only.
+  <code>body</code> and <code>headers</code> may be <code>nil</code>.
+  If you manipulate them, you first check that they exist, and instantiate them
+  if they do not. The "Modify the body and headers, even if none were provided"
+  example below shows how to do this.
+</div>
+
 
 ### Examples
 
@@ -96,6 +105,26 @@ return function(status, body, headers)
   body.message = response.message or body.message
   status = response.status or status
   headers = response.headers or headers
+
+  return status, body, headers
+end
+```
+
+* Modify the body and headers, even if none were provided
+
+```lua
+return function(status, body, headers)
+  if not body then
+    body = { message = "This replaces a formerly empty body" }
+  else
+    body.message = "This replaces a formerly non-empty body"
+  end
+
+  if not headers then
+    headers = { X-Message = "This adds X-Message to an empty set of headers" }
+  else
+    headers["X-Message"] = "This adds X-Message to an existing set of headers" }
+  end
 
   return status, body, headers
 end
