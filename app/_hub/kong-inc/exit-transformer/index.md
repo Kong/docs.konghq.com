@@ -49,7 +49,7 @@ Kong -> f(status, body, headers) -> ... -> exit(status, body, headers)
   <strong>Warning</strong>
   <code>kong.response.exit()</code> requires a <code>status</code> argument only.
   <code>body</code> and <code>headers</code> may be <code>nil</code>.
-  If you manipulate them, you first check that they exist, and instantiate them
+  If you manipulate them, first check that they exist and instantiate them
   if they do not. The "Modify the body and headers, even if none were provided"
   example below shows how to do this.
 </div>
