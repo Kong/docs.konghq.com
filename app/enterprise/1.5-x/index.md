@@ -5,8 +5,10 @@ skip_read_time: true
 
 <div class="docs-grid">
 
+  <h2 class="docs-grid-section-title">Foundations</h2>
+
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Install Kong Enterprise</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Installation</a></h3>
     <p>Learn how to install Kong Enterprise with your chosen deployment method.</p>
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Choose Deployment Method &rarr;</a>
   </div>
@@ -16,6 +18,8 @@ skip_read_time: true
     <p>Review the details of the changes made to each version of Kong Enterprise.</p>
     <a target="_blank" href="/enterprise/changelog/">See changelog &rarr;</a>
   </div>
+
+  <h2 class="docs-grid-section-title">Use Case Guides - Decentralize Applications and Services</h2>
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/migrations">Migration Guide</a></h3>
@@ -65,4 +69,22 @@ skip_read_time: true
     <a href="/hub">Learn More &rarr;</a>
   </div>
 
+</div>
+
+<div class="knowledge-base-section">
+    <div class="knowledge-base-section-title">Visit our other Knowledge base</div>
+    <div class="knowledge-base-links">
+        <a class="knowledge-base-link" href="https://support.konghq.com/" target="_blank">
+            <div class="knowledge-base-link-title">Enterprise Support</div>
+            <img src="/assets/images/icons/documentation/icn-documentation.svg" />
+        </a>
+        <a class="knowledge-base-link" href="https://discuss.konghq.com/" target="_blank">
+            <div class="knowledge-base-link-title">Community</div>
+            <img src="/assets/images/icons/documentation/icn-kongnation-md.svg" />
+        </a>
+        <a class="knowledge-base-link" href="https://learn.konghq.com/account/login/" target="_blank">
+            <div class="knowledge-base-link-title">Kong University</div>
+            <img src="/assets/images/icons/documentation/icn-learning.svg" />
+        </a>
+    </div>
 </div>

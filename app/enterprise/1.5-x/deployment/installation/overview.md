@@ -4,54 +4,41 @@ toc: false
 skip_read_time: true
 ---
 
-<div class="docs-grid">
+<div class="docs-grid-install">
 
- <div class="docs-grid-block docs-grid-install">
-    <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="docker" />
-    <h3>Docker</h3>
-    </a>
-  </div>
+    <div class="install-text">Docker</div>
+  </a>
 
-  <div class="docs-grid-block docs-grid-install">
-    <a href="/enterprise/{{page.kong_version}}/deployment/installation/centos">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/centos" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/centos.gif" alt="centos" />
-    <h3>CentOS</h3>
-    </a>
-  </div>
+    <div class="install-text">CentOS</div>
+  </a>
 
-  <div class="docs-grid-block docs-grid-install">
-    <a href="/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/amazon-linux.png" alt="aws" />
-    <h3>Amazon Linux 1</h3>
-    </a>
-  </div>
+    <div class="install-text">Amazon Linux 1</div>
+  </a>
 
-  <div class="docs-grid-block docs-grid-install">
-    <a href="/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/amazon-linux-2" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/amazon-linux.png" alt="aws" />
-    <h3>Amazon Linux 2</h3>
-    </a>
-  </div>
+    <div class="install-text">Amazon Linux 2</div>
+  </a>
 
-  <div class="docs-grid-block docs-grid-install">
-    <a href="/enterprise/{{page.kong_version}}/deployment/installation/ubuntu">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/ubuntu" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/ubuntu.png" alt="aws" />
-    <h3>Ubuntu</h3>
-    </a>
-  </div>
+    <div class="install-text">Ubuntu</div>
+  </a>
 
-  <div class="docs-grid-block docs-grid-install">
-    <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install">
+  <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/kubernetes.png" alt="aws" />
-    <h3>Kong for Kubernetes</h3>
-    </a>
-  </div>
+    <div class="install-text">Kong for Kubernetes</div>
+  </a>
 
-  <div class="docs-grid-block docs-grid-install">
-    <a href="/enterprise/{{page.kong_version}}/deployment/installation/rhel">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker" class="docs-grid-install-block">
     <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="redhat" />
-    <h3>RHEL</h3>
-    </a>
-  </div>
+    <div class="install-text">RHEL</div>
+  </a>
+
 </div>
