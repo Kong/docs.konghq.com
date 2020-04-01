@@ -139,7 +139,10 @@ params:
       description: |
         Set of parameter name. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`], allow only whitelisted parameters in the body.
   extra: |
-    Note: if the value contains a `,` then the comma separated format cannot be used. The array notation must be used instead.
+
+**Notes:**
+* if the value contains a `,` then the comma separated format cannot be used. The array notation must be used instead.
+* The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
 
 ---
 
