@@ -4,7 +4,7 @@ title: Developer Roles and Content Permissions
 
 ## Introduction
 
-Applications allow registered developers on Kong Portal to authenticate with oauth against a Service on Kong. Admins can selectively admit access to Services through Kong Manager.
+Applications allow registered developers on Kong Portal to authenticate with OAuth against a Service on Kong. Admins can selectively admit access to Services through Kong Manager.
 
 
 ## How to enable Application Registration on a Service from Kong Manager.
