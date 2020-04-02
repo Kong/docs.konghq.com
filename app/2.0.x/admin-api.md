@@ -589,7 +589,7 @@ config.limit=10&config.period=seconds
 
 - **multipart/form-data**
 
-Similar to url-encoded, you will use dotted keys to reference nested objects.
+Similar to url-encoded, this content type uses dotted keys to reference nested objects.
 Here is an example of sending a Lua file to the pre-function Kong plugin:
 
 ```
