@@ -2,6 +2,8 @@
 title: Introduction to Kong Enterprise
 ---
 
+## Introduction
+
 Kong Enterprise is a Service Control Platform that brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. Built on top of Kong Gateway, Kong Enterprise enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments. 
 
 Kong Enterprise is designed to run on decentralized architectures, leveraging workflow automation and modern GitOps practices. With Kong Enterprise, users can:
@@ -13,8 +15,7 @@ Kong Enterprise is designed to run on decentralized architectures, leveraging wo
 
 Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Gateway, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/1.5-x/key-concepts).
 
-
-
+![Introduction to Kong Enterprise](/assets/images/docs/ee/introduction.png)
 
 ## Kong Enterprise Features
 
