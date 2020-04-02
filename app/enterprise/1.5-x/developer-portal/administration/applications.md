@@ -2,7 +2,7 @@
 title: Developer Roles and Content Permissions
 ---
 
-## Intro
+## Introduction
 
 Applications allow registered developers on Kong Portal to authenticate with oauth against a Service on Kong. Admins can selectively admit access to Services through Kong Manager.
 
@@ -105,4 +105,3 @@ All application contracts and their status for a service can be viewed from the 
 1. Click “Services” on the sidebar.
 2. Select the Service you have Application Registration enabled for.
 3. From here you can view all Approved, Revoked, Rejected, and Requested Access Service for Service
-
