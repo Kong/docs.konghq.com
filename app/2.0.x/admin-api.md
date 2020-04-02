@@ -590,7 +590,7 @@ config.limit=10&config.period=seconds
 - **multipart/form-data**
 
 Similar to url-encoded, you will use dotted keys to reference nested objects.
-Here is an example of sending a Lua file to the pre-function Kong plugin.
+Here is an example of sending a Lua file to the pre-function Kong plugin:
 
 ```
 curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
