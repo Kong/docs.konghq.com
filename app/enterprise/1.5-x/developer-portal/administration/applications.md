@@ -15,7 +15,7 @@ To use Application Registration on a service, the `application_registration` plu
 2. Click **Services** in the sidebar and click **View** on the Service.
 2. Click Add Plugin, in the plugins widget.
 3. Click “Enable” on Portal Application Registration
-4. Enter config
+5. Enter **config**.
 5. Press Create
 
 ## Application Registration Config
