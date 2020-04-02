@@ -7,18 +7,18 @@ title: Developer Roles and Content Permissions
 Applications allow registered developers on Kong Portal to authenticate with OAuth against a Service on Kong. Admins can selectively admit access to Services through Kong Manager.
 
 
-## How to enable Application Registration on a Service from Kong Manager.
+## <span class="x x-first x-last">Enable </span>Application Registration on a Service <span class="x x-first x-last">using</span> Kong Manager
 
-To use Application Registration on a service, the `application_registration` plugin must be enabled on that service.
+To use Application Registration on a <span class="x x-first x-last">Service</span>, the `application_registration` plugin must be enabled on that <span class="x x-first x-last">Service</span>.
 
 1. Navigate to the Service.
 2. Click **Services** in the sidebar and click **View** on the Service.
-2. Click Add Plugin, in the plugins widget.
-3. Click “Enable” on Portal Application Registration
+<span class="x x-first x-last">3</span>. Click <span class="x x-first x-last">**</span>Add Plugin<span class="x x-first x-last">**</span> in the plugins widget.
+<span class="x x-first x-last">4</span>. Click <span class="x x-first x-last">**</span>Enable<span class="x x-first x-last">**</span> on Portal Application Registration<span class="x x-first x-last">.</span>
 5. Enter **config**.
-5. Press Create
+<span class="x x-first x-last">6. Click **</span>Create<span class="x x-first x-last">**.</span>
 
-## Application Registration Config
+## Application Registration <span class="x x-first x-last">Configuration</span>
 
 ### Auth Header Name
 
@@ -28,7 +28,7 @@ Description: The name of the header supposed to carry the access token.
 ### Auto Approve
 
 Default: `false`
-Description: If enabled all new Service Contracts requests are automatically approved.
+Description: If enabled<span class="x x-first x-last">,</span> all new Service Contracts requests are automatically approved.
 
 ### Description
 
