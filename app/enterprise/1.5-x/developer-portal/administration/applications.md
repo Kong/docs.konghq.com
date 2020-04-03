@@ -57,7 +57,7 @@ Description: An optional boolean value telling the plugin to require at least on
 ### Provision Key
 
 Default: Key automatically generated on creation, no input required.
-Description: Used by Resource Owner Password Credentials Grant (Password Grant) flow
+Description: Used by Resource Owner Password Credentials Grant (Password Grant) flow.
 
 ### Refresh Token Ttl
 
