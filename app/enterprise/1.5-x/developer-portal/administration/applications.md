@@ -90,7 +90,7 @@ This can be done from the Service view page.
 ## How to manage Developer Applications from Kong Manager
 
 Developers can create applications from Kong Portal. An application can apply to any number of Services. This is called a Service Contract.
-In order for application to be used against a service, the Service Contract must have a status of “Approved.” To enable auto approval for all new Service Contracts on ,
+In order for the application to be used against a service, the Service Contract must have a status of “Approved.” To enable auto-approval for all new Service Contracts.
 
 
 ### View all Application Contracts for an Application
