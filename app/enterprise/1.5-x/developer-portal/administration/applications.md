@@ -105,5 +105,5 @@ In order for the application to be used against a service, the Service Contract 
 All application contracts and their status for a service can be viewed from the “Service” page.
 
 1. Click **Services** in the sidebar.
-2. Select the Service you have Application Registration enabled for.
+2. Select the Service for which you have Application Registration enabled.
 3. From here you can view all Approved, Revoked, Rejected, and Requested Access Service for Service
