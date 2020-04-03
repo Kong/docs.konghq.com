@@ -42,7 +42,7 @@ Description: Display name used for Service in portal.
 
 ### Auth flows
 
-At least one of the following Oauth2 auth flows **must be enabled**. For more info see https://docs.konghq.com/hub/kong-inc/openid-connect/
+At least one of the following OAuth 2 auth flows **must be enabled**. For more information, see https://docs.konghq.com/hub/kong-inc/openid-connect/
 
 * Enable Authorization Code
 * Enable Client Credentials
