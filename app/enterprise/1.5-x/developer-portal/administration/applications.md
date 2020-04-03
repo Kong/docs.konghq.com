@@ -66,7 +66,7 @@ Description: An optional integer value telling the plugin how many seconds a tok
 
 ### Scopes
 
-Description:  Describes an array of scope names that will be available to the end user
+Description: Describes an array of scope names that will be available to the end-user.
 
 ### Token Expiration
 
