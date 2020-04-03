@@ -23,7 +23,7 @@ To use Application Registration on a <span class="x x-first x-last">Service</spa
 ### Auth Header Name
 
 Default: `authorization`
-Description: The name of the header supposed to carry the access token.
+Description: The name of the header that contains the access token.
 
 ### Auto Approve
 
