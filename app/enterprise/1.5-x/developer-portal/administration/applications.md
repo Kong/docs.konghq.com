@@ -83,7 +83,7 @@ This can be done from the Service view page.
 2. Click on "Add documentation" inside the Documents Card.
 3. Add Documentation:
  * Select a Document to add either by path (selecting an existing spec in the portal) or
- * Click Upload Document to upload a new Spec to portal, and establish document link to service.
+ * Click **Upload Document** to upload a new Spec to the portal, and establish document link to service.
 
 
 
