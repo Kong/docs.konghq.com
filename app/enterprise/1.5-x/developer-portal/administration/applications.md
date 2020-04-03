@@ -97,7 +97,7 @@ In order for the application to be used against a service, the Service Contract 
 
 1. A list of all applications in a workspace can be accessed from the sidebar. Click **Applications** to see the list.
 2. Click into an application to view all Service Contracts for the application.
-3. Click on Requested access to view Service Contracts requests for that application.
+3. Click **Requested access** to view Service Contracts requests for the application.
 4.  From here the Application’s service contracts can be Approved.
 
 ### View all Application Contracts for a Service
