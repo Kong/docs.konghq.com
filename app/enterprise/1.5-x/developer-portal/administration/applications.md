@@ -38,7 +38,7 @@ Description: Description displayed in info about Service in portal.
 ### Display Name
 
 **Required**
-Description: Display name used for Service in Portal.
+Description: Display name used for Service in portal.
 
 ### Auth flows
 
