@@ -47,7 +47,9 @@ $ sudo systemctl status kong-enterprise-edition
 
 ## Customize the Kong Enterprise unit file
 
-Once the Kong Enterprise installation is finished, the official systemd service will be located at `/etc/kong/kong-enterprise-edition.service`. For convenience, this file will be copied to `/lib/systemd/system/kong-enterprise-edition.service` by default if the directory `/lib/systemd/system/` exists. For scenarios where customizations are needed (for example, configuring Kong or modifying the service file behavior), we recommend to create another service at `/etc/systemd/system/kong-enterprise-edition.service` to avoid conflicts upon reinstalling or upgrading Kong Enterprise.
+Once the Kong Enterprise installation is finished, the official systemd service will be located at `/etc/kong/kong-enterprise-edition.service`. For convenience, this file will be copied to `/lib/systemd/system/kong-enterprise-edition.service` by default if the directory `/lib/systemd/system/` exists. 
+
+For scenarios where customizations are needed (for example, configuring Kong or modifying the service file behavior), we recommend to create another service at `/etc/systemd/system/kong-enterprise-edition.service` to avoid conflicts upon reinstalling or upgrading Kong Enterprise.
 
 All environment variables prefixed with `KONG_` and capitalized will override the settings specified in the `/etc/kong/kong.conf.default` file. For example: `log_level = debug` in the .conf file translates to the `KONG_LOG_LEVEL=debug` environment variable.
 
@@ -103,4 +105,3 @@ To include files via the injected Nginx directives, add the below `Environment` 
 ```
 Environment=KONG_NGINX_HTTP_INCLUDE=/path/to/your/my-server.kong.conf
 ```
-
