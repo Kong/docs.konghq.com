@@ -78,7 +78,8 @@ Description: An optional integer value telling the plugin how many seconds a tok
 It is recommended when using Application Registration to link documentation to your Service. Doing so will allow portal users to easily register Application Contracts for their Applications from the spec page.
 
 This can be done from the Service view page.
-1. **Navigate to the service** - Click on “services” on the sidebar, click “View” on the service.
+1. Navigate to the Service.
+2. Click **Services** in the sidebar and click **View** on the Service.
 2. Click on "Add documentation" inside the Documents Card.
 3. Add Documentation:
  * Select a Document to add either by path (selecting an existing spec in the portal) or
