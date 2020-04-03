@@ -70,7 +70,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 {% tab Without a database %}
 
 Configure this plugin on a [Service](/latest/admin-api/#service-object) by
-adding this section do your declarative configuration file:
+adding this section to your declarative configuration file:
 
 ``` yaml
 plugins:
@@ -116,7 +116,7 @@ $ curl -X POST http://kong:8001/routes/{route}/plugins \
 {% tab Without a database %}
 
 Configure this plugin on a [Route](/latest/admin-api/#route-object) by
-adding this section do your declarative configuration file:
+adding this section to your declarative configuration file:
 
 ``` yaml
 plugins:
@@ -162,7 +162,7 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/plugins \
 {% tab Without a database %}
 
 Configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) by
-adding this section do your declarative configuration file:
+adding this section to your declarative configuration file:
 
 ``` yaml
 plugins:
@@ -181,7 +181,7 @@ You can combine `consumer.id` and {%
   if page.params.service_id %}`service.id`{%
   elsif page.params.route_id %}`route.id`{%
   elsif page.params.api_id %}`api_id`{%
-  endif %} in the same request, to furthermore narrow the scope of the plugin.
+  endif %} in the same request, to further narrow the scope of the plugin.
 {% endif %}
 
 {% endcapture %}
@@ -227,7 +227,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     {% endif %}
       <tr><td><code>enabled</code><br><br><strong>default value: </strong><code>true</code></td><td>Whether this plugin will be applied.</td></tr>
     {% if page.params.api_id %}
-    <tr><td><code>api_id</code></td><td>The id of the API which this plugin will target. <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td></tr>
+    <tr><td><code>api_id</code></td><td>The ID of the API the plugin targets. <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</td></tr>
     {% endif %}
     {% for field in page.params.config %}
       <tr>
@@ -326,7 +326,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <strong>Kong Enterprise only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong Enterprise subscription</a>.
         </div>
 
-        Please inquire about Kong Enterprise by <a href="https://konghq.com/request-demo">contacting us</a> - or start a <a href="https://konghq.com/free-trial/">free trial</a> today.
+        Please inquire about Kong Enterprise by <a href="https://konghq.com/request-demo">contacting us</a>, or start a <a href="https://konghq.com/free-trial/">free trial</a> today.
         <hr>
       {% endif %}
 
@@ -352,7 +352,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
             <li><code>Consumer</code>: an entity that makes requests for Kong to proxy; it represents either a user or an external service.</li>
             <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
           {% endif %}
-            <li><code>upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
+            <li><code>Upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
           {% if page.params.api_id %}
           <li><code>API</code>: a legacy entity used to represent your upstream services. <strong>Deprecated</strong> in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</li>
           {% endif %}
@@ -388,7 +388,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         {% endif %}
 
         {% if page.params.dbless_explanation %}
-          {{ page.params.dbless_explanation | mardownify }}
+          {{ page.params.dbless_explanation | markdownify }}
         {% endif %}
 
         {% if page.params.service_id %}
@@ -411,7 +411,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           <li><strong>Without a database</strong>, all plugins can be configured via the <code>plugins:</code> entry on the declarative configuration file.</li>
         </ul>
 
-        <p>A plugin which is not associated to any Service, Route or Consumer (or API, if you are using an older
+        <p>A plugin which is not associated to any Service, Route, or Consumer (or API, if you are using an older
         version of Kong) is considered "global", and will be run on every request.
         Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
         <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
