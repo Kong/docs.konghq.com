@@ -91,7 +91,11 @@ params:
       default: "`50000`"
       description: |
         Maximum number of messages that can be buffered in memory in asynchronous mode.
-
+    - name: api_version
+      required: false
+      default: "`0`"
+      description: |
+        API version of a Produce. Allowed values: 0, 1 and 2.
 ---
 
 ## Installation
