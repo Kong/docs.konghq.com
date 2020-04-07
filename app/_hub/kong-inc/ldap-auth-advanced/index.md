@@ -161,7 +161,7 @@ params:
 In order to authenticate the user, client must set credentials in
 `Proxy-Authorization` or `Authorization` header in following format:
 
-credentials := [ldap | LDAP] base64(username:password)
+    credentials := [ldap | LDAP] base64(username:password)
 
 The plugin will validate the user against the LDAP server and cache the
 credential for future requests for the duration specified in
