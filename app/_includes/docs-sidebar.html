@@ -1,7 +1,11 @@
 <aside class="docs-sidebar">
   <span class="close-sidebar"></span>
   {% if page.edition == 'enterprise' %}
-  {% assign docs_url = '/' | append: 'enterprise/' | append: page.kong_version %}
+  {% assign docs_url = '/enterprise/' | append: page.kong_version %}
+  {% elsif page.edition == 'studio' %}
+  {% assign docs_url = '/studio/' | append: page.kong_version %}
+  {% else %}
+  {% assign docs_url = '/' | append: page.kong_version %}
   {% endif %}
 
   <ul class="accordion-container">

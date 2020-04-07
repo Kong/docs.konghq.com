@@ -40,11 +40,15 @@ module Jekyll
       end
 
       def render(context)
-        environment = context.environments.first
-        environment['navtabs'] = {} # reset each time
-        super
-
         navtabs_id = SecureRandom.uuid
+        environment = context.environments.first
+        environment['navtabs-' + navtabs_id] = {}
+        environment['navtabs-stack'] ||= []
+
+        environment['navtabs-stack'].push(navtabs_id)
+        super
+        environment['navtabs-stack'].pop
+
         template = ERB.new get_template
         template.result(binding)
       end
@@ -53,14 +57,14 @@ module Jekyll
         <<-EOF
 <div class="navtabs <%= @class %>">
   <div class="navtab-titles">
-  <% environment['navtabs'].each_with_index do |(title, value), index| %>
+  <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
     <div data-navtab-id="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-title">
       <%= title %>
     </div>
   <% end %>
   </div>
   <div class="navtab-contents">
-  <% environment['navtabs'].each_with_index do |(title, value), index| %>
+  <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
     <div data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content">
       <%= value %>
     </div>
@@ -86,8 +90,9 @@ module Jekyll
         site = context.registers[:site]
         converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
         environment = context.environments.first
-        environment['navtabs'] ||= {}
-        environment['navtabs'][@title] = converter.convert(render_block(context))
+
+        navtabs_id = environment['navtabs-stack'].last
+        environment['navtabs-' + navtabs_id][@title] = converter.convert(render_block(context))
       end
     end
   end

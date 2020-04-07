@@ -82,14 +82,14 @@ plugins:
 
 defaults:
   - scope:
-      path: ''
+      path: 'studio'
     values:
       layout: 'docs'
 
   - scope:
-      path: 'enterprise'
+      path: ''
     values:
-      layout: 'docs-ee'
+      layout: 'docs-v2'
 
   - scope:
       path: 'install'
