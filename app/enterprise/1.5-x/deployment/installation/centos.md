@@ -34,7 +34,8 @@ There are two options to install Kong Enterprise on CentOS. Both require a login
 
 Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 
-### Option 1: Download RPM file
+{% navtabs %}
+{% navtab Download RPM file %}
 
 1. Go to: https://bintray.com/kong/kong-enterprise-edition-rpm/centos.
 2. Select the latest Kong version from the list.
@@ -68,8 +69,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
   ```
   kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
   ```  
-
-### Option 2: Download the Kong Repo File and Add to Yum Repo
+{% endnavtab %}
+{% navtab Download Kong repo file and add to Yum repo %}
 
 1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-rpm/rpm.
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows:
@@ -93,12 +94,14 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     ```
     $ scp bintray--kong-kong-enterprise-edition-rpm.repo <centos user>@<server>:~
     ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Download your Kong Enterprise License
 
-- Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
+1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-- Securely copy the license file to your home directory on the CentOS system:
+2. Securely copy the license file to your home directory on the CentOS system:
 
     ```bash
     $ scp license.json <centos username>@<server>:~
@@ -112,7 +115,8 @@ You should now have two files in your home directory on the target CentOS system
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing using a downloaded RPM package
+{% navtabs %}
+{% navtab Using a downloaded RPM package %}
 
 1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
 
@@ -120,15 +124,15 @@ You should now have two files in your home directory on the target CentOS system
     $ sudo yum install epel-release
     ```
 
-2. Execute a command similar to the following, using the appropriate RPM file name you downloaded.
+2. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
     $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
     ```
+{% endnavtab %}
+{% navtab Using Yum repo %}
 
-### Option 2: If installing using the Yum repository
-
-1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
+1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
 
     ```bash
     $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
@@ -140,6 +144,9 @@ You should now have two files in your home directory on the target CentOS system
     $ sudo yum update -y
     $ sudo yum install kong-enterprise-edition
     ```    
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Copy the License File
 

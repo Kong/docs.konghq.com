@@ -33,10 +33,11 @@ There are two options to install Kong Enterprise on Amazon Linux 1. Both require
 
 Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 
-### Option 1: Download RPM file
+{% navtabs %}
+{% navtab Download RPM file %}
 
 1. Go to: https://bintray.com/kong/kong-enterprise-edition-aws/aws.
-2. Kong Enterprise versions are listed in reverse chronological order.
+    Kong Enterprise versions are listed in reverse chronological order.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab and click the distribution folder.
 5. Save the RPM file available. For example, `kong-enterprise-edition-1.3.0.1.aws.rpm`.
@@ -61,8 +62,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
       ```
       kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: sha1 md5 OK
       ```
-
-### Option 2: Download the Kong Repo File and Add to Yum Repo
+{% endnavtab %}
+{% navtab Download Kong repo file and add to Yum repo %}
 
 1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-aws/rpm.
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows:
@@ -85,12 +86,14 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     ```bash
     $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
     ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Download your Kong Enterprise License
 
-- Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
+1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-- Securely copy the license file to your home directory on the Amazon Linux system. You may use a command like:
+2. Securely copy the license file to your home directory on the Amazon Linux system. You may use a command like:
 
     ```bash
     $ scp license.json <amazon username>@<server>:~
@@ -104,28 +107,36 @@ You should now have two files in your home directory on the target Amazon system
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing using a downloaded RPM package
+{% navtabs %}
+{% navtab Using downloaded RPM package %}
 
-- Execute a command similar to the following, using the appropriate RPM file name you downloaded.
+Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
 ```bash
 $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
 ```
+{% endnavtab %}
+{% navtab Using Yum repo %}
+
+1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
+
+    ```bash
+    $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
+    ```
+
+2. Run the installation using the Yum repository:
+
+    ```bash
+    $ sudo yum update -y
+    $ sudo yum install kong-enterprise-edition -y
+    ```
+{% endnavtab %}
+{% endnavtabs %}
+
+
 
 ### Option 2: If installing using the Yum repository
 
-- Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
-
-```bash
-$ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
-```
-
-- Begin the installation using the Yum repository:
-
-```bash
-$ sudo yum update -y
-$ sudo yum install kong-enterprise-edition -y
-```
 
 ### Copy the License File
 

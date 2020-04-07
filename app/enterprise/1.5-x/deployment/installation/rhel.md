@@ -33,7 +33,8 @@ There are two options to install Kong Enterprise on RHEL. Both require a login t
 
 Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 
-### Option 1: Download RPM file
+{% navtabs %}
+{% navtab Download RPM file %}
 
 1. Go to: https://bintray.com/kong/kong-enterprise-edition-rpm/rhel.
 2. Select the latest Kong version from the list.
@@ -68,8 +69,8 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     kong-enterprise-edition-1.3.0.1.rhel8.noarch.rpm: digests signatures OK
     ```  
 
-
-### Option 2: Download the Kong Repo File and Add to Yum Repo
+{% endnavtab %}
+{% navtab Download Kong repo file and add to Yum repo %}
 
 1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-rpm/rpm.
 
@@ -94,11 +95,14 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     $ scp bintray--kong-kong-enterprise-edition-rpm.repo <rhel user>@<server>:~
     ```
 
+{% endnavtab %}
+{% endnavtabs %}
+
 ### Download your Kong Enterprise License
 
-- Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
+1. Download your license file from your account files in Bintray: `https://bintray.com/kong/<YOUR_REPO_NAME>/license#files`
 
-- Securely copy the license file to your home directory on the RHEL system:
+2. Securely copy the license file to your home directory on the RHEL system:
 
     ```
     $ scp license.json <rhel username>@<server>:~
@@ -112,35 +116,40 @@ You should now have two files in your home directory on the target RHEL system:
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing using a downloaded RPM package
+{% navtabs %}
+{% navtab Using downloaded RPM package %}
 
-- Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
+1. Install EPEL (Extra Packages for Enterprise Linux), if not already installed:
 
-```bash
-$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
-$ sudo yum install epel-release -y
-```
+    ```bash
+    $ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+    $ sudo yum install epel-release -y
+    ```
 
-- Execute a command similar to the following, using the appropriate RPM file name you downloaded.
+2. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
-```bash
-$ sudo yum install kong-enterprise-edition-1.3.0.1.rhel8.noarch.rpm -y
-```
+    ```bash
+    $ sudo yum install kong-enterprise-edition-1.3.0.1.rhel8.noarch.rpm -y
+    ```
 
-### Option 2: If installing using the Yum repository
+{% endnavtab %}
+{% navtab Using Yum repo %}
 
-- Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
+1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
 
-```bash
-$ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
-```
+    ```bash
+    $ sudo mv bintray--kong-kong-enterprise-edition-rpm.repo /etc/yum.repos.d/
+    ```
 
-- Begin the installation using the Yum repository:
+2. Begin the installation using the Yum repository:
 
-```bash
-$ sudo yum update -y
-$ sudo yum install kong-enterprise-edition -y
-```    
+    ```bash
+    $ sudo yum update -y
+    $ sudo yum install kong-enterprise-edition -y
+    ```    
+{% endnavtab %}
+{% endnavtabs %}
+
 
 ### Copy the License File
 

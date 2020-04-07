@@ -33,7 +33,8 @@ There are two options to install Kong Enterprise on Amazon Linux 2. Both require
 
 Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will assign credentials to you.
 
-### Option 1: Download RPM File
+{% navtabs %}
+{% navtab Download RPM File %}
 
 1. Go to: [https://bintray.com/kong/kong-enterprise-edition-aws](https://bintray.com/kong/kong-enterprise-edition-aws).
 2. Select the `aws` folder. Kong Enterprise versions are listed in reverse chronological order.
@@ -54,13 +55,13 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     $ sudo rpm -K kong-enterprise-edition-1.3.0.1.aws.rpm
     ```
 
-8. Verify you get an OK check. You should have an output similar to this:
+8. Verify you get an OK check. You should have output similar to this:
 
     ```
     kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: sha1 md5 OK
     ```
-
-### Option 2: Download the Kong Repo File and Add to Yum Repo
+{% endnavtab %}
+{% navtab Download Kong repo file and add to Yum repo %}
 
 1. Click this URL to download the Kong Enterprise RPM repo file: [https://bintray.com/kong/kong-enterprise-edition-aws/rpm](https://bintray.com/kong/kong-enterprise-edition-aws/rpm).
 
@@ -85,6 +86,9 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     $ scp bintray--kong-kong-enterprise-edition-aws.repo <amazon user>@<server>:~
     ```
 
+{% endnavtab %}
+{% endnavtabs %}
+
 ### Download your Kong Enterprise License
 
 1. Download your license file from your account files in Bintray:
@@ -108,15 +112,16 @@ You should now have two files in your home directory on the target Amazon system
 
 ## Step 2. Install Kong Enterprise
 
-### Option 1: If installing using a downloaded RPM package
+{% navtabs %}
+{% navtab Using a downloaded RPM package %}
 
 Execute a command similar to the following, using the appropriate RPM file name you downloaded.
 
 ```bash
 $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
 ```
-
-### Option 2: If installing using the Yum repository
+{% endnavtab %}
+{% navtab Using Yum repo %}
 
 1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory.
 
@@ -124,12 +129,14 @@ $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
     $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
     ```
 
-2. Begin the installation using the Yum repository:
+2. Run the installation using the Yum repository:
 
     ```bash
     $ sudo yum update -y
     $ sudo yum install kong-enterprise-edition -y
     ```    
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Copy the License File
 
@@ -139,18 +146,18 @@ Copy the license file from your home directory to the `/etc/kong` directory:
 $ sudo cp license.json /etc/kong/license.json
 ```
 
-## Step 3. Setup PostgreSQL
+## Step 3. Set up PostgreSQL
 
 1. Install PostgreSQL.
 
-    Follow the instructions avaialble at [https://www.postgresql.org/download/linux/redhat/](https://www.postgresql.org/download/linux/redhat/) to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you can run a command set similar to:
+    Follow the instructions available at [https://www.postgresql.org/download/linux/redhat/](https://www.postgresql.org/download/linux/redhat/) to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you can run a command set similar to:
 
     ```bash
     $ sudo amazon-linux-extras install postgresql9.6
     $ sudo yum install postgresql postgresql-server
     ```
 
-2. Initialize the PostgreSQL database and enable automatic start.
+2. Initialize the PostgreSQL database and enable automatic start:
 
     ```bash
     $ sudo /usr/bin/postgresql-setup --initdb
@@ -158,14 +165,14 @@ $ sudo cp license.json /etc/kong/license.json
     $ sudo systemctl start postgresql
     ```
 
-3. Switch to PostgreSQL user and launch PostgreSQL.
+3. Switch to PostgreSQL user and launch PostgreSQL:
 
     ```bash
     $ sudo -i -u postgres
     $ psql
     ```
 
-4. Create a Kong database with a username and password.
+4. Create a Kong database with a username and password:
 
     ```bash
     $ psql> CREATE USER kong; CREATE DATABASE kong OWNER kong; ALTER USER kong WITH password 'kong';
