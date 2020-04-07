@@ -3,7 +3,7 @@ title: Kong for Kubernetes Enterprise
 toc: false
 ---
 
-Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (e.g., Deployments, RepliaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster. 
+Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (e.g., Deployments, RepliaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
 
 For example, in a common use case, if an application deployed to Kubernetes exposes an API that needs to be used by Web or mobile-client applications or services in another cluster, then a Kubernetes Ingress Controller is required. It is important for the Ingress Controller to secure and manage traffic according to various policies that can be changed on the fly based on the use-case and application.
 
@@ -13,40 +13,3 @@ Kong for Kubernetes Enterprise natively integrates with the Cloud Native Computi
 
 
 <img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">
-
-<div class="docs-grid">
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/enterprise/1.3-x/kong-for-kubernetes/install">Install</a>
-    </h3>
-    <p></p>
-    <a href="/enterprise/1.3-x/kong-for-kubernetes/install">
-        Install Kong for Kubernetes Enterprise &rarr;
-    </a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/enterprise/1.3-x/kong-for-kubernetes/using-kong-for-kubernetes/">Using Kong for Kubernetes Enterprise</a>
-    </h3>
-    <p></p>
-    <a href="/enterprise/1.3-x/kong-for-kubernetes/using-kong-for-kubernetes/">
-        Learn More &rarr;
-    </a>
-  </div>
-
-  <div class="docs-grid-block">
-    <h3>
-        <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/enterprise/1.3-x/kong-for-kubernetes/changelog">Changelog</a>
-    </h3>
-    <p></p>
-    <a href="/enterprise/1.3-x/kong-for-kubernetes/changelog">
-        Read the latest updates to Kong for Kubernetes Enterprise &rarr;
-    </a>
-  </div>
-
-</div>
