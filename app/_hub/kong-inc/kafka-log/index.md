@@ -95,7 +95,7 @@ params:
       required: false
       default: "`0`"
       description: |
-        API version of a Produce. Allowed values: 0, 1 and 2.
+        API version of a Produce request. Allowed values: `0`, `1`, or `2`.
 ---
 
 ## Installation
