@@ -50,7 +50,7 @@ params:
       value_in_examples:
       description: |
         By default, metrics for each Service/API-fielded request cycle will be aggregated by a context determined partially by the request's HTTP method and by its response's status code.
-        If you are monitoring a large infrastructure with hundreds of routes, grouping by HTTP method can be too granular or costly for performant ``/signalfx` requests on a 1s interval, depending on the server resources.
+        If you are monitoring a large infrastructure with hundreds of routes, grouping by HTTP method can be too granular or costly for performant `/signalfx` requests on a 1s interval, depending on the server resources.
         This context grouping can be disabled with the boolean configuration option `aggregate_by_http_method`.
 
 ###############################################################################
@@ -67,4 +67,4 @@ params:
 
 ### Installation and configuration
 
-See details on https://github.com/signalfx/kong-plugin-signalfx and https://github.com/signalfx/collectd-kong.
+See details on [https://github.com/signalfx/kong-plugin-signalfx](https://github.com/signalfx/kong-plugin-signalfx) and [https://github.com/signalfx/collectd-kong](https://github.com/signalfx/collectd-kong).
