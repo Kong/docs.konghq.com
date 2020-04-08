@@ -97,7 +97,7 @@ Write a log line to the location specified by the current Nginx
 kong.log("hello ", "world") -- alias to kong.log.notice()
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#konglog)
 
 
 ### kong.log.LEVEL(...)
@@ -155,7 +155,7 @@ kong.log.err("something failed: ", err)
 kong.log.alert("something requires immediate action")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#konglog)
 
 
 ### kong.log.inspect(...)
@@ -218,7 +218,7 @@ Like `kong.log()`, this function will produce a log with the `notice` level,
 kong.log.inspect("some value", a_variable)
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#konglog)
 
 
 ### kong.log.inspect.on()
@@ -238,7 +238,7 @@ Enables inspect logs for this logging facility.  Calls to
 kong.log.inspect.on()
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#konglog)
 
 
 ### kong.log.inspect.off()
@@ -257,5 +257,4 @@ Disables inspect logs for this logging facility.  All calls to
 kong.log.inspect.off()
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#konglog)

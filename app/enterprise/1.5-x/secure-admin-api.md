@@ -27,7 +27,7 @@ could seriously compromise the security of your Kong cluster as a whole.
 For example, **avoid binding Kong to all of your interfaces**, by using
 values such as `0.0.0.0:8001`.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Layer 3/4 Network Controls
 
@@ -62,7 +62,7 @@ $ iptables -A INPUT -m tcp -p tcp --dport 8001 -j DROP
 Additional controls, such as similar ACLs applied at a network device level, are
 encouraged, but fall outside the scope of this document.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Kong API Loopback
 
@@ -114,7 +114,7 @@ From here, simply apply desired Kong-specific security controls (such as
 [IP restrictions][ip-restriction], or [access control lists][acl]) as you would
 normally to any other Kong API.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Custom Nginx Configuration
 
@@ -129,7 +129,7 @@ OpenResty environment on which custom/complex security controls can be built.
 For more information on integrating Kong into custom Nginx configurations, see
 [Custom Nginx configuration & embedding Kong][custom-configuration].
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Role Based Access Control ##
 
@@ -149,7 +149,7 @@ uses.
 If you are not a Kong Enterprise customer, you can inquire about our
 Enterprise offering by [contacting us](/enterprise).
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 
 [acl]: /plugins/acl

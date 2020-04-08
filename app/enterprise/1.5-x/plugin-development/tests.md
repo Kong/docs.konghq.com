@@ -2,7 +2,6 @@
 title: Plugin Development - Writing tests
 book: plugin_dev
 chapter: 9
-toc: false
 ---
 
 ## Introduction

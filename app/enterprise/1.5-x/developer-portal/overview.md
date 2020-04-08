@@ -1,6 +1,5 @@
 ---
 title: Getting Started with the Kong Developer Portal
-toc: false
 book: developer-portal
 chapter: 2
 ---

@@ -1,6 +1,5 @@
 ---
 title: Adding New Dev Portal Registration Fields
-toc: false
 ---
 
 

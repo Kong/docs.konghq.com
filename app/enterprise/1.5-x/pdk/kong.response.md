@@ -49,7 +49,7 @@ Returns the HTTP status code currently set for the downstream response (as
 kong.response.get_status() -- 200
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.get_header(name)
@@ -98,7 +98,7 @@ kong.response.get_header("X-Another")       -- "foo bar"
 kong.response.get_header("X-None")          -- nil
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.get_headers([max_headers])
@@ -157,7 +157,7 @@ headers.x_another[1]    -- "foo bar"
 headers["X-Another"][2] -- "baz"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.get_source()
@@ -201,7 +201,7 @@ elseif kong.response.get_source() == "exit" then
 end
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.set_status(status)
@@ -232,7 +232,7 @@ Allows changing the downstream response HTTP status code before sending it
 kong.response.set_status(404)
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.set_header(name, value)
@@ -263,7 +263,7 @@ Sets a response header with the given value.  This function overrides any
 kong.response.set_header("X-Foo", "value")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.add_header(name, value)
@@ -299,7 +299,7 @@ kong.response.add_header("Cache-Control", "no-cache")
 kong.response.add_header("Cache-Control", "no-store")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.clear_header(name)
@@ -334,7 +334,7 @@ kong.response.clear_header("X-Foo")
 -- from here onwards, no X-Foo headers will exist in the response
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.set_headers(headers)
@@ -385,7 +385,7 @@ kong.response.set_headers({
 -- X-Foo: foo3
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongresponse)
 
 
 ### kong.response.exit(status[, body[, headers]])
@@ -465,5 +465,4 @@ return kong.response.exit(403, { message = "Access Forbidden" }, {
 })
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongresponse)

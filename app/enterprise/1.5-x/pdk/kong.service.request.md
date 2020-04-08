@@ -33,7 +33,7 @@ Sets the protocol to use when proxying the request to the Service.
 kong.service.request.set_scheme("https")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_path(path)
@@ -60,7 +60,7 @@ Sets the path component for the request to the service.  It is not
 kong.service.request.set_path("/v2/movies")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_raw_query(query)
@@ -91,7 +91,7 @@ Sets the querystring of the request to the Service.  The `query` argument is a
 kong.service.request.set_raw_query("zzz&bar=baz&bar=bla&bar&blo=&foo=hello%20world")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_method(method)
@@ -120,7 +120,7 @@ Sets the HTTP method for the request to the service.
 kong.service.request.set_method("DELETE")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_query(args)
@@ -168,7 +168,7 @@ kong.service.request.set_query({
 -- bar=baz&bar=bla&bar&blo=&foo=hello%20world&zzz
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_header(header, value)
@@ -200,7 +200,7 @@ Sets a header in the request to the Service with the given value.  Any existing 
 kong.service.request.set_header("X-Foo", "value")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.add_header(header, value)
@@ -232,7 +232,7 @@ kong.service.request.add_header("Cache-Control", "no-cache")
 kong.service.request.add_header("Cache-Control", "no-store")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.clear_header(header)
@@ -262,7 +262,7 @@ kong.service.request.clear_header("X-Foo")
 -- from here onwards, no X-Foo headers will exist in the request
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_headers(headers)
@@ -315,7 +315,7 @@ kong.service.request.set_headers({
 -- X-Foo: foo3
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_raw_body(body)
@@ -348,7 +348,7 @@ Sets the body of the request to the Service.
 kong.service.request.set_raw_body("Hello, world!")
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservicerequest)
 
 
 ### kong.service.request.set_body(args[, mimetype])
@@ -433,5 +433,4 @@ local ok, err = kong.service.request.set_body({
 -- bar=baz&bar=bla&bar&blo=&foo=hello%20world&zzz
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongservicerequest)

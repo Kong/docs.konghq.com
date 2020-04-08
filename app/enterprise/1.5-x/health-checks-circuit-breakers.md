@@ -142,7 +142,7 @@ When both are zero, active health checks are disabled altogether.
 do not apply to Upstreams assigned to Services with the protocol attribute set to "tcp" or "tls".
 </div>
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Passive health checks (circuit breakers)
 
@@ -174,7 +174,7 @@ healthy again: the "circuit is broken", and the target needs to
 be re-enabled again by the system administrator.
 
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Summary of pros and cons
 
@@ -308,7 +308,7 @@ All counter thresholds and intervals in `healthchecks` are zero by default,
 meaning that health checks are completely disabled by default in newly created
 upstreams.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 [ringbalancer]: /enterprise/{{page.kong_version}}/loadbalancing#ring-balancer
 [ringtarget]: /enterprise/{{page.kong_version}}/loadbalancing#target

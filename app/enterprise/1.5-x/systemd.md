@@ -1,6 +1,5 @@
 ---
 title: Control Kong Enterprise through systemd
-toc: false
 ---
 
 ### Introduction
@@ -103,4 +102,3 @@ To include files via the injected Nginx directives, add the below `Environment` 
 ```
 Environment=KONG_NGINX_HTTP_INCLUDE=/path/to/your/my-server.kong.conf
 ```
-

@@ -82,7 +82,7 @@ id: documentation
   <div class="container">
     {% include docs-sidebar.html %}
 
-    {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage == false %}
+    {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
     <aside class="docs-toc">
       <div class="docs-toc-title">On this page</div>
       {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}

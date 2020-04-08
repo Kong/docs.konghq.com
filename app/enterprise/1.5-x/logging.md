@@ -1,6 +1,5 @@
 ---
 title: Logging Reference
-toc: false
 ---
 
 ## Log Levels

@@ -1,32 +1,9 @@
 ---
 title: Configuration Property Reference for Kong Enterprise
 skip_read_time: true
-toc: false
 ---
 
-## Table of Contents
-
-* [General](#general)
-* [NGINX](#nginx)
-* [NGINX Injected Directives](#nginx-injected-directives)
-* [Datastore](#datastore)
-* [Datastore Cache](#datastore-cache)
-* [DNS Resolver](#dns-resolver)
-* [Development & Miscellaneous](#development-&-miscellaneous)
-* [Kong Manager](#kong-manager)
-* [Vitals](#vitals)
-* [Dev Portal](#dev-portal)
-* [Dev Portal Authentication](#dev-portal-authentication)
-* [Dev Portal SMTP Configuration](#dev-portal-smtp-configuration)
-* [Admin SMTP Configuration](#admin-smtp-configuration)
-* [General SMTP Configuration](#general-smtp-configuration)
-* [Data & Admin Audit](#data-&-admin-audit)
-* [Granular Tracing](#granular-tracing)
-* [Route Collision Detection and Prevention](#route-collision-detection-and-prevention)
-* [Workspaces](#workspaces)
-
 ## General
-
 
 ### prefix
 

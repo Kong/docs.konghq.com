@@ -29,7 +29,7 @@ This document describes how those cached entities are being invalidated and how
 to configure your Kong nodes for your use case, which lies somewhere between
 performance and consistency.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Single node Kong clusters
 
@@ -50,7 +50,7 @@ the node purged it from its local cache:
 $ curl -i http://127.0.0.1:8000/test-service
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Multiple nodes Kong clusters
 
@@ -75,7 +75,7 @@ If we delete a Service from node `A`, this change will not be effective in node
 
 This makes Kong clusters **eventually consistent**.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## What is being cached?
 
@@ -139,7 +139,7 @@ polling job.
 (`POST`, `PUT`) will invalidate cached database misses, and update/deletion
 (`PATCH`, `DELETE`) will invalidate cached database hits.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## How to configure database caching?
 
@@ -164,7 +164,7 @@ traffic.
 **Note**: changes propagate through the cluster in up to `db_update_frequency`
 seconds.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### 2. [db_update_propagation][db_update_propagation] (default: 0s)
 
@@ -184,7 +184,7 @@ cluster takes to propagate changes.
 **Note**: when this value is set, changes propagate through the cluster in
 up to `db_update_frequency + db_update_propagation` seconds.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### 3. [db_cache_ttl][db_cache_ttl] (default: 0s)
 
@@ -201,7 +201,7 @@ node might miss invalidation event for any reason, you should set a TTL. Otherwi
 the node might run with a stale value in its cache for an undefined amount of time,
 until the cache is manually purged, or the node is restarted.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### 4. When using Cassandra
 
@@ -216,7 +216,7 @@ Additionally, you might want to configure `cassandra_consistency` to a value
 like `QUORUM` or `LOCAL_QUORUM`, to ensure that values being cached by your
 Kong nodes are up-to-date values from your database.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Interacting with the cache via the Admin API
 
@@ -252,7 +252,7 @@ HTTP 404 Not Found
 currently an undocumented process. Future versions of the Admin API will make
 this process easier.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Purge a cached value
 
@@ -271,7 +271,7 @@ HTTP 204 No Content
 currently an undocumented process. Future versions of the Admin API will make
 this process easier.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Purge a node's cache
 
@@ -290,7 +290,7 @@ If the node is receiving a lot of traffic, purging its cache at the same time
 will trigger many requests to your database, and could cause a
 [dog-pile effect](https://en.wikipedia.org/wiki/Cache_stampede).
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 [db_update_frequency]: /enterprise/{{page.kong_version}}/property-reference/#db_update_frequency
 [db_update_propagation]: /enterprise/{{page.kong_version}}/property-reference/#db_update_propagation

@@ -18,7 +18,7 @@ All commands take a set of special, optional flags as arguments:
 * `--v`: enable verbose mode
 * `--vv`: enable debug mode (noisy)
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Available commands
 
@@ -34,7 +34,7 @@ Check the validity of a given Kong configuration file.
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -67,7 +67,7 @@ Options:
 
 *Note:* `db_export` is not currently supported in Kong Enterprise.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -84,7 +84,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -137,7 +137,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -165,7 +165,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -190,7 +190,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -215,7 +215,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -241,7 +241,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -259,7 +259,7 @@ Example usage:
   echo 'print("foo")' | kong runner
 
 ```
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 
 ### kong start
@@ -289,7 +289,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -309,7 +309,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -327,7 +327,7 @@ Options:
 
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 

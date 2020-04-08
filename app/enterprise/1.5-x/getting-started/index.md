@@ -1,6 +1,5 @@
 ---
 title: Getting Started with Kong Enterprise
-toc: false
 ---
 
 ### Introduction

@@ -1,27 +1,10 @@
 ---
 title: Using Kong for Kubernetes Enterprise
-toc: false
 ---
 
 For information about using Kong for Kubernetes Enterprise, see the documentation listed below that is available on Github at https://github.com/Kong/kubernetes-ingress-controller/tree/master/docs.
 
-
-**Topics include:**
-- [Concepts](#concepts)
-- [Guides and Tutorials](#guides-and-tutorials)
-- [Configuration Reference](#configuration-reference)
-- [FAQs](#faqs)
-- [Troubleshooting](#troubleshooting)
-- [Contribute to the Community](#contribute-to-the-community)
-
-
 ### Concepts
-Kong for Kubernetes Enterprise concepts include:
-- [Architecture](#architecture)
-- [Custom Resources](#custom-resources)
-- [Deployment Methods](#deployment-methods)
-- [High-availability and Scaling](#high-availability-and-scaling)
-- [Security](#security)
 
 #### Architecture
 The [design](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/concepts/design.md) document explains how Kong Ingress Controller works inside a Kubernetes cluster and configures Kong to proxy traffic as per rules defined in the Ingress resources.

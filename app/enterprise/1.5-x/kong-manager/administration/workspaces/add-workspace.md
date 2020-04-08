@@ -4,17 +4,6 @@ toc: false
 redirect_from:
   - /enterprise/{{page.kong_version}}/getting-started/add-workspace
 ---
-#### Table of Contents
-
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Video Walkthrough](#video-walkthrough)
-- [Step 1](#step-1)
-- [Step 2](#step-2)
-- [Step 3](#step-3)
-- [Step 4](#step-4)
-- [Step 5](#step-5)
-- [Next Steps](#next-steps)
 
 ### Introduction
 

@@ -1,6 +1,5 @@
 ---
 title: Allowing Multiple Authentication Methods
-toc: false
 ---
 
 The default behavior for Kong authentication plugins is to require credentials

@@ -1,6 +1,5 @@
 ---
 title: Kong for Kubernetes Enterprise
-toc: false
 ---
 
 Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (e.g., Deployments, RepliaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.

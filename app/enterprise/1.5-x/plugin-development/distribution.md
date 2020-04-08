@@ -59,7 +59,7 @@ The contents of this archive should be close to the following:
     │           └── schema.lua
     └── <plugin-name>-<version>.rockspec
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -159,7 +159,7 @@ of doing so: via LuaRocks, or manually. Choose one, and jump to section 3.
 Reminder: regardless of which method you are using to install your plugin's
 sources, you must still do so for each node in your Kong cluster.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -199,7 +199,7 @@ But, if you want to apply plugin while kong never stop, you can use this:
     kong reload
     
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -223,7 +223,7 @@ Then, you should see the following log for each plugin being loaded:
     [debug] Loading plugin <plugin-name>
 
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -250,7 +250,7 @@ There are three steps to completely remove a plugin.
    to install the plugin, you can do `luarocks remove <plugin-name>` to remove
    it.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -272,7 +272,7 @@ modules in Lua notation and their corresponding file:
 For an example see the [Kong plugin template][plugin-template], for more info
 about the format see the LuaRocks [documentation on rockspecs][rockspec].
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 
@@ -298,7 +298,7 @@ reasons:
   `schema.lua` source file from the file system. To resolve, make sure that
   the `schema.lua` file is present alongside the plugin's `handler.lua` file.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ---
 

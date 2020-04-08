@@ -53,7 +53,7 @@ if not ok then
 end
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongservice)
 
 
 ### kong.service.set_target(host, port)
@@ -85,5 +85,4 @@ kong.service.set_target("service.local", 443)
 kong.service.set_target("192.168.130.1", 80)
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongservice)
