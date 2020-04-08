@@ -5,7 +5,7 @@ version: 1.0.0
 
 desc: Add key authentication to your Services
 description: |
-  Add Key Authentication (also sometimes referred to as an API key) to a Service or a Route. Consumers then add their key either in a querystring parameter or a header to authenticate their requests. This plugin is functionally identical to the open source `key-auth` plugin, with the exception that API keys are stored in an encrypted format within the Kong data stored.
+  Add key authentication (also sometimes referred to as an API key) to a Service or a Route. Consumers then add their key either in a query string parameter or a header to authenticate their requests. This plugin is functionally identical to the open source `key-auth` plugin, with the exception that API keys are stored in an encrypted format within the Kong data store.
 
 enterprise: true
 alpha: true
@@ -30,7 +30,7 @@ params:
       required: false
       default: "`apikey`"
       description: |
-        Describes an array of parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the querystring parameter with the same name.<br>*note*: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
+        Describes an array of parameter names where the plugin will look for a key. The client must send the authentication key in one of those key names, and the plugin will try to read the credential from a header or the query string parameter with the same name.<br><br>**Note**: the key names may only contain [a-z], [A-Z], [0-9], [_] and [-].
     - name: key_in_body
       required: false
       default: "`false`"

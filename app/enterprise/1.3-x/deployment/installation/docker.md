@@ -67,7 +67,6 @@ Start a PostgreSQL container:
 ```bash
 $ docker run -d --name kong-ee-database \
   --network=kong-ee-net \
-  -p 5432:5432 \
   -e "POSTGRES_USER=kong" \
   -e "POSTGRES_DB=kong" \
   -e "POSTGRES_PASSWORD=kong" \
@@ -106,15 +105,15 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
   -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
   -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
+  -e "KONG_ADMIN_LISTEN=<DNSorIP>:8001" \
   -e "KONG_PORTAL=on" \
   -e "KONG_LICENSE_DATA=$KONG_LICENSE_DATA" \
   -e "KONG_PORTAL_GUI_HOST=<DNSorIP>:8003" \
   -e "KONG_ADMIN_GUI_URL=http://<DNSorIP>:8002" \
   -p 8000:8000 \
   -p 8443:8443 \
-  -p 8001:8001 \
-  -p 8444:8444 \
+  -p 127.0.0.1:8001:8001 \
+  -p 127.0.0.1:8444:8444 \
   -p 8002:8002 \
   -p 8445:8445 \
   -p 8003:8003 \
@@ -123,7 +122,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
 ```
 
 **Notes**
-- For `KONG_PORTAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
+- For `KONG_ADMIN_LISTEN`, `KONG_PORTAL_GUI_HOST` and `KONG_ADMIN_GUI_URL`, replace `<DNSorIP>` with with the DNS name or IP of the Docker host.
   * The DNS or IP address for `KONG_PORTAL_GUI_HOST` should _not_ be preceded with a protocol, e.g. `http://`.
   * `KONG_ADMIN_GUI_URL` _should_ have a protocol, e.g., `http://`.
 

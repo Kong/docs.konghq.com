@@ -41,7 +41,7 @@ Check the validity of a given Kong configuration file.
 
 
 ### kong config
-
+*Note:* `db_export` is not currently supported in Kong Enterprise.
 ```
 Usage: kong config COMMAND [OPTIONS]
 
@@ -65,7 +65,6 @@ Options:
 
 ```
 
-*Note:* `db_export` is not currently supported in Kong Enterprise.
 
 [Back to TOC](#table-of-contents)
 

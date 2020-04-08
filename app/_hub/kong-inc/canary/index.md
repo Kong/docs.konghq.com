@@ -28,10 +28,9 @@ kong_version_compatibility:
 
 params:
   name: canary
-  api_id: true
   service_id: true
   route_id: true
-  consumer_id: true
+  consumer_id: false
   config:
     - name: start
       required:
@@ -86,7 +85,14 @@ params:
       default: consumer
       value_in_examples:
       description: |
-        Entity to be used for hashing. Options: consumer, ip, or none. Please make sure when not using none, to properly set the settings for `trusted_ips` (see settings `trusted_ips` and `real_ip_header` in the Kong config file)
+        Entity to be used for hashing. Options: `consumer`, `ip`, `whitelist`, `blacklist`, or `none`. Please make sure when using `consumer` or `ip`, to properly set the settings for trusted ips (see settings `trusted_ips` and `real_ip_header` in the Kong config file.)
+    - name: groups
+      required:
+      default:
+      value_in_examples:
+      description: |
+        An array (of strings) with the groupnames that are white/blacklisted. Set `hash` to either `whitelist` (the listed groups
+        go into the canary) or `blacklist` (the listed groups will NOT go into the canary.)
 
 ---
 

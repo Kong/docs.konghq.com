@@ -578,7 +578,7 @@ Retrieve generic details about a node.
 
 <div class="endpoint get">/</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -616,6 +616,111 @@ HTTP 200 OK
 
 ---
 
+### List Available Endpoints
+
+List all available endpoints provided by the Admin API.
+
+<div class="endpoint get">/endpoints</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "data": [
+        "/",
+        "/acls",
+        "/acls/{acls}",
+        "/acls/{acls}/consumer",
+        "/basic-auths",
+        "/basic-auths/{basicauth_credentials}",
+        "/basic-auths/{basicauth_credentials}/consumer",
+        "/ca_certificates",
+        "/ca_certificates/{ca_certificates}",
+        "/cache",
+        "/cache/{key}",
+        "..."
+    ]
+}
+```
+
+
+---
+
+### Validate A Configuration against A Schema
+
+Check validity of a configuration against its entity schema.
+This allows you to test your input before submitting a request
+to the entity endpoints of the Admin API.
+
+Note that this only performs the schema validation checks,
+checking that the input configuration is well-formed.
+A requests to the entity endpoint using the given configuration
+may still fail due to other reasons, such as invalid foreign
+key relationships or uniqueness check failures against the
+contents of the data store.
+
+
+<div class="endpoint post">/schemas/{entity}/validate</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "message": "schema validation successful"
+}
+```
+
+
+---
+
+### Retrieve Entity Schema
+
+Retrieve the schema of an entity. This is useful to
+understand what fields an entity accepts, and can be used for building
+third-party integrations to the Kong.
+
+
+<div class="endpoint get">/schemas/{entity name}</div>
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "fields": [
+        {
+            "id": {
+                "auto": true,
+                "type": "string",
+                "uuid": true
+            }
+        },
+        {
+            "created_at": {
+                "auto": true,
+                "timestamp": true,
+                "type": "integer"
+            }
+        },
+        ...
+    ]
+}
+```
+
+
+---
+
 ## Health Routes
 
 
@@ -632,7 +737,7 @@ of nginx, every existing nginx monitoring tool or agent can be used.
 
 <div class="endpoint get">/status</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -755,21 +860,22 @@ To learn more about the file format, please read the
 [declarative configuration][db-less] documentation.
 
 
-<div class="endpoint post">/config</div>
+<div class="endpoint post indent">/config</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `config`<br>**required** | The config data (in YAML or JSON format) to be loaded.
 
 
-*Request Querystring Parameters*
+#### Request Querystring Parameters
 
 Attributes | Description
 ---:| ---
 `check_hash`<br>*optional* | If set to 1, Kong will compare the hash of the input config data against that of the previous one. If the configuration is identical, it will not reload it and will return HTTP 304.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -849,7 +955,7 @@ have been tagged with the same tag, the tag will appear in several items of this
 
 <div class="endpoint get">/tags</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -890,9 +996,9 @@ The list of entities will not be restricted to a single entity type: all the
 entities tagged with tags will be present on this list.
 
 
-<div class="endpoint get">/tags/:tags</div>
+<div class="endpoint get">/tags/{tags}</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -948,19 +1054,20 @@ Services can be both [tagged and filtered by tags](#tags).
 
 ##### List All Services
 
-<div class="endpoint get">/services</div>
+<div class="endpoint get indent">/services</div>
 
 
 ##### List Services Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate name or id}/services</div>
+<div class="endpoint get indent">/certificates/{certificate name or id}/services</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Services are to be retrieved. When using this endpoint, only Services associated to the specified Certificate will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -980,8 +1087,9 @@ HTTP 200 OK
 
 ##### Retrieve Service
 
-<div class="endpoint get">/services/{service name or id}</div>
+<div class="endpoint get indent">/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
@@ -989,8 +1097,9 @@ Attributes | Description
 
 ##### Retrieve Service Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate id}/services/{service name or id}</div>
+<div class="endpoint get indent">/certificates/{certificate id}/services/{service name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
@@ -999,8 +1108,9 @@ Attributes | Description
 
 ##### Retrieve Service Associated to a Specific Route
 
-<div class="endpoint get">/routes/{route name or id}/service</div>
+<div class="endpoint get indent">/routes/{route name or id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route associated to the Service to be retrieved.
@@ -1008,14 +1118,15 @@ Attributes | Description
 
 ##### Retrieve Service Associated to a Specific Plugin
 
-<div class="endpoint get">/plugins/{plugin id}/service</div>
+<div class="endpoint get indent">/plugins/{plugin id}/service</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Service to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1089,19 +1200,20 @@ Routes can be both [tagged and filtered by tags](#tags).
 
 ##### List All Routes
 
-<div class="endpoint get">/routes</div>
+<div class="endpoint get indent">/routes</div>
 
 
 ##### List Routes Associated to a Specific Service
 
-<div class="endpoint get">/services/{service name or id}/routes</div>
+<div class="endpoint get indent">/services/{service name or id}/routes</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service whose Routes are to be retrieved. When using this endpoint, only Routes associated to the specified Service will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1121,8 +1233,9 @@ HTTP 200 OK
 
 ##### Retrieve Route
 
-<div class="endpoint get">/routes/{route name or id}</div>
+<div class="endpoint get indent">/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
@@ -1130,8 +1243,9 @@ Attributes | Description
 
 ##### Retrieve Route Associated to a Specific Service
 
-<div class="endpoint get">/services/{service name or id}/routes/{route name or id}</div>
+<div class="endpoint get indent">/services/{service name or id}/routes/{route name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
@@ -1140,14 +1254,15 @@ Attributes | Description
 
 ##### Retrieve Route Associated to a Specific Plugin
 
-<div class="endpoint get">/plugins/{plugin id}/route</div>
+<div class="endpoint get indent">/plugins/{plugin id}/route</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Route to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1178,10 +1293,10 @@ Consumers can be both [tagged and filtered by tags](#tags).
 
 ##### List All Consumers
 
-<div class="endpoint get">/consumers</div>
+<div class="endpoint get indent">/consumers</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1201,8 +1316,9 @@ HTTP 200 OK
 
 ##### Retrieve Consumer
 
-<div class="endpoint get">/consumers/{consumer username or id}</div>
+<div class="endpoint get indent">/consumers/{consumer username or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
@@ -1210,14 +1326,15 @@ Attributes | Description
 
 ##### Retrieve Consumer Associated to a Specific Plugin
 
-<div class="endpoint get">/plugins/{plugin id}/consumer</div>
+<div class="endpoint get indent">/plugins/{plugin id}/consumer</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin associated to the Consumer to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1298,13 +1415,14 @@ would have otherwise matched config B.
 
 ##### List All Plugins
 
-<div class="endpoint get">/plugins</div>
+<div class="endpoint get indent">/plugins</div>
 
 
 ##### List Plugins Associated to a Specific Route
 
-<div class="endpoint get">/routes/{route id}/plugins</div>
+<div class="endpoint get indent">/routes/{route id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route id`<br>**required** | The unique identifier of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
@@ -1312,8 +1430,9 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Service
 
-<div class="endpoint get">/services/{service id}/plugins</div>
+<div class="endpoint get indent">/services/{service id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service id`<br>**required** | The unique identifier of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
@@ -1321,14 +1440,15 @@ Attributes | Description
 
 ##### List Plugins Associated to a Specific Consumer
 
-<div class="endpoint get">/consumers/{consumer id}/plugins</div>
+<div class="endpoint get indent">/consumers/{consumer id}/plugins</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer id`<br>**required** | The unique identifier of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1348,8 +1468,9 @@ HTTP 200 OK
 
 ##### Retrieve Plugin
 
-<div class="endpoint get">/plugins/{plugin id}</div>
+<div class="endpoint get indent">/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
@@ -1357,8 +1478,9 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Route
 
-<div class="endpoint get">/routes/{route name or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">/routes/{route name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
@@ -1367,8 +1489,9 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Service
 
-<div class="endpoint get">/services/{service name or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">/services/{service name or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
@@ -1377,15 +1500,16 @@ Attributes | Description
 
 ##### Retrieve Plugin Associated to a Specific Consumer
 
-<div class="endpoint get">/consumers/{consumer username or id}/plugins/{plugin id}</div>
+<div class="endpoint get indent">/consumers/{consumer username or id}/plugins/{plugin id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `consumer username or id`<br>**required** | The unique identifier **or** the username of the Consumer to retrieve.
 `plugin id`<br>**required** | The unique identifier of the Plugin to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1404,7 +1528,7 @@ Retrieve a list of all installed plugins on the Kong node.
 
 <div class="endpoint get">/plugins/enabled</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1455,7 +1579,7 @@ third-party integrations to the Kong's plugin system.
 
 <div class="endpoint get">/plugins/schema/{plugin name}</div>
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1503,10 +1627,10 @@ Certificates can be both [tagged and filtered by tags](#tags).
 
 ##### List All Certificates
 
-<div class="endpoint get">/certificates</div>
+<div class="endpoint get indent">/certificates</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1526,14 +1650,15 @@ HTTP 200 OK
 
 ##### Retrieve Certificate
 
-<div class="endpoint get">/certificates/{certificate id}</div>
+<div class="endpoint get indent">/certificates/{certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1562,10 +1687,10 @@ CA Certificates can be both [tagged and filtered by tags](#tags).
 
 ##### List All CA Certificates
 
-<div class="endpoint get">/ca_certificates</div>
+<div class="endpoint get indent">/ca_certificates</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1585,14 +1710,15 @@ HTTP 200 OK
 
 ##### Retrieve CA Certificate
 
-<div class="endpoint get">/ca_certificates/{ca_certificate id}</div>
+<div class="endpoint get indent">/ca_certificates/{ca_certificate id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `ca_certificate id`<br>**required** | The unique identifier of the CA Certificate to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1623,19 +1749,20 @@ SNIs can be both [tagged and filtered by tags](#tags).
 
 ##### List All SNIs
 
-<div class="endpoint get">/snis</div>
+<div class="endpoint get indent">/snis</div>
 
 
 ##### List SNIs Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate name or id}/snis</div>
+<div class="endpoint get indent">/certificates/{certificate name or id}/snis</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1655,8 +1782,9 @@ HTTP 200 OK
 
 ##### Retrieve SNI
 
-<div class="endpoint get">/snis/{sni name or id}</div>
+<div class="endpoint get indent">/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
@@ -1664,15 +1792,16 @@ Attributes | Description
 
 ##### Retrieve SNI Associated to a Specific Certificate
 
-<div class="endpoint get">/certificates/{certificate id}/snis/{sni name or id}</div>
+<div class="endpoint get indent">/certificates/{certificate id}/snis/{sni name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `sni name or id`<br>**required** | The unique identifier **or** the name of the SNI to retrieve.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1708,10 +1837,10 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 
 ##### List All Upstreams
 
-<div class="endpoint get">/upstreams</div>
+<div class="endpoint get indent">/upstreams</div>
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1731,8 +1860,9 @@ HTTP 200 OK
 
 ##### Retrieve Upstream
 
-<div class="endpoint get">/upstreams/{upstream name or id}</div>
+<div class="endpoint get indent">/upstreams/{upstream name or id}</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
@@ -1740,14 +1870,15 @@ Attributes | Description
 
 ##### Retrieve Upstream Associated to a Specific Target
 
-<div class="endpoint get">/targets/{target host:port or id}/upstream</div>
+<div class="endpoint get indent">/targets/{target host:port or id}/upstream</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `target host:port or id`<br>**required** | The unique identifier **or** the host:port of the Target associated to the Upstream to be retrieved.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1792,24 +1923,25 @@ The health for each Target is returned in its `health` field:
 When the request query parameter `balancer_health` is set to `1`, the
 `data` field of the response refers to the whole Upstream, and its `health`
 attribute is defined by the state of all of Upstream's Targets, according
-to the field [health checker's threshold][healthchecks.threshold].
+to the field `healthchecks.threshold`.
 
 
-<div class="endpoint get">/upstreams/{name or id}/health/</div>
+<div class="endpoint get indent">/upstreams/{name or id}/health/</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the Upstream for which to display Target health.
 
 
-*Request Querystring Parameters*
+#### Request Querystring Parameters
 
 Attributes | Description
 ---:| ---
-`balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the whole Upstream.
+`balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the Upstream itself. See the `healthchecks.threshold` property.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1882,14 +2014,15 @@ Targets can be both [tagged and filtered by tags](#tags).
 
 ##### List Targets Associated to a Specific Upstream
 
-<div class="endpoint get">/upstreams/{upstream host:port or id}/targets</div>
+<div class="endpoint get indent">/upstreams/{upstream host:port or id}/targets</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream host:port or id`<br>**required** | The unique identifier or the `host:port` attribute of the Upstream whose Targets are to be retrieved. When using this endpoint, only Targets associated to the specified Upstream will be listed.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK
@@ -1921,15 +2054,16 @@ of the Kong node, and broadcasts a cluster-wide message so that the "healthy"
 status is propagated to the whole Kong cluster.
 
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
+<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/healthy</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
 `target or id`<br>**required** | The host/port combination element of the target to set as healthy, or the `id` of an existing target entry.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -1959,15 +2093,16 @@ To permanently remove a target from the balancer, you should [delete a
 target](#delete-target) instead.
 
 
-<div class="endpoint post">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
+<div class="endpoint post indent">/upstreams/{upstream name or id}/targets/{target or id}/unhealthy</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the upstream.
 `target or id`<br>**required** | The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 204 No Content
@@ -1983,14 +2118,15 @@ target may be returned, showing the history of changes for a specific target.
 The target object with the latest `created_at` is the current definition.
 
 
-<div class="endpoint get">/upstreams/{name or id}/targets/all/</div>
+<div class="endpoint get indent">/upstreams/{name or id}/targets/all/</div>
 
+{:.indent}
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the upstream for which to list the targets.
 
 
-*Response*
+#### Response
 
 ```
 HTTP 200 OK

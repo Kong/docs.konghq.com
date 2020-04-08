@@ -6,7 +6,7 @@ book: rbac
 ## Introduction
 
 Kong Enterprise's RBAC feature is configurable through Kong's [Admin
-API] or via the [Kong Manager].
+API](/enterprise/{{page.kong_version}}/admin-api/) or via the [Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/overview/).
 
 There are 4 basic entities involving RBAC.
 
@@ -122,9 +122,9 @@ HTTP 200 OK
 }
 ```
 
-⚠️ **Note**: **RBAC Users** associated with **Admins** will _not_ be 
-listed with **`GET`** `/rbac/users`. Instead, use 
-[**`GET`** `/admins`](/enterprise/{{page.kong_version}}/admin-api/admins/reference/#list-admins) 
+⚠️ **Note**: **RBAC Users** associated with **Admins** will _not_ be
+listed with **`GET`** `/rbac/users`. Instead, use
+[**`GET`** `/admins`](/enterprise/{{page.kong_version}}/admin-api/admins/reference/#list-admins)
 to list all **Admins**.
 
 ___

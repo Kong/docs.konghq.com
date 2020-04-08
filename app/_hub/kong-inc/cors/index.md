@@ -63,7 +63,7 @@ params:
     - name: origins
       required: false
       default:
-      value_in_examples: http://mockbin.com
+      value_in_examples: ["http://mockbin.com"]
       description: |
         List of allowed domains for the `Access-Control-Allow-Origin` header. If you wish to allow all origins, add `*` as a single value to this configuration field. The accepted values can either be flat strings or PCRE regexes. **NOTE**: Prior to Kong 0.10.x, this parameter was `config.origin` (note the change in trailing `s`), and only accepted a single value, or the `*` special value.
     - name: methods
@@ -81,7 +81,7 @@ params:
     - name: exposed_headers
       required: false
       default:
-      value_in_examples: X-Auth-Token
+      value_in_examples: ["X-Auth-Token"]
       description: |
         Value for the `Access-Control-Expose-Headers` header. If not specified, no custom headers are exposed.
     - name: credentials
