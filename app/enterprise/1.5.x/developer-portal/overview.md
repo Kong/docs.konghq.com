@@ -42,7 +42,7 @@ The release will include the functionality needed to support legacy deployments,
 but will not be available via the demo build.
 
 Existing files will need to be manually migrated to the new Developer Portal,
-learn more in the [Migrating from Legacy](/enterprise/1.3-x/developer-portal/legacy-migration)
+learn more in the [Migrating from Legacy](/enterprise/{{page.kong_version}}/developer-portal/legacy-migration)
 guide.
 
 > Note: Enterprise MIGRATIONS must be completed before migrating the Dev Portal, see [The Migration Guide](/enterprise/1.3-x/deployment/migrations/) for more information.

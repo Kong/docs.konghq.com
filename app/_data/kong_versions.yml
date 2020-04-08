@@ -286,7 +286,7 @@
     openresty: "1.13.6.2"
   lua_doc: true
 -
-  release: "1.5-x"
+  release: "1.5.x"
   version: "1.5"
   edition: "enterprise"
   luarocks_version: "0.34.x"

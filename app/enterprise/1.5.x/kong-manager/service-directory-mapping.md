@@ -112,7 +112,7 @@ Kong Enterprise will not write to the Service Directory, for example, a Kong Ent
 
 To map a Service Directory **User** to a Kong **Admin**, you must configure the **Admin's** username as the value of the **User's** name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an **Admin** account in [_Kong Manager_](https://docs.konghq.com/enterprise/latest/kong-manager/administration/admins/add-admin/) or using the [_Admin API_](https://docs.konghq.com/enterprise/latest/admin-api/admins/reference/#invite-an-admin).
 
-For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](https://docs.konghq.com/enterprise/1.3-x/kong-manager/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
+For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](/enterprise/{{page.kong_version}}/kong-manager/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
 
 If you already have **Admins** with assigned **Roles** and want to use **Group** mapping instead, it is necessary to first remove all of their Roles. The Service Directory will serve as the system of record for **User** privileges. Assigned **Roles** will affect a user's privileges in addition to any roles mapped from **Groups.**
 
