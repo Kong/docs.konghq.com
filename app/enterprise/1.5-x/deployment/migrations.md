@@ -5,7 +5,7 @@ title: Migrating to 1.5
 ### Prerequisites for Migrating to 1.5
 
 * If running a version of **Kong Enterprise** earlier than 1.3, [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
-* If running a version of **Kong** earlier than 1.5, [upgrade to Kong 1.5](/1.5.x/upgrading/) before upgrading to Kong Enterprise 1.5.
+* If running a version of **Kong Community Gateway** earlier than 1.5, [upgrade to Kong 1.5](/1.5.x/upgrading/) before upgrading to Kong Enterprise 1.5.
 
 ### Changes and Configuration to Consider before Upgrading
 
@@ -49,15 +49,15 @@ database in the final expected state for Kong Enterprise 1.5).
    your migration was successful. From now on, you can safely make Admin API
    requests to your 1.5 nodes.
 
-### Migration Steps from Kong 1.5 to Kong Enterprise 1.5
+### Migration Steps from Kong Community Gateway 1.5 to Kong Enterprise 1.5
 
 <div class="alert alert-warning">
   <strong>Note:</strong> This action is irreversible, therefore it is highly recommended to have a backup of production data.
 </div>
 
-Kong Enterprise 1.5 includes a command to migrate all Kong entities to Kong Enterprise. The following steps will guide you through the migration process.
+Kong Enterprise 1.5 includes a command to migrate all Kong Community Gateway entities to Kong Enterprise. The following steps will guide you through the migration process.
 
-First download Kong Enterprise 1.5, and configure it to point to the same datastore as your Kong 1.5 node. The migration command expects the datastore to be up to date on any pending migration:
+First, download Kong Enterprise 1.5 and configure it to point to the same datastore as your Kong Community Gateway 1.5 node. The migration command expects the datastore to be up to date on any pending migration:
 
 ```shell
 $ kong migrations up [-c config]
