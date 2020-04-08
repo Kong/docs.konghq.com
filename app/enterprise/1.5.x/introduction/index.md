@@ -4,7 +4,7 @@ title: Introduction to Kong Enterprise
 
 ## Introduction
 
-Kong Enterprise is a Service Control Platform that brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. Built on top of Kong Gateway, Kong Enterprise enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
+Kong Enterprise is a Service Control Platform that brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. Built on top of Kong Community Gateway, Kong Enterprise enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
 
 Kong Enterprise is designed to run on decentralized architectures, leveraging workflow automation and modern GitOps practices. With Kong Enterprise, users can:
 
@@ -13,7 +13,7 @@ Kong Enterprise is designed to run on decentralized architectures, leveraging wo
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the entire organization
 
-Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Gateway, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/key-concepts).
+Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Community Gateway, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/key-concepts).
 
 ![Introduction to Kong Enterprise](/assets/images/docs/ee/introduction.png)
 
@@ -21,9 +21,9 @@ Kong Enterprise is a combination of several features and add-ons on top of the o
 
 Kong Enterprise features are described in this section, including add-ons and plugins that extend and enhance the functionality of the Kong Enterprise platform.
 
-### Kong Gateway
+### Kong Community Gateway
 
-Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. Kong runs in front of any RESTful API and is extended through add-ons and plugins which provide extra functionality beyond the core platform.
+Kong Community Gateway is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. Kong Community Gateway runs in front of any RESTful API and is extended through add-ons and plugins which provide extra functionality beyond the core platform.
 
 ### Kong Admin API
 
@@ -51,11 +51,11 @@ Kong Manager is the Graphical User Interface (GUI) for Kong Enterprise. It uses 
 
 ### Kong Plugins
 
-Kong Enterprise plugins provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, Kong Enterprise Plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling Kong Enterprise plugins through Kong Manager or the Admin API. For more information on which plugins are Enterprise-only, see the [_Kong Hub_](https://docs.konghq.com/hub/).
+Kong Enterprise plugins provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, Kong Enterprise Plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling Kong Enterprise plugins through Kong Manager or the Kong Admin API. For more information on which plugins are Enterprise-only, see the [_Kong Hub_](https://docs.konghq.com/hub/).
 
 ### Kong Vitals
 
-Kong Vitals provides useful metrics about the health and performance of your Kong nodes, as well as metrics about the usage of your Kong-proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI. For more information, see [_Kong Vitals_](https://docs.konghq.com/enterprise/{{page.kong_version}}/admin-api/vitals/).
+Kong Vitals provides useful metrics about the health and performance of your Kong Enterprise nodes, as well as metrics about the usage of your Kong-proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI. For more information, see [_Kong Vitals_](https://docs.konghq.com/enterprise/{{page.kong_version}}/admin-api/vitals/).
 
 ### Kong Studio
 
