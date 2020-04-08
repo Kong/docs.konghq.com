@@ -63,7 +63,7 @@
     - text: Securing the Admin API
       url: /secure-admin-api
 
-    - text : Control Kong through systemd
+    - text : Control Kong Community Gateway through systemd
       url: /systemd
 
     - text: Plugin Development Guide

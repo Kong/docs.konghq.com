@@ -30,7 +30,7 @@ id: documentation
     {% endif %}
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong</a>
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Community</a>
         <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
         <a href="/studio" {% if page.edition=='studio' %} class="active" {% endif %}>Kong Studio</a>
         <span class="sidebar-toggle">Open Sidebar</span>
@@ -108,13 +108,13 @@ id: documentation
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
               <div class="tag green">NEW</div>
-              <p>Kong {% if page.edition == 'enterprise' %}Enterprise{% endif %} {{page.kong_version}} released! We added a ton of <a
+              <p>Kong {% if page.edition == 'community' %}Community Gateway{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %} {{page.kong_version}} released! We added a ton of <a
                       href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/changelog">New Features</a> and updated docs!</p>
             </div>
           </div>
           <div class="welcome-text">
-            Welcome to Kong {% if page.edition == 'enterprise' %}Enterprise{% endif %} Documentation!<br/>
-            Whether you're just getting started or a Kong expert you can find everything you need here.
+            Welcome to Kong {% if page.edition == 'community' %}Community Gateway{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %} Documentation!<br/>
+            Whether you're just getting started or a Kong Gateway expert, you can find everything you need here.
           </div>
           {% endif %}
 
@@ -125,7 +125,7 @@ id: documentation
           {{ content }}
 
           <div class="knowledge-base-section">
-            <div class="knowledge-base-section-title">Visit our other Knowledge base</div>
+            <div class="knowledge-base-section-title">Visit our other Knowledge Bases</div>
             <div class="knowledge-base-links">
               <a class="knowledge-base-link" href="https://support.konghq.com/" target="_blank">
                 <div class="knowledge-base-link-title">Support</div>
