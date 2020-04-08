@@ -18,6 +18,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
         - 0.36-x
         - 0.35-x
@@ -32,24 +33,24 @@ params:
       required: true
       value_in_examples: '[{"name":{"type": "string", "required": true}}]'
       description: Array of schema fields
-      
+
     - name: allowed_content_types
       required: false
       default: { "application/json" }
       value_in_examples:
       description: Set of allowed content types
-      
+
     - name: version
       required: true
       default: "kong"
       value_in_examples:
       description: validator type
-    
+
     - name: parameter_schema
       required: false
       value_in_examples:
       description: Array of parameter validator specification
-    
+
 ---
 
 ## Examples

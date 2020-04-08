@@ -16,6 +16,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
 
 params:
@@ -27,7 +28,7 @@ params:
       value_in_examples: BOOTSTRAP_SERVERS
       urlencode_in_examples: true
       default:
-      description: | 
+      description: |
         List of bootstrap brokers in a `{host: host, port: port}` format.
     - name: topic
       required: true
@@ -51,12 +52,12 @@ params:
     - name: forward_method
       required: false
       default: "`false`"
-      description: | 
+      description: |
          Include the request method in the message.
     - name: forward_uri
       required: false
       default: "`false`"
-      description: | 
+      description: |
          Include the request URI and URI arguments (i.e., query arguments) in the message.
     - name: forward_headers
       required: false

@@ -18,6 +18,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
         - 0.36-x
         - 0.35-x
@@ -59,7 +60,7 @@ params:
       default: "`false`"
       value_in_examples:
       description: |
-        Set it to `true` to use `ldaps`, a secure protocol (that can be configured 
+        Set it to `true` to use `ldaps`, a secure protocol (that can be configured
         to TLS) to connect to the LDAP server.
     - name: base_dn
       required:
@@ -132,7 +133,7 @@ params:
       default:
       value_in_examples:
       description: |
-        The DN to bind to. Used to perform LDAP search of user. This bind_dn 
+        The DN to bind to. Used to perform LDAP search of user. This bind_dn
         should have permissions to search for the user being authenticated.
     - name: group_base_dn
       required:
@@ -145,7 +146,7 @@ params:
       default: "matches `conf.attribute`"
       value_in_examples:
       description: |
-        Sets the attribute holding the name of a group, typically called `name` 
+        Sets the attribute holding the name of a group, typically called `name`
         (in Active Directory) or `cn` (in OpenLDAP).
     - name: group_member_attribute
       required:
@@ -170,33 +171,33 @@ credential for future requests for the duration specified in
 #### Upstream Headers
 
 When a client has been authenticated, the plugin will append some headers to the
- request before proxying it to the upstream service, so that you can identify 
+ request before proxying it to the upstream service, so that you can identify
  the consumer in your code:
 
-* `X-Credential-Username`, the `username` of the Credential (only if the 
+* `X-Credential-Username`, the `username` of the Credential (only if the
 consumer is not the 'anonymous' consumer)
-* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and 
+* `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and
 the 'anonymous' consumer was set instead.
-* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if 
+* `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if
 authentication failed and 'anonymous' was set)
-* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if 
+* `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if
 authentication failed and 'anonymous' was set)
-* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if 
+* `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if
 authentication failed and 'anonymous' was set)
 
 
 #### LDAP Search and config.bind_dn
 
 LDAP directory searching is performed during the request/plugin lifecycle. It is
-used to retrieve the fully qualified DN of the user so a bind 
-request can be performed with the user's given LDAP username and password. The 
-search for the user being authenticated uses the `config.bind_dn` property. The 
+used to retrieve the fully qualified DN of the user so a bind
+request can be performed with the user's given LDAP username and password. The
+search for the user being authenticated uses the `config.bind_dn` property. The
 search uses `scope="sub"`, `filter="<config.attribute>=<username>"`, and
-`base_dn=<config.base_dn>`. Here is an example of how it performs the search 
+`base_dn=<config.base_dn>`. Here is an example of how it performs the search
 using the `ldapsearch` command line utility:
 
 ```bash
-$ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b 
+$ ldapsearch -x -h "<config.ldap_host>" -D "<config.bind_dn>" -b
 "<config.attribute>=<username><config.base_dn>" -w "<config.ldap_password>"
 ```
 
