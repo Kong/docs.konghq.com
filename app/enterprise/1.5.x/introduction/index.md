@@ -4,7 +4,7 @@ title: Introduction to Kong Enterprise
 
 ## Introduction
 
-Kong Enterprise is a Service Control Platform that brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. Built on top of Kong Community Gateway, Kong Enterprise enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
+Kong Enterprise is a Service Control Platform that brokers an organization’s information across all services by allowing customers to manage the full lifecycle of services and APIs. Built on top of Kong Gateway Community, Kong Enterprise enables users to simplify the management of APIs and microservices across hybrid-cloud and multi-cloud deployments.
 
 Kong Enterprise is designed to run on decentralized architectures, leveraging workflow automation and modern GitOps practices. With Kong Enterprise, users can:
 
@@ -13,7 +13,7 @@ Kong Enterprise is designed to run on decentralized architectures, leveraging wo
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the entire organization
 
-Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Community Gateway, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/key-concepts).
+Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Gateway Community, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/key-concepts).
 
 ![Introduction to Kong Enterprise](/assets/images/docs/ee/introduction.png)
 
@@ -21,9 +21,9 @@ Kong Enterprise is a combination of several features and add-ons on top of the o
 
 Kong Enterprise features are described in this section, including add-ons and plugins that extend and enhance the functionality of the Kong Enterprise platform.
 
-### Kong Community Gateway
+### Kong Gateway Community
 
-Kong Community Gateway is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. Kong Community Gateway runs in front of any RESTful API and is extended through add-ons and plugins which provide extra functionality beyond the core platform.
+Kong Gateway Community is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. Kong Gateway Community runs in front of any RESTful API and is extended through add-ons and plugins which provide extra functionality beyond the core platform.
 
 ### Kong Admin API
 
@@ -47,7 +47,7 @@ Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kub
 
 ### Kong Manager
 
-Kong Manager is the Graphical User Interface (GUI) for Kong Enterprise. It uses the Kong Admin API under the hood to administer and control Kong Gateway. Use Kong Manager to organize teams, adjust policies, and monitor performance with just a few clicks. Group your teams, services, plugins, consumer management, and more exactly how you want them. Create new routes and services, activate or deactivate plugins in seconds. For more information, see the [_Kong Manager Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/kong-manager/overview/).
+Kong Manager is the Graphical User Interface (GUI) for Kong Enterprise. It uses the Kong Admin API under the hood to administer and control Kong Gateway Enterprise. Use Kong Manager to organize teams, adjust policies, and monitor performance with just a few clicks. Group your teams, services, plugins, consumer management, and more exactly how you want them. Create new routes and services, activate or deactivate plugins in seconds. For more information, see the [_Kong Manager Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/kong-manager/overview/).
 
 ### Kong Plugins
 
