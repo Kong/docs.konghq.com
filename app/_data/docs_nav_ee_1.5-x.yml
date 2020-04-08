@@ -28,6 +28,8 @@
           url: /deployment/installation/amazon-linux-2
         - text: Red Hat Enterprise Linux
           url: /deployment/installation/rhel
+    - text: Default Ports
+      url: /deployment/default-ports
     - text: Resource Sizing Guidelines
       url: /sizing-guidelines
     - text: Licensing

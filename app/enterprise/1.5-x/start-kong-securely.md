@@ -102,24 +102,15 @@ allowing you to point to [your own configuration](/1.0.x/configuration/#configur
 ## Step 4
 
 To test that Kong Enterprise has successfully started with a **Super Admin**,
-visit Kong Manager's URL. By [default](#default-ports), it is on port `:8002`.
+visit Kong Manager's URL. By default, it is on port `:8002`.
 
 The username is `kong_admin` and the password is the one set in
 [Step 1](#step-1).
 
-### Default Ports
+### Next Steps
 
-By default, Kong Enterprise listens on the following ports:
+With Kong Enterprise started and the **Super Admin** logged in, it is now
+possible to create any entity in Kong.
 
-- [`:8000`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen): incoming HTTP traffic from **Consumers**, and forwarded to upstream
-  **Services**.
-- [`:8443`](/enterprise/{{page.kong_version}}/property-reference/#proxy_listen): incoming HTTPS traffic. This port behaves similarly to the `:8000`
-  port, except that it expects HTTPS traffic only.
-- [`:8003`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen): Dev Portal listens for HTTP traffic, assuming Dev Portal is **enabled**.
-- [`:8446`](/enterprise/{{page.kong_version}}/property-reference/#portal_gui_listen): Dev Portal listens for HTTPS traffic, assuming Dev Portal is **enabled**.
-- [`:8004`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen): Dev Portal **`/files`** traffic over HTTP, assuming the Dev Portal is **enabled**.
-- [`:8447`](/enterprise/{{page.kong_version}}/property-reference/#portal_api_listen): Dev Portal **`/files`** traffic over HTTPS, assuming the Dev Portal is **enabled**.
-- [`:8001`](/enterprise/{{page.kong_version}}/property-reference/#admin_api_uri): Admin API listens for HTTP traffic.
-- [`:8444`](/enterprise/{{page.kong_version}}/property-reference/#admin_api_uri): Admin API listens for HTTPS traffic.
-- [`:8002`](/enterprise/{{page.kong_version}}/property-reference/#admin_gui_listen): Kong Manager listens for HTTP traffic.
-- [`:8445`](/enterprise/{{page.kong_version}}/property-reference/#admin_gui_listen): Kong Manager listens for HTTPS traffic.
+Next, see how to segment the Kong cluster into
+[**Workspaces**](/enterprise/{{page.kong_version}}/getting-started/add-workspace).

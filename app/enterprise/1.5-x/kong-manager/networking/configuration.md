@@ -7,7 +7,7 @@ book: admin_gui
 
 By default, Kong Manager starts up without authentication (see
 [`admin_gui_auth`]), and it assumes that the Admin API is available
-on port 8001 (see [Default Ports]) of the same host that serves
+on port 8001 (see [Default Ports](/enterprise/{{page.kong_version}}/deployment/default-ports) of the same host that serves
 Kong Manager.
 
 ## Custom Configuration
@@ -95,7 +95,7 @@ is cleared from the browser after testing to prevent stale certificates from int
 [`admin_gui_auth`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth
 [`admin_gui_ssl_cert`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_ssl_cert
 [`admin_gui_ssl_cert_key`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_ssl_cert_key
-[`default_ports`]: /enterprise/{{page.kong_version}}/start-kong-securely/#default-ports
+[`default_ports`]: /enterprise/{{page.kong_version}}/deployment/default-ports
 [`admin_api_uri`]: /enterprise/{{page.kong_version}}/property-reference/#admin_api_uri
 [`admin_gui_auth_conf`]: /enterprise/{{page.kong_version}}/property-reference/#admin_gui_auth_conf
 [`enforce_rbac`]: /enterprise/{{page.kong_version}}/property-reference/#enforce_rbac
