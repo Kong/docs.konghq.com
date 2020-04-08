@@ -1,23 +1,25 @@
 ---
 title: Enable a Plugin
+redirect_from:
+  - /enterprise/{{page.kong_version}}/getting-started/enable-plugin
 ---
 
 ### Introduction
 
 This guide walks through enabling a **Plugin** on **Kong Enterprise** via
-**Kong Manager**, by showing an example configuration of the 
+**Kong Manager**, by showing an example configuration of the
 [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced) Plugin, the
 **Kong Enterprise** version of the popular **Kong Rate Limiting** Plugin. To
-learn more about **Rate Limiting Advanced**, or see how to configure this 
-Plugin via the command line, checkout the 
+learn more about **Rate Limiting Advanced**, or see how to configure this
+Plugin via the command line, checkout the
 [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced) documentation.
 
 
 ### Prerequisites
 
 - **Kong Enterprise** is [installed](/enterprise/{{page.kong_version}}/deployment/installation)
-- **Kong Enterprise** is [started](/enterprise/{{page.kong_version}}/getting-started/start-kong)
-- A [**Service and Route**](/enterprise/{{page.kong_version}}/getting-started/add-service)
+- **Kong Enterprise** is [started](/enterprise/{{page.kong_version}}/start-kong-securely)
+- A [**Service and Route**](/enterprise/{{page.kong_version}}/kong-manager/add-service)
 (optional)
 - **admin** or **super-admin** privileges
 
@@ -47,7 +49,7 @@ to configure the **Plugin** without enabling it.
 **Route** in the **Workspace**.
 <br/>*Scoped* will apply the **Plugin** to one **Service**, **Route**, and/or
 **Consumer**.
-<br/><br/>To use this option, select the **Scoped** radio button and select the 
+<br/><br/>To use this option, select the **Scoped** radio button and select the
 desired **Service**, **Route**, or **Consumer** from the dropdown.
 
     ![Connect test-service](https://doc-assets.konghq.com/0.35/getting-started/add-a-plugin/05-global-scoped.png)
@@ -65,7 +67,7 @@ following fields are *required*:<br/>-`config.limit`<br/>-`config.sync_rate`<br/
       ```
 
 5. Click the **Create** button at the bottom of the form to save and
-enable the **Plugin**. If it is successful, the page will automatically 
+enable the **Plugin**. If it is successful, the page will automatically
 redirect to the **Plugin Overview**, with the **Rate Limiting** Plugin
 listed.
 

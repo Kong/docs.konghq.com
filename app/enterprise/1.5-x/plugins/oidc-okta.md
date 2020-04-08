@@ -90,7 +90,7 @@ $ curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_claim="sub"
 ```
 
-Now, if a user logs into an Okta account with the GUID `e5634b31-d67f-4661-a6fb-b6cb77849bcf`, Kong will apply configuration associated with the consumer `Yoda` to their requests. 
+Now, if a user logs into an Okta account with the GUID `e5634b31-d67f-4661-a6fb-b6cb77849bcf`, Kong will apply configuration associated with the consumer `Yoda` to their requests.
 
 This also requires that clients login using an account mapped to some consumer, which may not be desirable (e.g. you apply OpenID Connect to a service, but only use plugins requiring a consumer on some routes). To deal with this, you can set the `anonymous` parameter in your OIDC plugin configuration to the ID of a generic consumer, which will then be used for all authenticated users that cannot be mapped to some other consumer. You can alternately set `consumer_optional` to `true` to allow similar logins without mapping an anonymous consumer.
 
@@ -103,6 +103,6 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
 [add-certificate]: /1.0.x/admin-api/#add-certificate
-[add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service
+[add-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /enterprise/{{page.kong_version}}/getting-started/enable-plugin/
+[enable-plugin]: /enterprise/{{page.kong_version}}/kong-manager/enable-plugin/

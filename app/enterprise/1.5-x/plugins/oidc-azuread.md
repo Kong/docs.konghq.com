@@ -33,7 +33,7 @@ $ curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name
   --data config.scopes="email" \
   --data config.scopes="profile" \
   --data config.scopes="YOUR_CLIENT_ID/.default" \
-  --data config.verify_parameters="false" 
+  --data config.verify_parameters="false"
 ```
 
 Several pieces of configuration above must use values specific to your environment:
@@ -67,7 +67,7 @@ $ curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_claim="oid"
 ```
 
-Now, if a user logs into an Azure AD account with the GUID `e5634b31-d67f-4661-a6fb-b6cb77849bcf`, Kong will apply configuration associated with the consumer `Yoda` to their requests. 
+Now, if a user logs into an Azure AD account with the GUID `e5634b31-d67f-4661-a6fb-b6cb77849bcf`, Kong will apply configuration associated with the consumer `Yoda` to their requests.
 
 This also requires that clients login using an account mapped to some consumer, which may not be desirable (e.g. you apply OpenID Connect to a service, but only use plugins requiring a consumer on some routes). To deal with this, you can set the `anonymous` parameter in your OIDC plugin configuration to the ID of a generic consumer, which will then be used for all authenticated users that cannot be mapped to some other consumer. You can alternately set `consumer_optional` to `true` to allow similar logins without mapping an anonymous consumer.
 
@@ -82,7 +82,7 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [azure-manifest]: https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest#configure-the-app-manifest
 [azure-tenants]: https://docs.microsoft.com/en-us/azure/active-directory/develop/single-and-multi-tenant-apps
 [add-certificate]: /1.2.x/admin-api/#add-certificate
-[add-service]: /enterprise/{{page.kong_version}}/getting-started/add-service
+[add-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /enterprise/{{page.kong_version}}/getting-started/enable-plugin/
+[enable-plugin]: /enterprise/{{page.kong_version}}/kong-manager/enable-plugin/

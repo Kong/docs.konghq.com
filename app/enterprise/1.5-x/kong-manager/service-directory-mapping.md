@@ -23,7 +23,7 @@ For example, if a User's Group changes in the Service Directory, their Kong Admi
 
 ### Configure Service Directory Mapping
 
-Configure Service Directory Mapping to use your LDAP Directory for authentication and authorization. 
+Configure Service Directory Mapping to use your LDAP Directory for authentication and authorization.
 
 ### Step 1: Start Kong Enterprise
 
@@ -63,7 +63,7 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 Configure LDAP Authentication for Kong Manager with the following properties. Note the attribute variables are defined below:
 
 ```
-admin_gui_auth_conf = { 
+admin_gui_auth_conf = {
  "anonymous":"", \
  "attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>", \
  "bind_dn":"<ENTER_YOUR_BIND_DN_HERE>", \
@@ -99,7 +99,7 @@ admin_gui_auth_conf = {
 * `group_name_attribute`: `<ENTER_YOUR_GROUP_NAME_ATTRIBUTE_HERE>`: Sets the attribute holding the name of a group, typically called `name` (in Active Directory) or `cn` (in OpenLDAP). The default is the value from `conf.attribute`.
 * `group_member_attribute`:`<ENTER_YOUR_GROUP_MEMBER_ATTRIBUTE_HERE>`: Sets the attribute holding the members of the LDAP group. The default is `memberOf`.
 
-### Define Roles with Permissions 
+### Define Roles with Permissions
 
 Define **Roles** with **Permissions** in Kong Enterprise, using the Admin API's [**_RBAC endpoints_**](https://docs.konghq.com/enterprise/latest/admin-api/rbac/reference/#update-or-create-a-role) or using Kong Manager's **Teams > [Admins tab](https://docs.konghq.com/enterprise/latest/kong-manager/administration/admins/invite/#using-the-organization-page-to-manage-users)**. You must manually define which Kong **Roles** correspond to each of the Service Directory's **Groups** using either of the following:
 
@@ -110,7 +110,7 @@ Kong Enterprise will not write to the Service Directory, for example, a Kong Ent
 
 ### User-Admin Mapping
 
-To map a Service Directory **User** to a Kong **Admin**, you must configure the **Admin's** username as the value of the **User's** name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an **Admin** account in [_Kong Manager_](https://docs.konghq.com/enterprise/latest/getting-started/add-admin/) or using the [_Admin API_](https://docs.konghq.com/enterprise/latest/admin-api/admins/reference/#invite-an-admin).
+To map a Service Directory **User** to a Kong **Admin**, you must configure the **Admin's** username as the value of the **User's** name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an **Admin** account in [_Kong Manager_](https://docs.konghq.com/enterprise/latest/kong-manager/administration/admins/add-admin/) or using the [_Admin API_](https://docs.konghq.com/enterprise/latest/admin-api/admins/reference/#invite-an-admin).
 
 For instructions on how to pair the bootstrapped **Super Admin** with a **Directory User**, see [_How to Set Up a Service Directory User as the First Super Admin_](https://docs.konghq.com/enterprise/1.3-x/kong-manager/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
 
@@ -133,10 +133,10 @@ If Wayne Enterprises decides to revoke bruce-wayne's privileges by removing thei
 
 ### Set Up a Directory User as the First Super Admin
 
-**Important**: Setting up a Directory User as the first Super Admin is recommended by Kong. 
+**Important**: Setting up a Directory User as the first Super Admin is recommended by Kong.
 
 
-The following is an example of setting up a Directory User as the first Super Admin. 
+The following is an example of setting up a Directory User as the first Super Admin.
 The example shows an attribute is configured with a unique identifier (UID), and the Directory User you want to make the Super Admin has a distinguished name (DN) entry of UID=bruce-wayne:
 
 ```
@@ -158,6 +158,3 @@ Alternatives:
 * Start Kong with RBAC turned off, map a Group to the super-admin Role, and then create an Admin to correspond to a User belonging to that Group. Doing so ensures that the Super Admin's privileges are entirely tied to the Directory Group, whereas bootstrapping a Super Admin only uses the Directory for authentication.
 
 Create all Admin accounts for matching Directory Users and ensure that their existing Groups map to appropriate Roles before enforcing RBAC.
-
-
-

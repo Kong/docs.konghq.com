@@ -909,8 +909,8 @@ associating the uploaded certificate to it.
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.ssl-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
 rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
-single `sni` configured with a wildcard name can be used to match multiple 
-subdomains, instead of creating an SNI for each. 
+single `sni` configured with a wildcard name can be used to match multiple
+subdomains, instead of creating an SNI for each.
 
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
@@ -1115,7 +1115,7 @@ just covered.
 [load-balancing-reference]: /enterprise/{{page.kong_version}}/loadbalancing
 [configuration-reference]: /enterprise/{{page.kong_version}}/property-reference
 [configuration-trusted-ips]: /enterprise/{{page.kong_version}}/property-reference/#trusted_ips
-[configuring-a-service]: /enterprise/{{page.kong_version}}/getting-started/add-service
+[configuring-a-service]: /enterprise/{{page.kong_version}}/kong-manager/add-service
 [API]: /enterprise/{{page.kong_version}}/admin-api
 [service-entity]: /enterprise/{{page.kong_version}}/admin-api/#add-service
 [route-entity]: /enterprise/{{page.kong_version}}/admin-api/#add-route

@@ -1,5 +1,7 @@
 ---
 title: Add a Consumer
+redirect_from:
+  - /enterprise/{{page.kong_version}}/getting-started/add-consumer
 ---
 
 ## 1. Create a Consumer
@@ -36,7 +38,7 @@ Or, add your first Consumer via Kong Manager:
 Congratulations! You've just added your first Consumer to Kong.
 
 **Note:** Kong also accepts a `custom_id` parameter when
-[creating Consumers][API-consumers] to associate a Consumer with your existing 
+[creating Consumers][API-consumers] to associate a Consumer with your existing
 user database.
 
 ## 2. Provision Credentials for Your Consumer
@@ -51,10 +53,10 @@ $ curl -i -X POST \
   --data "password=OpenSesame"
 ```
 
-## 3. Verify Validity of Consumer Credentials 
+## 3. Verify Validity of Consumer Credentials
 
-The authorization header must be base64 encoded. For example, if the credential 
-uses Aladdin as the username and OpenSesame as the password, then the field’s 
+The authorization header must be base64 encoded. For example, if the credential
+uses Aladdin as the username and OpenSesame as the password, then the field’s
 value is the base64-encoding of Aladdin:OpenSesame, or QWxhZGRpbjpPcGVuU2VzYW1l.
 
 Then the Authorization (or Proxy-Authorization) header must appear as:

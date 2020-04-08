@@ -3,12 +3,12 @@ title: Allowing Multiple Authentication Methods
 toc: false
 ---
 
-The default behavior for Kong authentication plugins is to require credentials 
-for all requests without regard for whether a request has been authenticated 
-via some other plugin. Configuring an anonymous consumer on your authentication 
+The default behavior for Kong authentication plugins is to require credentials
+for all requests without regard for whether a request has been authenticated
+via some other plugin. Configuring an anonymous consumer on your authentication
 plugins allows you to offer clients multiple options for authentication.
 
-To begin, [create a Service](/enterprise/{{page.kong_version}}/getting-started/add-service/) and then create three consumers:
+To begin, [create a Service](/enterprise/{{page.kong_version}}/kong-manager/add-service/) and then create three consumers:
 
 ```bash
 $ curl -sX POST kong-admin:8001/consumers \
@@ -43,7 +43,7 @@ $ curl -sX POST kong-admin:8001/apis/example-api/plugins/ \
 
 $ curl -sX POST kong-admin:8001/apis/example-api/plugins/ \
     -H "Content-Type: application/json" \
-    --data '{"name": "basic-auth", "config": { "hide_credentials": true, "anonymous": "d955c0cb-1a6e-4152-9440-414ebb8fee8a"} }' 
+    --data '{"name": "basic-auth", "config": { "hide_credentials": true, "anonymous": "d955c0cb-1a6e-4152-9440-414ebb8fee8a"} }'
 
 {"created_at":1517528499000,"config":{"hide_credentials":true,"anonymous":"d955c0cb-1a6e-4152-9440-414ebb8fee8a"},"id":"e5a40543-debe-4225-a879-a54901368e6d","name":"basic-auth","api_id":"a2a168a8-4491-4fe1-9426-cde3b5fcd45b","enabled":true}
 ```
