@@ -247,6 +247,8 @@
           url: /developer-portal/administration/managing-developers
         - text: Developer Roles and Content Permissions
           url: /developer-portal/administration/developer-permissions
+        - text: Application Registration
+          url: /developer-portal/administration/application-registration
     - text: Customization
       url: /developer-portal/theme-customization/easy-theme-editing
       items:
