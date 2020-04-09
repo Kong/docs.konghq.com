@@ -1,5 +1,6 @@
 ---
 title: Kong Enterprise Edition (EE) Documentation
+is_homepage: true
 ---
 # Welcome to Kong Enterprise Edition
 
@@ -63,5 +64,3 @@ title: Kong Enterprise Edition (EE) Documentation
     <a href="/enterprise/{{page.kong_version}}/setting-up-admin-api-rbac/">Setup RBAC &rarr;</a>
   </div>
 </div>
-
-

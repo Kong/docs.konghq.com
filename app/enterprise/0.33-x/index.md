@@ -1,5 +1,6 @@
 ---
 title: Kong Enterprise Edition (EE) Documentation
+is_homepage: true
 ---
 # Welcome to Kong Enterprise Edition
 

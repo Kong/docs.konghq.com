@@ -1,6 +1,7 @@
 ---
 title: Kong Enterprise Documentation
 redirect_from: '/enterprise/0.35-xhttps://konghq.com/hub'
+is_homepage: true
 ---
 
 ![Welcome to the Kong Enterprise](https://konghq.com/wp-content/themes/konghq/assets/img/home/buildings.svg)

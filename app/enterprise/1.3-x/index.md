@@ -1,6 +1,7 @@
 ---
 title: Kong Enterprise Documentation
 skip_read_time: true
+is_homepage: true
 ---
 
 <div class="docs-grid">
@@ -18,7 +19,7 @@ skip_read_time: true
     <p>Review the details of the changes made to each version of Kong Enterprise.</p>
     <a target="_blank" href="/enterprise/changelog/">See changelog &rarr;</a>
   </div>
-  
+
   <h2 class="docs-grid-section-title">Use Case Guides - Decentralize Applications and Services</h2>
 
   <div class="docs-grid-block">
