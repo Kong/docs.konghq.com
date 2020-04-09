@@ -560,17 +560,7 @@ of methods to secure the Admin API.
 
 ## Supported Content Types
 
-The Admin API accepts 2 content types on every endpoint:
-
-- **application/x-www-form-urlencoded**
-
-Simple enough for basic request bodies, you will probably use it most of the time.
-Note that when sending nested values, Kong expects nested objects to be referenced
-with dotted keys. Example:
-
-```
-config.limit=10&config.period=seconds
-```
+The Admin API accepts 3 content types on every endpoint:
 
 - **application/json**
 
@@ -584,6 +574,29 @@ a JSON representation of the data you want to send. Example:
         "period": "seconds"
     }
 }
+```
+
+
+- **application/x-www-form-urlencoded**
+
+Simple enough for basic request bodies, you will probably use it most of the time.
+Note that when sending nested values, Kong expects nested objects to be referenced
+with dotted keys. Example:
+
+```
+config.limit=10&config.period=seconds
+```
+
+
+- **multipart/form-data**
+
+Similar to url-encoded, this content type uses dotted keys to reference nested objects.
+Here is an example of sending a Lua file to the pre-function Kong plugin:
+
+```
+curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
+     -F "name=pre-function" \
+     -F "config.functions=@custom-auth.lua"
 ```
 
 ---
@@ -3208,9 +3221,9 @@ The health for each Target is returned in its `health` field:
   any traffic to this Target via this Upstream.
 
 When the request query parameter `balancer_health` is set to `1`, the
-`data` field of the response refers to the whole Upstream, and its `health`
+`data` field of the response refers to the Upstream itself, and its `health`
 attribute is defined by the state of all of Upstream's Targets, according
-to the field [health checker's threshold][healthchecks.threshold].
+to the field `healthchecks.threshold`.
 
 
 <div class="endpoint get indent">/upstreams/{name or id}/health/</div>
@@ -3225,7 +3238,7 @@ Attributes | Description
 
 Attributes | Description
 ---:| ---
-`balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the whole Upstream.
+`balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the Upstream itself. See the `healthchecks.threshold` property.
 
 
 #### Response

@@ -322,9 +322,9 @@
     openresty: "1.15.8.2"
 -
   release: "2.0.x"
-  version: "2.0.2"
+  version: "2.0.3"
   edition: "community"
-  luarocks_version: "2.0.2-0"
+  luarocks_version: "2.0.3-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.2.1"

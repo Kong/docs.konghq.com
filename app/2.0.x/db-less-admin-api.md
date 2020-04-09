@@ -1924,7 +1924,7 @@ The health for each Target is returned in its `health` field:
 When the request query parameter `balancer_health` is set to `1`, the
 `data` field of the response refers to the whole Upstream, and its `health`
 attribute is defined by the state of all of Upstream's Targets, according
-to the field [health checker's threshold][healthchecks.threshold].
+to the field `healthchecks.threshold`.
 
 
 <div class="endpoint get indent">/upstreams/{name or id}/health/</div>
@@ -1939,7 +1939,7 @@ Attributes | Description
 
 Attributes | Description
 ---:| ---
-`balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the whole Upstream.
+`balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the Upstream itself. See the `healthchecks.threshold` property.
 
 
 #### Response
