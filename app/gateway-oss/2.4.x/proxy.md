@@ -462,7 +462,7 @@ version: v3
 ### Request path
 
 Another way for a Route to be matched is via request paths. To satisfy this
-routing condition, a client request's path **must** be prefixed with one of the
+routing condition, a client request's normalized path **must** be prefixed with one of the
 values of the `paths` attribute.
 
 For example, with a Route configured like so:
@@ -490,7 +490,7 @@ GET /hello/world/resource HTTP/1.1
 Host: anything.com
 ```
 
-For each of these requests, Kong detects that their URL path is prefixed with
+For each of these requests, Kong detects that their normalized URL path is prefixed with
 one of the Routes's `paths` values. By default, Kong would then proxy the
 request upstream without changing the URL path.
 
@@ -505,6 +505,18 @@ This allow you to define two Routes with two paths: `/service` and
 Kong supports regular expression pattern matching for an Route's `paths` field
 via [PCRE](http://pcre.org/) (Perl Compatible Regular Expression). You can
 assign paths as both prefixes and regexes to a Route at the same time.
+
+For a path to be considered as regex, it must fall **outside** of the following regex:
+
+```
+^[a-zA-Z0-9\.\-_~/%]*$
+```
+
+In other words, if a path contains any character that is **not** alphanumerical, dot (`.`),
+dash (`-`), underscore (`_`), tilde (`~`), forward-slash (`/`) or percent (`%`), then
+it will be considered a regex path. Please note this determination is done on a per-path basis
+and it is allowed to mix plain text and regex paths inside the same `paths` array of the same
+Route object.
 
 For example, if we consider the following Route:
 
@@ -692,6 +704,38 @@ Will be proxied upstream by Kong as:
 GET /path/to/resource HTTP/1.1
 Host: ...
 ```
+
+[Back to top](#introduction)
+
+#### Normalization behavior
+
+In order to prevent trivial Route match bypass, the incoming request URI from client
+is always normalized according to [RFC 3986](https://tools.ietf.org/html/rfc3986)
+before router match occurs. Specifically, the following normalization techniques are
+used for incoming request URIs which are selected because they generally do not change
+semantics of the request URI:
+
+1. Percent-encoded triplets will be converted to uppercase. e.g. `/foo%3a` will become `/foo%3A`.
+2. Percent-encoded triplets of unreserved characters will be decoded. e.g. `/fo%6F` will become `/foo`.
+3. Dot-segments are removed as necessary. e.g. `/foo/./bar/../baz` will become `/foo/baz`.
+4. Duplicate slashes are merged. e.e. `/foo//bar` will become `/foo/bar`.
+
+`paths` attribute of the Route object are also normalized. It is achieved by first determining
+if the path is a plain text or regex path. Based on the result, different normalization techniques
+are used:
+
+For plain text Route path:
+
+Same normalization technique as above is used, that is, method 1 through 4.
+
+For regex Route path:
+
+Only method 1 and 2 are used. In addition, if the decoded character becomes a regex
+meta character, it will be escaped with backslash.
+
+Please note that Kong normalizes any incoming request URI before performing router
+matches. As a result, any request URI sent over to the upstream services will also
+be in normalized form that preserves the original URI semantics.
 
 [Back to top](#introduction)
 
