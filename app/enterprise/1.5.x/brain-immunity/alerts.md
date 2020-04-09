@@ -4,7 +4,7 @@ title: Immunity Alerts
 
 ### Introduction
 
-Immunity is working behind the scenes to monitor all the traffic that comes through Kong.  When it sees an anomaly, Immunity will send alerts to Kong Manager which can be found on Service Map and the Alerts page.  These alerts are built to signal the health of your microservices system and will help pinpoint which endpoints are struggling.
+Immunity is working behind the scenes to monitor all the traffic that comes through Kong Enterprise. When it sees an anomaly, Immunity will send an alert to Kong Manager. The alert can be found on the Service Map and the Alerts page. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.
 
 
 ### Prerequisites
@@ -21,7 +21,7 @@ For more information, see the [Kong Brain and Kong Immunity Installation and Con
 Immunity evaluates your traffic every minute, and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic and consumer traffic.
 
 * `Endpoint alerts` are generated from traffic belonging to one specific endpoint, for example, `GET www.testendpoint/start`.
-* `Consumer alerts` are generated from any traffic in a Workspace belonging to a registered Kong consumer. This traffic is identified by the consumer id.
+* `Consumer alerts` are generated from any traffic in a Workspace belonging to a registered Kong consumer. This traffic is identified by the consumer ID.
 
 
 There are six types of alerts that Immunity can create for either endpoints or consumers:
@@ -29,7 +29,7 @@ There are six types of alerts that Immunity can create for either endpoints or c
 * `unknown_parameter`: These alerts are triggered when requests include parameters not seen before.
 * `abnormal_value`: These alerts are triggered when requests contain values different from historical values seen paired with its parameter.
 * `latency_ms`: These alerts are triggered when incoming requests are significantly slower than historical records.
-* `traffic`: These alerts are triggered when Immunity sees a rise in 4XX and 5XX error codes for incoming traffic, or when the overall traffic experiences an abnormal spike or dip.
+* `traffic`: These alerts are triggered when Immunity sees a rise in 4XX and 5XX error codes for incoming traffic, or when the overall traffic has an abnormal spike or dip.
 * `statuscode`: These alerts are triggered when the proportion of 4XX or 5XX error codes is increasing, regardless of traffic volume.
 
 
@@ -43,34 +43,34 @@ curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00"}' \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts
 ```
 
-Or, you can access the alerts via browser, passing in the end and start values as parameters like this:
+Or, you can access the alerts via browser, passing in the ‘start and end’ values as parameters like this:
 
 ```
 http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts?start=2019-01-01 00:00:00&end=2019-01-02 00:00:00
 ```
 
-The /alerts endpoint takes these parameters and you can mix and match them to your monitoring needs:
+The ‘/alerts’ endpoint uses these parameters, which you can mix and match according to your monitoring needs:
 * `start and end`: Returns only alerts generated between the values in start and end parameters passed.
-* `alert_type`: Returns only alerts of the alert_type in specified in alert_type parameter. This parameter does not accept lists of alert types. The value passed must be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
-* `url`: Returns only the alerts associated with the endpoint specified with url parameter.
+* `alert_type`: Returns only alerts of the alert_type specified in the alert_type parameter. This parameter does not accept lists of alert types. The value passed must be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
+* `url`: Returns only the alerts associated with the endpoint specified with URL parameter.
 * `method`: Returns only alerts with the method specified. Must be one of these values: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, or TRACE. Full capitalization is necessary.
-* `workspace_name`: The name of the Kong workspace for the alerts you want returned.
-* `route_id`: The Kong Route id for the alerts you want returned
-* `service_id`: The Kong Service id for the alerts you want returned
-* `system_restored`: A true/false value indicated you only want returned alerts where the system_restored value is matching the boolean value passed into this parameter.
-* `severity`: One of "low", "medium", "high" which will restrict returned alerts of severities matching the value provided with this parameter.
+* `workspace_name`: The name of the Kong Workspace for the alerts you want returned.
+* `route_id`: The Kong Route ID for the alerts you want returned.
+* `service_id`: The Kong Service ID for the alerts you want returned.
+* `system_restored`: A true/false value indicates you only want returned alerts where the system_restored value is matching the boolean value passed into this parameter.
+* `severity`: One of "low", "medium", "high" which will restricts returned alerts of severities matching the value provided with this parameter.
 
 #### Alerts Object
 
-Two types of data are returned by the /alerts endpoint. The first is a list of the alerts generated, which are structured like this:
+Two types of data are returned by the ‘/alerts’ endpoint. The first is a list of the alerts generated, which are structured like this:
 * `id`: The alert_id of the alert.
-* `detected_at`: The time in which the generated alert was detected at. This time also correlates with the last time point in the data time series that generated this alert. For example, if the alert was generated on data from 1:00 pm to 1:01 pm, then the detected_at time would correspond with the most recent time point of 1:01 pm in the data used to make that alert.
-* `detected_at_unix`: The time from detected_at expressed in unix time.
-* `url`: The url who’s data generated this alert.
-* `alert_type`: the type of alert generated, will be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
+* `detected_at`: The time when the generated alert was detected. This time also correlates with the last time point in the data time series that generated this alert. For example, if the alert was generated on data from 1:00 pm to 1:01 pm, then the detected_at time corresponds with the most recent time point of 1:01 pm in the data used to make the alert.
+* `detected_at_unix`: The time from detected_at expressed in Unix time.
+* `url`: The URL that generated this alert.
+* `alert_type`: The type of alert generated, will be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’].
 * `summary`: The summary of the alert generated, includes a description of the anomalous event for clarity.
-* `system_restored`: This parameter takes True or False as a value, and will return notifications where the anomalous event’s system_restored status matches the value passed in the parameter.
-* `severity`: The severity level of this alert, values within [low, medium, high].
+* `system_restored`: This parameter takes True or False as a value, and returns notifications where the anomalous event’s system_restored status matches the value passed in the parameter.
+* `severity`: The severity level of this alert, values of [low, medium, high].
 
 #### Alerts Metadata
 
@@ -79,7 +79,7 @@ The second type of data returned is alerts metadata which describes the overall 
 
 ### Immunity Model Training
 
-Immunity automatically starts training its models once it is up and running and receiving data. Immunity will create a unique model for every unique endpoint + method combination it sees in incoming traffic. For example, if you have an endpoint [www.test-website.com/buy](http://www.test-website.com/buy) and traffic comes in with both GET and POST requests for that endpoint, Immunity will create two models one for the endpoint + GET traffic and one for the endpoint + POST traffic.
+Immunity automatically starts training its models once it is up and running and receiving data. Immunity will create a unique model for every unique endpoint + method combination it sees in incoming traffic. For example, if you have an endpoint [www.test-website.com/buy](http://www.test-website.com/buy) and traffic comes in with both GET and POST requests for that endpoint, Immunity will create two models; one for the endpoint + GET traffic and one for the endpoint + POST traffic.
 
 
 Our first model version gets created after the first hour and will continuously retrain itself for the first week to provide the best model possible. After that, every week all models retrain with a week of data.
@@ -103,7 +103,7 @@ http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer?start=&end=
 ** datetime value format: YYYY-MM-DD HH:mm:ss
 
 
-Additionally, you can specify the kong service_id or route_id of the urls you would like trained using the kong_entity parameter. Immunity would then only train urls associated with the ID provided, and with the data specified by the start and end dates.
+Additionally, you can specify the Kong service_id or route_id of the URLs you would like trained using the kong_entity parameter. Immunity would then only train URLs associated with the ID provided, and with the data specified by the start and end dates.
 
 ```
 curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00", "kong_entity":"2beff163-061d-43ad-8d87-8f40d10805ba"}' \
@@ -113,14 +113,14 @@ curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00", "kong_enti
 
 ### Checking Models Trained
 
-Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints` which will give back a list of all models in the system. Each item in this list contains the following identifying information for the model:
+Only endpoints + method combinations that have a model trained can be monitored for alerts. If you want to check which endpoints have models, you can use `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/monitoredendpoints` which return a list of all models in the system. Each item in this list contains the following identifying information for the model:
 
 
 
-* `base_url`: The url of the traffic used to train the model.
+* `base_url`: The URL of the traffic used to train the model.
 * `method`: The method of the traffic used to train the model.
 * `route_id`: The Kong route_id that the traffic used to train the model is associated with. **service_id**: The Kong service_id that the traffic used to train the model is associated with. **model_version_id**: The model version number of the current, active model.
-* `active_models`: A json object containing information on the active status of each of the 6 core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type).
+* `active_models`: A json object containing information on the active status of each of the six (6) core alert types in Immunity (unknown_parameters, abnormal_value, latency, traffic, status codes, and value_type).
 
 
 
@@ -151,7 +151,7 @@ For best use, Immunity retrains on a regular basis. If you do not feel like you 
 
 
 
-You can turn off auto-training for a particular route or service via curl request like this:
+You can turn off auto-training for a particular route or service via cURL request like this:
 
 ```
 curl -d '{"kong_entity":"your-route-id", "enable":false}' \
@@ -198,8 +198,8 @@ curl -X http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
 #### Severity-Levels
 
 Alerts can be classified on 4-severity levels:
-* `low`: The low severity classification denotes the least important alerts to the user. While the user ultimately decides what a low severity means to them, we recommend that low severity indicates an alert that you'd want to look at eventually, but not right away. It's an alert you wouldn't wake up at 2 am to fix but something you'll find useful down the road maybe with planning or minor bug fixing.
-* `medium`: A medium severity classification denotes a mid-level important alert to the user. We think of this level as not something you'd want to wake up at 2 am to fix, but not so unimportant that you would wait till sprint planning prep to address. This is a level where you'll likely address it within the sprint or couple of days following it coming up.
+* `low`: The low severity classification denotes the least important alerts to the user. While the user ultimately decides what a low severity means to them, we recommend that low severity indicates an alert that you'd want to look at eventually, but not right away. It's an alert you wouldn't wake up at 2:00 am to fix but something you'll find useful down the road maybe with planning or minor bug fixing.
+* `medium`: A medium severity classification denotes a mid-level important alert to the user. We think of this level as not something you'd want to wake up at 2:00 am to fix, but not so unimportant that you would wait till sprint planning prep to address. This is a level where you'll likely address it within the sprint or couple of days following it coming up.
 * `high`: A high severity classification is the highest severity level of alert. These are the alerts that you want to be woken up for in the middle of the night, the alert who's ping means all hands on deck.
 * `ignored`: Alerts that are designated as ignored are not surfaced in the Kong Manager, slack alerts, nor /alerts endpoint. For the later, ignored relates will be returned when explicitly asked for via /alerts parameter "severity".
 
@@ -234,7 +234,7 @@ Optional parameters for greater specificity are:
 
 Some restrictions: If you want to set a severity configuration for a route, provide just the route_id and not the service_id.
 
-In the example above, to set the first alert type wide rule for all `unknown_parameter` alerts in your system, you would pass `unknown_parameter` to the `alert_name` parameter and null to the `kong_entity` parameter. Here's an example of what that curl would look like:
+In the example above, to set the first alert type wide rule for all `unknown_parameter` alerts in your system, you would pass `unknown_parameter` to the `alert_name` parameter and null to the `kong_entity` parameter. Here's an example of what that cURL would look like:
 
 ```
 curl -d '{"alert_name":"unknown_parameter", "kong_entity":null, "severity": "high"}' \
@@ -332,7 +332,7 @@ The response will include these values:
 * `har`: The full har for the request that generated that har.
 
 
-Here's an example using curl:
+Here's an example using cURL:
 
 ```
 curl -d '{"alert_id":1} \
@@ -363,7 +363,7 @@ That will redirect you to a page where you can select the channel the webhook wi
 
 #### Adding a Slack Configuration
 
-To add your first Slack configuration, copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL). Then, simply create a POST request to /notifications/slack/config with an endpoint parameter equal to the webhook URL. Here's an example via curl:
+To add your first Slack configuration, copy the webhook URL that you just created with your app (when you finished the Slack app creation, you should have been directed to a page where you could copy the webhook URL). Then, simply create a POST request to /notifications/slack/config with an endpoint parameter equal to the webhook URL. Here's an example via cURL:
 
 ```
 curl -d '{"endpoint":"www.your-slack-webhook.com"} \
@@ -414,7 +414,7 @@ Once one specific Slack configuration rule is created for a given Slack endpoint
 
 #### Seeing your configured Rules
 
-Configured rules can get complicated. To see all the slack rules and slack urls you have configured, make a GET request to /notifications/slack/config like this:
+Configured rules can get complicated. To see all the slack rules and slack you have configured, make a GET request to /notifications/slack/config like this:
 
 ```
 curl -X GET http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/notifications/slack/config
@@ -464,13 +464,13 @@ curl -d '{"endpoint":"www.your-slack-webhook.com",
 
 ### Clean Up the Data
 
-Collector will clean the amount of HARs stored daily up to the max number of hars specified in the environment variable `MAX_HARS_STORAGE` and tables with extracted information to a max of two weeks of data. This means that at any day, the max number of HARs stored is the `MAX_HARS_STORAGE` + days_incoming_number_of_hars. If no `MAX_HARS_STORAGE` is specified, collector defaults to keeping 2 million hars in the database.
+Collector will clean the amount of HARs stored daily up to the max number of hars specified in the environment variable `MAX_HARS_STORAGE` and tables with extracted information to a max of two weeks of data. This means that at any day, the max number of HARs stored is the `MAX_HARS_STORAGE` + days_incoming_number_of_hars. If no `MAX_HARS_STORAGE` is specified, collector defaults to keeping two million hars in the database.
 
 
 You can set your own value of `MAX_HARS_STORAGE` by setting the app environment variable through whatever means you've been deploying collector.
 
 
-Additionally, collector provides an endpoint to delete the HARs data at /clean-hars. This endpoint accepts get and post and takes one parameter `max_hars_storage` which will delete all hars until only the value passed with `max_hars_storage` remains and contains the most recent HARs added to the database. If no value is passed to `max_hars_storage`, it will clean the database to the default value set with the environment variable `MAX_HARS_STORAGE`. An example of using this endpoint with curl looks like this:
+Additionally, collector provides an endpoint to delete the HARs data at /clean-hars. This endpoint accepts get and post and takes one parameter `max_hars_storage` which will delete all hars until only the value passed with `max_hars_storage` remains and contains the most recent HARs added to the database. If no value is passed to `max_hars_storage`, it will clean the database to the default value set with the environment variable `MAX_HARS_STORAGE`. An example of using this endpoint with cURL looks like this:
 
 ```
 curl -d '{"max_hars_storage":10000} \
