@@ -331,3 +331,7 @@
     cassandra: "3.x.x"
     postgres: "9.5+"
     openresty: "1.15.8.2"
+-
+  release: "latest"
+  version: "latest"
+  edition: "getting-started-guide"

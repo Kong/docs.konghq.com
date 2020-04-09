@@ -4,6 +4,8 @@
   {% assign docs_url = '/enterprise/' | append: page.kong_version %}
   {% elsif page.edition == 'studio' %}
   {% assign docs_url = '/studio/' | append: page.kong_version %}
+  {% elsif page.edition == 'getting-started-guide' %}
+  {% assign docs_url = '/getting-started-guide/' | append: page.kong_version %}
   {% else %}
   {% assign docs_url = '/' | append: page.kong_version %}
   {% endif %}

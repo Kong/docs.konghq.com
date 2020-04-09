@@ -1,0 +1,73 @@
+---
+layout: default
+sitemap: true
+id: getting-started-guide
+---
+
+<div class="page v2 {{ page.class }} {% if page.is_homepage %}homepage{% endif %}">
+  <header class="page-header">
+    <div class="container">
+      <nav class="docs-navigation v2">
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
+        <a href="/studio" {% if page.edition=='studio' %} class="active" {% endif %}>Kong Studio</a>
+        <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
+
+        <span class="sidebar-toggle">Open Sidebar</span>
+        <div class="edit-this-page v2">
+          <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+            Edit this Page
+          </a>
+        </div>
+      </nav>
+      <div class="title-version-search-container">
+        <div class="page-header-title">
+          <h1>{{page.title}}</h1>
+        </div>
+        <div class="search-version-row">
+          <div class="versions-dropdown dropdown">
+            <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+              Version {{page.kong_version}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+              {% for ver in page.kong_versions reversed %}
+              <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+                <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"
+                    {% if ver.release==page.kong_version %} class="active" {% endif %}
+                >
+                  {{ver.release}}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+  </header>
+
+  <div class="container">
+    {% include docs-sidebar.html %}
+
+    {% if page.toc == true or page.toc != false and page.is_homepage != true %}
+    <aside class="docs-toc">
+      <div class="docs-toc-title">On this page</div>
+      {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
+    </aside>
+    {% endif %}
+
+    <div class="page-content-container v2" id="documentation">
+      <div class="page-content">
+        <div class="content show-anchor-links">
+          {% unless page.skip_read_time == true %}{% include read_time.html %}{% endunless %}
+
+          {{ content }}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if page.feedback != false %}
+{% include feedback-widget.html %}
+{% endif %}

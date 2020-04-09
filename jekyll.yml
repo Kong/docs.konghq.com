@@ -93,6 +93,11 @@ defaults:
       layout: 'docs'
 
   - scope:
+      path: 'getting-started-guide'
+    values:
+      layout: 'getting-started-guide'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'
