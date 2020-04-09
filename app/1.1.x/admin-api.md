@@ -1,5 +1,6 @@
 ---
 title: Admin API
+toc: false
 
 service_body: |
     Attributes | Description
@@ -13,8 +14,8 @@ service_body: |
     `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Defaults to `60000`.
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
-    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
+    `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering.
+    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url).
 
 service_json: |
     {
@@ -69,16 +70,16 @@ route_body: |
     ---:| ---
     `name`<br>*optional* | The name of the Route.
     `protocols` |  A list of the protocols this Route should allow. When set to `["https"]`, HTTP requests are answered with a request to upgrade to HTTPS.  Defaults to `["http", "https"]`.
-    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set. 
+    `methods`<br>*semi-optional* |  A list of HTTP methods that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.
     `hosts`<br>*semi-optional* |  A list of domain names that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
     `paths`<br>*semi-optional* |  A list of paths that match this Route. When using `http` or `https` protocols, at least one of `hosts`, `paths`, or `methods` must be set.  With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an Array.
     `regex_priority`<br>*optional* |  A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).  Defaults to `0`.
     `strip_path`<br>*optional* |  When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.  Defaults to `true`.
-    `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`. 
-    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
-    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
-    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set. 
-    `tags`<br>*optional* |  An optional set of strings associated with the Route, for grouping and filtering. 
+    `preserve_host`<br>*optional* |  When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`.
+    `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set.
+    `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set.
+    `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". When using `tcp` or `tls` protocols, at least one of `snis`, `sources`, or `destinations` must be set.
+    `tags`<br>*optional* |  An optional set of strings associated with the Route, for grouping and filtering.
     `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to.  With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
 
 route_json: |
@@ -132,9 +133,9 @@ route_data: |
 consumer_body: |
     Attributes | Description
     ---:| ---
-    `username`<br>*semi-optional* |  The unique username of the consumer. You must send either this field or `custom_id` with the request. 
-    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request. 
-    `tags`<br>*optional* |  An optional set of strings associated with the Consumer, for grouping and filtering. 
+    `username`<br>*semi-optional* |  The unique username of the consumer. You must send either this field or `custom_id` with the request.
+    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
+    `tags`<br>*optional* |  An optional set of strings associated with the Consumer, for grouping and filtering.
 
 consumer_json: |
     {
@@ -163,15 +164,15 @@ consumer_data: |
 plugin_body: |
     Attributes | Description
     ---:| ---
-    `name` |  The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately. 
+    `name` |  The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately.
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Defaults to `null`. With form-encoded, the notation is `route.id=<route_id>`. With JSON, use `"route":{"id":"<route_id>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Defaults to `null`. With form-encoded, the notation is `service.id=<service_id>`. With JSON, use `"service":{"id":"<service_id>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`. With form-encoded, the notation is `consumer.id=<consumer_id>`. With JSON, use `"consumer":{"id":"<consumer_id>"}`.
-    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
+    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
     `run_on` |  Control on which Kong nodes this plugin will run, given a Service Mesh scenario. Accepted values are: * `first`, meaning "run on the first Kong node that is encountered by the request". On an API Getaway scenario, this is the usual operation, since there is only one Kong node in between source and destination. In a sidecar-to-sidecar Service Mesh scenario, this means running the plugin only on the Kong sidecar of the outbound connection. * `second`, meaning "run on the second node that is encountered by the request". This option is only relevant for sidecar-to-sidecar Service Mesh scenarios: this means running the plugin only on the Kong sidecar of the inbound connection. * `all` means "run on all nodes", meaning both sidecars in a sidecar-to-sidecar scenario. This is useful for tracing/logging plugins.  Defaults to `"first"`.
     `protocols` |  A list of the request protocols that will trigger this plugin. Possible values are `"http"`, `"https"`, `"tcp"`, and `"tls"`. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will may only support `"tcp"` and `"tls"`.  Defaults to `["http", "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Defaults to `true`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering.
 
 plugin_json: |
     {
@@ -220,8 +221,8 @@ certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering.
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience.
 
 certificate_json: |
     {
@@ -251,7 +252,7 @@ sni_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering.
     `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname  With form-encoded, the notation is `certificate.id=<certificate_id>`. With JSON, use `"certificate":{"id":"<certificate_id>"}`.
 
 sni_json: |
@@ -310,7 +311,7 @@ upstream_body: |
     `healthchecks.passive.type`<br>*optional* | Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. Possible values are `tcp`, `http` or `https` (in passive checks, `http` and `https` options are equivalent.). Defaults to `"http"`.
     `healthchecks.passive.healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Defaults to `0`.
     `healthchecks.passive.healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
-    `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering.
 
 upstream_json: |
     {
@@ -453,9 +454,9 @@ upstream_data: |
 target_body: |
     Attributes | Description
     ---:| ---
-    `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record. 
+    `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.
     `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`1000`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Defaults to `100`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Target, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Target, for grouping and filtering.
 
 target_json: |
     {
@@ -531,7 +532,7 @@ Arrays and sets can be specified in various ways:
     ```
     hosts[1]=example.com&hosts[2]=example.org
     ```
-    or 
+    or
     ```
     hosts[]=example.com&hosts[]=example.org
     ```
@@ -676,7 +677,7 @@ HTTP 200 OK
 
 ---
 
-##  Tags 
+##  Tags
 
 Tags are strings associated to entities in Kong. Each tag must be composed of one or more
 alphanumeric characters, `_`, `-`, `.` or `~`.
@@ -722,7 +723,7 @@ Some notes:
 * `offset` parameters are not guaranteed to work if the `tags` parameter is altered or removed
 
 
-###  List All Tags 
+###  List All Tags
 
 Returns a paginated list of all the tags in the system.
 
@@ -772,7 +773,7 @@ HTTP 200 OK
 
 ---
 
-###  List Entity Ids by Tag 
+###  List Entity Ids by Tag
 
 Returns the entities that have been tagged with the specified tag.
 
