@@ -1,4 +1,5 @@
 - title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
   items:
     - text: Introduction to Kong Enterprise
       url: /introduction
@@ -57,10 +58,7 @@
 
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  url: /getting-started/
-  items:
-    - text: Overview
-      url: /getting-started/
+  url: /../../getting-started-guide/
 
 - title: Guides & References
   icon: /assets/images/icons/documentation/icn-references-color.svg
