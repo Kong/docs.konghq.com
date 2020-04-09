@@ -145,7 +145,7 @@ id: documentation
       </div>
     </div>
   </div>
-  {% if page.is_homepage == false and page.feedback != false %}
+  {% if page.is_homepage != true and page.feedback != false %}
   {% include feedback-widget.html %}
   {% endif %}
 </div>
