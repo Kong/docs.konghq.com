@@ -1,5 +1,6 @@
 ---
 title: CLI Reference
+skip_read_time: true
 ---
 
 ## Introduction
@@ -52,9 +53,9 @@ The available commands are:
                                       get you started.
 
   db_import <file>                    Import a declarative config file into
-                                      the Kong database. db_import supports 
+                                      the Kong database. db_import supports
                                       most Admin API entities except for Admins,
-                                      RBAC users, roles, and permissions. 
+                                      RBAC users, roles, and permissions.
 
   parse <file>                        Parse a declarative config file (check
                                       its syntax) but do not load it into Kong.

@@ -1,5 +1,6 @@
 ---
 title: Securing the Admin API
+skip_read_time: true
 ---
 
 ## Introduction

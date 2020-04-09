@@ -1,5 +1,6 @@
 ---
 title: Keyring & Data Encryption
+skip_read_time: true
 ---
 
 <div class="alert alert-red">WARNING: This functionality is released as an alpha-quality feature. Please proceed with caution.</div>

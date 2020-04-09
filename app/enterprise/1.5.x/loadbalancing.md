@@ -1,5 +1,6 @@
 ---
 title: Loadbalancing reference
+skip_read_time: true
 ---
 
 ## Introduction
