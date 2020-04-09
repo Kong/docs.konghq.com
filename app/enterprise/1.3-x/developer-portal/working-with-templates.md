@@ -307,7 +307,7 @@ This is my second post!
 ### List of Helper Functions
 
 # Kong Template Helpers - Lua API
-Kong Template Helpers are a collection of objects that not only give access to your portal data at time of render, but provide powerful integrations into Kong as well.
+Kong Template Helpers are a collection of objects that give access to your portal data at the time of render and provide powerful integrations into Kong.
 
 
 ## Globals
