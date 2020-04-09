@@ -37,8 +37,8 @@ Steps are:
 - [Step 1. Set up the Collector App](#step-1-set-up-the-collector-app)
 - [Step 2. Set up the Collector Plugin and Kong GUI](#step-2-set-up-the-collector-plugin-and-kong-gui)
 - [Step 3: Set up with Docker Compose](#step-3-set-up-with-docker-compose)
-- [Step 4. (Optional) Opt-Out of HAR Redaction](#step-4-advanced-configuration-opt-out-of-har-redaction)
-- [Step 5. (Optional) Using a different Redis instance](#step-5-using-a-different-redis-instances-optional)
+- [Step 4. (Advanced Configuration) Opt-Out of HAR Redaction](#step-4-advanced-configuration-opt-out-of-har-redaction)
+- [Step 5. (Optional) Using a different Redis instance](#step-5-optional-using-a-different-redis-instance)
 - [Step 6. Confirm the Collector App is working](#step-6-confirm-the-collector-app-is-working)
 
 
@@ -96,7 +96,7 @@ SQLALCHEMY_DATABASE_URI=postgres://{POSTGRES-USER}:{POSTGRES-PASSWORD}@{POSTGRES
 ```
 
 ### Set up Collector App using Helm
-There is a public helm chart for setting up Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: https://github.com/Kong/kong-collector-helm/blob/master/README.md
+There is a public helm chart for setting up Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
 
 
 ### Step 2. Set up the Collector Plugin and Kong GUI
@@ -179,7 +179,7 @@ $ REDACT_BODY_DATA=False docker-compose -f docker-compose.yml -f with-redis.yml 
 ```
 
 
-### Step 5. Using a different Redis instance _(optional)_
+### Step 5. (Optional) Using a different Redis instance
 To use your own instance of Redis instead of the one provided by the container, change the command to use your database, Redis, or both.
 
 ```
@@ -198,5 +198,3 @@ curl http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/status
 Collector App and Kong are up and ready to analyze incoming traffic for [alerts](/enterprise/{{page.kong_version}}/brain-immunity/alerts), [auto-generate specs](/enterprise/{{page.kong_version}}/brain-immunity/auto-generated-specs), and display your traffic visually in [Service-Map](/enterprise/{{page.kong_version}}/brain-immunity/service-map).
 
 For any problems encountered while setting up Collector App, Collector Plugin, or configuring other aspects of Brain and Immunity, please check out [troubleshooting](/enterprise/{{page.kong_version}}/brain-immunity/troubleshooting) for help debugging common problems.
-
-
