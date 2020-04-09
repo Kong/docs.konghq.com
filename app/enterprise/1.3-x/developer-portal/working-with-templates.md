@@ -323,9 +323,9 @@ Kong Template Helpers are a collection of objects that give access to your porta
 ## Objects
 
 - [`portal`](#portal) - The portal object refers to the current workspace portal being accessed.
-- [`page`](#page) - The page object refers to the currently active page, and it's contents.
+- [`page`](#page) - The page object refers to the currently active page and its contents.
 - [`user`](#user) - The user object represents the currently logged in developer accessing the Kong Portal.
-- [`theme`](#theme) - The theme object represents the currently active theme, and it's variables.
+- [`theme`](#theme) - The theme object represents the currently active theme and its variables.
 - [`tbl`](#tbl) = Table helper methods. Examples: `map`, `filter`, `find`, `sort`
 - [`str`](#str) = String helper methods. Examples: `lower`, `upper`, `reverse`, `endswith`
 - [`helpers`](#helpers) - Helper functions simplify common tasks or provide easy shortcuts to Kong Portal methods.
@@ -333,8 +333,8 @@ Kong Template Helpers are a collection of objects that give access to your porta
 
 ## Terminology / Definitions
 
-- `list` - Also referred to commonly as an array (`[1, 2, 3]`) in lua is a table-like object (`{1, 2, 3}`). Lua list index starts at `1` not `0`. Values can be accessed by array notation (`list[1]`).
-- `table` - Also commonly-known-as an object or hashmap (`{1: 2}`) in lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
+- `list` - Also referred to commonly as an array (`[1, 2, 3]`) in Lua is a table-like object (`{1, 2, 3}`). Lua list index starts at `1` not `0`. Values can be accessed by array notation (`list[1]`).
+- `table` - Also commonly-known-as an object or hashmap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
 
 # Globals
 ## `l(key, fallback)`
@@ -465,7 +465,7 @@ Iterator
 
 #### Description
 
-> Returns stringified output of input value
+> Returns stringified output of input value.
 
 #### Return Type
 
@@ -487,7 +487,7 @@ string
 
 #### Description
 
-> Returns HTML from the markdown string passed as an argument.  If string argument is not valid markdown, the function will return the string as is.  In order to render properly the helper should be used with raw "{* *}" delimeters.
+> Returns HTML from the markdown string passed as an argument. If string argument is not valid markdown, the function will return the string as is. In order to render properly the helper should be used with raw "{* *}" delimeters.
 
 #### Return Type
 
