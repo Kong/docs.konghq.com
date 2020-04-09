@@ -110,20 +110,44 @@ admin_gui_flags={"IMMUNITY_ENABLED":true}
 ```
 Then restart Kong to see the changes take effect.
 
+### Enable the Collector Plugin using the Admin API
 Next, enable the Collector Plugin using the Admin API:
 
 ```
 $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector config.service_token=foo config.host=<COLLECTOR_HOST> config.port=<COLLECTOR_PORT> config.https=false config.log_bodies=true
 ```
 
->(Optional) It is possible to set up the Collector Plugin to only be applied to specific routes or services, by adding `route.id=<ROUTE_ID>` or `service.id=<SERVICE_ID>` to the request.
+>(Optional) It is possible to set up the Collector Plugin to only be applied to specific routes or services. To apply the Collector Plugin to a Workspace, make this cURL request:
 
 ```
-$ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector config.service_token=foo config.host=<COLLECTOR_HOST> config.port=<COLLECTOR_PORT> config.https=false config.log_bodies=true route.id=<ROUTE_ID>
+$ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector \
+    config.http_endpoint=<COLLECTOR_APP_ENDPOINT> \
+```
+To apply the Collector Plugin to a Service, make this cURL request:
+
+```
+$ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins/<service_id> name=collector \
+    config.http_endpoint=<COLLECTOR_APP_ENDPOINT> \
 ```
 
-* The port and host are configurable, but must match the Collector App.
-* Confirm this step. Hit one of the URLs mapped through the Collector App. For example,
+### Enable the Collector Plugin using Kong Manager
+The Collector Plugin can be enabled using Kong Manager. To enable the plugin:
+1. Navigate to the **Workspace** page.
+2. Click on **Plugins** in the left navigation bar. 
+3. On the Plugin page, click **Add Plugin** which opens a page of plugin options.
+4. Scroll down to the Analytics and Monitoring section, and click the **Collector** tile.
+
+The Collector Plugin page contains the variables that are configurable for the Collector Plugin. To minimally configure the Collector Plugin:
+1. In the **Config.Http Endpoint** field, enter the Collector App endpoint that Kong Enterprise can communicate with.  
+2. Click **Create**. The Collector Plugin is configured.
+
+### Logging HTTP Body Content
+The Collector Plugin gives users the option to opt-in or out of logging HTTP request bodies with the ```config.log_bodies``` configuration variable. When set to **false**, the collector plugin will not send body content in HTTP requests to the Collector App. This is useful to prevent sensitive personal information in the request body content from being stored long term in the Collector App. The cost of not sending the request body information is that its contents will not appear in generated Swagger, nor be used for anomaly detection.  When set to **true**, the Collector Plugin will send request body content to the Collector App where it can be stored in Collector App's datastore.
+
+### Check the Collector Plugin
+
+The port and host are configurable, but must match the Collector App.
+To confirm this step, hit one of the URLs mapped through the Collector App. For example,
 ```
 /<workspace name>/collector/alerts
 ```
@@ -198,9 +222,7 @@ Requests to the status endpoint will confirm the Collector App is up and running
 curl http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/status
 ```
 
-## Everything is ready to go
-Collector App and Kong are up and ready to analyze incoming traffic for [alerts](/enterprise/{{page.kong_version}}/brain-immunity/alerts), [auto-generate specs](/enterprise/{{page.kong_version}}/brain-immunity/auto-generated-specs), and display your traffic visually in [Service-Map](/enterprise/{{page.kong_version}}/brain-immunity/service-map).
+## Summary
+The Collector App and Kong Enterprise are up and ready to analyze incoming traffic for [alerts](/enterprise/{{page.kong_version}}/brain-immunity/alerts), [auto-generate specs](/enterprise/{{page.kong_version}}/brain-immunity/auto-generated-specs), and display your traffic visually in [Service-Map](/enterprise/{{page.kong_version}}/brain-immunity/service-map).
 
-For any problems encountered while setting up Collector App, Collector Plugin, or configuring other aspects of Brain and Immunity, please check out [troubleshooting](/enterprise/{{page.kong_version}}/brain-immunity/troubleshooting) for help debugging common problems.
-
-
+For any problems encountered while setting up Collector App, Collector Plugin, or configuring other aspects of Brain and Immunity, go to [troubleshooting](/enterprise/{{page.kong_version}}/brain-immunity/troubleshooting) for help debugging common problems.
