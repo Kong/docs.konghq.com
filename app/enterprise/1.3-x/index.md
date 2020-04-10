@@ -9,12 +9,6 @@ is_homepage: true
   <h2 class="docs-grid-section-title">Foundations</h2>
 
   <div class="docs-grid-block">
-    <h3><a href="/enterprise/{{page.kong_version}}/introduction">Introduction to Kong Enterprise</a></h3>
-    <p>Learn about the pieces that make up Kong Enterprise and get familiar with some key concepts.</p>
-    <a href="/enterprise/{{page.kong_version}}/introduction">Learn about Kong Enterprise &rarr;</a>
-  </div>
-
-  <div class="docs-grid-block">
     <h3><a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Installation</a></h3>
     <p>Learn how to install Kong Enterprise with your chosen deployment method.</p>
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Choose Deployment Method &rarr;</a>
