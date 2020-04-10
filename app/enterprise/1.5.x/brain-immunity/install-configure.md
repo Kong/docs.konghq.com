@@ -10,7 +10,7 @@ When you purchase Kong Brain and/or Kong Immunity, you obtain both add-ons toget
 * Kong Brain
 * Kong Immunity
 
-![Kong Brain and Kong Immunity](https://doc-assets.konghq.com/latest/brain_immunity/brain_immunity_overview.png)
+![Kong Brain and Kong Immunity](/assets/images/docs/ee/brain_immunity_overview.png)
 
 ## Overview
 Kong Brain and Kong Immunity are installed as add-ons on Kong Enterprise, using a Collector App and a Collector Plugin to communicate with Kong Enterprise. The diagram illustrates how the Kong components work together, and are described below:
