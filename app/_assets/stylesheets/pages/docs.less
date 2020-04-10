@@ -46,7 +46,7 @@
       color: rgba(0, 0, 0, 0.35);
       padding: 0;
       border-bottom: none;
-        font-weight: 500;
+      font-weight: 500;
 
       &:hover {
         color: rgba(0, 0, 0, 0.5);
@@ -136,7 +136,8 @@
         margin: 8px 0 8px;
         font-size: 28px;
         font-weight: lighter;
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         color: rgba(0, 0, 0, 0.7);
         grid-column: 1 / span 2;
 
@@ -282,6 +283,15 @@
   border-right: 1px solid @gray;
   overflow-y: auto;
 
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #b3dfff;
+    outline: 1px solid #b3dfff;
+  }
+
   ul.items {
     margin: 0;
     padding: 16px 0;
@@ -291,7 +301,7 @@
       margin: 0;
 
       ul {
-        margin: 0
+        margin: 0;
       }
 
       a {
@@ -313,7 +323,7 @@
     left: 0;
     padding: 0;
     height: ~"calc(100% - 56px)";
-    box-shadow: 0px 12px 15px rgba(0, 0, 0, .15);
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.15);
     border: 0 none;
     background: #fff;
     overflow-y: auto;
@@ -334,7 +344,8 @@
   .knowledge-base-section-title {
     text-align: center;
     font-size: 28px;
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: lighter;
   }
 
