@@ -1,7 +1,5 @@
 ---
 title: Getting Started Guide
-skip_read_time: true
-is_homepage: true
 ---
 This Getting Started Guide walks you through the basic features of {{site.base_gateway}}.
 
