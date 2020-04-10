@@ -3,7 +3,7 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
-## 1.5
+## 1.5.0.0
 **Release Date:** 2020/04/09
 
 ### Features
