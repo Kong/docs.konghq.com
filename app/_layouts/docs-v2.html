@@ -52,7 +52,6 @@ id: documentation
             <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
               Version {{page.kong_version}}
-              {% if page.kong_version == "1.5.x" and page.edition == 'enterprise' %}(2020){% endif %}
               {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
               <span class="caret"></span>
             </button>
@@ -63,7 +62,6 @@ id: documentation
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                 >
                   {{ver.release}}
-                  {% if ver.release == "1.5.x" and page.edition == 'enterprise' %}(2020){% endif %}
                   {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
                 </a>
               </li>

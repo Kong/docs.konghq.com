@@ -61,6 +61,7 @@
       url: /getting-started/enable-dev-portal
 
 - title: Guides & References
+  icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /property-reference
   items:
     - text: Configuration Property Reference
@@ -270,7 +271,7 @@
           url: /developer-portal/helpers/cli
 
 - title: Kong for Kubernetes Enterprise
-  icon: /assets/images/icons/documentation/icn-manager-color.svg
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   url: /kong-for-kubernetes/
   items:
     - text: Overview
@@ -283,6 +284,7 @@
       url: /kong-for-kubernetes/changelog
 
 - title: Kong Brain & Kong Immunity
+  icon: /assets/images/icons/documentation/icn-brain-color.svg
   url: /brain-immunity/install-configure
   items:
     - text: Installation and Configuration
