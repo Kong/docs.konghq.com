@@ -8,7 +8,7 @@ description: |
   Add key authentication (also sometimes referred to as an API key) to a Service or a Route. Consumers then add their key either in a query string parameter or a header to authenticate their requests. This plugin is functionally identical to the open source `key-auth` plugin, with the exception that API keys are stored in an encrypted format within the Kong data store.
 
 enterprise: true
-alpha: true
+alpha: false
 type: plugin
 categories:
   - authentication
