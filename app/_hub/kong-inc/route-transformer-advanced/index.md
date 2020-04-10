@@ -16,6 +16,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
 
 params:
@@ -35,7 +36,7 @@ params:
         Updates the upstream request Host with given value/template. This value can only be used to update the routing, it will not update the Host-header value.
     - name: port
       required: false
-      description: | 
+      description: |
          Updates the upstream request Port with given value/template. Note that the port as set may be overridden again by DNS resolution (in case of SRV records,or an Upstream)
 
 ---

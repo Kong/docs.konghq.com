@@ -38,6 +38,7 @@ kong_version_compatibility:
         - 0.10.x
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
         - 0.36-x
         - 0.35-x
@@ -176,7 +177,7 @@ argument to the AWS Lambda function.
 
 ### Notes
 
-If you do not provide `aws.key` or `aws.secret`, the plugin uses an IAM role inherited from the instance running Kong. 
+If you do not provide `aws.key` or `aws.secret`, the plugin uses an IAM role inherited from the instance running Kong.
 
 First, the plugin will try ECS metadata to get the role. If no ECS metadata is available, the plugin will fall back on EC2 metadata.
 

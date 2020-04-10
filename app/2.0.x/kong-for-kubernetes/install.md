@@ -1,5 +1,5 @@
 ---
-title: Install - Kong for Kubernetes
+title: Install Kong for Kubernetes
 ---
 
 This installation topic guides you through installing and deploying Kong for Kubernetes (K4K8S), then directs you to the documentation for configuring and using the product.
@@ -23,8 +23,8 @@ To deploy Kong via `kubectl`, use:
 kubectl apply -f https://bit.ly/kong-ingress-dbless
 ```
 
-> Important! This is not a production-grade deployment. 
-Adjust “knobs” based on your use case: 
+> Important! This is not a production-grade deployment.
+Adjust “knobs” based on your use case:
 - Replicas: Ensure that you are running multiple instances of Kong to protect against outages from a single node failure.
 - Performance optimization: Adjust memory settings of Kong and tailor your deployment to your use case.
 - Load-balancer: Ensure that you are running a Layer-4 or TCP based balancer in front of Kong. This allows Kong to serve a TLS certificate and integrate with a cert-manager.

@@ -1,0 +1,40 @@
+.navtabs {
+  .navtab-titles {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid @gray;
+
+    .navtab-title {
+      position: relative;
+      cursor: pointer;
+      padding: 8px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      opacity: 0.7;
+
+      &::after {
+        position: absolute;
+        content: "";
+        opacity: 0;
+        width: 100%;
+        left: 0;
+        top: 100%;
+        background: @blue;
+        height: 2px;
+        transition: opacity 0.2s;
+      }
+
+      &.active {
+        opacity: 1;
+
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .navtab-contents {
+    padding: 24px 0;
+  }
+}

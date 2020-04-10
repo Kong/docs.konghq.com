@@ -1,12 +1,15 @@
 ---
 title: Kong Enterprise Documentation
 skip_read_time: true
+is_homepage: true
 ---
 
 <div class="docs-grid">
 
+  <h2 class="docs-grid-section-title">Foundations</h2>
+
   <div class="docs-grid-block">
-    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Install Kong Enterprise</a></h3>
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Installation</a></h3>
     <p>Learn how to install Kong Enterprise with your chosen deployment method.</p>
     <a href="/enterprise/{{page.kong_version}}/deployment/installation/overview">Choose Deployment Method &rarr;</a>
   </div>
@@ -16,6 +19,8 @@ skip_read_time: true
     <p>Review the details of the changes made to each version of Kong Enterprise.</p>
     <a target="_blank" href="/enterprise/changelog/">See changelog &rarr;</a>
   </div>
+
+  <h2 class="docs-grid-section-title">Use Case Guides - Decentralize Applications and Services</h2>
 
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/deployment/migrations">Migration Guide</a></h3>

@@ -42,7 +42,7 @@ Returns the remote address of the client making the request.  This will
 kong.client.get_ip() -- "10.0.0.1"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.get_forwarded_ip()
@@ -83,7 +83,7 @@ kong.request.get_forwarded_ip() -- "127.0.0.1"
 -- of `real_ip_header`, e.g. `proxy_protocol`.
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.get_port()
@@ -109,7 +109,7 @@ Returns the remote port of the client making the request.  This will
 kong.client.get_port() -- 30000
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.get_forwarded_port()
@@ -143,7 +143,7 @@ kong.client.get_forwarded_port() -- 40000
 -- of `real_ip_header`, e.g. `proxy_protocol`.
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.get_credential()
@@ -171,7 +171,7 @@ else
 end
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.load_consumer(consumer_id, search_by_username)
@@ -204,7 +204,7 @@ local consumer_id = "john_doe"
 local consumer = kong.client.load_consumer(consumer_id, true)
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.get_consumer()
@@ -233,7 +233,7 @@ else
 end
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.authenticate(consumer, credential)
@@ -261,7 +261,7 @@ Sets the authenticated consumer and/or credential for the current request.
 kong.client.authenticate(consumer, credentials)
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongclient)
 
 
 ### kong.client.get_protocol(allow_terminated)
@@ -291,5 +291,4 @@ Returns the protocol matched by the current route (`"http"`, `"https"`, `"tcp"` 
 kong.client.get_protocol() -- "http"
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongclient)

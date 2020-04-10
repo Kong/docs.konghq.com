@@ -33,7 +33,7 @@ local route = kong.router.get_route()
 local protocols = route.protocols
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrouter)
 
 
 ### kong.router.get_service()
@@ -61,5 +61,4 @@ else
 end
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongrouter)

@@ -35,7 +35,7 @@ Returns the scheme component of the request's URL.  The returned value is
 kong.request.get_scheme() -- "https"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_host()
@@ -61,7 +61,7 @@ Returns the host component of the request's URL, or the value of the
 kong.request.get_host() -- "example.com"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_port()
@@ -87,7 +87,7 @@ Returns the port component of the request's URL.  The value is returned
 kong.request.get_port() -- 1234
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_forwarded_scheme()
@@ -122,7 +122,7 @@ Returns the scheme component of the request's URL, but also considers
 kong.request.get_forwarded_scheme() -- "https"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_forwarded_host()
@@ -158,7 +158,7 @@ Returns the host component of the request's URL or the value of the "host"
 kong.request.get_forwarded_host() -- "example.com"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_forwareded_port()
@@ -193,7 +193,7 @@ Returns the port component of the request's URL, but also considers
 kong.request.get_forwarded_port() -- 1234
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_http_version()
@@ -217,7 +217,7 @@ Returns the HTTP version used by the client in the request as a Lua
 kong.request.get_http_version() -- 1.1
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_method()
@@ -241,7 +241,7 @@ Returns the HTTP method of the request.  The value is normalized to
 kong.request.get_method() -- "GET"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_path()
@@ -267,7 +267,7 @@ Returns the path component of the request's URL.  It is not normalized in
 kong.request.get_path() -- "/v1/movies"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_path_with_query()
@@ -293,7 +293,7 @@ Returns the path, including the querystring if any.  No
 kong.request.get_path_with_query() -- "/v1/movies?movie=foo"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_raw_query()
@@ -320,7 +320,7 @@ Returns the query component of the request's URL.  It is not normalized in
 kong.request.get_raw_query() -- "msg=hello%20world&bla=&bar"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_query_arg()
@@ -356,7 +356,7 @@ kong.request.get_query_arg("zzz") -- true
 kong.request.get_query_arg("blo") -- ""
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_query([max_args])
@@ -406,7 +406,7 @@ end
 -- "blo" ""
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_header(name)
@@ -451,7 +451,7 @@ kong.request.get_header("x-custom-header") -- "bla"
 kong.request.get_header("X-Another")       -- "foo bar"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_headers([max_headers])
@@ -499,7 +499,7 @@ headers.x_another[1]    -- "foo bar"
 headers["X-Another"][2] -- "baz"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_raw_body()
@@ -530,7 +530,7 @@ Returns the plain request body.
 kong.request.get_raw_body():gsub("Earth", "Mars") -- "Hello, Mars!"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongrequest)
 
 
 ### kong.request.get_body([mimetype[, max_args]])
@@ -595,5 +595,4 @@ body.name -- "John Doe"
 body.age  -- "42"
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongrequest)

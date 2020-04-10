@@ -34,7 +34,7 @@ A human-readable string containing the version number of the currently
 print(kong.version) -- "2.0.0"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.version_num
@@ -50,7 +50,7 @@ if kong.version_num < 13000 then -- 000.130.00 -> 0.13.0
 end
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.pdk_major_version
@@ -68,7 +68,7 @@ if kong.pdk_version_num < 2 then
 end
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.pdk_version
@@ -81,7 +81,7 @@ A human-readable string containing the version number of the current PDK.
 print(kong.pdk_version) -- "1.0.0"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.configuration
@@ -104,7 +104,7 @@ print(kong.configuration.prefix) -- "/usr/local/kong"
 kong.configuration.prefix = "foo"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 
@@ -125,7 +125,7 @@ kong.db.services:insert()
 kong.db.routes:select()
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.dns
@@ -137,7 +137,7 @@ Instance of Kong's DNS resolver, a client object from the
  advanced users.
 
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.worker_events
@@ -150,7 +150,7 @@ Instance of Kong's IPC module for inter-workers communication from the
  advanced users.
 
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.cluster_events
@@ -161,7 +161,7 @@ Instance of Kong's cluster events module for inter-nodes communication.
  advanced users.
 
 
-[Back to TOC](#table-of-contents)
+[Back to top](#plugin-development-kit)
 
 
 ### kong.cache
@@ -172,5 +172,4 @@ Instance of Kong's database caching object, from the `kong.cache` module.
  advanced users.
 
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#plugin-development-kit)

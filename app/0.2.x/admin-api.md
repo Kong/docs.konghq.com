@@ -1,5 +1,6 @@
 ---
 title: Admin API
+toc: false
 ---
 
 ## Introduction
@@ -561,4 +562,3 @@ Attributes | Description
 ```
 HTTP 204 NO CONTENT
 ```
-

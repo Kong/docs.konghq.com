@@ -120,6 +120,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
         - 0.36-x
         - 0.35-x
@@ -1124,7 +1125,7 @@ Default | Required
 
 #### config.authenticated_groups_claim
 
-This property allows one to connect this plugin with an ACL plugin 
+This property allows one to connect this plugin with an ACL plugin
 where the ACL plugin provides both white- and blacklisting based on
 an arbitrary claim.
 
@@ -1795,7 +1796,7 @@ the puzzle by defining the parameter's name where the plugin should look
 for the ID token.
 
 The ID token can only be sent with the access token. It cannot be used
-alone for authentication (at least in current implementation, and we 
+alone for authentication (at least in current implementation, and we
 encourage not to use it for authentication).
 
 **Examples:**
@@ -2556,9 +2557,9 @@ is presented to this plugin by setting the cookie header (e.g. `Cookie: session=
 
 #### Refresh Token (or Offline Token)
 
-If the client provides a refresh token or offline token to this plugin, the plugin can 
+If the client provides a refresh token or offline token to this plugin, the plugin can
 attempt to fetch tokens from the token endpoint using `refresh_token` grant. It is necessary
-to configure the parameter name where the refresh token is supplied with 
+to configure the parameter name where the refresh token is supplied with
 `config.refresh_token_param_name` and `config.refresh_token_param_type` configuration parameters.
 
 
@@ -2636,8 +2637,8 @@ Save the Route ID
 $ export ROUTE_ID=<the id from the response above>
 $ echo $ROUTE_ID
 ```
- 
-#### 2. Verify Response with and without Kong 
+
+#### 2. Verify Response with and without Kong
 
 Verify that you can make a direct call to `http://httpbin.org/anything` _without_ proxying through Kong by issuing the following command:
 
@@ -2699,8 +2700,8 @@ The response should be `HTTP 200 OK` and appear like so:
 
 #### 3. Secure the Service with OIDC
 
-To enable the OIDC Plugin for the Service, execute the following 
-command, but note that SSL verification is disabled here for 
+To enable the OIDC Plugin for the Service, execute the following
+command, but note that SSL verification is disabled here for
 testing purposes only:
 
 ```bash
