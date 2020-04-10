@@ -1,5 +1,6 @@
 ---
 title: Application Registration
+redirect_from: "/enterprise/1.5.x/developer-portal/administration/applications" 
 ---
 
 <div class="alert alert-red">WARNING: This functionality is released as a <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> feature. Please proceed with caution.</div>
