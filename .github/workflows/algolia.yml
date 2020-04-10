@@ -12,7 +12,7 @@ jobs:
       uses: Embraser01/docsearch-scraper-action@v0.1.0
       with:
         apiKey: ${{ secrets.API_KEY }}
-        applicationId: ${{ secrets.APPLICATION_ID }}
+        applicationId: ${{ secrets.ALGOLIA_APPLICATION_ID }}
         file: /github/workspace/algolia/config-ee.json
   updateAlgoliaIndexKongStudio:
     name: Index Kong Studio Docs
@@ -23,5 +23,5 @@ jobs:
       uses: Embraser01/docsearch-scraper-action@v0.1.0
       with:
         apiKey: ${{ secrets.API_KEY }}
-        applicationId: ${{ secrets.APPLICATION_ID }}
+        applicationId: ${{ secrets.ALGOLIA_APPLICATION_ID }}
         file: /github/workspace/algolia/config-studio.json
