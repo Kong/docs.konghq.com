@@ -1,9 +1,7 @@
 ---
 title: Getting Started Guide
-skip_read_time: true
-is_homepage: true
 ---
-This Getting Started Guide walks you through the basic features of {{site.base_gateway}}.
+This Getting Started Guide walks you through Kong concepts and foundational API gateway features and capabilities.
 
 In this guide, you will:
 * Expose your services using Service and Route objects
@@ -25,7 +23,7 @@ In this guide, you will:
 If you don’t currently have {{site.ee_product_name}} but want to experience it, check out our <a href="https://konghq.com/products/kong-enterprise/free-trial?itm_source=website&itm_medium=nav">Free Trial</a>.</div>
 
 
-## Concepts and Features in this Guide
+## Concepts and Features in this guide
 Here’s the content covered in this guide, and how the pieces fit together:
 
 ![Features in getting started guide](/assets/images/docs/getting-started-guide/Kong-GS-overview.png)
