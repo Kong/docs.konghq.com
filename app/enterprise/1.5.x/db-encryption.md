@@ -3,8 +3,6 @@ title: Keyring & Data Encryption
 skip_read_time: true
 ---
 
-<div class="alert alert-red">WARNING: This functionality is released as an alpha-quality feature. Please proceed with caution.</div>
-
 ## Introduction
 
 Kong Enterprise provides a mechanism to store sensitive data fields, such as consumer secrets, in an encrypted format within the database (Postgres or Cassandra). This provides for encryption-at-rest security controls in a Kong cluster.
