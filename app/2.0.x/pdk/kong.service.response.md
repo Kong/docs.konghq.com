@@ -31,7 +31,7 @@ Returns the HTTP status code of the response from the Service as a Lua number.
 kong.log.inspect(kong.service.response.get_status()) -- 418
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongserviceresponse)
 
 
 ### kong.service.response.get_headers([max_headers])
@@ -83,7 +83,7 @@ if headers then
 end
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongserviceresponse)
 
 
 ### kong.service.response.get_header(name)
@@ -128,7 +128,7 @@ kong.log.inspect(kong.service.response.get_header("x-custom-header")) -- "bla"
 kong.log.inspect(kong.service.response.get_header("X-Another"))       -- "foo bar"
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongserviceresponse)
 
 
 ### kong.service.response.get_raw_body()
@@ -153,7 +153,7 @@ Returns the raw buffered body.
 local body = kong.service.response.get_raw_body()
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongserviceresponse)
 
 
 ### kong.service.response.get_body(mimetype[, mimetype[, max_args]])
@@ -184,5 +184,4 @@ Returns the decoded buffered body.
 local body = kong.service.response.get_body()
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongserviceresponse)

@@ -1,5 +1,6 @@
 ---
 title: Admin API
+toc: false
 
 api_body: |
     Attribute | Description
@@ -103,7 +104,7 @@ HTTP 200 OK
 
 ### Retrieve node status
 
-Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, and the number of entities stored in the datastore collections (including plugin's collections). 
+Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, and the number of entities stored in the datastore collections (including plugin's collections).
 
 If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
 

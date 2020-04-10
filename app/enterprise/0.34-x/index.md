@@ -1,5 +1,6 @@
 ---
 title: Kong Enterprise Documentation
+is_homepage: true
 ---
 # Welcome to Kong Enterprise
 
@@ -38,7 +39,7 @@ title: Kong Enterprise Documentation
     <p>Unlock the power of Kong Enterprise with additional configuration options.</p>
     <a href="/enterprise/{{page.kong_version}}/property-reference">Learn more &rarr;</a>
   </div>
-  
+
   <div class="docs-grid-block">
     <h3><img src="/assets/images/icons/documentation/icn-window.svg" /><a href="/enterprise/{{page.kong_version}}/installation/docker/">Docker</a></h3>
     <p>Kong Enterprise is quick and easy to run via Docker.</p>

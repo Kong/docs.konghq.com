@@ -1,5 +1,6 @@
 ---
 title: Documentation for Kong
+is_homepage: true
 ---
 
 <div class="docs-grid">

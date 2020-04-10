@@ -198,5 +198,3 @@ curl http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/status
 Collector App and Kong are up and ready to analyze incoming traffic for [alerts](/enterprise/{{page.kong_version}}/brain-immunity/alerts), [auto-generate specs](/enterprise/{{page.kong_version}}/brain-immunity/auto-generated-specs), and display your traffic visually in [Service-Map](/enterprise/{{page.kong_version}}/brain-immunity/service-map).
 
 For any problems encountered while setting up Collector App, Collector Plugin, or configuring other aspects of Brain and Immunity, please check out [troubleshooting](/enterprise/{{page.kong_version}}/brain-immunity/troubleshooting) for help debugging common problems.
-
-

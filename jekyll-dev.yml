@@ -82,9 +82,14 @@ plugins:
 
 defaults:
   - scope:
-      path: ''
+      path: 'studio'
     values:
       layout: 'docs'
+
+  - scope:
+      path: ''
+    values:
+      layout: 'docs-v2'
 
   - scope:
       path: 'install'
@@ -95,6 +100,11 @@ defaults:
       path: 'docs/ee'
     values:
       layout: 'docs'
+
+  - scope:
+      path: 'getting-started-guide'
+    values:
+      layout: 'getting-started-guide'
 
   - scope:
       path: 'about'

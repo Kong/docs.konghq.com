@@ -1,0 +1,59 @@
+<aside class="docs-sidebar">
+  <span class="close-sidebar"></span>
+  {% if page.edition == 'enterprise' %}
+  {% assign docs_url = '/enterprise/' | append: page.kong_version %}
+  {% elsif page.edition == 'studio' %}
+  {% assign docs_url = '/studio/' | append: page.kong_version %}
+  {% elsif page.edition == 'getting-started-guide' %}
+  {% assign docs_url = '/getting-started-guide/' | append: page.kong_version %}
+  {% else %}
+  {% assign docs_url = '/' | append: page.kong_version %}
+  {% endif %}
+
+  <ul class="accordion-container">
+    {% for nav in page.nav_items %}
+    {% assign item_active = false %}
+    {% assign item_url = false %}
+    {% capture item_content %}
+    <ul class="items">
+      {% for item in nav.items %}
+      {% capture url %}{{ docs_url | append: item.url }}/{% endcapture %}
+      <li>
+        <a {% if item.absolute_url %}href="{{item.url}}" {% else %}href="{{docs_url | append: item.url}}" {% endif %} {% if page.url==url %}class="active" {% assign item_active = true %} {% endif %}>
+          {{item.text}}
+        </a>
+        {% if item.items %}
+        <ul>
+          {% for subitem in item.items %}
+          {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
+          <li>
+            <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% assign item_active = true %} {% endif %}>{{subitem.text}}</a>
+            {% if subitem.items %}
+            <ul>
+              {% for subitem in subitem.items %}
+              {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
+              <li>
+                <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% assign item_active = true %} {% endif %}>{{subitem.text}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endcapture %}
+
+    {% if nav.url %}
+    {% assign item_url = docs_url | append: nav.url %}
+    {% endif %}
+
+    {% if page.url == item_url %}{% assign item_active = true %}{% endif %}
+
+    {% include accordion-item.html index=forloop.index icon=nav.icon url=item_url label=nav.title active=item_active content=item_content %}
+    {% endfor %}
+  </ul>
+</aside>

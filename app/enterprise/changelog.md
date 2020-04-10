@@ -3,6 +3,106 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.5
+**Release Date:** 2020/04/09
+
+### Features
+
+#### Kong Gateway Community 
+
+* Includes open-source features contained in Kong Gateway Community 1.4 and 1.5 releases, with the exception that Kong Enterprise does not support running on ARM processors at this time.
+
+#### Kong Manager
+* Redesigned Service and Route pages to support Immunity Alerts
+* Services, Routes, Consumers, and other entity lists are sortable
+* Services, Routes, Consumers, and other entities can be viewed and exported as JSON
+* Consumer Alerts added to the Immunity Alerts page
+* Approve, reject, and revoke Portal Application Service Contracts
+* Associate Portal Specs with Services through Documents
+
+#### Kong Developer Portal
+* [**BETA**](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta): Developers can create Applications to consume Services using the Portal Application Registration plugin.
+
+#### Plugins
+* IP Restriction
+    * Supports IPv6 addresses
+* MTLS Auth
+    * Support for OCSP
+    * Support for CRL
+* Collector
+    * Rewritten to follow more modern plugin approaches
+    * Added functionality to power Consumer Alerts
+* Kafka Log
+    * Support for API version of a produce request
+* [**BETA**](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta) Portal Application Registration
+    * Allow Portal Applications to request access and consume Services
+* Serverless functions
+    * Add the ability to run functions in each request phase
+
+### Fixes
+#### Kong Gateway
+* Fix a bug where entities loaded through cache warmup did not include Workspace properly
+* Fix a bug that could prevent a `ca_certificate` from being saved if it was more than 2713 bytes
+* Fix a bug where a route collision was not detected when the content type of a POST request was sent as `application/x-www-form-urlencoded`
+* Fix a bug where a route collision was not detected when a PATCH request was sent to the `/services/service_id/routes/route_id` endpoint
+* Added headers and `snis` route collision detection capabilities
+
+#### Kong Manager
+* Fix a bug that prevented updating a Service with a tag
+* Fix a bug in file permission on kconfig.js
+* Fix a bug configuring the OpenID Connect plugin
+* Fix a bug when resetting the password of an admin that is not in the default Workspace
+* Fix a bug where the Response Rate Limiting plugin could not be applied to a consumer
+
+#### Kong Developer Portal
+* Improve caching of Developers when accessing proxy via Developer Credentials
+* Fix a bug with a redirect on logout
+* Fix a bug when redirecting to login from a spec in a non-default workspace
+* Fix a bug with account verification links in Portals using sub-domains
+* Fix a bug with validation of * value for `portal_cors_origins` in Workspace config
+* Fix various styling issues
+
+#### Plugins
+* Kong OpenID Connect Library
+  * **IMPORTANT** Fix standard claims verification issue where the access token was only checked for `iss` and `exp`, but not the other optional checks
+  * Change `string.sub` to `string.byte` to lessen the garbage generation
+  * Change `jwks` as there is no need to pass length argument to `ecc.point` or `ecc.scalar` functions anymore
+  * Add support for `client_secret_jwt` and `private_key_jwt`
+  * Make `iss` and `exp` claims on access token validate only when speci
+* OpenID Connect
+  * Fix cluster invalidate consumer cache
+  * Fix pcall kong.configuration to handle command-line invocations
+  * Optimize consumer cache key invalidations
+  * Add support for dynamic login redirect uri
+  * Add support for `config.session_strategy` configuration parameter
+  * Add support for `session_cookie_idletime` configuration parameter
+  * Make consumer cache keys generated similarly as in JWT Signer plugin
+  * Unified session handling code in a single place
+  * Make the code more robust by checking the right data types
+  * Add support for `client_secret_jwt` and `private_key_jwt` authentication
+  * Add `config.client_auth`
+  * Add `config.client_alg`
+  * Add `config.client_jwk`
+  * Add `config.introspection_endpoint_auth_method`
+  * Add `config.revocation_endpoint_auth_method`
+  * Add `config.display_errors`
+  * Change `config.token_endpoint_auth_method` to include `client_secret_jwt` and `private_key_jwt`
+  * Fix issue when bearer `auth_method` was disabled that it was not disabled if introspection was enabled
+  * Bump `lua-resty-session` dependency to 3.1
+  * Add support for `cookie` for `config.bearer_token_param_type`
+  * Add support for `config.bearer_token_cookie_name`
+* JWT Signer
+  * Fix consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2 
+  * Change the plugin so that it does not inherit anymore from BasePlugin
+  * Add support for more signing algorithms: HS256, HS384, HS512, RS512, ES256, ES384, ES512, PS256, PS384, PS512, EdDSA
+  * Fix a problem with RSA signature truncation in some edge case reported by a customer 
+  * Updated lua-resty-nettle version to address jwt-signer plugin issue
+* Logging plugins will strip `authorization` header
+* CorrelationID
+  * Raise the priority of the plugin so it is run first on a request
+* Request Terminator
+  * Do not send a `Content-Length` header with a 204 response
+
 ## 1.3.0.2
 **Release Date:** 2020/02/20
 
@@ -15,7 +115,7 @@ layout: changelog
   * Includes a Datadog tracer for Amazon Linux 2 at /usr/local/kong/lib/libdd_opentracing_plugin.so
   * Includes a Jaeger tracer for Docker Alpine at /usr/local/kong/lib/libjaegertracing.so
 * Provides a default logrotate configuration file
-* Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server 
+* Adds support for `pg_ssl_required` configuration which prevents connection to non-SSL enabled Postgres server
 * Adds support for regular expressions when using `audit_log_ignore_paths`
 * Allows the Kong Enterprise systemd service to be reloaded with systemctl reload kong-enterprise-edition
 
@@ -91,7 +191,7 @@ layout: changelog
 
 #### Plugins
 
-* **OpenAPI2Kong**: 
+* **OpenAPI2Kong**:
     - Adds trace to errors to identify the originating YAML/JSON element that caused the error.
 * **Key Authentication - Encrypted**:
     - Provides key authentication for Routes and Services, with authentication tokens stored in a format that is encrypted at rest.
@@ -136,7 +236,7 @@ layout: changelog
 * Fixes issue where LDAP Auth would not accept CamelCase in group names
 * Fixes issue where `Average Error Rate` was incorrectly displayed on the Workspace Overview
 * Fixes issue where schemas and validation endpoints were not scoped correctly to Workspaces, resulting in incorrectly denying users permission to certain resources. Roles that allow Create and Update on an entity must include Read permission on the schema and validation endpoints for that entity.
-* Fixes formatting issue where Dev Portal URLs would overflow their containers on the Dev Portal Overview page 
+* Fixes formatting issue where Dev Portal URLs would overflow their containers on the Dev Portal Overview page
 
 #### Plugins
 
@@ -418,10 +518,10 @@ repository will allow you to do both easily.
   - View Immunity notifications within Service Map, click to alert section
 
 - Immunity alert management & detail section
-  
+
   - Filterable by entity, severity
   - Links through to alerted entities
-  
+
 - Admin Password Strength Configuration
   - Configure and enforce strong Admin passwords  
 - Admin Login Attempts
@@ -465,10 +565,10 @@ repository will allow you to do both easily.
     - Permissions
 
     - Theming (colors, logos, meta info)
-    
+
 - Developer Password Strength Configuration
     - Configure and enforce strong Developer passwords  
-    
+
 - Developer Login Attempts
     - Configure allowed login attempts to the Developer Portal
 
@@ -543,13 +643,13 @@ repository will allow you to do both easily.
 
 ### Fixes
 
-- `migrate-community-to-enterprise` script changed from batch query execution to multiple single queries 
+- `migrate-community-to-enterprise` script changed from batch query execution to multiple single queries
 for Cassandra strategy.
 - Fixed workspace counters calculation logic when you run `migrate-community-to-enterprise` script.
-- Fixed DAO fetching functionality to fetch all requested records from the database instead of first `1000` 
+- Fixed DAO fetching functionality to fetch all requested records from the database instead of first `1000`
 records that was before.
 - Updated Nettle version from `3.4.1` to `3.5.1` which is required by the plugins that use `OIDC` library to work properly.
-- Fixed an issue where enabling tracing and setting a tracing header caused all HTTPS requests to fail immediately when 
+- Fixed an issue where enabling tracing and setting a tracing header caused all HTTPS requests to fail immediately when
 attempting to fetch headers during the ssl_cert phase.
 
 
@@ -572,9 +672,9 @@ attempting to fetch headers during the ssl_cert phase.
     - Add support for PS512 signing and key generation
     - Add support for EdDSA signing, key generation and verification
     - Update lua-resty-nettle dependency to 1.0
-    - Change verification JWT header's typ claim by adding support for at+jwtthat for example IdentityServer4 
+    - Change verification JWT header's typ claim by adding support for at+jwtthat for example IdentityServer4
     is using by default.
-    - Change issuer verification bit more permissive (e.g. the difference in ending slash (present or absent) 
+    - Change issuer verification bit more permissive (e.g. the difference in ending slash (present or absent)
     does not make the verification to fail)
 
 ### Fixes
@@ -593,7 +693,7 @@ attempting to fetch headers during the ssl_cert phase.
 ### Features
 
 #### Dev Portal
-- Adds `custom_id` field to developers to allow easier mapping 
+- Adds `custom_id` field to developers to allow easier mapping
 
 #### Plugins
 - **Request-transformer**
@@ -616,7 +716,7 @@ attempting to fetch headers during the ssl_cert phase.
   migrating from Kong CE to EE using CLI `kong migrations migrate-community-to-enterprise`
 - **Vitals**
   - Fixes an issue where Kong fails to remove old stats table when they are not part of public
-  schema 
+  schema
 
 
 ## 0.36-1
@@ -742,7 +842,7 @@ attempting to fetch headers during the ssl_cert phase.
 - Support for ACL **authenticated groups**, so that authentication plugins
   that use a 3rd party (other than Kong) to store credentials can benefit
   from using a central ACL plugin to do authorization for them.
-- The Kubernetes Sidecar Injection plugin is now bundled into Kong for a 
+- The Kubernetes Sidecar Injection plugin is now bundled into Kong for a
   smoother K8s experience.
 - AWS Lambda now includes the AWS China region.
 
@@ -785,7 +885,7 @@ attempting to fetch headers during the ssl_cert phase.
   database schema.
 - Allow the `kong config init` command to run without a pointing to a prefix
   directory.
-- Adds support for [`db_cache_warmup_entities`](/enterprise/0.36-x/property-reference/#db_cache_warmup_entities), 
+- Adds support for [`db_cache_warmup_entities`](/enterprise/0.36-x/property-reference/#db_cache_warmup_entities),
   which allows Kong to pre-load all necessary entries into Kong nodes' memory on start.
 - Provides support in declarative configuration for **Workspaces** and **RBAC**.
 - Provides support for the Redis Cluster library.
@@ -808,7 +908,7 @@ attempting to fetch headers during the ssl_cert phase.
 
 #### Dev Portal
 
-- Adds *per workspace* **Session Config**. The Dev Portal will now allow 
+- Adds *per workspace* **Session Config**. The Dev Portal will now allow
 session configuration for every portal-per-workspace instance.
 - Adds **email verification**. Developers will be sent a verification link after
 requesting access to a Dev Portal.
@@ -821,18 +921,18 @@ requesting access to a Dev Portal.
   - Adds the option to override validation for specific content types
 - **OAuth2 Introspection**
   - Can now find and load consumers by `username` and `custom_id`. OAuth2
-  `username` maps to **Consumer's** `username`, while the `client_id` maps to a 
+  `username` maps to **Consumer's** `username`, while the `client_id` maps to a
   **Consumer's** `custom_id`
   - New `consumer_by` configuration allows users to customize whether **Consumers**
   are fetched by `client_id` or `username` (returned by the introspection request)
-  - New `introspect_request` configuration that causes the plugin to send 
+  - New `introspect_request` configuration that causes the plugin to send
   information about the **current request** as **headers** in the **introspection endpoint**
-  **request**. Currently, the **request path** and **HTTP methods** are sent as `X-Request-Path` 
+  **request**. Currently, the **request path** and **HTTP methods** are sent as `X-Request-Path`
   and `X-Request-Http-Method` headers
   - New `custom_introspection_headers` configuration list of user-supplied
   headers to be sent in the **introspection endpoint request**
-  - New `custom_claims_forward` configuration list of additional claims. The 
-  **introspection endpoint request** will return this list to forward as headers 
+  - New `custom_claims_forward` configuration list of additional claims. The
+  **introspection endpoint request** will return this list to forward as headers
   to the **upstream service request**.
 - basic-auth, ldap-auth, key-auth, jwt, hmac-auth: fixed
   status code for unauthorized requests: they now return HTTP 401
@@ -853,7 +953,7 @@ requesting access to a Dev Portal.
 - request-transformer: validate header values in plugin configuration.
 - rate-limiting: added index on rate-limiting metrics.
 - **Upstream-tls**
-  - Fixes an issue where bundled **certificates** in PEM format were not loaded into 
+  - Fixes an issue where bundled **certificates** in PEM format were not loaded into
   the certificate store correctly.
 - ldap-auth: ensure TLS connections are reused.
 - oauth2: ensured access tokens preserve their `token_expiration` value when
@@ -861,7 +961,7 @@ requesting access to a Dev Portal.
 
 #### Workspaces
 
-- Fixes permission bug where an **Admin** with `workspace-super-admin` **Role** was 
+- Fixes permission bug where an **Admin** with `workspace-super-admin` **Role** was
 not able to access the **Workspace** that the **Role** was assigned to.
 
 #### Upstreams
@@ -896,7 +996,7 @@ not able to access the **Workspace** that the **Role** was assigned to.
 
 ### Notifications
 - **Kong Enterprise 0.35-3** inherits from **Kong 1.0.3**; read the
-[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
 for details.
 
 ### Fixes
@@ -907,7 +1007,7 @@ for details.
 
 ### Notifications
 - **Kong Enterprise 0.35-3** inherits from **Kong 1.0.3**; read the
-[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
 for details.
 
 ### Features
@@ -934,7 +1034,7 @@ for details.
 - Unauthenticated Spec rendering is fixed
 
 #### Plugins
-- **`jwt-signer`** 
+- **`jwt-signer`**
   - Fix **IMPORTANT!** verify expiry and scopes checks on JWT tokens
   - Fix finding Consumer by custom ID
   - Fix runtime error on unexpected function, `kong.log.error` -> `kong.log.err`
@@ -952,7 +1052,7 @@ for details.
 
 ### Notifications
 - **Kong Enterprise 0.35-1** inherits from **Kong 1.0.3**; read the
-[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
 for details.
 
 ### Features
@@ -963,9 +1063,9 @@ for details.
 ### Fixes
 
 #### Kong Manager
-- If a Kong Manager **Super Admin** was already created, setting 
-`KONG_PASSWORD` during `migrations up` to **0.35** would error. Running 
-migrations when **Super Admin** already exists and `KONG_PASSWORD` 
+- If a Kong Manager **Super Admin** was already created, setting
+`KONG_PASSWORD` during `migrations up` to **0.35** would error. Running
+migrations when **Super Admin** already exists and `KONG_PASSWORD`
 environment variable is set is fixed.
 
 #### Dev Portal
@@ -973,22 +1073,22 @@ environment variable is set is fixed.
 - Fixes Dev Portal OAPI spec rendering of long request URL wrapping
 
 #### Plugins
-- `rate-limiting-advanced` schema validation rules prevented use of 
-Redis Sentinel (`config.strategy=redis` and 
-`config.redis.sentinel_addresses`) for counters datastore. Validation 
+- `rate-limiting-advanced` schema validation rules prevented use of
+Redis Sentinel (`config.strategy=redis` and
+`config.redis.sentinel_addresses`) for counters datastore. Validation
 rule is fixed.
 
 #### Core
-- Upgrade from **0.34-1** to **0.35** using **Cassandra** no longer creates 
+- Upgrade from **0.34-1** to **0.35** using **Cassandra** no longer creates
 duplicate **Workspace**.
-- Migrations from **0.34-1**to **0.35** did not properly handle **Certificates** 
-and **SNIs** in context of **Workspaces**. Migrating from **0.34-1** with 
-this fix does not support zero downtime in this release. To get a fully 
-functional **0.35** instance with **Certificates**, you must run `migrations 
-finish`. Proper creation of **Workspace** links for **Certificates** and 
+- Migrations from **0.34-1**to **0.35** did not properly handle **Certificates**
+and **SNIs** in context of **Workspaces**. Migrating from **0.34-1** with
+this fix does not support zero downtime in this release. To get a fully
+functional **0.35** instance with **Certificates**, you must run `migrations
+finish`. Proper creation of **Workspace** links for **Certificates** and
 **SNIs** is fixed.
-- **Cassandra** `read before write` pattern did not correctly use schema 
-defaults and prevented `PATCH` of the **Plugins** entity. Usage of schema 
+- **Cassandra** `read before write` pattern did not correctly use schema
+defaults and prevented `PATCH` of the **Plugins** entity. Usage of schema
 default values in **Cassandra** `read before write` pattern is fixed.
 - `plugins.run_on default` now correctly set on migrations upgrade.
 <hr/>
@@ -998,7 +1098,7 @@ default values in **Cassandra** `read before write` pattern is fixed.
 
 ### Notifications
 - **Kong Enterprise 0.35** inherits from **Kong 1.0.3**; read the
-[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103) 
+[Kong Changelog](https://github.com/Kong/kong/blob/master/CHANGELOG.md#103)
 for details.
 
 ### Changes
@@ -1013,7 +1113,7 @@ for details.
 #### Core
   - New **RBAC** user tokens are not stored in plaintext. If upgrading to this
   version, any existing tokens will remain in plaintext until either a) the
-  token is used in an Admin API call or b) the `rbac_user` record is PATCHed 
+  token is used in an Admin API call or b) the `rbac_user` record is PATCHed
   even if the PATCH request includes the existing value of `user_token`).
 
 ### Features
@@ -1030,8 +1130,8 @@ for details.
   - In-context documentation links
   - Global navigation links to documentation and Support Portal
   - Improved Info tab for cluster & config info
-  - Detailed debug tracing can be enabled which outputs information about 
-  various portions of the request lifecycle, such as DB or DNS queries, 
+  - Detailed debug tracing can be enabled which outputs information about
+  various portions of the request lifecycle, such as DB or DNS queries,
   plugin execution, core handler timing, etc
 
 #### Dev Portal
@@ -1063,7 +1163,7 @@ for details.
   theme on the dashboard.
 
 #### Plugins
-  - **Response Transformer Advanced** (_NEW_): 
+  - **Response Transformer Advanced** (_NEW_):
     - Conditional transformations on response status through the new flag
     if_status, a subfield in all transformations (e.g., `add.if_status`,
     `remove.if_status`); the transformation only happens if the response code
@@ -1086,9 +1186,9 @@ for details.
     - Set Id to Rate limiting may detect calls to introspection endpoint
     - Set credential id to allow rate limiting based on access token
   - **The Kong Session Plugin**:
-    - The Kong Session Plugin adds session support for **Kong Manager** and 
-    Dev Portal. Sessions can be stored via cookie or database. See the 
-    accompanying documentation for how to configure the plugin for use with 
+    - The Kong Session Plugin adds session support for **Kong Manager** and
+    Dev Portal. Sessions can be stored via cookie or database. See the
+    accompanying documentation for how to configure the plugin for use with
     **Kong Manager**.
   - **Vault-Auth**:
     - Authenticate requests via Vault. See
@@ -1185,12 +1285,12 @@ for details.
 - Custom **Plugins** viewable within plugin groupings
 - Error messages on **Workspace** form don't remain longer than intended
 - Column overflow issue in services table in **Kong Manager** fixed
-- New **Routes** were accidentally accepting strings for `regex_priority` when 
+- New **Routes** were accidentally accepting strings for `regex_priority` when
 submitting a new **Routes**, fixed as part of **Kong 1.0** merge
 - Fixes CORS breaking when configuring `KONG_ADMIN_API_URI` with a port.
 - Fixes issue in **Kong Manager** where **Dev Portal** pages would display
 the wrong content when disabled from `kong.conf`.
-- Fixes issue in **Kong Manager** where email validation would accept invalid 
+- Fixes issue in **Kong Manager** where email validation would accept invalid
 inputs.
 
 #### Dev Portal

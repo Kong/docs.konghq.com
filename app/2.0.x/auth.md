@@ -1,5 +1,6 @@
 ---
 title: Authentication Reference
+skip_read_time: true
 ---
 
 ## Introduction
