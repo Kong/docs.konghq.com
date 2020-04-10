@@ -1,7 +1,7 @@
 ---
 title: Getting Started Guide
 ---
-This Getting Started guide walks you through Kong concepts and foundational API gateway features and capabilities
+This Getting Started Guide walks you through Kong concepts and foundational API gateway features and capabilities
 
 In this guide, you will:
 * Expose your services using Service and Route objects
