@@ -1,0 +1,27 @@
+on:
+  schedules:
+  - cron: 0 0 * * *
+name: Update indices every day
+jobs:
+  updateAlgoliaIndexKongEE:
+    name: Index Kong EE Docs
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Run docsearch for Kong EE Docs
+      uses: Embraser01/docsearch-scraper-action@v0.1.0
+      with:
+        apiKey: ${{ secrets.API_KEY }}
+        applicationId: ${{ secrets.APPLICATION_ID }}
+        file: /github/workspace/algolia/config-ee.json
+  updateAlgoliaIndexKongStudio:
+    name: Index Kong Studio Docs
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Run docsearch for Kong Studio Docs
+      uses: Embraser01/docsearch-scraper-action@v0.1.0
+      with:
+        apiKey: ${{ secrets.API_KEY }}
+        applicationId: ${{ secrets.APPLICATION_ID }}
+        file: /github/workspace/algolia/config-studio.json
