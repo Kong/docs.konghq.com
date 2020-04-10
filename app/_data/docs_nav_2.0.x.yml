@@ -1,26 +1,29 @@
 # Generated via autodoc-nav
 - title: Getting Started
-  items:
-    - text: Introduction
-      url: /getting-started/introduction
-
-    - text: Five-minute quickstart
-      url: /getting-started/quickstart
-
-    - text: Configuring a Service
-      url: /getting-started/configuring-a-service
-
-    - text: Configuring a gRPC Service
-      url: /getting-started/configuring-a-grpc-service
-
-    - text: Enabling Plugins
-      url: /getting-started/enabling-plugins
-
-    - text: Adding Consumers
-      url: /getting-started/adding-consumers
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+  url: /../../getting-started-guide/latest/overview
 
 - title: Guides &amp; References
+  icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
+    - text: Quickstart Guide
+      url: /getting-started/introduction
+      items:
+        - text: Five-minute quickstart
+          url: /getting-started/quickstart
+
+        - text: Configuring a Service
+          url: /getting-started/configuring-a-service
+
+        - text: Configuring a gRPC Service
+          url: /getting-started/configuring-a-grpc-service
+
+        - text: Enabling Plugins
+          url: /getting-started/enabling-plugins
+
+        - text: Adding Consumers
+          url: /getting-started/adding-consumers
+
     - text: Configuration reference
       url: /configuration
 
@@ -63,7 +66,7 @@
     - text: Securing the Admin API
       url: /secure-admin-api
 
-    - text : Control Kong through systemd
+    - text : Control Kong Community Gateway through systemd
       url: /systemd
 
     - text: Plugin Development Guide
@@ -143,6 +146,7 @@
 
 # Generated via autodoc-admin-api
 - title: Admin API
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   url: /admin-api/
   items:
     - text: DB-less
@@ -375,3 +379,16 @@
 
         - text: List All Targets
           url: /admin-api/#list-all-targets
+
+- title: Kong for Kubernetes
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /kong-for-kubernetes/
+  items:
+    - text: Install Kong for Kubernetes
+      url: /kong-for-kubernetes/install
+
+    - text: Using Kong for Kubernetes
+      url: /kong-for-kubernetes/using-kong-for-kubernetes
+
+    - text: Changelog
+      url: /kong-for-kubernetes/changelog

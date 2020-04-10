@@ -23,7 +23,7 @@ is refreshed. When using a `ttl` of 0, every request will be resolved using its
 own DNS query. Obviously this will have a performance penalty, but the latency of
 updates/changes will be very low.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### A records
 
@@ -34,7 +34,7 @@ Because there is no `weight` information, all entries will be treated as equally
 weighted in the load balancer, and the balancer will do a straight forward
 round-robin.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### SRV records
 
@@ -52,7 +52,7 @@ and `myhost.com` resolves to an SRV record with `127.0.0.1:456`, then the reques
 will be proxied to `http://127.0.0.1:456/somepath`, as port `123` will be
 overridden by `456`.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### DNS priorities
 
@@ -65,7 +65,7 @@ The DNS resolver will start resolving the following record types in order:
 
 This order is configurable through the [`dns_order` configuration property][dns-order-config].
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### DNS caveats
 
@@ -103,7 +103,7 @@ queried for, and second check your nameserver configuration.
 randomized. So when using records with a `ttl` of 0, the nameserver is
 expected to randomize the record entries.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ## Ring-balancer
 
@@ -124,7 +124,7 @@ entities.
     field, e.g., an upstream named `weather.v2.service` would get all requests
     from a Service with `host=weather.v2.service`.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Upstream
 
@@ -162,7 +162,7 @@ Detailed information on adding and manipulating
 upstreams is available in the `upstream` section of the
 [Admin API reference][upstream-object-reference].
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Target
 
@@ -196,7 +196,7 @@ __Exception__: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Balancing algorithms
 
@@ -237,7 +237,7 @@ hashing losses occur. This will maximize upstream cache hits.
 For more information on the exact settings see the `upstream` section of the
 [Admin API reference][upstream-object-reference].
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 ### Balancing caveats
 
@@ -263,7 +263,7 @@ hash input will not suffice, using the remote IP address by setting the hash to
 in the hash output. However, if many clients will be behind the same NAT gateway (e.g. in
 call center), `cookie` will provide a better distribution than `ip`.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 # Blue-Green Deployments
 
@@ -336,7 +336,7 @@ As always, the changes through the Kong Admin API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 # Canary Releases
 
@@ -376,7 +376,7 @@ The changes through the Kong Admin API are dynamic and will take
 effect immediately. No reload or restart is required, and no in progress
 requests will be dropped.
 
-[Back to TOC](#table-of-contents)
+[Back to top](#introduction)
 
 [upstream-object-reference]: /{{page.kong_version}}/admin-api#upstream-object
 [target-object-reference]: /{{page.kong_version}}/admin-api#target-object

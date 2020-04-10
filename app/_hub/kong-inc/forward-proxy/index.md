@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
         - 0.36-x
         - 0.35-x
@@ -59,7 +60,7 @@ params:
 
 The plugin attempts to transparently replace upstream connections made by Kong
  core, sending the request instead to an intermediary forward proxy. Currently
-  only transparent HTTP proxies are supported; TLS connections (via `CONNECT`) 
+  only transparent HTTP proxies are supported; TLS connections (via `CONNECT`)
   are not yet supported.
 
 ---

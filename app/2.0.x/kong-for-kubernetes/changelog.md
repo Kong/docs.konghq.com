@@ -1,5 +1,6 @@
 ---
 title: Kong for Kubernetes Changelog
+toc: false
 ---
 
 Kong for Kubernetes comprises of two components:

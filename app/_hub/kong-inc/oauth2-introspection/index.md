@@ -22,6 +22,7 @@ kong_version_compatibility:
       compatible:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
         - 0.36-x
         - 0.35-x
@@ -102,8 +103,8 @@ params:
       default: false
       value_in_examples:
       description: |
-        A boolean indicating whether to forward information about the current 
-        downstream request to the introspect endpoint. If true, headers 
+        A boolean indicating whether to forward information about the current
+        downstream request to the introspect endpoint. If true, headers
         `X-Request-Path` and `X-Request-Http-Method` will be inserted in the
         introspect request
     - name: custom_introspection_headers

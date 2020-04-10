@@ -1,5 +1,6 @@
 ---
 title: Configuration Reference
+skip_read_time: true
 ---
 
 ## Configuration loading

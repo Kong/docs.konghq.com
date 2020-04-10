@@ -25,7 +25,7 @@ Returns the id used by this node to describe itself.
 local id = kong.node.get_id()
 ```
 
-[Back to TOC](#table-of-contents)
+[Back to top](#kongnode)
 
 
 ### kong.node.get_memory_stats([unit[, scale]])
@@ -101,5 +101,4 @@ local res = kong.node.get_memory_stats("k", 1)
 }
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kongnode)

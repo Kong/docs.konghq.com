@@ -1,4 +1,5 @@
 - title: Deployment
+  icon: /assets/images/icons/documentation/icn-deployment-color.svg
   items:
     - text: Installation
       url: /deployment/installation/overview
@@ -35,10 +36,11 @@
       url: /kong-cloud
 
 - title: Getting Started
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   url: /getting-started/
   items:
     - text: Overview
-      url: /getting-started/
+      url: /getting-started
     - text: Key Concepts
       url: /getting-started/key-concepts
     - text: Start Kong Enterprise Securely
@@ -96,7 +98,8 @@
       url: /db-encryption
 
 - title: Admin API
-  url: /admin-api
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+  url: /admin-api/
   items:
   - text: Overview
     url: /admin-api
@@ -150,6 +153,7 @@
     url: /admin-api/db-encryption
 
 - title: Kong Manager
+  icon: /assets/images/icons/documentation/icn-manager-color.svg
   url: /kong-manager/overview
   items:
     - text: Overview
@@ -204,7 +208,8 @@
 
 
 - title: Kong Dev Portal
-  url: /developer-portal
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  url: /developer-portal/
   items:
     - text: Introduction
       url: /developer-portal/
@@ -265,6 +270,7 @@
           url: /developer-portal/helpers/cli
 
 - title: Kong for Kubernetes Enterprise
+  icon: /assets/images/icons/documentation/icn-manager-color.svg
   url: /kong-for-kubernetes/
   items:
     - text: Overview
@@ -292,6 +298,7 @@
 
 
 - title: Plugins
+  icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
   items:
     - text: OpenID Connect
       url: /hub/kong-inc/openid-connect

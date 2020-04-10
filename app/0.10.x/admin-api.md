@@ -1,5 +1,6 @@
 ---
 title: Admin API
+toc: false
 
 api_body: |
     Attribute | Description
@@ -144,7 +145,7 @@ HTTP 200 OK
 
 ### Retrieve node status
 
-Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, and the number of entities stored in the datastore collections (including plugin's collections). 
+Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, and the number of entities stored in the datastore collections (including plugin's collections).
 
 If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
 
@@ -278,8 +279,8 @@ HTTP 200 OK
 
 ## API Object
 
-The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the 
-API when a consumer is calling it from the Proxy port. Each API object must specify some combination 
+The API object describes an API that's being exposed by Kong. Kong needs to know how to retrieve the
+API when a consumer is calling it from the Proxy port. Each API object must specify some combination
 of `hosts`, `uris`, and `methods`. Kong will proxy all requests to the API to the specified upstream URL.
 
 ```json
@@ -1468,7 +1469,7 @@ HTTP 204 No Content
 
 ## Upstream Objects
 
-The upstream object represents a virtual hostname and can be used to loadbalance 
+The upstream object represents a virtual hostname and can be used to loadbalance
 incoming requests over multiple services (targets). So for example an upstream
 named `service.v1.xyz` with an API object created with an `upstream_url=https://service.v1.xyz/some/path`.
 Requests for this API would be proxied to the targets defined within the upstream.
@@ -1728,7 +1729,7 @@ HTTP 204 No Content
 ## Target Object
 
 A target is an ip address/hostname with a port that identifies an instance of a backend
-service. Every upstream can have many targets, and the targets can be 
+service. Every upstream can have many targets, and the targets can be
 dynamically added. Changes are effectuated on the fly.
 
 Because the upstream maintains a history of target changes, the targets cannot

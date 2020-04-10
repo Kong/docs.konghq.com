@@ -1,7 +1,7 @@
 ---
 name: Exit Transformer
 publisher: Kong Inc.
-version: 1.3-x
+version: 1.5.x
 
 desc: Customize Kong exit responses sent downstream
 description: |
@@ -17,6 +17,7 @@ categories:
 kong_version_compatibility:
     enterprise_edition:
       compatible:
+        - 1.5.x
         - 1.3-x
 
 params:
@@ -195,6 +196,7 @@ end
    ```bash
     $ http :8001/plugins \
         name=exit-transformer \
+        config.handle_unknown=true \
         config.functions=@transform.lua
 
     $ http :8000 Host:non-existent.com

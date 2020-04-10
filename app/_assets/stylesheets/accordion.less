@@ -1,0 +1,82 @@
+.accordion-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  > li {
+    border-bottom: 1px solid #ebebeb;
+    list-style: none;
+    margin: 0;
+
+    input {
+      display: none;
+
+      &:checked {
+        + label {
+          border-left-color: rgb(0, 112, 191);
+
+          i {
+            transform: rotate(180deg);
+          }
+
+          img {
+            opacity: 1;
+            filter: none;
+          }
+
+          + div {
+            opacity: 1;
+            max-height: 1500px;
+          }
+        }
+      }
+    }
+
+    a {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      margin: 0;
+      font-size: 14px;
+      line-height: 30px;
+      padding: 16px 16px 16px 15px;
+      border-left: 2px solid transparent;
+      transition: border-left-color 0.5s linear;
+
+      img {
+        width: 20px;
+        margin-right: 18px;
+        opacity: 0.5;
+        transition: opacity 0.5s linear;
+        filter: grayscale(1);
+      }
+
+      a {
+        padding-right: 24px;
+      }
+
+      i {
+        position: absolute;
+        color: #5b5b5b;
+        font-size: 12px;
+        opacity: 0.3;
+        right: 16px;
+        top: 24px;
+      }
+    }
+
+    div {
+      overflow: hidden;
+      max-height: 0;
+      padding: 0 22px;
+      opacity: 0;
+      border-left: 2px solid rgb(0, 112, 191);
+      transition: all 0.5s linear;
+    }
+  }
+}

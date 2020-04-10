@@ -1,5 +1,6 @@
 ---
 title: Admin API
+toc: false
 
 api_body: |
     Attribute | Description

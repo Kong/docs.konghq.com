@@ -32,5 +32,4 @@ Returns the current Nginx subsystem this function is called from: "http"
 kong.nginx.get_subsystem() -- "http"
 ```
 
-[Back to TOC](#table-of-contents)
-
+[Back to top](#kong.nginx)
