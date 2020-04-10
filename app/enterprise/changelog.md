@@ -4,16 +4,104 @@ layout: changelog
 ---
 
 ## 1.5
-**Release Date:** 2020/04/07
+**Release Date:** 2020/04/09
 
 ### Features
 
-### Kong Gateway
+#### Kong Gateway Community 
 
-**Kong Enterprise 1.5** inherits the following changes from **Kong Gateway 2.0**:
+* Includes open-source features contained in Kong Gateway Community 1.4 and 1.5 releases, with the exception that Kong Enterprise does not support running on ARM processors at this time.
 
-* The `\certificates\` endpoint now has an optional `passphrase` attribute, which lets you load an encrypted private key into Kong. 
+#### Kong Manager
+* Redesigned Service and Route pages to support Immunity Alerts
+* Services, Routes, Consumers, and other entity lists are sortable
+* Services, Routes, Consumers, and other entities can be viewed and exported as JSON
+* Consumer Alerts added to the Immunity Alerts page
+* Approve, reject, and revoke Portal Application Service Contracts
+* Associate Portal Specs with Services through Documents
 
+#### Kong Developer Portal
+* [**BETA**](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta): Developers can create Applications to consume Services using the Portal Application Registration plugin.
+
+#### Plugins
+* IP Restriction
+    * Supports IPv6 addresses
+* MTLS Auth
+    * Support for OCSP
+    * Support for CRL
+* Collector
+    * Rewritten to follow more modern plugin approaches
+    * Added functionality to power Consumer Alerts
+* Kafka Log
+    * Support for API version of a produce request
+* [**BETA**](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta) Portal Application Registration
+    * Allow Portal Applications to request access and consume Services
+* Serverless functions
+    * Add the ability to run functions in each request phase
+
+### Fixes
+#### Kong Gateway
+* Fix a bug where entities loaded through cache warmup did not include Workspace properly
+* Fix a bug that could prevent a `ca_certificate` from being saved if it was more than 2713 bytes
+* Fix a bug where a route collision was not detected when the content type of a POST request was sent as `application/x-www-form-urlencoded`
+* Fix a bug where a route collision was not detected when a PATCH request was sent to the `/services/service_id/routes/route_id` endpoint
+* Added headers and `snis` route collision detection capabilities
+
+#### Kong Manager
+* Fix a bug that prevented updating a Service with a tag
+* Fix a bug in file permission on kconfig.js
+* Fix a bug configuring the OpenID Connect plugin
+* Fix a bug when resetting the password of an admin that is not in the default Workspace
+* Fix a bug where the Response Rate Limiting plugin could not be applied to a consumer
+
+#### Kong Developer Portal
+* Improve caching of Developers when accessing proxy via Developer Credentials
+* Fix a bug with a redirect on logout
+* Fix a bug when redirecting to login from a spec in a non-default workspace
+* Fix a bug with account verification links in Portals using sub-domains
+* Fix a bug with validation of * value for `portal_cors_origins` in Workspace config
+* Fix various styling issues
+
+#### Plugins
+* Kong OpenID Connect Library
+  * **IMPORTANT** Fix standard claims verification issue where the access token was only checked for `iss` and `exp`, but not the other optional checks
+  * Change `string.sub` to `string.byte` to lessen the garbage generation
+  * Change `jwks` as there is no need to pass length argument to `ecc.point` or `ecc.scalar` functions anymore
+  * Add support for `client_secret_jwt` and `private_key_jwt`
+  * Make `iss` and `exp` claims on access token validate only when speci
+* OpenID Connect
+  * Fix cluster invalidate consumer cache
+  * Fix pcall kong.configuration to handle command-line invocations
+  * Optimize consumer cache key invalidations
+  * Add support for dynamic login redirect uri
+  * Add support for `config.session_strategy` configuration parameter
+  * Add support for `session_cookie_idletime` configuration parameter
+  * Make consumer cache keys generated similarly as in JWT Signer plugin
+  * Unified session handling code in a single place
+  * Make the code more robust by checking the right data types
+  * Add support for `client_secret_jwt` and `private_key_jwt` authentication
+  * Add `config.client_auth`
+  * Add `config.client_alg`
+  * Add `config.client_jwk`
+  * Add `config.introspection_endpoint_auth_method`
+  * Add `config.revocation_endpoint_auth_method`
+  * Add `config.display_errors`
+  * Change `config.token_endpoint_auth_method` to include `client_secret_jwt` and `private_key_jwt`
+  * Fix issue when bearer `auth_method` was disabled that it was not disabled if introspection was enabled
+  * Bump `lua-resty-session` dependency to 3.1
+  * Add support for `cookie` for `config.bearer_token_param_type`
+  * Add support for `config.bearer_token_cookie_name`
+* JWT Signer
+  * Fix consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2 
+  * Change the plugin so that it does not inherit anymore from BasePlugin
+  * Add support for more signing algorithms: HS256, HS384, HS512, RS512, ES256, ES384, ES512, PS256, PS384, PS512, EdDSA
+  * Fix a problem with RSA signature truncation in some edge case reported by a customer 
+  * Updated lua-resty-nettle version to address jwt-signer plugin issue
+* Logging plugins will strip `authorization` header
+* CorrelationID
+  * Raise the priority of the plugin so it is run first on a request
+* Request Terminator
+  * Do not send a `Content-Length` header with a 204 response
 
 ## 1.3.0.2
 **Release Date:** 2020/02/20
