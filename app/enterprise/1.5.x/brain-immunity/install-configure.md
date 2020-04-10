@@ -113,10 +113,6 @@ Then restart Kong to see the changes take effect.
 ### Enable the Collector Plugin using the Admin API
 Next, enable the Collector Plugin using the Admin API:
 
-```
-$ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins name=collector config.service_token=foo config.host=<COLLECTOR_HOST> config.port=<COLLECTOR_PORT> config.https=false config.log_bodies=true
-```
-
 >(Optional) It is possible to set up the Collector Plugin to only be applied to specific routes or services. To apply the Collector Plugin to a Workspace, make this cURL request:
 
 ```
@@ -133,12 +129,12 @@ $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins/<service_id> name
 ### Enable the Collector Plugin using Kong Manager
 The Collector Plugin can be enabled using Kong Manager. To enable the plugin:
 1. Navigate to the **Workspace** page.
-2. Click on **Plugins** in the left navigation bar. 
+2. Click on **Plugins** in the left navigation bar.
 3. On the Plugin page, click **Add Plugin** which opens a page of plugin options.
 4. Scroll down to the Analytics and Monitoring section, and click the **Collector** tile.
 
 The Collector Plugin page contains the variables that are configurable for the Collector Plugin. To minimally configure the Collector Plugin:
-1. In the **Config.Http Endpoint** field, enter the Collector App endpoint that Kong Enterprise can communicate with.  
+1. In the **Config.Http Endpoint** field, enter the Collector App endpoint that Kong Enterprise can communicate with.
 2. Click **Create**. The Collector Plugin is configured.
 
 ### Logging HTTP Body Content
