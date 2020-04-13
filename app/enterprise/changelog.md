@@ -24,6 +24,25 @@ layout: changelog
 * [**BETA**](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta): Developers can create Applications to consume Services using the Portal Application Registration plugin.
 
 #### Plugins
+* Kong OpenID Connect Library
+  * Add support for `client_secret_jwt` and `private_key_jwt`
+* OpenID Connect
+  * Add support for dynamic login redirect uri
+  * Add support for `config.session_strategy` configuration parameter
+  * Add support for `session_cookie_idletime` configuration parameter
+  * Make consumer cache keys generated similarly as in JWT Signer plugin
+  * Add support for `client_secret_jwt` and `private_key_jwt` authentication
+  * Add `config.client_auth`
+  * Add `config.client_alg`
+  * Add `config.client_jwk`
+  * Add `config.introspection_endpoint_auth_method`
+  * Add `config.revocation_endpoint_auth_method`
+  * Add `config.display_errors`
+  * Change `config.token_endpoint_auth_method` to include `client_secret_jwt` and `private_key_jwt`
+  * Add support for `cookie` for `config.bearer_token_param_type`
+  * Add support for `config.bearer_token_cookie_name`
+* JWT Signer
+  * Add support for more signing algorithms: HS256, HS384, HS512, RS512, ES256, ES384, ES512, PS256, PS384, PS512, EdDSA
 * IP Restriction
     * Supports IPv6 addresses
 * MTLS Auth
@@ -67,34 +86,18 @@ layout: changelog
   * **IMPORTANT** Fix standard claims verification issue where the access token was only checked for `iss` and `exp`, but not the other optional checks
   * Change `string.sub` to `string.byte` to lessen the garbage generation
   * Change `jwks` as there is no need to pass length argument to `ecc.point` or `ecc.scalar` functions anymore
-  * Add support for `client_secret_jwt` and `private_key_jwt`
-  * Make `iss` and `exp` claims on access token validate only when speci
+  * Make `iss` and `exp` claims on access token validate only when specified
 * OpenID Connect
   * Fix cluster invalidate consumer cache
   * Fix pcall kong.configuration to handle command-line invocations
   * Optimize consumer cache key invalidations
-  * Add support for dynamic login redirect uri
-  * Add support for `config.session_strategy` configuration parameter
-  * Add support for `session_cookie_idletime` configuration parameter
-  * Make consumer cache keys generated similarly as in JWT Signer plugin
   * Unified session handling code in a single place
   * Make the code more robust by checking the right data types
-  * Add support for `client_secret_jwt` and `private_key_jwt` authentication
-  * Add `config.client_auth`
-  * Add `config.client_alg`
-  * Add `config.client_jwk`
-  * Add `config.introspection_endpoint_auth_method`
-  * Add `config.revocation_endpoint_auth_method`
-  * Add `config.display_errors`
-  * Change `config.token_endpoint_auth_method` to include `client_secret_jwt` and `private_key_jwt`
   * Fix issue when bearer `auth_method` was disabled that it was not disabled if introspection was enabled
   * Bump `lua-resty-session` dependency to 3.1
-  * Add support for `cookie` for `config.bearer_token_param_type`
-  * Add support for `config.bearer_token_cookie_name`
 * JWT Signer
   * Fix consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2 
   * Change the plugin so that it does not inherit anymore from BasePlugin
-  * Add support for more signing algorithms: HS256, HS384, HS512, RS512, ES256, ES384, ES512, PS256, PS384, PS512, EdDSA
   * Fix a problem with RSA signature truncation in some edge case reported by a customer 
   * Updated lua-resty-nettle version to address jwt-signer plugin issue
 * Logging plugins will strip `authorization` header
