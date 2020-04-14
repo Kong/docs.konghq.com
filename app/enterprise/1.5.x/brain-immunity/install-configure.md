@@ -123,7 +123,7 @@ To apply the Collector Plugin to a Service, make this cURL request:
 
 ```
 $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins/<service_id> name=collector \
-    config.http_endpoint=<COLLECTOR_APP_ENDPOINT> \
+    config.http_endpoint=<COLLECTOR_APP_ENDPOINT> 
 ```
 
 ### Enable the Collector Plugin using Kong Manager
