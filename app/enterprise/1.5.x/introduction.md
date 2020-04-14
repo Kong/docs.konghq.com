@@ -13,17 +13,17 @@ Kong Enterprise is designed to run on decentralized architectures, leveraging wo
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the entire organization
 
-Kong Enterprise is a combination of several features and add-ons on top of the open-sourced Kong Gateway, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/key-concepts).
+Kong Enterprise is a combination of several features and modules on top of the open-sourced Kong Gateway, as shown in the diagram and described in the next section [_Kong Enterprise Features_](https://docs.konghq.com/enterprise/{{page.kong_version}}/key-concepts).
 
 ![Introduction to Kong Enterprise](/assets/images/docs/ee/introduction.png)
 
 ## Kong Enterprise Features
 
-Kong Enterprise features are described in this section, including add-ons and plugins that extend and enhance the functionality of the Kong Enterprise platform.
+Kong Enterprise features are described in this section, including modules and plugins that extend and enhance the functionality of the Kong Enterprise platform.
 
 ### Kong Gateway
 
-Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. Kong runs in front of any RESTful API and is extended through add-ons and plugins which provide extra functionality beyond the core platform.
+Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. It’s easy to download, install, and configure to get up and running once you know the basics. Kong runs in front of any RESTful API and is extended through modules and plugins which provide extra functionality beyond the core platform.
 
 ### Kong Admin API
 
@@ -40,10 +40,6 @@ Kong Developer Portal (Kong Dev Portal) is used to onboard new developers and to
 ### Kong Immunity
 
 Kong Immunity is a module that uses machine learning to autonomously identify service behavior anomalies in real-time to improve security, mitigate breaches and isolate issues. Use Kong Immunity to autonomously identify service issues with machine learning-powered anomaly detection. For more information, see the [_Kong Brain and Immunity Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/brain-immunity/install-configure/).
-
-### Kong for Kubernetes
-
-Kong for Kubernetes Enterprise (K4K8S) is a Kubernetes Ingress Controller. A Kubernetes Ingress Controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, RepliaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an Ingress Controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster. For more information, see [_Kong for Kubernetes_](https://docs.konghq.com/enterprise/{{page.kong_version}}/kong-for-kubernetes/).
 
 ### Kong Manager
 
