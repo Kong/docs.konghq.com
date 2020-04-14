@@ -57,6 +57,9 @@ test a config change locally, you will need to run their open source
 [scraper](https://github.com/algolia/docsearch-scraper) against your own
 scraper to test out config changes.
 
+The Enterprise documentation uses paid algolia indices, which auto-update every
+24 hours via a [github action here](/.github/workflows/algolia.yml)
+
 ## Generating the Plugin Development Kit documentation
 
 - Have a local clone of Kong.
