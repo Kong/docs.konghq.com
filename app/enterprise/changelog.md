@@ -60,26 +60,26 @@ layout: changelog
 
 ### Fixes
 #### Kong Gateway
-* Fix a bug where entities loaded through cache warmup did not include Workspace properly
-* Fix a bug that could prevent a `ca_certificate` from being saved if it was more than 2713 bytes
-* Fix a bug where a route collision was not detected when the content type of a POST request was sent as `application/x-www-form-urlencoded`
-* Fix a bug where a route collision was not detected when a PATCH request was sent to the `/services/service_id/routes/route_id` endpoint
+* Fixes a bug where entities loaded through cache warmup did not include Workspace properly
+* Fixes a bug that could prevent a `ca_certificate` from being saved if it was more than 2713 bytes
+* Fixes a bug where a route collision was not detected when the content type of a POST request was sent as `application/x-www-form-urlencoded`
+* Fixes a bug where a route collision was not detected when a PATCH request was sent to the `/services/service_id/routes/route_id` endpoint
 * Added headers and `snis` route collision detection capabilities
 
 #### Kong Manager
-* Fix a bug that prevented updating a Service with a tag
-* Fix a bug in file permission on kconfig.js
-* Fix a bug configuring the OpenID Connect plugin
-* Fix a bug when resetting the password of an admin that is not in the default Workspace
-* Fix a bug where the Response Rate Limiting plugin could not be applied to a consumer
+* Fixes a bug that prevented updating a Service with a tag
+* Fixes a bug in file permission on kconfig.js
+* Fixes a bug configuring the OpenID Connect plugin
+* Fixes a bug when resetting the password of an admin that is not in the default Workspace
+* Fixes a bug where the Response Rate Limiting plugin could not be applied to a consumer
 
 #### Kong Developer Portal
 * Improve caching of Developers when accessing proxy via Developer Credentials
-* Fix a bug with a redirect on logout
-* Fix a bug when redirecting to login from a spec in a non-default workspace
-* Fix a bug with account verification links in Portals using sub-domains
-* Fix a bug with validation of * value for `portal_cors_origins` in Workspace config
-* Fix various styling issues
+* Fixes a bug with a redirect on logout
+* Fixes a bug when redirecting to login from a spec in a non-default workspace
+* Fixes a bug with account verification links in Portals using sub-domains
+* Fixes a bug with validation of * value for `portal_cors_origins` in Workspace config
+* Fixes various styling issues
 
 #### Plugins
 * Kong OpenID Connect Library
@@ -88,17 +88,17 @@ layout: changelog
   * Change `jwks` as there is no need to pass length argument to `ecc.point` or `ecc.scalar` functions anymore
   * Make `iss` and `exp` claims on access token validate only when specified
 * OpenID Connect
-  * Fix cluster invalidate consumer cache
-  * Fix pcall kong.configuration to handle command-line invocations
+  * Fixes cluster invalidate consumer cache
+  * Fixes pcall kong.configuration to handle command-line invocations
   * Optimize consumer cache key invalidations
   * Unified session handling code in a single place
   * Make the code more robust by checking the right data types
-  * Fix issue when bearer `auth_method` was disabled that it was not disabled if introspection was enabled
+  * Fixes issue when bearer `auth_method` was disabled that it was not disabled if introspection was enabled
   * Bump `lua-resty-session` dependency to 3.1
 * JWT Signer
-  * Fix consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2 
+  * Fixes consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2 
   * Change the plugin so that it does not inherit anymore from BasePlugin
-  * Fix a problem with RSA signature truncation in some edge case reported by a customer 
+  * Fixes a problem with RSA signature truncation in some edge case reported by a customer 
   * Updated lua-resty-nettle version to address jwt-signer plugin issue
 * Logging plugins will strip `authorization` header
 * CorrelationID
@@ -181,22 +181,22 @@ layout: changelog
 * Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
 * (Alpha feature) Kong Enterprise can now perform encryption-at-rest for sensitive fields within the data store (Postgres or Cassandra).
 
-#### Kong Developer Portal:
+#### Kong Developer Portal
 
 * Adds ability to customize the email templates used by the Kong Developer Portal
-* **Portal-CLI**
+* Portal-CLI
     * Adds more robust support for Windows
     * Adds command line support for optional arguments to override the CLI configuration file
 
-#### Kong Manager:
+#### Kong Manager
 
 * RBAC token control: A new property `rbac_token_enabled` on an Admin allows you to control whether that Admin can use and reset their RBAC token. When it is true, the Admin can log in to Kong Manager and can use their RBAC token on the Admin API. When it is false, the Admin can only use the Admin API in conjunction with a valid session.
 
 #### Plugins
 
-* **OpenAPI2Kong**:
+* OpenAPI2Kong
     - Adds trace to errors to identify the originating YAML/JSON element that caused the error.
-* **Key Authentication - Encrypted**:
+* Key Authentication - Encrypted
     - Provides key authentication for Routes and Services, with authentication tokens stored in a format that is encrypted at rest.
 
 
@@ -204,7 +204,7 @@ layout: changelog
 
 * Removes the openapi2kong API endpoint
 
-#### Kong Manager:
+#### Kong Manager
 
 * Adds icons for new Plugins
 * Adds ability for read-only admins to view plugin configurations
@@ -223,7 +223,7 @@ layout: changelog
 * Fixes issue where certain Swagger paths erred when header parameters were included
 * Fixes issue where code snippets ignored JSON
 * Fixes issue where Admins could not create new `portal.conf.yaml` or `router.conf.yaml` files from the Editor
-* **Portal-CLI**
+* Portal-CLI
     * Fixes issue where `deploy` did not remove files remotely that had been removed locally
 
 #### Kong Manager
@@ -243,17 +243,17 @@ layout: changelog
 
 #### Plugins
 
-* **AWS Lambda**:
+* AWS Lambda
     * Fixes issue where Kong Enterprise did not package the AWS Lambda plugin with IAM Role support (versions less than 3.0.1). Now Kong Enterprise packages the latest version of the plugin, 3.0.1.
-* **JWT**:
+* JWT
     * Fixes schema issue where colons in string values were incorrectly parsed
-* **OpenAPI2Kong**:
+* OpenAPI2Kong
     * Fixes unsupported OAuth 2.0 security flows to handle an array instead of an object
     * Fixes issue where an array was added to empty routes, this fix will improve compatibility with decK
     * Fixes issue that incorrectly added `body-validation`
-* **Request Validator**
+* Request Validator
     * Fixes size limitation on the number of validation rules
-* **MTLS Authentication**
+* MTLS Authentication
     * Fixes issue where disabled `mtls-auth` plugins were not correctly ignored while creating SNIs map
 
 ## 1.3
@@ -262,9 +262,9 @@ layout: changelog
 ### Kong Gateway
 - **Kong Enterprise 1.3** inherits the following changes from **Kong Gateway 1.3**:
 
-#### Changes
+### Changes
 
-###### Dependencies
+#### Dependencies
 
 - The required OpenResty version has been bumped to
   [1.15.8.1](http://openresty.org/en/changelog-1015008.html). If you are
@@ -293,7 +293,7 @@ compile OpenResty with the new lua-kong-nginx-module). Our new
 [openresty-build-tools](https://github.com/Kong/openresty-build-tools)
 repository will allow you to do both easily.
 
-###### Core
+#### Core
 
 - Bugfixes in the router *may, in some edge-cases*, result in
   different Routes being matched. It was reported to us that the router behaved
@@ -311,7 +311,7 @@ repository will allow you to do both easily.
   by Kong. This is a (non-breaking) change in behavior, inherited from Nginx
   1.15, and configurable via new configuration properties (see below).
 
-###### Configuration
+#### Configuration
 
 - The `upstream_keepalive` configuration property is deprecated, and
   replaced by the new `nginx_http_upstream_keepalive` property. Its behavior is
@@ -324,9 +324,9 @@ repository will allow you to do both easily.
   custom Nginx configuration templates.
   [#4382](https://github.com/Kong/kong/pull/4382)
 
-#### Additions
+### Additions
 
-###### Core
+#### Core
 
 - **Native gRPC proxying.** Two new protocol types; `grpc` and
   `grpcs` correspond to gRPC over h2c and gRPC over h2. They can be specified
@@ -358,7 +358,7 @@ repository will allow you to do both easily.
   the Admin API to manually set a Target's health status.
   [#4792](https://github.com/Kong/kong/pull/4792)
 
-###### Configuration
+#### Configuration
 
 - A new section in the `kong.conf` file describes [injected Nginx
   directives](https://konghq.com/blog/kong-ce-nginx-injected-directives/)
@@ -376,7 +376,7 @@ repository will allow you to do both easily.
   and `reuseport`.
   [#4692](https://github.com/Kong/kong/pull/4692)
 
-##### Admin API
+#### Admin API
 
 - Many endpoints now support more levels of nesting for ease of access.
   For example: `/services/:services/routes/:routes` is now a valid API
@@ -387,7 +387,7 @@ repository will allow you to do both easily.
   via JSON payloads.
   [#4768](https://github.com/Kong/kong/pull/4768)
 
-##### Plugins
+#### Plugins
 
 - jwt-auth: The new `header_names` property accepts an array of header names
   the JWT plugin should inspect when authenticating a request. It defaults to
@@ -407,15 +407,15 @@ repository will allow you to do both easily.
   [#4899](https://github.com/Kong/kong/pull/4899)
   Thanks to [@eshepelyuk](https://github.com/eshepelyuk) for the patch!
 
-##### PDK
+#### PDK
 
 - New function `kong.service.set_tls_cert_key()`. This functions sets the
   client TLS certificate used while handshaking with the upstream service.
   [#4797](https://github.com/Kong/kong/pull/4797)
 
-#### Fixes
+### Fixes
 
-##### Core
+#### Core
 
 - Router: Fixed a bug causing invalid matches when configuring two or more
   Routes with a plain `hosts` attribute shadowing another Route's wildcard
@@ -433,7 +433,7 @@ repository will allow you to do both easily.
   default page size.
   [#4770](https://github.com/Kong/kong/pull/4770)
 
-##### Plugins
+#### Plugins
 
 - cors: ensure non-preflight OPTIONS requests can be proxied.
   [#4899](https://github.com/Kong/kong/pull/4899)
@@ -448,18 +448,18 @@ repository will allow you to do both easily.
 - response-transformer: preserve empty arrays correctly.
   [#4901](https://github.com/Kong/kong/pull/4901)
 
-##### CLI
+#### CLI
 
 - Fixed an issue when running `kong restart` and Kong was not running,
   causing stdout/stderr logging to turn off.
   [#4772](https://github.com/Kong/kong/pull/4772)
 
-##### Admin API
+#### Admin API
 
 - Ensure PUT works correctly when applied to plugin configurations.
   [#4882](https://github.com/Kong/kong/pull/4882)
 
-##### PDK
+#### PDK
 
 - Prevent PDK calls from failing in custom content blocks.
   This fixes a misbehavior affecting the Prometheus plugin.
@@ -475,11 +475,11 @@ repository will allow you to do both easily.
 - Phone home logging now uses a new shared dict: lua_shared_dict kong_reports_workspaces 1m;  If you use a custom nginx template, make sure it's there if you use phl.
 - To configure Upstream TLS, use the NGINX directives [`proxy_ssl_trusted_certificate`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate), [`proxy_ssl_verify`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify), and [`proxy_ssl_verify_depth`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify_depth) instead of the Upstream TLS plugin. The plugin is only functional for versions 0.35 and 0.36.
 
-#### Features
+### Features
 
 - (Alpha feature) Kong Enterprise now has a License Reports module for customers to view current usage metrics. For more information, contact your Kong Account Executive.
 
-##### Kong Enterprise Gateway
+#### Kong Enterprise Gateway
 
 - gRPC support
 
@@ -505,11 +505,11 @@ repository will allow you to do both easily.
     - Add support for EdDSA signing, key generation and verification
     - Update `lua-resty-nettle` dependency to 1.0
 
-##### Docker
+#### Docker
 
 - Improved security by allowing the CentOS and Alpine images to run as the `kong` user.
 
-##### Kong Manager
+#### Kong Manager
 
 - RBAC User Management (manage Admin API access within Kong Manager)
 
@@ -530,7 +530,7 @@ repository will allow you to do both easily.
 - Admin Login Attempts
   - Configure allowed login attempts to the Kong Manager
 
-##### Dev Portal
+#### Dev Portal
 
 - Easy theming within Kong Manager
 
@@ -575,7 +575,7 @@ repository will allow you to do both easily.
 - Developer Login Attempts
     - Configure allowed login attempts to the Developer Portal
 
-##### Plugins
+#### Plugins
 
 - gRPC support, API & Kong Manager
 
@@ -589,7 +589,7 @@ repository will allow you to do both easily.
 - Request Transformer Advanced - Support for filtering JSON body with new configration `config.whitelist.body`
 - Response Transformer Advanced:
     - Support for filtering JSON body with new configration config.whitelist.body, Support arbitrary transformations via Lua functions
-    - Fixed a bug where the plugin was returning an empty body in the response for status codes outside of those specified in `config.replace.if_status`. For example, if we specified a `config.replace.if_status=404` and a body `config.replace.body=test` and the status code was 200, the response would be empty.
+    - Fixes a bug where the plugin was returning an empty body in the response for status codes outside of those specified in `config.replace.if_status`. For example, if we specified a `config.replace.if_status=404` and a body `config.replace.body=test` and the status code was 200, the response would be empty.
 
 - Route Transformer Advanced - New
 - GraphQL Proxy Cache Advanced - New
@@ -610,34 +610,42 @@ repository will allow you to do both easily.
 - AWS Lambda plugin supports IAM roles
 - Session plugin can now store authenticated groups from other authentication plugins. 
 
-##### CLI
+#### CLI
 - Adds runner
 
-#### Fixes
+### Fixes
 
-##### Plugins
+#### Plugins
 
-###### OpenID Connect
+##### OpenID Connect
 
-- Fix issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
+- Fixes issue when discovery did not return issuer information (against OpenID Connect specification), and which could lead to 500 error on 401 and 403 responses.
 
-###### LDAP Auth Advanced
+##### LDAP Auth Advanced
 
 - LDAP Auth Advanced - fixed issue where plugin tries to start a secure connection on an existing pooled connection from previous requests
 
-###### Request Transformer Advanced
+##### Request Transformer Advanced
 
-- Fixed a bug where the plugin was returning an empty body in the response for status codes outside of those specified in `config.replace.if_status`. For example, if we specified a `config.replace.if_status=404` and a body `config.replace.body=test` and the status code was 200, the response would be empty.
+- Fixes a bug where the plugin was returning an empty body in the response for status codes outside of those specified in `config.replace.if_status`. For example, if we specified a `config.replace.if_status=404` and a body `config.replace.body=test` and the status code was 200, the response would be empty.
 
-##### Kong Enterprise Gateway
+#### Kong Enterprise Gateway
 
-- Fix: audit log entries did not include timestamps indicating when the event occurred.
-- Fix: allow put requests to nonexistent foreign entities.
-- Fix: granular tracing did not work when certain plugins (for example, the key-auth) were used.
+- Fixes: audit log entries did not include timestamps indicating when the event occurred.
+- Fixes: allow put requests to nonexistent foreign entities.
+- Fixes: granular tracing did not work when certain plugins (for example, the key-auth) were used.
 
-##### Docker
+#### Docker
 
-- Fix: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
+- Fixes: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
+
+
+## 0.36-5
+
+**Release Date:** 2020-04-02
+
+### Fixes
+- Fixes an issue with jwt-signer plugin that requires only lua-resty-nettle update.
 
 
 ## 0.36-4
@@ -648,11 +656,11 @@ repository will allow you to do both easily.
 
 - `migrate-community-to-enterprise` script changed from batch query execution to multiple single queries
 for Cassandra strategy.
-- Fixed workspace counters calculation logic when you run `migrate-community-to-enterprise` script.
-- Fixed DAO fetching functionality to fetch all requested records from the database instead of first `1000`
+- Fixes Workspace counters calculation logic when you run `migrate-community-to-enterprise` script.
+- Fixes DAO fetching functionality to fetch all requested records from the database instead of first `1000`
 records that was before.
 - Updated Nettle version from `3.4.1` to `3.5.1` which is required by the plugins that use `OIDC` library to work properly.
-- Fixed an issue where enabling tracing and setting a tracing header caused all HTTPS requests to fail immediately when
+- Fixes an issue where enabling tracing and setting a tracing header caused all HTTPS requests to fail immediately when
 attempting to fetch headers during the ssl_cert phase.
 
 
@@ -751,7 +759,7 @@ attempting to fetch headers during the ssl_cert phase.
 
 ### Features
 
-##### Core
+#### Core
 
 - Support for **wildcard SNI matching**: the
   `ssl_certificate_by_lua` phase and the stream `preread` phase) is now able to
@@ -779,7 +787,7 @@ attempting to fetch headers during the ssl_cert phase.
     which is not compatible, protocols-wise, or to a Service with no
     compatible routes.
 
-##### Configuration
+#### Configuration
 
 - **Asynchronous router updates**: a new configuration property
   `router_consistency` accepts two possible values: `strict` and `eventual`.
@@ -807,7 +815,7 @@ attempting to fetch headers during the ssl_cert phase.
   - `nginx_sproxy_*` (or `KONG_NGINX_SPROXY_*` environment variables)
     for injecting entries to the `server` block inside `stream`
 
-##### Admin API
+#### Admin API
 
 - Add a **schema validation endpoint for entities**: a new
   endpoint `/schemas/:entity_name/validate` can be used to validate an instance
@@ -827,7 +835,7 @@ attempting to fetch headers during the ssl_cert phase.
      - `/services?tags=serv1/serv2` to search for services matching tags `serv1` or `serv2`
 - New Admin API endpoint `/tags/` for listing entities by tag: `/tags/example_tag`
 
-##### PDK
+#### PDK
 
 - New function `kong.node.get_memory_stats()`. This function returns statistics
   on shared dictionaries and workers Lua VM memory usage, and powers the memory
