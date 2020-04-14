@@ -65,7 +65,7 @@ params:
 
   extra: |
 
-    An `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
+    A `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
 
     You can configure the plugin with both `whitelist` and `blacklist` configurations. An interesting use case of this flexibility is to whitelist a CIDR range, but blacklist an IP address on that CIDR range:
 
