@@ -7,17 +7,17 @@ This installation topic guides you through installing and deploying Kong for Kub
 
 <img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">
 
->Note: Installation steps in this topic include installing Kong for Kubernetes Enterprise using YAML using kubectl and for OpenShift oc. Other deployment options, such as using Helm Chart and Kustomize, will be available at a later time.
+>Note: Installation steps in this topic include installing Kong for Kubernetes Enterprise using YAML with kubectl and with  OpenShift oc. Other deployment options, such as using Helm Chart and Kustomize, will be available at a later time.
 
 
 ### Prerequisites
 Before installing Kong for Kubernetes Enterprise, be sure you have the following:
 
-- **Kubernetes cluster**: Kong is compatible with all distributions of Kubernetes. You can use [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/) or [OpenShift](https://www.openshift.com/products/container-platform) cluster. 
+- **Kubernetes cluster**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
 - A valid Kong Enterprise License
-  * If you have a license, continue to [Step 1. Set Kong Enterprise License](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support. 
-  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page. 
+  * If you have a license, continue to [Step 1. Set Kong Enterprise License](#step-1-set-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
+  * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
   * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
 - Kong Enterprise Docker registry access
 
@@ -39,7 +39,7 @@ $ kubectl create namespace kong
 
 On OpenShift:
 ```bash
-oc new-project kong
+$ oc new-project kong
 ```
 
 ### Step 1. Set Kong Enterprise License
@@ -145,7 +145,7 @@ It might take a while for your cloud provider to associate the IP address to the
 Once you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/guides/getting-started.md).
 
 ## Next steps...
-See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about Concepts, How-to guides, Reference guides, and using Plugins. 
+See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about Concepts, How-to guides, Reference guides, and using Plugins.
 
 ## Optional: Installing Kong Enterprise on Kubernetes
 
