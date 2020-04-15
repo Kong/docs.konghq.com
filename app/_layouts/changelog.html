@@ -3,51 +3,34 @@ layout: default
 sitemap: true
 ---
 
-<div class="page-changelog">
+<div class="page v2 {{ page.class }}">
   <header class="page-header">
     <div class="container">
-      <div class="edit-this-page">
-        <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i>
-          Edit this Page</a>
-      </div>
-      <nav class="docs-navigation">
+      <nav class="docs-navigation v2">
         <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Community</a>
         <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
         <a href="/studio" {% if page.edition=='studio' %} class="active" {% endif %}>Kong Studio</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
         <span class="sidebar-toggle">Open Sidebar</span>
+        <div class="edit-this-page v2">
+          <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i>
+            Edit this Page</a>
+        </div>
       </nav>
-      <div class="page-header-icon">
-        {% if page.edition == 'getting-started-guide' %}
-        <img src="/assets/images/icons/icn-documentation-gs.svg" alt="Documentation" />
-        {% endif %}
-        {% if page.edition == 'community' %}
-        <img src="/assets/images/icons/icn-documentation-ce.svg" alt="Documentation" />
-        {% endif %}
-        {% if page.edition == 'enterprise' %}
-        <img src="/assets/images/icons/icn-documentation-ee.svg" alt="Documentation" />
-        {% endif %}
-        {% if page.edition == 'studio' %}
-        <img src="/assets/images/icons/icn-documentation-studio.svg" alt="Documentation" />
-        {% endif %}
-      </div>
-      <div class="page-header-title">
-        <h1>{{page.title}}</h1>
+      <div class="title-version-search-container">
+        <div class="page-header-title">
+          <h1>{{page.title}}</h1>
+        </div>
       </div>
   </header>
 
   <div class="container">
-    <aside class="page-navigation">
-      <nav class="version-select">
-        <h5>Releases</h5>
-
-          {% assign filename = page.path | split: '/' | last %}
-          {% include toc.html html=content %}
-
-      </nav>
+    <aside class="docs-toc">
+      <div class="docs-toc-title">Releases</div>
+      {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
     </aside>
 
-    <div class="page-content-container" id="changelog">
+    <div class="page-content-container v2" id="changelog">
       <div class="page-content">
         <div class="content show-anchor-links">
           {{ content }}
