@@ -4,7 +4,7 @@
   margin-bottom: 6rem;
   border-bottom: 1px solid @black-10;
 
-  a {
+  > a {
     padding: 0 10px 16px;
     font-size: 16px;
     color: @black-70;
@@ -36,7 +36,7 @@
     }
 
     @media (max-width: 768px) {
-      >a {
+      > a {
         font-size: 14px;
       }
     }
@@ -44,15 +44,22 @@
 }
 
 .edit-this-page {
-  position: absolute;
-  right: 0;
+  position: relative;
+  right: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  a {
+    padding: 0 0 16px;
+    font-size: 14px;
+
+    i {
+      padding: 4px;
+    }
+  }
 
   &.v2 {
-    position: relative;
-    right: auto;
-    margin-left: auto;
-    display: flex;
-    align-items: center;
     padding-bottom: 16px;
 
     a {
@@ -74,29 +81,21 @@
       }
     }
 
-    @media (max-width: 1100px) {
-      top: auto;
-      left: auto;
-    }
     @media (max-width: 768px) {
       a {
         i {
           display: block;
         }
-
-        span {
-          display: none;
-        }
       }
     }
   }
 
-  @media (max-width: 1100px) {
-    top: 135px;
-    left: 0;
-  }
-  @media (max-width: 400px) {
-    left: 20px;
+  @media (max-width: 768px) {
+    a {
+      span {
+        display: none;
+      }
+    }
   }
 }
 
@@ -219,7 +218,6 @@
   }
 
   float: right;
-  margin-left: 10px;
   /* auto complete */
 
   .algolia-autocomplete {
@@ -263,7 +261,7 @@
     }
   }
 
-  @media (max-width: @navbar-collapse-point) {
+  @media (max-width: 1080px) {
     float: initial;
     display: inline-block;
     margin-right: 5px;

@@ -61,37 +61,6 @@
     .page-content-container {
       padding-left: 285px;
 
-      .toggles {
-        display: flex;
-        position: sticky;
-        top: 60px;
-        justify-content: space-between;
-        height: 0;
-        overflow: hidden;
-
-        .sidebar-toggle {
-          display: block;
-          visibility: hidden;
-          margin-left: 0;
-        }
-
-        i {
-          padding: 8px;
-          color: rgba(0, 0, 0, 0.35);
-          font-size: 22px;
-        }
-
-        @media screen and (max-width: 1080px) {
-          height: auto;
-        }
-
-        @media screen and (max-width: 800px) {
-          .sidebar-toggle {
-            visibility: visible;
-          }
-        }
-      }
-
       .page-content {
         padding-left: 75px;
 
@@ -500,6 +469,49 @@
   }
 }
 
+.toggles {
+  display: flex;
+  position: sticky;
+  top: 60px;
+  justify-content: space-between;
+  height: 0;
+  overflow: hidden;
+
+  .sidebar-toggle {
+    display: block;
+    visibility: hidden;
+    margin-left: 0;
+  }
+
+  i {
+    padding: 8px;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 22px;
+  }
+
+  @media screen and (max-width: 1080px) {
+    height: auto;
+  }
+
+  @media screen and (max-width: 800px) {
+    .sidebar-toggle {
+      visibility: visible;
+    }
+  }
+}
+
+.docs-navigation {
+  position: relative;
+
+  .toggles {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 16px;
+  }
+}
+
 .page-content-container {
   .page-content {
     .reading-time {
@@ -521,6 +533,15 @@
   @media (max-width: 800px) {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  &:not(.v2) {
+    .toggles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
   }
 }
 
