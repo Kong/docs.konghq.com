@@ -367,28 +367,28 @@ Instead, please:
 
 ### Table of Contents generator
 
-Almost all pages have an automatic Table of Contents (ToC) added to the top of
-the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
+Almost all pages have an automatic Table of Contents (ToC) added to the right of
+the page.
 
-To inhibit the automatic addition of ToC, add the following to the front-matter
-`toc: false`
+To inhibit the automatic addition of ToC (such as on API reference pages),
+add the following to the front-matter: `toc: false`
 
-This ToC generator depends on headings being correctly coded in the markdown 
-portion of the doc site files. If a page has an incorrectly-formatted ToC, be
-sure to check:
+This ToC generator depends on headings being correctly coded in the markdown
+portion of the doc site files, and will only pick up H2 and H3 level headings.
+If a page has an incorrectly-formatted ToC, be sure to check:
 
 - Heading levels must be correctly nested. Thus, heading levels like this:
 
 ```
-# Heading Level 1
+### Sub-sub-heading Level 3
 ## Sub-heading Level 2
-#### Sub-sub-sub-heading Level 4
+### Sub-sub-heading Level 3
 ```
 
-will cause a broken ToC, and should be corrected to:
+will cause the first H3 to be skipped, and should be corrected to:
 
 ```
-# Heading Level 1
+## Sub-heading Level 2
 ## Sub-heading Level 2
 ### Sub-sub-heading Level 3
 ```
