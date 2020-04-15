@@ -11,7 +11,7 @@ desc: Integrate Kong API Gateway with Salt Security Discovery & Prevention for A
 description: |
   The Salt Security Kong deployment is used to capture a mirror of application traffic and send it to the Salt Security Service for analysis.
   This plugin has low CPU and memory consumption and adds no latency to the application since
-  it does not sit in line of the production traffic.
+  it does not sit in line with the production traffic.
   The plugin needs to see unencrypted traffic (after SSL termination)
   to enable the Salt Security service to perform analysis.
 
@@ -55,63 +55,23 @@ kong_version_compatibility:
       - 0.35-x
       - 0.34-x
 
-#########################
-
-params: 
-  name: salt
-  api_id: false
-  service_id: true
-  consumer_id: false
-  route_id: true
-
-  config: 
-    - name: salt_domain
-      required: 'yes'
-      default: 
-      value_in_examples:
-      description: Point to salt domain
-    - name: salt_backend_port
-      required: 'yes'
-      default: 443
-      value_in_examples:
-      description: Salt backend port
-    - name: salt_token
-      required: 'yes'
-      default: 
-      value_in_examples:
-      description: Salt provided token
-
-###############################################################################
-# END YAML DATA
-# Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
-#
-# The remainder of this file is for free-form description, instruction, and
-# reference matter.
-# If you include headers, your headers MUST start at Level 2 (parsing to
-# h2 tag in HTML). Heading Level 2 is represented by ## notation
-# preceding the header text. Subsequent headings,
-# if you choose to use them, must be properly nested (eg. heading level 2 may
-# be followed by another heading level 2, or by heading level 3, but must NOT be
-# followed by heading level 4)
-###############################################################################
-# BEGIN MARKDOWN CONTENT
 ---
 
-## Salt Security Kong plugin
-
-### Installation
+## Deployment
 
 Salt Security is easy to deploy as a Kong module.
 
-#### Install the plugin: [Follow this link if you need help](https://docs.konghq.com/1.0.x/plugin-development/distribution/#installing-the-plugin)
+### Install the plugin
 
-Once you have obtained the `.rock` file from your Salt Security distributor, it can be installed using the LuaRocks package manager.
+Once you have obtained the `.rock` file from your Salt Security distributor, install it using the LuaRocks package manager:
 
 ```shell
 $ luarocks install kong-plugin-salt-agent-0.1.0-1.all.rock
 ```
 
-#### Plugin configuration
+If you need help with installation, see the documentation on [Installing a Plugin](https://docs.konghq.com/1.2.x/plugin-development/distribution/#installing-the-plugin).
+
+### Configure the plugin
 
 Register the Salt Security backend as a Kong service:
 
@@ -122,11 +82,12 @@ $ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/
   --data "config.salt_backend_port=<salt_backend_port>" \
   --data "config.salt_token=<salt_token>"
 ```
+> Note: installation may be different between Kong versions.
 
-```text
-1. [salt_domain] - Salt domain address
-2. [salt_backend_port] - salt backend port (defaults to 443 if config.salt_backend_port not provided)
-3. [salt_token] - company token
-```
+### Plugin configuration reference
 
-> Notice: installation might be different between Kong versions
+| Parameter                | Description          |
+|--------------------------|----------------------|
+|`config.salt_domain`      | Salt domain address. |
+|`config.salt_backend_port`| Salt backend port. Defaults to 443 if `config.salt_backend_port` is not provided. |
+|`config.salt_token`       | Salt-provided company token. |
