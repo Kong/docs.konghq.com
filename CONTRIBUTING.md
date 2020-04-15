@@ -396,6 +396,7 @@ will cause the first H3 to be skipped, and should be corrected to:
 
 [Back to TOC](#table-of-contents)
 
+
 ### Using tabs within topics
 
 If your topic provides instructions for two or more methods of completing a
@@ -422,6 +423,8 @@ Here's some more content.
 
 On initial page load, the first tab ("<your title here>" in the example above)
 will be the one displayed.
+
+[Back to TOC](#table-of-contents)
 
 
 ### Contributor T-shirt
