@@ -26,6 +26,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
   - [Table of Contents generator](#table-of-contents-generator)
+  - [Using tabs within topics](#using-tabs-within-topics)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 
@@ -394,6 +395,33 @@ will cause the first H3 to be skipped, and should be corrected to:
 ```
 
 [Back to TOC](#table-of-contents)
+
+### Using tabs within topics
+
+If your topic provides instructions for two or more methods of completing a
+task, you can nest them inside `navtabs`. For example, this topic
+[here](https://docs.konghq.com/getting-started-guide/latest/expose-services/#add-a-service)
+tabs between the Admin API and Kong Manager methods for adding a Service.
+
+Here's how you use them:
+
+```
+{% navtabs %}
+{% navtab <your title here> %}
+
+Here's some content.
+
+{% endnavtab %}
+{% navtab <some other title> %}
+
+Here's some more content.
+
+{% endnavtab %}
+{% endnavtabs %}
+```
+
+On initial page load, the first tab ("<your title here>" in the example above)
+will be the one displayed.
 
 
 ### Contributor T-shirt
