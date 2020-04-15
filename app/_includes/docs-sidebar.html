@@ -14,6 +14,7 @@
     {% for nav in page.nav_items %}
     {% assign item_active = false %}
     {% assign item_url = false %}
+    {% if nav.items.size > 0 %}
     {% capture item_content %}
     <ul class="items">
       {% for item in nav.items %}
@@ -46,6 +47,7 @@
       {% endfor %}
     </ul>
     {% endcapture %}
+    {% endif %}
 
     {% if nav.url %}
     {% assign item_url = docs_url | append: nav.url %}
