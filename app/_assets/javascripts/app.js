@@ -523,4 +523,24 @@ $(function () {
       $('.feedback-comment').css('visibility', 'visible')
     }
   })
+
+  // expandable images
+  const imageModal = $('#image-modal')
+  if (imageModal.length > 0) {
+    imageModal.find('i').click(function () {
+      $(document.body).removeClass('image-modal-no-scroll')
+      imageModal.removeClass('visible')
+    })
+
+    $('.page-content > .content img').each(function (index, img) {
+      const $img = $(img)
+
+      img.style.cursor = 'pointer'
+      $img.click(function () {
+        $(document.body).addClass('image-modal-no-scroll')
+        imageModal.addClass('visible')
+        imageModal.find('img').attr('src', $img.attr('src'))
+      })
+    })
+  }
 })
