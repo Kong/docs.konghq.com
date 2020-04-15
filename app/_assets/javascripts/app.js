@@ -301,20 +301,23 @@ $(function () {
 
     $navItems.on('click', setNavItemActive)
 
-    if ($(window).width() <= 800) {
-      $('.sidebar-toggle').click(function () {
-        $('.page-navigation').addClass('sidebar-open')
-        const docsSidebar = $('.docs-sidebar')
-        if (docsSidebar.hasClass('sidebar-open')) {
-          docsSidebar.removeClass('sidebar-open')
-        } else {
-          docsSidebar.addClass('sidebar-open')
-        }
-      })
-      $('.page-navigation > .close-sidebar').click(function () {
-        $('.page-navigation').removeClass('sidebar-open')
-      })
-    }
+    $('.sidebar-toggle').click(function () {
+      $('.page-navigation').addClass('sidebar-open')
+      $('.docs-sidebar').addClass('sidebar-open')
+    })
+    $('.page-navigation > .close-sidebar').click(function () {
+      $('.page-navigation').removeClass('sidebar-open')
+    })
+    $('.docs-sidebar > .close-sidebar').click(function () {
+      $('.docs-sidebar').removeClass('sidebar-open')
+    })
+
+    $('.toc-sidebar-toggle').click(function () {
+      $('.docs-toc').addClass('sidebar-open')
+    })
+    $('.docs-toc > .close-sidebar').click(function () {
+      $('.docs-toc').removeClass('sidebar-open')
+    })
   }
 
   // Analytics
