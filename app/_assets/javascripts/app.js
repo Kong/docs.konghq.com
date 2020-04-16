@@ -523,4 +523,39 @@ $(function () {
       $('.feedback-comment').css('visibility', 'visible')
     }
   })
+
+  // Copy code snippet support
+  const copyInput = $('<textarea id="copy-code-input"></textarea>')
+  $('body').append(copyInput)
+
+  $('.copy-code-snippet').each(function (index, element) {
+    const snippet = $(element)
+    const action = $('<i class="copy-action fa fa-copy"></i>')
+
+    action.click(function () {
+      if ($('#copy-code-success-info').length > 0) {
+        return
+      }
+
+      copyInput.text(snippet.data('copy-code') || snippet.find('code').text())
+      copyInput.select()
+      document.execCommand('copy')
+
+      const successInfo = $('<div id="copy-code-success-info">Code has been copied to clipboard.</div>')
+      successInfo
+        .css({
+          top: action[0].getBoundingClientRect().top - action.height(),
+          left: action[0].getBoundingClientRect().left + action.width() / 2,
+          opacity: 1
+        })
+
+      setTimeout(function () {
+        successInfo.animate({ opacity: 0 }, function () {
+          successInfo.remove()
+        })
+      }, 1000)
+      $('body').append(successInfo)
+    })
+    snippet.append(action)
+  })
 })
