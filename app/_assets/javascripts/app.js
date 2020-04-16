@@ -524,7 +524,21 @@ $(function () {
     }
   })
 
-  // Copy code snippet support
+  /**
+   * Copy code snippet support
+   *
+   * Example:
+   *
+   * ```bash
+   * $ curl -X GET http://kong:8001/basic-auths
+   * ```
+   * {: .copy-code-snippet data-copy-code="curl -X GET http://kong:8001/basic-auths" }
+   *
+   * where:
+   * .copy-code-snippet - adds class specifying that the code block is copyable
+   * data-copy-code="{custom-code}" - (optional) can be used to specify {custom-code} to be copied (only single-line text is supported)
+   *
+   */
   const copyInput = $('<textarea id="copy-code-input"></textarea>')
   $('body').append(copyInput)
 
