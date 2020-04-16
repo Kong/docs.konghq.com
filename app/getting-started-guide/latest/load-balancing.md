@@ -32,7 +32,7 @@ In this section, you will create an Upstream named `upstream` and add two target
     *Using cURL*:
     ```
     $ curl -X POST http://<admin-hostname>:8001/upstreams \
-    --data name=’upstream’
+    --data name=upstream
     ```
     *Or using HTTPie*:
     ```
