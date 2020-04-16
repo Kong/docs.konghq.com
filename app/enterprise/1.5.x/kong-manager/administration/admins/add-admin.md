@@ -1,7 +1,9 @@
 ---
 title: Add an Admin
 toc: false
-redirect_from: "/enterprise/1.5.x/getting-started/add-admin"
+redirect_from:
+  - /enterprise/1.5.x/getting-started/add-admin
+  - /enterprise/latest/getting-started/add-admin
 ---
 
 ### Introduction

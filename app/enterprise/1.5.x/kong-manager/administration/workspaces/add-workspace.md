@@ -1,7 +1,9 @@
 ---
 title: Add a Workspace
 toc: false
-redirect_from: "/enterprise/1.5.x/getting-started/add-workspace"
+redirect_from:
+  - /enterprise/1.5.x/getting-started/add-workspace
+  - /enterprise/latest/getting-started/add-workspace
 ---
 
 ### Introduction

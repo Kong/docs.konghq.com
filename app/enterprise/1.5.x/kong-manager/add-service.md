@@ -1,6 +1,8 @@
 ---
 title: Add a Service and Route
-redirect_from: "enterprise/1.5.x/getting-started/add-service"
+redirect_from:
+  - /enterprise/1.5.x/getting-started/add-service
+  - /enterprise/latest/getting-started/add-service
 ---
 
 ### Introduction
