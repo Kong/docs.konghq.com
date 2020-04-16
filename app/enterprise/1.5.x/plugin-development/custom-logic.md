@@ -262,6 +262,7 @@ The current order of execution for the bundled plugins is:
 Plugin                      | Priority
 ----------------------------|----------
 pre-function                | `+inf`
+correlation-id              | 100001
 zipkin                      | 100000
 exit-transformer            | 9999
 bot-detection               | 2500
