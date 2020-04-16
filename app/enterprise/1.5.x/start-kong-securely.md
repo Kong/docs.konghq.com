@@ -1,8 +1,7 @@
 ---
 title: Start Kong Enterprise Securely
 toc: false
-redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/start-kong
+redirect_from: "/enterprise/1.5.x/getting-started/start-kong"
 ---
 #### Table of Contents
 

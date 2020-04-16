@@ -1,8 +1,7 @@
 ---
 title: Add a Role and Permissions
 toc: false
-redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/add-role
+redirect_from: "/enterprise/1.5.x/getting-started/add-role"
 ---
 
 ### Introduction

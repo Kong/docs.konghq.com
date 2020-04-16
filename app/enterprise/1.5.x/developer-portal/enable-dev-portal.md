@@ -1,8 +1,7 @@
 ---
 title: How To Enable the Dev Portal
 toc: false
-redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/enable-dev-portal
+redirect_from: "/enterprise/1.5.x/getting-started/enable-dev-portal"
 ---
 
 ### Step 1 - Enable Dev Portal in the Kong Configuration
