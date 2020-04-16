@@ -243,6 +243,8 @@
       url: /developer-portal/overview
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
+    - text: Migrating to 1.5
+      url: /developer-portal/migrating-to-1.5
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
     - text: Structure and File Types

@@ -49,6 +49,85 @@ database in the final expected state for Kong Enterprise 1.5).
    your migration was successful. From now on, you can safely make Admin API
    requests to your 1.5 nodes.
 
+
+### Migrating Developer Portal from 1.3 to 1.5
+Below are the Developer Portal migrations required to move from **Kong Enterprise 1.3** to **Kong Enterprise 1.5**.
+You can make these changes with our templates repository using the Kong Portal CLI, or directly in the Kong Editor. We suggest using the templates/CLI in order to take advantage of source control. Links to the templates repository, as well as the portal CLI, can be found below.
+##### Links:
+- [kong-portal-templates](https://github.com/Kong/kong-portal-templates)
+- [kong-portal-cli](https://github.com/Kong/kong-portal-cli)
+#### Create Files:
+These files need to be created for the 1.5 Kong Developer Portal to function. Please create each file using the path and contents linked below.
+- ##### create.txt
+  - Templates Path: `/workspaces/default/content/applications/create.txt`
+  - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/content/applications/create.txt
+- ##### edit.txt
+    - Templates Path: `/workspaces/default/content/applications/edit.txt`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/content/applications/edit.txt
+- ##### index.txt
+    - Templates Path: `/workspaces/default/content/applications/index.txt`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/content/applications/index.txt
+- ##### view.txt
+    - Templates Path: `/workspaces/default/content/applications/view.txt`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/content/applications/view.txt
+- ##### dashboard-6616db8.min.js
+    - Templates Path: `/workspaces/default/themes/base/assets/js/dashboard-6616db8.min.js`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/assets/js/dashboard-6616db8.min.js
+- ##### swagger-ui-kong-theme-1edc216.min.js
+    - Templates Path: `workspaces/default/themes/base/assets/js/swagger-ui-kong-theme-1edc216.min.js`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/assets/js/swagger-ui-kong-theme-1edc216.min.js
+- ##### applications.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/applications.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/applications.html
+- ##### create-app.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/create-app.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/create-app.html
+- ##### edit-app.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/edit-app.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/edit-app.html
+- ##### view-app.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/view-app.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/view-app.html
+- ##### _app.html
+    - Templates Path: `workspaces/default/themes/base/layouts/_app.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/_app.html
+#### Replace Files:
+These files already exist in your portal and need to be updated. Please replace their current contents with the content linked below.
+- ##### header.html
+    - Templates Path: `workspaces/default/themes/base/partials/header.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/partials/header.html
+- ##### swagger-ui-kong-theme.css
+    - Templates Path: `workspaces/default/themes/base/assets/styles/swagger-ui-kong-theme.css`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/assets/styles/swagger-ui-kong-theme.css
+- ##### dashboard.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/dashboard.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/dashboard.html
+- ##### invalidate-verification.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/invalidate-verification.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/invalidate-verification.html
+- ##### resend-verification.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/resend-verification.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/resend-verification.html
+- ##### resend-password.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/reset-password.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/reset-password.html
+- ##### settings.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/settings.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/settings.html
+- ##### spec-renderer.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/spec-renderer.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/spec-renderer.html
+- ##### verify-account.html
+    - Templates Path: `workspaces/default/themes/base/layouts/system/verify-account.html`
+    - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/verify-account.html
+#### Delete Files:
+You can remove these files entirely from your Developer Portal.
+- ##### dashboard-6ae0d66.min.js
+    - Templates Path: `workspaces/default/themes/base/assets/js/dashboard-6ae0d66.min.js`
+- ##### swagger-ui-kong-theme-667aef9.min.js
+    - Templates Path: `workspaces/default/themes/base/assets/js/swagger-ui-kong-theme-667aef9.min.js`
+
+
 ### Migration Steps from Kong Community Gateway 1.5 to Kong Enterprise 1.5
 
 <div class="alert alert-warning">
