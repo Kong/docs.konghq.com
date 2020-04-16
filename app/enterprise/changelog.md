@@ -10,15 +10,15 @@ layout: changelog
 
 #### Plugins
 * Kong OpenID Connect Library
-  * Change  `client_secret_jwk ` and  `private_key_jwt ` to not pass the rfc7521 optional  `client_id ` as it was causing a problem with Okta.
+  * Changes  `client_secret_jwk ` and  `private_key_jwt ` to not pass the rfc7521 optional  `client_id ` as it was causing a problem with Okta.
 * OpenID Connect
   * Fixes `openid_connect/jwks` to not use `err_t` with JWKS custom DAO that is not returning the `err_t`.
   * Fixes JWKS custom DAO to not return cache hit level as a third return value on errors. Previously, it was sometimes inaccurately treated as `err_t`.
-  * Add a teardown migration to create the `oic_jwks` row, so that it is not needed to create on init_worker.
+  * Adds a teardown migration to create the `oic_jwks` row, so that it is not needed to create on init_worker.
 * Request Transformer Advanced
   * Fixes bug when adding a header with the same name as a removed one.
-  * Improve performance by not inheriting from the BasePlugin class.
-  * Convert the plugin away from deprecated functions.
+  * Improves performance by not inheriting from the BasePlugin class.
+  * Converts the plugin away from deprecated functions.
  
 
 ## 1.5.0.0
