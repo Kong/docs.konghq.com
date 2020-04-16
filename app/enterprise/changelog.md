@@ -3,6 +3,24 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.5.0.1
+**Release Date:** 2020/04/16
+
+### Fixes
+
+#### Plugins
+* Kong OpenID Connect Library
+  * Change  `client_secret_jwk ` and  `private_key_jwt ` to not pass the rfc7521 optional  `client_id ` as it was causing a problem with Okta.
+* OpenID Connect
+  * Fix `openid_connect/jwks` to not use `err_t` with JWKS custom DAO that is not returning the `err_t`.
+  * Fix JWKS custom DAO to not return cache hit level as a third return value on errors as it may be treated as `err_t`, which it is not.
+  * Add a teardown migration to create the `oic_jwks` row, so that it is not needed to create on init_worker.
+* Request Transformer Advanced
+  * Fix bug when adding a header with the same name as a removed one.
+  * Improved performance by not inheriting from the BasePlugin class.
+  * Convert the plugin away from deprecated functions.
+ 
+
 ## 1.5.0.0
 **Release Date:** 2020/04/09
 
