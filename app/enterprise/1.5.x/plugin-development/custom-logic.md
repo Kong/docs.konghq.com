@@ -313,7 +313,6 @@ kafka-log                   | 5
 syslog                      | 4
 collector                   | 3
 request-termination         | 2
-correlation-id              | 1
 post-function               | -1000
 
 ---
