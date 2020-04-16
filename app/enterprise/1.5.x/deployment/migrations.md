@@ -51,13 +51,13 @@ database in the final expected state for Kong Enterprise 1.5).
 
 
 ### Migrating Developer Portal from 1.3 to 1.5
-Below are the developer portal migrations required to move from **Kong Enterprise 1.3** to **Kong Enterprise 1.5**.
-You can make these changes with our templates repository using the kong portal CLI, or directly in the Kong Editor.  We suggest using the templates/cli in order to take advantage of source control.  Links to the templates repository, as well as the portal CLI can be found below.
+Below are the Developer Portal migrations required to move from **Kong Enterprise 1.3** to **Kong Enterprise 1.5**.
+You can make these changes with our templates repository using the Kong Portal CLI, or directly in the Kong Editor. We suggest using the templates/CLI in order to take advantage of source control. Links to the templates repository, as well as the portal CLI, can be found below.
 ##### Links:
 - [kong-portal-templates](https://github.com/Kong/kong-portal-templates)
 - [kong-portal-cli](https://github.com/Kong/kong-portal-cli)
 #### Create Files:
-These files need to be created for the 1.5 Kong developer portal to function.  Please create each file using the path and contents linked below.
+These files need to be created for the 1.5 Kong Developer Portal to function. Please create each file using the path and contents linked below.
 - ##### create.txt
   - Templates Path: `/workspaces/default/content/applications/create.txt`
   - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/content/applications/create.txt
@@ -92,7 +92,7 @@ These files need to be created for the 1.5 Kong developer portal to function.  P
     - Templates Path: `workspaces/default/themes/base/layouts/_app.html`
     - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/_app.html
 #### Replace Files:
-These files already exist in your portal and need to be updated, please replace their current contents with the content linked below.
+These files already exist in your portal and need to be updated. Please replace their current contents with the content linked below.
 - ##### header.html
     - Templates Path: `workspaces/default/themes/base/partials/header.html`
     - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/partials/header.html
@@ -121,7 +121,7 @@ These files already exist in your portal and need to be updated, please replace 
     - Templates Path: `workspaces/default/themes/base/layouts/system/verify-account.html`
     - File Content: https://github.com/Kong/kong-portal-templates/blob/release/1.5.0.0/workspaces/default/themes/base/layouts/system/verify-account.html
 #### Delete Files:
-You can remove these files entirely from your developer portal.
+You can remove these files entirely from your Developer Portal.
 - ##### dashboard-6ae0d66.min.js
     - Templates Path: `workspaces/default/themes/base/assets/js/dashboard-6ae0d66.min.js`
 - ##### swagger-ui-kong-theme-667aef9.min.js
