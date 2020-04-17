@@ -527,7 +527,11 @@ $(function () {
   /**
    * Copy code snippet support
    *
-   * Example:
+   * By default copy code is enabled for all code blocks. If you want disable it for specific page use class 'no-copy-code' in Front Matter:
+   * ---
+   * class: no-copy-code
+   * ---
+   * Additionally, you can still enable it for specific code block using the Inline Attribute as can be seen on the following example:
    *
    * ```bash
    * $ curl -X GET http://kong:8001/basic-auths
@@ -535,27 +539,50 @@ $(function () {
    * {: .copy-code-snippet data-copy-code="curl -X GET http://kong:8001/basic-auths" }
    *
    * where:
-   * .copy-code-snippet - adds class specifying that the code block is copyable
    * data-copy-code="{custom-code}" - (optional) can be used to specify {custom-code} to be copied (only single-line text is supported)
    *
    */
   const copyInput = $('<textarea id="copy-code-input"></textarea>')
   $('body').append(copyInput)
 
-  $('.copy-code-snippet').each(function (index, element) {
-    const snippet = $(element)
-    const action = $('<i class="copy-action fa fa-copy"></i>')
+  $('.copy-code-snippet, pre > code').each(function (index, element) {
+    function findSnippetElement () {
+      const $code = $(element)
+      let snippet = $code.parent('pre').parent('.highlight').parent('.highlighter-rouge')
+      if (snippet.length > 0) {
+        return snippet
+      }
+      snippet = $code.parent('pre').parent('.highlight')
+      if (snippet.length > 0) {
+        return snippet
+      }
+      snippet = $code.parent('pre')
+      if (snippet.length > 0) {
+        return snippet
+      }
+      return $code
+    }
 
+    const noCode = $('div.page.no-copy-code').length > 0
+    const snippet = findSnippetElement()
+
+    if (!snippet.hasClass('copy-code-snippet') && noCode) {
+      return
+    }
+
+    snippet.addClass('copy-code-snippet')
+
+    const action = $('<i class="copy-action fa fa-copy"></i>')
     action.click(function () {
       if ($('#copy-code-success-info').length > 0) {
         return
       }
 
-      copyInput.text(snippet.data('copy-code') || snippet.find('code').text())
+      copyInput.text(snippet.data('copy-code') || snippet.find('code').text().replace(/^\s*\$\s*/gi, ''))
       copyInput.select()
       document.execCommand('copy')
 
-      const successInfo = $('<div id="copy-code-success-info">Code has been copied to clipboard.</div>')
+      const successInfo = $('<div id="copy-code-success-info">Copied to clipboard!</div>')
       successInfo
         .css({
           top: action[0].getBoundingClientRect().top - action.height(),
