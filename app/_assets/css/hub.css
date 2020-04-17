@@ -6416,7 +6416,17 @@ a.bg-inverse:focus,a.bg-inverse:hover {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 99
+    z-index: 99;
+    overflow-x: auto;
+}
+
+.sticky-top::-webkit-scrollbar {
+    width: 2px;
+}
+
+.sticky-top::-webkit-scrollbar-thumb {
+    background-color: #9dc6e3;
+    outline: 1px solid #9dc6e3;
 }
 
 .sr-only {
@@ -14766,9 +14776,10 @@ nav.navigation.posts-navigation {
 }
 
 header.page-header {
-  margin: 10px auto;
-  background-color: #ffffff;
-  border-bottom: none;
+    margin: 56px auto 10px;
+    padding-top: 40px;
+    background-color: #ffffff;
+    border-bottom: none;
 }
 
 .kong-plugins .cards-collection {

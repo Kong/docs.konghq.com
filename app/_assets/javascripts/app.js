@@ -317,6 +317,23 @@ $(function () {
     }
   }
 
+  // set height of sidebars for better scrolling experience
+  const docsSidebar = $('.docs-sidebar')
+  if (docsSidebar.length) {
+    const height = NAV_HEIGHT + $('header.page-header').outerHeight()
+    docsSidebar.css('height', `calc(100vh - ${height}px`)
+  }
+  const tocSidebar = $('.docs-toc')
+  if (tocSidebar.length) {
+    const height = NAV_HEIGHT + $('header.page-header').outerHeight()
+    tocSidebar.css('height', `calc(100vh - ${height}px`)
+  }
+  const hubSidebar = $('.page-hub .sidebar .sticky-top')
+  if (hubSidebar.length) {
+    const height = window.innerHeight - hubSidebar[0].getBoundingClientRect().top
+    hubSidebar.css('height', height)
+  }
+
   // Analytics
 
   $('[href^="/install"]').each(function () {
