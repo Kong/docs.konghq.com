@@ -31,7 +31,7 @@ Kong Admin API provides a RESTful interface for administration and configuration
 
 ### Kong Brain
 
-Kong Brain is a module that automates tasks, increases visibility and ensures consistency across complex architectures. Use Kong Brain to automatically standardize documentation and create a visual map of your services. For more information, see the [_Kong Brain and Immunity Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/brain-immunity/install-configure/).
+Kong Brain automates tasks, increases visibility and ensures consistency across complex architectures. Use Kong Brain to automatically standardize documentation and create a visual map of your services. For more information, see the [_Kong Brain and Immunity Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/brain-immunity/install-configure/).
 
 ### Kong Developer Portal
 
@@ -39,7 +39,7 @@ Kong Developer Portal (Kong Dev Portal) is used to onboard new developers and to
 
 ### Kong Immunity
 
-Kong Immunity is a module that uses machine learning to autonomously identify service behavior anomalies in real-time to improve security, mitigate breaches and isolate issues. Use Kong Immunity to autonomously identify service issues with machine learning-powered anomaly detection. For more information, see the [_Kong Brain and Immunity Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/brain-immunity/install-configure/).
+Kong Immunity uses machine learning to autonomously identify service behavior anomalies in real-time to improve security, mitigate breaches and isolate issues. Use Kong Immunity to autonomously identify service issues with machine learning-powered anomaly detection. For more information, see the [_Kong Brain and Immunity Guide_](https://docs.konghq.com/enterprise/{{page.kong_version}}/brain-immunity/install-configure/).
 
 ### Kong Manager
 
