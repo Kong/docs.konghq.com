@@ -31,6 +31,3 @@ Vulnerabilities affecting upstream projects (e.g. NGINX, OpenResty, OpenSSL...) 
 ## Retrospective
 
 Within a few days of the new release addressing the vulnerability, the Kong maintainers will publish a retrospective with details of the issue, including a description, links to relevant PRs, timeline of the vulnerability report and development of the fix. This retrospective will be published in the [Security Advisories](https://github.com/Kong/kong/security/advisories) section of this repository.
-
-
-
