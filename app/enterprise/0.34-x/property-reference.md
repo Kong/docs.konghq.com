@@ -1185,7 +1185,7 @@ specified name). The format is a (case
 insensitive) comma separated list.
 
 
-### dns_state_ttl
+### dns_stale_ttl
 
 **Default:** `4`
 
