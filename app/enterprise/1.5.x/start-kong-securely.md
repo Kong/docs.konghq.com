@@ -2,7 +2,8 @@
 title: Start Kong Enterprise Securely
 toc: false
 redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/start-kong
+  - /enterprise/1.5.x/getting-started/start-kong
+  - /enterprise/latest/getting-started/start-kong
 ---
 #### Table of Contents
 
@@ -106,11 +107,3 @@ visit Kong Manager's URL. By default, it is on port `:8002`.
 
 The username is `kong_admin` and the password is the one set in
 [Step 1](#step-1).
-
-### Next Steps
-
-With Kong Enterprise started and the **Super Admin** logged in, it is now
-possible to create any entity in Kong.
-
-Next, see how to segment the Kong cluster into
-[**Workspaces**](/enterprise/{{page.kong_version}}/getting-started/add-workspace).

@@ -2,7 +2,8 @@
 title: Add an Admin
 toc: false
 redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/add-admin
+  - /enterprise/1.5.x/getting-started/add-admin
+  - /enterprise/latest/getting-started/add-admin
 ---
 
 ### Introduction

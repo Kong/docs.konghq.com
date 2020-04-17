@@ -203,7 +203,7 @@
         - text: Workspaces in Kong Manager
           url: /kong-manager/administration/workspaces/workspaces
         - text: Add a Workspace
-          url: /kong-manager/administration//workspaces/add-workspace
+          url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
           url: /kong-manager/administration/rbac
         - items:

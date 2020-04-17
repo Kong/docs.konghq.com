@@ -1,7 +1,8 @@
 ---
 title: Add a Service and Route
 redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/add-service
+  - /enterprise/1.5.x/getting-started/add-service
+  - /enterprise/latest/getting-started/add-service
 ---
 
 ### Introduction
