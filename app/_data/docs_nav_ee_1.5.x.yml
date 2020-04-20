@@ -51,6 +51,8 @@
           url: /db-encryption
         - text: Start Kong Enterprise Securely
           url: /start-kong-securely
+        - text: Kong Security Update Process
+          url: /kong-security-update-process
     - text: Upgrade and Migration
       url: /deployment/migrations
     - text: Kong Cloud
