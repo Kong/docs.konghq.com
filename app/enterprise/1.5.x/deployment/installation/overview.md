@@ -36,7 +36,7 @@ skip_read_time: true
     <div class="install-text">Kong for Kubernetes</div>
   </a>
 
-  <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker" class="docs-grid-install-block">
+  <a href="/enterprise/{{page.kong_version}}/deployment/installation/rhel" class="docs-grid-install-block">
     <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="redhat" />
     <div class="install-text">RHEL</div>
   </a>
