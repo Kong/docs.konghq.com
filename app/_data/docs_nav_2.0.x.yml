@@ -160,6 +160,7 @@
 
     - text: Kong Security Update Process
       url: /kong-security-update-process
+      absolute_url: true
 
 # Generated via autodoc-admin-api
 - title: Admin API
