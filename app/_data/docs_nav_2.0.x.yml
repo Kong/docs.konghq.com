@@ -158,6 +158,9 @@
         - text: kong.table
           url: /pdk/kong.table
 
+    - text: Kong Security Update Process
+      url: /kong-security-update-process
+
 # Generated via autodoc-admin-api
 - title: Admin API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
