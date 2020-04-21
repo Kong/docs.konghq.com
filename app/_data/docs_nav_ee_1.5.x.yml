@@ -53,7 +53,6 @@
           url: /start-kong-securely
         - text: Kong Security Update Process
           url: /kong-security-update-process
-          absolute_url: true
     - text: Upgrade and Migration
       url: /deployment/migrations
     - text: Kong Cloud

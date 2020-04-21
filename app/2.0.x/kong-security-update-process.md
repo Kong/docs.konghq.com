@@ -1,14 +1,16 @@
 ---
 title: Kong Security Update Process
+layout: docs-v2
 ---
 
 ## Reporting a Vulnerability
 
-If you have found a vulnerability or a potential vulnerability in the Kong gateway or other Kong software, or know of a publicly disclosed security vulnerability please immediately let us know by emailing [security@konghq.com](mailto:security@konghq.com). We'll send a confirmation email to acknowledge your report, and we'll send an additional email when we've identified the issue positively or negatively.
+If you have found a vulnerability or a potential vulnerability in the Kong gateway or other Kong software, or know of a publicly disclosed security vulnerability, please immediately let us know by emailing [security@konghq.com](mailto:security@konghq.com). We'll send a confirmation email to acknowledge your report, and we'll send an additional email when we've identified the issue positively or negatively.
 
 Once a report is received, we will investigate the vulnerability and assign it a [CVSS](https://www.first.org/cvss/) score which will determine the timeline for the development of an appropriate fix.
 
 While the fix development is underway, we ask that you do not share or publicize an unresolved vulnerability with third parties. If you responsibly submitted a vulnerability report, we will do our best to acknowledge your report in a timely fashion and notify you of the estimated timeline for a fix.
+
 
 ## Fix Development Process
 
