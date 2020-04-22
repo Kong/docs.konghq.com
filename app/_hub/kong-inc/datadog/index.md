@@ -107,7 +107,7 @@ Field           | description                                           | allowe
 1.  by default all metrics get logged.
 2.  metric with `stat_type` as `counter` or `gauge` must have `sample_rate` defined as well.
 
-## Migrating datadog queries
+## Migrating Datadog queries
 With the plugin, the api, status and consumer specific metrics are replaced by a generic metric name.
 You have to change your datadog queries in dashboard and alerts to reflect this:
 
