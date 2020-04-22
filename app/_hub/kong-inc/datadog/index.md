@@ -88,7 +88,7 @@ Metric                     | description | namespace
 `upstream_latency`         | tracks the time it took for the final service to process the request | kong.upstream\_latency
 `kong_latency`             | tracks the internal Kong latency that it took to run all the plugins | kong.kong\_latency
 
-The metrics will be send with the tags `name` and `status` carrying the API name and HTTP status code respectively. If you specifying `consumer_identifier` with the metric, a tag `consumer` be added too.
+The metrics will be sent with the tags `name` and `status` carrying the API name and HTTP status code respectively. If you specify `consumer_identifier` with the metric, a tag `consumer` will be added.
 
 ### Metric fields
 
