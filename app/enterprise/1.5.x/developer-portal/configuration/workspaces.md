@@ -23,8 +23,6 @@ This overview page details:
 - Whether or not each Dev Portal is authenticated (indicated by a lock icon
 in the upper right corner of each card)
 
-![Dev Portals Overview Page](https://konghq.com/wp-content/uploads/2018/11/devportals-overview.png)
-
 
 ### Enabling a Workspace's Dev Portal
 
