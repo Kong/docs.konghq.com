@@ -109,7 +109,7 @@ Field           | description                                           | allowe
 
 ## Migrating Datadog queries
 The plugin updates replace the api, status, and consumer-specific metrics with a generic metric name.
-You have to change your datadog queries in dashboard and alerts to reflect this:
+You have to change your Datadog queries in dashboards and alerts to reflect the metrics updates.
 
 For example the following query:
 ```
