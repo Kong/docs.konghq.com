@@ -111,7 +111,7 @@ Field           | description                                           | allowe
 The plugin updates replace the api, status, and consumer-specific metrics with a generic metric name.
 You have to change your Datadog queries in dashboards and alerts to reflect the metrics updates.
 
-For example the following query:
+For example, the following query:
 ```
 avg:kong.sample_service.latency.avg{*}
 ```
