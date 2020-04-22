@@ -7,7 +7,7 @@ title: Running Multiple Dev Portals with Workspaces
 Kong supports running multiple instances of the Dev Portal with the use of
 [**Workspaces**](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference). This allows each Workspace to enable
 and maintain separate Dev Portals (complete with separate files, settings, and
-authorization) from a within a single instance of Kong.
+authorization) from within a single instance of Kong.
 
 ### Managing Multiple Dev Portals within Kong Manager
 
