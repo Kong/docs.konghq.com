@@ -77,7 +77,7 @@ params:
 ---
 
 ## Metrics
-Plugin currently logs following metrics to the Datadog server about a Service or Route.
+Plugin currently logs the following metrics to the Datadog server about a Service or Route.
 
 Metric                     | description | namespace
 ---                        | ---         | ---
