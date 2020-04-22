@@ -223,9 +223,9 @@ from being executed. We are planning to remove this limitation in the future.
 
 3. Now we need to create the lambda function itself, will do so in N.Virginia Region (code us-east-1).
 
-    In Lambda Management, create a new function Mylambda, there will be no blueprint as we are going to paste the code below; for the execution role let's choose an existing role specifically LambdaExecutor created previously
+    In Lambda Management, create a new function Mylambda, there will be no blueprint as we are going to paste the code below (which is an example code snippet); for the execution role let's choose an existing role specifically LambdaExecutor created previously.
 
-    Use the inline code below to have a simple JSON response in return, note this is code for Python 3.6 interpreter.
+    **Note**: The following code snippet is only an example. The Kong AWS Lambda plugin supports all runtimes provided by AWS. See the list of runtimes in the **AWS Lambda** > **Functions** > **Create function** dialog. 
 
     ```python
     import json
@@ -240,7 +240,7 @@ from being executed. We are planning to remove this limitation in the future.
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Finally we setup a Service & Route in Kong and link it to the function just created.
+4. Finally we set up a Service and Route in Kong and link it to the function just created.
 
 {% tabs %}
 {% tab With a database %}
