@@ -19,7 +19,7 @@ This overview page details:
 - Whether a Dev Portal in a given Workspace is enabled or disabled
 - A link to set up the Dev Portal if it is not enabled
 - A link to each Dev Portal's homepage
-- A link to each Dev Portal's indivdual overview page within Kong Manager
+- A link to each Dev Portal's individual overview page within Kong Manager
 - Whether or not each Dev Portal is authenticated (indicated by a lock icon
 in the upper right corner of each card)
 
@@ -39,7 +39,7 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
  --data "config.portal=true"
 ```
 
-On intialization, Kong will populate the new Dev Portal with the [**Default Settings**](#defining-dev-portals-default-settings) defined in Kong's configuration file.
+On initialization, Kong will populate the new Dev Portal with the [**Default Settings**](#defining-dev-portals-default-settings) defined in Kong's configuration file.
 
 >*Note* A Workspace can only enable a Dev Portal if the Dev Portal feature has been enabled in Kong's configuration. See [Enabling the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/configuration/) for more information.
 
