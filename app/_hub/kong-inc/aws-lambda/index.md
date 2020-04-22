@@ -240,7 +240,7 @@ from being executed. We are planning to remove this limitation in the future.
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Finally we setup a Service and Route in Kong and link it to the function just created.
+4. Finally we set up a Service and Route in Kong and link it to the function just created.
 
 {% tabs %}
 {% tab With a database %}
