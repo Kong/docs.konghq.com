@@ -225,7 +225,7 @@ from being executed. We are planning to remove this limitation in the future.
 
     In Lambda Management, create a new function Mylambda, there will be no blueprint as we are going to paste the code below (which is an example code snippet); for the execution role let's choose an existing role specifically LambdaExecutor created previously.
 
-    **Note**: The following code snippet is only an example. Kong AWS Lambda plugin supports all runtimes provided by AWS. See the list of runtimes in the AWS Lambda > Functions > Create function dialog. 
+    **Note**: The following code snippet is only an example. The Kong AWS Lambda plugin supports all runtimes provided by AWS. See the list of runtimes in the **AWS Lambda** > **Functions** > **Create function** dialog. 
 
     ```python
     import json
