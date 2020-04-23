@@ -599,4 +599,42 @@ $(function () {
     })
     snippet.append(action)
   })
+
+  /**
+   * Expandable images
+   *
+   * To enable on specific page, add the following include directive at the bottom of the page html:
+   * {% include image-modal.html %}
+   */
+  const imageModal = $('#image-modal')
+
+  function closeModal () {
+    $(document.body).removeClass('image-modal-no-scroll')
+    imageModal.removeClass('visible')
+    document.removeEventListener('keydown', imageModalKeyDown)
+  }
+
+  function imageModalKeyDown (e) {
+    if (e.key === 'Escape') {
+      closeModal()
+    }
+  }
+
+  if (imageModal.length > 0) {
+    imageModal.find('i').click(closeModal)
+    imageModal.find('.image-modal-backdrop').click(closeModal)
+
+    $('.page-content > .content img').each(function (index, img) {
+      const $img = $(img)
+
+      img.style.cursor = 'pointer'
+      $img.click(function () {
+        $(document.body).addClass('image-modal-no-scroll')
+        imageModal.addClass('visible')
+        imageModal.find('img').attr('src', $img.attr('src'))
+
+        document.addEventListener('keydown', imageModalKeyDown)
+      })
+    })
+  }
 })
