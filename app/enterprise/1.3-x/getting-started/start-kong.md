@@ -6,8 +6,8 @@ toc: false
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
-- [Step 1: Set-up Super Admin](#step-1)
-- [Step 2: Set-up Datastore](#step-2)
+- [Step 1: Set Up Super Admin](#step-1)
+- [Step 2: Set Up Datastore](#step-2)
 - [Step 3: Start Kong](#step-3)
 - [Step 4: Test Kong](#step-4)
 - [Default Ports](#default-ports)
