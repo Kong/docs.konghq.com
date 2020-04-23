@@ -309,6 +309,10 @@
         line-height: 34px;
         color: rgba(0, 0, 0, 0.45);
 
+        &:hover {
+          color: rgba(0, 0, 0, 0.75);
+        }
+
         &.active {
           color: #4c4c4c;
           font-weight: bold;
@@ -383,12 +387,13 @@
 
 .docs-toc {
   float: right;
-  width: 300px;
+  width: 250px;
   padding: 32px 16px;
   position: sticky;
   top: 56px;
   height: ~"calc(100vh - 120px)";
   overflow-y: auto;
+  box-sizing: border-box;
 
   .docs-toc-title {
     font-size: 14px;
@@ -429,6 +434,16 @@
 
   > ul {
     margin-left: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #b3dfff;
+    outline: 1px solid #b3dfff;
   }
 
   @media screen and (max-width: 1080px) {
