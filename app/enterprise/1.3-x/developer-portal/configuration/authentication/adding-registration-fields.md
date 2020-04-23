@@ -28,5 +28,4 @@ to this form.
 
 Once saved, the new field will automatically be added to the registration form.
 
-> **WARNING** Adding new required fields to registration will block existing
-> developers from logging in. They will need to be removed and re-registered.
+Adding new required fields will not affect existing registered users until they choose to edit their profile.
