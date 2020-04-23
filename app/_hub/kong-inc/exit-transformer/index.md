@@ -42,14 +42,14 @@ params:
     - name: handle_admin
       default: "`false`"
       required: false
-      description: Allow transform to apply to admin API responses. Should not be enabled on more than one plugin configuration.
+      description: Allow transform to apply to Admin API responses. Should not be enabled on more than one plugin configuration.
 
 ---
 
 ## Transforming 404 and 400 responses
 
 By default, the exit transformer is only applied to requests that match its
-criteria (its route, service, and/or consumer matching configuration) or
+criteria (its route, service, or consumer matching configuration) or
 globally within a workspace. However, requests that result in 400 or 404
 responses neither match any criteria nor fall within any specific workspace,
 and standard plugin criteria will never match them. Users can designate exit
@@ -57,10 +57,10 @@ transformer configurations that _do_ handle these responses by enabling the
 `handle_unknown` (404) and `handle_unexpected` (400) settings. These should
 only be enabled on a single plugin configuration.
 
-`handle_admin` allows the exit transformer to apply to admin API responses.
-Users should only modify headers only applying functions to admin API
+`handle_admin` allows the exit transformer to apply to Admin API responses.
+Users should only modify headers only applying functions to Admin API
 responses, as modifying the body or status will interfere with Kong Manager's
-ability to communicate with the admin API.
+ability to communicate with the Admin API.
 
 ## Function syntax
 
