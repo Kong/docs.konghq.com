@@ -5,12 +5,20 @@
   bottom: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(black, 0);
   transform: scale(0);
-  transition: background 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .image-modal-backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(black, 0);
+    transition: background 0.2s;
+  }
 
   .image-container {
     padding: 3vh;
@@ -38,7 +46,10 @@
 
   &.visible {
     transform: scale(1);
-    background: rgba(black, 0.55);
+
+    .image-modal-backdrop {
+      background: rgba(black, 0.55);
+    }
 
     .image-container {
       transform: scale(1);
