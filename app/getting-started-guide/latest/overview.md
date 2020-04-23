@@ -1,5 +1,8 @@
 ---
 title: Getting Started Guide
+redirect_from:
+  - /enterprise/1.5.x/getting-started/
+  - /enterprise/latest/getting-started/
 ---
 This Getting Started Guide walks you through Kong concepts and foundational API gateway features and capabilities.
 

@@ -262,17 +262,20 @@ The current order of execution for the bundled plugins is:
 Plugin                      | Priority
 ----------------------------|----------
 pre-function                | `+inf`
+correlation-id              | 100001
 zipkin                      | 100000
 exit-transformer            | 9999
 bot-detection               | 2500
 cors                        | 2000
 session                     | 1900
 oauth2-introspection        | 1700
+application-registration    | 1007
 mtls-auth                   | 1006
 kubernetes-sidecar-injector | 1006
 jwt                         | 1005
 degraphql                   | 1005
 oauth2                      | 1004
+vault-auth                  | 1003
 key-auth                    | 1003
 key-auth-enc                | 1003
 ldap-auth                   | 1002
@@ -285,6 +288,7 @@ jwt-signer                  | 999
 ip-restriction              | 990
 request-size-limiting       | 951
 acl                         | 950
+collector                   | 903
 rate-limiting-advanced      | 902
 graphql-rate-limiting-advanced | 902
 rate-limiting               | 901
@@ -292,11 +296,14 @@ response-ratelimiting       | 900
 request-transformer-advanced | 802
 request-transformer         | 801
 response-transformer-advanced | 800
+route-transformer-advanced  | 800
 response-transformer        | 800
 kafka-upstream              | 751
 aws-lambda                  | 750
 azure-functions             | 749
 graphql-proxy-cache-advanced | 100
+proxy-cache-advanced        | 100
+proxy-cache                 | 100
 forward-proxy               | 50
 prometheus                  | 13
 canary                      | 13
@@ -310,9 +317,7 @@ tcp-log                     | 7
 loggly                      | 6
 kafka-log                   | 5
 syslog                      | 4
-collector                   | 3
 request-termination         | 2
-correlation-id              | 1
 post-function               | -1000
 
 ---

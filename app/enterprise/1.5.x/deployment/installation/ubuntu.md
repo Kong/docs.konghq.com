@@ -37,11 +37,11 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 1. Go to: [https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu](https://bintray.com/kong/kong-enterprise-edition-deb/ubuntu). 
 2. Select the latest Kong version from the list. Kong Enterprise versions are listed in reverse chronological order.
 3. From the Kong version detail page, select the **Files** tab.
-4. Click the .deb file matching your target Ubuntu OS version. e.g. `kong-enterprise-edition-1.3.0.1.bionic.all.deb` for the Ubuntu Bionic Beaver release.
+4. Click the .deb file matching your target Ubuntu OS version. e.g. `kong-enterprise-edition-1.5.0.0.bionic.all.deb` for the Ubuntu Bionic Beaver release.
 5. Copy the .deb file to your home directory on the Ubuntu system. You may use a command like:
 
     ```bash
-    $ scp kong-enterprise-edition-1.3.0.1.bionic.all.deb <ubuntu_user>@<server>:~
+    $ scp kong-enterprise-edition-1.5.0.0.bionic.all.deb <ubuntu_user>@<server>:~
     ```
 
 ### Download your Kong Enterprise License

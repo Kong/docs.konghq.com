@@ -51,6 +51,8 @@
           url: /db-encryption
         - text: Start Kong Enterprise Securely
           url: /start-kong-securely
+        - text: Kong Security Update Process
+          url: /kong-security-update-process
     - text: Upgrade and Migration
       url: /deployment/migrations
     - text: Kong Cloud
@@ -203,7 +205,7 @@
         - text: Workspaces in Kong Manager
           url: /kong-manager/administration/workspaces/workspaces
         - text: Add a Workspace
-          url: /kong-manager/administration//workspaces/add-workspace
+          url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
           url: /kong-manager/administration/rbac
         - items:
@@ -243,6 +245,8 @@
       url: /developer-portal/overview
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
+    - text: Migrating to 1.5
+      url: /developer-portal/migrating-to-1.5
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
     - text: Structure and File Types

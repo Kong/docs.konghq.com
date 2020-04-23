@@ -124,12 +124,12 @@ Using the Admin API, issue the following:
 
 *Using cURL*:
 ```
-$ http :8001/mock
+$ curl -i -X GET http://<admin-hostname>:8000/mock
 ```
 
 *Or using HTTPie*:
 ```
-$ curl -i -X GET http://<admin-hostname>:8001/mock
+$ http :8000/mock
 ```
 
 {% endnavtab %}
