@@ -4,7 +4,7 @@ title: Running Multiple Dev Portals with Workspaces
 
 ### Introduction
 
-Kong supports running multiple instances of the Dev Portal with the use of 
+Kong supports running multiple instances of the Dev Portal with the use of
 [**Workspaces**](/enterprise/{{page.kong_version}}/admin-api/workspaces/reference/). This allows each Workspace to enable
 and maintain separate Dev Portals (complete with separate files, settings, and
 authorization) from a within a single instance of Kong.
@@ -12,18 +12,16 @@ authorization) from a within a single instance of Kong.
 ## Managing Multiple Dev Portals within Kong Manager
 
 A snapshot of every Dev Portal within an instance of Kong can be viewed via
-the Kong Manager's **Dev Portals** top navigation tab. 
+the Kong Manager's **Dev Portals** top navigation tab.
 
 This overview page details:
 
 - Whether a Dev Portal in a given Workspace is enabled or disabled
-- A link to set up the Dev Portal if it is not enabled 
+- A link to set up the Dev Portal if it is not enabled
 - A link to each Dev Portal's homepage
-- A link to each Dev Portal's indivdual overview page within Kong Manager
+- A link to each Dev Portal's individual overview page within Kong Manager
 - Whether or not each Dev Portal is authenticated (indicated by a lock icon
 in the upper right corner of each card)
-
-![Dev Portals Overview Page](https://konghq.com/wp-content/uploads/2018/11/devportals-overview.png)
 
 
 ## Enabling a Workspace's Dev Portal
@@ -41,14 +39,14 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
  --data "config.portal=true"
 ```
 
-On intialization, Kong will populate the new Dev Portal with the [**Default Settings**](#defining-dev-portals-default-settings) defined in Kong's configuration file.
+On initialization, Kong will populate the new Dev Portal with the [**Default Settings**](#defining-dev-portals-default-settings) defined in Kong's configuration file.
 
 >*Note* A Workspace can only enable a Dev Portal if the Dev Portal feature has been enabled in Kong's configuration. See [Enabling the Dev Portal](/enterprise/{{page.kong_version}}/getting-started/enable-dev-portal/) for more information.
 
 
 ## Defining the Dev Portal's URL structure
 
-The URL of each Dev Portal is automatically configured upon initialization and 
+The URL of each Dev Portal is automatically configured upon initialization and
 is determined by four properties:
 
 1. The `portal_gui_protocol` property
@@ -67,13 +65,13 @@ cannot be edited via the Kong Manager.
 
 On initialization, the Dev Portal will be configured using the [**Default Portal Settings**](/enterprise/{{page.kong_version}}/developer-portal/configuration/workspaces/#overriding-default-settings) defined in Kong's configuration file.
 
-These settings can be manually overriden in the Dev Portals **Settings** tab
+These settings can be manually overridden in the Dev Portals **Settings** tab
 in the Kong Manager or by patching the setting directly.
 
 ## Workspace Files
 
-On initialization of a Workspace's Dev Portal a copy of the **default** Dev Portal files will be made and inserted into the new Dev Portal. This allows for the easy transferrence of a customized Dev Portal theme and allows **default** to act as a 'master template' -- however the Dev Portal will not continue to sync changes from the **default** Dev Portal after it is first enabled. 
+On initialization of a Workspace's Dev Portal a copy of the **default** Dev Portal files will be made and inserted into the new Dev Portal. This allows for the easy transference of a customized Dev Portal theme and allows **default** to act as a 'master template' -- however the Dev Portal will not continue to sync changes from the **default** Dev Portal after it is first enabled.
 
 ## Developer Access
 
-Access is not synced between Dev Portals. If an Admin or Developer would like access to multiple Dev Portals, they must sign up for each Dev Portal individually. 
+Access is not synced between Dev Portals. If an Admin or Developer would like access to multiple Dev Portals, they must sign up for each Dev Portal individually.
