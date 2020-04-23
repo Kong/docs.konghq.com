@@ -581,31 +581,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
             </td>
           </tr>
         {% endif %}
-        {% if extn_versions %}
-          <tr>
-            <th colspan="2">Other Versions</th>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <ul class="extn-versions">
-              {% for ver in extn_versions %}
-                {% unless extn_release == ver.release %}
-                  {% if ver.release == extn_latest %}
-                    {% assign ver_path = "" %}
-                  {% else %}
-                    {% assign ver_path = ver.release | append: ".html" %}
-                  {% endif %}
-                  <li>
-                    <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
-                      {{ver.release}} {% if ver.date %}({{ ver.date }}){% endif %}</a>
-                      {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
-                  </li>
-                {% endunless %}
-              {% endfor %}
-              </ul>
-            </td>
-          </tr>
-        {% endif %}
       </table>
 
     </aside>
