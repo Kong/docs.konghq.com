@@ -62,12 +62,13 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 
 {% else %}
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 {{ plugin_config_for_service_with_db }}
 
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 
 Configure this plugin on a [Service](/latest/admin-api/#service-object) by
 adding this section to your declarative configuration file:
@@ -78,7 +79,8 @@ plugins:
   service: {service}
   {{ config_required_fields_yaml }}
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 {% endif %}
 
@@ -108,12 +110,13 @@ $ curl -X POST http://kong:8001/routes/{route}/plugins \
 
 {% else %}
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 {{ plugin_config_for_route_with_db }}
 
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 
 Configure this plugin on a [Route](/latest/admin-api/#route-object) by
 adding this section to your declarative configuration file:
@@ -124,7 +127,8 @@ plugins:
   route: {route}
   {{ config_required_fields_yaml }}
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 {% endif %}
 
 `{route}` is the `id` or `name` of the Route that this plugin configuration will target.
@@ -153,13 +157,14 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/plugins \
 {{ plugin_config_for_consumer_with_db }}
 
 {% else %}
-{% tabs %}
+{% navtabs %}
 
-{% tab With a database %}
+{% navtab With a database %}
 
 {{ plugin_config_for_consumer_with_db }}
 
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 
 Configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) by
 adding this section to your declarative configuration file:
@@ -170,8 +175,8 @@ plugins:
   consumer: {consumer}
   {{ config_required_fields_yaml }}
 ```
-
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 {% endif %}
 
 `{consumer}` is the `id` or `username` of the Consumer that this plugin configuration will target.
