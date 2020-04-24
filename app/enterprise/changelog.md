@@ -83,6 +83,7 @@ layout: changelog
 * Fixes a bug where a route collision was not detected when the content type of a POST request was sent as `application/x-www-form-urlencoded`
 * Fixes a bug where a route collision was not detected when a PATCH request was sent to the `/services/service_id/routes/route_id` endpoint
 * Added headers and `snis` route collision detection capabilities
+* Fixes an inconsistency where it was still possible to execute `db_export` despite it not being supported in Kong Enterprise
 
 #### Kong Manager
 * Fixes a bug that prevented updating a Service with a tag
