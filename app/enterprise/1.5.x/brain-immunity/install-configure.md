@@ -72,7 +72,7 @@ The provided `docker-compose.yml` file has these variables set to defaults that 
 3. **KONG_PORT**: The port where Kong Admin can be found.  Collector App requires this setting, along with KONG_PROTOCOL and KONG_HOST, to communicate with Kong Admin.
 4. **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for Kong Admin API, if configured.
 5. **SQLALCHEMY_DATABASE_URI**: The SQLAlchemy formatted URI that points to the Postgres Database that Collector App is using as a backend. The format is: `postgresql://<USER>:<PASSWORD>@<POSTGRES-HOST>:<POSTGRES-PORT>/collector`.
-6. **SLACK_WEBHOOK_URL**: The url of the Slack channel that Immunity alert notifications should be sent to. This url will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
+6. **SLACK_WEBHOOK_URL**: The url of the Slack channel that Immunity alert notifications should be sent to. This url will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](/enterprise/{{page.kong_version}}/brain-immunity/alerts/#adding-a-slack-configuration).
 
 
 ### Setting up Collector App via Docker-Compose
