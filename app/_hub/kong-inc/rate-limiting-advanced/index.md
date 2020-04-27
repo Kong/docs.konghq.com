@@ -118,6 +118,14 @@ params:
       value_in_examples:
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_password
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+            Sentinel password to authenticate with a Redis Sentinel instance.
+            **Note:** This parameter is only available for versions
+            1.3.0.2 and later.
     - name: redis.sentinel_role
       required: semi
       default:
