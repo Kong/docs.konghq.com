@@ -47,13 +47,13 @@ params:
       default:
       value_in_examples:
       description: |
-        One of more request per window to apply
+        One of more requests per window to apply.
     - name: window_size
       required:
       default:
       value_in_examples:
       description: |
-        One more more window sizes to apply (defined in seconds)
+        One of more window sizes to apply (defined in seconds).
     - name: identifier
       required:
       default: consumer
@@ -150,13 +150,13 @@ params:
       default: sliding
       value_in_examples:
       description: |
-        This sets the time window to either `sliding` or `fixed`
+        This sets the time window to either `sliding` or `fixed`.
   extra: |
     > Note:  Redis configuration values are ignored if the `cluster` strategy is used.
 
     **Note: PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
 
-    **Note: The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors**
+    **Note: The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors**.
 
 ---
 
