@@ -141,7 +141,7 @@ kong_version_compatibility:
 # If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
 params: # metadata about your plugin
-  name: # name of the plugin in Kong (may differ from name: above)
+  name: kong-log-google
   api_id: false
     # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id: true
