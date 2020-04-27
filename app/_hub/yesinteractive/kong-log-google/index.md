@@ -34,51 +34,13 @@ type: plugin
 
 desc: Log API transactions to Google Analytics
 description: This plugin logs your Kong gateway transactions to Google Analytics. Plugin is a modification of the Kong HTTP Log plugin.
-  # (required) extended description.
-  # Use YAML piple notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
-  #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
 
 support_url: https://github.com/yesinteractive/kong-log-google/issues
-  # (Optional) A specific URL of your own for this extension.
-  # Defaults to the url setting in your publisher profile.
 
 source_url: https://github.com/yesinteractive/kong-log-google
-  # (Optional) If your extension is open source, provide a link to your code.
 
 license_type: MIT
-  # (Optional) For open source, use the abbreviations in parentheses at:
-  # https://opensource.org/licenses/alphabetical
 
-#license_url:
-  # (Optional) Link to your custom license.
-
-#privacy_policy:
-  # (Optional) If you have a custom privacy policy, place it here
-
-#privacy_policy_url:
-  # (Optional) Link to a remote privacy policy
-
-#terms_of_service:
-  # (Optional) Text describing your terms of service.
-
-#terms_of_service_url:
-  # (Optional) Link to your online TOS.
-
-# COMPATIBILITY
-# In the following sections, list Kong versions as array items.
-# Versions are categorized by Kong edition and their known compatibility.
-# Unlisted Kong versions will be considered to have "unknown" compatibility.
-# Uncomment at least one of 'community_edition' or 'enterprise_edition'.
-# Add array-formatted lists of versions under their appropriate subsection.
-
-    
 kong_version_compatibility:
   community_edition:
     compatible:
@@ -90,57 +52,14 @@ kong_version_compatibility:
     compatible:
       - 1.5-x
       - 1.3-x
+params:
+  name: kong-spec-expose
+  api_id: true
+  service_id: true
+  consumer_id: false
+  route_id: true
 
-
-# EXAMPLE kong_version_compatibility blocks - these examples show how to indicate various compatibilities. Also see other extension files in _app/_hub/ for more examples
-# EXAMPLE 1 - in this example, the extension is known to be compatible with recent versions of Kong and Kong Enterprise, and is not known to be incompatible with any versions
-#kong_version_compatibility:
-#  community_edition:
-#    compatible:
-#      - 0.12.x
-#      - 0.13.x
-#      - 0.14.x
-#    incompatible:
-#  enterprise_edition:
-#    compatible:
-#      - 0.32-x
-#      - 0.33-x
-#      - 0.34-x
-#    incompatible:
-#
-# EXAMPLE 2 - in this example, the extension is known to be compatible only the most recent versions of Kong and Kong Enterprise, and is known to be incompatible with all older versions
-#kong_version_compatibility:
-#  community_edition:
-#    compatible:
-#      - 0.14.x
-#      - 0.13.x
-#    incompatible:
-#      - 0.12.x
-#      - 0.11.x
-#      - 0.10.x
-#      - 0.9.x
-#      - 0.8.x
-#      - 0.7.x
-#      - 0.6.x
-#      - 0.5.x
-#      - 0.3.x
-#      - 0.2.x
-#  enterprise_edition:
-#    compatible:
-#      - 0.34-x
-#      - 0.33-x
-#      - 0.32-x
-#    incompatible:
-#      - 0.31-x
-#      - 0.30-x
-#      - 0.29-x
-
-#########################
-# PLUGIN-ONLY SETTINGS below this line
-# If your extension is a plugin, ALL of the following lines must be completed.
-# If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
-
-params: # metadata about your plugin
+params: 
   name: kong-log-google
   api_id: false
     # boolean - whether this plugin can be applied to an API [[this needs more]]
@@ -163,32 +82,18 @@ params: # metadata about your plugin
   dbless_explanation: Fully compatible with DB and DB-less (K8s, Declarative) Kong implementations.
     # Optional free-text explanation, usually containing details about the degree of
     # compatibility with DB-less.
-
-  config: # Configuration settings for your plugin
+    
+  config:
     - name: tid
       required: yes
-        # options are 'yes', 'no', or 'semi'
-        # 'semi' means dependent on other settings
       default: UA-XXXX-Y
       value_in_examples: UA-XXXX-Y
-        # If the field is to appear in examples, this is the value to use.
-        # A required field with no value_in_examples entry will resort to
-        # the one in default.
       description: The tracking ID / property ID. The format is UA-XXXX-Y. All collected data is associated by this ID.
-        # Explain what this setting does.
-        # Use YAML's pipe (|) notation for longer entries.
-     - name: cid
+    - name: cid
       required: yes
-        # options are 'yes', 'no', or 'semi'
-        # 'semi' means dependent on other settings
       default: 555
       value_in_examples: 555
-        # If the field is to appear in examples, this is the value to use.
-        # A required field with no value_in_examples entry will resort to
-        # the one in default.
       description: Client ID. This allows you to set and identify metrics in Google Analytics by a custom client ID.
-        # Explain what this setting does.
-        # Use YAML's pipe (|) notation for longer entries.
 
   #  - name: # add additional setting blocks as needed, each demarcated by -
   extra: 
@@ -207,7 +112,7 @@ params: # metadata about your plugin
 # followed by heading level 4)
 ###############################################################################
 # BEGIN MARKDOWN CONTENT
-
+---
 
 ## Installation & Usage
 
