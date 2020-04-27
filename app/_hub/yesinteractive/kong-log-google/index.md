@@ -49,7 +49,7 @@ support_url: https://github.com/yesinteractive/kong-log-google/issues
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
-#source_url: https://github.com/yesinteractive/kong-log-google
+source_url: https://github.com/yesinteractive/kong-log-google
   # (Optional) If your extension is open source, provide a link to your code.
 
 license_type: MIT
