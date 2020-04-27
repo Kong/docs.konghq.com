@@ -52,7 +52,7 @@ description: This plugin logs your Kong gateway transactions to Google Analytics
 #source_url: https://github.com/yesinteractive/kong-log-google
   # (Optional) If your extension is open source, provide a link to your code.
 
-#license_type: MIT
+license_type: MIT
   # (Optional) For open source, use the abbreviations in parentheses at:
   # https://opensource.org/licenses/alphabetical
 
