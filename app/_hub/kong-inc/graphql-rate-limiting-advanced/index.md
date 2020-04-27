@@ -4,9 +4,9 @@ name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Provide rate-limiting for GraphQL queries.
+desc: Provide rate limiting for GraphQL queries.
 description: |
-  The GraphQL Rate Limiting Advanced plugin is an extension of the Rate Limiting Advanced plugin that provides rate-limiting for GraphQL queries.
+  The GraphQL Rate Limiting Advanced plugin is an extension of the Rate Limiting Advanced plugin that provides rate limiting for GraphQL queries.
 
 type: plugin
 enterprise: true
@@ -69,7 +69,7 @@ params:
       default: kong_rate_limiting_counters
       value_in_examples:
       description: |
-        The shared dictionary where counters will be stored until the next sync cycle
+        The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required:
       default:
@@ -90,25 +90,25 @@ params:
       default: cluster
       value_in_examples:
       description: |
-        The sync strategy to use; `cluster` and `redis` are supported
+        The sync strategy to use; `cluster` and `redis` are supported.
     - name: redis.host
       required: semi
       default:
       value_in_examples:
       description: |
-        Host to use for Redis connection when the `redis` strategy is defined
+        Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
       description: |
-        Port to use for Redis connection when the `redis` strategy is defined
+        Port to use for Redis connection when the `redis` strategy is defined.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
       description: |
-        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
@@ -120,7 +120,7 @@ params:
       default: 0
       value_in_examples:
       description: |
-        Database to use for Redis connection when the `redis` strategy is defined
+        Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
       default:
@@ -161,7 +161,7 @@ params:
 ---
 
 **GraphQL Rate Limiting Advanced** is an extension of
-**Rate Limiting Advanced** and provides rate-limiting for
+**Rate Limiting Advanced** and provides rate limiting for
 GraphQL queries.
 
 Due to the nature of client-specified GraphQL queries, the same HTTP request
@@ -174,14 +174,14 @@ cost for a given time window.
 
 ## Costs in GraphQL queries
 
-GraphQL query costs are evaluated by introspecting the endpoint's graphql schema
+GraphQL query costs are evaluated by introspecting the endpoint's GraphQL schema
 and applying cost decoration to parts of the schema tree.
 
 Initially all nodes start with zero cost, with any operation at cost 1.
 Add rate-limiting constraints on any subtree. If subtree omitted, then
 rate-limit window applies on the whole tree (any operation).
 
-Since there are many ways of approximating the cost of a graphql query, the
+Since there are many ways of approximating the cost of a GraphQL query, the
 plugin exposes two strategies: `default` and `node_quantifier`.
 
 The following example queries can be run on this [SWAPI playground].
@@ -190,7 +190,7 @@ The following example queries can be run on this [SWAPI playground].
 
 ### `default`
 
-The default strategy is meant as a good middle ground for general graphql
+The default strategy is meant as a good middle ground for general GraphQL
 queries, where it's difficult to assert a clear cost strategy, so every operation
 has a cost of 1.
 
@@ -269,12 +269,12 @@ query { # + 1
 
 ### `node_quantifier`
 
-This strategy is fit for graphql schemas that enforce quantifier arguments on
+This strategy is fit for GraphQL schemas that enforce quantifier arguments on
 any connection, providing a good approximation on the number of nodes visited
 for satisfying a query. Any query without decorated quantifiers has a cost of 1.
-It is roughly based on [github's Graphql resource limits].
+It is roughly based on [github's GraphQL resource limits].
 
-[github's Graphql resource limits]: https://developer.github.com/v4/guides/resource-limitations/
+[github's GraphQL resource limits]: https://developer.github.com/v4/guides/resource-limitations/
 
 ```
 query {
