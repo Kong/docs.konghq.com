@@ -368,7 +368,7 @@ http -f :8001/services/example/routes hosts=example.com
 
 ```
 $ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
+  --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10
@@ -422,7 +422,7 @@ http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="F
 
 ```
 $ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
+  --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10 \
@@ -445,7 +445,7 @@ no limit.
 
 ```
 $ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
+  --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10 \
@@ -470,7 +470,7 @@ every cost unit represents 100 nodes.
 
 ```
 $ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
+  --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \
   --data config.sync_rate=10 \
