@@ -463,7 +463,7 @@ GraphQL query cost depend on multiple factors depending on our resolvers
 and the implementation of the schema. Cost on queries, depending on the cost
 strategy might turn very high when using quantifiers, or very low with no
 quantifiers at all. By using `config.score_factor` the cost can be divided
-or multiplied to a certain order of mangitude.
+or multiplied to a certain order of magnitude.
 
 For example, a `score_factor` of `0.01` will divide the costs by 100, meaning
 every cost unit represents 100 nodes.
