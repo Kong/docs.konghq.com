@@ -45,7 +45,7 @@ description: This plugin logs your Kong gateway transactions to Google Analytics
   #   industry. Lorem Ipsum has been the industry's standard dummy text ever
   #   since the 1500s.
 
-#support_url: https://github.com/yesinteractive/kong-log-google/issues
+support_url: https://github.com/yesinteractive/kong-log-google/issues
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
