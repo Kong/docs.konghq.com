@@ -207,7 +207,7 @@ params: # metadata about your plugin
 # followed by heading level 4)
 ###############################################################################
 # BEGIN MARKDOWN CONTENT
----
+
 
 ## Installation & Usage
 
