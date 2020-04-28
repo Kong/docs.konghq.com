@@ -26,10 +26,10 @@ license_type: MIT
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 2.0-x
-      - 1.5-x
-      - 1.4-x
-      - 1.3-x
+      - 2.0.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
   enterprise_edition:
     compatible:
       - 1.5-x
