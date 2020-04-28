@@ -56,7 +56,7 @@ params:
       required: yes
       default: []
       value_in_examples: ["/api/services", "/api/routes"]
-      description: The request path not match this path will forbidden with 403 code
+      description: An allowed path. Any request path that does not match one of the paths in this list will be forbidden and return a 403 error code.
     - name: regex
       required: true
       default: true
