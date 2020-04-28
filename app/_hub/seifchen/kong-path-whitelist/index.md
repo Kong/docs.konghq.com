@@ -10,7 +10,7 @@ type: plugin
 desc: Determine if the path is in the path whitelist, and if not, return a 403
 
 description: |
-  Add Kong Path White List to a Service or a Route or consumer with paths. The plugin will check the path is in the path whitelist, if not return 403.
+  You can use the Kong Path Whitelist plugin on a Service, Route, or Consumer with paths. The plugin will check if the path is in the path whitelist, and if not, return a 403.
 
 support_url: https://github.com/seifchen/kong-path-whitelist/issues
 
