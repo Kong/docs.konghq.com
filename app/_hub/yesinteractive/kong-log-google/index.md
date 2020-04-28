@@ -15,7 +15,7 @@ categories: # (required) Uncomment all that apply.
 type: plugin
 
 desc: Log API transactions to Google Analytics
-description: This plugin logs your Kong gateway transactions to Google Analytics. Plugin is a modification of the Kong HTTP Log plugin.
+description: This plugin logs your Kong gateway transactions to Google Analytics. This plugin is a modification of the [Kong HTTP Log plugin](/hub/kong-inc/http-log/).
 
 support_url: https://github.com/yesinteractive/kong-log-google/issues
 
