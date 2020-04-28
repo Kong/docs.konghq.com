@@ -77,6 +77,7 @@ $ git clone https://github.com/seifchen/kong-path-whitelist.git
 $ cd /path/to/kong/plugins/kong-path-whitelist
 $ luarocks make *.rockspec
 ```
+See the README in the plugin source repository for more usage examples.
 
 ### Maintainers
 [seifchen](https://github.com/seifchen)
