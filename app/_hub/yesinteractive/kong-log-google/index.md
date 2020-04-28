@@ -34,12 +34,6 @@ kong_version_compatibility:
     compatible:
       - 1.5-x
       - 1.3-x
-params:
-  name: kong-spec-expose
-  api_id: true
-  service_id: true
-  consumer_id: false
-  route_id: true
 
 params: 
   name: kong-log-google
