@@ -1,5 +1,5 @@
 ---
-name: Kong Path White List
+name: Kong Path Whitelist
 publisher: Seifchen
 
 categories:
@@ -80,5 +80,4 @@ $ luarocks make *.rockspec
 
 ### Maintainers
 [seifchen](https://github.com/seifchen)
-
 
