@@ -3,6 +3,20 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.5.0.2
+**Release Date** 2020/04/28
+
+### Fixes
+
+#### Kong Gateway Community
+* Fixed an issue where the frequent Target CRUD could result in a broken load balancer. 
+
+#### Kong Manager
+* Fixed the sorting order of Routes.
+
+#### Kong Developer Portal
+* Fixed issue where editing a meta field could cause the custom field name to revert to the default value.
+
 ## 1.5.0.1
 **Release Date:** 2020/04/16
 
