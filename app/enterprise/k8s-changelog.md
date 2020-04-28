@@ -24,8 +24,8 @@ The following fixes have been included in this release:
 
 - `openid-connect` plugin has been bumped up to v1.4.2
   - Adds support for `client_secret_jwt` and `private_key_jwt` authentication
-  - Add support for cookie for `config.bearer_token_param_type`
-  - Add support for `config.bearer_token_cookie_name`
+  - Adds support for cookie for `config.bearer_token_param_type`
+  - Adds support for `config.bearer_token_cookie_name`
 - `collector` plugin has been bumped up to v1.7.4
 - `response-transformer-advanced` has been bumped up to v0.3.3
 - `mtls-auth` plugin has been bumped up to v0.1.1
