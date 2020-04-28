@@ -13,7 +13,7 @@ layout: changelog
 
 #### Kong Manager
 * Fixed the sorting order of Routes.
-* Fixed issue where editing a Developer meta field could cause the custom field name to revert to the default value.
+* Fixed an issue where editing a Developer meta field could cause the custom field name to revert to the default value.
 * Fixed an issue where listing Developers and Files only showed the first page of results.
 
 ## 1.5.0.1
