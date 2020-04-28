@@ -7,7 +7,7 @@ categories:
 
 type: plugin
 
-desc: Determine if the path is in the path whitelist, if not, return 403
+desc: Determine if the path is in the path whitelist, and if not, return a 403
 
 description: |
   Add Kong Path White List to a Service or a Route or consumer with paths. The plugin will check the path is in the path whitelist, if not return 403.
@@ -80,4 +80,3 @@ $ luarocks make *.rockspec
 
 ### Maintainers
 [seifchen](https://github.com/seifchen)
-
