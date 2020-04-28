@@ -61,7 +61,7 @@ params:
       required: true
       default: true
       value_in_examples:
-      description: boolean, if true will use ngx.re.match to match the request_path and white_paths,if false, Will strictly judge whether the two path are equal
+      description: A boolean value that specifies whether the plugin uses regex for path matching. If `true`, the plugin will use `ngx.re.match` to match the `request_path` and `white_paths` values. If `false`, it will strictly judge whether the two paths are equal.
 
 ---
 
