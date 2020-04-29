@@ -34,6 +34,10 @@ Now that you’re familiar with the value that DB-less mode and declarative conf
 
 ## Step 2: Generate a config
 
-Now that you’ve added your specification to Insomnia Designer, let’s generate your Kong Declarative Configuration. Once you click **Generate Config**, a modal window appears displaying the generated configuration as YAML, along with a button to copy the configuration to your clipboard.
+Now that you’ve added a specification to Insomnia Designer, you can generate a Kong Declarative Configuration. 
+
+1. In the upper right-hand corner of the editor, click **Generate Config**. 
+
+2. A modal window appears displaying the generated configuration as YAML. At the bottom of the modal, click the button to **Copy to Clipboard**.
 
 ![Generate config](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f8e82c7d3a7e9aebbe60/file-wQRSDB15e3.png)
