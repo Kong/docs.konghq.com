@@ -21,18 +21,16 @@ Kong Developer Portal and git repositories.
 
   <div class="docs-grid-block">
     <h3>
-        <img src="/assets/images/icons/documentation/icn-quickstart.svg" />
-        <a href="/enteprise/{{page.kong_version}}/studio/download-install">Download & Install</a>
+        <a href="/enterprise/{{page.kong_version}}/studio/download-install">Download & Install</a>
     </h3>
     <p></p>
-    <a href="/enteprise/{{page.kong_version}}/studio/download-install">
+    <a href="/enterprise/{{page.kong_version}}/studio/download-install">
         Download and Install the Kong Studio Bundle &rarr;
     </a>
   </div>
 
   <div class="docs-grid-block">
     <h3>
-        <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
         <a href="https://support.insomnia.rest/article/94-introduction">Insomnia Designer Documentation</a>
     </h3>
     <p></p>
@@ -43,22 +41,20 @@ Kong Developer Portal and git repositories.
 
   <div class="docs-grid-block">
     <h3>
-        <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/enteprise/{{page.kong_version}}/studio/deploy-to-dev-portal">Deploy to the Dev Portal</a>
+        <a href="/enterprise/{{page.kong_version}}/studio/deploy-to-dev-portal">Deploy to the Dev Portal</a>
     </h3>
     <p></p>
-    <a href="/enteprise/{{page.kong_version}}/studio/deploy-to-dev-portal">
+    <a href="/enterprise/{{page.kong_version}}/studio/deploy-to-dev-portal">
         Connect to Kong Enterprise and Deploy Specs to the Kong Developer Portal &rarr;
     </a>
   </div>
 
   <div class="docs-grid-block">
     <h3>
-        <img src="/assets/images/icons/documentation/icn-doc-reference.svg" />
-        <a href="/enteprise/{{page.kong_version}}/studio/deploy-to-dev-portal">Generate Configuration</a>
+        <a href="/enterprise/{{page.kong_version}}/studio/dec-conf-studio">Generate Configuration</a>
     </h3>
     <p></p>
-    <a href="/enteprise/{{page.kong_version}}/studio/deploy-to-dev-portal">
+    <a href="/enterprise/{{page.kong_version}}/studio/dec-conf-studio">
         Generate Kong Declarative and Kong For Kubernetes Configuration from your OpenAPI spec &rarr;
     </a>
   </div>
