@@ -31,7 +31,7 @@ Insomnia Designer will prompt you for information to connect to your **Kong Admi
 4. Enter your API URL.
     * >Note: The URL here is the **ADMIN** **API** url set by the `admin_api_uri` property
 * Enter the Workspace for the Developer Portal you want to upload the spec  to
-* If your Admin API uses RBAC, enter the Token for to access the Workspace
+5. (Optional) If your Admin API uses RBAC, enter the Token for to access the Workspace.
 
 
 ![Connect to Kong](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7fa1a2c7d3a7e9aebbe7d/file-aY1ixNgXnh.png)
