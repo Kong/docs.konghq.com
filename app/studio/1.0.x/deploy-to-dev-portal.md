@@ -46,4 +46,4 @@ If successful, Insomnia Designer will then prompt you to specify a name for the 
 ![Deploy Spec](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7fa7b04286364bc991bb9/file-jzWwnImfbw.png)
 
 1. Click **Upload to Kong Portal** to upload the spec file.
-*  If there is an existing file with the same name Insomnia Designer will prompt you to overwrite the existing file or cancel
+2.  If there is an existing file with the same name, Insomnia Designer will prompt you to overwrite the existing file or cancel.
