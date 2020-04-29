@@ -311,9 +311,9 @@
       url: https://insomnia.rest/changelog/
       absolute_url: true
     - text: Getting Started
-      url: /studio/download-install/
+      url: /studio/download-install
       items:
-        - text: Download and Install Kong Studio
+        - text: Download and Install
           url: /studio/download-install
         - text: Using Insomnia Designer
           url: https://support.insomnia.rest/article/94-introduction/
