@@ -124,7 +124,7 @@ params:
       value_in_examples:
       description: |
             Sentinel password to authenticate with a Redis Sentinel instance.
-            **Note:** This parameter is only available for {{site.ee_product_name}} versions
+            **Note:** This parameter is only available for Kong Enterprise versions
             1.3.0.2 and later.
     - name: redis.sentinel_role
       required: semi
