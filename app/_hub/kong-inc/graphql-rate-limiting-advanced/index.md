@@ -47,7 +47,7 @@ params:
       default:
       value_in_examples:
       description: |
-        One of more requests per window to apply.
+        One or more requests per window to apply.
     - name: window_size
       required:
       default:
