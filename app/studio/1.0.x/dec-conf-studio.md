@@ -12,7 +12,7 @@ DB-less mode and declarative configuration bring a number of benefits over using
 
 * Reduced lookup latency: all data is local to the cluster’s node.
 * Reduced dependencies: only the Kong Gateway nodes and configuration are required.
-* Single Source of Truth: entities are stored in a single file, that can be source controlled.
+* Single source of truth: entities are stored in a single file which can be source-controlled.
 * New deployment models: Kong Gateway can now easily serve as a lightweight node.
 
 Now that you’re familiar with the value that DB-less mode and declarative configuration can provide, let’s walk through how Kong Studio's Insomnia Designer can help you go from an OpenAPI spec to Kong Declarative Configuration.
