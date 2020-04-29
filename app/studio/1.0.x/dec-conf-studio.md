@@ -32,7 +32,7 @@ Now that you’re familiar with the value that DB-less mode and declarative conf
 1. Name the document and click **Create**.
 1. Inside the Editor field, paste the specification you copied in Step 1. You should now see the specification in the Editor.
 
-## Step 2: Click “Generate Config” in upper right hand corner
+## Step 2: Generate a config
 
 Now that you’ve added your specification to Insomnia Designer, let’s generate your Kong Declarative Configuration. Once you click **Generate Config**, a modal window appears displaying the generated configuration as YAML, along with a button to copy the configuration to your clipboard.
 
