@@ -9,7 +9,7 @@ Kong Plugin Bundle can sync Spec files to and from your Dev Portal.
 
 ### Prerequisites
 
-* [Insomnia Designer + Insomnia Designer Kong Plugin Bundle](/studio/{{page.kong_version}}/download-install)
+* [Insomnia Designer and the Insomnia Designer Kong Plugin Bundle] are installed (/studio/{{page.kong_version}}/download-install)
 * Running Kong Enterprise 1.3 or later
 * Admin API privileges for the Workspace you will be connecting to
 * The Kong Developer Portal is enabled and running
