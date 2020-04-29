@@ -53,7 +53,7 @@ params:
       default:
       value_in_examples:
       description: |
-        One of more window sizes to apply (defined in seconds).
+        One or more window sizes to apply (defined in seconds).
     - name: identifier
       required:
       default: consumer
