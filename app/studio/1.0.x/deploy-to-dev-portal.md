@@ -19,7 +19,7 @@ Kong Plugin Bundle can sync Spec files to and from your Dev Portal.
 From Insomnia Designer:
 
 * Go to the Documents Listing View
-* Find the spec you want to deploy to the Developer Portal
+2. Find the spec you want to deploy to the Developer Portal.
 * Click on the documents **action menu** and select **Deploy to Kong Portal**
 
 ![Menu](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f9d02c7d3a7e9aebbe6e/file-ZA5DLrBBPs.png)
