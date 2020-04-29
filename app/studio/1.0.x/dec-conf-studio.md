@@ -25,7 +25,7 @@ Now that you’re familiar with the value that DB-less mode and declarative conf
 
 1. Copy the spec you’d like to convert to declarative config to your clipboard. If you don’t have a spec on hand, you can test it out using the [Petstore specification](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml).
 
-1. Navigate to the Documents Listing View and click **Create**, then select **Blank Document**
+1. Navigate to the Documents Listing View and click **Create**, then select **Blank Document** from the dropdown.
 
     ![Declarative config](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f7b22c7d3a7e9aebbe48/file-w8220SsiUi.png)
 
