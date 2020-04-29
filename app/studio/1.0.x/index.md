@@ -9,7 +9,7 @@ can use Kong Studio to increase development velocity, reduce deployment risk,
 and increase collaboration.
 
 Kong Studio enhances Insomnia Designer through plugins which enable organizations 
-the ability to generate configuration for Kong Enterprise and sync API designs 
+with the ability to generate configuration for Kong Enterprise and sync API designs 
 directly to the Kong Developer Portal from the Insomnia Designer platform.
 
 The following documentation series will guide you through downloading and installing 
