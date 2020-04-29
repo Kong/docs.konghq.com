@@ -5,7 +5,9 @@ toc: false
 
 ## Download and Install Kong Studio
 
-In this guide we will have you install Insomnia Designer, the base of Kong Studio Bundle, and the Insomnia Designer Kong Plugin Bundle which enables the Kong Studio featureset within Insomnia Designer.
+In this guide, you will install: 
+* Insomnia Designer: the base of the Kong Studio Bundle
+* Insomnia Designer Kong Plugin Bundle: enables the Kong Studio featureset within Insomnia Designer
 
 1. Download the appropriate [Insomnia Designer](https://insomnia.rest/download) binary for your operating system.
 2. Install the downloaded binary.
