@@ -3,7 +3,7 @@ title: Kong Studio
 ---
 
 Kong Studio's base Insomnia Designer enables spec-first development for all REST and GraphQL services. 
-Leveraging Insomnia Designer, organizations can accelerate design and test workflows via automated 
+By leveraging Insomnia Designer, organizations can accelerate design and test workflows via automated 
 testing, direct Git sync, and inspection of all response types. Teams of all sizes 
 can use Kong Studio to increase development velocity, reduce deployment risk, 
 and increase collaboration.
