@@ -1,8 +1,7 @@
 ---
 title: Generating Kong Declarative Config with Kong Studio
+redirect_from: "/studio/1.0.x/dec-conf-studio/"
 ---
-
-![Declarative config](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f7292c7d3a7e9aebbe3f/file-jTMVWOdyOR.gif)
 
 Traditionally, Kong Gateway has always required a database, either PostgreSQL or Cassandra, to store entities such as Routes, Services, and Plugins during runtime. The database settings are typically stored in a configuration file called `kong.conf`.
 
@@ -14,6 +13,8 @@ DB-less mode and declarative configuration bring a number of benefits over using
 * Reduced dependencies: only the Kong Gateway nodes and configuration are required.
 * Single source of truth: entities are stored in a single file which can be source-controlled.
 * New deployment models: Kong Gateway can now easily serve as a lightweight node.
+
+![Declarative config](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f7292c7d3a7e9aebbe3f/file-jTMVWOdyOR.gif)
 
 Now that you’re familiar with the value that DB-less mode and declarative configuration can provide, let’s walk through how Kong Studio's Insomnia Designer can help you go from an OpenAPI spec to Kong Declarative Configuration.
 
@@ -34,9 +35,9 @@ Now that you’re familiar with the value that DB-less mode and declarative conf
 
 ## Step 2: Generate a config
 
-Now that you’ve added a specification to Insomnia Designer, you can generate a Kong Declarative Configuration. 
+Now that you’ve added a specification to Insomnia Designer, you can generate a Kong Declarative Configuration.
 
-1. In the upper right-hand corner of the editor, click **Generate Config**. 
+1. In the upper right-hand corner of the editor, click **Generate Config**.
 
 2. A modal window appears displaying the generated configuration as YAML. At the bottom of the modal, click the button to **Copy to Clipboard**.
 
