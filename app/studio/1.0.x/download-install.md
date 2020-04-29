@@ -1,50 +1,15 @@
 ---
-title: Download and Install Kong Studio
+title: Download and Install the Kong Studio Bundle
 toc: false
 ---
-## Download Kong Studio
 
-Kong Studio is available to download for Kong Enterprise customers. You must have access to the Kong repository on Bintray to access the Kong Studio download files listed below. If you do not have access, contact Kong Support.
+## Download and Install Kong Studio
 
-<div class="docs-grid">
-  <div class="docs-grid-block">
-    <h3>
-        <a href="https://bintray.com/kong/studio/desktop#files" target="_blank">Download for MacOS &rarr;</a>
-    </h3>
-    Sign in to Bintray before clicking this link to download the file. 
-  </div>
-    <div class="docs-grid-block">
-    <h3>
-        <a href="https://bintray.com/kong/studio/desktop#files"  target="_blank">Download for Windows &rarr;</a>
-    </h3>
-    Sign in to Bintray before clicking this link to download the file. 
-  </div>
-    <div class="docs-grid-block">
-    <h3>
-        <a href="https://bintray.com/kong/studio/desktop#files"  target="_blank">Download for Linux &rarr;</a>
-    </h3>
-    Sign in to Bintray before clicking this link to download the file. 
-  </div>
-</div>
+In this guide, you will install: 
+* Insomnia Designer: the base of the Kong Studio Bundle
+* Insomnia Designer Kong Plugin Bundle: enables the Kong Studio featureset within Insomnia Designer
 
-## Install Kong Studio
-
-### MacOS
-
-1. Download and open the `Kong-Studio.dmg` file
-
-2. Copy Kong Studio into the Application folder
-
-
-### Windows
-
-1. Download and open the `Kong-Studio.exe` file
-
-2. Follow the Kong Studio Setup and Installation Wizard
-
-
-### Linux
-
-1. Download and open the `Kong-Studio.AppImage` file
-
-2. Follow the Kong Studio Setup and Installation Wizard
+1. Download the appropriate [Insomnia Designer](https://insomnia.rest/download) binary for your operating system.
+2. Install the downloaded binary.
+3. Find and open the Insomnia Designer application on your computer and follow the onboarding instructions.
+4. Once completed, [click here to install the Insomnia Kong Plugin Bundle](insomniad://plugins/install?name=insomnia-plugin-kong-bundle) to activate the Kong Studio featureset.
