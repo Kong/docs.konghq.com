@@ -41,7 +41,7 @@ Insomnia Designer will prompt you for information to connect to your **Kong Admi
 
 ### Step 2. Deploy a Spec file
 
-If successful, Insomnia Designer will then prompt you to specify a file name for the spec file - this will be the name of the file in the Developer Portal.
+If successful, Insomnia Designer will then prompt you to specify a name for the spec file &mdash; this will be the name that appears in the Developer Portal.
 
 ![Deploy Spec](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7fa7b04286364bc991bb9/file-jzWwnImfbw.png)
 
