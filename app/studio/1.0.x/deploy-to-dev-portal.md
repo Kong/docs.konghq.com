@@ -36,7 +36,7 @@ Insomnia Designer will prompt you for information to connect to your **Kong Admi
 
 ![Connect to Kong](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7fa1a2c7d3a7e9aebbe7d/file-aY1ixNgXnh.png)
 
-* Click **Connect to Kong** to validate the connection. 
+6. Click **Connect to Kong** to validate the connection. 
 
 
 ### Step 2. Deploy a Spec file
