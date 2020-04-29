@@ -29,7 +29,7 @@ Now that you’re familiar with the value that DB-less mode and declarative conf
 
     ![Declarative config](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f7b22c7d3a7e9aebbe48/file-w8220SsiUi.png)
 
-1. Name the Document and click **Create**
+1. Name the document and click **Create**.
 1. Inside the Editor field, paste the specification you copied in Step 1. You should now see the specification in the Editor.
 
 ## Step 2: Click “Generate Config” in upper right hand corner
