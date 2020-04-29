@@ -21,7 +21,7 @@ Now that you’re familiar with the value that DB-less mode and declarative conf
 
 * [Insomnia Designer and the Insomnia Designer Kong Plugin Bundle](/studio/{{page.kong_version}}/download-install) are installed
 
-## Step 1: Create or Import your specification into Insomnia Designer
+## Step 1: Create or import a spec into Insomnia Designer
 
 Start by importing or starting a new specification in Insomnia Designer. Copy the specification you’d like to convert to declarative config to your clipboard. If you don’t have a specification on hand, you can test it out using the [Petstore specification](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml).
 
