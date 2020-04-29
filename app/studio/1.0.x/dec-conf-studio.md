@@ -4,7 +4,7 @@ title: Generating Kong Declarative Config with Kong Studio
 
 ![Declarative config](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f7292c7d3a7e9aebbe3f/file-jTMVWOdyOR.gif)
 
-Traditionally, Kong Gateway has always required a database, either PostgreSQL or Cassandra, to store entities such as Routes, Services, and Plugins during run time. The database settings are typically stored in a configuration file called kong.conf.
+Traditionally, Kong Gateway has always required a database, either PostgreSQL or Cassandra, to store entities such as Routes, Services, and Plugins during runtime. The database settings are typically stored in a configuration file called `kong.conf`.
 
 Kong Gateway 1.1 added the ability to run the Gateway without a database. This ability is called *DB-less mode*. Since not having a database would preclude using the Admin API to create entities, the entities must be declared in another configuration file (YAML or JSON). This file is known as the *declarative configuration*, or *declarative config* for short.
 
