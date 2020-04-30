@@ -376,12 +376,26 @@ http -f :8001/services/example/routes hosts=example.com
 
 ### Enable the plugin on the service
 
+Example using a single window:
+
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=graphql-rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
-  --data config.sync_rate=10
+$ curl -i -X POST http://kong-ip:8001/services/{service}/plugins \
+     --data name=graphql-rate-limiting-advanced \
+     --data config.limit=100 \
+     --data config.window_size=60 \
+     --data config.sync_rate=10
+```
+
+Example using multiple windows:
+
+```
+$ curl -i -X POST --url http://kong-ip:8001/services/{service}/plugins \
+     --data 'name=graphql-rate-limiting-advanced' \
+     --data 'config.window_size[]=60' \
+     --data 'config.window_size[]=3600' \
+     --data 'config.limit[]=10' \
+     --data 'config.limit[]=100' \
+     --data 'config.sync_rate=10'
 ```
 
 ### Decorate gql schema for costs
