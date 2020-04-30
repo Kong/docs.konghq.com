@@ -410,7 +410,7 @@ Cost decoration schema looks like:
 
 | Form Parameter    | default   | description
 |-------------------|-----------|-------------
-| `type_path`        |           | Path to node to decorate
+| `type_path`       |           | Path to node to decorate
 | `add_constant`    | `1`       | Node weight when added
 | `add_arguments`   | `[]`      | List of arguments to add to add_constant
 | `mul_constant`    | `1`       | Node weight multiplier value
@@ -428,22 +428,22 @@ Cost decoration is available on the following routes:
 For example:
 
 ```
-$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+$ curl -X POST http://kong-ip:8001/services/{service}/graphql-rate-limiting-advanced/costs \
   --data type_path="Query.allPeople" \
   --data mul_arguments="first"
 
 
-$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+$ curl -X POST http://kong-ip:8001/services/{service}/graphql-rate-limiting-advanced/costs \
   --data type_path="Person.vehicleConnection" \
   --data mul_arguments="first"
   --data add_constant=42
 
-$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+$ curl -X POST http://kong-ip:8001/services/{service}/graphql-rate-limiting-advanced/costs \
   --data type_path="Vehicle.filmConnection" \
   --data mul_arguments="first"
 
 
-$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+$ curl -X POST http://kong-ip:8001/services/{service}/graphql-rate-limiting-advanced/costs \
   --data type_path="Film.characterConnection" \
   --data mul_arguments="first"
 ```
@@ -465,7 +465,7 @@ $ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/
 ### Changing the default strategy
 
 ```
-$ curl -X POST http://kong:8001/services/example/plugins \
+$ curl -X POST http://kong-ip:8001/services/{service}/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100 \
   --data config.limit=10000 \
@@ -476,21 +476,21 @@ $ curl -X POST http://kong:8001/services/example/plugins \
 ```
 
 ```
-$ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
+$ curl -i -X PATCH http://kong-ip:8001/plugins/{plugin_id} \
   --data config.cost_strategy=node_quantifier
 ```
 
 ### Limit query cost by using `config.max_cost`
 
-It's usually a good idea to define a maximum cost applied to any query, regardless
-if the call is within the rate limits for a consumer.
+It's usually a good idea to define a maximum cost applied to any query,
+regardless if the call is within the rate limits for a consumer.
 
 By defining a `max_cost` on our service, we are ensuring no query will run with
 a cost higher than our set `max_cost`. By default it's set to 0, which means
 no limit.
 
 ```
-$ curl -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong-ip:8001/services/{service}/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100 \
   --data config.limit=10000 \
@@ -503,7 +503,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 If `max_cost` needs to be updated, one can accomplish this by doing the following:
 
 ```
-$ curl -X PATCH http://kong:8001/plugins/{plugin_id} \
+$ curl -X PATCH http://kong-ip:8001/plugins/{plugin_id} \
   --data config.max_cost=10000
 ```
 
@@ -519,7 +519,7 @@ For example, a `score_factor` of `0.01` will divide the costs by 100, meaning
 every cost unit represents 100 nodes.
 
 ```
-$ curl -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong-ip:8001/services/{service}/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100 \
   --data config.limit=10000 \
@@ -533,6 +533,6 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 If `score_factor` needs to be updated, one can accomplish this by doing the following:
 
 ```
-$ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
+$ curl -i -X PATCH http://kong-ip:8001/plugins/{plugin_id} \
   --data config.score_factor=1
 ```
