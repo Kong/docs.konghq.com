@@ -51,7 +51,7 @@ params:
       description: |
         Certificate property to use as the authenticated group. Valid values are `CN` (Common Name) or `DN` (Distinguished Name). Once `skip_consumer_lookup` is applied, any client with a valid certificate can access the Service/API. To restrict usage to only some of the authenticated users, also add the ACL plugin (not covered here) and create whitelist or blacklist groups of users.
     - name: revocation_check_mode
-      default: "`SKIP`"
+      default: "`IGNORE_CA_ERROR`"
       description: |
         Controls client certificate revocation check behavior. Valid values are `SKIP`, `IGNORE_CA_ERROR` or `STRICT`. If set to `SKIP`, no revocation check will be performed. If set to `IGNORE_CA_ERROR`, the plugin will respect the revocation status when either OCSP or CRL URL is set, and will not fail on network issues. If set to `STRICT`, the plugin will only treat the certificate as valid when it's able to verify the revocation status, and a missing OCSP or CRL URL in the certificate or a failure to connect to the server will result in a revoked status. If both OCSP and CRL URL are set, the plugin always checks OCSP first, and will only check CRL URL if it can't communicate with the OCSP server.
     - name: http_timeout
