@@ -48,13 +48,13 @@ params:
       default:
       value_in_examples:
       description: |
-        One or more requests per window to apply.
+        One or more requests-per-window limits to apply.
     - name: window_size
       required:
       default:
       value_in_examples:
       description: |
-        One or more window sizes to apply (defined in seconds).
+        One or more window sizes to apply limit to (defined in seconds).
     - name: identifier
       required:
       default: consumer
