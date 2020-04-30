@@ -365,20 +365,28 @@ query {
 
 The following configuration example targets a GraphQL endpoint at our [SWAPI playground].
 
-### Add a GraphQL service
+### Add a GraphQL service and route
 
 ```
-http -f :8001/services name=example host=swapi-graphql.eskerda.now.sh port=443 protocol=https
-http -f :8001/services/example/routes hosts=example.com
+$ curl -X POST http://kong:8001/services \
+    --data "name=example" \
+    --data "host=swapi-graphql.eskerda.now.sh" \
+    --data "port=443" \
+    --data "protocol=https"
+
+$ curl -X POST http://kong:8001/services/example/routes \
+    --data "hosts=example.com"
 ```
 
 ### Enable the plugin on the service
 
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong:8001/services/example/plugins \
   --data name=graphql-rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
+  --data config.limit=100 \
+  --data config.limit=10000 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
   --data config.sync_rate=10
 ```
 
@@ -406,10 +414,24 @@ Cost decoration is available on the following routes:
 For example:
 
 ```
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Query.allPeople" mul_arguments="first"
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Person.vehicleConnection" mul_arguments="first" add_constant=42
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Vehicle.filmConnection" mul_arguments="first"
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Film.characterConnection" mul_arguments="first"
+$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+  --data type_path="Query.allPeople" \
+  --data mul_arguments="first"
+
+
+$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+  --data type_path="Person.vehicleConnection" \
+  --data mul_arguments="first"
+  --data add_constant=42
+
+$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+  --data type_path="Vehicle.filmConnection" \
+  --data mul_arguments="first"
+
+
+$ curl -X POST http://kong:8001/services/example/graphql-rate-limiting-advanced/costs \
+  --data type_path="Film.characterConnection" \
+  --data mul_arguments="first"
 ```
 
 
@@ -429,12 +451,14 @@ http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="F
 ### Changing the default strategy
 
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong:8001/services/example/plugins \
   --data name=graphql-rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
+  --data config.limit=100 \
+  --data config.limit=10000 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
   --data config.sync_rate=10 \
-  --data config.cost_strategy=node_quantifier
+  --data config.cost_strategy=default
 ```
 
 ```
@@ -452,22 +476,26 @@ a cost higher than our set `max_cost`. By default it's set to 0, which means
 no limit.
 
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong:8001/services/{service}/plugins \
   --data name=graphql-rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
-  --data config.sync_rate=10 \
+  --data config.limit=100 \
+  --data config.limit=10000 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
+  --data config.sync_rate=0 \
   --data config.max_cost=5000
 ```
 
+If `max_cost` needs to be updated, one can accomplish this by doing the following:
+
 ```
-$ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
-  --data config.max_cost=5000
+$ curl -X PATCH http://kong:8001/plugins/{plugin_id} \
+  --data config.max_cost=10000
 ```
 
 ### Using `config.score_factor` to modify costs
 
-GraphQL query cost depend on multiple factors depending on our resolvers
+GraphQL query cost depends on multiple factors depending on our resolvers
 and the implementation of the schema. Cost on queries, depending on the cost
 strategy might turn very high when using quantifiers, or very low with no
 quantifiers at all. By using `config.score_factor` the cost can be divided
@@ -477,16 +505,20 @@ For example, a `score_factor` of `0.01` will divide the costs by 100, meaning
 every cost unit represents 100 nodes.
 
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong:8001/services/{service}/plugins \
   --data name=graphql-rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
-  --data config.sync_rate=10 \
+  --data config.limit=100 \
+  --data config.limit=10000 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
+  --data config.sync_rate=0 \
+  --data config.max_cost=5000 \
   --data config.score_factor=0.01
-  --data config.max_cost=5000
 ```
+
+If `score_factor` needs to be updated, one can accomplish this by doing the following:
 
 ```
 $ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
-  --data config.score_factor=0.01
+  --data config.score_factor=1
 ```
