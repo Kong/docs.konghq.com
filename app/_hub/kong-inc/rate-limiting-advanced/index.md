@@ -38,13 +38,13 @@ params:
       default:
       value_in_examples:
       description: |
-        One of more request per window to apply
+        One or more requests-per-window limits to apply
     - name: window_size
       required:
       default:
       value_in_examples:
       description: |
-        One more more window sizes to apply (defined in seconds)
+        One or more window sizes to apply limit to (defined in seconds)
     - name: identifier
       required:
       default: consumer
@@ -164,10 +164,13 @@ params:
 An arbitrary number of limits/window sizes can be applied per plugin instance. This allows users to create multiple rate limiting windows (e.g., rate limit per minute and per hour, and/or per any arbitrary window size); because of limitation with Kong's plugin configuration interface, each *nth* limit will apply to each *nth* window size. For example:
 
 ```bash
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong:8001/services/{service}/plugins \
   --data name=rate-limiting-advanced \
-  --data config.limit=10,100 \
-  --data config.window_size=60,3600 \
+  --data config.limit=10 \
+  --data config.limit=100 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
   --data config.sync_rate=10
 ```
+
 This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds. For more information, please see [Enterprise Rate Limiting Library](https://docs.konghq.com/enterprise/references/rate-limiting/).
