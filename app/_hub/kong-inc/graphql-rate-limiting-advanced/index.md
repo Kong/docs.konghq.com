@@ -321,10 +321,10 @@ query {
 
 Roughly speaking:
 
-* allPeople returns 100 nodes, and has been called once
-* vehicleConnection returns 10 nodes, and has been called 100 times
-* filmConnection returns 5 nodes, and has been called 10 * 100 times
-* characterConnection returns 50 nodes, and has been called 5 * 10 * 100 times
+* `allPeople` returns 100 nodes, and has been called once
+* `vehicleConnection` returns 10 nodes, and has been called 100 times
+* `filmConnection` returns 5 nodes, and has been called 10 * 100 times
+* `characterConnection` returns 50 nodes, and has been called 5 * 10 * 100 times
 
 
 Specific costs per node can be specified by adding a constant:
