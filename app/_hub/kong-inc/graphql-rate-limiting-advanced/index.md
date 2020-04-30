@@ -30,7 +30,8 @@ params:
       default: "default"
       value_in_examples:
       description: |
-        Strategy to use to evaluate query costs.
+        Strategy to use to evaluate query costs. Either `default` or
+        `node_quantifier`.
     - name: max_cost
       required:
       default: 0
