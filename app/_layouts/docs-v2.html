@@ -30,8 +30,8 @@ id: documentation
     {% endif %}
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Community</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
         <span class="sidebar-toggle">Open Sidebar</span>
@@ -99,7 +99,7 @@ id: documentation
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.has_version %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}Gateway Community{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
+            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}{{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
                   href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
             to browse the documentation for the latest version.
           </div>
@@ -108,7 +108,7 @@ id: documentation
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
               <div class="tag green">NEW</div>
-              <p>Kong Enterprise {{page.kong_version}} released! We added <a
+              <p>{{site.ee_product_name}} {{page.kong_version}} released! We added <a
                       href="/enterprise/changelog">new features</a> and updated docs!</p>
             </div>
           </div>
