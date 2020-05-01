@@ -31,8 +31,8 @@ params:
       value_in_examples:
       description: |
         Strategy to use to evaluate query costs. Either `default` or
-        `node_quantifier`. See [default](/#default) and
-        [node_quantifier](/#node_quantifier) respectively.
+        `node_quantifier`. See [default](/hub/kong-inc/graphql-rate-limiting-advanced/#default) and
+        [node_quantifier](/hub/kong-inc/graphql-rate-limiting-advanced/#node_quantifier) respectively.
     - name: max_cost
       required:
       default: 0
