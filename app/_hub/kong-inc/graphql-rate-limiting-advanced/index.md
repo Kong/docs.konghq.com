@@ -31,7 +31,8 @@ params:
       value_in_examples:
       description: |
         Strategy to use to evaluate query costs. Either `default` or
-        `node_quantifier`.
+        `node_quantifier`. See [default](/#default) and
+        [node_quantifier](/#node_quantifier) respectively.
     - name: max_cost
       required:
       default: 0
@@ -168,7 +169,7 @@ params:
 
      * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
 
-     * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors**.
+     * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
 
 ---
 
