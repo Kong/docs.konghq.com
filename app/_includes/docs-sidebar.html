@@ -14,7 +14,7 @@
     {% for nav in page.nav_items %}
     {% assign item_active = false %}
     {% assign item_url = false %}
-    {% if nav.items.size > 0 %}
+    {% if nav.items %}
     {% capture item_content %}
     <ul class="items">
       {% for item in nav.items %}
@@ -47,6 +47,8 @@
       {% endfor %}
     </ul>
     {% endcapture %}
+    {% else %}
+    {% assign item_content = nil %}
     {% endif %}
 
     {% if nav.url %}
