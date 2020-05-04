@@ -161,6 +161,15 @@ params:
       description:
         # Explain what this setting does.
         # Use YAML's pipe (|) notation for longer entries.
+    - name: config.auto-approve
+      required: no
+      default: false
+      value_in_examples:
+            # If the field is to appear in examples, this is the value to use.
+            # A required field with no value_in_examples entry will resort to
+            # the one in default.
+      description:
+             If enabled, all new Service Contracts requests are automatically approved. Otherwise, admins must manually approve requests.  
 
   #  - name: # add additional setting blocks as needed, each demarcated by -
   extra:
