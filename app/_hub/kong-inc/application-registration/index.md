@@ -9,37 +9,30 @@
 # https://github.com/Kong/docs.konghq.com
 # Remove inapplicable entries and superfluous comments as needed
 
-name: Application Registration
-  # Use capitals and spaces as needed.
+name: Portal Application Registration
 publisher: Kong Inc.
+version: 1.5.x
 
 categories: # (required) Uncomment all that apply.
-  #- authentication
+  - authentication
   #- security
   #- traffic-control
   #- serverless
   #- analytics-monitoring
   #- transformations
   #- logging
-  - deployment
+  # - deployment
 # Array format only; uncomment the one most-applicable category. Contact cooper@konghq.com to propose a new category, if necessary.
 
 type: # (required) String, one of:
   plugin          | extensions of the core platform
   # integration     | extensions of the Kong Admin API
 
-desc: # (required) 1-liner description; max 80 chars
-description: #|
-  # (required) extended description.
-  # Use YAML piple notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
-  #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
+desc: Self-service portal developer credentials against specific services.
+description: |
+  Applications allow registered developers on Kong Developer Portal to
+  authenticate with OAuth against a Service on Kong. Admins can selectively
+  admit access to Services using Kong Manager.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
@@ -131,8 +124,8 @@ kong_version_compatibility: # required
 # If your extension is a plugin, ALL of the following lines must be completed.
 # If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
-params: # metadata about your plugin
-  name: # name of the plugin in Kong (may differ from name: above)
+params:
+  name: application-registration
   api_id:
     # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id:
