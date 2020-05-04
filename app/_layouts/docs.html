@@ -7,16 +7,22 @@ id: documentation
 <div class="page {{ page.class }}">
   <header class="page-header">
     <div class="container">
-      <div class="edit-this-page">
-        <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i>
-          Edit this Page</a>
-      </div>
       <nav class="docs-navigation">
         <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
         <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/studio" {% if page.edition=='studio' %} class="active" {% endif %}>Kong Studio</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
-        <span class="sidebar-toggle">Open Sidebar</span>
+
+        <div class="edit-this-page">
+          <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+            <i class="fa fa-github"></i>
+            <span>Edit this Page</span>
+          </a>
+        </div>
+        <div class="toggles">
+          <div></div>
+          <i class="fas fa-stream sidebar-toggle"></i>
+        </div>
       </nav>
       <div class="page-header-icon">
           {% if page.edition == 'community' %}

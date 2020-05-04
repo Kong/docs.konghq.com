@@ -34,10 +34,10 @@ id: documentation
         <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
-        <span class="sidebar-toggle">Open Sidebar</span>
         <div class="edit-this-page v2">
           <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
-            Edit this Page
+            <i class="fa fa-pencil"></i>
+            <span>Edit this Page</span>
           </a>
         </div>
       </nav>
@@ -83,12 +83,20 @@ id: documentation
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
     <aside class="docs-toc">
+      <i class="fa fa-times close-sidebar"></i>
       <div class="docs-toc-title">On this page</div>
       {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
     </aside>
     {% endif %}
 
     <div class="page-content-container v2" id="documentation">
+      <div class="toggles">
+        <i class="fas fa-stream sidebar-toggle"></i>
+        {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
+        <i class="far fa-list-alt toc-sidebar-toggle"></i>
+        {% endif %}
+      </div>
+
       <div class="page-content">
         <div class="content show-anchor-links">
           {% if page.edition == 'community' %}
@@ -127,7 +135,7 @@ id: documentation
             <div class="knowledge-base-links">
               <a class="knowledge-base-link" href="https://support.konghq.com/" target="_blank">
                 <div class="knowledge-base-link-title">Support</div>
-                <img src="/assets/images/icons/documentation/icn-support.svg" style="width:70%"/>
+                <img src="/assets/images/icons/documentation/icn-support.svg" />
               </a>
               <a class="knowledge-base-link" href="https://discuss.konghq.com/" target="_blank">
                 <div class="knowledge-base-link-title">Community</div>
