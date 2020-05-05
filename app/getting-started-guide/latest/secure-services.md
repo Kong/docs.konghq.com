@@ -39,13 +39,13 @@ For more information, see [What is API Gateway Authentication?](https://konghq.c
     *Using cURL*:
 
     ```
-    $ curl -X POST http://<admin-hostname>:8001/routes/mock/plugins \
+    $ curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
     --data name=key-auth
     ```
     *Or using HTTPie*:
 
     ```
-    $ http :8001/routes/mock/plugins name=key-auth
+    $ http :8001/routes/mocking/plugins name=key-auth
     ```
 
 2. Try to access the service again:
@@ -196,11 +196,11 @@ If you are following this getting started guide topic by topic, you will need to
 
     *Using cURL*:
     ```
-    $ curl -X GET http://<admin-hostname>:8001/routes/mock/plugins/
+    $ curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
     ```
     *Or using HTTPie*:
     ```
-    $ http :8001/routes/mock/plugins
+    $ http :8001/routes/mocking/plugins
     ```
 
     Output:
@@ -212,12 +212,12 @@ If you are following this getting started guide topic by topic, you will need to
 
     *Using cURL*:
     ```
-    $ curl -X PATCH http://<admin-hostname>:8001/routes/mock/plugins/{<plugin-id>} \
+    $ curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
     --data "enabled=false"
     ```
     *Or using HTTPie*:
     ```
-    $ http :8001/routes/mock/plugins/{<plugin-id>} enabled=false
+    $ http :8001/routes/mocking/plugins/{<plugin-id>} enabled=false
     ```
 {% endnavtab %}
 
