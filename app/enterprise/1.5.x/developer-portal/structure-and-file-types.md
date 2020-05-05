@@ -8,7 +8,7 @@ chapter: 4
 
 The Kong Portal templates have been completely revamped to allow for easier customization, clearer separation of concerns between content and layouts, and more powerful hooks into Kong lifecycle/data.  Under the hood we have implemented a flat file CMS built on top of the `https://github.com/bungle/lua-resty-template` library.  This system should feel familiar for anyone who has worked with projects like `jekyll`, `kirby cms`, or `vuepress` in the past.
 
->Note: To follow along with this guide, it is best to clone the [portal-templates-repo](https://github.com/Kong/kong-portal-templates) and check out the `master` branch. This guide makes the assumption that you are working within a single workspace (the templates repo can host many different sets of portal files per workspace).  Navigate to the `workspaces/default` directory from root to view the default workspaces portal files.
+>Note: To follow along with this guide, it is best to clone the [kong-portal-templates repo](https://github.com/Kong/kong-portal-templates) and check out the `master` branch. This guide makes the assumption that you are working within a single workspace (the templates repo can host many different sets of portal files per workspace).  Navigate to the `workspaces/default` directory from root to view the default workspaces portal files.
 
 ## Directory Structure
 
@@ -305,7 +305,6 @@ The example below shows the `header.html` partial referenced from the example ab
 
 ##### Description
 The Theme Configuration File determines color/font/image values a theme makes available for templates/CSS at the time of render.  It is required in the root of every theme.  There can only be one Theme Configuration File, it must be named `theme.conf.yaml`, and it must be a direct child of the themes root directory.
-
 
 
 
