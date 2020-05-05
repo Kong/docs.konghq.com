@@ -8,7 +8,7 @@ title: Kong Enterprise k8s Changelog
 
 ### Fixed
 
-- Ensure that a worker being spwaned due to any errors always receives the
+- Ensure that a worker being spawned due to any errors always receives the
   latest up-to-date configuration in the DB-less mode
   [#5850](https://github.com/Kong/kong/pull/5850)
 
