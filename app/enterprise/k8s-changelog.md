@@ -2,6 +2,16 @@
 title: Kong Enterprise k8s Changelog
 ---
 
+## 2.0.4.1
+
+> Released on 2020/05/05
+
+### Fixed
+
+- Ensure that a worker being spawned due to any errors always receives the
+  latest up-to-date configuration in the DB-less mode
+  [#5850](https://github.com/Kong/kong/pull/5850)
+
 ## 2.0.4.0
 
 > Released on 2020/04/28
