@@ -56,7 +56,7 @@ params:
       default:
       value_in_examples:
       description: |
-        One or more window sizes to apply limit to (defined in seconds).
+        One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
       required:
       default: consumer
