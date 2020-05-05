@@ -4,7 +4,7 @@ name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Provide rate limiting for GraphQL queries.
+desc: Provide rate limiting for GraphQL queries
 description: |
   The GraphQL Rate Limiting Advanced plugin is an extension of the
   Rate Limiting Advanced plugin that provides rate limiting for GraphQL queries.
