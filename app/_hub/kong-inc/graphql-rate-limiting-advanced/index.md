@@ -512,7 +512,7 @@ $ curl -X PATCH http://kong:8001/plugins/{plugin_id} \
 
 ### Using `config.score_factor` to modify costs
 
-GraphQL query cost depends on multiple factors depending on our resolvers
+GraphQL query cost depends on multiple factors based on our resolvers
 and the implementation of the schema. Cost on queries, depending on the cost
 strategy might turn very high when using quantifiers, or very low with no
 quantifiers at all. By using `config.score_factor` the cost can be divided
