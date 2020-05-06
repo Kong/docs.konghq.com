@@ -11,7 +11,7 @@ description: |
 
 type: plugin
 enterprise: true
-categories: # (required) Uncomment all that apply.
+categories:
   - authentication
 
 kong_version_compatibility: # required
@@ -21,7 +21,6 @@ kong_version_compatibility: # required
   enterprise_edition: # optional
     compatible:
     - 1.5.x
-    #incompatible:
 
 #########################
 # PLUGIN-ONLY SETTINGS below this line
@@ -30,13 +29,11 @@ kong_version_compatibility: # required
 
 params:
   name: application-registration
-  api_id: true
-    # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id: true
   consumer_id: false
   route_id: false
-  protocols: ["http"]
-  dbless_compatible:
+  protocols: ["http", "https", "grpc", "grpcs"]
+  dbless_compatible: no
     # Degree of compatibility with DB-less mode. Three values allowed:
     # 'yes', 'no' or 'partially'
   dbless_explanation:
@@ -94,8 +91,8 @@ params:
         An optional boolean value to enable the Resource Owner Password
         Credentials Grant flow ([RFC 6742 Section 4.3](https://tools.ietf.org/html/rfc6749#section-4.3)).
       - name: config.mandatory_scope
-        required: no
-        default: false
+        required: yes
+        default: "`false`"
         value_in_examples:
         description:
           An optional boolean value telling the plugin to require at least
@@ -118,7 +115,7 @@ params:
           a new access token. Default value is two weeks. Set to `0` to
           keep the token/refresh token pair indefinitely valid.
       - name: config.scopes
-        required: no
+        required: semi
         default:
         value_in_examples:
         description:
