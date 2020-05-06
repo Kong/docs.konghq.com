@@ -1,7 +1,6 @@
 ---
 name: Portal Application Registration
 publisher: Kong Inc.
-version: 1.5.x
 
 desc: Self-service portal developer credentials against specific services.
 description: |
