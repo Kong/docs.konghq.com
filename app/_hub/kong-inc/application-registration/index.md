@@ -30,26 +30,18 @@ kong_version_compatibility: # required
 
 params:
   name: application-registration
-  api_id:
+  api_id: true
     # boolean - whether this plugin can be applied to an API [[this needs more]]
   service_id: true
-  consumer_id:
-    # boolean - whether this plugin can be applied to a Consumer.
-    # Affects generation of examples and config table.
-  route_id:
-    # whether this plugin can be applied to a Route.
-    # Affects generation of examples and config table.
-  protocols:
-    # List of protocols this plugin is compatible with.
-    # Valid values: "http", "https", "tcp", "tls"
-    # Example: ["http", "https"]
+  consumer_id: false
+  route_id: false
+  protocols: ["http"]
   dbless_compatible:
     # Degree of compatibility with DB-less mode. Three values allowed:
     # 'yes', 'no' or 'partially'
   dbless_explanation:
     # Optional free-text explanation, usually containing details about the degree of
     # compatibility with DB-less.
-
   config:
     - name: config.auth_header_name
       required: false
