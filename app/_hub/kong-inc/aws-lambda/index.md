@@ -78,7 +78,7 @@ params:
       required: true
       default:
       value_in_examples: LAMBDA_FUNCTION_NAME
-      description: The AWS Lambda function name to invoke
+      description: The AWS Lambda function name to invoke.
     - name: qualifier
       required: false
       default:
@@ -88,16 +88,16 @@ params:
       required: false
       default: "`RequestResponse`"
       description: |
-        The [`InvocationType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. Available types are `RequestResponse`, `Event`, `DryRun`
+        The [`InvocationType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. Available types are `RequestResponse`, `Event`, `DryRun`.
     - name: log_type
       required: false
       default: "`Tail`"
       description: |
-        The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported
+        The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported.
     - name: timeout
       required: false
       default: "`60000`"
-      description: An optional timeout in milliseconds when invoking the function
+      description: An optional timeout in milliseconds when invoking the function.
     - name: port
       required: false
       default: "`443`"
@@ -107,12 +107,12 @@ params:
       required: false
       default: "`60000`"
       description: |
-        An optional value in milliseconds that defines how long an idle connection will live before being closed
+        An optional value in milliseconds that defines how long an idle connection will live before being closed.
     - name: unhandled_status
       required: false
       default: "`200`, `202` or `204`"
       description: |
-        The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)
+        The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax).
     - name: forward_request_body
       required: false
       default: "`false`"
@@ -160,19 +160,19 @@ params:
         An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
 
   extra: |
-    **Reminder**: curl by default sends payloads with an
+    **Reminder**: cURL by default sends payloads with an
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
-    decoded by Kong. To ensure special characters that are likely to appear in your
-    AWS key or secret (like `+`) are correctly decoded, you must URL-encode them,
-    hence use `--data-urlencode` if you are using curl. Alternatives to this
-    approach would be to send your payload with a different MIME type (like
-    `application/json`), or to use a different HTTP client.
+    decoded by Kong. To ensure special characters that are likely to appear in
+    your AWS key or secret (like `+`) are correctly decoded, you must
+    URL-encode them,hence use `--data-urlencode` if you are using cURL.
+    Alternatives to this approach would be to send your payload with a
+    different MIME type (like `application/json`), or to use a different HTTP client.
 
 ---
 
 ### Sending parameters
 
-Any form parameter sent along with the request, will be also sent as an
+Any form parameter sent along with the request will be also sent as an
 argument to the AWS Lambda function.
 
 ### Notes
@@ -216,15 +216,18 @@ our AWS function and execute it.
 
 1. First, let's create an execution role called `LambdaExecutor` for our lambda function.
 
-    In IAM Console create a new Role choosing the AWS Lambda service, there will be no policies as our function in this example will simply execute itself giving us back an hardcoded JSON as response without accessing other AWS resources.
+    In IAM Console, create a new Role choosing the AWS Lambda service. There
+    will be no policies as our function in this example will simply execute
+    itself giving us back a hardcoded JSON as response without accessing other
+    AWS resources.
 
-2. Now let's create a user named KongInvoker, used by our Kong API gateway to invoke the function.
+2. Now let's create a user named `KongInvoker`, used by our Kong API gateway to invoke the function.
 
-    In IAM Console create a new user, must be provided to it programmatic access via Access and Secret keys; then will attach existing policies directly particularly the AWSLambdaRole predefined. Once the user creation is confirmed, store Access Key and Secret Key in a safe place.
+    In IAM Console, create a new user, must be provided to it programmatic access via Access and Secret keys; then will attach existing policies directly particularly the AWSLambdaRole predefined. Once the user creation is confirmed, store the Access Key and Secret Key in a safe place.
 
-3. Now we need to create the lambda function itself, will do so in N.Virginia Region (code us-east-1).
+3. Now we need to create the lambda function itself; we will do so in N.Virginia Region (code us-east-1).
 
-    In Lambda Management, create a new function Mylambda, there will be no blueprint as we are going to paste the code below (which is an example code snippet); for the execution role let's choose an existing role specifically LambdaExecutor created previously.
+    In Lambda Management, create a new function Mylambda. There will be no blueprint as we are going to paste the code below (which is an example code snippet); for the execution role, let's choose an existing role specifically `LambdaExecutor` created previously.
 
     **Note**: The following code snippet is only an example. The Kong AWS Lambda plugin supports all runtimes provided by AWS. See the list of runtimes in the **AWS Lambda** > **Functions** > **Create function** dialog.
 
