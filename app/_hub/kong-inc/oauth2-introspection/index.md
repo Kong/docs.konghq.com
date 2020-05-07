@@ -12,6 +12,12 @@ description: |
   the Consumer already has an access token that will be validated against a
   third-party OAuth 2.0 server.
 
+  **Note**: The [OpenID Connect Plugin][oidcplugin] supports
+  OAuth 2.0 Token Introspection as well and offers functionality beyond
+  this plugin such as restricting access by scope.
+
+  [oidcplugin]: /hub/kong-inc/openid-connect/
+
 enterprise: true
 type: plugin
 categories:
