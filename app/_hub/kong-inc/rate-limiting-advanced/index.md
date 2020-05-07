@@ -38,13 +38,13 @@ params:
       default:
       value_in_examples:
       description: |
-        One or more requests-per-window limits to apply
+        One or more requests-per-window limits to apply.
     - name: window_size
       required:
       default:
       value_in_examples:
       description: |
-        One or more window sizes to apply limit to (defined in seconds)
+        One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
       required:
       default: consumer
@@ -60,7 +60,7 @@ params:
       default: kong_rate_limiting_counters
       value_in_examples:
       description: |
-        The shared dictionary where counters will be stored until the next sync cycle
+        The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required:
       default:
@@ -81,25 +81,25 @@ params:
       default: cluster
       value_in_examples:
       description: |
-        The sync strategy to use; `cluster` and `redis` are supported
+        The sync strategy to use; `cluster` and `redis` are supported.
     - name: redis.host
       required: semi
       default:
       value_in_examples:
       description: |
-        Host to use for Redis connection when the `redis` strategy is defined
+        Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
       description: |
-        Port to use for Redis connection when the `redis` strategy is defined
+        Port to use for Redis connection when the `redis` strategy is defined.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
       description: |
-        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
@@ -111,7 +111,7 @@ params:
       default: 0
       value_in_examples:
       description: |
-        Database to use for Redis connection when the `redis` strategy is defined
+        Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
       default:
@@ -149,7 +149,7 @@ params:
       default: sliding
       value_in_examples:
       description: |
-        This sets the time window to either `sliding` or `fixed`
+        This sets the time window to either `sliding` or `fixed`.
   extra: |
     **Note:  Redis configuration values are ignored if the `cluster` strategy is used.**
 
