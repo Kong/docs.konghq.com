@@ -251,8 +251,8 @@ N.Virginia Region (code us-east-1).
 4. Finally, we set up a Service and Route in Kong and link it to the function
 just created.
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 ```bash
 curl -i -X POST http://{kong_hostname}:8001/services \
@@ -279,8 +279,8 @@ curl -i -X POST http://{kong_hostname}:8001/services/lambda1/plugins \
 --data 'config.aws_region=us-east-1' \
 --data 'config.function_name=MyLambda'
 ```
-
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 
 Add a Service, Route, and Plugin to the declarative config file:
 
@@ -302,8 +302,8 @@ plugins:
     aws_region: us-east-1
     function_name: MyLambda
 ```
-
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 After everything is created, call the Service and verify the correct
 invocation, execution, and response:
