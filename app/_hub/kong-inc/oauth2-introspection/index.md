@@ -14,7 +14,7 @@ description: |
 
   **Note**: The [OpenID Connect Plugin][oidcplugin] supports
   OAuth 2.0 Token Introspection as well and offers functionality beyond
-  this plugin such as restricting access by scope.
+  this plugin, such as restricting access by scope.
 
   [oidcplugin]: /hub/kong-inc/openid-connect/
 
