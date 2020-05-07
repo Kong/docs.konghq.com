@@ -10,7 +10,7 @@ title: Kong for Kubernetes deployment options
   * [Manual configuration](#manual-configuration)
 - [Migrating between deployment types](#migrating-between-deployment-types)
 
-# Deployment options
+## Deployment options
 
 Kong for Kubernetes provides two options for its Kong Enterprise container
 image:
@@ -31,7 +31,7 @@ The `kong-enterprise-edition` image is recommended for deployments that require
 features not supported by `kong-enterprise-k8s`. It supports all Kong
 Enterprise plugins and features, but cannot run without a database.
 
-# DB-less versus database-backed deployments
+## DB-less versus database-backed deployments
 
 When using Kong for Kubernetes, the source of truth for Kong's configuration is
 the Kubernetes configuration in etcd: Kong's custom Kubernetes resources,
@@ -49,10 +49,10 @@ maintenance and infrastructure requirements.
 
 While Kong for Kubernetes does not require a database, it is fully compatible
 with PostgreSQL and requires it for some features. etcd remains the source of
-truth, but controller can translate Kubernetes resources there into either
+truth, but the controller can translate Kubernetes resources from etcd into either
 DB-less or database configuration.
 
-# Choosing between DB-less or database-backed deployments
+## Choosing between DB-less or database-backed deployments
 
 In general, DB-less deployments are simpler to maintain and require less
 resources to run, and as such are the preferred option for Kong for Kubernetes.
@@ -63,11 +63,11 @@ Database-backed deployments offer a wider range of features using the
 `kong-enterprise-edition` image. Review the sections below to determine if your
 use case requires a feature that is not available in DB-less deployments.
 
-## Feature availability
+### Feature availability
 
-Some Kong Enterprise features are not available in DB-less deployments. Users
-should use the `kong-enterprise-edition` image and a database-backed deployment
-if they wish to use:
+Some Kong Enterprise features are not available in DB-less deployments.
+Use the `kong-enterprise-edition` image and a database-backed deployment
+if you want to use:
 
 * Kong Manager
 * Dev Portal
@@ -90,7 +90,7 @@ functionality in these features is different from traditional deployments:
   namespaces should be used to restrict what configuration administrators can
   create.
 * Ingress controller instances create configuration in a single workspace only
-  (`default` by default). To use multiple workspaces, users should deploy
+  (`default` by default). To use multiple workspaces, deploy
   multiple controller instances, setting the `CONTROLLER_KONG_WORKSPACE`
   environment variable to the workspace that instance should use. These
   instances should set `CONTROLLER_INGRESS_CLASS` to unique values, to avoid
@@ -102,7 +102,7 @@ functionality in these features is different from traditional deployments:
   create workspaces, Dev Portal content, admins, etc. These features must be
   configured manually through the Admin API.
 
-## Plugin compatibility
+### Plugin compatibility
 
 Not all plugins are compatible with DB-less operation, and as such not all
 plugins are available in the `kong-enterprise-k8s` image. In addition to the
@@ -142,7 +142,7 @@ Third-party plugins are generally compatible with DB-less as long as they do
 not create custom entities (i.e. they do not add new entities that users can
 create and modify through the Admin API).
 
-## Manual configuration
+### Manual configuration
 
 DB-less configuration must be supplied as a complete unit: it is not possible
 to add or modify entities individually through the Admin API, or provide
@@ -161,7 +161,7 @@ manually-added configuration simultaneously, Kong's recommended best practice
 is to still manage as much configuration through Kubernetes resources as
 possible, primarily using manual configuration for temporary or test resources.
 
-# Migrating between deployment types
+## Migrating between deployment types
 
 Because etcd is the source of truth for Kong's configuration, the ingress
 controller can re-create Kong's proxy configuration even if the underlying
