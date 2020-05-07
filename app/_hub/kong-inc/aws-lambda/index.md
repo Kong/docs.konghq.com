@@ -93,7 +93,7 @@ params:
       required: false
       default: "`Tail`"
       description: |
-        The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default `None` and `Tail` are supported.
+        The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default, `None` and `Tail` are supported.
     - name: timeout
       required: false
       default: "`60000`"
@@ -152,7 +152,7 @@ params:
       required: semi
       default:
       description: |
-        An optional value that defines which HTTP protocol scheme to use in order to connect through the proxy server. The schemes supported are: `http` and `https`. This value is required if `proxy_url` is defined.
+        An optional value that defines which HTTP protocol scheme to use to connect through the proxy server. The schemes supported are: `http` and `https`. This value is required if `proxy_url` is defined.
     - name: skip_large_bodies
       required: false
       default: "`true`"
@@ -164,7 +164,7 @@ params:
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
     decoded by Kong. To ensure special characters that are likely to appear in
     your AWS key or secret (like `+`) are correctly decoded, you must
-    URL-encode them,hence use `--data-urlencode` if you are using cURL.
+    URL-encode them, hence use `--data-urlencode` if you are using cURL.
     Alternatives to this approach would be to send your payload with a
     different MIME type (like `application/json`), or to use a different HTTP client.
 
@@ -177,7 +177,7 @@ argument to the AWS Lambda function.
 
 ### Notes
 
-If you do not provide `aws.key` or `aws.secret`, the plugin uses an IAM role inherited from the instance running Kong.
+If you do not provide an `aws.key` and `aws.secret`, the plugin uses an IAM role inherited from the instance running Kong.
 
 First, the plugin will try ECS metadata to get the role. If no ECS metadata is available, the plugin will fall back on EC2 metadata.
 
@@ -187,9 +187,9 @@ First, the plugin will try ECS metadata to get the role. If no ECS metadata is a
 
 When using the AWS Lambda plugin, the response will be returned by the plugin
 itself without proxying the request to any upstream service. This means that
-a Service's `host`, `port`, `path` properties will be ignored, but must still
-be specified for the entity to be validated by Kong. The `host` property in
-particular must either be an IP address, or a hostname that gets resolved by
+a Service's `host`, `port`, and `path` properties will be ignored, but must
+still be specified for the entity to be validated by Kong. The `host` property
+in particular must either be an IP address, or a hostname that gets resolved by
 your nameserver.
 
 #### Response plugins
@@ -203,31 +203,35 @@ from being executed. We are planning to remove this limitation in the future.
 [faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
 
 ---
-### Step By Step Guide
+### Step-By-Step Guide
 
-#### The Steps
-1. Access to AWS Console as user allowed to operate with lambda functions and create user and roles.
+#### Steps
+1. Access to AWS Console as a user who is allowed to operate with lambda
+functions, and create users and roles.
 2. Create an Execution role in AWS.
 3. Create a user that will invoke the function via Kong and test it.
 4. Create a Service and Route in Kong, add the aws-lambda plugin linked to
-our AWS function and execute it.
+our AWS function, and execute it.
 
 #### Configure
 
-1. First, let's create an execution role called `LambdaExecutor` for our lambda function.
+1. First, let's create an execution role called `LambdaExecutor` for our
+lambda function.
 
-    In IAM Console, create a new Role choosing the AWS Lambda service. There
+    In the IAM Console, create a new Role choosing the AWS Lambda service. There
     will be no policies as our function in this example will simply execute
-    itself giving us back a hardcoded JSON as response without accessing other
+    itself, giving us back a hardcoded JSON response without accessing other
     AWS resources.
 
-2. Now let's create a user named `KongInvoker`, used by our Kong API gateway to invoke the function.
+2. Now let's create a user named `KongInvoker`, used by our Kong API gateway
+to invoke the function.
 
-    In IAM Console, create a new user, must be provided to it programmatic access via Access and Secret keys; then will attach existing policies directly particularly the AWSLambdaRole predefined. Once the user creation is confirmed, store the Access Key and Secret Key in a safe place.
+    In the IAM Console, create a new user, must be provided to it programmatic access via Access and Secret keys; then will attach existing policies directly particularly the AWSLambdaRole predefined. After the user creation is confirmed, store the Access Key and Secret Key in a safe place.
 
-3. Now we need to create the lambda function itself; we will do so in N.Virginia Region (code us-east-1).
+3. Now we need to create the lambda function itself; we will do so in
+N.Virginia Region (code us-east-1).
 
-    In Lambda Management, create a new function Mylambda. There will be no blueprint as we are going to paste the code below (which is an example code snippet); for the execution role, let's choose an existing role specifically `LambdaExecutor` created previously.
+    In Lambda Management, create a new function `Mylambda`. There will be no blueprint because we are going to paste the code below (which is an example code snippet). Let's choose an existing role for the execution role, specifically `LambdaExecutor` created previously.
 
     **Note**: The following code snippet is only an example. The Kong AWS Lambda plugin supports all runtimes provided by AWS. See the list of runtimes in the **AWS Lambda** > **Functions** > **Create function** dialog.
 
@@ -244,7 +248,8 @@ our AWS function and execute it.
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Finally we set up a Service and Route in Kong and link it to the function just created.
+4. Finally, we set up a Service and Route in Kong and link it to the function
+just created.
 
 {% tabs %}
 {% tab With a database %}
@@ -255,7 +260,7 @@ curl -i -X POST http://{kong_hostname}:8001/services \
 --data 'url=http://localhost:8000' \
 ```
 
-The Service doesn't really need a real `url` since we're not going to have an HTTP call to upstream but rather a response generated by our function.
+The Service doesn't really need a real `url` because we're not going to have an HTTP call to an Upstream but rather a response generated by our function.
 
 Also create a Route for the Service:
 
@@ -277,7 +282,7 @@ curl -i -X POST http://{kong_hostname}:8001/services/lambda1/plugins \
 
 {% tab Without a database %}
 
-Add a Service, Route and Plugin to the declarative config file:
+Add a Service, Route, and Plugin to the declarative config file:
 
 ``` yaml
 services:
@@ -300,7 +305,8 @@ plugins:
 
 {% endtabs %}
 
-Once everything is created, call the Service and verify the correct invocation, execution and response:
+After everything is created, call the Service and verify the correct
+invocation, execution, and response:
 
 ```bash
 curl http://{kong_hostname}:8000/lambda1
