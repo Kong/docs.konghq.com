@@ -38,13 +38,13 @@ params:
       default:
       value_in_examples:
       description: |
-        One of more request per window to apply
+        One or more requests-per-window limits to apply.
     - name: window_size
       required:
       default:
       value_in_examples:
       description: |
-        One more more window sizes to apply (defined in seconds)
+        One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
       required:
       default: consumer
@@ -60,7 +60,7 @@ params:
       default: kong_rate_limiting_counters
       value_in_examples:
       description: |
-        The shared dictionary where counters will be stored until the next sync cycle
+        The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required:
       default:
@@ -81,25 +81,25 @@ params:
       default: cluster
       value_in_examples:
       description: |
-        The sync strategy to use; `cluster` and `redis` are supported
+        The sync strategy to use; `cluster` and `redis` are supported.
     - name: redis.host
       required: semi
       default:
       value_in_examples:
       description: |
-        Host to use for Redis connection when the `redis` strategy is defined
+        Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
       description: |
-        Port to use for Redis connection when the `redis` strategy is defined
+        Port to use for Redis connection when the `redis` strategy is defined.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
       description: |
-        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
@@ -111,7 +111,7 @@ params:
       default: 0
       value_in_examples:
       description: |
-        Database to use for Redis connection when the `redis` strategy is defined
+        Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
       default:
@@ -149,13 +149,15 @@ params:
       default: sliding
       value_in_examples:
       description: |
-        This sets the time window to either `sliding` or `fixed`
+        This sets the time window to either `sliding` or `fixed`.
   extra: |
-    **Note:  Redis configuration values are ignored if the `cluster` strategy is used.**
+    **Notes:**  
+    
+     * Redis configuration values are ignored if the `cluster` strategy is used.
 
-    **Note: PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
+     * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.
 
-    **Note: The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors**
+     * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
 
 ---
 
@@ -164,10 +166,13 @@ params:
 An arbitrary number of limits/window sizes can be applied per plugin instance. This allows users to create multiple rate limiting windows (e.g., rate limit per minute and per hour, and/or per any arbitrary window size); because of limitation with Kong's plugin configuration interface, each *nth* limit will apply to each *nth* window size. For example:
 
 ```bash
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
+$ curl -X POST http://kong:8001/services/{service}/plugins \
   --data name=rate-limiting-advanced \
-  --data config.limit=10,100 \
-  --data config.window_size=60,3600 \
+  --data config.limit=10 \
+  --data config.limit=100 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
   --data config.sync_rate=10
 ```
+
 This will apply rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds, or when 100 hits have been counted in 3600 seconds. For more information, please see [Enterprise Rate Limiting Library](https://docs.konghq.com/enterprise/references/rate-limiting/).
