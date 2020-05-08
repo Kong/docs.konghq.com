@@ -2,14 +2,6 @@
 title: Kong for Kubernetes deployment options
 ---
 
-- [Deployment options](#deployment-options)
-- [DB-less versus database-backed deployments](#db-less-versus-database-backed-deployments)
-- [Choosing between DB-less or database-backed deployments](#choosing-between-db-less-or-database-backed-deployments)
-  * [Feature availability](#feature-availability)
-  * [Plugin compatibility](#plugin-compatibility)
-  * [Manual configuration](#manual-configuration)
-- [Migrating between deployment types](#migrating-between-deployment-types)
-
 ## Deployment options
 
 Kong for Kubernetes provides two options for its Kong Enterprise container
