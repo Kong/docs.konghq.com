@@ -75,21 +75,21 @@ functionality in these features is different from traditional deployments:
 * Users will not typically create proxy configuration through Kong Manager;
   proxy configuration is normally managed by the controller and users provide
   configuration via Kubernetes resources.
-* Because the controller creates proxy configuration on behalf of users, users
-  do not need to interact with the Admin API directly. Typical Kong for
-  Kubernetes deployments do not expose the Admin API to protect it in lieu of
-  RBAC: only the controller can access it. Kubernetes-level RBAC rules and
-  namespaces should be used to restrict what configuration administrators can
-  create.
+* Because the controller creates proxy configuration on behalf of users, you do
+  not need to interact with the Admin API directly. Kong's own RBAC
+  implementation isn't required for typical Kong for Kubernetes deployments, as
+  they do not expose the Admin API; only the controller can access it.
+  Kubernetes-level RBAC rules and namespaces should be used to restrict what
+  configuration administrators can create.
 * Ingress controller instances create configuration in a single workspace only
   (`default` by default). To use multiple workspaces, deploy
   multiple controller instances, setting the `CONTROLLER_KONG_WORKSPACE`
   environment variable to the workspace that instance should use. These
-  instances should set `CONTROLLER_INGRESS_CLASS` to unique values, to avoid
-  creating duplicate configuration in workspaces. Note that if controller
-  instances are deployed outside the Kong pod the Admin API must be exposed,
-  and users should enable RBAC with workspace admin users for the controllers.
-  Set `CONTROLLER_KONG_ADMIN_TOKEN` to the RBAC user's token.
+  instances should set `CONTROLLER_INGRESS_CLASS` to unique values for each
+  instance to avoid creating duplicate configuration in workspaces. Note that
+  if controller instances are deployed outside the Kong pod the Admin API must
+  be exposed, and users should enable RBAC with workspace admin users for the
+  controllers.  Set `CONTROLLER_KONG_ADMIN_TOKEN` to the RBAC user's token.
 * The controller cannot manage configuration for the features above: it cannot
   create workspaces, Dev Portal content, admins, etc. These features must be
   configured manually through the Admin API.
