@@ -4,7 +4,6 @@ publisher: CriticalBlue Ltd
 
 categories:
   - authentication
-  - security
 
 type: integration
 
@@ -26,10 +25,6 @@ kong_version_compatibility:
       - 0.15.x
       - 0.14.x
       - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
-    incompatible:
       - 0.12.x
       - 0.11.x
       - 0.10.x
