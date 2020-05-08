@@ -313,6 +313,8 @@
       url: /kong-for-kubernetes/install
     - text: Using Kong for Kubernetes
       url: /kong-for-kubernetes/using-kong-for-kubernetes
+    - text: Deployment Options
+      url: /kong-for-kubernetes/deployment-options
     - text: Changelog
       url: /kong-for-kubernetes/changelog
 
