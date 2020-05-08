@@ -6,8 +6,8 @@ version: 1.0.0
 desc: Self-service portal developer credentials against specific services.
 description: |
   Applications allow registered developers on Kong Developer Portal to
-  authenticate with OAuth against a Service on Kong. Admins can selectively
-  admit access to Services using Kong Manager.
+  authenticate with OAuth against a Service on Kong. Admins can
+  selectively admit access to Services using Kong Manager.
 
 type: plugin
 enterprise: true
@@ -17,15 +17,9 @@ categories:
 kong_version_compatibility: # required
   #community_edition: # optional
     #compatible:
-    #incompatible:
   enterprise_edition: # optional
     compatible:
     - 1.5.x
-
-#########################
-# PLUGIN-ONLY SETTINGS below this line
-# If your extension is a plugin, ALL of the following lines must be completed.
-# If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
 params:
   name: application-registration
@@ -34,20 +28,19 @@ params:
   route_id: false
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: no
-  dbless_explanation:
   config:
     - name: config.auth_header_name
       required: false
       default: "`authorization`"
       description: |
         The name of the header that is supposed to carry the access token.
-        Default: `authorization`.
     - name: config.auto_approve
       required: false
       default: false
       value_in_examples:
       description:
-        If enabled, all new Service Contracts requests are automatically approved. Otherwise, Dev Portal admins must manually approve requests.  
+        If enabled, all new Service Contracts requests are automatically
+        approved. Otherwise, Dev Portal admins must manually approve requests.
     - name: config.description
       required: false
       default: none
