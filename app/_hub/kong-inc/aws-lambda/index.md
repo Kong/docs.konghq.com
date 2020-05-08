@@ -206,11 +206,13 @@ from being executed. We are planning to remove this limitation in the future.
 ### Step-By-Step Guide
 
 #### Steps
-1. Access to AWS Console as a user who is allowed to operate with lambda
-functions, and create users and roles.
-2. Create an Execution role in AWS.
-3. Create a user that will invoke the function via Kong and test it.
-4. Create a Service and Route in Kong, add the aws-lambda plugin linked to
+
+You must have access to the AWS Console as a user who is allowed to operate
+with lambda functions, and create users and roles.
+
+1. Create an Execution role in AWS.
+2. Create a user that will invoke the function via Kong and test it.
+3. Create a Service and Route in Kong, add the aws-lambda plugin linked to
 our AWS function, and execute it.
 
 #### Configure
@@ -226,10 +228,10 @@ lambda function.
 2. Now let's create a user named `KongInvoker`, used by our Kong API gateway
 to invoke the function.
 
-    In the IAM Console, create a new user, must be provided to it programmatic access via Access and Secret keys; then will attach existing policies directly particularly the AWSLambdaRole predefined. After the user creation is confirmed, store the Access Key and Secret Key in a safe place.
+    In the IAM Console, create a new user. Programmatic access must be provided to the user via Access and Secret keys. Then attach existing policies directly, particularly the predefined `AWSLambdaRole`. After the user creation is confirmed, store the Access Key and Secret Key in a safe place.
 
 3. Now we need to create the lambda function itself; we will do so in
-N.Virginia Region (code us-east-1).
+N. Virginia Region (code `us-east-1`).
 
     In Lambda Management, create a new function `Mylambda`. There will be no blueprint because we are going to paste the code below (which is an example code snippet). Let's choose an existing role for the execution role, specifically `LambdaExecutor` created previously.
 
@@ -248,8 +250,8 @@ N.Virginia Region (code us-east-1).
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Finally, we set up a Service and Route in Kong and link it to the function
-just created.
+4. Finally, we set up a Service and Route in Kong and link it to the
+`Mylambda` function we just created.
 
 {% navtabs %}
 {% navtab With a database %}
