@@ -42,7 +42,7 @@ params:
       description: |
         List of "CA Certificates" object to use as Certificate Authorities (CA) when validating client certificate. At least one is required but can specify as many as needed. The value of this array comprises of primary keys for the "Certificate Authority" object.
     - name: skip_consumer_lookup
-      default: "`true`"
+      default: "`false`"
       description: |
         Skip consumer look once certificate is trusted against the configured CA list.
     - name: authenticated_group_by
