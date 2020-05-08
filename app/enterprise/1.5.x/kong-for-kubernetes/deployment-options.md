@@ -73,9 +73,8 @@ if you want to use:
 Because Kong for Kubernetes is configured by the ingress controller, some
 functionality in these features is different from traditional deployments:
 
-* Users will not typically create proxy configuration through Kong Manager;
-  proxy configuration is normally managed by the controller and users provide
-  configuration via Kubernetes resources.
+* Instead of using Kong Manager, proxy configuration is normally managed by the
+  controller, and you would provide configuration via Kubernetes resources.
 * Because the controller creates proxy configuration on behalf of users, you do
   not need to interact with the Admin API directly. Kong's own RBAC
   implementation isn't required for typical Kong for Kubernetes deployments, as
@@ -97,39 +96,10 @@ functionality in these features is different from traditional deployments:
 
 ### Plugin compatibility
 
-Not all plugins are compatible with DB-less operation, and as such not all
-plugins are available in the `kong-enterprise-k8s` image. In addition to the
-[compatible core plugins][core-plugins], the `kong-enterprise-k8s` image
-includes the following Enterprise plugins:
-
-* canary release
-* collector
-* degraphql
-* forward-proxy
-* graphql-proxy-cache-advanced
-* graphql-rate-limiting-advanced
-* jwt-signer
-* kafka-log
-* kafka-upstream
-* ldap-auth-advanced
-* mtls-auth
-* oauth2-introspection
-* openid-connect
-* proxy-cache-advanced
-* rate-limiting-advanced
-* request-validator
-* response-transformer-advanced
-* vault-auth
-
-The following Enterprise plugins are not included:
-
-* application-registration (only used with Dev Portal)
-* exit-transformer
-* key-auth-enc
-* request-transformer-advanced (request-transformer now has the same feature
-  set)
-* route-transformer-advanced
-* statsd-advanced (only used with Vitals)
+Not all plugins are compatible with DB-less operation. and as such not all
+plugins are available in the `kong-enterprise-k8s` image. Review the [list of
+supported plugins][supported-plugins] to see if you require a plugin that needs
+a database.
 
 Third-party plugins are generally compatible with DB-less as long as they do
 not create custom entities (i.e. they do not add new entities that users can
@@ -178,6 +148,6 @@ migrating in the opposite direction.
 
 [k8s-bintray]: https://bintray.com/kong/kong-enterprise-k8s
 [enterprise-bintray]: https://bintray.com/kong/kong-enterprise-edition-docker
-[core-plugins]: /latest/db-less-and-declarative-config/#plugin-compatibility
 [admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/deployment/admission-webhook.md
 [route-validation]: /enterprise/1.5.x/property-reference/#route_validation_strategy
+[supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/references/plugin-compatibility.md
