@@ -52,7 +52,7 @@ params:
       default:
       value_in_examples:
       description: |
-        The value to append to the Authorization header when requesting the introspection endpoint
+        The value to set as the `Authorization` header when querying the introspection endpoint. This depends on the OAuth 2.0 server, but usually is the `client_id` and `client_secret` as a Base64-encoded Basic Auth string (`Basic MG9hNWl...`).
     - name: token_type_hint
       required: false
       default:
