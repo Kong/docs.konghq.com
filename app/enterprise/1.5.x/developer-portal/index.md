@@ -1,9 +1,9 @@
 ---
 title: Kong Developer Portal
-redirect_from:
-- "/enterprise/1.5.x/developer-portal/overview"
-- "/enterprise/latest/developer-portal/overview"
 toc: false
+redirect_from:
+  - /enterprise/1.5.x/developer-portal/overview/
+  - /enterprise/latest/developer-portal/overview/
 book: developer-portal
 chapter: 1
 ---
