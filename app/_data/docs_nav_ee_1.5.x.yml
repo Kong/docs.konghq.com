@@ -243,8 +243,6 @@
   items:
     - text: Introduction
       url: /developer-portal/
-    - text: Overview
-      url: /developer-portal/overview
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
     - text: Migrating to 1.5
