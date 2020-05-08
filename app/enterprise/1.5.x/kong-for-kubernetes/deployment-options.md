@@ -40,9 +40,10 @@ deployments, it is not necessary to run an additional database, reducing
 maintenance and infrastructure requirements.
 
 While Kong for Kubernetes does not require a database, it is fully compatible
-with PostgreSQL and requires it for some features. etcd remains the source of
-truth, but the controller can translate Kubernetes resources from etcd into either
-DB-less or database configuration.
+with PostgreSQL and requires it for some features. etcd still remains the
+source of truth in database-backed deployments: the controller translate
+Kubernetes resources from etcd into Kong configuration and inserts them into
+the database via the Admin API.
 
 ## Choosing between DB-less or database-backed deployments
 
@@ -150,8 +151,17 @@ configuration with its tag, other configuration is left as-is.
 
 Although database-backed deployments can use controller-generated and
 manually-added configuration simultaneously, Kong's recommended best practice
-is to still manage as much configuration through Kubernetes resources as
-possible, primarily using manual configuration for temporary or test resources.
+is to manage as much configuration through Kubernetes resources as possible.
+Using both controller-managed and manual configuration can result in conflicts
+between the two, and conflicts will prevent the controller from applying its
+configuration. To minimize this risk:
+
+* Use the [admission webhook][admission-webhook]
+  to reject Kubernetes resources that conflict with other configuration, or are
+  otherwise invalid.
+* Manually create configuration in a workspace that is not managed by the
+  controller. This avoids most conflicts, but not all: routes may still
+  conflict depending on your [route validation][route-validation] setting.
 
 ## Migrating between deployment types
 
@@ -169,3 +179,5 @@ migrating in the opposite direction.
 [k8s-bintray]: https://bintray.com/kong/kong-enterprise-k8s
 [enterprise-bintray]: https://bintray.com/kong/kong-enterprise-edition-docker
 [core-plugins]: /latest/db-less-and-declarative-config/#plugin-compatibility
+[admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/deployment/admission-webhook.md
+[route-validation]: /enterprise/1.5.x/property-reference/#route_validation_strategy
