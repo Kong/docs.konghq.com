@@ -3,6 +3,7 @@ title: Kong Developer Portal
 toc: false
 book: developer-portal
 chapter: 1
+redirect_from: "/enterprise/1.5.x/developer-portal/overview"
 ---
 
 ![Dev Portal](https://doc-assets.konghq.com/1.3/dev-portal/dev-portal-homepage.png)
