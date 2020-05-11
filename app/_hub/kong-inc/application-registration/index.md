@@ -9,8 +9,8 @@ description: |
   authenticate with OAuth against a Service on Kong. Admins can
   selectively admit access to Services using Kong Manager.
 
-type: plugin
 enterprise: true
+type: plugin
 categories:
   - authentication
 
@@ -26,6 +26,7 @@ params:
   route_id: false
   protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: no
+
   config:
     - name: config.auth_header_name
       required: false
@@ -125,20 +126,5 @@ params:
     - Client Credentials
     - Implicit Grant
     - Password Grant
-###############################################################################
-# END YAML DATA
-# Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
-#
-# The remainder of this file is for free-form description, instruction, and
-# reference matter.
-# If you include headers, your headers MUST start at Level 2 (parsing to
-# h2 tag in HTML). Heading Level 2 is represented by ## notation
-# preceding the header text. Subsequent headings,
-# if you choose to use them, must be properly nested (eg. heading level 2 may
-# be followed by another heading level 2, or by heading level 3, but must NOT be
-# followed by heading level 4)
-###############################################################################
-# BEGIN MARKDOWN CONTENT
----
 
-## Example: testing 123
+---
