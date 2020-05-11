@@ -21,8 +21,9 @@ portal_session_conf = {
     "cookie_name":"<SET_COOKIE_NAME>",
     "storage":"kong",
     "cookie_lifetime":<NUMBER_OF_SECONDS_TO_LIVE>,
-    "cookie_renew":<NUMBER_OF_SECONDS_LEFT_TO_RENEW>
-    "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>
+    "cookie_renew":<NUMBER_OF_SECONDS_LEFT_TO_RENEW>,
+    "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>,
+    "cookie_domain":"<SET_DEPENDING_ON_DOMAIN>",
     "cookie_samesite":"<SET_DEPENDING_ON_DOMAIN>"
 }
 ```
