@@ -1,7 +1,7 @@
 name: Build and Test
 on:
   pull_request:
-    types: [review_requested, ready_for_review]
+    types: ready_for_review
 jobs:
   build:
     runs-on: ubuntu-latest
