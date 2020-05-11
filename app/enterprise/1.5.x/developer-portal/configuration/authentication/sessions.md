@@ -2,7 +2,7 @@
 title: Sessions in the Dev Portal
 ---
 
-⚠️**Important:** Portal Session Configuration does not apply when using [OpenID Connect](/hub/kong-inc/openid-connect) for Dev Portal authentication. The following information assumes that the Dev Portal is configured with `portal_auth` other than `openid-connect`, for example `key-auth` or `basic-auth`.
+⚠️**Important:** Portal Session Configuration does not apply when using [OpenID Connect](/hub/kong-inc/openid-connect) for Dev Portal authentication. The following information assumes that the Dev Portal is configured with `portal_auth` other than `openid-connect`; for example, `key-auth` or `basic-auth`.
 
 ## How does the Sessions Plugin work in the Dev Portal?
 
@@ -39,6 +39,7 @@ portal_session_conf = {
    the Plugin renews the session; 600 by default.
 * `"cookie_secure":<SET_DEPENDING_ON_PROTOCOL>`: `true` by default. See [Session Security](#session-security) for
     exceptions.
+* `"cookie_domain":<SET_DEPENDING_ON_DOMAIN>:` Optional. See [Session Security](#session-security) for exceptions.
 * `"cookie_samesite":"<SET_DEPENDING_ON_DOMAIN>"`: `"Strict"` by default. See [Session Security](#session-security) for
     exceptions.
 
@@ -60,6 +61,8 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 
 ## Example Configurations
 
+### HTTPS and same domain
+
 If using HTTPS and hosting Dev Portal API and the Dev Portal GUI from the same domain, the following configuration could be used for Basic Auth:
 
 ```
@@ -68,6 +71,7 @@ portal_session_conf = {
     "cookie_name":"$4m04$"
     "secret":"change-this-secret"
     "storage":"kong"
+    "cookie_secure":true
 }
 ```
 
@@ -80,5 +84,26 @@ portal_session_conf = {
     "secret":"change-this-secret"
     "storage":"kong"
     "cookie_secure":false
+}
+```
+
+### Domains
+
+There is a dependency that the dev portal `portal_api_url` and the dev
+portal api `portal_gui_host` need to share a domain or subdomain. The following
+example assumes subdomains of `portal.xyz.com` and `portalapi.xyz.com`.
+Set a subdomain such as ``"cookie_domain": ".xyz.com"`` and set
+`cookie_samesite` to `off`.
+
+```
+portal_auth = basic-auth
+portal_session_conf = {
+    "storage":"kong"
+    "cookie_name":"portal_session"
+    "cookie_domain": ".xyz.com"
+    "secret":"super-secret"
+    "cookie_secure":false
+    "cookie_lifetime":31557600,
+    "cookie_samesite":"off"
 }
 ```
