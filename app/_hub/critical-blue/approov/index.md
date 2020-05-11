@@ -3,7 +3,7 @@ name: Approov Mobile App Attestation
 publisher: CriticalBlue Ltd
 
 categories:
-  - authentication
+  - security
 
 type: integration
 
