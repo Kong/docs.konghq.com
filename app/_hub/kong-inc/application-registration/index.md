@@ -3,7 +3,7 @@ name: Portal Application Registration
 publisher: Kong Inc.
 version: 1.0.0
 
-desc: Self-service portal developer credentials against specific services.
+desc: Allow portal developers to register applications against services
 description: |
   Applications allow registered developers on Kong Developer Portal to
   authenticate with OAuth against a Service on Kong. Admins can
@@ -14,10 +14,8 @@ enterprise: true
 categories:
   - authentication
 
-kong_version_compatibility: # required
-  #community_edition: # optional
-    #compatible:
-  enterprise_edition: # optional
+kong_version_compatibility:
+  enterprise_edition:
     compatible:
     - 1.5.x
 
@@ -38,25 +36,25 @@ params:
       required: false
       default: false
       value_in_examples:
-      description:
+      description: |
         If enabled, all new Service Contracts requests are automatically
         approved. Otherwise, Dev Portal admins must manually approve requests.
     - name: config.description
       required: false
       default: none
       value_in_examples:
-      description:
+      description: |
         Description displayed in information about a Service in the Developer Portal.
     - name: config.display_name
       required: true
-      default: none
+      default:
       value_in_examples:
-      description:
+      description: |
         Display name used for a Service in the Developer Portal.
     - name: config.enable_authorization_code
       required: false
       default: "`false`"
-      value_in_examples: true
+      value_in_examples:
       description: |
         An optional boolean value to enable the three-legged Authorization
         Code flow ([RFC 6742 Section 4.1](https://tools.ietf.org/html/rfc6749#section-4.1)).
@@ -83,14 +81,14 @@ params:
         required: true
         default: "`false`"
         value_in_examples:
-        description:
+        description: |
           An optional boolean value telling the plugin to require at least
           one scope to be authorized by the end user.
       - name: config.provision_key
         required: true
-        default: none
+        default:
         value_in_examples:
-        description:
+        description: |
           The Provision Key is automatically generated on creation. No input
           is required. Used by the Resource Owner Password Credentials Grant
           (Password Grant) flow.
@@ -98,7 +96,7 @@ params:
         required: true
         default: 1209600
         value_in_examples: 1209600
-        description:
+        description: |
           An optional integer value telling the plugin how many seconds a
           token/refresh token pair is valid for, and can be used to generate
           a new access token. Default value is two weeks. Set to `0` to
@@ -107,21 +105,26 @@ params:
         required: semi
         default:
         value_in_examples:
-        description:
+        description: |
           Describes an array of scope names that will be available to the
           end user.
       - name: config.token_expiration
         required: false
         default: 7200
         value_in_examples: 7200
-        description:
+        description: |
           An optional integer value telling the plugin how many seconds a token
           should last, after which the client will need to refresh the token.
           Set to `0` to disable the expiration.
 
-  #  - name: # add additional setting blocks as needed, each demarcated by -
-  extra:
-    # This is for additional remarks about your configuration.
+  extra: |
+    When configuring the plugin, at least one of the following OAuth2
+    auth flows must be enabled:
+
+    - Authorization Code
+    - Client Credentials
+    - Implicit Grant
+    - Password Grant
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
@@ -139,11 +142,3 @@ params:
 ---
 
 ## Example: testing 123
-
-When configuring the plugin, at least one of the following OAuth2
-auth flows must be enabled:
-
-- Authorization Code
-- Client Credentials
-- Implicit Grant
-- Password Grant
