@@ -15,7 +15,7 @@ Before starting installation, be sure you have the following:
 - **Kubernetes cluster**: Kong is compatible with all distributions of Kubernetes. You can use a [Minikube](https://kubernetes.io/docs/setup/minikube/), [GKE](https://cloud.google.com/kubernetes-engine/), or [OpenShift](https://www.openshift.com/products/container-platform) cluster.
 - **kubectl or oc access**: You should have `kubectl` or `oc` (if working with OpenShift) installed and configured to communicate to your Kubernetes cluster.
 - A valid Kong Enterprise License
-  * If you have a license, continue to [Set Up Kong Enterprise License](#set-up-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
+  * If you have a license, continue to [Set Up Kong Enterprise License](#step-2-set-up-kong-enterprise-license) below. If you need your license file information, contact Kong Support.
   * If you need a license, request a trial license through our [Request Demo](https://konghq.com/request-demo/) page.
   * Or, try out Kong for Kubernetes Enterprise using a live tutorial at [https://kubecon.konglabs.io/](https://kubecon.konglabs.io/)
 - Kong Enterprise Docker registry access on Bintray.
