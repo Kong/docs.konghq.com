@@ -2,7 +2,8 @@
 title: Add a Workspace
 toc: false
 redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/add-workspace
+  - /enterprise/1.5.x/getting-started/add-workspace
+  - /enterprise/latest/getting-started/add-workspace
 ---
 
 ### Introduction

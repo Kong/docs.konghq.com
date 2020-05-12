@@ -3,6 +3,37 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.5.0.2
+**Release Date** 2020/04/28
+
+### Fixes
+
+#### Kong Gateway Community
+* Fixed an issue where the frequent Target CRUD could result in a broken load balancer. 
+
+#### Kong Manager
+* Fixed the sorting order of Routes.
+* Fixed an issue where editing a Developer meta field could cause the custom field name to revert to the default value.
+* Fixed an issue where listing Developers and Files only showed the first page of results.
+
+## 1.5.0.1
+**Release Date:** 2020/04/16
+
+### Fixes
+
+#### Plugins
+* Kong OpenID Connect Library
+  * Changes  `client_secret_jwk ` and  `private_key_jwt ` to not pass the rfc7521 optional  `client_id ` as it was causing a problem with Okta.
+* OpenID Connect
+  * Fixes `openid_connect/jwks` to not use `err_t` with JWKS custom DAO that is not returning the `err_t`.
+  * Fixes JWKS custom DAO to not return cache hit level as a third return value on errors. Previously, it was sometimes inaccurately treated as `err_t`.
+  * Adds a teardown migration to create the `oic_jwks` row, so that it is not needed to create on init_worker.
+* Request Transformer Advanced
+  * Fixes bug when adding a header with the same name as a removed one.
+  * Improves performance by not inheriting from the BasePlugin class.
+  * Converts the plugin away from deprecated functions.
+ 
+
 ## 1.5.0.0
 **Release Date:** 2020/04/09
 
@@ -65,6 +96,7 @@ layout: changelog
 * Fixes a bug where a route collision was not detected when the content type of a POST request was sent as `application/x-www-form-urlencoded`
 * Fixes a bug where a route collision was not detected when a PATCH request was sent to the `/services/service_id/routes/route_id` endpoint
 * Added headers and `snis` route collision detection capabilities
+* Fixes an inconsistency where it was still possible to execute `db_export` despite it not being supported in Kong Enterprise
 
 #### Kong Manager
 * Fixes a bug that prevented updating a Service with a tag

@@ -1,7 +1,6 @@
 ---
 title: Enable a Plugin
-redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/enable-plugin
+redirect_from: "/enterprise/1.5.x/getting-started/enable-plugin"
 ---
 
 ### Introduction

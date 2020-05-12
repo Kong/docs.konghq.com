@@ -29,6 +29,8 @@
           url: /deployment/installation/amazon-linux-2
         - text: Red Hat Enterprise Linux
           url: /deployment/installation/rhel
+        - text: OpenShift
+          url: /kong-for-kubernetes/install
     - text: Default Ports
       url: /deployment/default-ports
     - text: Resource Sizing Guidelines
@@ -51,6 +53,8 @@
           url: /db-encryption
         - text: Start Kong Enterprise Securely
           url: /start-kong-securely
+        - text: Kong Security Update Process
+          url: /kong-security-update-process
     - text: Upgrade and Migration
       url: /deployment/migrations
     - text: Kong Cloud
@@ -203,7 +207,7 @@
         - text: Workspaces in Kong Manager
           url: /kong-manager/administration/workspaces/workspaces
         - text: Add a Workspace
-          url: /kong-manager/administration//workspaces/add-workspace
+          url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
           url: /kong-manager/administration/rbac
         - items:
@@ -239,10 +243,10 @@
   items:
     - text: Introduction
       url: /developer-portal/
-    - text: Overview
-      url: /developer-portal/overview
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
+    - text: Migrating to 1.5
+      url: /developer-portal/migrating-to-1.5
     - text: Migrating from Legacy
       url: /developer-portal/legacy-migration
     - text: Structure and File Types
@@ -298,6 +302,26 @@
       items:
         - text: CLI
           url: /developer-portal/helpers/cli
+
+- title: Kong Studio
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  url: /studio/
+  items:
+    - text: Changelog
+      url: https://insomnia.rest/changelog/
+      absolute_url: true
+    - text: Getting Started
+      url: /studio/download-install
+      items:
+        - text: Download and Install
+          url: /studio/download-install
+        - text: Using Insomnia Designer
+          url: https://support.insomnia.rest/article/94-introduction/
+          absolute_url: true
+        - text: Deploy to Dev Portal
+          url: /studio/deploy-to-dev-portal
+        - text: Generate Configuration
+          url: /studio/dec-conf-studio
 
 - title: Kong for Kubernetes Enterprise
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
