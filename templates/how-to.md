@@ -11,14 +11,13 @@ accomplish by following the steps.
 
 ### Prerequisites
 
-- A bulleted list of everything a user needs to complete the How-to guide
+- A bulleted list of everything a user needs to complete the how-to guide
 - May be broken into multiple sections for additional clarity
 
 **Prereq Section 1** (optional)
 
 - prereq
 - prereq
-
 
 **Prereq Section 2** (optional)
 
