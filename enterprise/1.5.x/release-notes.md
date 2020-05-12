@@ -30,9 +30,9 @@ Apart from the highlighted features mentioned above, this version of Kong Enterp
 * IPv6 support for the IP Restriction plugin
 * Several other plugin improvements and bug fixes as defined in the Changelog.
 
-## New or Updated in the Documentation
+## What's New in the Documentation
 
-New or updated features in the user documentation include:
+In addition to features listed above, changes to the user documentation include:
 
 * [Getting Started Guide](https://docs.konghq.com/getting-started-guide/latest/overview/) walks you through Kong concepts and foundational API gateway features and capabilities.
 * [Introduction to Kong Enterprise](https://docs.konghq.com/enterprise/1.5.x/introduction/) gives an overview of features and architecture. 
