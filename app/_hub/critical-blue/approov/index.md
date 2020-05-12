@@ -7,17 +7,16 @@ categories:
 
 type: integration
 
-desc: Approov ensures that only genuine and unmodified instances of your mobile app can connect to your server or cloud backend.
+desc: Approov ensures that only genuine and unmodified instances of your mobile app can connect to your server or cloud backend
 
 description: |
-With Approov you control what can access your mobile app backend API in a secure and easily deployable manner. Our customers confidently allow API access from iOS and Android devices knowing that Approov will only authenticate legitimate instances of your mobile apps without relying on embedded secrets or keys stored in the app itself.
+  With Approov you control what can access your mobile app backend API in a secure and easily deployable manner. Our customers confidently allow API access from iOS and Android devices knowing that Approov will only authenticate legitimate instances of your mobile apps without relying on embedded secrets or keys stored in the app itself.
 
-This capability prevents misuse of your API by either automated software agents or unauthorized third-party apps, providing the basis for a range of API access management policies.
+  This capability prevents misuse of your API by either automated software agents or unauthorized third-party apps, providing the basis for a range of API access management policies.
 
 support_url: https://approov.zendesk.com/hc/en-gb/requests/new
 
 source_url: https://github.com/approov/kong_approov-plugin
-
 
 kong_version_compatibility:
   community_edition:
