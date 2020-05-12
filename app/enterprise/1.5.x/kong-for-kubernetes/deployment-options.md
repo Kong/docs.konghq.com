@@ -96,7 +96,7 @@ functionality in these features is different from traditional deployments:
 
 ### Plugin compatibility
 
-Not all plugins are compatible with DB-less operation. and as such not all
+Not all plugins are compatible with DB-less operation, therefore not all
 plugins are available in the `kong-enterprise-k8s` image. Review the [list of
 supported plugins][supported-plugins] to see if you require a plugin that needs
 a database.
