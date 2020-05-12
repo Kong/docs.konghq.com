@@ -157,15 +157,14 @@ In the following steps, replace `<your-password>` with a secure password.
 
 2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
 
-    Parameter | Value  
-    ----------|-------
-    `env.database` | `"postgres"` or `"cassandra"`
-    `env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`.
-    `env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`.
-    `image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition`.
-    `image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.2-alpine"`.
-    `ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you
-    don't want to install it.
+    |Parameter      | Value                         |
+    |---------------|-------------------------------|
+    |`env.database` | `"postgres"` or `"cassandra"` |
+    |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
+    |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
+    |`image.repository` | The Docker repository. In this case, `kong-docker-kong-enterprise-edition-docker.bintray.io/ kong-enterprise-edition`. |
+    |`image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.2-alpine"`. |
+    |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
 
 3. (Optional) If not using the Kong Ingress Controller, remove the entire section of `Ingress Controller parameters`.
 
@@ -253,15 +252,15 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ helm upgrade my-kong kong/kong --namespace kong --values ~/values.yaml
     ```
 
-6. Once the upgrade is complete, you can log into Kong Manager. Run:
+6. Once the upgrade is complete, run:
     ```
     kubectl get svc -n kong
     ```
 
-    In the output, the IP in the `EXTERNAL_IP` column is your access point for Kong services, including Kong Manager and Kong Dev Portal:
+    In the output, the IP in the `EXTERNAL_IP` column is your access point for Kong features, including Kong Manager and Kong Dev Portal:
 
     ```
-    NAME                          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                         AGE
+    NAME                          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                            AGE
     my-kong-kong-manager          LoadBalancer   10.96.61.116     10.96.61.116    8002:31308/TCP,8445:32420/TCP      24m
     my-kong-kong-portal           LoadBalancer   10.101.251.123   10.101.251.123  8003:31609/TCP,8446:32002/TCP      24m
     ```
@@ -288,15 +287,15 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ helm upgrade  my-kong kong/kong --namespace kong --values ~/values.yaml
     ```
 
-6. Once the upgrade is complete, you can log into Kong Manager. Run:
+6. Once the upgrade is complete, run:
     ```
     oc get svc -n kong
     ```
 
-    In the output, the IP in the `EXTERNAL_IP` column is your access point for Kong services, including Kong Manager and Kong Dev Portal:
+    In the output, the IP in the `EXTERNAL_IP` column is your access point for Kong features, including Kong Manager and Kong Dev Portal:
 
     ```
-    NAME                          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                         AGE
+    NAME                          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                            AGE
     my-kong-kong-manager          LoadBalancer   10.96.61.116     10.96.61.116    8002:31308/TCP,8445:32420/TCP      24m
     my-kong-kong-portal           LoadBalancer   10.101.251.123   10.101.251.123  8003:31609/TCP,8446:32002/TCP      24m
     ```
