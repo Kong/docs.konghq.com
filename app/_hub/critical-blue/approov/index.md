@@ -3,16 +3,16 @@ name: Approov Mobile App Attestation
 publisher: CriticalBlue Ltd
 
 categories:
-  - authentication
+  - security
 
 type: integration
 
-desc: Ensure that only genuine mobile app instances can connect to your server or cloud backend
+desc: Approov ensures that only genuine and unmodified instances of your mobile app can connect to your server or cloud backend
 
 description: |
-  With Approov, you control which apps can access your mobile app backend API in a secure and easily deployable manner. Users can confidently allow API access from iOS and Android devices knowing that Approov will only authenticate legitimate apps and does not rely on app-embedded secrets or keys.
+  With Approov you control what can access your mobile app backend API in a secure and easily deployable manner. Our customers confidently allow API access from iOS and Android devices knowing that Approov will only authenticate legitimate instances of your mobile apps without relying on embedded secrets or keys stored in the app itself.
 
-  This capability prevents the misuse of your API by either automated software agents or unauthorized third-party apps, providing the basis for a range of API access management policies.
+  This capability prevents misuse of your API by either automated software agents or unauthorized third-party apps, providing the basis for a range of API access management policies.
 
 support_url: https://approov.zendesk.com/hc/en-gb/requests/new
 
@@ -24,27 +24,41 @@ kong_version_compatibility:
       - 1.5.x
       - 1.4.x
       - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
   enterprise_edition:
     compatible:
       - 1.5.x
+      - 1.3-x
 
 ---
 
-## Using the plugin
+## APPROOV TOKEN PLUGIN
 
-Learn how to integrate [Approov](https://approov.io) with the Kong Gateway by enabling the [Approov Token](https://www.approov.io/docs/latest/approov-usage-documentation/#approov-tokens) check with the native [Kong JWT plugin](https://docs.konghq.com/hub/kong-inc/jwt/), then using this plugin to add the [Approov Token Binding](https://www.approov.io/docs/latest/approov-usage-documentation/#token-binding) check.
+Learn how to integrate [Approov](https://approov.io) in the [Kong API Gateway](https://konghq.com/kong/) by enabling the [Approov Token](https://www.approov.io/docs/latest/approov-usage-documentation/#approov-tokens) check with the native [Kong JWT plugin](https://docs.konghq.com/hub/kong-inc/jwt/), and use this plugin to add the [Approov Token Binding](https://www.approov.io/docs/latest/approov-usage-documentation/#token-binding) check.
 
-### Approv quickstart
+**NOTE:**
+The Kong compatibility list of supported versions for the Approov Token plugin is not exhaustive, previous versions not listed may work, but are untested. Please [contact us](https://info.approov.io/contact-us) in case you need to integrate Approov with untested or incompatible Kong versions.
 
-To quickly get started with integrating Approov in your current Kong Gateway, follow this condensed [guide](https://github.com/approov/blob/master/docs/APPROOV_QUICK_START.md).
+### APPROOV QUICK START
 
-### Aproov demo
+For a quick start of integrating Approov in your current Kong API Gateway please follow this [guide](https://github.com/approov/kong_approov-plugin/blob/master/docs/APPROOV_QUICK_START.md).
 
-This [demo](https://github.com/approov/blob/master/docs/APPROOV_KONG_PLUGIN_DEMO.md) shows both experienced and inexperienced Kong Gateway users how Approov can be integrated in the Kong Gateway, and also includes the Approov Token Binding check, an advanced feature of Approov.
 
-### Kong Admin API
+### APPROOV DEMO
 
-In both the quickstart guide and demo above, we access the Kong Admin API via `curl` requests to set up the Approov token check, just like it is done in the official docs for Kong.
+This [demo](https://github.com/approov/kong_approov-plugin/blob/master/docs/APPROOV_KONG_PLUGIN_DEMO.md) has the goal of showing to both experienced and inexperienced Kong users how Approov can be integrated into the Kong API Gateway, and also includes the Approov Token Binding check, an advanced feature of Approov, that can be used to bind a user authentication token with the Approov token.
 
-- **Step by step:** Read the [Step by Step](https://github.com/approov/blob/master/docs/KONG_ADMIN_API_STEP_BY_STEP.md) guide for learning how to use the [./kong-admin](/bin/kong-admin.sh) helper script. This script wraps the `curl` requests for interacting with the Kong Admin API in order to setup the demo.
-- **Deep dive:** Take a [deep dive](https://github.com/approov/blob/master/docs/KONG_ADMIN_API_DEEP_DIVE.md) to learn how to use the Kong Admin API with raw `curl` requests, and read the detailed explanations for each request.
+
+### KONG ADMIN
+
+In order to setup the Approov Token check in the quick start and in the demo we have used the Kong Admin API via `curl` requests, as in the official Kong docs.
+
+#### Step by Step
+
+Read the [Step by Step](https://github.com/approov/kong_approov-plugin/blob/master/docs/KONG_ADMIN_API_STEP_BY_STEP.md) guide to learn how to use the [./kong-admin](/bin/kong-admin.sh) helper script. This script wraps the `curl` requests for interacting with the Kong Admin API to setup the demo.
+
+#### Deep Dive
+
+Take the [deep dive](https://github.com/approov/kong_approov-plugin/blob/master/docs/KONG_ADMIN_API_DEEP_DIVE.md) to learn how to use the Kong Admin API with raw `curl` requests and read the detailed explanations for each request.
