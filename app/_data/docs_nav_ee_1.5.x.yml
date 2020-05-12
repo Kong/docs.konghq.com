@@ -17,7 +17,7 @@
       items:
         - text: Docker
           url: /deployment/installation/docker
-        - text: Kong for Kubernetes Enteprise
+        - text: Kong for Kubernetes Enterprise
           url: /kong-for-kubernetes/install
         - text: Kong Enterprise on Kubernetes
           url: /kong-for-kubernetes/install-on-kubernetes
