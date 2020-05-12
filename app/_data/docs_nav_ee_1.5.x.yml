@@ -5,14 +5,14 @@
       url: /introduction
     - text: Key Concepts and Terminology
       url: /introduction/key-concepts
- 
- - title: Release Notes
-   icon: /assets/images/icons/documentation/icn-documentation.svg
-   url: /release-notes
-   items:
-     - text: Changelog
-       url: /enterprise/changelog
-       absolute_url: true
+
+- title: Release Notes
+  icon: /assets/images/icons/documentation/icn-documentation.svg
+  url: /release-notes
+  items:
+    - text: Changelog
+      url: /enterprise/changelog
+      absolute_url: true
 
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
