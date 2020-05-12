@@ -33,7 +33,12 @@ skip_read_time: true
 
   <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/kubernetes.png" alt="kubernetes" />
-    <div class="install-text">Kong for Kubernetes</div>
+    <div class="install-text">Kong for Kubernetes Enterprise</div>
+  </a>
+
+  <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes" class="docs-grid-install-block">
+    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/kubernetes.png" alt="kubernetes" />
+    <div class="install-text">Kong Enterprise on Kubernetes</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/rhel" class="docs-grid-install-block">
