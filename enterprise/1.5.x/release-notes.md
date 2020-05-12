@@ -47,10 +47,10 @@ New or updated features in the user documentation include:
 * [New Doc Site](https://docs.konghq.com/enterprise/?itm_source=website&itm_medium=nav&_ga=2.24477050.11964654.1589165758-132287075.1554308608) updates, including:
   * New look and layout
   * New Introduction and Deployment sections
-  * Left navigation, with collapsable sections
-  * On this page navigation for each topic
+  * Left navigation with collapsable sections
+  * *On this page* navigation for each topic
   * Expanded Search bar
-  * Tabs in sections, for features such as Kong Manager and Admin API information
+  * Tabs in sections for configuration, such as Kong Manager and Admin API information
 
 ## Changelog
 For a complete list of changes, please see the Kong Enterprise 1.5.x [Changelog](https://docs.konghq.com/enterprise/changelog//).
