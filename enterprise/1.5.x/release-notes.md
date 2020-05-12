@@ -42,7 +42,7 @@ New or updated features in the user documentation include:
 * [Resource Sizing Guidelines](https://docs.konghq.com/enterprise/1.5.x/sizing-guidelines/) is now located in the Deployment section.
 * [Upgrade and Migration Steps for 1.5](https://docs.konghq.com/enterprise/1.5.x/deployment/migrations/). 
 * Kong Brain and Kong Immunity: 
-  * [Overview](https://docs.konghq.com/enterprise/1.5.x/brain-immunity/install-configure/] diagram
+  * [Overview](https://docs.konghq.com/enterprise/1.5.x/brain-immunity/install-configure/) diagram
   * [Setting Up Collector App via Helm](https://docs.konghq.com/enterprise/1.5.x/brain-immunity/install-configure/#setting-up-collector-app-via-helm)
 * [New Doc Site](https://docs.konghq.com/enterprise/?itm_source=website&itm_medium=nav&_ga=2.24477050.11964654.1589165758-132287075.1554308608) updates, including:
   * New look and layout
@@ -53,4 +53,4 @@ New or updated features in the user documentation include:
   * Tabs in sections, for features such as Kong Manager and Admin API information
 
 ## Changelog
-For a complete list of changes, please see the Kong Enterprise 1.5.x [_Changelog_](https://docs.konghq.com/enterprise/changelog//).
+For a complete list of changes, please see the Kong Enterprise 1.5.x [Changelog](https://docs.konghq.com/enterprise/changelog//).
