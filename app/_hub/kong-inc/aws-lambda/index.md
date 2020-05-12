@@ -100,7 +100,7 @@ params:
       description: |
         The [`LogType`](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax) to use when invoking the function. By default, `None` and `Tail` are supported.
     - name: timeout
-      required: false
+      required: true
       default: "`60000`"
       description: An optional timeout in milliseconds when invoking the function.
     - name: port
@@ -109,13 +109,13 @@ params:
       description: |
         The TCP port that this plugin will use to connect to the server.
     - name: keepalive
-      required: false
+      required: true
       default: "`60000`"
       description: |
         An optional value in milliseconds that defines how long an idle connection will live before being closed.
     - name: unhandled_status
       required: false
-      default: "`200`, `202` or `204`"
+      default: "`200`, `202`, or `204`"
       description: |
         The response status code to use (instead of the default `200`, `202`, or `204`) in the case of an [`Unhandled` Function Error](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax).
     - name: forward_request_body
@@ -162,7 +162,7 @@ params:
       required: false
       default: "`true`"
       description: |
-        An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
+        An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use the [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
 
   extra: |
     **Reminder**: cURL by default sends payloads with an
