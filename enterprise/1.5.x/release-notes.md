@@ -2,7 +2,7 @@
 title: Kong Enterprise 1.5.x Release Notes
 ---
 
-These release notes apply to Kong Enterprise Release 1.5.x and include information about new features and updates. For detailed information about this release, including features and fixes, see the [Changelog](https://docs.konghq.com/enterprise/changelog//).
+These release notes apply to Kong Enterprise Release 1.5.x and include an overview of new features and updates. For detailed information about this release, including features and fixes, see the [Changelog](https://docs.konghq.com/enterprise/changelog//).
 
 ## New Features
 
