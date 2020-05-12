@@ -22,16 +22,16 @@ source_url: https://github.com/approov/kong_approov-plugin
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 0.15.x
-      - 0.14.x
-      - 0.13.x
-      - 0.12.x
-      - 0.11.x
-      - 0.10.x
+      - 1.5.x
+      - 1.4.x
+      - 1.3.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
   enterprise_edition:
     compatible:
       - 1.5.x
-      - 1.3.x
+      - 1.3-x
 
 ---
 
