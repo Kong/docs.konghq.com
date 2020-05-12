@@ -268,6 +268,7 @@ messages as follows:
 - The tense of your message must be **present**
 - Your message must be prefixed by a type, and a scope
 - The header of your message should not be longer than 50 characters
+- For commits that don't need a preview build, the message should include `[skip ci]`
 - A blank line should be included between the header and the body
 - The body of your message should not contain lines longer than 72 characters
 
