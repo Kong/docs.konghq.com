@@ -4,6 +4,7 @@ destination: dist
 permalink: pretty
 timezone: America/San_Francisco
 markdown: kramdown
+incremental: true
 
 keep_files:
   - assets
