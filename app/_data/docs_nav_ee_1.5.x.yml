@@ -7,7 +7,7 @@
       url: /introduction/key-concepts
 
 - title: Release Notes
-  icon: /assets/images/icons/documentation/icn-documentation.svg
+  icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /release-notes
   items:
     - text: Changelog
