@@ -2,8 +2,8 @@ name: Build and Test
 on: [push]
 jobs:
   build:
+    if: contains(github.event.pull_request.labels.*.name, 'build-preview')
     runs-on: ubuntu-latest
-    if: "!contains(github.event.commits.*.message, '[skip netlify]')"
     steps:
     - uses: actions/checkout@v2
     - name: Clean environment and files
