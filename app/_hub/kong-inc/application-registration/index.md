@@ -7,8 +7,12 @@ desc: Allow portal developers to register applications against services
 description: |
   Applications allow registered developers on Kong Developer Portal to
   authenticate with OAuth against a Service on Kong. Admins can
-  selectively admit access to Services using this plugin or
-  [Application Registration](/enterprise/1.5.x/developer-portal/administration/application-registration) in Kong Manager.
+  selectively admit access to Services using this 
+  [Application Registration](/enterprise/1.5.x/developer-portal/administration/application-registration) plugin.
+
+  <div class="alert alert-warning">
+    <strong>Note:</strong> This functionality is released as a <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> feature. Please proceed with caution.
+  </div>
 
 enterprise: true
 type: plugin
