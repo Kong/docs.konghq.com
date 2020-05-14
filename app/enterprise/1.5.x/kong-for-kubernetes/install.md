@@ -41,7 +41,7 @@ $ oc new-project kong
 ## Step 2. Set Up Kong Enterprise License
 Running Kong for Kubernetes Enterprise requires a valid license.
 
-As part of the sign-up process for Kong Enterprise, you should have received a license file. If you do not have one, contact your Kong sales represenative. Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
+As part of the sign-up process for Kong Enterprise, you should have received a license file. If you do not have one, contact your Kong sales representative. Save the license file temporarily to disk with filename `license` (no file extension) and execute the following:
 
 > Note: There is no `.json` extension in the `--from-file` parameter.
 > `-n kong` specifies the namespace in which you are deploying Kong for Kubernetes Enterprise. If you are deploying in a different namespace, change this value.

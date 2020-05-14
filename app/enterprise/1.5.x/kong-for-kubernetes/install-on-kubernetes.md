@@ -166,9 +166,7 @@ In the following steps, replace `<your-password>` with a secure password.
     |`image.tag` | The Docker image tag you want to pull down, e.g. `"1.5.0.2-alpine"`. |
     |`ingressController.enabled` | Set to `true` if you want to use the Kong Ingress Controller, or `false` if you don't want to install it. |
 
-3. (Optional) If not using the Kong Ingress Controller, remove the entire section of `Ingress Controller parameters`.
-
-4. In the `Kong Enterprise` section, enable Kong Manager (`manager`) and Kong Dev Portal (`portal`).
+3. In the `Kong Enterprise` section, enable Kong Manager (`manager`) and Kong Dev Portal (`portal`).
 
     For example:
     ```
@@ -193,7 +191,7 @@ In the following steps, replace `<your-password>` with a secure password.
         servicePort: 8446
     ```
 
-5. Fill in the rest of the parameters as they fit your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-parameters) for more details.
+4. Fill in the rest of the parameters as they fit your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
 ## Step 8. Deploy Kong Enterprise on Kubernetes
 The steps in this section show you how to install Kong Enterprise on Kubernetes using Helm.
