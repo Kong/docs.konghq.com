@@ -5,8 +5,8 @@ redirect_from: "/studio/1.0.x/deploy-to-dev-portal"
 
 ### Introduction
 
-By connecting to your Kong Enterprise instance, Kong Studio's Insomnia Designer
-Kong Plugin Bundle can sync Spec files to and from your Dev Portal.
+By connecting to Insomnia Designer through the Kong Studio bundle, you
+can sync Spec files to and from your Dev Portal.
 
 ### Prerequisites
 
@@ -19,9 +19,9 @@ Kong Plugin Bundle can sync Spec files to and from your Dev Portal.
 
 From Insomnia Designer:
 
-1. Go to the Documents Listing View
+1. Go to the Documents Listing View.
 2. Find the spec you want to deploy to the Developer Portal.
-3. Click on the documents **action menu** and select **Deploy to Kong Portal**
+3. Click on the documents **action menu** and select **Deploy to Kong Portal**.
 
     ![Menu](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7f9d02c7d3a7e9aebbe6e/file-ZA5DLrBBPs.png)
 
@@ -33,8 +33,8 @@ From Insomnia Designer:
 
     > Note: The URL here is the **ADMIN** **API** url set by the `admin_api_uri` property.
 
-5. Enter the Workspace for the Developer Portal you want to upload the spec  to
-6. (Optional) If your Admin API uses RBAC, enter the Token for to access the Workspace.
+5. Enter the Workspace for the Developer Portal you want to upload the spec to.
+6. (Optional) If your Admin API uses RBAC, enter the token to access the Workspace.
 
 
     ![Connect to Kong](https://s3.amazonaws.com/helpscout.net/docs/assets/59e383122c7d3a40f0ed78e2/images/5ea7fa1a2c7d3a7e9aebbe7d/file-aY1ixNgXnh.png)
