@@ -215,3 +215,14 @@ curl -X POST http://localhost:8001/services/{service} \
     --data "config.display_name=<my_service_display_name>" \
     --data "config.enable_implicit_grant=true"
 ```
+
+### Set tokens to never expire
+
+```
+curl -X  POST http://localhost:8001/services/tlb-test-httpbin/plugins \
+    --data "name=application-registration"  \
+    --data "config.display_name=my_httpbin_service_display_name" \
+    --data "config.enable_client_credentials=true" \
+    --data "config.refresh_token_ttl=0" \
+    --data "config.token_expiration=0"
+```
