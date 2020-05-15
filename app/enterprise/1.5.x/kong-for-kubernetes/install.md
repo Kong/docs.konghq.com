@@ -1,5 +1,5 @@
 ---
-title: Installing Kong for Kubernetes Enteprise
+title: Installing Kong for Kubernetes Enterprise
 ---
 
 ## Introduction
@@ -22,7 +22,7 @@ Before starting installation, be sure you have the following:
 
 ## Step 1. Provision a Namespace
 
-In order to create the secrets for license and Docker registry access,
+To create the secrets for license and Docker registry access,
 first provision the `kong` namespace:
 
 {% navtabs %}
@@ -82,7 +82,7 @@ $ oc create secret -n kong docker-registry kong-enterprise-k8s-docker \
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 4. Deploy Kong for Kubernetes Enteprise
+## Step 4. Deploy Kong for Kubernetes Enterprise
 The steps in this section show you how to install Kong for Kubernetes Enterprise using YAML.
 
 {% navtabs %}
@@ -138,7 +138,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 It might take a while for your cloud provider to associate the IP address to the `kong-proxy` service.
-Once you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/guides/getting-started.md).
+After you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/guides/getting-started.md).
 
-### Next steps...
+## Next steps...
 See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.

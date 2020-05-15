@@ -24,7 +24,7 @@ Before starting installation, be sure you have the following:
 
 ## Step 1. Provision a namespace
 
-In order to create the secrets for license and Docker registry access,
+To create the secrets for license and Docker registry access,
 first provision the `kong` namespace:
 
 {% navtabs %}
@@ -104,18 +104,18 @@ $ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
 ```
 kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=<your-password>
 ```
-Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.
+⚠️**Important:** Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.
 {% endnavtab %}
 {% navtab OpenShift oc %}
 (Optional) Create a password for the super admin:
 ```
 oc create secret generic kong-enterprise-superuser-password -n kong --from-literal=password=<your-password>
 ```
-Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.
+⚠️**Important:** Though not required, this is recommended if you want to use RBAC, as it cannot be done after initial setup.
 {% endnavtab %}
 {% endnavtabs %}
 
-## Step 6. Prepare the sessions plugin for Manager and Dev Portal
+## Step 6. Prepare the sessions plugin for Kong Manager and Dev Portal
 In the following steps, replace `<your-password>` with a secure password.
 
 {% navtabs %}
@@ -191,7 +191,7 @@ In the following steps, replace `<your-password>` with a secure password.
         servicePort: 8446
     ```
 
-4. Fill in the rest of the parameters as they fit your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-parameters) for more details.
+4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
 ## Step 8. Deploy Kong Enterprise on Kubernetes
 The steps in this section show you how to install Kong Enterprise on Kubernetes using Helm.
@@ -209,7 +209,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     ```
     $ kubectl get pods -n kong
     ```
-    Once migrations are complete and the `my-kong-kong-<ID>` pod is running, move on to the next section.
+    After migrations are complete and the `my-kong-kong-<ID>` pod is running, continue to the next section.
 {% endnavtab %}
 {% navtab OpenShift oc %}
 1. Run:
@@ -222,7 +222,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     ```
     $ oc get pods -n kong
     ```
-    Once migrations are complete and the `my-kong-kong-<ID>` pod is running, move on to the next section.
+    After migrations are complete and the `my-kong-kong-<ID>` pod is running, continue to the next section.
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -253,7 +253,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ helm upgrade my-kong kong/kong --namespace kong --values ~/values.yaml
     ```
 
-6. Once the upgrade is complete, run:
+6. After the upgrade is complete, run:
     ```
     kubectl get svc -n kong
     ```
@@ -291,7 +291,7 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
     $ helm upgrade  my-kong kong/kong --namespace kong --values ~/values.yaml
     ```
 
-6. Once the upgrade is complete, run:
+6. After the upgrade is complete, run:
     ```
     oc get svc -n kong
     ```
