@@ -134,7 +134,7 @@ params:
 ## Examples
 
 Replace `<DNSorIP>` with your host name or IP address, `{service}` with
-your Service name, and `<my_httpbin_service_display_name>` with the
+your Service name, and `<my_service_display_name>` with the
 `display_name` of your Service for all examples in this section.
 
 ### Enable the plugin with Client Credentials
@@ -144,7 +144,7 @@ Command:
 ```
 curl -X POST http://<DNSorIP>:8001/services/{service} \
     --data "name=application-registration"  \
-    --data "config.display_name=<my_httpbin_service_display_name>" \
+    --data "config.display_name=<my_service_display_name>" \
     --data "config.enable_client_credentials=true"
 ```
 
@@ -160,7 +160,7 @@ Result:
       "mandatory_scope":false,
       "scopes":null,
       "enable_implicit_grant":false,
-      "display_name":"my_httpbin_service_display_name",
+      "display_name":"my_service_display_name",
       "enable_client_credentials":true,
       "description":null,
       "enable_password_grant":false,
@@ -221,7 +221,7 @@ curl -X POST http://<DNSorIP>:8001/services/{service} \
 ```
 curl -X  POST http://<DNSorIP>:8001/services/{service} \
     --data "name=application-registration"  \
-    --data "config.display_name=<my_httpbin_service_display_name>" \
+    --data "config.display_name=<my_service_display_name>" \
     --data "config.enable_client_credentials=true" \
     --data "config.refresh_token_ttl=0" \
     --data "config.token_expiration=0"
