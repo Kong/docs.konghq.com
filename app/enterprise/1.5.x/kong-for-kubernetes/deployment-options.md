@@ -7,9 +7,9 @@ title: Kong for Kubernetes deployment options
 Kong for Kubernetes provides two options for its Kong Enterprise container
 image:
 
-* [kong-enterprise-k8s][k8s-bintray] (Kong for Kubernetes Enterprise)
-* [kong-enterprise-edition][enterprise-bintray] (Kong for Kubernetes with Kong
-  Enterprise)
+* [kong-enterprise-k8s][k8s-bintray] ([Kong for Kubernetes Enterprise][k4k8s-enterprise-install])
+* [kong-enterprise-edition][enterprise-bintray] ([Kong for Kubernetes with Kong
+  Enterprise][k4k8s-with-enterprise-install])
 
 _These repositories require a login. If you see a 404, log in through the [Kong
 repository home page](https://bintray.com/kong) first._
@@ -149,5 +149,7 @@ migrating in the opposite direction.
 [k8s-bintray]: https://bintray.com/kong/kong-enterprise-k8s
 [enterprise-bintray]: https://bintray.com/kong/kong-enterprise-edition-docker
 [admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/deployment/admission-webhook.md
-[route-validation]: /enterprise/1.5.x/property-reference/#route_validation_strategy
+[route-validation]: /enterprise/{{page.kong_version}}/property-reference/#route_validation_strategy
 [supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/references/plugin-compatibility.md
+[k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install.md
+[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes.md
