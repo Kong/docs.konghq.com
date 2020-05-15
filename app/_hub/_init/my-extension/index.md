@@ -15,9 +15,9 @@ publisher: # (required) The name of the entity publishing this extension.
   # Use capitals and spaces as needed.
   # If you are an individual, you might choose to use your GitHub handle, or your name.
   # If this is being published and supported by a company, please use your company name.
-  # Note that every extension by a given publisher must have the exact same value
+  # Note that every extension by a given publisher must have the exact same value.
 
-categories: # (required) Uncomment all that apply.
+categories: # (required) Uncomment ONE that applies.
   #- authentication
   #- security
   #- traffic-control
@@ -26,7 +26,8 @@ categories: # (required) Uncomment all that apply.
   #- transformations
   #- logging
   #- deployment
-# Array format only; uncomment the one most-applicable category. Contact cooper@konghq.com to propose a new category, if necessary.
+# Array format only; if your plugin applies to multiple categories,
+# uncomment the most applicable category.
 
 type: # (required) String, one of:
   # plugin          | extensions of the core platform
@@ -74,65 +75,35 @@ description: #|
 # COMPATIBILITY
 # In the following sections, list Kong versions as array items.
 # Versions are categorized by Kong edition and their known compatibility.
-# Unlisted Kong versions will be considered to have "unknown" compatibility.
+# Unlisted Kong versions will be considered incompatible.
 # Uncomment at least one of 'community_edition' or 'enterprise_edition'.
 # Add array-formatted lists of versions under their appropriate subsection.
 
 kong_version_compatibility: # required
   #community_edition: # optional
     #compatible:
-    #incompatible:
   #enterprise_edition: # optional
     #compatible:
-    #incompatible:
 
-# EXAMPLE kong_version_compatibility blocks - these examples show how to indicate various compatibilities. Also see other extension files in _app/_hub/ for more examples
-# EXAMPLE 1 - in this example, the extension is known to be compatible with recent versions of Kong and Kong Enterprise, and is not known to be incompatible with any versions
+# EXAMPLE kong_version_compatibility block: this example shows how to indicate
+# various compatibilities. Also see other extension files in _app/_hub/ for more examples.
 #kong_version_compatibility:
 #  community_edition:
 #    compatible:
 #      - 0.12.x
 #      - 0.13.x
 #      - 0.14.x
-#    incompatible:
 #  enterprise_edition:
 #    compatible:
 #      - 0.32-x
 #      - 0.33-x
 #      - 0.34-x
-#    incompatible:
-#
-# EXAMPLE 2 - in this example, the extension is known to be compatible only the most recent versions of Kong and Kong Enterprise, and is known to be incompatible with all older versions
-#kong_version_compatibility:
-#  community_edition:
-#    compatible:
-#      - 0.14.x
-#      - 0.13.x
-#    incompatible:
-#      - 0.12.x
-#      - 0.11.x
-#      - 0.10.x
-#      - 0.9.x
-#      - 0.8.x
-#      - 0.7.x
-#      - 0.6.x
-#      - 0.5.x
-#      - 0.3.x
-#      - 0.2.x
-#  enterprise_edition:
-#    compatible:
-#      - 0.34-x
-#      - 0.33-x
-#      - 0.32-x
-#    incompatible:
-#      - 0.31-x
-#      - 0.30-x
-#      - 0.29-x
 
 #########################
 # PLUGIN-ONLY SETTINGS below this line
-# If your extension is a plugin, ALL of the following lines must be completed.
-# If NOT an plugin, delete all lines up to '# BEGIN MARKDOWN CONTENT'
+# If your plugin is an extension of the core platform, ALL of the following
+# lines must be completed.
+# If NOT defined as a 'plugin' in line 32, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
 params: # metadata about your plugin
   name: # name of the plugin in Kong (may differ from name: above)
