@@ -27,12 +27,12 @@ Benefits for teams:
 | Make requests, inspect responses | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Design and manage OpenAPI specs | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | {{site.ee_product_name}} plugin support | <i class="fa fa-times"></i> |  <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
-| Support | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
+| Support from Kong | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 
-By connecting Insomnia Designer through Kong Studio to {{site.ee_product_name}}, you get access to
-Enterprise-specific plugins. These plugins give organizations the ability to generate configuration for
-Kong Enterprise and sync API designs directly to the Kong Developer Portal from the
-Insomnia Designer platform.
+Insomnia Designer is referred to as Kong Studio when it is configured through the 
+[Kong Studio bundle](https://insomnia.rest/plugins/insomnia-plugin-kong-bundle).
+Kong Studio extends Insomnia Designer by allowing users to generate configuration 
+for Kong Enterprise and sync API designs directly to the Kong Developer Portal.
 
 The following documentation series will guide you through downloading and installing
 Kong Studio, debugging and editing spec files, and syncing to your
