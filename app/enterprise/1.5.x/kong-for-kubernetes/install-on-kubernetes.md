@@ -236,8 +236,11 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
 
+    > **Note:** Do not use IPs with RBAC. If you want to use RBAC, you need to set
+    up a DNS hostname first, instead of directly specifying an IP.
+
     ```
-    admin_api_uri: <your-ip>
+    admin_api_uri: <your-DNSorIP>
     ```
 
 3. Clean up:
@@ -271,8 +274,11 @@ The steps in this section show you how to install Kong Enterprise on Kubernetes 
 
 2. Copy the IP address from the output, then edit the `values.yaml` file to add the following line under `env` section:
 
+    > **Note:** Do not use IPs with RBAC. If you want to use RBAC, you need to set
+    up a DNS hostname first, instead of directly specifying an IP.
+
     ```
-    admin_api_uri: <your-ip>
+    admin_api_uri: <your-DNSorIP>
     ```
 
 3. Clean up:
