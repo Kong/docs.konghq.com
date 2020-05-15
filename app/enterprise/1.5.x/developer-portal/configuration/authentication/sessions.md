@@ -62,7 +62,7 @@ The Session configuration is secure by default, so the cookie uses the [Secure, 
 
 ## Example Configurations
 
-### HTTPS and same domain
+### HTTPS with the same domain for API and GUI
 
 If using HTTPS and hosting Dev Portal API and the Dev Portal GUI from the same domain, the following configuration could be used for Basic Auth:
 
@@ -90,8 +90,8 @@ portal_session_conf = {
 
 ### Domains
 
-There is a dependency that the dev portal `portal_api_url` and the dev
-portal api `portal_gui_host` need to share a domain or subdomain. The following
+The dev portal `portal_api_url` and the dev
+portal api `portal_gui_host` must share a domain or subdomain. The following
 example assumes subdomains of `portal.xyz.com` and `portalapi.xyz.com`.
 Set a subdomain such as ``"cookie_domain": ".xyz.com"`` and set
 `cookie_samesite` to `off`.
