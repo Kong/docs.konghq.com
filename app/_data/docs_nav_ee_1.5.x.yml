@@ -38,6 +38,8 @@
           url: /kong-for-kubernetes/install
     - text: Default Ports
       url: /deployment/default-ports
+    - text: DNS Considerations
+      url: /deployment/dns-considerations
     - text: Resource Sizing Guidelines
       url: /sizing-guidelines
     - text: Licensing
