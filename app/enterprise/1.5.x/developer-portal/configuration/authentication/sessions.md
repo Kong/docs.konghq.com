@@ -90,8 +90,8 @@ portal_session_conf = {
 
 ### Domains
 
-The dev portal `portal_api_url` and the dev
-portal api `portal_gui_host` must share a domain or subdomain. The following
+The dev portal `portal_gui_host` and the dev
+portal api `portal_api_url` must share a domain or subdomain. The following
 example assumes subdomains of `portal.xyz.com` and `portalapi.xyz.com`.
 Set a subdomain such as ``"cookie_domain": ".xyz.com"`` and set
 `cookie_samesite` to `off`.
