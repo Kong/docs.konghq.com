@@ -56,11 +56,11 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 {% capture plugin_config_for_service %}
 ### Enabling the plugin on a Service
 
-{% if page.enterprise %}
+{% if page.enterprise or page.params.dbless_compatible == false or page.params.dbless_compatible == nil %}
 
 {{ plugin_config_for_service_with_db }}
 
-{% else %}
+{% elsif page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
 
 {% navtabs %}
 {% navtab With a database %}
@@ -104,11 +104,11 @@ $ curl -X POST http://kong:8001/routes/{route}/plugins \
 {% capture plugin_config_for_route %}
 ### Enabling the plugin on a Route
 
-{% if page.enterprise %}
+{% if page.enterprise or page.params.dbless_compatible == false or page.params.dbless_compatible == nil %}
 
 {{ plugin_config_for_route_with_db }}
 
-{% else %}
+{% elsif page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
 
 {% navtabs %}
 {% navtab With a database %}
@@ -139,8 +139,7 @@ plugins:
 {% if page.params.consumer_id %}
 {% capture plugin_config_for_consumer_with_db %}
 
-You can use the `http://localhost:8001/plugins` endpoint to enable this plugin
-on specific [Consumers](/latest/admin-api/#Consumer-object):
+Configure this plugin on a [Consumer](/latest/admin-api/#Consumer-object) with:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/plugins \
@@ -152,11 +151,11 @@ $ curl -X POST http://kong:8001/consumers/{consumer}/plugins \
 {% capture plugin_config_for_consumer %}
 ### Enabling the plugin on a Consumer
 
-{% if page.enterprise %}
+{% if page.enterprise or page.params.dbless_compatible == false or page.params.dbless_compatible == nil %}
 
 {{ plugin_config_for_consumer_with_db }}
 
-{% else %}
+{% elsif page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
 {% navtabs %}
 
 {% navtab With a database %}
@@ -410,17 +409,20 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         {% endif %}
 
         <h3 id="global-plugins">Global plugins</h3>
-
-        <ul>
-          <li><strong>Using a database</strong>, all plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint.</li>
-          <li><strong>Without a database</strong>, all plugins can be configured via the <code>plugins:</code> entry on the declarative configuration file.</li>
-        </ul>
-
         <p>A plugin which is not associated to any Service, Route, or Consumer (or API, if you are using an older
         version of Kong) is considered "global", and will be run on every request.
         Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
         <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
         </p>
+        {% if page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
+        <ul>
+          <li><strong>Using a database</strong>, all plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint.</li>
+          <li><strong>Without a database</strong>, all plugins can be configured via the <code>plugins:</code> entry on the declarative configuration file.</li>
+        </ul>
+        {% else %}
+        <p>Plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint.
+        </p>
+        {% endif %}
 
         <h3 id="parameters">Parameters</h3>
 
