@@ -4,12 +4,14 @@ title: Kong for Kubernetes deployment options
 
 ## Deployment options
 
-Kong for Kubernetes provides two options for its Kong Enterprise container
-image:
+Kong for Kubernetes consists of a controller, which translates Kubernetes
+resources into Kong configuration, and a proxy, which uses that configuration
+to route and control traffic. There are two options for the proxy image:
 
-* [kong-enterprise-k8s][k8s-bintray] ([Kong for Kubernetes Enterprise][k4k8s-enterprise-install])
-* [kong-enterprise-edition][enterprise-bintray] ([Kong for Kubernetes with Kong
-  Enterprise][k4k8s-with-enterprise-install])
+* [Kong for Kubernetes Enterprise][k4k8s-enterprise-install]
+  (the [kong-enterprise-k8s][k8s-bintray] image)
+* [Kong for Kubernetes with Kong Enterprise][k4k8s-with-enterprise-install]
+  (the [kong-enterprise-edition][enterprise-bintray] image)
 
 _These repositories require a login. If you see a 404, log in through the [Kong
 repository home page](https://bintray.com/kong) first._
@@ -132,6 +134,11 @@ configuration. To minimize this risk:
 * Manually create configuration in a workspace that is not managed by the
   controller. This avoids most conflicts, but not all: routes may still
   conflict depending on your [route validation][route-validation] setting.
+
+Large numbers of consumers (and associated credentials) are the exception to
+this rule: if your consumer count is in the tens of thousands, we recommend
+that you create them and their credentials through the Admin API to reduce etcd
+load.
 
 ## Migrating between deployment types
 
