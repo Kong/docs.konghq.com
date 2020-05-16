@@ -255,7 +255,7 @@ N. Virginia Region (code `us-east-1`).
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Finally, we set up a Service and Route in Kong and link it to the
+4. Finally, set up a Service and Route in Kong and link it to the
 `Mylambda` function we just created.
 
 {% navtabs %}
