@@ -169,7 +169,7 @@ params:
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
     decoded by Kong. To ensure special characters that are likely to appear in
     your AWS key or secret (like `+`) are correctly decoded, you must
-    URL-encode them, hence use `--data-urlencode` if you are using cURL.
+    URL-encode them with `--data-urlencode`.
     Alternatives to this approach would be to send your payload with a
     different MIME type (like `application/json`), or to use a different HTTP client.
 
