@@ -157,7 +157,7 @@ params:
       required: semi
       default:
       description: |
-        An optional value that defines which HTTP protocol scheme to use to connect through the proxy server. The schemes supported are: `http` and `https`. This value is required if `proxy_url` is defined.
+        An optional value that defines which HTTP scheme to use for connecting through the proxy server. The schemes supported are: `http` and `https`. This value is required if `proxy_url` is defined.
     - name: skip_large_bodies
       required: false
       default: "`true`"
