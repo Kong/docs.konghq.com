@@ -222,7 +222,7 @@ our AWS function, and execute it.
 
 #### Configure
 
-1. First, let's create an execution role called `LambdaExecutor` for our
+1. First, create an execution role called `LambdaExecutor` for your
 lambda function.
 
     In the IAM Console, create a new Role choosing the AWS Lambda service. There
