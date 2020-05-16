@@ -165,7 +165,7 @@ params:
         An optional value that defines whether Kong should send large bodies that are buffered to disk. To define the threshold for the body size, use the [client_body_buffer_size](https://docs.konghq.com/latest/configuration/#client_body_buffer_size) property. Note that sending large bodies will have an impact on system memory.
 
   extra: |
-    **Reminder**: cURL by default sends payloads with an
+    **Reminder**: By default, cURL sends payloads with an
     `application/x-www-form-urlencoded` MIME type, which will naturally be URL-
     decoded by Kong. To ensure special characters that are likely to appear in
     your AWS key or secret (like `+`) are correctly decoded, you must
