@@ -222,7 +222,7 @@ curl -X POST http://<DNSorIP>:8001/services/{service} \
 curl -X  POST http://<DNSorIP>:8001/services/{service} \
     --data "name=application-registration"  \
     --data "config.display_name=<my_service_display_name>" \
-    --data "config.enable_client_credentials=true" \
+    --data "config.enable_authorization_code=true"
     --data "config.refresh_token_ttl=0" \
     --data "config.token_expiration=0"
 ```
