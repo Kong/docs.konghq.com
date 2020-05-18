@@ -22,8 +22,10 @@
       items:
         - text: Docker
           url: /deployment/installation/docker
-        - text: Kubernetes
+        - text: Kong for Kubernetes Enterprise
           url: /kong-for-kubernetes/install
+        - text: Kong Enterprise on Kubernetes
+          url: /kong-for-kubernetes/install-on-kubernetes
         - text: Ubuntu
           url: /deployment/installation/ubuntu
         - text: CentOS
@@ -333,8 +335,10 @@
   items:
     - text: Overview
       url:  /kong-for-kubernetes
-    - text: Installation
+    - text: Install Kong for Kubernetes Enterprise
       url: /kong-for-kubernetes/install
+    - text: Install Kong Enterprise on Kubernetes
+      url: /kong-for-kubernetes/install-on-kubernetes
     - text: Using Kong for Kubernetes
       url: /kong-for-kubernetes/using-kong-for-kubernetes
     - text: Changelog
