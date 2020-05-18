@@ -212,8 +212,8 @@ from being executed. We are planning to remove this limitation in the future.
 
 #### Steps
 
-You must have access to the AWS Console as a user who is allowed to operate
-with lambda functions, and create users and roles.
+Prerequisite: You must have access to the AWS Console as a user who is
+allowed to operate with lambda functions, and create users and roles.
 
 1. Create an Execution role in AWS.
 2. Create a user that will invoke the function via Kong and test it.
@@ -226,19 +226,19 @@ our AWS function, and execute it.
 lambda function.
 
     In the IAM Console, create a new Role choosing the AWS Lambda service. There
-    will be no policies as our function in this example will simply execute
-    itself, giving us back a hardcoded JSON response without accessing other
+    will be no policies because the function in this example will simply execute
+    itself, returning a hardcoded JSON response without accessing other
     AWS resources.
 
-2. Now let's create a user named `KongInvoker`, used by our Kong API gateway
+2. Create a user named `KongInvoker`, used by the Kong API gateway
 to invoke the function.
 
-    In the IAM Console, create a new user. Programmatic access must be provided to the user via Access and Secret keys. Then attach existing policies directly, particularly the predefined `AWSLambdaRole`. After the user creation is confirmed, store the Access Key and Secret Key in a safe place.
+    In the IAM Console, create a new user. Programmatic access must be provided to the user via Access and Secret keys. Then, attach existing policies directly, particularly the predefined `AWSLambdaRole`. After the user creation is confirmed, store the Access Key and Secret Key in a safe place.
 
-3. Now we need to create the lambda function itself; we will do so in
-N. Virginia Region (code `us-east-1`).
+3. Next, create the lambda function itself in the N. Virginia Region
+(code `us-east-1`).
 
-    In Lambda Management, create a new function `Mylambda`. There will be no blueprint because we are going to paste the code below (which is an example code snippet). Let's choose an existing role for the execution role, specifically `LambdaExecutor` created previously.
+    In Lambda Management, create a new function `Mylambda`. There will be no blueprint because you are going to paste the code below (which is an example code snippet). For the execution role, choose the `LambdaExecutor` created previously.
 
     **Note**: The following code snippet is only an example. The Kong AWS Lambda plugin supports all runtimes provided by AWS. See the list of runtimes in the **AWS Lambda** > **Functions** > **Create function** dialog.
 
