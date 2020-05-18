@@ -2,18 +2,37 @@
 title: Kong Studio
 redirect_from: "/studio/"
 toc: false
+skip_read_time: true
 ---
+Kong Studio is a bundle for Kong Enterprise based on Insomnia Designer,
+which enables spec-first development for all REST and GraphQL services.
 
-Kong Studio's base Insomnia Designer enables spec-first development for all REST and GraphQL services.
-By leveraging Insomnia Designer, organizations can accelerate design and test workflows via automated
-testing, direct Git sync, and inspection of all response types. Teams of all sizes
-can use Kong Studio to increase development velocity, reduce deployment risk,
-and increase collaboration.
+![Kong Studio Architecture](/assets/images/docs/studio/studio-insomnia-architecture.png)
+> &#42;included in Enterprise license, but installed separately
 
-Kong Studio enhances Insomnia Designer through Enterprise-specific plugins.
-These plugins give organizations the ability to generate configuration for
-Kong Enterprise and sync API designs directly to the Kong Developer Portal from the
-Insomnia Designer platform.
+Benefits for organizations:
+* Accelerate design and test workflows via automated testing
+* Direct Git sync
+* Inspect all response types
+
+Benefits for teams:
+* Increase development velocity
+* Reduce deployment risk
+* Increase collaboration
+
+## Feature comparison
+
+| Feature | Insomnia Core | Insomnia Designer | Kong Studio (Plugin Bundle)|
+|---------|---------------|-------------------|----------------------------|
+| Make requests, inspect responses | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Design and manage OpenAPI specs | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| {{site.ee_product_name}} plugin support | <i class="fa fa-times"></i> |  <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
+| Support from Kong | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
+
+Insomnia Designer is referred to as Kong Studio when it is configured through the 
+[Kong Studio bundle](https://insomnia.rest/plugins/insomnia-plugin-kong-bundle).
+Kong Studio extends Insomnia Designer by allowing users to generate configuration 
+for Kong Enterprise and sync API designs directly to the Kong Developer Portal.
 
 The following documentation series will guide you through downloading and installing
 Kong Studio, debugging and editing spec files, and syncing to your
