@@ -62,8 +62,8 @@ Please review the changelog for
 The following plugins are included in this release:
 
 * degraphql
-* graphql-rate-limiting-advanced
 * graphql-proxy-cache-advanced
+* graphql-rate-limiting-advanced
 
 ## 1.4.2.0
 
@@ -100,17 +100,18 @@ Please review the changelog for
 
 The following plugins are included with this release:
 
+* canary release
+* collector
+* forward-proxy
+* jwt-signer
+* kafka-log
+* kafka-upstream
+* ldap-auth-advanced
+* mtls-auth
 * oauth2-introspection
 * openid-connect
 * proxy-cache-advanced
 * rate-limiting-advanced
-* response-transformer-advanced
-* kafka-log
-* kafka-upstream
-* canary release
-* ldap-auth-advanced
-* forward-proxy
-* jwt-signer
-* collector
-* mtls-auth
 * request-validator
+* response-transformer-advanced
+* vault-auth
