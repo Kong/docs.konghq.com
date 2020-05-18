@@ -38,7 +38,7 @@ params:
       description: |
         The name of the header that is supposed to carry the access token.
     - name: auto_approve
-      required: false
+      required: true
       default: "`false`"
       value_in_examples:
       description: |
@@ -49,46 +49,47 @@ params:
       default:
       value_in_examples:
       description: |
-        Description displayed in information about a Service in the Developer Portal.
+        Unique description displayed in information about a Service in the Developer Portal.
     - name: display_name
       required: true
       default:
       value_in_examples: <my_service_display_name>
       description: |
-        Display name used for a Service in the Developer Portal.
+        Unique display name used for a Service in the Developer Portal.
     - name: enable_authorization_code
-      required: false
-      default: "`false`"
-      value_in_examples:
-      description: |
-        An optional boolean value to enable the three-legged Authorization
-        Code flow ([RFC 6742 Section 4.1](https://tools.ietf.org/html/rfc6749#section-4.1)).
-    - name: enable_client_credentials
-      required: false
-      default: "`false`"
-      description: |
-        An optional boolean value to enable the Client Credentials Grant
-        flow ([RFC 6742 Section 4.4](https://tools.ietf.org/html/rfc6749#section-4.4)).
-    - name: enable_implicit_grant
-      required: false
-      default: "`false`"
-      description: |
-        An optional boolean value to enable the Implicit Grant flow, which
-        allows to provision a token as a result of the authorization
-        process ([RFC 6742 Section 4.2](https://tools.ietf.org/html/rfc6749#section-4.2)).
-    - name: enable_password_grant
-      required: false
-      default: "`false`"
-      description: |
-        An optional boolean value to enable the Resource Owner Password
-        Credentials Grant flow ([RFC 6742 Section 4.3](https://tools.ietf.org/html/rfc6749#section-4.3)).
-    - name: mandatory_scope
       required: true
       default: "`false`"
       value_in_examples:
       description: |
+        An optional boolean value to enable the three-legged Authorization
+        Code flow ([RFC 6742 Section 4.1](https://tools.ietf.org/html/rfc6749#section-4.1)). At least one flow must be enabled for the plugin.
+    - name: enable_client_credentials
+      required: true
+      default: "`false`"
+      value_in_examples: true
+      description: |
+        An optional boolean value to enable the Client Credentials Grant
+        flow ([RFC 6742 Section 4.4](https://tools.ietf.org/html/rfc6749#section-4.4)). At least one flow must be enabled for the plugin.
+    - name: enable_implicit_grant
+      required: true
+      default: "`false`"
+      description: |
+        An optional boolean value to enable the Implicit Grant flow, which
+        allows to provision a token as a result of the authorization
+        process ([RFC 6742 Section 4.2](https://tools.ietf.org/html/rfc6749#section-4.2)). At least one flow must be enabled for the plugin.
+    - name: enable_password_grant
+      required: true
+      default: "`false`"
+      description: |
+        An optional boolean value to enable the Resource Owner Password
+        Credentials Grant flow ([RFC 6742 Section 4.3](https://tools.ietf.org/html/rfc6749#section-4.3)). At least one flow must be enabled for the plugin.
+    - name: mandatory_scope
+      required: true
+      default: "`false`"
+      value_in_examples: false
+      description: |
         An optional boolean value telling the plugin to require at least
-        one scope to be authorized by the end user.
+        one scope to be authorized by the end user. See [Set mandatory scope and scopes](/hub/kong-inc/application-registration/#Set mandatory scope and scopes).
     - name: provision_key
       required: false
       default:
@@ -98,29 +99,30 @@ params:
         is required. Used by the Resource Owner Password Credentials Grant
         (Password Grant) flow.
     - name: refresh_token_ttl
-      required: false
+      required: true
       default: 1209600
       value_in_examples: 1209600
       description: |
         An optional integer value telling the plugin how many seconds a
-        token/refresh token pair is valid for, and can be used to generate
-        a new access token. Default value is two weeks. Set to `0` to
-        keep the token/refresh token pair indefinitely valid.
+        token/refresh token pair is valid for. The refresh token can be used to
+        generate a new access token. Default value is 1209600 seconds (two
+        weeks). Set to `0` to keep the token/refresh token pair indefinitely valid. See [Set tokens to never expire](/hub/kong-inc/application-registration/#Set tokens to never expire).
     - name: scopes
       required: semi
       default:
       value_in_examples:
       description: |
-        Describes an array of scope names that will be available to the
-        end user.
+        A string array of scope names that will be available to the
+        end user. See [Set mandatory scope and scopes](/hub/kong-inc/application-registration/#Set mandatory scope and scopes).
     - name: token_expiration
-      required: false
+      required: true
       default: 7200
       value_in_examples: 7200
       description: |
-        An optional integer value telling the plugin how many seconds a token
-        should last, after which the client will need to refresh the token.
-        Set to `0` to disable the expiration.
+        An optional integer value telling the plugin how many seconds an access
+        token should last, after which the client will need to refresh the
+        token. Default value is two hours. Set to `0` to disable the expiration.
+        See [Set tokens to never expire](/hub/kong-inc/application-registration/#Set tokens to never expire).
   extra: |
     **Important:** When configuring the plugin, at least one of the following
      OAuth2 auth flows must be enabled:
@@ -227,7 +229,7 @@ curl -X  POST http://<DNSorIP>:8001/services/{service} \
     --data "config.token_expiration=0"
 ```
 
-### Set mandatory scope and a scope
+### Set mandatory scope and scopes
 
 Replace `<read>` and `<write>` with the name of your scopes.
 
