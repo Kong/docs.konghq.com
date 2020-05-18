@@ -1113,6 +1113,7 @@ just covered.
 [plugin-configuration-object]: /enterprise/{{page.kong_version}}/admin-api#plugin-object
 [plugin-development-guide]: /enterprise/{{page.kong_version}}/plugin-development
 [plugin-association-rules]: /enterprise/{{page.kong_version}}/admin-api/#precedence
+[proxy-websocket]: /{{page.kong_version}}/proxy/#proxy-websocket-traffic
 [load-balancing-reference]: /enterprise/{{page.kong_version}}/loadbalancing
 [configuration-reference]: /enterprise/{{page.kong_version}}/property-reference
 [configuration-trusted-ips]: /enterprise/{{page.kong_version}}/property-reference/#trusted_ips
