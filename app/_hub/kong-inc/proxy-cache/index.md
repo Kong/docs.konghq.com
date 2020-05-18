@@ -30,29 +30,29 @@ kong_version_compatibility:
 
 params:
   name: proxy-cache
-  api_id: true
   service_id: true
   route_id: true
   consumer_id: true
+  dbless_compatible: yes
   config:
     - name: response_code
       required:
       default: 200, 301, 404
       value_in_examples:
       description: |
-        Upstream response status code considered cacheable
+        Upstream response status code considered cacheable.
     - name: request_method
       required:
-      default: GET, HEAD
+      default: "`GET,HEAD`"
       value_in_examples:
       description: |
-        Downstream request methods considered cacheable
+        Downstream request methods considered cacheable.
     - name: content_type
       required:
-      default: text/plain, application/json
+      default: "`text/plain,application/json`"
       value_in_examples:
       description: |
-        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned
+        Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned.
     - name: vary_headers
       required: false
       default:
@@ -68,15 +68,15 @@ params:
     - name: cache_ttl
       required:
       default: 300
-      value_in_examples:
+      value_in_examples: 300
       description: |
-        TTL, in seconds, of cache entities
+        TTL, in seconds, of cache entities.
     - name: cache_control
       required:
-      default: false
+      default: "`false`"
       value_in_examples:
       description: |
-        When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2)
+        When enabled, respect the Cache-Control behaviors defined in [RFC7234](https://tools.ietf.org/html/rfc7234#section-5.2).
     - name: storage_ttl
       required: false
       default:
@@ -84,14 +84,14 @@ params:
       description: |
         Number of seconds to keep resources in the storage backend. This value is independent of `cache_ttl` or resource TTLs defined by Cache-Control behaviors.
     - name: strategy
-      required:
+      required: true
       default:
       value_in_examples: memory
       description: |
-        The backing data store in which to hold cache entities. Accepted values are; `memory`.
+        The backing data store in which to hold cache entities. The only accepted value is `memory`.
     - name: memory.dictionary_name
       required:
-      default: kong_cache
+      default: "`kong_cache`"
       value_in_examples:
       description: |
         The name of the shared dictionary in which to hold cache entities when the memory strategy is selected. Note that this dictionary currently must be defined manually in the Kong Nginx template.
