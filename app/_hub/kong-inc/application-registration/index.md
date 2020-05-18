@@ -229,11 +229,20 @@ curl -X  POST http://<DNSorIP>:8001/services/{service} \
 
 ### Set mandatory scope and a scope
 
+Replace `<read>` and `<write>` with the name of your scopes.
+
 ```
 curl -X  POST http://<DNSorIP>:8001/services/{service} \
     --data "name=application-registration"  \
     --data "config.display_name=<my_service_display_name>" \
     --data "config.enable_authorization_code=true" \
     --data "config.mandatory_scope=true" \
-    --data "config.scopes[]=read"
+    --data "config.scopes[]=<read>"
+```
+
+Multiple scopes:
+
+```
+  ...
+    --data "config.scopes[]=<read> <write>"
 ```
