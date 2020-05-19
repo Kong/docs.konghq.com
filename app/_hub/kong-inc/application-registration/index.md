@@ -92,7 +92,7 @@ params:
       value_in_examples: false
       description: |
         An optional boolean value telling the plugin to require at least
-        one scope to be authorized by the end user. See [Set mandatory scopes](/hub/kong-inc/application-registration/#Set_mandatory_scopes).
+        one scope to be authorized by the end user. See [Set mandatory scopes](#set-mandatory-scopes).
     - name: provision_key
       required: false
       default:
@@ -109,14 +109,14 @@ params:
         An optional integer value telling the plugin how many seconds a
         token/refresh token pair is valid for. The refresh token can be used to
         generate a new access token. Default value is 1209600 seconds (two
-        weeks). Set to `0` to keep the token/refresh token pair indefinitely valid. See [Set tokens to never expire](/hub/kong-inc/application-registration/#Set_tokens_to_never_expire).
+        weeks). Set to `0` to keep the token/refresh token pair indefinitely valid. See [Set tokens to never expire](#set-tokens-to-never-expire).
     - name: scopes
       required: semi
       default:
       value_in_examples:
       description: |
         A string array of scope names that will be available to the
-        end user. See [Set mandatory scopes](/hub/kong-inc/application-registration/#Set_mandatory_scopes).
+        end user. See [Set mandatory scopes](#set-mandatory-scopes).
     - name: token_expiration
       required: true
       default: 7200
@@ -125,7 +125,7 @@ params:
         An optional integer value telling the plugin how many seconds an access
         token should last, after which the client will need to refresh the
         token. Default value is two hours. Set to `0` to disable the expiration.
-        See [Set tokens to never expire](/hub/kong-inc/application-registration/#Set_tokens_to_never_expire).
+        See [Set tokens to never expire](#set-tokens-to-never-expire).
   extra: |
     **Important:** When configuring the plugin, at least one of the following
      OAuth2 auth flows must be enabled:
