@@ -238,7 +238,7 @@ to invoke the function.
 3. Next, create the lambda function itself in the N. Virginia Region
 (code `us-east-1`).
 
-    In Lambda Management, create a new function `Mylambda`. There will be no blueprint because you are going to paste the code below (which is an example code snippet). For the execution role, choose the `LambdaExecutor` created previously.
+    In Lambda Management, create a new function `MyLambda`. There will be no blueprint because you are going to paste the code below (which is an example code snippet). For the execution role, choose the `LambdaExecutor` created previously.
 
     **Note**: The following code snippet is only an example. The Kong AWS Lambda plugin supports all runtimes provided by AWS. See the list of runtimes in the **AWS Lambda** > **Functions** > **Create function** dialog.
 
@@ -255,8 +255,8 @@ to invoke the function.
 
     Test the lambda function from the AWS console and make sure the execution succeeds.
 
-4. Finally, set up a Service and Route in Kong and link it to the
-`Mylambda` function you just created.
+4. Set up a Service and Route in Kong and link it to the
+`MyLambda` function you just created.
 
 {% navtabs %}
 {% navtab With a database %}
