@@ -37,7 +37,7 @@ params:
       default: "`authorization`"
       value_in_examples: authorization
       description: |
-        The name of the header that is supposed to carry the access token.
+        The name of the header that is supposed to carry the access token ([RFC 6750 Section 2.1](https://tools.ietf.org/html/rfc6750#section-2.1)).
     - name: auto_approve
       required: true
       default: "`false`"
