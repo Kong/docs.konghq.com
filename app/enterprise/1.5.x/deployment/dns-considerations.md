@@ -6,7 +6,7 @@ title: DNS Considerations for Kong Enterprise
 
 Kong Enterprise provides web applications that must be able to interact with
 other Kong services to function properly: Kong Manager must be able to
-interact with the Admin API and the Dev Portal must be able to interact with
+interact with the Admin API, and the Dev Portal must be able to interact with
 the Portal API. These applications are subject to security restrictions
 enforced by browsers, and Kong must send appropriate information to browsers in
 order for them to function properly.
@@ -17,8 +17,8 @@ you must design your DNS structure to meet the requirements.
 
 ## Quick guide
 
-We recommend you read through this document to understand why these
-requirements exist and how they function, in brief, your environment must meet
+It is recommended you read through this document to understand why these
+requirements exist and how they function. In brief, your environment must meet
 one of the two criteria below:
 
 * Kong Manager and the Admin API are served from the same hostname, typically
@@ -30,7 +30,7 @@ one of the two criteria below:
 
 The same applies to the Portal API and Dev Portal.
 
-The first option simplifies configuration in kong.conf, but requires an HTTP
+The first option simplifies configuration in `kong.conf`, but requires an HTTP
 proxy in front of the applications (because it uses HTTP path-based routing).
 The Kong proxy can be used for this. The second option requires more
 configuration in kong.conf, but can be used without proxying the applications.
@@ -99,7 +99,7 @@ APIs using JavaScript. These requests may be cross-origin depending on your
 environment.
 
 Kong's services determine what CORS headers to send based on various location
-hint settings in kong.conf. The Admin API obtains its ACAO header value from
+hint settings in `kong.conf`. The Admin API obtains its ACAO header value from
 `admin_gui_url` and the Portal API obtains its header value from the
 information in the `portal_gui_protocol`, `portal_gui_host`, and
 `portal_gui_use_subdomains` settings. You may optionally specify additional
@@ -111,7 +111,7 @@ hostname, e.g. by accessing Kong Manager at `https://admin.kong.example/` and
 the Admin API at `https://admin.kong.example/_api/`. This option requires
 placing a proxy in front of both Kong Manager and the Admin API to handle
 path-based routing; you can use Kong's proxy for this purpose. Note that the
-GUIs must be served at the root of their domains: you cannot place the APIs at
+GUIs must be served at the root of their domains; you cannot place the APIs at
 the root and the GUI under a path.
 
 ### Troubleshooting
@@ -144,10 +144,10 @@ header][mdn-cookie] when making subsequent requests.
 
 Cookies are used for a variety of purposes and offer many settings to tailor
 when a browser will include them to fit a particular use case. Of particular
-interest to us are:
+interest are the following directives:
 
 - Cookie scope, defined by the cookie's `Domain` and `Path` directives. Absent
-  these, cookies are sent to the hostname that created them only: a cookie
+  these, cookies are sent only to the hostname that created them: a cookie
   created by `example.com` will not be sent with a request to
   `www.example.com`. When `Domain` is specified, cookies are sent to that
   hostname and its subdomains, so a cookie from `example.com` with
@@ -164,9 +164,9 @@ interest to us are:
   with same-site requests, `Lax` are sent when navigating to a link from
   another site, and `None` are sent with all cross-origin requests.
 
-### Cookies in the context of Kong Enerprise
+### Cookies in the context of Kong Enterprise
 
-After you log into Kong Manager or the Dev Portal, Kong stores session
+After you log in to Kong Manager or the Dev Portal, Kong stores session
 information in a cookie to recognize your browser during future requests. These
 cookies are created using the [session plugin][session-plugin] (via
 `admin_gui_session_conf`) or [OpenID Connect plugin][oidc-plugin].
@@ -241,7 +241,7 @@ Review the `Set-Cookie` information to see when the cookie was set to expire
 and subsequent requests to determine if any other response has issued a
 `Set-Cookie` that deleted it (by setting expiration to a date in the past).
 
-This information may not immediately indicate the cause of the issue, but can
+This troubleshooting information may not immediately indicate the cause of the issue, but can
 help Kong Support pinpoint the cause. Please provide it in tickets if possible.
 
 [chrome-dev-application]: https://developers.google.com/web/tools/chrome-devtools#application
