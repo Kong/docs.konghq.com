@@ -32,7 +32,7 @@ Golang development is well known for its low entry barrier and ease of deploymen
 
 To make this possible, the compiler generates statically-linked executables by default. A significant drawback of this choice is that it makes extending a "finished" Go program very difficult. There are several ways around this limitation, but most of them involve some form of interprocess communication. Since this is well supported by the language and basic libraries, it's usually a very good solution, but this isn't always the case.
 
-The extension strategy chosen for Kong is one very common in other languages: a plugin is a dynamically loaded module.  To allow this, the compiler no longer produces fully static programs, now the executable and plugins depend on the system libraries.
+The extension strategy chosen for Kong is common in other languages: a plugin is a dynamically loaded module. To allow this, instead of producing fully static programs, the executable and plugins depend on the system libraries.
 
 This is a relatively recent feature in Golang, and has some rough edges in tooling and deployability.  In particular, it's essential that the loading executable (`go-pluginserver` in our case) and the plugins have exactly the same linking behaviour.  This involves at least:
 
