@@ -44,7 +44,7 @@ params:
       value_in_examples: false
       description: |
         If enabled, all new Service Contracts requests are automatically
-        approved. Otherwise, Dev Portal admins must manually approve requests.
+        approved. See [Enable automatic registration approval](#enable-automatic-registration-approval). Otherwise, Dev Portal admins must manually approve requests.
     - name: description
       required: false
       default:
@@ -222,6 +222,8 @@ curl -X POST http://<DNSorIP>:8001/services/{service} \
 ```
 
 ### Set tokens to never expire
+
+Set the `config.refresh_token_ttl` and `config.token_expiration` values to `0`.
 
 ```
 curl -X  POST http://<DNSorIP>:8001/services/{service} \
