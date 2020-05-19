@@ -313,7 +313,7 @@ Kong Template Helpers are a collection of objects that give access to your porta
 ## Globals
 
 - [`l`](#lkey-fallback) - Locale helper, first version, gets values from the currently active page.
-- [`each`](#eachlist_or_table) - Commonly used helper to iterate over lists / tables.
+- [`each`](#eachlist_or_table) - Commonly used helper to iterate over lists or tables.
 - [`print`](#printany) - Commonly used helper to print lists / tables.
 - [`markdown`](#printany) - Commonly used helper to print lists / tables.
 - [`json_decode`](#json_decode) - Decode JSON to Lua table.
@@ -326,8 +326,8 @@ Kong Template Helpers are a collection of objects that give access to your porta
 - [`page`](#page) - The page object refers to the currently active page and its contents.
 - [`user`](#user) - The user object represents the currently logged in developer accessing the Kong Portal.
 - [`theme`](#theme) - The theme object represents the currently active theme and its variables.
-- [`tbl`](#tbl) = Table helper methods. Examples: `map`, `filter`, `find`, `sort`
-- [`str`](#str) = String helper methods. Examples: `lower`, `upper`, `reverse`, `endswith`
+- [`tbl`](#tbl) = Table helper methods. Examples: `map`, `filter`, `find`, `sort`.
+- [`str`](#str) = String helper methods. Examples: `lower`, `upper`, `reverse`, `endswith`.
 - [`helpers`](#helpers) - Helper functions simplify common tasks or provide easy shortcuts to Kong Portal methods.
 
 
@@ -418,7 +418,7 @@ locale:
 
 #### Notes
 
-- `l(...)` is a helper from the `page` object. It can be also accessed via `page.l`. However `page.l` does not support template interpolation (aka `{{portal.name}}` will not work.)
+- `l(...)` is a helper from the `page` object. It can be also accessed via `page.l`. However, `page.l` does not support template interpolation (for example, `{{portal.name}}` will not work.)
 
 ## `each(list_or_table)`
 
@@ -487,7 +487,7 @@ string
 
 #### Description
 
-> Returns HTML from the markdown string passed as an argument. If string argument is not valid markdown, the function will return the string as is. In order to render properly the helper should be used with raw "{* *}" delimeters.
+> Returns HTML from the markdown string passed as an argument. If a string argument is not valid markdown, the function will return the string as is. To render properly, the helper should be used with raw "{* *}" delimiters.
 
 #### Return Type
 
@@ -731,7 +731,7 @@ Authentication is endabled!
 
 #### Description
 
-Returns an array of specification files contained within the current portal
+Returns an array of specification files contained within the current portal.
 
 #### Return type
 
@@ -807,7 +807,7 @@ array
 
 #### Description
 
-Returns an array of developer meta fields available/required by kong to register a developer
+Returns an array of developer meta fields available/required by Kong to register a developer.
 
 #### Return Type
 
@@ -874,7 +874,7 @@ array
 
 # `page`
 
-> `page` gives access to data relating to the current page, this includes things like page url, path, breadcrumbs...
+> `page` gives access to data relating to the current page, which includes things like page url, path, breadcrumbs, and more.
 
 ---
 
@@ -889,7 +889,7 @@ array
 
 ## How to access content values
 
-When you create a new content page, you are able to define key-values. Here you are going to learn how to access those values and a few interesting things.
+When you create a new content page, you are able to define key-values. Here you are going to learn how to access those values and a few other interesting things.
 
 You can access the key-values you define directly on the `page` object like so:
 
@@ -905,7 +905,7 @@ You can also access nested keys like so:
 page.key_name.nested_key
 ```
 {% raw %}
-> Be careful! Make sure that the `key_name` exists before accessing `nested_key` like so to avoid output errors:
+> Be careful! To avoid output errors, make sure that the `key_name` exists before accessing `nested_key` as shown below:
 > ```hbs
 > {{page.key_name and page.key_name.nested_key}}
 > ```
@@ -916,7 +916,7 @@ page.key_name.nested_key
 
 #### Description
 
-> Returns the current page's route / path.
+> Returns the current page's route/path.
 
 #### Return Type
 
@@ -944,7 +944,7 @@ guides/getting-started
 
 #### Description
 
-> Returns the current page's url
+> Returns the current page's url.
 
 #### Return Type
 
@@ -972,7 +972,7 @@ http://127.0.0.1:8003/default/guides/getting-started
 
 #### Description
 
-> Returns the current page's breadcrumb collection
+> Returns the current page's breadcrumb collection.
 
 #### Return Type
 
@@ -983,7 +983,7 @@ table[]
 #### Item Properties
 
 - `item.path` - Full path to item, no forward-slash prefix.
-- `item.display_name` - Formatted name
+- `item.display_name` - Formatted name.
 - `item.is_first` - Is this the first item in the list?
 - `item.is_last` - Is this the last item in the list?
 
@@ -1010,7 +1010,7 @@ table[]
 
 #### Description
 
-> Returns the body of the current page as a string. If the routes content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to html.
+> Returns the body of the current page as a string. If the route's content file has a `.md` or `.markdown` extension, the body will be parsed from markdown to html.
 
 #### Return Type
 
@@ -1035,12 +1035,12 @@ This is text content.
 
 ##### Output
 > # This is a title
-> This is text content
+> This is text content.
 
 #### Usage for .md, .markdown templates
 
 ##### Template (markdown)
-You must use the raw delimiter syntax `{* *}` in order to render markdown within a template.
+You must use the raw delimiter syntax `{* *}` to render markdown within a template.
 
 ##### index.txt
 ```hbs
@@ -1055,11 +1055,11 @@ This is text content.
 
 ##### Output
 > # This is a title
-> This is text content
+> This is text content.
 
 # `user`
 
-> `user` gives access to data relating to the current authenticated user.  User object is only applicable when `KONG_PORTAL_AUTH` is enabled.
+> `user` gives access to data relating to the currently authenticated user.  User object is only applicable when `KONG_PORTAL_AUTH` is enabled.
 
 ---
 
@@ -1076,7 +1076,7 @@ This is text content.
 
 #### Description
 
-> Returns `boolean` value as to the current users authentication status.
+> Returns `boolean` value as to the current user's authentication status.
 
 #### Return Type
 
@@ -1104,7 +1104,7 @@ true
 
 #### Description
 
-> Returns `true` if user has role given as argument.
+> Returns `true` if a user has a role given as an argument.
 
 #### Return Type
 
@@ -1161,7 +1161,7 @@ example123@konghq.com
 
 # `theme`
 
-> The `theme` object exposes values set in your `theme.conf.yaml` file.  In addition any variable overrides contained in `portal.conf.yaml` will be included as well.
+> The `theme` object exposes values set in your `theme.conf.yaml` file.  In addition, any variable overrides contained in `portal.conf.yaml` will be included as well.
 
 ---
 
@@ -1179,7 +1179,7 @@ example123@konghq.com
 
 #### Description
 
-> Returns table of color vars and their values as key value pairs.
+> Returns a table of color variables and their values as key-value pairs.
 
 #### Return Type
 
@@ -1274,7 +1274,7 @@ colors:
 
 #### Description
 
-> Returns table of font vars and their values as key value pairs.
+> Returns table of font vars and their values as key-value pairs.
 
 #### Return Type
 
@@ -1356,7 +1356,7 @@ fonts:
 
 #### Description
 
-> Table containing useful string helper methods
+> Table containing useful string helper methods.
 
 #### Usage
 
