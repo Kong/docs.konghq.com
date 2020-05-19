@@ -334,7 +334,7 @@ Kong Template Helpers are a collection of objects that give access to your porta
 ## Terminology / Definitions
 
 - `list` - Also referred to commonly as an array (`[1, 2, 3]`) in Lua is a table-like object (`{1, 2, 3}`). Lua list index starts at `1` not `0`. Values can be accessed by array notation (`list[1]`).
-- `table` - Also commonly-known-as an object or hashmap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
+- `table` - Also commonly known as an object or hashmap (`{1: 2}`) in Lua looks like (`{1 = 2}`). Values can be accessed by array or dot notation (`table.one or table["one"]`).
 
 # Globals
 ## `l(key, fallback)`
