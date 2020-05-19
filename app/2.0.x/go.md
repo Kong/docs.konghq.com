@@ -56,7 +56,7 @@ To write a Kong plugin in Go, you need to:
 * Define a structure type to hold configuration.
 * Write a `New()` function to create instances of your structure.
 * Add methods on that structure to handle events.
-* Compile like: `docker run --rm -v $(pwd):/plugins kong/go-plugin-tool:<version> build <source>`.
+* Compile using: `docker run --rm -v $(pwd):/plugins kong/go-plugin-tool:<version> build <source>`.
 * Put the resulting library (the `.so` file) into the `go_plugins_dir` directory.
 
 
