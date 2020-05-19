@@ -37,7 +37,7 @@ The extension strategy chosen for Kong is common in other languages: a plugin is
 This is a relatively recent feature in Golang, and has some rough edges in tooling and deployability.  In particular, it's essential that the loading executable (`go-pluginserver` in our case) and the plugins have exactly the same linking behaviour.  This involves at least:
 
 * The same version of any common library, including:
-    * our `Kong/go-pdk`.
+    * `Kong/go-pdk`
     * all standard Go libraries (like `fmt`, `rpc`, `reflect`, etc)
     * OS libraries, like `libpthread`, `libc`, `ld-xxxx`, etc.
 * the exact same version of the Go compiler.
