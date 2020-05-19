@@ -59,7 +59,7 @@ params:
     - name: enable_authorization_code
       required: true
       default: "`false`"
-      value_in_examples:
+      value_in_examples: true
       description: |
         An optional boolean value to enable the three-legged Authorization
         Code flow ([RFC 6742 Section 4.1](https://tools.ietf.org/html/rfc6749#section-4.1)). At least one flow must be enabled for the plugin.
@@ -73,6 +73,7 @@ params:
     - name: enable_implicit_grant
       required: true
       default: "`false`"
+      value_in_examples: true
       description: |
         An optional boolean value to enable the Implicit Grant flow, which
         allows to provision a token as a result of the authorization
@@ -80,6 +81,7 @@ params:
     - name: enable_password_grant
       required: true
       default: "`false`"
+      value_in_examples: true
       description: |
         An optional boolean value to enable the Resource Owner Password
         Credentials Grant flow ([RFC 6742 Section 4.3](https://tools.ietf.org/html/rfc6749#section-4.3)). At least one flow must be enabled for the plugin.
@@ -252,7 +254,7 @@ The scopes string array is space delimited.
 
 ### Enable automatic registration approval
 
-Update your current configuration by running a PATCH command. Replace `{plugin_id}` with the `id` of your plugin.
+Enable `auto_approve` so that application registration requests are automatically approved. Update your current configuration by running a PATCH command. Replace `{plugin_id}` with the `id` of your plugin.
 
 ```
 curl -X PATCH http://<DNSorIP>:8001/plugins/{plugin_id} \
