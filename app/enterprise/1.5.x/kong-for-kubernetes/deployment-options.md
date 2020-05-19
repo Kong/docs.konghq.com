@@ -158,5 +158,5 @@ migrating in the opposite direction.
 [admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/deployment/admission-webhook.md
 [route-validation]: /enterprise/{{page.kong_version}}/property-reference/#route_validation_strategy
 [supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/references/plugin-compatibility.md
-[k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install.md
-[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes.md
+[k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install
+[k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes
