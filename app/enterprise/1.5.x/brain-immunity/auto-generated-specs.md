@@ -3,7 +3,7 @@ title: Auto-Generated Specs
 ---
 
 ## Introduction
-Writing API documentations and keeping them up to date is often the easiest, most important task that either doesn't happen or doesn't happen enough.  Having great API specifications is especially difficult for organizations with legacy APIs that were never documented to begin with.
+Writing API documentation and keeping them up to date is often the easiest, most important task that either doesn't happen or doesn't happen enough. Having great API specifications is especially difficult for organizations with legacy APIs that were never documented to begin with.
 
 Being able to use seen traffic to auto-generate OpenAPI/Swagger specifications is a crucial first step towards having and maintaining accurate API docs.
 
@@ -15,7 +15,7 @@ Being able to use seen traffic to auto-generate OpenAPI/Swagger specifications i
 * Dev Portal enabled for all workspaces that need auto-generated specifications
 
 
-For more information, see the [Kong Brain and Kong Immunity Installation and Configuration Guide](/enterprise/{{page.kong_version}}/brain-immunity/install-configure).
+For more information, see the [Kong Brain and Kong Immunity Installation and Configuration](/enterprise/{{page.kong_version}}/brain-immunity/install-configure) topic.
 
 
 ### Setup
