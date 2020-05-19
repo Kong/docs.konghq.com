@@ -28,7 +28,9 @@ To write your own Go plugins:
 
 ### Environment consistency constraints
 
-Golang development is well known for its low entry barrier and ease of deployment; even complex programs written in Go might be distributed as a single executable that you can copy anywhere and run directly.  To make this possible, the compiler generates statically linked executables by default.  A significant drawback of this choice is that it makes very difficult to extend a "finished" Go program.  There are several ways around this limitation, but most of them involve some form of interprocess communication.  Since this is really well supported by the language and basic libraries, it's usually a very good solution; but this isn't always the case.
+Golang development is well known for its low entry barrier and ease of deployment. Even complex programs written in Go can be distributed as a single executable that you can copy anywhere and run directly. 
+
+To make this possible, the compiler generates statically-linked executables by default. A significant drawback of this choice is that it makes extending a "finished" Go program very difficult. There are several ways around this limitation, but most of them involve some form of interprocess communication. Since this is well supported by the language and basic libraries, it's usually a very good solution, but this isn't always the case.
 
 The extension strategy chosen for Kong is one very common in other languages: a plugin is a dynamically loaded module.  To allow this, the compiler no longer produces fully static programs, now the executable and plugins depend on the system libraries.
 
