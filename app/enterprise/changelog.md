@@ -1038,7 +1038,7 @@ not able to access the **Workspace** that the **Role** was assigned to.
 **Release Date:** 2020/05/14
 
 ### Fixes
-- Reverted some breaking changes introduced by [PR #3780](https://github.com/Kong/kong/pull/3780) involving the handling of slashes inside the router.
+- Reverted breaking changes introduced by [PR #3780](https://github.com/Kong/kong/pull/3780) involving the handling of slashes inside the router.
 - Reverted service mesh changes affecting proxy_ssl_* directives.
 
 ## 0.35-4
