@@ -1,5 +1,5 @@
 ---
-name: Approov Mobile App Attestation
+name: Approov API Threat Protection
 publisher: CriticalBlue Ltd
 
 categories:
@@ -24,9 +24,6 @@ kong_version_compatibility:
       - 1.5.x
       - 1.4.x
       - 1.3.x
-      - 1.2.x
-      - 1.1.x
-      - 1.0.x
   enterprise_edition:
     compatible:
       - 1.5.x
@@ -57,7 +54,7 @@ In order to setup the Approov Token check in the quick start and in the demo we 
 
 #### Step by Step
 
-Read the [Step by Step](https://github.com/approov/kong_approov-plugin/blob/master/docs/KONG_ADMIN_API_STEP_BY_STEP.md) guide to learn how to use the [./kong-admin](/bin/kong-admin.sh) helper script. This script wraps the `curl` requests for interacting with the Kong Admin API to setup the demo.
+Read the [Step by Step](https://github.com/approov/kong_approov-plugin/blob/master/docs/KONG_ADMIN_API_STEP_BY_STEP.md) guide to learn how to use the [./kong-admin](https://github.com/approov/kong_approov-plugin/blob/master/bin/kong-admin.sh) helper script. This script wraps the `curl` requests for interacting with the Kong Admin API to setup the demo.
 
 #### Deep Dive
 
