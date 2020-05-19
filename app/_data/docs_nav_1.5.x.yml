@@ -130,7 +130,7 @@
 
 # Generated via autodoc-admin-api
 - title: Admin API
-  url: /admin-api/
+  url: /admin-api
   items:
     - text: DB-less
       url: /db-less-admin-api

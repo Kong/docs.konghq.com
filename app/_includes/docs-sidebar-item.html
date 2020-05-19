@@ -1,0 +1,34 @@
+{% assign item_url = false %}
+{% assign item_active = false %}
+{% if include.items %}
+{% capture item_content %}
+<ul class="items">
+  {% for item in include.items %}
+  {% assign url = include.docs_url | append: item.url | append: '/' %}
+  {% if item.items %}
+  {% assign id = include.id | append: '-' | append: forloop.index %}
+  {% include docs-sidebar-item.html id=id docs_url=include.docs_url items=item.items title=item.text url=item.url absolute_url=item.absolute_url active=item_active %}
+  {% else %}
+  <li>
+    <a {% if item.absolute_url %}href="{{item.url}}" {% else %}href="{{include.docs_url | append: item.url}}" {% endif %} {% if page.url==url %}class="active"{% endif %}>
+      {{item.text}}
+    </a>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+{% endcapture %}
+{% else %}
+{% assign item_content = nil %}
+{% endif %}
+
+{% if include.url %}
+{% if include.absolute_url %}
+{% assign item_url = include.url %}
+{% else %}
+{% assign item_url = include.docs_url | append: include.url | append: '/' %}
+{% endif %}
+{% if page.url == item_url %}{% assign item_active = true %}{% endif %}
+{% endif %}
+
+{% include accordion-item.html id=include.id icon=include.icon url=item_url label=include.title active=item_active content=item_content %}

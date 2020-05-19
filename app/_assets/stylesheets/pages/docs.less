@@ -344,7 +344,6 @@
 
   ul.items {
     margin: 0;
-    padding: 16px 0;
 
     li {
       list-style: none;
@@ -356,6 +355,7 @@
 
       a {
         font-size: 16px;
+        font-weight: normal;
         line-height: 34px;
         color: rgba(0, 0, 0, 0.45);
 
@@ -368,6 +368,12 @@
           font-weight: bold;
         }
       }
+    }
+  }
+
+  .accordion-container {
+    > li.accordion-item > div > ul.items {
+      padding: 16px 0;
     }
   }
 

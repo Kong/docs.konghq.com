@@ -37,7 +37,7 @@
 
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  url: /getting-started/
+  url: /getting-started
   items:
     - text: Overview
       url: /getting-started
@@ -100,7 +100,7 @@
 
 - title: Admin API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
-  url: /admin-api/
+  url: /admin-api
   items:
   - text: Overview
     url: /admin-api
@@ -192,28 +192,28 @@
           url: /kong-manager/administration/workspaces/workspaces
         - text: RBAC
           url: /kong-manager/administration/rbac
-        - items:
-          - text: RBAC in Kong Manager
-            url: /kong-manager/administration/rbac
-          - text: Create a New Role
-            url: /kong-manager/administration/rbac/new-role
-          - text: Create an RBAC User
-            url: /kong-manager/administration/rbac/add-user
+          items:
+            - text: RBAC in Kong Manager
+              url: /kong-manager/administration/rbac
+            - text: Create a New Role
+              url: /kong-manager/administration/rbac/new-role
+            - text: Create an RBAC User
+              url: /kong-manager/administration/rbac/add-user
         - text: Admins
           url: /kong-manager/administration/admins/invite
-        - items:
-          - text: Invite an Admin
-            url: /kong-manager/administration/admins/invite
+          items:
+            - text: Invite an Admin
+              url: /kong-manager/administration/admins/invite
     - text: Vitals
       url: /kong-manager/vitals
 
 
 - title: Kong Dev Portal
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /developer-portal/
+  url: /developer-portal
   items:
     - text: Introduction
-      url: /developer-portal/
+      url: /developer-portal
     - text: Overview
       url: /developer-portal/overview
     - text: Migrating from Legacy
@@ -247,7 +247,7 @@
         - text: Workspaces
           url: /developer-portal/configuration/workspaces
     - text: Administration
-      url: /developer-portal/administration/
+      url: /developer-portal/administration
       items:
         - text: Managing Developers
           url: /developer-portal/administration/managing-developers
@@ -272,7 +272,7 @@
 
 - title: Kong for Kubernetes Enterprise
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-  url: /kong-for-kubernetes/
+  url: /kong-for-kubernetes
   items:
     - text: Overview
       url:  /kong-for-kubernetes

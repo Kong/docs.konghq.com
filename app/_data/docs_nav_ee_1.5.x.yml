@@ -117,63 +117,63 @@
       url: /plugin-development
     - text: Plugin Development Kit
       url: /pdk
-    - text : Control Kong Enterprise through systemd
+    - text: Control Kong Enterprise through systemd
       url: /systemd
 
 - title: Admin API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   url: /admin-api
   items:
-  - text: Overview
-    url: /admin-api
-  - text: Supported Content Types
-    url: /admin-api/#supported-content-types
-  - text: Information Routes
-    url: /admin-api/#information-routes
-  - text: Tags
-    url: /admin-api/#tags
-  - text: Service Object
-    url: /admin-api/#service-object
-  - text: Route Object
-    url: /admin-api/#route-object
-  - text: Consumer Object
-    url: /admin-api/#consumer-object
-  - text: Plugin Object
-    url: /admin-api/#plugin-object
-  - text: Certificate Object
-    url: /admin-api/#certificate-object
-  - text: CA Certificate Object
-    url: /admin-api/#ca-certificate-object
-  - text: SNI Object
-    url: /admin-api/#sni-object
-  - text: Upstream Object
-    url: /admin-api/#upstream-object
-  - text: Target Object
-    url: /admin-api/#target-object
-  - text: Workspaces
-    url: /admin-api/workspaces/reference
-  - text: RBAC
-    url: /admin-api/rbac/reference
-  - text: Admins
-    url: /admin-api/admins/reference
-    items:
-      - text: API Reference
-        url: /admin-api/admins/reference
-      - text: Examples
-        url: /admin-api/admins/examples
-  - text: Vitals
-    url: /admin-api/vitals
-    items:
-      - text: Vitals Overview
-        url: /admin-api/vitals
-      - text: Kong Vitals with InfluxDB
-        url: /admin-api/vitals/vitals-influx-strategy
-      - text: Kong Vitals with Prometheus
-        url: /admin-api/vitals/vitals-prometheus-strategy
-  - text: Audit Logging
-    url: /admin-api/audit-log
-  - text: Keyring and Data Encryption
-    url: /admin-api/db-encryption
+    - text: Overview
+      url: /admin-api
+    - text: Supported Content Types
+      url: /admin-api/#supported-content-types
+    - text: Information Routes
+      url: /admin-api/#information-routes
+    - text: Tags
+      url: /admin-api/#tags
+    - text: Service Object
+      url: /admin-api/#service-object
+    - text: Route Object
+      url: /admin-api/#route-object
+    - text: Consumer Object
+      url: /admin-api/#consumer-object
+    - text: Plugin Object
+      url: /admin-api/#plugin-object
+    - text: Certificate Object
+      url: /admin-api/#certificate-object
+    - text: CA Certificate Object
+      url: /admin-api/#ca-certificate-object
+    - text: SNI Object
+      url: /admin-api/#sni-object
+    - text: Upstream Object
+      url: /admin-api/#upstream-object
+    - text: Target Object
+      url: /admin-api/#target-object
+    - text: Workspaces
+      url: /admin-api/workspaces/reference
+    - text: RBAC
+      url: /admin-api/rbac/reference
+    - text: Admins
+      url: /admin-api/admins/reference
+      items:
+        - text: API Reference
+          url: /admin-api/admins/reference
+        - text: Examples
+          url: /admin-api/admins/examples
+    - text: Vitals
+      url: /admin-api/vitals
+      items:
+        - text: Vitals Overview
+          url: /admin-api/vitals
+        - text: Kong Vitals with InfluxDB
+          url: /admin-api/vitals/vitals-influx-strategy
+        - text: Kong Vitals with Prometheus
+          url: /admin-api/vitals/vitals-prometheus-strategy
+    - text: Audit Logging
+      url: /admin-api/audit-log
+    - text: Keyring and Data Encryption
+      url: /admin-api/db-encryption
 
 - title: Kong Manager
   icon: /assets/images/icons/documentation/icn-manager-color.svg
@@ -216,22 +216,22 @@
           url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
           url: /kong-manager/administration/rbac
-        - items:
-          - text: RBAC in Kong Manager
-            url: /kong-manager/administration/rbac
-          - text: Create a New Role
-            url: /kong-manager/administration/rbac/new-role
-          - text: Create an RBAC User
-            url: /kong-manager/administration/rbac/add-user
-          - text: Add a Role and Permissions
-            url: /kong-manager/administration/rbac/add-role
+          items:
+            - text: RBAC in Kong Manager
+              url: /kong-manager/administration/rbac
+            - text: Create a New Role
+              url: /kong-manager/administration/rbac/new-role
+            - text: Create an RBAC User
+              url: /kong-manager/administration/rbac/add-user
+            - text: Add a Role and Permissions
+              url: /kong-manager/administration/rbac/add-role
         - text: Admins
           url: /kong-manager/administration/admins/invite
-        - items:
-          - text: Invite an Admin
-            url: /kong-manager/administration/admins/invite
-          - text: Add an Admin
-            url: /kong-manager/administration/admins/add-admin
+          items:
+            - text: Invite an Admin
+              url: /kong-manager/administration/admins/invite
+            - text: Add an Admin
+              url: /kong-manager/administration/admins/add-admin
     - text: Vitals
       url: /kong-manager/vitals
     - text: How-Tos
@@ -284,7 +284,7 @@
         - text: Workspaces
           url: /developer-portal/configuration/workspaces
     - text: Administration
-      url: /developer-portal/administration/
+      url: /developer-portal/administration
       items:
         - text: Managing Developers
           url: /developer-portal/administration/managing-developers
@@ -311,7 +311,7 @@
 
 - title: Kong Studio
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /studio/
+  url: /studio
   items:
     - text: Changelog
       url: https://insomnia.rest/changelog/
@@ -331,7 +331,7 @@
 
 - title: Kong for Kubernetes Enterprise
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-  url: /kong-for-kubernetes/
+  url: /kong-for-kubernetes
   items:
     - text: Overview
       url:  /kong-for-kubernetes
