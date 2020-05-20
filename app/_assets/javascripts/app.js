@@ -640,4 +640,24 @@ $(function () {
       })
     })
   }
+
+  /**
+   * Custom table column widths in markdown files
+   *
+   * Usage:
+   *
+   * | Concept/Feature {:width=250px:} | Description {:width=20%:} | OSS or Enterprise |
+   * |-----------------|-------------|-------------------|
+   *
+   */
+  const WIDTH_REGEX = /(.*)\s*{:width=(.+):}/
+  $('table thead tr th').each(function (index, th) {
+    const $th = $(th)
+
+    const match = WIDTH_REGEX.exec($th.text())
+    if (match) {
+      $th.text(match[1])
+      th.style.width = match[2]
+    }
+  })
 })
