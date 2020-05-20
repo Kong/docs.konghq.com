@@ -8,7 +8,7 @@ This troubleshooting topic contains common issues you might experience when usin
 
 ### I'm sending traffic, but I don't see anything in the Service Map
 
-The most common cause for the Service Map not displaying is a problem in the configuration between Kong Enterprise (Kong) and the Collector App which prevents traffic data from reaching the Collector App. To confirm the Collector App is receiving traffic from Kong, check ```http://<COLLECTOR_APP>:<COLLECTOR_PORT>```.
+The most common cause for the Service Map not displaying is a problem in the configuration between Kong Enterprise (Kong) and the Collector App which prevents traffic data from reaching the Collector App. To confirm the Collector App is receiving traffic from Kong, check `http://<COLLECTOR_APP>:<COLLECTOR_PORT>`.
 
 When the Collector App has successfully connected to Kong, ```http://<COLLECTOR_APP>:<COLLECTOR_PORT>``` will return the latest 100 requests Kong has sent in the form of JSON objects. For example:
 ```
