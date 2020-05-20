@@ -2,7 +2,11 @@
 title: Troubleshooting-Common-Setup-Issues
 ---
 
-## Help! I don't see anything in the Service Map, but I'm sending traffic
+This troubleshooting page contains common examples and troubleshooting tips for issues you might experience when using Kong Brain and Kong Immunity. Information is also provided for how to contact Kong to report an issue, and how to submit suggestions to help improve functionality. 
+
+## Common Issues and Troubleshooting Tips
+
+### Help! I don't see anything in the Service Map, but I'm sending traffic
 
 The most common cause for the Service Map not displaying is a problem in the configuration between Kong Enterprise (Kong) and the Collector App which prevents traffic data from reaching the Collector App. To confirm the Collector App is receiving traffic from Kong, check ```http://<COLLECTOR_APP>:<COLLECTOR_PORT>```.
 
@@ -69,7 +73,7 @@ When the Collector App is connected to Kong and successfully recieving traffic, 
 If the **/immunity/alerts** page does not show the Collector Plugin is connected, check that the Collector App's URL is set for the Collector Plugin's **http_endpoint** variable. Also check that the machine hosting Kong Enterprise can successfully communicate with the Collector App on the URL provided to Collector Plugin's **http_endpoint** variable.
 
 
-## I'm not seeing any alerts, even though the Collector App is connected to Kong and is receiving traffic
+### I'm not seeing any alerts, even though the Collector App is connected to Kong and is receiving traffic
 
 Immunity waits at least an hour before it makes its first models. If the Collector App has not been up for very long, then the anomaly detection models used to generate alerts have not been created. These models are created using cURL. See [Immunity Model Training](/enterprise/{{page.kong_version}}/brain-immunity/alerts/#immunity-model-training) for more information.
 
@@ -84,7 +88,7 @@ Another likely cause for models not being generated is the Collector does not ha
 
 ## Still having problems?
 
-Email us at immunity@konghq.com with your bug report using the following format:
+Email us at immunity@konghq.com with to report an issue, using the following format:
 
 ```
 Summary
