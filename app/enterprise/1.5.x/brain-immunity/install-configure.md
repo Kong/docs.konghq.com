@@ -48,9 +48,9 @@ Access release-script files to run and install Brain and Immunity from Bintray.
 4. Click **API Key** to get your BINTRAY_API_KEY.
 
 The release-scripts include:
-1. **docker-compose.yml** - Sets up the Collector App.
-2. **with-db.yml** - Creates a PostgreSQL container that the Collector App will use if a database instance has not already been provided.
-3. **with-redis.yml** - Creates a Redis instance that the Collector App will use if a Redis instance has not already been provided.
+* **docker-compose.yml** - Sets up the Collector App.
+* **with-db.yml** - Creates a PostgreSQL container that the Collector App will use if a database instance has not already been provided.
+* **with-redis.yml** - Creates a Redis instance that the Collector App will use if a Redis instance has not already been provided.
 
 ### Collector App Environment Variables
 The Collector App relies on several environment variables that need to be configured for proper function. These should be specified to match the overall Kong Enterprise deployment. 
@@ -58,16 +58,16 @@ The Collector App relies on several environment variables that need to be config
 The provided `docker-compose.yml` file has these variables set to defaults that assume deployment with Docker Compose on the same network that Kong Enterprise is deployed. However, if this is not the case for your planned deployment of Collector App, please adjust the variables in the `docker-compose.yml` file, or specify the values of the variables with `docker-compose up`:
 ```ENVVAR=somevalue ENVVAR=anothervalue docker-compose up```
 
-1. **KONG_PROTOCOL**: The protocol that the Kong Admin API can be reached at. The possible values are `http` or `https`.
-2. **KONG_HOST**: The hostname that the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the Compose file. If the Kong Admin API has been exposed behind a web address, `KONG_HOST` must be that web address.
-3. **KONG_PORT**: The port where the Kong Admin API can be found.  The Collector App requires this setting, along with `KONG_PROTOCOL` and `KONG_HOST`, to communicate with Kong.
-4. **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for the Kong Admin API, if configured.
-5. **SQLALCHEMY_DATABASE_URI**: The SQLAlchemy formatted URI that points to the PostgreSQL database that the Collector App is using as a backend. The format is: `postgresql://<USER>:<PASSWORD>@<POSTGRES-HOST>:<POSTGRES-PORT>/collector`.
-6. **SLACK_WEBHOOK_URL**: The URL of the Slack channel that Immunity alert notifications should be sent to. This URL will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
+* **KONG_PROTOCOL**: The protocol that the Kong Admin API can be reached at. The possible values are `http` or `https`.
+* **KONG_HOST**: The hostname that the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the Compose file. If the Kong Admin API has been exposed behind a web address, `KONG_HOST` must be that web address.
+* **KONG_PORT**: The port where the Kong Admin API can be found.  The Collector App requires this setting, along with `KONG_PROTOCOL` and `KONG_HOST`, to communicate with Kong.
+* **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for the Kong Admin API, if configured.
+* **SQLALCHEMY_DATABASE_URI**: The SQLAlchemy formatted URI that points to the PostgreSQL database that the Collector App is using as a backend. The format is: `postgresql://<USER>:<PASSWORD>@<POSTGRES-HOST>:<POSTGRES-PORT>/collector`.
+* **SLACK_WEBHOOK_URL**: The URL of the Slack channel that Immunity alert notifications should be sent to. This URL will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
 
 
 ### Setting up Collector App via Docker-Compose
-### Docker login
+#### Docker login
 To download from Bintray you will first need to `docker login` to the Kong Brain/Immunity repository:
 ```docker login -u BINTRAY_USERNAME -p BINTRAY_API_KEY kong-docker-kong-brain-immunity-base.bintray.io```
 
