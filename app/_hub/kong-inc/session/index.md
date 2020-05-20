@@ -8,11 +8,14 @@ redirect_from:
 
 desc: Support sessions for Kong Authentication Plugins.
 description: |
-  The Kong Session Plugin can be used to manage browser sessions for APIs proxied 
+  The Kong Session Plugin can be used to manage browser sessions for APIs proxied
   through the Kong API Gateway. It provides configuration and management for
   session data storage, encryption, renewal, expiry, and sending browser cookies.
   It is built using
-  <a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a>
+  <a href="https://github.com/bungle/lua-resty-session">lua-resty-session</a>.
+
+  For information about configuring and using the Sessions plugin with the Dev
+  Portal, see [Sessions in the Dev Portal](/enterprise/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
 
 type: plugin
 categories:
@@ -352,9 +355,9 @@ the `access` and `header_filter` phases in the plugin.
 
 ### Groups
 
-Authenticated groups are stored on `ngx.ctx.authenticated_groups` from other 
-authentication plugins and the session plugin will store them in the data of 
-the current session. Since the session plugin runs before authentication 
+Authenticated groups are stored on `ngx.ctx.authenticated_groups` from other
+authentication plugins and the session plugin will store them in the data of
+the current session. Since the session plugin runs before authentication
 plugins, it will also set `authenticated_groups` associated headers.
 
 ## Kong Storage Adapter

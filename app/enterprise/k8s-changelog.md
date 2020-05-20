@@ -2,6 +2,45 @@
 title: Kong Enterprise k8s Changelog
 ---
 
+## 2.0.4.1
+
+> Released on 2020/05/05
+
+### Fixed
+
+- Ensure that a worker being spawned due to any errors always receives the
+  latest up-to-date configuration in the DB-less mode
+  [#5850](https://github.com/Kong/kong/pull/5850)
+
+## 2.0.4.0
+
+> Released on 2020/04/28
+
+### Summary
+
+Kong Enterprise k8s 2.0.4.0 is based on Kong Gateway 2.0.4.
+
+### Kong Gateway
+
+Kong Enterprise k8s 2.0.4.0 is based on Kong Gateway 2.0.4,
+meaning it inherits the bug-fixes between Kong Gateway 2.0.2 and
+2.0.4.
+Please review the changelog for
+[Kong Gateway](https://github.com/Kong/kong/blob/master/CHANGELOG.md).
+
+### Enterprise Plugins
+
+The following fixes have been included in this release:
+
+- `openid-connect` plugin has been bumped up to v1.4.2
+  - Adds support for `client_secret_jwt` and `private_key_jwt` authentication
+  - Adds support for cookie for `config.bearer_token_param_type`
+  - Adds support for `config.bearer_token_cookie_name`
+- `collector` plugin has been bumped up to v1.7.4
+- `response-transformer-advanced` has been bumped up to v0.3.3
+- `mtls-auth` plugin has been bumped up to v0.1.1
+- `kafka-log` plugin has been bumped up to v0.1.0
+
 ## 2.0.2.0
 
 > Released on 2020/03/27
@@ -23,8 +62,8 @@ Please review the changelog for
 The following plugins are included in this release:
 
 * degraphql
-* graphql-rate-limiting-advanced
 * graphql-proxy-cache-advanced
+* graphql-rate-limiting-advanced
 
 ## 1.4.2.0
 
@@ -61,17 +100,18 @@ Please review the changelog for
 
 The following plugins are included with this release:
 
+* canary release
+* collector
+* forward-proxy
+* jwt-signer
+* kafka-log
+* kafka-upstream
+* ldap-auth-advanced
+* mtls-auth
 * oauth2-introspection
 * openid-connect
 * proxy-cache-advanced
 * rate-limiting-advanced
-* response-transformer-advanced
-* kafka-log
-* kafka-upstream
-* canary release
-* ldap-auth-advanced
-* forward-proxy
-* jwt-signer
-* collector
-* mtls-auth
 * request-validator
+* response-transformer-advanced
+* vault-auth

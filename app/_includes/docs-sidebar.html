@@ -1,5 +1,5 @@
 <aside class="docs-sidebar">
-  <span class="close-sidebar"></span>
+  <i class="fa fa-times close-sidebar"></i>
   {% if page.edition == 'enterprise' %}
   {% assign docs_url = '/enterprise/' | append: page.kong_version %}
   {% elsif page.edition == 'studio' %}
@@ -14,6 +14,7 @@
     {% for nav in page.nav_items %}
     {% assign item_active = false %}
     {% assign item_url = false %}
+    {% if nav.items %}
     {% capture item_content %}
     <ul class="items">
       {% for item in nav.items %}
@@ -27,13 +28,13 @@
           {% for subitem in item.items %}
           {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
           <li>
-            <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% assign item_active = true %} {% endif %}>{{subitem.text}}</a>
+            <a {% if subitem.absolute_url %}href="{{subitem.url}}" {% else %}href="{{docs_url | append: subitem.url}}" {% endif %} {% if page.url==sub_url %}class="active" {% assign item_active = true %} {% endif %}>{{subitem.text}}</a>
             {% if subitem.items %}
             <ul>
               {% for subitem in subitem.items %}
               {% capture sub_url %}{{ docs_url | append: subitem.url }}/{% endcapture %}
               <li>
-                <a href="{{docs_url | append: subitem.url}}" {% if page.url==sub_url %}class="active" {% assign item_active = true %} {% endif %}>{{subitem.text}}</a>
+                <a {% if subitem.absolute_url %}href="{{subitem.url}}" {% else %}href="{{docs_url | append: subitem.url}}" {% endif %} {% if page.url==sub_url %}class="active" {% assign item_active = true %} {% endif %}>{{subitem.text}}</a>
               </li>
               {% endfor %}
             </ul>
@@ -46,6 +47,9 @@
       {% endfor %}
     </ul>
     {% endcapture %}
+    {% else %}
+    {% assign item_content = nil %}
+    {% endif %}
 
     {% if nav.url %}
     {% assign item_url = docs_url | append: nav.url %}

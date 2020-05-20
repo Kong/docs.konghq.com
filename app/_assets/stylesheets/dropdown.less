@@ -63,9 +63,13 @@
 
   &.no-right-border {
     button {
-      border-right: none;
+      border-right-width: 0;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
+
+      @media (max-width: 476px) {
+        border-right-width: 1px;
+      }
     }
   }
 }

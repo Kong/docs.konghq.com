@@ -301,20 +301,23 @@ $(function () {
 
     $navItems.on('click', setNavItemActive)
 
-    if ($(window).width() <= 800) {
-      $('.sidebar-toggle').click(function () {
-        $('.page-navigation').addClass('sidebar-open')
-        const docsSidebar = $('.docs-sidebar')
-        if (docsSidebar.hasClass('sidebar-open')) {
-          docsSidebar.removeClass('sidebar-open')
-        } else {
-          docsSidebar.addClass('sidebar-open')
-        }
-      })
-      $('.page-navigation > .close-sidebar').click(function () {
-        $('.page-navigation').removeClass('sidebar-open')
-      })
-    }
+    $('.sidebar-toggle').click(function () {
+      $('.page-navigation').addClass('sidebar-open')
+      $('.docs-sidebar').addClass('sidebar-open')
+    })
+    $('.page-navigation > .close-sidebar').click(function () {
+      $('.page-navigation').removeClass('sidebar-open')
+    })
+    $('.docs-sidebar > .close-sidebar').click(function () {
+      $('.docs-sidebar').removeClass('sidebar-open')
+    })
+
+    $('.toc-sidebar-toggle').click(function () {
+      $('.docs-toc').addClass('sidebar-open')
+    })
+    $('.docs-toc > .close-sidebar').click(function () {
+      $('.docs-toc').removeClass('sidebar-open')
+    })
   }
 
   // Analytics
@@ -523,4 +526,118 @@ $(function () {
       $('.feedback-comment').css('visibility', 'visible')
     }
   })
+
+  /**
+   * Copy code snippet support
+   *
+   * By default copy code is enabled for all code blocks. If you want disable it for specific page use class 'no-copy-code' in Front Matter:
+   * ---
+   * class: no-copy-code
+   * ---
+   * Additionally, you can still enable it for specific code block using the Inline Attribute as can be seen on the following example:
+   *
+   * ```bash
+   * $ curl -X GET http://kong:8001/basic-auths
+   * ```
+   * {: .copy-code-snippet data-copy-code="curl -X GET http://kong:8001/basic-auths" }
+   *
+   * where:
+   * data-copy-code="{custom-code}" - (optional) can be used to specify {custom-code} to be copied (only single-line text is supported)
+   *
+   */
+  const copyInput = $('<textarea id="copy-code-input"></textarea>')
+  $('body').append(copyInput)
+
+  $('.copy-code-snippet, pre > code').each(function (index, element) {
+    function findSnippetElement () {
+      const $code = $(element)
+      let snippet = $code.parent('pre').parent('.highlight').parent('.highlighter-rouge')
+      if (snippet.length > 0) {
+        return snippet
+      }
+      snippet = $code.parent('pre').parent('.highlight')
+      if (snippet.length > 0) {
+        return snippet
+      }
+      snippet = $code.parent('pre')
+      if (snippet.length > 0) {
+        return snippet
+      }
+      return $code
+    }
+
+    const noCode = $('div.page.no-copy-code').length > 0
+    const snippet = findSnippetElement()
+
+    if (!snippet.hasClass('copy-code-snippet') && noCode) {
+      return
+    }
+
+    snippet.addClass('copy-code-snippet')
+
+    const action = $('<i class="copy-action fa fa-copy"></i>')
+    action.click(function () {
+      if ($('#copy-code-success-info').length > 0) {
+        return
+      }
+
+      copyInput.text(snippet.data('copy-code') || snippet.find('code').text().replace(/^\s*\$\s*/gi, ''))
+      copyInput.select()
+      document.execCommand('copy')
+
+      const successInfo = $('<div id="copy-code-success-info">Copied to clipboard!</div>')
+      successInfo
+        .css({
+          top: action[0].getBoundingClientRect().top - action.height(),
+          left: action[0].getBoundingClientRect().left + action.width() / 2,
+          opacity: 1
+        })
+
+      setTimeout(function () {
+        successInfo.animate({ opacity: 0 }, function () {
+          successInfo.remove()
+        })
+      }, 1000)
+      $('body').append(successInfo)
+    })
+    snippet.append(action)
+  })
+
+  /**
+   * Expandable images
+   *
+   * To enable on specific page, add the following include directive at the bottom of the page html:
+   * {% include image-modal.html %}
+   */
+  const imageModal = $('#image-modal')
+
+  function closeModal () {
+    $(document.body).removeClass('image-modal-no-scroll')
+    imageModal.removeClass('visible')
+    document.removeEventListener('keydown', imageModalKeyDown)
+  }
+
+  function imageModalKeyDown (e) {
+    if (e.key === 'Escape') {
+      closeModal()
+    }
+  }
+
+  if (imageModal.length > 0) {
+    imageModal.find('i').click(closeModal)
+    imageModal.find('.image-modal-backdrop').click(closeModal)
+
+    $('.page-content > .content img').each(function (index, img) {
+      const $img = $(img)
+
+      img.style.cursor = 'pointer'
+      $img.click(function () {
+        $(document.body).addClass('image-modal-no-scroll')
+        imageModal.addClass('visible')
+        imageModal.find('img').attr('src', $img.attr('src'))
+
+        document.addEventListener('keydown', imageModalKeyDown)
+      })
+    })
+  }
 })

@@ -65,7 +65,6 @@ The provided `docker-compose.yml` file has these variables set to defaults that 
 * **SQLALCHEMY_DATABASE_URI**: The SQLAlchemy formatted URI that points to the PostgreSQL database that the Collector App is using as a backend. The format is: `postgresql://<USER>:<PASSWORD>@<POSTGRES-HOST>:<POSTGRES-PORT>/collector`.
 * **SLACK_WEBHOOK_URL**: The URL of the Slack channel that Immunity alert notifications should be sent to. This URL will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
 
-
 ### Setting up Collector App via Docker-Compose
 #### Docker login
 To download from Bintray you will first need to `docker login` to the Kong Brain/Immunity repository:

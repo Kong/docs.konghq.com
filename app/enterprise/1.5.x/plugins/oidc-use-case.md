@@ -4,7 +4,7 @@ title: OpenID Connect Use Case
 
 ## What does OpenID Connect do? 
 
-OpenID Connect provides a way to form a *federation* with *identity providers*. Identity providers are third parties that store account credentials. If the identity provider authenticates a user, the application trusts that provider and allows access to the user. The *identity provider *bears some responsibility for protecting the user’s credentials and ensuring authenticity, so applications no longer need to on their own.
+OpenID Connect provides a way to form a *federation* with *identity providers*. Identity providers are third parties that store account credentials. If the identity provider authenticates a user, the application trusts that provider and allows access to the user. The *identity provider* bears some responsibility for protecting the user’s credentials and ensuring authenticity, so applications no longer need to on their own.
 
 Besides delegating responsibility to an identity provider, OpenID Connect also makes single sign-on possible without storing any credentials on a user’s local machine. 
 

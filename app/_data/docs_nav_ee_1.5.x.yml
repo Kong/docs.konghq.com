@@ -5,6 +5,11 @@
       url: /introduction
     - text: Key Concepts and Terminology
       url: /introduction/key-concepts
+
+- title: Release Notes
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /release-notes
+  items:
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
@@ -17,8 +22,10 @@
       items:
         - text: Docker
           url: /deployment/installation/docker
-        - text: Kubernetes
+        - text: Kong for Kubernetes Enterprise
           url: /kong-for-kubernetes/install
+        - text: Kong Enterprise on Kubernetes
+          url: /kong-for-kubernetes/install-on-kubernetes
         - text: Ubuntu
           url: /deployment/installation/ubuntu
         - text: CentOS
@@ -29,6 +36,8 @@
           url: /deployment/installation/amazon-linux-2
         - text: Red Hat Enterprise Linux
           url: /deployment/installation/rhel
+        - text: OpenShift
+          url: /kong-for-kubernetes/install
     - text: Default Ports
       url: /deployment/default-ports
     - text: Resource Sizing Guidelines
@@ -51,6 +60,8 @@
           url: /db-encryption
         - text: Start Kong Enterprise Securely
           url: /start-kong-securely
+        - text: Kong Security Update Process
+          url: /kong-security-update-process
     - text: Upgrade and Migration
       url: /deployment/migrations
     - text: Kong Cloud
@@ -87,8 +98,7 @@
     - text: CLI Reference
       url: /cli
     - text: Rate Limiting Library
-      url: /enterprise/references/rate-limiting
-      absolute_url: true
+      url: /rate-limiting
     - text: Proxy Reference
       url: /proxy
     - text: Authentication Reference
@@ -133,7 +143,7 @@
   - text: Certificate Object
     url: /admin-api/#certificate-object
   - text: CA Certificate Object
-    urk: /admin-api/#ca-certificate-object
+    url: /admin-api/#ca-certificate-object
   - text: SNI Object
     url: /admin-api/#sni-object
   - text: Upstream Object
@@ -239,8 +249,6 @@
   items:
     - text: Introduction
       url: /developer-portal/
-    - text: Overview
-      url: /developer-portal/overview
     - text: Enable the Dev Portal
       url: /developer-portal/enable-dev-portal
     - text: Migrating to 1.5
@@ -301,16 +309,40 @@
         - text: CLI
           url: /developer-portal/helpers/cli
 
+- title: Kong Studio
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  url: /studio/
+  items:
+    - text: Changelog
+      url: https://insomnia.rest/changelog/
+      absolute_url: true
+    - text: Getting Started
+      url: /studio/download-install
+      items:
+        - text: Download and Install
+          url: /studio/download-install
+        - text: Using Insomnia Designer
+          url: https://support.insomnia.rest/article/94-introduction/
+          absolute_url: true
+        - text: Deploy to Dev Portal
+          url: /studio/deploy-to-dev-portal
+        - text: Generate Configuration
+          url: /studio/dec-conf-studio
+
 - title: Kong for Kubernetes Enterprise
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
   url: /kong-for-kubernetes/
   items:
     - text: Overview
       url:  /kong-for-kubernetes
-    - text: Installation
+    - text: Install Kong for Kubernetes Enterprise
       url: /kong-for-kubernetes/install
+    - text: Install Kong Enterprise on Kubernetes
+      url: /kong-for-kubernetes/install-on-kubernetes
     - text: Using Kong for Kubernetes
       url: /kong-for-kubernetes/using-kong-for-kubernetes
+    - text: Deployment Options
+      url: /kong-for-kubernetes/deployment-options
     - text: Changelog
       url: /kong-for-kubernetes/changelog
 
