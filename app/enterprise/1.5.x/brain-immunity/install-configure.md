@@ -12,7 +12,7 @@ Brain and Immunity are installed on Kong Enterprise, either on Kubernetes or Doc
 ## Install Brain and Immunity on Kubernetes
 Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: https://github.com/Kong/kong-collector-helm/blob/master/README.md
 
-## Install Brain and Immunity on Docker 
+## Install Brain and Immunity on Docker
 Install Brain and Immunity by downloading, installing and starting the Collector App on Docker, as defined in this section.
 
 ### Prerequisites
@@ -26,8 +26,8 @@ To complete this installation you will need:
   - The API Key can be obtained by visiting [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting *API Key*
 * A Docker-enabled system with proper Docker access.
 * Kong Enterprise 1.5.x or later installed on Docker.
-* The Docker-Compose file of your purchased version of Brain and Immunity, which displays in Bintray as *kong/kong-brain-immunity-base*. 
-* A valid Kong Enterprise License JSON file. 
+* The Docker Compose file of your purchased version of Brain and Immunity, which displays in Bintray as *kong/kong-brain-immunity-base*.
+* A valid Kong Enterprise License JSON file.
   - The license file can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
 
@@ -53,10 +53,12 @@ The release-scripts include:
 * **with-redis.yml** - Creates a Redis instance that the Collector App will use if a Redis instance has not already been provided.
 
 ### Collector App Environment Variables
-The Collector App relies on several environment variables that need to be configured for proper function. These should be specified to match the overall Kong Enterprise deployment. 
+The Collector App relies on several environment variables that need to be configured for proper function. These should be specified to match the overall Kong Enterprise deployment.
 
 The provided `docker-compose.yml` file has these variables set to defaults that assume deployment with Docker Compose on the same network that Kong Enterprise is deployed. However, if this is not the case for your planned deployment of Collector App, please adjust the variables in the `docker-compose.yml` file, or specify the values of the variables with `docker-compose up`:
-```ENVVAR=somevalue ENVVAR=anothervalue docker-compose up```
+```
+ENVVAR=somevalue ENVVAR=anothervalue docker-compose up
+```
 
 * **KONG_PROTOCOL**: The protocol that the Kong Admin API can be reached at. The possible values are `http` or `https`.
 * **KONG_HOST**: The hostname that the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the Compose file. If the Kong Admin API has been exposed behind a web address, `KONG_HOST` must be that web address.
@@ -65,13 +67,17 @@ The provided `docker-compose.yml` file has these variables set to defaults that 
 * **SQLALCHEMY_DATABASE_URI**: The SQLAlchemy formatted URI that points to the PostgreSQL database that the Collector App is using as a backend. The format is: `postgresql://<USER>:<PASSWORD>@<POSTGRES-HOST>:<POSTGRES-PORT>/collector`.
 * **SLACK_WEBHOOK_URL**: The URL of the Slack channel that Immunity alert notifications should be sent to. This URL will be the default channel for alerts, but you can also add more channels and rules configuring which alerts to send to which channel. See [Adding a Slack Configuration](#adding-a-slack-configuration).
 
-### Setting up Collector App via Docker-Compose
+### Setting up Collector App via Docker Compose
 #### Docker login
 To download from Bintray you will first need to `docker login` to the Kong Brain/Immunity repository:
-```docker login -u BINTRAY_USERNAME -p BINTRAY_API_KEY kong-docker-kong-brain-immunity-base.bintray.io```
+```
+docker login -u BINTRAY_USERNAME -p BINTRAY_API_KEY kong-docker-kong-brain-immunity-base.bintray.io
+```
 
-Login to Docker:
-```docker login```
+Log in to Docker:
+```
+docker login
+```
 
 Then follow the login steps when prompted.
 
@@ -83,7 +89,9 @@ KONG_HOST={KONG HOST URL} KONG_PORT={KONG PORT} KONG_MANAGER_PORT={KONG MANAGER 
 
 ### Bringing up the Collector App alone
 If you already have an outside database and would not like to bring up PostgreSQL with the Collector App, first make sure you have a collector database.
-```psql -U user -c "CREATE DATABASE collector;"```
+```
+psql -U user -c "CREATE DATABASE collector;"
+```
 
 Then you can bring up the Collector App with:
 ```
@@ -112,7 +120,7 @@ To apply the Collector Plugin to a Service, make this cURL request:
 
 ```
 $ http --form POST http://<KONG_HOST>:8001/<workspace>/plugins/<service_id> name=collector \
-    config.http_endpoint=<COLLECTOR_APP_ENDPOINT> 
+    config.http_endpoint=<COLLECTOR_APP_ENDPOINT>
 ```
 
 ### Enable the Collector Plugin using Kong Manager
@@ -127,7 +135,7 @@ The Collector Plugin page contains the variables that are configurable for the C
 2. Click **Create**. The Collector Plugin is configured.
 
 ### Logging HTTP Body Content
-The Collector Plugin gives users the option to opt-in or out of logging HTTP request bodies with the ```config.log_bodies``` configuration variable. When set to `false`, the Collector Plugin will not send body content in HTTP requests to the Collector App. This is useful to prevent sensitive personal information in the request body content from being stored long term in the Collector App. The cost of not sending the request body information is that its contents will not appear in generated Swagger, nor be used for anomaly detection.  When set to `true`, the Collector Plugin will send request body content to the Collector App where it can be stored in the Collector App's database.
+The Collector Plugin gives users the option to opt-in or out of logging HTTP request bodies with the `config.log_bodies` configuration variable. When set to `false`, the Collector Plugin will not send body content in HTTP requests to the Collector App. This is useful to prevent sensitive personal information in the request body content from being stored long term in the Collector App. The cost of not sending the request body information is that its contents will not appear in generated Swagger, nor be used for anomaly detection.  When set to `true`, the Collector Plugin will send request body content to the Collector App where it can be stored in the Collector App's database.
 
 ### Check the Collector Plugin
 
@@ -151,37 +159,37 @@ Your Bintray credentials are provided to you with your purchase of Kong Enterpri
 
 1. SSH/PuTTY into your running instance where you want to install Brain and Immunity.
 
-2. Log into Docker, and enter the repo you have access to. For example, ```kong-docker-kong-brain-immunity-base```.
+2. Log into Docker, and enter the repo you have access to. For example, `kong-docker-kong-brain-immunity-base`.
 
-```
-docker login -u <BINTRAY_USERNAME> -p <BINTRAY_API_KEY> <enter your repo here>.bintray.io
-```
+    ```
+    docker login -u <BINTRAY_USERNAME> -p <BINTRAY_API_KEY> <enter your repo here>.bintray.io
+    ```
 
 3. Pull down the files for Docker Compose.
 
-```
-wget https://<BINTRAY_USERNAME>:<BINTRAY_API_KEY>@kong.bintray.com/<kong-brain-immunity-base>/docker-compose.zip
-```
-* If successful, you should see `docker-compose.zip` in your current directory.
+    ```
+    wget https://<BINTRAY_USERNAME>:<BINTRAY_API_KEY>@kong.bintray.com/<kong-brain-immunity-base>/docker-compose.zip
+    ```
+    If successful, you should see `docker-compose.zip` in your current directory.
 
 4. Unzip the package into the directory of your choice.
 
 5. Run Docker Compose using the files to start Brain and Immunity.
 
-```
-KONG_HOST=<KONG HOST> KONG_PORT=<8001> SQLALCHEMY_DATABASE_URI=<postgres://kong@localhost:5432/collector> docker-compose -f docker-compose.yml -f with-redis.yml up
-```
+    ```
+    KONG_HOST=<KONG HOST> KONG_PORT=<8001> SQLALCHEMY_DATABASE_URI=<postgres://kong@localhost:5432/collector> docker-compose -f docker-compose.yml -f with-redis.yml up
+    ```
 
-* Replace `KONG_HOST` and `KONG_PORT` with the host and port of your Kong Admin API
-   * ```KONG_HOST```: the public IP address or Hostname of the system which is running Brain
-   * ```KONG_PORT```: Usually 8001, but may be set otherwise
-* ```SQLALCHEMY_DATABASE_URI```:  The SQLAlchemy formatted URI that points to the PostgreSQL database that the Collector App is using as a backend.
+    * Replace `KONG_HOST` and `KONG_PORT` with the host and port of your Kong Admin API:
+       * `KONG_HOST`: the public IP address or Hostname of the system which is running Brain
+       * `KONG_PORT`: Usually 8001, but may be set otherwise
+    * `SQLALCHEMY_DATABASE_URI`:  The SQLAlchemy formatted URI that points to the PostgreSQL database that the Collector App is using as a backend.
 
 
 ## Step 4. (Advanced Configuration) Opt-Out of HAR Redaction
 **Note**: You must specifically opt-out, or turn off, HAR Redaction in order to store all of your data. The default setting is to redact.
 
-The Collector App default does not store body data values and attachments in traffic data. In the ```Har['postData']['text']``` field, all values are replaced with the value's type. This does not affect the performance of Brain or Immunity, however, this can impact your ability to investigate some Immunity related alerts by looking at the offending HARs that created those alerts.
+The Collector App default does not store body data values and attachments in traffic data. In the `Har['postData']['text']` field, all values are replaced with the value's type. This does not affect the performance of Brain or Immunity, however, this can impact your ability to investigate some Immunity related alerts by looking at the offending HARs that created those alerts.
 
 If you want to store body data in the Collector App, you can do so by setting the Collector’s `REDACT_BODY_DATA` by updating the environment variable in `docker-compose.yml` or declaring it in your `docker-compose up` command as follows:
 
