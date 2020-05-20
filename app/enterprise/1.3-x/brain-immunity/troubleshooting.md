@@ -60,7 +60,7 @@ When the `/status` endpoint is not returning a `kong_status` object, there are t
 * **KONG_PORT**: The port where Kong Admin can be found. The Collector App requires this setting, along with `KONG_PROTOCOL` and `KONG_HOST`, to communicate with Kong Admin.
 * **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for the Kong Admin API, if RBAC is configured.
 
-The Collector App will attempt to communicate with Kong via **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}** and if `KONG_ADMIN_TOKEN` is configured, pass ```{"Kong-Admin-Token":KONG_ADMIN_TOKEN}``` as its requests' headers. You can check that the Collector App's Kong environment variables are properly set by `ssh-ing` into the machine hosting the Collector App and sending a `GET` request to **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}** with the appropriate headers from that machine.
+The Collector App will attempt to communicate with Kong via `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}` and if `KONG_ADMIN_TOKEN` is configured, pass `{"Kong-Admin-Token":KONG_ADMIN_TOKEN}` as its requests' headers. You can check that the Collector App's environment variables are properly set by `ssh`-ing into the machine hosting the Collector App and sending a `GET` request to `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}` with the appropriate headers from that machine.
 
 If you cannot make successful requests to Kong Admin with **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}**, first check to make sure that the Kong Admin URL (and `KONG_ADMIN_TOKEN`) you are attempting to connect with are correct. If they are correct, make sure that the respective machines hosting the Collector App and Kong Enterprise are able to communicate and ping each other.
 
