@@ -70,7 +70,7 @@ When the Collector App is connected to Kong and successfully recieving traffic, 
 
 ![Kong Plugin Configured](/assets/images/docs/ee/brain-immunity/collector-plugin-configured-alerts-page.png)
 
-If the **/immunity/alerts** page does not show the Collector Plugin is connected, check that the Collector App's URL is set for the Collector Plugin's **http_endpoint** variable. Also check that the machine hosting Kong Enterprise can successfully communicate with the Collector App on the URL provided to Collector Plugin's **http_endpoint** variable.
+If the `/immunity/alerts` page does not show the Collector Plugin is connected, check that the Collector App's URL is set for the Collector Plugin's `http_endpoint` variable. Also check that the machine hosting Kong Enterprise can successfully communicate with the Collector App on the URL provided to Collector Plugin's `http_endpoint` variable.
 
 
 ### I'm not seeing any alerts, even though the Collector App is connected to Kong and is receiving traffic
