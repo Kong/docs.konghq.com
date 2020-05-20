@@ -6,9 +6,16 @@ version: 1.0.x
 desc: Allow portal developers to register applications against services
 description: |
   Applications allow registered developers on Kong Developer Portal to
-  authenticate with OAuth against a Service on Kong. Admins can
-  selectively admit access to Services using this
+  authenticate with OAuth against a Service on Kong. Admins can selectively
+  admit access to Services using this
   [Application Registration](/enterprise/1.5.x/developer-portal/administration/application-registration) plugin.
+
+  At least one OAuth2 grant flow (typical use case) must be enabled for the
+  plugin on a Service:
+  - Authorization Code
+  - Client Credentials
+  - Implicit Grant
+  - Password Grant
 
   <div class="alert alert-red">WARNING: This functionality is released as a <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> feature and
   should not be deployed in a production environment.
@@ -106,10 +113,15 @@ params:
       default: 1209600
       value_in_examples: 1209600
       description: |
-        An optional integer value telling the plugin how many seconds a
-        token/refresh token pair is valid for. The refresh token can be used to
-        generate a new access token. Default value is 1209600 seconds (two
-        weeks). Set to `0` to keep the token/refresh token pair indefinitely valid. See [Set tokens to never expire](#set-tokens-to-never-expire).
+        An integer value that indicates the Time To Live (TTL) in seconds for a
+        [refresh token](https://tools.ietf.org/html/rfc6749#section-1.5).
+        Default value is 1209600 seconds (two weeks). The refresh token is used
+        to acquire a new access token. Set to `0` to disable expiring the
+        refresh token, which keeps the refresh token valid. To keep the access
+        and refresh tokens valid indefinitely, see
+        [Set tokens to never expire](#set-tokens-to-never-expire). Refresh
+        tokens are typically issued with the Authorization Code Grant flow,
+        and are not applicable to the Implicit Grant flow.
     - name: scopes
       required: semi
       default:
@@ -122,10 +134,12 @@ params:
       default: 7200
       value_in_examples: 7200
       description: |
-        An optional integer value telling the plugin how many seconds an access
-        token should last, after which the client will need to refresh the
-        token. Default value is two hours. Set to `0` to disable the expiration.
-        See [Set tokens to never expire](#set-tokens-to-never-expire).
+        An integer value that indicates when an
+        [access token](https://tools.ietf.org/html/rfc6749#section-1.4)
+        expires, after which the client will need to refresh the token. Default
+        value is 7200 seconds (two hours). Set to `0` to disable the token
+        expiration. To keep the access and refresh tokens valid indefinitely,
+        see [Set tokens to never expire](#set-tokens-to-never-expire).
   extra: |
     **Important:** When configuring the plugin, at least one of the following
      OAuth2 auth flows must be enabled:
