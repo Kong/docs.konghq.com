@@ -1,23 +1,16 @@
 - title: Kong Studio
   items:
-    - text: Release Notes
-      url: /release-notes
     - text: Changelog
-      url: /studio/changelog
+      url: https://insomnia.rest/changelog/
       absolute_url: true
 - title: Getting Started
-  url: /overview
   items:
     - text: Download & Install Kong Studio
       url: /download-install
-    - text: Editing Spec Files
-      url: /editing-specs
-
-    - text: OpenAPI GraphQL Support
-      url: /graphql
-    - text: Debugging with Insomnia
-      url: /debugging-with-insomnia
-    - text: Git Sync with Studio
-      url: /git-sync
+    - text: Using Insomnia Designer
+      url: https://support.insomnia.rest/article/94-introduction
+      absolute_url: true
     - text: Deploy to Dev Portal
       url: /deploy-to-dev-portal
+    - text: Generate Configuration
+      url: /dec-conf-studio

@@ -1344,10 +1344,7 @@ endpoint.
 
 #### config.introspection_hint
 
-Some providers such as `WSO2` don't implement OAuth 2.0 introspection
-standard correctly, and they want to have `token_type_hint` argument
-with value `bearer` instead of `access_token` when introspecting
-access tokens. With this parameter you can change the value of the
+With this parameter you can change the value of the
 `token_type_hint` argument that the plugin will pass to introspection
 endpoint when introspecting access tokens.
 
@@ -2828,7 +2825,7 @@ Provider                                                        | Information
 [Keycloak](http://www.keycloak.org/)                            | [Docs](https://keycloak.gitbooks.io/documentation/securing_apps/topics/oidc/oidc-generic.html)
 [OpenAM](https://www.forgerock.com/platform/access-management/) | [Docs](https://backstage.forgerock.com/docs/openam/13.5/admin-guide/chap-openid-connect)
 [PingFederate](https://www.pingidentity.com/)                   | [Docs](https://documentation.pingidentity.com/pingfederate/pf84/)
-[WSO2](https://wso2.com/)                                       | [Docs](https://docs.wso2.com/display/IS541/OpenID+Connect)
+[WSO2](https://wso2.com/)                                       | [Docs](https://is.docs.wso2.com/en/latest/learn/openid-connect)
 
 
 ## Enterprise Support & Demo

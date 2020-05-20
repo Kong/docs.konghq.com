@@ -32,13 +32,23 @@ skip_read_time: true
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install" class="docs-grid-install-block">
-    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/kubernetes.png" alt="aws" />
-    <div class="install-text">Kong for Kubernetes</div>
+    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/kubernetes.png" alt="kubernetes" />
+    <div class="install-text">Kong for Kubernetes Enterprise</div>
+  </a>
+
+  <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes" class="docs-grid-install-block">
+    <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/kubernetes.png" alt="kubernetes" />
+    <div class="install-text">Kong Enterprise on Kubernetes</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/rhel" class="docs-grid-install-block">
     <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="redhat" />
     <div class="install-text">RHEL</div>
+  </a>
+
+  <a href="/enterprise/{{page.kong_version}}/kong-for-kubernetes/install" class="docs-grid-install-block">
+    <img class="install-icon" src="/assets/images/icons/documentation/openshift-logo.png" alt="OpenShift" />
+    <div class="install-text">OpenShift</div>
   </a>
 
 </div>

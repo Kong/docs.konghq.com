@@ -11,26 +11,11 @@ sitemap: true
           Edit this Page</a>
       </div>
       <nav class="docs-navigation">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Community</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
-        <a href="/studio" {% if page.edition=='studio' %} class="active" {% endif %}>Kong Studio</a>
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
         <span class="sidebar-toggle">Open Sidebar</span>
       </nav>
-      <div class="page-header-icon">
-        {% if page.edition == 'getting-started-guide' %}
-        <img src="/assets/images/icons/icn-documentation-gs.svg" alt="Documentation" />
-        {% endif %}
-        {% if page.edition == 'community' %}
-        <img src="/assets/images/icons/icn-documentation-ce.svg" alt="Documentation" />
-        {% endif %}
-        {% if page.edition == 'enterprise' %}
-        <img src="/assets/images/icons/icn-documentation-ee.svg" alt="Documentation" />
-        {% endif %}
-        {% if page.edition == 'studio' %}
-        <img src="/assets/images/icons/icn-documentation-studio.svg" alt="Documentation" />
-        {% endif %}
-      </div>
       <div class="page-header-title">
         <h1>{{page.title}}</h1>
       </div>

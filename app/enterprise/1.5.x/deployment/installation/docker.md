@@ -133,7 +133,7 @@ $ docker run -d --name kong-ee --network=kong-ee-net \
 ## Step 7. Finalize Configuration and Verify Success of Kong Installation
 
 ```bash
-$ curl -i -X GET --url http://localhost:8001/services
+$ curl -i -X GET --url http://<DNSorIP>:8001/services
 ```
 
 You should receive an `HTTP/1.1 200 OK` message.

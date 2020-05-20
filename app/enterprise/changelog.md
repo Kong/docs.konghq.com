@@ -3,6 +3,19 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.5.0.2
+**Release Date** 2020/04/28
+
+### Fixes
+
+#### Kong Gateway Community
+* Fixed an issue where the frequent Target CRUD could result in a broken load balancer. 
+
+#### Kong Manager
+* Fixed the sorting order of Routes.
+* Fixed an issue where editing a Developer meta field could cause the custom field name to revert to the default value.
+* Fixed an issue where listing Developers and Files only showed the first page of results.
+
 ## 1.5.0.1
 **Release Date:** 2020/04/16
 
@@ -1020,6 +1033,13 @@ not able to access the **Workspace** that the **Role** was assigned to.
 
 - **Brain**
   - Renames **Brain** to **Collector**
+
+## 0.35-5
+**Release Date:** 2020/05/14
+
+### Fixes
+- Reverted breaking changes introduced by [PR #3780](https://github.com/Kong/kong/pull/3780) involving the handling of slashes inside the router.
+- Reverted service mesh changes affecting `proxy_ssl_*` directives.
 
 ## 0.35-4
 **Release Date:** 2019/08/19

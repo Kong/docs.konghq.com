@@ -4,9 +4,10 @@ name: GraphQL Rate Limiting Advanced
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Provide rate-limiting for GraphQL queries.
+desc: Provide rate limiting for GraphQL queries
 description: |
-  The GraphQL Rate Limiting Advanced plugin is an extension of the Rate Limiting Advanced plugin that provides rate-limiting for GraphQL queries.
+  The GraphQL Rate Limiting Advanced plugin is an extension of the
+  Rate Limiting Advanced plugin that provides rate limiting for GraphQL queries.
 
 type: plugin
 enterprise: true
@@ -29,7 +30,9 @@ params:
       default: "default"
       value_in_examples:
       description: |
-        Strategy to use to evaluate query costs.
+        Strategy to use to evaluate query costs. Either `default` or
+        `node_quantifier`. See [default](/hub/kong-inc/graphql-rate-limiting-advanced/#default) and
+        [node_quantifier](/hub/kong-inc/graphql-rate-limiting-advanced/#node_quantifier) respectively.
     - name: max_cost
       required:
       default: 0
@@ -47,13 +50,13 @@ params:
       default:
       value_in_examples:
       description: |
-        One of more request per window to apply
+        One or more requests-per-window limits to apply.
     - name: window_size
       required:
       default:
       value_in_examples:
       description: |
-        One more more window sizes to apply (defined in seconds)
+        One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
       required:
       default: consumer
@@ -69,7 +72,7 @@ params:
       default: kong_rate_limiting_counters
       value_in_examples:
       description: |
-        The shared dictionary where counters will be stored until the next sync cycle
+        The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
       required:
       default:
@@ -90,25 +93,25 @@ params:
       default: cluster
       value_in_examples:
       description: |
-        The sync strategy to use; `cluster` and `redis` are supported
+        The sync strategy to use; `cluster` and `redis` are supported.
     - name: redis.host
       required: semi
       default:
       value_in_examples:
       description: |
-        Host to use for Redis connection when the `redis` strategy is defined
+        Host to use for Redis connection when the `redis` strategy is defined.
     - name: redis.port
       required: semi
       default:
       value_in_examples:
       description: |
-        Port to use for Redis connection when the `redis` strategy is defined
+        Port to use for Redis connection when the `redis` strategy is defined.
     - name: redis.timeout
       required: semi
       default: 2000
       value_in_examples:
       description: |
-        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined
+        Connection timeout (in milliseconds) to use for Redis connection when the `redis` strategy is defined.
     - name: redis.password
       required: semi
       default:
@@ -120,13 +123,21 @@ params:
       default: 0
       value_in_examples:
       description: |
-        Database to use for Redis connection when the `redis` strategy is defined
+        Database to use for Redis connection when the `redis` strategy is defined.
     - name: redis.sentinel_master
       required: semi
       default:
       value_in_examples:
       description: |
         Sentinel master to use for Redis connection when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+    - name: redis.sentinel_password
+      required: semi
+      default:
+      value_in_examples:
+      description: |
+        Sentinel password to authenticate with a Redis Sentinel instance.
+        **Note:** This parameter is only available for Kong Enterprise versions
+        1.3.0.2 and later.
     - name: redis.sentinel_role
       required: semi
       default:
@@ -150,18 +161,20 @@ params:
       default: sliding
       value_in_examples:
       description: |
-        This sets the time window to either `sliding` or `fixed`
+        This sets the time window to either `sliding` or `fixed`.
   extra: |
     > Note:  Redis configuration values are ignored if the `cluster` strategy is used.
 
-    **Note: PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.**
+    **Notes:**
 
-    **Note: The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors**
+     * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.
+
+     * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
 
 ---
 
 **GraphQL Rate Limiting Advanced** is an extension of
-**Rate Limiting Advanced** and provides rate-limiting for
+**Rate Limiting Advanced** and provides rate limiting for
 GraphQL queries.
 
 Due to the nature of client-specified GraphQL queries, the same HTTP request
@@ -174,14 +187,14 @@ cost for a given time window.
 
 ## Costs in GraphQL queries
 
-GraphQL query costs are evaluated by introspecting the endpoint's graphql schema
+GraphQL query costs are evaluated by introspecting the endpoint's GraphQL schema
 and applying cost decoration to parts of the schema tree.
 
 Initially all nodes start with zero cost, with any operation at cost 1.
 Add rate-limiting constraints on any subtree. If subtree omitted, then
 rate-limit window applies on the whole tree (any operation).
 
-Since there are many ways of approximating the cost of a graphql query, the
+Since there are many ways of approximating the cost of a GraphQL query, the
 plugin exposes two strategies: `default` and `node_quantifier`.
 
 The following example queries can be run on this [SWAPI playground].
@@ -190,7 +203,7 @@ The following example queries can be run on this [SWAPI playground].
 
 ### `default`
 
-The default strategy is meant as a good middle ground for general graphql
+The default strategy is meant as a good middle ground for general GraphQL
 queries, where it's difficult to assert a clear cost strategy, so every operation
 has a cost of 1.
 
@@ -269,12 +282,12 @@ query { # + 1
 
 ### `node_quantifier`
 
-This strategy is fit for graphql schemas that enforce quantifier arguments on
+This strategy is fit for GraphQL schemas that enforce quantifier arguments on
 any connection, providing a good approximation on the number of nodes visited
 for satisfying a query. Any query without decorated quantifiers has a cost of 1.
-It is roughly based on [github's Graphql resource limits].
+It is roughly based on [github's GraphQL resource limits].
 
-[github's Graphql resource limits]: https://developer.github.com/v4/guides/resource-limitations/
+[github's GraphQL resource limits]: https://developer.github.com/v4/guides/resource-limitations/
 
 ```
 query {
@@ -311,10 +324,10 @@ query {
 
 Roughly speaking:
 
-* allPeople returns 100 nodes, and has been called once
-* vehicleConnection returns 10 nodes, and has been called 100 times
-* filmConnection returns 5 nodes, and has been called 10 * 100 times
-* characterConnection returns 50 nodes, and has been called 5 * 10 * 100 times
+* `allPeople` returns 100 nodes, and has been called once
+* `vehicleConnection` returns 10 nodes, and has been called 100 times
+* `filmConnection` returns 5 nodes, and has been called 10 * 100 times
+* `characterConnection` returns 50 nodes, and has been called 5 * 10 * 100 times
 
 
 Specific costs per node can be specified by adding a constant:
@@ -357,21 +370,41 @@ query {
 
 The following configuration example targets a GraphQL endpoint at our [SWAPI playground].
 
-### Add a GraphQL service
+### Add a GraphQL service and route
 
 ```
-http -f :8001/services name=example host=swapi-graphql.eskerda.now.sh port=443 protocol=https
-http -f :8001/services/example/routes hosts=example.com
+$ curl -X POST http://kong:8001/services \
+    --data "name=example" \
+    --data "host=swapi-graphql.eskerda.now.sh" \
+    --data "port=443" \
+    --data "protocol=https"
+
+$ curl -X POST http://kong:8001/services/example/routes \
+    --data "hosts=example.com"
 ```
 
 ### Enable the plugin on the service
 
+Example using a single time window:
+
 ```
 $ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
-  --data config.sync_rate=10
+     --data name=graphql-rate-limiting-advanced \
+     --data config.limit=100 \
+     --data config.window_size=60 \
+     --data config.sync_rate=10
+```
+
+Example using multiple time windows:
+
+```
+$ curl -i -X POST --url http://kong:8001/services/{service}/plugins \
+     --data 'name=graphql-rate-limiting-advanced' \
+     --data 'config.window_size[]=60' \
+     --data 'config.window_size[]=3600' \
+     --data 'config.limit[]=10' \
+     --data 'config.limit[]=100' \
+     --data 'config.sync_rate=10'
 ```
 
 ### Decorate gql schema for costs
@@ -380,7 +413,7 @@ Cost decoration schema looks like:
 
 | Form Parameter    | default   | description
 |-------------------|-----------|-------------
-| `type_path`        |           | Path to node to decorate
+| `type_path`       |           | Path to node to decorate
 | `add_constant`    | `1`       | Node weight when added
 | `add_arguments`   | `[]`      | List of arguments to add to add_constant
 | `mul_constant`    | `1`       | Node weight multiplier value
@@ -398,10 +431,24 @@ Cost decoration is available on the following routes:
 For example:
 
 ```
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Query.allPeople" mul_arguments="first"
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Person.vehicleConnection" mul_arguments="first" add_constant=42
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Vehicle.filmConnection" mul_arguments="first"
-http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="Film.characterConnection" mul_arguments="first"
+$ curl -X POST http://kong:8001/services/{service}/graphql-rate-limiting-advanced/costs \
+  --data type_path="Query.allPeople" \
+  --data mul_arguments="first"
+
+
+$ curl -X POST http://kong:8001/services/{service}/graphql-rate-limiting-advanced/costs \
+  --data type_path="Person.vehicleConnection" \
+  --data mul_arguments="first"
+  --data add_constant=42
+
+$ curl -X POST http://kong:8001/services/{service}/graphql-rate-limiting-advanced/costs \
+  --data type_path="Vehicle.filmConnection" \
+  --data mul_arguments="first"
+
+
+$ curl -X POST http://kong:8001/services/{service}/graphql-rate-limiting-advanced/costs \
+  --data type_path="Film.characterConnection" \
+  --data mul_arguments="first"
 ```
 
 
@@ -421,12 +468,14 @@ http -f :8001/services/example/graphql-rate-limiting-advanced/costs type_path="F
 ### Changing the default strategy
 
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
+$ curl -X POST http://kong:8001/services/{service}/plugins \
+  --data name=graphql-rate-limiting-advanced \
+  --data config.limit=100 \
+  --data config.limit=10000 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
   --data config.sync_rate=10 \
-  --data config.cost_strategy=node_quantifier
+  --data config.cost_strategy=default
 ```
 
 ```
@@ -436,49 +485,57 @@ $ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
 
 ### Limit query cost by using `config.max_cost`
 
-It's usually a good idea to define a maximum cost applied to any query, regardless
-if the call is within the rate limits for a consumer.
+It's usually a good idea to define a maximum cost applied to any query,
+regardless if the call is within the rate limits for a consumer.
 
 By defining a `max_cost` on our service, we are ensuring no query will run with
 a cost higher than our set `max_cost`. By default it's set to 0, which means
 no limit.
 
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
-  --data config.sync_rate=10 \
+$ curl -X POST http://kong:8001/services/{service}/plugins \
+  --data name=graphql-rate-limiting-advanced \
+  --data config.limit=100 \
+  --data config.limit=10000 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
+  --data config.sync_rate=0 \
   --data config.max_cost=5000
 ```
 
+If `max_cost` needs to be updated, one can accomplish this by doing the following:
+
 ```
-$ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
-  --data config.max_cost=5000
+$ curl -X PATCH http://kong:8001/plugins/{plugin_id} \
+  --data config.max_cost=10000
 ```
 
 ### Using `config.score_factor` to modify costs
 
-GraphQL query cost depend on multiple factors depending on our resolvers
+GraphQL query cost depends on multiple factors based on our resolvers
 and the implementation of the schema. Cost on queries, depending on the cost
 strategy might turn very high when using quantifiers, or very low with no
 quantifiers at all. By using `config.score_factor` the cost can be divided
-or multiplied to a certain order of mangitude.
+or multiplied to a certain order of magnitude.
 
 For example, a `score_factor` of `0.01` will divide the costs by 100, meaning
 every cost unit represents 100 nodes.
 
 ```
-$ curl -i -X POST http://kong:8001/services/{service}/plugins \
-  --data name=rate-limiting-advanced \
-  --data config.limit=100,10000 \
-  --data config.window_size=60,3600 \
-  --data config.sync_rate=10 \
+$ curl -X POST http://kong:8001/services/{service}/plugins \
+  --data name=graphql-rate-limiting-advanced \
+  --data config.limit=100 \
+  --data config.limit=10000 \
+  --data config.window_size=60 \
+  --data config.window_size=3600 \
+  --data config.sync_rate=0 \
+  --data config.max_cost=5000 \
   --data config.score_factor=0.01
-  --data config.max_cost=5000
 ```
+
+If `score_factor` needs to be updated, one can accomplish this by doing the following:
 
 ```
 $ curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
-  --data config.score_factor=0.01
+  --data config.score_factor=1
 ```

@@ -1,7 +1,7 @@
 ---
 name: Datadog
 publisher: Kong Inc.
-version: 1.0.0
+version: 3.0.0
 
 desc: Visualize metrics on Datadog
 description: |
