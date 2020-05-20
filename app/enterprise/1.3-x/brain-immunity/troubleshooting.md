@@ -64,7 +64,7 @@ If you cannot make successful requests to Kong Admin with **{KONG_PROTOCOL}://{K
 
 When the Collector App is connected to Kong and successfully recieving traffic, but the Service Map is failing to populate, it's likely the Collector Plugin on Kong Enterprise is not configured properly. To check the Collector Plugin's configuration, go to **http://kong:8002/<WORKSPACE>/immunity/alerts** page in Kong Manager. When the Collector Plugin is configured properly, the **/immunity/alerts** page displays "Collector is connected".
 
-![Kong Plugin Configured](/assets/images/docs/brain-immunity/collector-plugin-configured-alerts-page.png)
+![Kong Plugin Configured](/assets/images/docs/ee/brain-immunity/collector-plugin-configured-alerts-page.png)
 
 If the **/immunity/alerts** page does not show the Collector Plugin is connected, check that the Collector App's URL is set for the Collector Plugin's **http_endpoint** variable. Also check that the machine hosting Kong Enterprise can successfully communicate with the Collector App on the URL provided to Collector Plugin's **http_endpoint** variable.
 
