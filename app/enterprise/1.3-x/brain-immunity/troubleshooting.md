@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting-Common-Setup-Issues
+title: Troubleshooting Common Issues
 ---
 
 This troubleshooting page contains common examples and troubleshooting tips for issues you might experience when using Kong Brain and Kong Immunity. Information is also provided for how to contact Kong to report an issue, and how to submit suggestions to help improve functionality. 
