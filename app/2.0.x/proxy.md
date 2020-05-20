@@ -636,8 +636,8 @@ and interpreted as a space ` ` by Kong's Admin API.
 #### The `strip_path` property
 
 It may be desirable to specify a path prefix to match a Route, but not
-include it in the upstream request. To do so, use the `strip_path` boolean
-property by configuring a Route like so:
+include it in the upstream request. To do so, the `strip_path` boolean
+property can be set while configuring a Route like so:
 
 ```json
 {
@@ -649,7 +649,7 @@ property by configuring a Route like so:
 }
 ```
 
-Enabling this flag instructs Kong that when matching this Route, and proceeding
+Enabling this flag (**which is enabled by default**) instructs Kong that when matching this Route, and proceeding
 with the proxying to a Service, it should **not** include the matched part of
 the URL path in the upstream request's URL. For example, the following
 client's request to the above Route:
@@ -691,6 +691,20 @@ Will be proxied upstream by Kong as:
 
 ```http
 GET /path/to/resource HTTP/1.1
+Host: ...
+```
+
+If this flag is disabled, the following client request:
+
+```http
+GET /service/path/to/resource HTTP/1.1
+Host: ...
+```
+
+Will cause Kong to send the following upstream request:
+
+```http
+GET /service/path/to/resource HTTP/1.1
 Host: ...
 ```
 
