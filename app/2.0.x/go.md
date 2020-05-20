@@ -6,6 +6,13 @@ title: Go language support
 
 Kong 2.0 introduces support for plugins written in Go.
 
+Until now, Lua was the only language supported for writing Kong plugins, and continues to be the main way to develop and extend Kong.  The addition of Go plugin support allows Kong users to tap into the Go ecosystem.  For example, there are databases like MS-SQLServer that don't have good client libraries for Lua, but are well supported in Go.  A Go plugin could directly access such a server without having to pass through Kong's Lua code.
+
+The architecture chosen for Go plugins is to have a separate process written in 100% Go, called `go-pluginserver`.  If so configured, Kong launches this process and opens a communications channel to pass events and function calls between them.  This means that Go plugins run in a real Go environment and are able to use Go's features like goroutines, I/O, IPC, etc.  Note also that this means any call to a PDK function has to be transferred to the Kong process and back.
+
+Go plugins are built with the `-buildmode=plugin` flag, which allows the pluginserver to dynamically load them.  In order to comply with Go's strict linking compatibility checks, they have to be compiled with the `kong/go-plugin-tool` Docker image, as described below.
+
+
 ## Prerequisites
 
 To use Go plugins:
@@ -36,18 +43,18 @@ The extension strategy chosen for Kong is common in other languages: a plugin is
 
 This is a relatively recent feature in Golang, and has some rough edges in tooling and deployability.  In particular, it's essential that the loading executable (`go-pluginserver` in our case) and the plugins have exactly the same linking behaviour.  This involves at least:
 
-* The same version of any common library, including:
+* The same version of any common libraries, including:
     * `Kong/go-pdk`
     * all standard Go libraries (like `fmt`, `rpc`, `reflect`, etc)
     * OS libraries, like `libpthread`, `libc`, `ld-xxxx`, etc.
-* the exact same version of the Go compiler.
-* the same Go environment variables like `$GOROOT` and `$GOPATH`
+* The exact same version of the Go compiler.
+* The same Go environment variables like `$GOROOT` and `$GOPATH`
 
-The first point is somewhat alleviated with `go.mod` dependency management, but that introduces more complex issues on the environment variables requirement.
+The common libraries version compatibility is partially handled by the `go.mod` dependency management, but that introduces more complex issues on the environment variables requirement.
 
-The last point, `$GOPATH` is a real problem, not only because one of the recommended patterns is `$HOME/go`, which includes the developer's username in their own system, but also because it's common that production builds (Dockerfiles, build scripts, CI/CD systems) use a very different pattern.
+For example, the evironment variable `$GOPATH` is a real problem, not only because one of the recommended patterns is `$HOME/go`, which includes the developer's username in their own system, but also because it's common that production builds (Dockerfiles, build scripts, CI/CD systems) use a very different pattern.
 
-To guarantee this consistency, the `kong/go-plugin-tool` is used as a wrapper to the Go compiler.  Kong distribution packages and images use it to compile the included `go-pluginserver`.
+To guarantee consistency, the `kong/go-plugin-tool` is used as a wrapper to the Go compiler.  Kong distribution packages and images use it to compile the included `go-pluginserver`.
 
 ### Development process
 
