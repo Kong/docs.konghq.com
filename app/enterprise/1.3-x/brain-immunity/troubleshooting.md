@@ -52,7 +52,7 @@ When the Collector App cannot communicate with Kong, the **kong_status** object 
 
 ```
 
-### Collector App is not able to communicate with Kong
+### Collector App can't communicate with Kong
 When the `/status` endpoint is not returning a `kong_status` object, there are two possible reasons. First, it could be the Kong Admin environment variable for the Collector App is not set properly. The environment variables are:
 
 * **KONG_PROTOCOL**: The protocol the Kong Admin API can be reached at. The possible values are `http` or `https`.
