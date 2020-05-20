@@ -51,10 +51,10 @@ When the Collector App cannot communicate with Kong, the **kong_status** object 
 ### Collector App is not able to communicate with Kong
 When the **/status** endpoint is not returning a **kong_status** object, there are two possible reasons. First, it could be the Kong Admin environment variable for the Collector App is not set properly. The environment variables are:
 
-1. **KONG_PROTOCOL**: The protocol the Kong Admin API can be reached at. The possible values are `http` or `https`.
-2. **KONG_HOST**: The hostname the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the compose file. If the Kong Admin has been exposed behind a web address, `KONG_HOST` must be that web address.
-3. **KONG_PORT**: The port where Kong Admin can be found. The Collector App requires this setting, along with `KONG_PROTOCOL` and `KONG_HOST`, to communicate with Kong Admin.
-4. **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for the Kong Admin API, if RBAC is configured.
+* **KONG_PROTOCOL**: The protocol the Kong Admin API can be reached at. The possible values are `http` or `https`.
+* **KONG_HOST**: The hostname the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the compose file. If the Kong Admin has been exposed behind a web address, `KONG_HOST` must be that web address.
+* **KONG_PORT**: The port where Kong Admin can be found. The Collector App requires this setting, along with `KONG_PROTOCOL` and `KONG_HOST`, to communicate with Kong Admin.
+* **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for the Kong Admin API, if RBAC is configured.
 
 The Collector App will attempt to communicate with Kong via **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}** and if KONG_ADMIN_TOKEN is configured, pass ```{"Kong-Admin-Token": KONG_ADMIN_TOKEN}``` as its requests' headers. You can check that the Collector App's Kong environment variables are properly set by `ssh-ing` into the machine hosting the Collector App and sending a `GET` request to **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}** with the appropriate headers from that machine.
 
