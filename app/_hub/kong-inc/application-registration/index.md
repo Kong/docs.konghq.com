@@ -17,7 +17,7 @@ description: |
   - Implicit Grant
   - Password Grant
 
-  <div class="alert alert-red">WARNING: This functionality is released as a <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> feature and
+  <div class="alert alert-red">WARNING: This plugin is released as a <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> feature and
   should not be deployed in a production environment.
   </div>
 
