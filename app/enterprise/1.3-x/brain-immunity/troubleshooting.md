@@ -79,7 +79,7 @@ Immunity waits at least an hour before it makes its first models. If the Collect
 
 ### I triggered model training and I'm still not seeing alerts
 
-If it's been more than an hour, and you are still not seeing alerts, the primary reason that no alerts are being generated is the models have not been generated yet. To check the status of your models, go to ```http://<COLLECTOR-APP-URL>/monitoredendpoints``` which will return a list of working models Immunity has built with unique endpoints.
+If it has been more than an hour, and you are still not seeing alerts, the primary reason is that the models have not been generated yet. To check the status of your models, go to `http://<COLLECTOR-APP-URL>/monitoredendpoints`, which will return a list of working models Immunity has built with unique endpoints.
 
 If the working models list is empty, it could mean that model training has not been successfully triggered. Review the Collector App logs to ascertain if this is the case.
 
