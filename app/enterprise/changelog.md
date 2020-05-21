@@ -137,6 +137,10 @@ layout: changelog
   * Raise the priority of the plugin so it is run first on a request
 * Request Terminator
   * Do not send a `Content-Length` header with a 204 response
+  
+### Known Issue and Workaround
+* Mutual TLS Authentication Plugin
+  * For parameter, `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`.
 
 ## 1.3.0.2
 **Release Date:** 2020/02/20
