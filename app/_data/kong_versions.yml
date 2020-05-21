@@ -324,6 +324,17 @@
     postgres: "9.5+"
     openresty: "1.15.8.2"
 -
+  release: "2.1.x"
+  version: "2.1.0"
+  edition: "community"
+  luarocks_version: "2.1.0-0"
+  dependencies:
+    luajit: "2.1.0-beta3"
+    luarocks: "3.3.1"
+    cassandra: "3.x.x"
+    postgres: "9.5+"
+    openresty: "1.15.8.3"
+-
   release: "latest"
   version: "latest"
   edition: "getting-started-guide"
