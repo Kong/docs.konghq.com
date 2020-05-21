@@ -13,7 +13,7 @@ The Go PDK is based on a separate process written entirely in Go. You can config
 
 >Note: this also means any call to a PDK function has to be transferred to the Kong process and back.
 
-Go plugins are built with the `-buildmode=plugin` flag, which allows the pluginserver to dynamically load them.  In order to comply with Go's strict linking compatibility checks, they have to be compiled with the `kong/go-plugin-tool` Docker image, as described below.
+Go plugins are built with the `-buildmode=plugin` flag, which allows the plugin server to dynamically load them. To comply with Go's strict linking compatibility checks, they have to be compiled using the `kong/go-plugin-tool` Docker image, as described below.
 
 
 ## Prerequisites
