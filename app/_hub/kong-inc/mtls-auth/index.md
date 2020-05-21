@@ -38,9 +38,9 @@ params:
         Whether to match the subject name of the client-supplied certificate against consumer's `username` and/or `custom_id` attribute. If set to `[]` (the empty array) then auto-matching is disabled.
     - name: ca_certificates
       required: true
-      value_in_examples: '`[ { "id": "fdac360e-7b19-4ade-a553-6dd22937c82f" }, { "id": "aabc360e-7b19-5aab-1231-6da229a7b82f"} ]`'
+      value_in_examples: fdac360e-7b19-4ade-a553-6dd22937c82f
       description: |
-        List of "CA Certificates" object to use as Certificate Authorities (CA) when validating client certificate. At least one is required but can specify as many as needed. The value of this array comprises of primary keys for the "Certificate Authority" object.
+        List of "CA Certificates" strings to use as Certificate Authorities (CA) when validating a client certificate. At least one is required but you can specify as many as needed. The value of this array is comprised of primary keys for the "Certificate Authority" object.
     - name: skip_consumer_lookup
       default: "`false`"
       description: |
@@ -156,7 +156,7 @@ When a client has been authenticated, the plugin will append headers to the requ
 * `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer` will be set to `true` if authentication failed and the 'anonymous' **Consumer** was set instead.
 
-When `skip_consumer_lookup` is set to `true`, consumer lookup will be skipped and instead of appending afromentioned headers, plugin will append following two headers
+When `skip_consumer_lookup` is set to `true`, consumer lookup will be skipped and instead of appending aforementioned headers, plugin will append following two headers
 
 * `X-Client-Cert-Dn`, distinguished name of the client certificate
 * `X-Client-Cert-San`, SAN of the client certificate
@@ -167,7 +167,7 @@ certificate property being set in `authenticated_group_by`.
 
 ### Troubleshooting
 
-When authentication fails, the client does not have access to any details explaining the 
+When authentication fails, the client does not have access to any details explaining the
 failure. The security reason for this omission is to prevent malicious reconnaissance.
 Instead, the details are recorded inside Kong's error logs under the `[mtls-auth]`
 filter.
