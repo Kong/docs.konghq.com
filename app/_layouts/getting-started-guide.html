@@ -21,10 +21,8 @@ id: getting-started-guide
       </nav>
       <div class="title-version-search-container">
         <div class="page-header-title">
-          <h1>{{page.title}}</h1>
-          {% if page.url contains "/getting-started-guide/latest/overview" %}
-          <h2> A single guide for both {{site.ce_product_name}} and {{site.ee_product_name}}</h2>
-          {% endif %}
+          <h1>{{page.title | flatify}}</h1>
+          <h2>{{page.subtitle | flatify}}</h2>
         </div>
         <div class="search-version-row">
           <div class="versions-dropdown dropdown">

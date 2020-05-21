@@ -1,5 +1,6 @@
 ---
 title: Getting Started Guide
+subtitle: A single guide for both {{site.ce_product_name}} and {{site.ee_product_name}}
 redirect_from:
   - /enterprise/1.5.x/getting-started/
   - /enterprise/latest/getting-started/
