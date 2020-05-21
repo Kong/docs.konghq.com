@@ -8,7 +8,10 @@ Kong 2.0 introduces support for plugins written in Go.
 
 Until now, Lua was the only language supported for writing Kong plugins, and continues to be the main way to develop and extend Kong.  The addition of Go plugin support allows Kong users to tap into the Go ecosystem.  For example, there are databases like MS-SQLServer that don't have good client libraries for Lua, but are well supported in Go.  A Go plugin could directly access such a server without having to pass through Kong's Lua code.
 
-The architecture chosen for Go plugins is to have a separate process written in 100% Go, called `go-pluginserver`.  If so configured, Kong launches this process and opens a communications channel to pass events and function calls between them.  This means that Go plugins run in a real Go environment and are able to use Go's features like goroutines, I/O, IPC, etc.  Note also that this means any call to a PDK function has to be transferred to the Kong process and back.
+ ## Architecture 
+The Go PDK is based on a separate process written entirely in Go. You can configure Kong to launch the process, called `go-pluginserver`, and open a communications channel to pass events and function calls between them. This means that Go plugins run in a real Go environment and can use Go features such as goroutines, I/O, IPC, etc. 
+
+>Note: this also means any call to a PDK function has to be transferred to the Kong process and back.
 
 Go plugins are built with the `-buildmode=plugin` flag, which allows the pluginserver to dynamically load them.  In order to comply with Go's strict linking compatibility checks, they have to be compiled with the `kong/go-plugin-tool` Docker image, as described below.
 
