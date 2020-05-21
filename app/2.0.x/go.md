@@ -6,7 +6,7 @@ title: Go language support
 
 Kong 2.0 introduces support for plugins written in Go.
 
-Until now, Lua was the only language supported for writing Kong plugins, and continues to be the main way to develop and extend Kong.  The addition of Go plugin support allows Kong users to tap into the Go ecosystem.  For example, there are databases like MS-SQLServer that don't have good client libraries for Lua, but are well supported in Go.  A Go plugin could directly access such a server without having to pass through Kong's Lua code.
+Until Kong 2.0, Lua was the only language supported for writing Kong plugins, and continues to be the main way to develop and extend Kong. The addition of Go plugin support allows Kong users to tap into the Go ecosystem. For example, there are databases like MS SQL Server that don't have good client libraries for Lua, but are well supported in Go. A Go plugin could directly access such a server without having to pass through Kong's Lua code.
 
  ## Architecture 
 The Go PDK is based on a separate process written entirely in Go. You can configure Kong to launch the process, called `go-pluginserver`, and open a communications channel to pass events and function calls between them. This means that Go plugins run in a real Go environment and can use Go features such as goroutines, I/O, IPC, etc. 
