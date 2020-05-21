@@ -1,10 +1,14 @@
 ---
-title: Troubleshooting-Common-Setup-Issues
+title: Troubleshooting Common Issues
 ---
 
-## Help! I don't see anything in the Service Map, but I'm sending traffic
+This troubleshooting topic contains common issues you might experience when using Kong Brain and Kong Immunity, and troubleshooting tips for how to resolve these issues. Information is also provided about how to contact Kong to report an issue, and how to submit suggestions to help improve functionality. 
 
-The most common cause for the Service Map not displaying is a problem in the configuration between Kong Enterprise (Kong) and the Collector App which prevents traffic data from reaching the Collector App. To confirm the Collector App is receiving traffic from Kong, check ```http://<COLLECTOR_APP>:<COLLECTOR_PORT>```.
+## Common Issues and Troubleshooting Tips
+
+### I'm sending traffic, but I don't see anything in the Service Map
+
+The most common cause for the Service Map not displaying is a problem in the configuration between Kong Enterprise (Kong) and the Collector App which prevents traffic data from reaching the Collector App. To confirm the Collector App is receiving traffic from Kong, check `http://<COLLECTOR_APP>:<COLLECTOR_PORT>`.
 
 When the Collector App has successfully connected to Kong, ```http://<COLLECTOR_APP>:<COLLECTOR_PORT>``` will return the latest 100 requests Kong has sent in the form of JSON objects. For example:
 ```
@@ -48,43 +52,42 @@ When the Collector App cannot communicate with Kong, the **kong_status** object 
 
 ```
 
-### Collector App is not able to communicate with Kong
-When the **/status** endpoint is not returning a **kong_status** object, there are two possible reasons. First, it could be the Kong Admin environment variable for the Collector App is not set properly. The environment variables are:
+### Collector App can't communicate with Kong
+When the `/status` endpoint is not returning a `kong_status` object, there are two possible reasons. First, it could be the Kong Admin environment variable for the Collector App is not set properly. The environment variables are:
 
-1. **KONG_PROTOCOL**: The protocol the Kong Admin API can be reached at. The possible values are `http` or `https`.
-2. **KONG_HOST**: The hostname the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the compose file. If the Kong Admin has been exposed behind a web address, `KONG_HOST` must be that web address.
-3. **KONG_PORT**: The port where Kong Admin can be found. The Collector App requires this setting, along with `KONG_PROTOCOL` and `KONG_HOST`, to communicate with Kong Admin.
-4. **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for the Kong Admin API, if RBAC is configured.
+* **KONG_PROTOCOL**: The protocol the Kong Admin API can be reached at. The possible values are `http` or `https`.
+* **KONG_HOST**: The hostname the Kong Admin API can be reached at. If deploying with Docker Compose, this is the name of the Kong container specified in the compose file. If the Kong Admin has been exposed behind a web address, `KONG_HOST` must be that web address.
+* **KONG_PORT**: The port where Kong Admin can be found. The Collector App requires this setting, along with `KONG_PROTOCOL` and `KONG_HOST`, to communicate with Kong Admin.
+* **KONG_ADMIN_TOKEN**: The authentication token used to validate requests for the Kong Admin API, if RBAC is configured.
 
-The Collector App will attempt to communicate with Kong via **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}** and if KONG_ADMIN_TOKEN is configured, pass ```{"Kong-Admin-Token": KONG_ADMIN_TOKEN}``` as its requests' headers. You can check that the Collector App's Kong environment variables are properly set by `ssh-ing` into the machine hosting the Collector App and sending a `GET` request to **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}** with the appropriate headers from that machine.
+The Collector App will attempt to communicate with Kong via `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}` and if `KONG_ADMIN_TOKEN` is configured, pass `{"Kong-Admin-Token":KONG_ADMIN_TOKEN}` as its requests' headers. You can check that the Collector App's environment variables are properly set by `ssh`-ing into the machine hosting the Collector App and sending a `GET` request to `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}` with the appropriate headers from that machine.
 
-If you cannot make successful requests to Kong Admin with **{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}**, first check to make sure that the Kong Admin URL (and KONG_ADMIN_TOKEN) you are attempting to connect with are correct. If they are correct, make sure that the respective machines hosting the Collector App and Kong Enterprise are able to communicate and ping each other.
+If you cannot make successful requests to Kong Admin with `{KONG_PROTOCOL}://{KONG_HOST}:{KONG_PORT}`, first check to make sure that the Kong Admin URL (and `KONG_ADMIN_TOKEN`) you are attempting to connect with are correct. If they are correct, make sure that the respective machines hosting the Collector App and Kong Enterprise are able to communicate and ping each other.
 
-### Collector App can connect to Kong, and there is traffic in the Collector App, but I don't see the Service Map in Kong Manager
+### Collector App can connect to Kong, and traffic is in the Collector App, but I don't see the Service Map in Kong Manager
 
-When the Collector App is connected to Kong and successfully recieving traffic, but the Service Map is failing to populate, it's likely the Collector Plugin on Kong Enterprise is not configured properly. To check the Collector Plugin's configuration, go to **http://kong:8002/<WORKSPACE>/immunity/alerts** page in Kong Manager. When the Collector Plugin is configured properly, the **/immunity/alerts** page displays "Collector is connected".
+When the Collector App is connected to Kong and successfully recieving traffic, but the Service Map is failing to populate, it's likely the Collector Plugin on Kong Enterprise is not configured properly. To check the Collector Plugin's configuration, go to `http://kong:8002/<WORKSPACE>/immunity/alerts` page in Kong Manager. When the Collector Plugin is configured properly, the `/immunity/alerts` page displays "Collector is connected".
 
 ![Kong Plugin Configured](/assets/images/docs/ee/brain-immunity/collector-plugin-configured-alerts-page.png)
 
-If the **/immunity/alerts** page does not show the Collector Plugin is connected, check that the Collector App's URL is set for the Collector Plugin's **http_endpoint** variable. Also check that the machine hosting Kong Enterprise can successfully communicate with the Collector App on the URL provided to Collector Plugin's **http_endpoint** variable.
+If the `/immunity/alerts` page does not show the Collector Plugin is connected, check that the Collector App's URL is set for the Collector Plugin's `http_endpoint` variable. Also check that the machine hosting Kong Enterprise can successfully communicate with the Collector App on the URL provided to Collector Plugin's `http_endpoint` variable.
 
 
-## I'm not seeing any alerts, even though the Collector App is connected to Kong and is receiving traffic
+### I'm not seeing any alerts, even though the Collector App is connected to Kong and is receiving traffic
 
 Immunity waits at least an hour before it makes its first models. If the Collector App has not been up for very long, then the anomaly detection models used to generate alerts have not been created. These models are created using cURL. See [Immunity Model Training](/enterprise/{{page.kong_version}}/brain-immunity/alerts/#immunity-model-training) for more information.
 
-### It's been more than an hour and/or I triggered model training and I'm still not seeing alerts
+### I triggered model training and I'm still not seeing alerts
 
-The primary reason that no alerts are being generated is the models have not been generated yet. To check the status of your models, go to ```http://<COLLECTOR-APP-URL>/monitoredendpoints``` which will return a list of working models Immunity has built with unique endpoints.
+If it has been more than an hour, and you are still not seeing alerts, the primary reason is that the models have not been generated yet. To check the status of your models, go to `http://<COLLECTOR-APP-URL>/monitoredendpoints`, which will return a list of working models Immunity has built with unique endpoints.
 
 If the working models list is empty, it could mean that model training has not been successfully triggered. Review the Collector App logs to ascertain if this is the case.
 
 Another likely cause for models not being generated is the Collector does not have enough data to make models. There are some alerts that require at least 50 requests, so ensure that the alert creating testing is exposed to enough traffic to make a model.
 
 
-## Still having problems?
-
-Email us at immunity@konghq.com with your bug report using the following format:
+## Still having problems? Contact us!
+Email us at **immunity@konghq.com** to report an issue. Use the following format in your email:
 
 ```
 Summary
@@ -102,8 +105,7 @@ Additional Details & Logs
 ```
 
 ## Send us feature requests
-
-### Send feature requests to immunity@konghq.com!
+If you have a suggestion about a feature request, or suggestions about how to improve Brain and Immunity, send us feature request at **immunity@konghq.com**.
 
 ```
 `Summary of Proposed Feature`
