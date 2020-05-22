@@ -4,7 +4,7 @@ title: Working with Templates
 
 ### Introduction
 
-Kong Portal 1.3 is built on top of the `lua-resty-template` templating library which can be viewed here: https://github.com/bungle/lua-resty-template. Basic usage of the library will be described below, reference the source documentation for a more in-depth look at what it can accomplish.
+Kong Portal 1.3 is built on top of the `lua-resty-template` templating library, which can be viewed here: https://github.com/bungle/lua-resty-template. Basic usage of the library will be described below. Refer to the source documentation for a more in-depth look at what it can accomplish.
 
 ### Syntax
 ***(excerpt from lua-resty-templates documentation)***
@@ -18,7 +18,7 @@ You may use the following tags in templates:
 
 * `{-block-}...{-block-}`, wraps inside of a `{-block-}` to a value stored in a `blocks` table with a key `block` (in this case), see [using blocks](https://github.com/bungle/lua-resty-template#using-blocks). Don't use predefined block names `verbatim` and `raw`.
 * `{-verbatim-}...{-verbatim-}` and `{-raw-}...{-raw-}` are predefined blocks whose inside is not processed by the `lua-resty-template` but the content is outputted as is.
-* `{# comments #}` everything between `{#` and `#}` is considered to be commented out (i.e. not outputted or executed)
+* `{# comments #}` everything between `{#` and `#}` is considered to be commented out (i.e., not outputted or executed).
 {% endraw %}
 
 ### Using Partials
@@ -129,9 +129,9 @@ hero_description: Partials are wicked sick!
 
 ### Using Blocks
 
-Blocks can be used to embed a view or partial into another template. Blocks are particularly useful when you would like different templates to share a common wrapper.
+Blocks can be used to embed a view or partial into another template. Blocks are particularly useful when you want different templates to share a common wrapper.
 
-In the example below notice that the content file is referencing `index.html`, and not `wrapper.html`.
+In the example below, notice that the content file is referencing `index.html`, and not `wrapper.html`.
 
 ##### content/index.txt
 
@@ -209,7 +209,7 @@ description: Blocks are the future!
 {% endraw %}
 
 ### collections
-Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout.  Collections are configured in you portals `portal.conf.yaml` file.
+Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. Collections are configured in your portals `portal.conf.yaml` file.
 
 The example below shows all the necessary configuration/files needed to render a basic `blog` collection made up of individual `posts`.
 
@@ -228,28 +228,28 @@ collections:
 ```
 {% endraw %}
 
-Above you can see we have declared a `collections` object which is made up of individual collection configurations.  In this example, we are configuring a collection called `posts`.  The renderer looks for a root directory called `_posts` within the `content` folder for individual pages to render.  If we created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
+Above you can see a `collections` object was declared, which is made up of individual collection configurations. In this example, you are configuring a collection called `posts`.  The renderer looks for a root directory called `_posts` within the `content` folder for individual pages to render.  If you created another collection conf called `animals`, the renderer would look for a directory called `_animals` for content files to render.
 
 Each configuration item is made up of a few parts:
 - ###### `output`
   - **required**: false
   - **type**: `boolean`
-  - **description**: This optional attribute determines whether the collections should render or not.  When set to `false` virtual routes for the collection are not created.
+  - **description**: This optional attribute determines whether the collections should render or not. When set to `false`, virtual routes for the collection are not created.
 - ###### `route`
   - **required**: true
   - **type**: `string`
   - **default**: `none`
   - **description**: The `route` attribute is required and tells the renderer what pattern to generate collection routes from. A collection route should always include at least one valid dynamic namespace that uniquely identifies each collection member.
     - Any namespace in the route declaration which begins with `:` is considered dynamic.
-    - Only certain dynamic namespaces are recognized by kong as valid:
-      - `:title`: Replaces namespac with a contents `title`, declared in headmatter.
+    - Only certain dynamic namespaces are recognized by Kong as valid:
+      - `:title`: Replaces namespace with a contents `title`, declared in headmatter.
       - `:name`: Replaces namespace with the filename of a piece of content.
       - `:collection`: Replaces namespace with name of current collection.
       - `:stub`: Replaces namespace with value of `headmatter.stub` in each contents headmatter.
 - ###### `route`
     - **required**: true
       - **type**: `boolean`
-      - **description**: The `layout` attribute determines what HTML layout the collections use to render.  The path root is assessed from within the current themes `layouts` directory.
+      - **description**: The `layout` attribute determines what HTML layout the collections use to render. The path root is accessed from within the current themes `layouts` directory.
 
 ##### `content/_posts/post1.md`
 
