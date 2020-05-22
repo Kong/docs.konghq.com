@@ -23,4 +23,4 @@ users until they choose to edit their profile.
 
 5. Select the **Required** checkbox to require the new field for registration.
 
-6. Click the **Save Changes**. The field is automatically added to the registration form.
+6. Click **Save Changes**. The field is automatically added to the registration form.
