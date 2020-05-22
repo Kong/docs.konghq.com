@@ -28,7 +28,7 @@ This will launch the **Editor Mode**:
 ![Editor Mode](https://doc-assets.konghq.com/1.3/dev-portal/editor/devportal-editor-mode-launch.png)
 
 
->Note: Editor Mode is a *live* editor. After changes are saved, changes to files will propagate to the Dev Portal *immediately*.
+>Note: After changes are saved, changes to files will propagate to the Dev Portal *immediately*.
 
 
 ### Navigating the Editor
