@@ -36,7 +36,7 @@ portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", 
 1. Navigate to the Dev Portal's **Settings** page.
 2. Find **Authentication plugin** under the **Authentication** tab.
 3. Select **Basic Authentication** from the drop down.
-4. Click the **Save Changes**.
+4. Click **Save Changes**.
 
 >**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
