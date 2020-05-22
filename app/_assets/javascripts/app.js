@@ -318,6 +318,15 @@ $(function () {
     $('.docs-toc > .close-sidebar').click(function () {
       $('.docs-toc').removeClass('sidebar-open')
     })
+
+    $('#search-version-icon').click(function () {
+      const searchVersion = $('.search-version-row')
+      if (searchVersion.hasClass('visible')) {
+        searchVersion.removeClass('visible')
+      } else {
+        searchVersion.addClass('visible')
+      }
+    })
   }
 
   // Analytics

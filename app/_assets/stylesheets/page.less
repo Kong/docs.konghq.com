@@ -21,8 +21,82 @@
         padding-left: 8px;
         padding-right: 8px;
 
+        > a {
+          flex-shrink: 0;
+        }
+
+        .header-actions {
+          position: absolute;
+          right: 0;
+          bottom: 8px;
+          display: flex;
+          align-items: center;
+
+          #search-version-icon {
+            display: none;
+            cursor: pointer;
+            margin-left: 8px;
+          }
+
+          .search-version-row {
+            overflow: hidden;
+
+            #version-dropdown {
+              width: auto;
+              padding: 0 16px;
+              font-size: 12px;
+            }
+
+            #getkong-algolia-search {
+              .algolia-autocomplete {
+                width: auto;
+
+                #getkong-algolia-search-input {
+                  transition: width 0.2s;
+                  width: 150px;
+                }
+              }
+            }
+          }
+
+          .edit-this-page {
+            flex-shrink: 0;
+          }
+        }
+
+        @media (max-width: 800px) {
+          .header-actions {
+            #search-version-icon {
+              display: block;
+            }
+
+            .search-version-row {
+              max-width: 0;
+              transition: max-width 0.5s;
+
+              &.visible {
+                max-width: 500px;
+              }
+            }
+          }
+        }
+
         @media (max-width: 1100px) {
           padding: 8px 8px 0;
+        }
+
+        @media (min-width: 600px) {
+          #getkong-algolia-search-input {
+            &:focus {
+              width: 220px;
+            }
+          }
+        }
+
+        @media (max-width: 476px) {
+          #getkong-algolia-search {
+            margin: 0;
+          }
         }
       }
 
@@ -39,7 +113,7 @@
         text-align: center;
 
         h1 {
-          font-size: 40px;
+          font-size: 34px;
           color: #062e4d;
           font-weight: lighter;
         }
@@ -95,7 +169,6 @@
         }
 
         .page-header-title {
-          margin-bottom: 16px;
           text-align: left;
         }
 
@@ -103,18 +176,13 @@
           justify-content: space-between;
           padding-left: 360px;
           padding-right: 360px;
-          min-height: 125px;
-        }
-
-        .search-version-row {
-          margin-top: 0;
-          margin-bottom: 16px;
+          min-height: 100px;
         }
 
         @media screen and (max-width: 1080px) {
           .title-version-search-container {
             padding-left: 316px;
-            padding-right: 316px;
+            padding-right: 32px;
           }
         }
 

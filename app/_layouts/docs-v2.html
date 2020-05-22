@@ -34,11 +34,40 @@ id: documentation
         <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
-        <div class="edit-this-page v2">
-          <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
-            <i class="fa fa-pencil"></i>
-            <span>Edit this Page</span>
-          </a>
+        <div class="header-actions">
+          <div class="search-version-row">
+            <div class="versions-dropdown dropdown no-right-border">
+              <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Version {{page.kong_version}}
+                {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+                {% for ver in page.kong_versions reversed %}
+                <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+                  <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"
+                    {% if ver.release==page.kong_version %} class="active" {% endif %}
+                  >
+                    {{ver.release}}
+                    {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="dropdown" id="searchBar">
+              <div id="getkong-algolia-search" class="search-input v2 {% unless page.is_homepage %}small{% endunless %}">
+                <img class="icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
+                <input type="text" placeholder="Type to search {% if page.is_homepage %}documentation...{% endif %}" id="getkong-algolia-search-input" />
+              </div>
+            </div>
+          </div>
+          <img id="search-version-icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
+          <div class="edit-this-page v2">
+            <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+              <img src="/assets/images/logos/logo-github.svg" alt="github"/>
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -46,34 +75,6 @@ id: documentation
         <div class="page-header-title">
           <h1>{{page.title | flatify}}</h1>
           <h2>{{page.subtitle | flatify}}</h2>
-        </div>
-        <div class="search-version-row">
-          <div class="versions-dropdown dropdown no-right-border">
-            <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-              Version {{page.kong_version}}
-              {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-              {% for ver in page.kong_versions reversed %}
-              <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"
-                    {% if ver.release==page.kong_version %} class="active" {% endif %}
-                >
-                  {{ver.release}}
-                  {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="dropdown" id="searchBar">
-            <div id="getkong-algolia-search" class="search-input v2 {% unless page.is_homepage %}small{% endunless %}">
-              <img class="icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
-              <input type="text" placeholder="Type to search {% if page.is_homepage %}documentation...{% endif %}" id="getkong-algolia-search-input" />
-            </div>
-          </div>
         </div>
       </div>
     </div>
