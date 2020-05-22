@@ -22,7 +22,7 @@ newly created role as well as any other previously defined roles.
 
 Clicking View displays the Role Details page with a list of developers assigned.
 
-From the Role Details page, click the Edit button to make changes to the role. You can also access this page from the Roles List Edit button. Here we can change the name and comment of the role, assign or remove developers, or delete the role.
+From the Role Details page, click the Edit button to make changes to the role. You can also access this page from the Roles List Edit button. Here you can change the name and comment of the role, assign or remove developers, or delete the role.
 
 Deleting a role will remove it from any developers assigned the role and remove
 the role restriction from any content files it is applied to.
