@@ -15,7 +15,7 @@ The Kong Developer Portal ships with a default theme, including preset images, b
 ### The Appearance Tab
 
 From the **Workspace** dashboard in **Kong Manager**, click on the **Appearance** tab under **Dev Portal** on the left side bar.
-This will open the Developer Portals theme editor. From this page the header logo, background colors, font colors, and button styles can be edited using the color picker interface.
+This will open the Developer Portals theme editor. From this page, the header logo, background colors, font colors, and button styles can be edited using the color picker interface.
 
 ![Appearance Tab](https://doc-assets.konghq.com/1.3/dev-portal/easy-themes/devportal-appearance-tab.png)
 
@@ -29,6 +29,6 @@ Hovering over an element will show a color picker, as well as a list of predefin
 
 ## Editing Theme Files with the Editor
 
-The Dev Portal Editor within Kong Manager exposes the default Dev Portal theme files. The theme files can be found at the bottom of the file list under *Themes*. The variables exposed in the *Appearance* tab can be edited in the theme.conf.yaml file. See [Using the Editor](/enterprise/{{page.kong_version}}/developer-portal/using-the-editor) for more information on how to edit, preview, and save files in the Editor.
+The Dev Portal Editor within Kong Manager exposes the default Dev Portal theme files. The theme files can be found at the bottom of the file list under *Themes*. The variables exposed in the *Appearance* tab can be edited in the `theme.conf.yaml` file. See [Using the Editor](/enterprise/{{page.kong_version}}/developer-portal/using-the-editor) for more information on how to edit, preview, and save files in the Editor.
 
 ![Theme File in Editor](https://doc-assets.konghq.com/1.3/dev-portal/easy-themes/devportal-theme-conf-yaml.png)
