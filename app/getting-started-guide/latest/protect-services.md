@@ -10,7 +10,7 @@ If you are following the getting started workflow, make sure you have completed 
 Rate Limiting lets you restrict how many requests your upstream services receive from your API consumers, or how often each user can call the API.
 
 <div class="alert alert-ee">
-<img src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> For Kong Enterprise, the Rate Limiting Advanced plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> For Kong Enterprise, the Rate Limiting Advanced plugin provides support for the sliding window algorithm to prevent the API from being overloaded near the window boundaries, and adds Redis support for greater performance.
 </div>
 
 ## Why Use Rate Limiting?
@@ -23,7 +23,7 @@ Rate limiting protects the APIs from accidental or malicious overuse. Without ra
 {% navtab Using the Admin API %}
 
 <div class="alert alert-ee">
-<img src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /><strong>Note:</strong> This section sets up the basic Rate Limiting plugin. If you have Kong Enterprise or free trial access, see instructions for <strong>Using Kong Manager</strong> to set up Rate Limiting Advanced instead.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /><strong>Note:</strong> This section sets up the basic Rate Limiting plugin. If you have Kong Enterprise or free trial access, see instructions for <strong>Using Kong Manager</strong> to set up Rate Limiting Advanced instead.
 </div>
 
 Call the Admin API on port `8001` and configure plugins to enable a limit of five (5) requests per minute, stored locally and in-memory, on the node.
