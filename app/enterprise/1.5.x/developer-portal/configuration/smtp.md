@@ -4,9 +4,9 @@ title: Dev Portal SMTP Configuration
 
 ### Introduction
 
-The following property reference outlines each email and email variable used by the Dev Portal to send emails to Kong Admins and Developers.
+The following property reference outlines each email and email variable used by the Dev Portal to send emails to Kong admins and developers.
 
-These settings can be modified in the `Kong Manager` under the Dev Portal `Settings / Email` tab. Or by running the following command:
+These settings can be modified in the `Kong Manager` under the Dev Portal `Settings / Email` tab, or by running the following command:
 
 ```
 curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
@@ -15,7 +15,7 @@ curl http://localhost:8001/workspaces/<WORKSPACE_NAME> \
 
 If they are not modified manually, the Dev Portal will use the default value defined in the Kong Configuration file.
 
-In 1.3.0.1 or greater [Developer Portal email content and styling can be customized via template files](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/emails/)
+In 1.3.0.1 or greater, [Developer Portal email content and styling can be customized via template files](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/emails/)
 
 
 ### portal_invite_email
@@ -23,7 +23,7 @@ In 1.3.0.1 or greater [Developer Portal email content and styling can be customi
 **Default:** `on`
 
 **Description:**
-When enabled, Kong Admins will be able to invite Developers to a Dev Portal by using the "Invite" button in the Kong Manager.
+When enabled, Kong admins will be able to invite developers to a Dev Portal by using the Invite button in the Kong Manager.
 
 **Email:**
 ```
@@ -41,7 +41,7 @@ Please visit `<DEV_PORTAL_URL/register>` to create your account.
 **Default:** `off`
 
 **Description:**
-When enabled Developers will receive an email upon registration to verify their account. Developers will not be able to use the Dev Portal until their account is verified, even if auto-approve is enabled.
+When enabled, developers will receive an email upon registration to verify their account. Developers will not be able to use the Dev Portal until their account is verified, even if auto-approve is enabled.
 
 
 ### portal_access_request_email
@@ -66,7 +66,7 @@ Please visit <KONG_MANAGER_URL/developers/requested> to review this request.
 **Default:** `on`
 
 **Description:**
-When enabled, Developers will receive an email when access to a Dev Portal has been approved.
+When enabled, developers will receive an email when access to a Dev Portal has been approved.
 
 ```
 Subject: Developer Portal access approved
@@ -82,9 +82,9 @@ Please visit <DEV PORTAL URL/login> to login.
 **Default:** `on`
 
 **Description:**
-When enabled, Developers will be able to use the "Reset Password" flow on a Dev Portal and will receive an email with password reset instructions.
+When enabled, developers will be able to use the Reset Password flow on a Dev Portal and will receive an email with password reset instructions.
 
-When disabled, Developers will *not* be able to reset their account passwords.
+When disabled, developers will *not* be able to reset their account passwords.
 
 ```
 Subject: Password Reset Instructions for Developer Portal <WORKSPACE_NAME>.
@@ -106,9 +106,9 @@ the link above to change your password.
 **Default:** `on`
 
 **Description:**
-When enabled, Developers will receive an email after successfully reseting their Dev Portal account password.
+When enabled, developers will receive an email after successfully reseting their Dev Portal account password.
 
-When disabled, Developers will still be able to reset their account passwords, but will not recieve a confirmation email.
+When disabled, developers will still be able to reset their account passwords, but will not receive a confirmation email.
 
 ```
 Subject: Developer Portal password change success
