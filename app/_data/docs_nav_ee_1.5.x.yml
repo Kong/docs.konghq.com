@@ -115,8 +115,54 @@
       url: /network
     - text: Plugin Development Guide
       url: /plugin-development
+      items:
+        - text: Introduction
+          url: /plugin-development
+        - text: File structure
+          url: /plugin-development/file-structure
+        - text: Implementing custom logic
+          url: /plugin-development/custom-logic
+        - text: Plugin configuration
+          url: /plugin-development/plugin-configuration
+        - text: Accessing the datastore
+          url: /plugin-development/access-the-datastore
+        - text: Storing custom entities
+          url: /plugin-development/custom-entities
+        - text: Caching custom entities
+          url: /plugin-development/entities-cache
+        - text: Extending the Admin API
+          url: /plugin-development/admin-api
+        - text: Writing tests
+          url: /plugin-development/tests
+        - text: (un)Installing your plugin
+          url: /plugin-development/distribution
     - text: Plugin Development Kit
       url: /pdk
+      items:
+        - text: kong.client
+          url: /pdk/kong.client
+        - text: kong.ctx
+          url: /pdk/kong.ctx
+        - text: kong.ip
+          url: /pdk/kong.ip
+        - text: kong.log
+          url: /pdk/kong.log
+        - text: kong.node
+          url: /pdk/kong.node
+        - text: kong.request
+          url: /pdk/kong.request
+        - text: kong.response
+          url: /pdk/kong.response
+        - text: kong.router
+          url: /pdk/kong.router
+        - text: kong.service
+          url: /pdk/kong.service
+        - text: kong.service.request
+          url: /pdk/kong.service.request
+        - text: kong.service.response
+          url: /pdk/kong.service.response
+        - text: kong.table
+          url: /pdk/kong.table
     - text : Control Kong Enterprise through systemd
       url: /systemd
 
@@ -152,8 +198,18 @@
     url: /admin-api/#target-object
   - text: Workspaces
     url: /admin-api/workspaces/reference
+    items:
+      - text: Workspaces Reference
+        url: /admin-api/workspaces/reference
+      - text: Workspace Examples
+        url: /admin-api/workspaces/examples
   - text: RBAC
     url: /admin-api/rbac/reference
+    items:
+      - text: RBAC Reference
+        url: /admin-api/rbac/reference
+      - text: RBAC Examples
+        url: /admin-api/rbac/examples
   - text: Admins
     url: /admin-api/admins/reference
     items:
