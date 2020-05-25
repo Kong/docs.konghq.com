@@ -677,9 +677,19 @@ $(function () {
     .filter(params => params[0] === 'edition')
     .map(params => params[1])[0]
 
+  const editionSwitch = $('.edition-switch')
+  editionSwitch.click(function () {
+    if (edition === 'community') {
+      window.location.search = '?edition=enterprise'
+    } else {
+      window.location.search = '?edition=community'
+    }
+  })
+
   if (edition) {
     $('*[data-edition]').not(`[data-edition="${edition}"]`).each(function (index, element) {
       element.style.display = 'none'
     })
+    editionSwitch.addClass(edition)
   }
 })
