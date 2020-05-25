@@ -79,7 +79,7 @@ Connection: keep-alive
 Content-Length: 6342
 Content-Type: application/json; charset=utf-8
 Date: Wed, 27 Mar 2019 15:24:58 GMT
-Server: kong/1.1.0
+Server: kong/2.1.0
 {
     "configuration:" {
        ...
@@ -87,7 +87,7 @@ Server: kong/1.1.0
        ...
     },
     ...
-    "version": "1.1.0"
+    "version": "2.1.0"
 }
 ```
 
@@ -104,7 +104,7 @@ Connection: keep-alive
 Content-Length: 23
 Content-Type: application/json; charset=utf-8
 Date: Wed, 27 Mar 2019 15:30:02 GMT
-Server: kong/1.1.0
+Server: kong/2.1.0
 
 {
     "data": [],
@@ -135,7 +135,8 @@ entities and their attributes. This is a small, yet, complete
 example, which illustrates a number of features:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "2.1"
+_transform: true
 
 services:
 - name: my-service
@@ -153,9 +154,17 @@ consumers:
   - key: my-key
 ```
 
-The only mandatory piece of metadata is `_format_version: "1.1"`, which
+The only mandatory piece of metadata is `_format_version: "2.1"`, which
 specifies the version number of the declarative configuration syntax format.
 This also matches the minimum version of Kong required to parse the file.
+
+The `_transform` metadata is an optional boolean (defaults to `true`) which
+controls whether schema transformations will occur while importing. The rule
+of thumb for using this field is: if you are importing plain-text credentials
+(i.e. passwords), you likely want to set it to `true`, so that Kong will
+encrypt/hash them before storing them in the database. If you are importing
+**already hashed/encrypted** credentials, set `_transform` to `false` so that
+the encryption does not happen twice.
 
 At the top level, you can specify any Kong entity, be it a core entity such as
 `services` and `consumers` as in the above example, or custom entities created
