@@ -12,8 +12,10 @@
   items:
     - text: Release Notes
       url: /release-notes
-    - text: Kong Enterprise Changelog
+    - text: Changelog
       url: /enterprise/changelog
+    - text: Version Support Policy
+      url: /support-policy
       absolute_url: true
 
 - title: Deployment
