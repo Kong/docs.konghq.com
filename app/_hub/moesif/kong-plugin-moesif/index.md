@@ -63,15 +63,15 @@ params:
     - name: api_endpoint
       required: false
       default: "`https://api.moesif.net`"
-      description: URL for the Moesif Collection API (Only modify if secure proxy is used)
+      description: URL for the Moesif Collection API (Only modify if secure proxy is used).
     - name: timeout
       required: false
       default: "`10000`"
-      description: An optional timeout in milliseconds when sending data to Moesif
+      description: An optional timeout in milliseconds when sending data to Moesif.
     - name: keepalive
       required: false
       default: "`10000`"
-      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed
+      description: An optional value in milliseconds that defines for how long an idle connection will live before being closed.
     - name: api_version
       required: false
       default: "`1.0`"
@@ -79,27 +79,27 @@ params:
     - name: disable_capture_request_body
       required: false
       default: "`false`"
-      description: Set to true to disable logging of request body
+      description: Set to true to disable logging of request body.
     - name: disable_capture_response_body
       required: false
       default: "`false`"
-      description: Set to true to disable logging of response body
+      description: Set to true to disable logging of response body.
     - name: request_header_masks
       required: false
       default: "`{}`"
-      description: An array of request header fields to mask
+      description: An array of request header fields to mask.
     - name: request_header_masks
       required: false
       default: "`{}`"
-      description: An array of request body fields to mask
+      description: An array of request body fields to mask.
     - name: response_header_masks
       required: false
       default: "`{}`"
-      description: An array of response header fields to mask
+      description: An array of response header fields to mask.
     - name: response_body_masks
       required: false
       default: "`{}`"
-      description: An array of response body fields to mask
+      description: An array of response body fields to mask.
     - name: debug
       required: false
       default: false
@@ -107,11 +107,11 @@ params:
     - name: user_id_header
       required: false
       default: ""
-      description: An optional field name to identify User from a request or response header.
+      description: An optional field name to identify a User from a request or response header.
     - name: company_id_header
       required: false
       default: ""
-      description: An optional field name to identify Company (Account) from a request or response header.
+      description: An optional field name to identify a Company (Account) from a request or response header.
   extra:
     # This is for additional remarks about your configuration.
 ###############################################################################
@@ -138,7 +138,7 @@ Moesif natively supports REST, GraphQL, Web3, SOAP, JSON-RPC, and more.
 
 ### How to install
 
-The .rock file is a self contained package that can be installed locally or from a remote server.
+The `.rock` file is a self-contained package that can be installed locally or from a remote server.
 
 If the luarocks utility is installed in your system (this is likely the case if you used one of the official installation packages), you can install the 'rock' in your LuaRocks tree (a directory in which LuaRocks installs Lua modules).
 
@@ -147,4 +147,3 @@ It can be installed from luarocks repository by doing:
 ```shell
 luarocks install --server=http://luarocks.org/manifests/moesif kong-plugin-moesif
 ```
-
