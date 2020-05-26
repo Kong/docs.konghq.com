@@ -1,10 +1,10 @@
 ---
-title: Adding and Using Javascript Assets in Kong Dev Portal
+title: Adding and Using JavaScript Assets in Kong Dev Portal
 ---
 
 ### Introduction
 
-The Kong Developer Portal ships with Vue, React, and jQuery already loaded. In order to write custom interactive webpages, you may wish to make use of these libraries, or load additional javascript.
+The Kong Developer Portal ships with Vue, React, and jQuery already loaded. In order to write custom interactive webpages, you may want to make use of these libraries, or load additional JavaScript.
 
 > Note: This guide is for adding/using javascript assets without changing server-side routing. [Learn more about a SPA to the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/single-page-app).
 
@@ -17,7 +17,7 @@ The Kong Developer Portal ships with Vue, React, and jQuery already loaded. In o
 
 
 ### Adding JS Assets
-> Warning: Due to compatibility issues, avoid using any React version other than React 15 on the `layouts/system/spec-render.html` layout. We recommend using the version of React included by the default base theme. 
+> Warning: Due to compatibility issues, avoid using any React version other than React 15 on the `layouts/system/spec-render.html` layout. We recommend using the version of React included by the default base theme.
 
 To add javascript assets:
 1. Clone the [kong-portal-templates](https://github.com/Kong/kong-portal-templates) repo.
@@ -27,11 +27,11 @@ To add javascript assets:
 
 ### Loading JS Assets
 
-You can make use of the existing Vue, and jQuery in any layout/partial that includes `partials/theme/required-scripts.html` where the these scripts are loaded.
+You can make use of the existing Vue and jQuery in any layout/partial that includes `partials/theme/required-scripts.html` where these scripts are loaded.
 
-By default React is only loaded on `layouts/system/spec-render.html`
+By default, React is only loaded on `layouts/system/spec-render.html`.
 
-if you want to load React or any custom javascript asset on all pages, you can edit `themes/partial/foot.html`
+If you want to load React or any custom JavaScript asset on all pages, you can edit `themes/partial/foot.html`.
 
 
 {% raw %}
@@ -52,4 +52,4 @@ if you want to load React or any custom javascript asset on all pages, you can e
 ```
 {% endraw %}
 
-Alternatively you can load the script you need on the specific layout for each content page as needed.
+Alternatively, you can load the script you need on the specific layout for each content page as needed.
