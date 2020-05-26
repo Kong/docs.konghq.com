@@ -10,7 +10,9 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /release-notes
   items:
-    - text: Changelog
+    - text: Release Notes
+      url: /release-notes
+    - text: Kong Enterprise Changelog
       url: /enterprise/changelog
       absolute_url: true
 
