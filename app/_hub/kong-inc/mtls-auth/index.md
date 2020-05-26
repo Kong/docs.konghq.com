@@ -40,7 +40,7 @@ params:
       required: true
       value_in_examples: fdac360e-7b19-4ade-a553-6dd22937c82f
       description: |
-        List of "CA Certificates" strings to use as Certificate Authorities (CA) when validating a client certificate. At least one is required but you can specify as many as needed. The value of this array is comprised of primary keys for the "Certificate Authority" object.
+        List of CA Certificates strings to use as Certificate Authorities (CA) when validating a client certificate. At least one is required but you can specify as many as needed. The value of this array is comprised of primary keys (`id`).
     - name: skip_consumer_lookup
       default: "`false`"
       description: |
