@@ -38,9 +38,9 @@ params:
         Whether to match the subject name of the client-supplied certificate against consumer's `username` and/or `custom_id` attribute. If set to `[]` (the empty array) then auto-matching is disabled.
     - name: ca_certificates
       required: true
-      value_in_examples: '`[ { "id": "fdac360e-7b19-4ade-a553-6dd22937c82f" }, { "id": "aabc360e-7b19-5aab-1231-6da229a7b82f"} ]`'
+      value_in_examples: fdac360e-7b19-4ade-a553-6dd22937c82f
       description: |
-        List of "CA Certificates" object to use as Certificate Authorities (CA) when validating client certificate. At least one is required but can specify as many as needed. The value of this array comprises of primary keys for the "Certificate Authority" object.
+        List of CA Certificates strings to use as Certificate Authorities (CA) when validating a client certificate. At least one is required but you can specify as many as needed. The value of this array is comprised of primary keys (`id`).
     - name: skip_consumer_lookup
       default: "`false`"
       description: |
@@ -82,7 +82,7 @@ and the request will be allowed to proceed.
 
 ### Client Certificate request
 Client certificates are requested in `ssl_certifica_by_lua` phase where Kong does not have access to `route` and `workspace` information. Due to this information gap, Kong will ask for the client certificate on every handshake if the mtls-auth plugin is configured on any Route or Service. In most cases, the failure of the client to present a client certificate is not going to affect subsequent proxying if that Route or Service does not have the mtls-auth plugin applied. The exception is where the client is a desktop browser which will prompt the end user to choose the client cert to send and lead to User Experience issues rather than proxy behavior problems.
-To improve this situation, Kong builds an in-memory map of SNIs from the configured Kong Routes that should present a client certificate. To limit client certificate requests during handshake while ensuring the client certificat is requested when needed, the in memory map is dependent on all the Routes in Kong having the SNIs attriubute set. When any routes do not have SNIs set, Kong must request the client certificate during every TLS handhshake.
+To improve this situation, Kong builds an in-memory map of SNIs from the configured Kong Routes that should present a client certificate. To limit client certificate requests during handshake while ensuring the client certificate is requested when needed, the in memory map is dependent on all the Routes in Kong having the SNIs attribute set. When any routes do not have SNIs set, Kong must request the client certificate during every TLS handshake.
 
 - On every request irrespective of Workspace when plugin enabled in global Workspace scope.
 - On every request irrespective of Workspace when plugin applied at Service level
@@ -158,7 +158,7 @@ When a client has been authenticated, the plugin will append headers to the requ
 * `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer` will be set to `true` if authentication failed and the 'anonymous' **Consumer** was set instead.
 
-When `skip_consumer_lookup` is set to `true`, consumer lookup will be skipped and instead of appending afromentioned headers, plugin will append following two headers
+When `skip_consumer_lookup` is set to `true`, consumer lookup will be skipped and instead of appending aforementioned headers, plugin will append following two headers
 
 * `X-Client-Cert-Dn`, distinguished name of the client certificate
 * `X-Client-Cert-San`, SAN of the client certificate
