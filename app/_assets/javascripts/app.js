@@ -652,6 +652,22 @@ $(function () {
     })
   }
 
+  const scrollToTopButton = $('#scroll-to-top-button')
+
+  function updateScrollToTopButttonVisibility () {
+    if ($window.scrollTop() >= $window.height()) {
+      scrollToTopButton.addClass('visible')
+    } else {
+      scrollToTopButton.removeClass('visible')
+    }
+  }
+
+  scrollToTopButton.click(function () {
+    $('html, body').animate({ scrollTop: 0 }, 'slow')
+  })
+  updateScrollToTopButttonVisibility()
+  $window.on('scroll', updateScrollToTopButttonVisibility)
+
   /**
    * Custom table column widths in markdown files
    *
