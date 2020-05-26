@@ -81,7 +81,8 @@ different priority in the plugin chain.
 
 ## Demonstration
 
-### With a Database
+{% navtabs %}
+{% navtab With a database %}
 
 1. Create a Service on Kong:
 
@@ -171,7 +172,8 @@ different priority in the plugin chain.
     ```
     Now the logs will also have the "Access" message.
 
-### Without a Database
+{% endnavtab %}
+{% navtab Without a database %}
 
 1. Create the Service, Route and Associated plugin on the declarative config file:
 
@@ -238,6 +240,9 @@ different priority in the plugin chain.
     ...
     ```
     Now the logs will also have the "Access" message.
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ----
 
