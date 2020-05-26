@@ -10,7 +10,7 @@ title: Kong Brain & Kong Immunity Installation and Configuration
 Brain and Immunity are installed on Kong Enterprise, either on Kubernetes or Docker, as defined below. The Collector App and Collector Plugin enable Brain and Immunity to communicate with Kong Enterprise. The diagram above illustrate how the components work together.
 
 ## Install Brain and Immunity on Kubernetes
-Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: https://github.com/Kong/kong-collector-helm/blob/master/README.md
+Set up the Collector App via Helm. Use the public helm chart for setting up the Collector App and all its dependencies on Kubernetes. Instructions for setup can be found on the public repo at: [https://github.com/Kong/kong-collector-helm/blob/master/README.md](https://github.com/Kong/kong-collector-helm/blob/master/README.md).
 
 ## Install Brain and Immunity on Docker
 Install Brain and Immunity by downloading, installing and starting the Collector App on Docker, as defined in this section.
