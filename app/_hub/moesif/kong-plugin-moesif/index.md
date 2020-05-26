@@ -129,6 +129,7 @@ params:
 ### How it works
 
 When enabled, this plugin will monitor API traffic and log to
+[Moesif API Analytics](https://www.moesif.com/?language=kong-api-gateway). Use Moesif
 to understand API adoption and resolve issues quickly.
 
 [Package on Luarocks](http://luarocks.org/modules/moesif/kong-plugin-moesif)
