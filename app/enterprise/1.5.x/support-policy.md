@@ -1,9 +1,9 @@
 ---
-title: Kong Enterprise Support Policy
+title: Kong Enterprise Version Support Policy
 ---
 
 
-The Support Policy for Kong Enteprise software is explained in this topic. 
+The Support Policy for Kong Enterprise software versions is explained in this topic. 
 
 For customers with an active enterprise support agreement, Kong provides full support for each release for 12 months from the released date. 
 
@@ -18,16 +18,17 @@ Full support includes:
 Bug fixes and patches will be issued against the latest version of Kong Enterprise. For example, if a customer experiences a high priority bug on 0.36 and the latest shipped product is version 1.3.0.2, then the fix for that bug will be provided on 1.3.0.3. For customers with platinum or higher support, we will issue fixes to earlier versions upon request, if there are compelling business reasons for remaining on an older release.
 
 
-| Version | Released Date | End of Support |
-|:--------|:-------------:|---------------:|
-|  1.3.0  |  2019-11-05   |   2020-11-04   |
-|   0.36  |  2019-08-05   |   2020-08-04   |
-|   0.35  |  2019-05-16   |   2020-05-15   |
-|   0.34  |  2018-11-19   |   2019-11-18   |
-|   0.33  |  2018-07-11   |   2019-06-10   |
-|   0.32  |  2018-05-22   |   2019-05-21   |
-|   0.31  |  2018-03-13   |   2019-03-12   |
-|   0.30  |  2018-01-22   |   2019-01-21   |
+| Version  | Released Date | End of Support |
+|:---------|:-------------:|---------------:|
+|  1.5.0.x |  2020-04-10   |   2021-04-09   |    
+|  1.3.0   |  2019-11-05   |   2020-11-04   |
+|   0.36   |  2019-08-05   |   2020-08-04   |
+|   0.35   |  2019-05-16   |   2020-05-15   |
+|   0.34   |  2018-11-19   |   2019-11-18   |
+|   0.33   |  2018-07-11   |   2019-06-10   |
+|   0.32   |  2018-05-22   |   2019-05-21   |
+|   0.31   |  2018-03-13   |   2019-03-12   |
+|   0.30   |  2018-01-22   |   2019-01-21   |
 
 Table: 1 End of Support Date
 
