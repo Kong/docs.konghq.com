@@ -116,7 +116,7 @@ the root and the GUI under a path.
 
 ### Troubleshooting
 
-CORS errors are shown in the browser developer console (see documentation for
+CORS errors are shown in the browser developer console (for example, see documentation for
 [Firefox][firefox-dev-console] and [Chrome][chrome-dev-console]) with
 explanations of the specific issue. ACAO/Origin mismatches are most common, but
 other error conditions can appear as well.
@@ -211,10 +211,10 @@ hostname.
 ### Troubleshooting
 
 Issues with session cookies broadly fall into cases where the cookie is not
-sent and cases where the cookie is not set. The network (see documentation for
+sent and cases where the cookie is not set. The network (for example, see documentation for
 [Firefox][firefox-dev-network] or [Chrome][chrome-dev-network]) and
 application/storage (see documentation for [Firefox][firefox-dev-storage] or
-[Chrome][chrome-storage-dev]) developer tools can assist with investigating
+[Chrome][chrome-dev-application]) developer tools can assist with investigating
 these.
 
 In the network tool, selecting individual requests will show their request and
