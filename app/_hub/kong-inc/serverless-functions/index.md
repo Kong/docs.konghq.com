@@ -270,7 +270,7 @@ So the older version would do this (still works with 0.3 and above):
 ngx.log(ngx.ERR, "hello world")
 ```
 
-With this version version you can return a function to run on each request,
+With this version you can return a function to run on each request,
 allowing for upvalues to keep state in between requests:
 
 ```lua
