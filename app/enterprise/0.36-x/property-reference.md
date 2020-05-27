@@ -1051,7 +1051,7 @@ insensitive) comma separated list.
 By default, DNS records are cahced using the TTL value of a response. If this
 property recevies a value (in seconds), it will override the TTL for all records.
 
-### dns_state_ttl
+### dns_stale_ttl
 
 **Default:** `4`
 

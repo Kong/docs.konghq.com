@@ -1,10 +1,9 @@
 ---
 title: Enterprise Rate Limiting Library
-layout: reference
 ---
+<!--- This page remains unversioned for Kong Enterprise 1.3-x and earlier; for later versions, edit /app/enterprise/<version-folder>/rate-limiting --->
 
 ## Overview
-
 This library is designed to provide an efficient, scalable, eventually-consistent sliding window rate limiting library. It relies on atomic operations in shared ngx memory zones to track window counters within a given node, periodically syncing this data to a central data store (current Cassandra, Postgres, and Redis).
 
 A sliding window rate limiting implementation tracks the number of hits assigned to a specific key (such as an IP address, Consumer, Credential, etc) within a given time window, taking into account previous hit rates to smooth out a calculated rate, while still providing a familiar windowing interface that modern developers are used to (e.g., n hits per second/minute/hour). This is similar to a fixed window implementation, in which request rates reset at the beginning of the window, but without the "reset bump" from which fixed window implementations suffer, while providing a more intuitive interface beyond what leaky bucket or token bucket implementations can offer. Note that we use the term "hit" instead of "request" when referring to incrementing values for rate limit keys, because this library provides an abstract rate limiting interface; a sliding window implementation may have uses outside of HTTP request rate limiting, thus, we describe this library in a more abstract sense.
@@ -81,11 +80,11 @@ Sync all currently stored key diffs in this worker with the storage server, and 
 
 _syntax: ratelimiting.fetch(premature, namespace, time, timeout?)_
 
-Retrieve all relevant counters for the given namespace at the given time. This 
-function establishes a shm mutex such that only one worker will fetch and 
-populate the shm per execution. If timeout is defined, the mutex will expire 
-based on the given timeout value; otherwise, the mutex is unlocked immediately 
-following the dictionary update. This function can be called in an `ngx.timer` 
+Retrieve all relevant counters for the given namespace at the given time. This
+function establishes a shm mutex such that only one worker will fetch and
+populate the shm per execution. If timeout is defined, the mutex will expire
+based on the given timeout value; otherwise, the mutex is unlocked immediately
+following the dictionary update. This function can be called in an `ngx.timer`
 context; hence, the first variable represents the injected `premature` param.
 
 ### Strategy Functions

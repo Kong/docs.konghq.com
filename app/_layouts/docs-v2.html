@@ -30,15 +30,14 @@ id: documentation
     {% endif %}
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Community</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
-        <a href="/studio" {% if page.edition=='studio' %} class="active" {% endif %}>Kong Studio</a>
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
-        <span class="sidebar-toggle">Open Sidebar</span>
         <div class="edit-this-page v2">
           <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
-            Edit this Page
+            <i class="fa fa-pencil"></i>
+            <span>Edit this Page</span>
           </a>
         </div>
       </nav>
@@ -52,18 +51,18 @@ id: documentation
             <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
               Version {{page.kong_version}}
-              {% if page.kong_version == "1.5.x" and page.edition == 'enterprise' %}(2020){% endif %}
               {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
               {% for ver in page.kong_versions reversed %}
+              {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
+              {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
               <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"
+                <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                 >
                   {{ver.release}}
-                  {% if ver.release == "1.5.x" and page.edition == 'enterprise' %}(2020){% endif %}
                   {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
                 </a>
               </li>
@@ -86,12 +85,20 @@ id: documentation
 
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
     <aside class="docs-toc">
+      <i class="fa fa-times close-sidebar"></i>
       <div class="docs-toc-title">On this page</div>
       {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
     </aside>
     {% endif %}
 
     <div class="page-content-container v2" id="documentation">
+      <div class="toggles">
+        <i class="fas fa-stream sidebar-toggle"></i>
+        {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
+        <i class="far fa-list-alt toc-sidebar-toggle"></i>
+        {% endif %}
+      </div>
+
       <div class="page-content">
         <div class="content show-anchor-links">
           {% if page.edition == 'community' %}
@@ -102,7 +109,7 @@ id: documentation
           {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.has_version %}
           <div class="alert alert-warning">
-            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}Gateway Community{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
+            <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}{{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
                   href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
             to browse the documentation for the latest version.
           </div>
@@ -111,7 +118,7 @@ id: documentation
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
               <div class="tag green">NEW</div>
-              <p>Kong Enterprise {{page.kong_version}} released! We added <a
+              <p>{{site.ee_product_name}} {{page.kong_version}} released! We added <a
                       href="/enterprise/changelog">new features</a> and updated docs!</p>
             </div>
           </div>
@@ -130,7 +137,7 @@ id: documentation
             <div class="knowledge-base-links">
               <a class="knowledge-base-link" href="https://support.konghq.com/" target="_blank">
                 <div class="knowledge-base-link-title">Support</div>
-                <img src="/assets/images/icons/documentation/icn-support.svg" style="width:70%"/>
+                <img src="/assets/images/icons/documentation/icn-support.svg" />
               </a>
               <a class="knowledge-base-link" href="https://discuss.konghq.com/" target="_blank">
                 <div class="knowledge-base-link-title">Community</div>
@@ -146,6 +153,9 @@ id: documentation
         </div>
       </div>
     </div>
+  </div>
+  <div id="scroll-to-top-button">
+    <i class="fas fa-chevron-up"></i>
   </div>
   {% if page.is_homepage != true and page.feedback != false %}
   {% include feedback-widget.html %}
@@ -204,3 +214,5 @@ id: documentation
 
 </script>
 {% endif %}
+
+{% include image-modal.html %}

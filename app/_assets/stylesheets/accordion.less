@@ -26,7 +26,7 @@
 
           + div {
             opacity: 1;
-            max-height: 1500px;
+            max-height: 2000vh;
           }
         }
       }
@@ -34,6 +34,11 @@
 
     a {
       color: rgba(0, 0, 0, 0.7);
+      transition: color 0.2s;
+
+      &:hover {
+        color: @blue;
+      }
     }
 
     label {

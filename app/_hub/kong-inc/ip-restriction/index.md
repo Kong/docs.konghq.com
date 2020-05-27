@@ -5,7 +5,7 @@ version: 1.0.0
 
 desc: Whitelist or blacklist IPs that can make requests to your Services
 description: |
-  Restrict access to a Service or a Route by either whitelisting or blacklisting IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used.
+  Restrict access to a Service or a Route by either whitelisting or blacklisting IP addresses. Single IPs, multiple IPs or ranges in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) like `10.10.10.0/24` can be used. The plugin supports IPv4 and IPv6 addresses.
 
 type: plugin
 categories:
@@ -65,6 +65,15 @@ params:
 
   extra: |
 
-    Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure the plugin with both `whitelist` and `blacklist` configurations. An `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
+    A `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
+
+    You can configure the plugin with both `whitelist` and `blacklist` configurations. An interesting use case of this flexibility is to whitelist a CIDR range, but blacklist an IP address on that CIDR range:
+
+    ```bash
+    $ curl -X POST http://kong:8001/services/{service}/plugins \
+        --data "name=ip-restriction" \
+        --data "config.whitelist=127.0.0.0/24" \
+        --data "config.blacklist=127.0.0.1"
+    ```
 
 ---

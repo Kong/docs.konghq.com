@@ -56,18 +56,19 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 {% capture plugin_config_for_service %}
 ### Enabling the plugin on a Service
 
-{% if page.enterprise %}
+{% if page.enterprise or page.params.dbless_compatible == false or page.params.dbless_compatible == nil %}
 
 {{ plugin_config_for_service_with_db }}
 
-{% else %}
+{% elsif page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 {{ plugin_config_for_service_with_db }}
 
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 
 Configure this plugin on a [Service](/latest/admin-api/#service-object) by
 adding this section to your declarative configuration file:
@@ -78,7 +79,8 @@ plugins:
   service: {service}
   {{ config_required_fields_yaml }}
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 {% endif %}
 
@@ -102,18 +104,19 @@ $ curl -X POST http://kong:8001/routes/{route}/plugins \
 {% capture plugin_config_for_route %}
 ### Enabling the plugin on a Route
 
-{% if page.enterprise %}
+{% if page.enterprise or page.params.dbless_compatible == false or page.params.dbless_compatible == nil %}
 
 {{ plugin_config_for_route_with_db }}
 
-{% else %}
+{% elsif page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 {{ plugin_config_for_route_with_db }}
 
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 
 Configure this plugin on a [Route](/latest/admin-api/#route-object) by
 adding this section to your declarative configuration file:
@@ -124,7 +127,8 @@ plugins:
   route: {route}
   {{ config_required_fields_yaml }}
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 {% endif %}
 
 `{route}` is the `id` or `name` of the Route that this plugin configuration will target.
@@ -135,31 +139,30 @@ plugins:
 {% if page.params.consumer_id %}
 {% capture plugin_config_for_consumer_with_db %}
 
-You can use the `http://localhost:8001/plugins` endpoint to enable this plugin
-on specific [Consumers](/latest/admin-api/#Consumer-object):
+Configure this plugin on a [Consumer](/latest/admin-api/#Consumer-object) with:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/{consumer}/plugins \
-    --data "name={{page.params.name}}" \
-    {{ config_required_fields }}
+    --data "name={{page.params.name}}" {{ config_required_fields }}
 ```
 {% endcapture %}
 
 {% capture plugin_config_for_consumer %}
 ### Enabling the plugin on a Consumer
 
-{% if page.enterprise %}
+{% if page.enterprise or page.params.dbless_compatible == false or page.params.dbless_compatible == nil %}
 
 {{ plugin_config_for_consumer_with_db }}
 
-{% else %}
-{% tabs %}
+{% elsif page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
+{% navtabs %}
 
-{% tab With a database %}
+{% navtab With a database %}
 
 {{ plugin_config_for_consumer_with_db }}
 
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 
 Configure this plugin on a [Consumer](/latest/admin-api/#consumer-object) by
 adding this section to your declarative configuration file:
@@ -170,8 +173,8 @@ plugins:
   consumer: {consumer}
   {{ config_required_fields_yaml }}
 ```
-
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 {% endif %}
 
 `{consumer}` is the `id` or `username` of the Consumer that this plugin configuration will target.
@@ -234,7 +237,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         <td><code>config.{{ field.name }}</code>
           {% if field.required == false %}<br><em>optional</em>{% endif %}
           {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
-          {% if field.default != nil %}<br><br><strong>default value: </strong><code>{{ field.default }}</code>{% endif %}
+          {% if field.default != nil %}<br><br><strong>default value: </strong>{{ field.default | markdownify }}{% endif %}
         </td>
         <td>{{ field.description | markdownify }}</td>
       </tr>
@@ -405,17 +408,20 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
         {% endif %}
 
         <h3 id="global-plugins">Global plugins</h3>
-
-        <ul>
-          <li><strong>Using a database</strong>, all plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint.</li>
-          <li><strong>Without a database</strong>, all plugins can be configured via the <code>plugins:</code> entry on the declarative configuration file.</li>
-        </ul>
-
         <p>A plugin which is not associated to any Service, Route, or Consumer (or API, if you are using an older
         version of Kong) is considered "global", and will be run on every request.
         Read the <a href="/latest/admin-api/#add-plugin">Plugin Reference</a> and the
         <a href="/latest/admin-api/#precedence">Plugin Precedence</a> sections for more information.
         </p>
+        {% if page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}
+        <ul>
+          <li><strong>Using a database</strong>, all plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint.</li>
+          <li><strong>Without a database</strong>, all plugins can be configured via the <code>plugins:</code> entry on the declarative configuration file.</li>
+        </ul>
+        {% else %}
+        <p>Plugins can be configured using the <code>http://kong:8001/plugins/</code> endpoint.
+        </p>
+        {% endif %}
 
         <h3 id="parameters">Parameters</h3>
 
@@ -571,31 +577,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
                   {% endif %}{{ v.release }}
                   </li>
                 {% endif %}
-              {% endfor %}
-              </ul>
-            </td>
-          </tr>
-        {% endif %}
-        {% if extn_versions %}
-          <tr>
-            <th colspan="2">Other Versions</th>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <ul class="extn-versions">
-              {% for ver in extn_versions %}
-                {% unless extn_release == ver.release %}
-                  {% if ver.release == extn_latest %}
-                    {% assign ver_path = "" %}
-                  {% else %}
-                    {% assign ver_path = ver.release | append: ".html" %}
-                  {% endif %}
-                  <li>
-                    <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
-                      {{ver.release}} {% if ver.date %}({{ ver.date }}){% endif %}</a>
-                      {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
-                  </li>
-                {% endunless %}
               {% endfor %}
               </ul>
             </td>

@@ -1,7 +1,21 @@
 # Generated via autodoc-nav
 - title: Getting Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-  url: /../../getting-started-guide/latest/overview
+  items:
+    - text: Overview
+      url: /../../getting-started-guide/latest/overview
+    - text: Prepare to Administer
+      url: /../../getting-started-guide/latest/prepare
+    - text: Expose your Services
+      url: /../../getting-started-guide/latest/expose-services
+    - text: Protect your Services
+      url: /../../getting-started-guide/latest/protect-services
+    - text: Improve Performance
+      url: /../../getting-started-guide/latest/improve-performance
+    - text: Secure Services
+      url: /../../getting-started-guide/latest/secure-services
+    - text: Set Up Intelligent Load Balancing
+      url: /../../getting-started-guide/latest/load-balancing
 
 - title: Guides &amp; References
   icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -143,6 +157,9 @@
 
         - text: kong.table
           url: /pdk/kong.table
+
+    - text: Kong Security Update Process
+      url: /kong-security-update-process
 
 # Generated via autodoc-admin-api
 - title: Admin API

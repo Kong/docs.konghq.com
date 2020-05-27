@@ -1,13 +1,13 @@
 ---
-title: Documentation for Kong Gateway Community
+title: Documentation for Kong Gateway
 is_homepage: true
 ---
 
 <div class="docs-grid">
   <div class="docs-grid-block">
     <h3><a href="https://konghq.com/install/">Installation</a></h3>
-    <p>You can install Kong Gateway Community on most Linux distributions and MacOS. We even provide the source so you can compile it yourself.</p>
-    <a href="https://konghq.com/install/">Install Kong Gateway Community &rarr;</a>
+    <p>You can install Kong Gateway on most Linux distributions and MacOS. We even provide the source so you can compile it yourself.</p>
+    <a href="https://konghq.com/install/">Install Kong Gateway &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
@@ -18,31 +18,31 @@ is_homepage: true
 
   <div class="docs-grid-block">
     <h3><a href="/{{page.kong_version}}/db-less-and-declarative-config">DB-less &amp; Declarative Configuration</a></h3>
-    <p>Learn how to leverage the declarative configuration format for using Kong Gateway Community without a database, using in-memory storage only.</p>
+    <p>Learn how to leverage the declarative configuration format for using Kong Gateway without a database, using in-memory storage only.</p>
     <a href="/{{page.kong_version}}/db-less-and-declarative-config">Read the tutorial &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><a href="/{{page.kong_version}}/kong-for-kubernetes/">Kong for Kubernetes</a></h3>
-    <p>Get Started with Kong for Kubernetes</p>
+    <p>Get Started with Kong for Kubernetes.</p>
     <a href="/{{page.kong_version}}/kong-for-kubernetes/">Learn More &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><a href="/{{page.kong_version}}/upgrading">Upgrade Guide</a></h3>
-    <p>Already using Kong Gateway Community, and wanting to upgrade? Here's the step-by-step guide.</p>
+    <p>Already using Kong Gateway, and wanting to upgrade? Here's the step-by-step guide.</p>
     <a href="/{{page.kong_version}}/upgrading">Read the upgrade guide &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><a href="/{{page.kong_version}}/getting-started/quickstart">5-Minute Quickstart Guide</a></h3>
-    <p>Check out this guide if you just need the absolute basics: start Kong Gateway Community, add a Service, enable plugins, and add consumers.</p>
-    <a href="/{{page.kong_version}}/getting-started/quickstart">Start using Kong Gateway Community &rarr;</a>
+    <p>Check out this guide if you just need the absolute basics: start Kong Gateway, add a Service, enable plugins, and add consumers.</p>
+    <a href="/{{page.kong_version}}/getting-started/quickstart">Start using Kong Gateway &rarr;</a>
   </div>
 
   <div class="docs-grid-block">
     <h3><a href="/{{page.kong_version}}/configuration">Configuration Reference</a></h3>
-    <p>Want to further optimize your Kong Gateway Community cluster, database, or configure NGINX? Dive into the configuration.</p>
+    <p>Want to further optimize your Kong Gateway cluster, database, or configure NGINX? Dive into the configuration.</p>
     <a href="/{{page.kong_version}}/configuration">Start configuration &rarr;</a>
   </div>
 
@@ -72,7 +72,7 @@ is_homepage: true
 
   <div class="docs-grid-block">
     <h3><a href="/{{page.kong_version}}/health-checks-circuit-breakers">Health Checks &amp; Circuit Breakers</a></h3>
-    <p>Let Kong Gateway Community monitor the availability of your services and adjust its load balancing accordingly.</p>
+    <p>Let Kong Gateway monitor the availability of your services and adjust its load balancing accordingly.</p>
     <a href="/{{page.kong_version}}/health-checks-circuit-breakers">Learn about health checks and circuit breakers &rarr;</a>
   </div>
 
@@ -84,7 +84,7 @@ is_homepage: true
 
   <div class="docs-grid-block">
     <h3><a href="/{{page.kong_version}}/plugin-development">Write Your Own Plugins</a></h3>
-    <p>Looking for something Kong Gateway Community does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for Kong Gateway Community.</p>
+    <p>Looking for something Kong Gateway does not do for you? Easy: write it as a plugin. Learn how to write your own plugins for Kong Gateway.</p>
     <a href="/{{page.kong_version}}/plugin-development">Read the plugin development guide &rarr;</a>
   </div>
 

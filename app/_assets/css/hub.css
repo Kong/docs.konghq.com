@@ -6416,7 +6416,7 @@ a.bg-inverse:focus,a.bg-inverse:hover {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 99
+    z-index: 99;
 }
 
 .sr-only {
@@ -13517,7 +13517,7 @@ section.bg-dkBlue {
     background-color: #fff;
     font-weight: 600;
     position: absolute;
-    top: 0
+    top: 0;
 }
 
 .demo-form-container iframe {
@@ -14766,9 +14766,9 @@ nav.navigation.posts-navigation {
 }
 
 header.page-header {
-  margin: 10px auto;
-  background-color: #ffffff;
-  border-bottom: none;
+    margin: 10px auto;
+    background-color: #ffffff;
+    border-bottom: none;
 }
 
 .kong-plugins .cards-collection {

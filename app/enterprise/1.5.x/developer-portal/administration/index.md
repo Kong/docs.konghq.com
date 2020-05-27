@@ -17,4 +17,11 @@ title: Dev Portal Administration
     <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">
     Learn More &rarr;</a>
   </div>
+  <div class="docs-grid-block">
+    <h3><img src="/assets/images/icons/documentation/icn-window.svg" />
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration">Application Registration</a></h3>
+    <p>Admit control of Services to Portal Developers</p>
+    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration">
+    Learn More &rarr;</a>
+  </div>
 </div>

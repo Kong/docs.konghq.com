@@ -36,7 +36,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 {% navtabs %}
 {% navtab Download RPM file %}
 
-1. Go to: https://bintray.com/kong/kong-enterprise-edition-aws/aws.
+1. Go to: [https://bintray.com/kong/kong-enterprise-edition-aws/aws](https://bintray.com/kong/kong-enterprise-edition-aws/aws).
     Kong Enterprise versions are listed in reverse chronological order.
 3. Select the latest Kong version from the list.
 4. From the Kong version detail page, select the **Files** tab and click the distribution folder.
@@ -65,7 +65,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
 
-1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-aws/rpm.
+1. Click this URL to download the Kong Enterprise RPM repo file: [https://bintray.com/kong/kong-enterprise-edition-aws/rpm](https://bintray.com/kong/kong-enterprise-edition-aws/rpm).
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows:
 
       ```
@@ -73,7 +73,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
       ```
 
       - Replace `USERNAME` with your Bintray account user name.
-      - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at https://bintray.com/profile/edit and selecting the API Key menu item.
+      - Replace `API_KEY` with your Bintray API key. You can find your key on your Bintray profile page at [https://bintray.com/profile/edit](https://bintray.com/profile/edit) and selecting the API Key menu item.
 
       The result should look something like this:
 
@@ -118,7 +118,7 @@ $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
 {% endnavtab %}
 {% navtab Using Yum repo %}
 
-1. Move the repo file in your home directory to the /etc/yum.repos.d/ directory:
+1. Move the repo file in your home directory to the `/etc/yum.repos.d/` directory:
 
     ```bash
     $ sudo mv bintray--kong-kong-enterprise-edition-aws.repo /etc/yum.repos.d/
@@ -133,11 +133,6 @@ $ sudo yum install kong-enterprise-edition-1.3.0.1.aws.rpm
 {% endnavtab %}
 {% endnavtabs %}
 
-
-
-### Option 2: If installing using the Yum repository
-
-
 ### Copy the License File
 
 Copy the license file from your home directory to the `/etc/kong` directory:
@@ -150,7 +145,7 @@ $ sudo cp license.json /etc/kong/license.json
 
 1. Install PostgreSQL.
 
-    Follow the instructions avaialble at https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you can run a command set similar to:
+    Follow the instructions avaialble at [https://www.postgresql.org/download/linux/redhat/](https://www.postgresql.org/download/linux/redhat/) to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you can run a command set similar to:
 
     ```bash
     $ sudo yum install postgresql96 postgresql96-server

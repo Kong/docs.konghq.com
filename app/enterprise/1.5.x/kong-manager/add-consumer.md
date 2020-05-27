@@ -1,7 +1,8 @@
 ---
 title: Add a Consumer
 redirect_from:
-  - /enterprise/{{page.kong_version}}/getting-started/add-consumer
+  - /enterprise/1.5.x/getting-started/add-consumer
+  - /enterprise/latest/getting-started/add-consumer
 ---
 
 ## 1. Create a Consumer

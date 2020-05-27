@@ -26,6 +26,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
   - [Table of Contents generator](#table-of-contents-generator)
+  - [Using tabs within topics](#using-tabs-within-topics)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 
@@ -367,31 +368,61 @@ Instead, please:
 
 ### Table of Contents generator
 
-Almost all pages have an automatic Table of Contents (ToC) added to the top of
-the page, courtesy of https://github.com/Kong/docs.konghq.com/pull/920
+Almost all pages have an automatic Table of Contents (ToC) added to the right of
+the page.
 
-To inhibit the automatic addition of ToC, add the following to the front-matter
-`toc: false`
+To inhibit the automatic addition of ToC (such as on API reference pages),
+add the following to the front-matter: `toc: false`
 
-This ToC generator depends on headings being correctly coded in the markdown 
-portion of the doc site files. If a page has an incorrectly-formatted ToC, be
-sure to check:
+This ToC generator depends on headings being correctly coded in the markdown
+portion of the doc site files, and will only pick up H2 and H3 level headings.
+If a page has an incorrectly-formatted ToC, be sure to check:
 
 - Heading levels must be correctly nested. Thus, heading levels like this:
 
 ```
-# Heading Level 1
-## Sub-heading Level 2
-#### Sub-sub-sub-heading Level 4
-```
-
-will cause a broken ToC, and should be corrected to:
-
-```
-# Heading Level 1
+### Sub-sub-heading Level 3
 ## Sub-heading Level 2
 ### Sub-sub-heading Level 3
 ```
+
+will cause the first H3 to be skipped, and should be corrected to:
+
+```
+## Sub-heading Level 2
+## Sub-heading Level 2
+### Sub-sub-heading Level 3
+```
+
+[Back to TOC](#table-of-contents)
+
+
+### Using tabs within topics
+
+If your topic provides instructions for two or more methods of completing a
+task, you can nest them inside `navtabs`. For example, this topic
+[here](https://docs.konghq.com/getting-started-guide/latest/expose-services/#add-a-service)
+tabs between the Admin API and Kong Manager methods for adding a Service.
+
+Here's how you use them:
+
+```
+{% navtabs %}
+{% navtab <your title here> %}
+
+Here's some content.
+
+{% endnavtab %}
+{% navtab <some other title> %}
+
+Here's some more content.
+
+{% endnavtab %}
+{% endnavtabs %}
+```
+
+On initial page load, the first tab ("<your title here>" in the example above)
+will be the one displayed.
 
 [Back to TOC](#table-of-contents)
 

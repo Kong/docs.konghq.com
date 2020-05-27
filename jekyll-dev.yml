@@ -118,3 +118,9 @@ defaults:
     values:
       layout: extension
       permalink: /:collection/:path
+
+# product name vars
+ee_gateway_name: Kong Gateway (Enterprise)
+ee_product_name: Kong Enterprise
+ce_product_name: Kong Gateway
+base_gateway: Kong Gateway

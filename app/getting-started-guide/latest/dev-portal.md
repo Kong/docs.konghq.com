@@ -2,7 +2,7 @@
 title: Publish, Locate, and Consume Services
 ---
 <div class="alert alert-ee">
-<img src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a Kong Enterprise subscription.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a Kong Enterprise subscription.
 </div>
 
 The Kong Developer Portal (Dev Portal) provides a single source of truth for all developers to locate, access, and consume services. With intuitive content management for documentation, streamlined developer onboarding, and role-based access control (RBAC), Kong’s Developer Portal provides a comprehensive solution for creating and customizing a unified developer experience.
@@ -78,7 +78,7 @@ In this section, you’re going to add a new spec, the *Kong Vitals API*, to the
 
     The editor creates the file and prepares it for editing. Since you haven’t added any content to the file, the preview displays “Unable to render this definition”.
 
-5. In another tab, open the [Kong Vitals Admin API page](/enterprise/{{page.kong_version}}/admin-api/vitals/vitalsSpec.yaml) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
+5. In another tab, open the [Kong Vitals Admin API page](/enterprise/{{page.kong_version}}/admin-api/vitals/#vitals-api) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
 
 6. In the Dev Portal editor, clear the contents of the editor, then paste the contents of `vitalsSpec.yaml`.
 
