@@ -43,13 +43,13 @@ params:
         Upstream response status code considered cacheable.
     - name: request_method
       required:
-      default: "`GET,HEAD`"
+      default: '`["GET","HEAD"]`'
       value_in_examples:
       description: |
         Downstream request methods considered cacheable.
     - name: content_type
       required:
-      default: "`text/plain,application/json`"
+      default: '`["text/plain", "application/json"]`'
       value_in_examples:
       description: |
         Upstream response content types considered cacheable. The plugin performs an exact match against each specified value; for example, if the upstream is expected to respond with a `application/json; charset=utf-8` content-type, the plugin configuration must contain said value or a `Bypass` cache status will be returned.
