@@ -19,7 +19,7 @@
     <ul class="items">
       {% for item in nav.items %}
       {% capture url %}{{ docs_url | append: item.url }}/{% endcapture %}
-      <li>
+      <li {% if item.edition %}data-edition="{{item.edition}}"{% endif %}>
         <a {% if item.absolute_url %}href="{{item.url}}" {% else %}href="{{docs_url | append: item.url}}" {% endif %} {% if page.url==url %}class="active" {% assign item_active = true %} {% endif %}>
           {{item.text}}
         </a>
