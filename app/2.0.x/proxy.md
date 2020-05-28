@@ -649,7 +649,7 @@ property can be set while configuring a Route like so:
 }
 ```
 
-Enabling this flag (**which is enabled by default**) instructs Kong that when matching this Route, and proceeding
+Enabling this flag (which is enabled by default) instructs Kong that when matching this Route, and proceeding
 with the proxying to a Service, it should **not** include the matched part of
 the URL path in the upstream request's URL. For example, the following
 client's request to the above Route:
