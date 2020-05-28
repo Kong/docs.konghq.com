@@ -147,7 +147,7 @@ controller can re-create Kong's proxy configuration even if the underlying
 datastore changes.
 
 While most Kubernetes resources can be left unchanged when migrating between
-deployment types, users must remove any KongPlugin resources that use
+deployment types, users must remove any Kong Plugin resources that use
 unavailable plugins when migrating from a database-backed deployment using the
 `kong-enterprise-edition` image to a DB-less deployment using the
 `kong-enterprise-k8s` image. No changes to Kubernetes resources are required if

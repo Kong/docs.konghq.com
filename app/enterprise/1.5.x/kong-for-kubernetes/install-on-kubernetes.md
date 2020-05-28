@@ -4,7 +4,9 @@ title: Installing Kong Enterprise on Kubernetes
 
 ## Introduction
 
-Kong Enterprise on Kubernetes is recommended for deployments that require features not supported by Kong for Kubernetes Enterprise. It supports all Kong Enterprise plugins and features, but can't run in DB-less mode. See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for more information.
+Kong Enterprise on Kubernetes is recommended for deployments that require features not supported by Kong for Kubernetes Enterprise. It supports all Kong Enterprise plugins and features, but can't run in DB-less mode.
+
+> Note: See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for a feature breakdown and image comparison.
 
 You can use kubectl or OpenShift oc to configure Kong Enterprise on Kubernetes, then deploy it using Helm.
 
