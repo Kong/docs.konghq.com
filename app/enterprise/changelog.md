@@ -8,7 +8,7 @@ layout: changelog
 
 ### Fixes
 
-#### Kong Gateway Community 
+#### Kong Gateway 
 
 * Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins. 
 * Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database. 
