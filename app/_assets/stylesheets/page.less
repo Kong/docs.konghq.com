@@ -82,36 +82,35 @@
         }
 
         .edition-switch-container {
-          position: absolute;
-          bottom: -32px;
-          right: 0;
           display: flex;
           align-items: center;
+          margin-right: 10px;
 
           .label {
             font-size: 12px;
             font-weight: bold;
             color: rgba(0, 0, 0, 0.4);
-            margin: 0 8px;
           }
 
           .edition-switch {
             position: relative;
-            width: 48px;
-            height: 24px;
+            width: 40px;
+            height: 20px;
             border: 2px solid #a5c3ff;
+            background: #e0f8ff;
             border-radius: 13px;
             cursor: pointer;
+            margin: 0 4px;
 
             &:after {
               content: '';
               position: absolute;
-              left: 12px;
+              left: 11px;
               top: 1px;
-              height: 22px;
-              width: 22px;
+              height: 18px;
+              width: 18px;
               border-radius: 11px;
-              background: #5192ee;
+              background: #0070bf;
               opacity: 0.3;
               transition: left 0.2s;
             }
@@ -125,7 +124,7 @@
 
             &.enterprise {
               &:after {
-                left: 24px;
+                left: 20px;
                 opacity: 1;
               }
             }
