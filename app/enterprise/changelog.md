@@ -10,17 +10,17 @@ layout: changelog
 
 #### Kong Gateway Community 
 
-* Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins. (FTI-1385)
-* Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database. (FTI-1527) 
+* Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins. 
+* Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database. 
 * Reduced the log level of one line in the Balancer code from `ERROR` to `WARN`.
 
 #### Kong Manager
-* Included a reference to Kong's EULA in Kong Manager. (INTF-2368)
+* Included a reference to Kong's EULA in Kong Manager. 
 
 #### Plugins
 
 * Forward Proxy Advanced
-  * Fixed a runtime error caused by moving Vitals to the log phase. (FTI-1550) 
+  * Fixed a runtime error caused by moving Vitals to the log phase. 
 
 * Mutual TLS Authentication
   * Fixed issue to correctly skip verification when mode is `IGNORE_CA_ERROR`.
