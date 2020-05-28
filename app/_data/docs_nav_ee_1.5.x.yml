@@ -122,7 +122,7 @@
 
 - title: Admin API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
-  url: /admin-api
+  url: /admin-api/
   items:
     - text: Overview
       url: /admin-api
@@ -245,7 +245,7 @@
 
 - title: Kong Dev Portal
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /developer-portal
+  url: /developer-portal/
   items:
     - text: Introduction
       url: /developer-portal/
@@ -284,7 +284,7 @@
         - text: Workspaces
           url: /developer-portal/configuration/workspaces
     - text: Administration
-      url: /developer-portal/administration
+      url: /developer-portal/administration/
       items:
         - text: Managing Developers
           url: /developer-portal/administration/managing-developers
@@ -311,7 +311,7 @@
 
 - title: Kong Studio
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /studio
+  url: /studio/
   items:
     - text: Changelog
       url: https://insomnia.rest/changelog/
@@ -331,7 +331,7 @@
 
 - title: Kong for Kubernetes Enterprise
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-  url: /kong-for-kubernetes
+  url: /kong-for-kubernetes/
   items:
     - text: Overview
       url:  /kong-for-kubernetes
