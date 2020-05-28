@@ -13,7 +13,7 @@ Before you start this section, make sure that:
 In this guide, an instance of Kong Gateway is referenced via `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname of your control plane instance.
 
 <div class="alert alert-ee">
-<h5><img src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for Kong Enterprise free trial users</h5>
+<h5><img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" />Note for Kong Enterprise free trial users</h5>
 If you are trying out Kong Enterprise using a hosted free trial, you can go through this guide to experience some of this enhanced functionality. However, you need to enable access to the Admin API first.
   <ol>
     <li>Open the Kong Manager using the link provided in your free trial welcome email.</li>

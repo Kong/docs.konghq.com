@@ -27,8 +27,9 @@ id: getting-started-guide
               </button>
               <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
                 {% for ver in page.kong_versions reversed %}
-                <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}"
+                {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
+                {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                   >
                     {{ver.release}}
@@ -85,6 +86,10 @@ id: getting-started-guide
       </div>
     </div>
   </div>
+</div>
+
+<div id="scroll-to-top-button">
+  <i class="fas fa-chevron-up"></i>
 </div>
 
 {% if page.feedback != false %}

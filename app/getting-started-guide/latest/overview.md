@@ -20,7 +20,7 @@ In this guide, you will:
 
 ### {{site.ee_product_name}} and free trials
 <div class="alert alert-ee">
-<img src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This guide also includes some features specific to {{site.ee_product_name}} and the {{site.ee_gateway_name}}. They'll be called out in blue blocks like this, or in their own Kong Manager tabs.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This guide also includes some features specific to {{site.ee_product_name}} and the {{site.ee_gateway_name}}. They'll be called out in blue blocks like this, or in their own Kong Manager tabs.
 <br/><br/>
 {{site.ee_product_name}} extends the {{site.ce_product_name}} with enterprise features and support. It provides advanced functionality using plugins for security, collaboration, performance at scale, and use of advanced protocols.
 <br/><br/>

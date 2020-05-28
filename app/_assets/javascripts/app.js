@@ -617,6 +617,17 @@ $(function () {
    *
    * To enable on specific page, add the following include directive at the bottom of the page html:
    * {% include image-modal.html %}
+   *
+   * To disable for a specific img tag add 'no-image-expand' class. Example:
+   * <img class="install-icon no-image-expand" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="docker" />
+   *
+   * To disable for whole page you can add 'disable_image_expand: true' to page Front Matter block. Example:
+   * ---
+   * title: Install Kong Enterprise
+   * toc: false
+   * skip_read_time: true
+   * disable_image_expand: true
+   * ---
    */
   const imageModal = $('#image-modal')
 
@@ -632,11 +643,11 @@ $(function () {
     }
   }
 
-  if (imageModal.length > 0) {
+  if (imageModal.length > 0 && !imageModal.data('image-expand-disabled')) {
     imageModal.find('i').click(closeModal)
     imageModal.find('.image-modal-backdrop').click(closeModal)
 
-    $('.page-content > .content img').each(function (index, img) {
+    $('.page-content > .content img:not(.no-image-expand)').each(function (index, img) {
       const $img = $(img)
 
       img.style.cursor = 'pointer'
@@ -649,6 +660,42 @@ $(function () {
       })
     })
   }
+
+  const scrollToTopButton = $('#scroll-to-top-button')
+
+  function updateScrollToTopButttonVisibility () {
+    if ($window.scrollTop() >= $window.height()) {
+      scrollToTopButton.addClass('visible')
+    } else {
+      scrollToTopButton.removeClass('visible')
+    }
+  }
+
+  scrollToTopButton.click(function () {
+    $('html, body').animate({ scrollTop: 0 }, 'slow')
+  })
+  updateScrollToTopButttonVisibility()
+  $window.on('scroll', updateScrollToTopButttonVisibility)
+
+  /**
+   * Custom table column widths in markdown files
+   *
+   * Usage:
+   *
+   * | Concept/Feature {:width=250px:} | Description {:width=20%:} | OSS or Enterprise |
+   * |-----------------|-------------|-------------------|
+   *
+   */
+  const WIDTH_REGEX = /(.*)\s*{:width=(.+):}/
+  $('table thead tr th').each(function (index, th) {
+    const $th = $(th)
+
+    const match = WIDTH_REGEX.exec($th.text())
+    if (match) {
+      $th.text(match[1])
+      th.style.width = match[2]
+    }
+  })
 
   /**
    * Edition based element visibility

@@ -1,6 +1,7 @@
 ---
 title: Getting Started with Kong Enterprise
 toc: false
+disable_image_expand: true
 ---
 
 ### Introduction

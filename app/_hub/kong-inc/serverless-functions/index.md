@@ -1,13 +1,13 @@
 ---
 name: Serverless Functions
 publisher: Kong Inc.
-version: 0.3-x
+version: 1.0-x
 
 source_url: https://github.com/Kong/kong-plugin-serverless-functions
 
-desc: Dynamically run Lua code from Kong during the access phase
+desc: Dynamically run Lua code from Kong
 description: |
-  Dynamically run Lua code from Kong during access phase.
+  Dynamically run Lua code from Kong.
 
 type: plugin
 categories:
@@ -16,23 +16,10 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
-        - 2.0.x
-        - 1.5.x      
-        - 1.4.x
-        - 1.3.x
-        - 1.2.x
-        - 1.1.x
-        - 1.0.x
-        - 0.14.x
+        - 2.1.x
     enterprise_edition:
       compatible:
         - 1.5.x
-        - 1.3-x
-        - 0.36-x
-        - 0.35-x
-        - 0.34-x
-        - 0.33-x
-        - 0.32-x
 
 params:
   name: pre-function OR post-function
@@ -45,10 +32,40 @@ params:
     The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.
   config:
     - name: functions
-      required: true
+      required: false
       default: "[]"
       value_in_examples: "[]"
-      description: Array of stringified Lua code to be cached and run in sequence during access phase.
+      description: "*Deprecated*; use `config.access` instead. Array of stringified Lua code to be cached and run in sequence during access phase."
+    - name: certificate
+      required: false
+      default: "[]"
+      value_in_examples: "[]"
+      description: "Array of stringified Lua code to be cached and run in sequence during the certificate phase. *Note*: This only runs on global plugins."
+    - name: rewrite
+      required: false
+      default: "[]"
+      value_in_examples: "[]"
+      description: "Array of stringified Lua code to be cached and run in sequence during the rewrite phase. *Note*: This only runs on global plugins."
+    - name: access
+      required: false
+      default: "[]"
+      value_in_examples: "[]"
+      description: Array of stringified Lua code to be cached and run in sequence during the access phase.
+    - name: header_filter
+      required: false
+      default: "[]"
+      value_in_examples: "[]"
+      description: Array of stringified Lua code to be cached and run in sequence during the header_filter phase.
+    - name: body_filter
+      required: false
+      default: "[]"
+      value_in_examples: "[]"
+      description: Array of stringified Lua code to be cached and run in sequence during the body_filter phase.
+    - name: log
+      required: false
+      default: "[]"
+      value_in_examples: "[]"
+      description: Array of stringified Lua code to be cached and run in sequence during the log phase.
 
 ---
 
@@ -58,13 +75,14 @@ Serverless Functions come as two separate plugins. Each one runs with a
 different priority in the plugin chain.
 
 - `pre-function`
-  - Runs before other plugins run during access phase.
+  - Runs before other plugins run during each phase.
 - `post-function`
-  - Runs after other plugins in the access phase.
+  - Runs after other plugins in each phase.
 
 ## Demonstration
 
-### With a Database
+{% navtabs %}
+{% navtab With a database %}
 
 1. Create a Service on Kong:
 
@@ -114,7 +132,11 @@ different priority in the plugin chain.
     ```bash
     $ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
         -F "name=pre-function" \
-        -F "config.functions=@custom-auth.lua"
+        -F "config.access[1]=@custom-auth.lua" \
+        -F "config.access[2]=kong.log.err('Hi there Access!')" \
+        -F "config.header_filter[1]=kong.log.err('Hi there Header_Filter!')" \
+        -F "config.body_filter[1]=kong.log.err('Hi there Body_Filter!')" \
+        -F "config.log[1]=kong.log.err('Hi there Log!')"
 
     HTTP/1.1 201 Created
     ...
@@ -129,6 +151,15 @@ different priority in the plugin chain.
     ...
     "Invalid Credentials"
     ```
+    In the logs, there will be the following messages:
+    ```
+    [pre-function] Hi there Header_Filter!
+    [pre-function] Hi there Body_Filter!
+    [pre-function] Hi there Body_Filter!
+    [pre-function] Hi there Log!
+    ```
+    The "Access" message is missing because the first function in that phase does
+    an early exit, throwing the 401. Hence the subsequent functions are not executed.
 
 7. Test the Lua code we just applied by making a valid request:
 
@@ -139,8 +170,10 @@ different priority in the plugin chain.
     HTTP/1.1 200 OK
     ...
     ```
+    Now the logs will also have the "Access" message.
 
-### Without a Database
+{% endnavtab %}
+{% navtab Without a database %}
 
 1. Create the Service, Route and Associated plugin on the declarative config file:
 
@@ -156,21 +189,29 @@ different priority in the plugin chain.
     plugins:
     - name: pre-function
       config:
-        functions: |
-          -- Get list of request headers
-          local custom_auth = kong.request.get_header("x-custom-auth")
+        access:
+        - |2
+            -- Get list of request headers
+            local custom_auth = kong.request.get_header("x-custom-auth")
 
-          -- Terminate request early if our custom authentication header
-          -- does not exist
-          if not custom_auth then
-            return kong.response.exit(401, "Invalid Credentials")
-          end
+            -- Terminate request early if the custom authentication header
+            -- does not exist
+            if not custom_auth then
+              return kong.response.exit(401, "Invalid Credentials")
+            end
 
-          -- Remove custom authentication header from request
-          kong.service.request.clear_header('x-custom-auth')
+            -- Remove custom authentication header from request
+            kong.service.request.clear_header('x-custom-auth')
+        - kong.log.err('Hi there Access!')
+        header_filter:
+        - kong.log.err('Hi there Header_Filter!')
+        body_filter:
+        - kong.log.err('Hi there Body_Filter!')
+        log:
+        - kong.log.err('Hi there Log!')
     ```
 
-2. Test that our Lua code will terminate the request when no header is passed:
+2. Test that the Lua code will terminate the request when no header is passed:
 
     ```bash
     curl -i -X GET http://localhost:8000/test
@@ -179,6 +220,15 @@ different priority in the plugin chain.
     ...
     "Invalid Credentials"
     ```
+    The following messages will be in the logs:
+    ```
+    [pre-function] Hi there Header_Filter!
+    [pre-function] Hi there Body_Filter!
+    [pre-function] Hi there Body_Filter!
+    [pre-function] Hi there Log!
+    ```
+    The "Access" message is missing because the first function in that phase does
+    an early exit, throwing the 401. Hence the subsequent functions are not executed.
 
 3. Test the Lua code we just applied by making a valid request:
 
@@ -189,15 +239,20 @@ different priority in the plugin chain.
     HTTP/1.1 200 OK
     ...
     ```
+    Now the logs will also have the "Access" message.
+
+{% endnavtab %}
+{% endnavtabs %}
+
 ----
 
-This is just a small demonstration of the power these plugins grant. We were
-able to dynamically inject Lua code into the plugin access phase to dynamically
+This is just a small demonstration of the power these plugins grant. You were
+able to dynamically inject Lua code into the plugin phases to dynamically
 terminate, or transform the request without creating a custom plugin or
 reloading / redeploying Kong.
 
-In short, serverless functions give you the full capabilities of a custom plugin
-in the access phase without ever redeploying / restarting Kong.
+In summary, serverless functions give you the full capabilities of a custom plugin
+without requiring redeploying or restarting Kong.
 
 
 ### Notes
@@ -215,11 +270,11 @@ So the older version would do this (still works with 0.3 and above):
 ngx.log(ngx.ERR, "hello world")
 ```
 
-With this version version you can return a function to run on each request,
+With this version you can return a function to run on each request,
 allowing for upvalues to keep state in between requests:
 
 ```lua
--- this runs once when Kong starts
+-- this runs once on the first request
 local count = 0
 
 return function()
