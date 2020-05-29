@@ -31,6 +31,6 @@ Bug fixes and patches will be issued against the latest version of Kong Enterpri
 |   0.31   |  2018-03-13   |   2019-03-12   |
 |   0.30   |  2018-01-22   |   2019-01-21   |
 
-Table: 1 End of Support Date
+> Table 1: End of Support Date
 
 End of Life support will be limited to technical assistance only, with no source code patches or new patch level releases. Support will provide recommendations to the Customer, but no software patches will be provided. If there is an issue that requires a patch, Customers will need to upgrade to a newer version covered by the full Support policy.
