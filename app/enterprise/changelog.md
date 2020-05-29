@@ -115,6 +115,8 @@ layout: changelog
     * Allow Portal Applications to request access and consume Services
 * Serverless functions
     * Add the ability to run functions in each request phase
+* Upstream TLS
+    * The Upstream TLS plugin is not available in the Kong Enterprise 1.5.x release and is not supported. This plugin was deprecated in Kong Enterprise 1.3.0.0 and is only functional with Kong Enterprise versions 0.35 and 0.36. Be sure to remove this plugin before upgrading to the 1.5.x release to avoid errors or issues with your upgrade
 
 ### Fixes
 #### Kong Gateway
@@ -469,6 +471,7 @@ repository will allow you to do both easily.
 - cors: add OPTIONS, TRACE and CONNECT to default allowed methods
   [#4899](https://github.com/Kong/kong/pull/4899)
   Thanks to [@eshepelyuk](https://github.com/eshepelyuk) for the patch!
+- upstream-tls: The Upstream TLS plugin is deprecated as of Kong Enterprise 1.3.0.0 and is only functional with Kong Enterprise versions 0.35 and 0.36. Be sure to remove this plugin before upgrading to the 1.5.x release to avoid errors or issues with your upgrade, as the plugin will no longer be supported.
 
 #### PDK
 
