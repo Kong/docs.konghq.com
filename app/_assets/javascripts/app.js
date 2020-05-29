@@ -666,6 +666,14 @@ $(function () {
     })
   }
 
+  // open docs sidebar items
+  $('.docs-sidebar a.active, li.accordion-item.active').each(function (index, a) {
+    $(a).parents('li.accordion-item').each(function (index, item) {
+      $(item).addClass('active')
+      $(item).find('> input').prop('checked', true)
+    })
+  })
+
   const scrollToTopButton = $('#scroll-to-top-button')
 
   function updateScrollToTopButttonVisibility () {
