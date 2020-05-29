@@ -318,6 +318,20 @@ $(function () {
     $('.docs-toc > .close-sidebar').click(function () {
       $('.docs-toc').removeClass('sidebar-open')
     })
+    $('.docs-toc > .collapse-toc').click(function () {
+      $('.docs-toc').addClass('collapsed')
+      $('.page-content-container').addClass('toc-collapsed')
+      setCookie('toc-collapsed', 'true')
+    })
+    $('.docs-toc > .expand-toc').click(function () {
+      $('.docs-toc').removeClass('collapsed')
+      $('.page-content-container').removeClass('toc-collapsed')
+      setCookie('toc-collapsed', 'false')
+    })
+    if (getCookie('toc-collapsed') === 'true') {
+      $('.docs-toc').addClass('collapsed')
+      $('.page-content-container').addClass('toc-collapsed')
+    }
   }
 
   // Analytics
