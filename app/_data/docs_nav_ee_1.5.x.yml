@@ -421,6 +421,8 @@
       url: /brain-immunity/service-map
     - text: Troubleshooting
       url: /brain-immunity/troubleshooting
+    - text: Changelog
+      url: /brain-immunity/changelog
 
 - title: Plugins
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
