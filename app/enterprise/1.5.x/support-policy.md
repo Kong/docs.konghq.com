@@ -1,5 +1,6 @@
 ---
 title: Kong Enterprise Version Support Policy
+toc: false
 ---
 
 
