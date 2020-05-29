@@ -9,8 +9,8 @@ For example, here's a common use case: an application deployed to Kubernetes exp
 
 Here are some benefits of using Kong for Kubernetes Enterprise:
 * It stores all of the configuration in the Kubernetes datastore (etcd) using Custom Resource Definitions (CRDs), meaning you can use Kubernetes' native tools to manage Kong and benefit from Kubernetes' declarative configuration, RBAC, namespacing, and scalability.
-* Because the configuration is stored in Kubernetes, no database needs to be deployed for Kong. Kong runs in in-memory mode, making it operationally easy to run, upgrade, and back up.
-* It natively integrates with the Cloud Native Computing Foundation (CNCF) eco-system to provide out of the box monitoring, logging, certificate management, tracing, and scaling.
+* Because the configuration is stored in Kubernetes, no database needs to be deployed for Kong. Kong runs in DB-less mode, making it operationally easy to run, upgrade, and back up.
+* It natively integrates with the Cloud Native Computing Foundation (CNCF) ecosystem to provide out of the box monitoring, logging, certificate management, tracing, and scaling.
 
 Alternatively, you can also deploy Kong Enterprise on Kubernetes to use features such as Kong Manager, Kong Developer Portal, and others. For a comparison of the options, see [Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
 
