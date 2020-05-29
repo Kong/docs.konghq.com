@@ -658,6 +658,7 @@ $(function () {
       $(item).addClass('active')
       $(item).find('> input').prop('checked', true)
     })
+  })
 
   const scrollToTopButton = $('#scroll-to-top-button')
 
