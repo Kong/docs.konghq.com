@@ -12,7 +12,7 @@ Full support includes:
 
 * Technical support on the use of the software as documented, assistance with application configuration, and guidelines on performance tuning. 
 
-* Access to all error corrections, bug fixes, software updates and software upgrades to the Software that Kong makes generally available to other Kong enterprise customers who have purchased a license to the same Software purchased by Customer (“Upgrades”). 
+* Access to all error corrections, bug fixes, software updates, and software upgrades to the Software that Kong makes generally available to other Kong enterprise customers who have purchased a license to the same Software purchased by Customer (“Upgrades”). 
 
 * Development of workarounds or patches for customers upon request, and where technically possible, for the following: Urgent issues; Critical and High Security Vulnerabilities; High priority issues where the product in a non-production environment is nearing a critical milestone, is unusable, and no workaround is available.
 
