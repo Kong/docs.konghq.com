@@ -10,9 +10,14 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /release-notes
   items:
+    - text: Release Notes
+      url: /release-notes
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
+    - text: Version Support Policy
+      url: /support-policy
+
 
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
