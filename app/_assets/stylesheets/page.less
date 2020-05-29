@@ -1009,6 +1009,15 @@ Generic Styling for Desktop
       position: absolute;
       top: 0;
     }
+
+    ul > li {
+      border: none;
+      padding: 0;
+
+      &:before {
+        visibility: hidden;
+      }
+    }
   }
 }
 
@@ -1416,4 +1425,32 @@ Generic Styling for Desktop
   background-size: 57%;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+#scroll-to-top-button {
+  position: fixed;
+  bottom: 12px;
+  right: 50%;
+  z-index: 10;
+  cursor: pointer;
+  background: #e3e3e3;
+  border: 1px solid #c7c7c7;
+  border-radius: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.5s;
+  transform: translateY(100px);
+
+  i {
+    padding: 8px 10px;
+    font-size: 14px;
+    color: #8a8a8a;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.visible {
+    transform: translateY(0);
+  }
 }

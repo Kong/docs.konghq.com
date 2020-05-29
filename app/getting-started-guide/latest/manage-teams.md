@@ -2,7 +2,7 @@
 title: Manage Administrative Teams
 ---
 <div class="alert alert-ee">
-<img src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a Kong Enterprise subscription.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a Kong Enterprise subscription.
 </div>
 
 In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in Kong Enterprise.

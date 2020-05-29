@@ -137,6 +137,10 @@ layout: changelog
   * Raise the priority of the plugin so it is run first on a request
 * Request Terminator
   * Do not send a `Content-Length` header with a 204 response
+  
+### Known Issue and Workaround
+* Mutual TLS Authentication Plugin
+  * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`.
 
 ## 1.3.0.2
 **Release Date:** 2020/02/20
@@ -1033,6 +1037,13 @@ not able to access the **Workspace** that the **Role** was assigned to.
 
 - **Brain**
   - Renames **Brain** to **Collector**
+
+## 0.35-5
+**Release Date:** 2020/05/14
+
+### Fixes
+- Reverted breaking changes introduced by [PR #3780](https://github.com/Kong/kong/pull/3780) involving the handling of slashes inside the router.
+- Reverted service mesh changes affecting `proxy_ssl_*` directives.
 
 ## 0.35-4
 **Release Date:** 2019/08/19

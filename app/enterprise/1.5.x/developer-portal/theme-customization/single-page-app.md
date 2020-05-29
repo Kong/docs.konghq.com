@@ -4,9 +4,9 @@ title: Hosting Single Page App out of Kong Dev Portal
 
 ### Introduction
 
-The Kong Developer Portal ships with a default server side rendered theme, however it is possible to replace this with a Single Page App (SPA). Our example is in Angular using the Angular CLI Tool, but you can follow along with any other javascript framework with just a few tweaks.
+The Kong Developer Portal ships with a default server-side rendered theme; however, it is possible to replace this with a Single Page App (SPA). This example is in Angular using the Angular CLI Tool, but you can follow along with any other JavaScript framework with just a few tweaks.
 
-To view the basic example Angular template from this guide visit the [`example/spa-angular`](https://github.com/Kong/kong-portal-templates/tree/example/spa-angular) branch from the kong-portal-templates branch.
+To view the basic example Angular template from this guide, visit the [`example/spa-angular`](https://github.com/Kong/kong-portal-templates/tree/example/spa-angular) branch from the `kong-portal-templates branch`.
 
 ### Prerequisites
 
@@ -17,21 +17,21 @@ To view the basic example Angular template from this guide visit the [`example/s
 
 ### What is a SPA
 
-A Single Page App (SPA) is a website that loads all HTML, Javascript, and CSS on the first load. Instead of loading subsequent pages from the server, javascript is used to dynamically change the page content. You may wish to use a SPA in Dev Portal if you have a preexisting SPA you want to integrate with portal, or you are trying to achieve a more application like experience across many pages. A SPA takes control of routing from the server, and handles it client-side instead.
+A Single Page App (SPA) is a website that loads all HTML, JavaScript, and CSS on the first load. Instead of loading subsequent pages from the server, JavaScript is used to dynamically change the page content. You may want to use an SPA in Dev Portal if you have a preexisting SPA you want to integrate with the portal, or you are trying to achieve a more application-like experience across many pages. An SPA takes control of routing from the server, and handles it client-side instead.
 
-Custom javascript can also be added to run only on specific layouts, allowing you to maintain server-side rendering. [Learn more](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/adding-javascript-assets) about adding javascript to a layout without implementing a SPA.
+Custom JavaScript can also be added to run only on specific layouts, allowing you to maintain server-side rendering. [Learn more](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/adding-javascript-assets) about adding JavaScript to a layout without implementing an SPA.
 
 ### Making Choices
 
 
-We recommend Catalog and Spec routes not be handled by SPA
-If you are using Authentication, then you probably also want to leave server-side rendering for any account pages
+We recommend Catalog and Spec routes not be handled by SPA.
+If you are using Authentication, then you probably also want to leave server-side rendering for any account pages.
 
 ### Getting Started
 
 Clone the [portal-templates](https://github.com/Kong/kong-portal-templates) repo
 
-Create a file called `router.conf.yaml` in `workspaces/default` This file will override the default routing, allowing you to control routing via javascript.
+Create a file called `router.conf.yaml` in `workspaces/default` This file will override the default routing, allowing you to control routing via JavaScript.
 
 `router.conf.yaml` must be a yaml file, where the key is each route, and the value a content or spec path. `/*` Is a catch-all wildcard for all routes not specified in `router.conf.yaml`, it will overwrite all default routing set by collections or set in headmatter.
 
@@ -53,41 +53,45 @@ In the `router.conf.yaml` example below, we are hardcoding routing for all kong 
 
 ```
 
-#### 1. Creating Your SPA
+#### 1. Create your SPA
 
-Create SPA app in the javascript framework of your choice
-As a example, we will be using angular.
+Create an SPA app in the JavaScript framework of your choice. This
+example uses angular.
+
 ```
 ng new
 ```
 
-Make sure to include a 404 route, as well as all routes you want to have on the Portal (excluding the routes handled by server-side rendering we excluded above)
+Make sure to include a 404 route, as well as all routes you want to have on the Portal (excluding the routes handled by server-side rendering excluded above).
 
 Run the build process
 
 For angular:
+
 ```
 ng build
 ```
 
-Copy the build output JS and CSS files to a folder inside `workspaces/default/themes/assets/js`
+Copy the build output JS and CSS files to a folder inside `workspaces/default/themes/assets/js`.
 
-For this example we placed the angular build inside a `workspaces/default/themes/assets/js/ng`
+For this example, place the angular build inside a `workspaces/default/themes/assets/js/ng`.
 
-#### 2. Mounting a SPA
+#### 2. Mounting an SPA
 
-In order to load our js we need to mount the JS, to do this let’s create a new layout page, for this example we will call it `spa.html`
+In order to load our js we need to mount the JS, to do this let’s create a new layout page, for this example, call it `spa.html`.
 
-Create a file called `spa.html` in `workspaces/default/themes/layouts`
+Create a file called `spa.html` in `workspaces/default/themes/layouts`.
 
-This file will need to contain the html element that our SPA will mount to as well as the scripts necessary to do this.
-For reference view the index.html inside the build folder created by the build step of our SPA.
+This file will need to contain the html element that the SPA will mount to as well as the scripts necessary to do this.
+For reference, view the `index.html` inside the build folder created by the build step of the SPA.
 
-We will be using `layouts/_base.html` as the base for layout template, this way we get the <head> element handled the same way other pages in the portal do, as well as the same CSS and scripts.
+The example uses `layouts/_base.html` as the base for the layout template.
+By doing so, the <head> element is handled the same way as other pages in the portal, as well as the same CSS and scripts.
 
 If you want to have the top nav bar and bottom nav bar, be sure to include them in your layout.
 
-This is what our layout ended up as:
+This is the resulting layout:
+
 {% raw %}
 ```
 {% layout = "layouts/_base.html" %}
@@ -115,12 +119,12 @@ This is what our layout ended up as:
 ```
 {% endraw %}
 
-If your SPA build process creates a css file edit the head.html partial to include your css file.
+If the SPA build process creates a css file, edit the `head.html` partial to include your css file.
 
 #### 3. Loading your layout
 
-In order to use our layout modify `workspaces/default/content/index.txt` to use our layout,
-The title we set here will be the one that displays until the JS set title loads.
+Modify `workspaces/default/content/index.txt` to use your layout.
+The title you set here will be the one that displays until the JS set title loads.
 
 {% raw %}
 ```
@@ -133,10 +137,10 @@ title: Home
 
 #### 4. Deploy the Portal
 
-Now using the kong-portal-cli tool we can deploy this portal
+Now using the kong-portal-cli tool, deploy the portal.
 
-From the root folder of the templates repo
+From the root folder of the templates repo:
+
 ```
 portal deploy default
 ```
-

@@ -151,7 +151,7 @@ http :8001/workspaces name=teamC Kong-Admin-Token:vajeOlkbsn0q0VD9qw9B3nHYOErgY7
 **NOTE**: this is the RBAC Super Admin creating workspaces—note his
 token being passed in through the `Kong-Admin-Token` HTTP header.
 
-## Super Admin Creates one Admin for each Team:
+## Super Admin Creates one Admin for each Team
 
 **Team A**:
 
@@ -436,7 +436,7 @@ http :8001/teamA/rbac/roles/users/endpoints/ endpoint=/workspaces/* workspace=te
 }
 ```
 
-**IMPORTANT**: as explained in the [Wildcards in Permissions][rbac-wildcards]
+**IMPORTANT**: as explained in the [Wildcards in Permissions](#wildcards-in-permissions)
 section, the meaning of `*` is not the expected generic globbing one might
 be used to. As such, `/rbac/*` or `/workspaces/*` do not match all of the
 RBAC and Workspaces endpoints. For example, to cover all of the RBAC API,
@@ -575,7 +575,7 @@ http :8001/teamA/rbac/users/bazgineer/roles roles=users Kong-Admin-Token:n5bhjgv
 }
 ```
 
-## Regular Team Users use their tokens!
+## Regular Team Users use their tokens
 
 foogineer, bargineer, and bazgineer all have gotten their RBAC user tokens
 from their Team A admin, and are now allowed to explore Kong—within the
@@ -642,14 +642,14 @@ This ends our use case tutorial; it demonstrates the power of RBAC and
 workspaces with a real-world scenario. Following, we will approach **Entity-Level
 RBAC**, an extension of our powerful access control to entity-level granularity.
 
-# Entity-Level RBAC: a Primer
+## Entity-Level RBAC: a Primer
 
 Kong Enterprise's new RBAC implementation goes one step further in permissions
 granularity: in addition to "endpoint" permissions, it supports entity-level
 permissions, meaning that particular entities, identified by their unique ID,
 can be allowed or disallowed access in a role.
 
-Refreshing our minds, RBAC is [enforced][rbac-enforce] with the `enforce_rbac`
+Refreshing our minds, RBAC is [enforced](#enforcing-rbac) with the `enforce_rbac`
 configuration directive—or with its `KONG_ENFORCE_RBAC` environment variable
 counterpart. Such directive is an enum, with 4 possible values:
 
@@ -663,7 +663,7 @@ If one sets it to either `entity` or `both`, Kong will enforce entity-level
 access control. However, as with endpoint-level access control, permissions
 must be bootstrapped before enforcement is enabled.
 
-## Creating Entity-Level Permissions
+### Creating Entity-Level Permissions
 
 Team A just got one new, temporary, team member: qux. Admin A, the admin of
 Team A, has already created his qux RBAC user; he needs, however, to limit
@@ -830,7 +830,7 @@ That is, 2 entities permissions and no endpoint permissions.
 Admin A is done setting up qux, and qux can now use his user token to read
 his two entities over Kong's admin API.
 
-We will assume that Admin A [enabled entity-level enforcement][rbac-enforce].
+We will assume that Admin A [enabled entity-level enforcement](#enforcing-rbac).
 Note that as qux has **no endpoint-level permissions**, if both endpoint and
 entity-level enforcement is enabled, he will not be able to read his entities -
 endpoint-level validation comes before entity-level.
@@ -903,7 +903,7 @@ http :8001/teamA/routes/3ed24101-19a7-4a0b-a10f-2f47bcd4ff43 Kong-Admin-Token:sU
 
 We will end this chapter with a few closing remarks.
 
-## Wildcards in Permissions
+### Wildcards in Permissions
 
 RBAC supports the use of wildcards—represented by the `*` character—in many
 aspects of permissions:
@@ -938,7 +938,7 @@ character:
 
 - `entity_id`: `*` matches **any entity ID**
 
-## Entities Concealing in Entity-Level RBAC
+### Entities Concealing in Entity-Level RBAC
 
 With Entity-Level RBAC enabled, endpoints that list all entities of a
 particular collection will only list entities that the user has access to;
@@ -1006,7 +1006,7 @@ http :8001/teamA/plugins Kong-Admin-Token:sUnv6uBehM91amYRNWESsgX3HzqoBnR5
 
 Notice the `total` field is 2, but qux only got one entity in the response.
 
-## Creating Entities in Entity-Level RBAC
+### Creating Entities in Entity-Level RBAC
 
 As entity-level RBAC provides access control to individual existing entities,
 it does not apply to creation of new entities; for that, endpoint-level
@@ -1042,9 +1042,7 @@ he created.
 
 ---
 
-[rbac-overview]: /enterprise/{{page.kong_version}}/rbac/overview
-[rbac-enforce]: /enterprise/{{page.kong_version}}/rbac/overview#enforcing-rbac
-[rbac-wildcard]: /enterprise/{{page.kong_version}}/rbac/examples/#wildcards-in-permissions
-[rbac-admin]: /enterprise/{{page.kong_version}}/rbac/admin-api
-[workspaces-examples]: /enterprise/{{page.kong_version}}/rbac/examples
+[rbac-overview]: /enterprise/{{page.kong_version}}/kong-manager/administration/rbac
+[rbac-admin]: /enterprise/{{page.kong_version}}/admin-api/rbac/reference
+[workspaces-examples]: /enterprise/{{page.kong_version}}/admin-api/workspaces/examples
 [getting-started-guide]: /enterprise/{{page.kong_version}}/getting-started

@@ -8,33 +8,33 @@ book: workspaces
 This chapter aims to provide a step-by-step tutorial on how to set up
 workspaces, entities, and see it in action.
 
-## Important Note: Conflicting APIs or Routes in workspaces
+## Important Note: Conflicting Services or Routes in workspaces
 
 Workspaces provide a way to segment Kong entities—entities in a workspace
 are isolated from those in other workspaces. That said, entities
-such as APIs and Routes have "routing rules", which are pieces of info
-attached to APIs or Routes—such as HTTP method, URI, or host—that allow a
+such as Services and Routes have "routing rules", which are pieces of info
+attached to Services or Routes—such as HTTP method, URI, or host—that allow a
 given proxy-side request to be routed to its corresponding upstream service.
 
-Admins configuring APIs (or Routes) in their workspaces do not want traffic
-directed to their APIs or Routes to be swallowed by APIs or Routes in other
+Admins configuring Services (or Routes) in their workspaces do not want traffic
+directed to their Services or Routes to be swallowed by Services or Routes in other
 workspaces; Kong allows them to prevent such undesired behavior—as long as
 certain measures are taken. Below we outline the conflict detection algorithm
 used by Kong to determine if a conflict occurs.
 
-* At API or Route **creation or modification** time, Kong runs its internal
+* At Service or Route **creation or modification** time, Kong runs its internal
 router:
-  - If no APIs or Routes are found with matching routing rules, the creation
+  - If no Services or Routes are found with matching routing rules, the creation
   or modification proceeds
-  - If APIs or Routes with matching routing rules are found **within the same
+  - If Services or Routes with matching routing rules are found **within the same
   workspace**, proceed
-  - If APIs or Routes are found **in a different workspace**:
-    * If the matching API or Route **does not have an associated
+  - If Services or Routes are found **in a different workspace**:
+    * If the matching Service or Route **does not have an associated
       `host` value**—`409 Conflict`
-    * If the matching API or Route's `host` is a wildcard
+    * If the matching Service or Route's `host` is a wildcard
       - If they are the same, a conflict is reported—`409 Conflict`
       - If they are not equal, proceed
-    * If the matching API or Route's `host` is an absolute value, a
+    * If the matching Service or Route's `host` is an absolute value, a
       conflict is reported—`409 Conflict`
 
 ## The Default workspace
@@ -483,8 +483,6 @@ http :8001/teamC/consumers username=guest
 With this, Teams A, B, and C will have the freedom to operate their `guest`
 consumer independently, choosing authentication plugins or doing any other
 operation that is allowed in the non-workspaced Kong world.
-
-Next: [RBAC Overview &rsaquo;](/enterprise/{{page.kong_version}}/rbac/overview)
 
 ---
 
