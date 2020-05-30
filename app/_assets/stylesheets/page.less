@@ -1072,6 +1072,11 @@ Generic Styling for Desktop
   border-left: solid 3px #b3dfff;
   border-radius: 0;
 
+  &.red {
+    background-color: #fdf3f2;
+    border-left: solid 3px @red;
+  }
+
   .alert-body {
     padding-top: 20px;
   }
@@ -1094,6 +1099,10 @@ Generic Styling for Desktop
 
     &.green {
       background: #35cb05;
+    }
+
+    &.red {
+      background: @red;
     }
   }
 

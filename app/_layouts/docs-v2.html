@@ -35,7 +35,6 @@ id: documentation
         <a href="/getting-started-guide/latest/overview" {% if page.edition =='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
         <a href="/deck" {% if page.edition =='deck' %} class="active" {% endif %}>decK</a>
 
-
         <div class="edit-this-page v2">
           <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
             <i class="fa fa-pencil"></i>
@@ -142,7 +141,7 @@ id: documentation
             {% endif %}
           {% endif %}
         {% endif %}
-
+          
           {% unless page.skip_read_time == true or page.path contains '/admin-api' or page.path contains '/pdk' or page.is_homepage %}
           {% include read_time.html %}
           {% endunless %}
