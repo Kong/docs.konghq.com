@@ -1,4 +1,6 @@
-# Design & Architecture
+---
+title: Design & Architecture
+---
 
 ## Underlying architecture
 
@@ -56,7 +58,7 @@ been incorporated to ensure good performance:
   This is usually not a concern as decK's process is short-lived. For very
   large installation, it is recommended to configure a sub-set of
   the large configuration at one time using a technique referred to as
-  [distributed configuration](guides/distributed-configuration.md).
+  [distributed configuration](/deck/guides/distributed-configuration).
   There are avenues to further reduce the memory requirements of decK,
   although, we don't know by how much. decK's code is written with focus on
   correctness over performance.
@@ -73,4 +75,3 @@ decK is written in Go because:
   pursue larger goals(think a control-plane for Kong) in future,
   Go is probably the best language available to write that type of software.
 - the original author was familiar with Go :)
-

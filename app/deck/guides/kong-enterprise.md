@@ -1,4 +1,6 @@
-# decK and Kong Enterprise
+---
+title: decK and Kong Enterprise
+---
 
 All features of decK work with open-source and enterprise versions of Kong.
 
@@ -47,7 +49,6 @@ deck dump --workspace my-workspace
 If you do not specify a flag, the configuration of `default` workspace will
 be managed.
 
-
 You can export configuration of all workspaces in Kong Enterprise with
 the `--all-workspaces` flag:
 
@@ -70,7 +71,7 @@ configuration of all the workspaces at the same time.
 
 ### Reset
 
-Same as `dump` command, you can use `-workspace` to reset configuration of a
+Same as the `dump` command, you can use `-workspace` to reset configuration of a
 specific workspace, or use `--all-workspaces` to reset configuration of all
 workspaces in Kong.
 Please note that decK doesn't delete the workspace itself but deletes the

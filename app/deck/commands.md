@@ -1,21 +1,13 @@
-# decK CLI
+---
+title: decK CLI Reference
+---
 
 ## Commands
 
 This document describes the various commands that are available in decK.
 The command-line `--help` flag on the main command or a sub-command (like diff,
-sync, reset, etc.) shows the help text along-with supported flags for those
-commands, and is the canonical documentation. Below is a short summary of
-these commands:
-
-- [ping](#ping)
-- [dump](#dump)
-- [diff](#diff)
-- [sync](#sync)
-- [reset](#reset)
-- [validate](#validate)
-- [version](#version)
-- [help](#help)
+sync, reset, etc.) shows the help text along with supported flags for those
+commands, and is the canonical documentation.
 
 ### ping
 

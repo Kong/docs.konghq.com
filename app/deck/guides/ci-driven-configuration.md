@@ -1,6 +1,9 @@
-# CI-driven configuration
+---
+title: CI-driven Configuration
+toc: false
+---
 
-## or Configuration as code
+## Configuration as code
 
 decK can be, rather should be, used in a CI pipeline to push out configuration
 Kong.
@@ -25,6 +28,6 @@ Unless you do this step, you do not have a truly declarative configuration
 as your are configure Kong but are never verifying. The system could be
 out of sync and can go undetected until another change is performed.
 
-Anytime you use decK within such an automated environment, including a
+Any time you use decK within an automated environment, including a
 `deck ping` command in the beginning of your script can ease debugging
 in future as it usually rules out connectivity issues between decK and Kong.

@@ -1,12 +1,15 @@
-# Best practices when using decK
+---
+title: Best practices when using decK
+toc: false
+---
 
-- Always ensure that you've one decK process running at any time. Multiple
+- Always ensure that you have one decK process running at any time. Multiple
   process will step on each other and can corrupt Kong's configuration.
 - Do not mix up decK's declarative configuration with `cURL` or any other
   script. Either manage the configuration with decK or manage it with your
-  home-grown script. Mixing the two on the same data-set will get cumbersome
+  homegrown script. Mixing the two on the same data-set will get cumbersome
   and will be error-prone.
-- If you've a very large installation, then it is recommended to split out
+- If you have a very large installation, then it is recommended to split out
   your configuration into smaller sub-set. You can find more info for it
   in the guide to practising
   [distributed configuration](distributed-configuration.md).
@@ -27,7 +30,7 @@
   thousands or millions.
 - Always run a `deck diff` command before running a `deck sync`
   to ensure the change that is taking place.
-- Adopt a [CI-driven configuration](ci-driven-configuration) practice.
+- Adopt a [CI-driven configuration](/deck/guides/ci-driven-configuration) practice.
 - Always secure your Kong's Admin API with some kind of authentication method.
 - Do not write the state file by hand, it will be very error-prone.
   Instead using Kong's Admin API to

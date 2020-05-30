@@ -1,9 +1,12 @@
-# Using multiple files to store configuration
+---
+title: Using multiple Files to Store Configuration
+toc: false
+---
 
 decK can construct a state by combining multiple JSON or YAML files inside a
 directory instead of a single file.
 
-In most use case, a single-file will suffice but you might want to use
+In most use case, a single file will suffice but you might want to use
 multiple files if:
 - You want to organizes the files for each service, in such a case, you
   can have a file per service, and keep a service, it's associate routes,
@@ -27,5 +30,4 @@ split the configuration into different files as you see fit for your use-case.
 
 
 Please note that having the state split across different files is not same
-as [distributed configuration](distributed-configuration.md).
-
+as [distributed configuration](/deck/guides/distributed-configuration).

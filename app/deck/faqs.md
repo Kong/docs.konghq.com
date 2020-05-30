@@ -1,6 +1,8 @@
-# Frequently Asked Questions (FAQs)
+---
+title: Frequently Asked Questions (FAQs)
+---
 
-#### I use Terraform to configure Kong, why should I care about decK?
+### I use Terraform to configure Kong, why should I care about decK?
 
 If you are using Terraform and are happy with it, you should continue to use it.
 decK covers all the problems that Terraform solves and goes beyond it:
@@ -18,24 +20,13 @@ decK covers all the problems that Terraform solves and goes beyond it:
 - decK works out of the box with Kong Enterprise features like
   Workspaces and RBAC.
 
-#### Can I run multiple decK processes at the same time?
+### Can I run multiple decK processes at the same time?
 
 NO! Please do not do this. The two processes will step on each other and
 might corrupt Kong's configuration. You should ensure that there is only
 one instance of decK running at any point in time.
 
-#### When is decK v1.0 coming out?
-
-decK is already used in production by a large number of users and is deemed
-production ready.
-decK v1.0 status will be a matter of feature completeness rather than stability.
-
-At the minimum, decK needs thorough documentation, and complete compatibility
-with Kong's native declarative format.
-
-This is one of the top priorities as of November 2019.
-
-#### Kong already has built-in declarative configuration, do I still need decK?
+### Kong already has built-in declarative configuration, do I still need decK?
 
 Kong has an official declarative configuration format.
 
@@ -82,12 +73,12 @@ your use-case:
   correctly re-imported by decK. This happens because Kong's Admin API call
   to sync the configuration will re-hash the already hashed password.
 
-#### I'm a Kong Enterprise customer, can I use decK?
+### I'm a Kong Enterprise customer, can I use decK?
 
 Of course, decK is designed to be compatible with open-source and enterprise
 versions of Kong.
 
-#### I use Cassandra as a data-store for Kong, can I use decK?
+### I use Cassandra as a data-store for Kong, can I use decK?
 
 You can use decK with Kong backed by Cassandra.
 However, if you observe errors during a sync process, you will have to
@@ -104,8 +95,7 @@ You should consider:
   processed at a time. This will slow down sync process and should be used
   as a last resort.
 
-#### Why the name 'decK'?
+### Why the name 'decK'?
 
 It is simple, short, and easy to use in the terminal.
 It is derived from the combination of words 'declarative' and 'Kong'.
-

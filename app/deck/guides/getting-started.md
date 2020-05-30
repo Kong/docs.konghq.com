@@ -1,17 +1,12 @@
-# Getting started with decK
+---
+title: Getting Started with decK
+toc: false
+---
 
-Once you've [installed](installation.md) decK, let's get started with it.
+Once you've [installed](/deck/installation.md) decK, let's get started with it.
 
 You can find help in the terminal itself for any command using the `-help`
 flag.
-
-## Screen-cast
-
-Please watch the following screen-cast recording for a quick how-to and
-capabilities of decK:
-
-[![asciicast](https://asciinema.org/a/238318.svg)](https://asciinema.org/a/238318)
-
 
 ## Install Kong
 
@@ -26,7 +21,7 @@ If you already have Kong configured with the configuration of your choice,
 you can skip this step.
 
 ```shell
-# lets create a service
+# create a service
 $ curl -s -XPOST http://localhost:8001/services -d 'name=foo' -d 'url=http://example.com' | jq
 {
   "host": "example.com",
@@ -45,7 +40,7 @@ $ curl -s -XPOST http://localhost:8001/services -d 'name=foo' -d 'url=http://exa
   "client_certificate": null
 }
 
-# let's create a route associated with the above service
+# create a route associated with the above service
 $ curl -s -XPOST http://localhost:8001/services/foo/routes -d 'name=bar' -d 'paths[]=/bar' | jq
 {
   "id": "83c2798d-6bd8-4182-a799-2632c9f670a5",
@@ -75,7 +70,7 @@ $ curl -s -XPOST http://localhost:8001/services/foo/routes -d 'name=bar' -d 'pat
   "methods": null
 }
 
-# let's create a global plugin
+# create a global plugin
 
 $ curl -s -XPOST http://localhost:8001/plugins -d 'name=prometheus' | jq
 {
@@ -100,12 +95,12 @@ $ curl -s -XPOST http://localhost:8001/plugins -d 'name=prometheus' | jq
 
 ## Export the configuration
 
-Let's export Kong's configuration:
+Export Kong's configuration:
 
 ```shell
 $ deck dump
 
-## loook at the kong.yaml file that is generated:
+# look at the kong.yaml file that is generated:
 $ cat kong.yamz
 _format_version: "1.1"
 services:
@@ -148,7 +143,7 @@ Let's edit the `kong.yaml` file now. We're going to make the following changes:
 - Change the `protocol` of service `foo` to `https`
 - Add another string element `/baz` to the `paths` attribute of route `bar`.
 
-```shel
+```shell
 # your kong.yaml file should look like:
 $ cat kong.yaml
 _format_version: "1.1"
@@ -186,13 +181,13 @@ plugins:
 
 ## diff and sync the configuration to Kong
 
-```
+```shell
 # let's perform a diff
 deck diff
 # you should see decK reporting that the properties you had changed
 # in the file are going to be changed by decK in Kong's database.
 
-# let's apply the changes
+# apply the changes
 deck sync
 
 # curl Kong's Admin API to see the updated route and service in Kong.
@@ -203,7 +198,7 @@ deck diff
 
 ## Drift detection using decK
 
-Go ahead and now create a consumer in Kong.
+Create a consumer in Kong:
 
 ```shell
 $ curl -s -XPOST http://localhost:8001/consumers -d 'username=dodo' | jq
@@ -217,9 +212,9 @@ $ curl -s -XPOST http://localhost:8001/consumers -d 'username=dodo' | jq
 ```
 
 Note that we have created this consumer in Kong but the consumer doesn't exist
-in `kong.yaml` file we've saved on disk.
+in the `kong.yaml` file we've saved on disk.
 
-Let's see what decK reports on a diff now.
+Let's see what decK reports on a diff now:
 
 ```shell
 $ deck diff
@@ -235,8 +230,7 @@ Let's go ahead and run the sync process.
 $ deck sync
 ```
 
-Now, looking up curl http://localhost:8001/consumers/dodo
-{"message":"Not found"}the consumer in Kong's database will return a `404`:
+Now, looking up the consumer in Kong's database will return a `404`:
 
 ```shell
 $ curl http://localhost:8001/consumers/dodo
@@ -252,8 +246,8 @@ file, and alert your teams if such a discrepancy is present.
 ## Reset your configuration
 
 Finally, you can reset the configuration of Kong using decK.
-The changes performed by this command are irreversible(unless you've created a
-backup using `deck dump`) so please be careful.
+The changes performed by this command are irreversible (unless you've created a
+backup using `deck dump`), so please be careful.
 
 
 ```shell
@@ -264,4 +258,3 @@ This will delete all configuration from Kong's database.
 
 And that's it.
 Start using decK to declaratively configure your Kong installation today!
-

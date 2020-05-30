@@ -1,4 +1,7 @@
-# Deduplicate plugin configuration
+---
+title: De-duplicate Plugin Configuration
+toc: false
+---
 
 In some use cases, you might want to create a number of plugins associated with
 different entities in Kong but with the same configuration. In such a case,
@@ -9,7 +12,7 @@ In other use cases, the plugin configuration could be decided by a different
 team (Operations in some cases), and the configuration is directly used by
 an API owner.
 
-decK has support for both of these use-cases.
+decK has support for both of these use cases.
 
 Let's take an example configuration file:
 
@@ -125,7 +128,7 @@ Here, we have two groups of consumers:
 - `silver-tier` consumers who can access our APIs at 10 requests per minute
 - `gold-tier` consumers who can access our APIs at 20 requests per minute
 
-Now, if we want to increase the rate-limits or change the host of the Redis
+Now, if we want to increase the rate limits or change the host of the Redis
 server, then we have to edit the configuration of each and every instance of
 the plugin.
 
@@ -212,7 +215,7 @@ consumers:
     - https
 ```
 
-Now, you can edit plugin configuration in a single place and you can see it's
+Now, you can edit plugin configuration in a single place and you can see its
 effect across multiple entities. Under the hood, decK takes the change and
 applies it to each entity which references the plugin configuration that has
 been changed. As always, use `deck diff` to inspect the changes before you

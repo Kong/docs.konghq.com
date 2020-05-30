@@ -1,6 +1,9 @@
-# Backup and restore of Kong's configuration
+---
+title: Backup and Restore of Kong's configuration
+toc: false
+---
 
-You can use decK to backup and restore the entire or only a subset of
+You can use decK to back up and restore a subset or the entirety of
 Kong's configuration.
 
 To back up Kong's configuration, use the `dump` command:
@@ -17,11 +20,11 @@ $ deck diff # a dry-run where decK shows the changes it will perform
 $ deck sync # actually re-creates the entities in Kong
 ```
 
-## Manage a sub-set of configuration
+## Manage a subset of configuration
 
-You can export/import/manage a sub-set of Kong's configuration using
-`select-tag` feature of decK. This is similar to adopting
-[distributed configuration](distributed-configuration.md) for Kong.
+You can export/import/manage a subset of Kong's configuration using decK's
+`select-tag` feature. This is similar to adopting
+[distributed configuration](/deck/guides/distributed-configuration) for Kong.
 
 The `select-tag` feature assumes that all the entities you would like to manage
 in Kong share a common tag(s).
@@ -45,4 +48,3 @@ This sub-section tells decK to filter out entities containing select-tags during
 a sync operation.
 
 Now, you can manage or sync back only this sub-set of configuration of Kong.
-

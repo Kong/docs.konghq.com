@@ -1,4 +1,6 @@
-# Installation
+---
+title: Installation
+---
 
 decK is entirely written in Go. The build process builds a single static binary,
 which makes it easy and convenient to install decK.
@@ -21,7 +23,7 @@ If you are Linux, you can either use the Debian or RPM archive from
 the Github [release page](https://github.com/hbagdi/deck/releases)
 or install by downloading a compressed archive, which contains the binary:
 
-```shel
+```shell
 $ curl -sL https://github.com/hbagdi/deck/releases/download/v1.1.0/deck_1.1.0_linux_amd64.tar.gz -o deck.tar.gz
 $ tar -xf deck.tar.gz -C /tmp
 $ sudo cp /tmp/deck /usr/local/bin/
@@ -42,4 +44,3 @@ decK can read the files during diff/sync procedures.
 If you're integrating decK into your CI system, you can either install decK
 into the system itself, use the Docker based environment or pull the binaries
 hosted on Github in each job.
-

@@ -1,9 +1,11 @@
-# Distributed configuration for Kong using decK
+---
+title: Distributed Configuration for Kong using decK
+---
 
-decK can operate on a sub-set of configuration instead of taking care
+decK can operate on a subset of configuration instead of taking care
 of managing the entire configuration of Kong.
 
-This can be very useful in a variety of scenarios, some examples include:
+This can be very useful in a variety of scenarios. For example:
 
 - Your organization uses a single Kong installation whose configuration is
   built from multiple teams. For example, one team manages the inventory API,
@@ -19,7 +21,7 @@ This can be very useful in a variety of scenarios, some examples include:
   service or you are dynamically creating them or the number of consumer is just
   so large that it makes no sense to manage them in a declarative fashion.
 
-In such  case, you can use decK's `select-tag` feature to export, sync, reset
+In such cases, you can use decK's `select-tag` feature to export, sync, reset
 only a sub-set of configuration.
 
 ## Tags
@@ -37,12 +39,12 @@ fewer or only on tag, for performance reasons in Kong's codebase.
 
 ## Dump
 
-You can export a sub-set of entities in Kong by specifying common tags
-using `--select-tag` flag.
+You can export a subset of entities in Kong by specifying common tags
+using the `--select-tag` flag.
 
 For example:
 
-```
+```shell
 $ deck dump --select-tag foo-tag --select-tag bar-tag
 # generates a kong.yaml file with all entities which have both the tags
 ```
@@ -63,7 +65,7 @@ a sync operation.
 
 You don't need to specify `--select-tag` in `sync` and `diff` commands.
 The commands will use the tags present in the state file and perform the diff
-accordingly. 
+accordingly.
 
 Since the state files have the tagging information, different teams can
 make updates to the part of configuration in Kong, without worrying about
@@ -75,14 +77,14 @@ co-ordinate.
 the file cannot have `select_tags` defined inside it. It is strongly advised
 that you do not supply select-tags to sync and diff commands via flags.
 The reason being that the tag information should be part of the declarative
-configuration file itself in order to provide a practical declarative file. 
+configuration file itself in order to provide a practical declarative file.
 The tagging information and entity definitions should be present in one place,
 else an error in supplying the wrong tag via the CLI can break the
 configuration.
 
 ## Reset
 
-You can delete only a sub-set of entities sharing a tag using the `--select-tag`
+You can delete only a subset of entities sharing a tag using the `--select-tag`
 flag on the `reset` command.
 
 ## Initial setup problem
@@ -94,10 +96,9 @@ you would like to manage don't share a single database.
 To get around this problem, you can use one of the following approaches:
 
 - Go through each entity in Kong, and patch those entities with the common
-  tag(s) you'd like and then use decK's `dump` command to export by different
+  tag(s) you'd like, then use decK's `dump` command to export by different
   tags.
 - Export the entire configuration of Kong, and divide up the configuration
-  into different files. And then add the `select_tags` info to the file.
+  into different files. Then, add the `select_tags` info to the file.
   This will require recreation of the database now, since decK will not
   detect any of the entities present (as they are missing the common tag).
-
