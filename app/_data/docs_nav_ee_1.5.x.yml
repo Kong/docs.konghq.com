@@ -15,7 +15,7 @@
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
-    - text: Version Support Policy
+    - text: Version Support
       url: /support-policy
 
 
