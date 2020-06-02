@@ -92,7 +92,7 @@ plugins:
 ```
 {% endtabs %} 
 
-In this example, the request body data would have to be a valid JSON and
+In this example, the request body data would have to be valid JSON and
 conform to the schema specified in `body_schema` - i.e., it would be required
 to contain a `name` field only, which needs to be a string.
 
