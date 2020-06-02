@@ -209,7 +209,7 @@ validations:
 | `timestamp` | Integers | True if the field value is a valid timestamp |
 | `uuid`| Strings | True if the string is a valud UUID |
 
-**Note**: See [here][lua-patterns] to learn about Lua patterns.
+**Note**: To learn more, see [Lua patterns][lua-patterns].
 
 ### Kong Schema Example
 
