@@ -100,7 +100,7 @@ In case the validation fails, a `400 Bad Request` will be returned as the respon
 
 ### Schema Definition
 
-*For using the JSON Schema Draft 4 compliant validator please see the [JSON Schema website](
+*For using the JSON Schema Draft 4-compliant validator, see the [JSON Schema website](
 https://json-schema.org/) for details on the format and examples. The rest of
 this paragraph will explain the Kong schema.*
 
