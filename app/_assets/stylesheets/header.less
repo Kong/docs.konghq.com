@@ -305,6 +305,36 @@ body {
     visibility: visible;
   }
   @media (min-width: 1080px) {
+    .navbar.full-width
+      .kong-navbar_nav
+      #menu-primary-nav
+      li.menu-item-has-children.multicol.wide.docs
+      ul.sub-menu
+      > li
+      > ul
+      > li
+      > a {
+      transform: translateX(30px);
+      img {
+        left: -25px;
+        top: -2.5px;
+      }
+    }
+    .navbar.full-width
+      .kong-navbar_nav
+      #menu-primary-nav
+      li.menu-item-has-children.multicol.wide.docs
+      ul.sub-menu
+      > li:last-of-type
+      > ul
+      > li
+      > a {
+      transform: translateX(30px);
+      img {
+        left: -25px;
+        top: 2.5px;
+      }
+    }
     .kong-navbar .navbar-toggler {
       display: none;
     }
