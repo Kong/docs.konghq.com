@@ -5,7 +5,7 @@ version: 1.3-x
 
 desc: Validates requests before they reach the upstream service
 description: |
-  Validate requests before they reach their upstream service. Supports validating
+  Validate requests before they reach their upstream Service. Supports validating
   the schema of the body and the parameters of the request using either Kong's own
   schema validator (body only) or a JSON Schema Draft 4 compliant validator.
 
