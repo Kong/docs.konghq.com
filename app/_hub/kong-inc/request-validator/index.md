@@ -47,7 +47,7 @@ params:
       value_in_examples:
       description: |
         What validator to use. Supported values are `kong` (default) for using Kong's own schema
-        validator, or `draft4` for using a JSON Schema Draft 4 compliant validator.
+        validator, or `draft4` for using a JSON Schema Draft 4-compliant validator.
 
     - name: parameter_schema
       required: false
