@@ -105,7 +105,7 @@ https://json-schema.org/) for details on the format and examples. The rest of
 this paragraph will explain the Kong schema.*
 
 The `config.body_schema` field expects a JSON array with the definition of each
-field expected to be in the request body, for example:
+field expected to be in the request body; for example:
 
 Each field definition contains the following attributes:
 
