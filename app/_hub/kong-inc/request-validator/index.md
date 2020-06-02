@@ -39,7 +39,7 @@ params:
       value_in_examples:
       description: |
         List of allowed content types. <br>**Note:** Body validation is only
-        done for `application/json` and skipped for any other allowed content types.*
+        done for `application/json` and skipped for any other allowed content types.
 
     - name: version
       required: true
