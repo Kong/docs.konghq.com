@@ -296,6 +296,14 @@ body {
     visibility: hidden;
     pointer-events: none;
   }
+  .navbar.full-width
+    .kong-navbar_nav
+    #menu-primary-nav
+    li.menu-item-has-children.multicol.active
+    > ul {
+    opacity: 1;
+    visibility: visible;
+  }
   @media (min-width: 1080px) {
     .kong-navbar .navbar-toggler {
       display: none;
@@ -1098,6 +1106,20 @@ body {
     }
   }
   @media (max-width: 1080px) {
+    nav.navbar.full-width
+      .kong-navbar_nav.collapse
+      #menu-primary-nav
+      li.menu-item-has-children.multicol.active
+      > ul.sub-menu,
+    .navbar.full-width
+      .kong-navbar_nav:not(.full)
+      #menu-primary-nav
+      li.menu-item-has-children.multicol.active
+      > ul {
+      opacity: 1;
+      visbility: visible;
+      pointer-events: all;
+    }
     body header .navbar.full-width .collapse .menu > li > a {
       padding-top: 4px !important;
       padding-bottom: 4px !important;
