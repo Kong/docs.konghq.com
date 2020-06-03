@@ -1,12 +1,12 @@
 ---
-title: Enable OpenId Connect in the Dev Portal
+title: Enable OpenID Connect in the Dev Portal
 ---
 
 ### Introduction
 
 The [OpenID Connect Plugin](/hub/kong-inc/openid-connect/) (OIDC)
 allows the Kong Developer Portal to hook into existing authentication setups using third-party
-*Identity Providers* (IdP) such as Google, Yahoo, Microsoft Azure AD, etc.
+*Identity Providers* (IdP) such as Google, Okta, Microsoft Azure AD, etc.
 
 [OIDC](/hub/kong-inc/openid-connect/) must be used with
 the `session` method, utilizing cookies for Dev Portal File API requests.
@@ -14,6 +14,10 @@ the `session` method, utilizing cookies for Dev Portal File API requests.
 In addition, a configuration object is required to enable OIDC. Refer to the
 [Sample Configuration Object](#/sample-configuration-object) section of this
 document for more information.
+
+**Note:** The Dev Portal does not automatically create developer accounts on login via OIDC.
+A developer account matching the `consumer_claim` configuration parameter has to be
+created and approved (if auto approve is not enabled) beforehand.
 
 OIDC for the Dev Portal can be enabled in three ways:
 
@@ -49,20 +53,23 @@ Provider:
   "login_redirect_uri": ["http://localhost:8003"],
   "login_redirect_mode": "query"
 }
-
 ```
 
-The values above can be replaced with their corresponding values for a custom
-OIDC configuration:
+The placeholders above should be replaced with your actual values:
 
   - `<CLIENT_ID>` - Client ID provided by IdP
-        * For Example, Google credentials can be found here:
-        https://console.cloud.google.com/projectselector/apis/credentials
   - `<CLIENT_SECRET>` - Client secret provided by IdP
+
+See the [documentation of the OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+for more information.
+
+**Important:** The `redirect_uri` needs to be configured as an allowed URI in the IdP.
+If not set explicitly in the configuration object it defaults to
+`http://localhost:8004/<WORKSPACE_NAME>/auth`.
 
 If `portal_gui_host` and `portal_api_url` are set to share a domain but differ
 with regard to subdomain, `redirect_uri` and `session_cookie_domain` need to be
-configured to allow OpenID-Connect to apply the session correctly.
+configured to allow OpenID Connect to apply the session correctly.
 
 Example:
 
@@ -127,5 +134,4 @@ portal_auth="openid-connect"
 Then set `portal_auth_conf` property to your
 customized [**Configuration JSON Object**](#/sample-configuration-object).
 
-This will set every Dev Portal to use Key Authentication by default when
-initialized, regardless of Workspace.
+This will set every Dev Portal to use OIDC by default when initialized, regardless of Workspace.
