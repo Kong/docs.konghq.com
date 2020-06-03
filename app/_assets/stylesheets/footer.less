@@ -4,8 +4,8 @@
  * used across the site
  */
 
-@import 'variables';
-@import 'utils';
+@import "variables";
+@import "utils";
 
 /* =======================================================
    MARKETING -> FOOTER
@@ -26,7 +26,7 @@
  * Main footer selector
  */
 
-[class^='marketing-footer'] {
+[class^="marketing-footer"] {
   .font-source-sans();
   width: 100%;
   padding: @gutter-flex-2x 0 0;
@@ -63,7 +63,7 @@
 
       > li {
         font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
-          'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         .social-link {
           width: auto;
           min-width: auto;
@@ -80,7 +80,7 @@
             color: #333;
             text-decoration: none;
             text-shadow: 0 1px 0 #fff;
-            font: 700 11px/14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font: 700 11px/14px "Helvetica Neue", Helvetica, Arial, sans-serif;
             cursor: pointer;
             border-radius: 3px;
             border: 1px solid #d5d5d5;
@@ -118,7 +118,7 @@
           @media (max-width: 480px) {
             margin-bottom: 20px;
           }
-          input[type='text'] {
+          input[type="text"] {
             display: inline-block;
             float: left;
             height: 40px;
@@ -160,14 +160,13 @@
         }
         h5 {
           color: #062f4d;
-          font-size: 15px;
+          font-size: 16px;
           font-weight: 500;
           letter-spacing: 0.5px;
-          text-transform: uppercase;
-          transform: scaleY(0.9);
+          text-transform: none;
           margin-bottom: 1rem;
           font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
-            'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
         a {
           font-size: 15px;
@@ -194,13 +193,13 @@
             width: 100%;
             flex-basis: 100%;
             min-width: 100%;
-            input[type='text'] {
+            input[type="text"] {
               display: inline-block;
               float: left;
               height: 40px;
               margin-right: 7.5px;
               font-size: 16px;
-              max-width: calc(~'100% - 125px');
+              max-width: calc(~"100% - 125px");
               width: 100%;
               min-width: 200px;
               margin-bottom: 0;
@@ -276,7 +275,7 @@
       justify-content: center;
       width: 100%;
       padding: 0;
-      background-image: url('/assets/images/footer/ape-sprite.png');
+      background-image: url("/assets/images/footer/ape-sprite.png");
       background-size: 200% auto;
       background-position: 0 0;
       background-repeat: no-repeat;
@@ -310,7 +309,7 @@
       font-weight: 600;
 
       &:after {
-        content: '';
+        content: "";
         display: block;
         width: 3.25rem;
         margin: 1rem 0 1.5rem;
@@ -326,7 +325,7 @@
       margin-bottom: 2em;
     }
     li {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
     a {
       text-decoration: none;
@@ -352,7 +351,7 @@
       height: 100%;
 
       &:before {
-        content: '';
+        content: "";
         display: block;
         width: 100%;
         margin-bottom: 1rem;
@@ -414,7 +413,7 @@
   } // end legal
 } // end Footer component
 
-[class^='marketing-footer'][class*='--light-gray'] {
+[class^="marketing-footer"][class*="--light-gray"] {
   border-top: solid 1px #ccc;
   background-color: #fff;
 
