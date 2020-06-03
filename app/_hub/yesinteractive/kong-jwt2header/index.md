@@ -37,7 +37,7 @@ params:
   name: kong-jwt2header
   api_id: false
     # boolean - whether this plugin can be applied to an API [[this needs more]]
-  service_id: fa;se
+  service_id: false
     # boolean - whether this plugin can be applied to a Service.
     # Affects generation of examples and config table.
   consumer_id: false
