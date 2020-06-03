@@ -4,7 +4,7 @@ title: Customizing Portal Emails
 
 <div class="version-callout"><b>This feature is introduced in 1.3.0.1</b></div>
 
-## Introduction
+### Introduction
 
 Kong Enterprise **1.3.0.1** introduces editable Portal Emails.
 This feature allows you to manage the message and appearance of emails being sent by the Kong Developer Portal.
@@ -20,7 +20,7 @@ Email-specific values are templated in tokens that work similarly to templating 
 Not all tokens are supported on all emails.
 
 
-## Prerequisites
+### Prerequisites
 
 * Kong Enterprise **1.3.0.1** or later
 * The Kong Developer Portal is not running in **Legacy Mode**
@@ -29,7 +29,7 @@ Not all tokens are supported on all emails.
 * If using CLI tool, kong-portal-cli tool 1.1 or later is installed locally and git installed
 
 
-## Understanding Email Files
+### Understanding Email Files
 
 Portal templates use a combination of HTML, markdown, and [`tokens`](#token-descriptions).
 
@@ -57,7 +57,7 @@ Like other content files, these files have a headmatter between the two `---` . 
 
 The body of the email is HTML content. You can reference the tokens allowed for the email in the table below. In this case, {% raw %}`{{portal.url}}`{% endraw %} is used to access the portal url
 
-## Supported Emails and Tokens
+### Supported Emails and Tokens
 
 {% raw %}
 |Path	                  |Supported Tokens	                                                                                    |Required Tokens	                                                   |Description|
@@ -74,7 +74,7 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 {% endraw %}
 
 
-## Token Descriptions
+### Token Descriptions
 
 {% raw %}
 |Token	|Description	|
@@ -92,12 +92,12 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 {% endraw %}
 
 
-## Editing Email Templates
+### Editing Email Templates
 
 The default email templates will be automatically loaded into the Kong Developer Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool.
 **Note:** If you are using a Dev Portal initiated in a Kong Enterprise version prior to 1.3.0.1, you will need to manually load the email templates into the file system. Follow the steps in [Loading Email Templates on Existing Dev Portals](#loading-email-templates-on-existing-dev-portals).
 
-### Editing via the Portal Editor
+#### Editing via the Portal Editor
 
 Email templates can now be edited in the Portal Editor along with the rest of the files in the Kong Developer Portal file system. To view and edit these files:
 
@@ -108,7 +108,7 @@ The email templates can be found under the **Emails** section in the Portal Edit
 
 ![Portal Editor - Emails](https://doc-assets.konghq.com/1.3/dev-portal/editor/dev-portal-emails.png)
 
-### Editing via the Portal CLI Tool
+#### Editing via the Portal CLI Tool
 
 1. Clone [https://github.com/Kong/kong-portal-templates] master branch, and navigate into its directory.
 2. If you have any customizations or permissions changes that you want to keep:
@@ -116,7 +116,7 @@ The email templates can be found under the **Emails** section in the Portal Edit
 3.  After making any changes, `portal deploy <workspacename>` to deploy all files.
 
 
-## Editing Email Appearance
+### Editing Email Appearance
 
 To edit the appearance of emails, you can change the layout file emails use.
 By default, emails are set to use the layout `emails/email_base.html`. If this file does not exist inside your theme (default theme is `base`), then a hardcoded fallback will be used.
@@ -151,20 +151,20 @@ The default email layout looks like:
 
 The `img` tag loads the logo that can be set in the appearance tab in the manager. If you do not want to display a logo, remove the `<img>` tag. If you want to set different sizing for your logo, you can change the inline style attribute.
 
-> Note: Logo will not render for many email clients that pre-fetch images if portal is not set to be accessible from a public url (for example if you are testing the Portal with a localhost)
+> **Note**: Logo will not render for many email clients that pre-fetch images if portal is not set to be accessible from a public url (for example if you are testing the Portal with a localhost)
 
 By modifying the html of this file, you can change the appearance of your emails. For example if you wanted to add a footer that would show on all emails, add it under the `<p>` tag
 
 Be sure to keep in mind the html support limitations of the email clients you plan to support.
 
 
-## Loading Email Templates on Existing Dev Portals
+### Loading Email Templates on Existing Dev Portals
 
 **Note:** This is only necessary for existing Dev Portals created on Kong Enterprise 1.3.0. New Portals created in 1.3.0.1 and later will have these files already loaded, unless manually deleted.
 
 Editable email templates can be loaded either via the editor or via the `kong-portal-cli` tool.
 
-### Load Email Templates via the Portal Editor
+#### Load Email Templates via the Portal Editor
 
 1. Log into Kong Manager and navigate to the workspace you want to edit. Click on **Editor** in the sidebar.
 2. Click **New File+**.
@@ -207,7 +207,7 @@ To create an email layout:
 
 Find out more about customizing the email layout in the section below.
 
-### Load Email Templates via the Portal CLI Tool
+#### Load Email Templates via the Portal CLI Tool
 
 1. Clone [https://github.com/Kong/kong-portal-templates] master branch and navigate into the folder you cloned.
 2. If you have any customizations or permissions changes that you want to keep:
