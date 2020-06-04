@@ -65,7 +65,7 @@ report the issue privately first.
 ## Getting help
 
 One of the design goals of decK is deliver a good developer experience to you.
-And part of it is getting the required help when you need it.
+Part of it is getting the required help when you need it.
 To seek help, use the following resources:
 - `--help` flag gives you the necessary help in the terminal itself and should
   solve most of your problems.

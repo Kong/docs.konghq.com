@@ -10,7 +10,7 @@ decK covers all the problems that Terraform solves and goes beyond it:
   the Terraform state (likely using a cloud storage solution). With decK, the
   entire configuration is stored in the YAML/JSON file(s) only. There is no
   separate state that needs to be tracked.
-- decK can export and backup your existing Kong's configuration, meaning,
+- decK can export and back up your existing Kong's configuration, meaning,
   you can take an existing Kong installation, and have a backup, as well as a
   declarative configuration for it. With Terraform, you will have to import
   each and every entity in Kong into Terraform's state.
@@ -65,7 +65,7 @@ your use-case:
 
 - If you've a very large installation, it can take some time for decK to
   sync up the configuration to Kong. This can be mitigated by adopting
-  [distributed configuration](guides/distributed-configuration.md) for your
+  [distributed configuration](/deck/guides/distributed-configuration) for your
   Kong installation and tweaking the `--parallelism` value.
   Kong's `db_import` will be usually faster by orders of magnitude.
 - decK cannot export and re-import fields that are hashed in the database.
@@ -78,20 +78,20 @@ your use-case:
 Of course, decK is designed to be compatible with open-source and enterprise
 versions of Kong.
 
-### I use Cassandra as a data-store for Kong, can I use decK?
+### I use Cassandra as a data store for Kong, can I use decK?
 
 You can use decK with Kong backed by Cassandra.
 However, if you observe errors during a sync process, you will have to
-tweak decK's setting and take care of a few things:
+tweak decK's setting and take care of a few things.
 decK heavily parallelizes its operations, which can induce a lot of load
 onto your Cassandra cluster.
 You should consider:
-- decK is read intensive for most parts, meaning it will make perform
-  read-intensive queries on your Cassandra cluster, make sure you tune
+- decK is read-intensive for most parts, meaning it will make perform
+  read-intensive queries on your Cassandra cluster, so make sure you tune
   your Cassandra cluster accordingly.
-- decK talks the same Kong node, which talks to the same Cassandra node in your
+- decK talks to the same Kong node which talks to the same Cassandra node in your
   cluster.
-- Using `--parallelism 1` flag to ensure that there is only request being
+- Using the `--parallelism 1` flag to ensure that there is only request being
   processed at a time. This will slow down sync process and should be used
   as a last resort.
 

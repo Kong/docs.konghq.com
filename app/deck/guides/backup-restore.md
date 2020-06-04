@@ -1,5 +1,5 @@
 ---
-title: Backup and Restore of Kong's configuration
+title: Backup and Restore of Kong's Configuration
 toc: false
 ---
 
@@ -13,7 +13,7 @@ $ deck dump
 # this generates a kong.yaml file with the entire configuration of Kong
 ```
 
-And then restore this file back to Kong using `sync` command:
+Then, restore this file back to Kong using the `sync` command:
 
 ```shell
 $ deck diff # a dry-run where decK shows the changes it will perform
@@ -29,8 +29,8 @@ You can export/import/manage a subset of Kong's configuration using decK's
 The `select-tag` feature assumes that all the entities you would like to manage
 in Kong share a common tag(s).
 
-Assuming you've such a common tag, let's call it `foo-tag`, then you can
-do the following to export only a subset of the configuration:
+Assuming you have such a common tag (for example, let's call it `foo-tag`),
+you can use it to export only a subset of the configuration:
 
 ```
 deck dump --select-tag foo-tag
@@ -44,7 +44,7 @@ _info:
   - foo-tag
 ```
 
-This sub-section tells decK to filter out entities containing select-tags during
+This subsection tells decK to filter out entities containing select-tags during
 a sync operation.
 
-Now, you can manage or sync back only this sub-set of configuration of Kong.
+Now, you can manage or sync back only this subset of Kong's configuration.

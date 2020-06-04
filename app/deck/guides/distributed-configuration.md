@@ -32,10 +32,10 @@ in Kong. You can also filter entities by tags on the list endpoints in Kong.
 Using this feature, decK associates tags with entities and can manage a group
 of entities which share a common tag(s).
 
-When multiple tags are specified in decK, decK ANDs those tags together,
+When multiple tags are specified in decK, decK `AND`s those tags together,
 meaning only entities containing all the tags will be managed by decK.
-You can specify a combination of up-to 5 tags but it is recommended to use
-fewer or only on tag, for performance reasons in Kong's codebase.
+You can specify a combination of up to 5 tags, but it is recommended to use
+fewer or only one tag, for performance reasons in Kong's codebase.
 
 ## Dump
 
@@ -67,16 +67,16 @@ You don't need to specify `--select-tag` in `sync` and `diff` commands.
 The commands will use the tags present in the state file and perform the diff
 accordingly.
 
-Since the state files have the tagging information, different teams can
-make updates to the part of configuration in Kong, without worrying about
+Since the state files contain the tagging information, different teams can
+make updates to the part of configuration in Kong without worrying about
 configuration of other teams. You no longer need to maintain Kong's
 configuration in a single repository, where multiple teams need to
 co-ordinate.
 
-> The `--select-tag` flag is present on those two commands for use-cases where
+> The `--select-tag` flag is present on those two commands for use cases where
 the file cannot have `select_tags` defined inside it. It is strongly advised
 that you do not supply select-tags to sync and diff commands via flags.
-The reason being that the tag information should be part of the declarative
+This is because the tag information should be part of the declarative
 configuration file itself in order to provide a practical declarative file.
 The tagging information and entity definitions should be present in one place,
 else an error in supplying the wrong tag via the CLI can break the
@@ -100,5 +100,5 @@ To get around this problem, you can use one of the following approaches:
   tags.
 - Export the entire configuration of Kong, and divide up the configuration
   into different files. Then, add the `select_tags` info to the file.
-  This will require recreation of the database now, since decK will not
+  This will require re-creation of the database now, since decK will not
   detect any of the entities present (as they are missing the common tag).

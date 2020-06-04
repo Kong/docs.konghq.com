@@ -2,19 +2,19 @@
 title: decK and Kong Enterprise
 ---
 
-All features of decK work with open-source and enterprise versions of Kong.
+All features of decK work with both {{site.ce_product_name}} and {{site.ee_product_name}}.
 
-For Kong Enterprise, decK provides a few additional features leveraging the
+For {{site.ee_product_name}}, decK provides a few additional features leveraging the
 power of enterprise features.
 
 ## Compatibility
 
-decK is compatible with Kong Enterprise 0.35 and above.
+decK is compatible with {{site.ee_product_name}} 0.35 and above.
 
 ## Entities managed by decK
 
-decK manages only the core proxy entities in Kong Enterprise. It doesn't
-manage enterprise only entities such as admins, RBAC permissions, RBAC roles
+decK manages only the core proxy entities in {{site.ee_product_name}}. It doesn't
+manage enterprise-only entities such as admins, RBAC permissions, RBAC roles,
 or any entities related to Developer Portal.
 
 ## RBAC
@@ -22,34 +22,34 @@ or any entities related to Developer Portal.
 You should have authentication and RBAC configured for Kong's Admin API.
 You can supply the RBAC token to decK so that decK can authenticate itself
 against the Admin API:
-- use `--headers` flag (example: `--headers "kong-admin-token:<your-token>"`).
-  Please note that this is not a secure method. The entire command along-with
-  it's flags will be logged to your shell's history file, potentially leaking
-  the token. You can store the token in a file and load it as your execute the
-  command ,example: `--headers "kong-admin-token:$(cat token.txt)"`
-- use `DECK_HEADERS` environment variable to supply the same token, but via
+- Use the `--headers` flag (example: `--headers "kong-admin-token:<your-token>"`).
+  Please note that this is not a secure method. The entire command along with
+  its flags will be logged to your shell's history file, potentially leaking
+  the token. You can store the token in a file and load it as you execute the
+  command, for example: `--headers "kong-admin-token:$(cat token.txt)"`
+- Use the `DECK_HEADERS` environment variable to supply the same token, but via
   an environment variable.
 
-It is advised that you do not use an RBAC token with super-admin privileges
+It is advised that you do not use an RBAC token with super admin privileges
 with decK, and always scope down the exact permissions you need to give
 decK.
 
 ## Workspaces
 
-decK is workspace aware, meaning it can interact with multiple workspaces.
+decK is workspace-aware, meaning it can interact with multiple workspaces.
 
 ### Dump
 
-To export configuration of a specific workspace, use the `--workspace` flag:
+To export the configuration of a specific workspace, use the `--workspace` flag:
 
 ```
 deck dump --workspace my-workspace
 ```
 
-If you do not specify a flag, the configuration of `default` workspace will
+If you do not specify a flag, the configuration of the `default` workspace will
 be managed.
 
-You can export configuration of all workspaces in Kong Enterprise with
+You can export the configurations of all workspaces in {{site.ee_product_name}} with
 the `--all-workspaces` flag:
 
 ```
@@ -63,11 +63,11 @@ This creates one configuration file per workspace.
 If a workspace is not present, decK will error out.
 You should ensure that a workspace already exists before using decK.
 
-`diff` and `sync` command work with workspaces and the workspace to sync
+`diff` and `sync` commands work with workspaces, and the workspace to sync
 to is determined via the `_workspace` property inside the state file.
 
-It is recommended to manage of one workspace at a time and not club
-configuration of all the workspaces at the same time.
+It is recommended to manage one workspace at a time and not clump
+configurations of all the workspaces at the same time.
 
 ### Reset
 

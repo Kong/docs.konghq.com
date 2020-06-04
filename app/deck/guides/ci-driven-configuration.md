@@ -5,11 +5,11 @@ toc: false
 
 ## Configuration as code
 
-decK can be, rather should be, used in a CI pipeline to push out configuration
+decK can be, or rather should be, used in a CI pipeline to push out configuration
 Kong.
 
-It is advisable to store configuration of Kong in a Git (or any other
-Version Control System (VCS)) and then perform Git-ops on Kong's configuration:
+It is advisable to store configuration of Kong in a Git repository (or any other
+Version Control System, or VCS) and then perform GitOps on Kong's configuration:
 
 - Any time a change needs to be performed, ask the developer to open a
   Pull or Merge Request, which can be reviewed by other humans.
@@ -30,4 +30,4 @@ out of sync and can go undetected until another change is performed.
 
 Any time you use decK within an automated environment, including a
 `deck ping` command in the beginning of your script can ease debugging
-in future as it usually rules out connectivity issues between decK and Kong.
+in the future, as it usually rules out connectivity issues between decK and Kong.

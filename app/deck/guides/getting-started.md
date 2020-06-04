@@ -3,7 +3,7 @@ title: Getting Started with decK
 toc: false
 ---
 
-Once you've [installed](/deck/installation.md) decK, let's get started with it.
+Once you've [installed](/deck/installation) decK, let's get started with it.
 
 You can find help in the terminal itself for any command using the `-help`
 flag.

@@ -6,7 +6,7 @@ decK is entirely written in Go. The build process builds a single static binary,
 which makes it easy and convenient to install decK.
 
 You can follow along installation instructions based on your
-Operating System(OS):
+Operating System (OS):
 
 ### macOS
 
@@ -42,5 +42,5 @@ You will have to mount the state files into the container as volumes so that
 decK can read the files during diff/sync procedures.
 
 If you're integrating decK into your CI system, you can either install decK
-into the system itself, use the Docker based environment or pull the binaries
+into the system itself, use the Docker based environment, or pull the binaries
 hosted on Github in each job.
