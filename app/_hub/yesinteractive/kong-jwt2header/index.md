@@ -15,7 +15,12 @@ categories: # (required) Uncomment all that apply.
 type: plugin
 
 desc: Convert JWT Claims to Headers for upstream consumption or to route by JWT Claims
-description: This Kong Plugin can be used to route requests by JWT claim. It does this by converting JWT claims to headers during rewrite phase so that Kong's route by header functionality can be used to route the request appropriately. Alternatively, the plugin can be used to simply convert JWT claims to headers so those claims can be consumed by the upstream service as headers. Since this plugin has elements that must run in the Rewrite execution phase, this plugin can only be configured to run globally in a Kong workspace or cluster. Can be used in conjunction with other JWT validation/authentication plugins.
+description: |
+  This plugin converts JWT claims into headers during the rewrite phase. This is useful for:
+    * Routing requests by JWT claim, so that Kong's route by header functionality can route the request appropriately.
+    * Allowing the upstream service to consume claims as headers.
+  Since this plugin has elements that must run in the Rewrite execution phase, it can only be configured to run globally in a Kong workspace or cluster. 
+  This plugin can be used in conjunction with other JWT validation/authentication plugins.
 
 support_url: https://github.com/yesinteractive/kong-jwt2header/issues
 
