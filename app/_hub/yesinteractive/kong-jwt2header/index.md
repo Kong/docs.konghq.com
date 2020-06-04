@@ -72,7 +72,7 @@ params:
       required: yes
       default: `true`
       value_in_examples: true
-      description: If enabled, an error will be returned if a valid JWT token is not present in the request. Set to false if you want this plugin to fail open and proceed execution of request regardless if a valid JWT is present.
+      description: By default, `token_required` is set to `true`, and an error will be returned if a valid JWT is not present in the request. Set it to `false` if you want this plugin to fail open and proceed with executing the request, regardless of whether a valid JWT is present or not.
 
 # BEGIN MARKDOWN CONTENT
 ---
