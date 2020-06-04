@@ -65,7 +65,7 @@ params:
   config:
     - name: strip_claims
       required: yes
-      default: false
+      default: `false`
       value_in_examples: false
       description: If enabled, claims will be removed from headers before being sent to the upstream. By default, each claim is passed upstream in a header prefixed with `X-Kong-JWT-Claim`.
     - name: token_required
