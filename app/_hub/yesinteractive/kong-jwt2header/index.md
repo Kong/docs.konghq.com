@@ -70,7 +70,7 @@ params:
       description: If enabled, claims will be removed from headers before being sent to the upstream.	Default behavior is to pass each claims upstream in a header prefixed with X-Kong-JWT-Claim
     - name: token_required
       required: yes
-      default: true
+      default: `true`
       value_in_examples: true
       description: If enabled, an error will be returned if a valid JWT token is not present in the request. Set to false if you want this plugin to fail open and proceed execution of request regardless if a valid JWT is present.
 
