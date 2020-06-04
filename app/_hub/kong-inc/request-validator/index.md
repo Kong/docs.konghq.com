@@ -54,6 +54,14 @@ params:
       value_in_examples:
       description: Array of parameter validator specifications
 
+    - name: verbose_response
+      required: false
+      default: false
+      value_in_examples:
+      description: |
+        If enabled, the plugin returns more verbose and detailed validation errors
+        (e.g., the name of the required field that is missing).
+
 ---
 
 ## Examples
