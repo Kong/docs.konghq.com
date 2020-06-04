@@ -161,6 +161,7 @@ In the following steps, replace `<your-password>` with a secure password.
 
     |Parameter      | Value                         |
     |---------------|-------------------------------|
+    |`enterprise.enabled` | `true` |
     |`env.database` | `"postgres"` or `"cassandra"` |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
