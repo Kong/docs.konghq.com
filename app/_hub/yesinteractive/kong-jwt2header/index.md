@@ -67,7 +67,7 @@ params:
       required: yes
       default: false
       value_in_examples: false
-      description: If enabled, claims will be removed from headers before being sent to the upstream.	Default behavior is to pass each claims upstream in a header prefixed with X-Kong-JWT-Claim
+      description: If enabled, claims will be removed from headers before being sent to the upstream. By default, each claim is passed upstream in a header prefixed with `X-Kong-JWT-Claim`.
     - name: token_required
       required: yes
       default: `true`
