@@ -14,7 +14,7 @@
 
   <ul class="accordion-container">
     {% for nav in page.nav_items %}
-    {% assign item_active = false %}
+    {% if page.edition == 'deck'%}{% assign item_active = true %}{% else %}{% assign item_active = false %}{% endif %}
     {% assign item_url = false %}
     {% if nav.items %}
     {% capture item_content %}

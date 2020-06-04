@@ -231,6 +231,10 @@
   - text: Keyring and Data Encryption
     url: /admin-api/db-encryption
 
+- title: decK
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  url: /../../deck
+
 - title: Kong Manager
   icon: /assets/images/icons/documentation/icn-manager-color.svg
   url: /kong-manager/overview

@@ -409,3 +409,7 @@
 
     - text: Changelog
       url: /kong-for-kubernetes/changelog
+
+- title: decK
+  icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+  url: /../../deck

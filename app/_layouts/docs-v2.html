@@ -33,7 +33,6 @@ id: documentation
         <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
         <a href="/enterprise" {% if page.edition =='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition =='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
-        <a href="/deck" {% if page.edition =='deck' %} class="active" {% endif %}>decK</a>
 
         <div class="edit-this-page v2">
           <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
@@ -141,7 +140,7 @@ id: documentation
             {% endif %}
           {% endif %}
         {% endif %}
-          
+
           {% unless page.skip_read_time == true or page.path contains '/admin-api' or page.path contains '/pdk' or page.is_homepage %}
           {% include read_time.html %}
           {% endunless %}
