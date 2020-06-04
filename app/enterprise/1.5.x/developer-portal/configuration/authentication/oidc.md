@@ -64,7 +64,7 @@ See the [documentation of the OpenID Connect plugin](/hub/kong-inc/openid-connec
 for more information.
 
 **Important:** The `redirect_uri` needs to be configured as an allowed URI in the IdP.
-If not set explicitly in the configuration object it defaults to
+If not set explicitly in the configuration object, the URI default is
 `http://localhost:8004/<WORKSPACE_NAME>/auth`.
 
 If `portal_gui_host` and `portal_api_url` are set to share a domain but differ
