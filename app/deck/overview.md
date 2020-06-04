@@ -8,7 +8,10 @@ or manual changes and backup your Kong’s configuration. It also can manage Kon
 configuration in a distributed way using tags, helping you split Kong’s
 configuration across various teams.
 
-Here is an introductory screencast explaining decK: [asciicast](https://asciinema.org/a/238318)
+Here is an introductory screencast explaining decK:
+<a href="https://asciinema.org/a/238318">
+  <img class="no-image-expand" src="https://asciinema.org/a/238318.svg" alt="deck screencast" />
+</a>
 
 ## References
 
@@ -28,7 +31,9 @@ You can find answers to FAQs [here](/deck/faqs).
 Harry Bagdi gave a talk on motivation behind decK and demonstrated a few key
 features of decK at Kong Summit 2019. The following is a recording of that session:
 
-[![decK talk by Harry Bagdi](https://img.youtube.com/vi/fzpNC5vWE3g/0.jpg)](https://www.youtube.com/watch?v=fzpNC5vWE3g)
+<a href="https://www.youtube.com/watch?v=fzpNC5vWE3g">
+  <img class="no-image-expand" src="https://img.youtube.com/vi/fzpNC5vWE3g/0.jpg" alt="decK talk by Harry Bagdi" />
+</a>
 
 ## Changelog
 
