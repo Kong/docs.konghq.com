@@ -52,7 +52,9 @@ params:
     - name: parameter_schema
       required: false
       value_in_examples:
-      description: Array of parameter validator specifications
+      description: Array of parameter validator specifications, see
+        paragraph [Parameter Schema Definition](#parameter-schema-definition)
+        for details and examples.
 
     - name: verbose_response
       required: false
@@ -440,12 +442,10 @@ In this example we will use the plugin to validate a request's path parameter.
 
 ### Further References
 
-See the Kong docs on storing custom entities [here][schema-docs].
+The Kong schema validation format is based on the plugin schemas, for more
+details see the Kong plugin docs on storing custom entities [here][schema-docs].
 
 ---
 
 [schema-docs]: /1.0.x/plugin-development/custom-entities/#defining-a-schema
 [lua-patterns]: https://www.lua.org/pil/20.2.html
-[consumer-object]: /latest/admin-api/#consumer-object
-[configuration]: /latest/configuration
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
