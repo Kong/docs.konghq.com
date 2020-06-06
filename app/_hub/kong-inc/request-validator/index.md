@@ -3,7 +3,7 @@ name: Request Validator
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Validates requests before they reach the Upstream Service
+desc: Validates requests before they reach the Upstream service
 description: |
   Validate requests before they reach their Upstream Service. Supports validating
   the schema of the body and the parameters of the request using either Kong's own
