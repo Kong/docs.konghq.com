@@ -443,7 +443,7 @@ In this example we will use the plugin to validate a request's path parameter.
 ### Further References
 
 The Kong schema validation format is based on the plugin schemas.
-For more information,  see the Kong plugin docs on [storing custom entities][schema-docs].
+For more information, see the Kong plugin docs on [storing custom entities][schema-docs].
 
 ---
 
