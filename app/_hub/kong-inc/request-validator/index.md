@@ -30,7 +30,7 @@ params:
   config:
     - name: body_schema
       required: true
-      value_in_examples: '[{"name":{"type": "string", "required": true}}]'
+      value_in_examples: '[{\"name\":{\"type\": \"string\", \"required\": true}}]'
       description: Array of schema fields
 
     - name: allowed_content_types
@@ -80,7 +80,7 @@ Use a request like this:
 curl -i -X POST http://kong:8001/services/{service}/plugins \
   --data "name=request-validator" \
   --data "config.version=kong" \
-  --data 'config.body_schema=[{"name":{"type": "string", "required": true}}]'
+  --data 'config.body_schema=[{\"name\":{\"type\": \"string\", \"required\": true}}]'
 ```
 
 {% tab Without a database %}
