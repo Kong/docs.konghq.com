@@ -73,8 +73,8 @@ params:
 By applying the plugin to a Service, all requests to that Service will be validated
 before being proxied.
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 Use a request like this:
 
@@ -84,8 +84,9 @@ curl -i -X POST http://kong:8001/services/{service}/plugins \
   --data "config.version=kong" \
   --data 'config.body_schema=[{\"name\":{\"type\": \"string\", \"required\": true}}]'
 ```
+{% endnavtab %}
 
-{% tab Without a database %}
+{% navtab Without a database %}
 
 Add the following entry to the `plugins:` section in the declarative configuration file:
 
@@ -100,7 +101,8 @@ plugins:
         type: string
         required: true
 ```
-{% endtabs %} 
+{% endnavtab %}
+{% endnavtabs %}
 
 In this example, the request body data would have to be valid JSON and
 conform to the schema specified in `body_schema` - i.e., it would be required
