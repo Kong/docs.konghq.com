@@ -52,7 +52,7 @@ params:
     - name: parameter_schema
       required: false
       value_in_examples:
-      description: Array of parameter validator specifications, see
+      description: Array of parameter validator specifications.
         paragraph [Parameter Schema Definition](#parameter-schema-definition)
         for details and examples.
 
