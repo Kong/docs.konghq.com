@@ -53,7 +53,7 @@ params:
       required: false
       value_in_examples:
       description: Array of parameter validator specifications.
-        paragraph [Parameter Schema Definition](#parameter-schema-definition)
+       For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
         for details and examples.
 
     - name: verbose_response
