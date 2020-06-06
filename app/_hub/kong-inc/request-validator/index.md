@@ -54,7 +54,7 @@ params:
       value_in_examples:
       description: Array of parameter validator specifications.
        For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
-        for details and examples.
+        
 
     - name: verbose_response
       required: false
