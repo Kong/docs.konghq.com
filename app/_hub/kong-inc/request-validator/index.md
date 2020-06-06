@@ -3,9 +3,9 @@ name: Request Validator
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Validates requests before they reach the upstream service
+desc: Validates requests before they reach the Upstream service
 description: |
-  Validate requests before they reach their upstream Service. Supports validating
+  Validate requests before they reach their Upstream service. Supports validating
   the schema of the body and the parameters of the request using either Kong's own
   schema validator (body only) or a JSON Schema Draft 4-compliant validator.
 
@@ -30,8 +30,8 @@ params:
   config:
     - name: body_schema
       required: true
-      value_in_examples: '[{"name":{"type": "string", "required": true}}]'
-      description: Array of schema fields
+      value_in_examples: '[{\"name\":{\"type\": \"string\", \"required\": true}}]'
+      description: Array of schema fields.
 
     - name: allowed_content_types
       required: false
@@ -52,7 +52,9 @@ params:
     - name: parameter_schema
       required: false
       value_in_examples:
-      description: Array of parameter validator specifications
+      description: Array of parameter validator specifications.
+       For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
+        
 
     - name: verbose_response
       required: false
@@ -71,8 +73,8 @@ params:
 By applying the plugin to a Service, all requests to that Service will be validated
 before being proxied.
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 Use a request like this:
 
@@ -80,10 +82,11 @@ Use a request like this:
 curl -i -X POST http://kong:8001/services/{service}/plugins \
   --data "name=request-validator" \
   --data "config.version=kong" \
-  --data 'config.body_schema=[{"name":{"type": "string", "required": true}}]'
+  --data 'config.body_schema=[{\"name\":{\"type\": \"string\", \"required\": true}}]'
 ```
+{% endnavtab %}
 
-{% tab Without a database %}
+{% navtab Without a database %}
 
 Add the following entry to the `plugins:` section in the declarative configuration file:
 
@@ -98,7 +101,8 @@ plugins:
         type: string
         required: true
 ```
-{% endtabs %} 
+{% endnavtab %}
+{% endnavtabs %}
 
 In this example, the request body data would have to be valid JSON and
 conform to the schema specified in `body_schema` - i.e., it would be required
@@ -440,12 +444,10 @@ In this example we will use the plugin to validate a request's path parameter.
 
 ### Further References
 
-See the Kong docs on storing custom entities [here][schema-docs].
+The Kong schema validation format is based on the plugin schemas.
+For more information, see the Kong plugin docs on [storing custom entities][schema-docs].
 
 ---
 
 [schema-docs]: /1.0.x/plugin-development/custom-entities/#defining-a-schema
 [lua-patterns]: https://www.lua.org/pil/20.2.html
-[consumer-object]: /latest/admin-api/#consumer-object
-[configuration]: /latest/configuration
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
