@@ -1,5 +1,5 @@
 ---
-title: Go language support
+title: Go Plugin Development Kit
 ---
 
 ## Introduction
@@ -74,14 +74,13 @@ To write a Kong plugin in Go, you need to:
 * Compile using: `docker run --rm -v $(pwd):/plugins kong/go-plugin-tool:<version> build <source>`.
 * Put the resulting library (the `.so` file) into the `go_plugins_dir` directory.
 
-
 **Note**: check out [this repository](https://github.com/Kong/go-plugins)
 for example Go plugins.
 
 ### Configuration Structure
 
 Plugins written in Lua define a schema to specify how to read and validate
-configuration data coming from the datastore or the Admin API.  Since Go is a
+configuration data coming from the data store or the Admin API.  Since Go is a
 statically-typed language, all that specification is handled by defining a
 configuration structure.
 
@@ -93,7 +92,7 @@ type MyConfig struct {
 ```
 
 Public fields (that is, those starting with a capital letter) will be filled
-with configuration data.  If you want them to have a different name in the
+with configuration data. If you want them to have a different name in the
 datastore, add field tags as defined on the `encoding/json` package:
 
 ```
@@ -140,5 +139,5 @@ received on the event handler methods is the entry point for the Go PDK
 functions. Most of these functions work the same as the corresponding
 functions in the Lua PDK.
 
-See the [go-pdk](https://pkg.go.dev/github.com/Kong/go-pdk?tab=doc) GoDoc page for the
+See the [go-pdk](https://pkg.go.dev/github.com/Kong/go-pdk?tab=doc) godoc page for the
 reference documentation of the Go PDK.
