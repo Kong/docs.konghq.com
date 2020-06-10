@@ -1,5 +1,5 @@
 ---
-title: Go language support
+title: Go Plugin Development Kit
 ---
 
 ## Introduction
@@ -16,7 +16,7 @@ You may want to use the Go PDK if you are more familiar with the language, for a
 
 The Go PDK is based on a separate process written entirely in Go. You can configure Kong to launch the process, called `go-pluginserver`, and open a communications channel to pass events and function calls between them. This means that Go plugins run in a real Go environment and can use Go features such as goroutines, I/O, IPC, etc.
 
->**Note:** this also means any call to a PDK function has to be transferred to the Kong process and back.
+>**Note:** This also means any call to a PDK function has to be transferred to the Kong process and back.
 
 Go plugins are built with the `-buildmode=plugin` flag, which allows the plugin server to dynamically load them. To comply with Go's strict linking compatibility checks, they have to be compiled using the `kong/go-plugin-tool` Docker image, as described below.
 
@@ -53,7 +53,7 @@ This is a relatively recent feature in Golang, and has some rough edges in tooli
 
 * The same version of any common libraries, including:
     * `Kong/go-pdk`
-    * all standard Go libraries (like `fmt`, `rpc`, `reflect`, etc)
+    * all standard Go libraries (like `fmt`, `rpc`, `reflect`, etc.)
     * OS libraries, like `libpthread`, `libc`, `ld-xxxx`, etc.
 * The exact same version of the Go compiler.
 * The same Go environment variables like `$GOROOT` and `$GOPATH`
@@ -74,14 +74,13 @@ To write a Kong plugin in Go, you need to:
 * Compile using: `docker run --rm -v $(pwd):/plugins kong/go-plugin-tool:<version> build <source>`.
 * Put the resulting library (the `.so` file) into the `go_plugins_dir` directory.
 
-
 **Note**: check out [this repository](https://github.com/Kong/go-plugins)
 for example Go plugins.
 
 ### Configuration Structure
 
 Plugins written in Lua define a schema to specify how to read and validate
-configuration data coming from the datastore or the Admin API.  Since Go is a
+configuration data coming from the data store or the Admin API.  Since Go is a
 statically-typed language, all that specification is handled by defining a
 configuration structure.
 
@@ -93,7 +92,7 @@ type MyConfig struct {
 ```
 
 Public fields (that is, those starting with a capital letter) will be filled
-with configuration data.  If you want them to have a different name in the
+with configuration data. If you want them to have a different name in the
 datastore, add field tags as defined on the `encoding/json` package:
 
 ```
@@ -105,8 +104,8 @@ type MyConfig struct {
 
 ### `New()` Constructor
 
-Your plugin must define a function called New that creates an instance of this type
-and returns as an `interface{}`.  In most cases it’s just this:
+Your plugin must define a function called `New` that creates an instance of this type
+and returns as an `interface{}`.  In most cases, it’s just this:
 
 ```
 func New() interface{} {
@@ -140,5 +139,5 @@ received on the event handler methods is the entry point for the Go PDK
 functions. Most of these functions work the same as the corresponding
 functions in the Lua PDK.
 
-See the [go-pdk](https://pkg.go.dev/github.com/Kong/go-pdk?tab=doc) GoDoc page for the
+See the [go-pdk](https://pkg.go.dev/github.com/Kong/go-pdk?tab=doc) godoc page for the
 reference documentation of the Go PDK.
