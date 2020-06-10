@@ -56,6 +56,7 @@ Here is a quick example showing how to connect a Kong container to a Cassandra o
         --network=kong-net \
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
+        -e "KONG_PG_USER=kong" \
         -e "KONG_PG_PASSWORD=kong" \
         -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
         kong:latest kong migrations bootstrap
@@ -82,6 +83,7 @@ Here is a quick example showing how to connect a Kong container to a Cassandra o
         --network=kong-net \
         -e "KONG_DATABASE=postgres" \
         -e "KONG_PG_HOST=kong-database" \
+        -e "KONG_PG_USER=kong" \
         -e "KONG_PG_PASSWORD=kong" \
         -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
         -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
