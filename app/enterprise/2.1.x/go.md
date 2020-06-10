@@ -16,7 +16,7 @@ You may want to use the Go PDK if you are more familiar with the language, for a
 
 The Go PDK is based on a separate process written entirely in Go. You can configure Kong to launch the process, called `go-pluginserver`, and open a communications channel to pass events and function calls between them. This means that Go plugins run in a real Go environment and can use Go features such as goroutines, I/O, IPC, etc.
 
->**Note:** this also means any call to a PDK function has to be transferred to the Kong process and back.
+>**Note:** This also means any call to a PDK function has to be transferred to the Kong process and back.
 
 Go plugins are built with the `-buildmode=plugin` flag, which allows the plugin server to dynamically load them. To comply with Go's strict linking compatibility checks, they have to be compiled using the `kong/go-plugin-tool` Docker image, as described below.
 
@@ -53,7 +53,7 @@ This is a relatively recent feature in Golang, and has some rough edges in tooli
 
 * The same version of any common libraries, including:
     * `Kong/go-pdk`
-    * all standard Go libraries (like `fmt`, `rpc`, `reflect`, etc)
+    * all standard Go libraries (like `fmt`, `rpc`, `reflect`, etc.)
     * OS libraries, like `libpthread`, `libc`, `ld-xxxx`, etc.
 * The exact same version of the Go compiler.
 * The same Go environment variables like `$GOROOT` and `$GOPATH`
@@ -104,8 +104,8 @@ type MyConfig struct {
 
 ### `New()` Constructor
 
-Your plugin must define a function called New that creates an instance of this type
-and returns as an `interface{}`.  In most cases it’s just this:
+Your plugin must define a function called `New` that creates an instance of this type
+and returns as an `interface{}`.  In most cases, it’s just this:
 
 ```
 func New() interface{} {
