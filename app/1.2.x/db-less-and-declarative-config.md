@@ -271,6 +271,7 @@ their initial config) so they are fully compatible with DB-less:
 - `datadog`
 - `file-log`
 - `http-log`
+- `proxy-cache`
 - `tcp-log`
 - `udp-log`
 - `syslog`

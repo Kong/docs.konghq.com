@@ -132,11 +132,17 @@
       }
 
       .page-content-container {
-        padding-right: 300px;
+        padding-right: 250px;
 
         .page-content {
           padding-left: 75px;
           padding-right: 75px;
+        }
+
+        @media screen and (min-width: 1081px) {
+          &.toc-collapsed {
+            padding-right: 24px;
+          }
         }
 
         @media screen and (max-width: 1080px) {

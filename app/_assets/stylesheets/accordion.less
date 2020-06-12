@@ -3,8 +3,7 @@
   margin: 0;
   padding: 0;
 
-  > li {
-    border-bottom: 1px solid #ebebeb;
+  li.accordion-item {
     list-style: none;
     margin: 0;
 
@@ -13,8 +12,6 @@
 
       &:checked {
         + label {
-          border-left-color: rgb(0, 112, 191);
-
           i {
             transform: rotate(180deg);
           }
@@ -41,17 +38,15 @@
       }
     }
 
-    label {
+    > label {
       position: relative;
       display: flex;
       align-items: center;
       cursor: pointer;
       margin: 0;
-      font-size: 14px;
+      font-size: 16px;
+      font-weight: normal;
       line-height: 30px;
-      padding: 16px 16px 16px 15px;
-      border-left: 2px solid transparent;
-      transition: border-left-color 0.5s linear;
 
       img {
         width: 20px;
@@ -71,17 +66,52 @@
         font-size: 12px;
         opacity: 0.3;
         right: 16px;
-        top: 24px;
+        top: 12px;
       }
     }
 
     div {
       overflow: hidden;
       max-height: 0;
-      padding: 0 22px;
       opacity: 0;
-      border-left: 2px solid rgb(0, 112, 191);
       transition: all 0.5s linear;
+    }
+
+    &.active {
+      > label {
+        a {
+          color: #4c4c4c;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  > li.accordion-item {
+    border-bottom: 1px solid #ebebeb;
+
+    > input {
+      &:checked {
+        + label {
+          border-left-color: rgb(0, 112, 191);
+        }
+      }
+    }
+
+    > label {
+      font-size: 14px;
+      padding: 16px 16px 16px 15px;
+      border-left: 2px solid transparent;
+      transition: border-left-color 0.5s linear;
+
+      i {
+        top: 24px;
+      }
+    }
+
+    > div {
+      border-left: 2px solid rgb(0, 112, 191);
+      padding-left: 22px;
     }
   }
 }
