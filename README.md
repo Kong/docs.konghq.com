@@ -51,7 +51,7 @@ We are using Algolia [docsearch](https://www.algolia.com/docsearch) for our
 documentation search. The algolia index for Kong is maintained by Algolia through their
 docsearch service. Their [scraper](https://github.com/algolia/docsearch-scraper)
 runs every 24 hours. The config used by the scraper is open source for
-docs.konghq.com and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
+[docs.konghq.com](docs.konghq.com) and can be found [here](https://github.com/algolia/docsearch-configs/blob/master/configs/getkong.json).
 To update the scraper config, you can submit a pull request to the config. To
 test a config change locally, you will need to run their open source
 [scraper](https://github.com/algolia/docsearch-scraper) against your own

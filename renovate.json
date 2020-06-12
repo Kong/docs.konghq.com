@@ -3,5 +3,9 @@
     "config:base"
   ],
   "schedule": "every weekend",
-  "bundler": {"enabled": true}
+  "bundler": {"enabled": true},
+  "ignoreDeps": [
+    "jekyll",
+    "bootstrap"
+  ]
 }
