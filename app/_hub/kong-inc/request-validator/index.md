@@ -3,12 +3,11 @@ name: Request Validator
 publisher: Kong Inc.
 version: 1.3-x
 
-desc: Validates requests before they reach the upstream service
+desc: Validates requests before they reach the Upstream service
 description: |
-  Validate requests before they reach their upstream Service. Supports request
-  body validation, according to a schema. **Note**: the schema format is **NOT**
-  [JSON schema](https://json-schema.org/) compliant; instead, Kong's own schema
-  format is used.
+  Validate requests before they reach their Upstream service. Supports validating
+  the schema of the body and the parameters of the request using either Kong's own
+  schema validator (body only) or a JSON Schema Draft 4-compliant validator.
 
 enterprise: true
 type: plugin
@@ -31,25 +30,39 @@ params:
   config:
     - name: body_schema
       required: true
-      value_in_examples: '[{"name":{"type": "string", "required": true}}]'
-      description: Array of schema fields
+      value_in_examples: '[{\"name\":{\"type\": \"string\", \"required\": true}}]'
+      description: Array of schema fields.
 
     - name: allowed_content_types
       required: false
-      default: { "application/json" }
+      default: "application/json"
       value_in_examples:
-      description: Set of allowed content types
+      description: |
+        List of allowed content types. <br>**Note:** Body validation is only
+        done for `application/json` and skipped for any other allowed content types.
 
     - name: version
       required: true
       default: "kong"
       value_in_examples:
-      description: validator type
+      description: |
+        What validator to use. Supported values are `kong` (default) for using Kong's own schema
+        validator, or `draft4` for using a JSON Schema Draft 4-compliant validator.
 
     - name: parameter_schema
       required: false
       value_in_examples:
-      description: Array of parameter validator specification
+      description: Array of parameter validator specifications.
+       For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
+        
+
+    - name: verbose_response
+      required: false
+      default: false
+      value_in_examples:
+      description: |
+        If enabled, the plugin returns more verbose and detailed validation errors
+        (e.g., the name of the required field that is missing).
 
 ---
 
@@ -60,18 +73,20 @@ params:
 By applying the plugin to a Service, all requests to that Service will be validated
 before being proxied.
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 
 Use a request like this:
 
 ``` bash
 curl -i -X POST http://kong:8001/services/{service}/plugins \
   --data "name=request-validator" \
-  --data 'config.body_schema=[{"name":{"type": "string", "required": true}}]'
+  --data "config.version=kong" \
+  --data 'config.body_schema=[{\"name\":{\"type\": \"string\", \"required\": true}}]'
 ```
+{% endnavtab %}
 
-{% tab Without a database %}
+{% navtab Without a database %}
 
 Add the following entry to the `plugins:` section in the declarative configuration file:
 
@@ -80,26 +95,26 @@ plugins:
 - name: request-validator
   service: {service}
   config:
+    version: kong
     body_schema:
       name:
         type: string
         required: true
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
-The parameters/fields in both cases mean:
-
-| form parameter         | description                                                               |
-| ---                    | ---                                                                       |
-| `{service}`            | The `id` or `name` of the Service to which the plugin will be associated. |
-| `name`                 | The name of the plugin to use, in this case: `request-validator`          |
-| `config.body_schema`   | The request body schema specification                                     |
-
-In this example, the request body data would have to be a valid JSON and
+In this example, the request body data would have to be valid JSON and
 conform to the schema specified in `body_schema` - i.e., it would be required
 to contain a `name` field only, which needs to be a string.
 
+In case the validation fails, a `400 Bad Request` will be returned as the response.
+
 ### Schema Definition
+
+*For using the JSON Schema Draft 4-compliant validator, see the [JSON Schema website](
+https://json-schema.org/) for details on the format and examples. The rest of
+this paragraph will explain the Kong schema.*
 
 The `config.body_schema` field expects a JSON array with the definition of each
 field expected to be in the request body; for example:
@@ -206,9 +221,9 @@ validations:
 | `timestamp` | Integers | True if the field value is a valid timestamp |
 | `uuid`| Strings | True if the string is a valud UUID |
 
-**Note**: check [this][lua-patterns] out to learn about Lua patterns.
+**Note**: To learn more, see [Lua patterns][lua-patterns].
 
-### Schema Example
+### Kong Schema Example
 
 ```
 [
@@ -261,21 +276,18 @@ Such a schema would validate the following request body:
 
 ```
 
-In case either the JSON or schema validation fail, a `400 Bad Request` will
-be returned as response.
-
 ### Parameter Schema Definition
 
-You can setup definitions for each parameter based of the OpenAPI Specification and
+You can setup definitions for each parameter based on the OpenAPI Specification and
 the plugin will validate each parameter against it. For more information see the
-[OpenAPI spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object) or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
+[OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object) or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
 
 #### Fixed Fields
 
 |Field Name | Type | Description|
 | --- | --- | --- |
 |name | `string` | **REQUIRED**. The name of the parameter. Parameter names are *case sensitive*, and corresponds to the parameter name used by the `in` property. If `in` is `"path"`, the `name` field MUST correspond to the [named capture group](https://docs.konghq.com/latest/proxy/#capturing-groups) from the configured `route`.|
-|in | `string` | **REQUIRED**. The location of the parameter. Possible values are "query", "header" or "path".|
+|in | `string` | **REQUIRED**. The location of the parameter. Possible values are `query`, `header`, or `path`.|
 |required | `boolean` | **REQUIRED** Determines whether this parameter is mandatory.|
 |style | `string` | **REQUIRED** when schema and explode are set<br> Describes how the parameter value will be serialized depending on the type of the parameter value.|
 |schema | `string` | **REQUIRED** when style and explode are set<br> The schema defining the type used for the parameter. It is validated using `draft4` for JSONschema draft 4 compliant validator.|
@@ -385,7 +397,7 @@ In this example we will use the plugin to validate a request's path parameter.
     }
     ```
 
-    content of file `parameter_schema.json`
+    Content of file `parameter_schema.json`:
 
     ```json
     {
@@ -432,12 +444,10 @@ In this example we will use the plugin to validate a request's path parameter.
 
 ### Further References
 
-Check out the Kong docs on storing custom entities [here][schema-docs].
+The Kong schema validation format is based on the plugin schemas.
+For more information, see the Kong plugin docs on [storing custom entities][schema-docs].
 
 ---
 
 [schema-docs]: /1.0.x/plugin-development/custom-entities/#defining-a-schema
 [lua-patterns]: https://www.lua.org/pil/20.2.html
-[consumer-object]: /latest/admin-api/#consumer-object
-[configuration]: /latest/configuration
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

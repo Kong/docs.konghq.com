@@ -4,7 +4,9 @@ title: Installing Kong Enterprise on Kubernetes
 
 ## Introduction
 
-Kong Enterprise on Kubernetes is recommended for deployments that require features not supported by Kong for Kubernetes Enterprise. It supports all Kong Enterprise plugins and features, but can't run in DB-less mode. See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for more information.
+Kong Enterprise on Kubernetes is recommended for deployments that require features not supported by Kong for Kubernetes Enterprise. It supports all Kong Enterprise plugins and features, but can't run in DB-less mode.
+
+> Note: See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for a feature breakdown and image comparison.
 
 You can use kubectl or OpenShift oc to configure Kong Enterprise on Kubernetes, then deploy it using Helm.
 
@@ -159,6 +161,7 @@ In the following steps, replace `<your-password>` with a secure password.
 
     |Parameter      | Value                         |
     |---------------|-------------------------------|
+    |`enterprise.enabled` | `true` |
     |`env.database` | `"postgres"` or `"cassandra"` |
     |`env.password.valueFrom.secretKeyRef.name` | Name of secret that holds the super admin password. In the example above, this is set to `kong-enterprise-superuser-password`. |
     |`env.password.valueFrom.secretKeyRef.key` | The type of secret key used for authentication. If you followed the default settings in the example above, this is `password`. |
