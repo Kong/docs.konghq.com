@@ -30,7 +30,7 @@
         - text: Using decK with Kong Enterprise
           url: /guides/kong-enterprise
         - text: Using Multiple Files to Store Configuration
-          url: /guides/milti-file-state
+          url: /guides/multi-file-state
         - text: De-duplicate Plugin Configuration
           url: /guides/deduplicate-plugin-configuration
     - text: decK CLI Reference

@@ -415,6 +415,7 @@
   url: /../../deck
   items:
     - text: Introduction
+      url: /../../deck
       items:
         - text: Overview
           url: /../../deck/overview
@@ -442,7 +443,7 @@
         - text: Using decK with Kong Enterprise
           url: /../../deck/guides/kong-enterprise
         - text: Using Multiple Files to Store Configuration
-          url: /../../deck/guides/milti-file-state
+          url: /../../deck/guides/multi-file-state
         - text: De-duplicate Plugin Configuration
           url: /../../deck/guides/deduplicate-plugin-configuration
     - text: decK CLI Reference
