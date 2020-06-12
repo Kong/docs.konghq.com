@@ -10,9 +10,13 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /release-notes
   items:
+    - text: Release Notes
+      url: /release-notes
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
+    - text: Version Support
+      url: /support-policy
 
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
@@ -40,6 +44,8 @@
           url: /kong-for-kubernetes/install
     - text: Default Ports
       url: /deployment/default-ports
+    - text: DNS Considerations
+      url: /deployment/dns-considerations
     - text: Resource Sizing Guidelines
       url: /sizing-guidelines
     - text: Licensing
@@ -418,6 +424,8 @@
       url: /brain-immunity/service-map
     - text: Troubleshooting
       url: /brain-immunity/troubleshooting
+    - text: Changelog
+      url: /brain-immunity/changelog
 
 - title: Plugins
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
