@@ -3,7 +3,9 @@ title: Installing Kong for Kubernetes Enterprise
 ---
 
 ## Introduction
-Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs without a database, but does not include other Kong Enterprise features (Kong Manager, Dev Portal, Vitals, etc). See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for more information.
+Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs without a database, but does not include other Kong Enterprise features (Kong Manager, Dev Portal, Vitals, etc).
+
+>Note: See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for a feature breakdown and image comparison.
 
 You can install Kong for Kubernetes Enterprise using YAML with kubectl, or with OpenShift oc. Other deployment options, such as using Helm Chart and Kustomize, will be available at a later time.
 
