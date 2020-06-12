@@ -10,9 +10,14 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   url: /release-notes
   items:
+    - text: Release Notes
+      url: /release-notes
     - text: Changelog
       url: /enterprise/changelog
       absolute_url: true
+    - text: Version Support
+      url: /support-policy
+
 
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
@@ -40,6 +45,8 @@
           url: /kong-for-kubernetes/install
     - text: Default Ports
       url: /deployment/default-ports
+    - text: DNS Considerations
+      url: /deployment/dns-considerations
     - text: Resource Sizing Guidelines
       url: /sizing-guidelines
     - text: Licensing
@@ -52,7 +59,6 @@
         - text: Monitor License Usage
           url: /deployment/licenses/report
     - text: Security
-      url: /secure-admin-api
       items:
         - text: Securing the Admin API
           url: /secure-admin-api
@@ -168,68 +174,64 @@
 
 - title: Admin API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
-  url: /admin-api
+  url: /admin-api/
   items:
-  - text: Overview
-    url: /admin-api
-  - text: Supported Content Types
-    url: /admin-api/#supported-content-types
-  - text: Information Routes
-    url: /admin-api/#information-routes
-  - text: Tags
-    url: /admin-api/#tags
-  - text: Service Object
-    url: /admin-api/#service-object
-  - text: Route Object
-    url: /admin-api/#route-object
-  - text: Consumer Object
-    url: /admin-api/#consumer-object
-  - text: Plugin Object
-    url: /admin-api/#plugin-object
-  - text: Certificate Object
-    url: /admin-api/#certificate-object
-  - text: CA Certificate Object
-    url: /admin-api/#ca-certificate-object
-  - text: SNI Object
-    url: /admin-api/#sni-object
-  - text: Upstream Object
-    url: /admin-api/#upstream-object
-  - text: Target Object
-    url: /admin-api/#target-object
-  - text: Workspaces
-    url: /admin-api/workspaces/reference
-    items:
-      - text: Workspaces Reference
-        url: /admin-api/workspaces/reference
-      - text: Workspace Examples
-        url: /admin-api/workspaces/examples
-  - text: RBAC
-    url: /admin-api/rbac/reference
-    items:
-      - text: RBAC Reference
-        url: /admin-api/rbac/reference
-      - text: RBAC Examples
-        url: /admin-api/rbac/examples
-  - text: Admins
-    url: /admin-api/admins/reference
-    items:
-      - text: API Reference
-        url: /admin-api/admins/reference
-      - text: Examples
-        url: /admin-api/admins/examples
-  - text: Vitals
-    url: /admin-api/vitals
-    items:
-      - text: Vitals Overview
-        url: /admin-api/vitals
-      - text: Kong Vitals with InfluxDB
-        url: /admin-api/vitals/vitals-influx-strategy
-      - text: Kong Vitals with Prometheus
-        url: /admin-api/vitals/vitals-prometheus-strategy
-  - text: Audit Logging
-    url: /admin-api/audit-log
-  - text: Keyring and Data Encryption
-    url: /admin-api/db-encryption
+    - text: Overview
+      url: /admin-api
+    - text: Supported Content Types
+      url: /admin-api/#supported-content-types
+    - text: Information Routes
+      url: /admin-api/#information-routes
+    - text: Tags
+      url: /admin-api/#tags
+    - text: Service Object
+      url: /admin-api/#service-object
+    - text: Route Object
+      url: /admin-api/#route-object
+    - text: Consumer Object
+      url: /admin-api/#consumer-object
+    - text: Plugin Object
+      url: /admin-api/#plugin-object
+    - text: Certificate Object
+      url: /admin-api/#certificate-object
+    - text: CA Certificate Object
+      url: /admin-api/#ca-certificate-object
+    - text: SNI Object
+      url: /admin-api/#sni-object
+    - text: Upstream Object
+      url: /admin-api/#upstream-object
+    - text: Target Object
+      url: /admin-api/#target-object
+    - text: Workspaces
+      items:
+        - text: Workspaces Reference
+          url: /admin-api/workspaces/reference
+        - text: Workspace Examples
+          url: /admin-api/workspaces/examples
+    - text: RBAC
+      items:
+        - text: RBAC Reference
+          url: /admin-api/rbac/reference
+        - text: RBAC Examples
+          url: /admin-api/rbac/examples
+    - text: Admins
+      items:
+        - text: API Reference
+          url: /admin-api/admins/reference
+        - text: Examples
+          url: /admin-api/admins/examples
+    - text: Vitals
+      items:
+        - text: Vitals Overview
+          url: /admin-api/vitals
+        - text: Kong Vitals with InfluxDB
+          url: /admin-api/vitals/vitals-influx-strategy
+        - text: Kong Vitals with Prometheus
+          url: /admin-api/vitals/vitals-prometheus-strategy
+    - text: Audit Logging
+      url: /admin-api/audit-log
+    - text: Keyring and Data Encryption
+      url: /admin-api/db-encryption
 
 - title: Kong Manager
   icon: /assets/images/icons/documentation/icn-manager-color.svg
@@ -272,22 +274,22 @@
           url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
           url: /kong-manager/administration/rbac
-        - items:
-          - text: RBAC in Kong Manager
-            url: /kong-manager/administration/rbac
-          - text: Create a New Role
-            url: /kong-manager/administration/rbac/new-role
-          - text: Create an RBAC User
-            url: /kong-manager/administration/rbac/add-user
-          - text: Add a Role and Permissions
-            url: /kong-manager/administration/rbac/add-role
+          items:
+            - text: RBAC in Kong Manager
+              url: /kong-manager/administration/rbac
+            - text: Create a New Role
+              url: /kong-manager/administration/rbac/new-role
+            - text: Create an RBAC User
+              url: /kong-manager/administration/rbac/add-user
+            - text: Add a Role and Permissions
+              url: /kong-manager/administration/rbac/add-role
         - text: Admins
           url: /kong-manager/administration/admins/invite
-        - items:
-          - text: Invite an Admin
-            url: /kong-manager/administration/admins/invite
-          - text: Add an Admin
-            url: /kong-manager/administration/admins/add-admin
+          items:
+            - text: Invite an Admin
+              url: /kong-manager/administration/admins/invite
+            - text: Add an Admin
+              url: /kong-manager/administration/admins/add-admin
     - text: Vitals
       url: /kong-manager/vitals
     - text: How-Tos
@@ -301,7 +303,7 @@
 
 - title: Kong Dev Portal
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /developer-portal
+  url: /developer-portal/
   items:
     - text: Introduction
       url: /developer-portal/
@@ -390,15 +392,15 @@
   url: /kong-for-kubernetes/
   items:
     - text: Overview
-      url:  /kong-for-kubernetes
+      url: /kong-for-kubernetes
+    - text: Deployment Options
+      url: /kong-for-kubernetes/deployment-options
     - text: Install Kong for Kubernetes Enterprise
       url: /kong-for-kubernetes/install
     - text: Install Kong Enterprise on Kubernetes
       url: /kong-for-kubernetes/install-on-kubernetes
     - text: Using Kong for Kubernetes
       url: /kong-for-kubernetes/using-kong-for-kubernetes
-    - text: Deployment Options
-      url: /kong-for-kubernetes/deployment-options
     - text: Changelog
       url: /kong-for-kubernetes/changelog
 
@@ -416,6 +418,8 @@
       url: /brain-immunity/service-map
     - text: Troubleshooting
       url: /brain-immunity/troubleshooting
+    - text: Changelog
+      url: /brain-immunity/changelog
 
 - title: Plugins
   icon: /assets/images/icons/documentation/icn-api-plugins-color.svg

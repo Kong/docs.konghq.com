@@ -136,7 +136,7 @@
           url: /plugin-development/tests
         - text: (un)Installing your plugin
           url: /plugin-development/distribution
-    - text: Plugin Development Kit
+    - text: Lua Plugin Development Kit
       url: /pdk
       items:
         - text: kong.client
@@ -163,6 +163,8 @@
           url: /pdk/kong.service.response
         - text: kong.table
           url: /pdk/kong.table
+    - text: Go Plugin Development Kit
+      url: /go
     - text : Control Kong Enterprise through systemd
       url: /systemd
 
