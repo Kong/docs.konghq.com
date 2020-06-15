@@ -732,7 +732,7 @@ repository will allow you to do both easily.
 **Release Date:** 2020-06-15
 
 ### Fixes
-- Fixes Kong PDK `get_method()` function to return a correct HTTP method when there are connectivity issues with the upstream.
+- Fixes Kong PDK `get_method()` function to return a correct HTTP method when there are connectivity issues with the Upstream.
 
 
 ## 0.36-5
