@@ -18,7 +18,7 @@ redirect_from:
 ## PostgreSQL
 
 - Generally speaking, PostgreSQL works well for most of the use-cases, and it’s
-  usually easier to setup. We recommend setting up a master-slave replication with
+  usually easier to setup. We recommend setting up a primary-replica setup with
   servers located in different racks, data centers or availability zones to
   account for infrastructure failures.
 - In Multi-DC environments, PostgreSQL may not be the right fit, since a Kong
@@ -105,7 +105,7 @@ multiple node failures per data center using consistency level ONE.
 
 ## PostgreSQL
 
-We recommend using a master-slave setup that will guarantee an appropriate
+We recommend using a primary-replica setup that will guarantee an appropriate
 replication of data in case of failures.
 
 ## Network & Firewall
