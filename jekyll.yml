@@ -99,6 +99,11 @@ defaults:
       layout: 'getting-started-guide'
 
   - scope:
+      path: 'deck'
+    values:
+      layout: 'docs-v2'
+
+  - scope:
       path: 'about'
     values:
       layout: 'about'

@@ -47,6 +47,7 @@ id: documentation
           <h1>{{page.title}}</h1>
         </div>
         <div class="search-version-row">
+          {% if page.edition != 'deck' %}
           <div class="versions-dropdown dropdown no-right-border">
             <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
@@ -73,6 +74,7 @@ id: documentation
               {% endfor %}
             </ul>
           </div>
+          {% endif %}
           <div class="dropdown" id="searchBar">
             <div id="getkong-algolia-search" class="search-input v2 {% unless page.is_homepage %}small{% endunless %}">
               <img class="icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
@@ -107,6 +109,7 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
+        {% if page.edition != 'deck' %}
           {% if page.edition == 'community' %}
           <div class="alert alert-ee">
             Maybe you were looking for the <a href="/enterprise"><strong>Enterprise Documentation</strong></a>
@@ -138,6 +141,7 @@ id: documentation
             </div>
             {% endif %}
           {% endif %}
+        {% endif %}
 
           {% unless page.skip_read_time == true or page.path contains '/admin-api' or page.path contains '/pdk' or page.is_homepage %}
           {% include read_time.html %}

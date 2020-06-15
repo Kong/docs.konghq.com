@@ -339,3 +339,5 @@
   release: "latest"
   version: "latest"
   edition: "getting-started-guide"
+-
+  edition: "deck"
