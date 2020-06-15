@@ -727,6 +727,14 @@ repository will allow you to do both easily.
 - Fixes: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
 
 
+## 0.36-6
+
+**Release Date:** 2020-06-15
+
+### Fixes
+- Fixes Kong PDK `get_method()` function to return a correct HTTP method when there are connectivity issues with the upstream.
+
+
 ## 0.36-5
 
 **Release Date:** 2020-04-02
