@@ -733,6 +733,7 @@ repository will allow you to do both easily.
 
 ### Fixes
 - Fixes Kong PDK `get_method()` function to return a correct HTTP method when there are connectivity issues with the Upstream.
+- Reverted Service Mesh changes which affect `proxy_ssl_*` directives.
 
 
 ## 0.36-5
