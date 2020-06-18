@@ -94,7 +94,7 @@ A Service, also referred to as a Service object, is the upstream APIs and micros
 Before you can start making requests against a Service, you need to add a [Route](#route) to it. Routes specify how (and if) requests are sent to their Services after they reach Kong. A single Service can have many Routes. After configuring the Service and the Route, you’ll be able to make requests through Kong using them.
 
 ## Stable 
-A Stable release designation in Kong software means the functionality of the version is high-quality, production-ready, and released as general availability (GA). The version has been thoroughly tested, considered reliable to deploy in a production environment, and is fully supported. If updates or bug fixes are required, a patch version or minor release version is issued and fully supported.
+A Stable release designation in Kong software means the functionality of the version is of high quality, production-ready, and released as general availability (GA). The version has been thoroughly tested, considered reliable to deploy in a production environment, and is fully supported. If updates or bug fixes are required, a patch version or minor release version is issued and fully supported.
 
 ## Super Admin
 A Super Admin, or any Role with read and write access to the `/admins` and `/rbac` endpoints, creates new Roles and customize Permissions. A Super Admin can:
