@@ -23,7 +23,7 @@ Authorization is the system of defining access to certain resources. In Kong Ent
 A Beta designation in Kong software means the functionality of a feature or release version is of high-quality and can be deployed in a non-production environment. Note the following when using a Beta feature or version:
 
 * **A Beta feature or version should not be deployed in a production environment.** 
-* Beta customers are encouraged to engage Kong Support to report issues encountered in beta testing.  Support requests should be filed with normal priority, but contractual SLA’s will not be applicable for beta features.
+* Beta customers are encouraged to engage Kong Support to report issues encountered in Beta testing.  Support requests should be filed with normal priority, but contractual SLA’s will not be applicable for Beta features.
 * Support is not available for data recovery, rollback, or other tasks when using a Beta feature or version. 
 * User documentation might not be of the highest quality. 
 
