@@ -20,7 +20,14 @@ API gateway authentication is an important way to control the data that is allow
 Authorization is the system of defining access to certain resources. In Kong Enterprise, Role-Based Access Control (RBAC) is the main authorization mode. To define authorization to an API, it is possible to use the ACL Plugin in conjunction with an authentication plugin.
 
 ## Beta
-A Beta designation in Kong software means the functionality of a feature is of high-quality and can be deployed in a non-production environment. **A Beta feature should not be deployed in a production environment.** Some level of support is available for the feature, although user documentation might not be of the highest quality. A Beta feature is made available to the general public for usability testing and to gain feedback about the feature before releasing it as production-ready.
+A Beta designation in Kong software means the functionality of a feature or release version is of high-quality and can be deployed in a non-production environment. Note the following when using a Beta feature or version:
+
+* **A Beta feature or version should not be deployed in a production environment.** 
+* Beta customers are encouraged to engage Kong Support to report issues encountered in beta testing.  Support requests should be filed with normal priority, but contractual SLA’s will not be applicable for beta features.
+* Support is not available for data recovery, rollback, or other tasks when using a Beta feature or version. 
+* User documentation might not be of the highest quality. 
+
+A Beta feature or version is made available to the general public for usability testing and to gain feedback about the feature or version before releasing it as a production-ready, stable feature or version. 
 
 ## Client
 A Kong Client refers to the downstream client making requests to Kong’s proxy port. It could be another service in a distributed application, a user’s identity, a user’s browser, or a specific device.
@@ -85,6 +92,9 @@ A Route, also referred to as Route object, defines rules to match client request
 A Service, also referred to as a Service object, is the upstream APIs and microservices Kong manages. Examples of Services include a data transformation microservice, a billing API, and so on. The main attribute of a Service is its URL (where Kong should proxy traffic to), which can be set as a single string or by specifying its protocol, host, port and path individually. The URL can be composed by specifying a single string or by specifying its protocol, host, port, and path individually.
 
 Before you can start making requests against a Service, you need to add a [Route](#route) to it. Routes specify how (and if) requests are sent to their Services after they reach Kong. A single Service can have many Routes. After configuring the Service and the Route, you’ll be able to make requests through Kong using them.
+
+## Stable 
+A Stable release designation in Kong software means the functionality of the version is high-quality, production-ready, and released as general availability (GA). The version has been thoroughly tested, considered reliable to deploy in a production environment, and is fully supported. If updates or bug fixes are required, a patch version or minor release version is issued and fully supported.
 
 ## Super Admin
 A Super Admin, or any Role with read and write access to the `/admins` and `/rbac` endpoints, creates new Roles and customize Permissions. A Super Admin can:
