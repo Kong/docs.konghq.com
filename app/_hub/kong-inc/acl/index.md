@@ -5,7 +5,7 @@ version: 1.0.0
 
 desc: Control which consumers can access Services
 description: |
-  Restrict access to a Service or a Route by whitelisting or blacklisting consumers using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or Route.
+  Restrict access to a Service or a Route by adding consumers to allowed or denied lists using arbitrary ACL group names. This plugin requires an [authentication plugin](/about/faq/#how-can-i-add-authentication-to-a-microservice-api) to have been already enabled on the Service or Route.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -23,7 +23,7 @@ kong_version_compatibility:
     community_edition:
       compatible:
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -67,17 +67,17 @@ params:
 
     Admin API endpoints which do POST, PUT, PATCH or DELETE on ACLs will not work on DB-less mode.
   config:
-    - name: whitelist
+    - name: allow
       required: semi
       default:
       value_in_examples: [ "group1", "group2" ]
       description: |
-        Arbitrary group names that are allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
-    - name: blacklist
+        Arbitrary group names that are allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
+    - name: deny
       required: semi
       default:
       description: |
-        Arbitrary group names that are not allowed to consume the Service or Route. One of `config.whitelist` or `config.blacklist` must be specified.
+        Arbitrary group names that are not allowed to consume the Service or Route. One of `config.allow` or `config.deny` must be specified.
     - name: hide_groups_header
       required: false
       default: false
@@ -85,7 +85,7 @@ params:
       description: |
         Flag which if enabled (`true`), prevents the `X-Consumer-Groups` header to be sent in the request to the upstream service.
   extra: |
-    Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `whitelist` and `blacklist` configurations. An ACL with a `whitelist` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `blacklist` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
+    Note that the `allow` and `deny` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure an ACL with both `allow` and `deny` configurations. An ACL with an `allow` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `deny` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are inherently allowed).
 ---
 
 ### Usage

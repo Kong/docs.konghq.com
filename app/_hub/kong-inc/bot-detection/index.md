@@ -5,7 +5,7 @@ version: 1.0.0
 
 desc: Detect and block bots or custom clients
 description: |
-  Protects a Service or a Route from most common bots and has the capability of whitelisting and blacklisting custom clients.
+  Protects a Service or a Route from most common bots and has the capability of allowing and denying custom clients.
 
 type: plugin
 categories:
@@ -15,7 +15,7 @@ kong_version_compatibility:
     community_edition:
       compatible:
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -46,16 +46,16 @@ params:
   protocols: ["http", "https"]
   dbless_compatible: yes
   config:
-    - name: whitelist
+    - name: allow
       required: false
       default:
       description: |
-        An array of regular expressions that should be whitelisted. The regular expressions will be checked against the `User-Agent` header.
-    - name: blacklist
+        An array of regular expressions that should be allowed. The regular expressions will be checked against the `User-Agent` header.
+    - name: deny
       required: false
       default:
       description: |
-        An array of regular expressions that should be blacklisted. The regular expressions will be checked against the `User-Agent` header.
+        An array of regular expressions that should be denied. The regular expressions will be checked against the `User-Agent` header.
 
 ---
 

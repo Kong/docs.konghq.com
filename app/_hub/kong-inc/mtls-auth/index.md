@@ -49,7 +49,7 @@ params:
       default: "`CN`"
       required: true
       description: |
-        Certificate property to use as the authenticated group. Valid values are `CN` (Common Name) or `DN` (Distinguished Name). Once `skip_consumer_lookup` is applied, any client with a valid certificate can access the Service/API. To restrict usage to only some of the authenticated users, also add the ACL plugin (not covered here) and create whitelist or blacklist groups of users.
+        Certificate property to use as the authenticated group. Valid values are `CN` (Common Name) or `DN` (Distinguished Name). Once `skip_consumer_lookup` is applied, any client with a valid certificate can access the Service/API. To restrict usage to only some of the authenticated users, also add the ACL plugin (not covered here) and create allowed or denied groups of users.
     - name: revocation_check_mode
       default: "`IGNORE_CA_ERROR`"
       description: |
@@ -164,7 +164,7 @@ When `skip_consumer_lookup` is set to `true`, consumer lookup will be skipped an
 * `X-Client-Cert-San`, SAN of the client certificate
 
 Once `skip_consumer_lookup` is applied, any client with a valid certificate can access the Service/API.
-To restrict usage to only some of the authenticated users, also add the ACL plugin (not covered here) and create whitelist or blacklist groups of users using same
+To restrict usage to only some of the authenticated users, also add the ACL plugin (not covered here) and create allowed or denied groups of users using same
 certificate property being set in `authenticated_group_by`.
 
 ### Troubleshooting

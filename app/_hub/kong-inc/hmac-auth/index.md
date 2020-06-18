@@ -29,7 +29,7 @@ kong_version_compatibility:
     community_edition:
       compatible:
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -99,8 +99,8 @@ params:
   extra: |
     Once applied, any user with a valid credential can access the Service/Route.
     To restrict usage to only some of the authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-    blacklist groups of users.
+    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+    denied groups of users.
 
 ---
 
