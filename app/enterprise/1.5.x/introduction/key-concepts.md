@@ -25,7 +25,7 @@ A Beta designation in Kong software means the functionality of a feature or rele
 * **A Beta feature or version should not be deployed in a production environment.** 
 * Beta customers are encouraged to engage Kong Support to report issues encountered in Beta testing.  Support requests should be filed with normal priority, but contractual SLA’s will not be applicable for Beta features.
 * Support is not available for data recovery, rollback, or other tasks when using a Beta feature or version. 
-* User documentation might not be of the highest quality. 
+* User documentation might not be complete or reflect entire functionality. 
 
 A Beta feature or version is made available to the general public for usability testing and to gain feedback about the feature or version before releasing it as a production-ready, stable feature or version. 
 
