@@ -20,7 +20,7 @@ API gateway authentication is an important way to control the data that is allow
 Authorization is the system of defining access to certain resources. In Kong Enterprise, Role-Based Access Control (RBAC) is the main authorization mode. To define authorization to an API, it is possible to use the ACL Plugin in conjunction with an authentication plugin.
 
 ## Beta
-A Beta designation in Kong software means the functionality of a feature or release version is of high-quality and can be deployed in a non-production environment. Note the following when using a Beta feature or version:
+A Beta designation in Kong software means the functionality of a feature or release version is of high quality and can be deployed in a non-production environment. Note the following when using a Beta feature or version:
 
 * **A Beta feature or version should not be deployed in a production environment.** 
 * Beta customers are encouraged to engage Kong Support to report issues encountered in Beta testing.  Support requests should be filed with normal priority, but contractual SLA’s will not be applicable for Beta features.
