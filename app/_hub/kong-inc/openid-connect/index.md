@@ -9,7 +9,7 @@ description: |
   OpenID Connect ([1.0][connect]) plugin allows the integration with a 3rd party
   identity provider (IdP) or [Kong OAuth 2.0 Plugin][oauth2plugin] in a standardized way.
   This plugin can be used to implement Kong as a (proxying) [OAuth 2.0][oauth2] resource
-  server (RS) and / or as an OpenID Connect relying party (RP) between the client
+  server (RS) and/or as an OpenID Connect relying party (RP) between the client
   and the upstream service.
 
   The plugin supports several types of credentials, including:
@@ -18,24 +18,24 @@ description: |
   - Opaque access tokens with either Kong OAuth 2.0 plugin issued tokens or
     3rd party IdP issued ones through token introspection (IdP needs to support it)
   - Username and password through the OAuth 2.0 password grant (the plugin will
-    automatically exchange such credentials with access token by calling the IdP's token
-    endpoint)
-  - Client id and secret through the OAuth 2.0 client credentials grant (the plugin
-    will automatically exchange such credentials with access token by calling the IdP's
-    token endpoint)
-  - Authorization code that the OpenID Connect plugin can retrieve from the client when using
-    OpenID Connect authorization code flow
-  - Session cookie credentials that the plugin can setup between the client and Kong
-    (usually used with web browser clients together with authorization code grant)
+    automatically exchange such credentials with access token by calling the
+    IdP's token endpoint)
+  - Client id and secret through the OAuth 2.0 client credentials grant (the
+    plugin will automatically exchange such credentials with access token by
+    calling the IdP's token endpoint)
+  - Authorization code that the OpenID Connect plugin can retrieve from the
+    client when using OpenID Connect authorization code flow
+  - Session cookie credentials that the plugin can set up between the client
+    and Kong (usually used with web browser clients together with authorization code grant)
 
   This plugin can automatically refresh the access token using a refresh token.
 
-  You can either let the plugin to exclusively talk your IdP as a trusted client
-  (and let it do all the credential exchange) or you can let clients talk to IdP
-  directly, and then present access token to the upstream service protected with
-  the OpenID Connect plugin (or you can do both).
+  You can either allow the plugin to exclusively talk to your IdP as a trusted
+  client (and let it do all the credential exchange), or you can let clients
+  talk directly to the IdP, and then present an access token to the Upstream
+  service protected with the OpenID Connect plugin (or you can do both).
 
-  Some of the capabilities of the plugin are listed below:
+  Some capabilities of the plugin are listed below:
 
   - [WebFinger][webfinger] and [OpenID Connect Discovery][discovery]
   - [ID Token][idtoken] verification
@@ -47,7 +47,7 @@ description: |
   - Standard and configurable claims verification
   - Caching (optional) of token, introspection and user info endpoint request
 
-  The plugin has been tested with several OpenID Connect capable providers such as:
+  The plugin has been tested with several OpenID Connect capable providers, such as:
 
   - [Auth0][auth0]
   - [Amazon AWS Cognito][cognito]
@@ -68,8 +68,8 @@ description: |
   - [Salesforce][salesforce]
   - [Yahoo!][yahoo]
 
-  As long as your provider supports OpenID Connect standards the plugin should
-  work, even if it is not specifically tested against it. Let us know if you
+  As long as your provider supports OpenID Connect standards, the plugin should
+  work, even if it is not specifically tested against it. Let Kong know if you
   want your provider to be tested and added to the list.
 
   [connect]: http://openid.net/specs/openid-connect-core-1_0.html
@@ -106,7 +106,7 @@ description: |
 
   Once applied, any user with a valid credential can access the Service/API.
   To restrict usage to only some of the authenticated users, also add the
-  [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
+  [ACL](/plugins/acl/) plugin (not covered here) and create a whitelist or
   blacklist groups of users.
 
 
@@ -130,7 +130,7 @@ kong_version_compatibility:
 
 ## Kong OpenID Connect Plugin
 
-The Kong OpenID Connect plugin provides a general-purpose OpenID Connect and OAuth toolkit.
+The Kong OpenID Connect plugin provides a general purpose OpenID Connect and OAuth toolkit.
 
 
 ## Terminology
@@ -154,19 +154,20 @@ Term           | Description
 
 ### Protecting Server to Server API Access
 
-For server-to-server we recommend you to use OAuth 2.0 **client credentials** grant
-that is enhanced with OpenID Connect features (such as standardized security
-feature, and automatic discovery). Client credentials are easier to revoke than
-say password credentials without affecting too many things.
+For server-to-server, we recommend that you use OAuth 2.0 **client
+credentials** grant that is enhanced with OpenID Connect features (such as
+standardized security feature, and automatic discovery). Client credentials are
+easier to revoke than say password credentials without affecting too many
+things.
 
 
-### Protecting Interactive Browser based API / Web Site Access
+### Protecting Interactive Browser-based API/Web Site Access
 
 The best method to use here is to use OpenID Connect Authentication using
-*authorization code** flow. Kong sets up a session with the browser. After
-initial authentication the browser will send the cookie automatically —
+**authorization code** flow. Kong sets up a session with the browser. After
+initial authentication, the browser will send the cookie automatically —
 even when making API requests using JavaScript. With authorization code
-flow you can usually utilize stronger authentication methods such as
+flow, you can usually utilize stronger authentication methods such as
 two-factor authentication on your identity provider.
 
 
@@ -179,17 +180,17 @@ Connect features.
 ### Protecting Access to APIs with Stateless JWT Tokens
 
 When you have JWT (or JWS to be more specific) available for your client,
-that is possibly issued directly from the identity provider (e.g. by using
-implicit flow), and want you to use that token to access API protected by
-Kong, you should use a plugin that provides you OpenID Connect aware
+that is possibly issued directly from the identity provider (e.g., by using
+implicit flow), and want you to use that token to access APIs protected by
+Kong, you should use a plugin that provides you OpenID Connect-aware
 stateless verification.
 
 
 ### Accessing APIs from Basic Authentication Aware Client
 
 Basic authentication is supported in many 3rd party clients. One such client
-is Microsoft Excel. The `openid-connect` plugin allows you to supply username
-and password or client id and client secret using normal basic authentication
+is Microsoft Excel. The `openid-connect` plugin allows you to supply a username
+and password, or client id and client secret using normal basic authentication
 headers.
 
 
@@ -223,18 +224,18 @@ Algorithm | Signing | Verification
 `EdDSA`   | `yes`   | `yes`
 `none` ²  | `no`    | `no`
 
-¹⁾ there is currently no support for using `SHA384` with RSA signatures,
+¹⁾ There is currently no support for using `SHA384` with RSA signatures,
    since there’s no gain in either computation time nor message size
    compared to using `SHA256` or `SHA512`, respectively.
 
-²⁾ for security purposes we have decided not to support `none`
-   signing algorithm at this point. We might add it later, though.
+²⁾ For security purposes, we do not support `none`
+   signing algorithm at this time.
 
 
 ### JWT Serialization Formats
 
 This is what the plugins currently support for `JWT` serializations.
-The table may change in a future as further features get implemented.
+The table may change in the future as further features get implemented.
 
 Type    | Compact Serialization | JSON Serialization
 :------:|:---------------------:|:-----------------:
@@ -247,55 +248,62 @@ The OpenID Connect plugin supports a variety of authentication and authorization
 
 * OAuth 2.0 Password Grant
 * OAuth 2.0 Client Credentials Grant
-* OpenID Connect 1.0 / OAuth 2.0 Authorization Code Flows
+* OpenID Connect 1.0/OAuth 2.0 Authorization Code Flows
 * JWT Bearer Tokens (both signature and claims validations)
 * OAuth 2.0 Introspection (verifying opaque tokens)
 * Kong OAuth 2.0 Authentication Plugin issued tokens
 * Refreshing expired access token with refresh token, if available
-* Session authentication with a HTTP Only session cookie sent by this plugin
+* Session authentication with an HTTP Only session cookie sent by this plugin
 
-This plugin **exchanges** credentials and injects **access token** as a **bearer**
-token into `Authorization` HTTP header.
+This plugin **exchanges** credentials and injects **access token** as a
+**bearer** token into an `Authorization` HTTP header.
 
 
 ### Configuration Parameters
 
-As OpenID Connect can be used in many ways, the plugin has many parameters. Some of the settings
-are used only in some flows, and others are used more broadly. Generally speaking, while parameters are optional,
+As OpenID Connect can be used in many ways, the plugin has many parameters.
+Some of the settings are used only in some flows, and others are used more
+broadly. Generally speaking, while parameters are optional,
 requirements will vary depending on your use case and identity provider.
 
 
 #### Important Configuration Parameters
 
-This plugin contains many configuration parameters that might look frightening at the start. The reason for this
-number of attributes is that this plugin is for multi-authentication and supports JWT, OAuth 2.0, and OpenID Connect
+This plugin contains many configuration parameters that might seem overhwelming
+at the start. The reason for this number of attributes is that this plugin is
+for multi-authentication and supports JWT, OAuth 2.0, and OpenID Connect
 authentication.
 
 The first parameter you should configure is:
-`config.issuer`
+`config.issuer`.
 
-This parameter tells the plugin where to find discovery information, and it is the only required parameter.
-You should specify the `realm` or `iss` for this parameter if you don't have a discovery endpoint.
+This parameter tells the plugin where to find discovery information, and it is
+the only required parameter. You should specify the `realm` or `iss` for this
+parameter if you don't have a discovery endpoint.
 
-Next, you should decide what authentication methods you want to use with this plugin, so please configure:
-`config.auth_methods`
+Next, you should decide what authentication methods you want to use with this
+plugin, so configure: `config.auth_methods`.
 
-That parameter should contain only the authentication methods that you want to use; otherwise, you
-unnecessarily widen the attack surface.
+That parameter should contain only the authentication methods that you want to
+use; otherwise, you unnecessarily widen the attack surface.
 
-In many cases, you also need to specify `config.client_id`, and if your IdP/OP requires authentication,
-.e.g, on a token endpoint, you will need to specify `config.client_secret` too.
+In many cases, you also need to specify `config.client_id`, and if your IdP/OP
+requires authentication, such as on a token endpoint, you will need to specify `config.client_secret` too.
 
-If you are using a public IdP, such as Google, you should limit the audience with:
-`config.audience_required` to contain only your `config.client_id`. You may also need to adjust
-`config.audience_claim` in case your IdP doesn't follow OpenID Connect standards.
+If you are using a public IdP, such as Google, you should limit the audience
+with `config.audience_required` to contain only your `config.client_id`. You
+may also need to adjust `config.audience_claim` in case your IdP doesn't follow
+OpenID Connect standards.
 
-Also if you are using Kong in DB-less mode with declarative configuration, you should set up
-`config.session_secret` if you are using the session authentication method. Otherwise each of your Nginx
-workers across all your nodes would encrypt and sign the cookies with their own secrets.
+Also if you are using Kong in DB-less mode with declarative configuration, you
+should set up `config.session_secret` if you are using the session
+authentication method. Otherwise, each of your Nginx workers across all your
+nodes would encrypt and sign the cookies with their own secrets.
 
-We suggest you start with these properties and test that the flows or authentication methods work, before diving to
-other configuration settings. Below we document all the configuration options.
+We suggest you start with these properties and test that the flows or
+authentication methods work before diving to
+other configuration settings. All of the configuration options are described
+below.
 
 Please configure:
 1. `config.issuer`
