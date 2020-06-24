@@ -1206,7 +1206,6 @@ API will attempt to identify the RBAC user.
 
 **Description:**
 Comma-separated list of addresses and ports on which
-
 Kong will expose the Admin GUI. This web application
 lets you configure and manage Kong, and therefore
 should be kept private and secured.
@@ -1227,20 +1226,18 @@ admin_gui_listen = 0.0.0.0:8002, 0.0.0.0:8445 ssl
 
 **Description:**
 
-Here you may provide the lookup, or balancer,
-address for your admin application.
+The lookup, or balancer, address for the Admin GUI.
 
 Accepted format (items in parenthesis are optional):
 
 ```
-<scheme>://<IP / HOSTNAME>(:<PORT>(/<PATH>))
+<scheme>://<IP / HOSTNAME>(:<PORT>)
 ```
 
 **Examples:**
 ```
 - http://127.0.0.1:8003
 - https://kong-admin.test
-- http://dev-machine/dev-285
 ```
 
 **Default:**
