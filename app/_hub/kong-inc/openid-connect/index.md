@@ -2729,7 +2729,7 @@ Default | Required
 
 ### Authorization
 
-`openid-connect` plugin supports different authentication / authorization
+`openid-connect` plugin supports different authentication/authorization
 methods in one plugin. The plugin figures out the method used for
 authentication by looking at the request headers or parameters (and also
 plugin configuration parameter `config.auth_methods`).
