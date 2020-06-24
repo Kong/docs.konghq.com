@@ -106,8 +106,8 @@ description: |
 
   Once applied, any user with a valid credential can access the Service/API.
   To restrict usage to only some of the authenticated users, also add the
-  [ACL](/plugins/acl/) plugin (not covered here) and create a whitelist or
-  blacklist groups of users.
+  [ACL](/plugins/acl/) plugin (not covered here) and create allowed or denied
+  groups of users.
 
 
 enterprise: true
@@ -360,7 +360,7 @@ Parameter ¹                             | Description
 `authorization_cookie_samesite`         | The `Same-Site` parameter of the authorization cookie.
 `authorization_cookie_httponly`         | The `HTTP Only` flag of the authorization cookie.
 `authorization_cookie_secure`           | The `Secure` flag of the authorization cookie.
-`preserve_query_args`                   | Whether or not to preserve query args even when doing client redirecctions with authorization code flow.
+`preserve_query_args`                   | Whether or not to preserve query args even when doing client redirections with authorization code flow.
 `token_endpoint`                        | The URL of the token endpoint that can be used to override the standard token endpoint announced in the discovery document.
 `token_endpoint_auth_method`            | Used to override any defaults or `token_endpoint_auth_methods_supported` from discovery when authenticating on the token endpoint.
 `token_headers_names`                   | Extra argument names that you should include in token endpoint requests.
@@ -1245,8 +1245,8 @@ Default | Required
 #### config.max_age
 
 This configuration parameter is used to configure `auth_time` claim
-verification. With this parameter you may restrict the use of the API
-with too old id tokens. The `max_age` is specified in seconds.
+verification. With this parameter, you may restrict the use of the API
+with too old of id tokens. The `max_age` is specified in seconds.
 
 **Note:** `config.leeway` may affect the calculation as well.
 
@@ -1263,11 +1263,11 @@ Default | Required
 #### config.authenticated_groups_claim
 
 This property allows one to connect this plugin with an ACL plugin
-where the ACL plugin provides both white- and blacklisting based on
+where the ACL plugin allows or denies access based on
 an arbitrary claim.
 
 With this configuration, one can specify the name of the claim
-(or path) where the "groups" can be found
+(or path) where the "groups" can be found.
 
 **Examples:**
 
@@ -1337,7 +1337,7 @@ Default           | Required
 
 #### config.authorization_cookie_domain
 
-With this parameter you can set the value for authorization cookie
+With this parameter, you can set the value for authorization cookie
 `Domain` property.
 
 Default           | Required
@@ -1364,7 +1364,7 @@ The plugin accepts these values for this parameter:
 
 #### config.authorization_cookie_httponly
 
-With this parameter you can set the value for authorization cookie
+With this parameter, you can set the value for authorization cookie
 `HTTP Only` flag.
 
 Default           | Required
@@ -1374,7 +1374,7 @@ Default           | Required
 
 #### config.authorization_cookie_secure
 
-With this parameter you can set the value for authorization cookie
+With this parameter, you can set the value for authorization cookie
 `Secure` flag.
 
 Default           | Required
@@ -1386,7 +1386,7 @@ Default           | Required
 
 When using authorization code flow, the original query parameters (along with
 original body, headers and request method) are lost with the re-directions.
-With this parameter you can preserve request query arguments even when doing
+With this parameter, you can preserve request query arguments even when doing
 authorization code flow. This also works with `config.login_action=redirect`
 where there is one extra redirection after returning from the IdP.
 
@@ -1420,7 +1420,7 @@ If none is specified, we use either one of the methods found in
 `config.client_auth` or `token_endpoint_auth_methods_supported` or
 `"client_secret_basic"`.
 
-For the client credentials grant we don't support `"none"` as it
+For the client credentials grant, we don't support `"none"` as it
 does not make any sense for those credentials
 to be present. You can still configure this property to `"none"`, it is
 just that for the client credentials grant, it is ignored.
