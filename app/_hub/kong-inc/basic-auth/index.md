@@ -80,8 +80,8 @@ params:
   extra: |
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to only some of the authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-    blacklist groups of users.
+    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+    denied groups of users.
 
 ---
 

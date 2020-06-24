@@ -106,8 +106,8 @@ description: |
 
   Once applied, any user with a valid credential can access the Service/API.
   To restrict usage to only some of the authenticated users, also add the
-  [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-  blacklist groups of users.
+  [ACL](/plugins/acl/) plugin (not covered here) and create lists of allowed or
+  denied groups of users.
 
 
 enterprise: true
@@ -1126,7 +1126,7 @@ Default | Required
 #### config.authenticated_groups_claim
 
 This property allows one to connect this plugin with an ACL plugin
-where the ACL plugin provides both white- and blacklisting based on
+where the ACL plugin provides both allowed and denied listing based on
 an arbitrary claim.
 
 With this configuration, one can specify the name of the claim
