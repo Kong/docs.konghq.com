@@ -255,7 +255,7 @@ The OpenID Connect plugin supports a variety of authentication and authorization
 * Refreshing expired access token with refresh token, if available
 * Session authentication with an HTTP Only session cookie sent by this plugin
 
-This plugin **exchanges** credentials and injects **access token** as a
+This plugin **exchanges** credentials and injects an **access token** as a
 **bearer** token into an `Authorization` HTTP header.
 
 
@@ -301,7 +301,7 @@ authentication method. Otherwise, each of your Nginx workers across all your
 nodes would encrypt and sign the cookies with their own secrets.
 
 We suggest you start with these properties and test that the flows or
-authentication methods work before diving to
+authentication methods work before diving in to
 other configuration settings. All of the configuration options are described
 below.
 
@@ -670,7 +670,7 @@ Parameter ¹                             | Type      | Required | Default
 `ssl_verify`                            | `boolean` | `no`     | `false`
 `timeout`                               | `number`  | `no`     | `10000`
 
-¹⁾ all the config parameters should be prefixed with `config.`.
+¹⁾ All of the config parameters should be prefixed with `config.`.
 
 
 #### config.issuer
