@@ -718,7 +718,7 @@ used to verify signatures.
 
 #### config.rediscovery_lifetime
 
-With this parameter you can configure how often (in seconds) you
+With this parameter, you can configure how often (in seconds) you
 want to allow the plugin to do re-discovery (OpenID Connect Discovery)
 and load extra JWKS (`config.extra_jwks_uris`). This parameter is
 there to prevent the plugin from hitting your IdPs discovery endpoint
@@ -814,7 +814,7 @@ grant type when calling the token endpoint of the identity provider.
 
 #### config.client_id
 
-With this parameter specify the `client_id` of your client
+With this parameter, specify the `client_id` of your client
 that you have registered in OpenID Connect Provider. This
 is the client that authenticates Kong with your OpenID
 Provider. It can be considered a trusted client or confidential
@@ -826,14 +826,14 @@ Default | Required
 :------:|:-------:
 `none`  | `no`
 
-**Note:** In many cases you will need to configure this to allow Kong
+**Note:** In many cases, you will need to configure this to allow Kong
 to work as a trusted client. If you only do e.g. JWT bearer token
 verification, you won't need to configure this.
 
 
 #### config.client_secret
 
-With this parameter specify the `client_secret` of your client
+With this parameter, specify the `client_secret` of your client
 that you have registered in OpenID Connect Provider. As mentioned
 above, also this can be an array of client secrets.
 
@@ -841,7 +841,7 @@ Default | Required
 :------:|:-------:
 `none`  | `no`
 
-**Note:** In many cases you will need to configure this to allow Kong
+**Note:** In many cases, you will need to configure this to allow Kong
 to work as a trusted client. If you only do e.g. JWT bearer token
 verification, you won't need to configure this.
 
@@ -1036,7 +1036,7 @@ on the selected `client`.
 #### config.forbidden_redirect_uri
 
 Instead of responding with HTTP status code of 403, with this parameter
-you can instead send 302 redirect. Nice to have if you are trying to
+you can instead send a 302 redirect. Nice to have if you are trying to
 protect web sites (instead of say individual APIs) with this plugin.
 
 
@@ -1327,7 +1327,7 @@ Default           | Required
 
 #### config.authorization_cookie_path
 
-With this parameter you can set the value for authorization cookie
+With this parameter, you can set the value for authorization cookie
 `Path` property.
 
 Default           | Required
@@ -1347,7 +1347,7 @@ Default           | Required
 
 #### config.authorization_cookie_samesite
 
-With this parameter you can set the value for authorization cookie
+With this parameter, you can set the value for authorization cookie
 `Same-Site` flag.
 
 Default           | Required
@@ -1506,7 +1506,7 @@ client.
 
 #### config.introspection_hint
 
-With this parameter you can change the value of the
+With this parameter, you can change the value of the
 `token_type_hint` argument that the plugin will pass to introspection
 endpoint when introspecting access tokens.
 
@@ -1618,7 +1618,7 @@ Default           | Required
 #### config.session_cookie_name
 
 When this plugin initiates a session (on successful login) with
-the client it will send a cookie to a client. With this parameter
+the client it will send a cookie to a client. With this parameter,
 you can specify the name of the cookie that client receives.
 
 Default           | Required
@@ -1654,7 +1654,7 @@ Default           | Required
 
 #### config.session_cookie_path
 
-With this parameter you can set the value for session cookie
+With this parameter, you can set the value for session cookie
 `Path` property.
 
 Default           | Required
@@ -1664,7 +1664,7 @@ Default           | Required
 
 #### config.session_cookie_domain
 
-With this parameter you can set the value for session cookie
+With this parameter, you can set the value for session cookie
 `Domain` property.
 
 Default           | Required
@@ -1674,7 +1674,7 @@ Default           | Required
 
 #### config.session_cookie_samesite
 
-With this parameter you can set the value for session cookie
+With this parameter, you can set the value for session cookie
 `Same-Site` flag.
 
 Default           | Required
@@ -1691,7 +1691,7 @@ The plugin accepts these values for this parameter:
 
 #### config.session_cookie_httponly
 
-With this parameter you can set the value for session cookie
+With this parameter, you can set the value for session cookie
 `HTTP Only` flag.
 
 Default           | Required
@@ -1701,7 +1701,7 @@ Default           | Required
 
 #### config.session_cookie_secure
 
-With this parameter you can set the value for session cookie
+With this parameter, you can set the value for session cookie
 `Secure` flag.
 
 Default           | Required
