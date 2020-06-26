@@ -16,7 +16,7 @@ layout: changelog
 
 #### Plugins
 * OpenID Connect
-  * Fixed consumers to call the correct function when setting an anonymous consumer (introduced with 1.5.0).
+  * Fixed Consumers to call the correct function when setting an anonymous Consumer (introduced with 1.5.0).
   * Fixed unauthorized responses giving 403 instead of 401 as a status code (introduced with 1.5.0).
   
 * Collector
