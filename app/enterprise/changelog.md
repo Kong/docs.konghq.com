@@ -12,7 +12,7 @@ layout: changelog
 * Upgraded Postgres driver to support selecting the TLS version when connecting to Postgres.
 
 #### Kong Manager
-* Expose Routes `path_handling` attribute from the Admin API in Kong Manager.
+* Exposed Routes `path_handling` attribute from the Admin API in Kong Manager.
 
 #### Plugins
 * OpenID Connect
