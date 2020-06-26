@@ -3,13 +3,31 @@ title: Kong Enterprise Changelog
 layout: changelog
 ---
 
+## 1.5.0.4
+**Release Date** 2020/06/26
+
+### Fixes
+
+#### Kong Gateway 
+* Upgraded Postgres driver to support selecting the TLS version when connecting to Postgres.
+
+#### Kong Manager
+* Expose Routes `path_handling` attribute from the Admin API in Kong Manager.
+
+#### Plugins
+* OpenID Connect
+  * Fixed consumers to call the correct function when setting an anonymous consumer (introduced with 1.5.0).
+  * Fixed unauthorized responses giving 403 instead of 401 as a status code (introduced with 1.5.0).
+  
+* Collector
+  * Fixed issue when Kong returns 404 and causes logs to fill with messages.
+
 ## 1.5.0.3
 **Release Date** 2020/05/28
 
 ### Fixes
 
 #### Kong Gateway 
-
 * Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins
 * Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database 
 * Reduced the log level of one line in the Balancer code from `ERROR` to `WARN`
@@ -18,7 +36,6 @@ layout: changelog
 * Included a reference to Kong's EULA in Kong Manager 
 
 #### Plugins
-
 * Forward Proxy Advanced
   * Fixed a runtime error caused by moving Vitals to the log phase 
 
