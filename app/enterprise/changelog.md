@@ -20,7 +20,7 @@ layout: changelog
   * Fixed unauthorized responses giving 403 instead of 401 as a status code (introduced with 1.5.0).
   
 * Collector
-  * Fixed issue when Kong returns 404 and causes logs to fill with messages.
+  * Fixed issue that occurred when Kong returned a 404 and caused logs to fill with messages.
 
 ## 1.5.0.3
 **Release Date** 2020/05/28
