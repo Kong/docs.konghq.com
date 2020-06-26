@@ -10,6 +10,7 @@ layout: changelog
 
 #### Kong Gateway 
 * Upgraded Postgres driver to support selecting the TLS version when connecting to Postgres.
+* Fixed issue causing incorrect `service_count` for license report endpoint. 
 
 #### Kong Manager
 * Exposed Routes `path_handling` attribute from the Admin API in Kong Manager.
