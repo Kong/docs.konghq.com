@@ -945,6 +945,12 @@ Kong will send the request over HTTP/1.1, and set the following headers:
   **trusted** addresses, the request header with the same name gets forwarded
   if provided. Otherwise, the value of the `$server_port` variable provided by
   [ngx_http_core_module][ngx-server-port-variable] will be used.
+- `X-Forwarded-Prefix: <path>`, where `<path>` is the path of the request which
+  was accepted by Kong. In the case where `$realip_remote_addr` is one of the
+  **trusted** addresses, the request header with the same name gets forwarded
+  if provided. Otherwise, the value of the `$request_uri` variable (with
+  the query string stripped) provided by [ngx_http_core_module][ngx-server-port-variable]
+  will be used. **Note**: Kong will return `"/"` for an empty path, but it does not do any other normalization on the request path.
 
 All the other request headers are forwarded as-is by Kong.
 
