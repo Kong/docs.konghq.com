@@ -123,7 +123,7 @@ Here are the simple steps to provision one:
 
 <div class="alert alert-warning">
   <div class="text-center">
-    <strong>Note</strong>: Before connecting to your new database, make sure your IP address is whitelisted in "Connection Security"
+    <strong>Note</strong>: Before connecting to your new database, make sure your IP address is allowed in "Connection Security"
   </div>
 </div>
 

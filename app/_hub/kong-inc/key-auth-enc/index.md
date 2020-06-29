@@ -92,8 +92,8 @@ parameter                       | description
 `username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
-If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
-service, you must add the new consumer to a whitelisted group. See
+If you are also using the [ACL](/plugins/acl/) plugin and allow lists with this
+service, you must add the new consumer to the allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
 ### Create a Key
