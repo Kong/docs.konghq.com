@@ -161,6 +161,9 @@
         - text: kong.table
           url: /pdk/kong.table
 
+    - text: Kong Security Update Process
+      url: /kong-security-update-process
+
 # Generated via autodoc-admin-api
 - title: Admin API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -411,3 +414,16 @@
 
         - text: List All Targets
           url: /admin-api/#list-all-targets
+
+- title: Kong for Kubernetes
+  icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+  url: /kong-for-kubernetes/
+  items:
+    - text: Install Kong for Kubernetes
+      url: /kong-for-kubernetes/install
+
+    - text: Using Kong for Kubernetes
+      url: /kong-for-kubernetes/using-kong-for-kubernetes
+
+    - text: Changelog
+      url: /kong-for-kubernetes/changelog
