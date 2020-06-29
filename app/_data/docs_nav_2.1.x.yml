@@ -84,46 +84,50 @@
     - text: Plugin Development Kit
       url: /pdk
       items:
-        - text: kong.client
-          url: /pdk/kong.client
 
-        - text: kong.ctx
-          url: /pdk/kong.ctx
+      - text: kong.client
+        url: /pdk/kong.client
 
-        - text: kong.ip
-          url: /pdk/kong.ip
+      - text: kong.client.tls
+        url: /pdk/kong.client.tls
 
-        - text: kong.log
-          url: /pdk/kong.log
+      - text: kong.ctx
+        url: /pdk/kong.ctx
 
-        - text: kong.nginx
-          url: /pdk/kong.nginx
+      - text: kong.ip
+        url: /pdk/kong.ip
 
-        - text: kong.node
-          url: /pdk/kong.node
+      - text: kong.log
+        url: /pdk/kong.log
 
-        - text: kong.request
-          url: /pdk/kong.request
+      - text: kong.nginx
+        url: /pdk/kong.nginx
 
-        - text: kong.response
-          url: /pdk/kong.response
+      - text: kong.node
+        url: /pdk/kong.node
 
-        - text: kong.router
-          url: /pdk/kong.router
+      - text: kong.request
+        url: /pdk/kong.request
 
-        - text: kong.service
-          url: /pdk/kong.service
+      - text: kong.response
+        url: /pdk/kong.response
 
-        - text: kong.service.request
-          url: /pdk/kong.service.request
+      - text: kong.router
+        url: /pdk/kong.router
 
-        - text: kong.service.response
-          url: /pdk/kong.service.response
+      - text: kong.service
+        url: /pdk/kong.service
 
-        - text: kong.table
-          url: /pdk/kong.table
+      - text: kong.service.request
+        url: /pdk/kong.service.request
 
-# Generated via autodoc-admin-api
+      - text: kong.service.response
+        url: /pdk/kong.service.response
+
+      - text: kong.table
+        url: /pdk/kong.table
+
+
 - title: Admin API
   url: /admin-api/
   items:

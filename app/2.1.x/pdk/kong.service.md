@@ -118,7 +118,7 @@ Sets the client certificate used while handshaking with the Service.
 
 1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
 
-1.  `string|nil` An error message describing the error if there was one.
+1.  `string|nil` An error message describing the error if there was one
 
 
 **Usage**
@@ -127,7 +127,126 @@ Sets the client certificate used while handshaking with the Service.
 local chain = assert(ssl.parse_pem_cert(cert_data))
 local key = assert(ssl.parse_pem_priv_key(key_data))
 
-local ok, err = tls.set_cert_key(chain, key)
+local ok, err = kong.service.set_tls_cert_key(chain, key)
+if not ok then
+  -- do something with error
+end
+```
+
+[Back to top](#kongservice)
+
+
+### kong.service.set_tls_verify(on)
+
+Sets whether TLS verification is enabled while handshaking with the Service.
+
+ The `on` argument is a boolean flag, where `true` means upstream verification
+ is enabled and `false` disables it.
+
+ This call affects only the current request. If the trusted certificate store is
+ not set already (via [proxy_ssl_trusted_certificate](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate)
+ or [kong.service.set_upstream_ssl_trusted_store](#kongserviceset_upstream_ssl_trusted_store)),
+ then TLS verification will always fail with "unable to get local issuer certificate" error.
+
+
+**Phases**
+
+* `rewrite`, `access`, `balancer`
+
+**Parameters**
+
+* **on** (boolean):  Whether to enable TLS certificate verification for the current request
+
+**Returns**
+
+1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+
+1.  `string|nil` An error message describing the error if there was one
+
+
+**Usage**
+
+``` lua
+local ok, err = kong.service.set_tls_verify(true)
+if not ok then
+  -- do something with error
+end
+```
+
+[Back to top](#kongservice)
+
+
+### kong.service.set_tls_verify_depth(depth)
+
+Sets the maximum depth of verification when validating upstream server's TLS certificate.
+
+ This call affects only the current request. For the depth to be actually used the verification
+ has to be enabled with either the [proxy_ssl_verify](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify)
+ directive or using the [kong.service.set_tls_verify](#kongserviceset_tls_verify) function.
+
+
+**Phases**
+
+* `rewrite`, `access`, `balancer`
+
+**Parameters**
+
+* **depth** (number):  Depth to use when validating. Must be non-negative
+
+**Returns**
+
+1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+
+1.  `string|nil` An error message describing the error if there was one
+
+
+**Usage**
+
+``` lua
+local ok, err = kong.service.set_tls_verify_depth(3)
+if not ok then
+  -- do something with error
+end
+```
+
+[Back to top](#kongservice)
+
+
+### kong.service.set_tls_verify_store(store)
+
+Sets the CA trust store to use when validating upstream server's TLS certificate.
+
+ This call affects only the current request. For the store to be actually used the verification
+ has to be enabled with either the [proxy_ssl_verify](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify)
+ directive or using the [kong.service.set_tls_verify](#kongserviceset_tls_verify) function.
+
+ The resty.openssl.x509.store object can be created by following
+ [examples](https://github.com/Kong/lua-kong-nginx-module#restykongtlsset_upstream_ssl_trusted_store) from the Kong/lua-kong-nginx-module repo.
+
+
+**Phases**
+
+* `rewrite`, `access`, `balancer`
+
+**Parameters**
+
+* **store** (table):  resty.openssl.x509.store object to use
+
+**Returns**
+
+1.  `boolean|nil` `true` if the operation succeeded, `nil` if an error occurred
+
+1.  `string|nil` An error message describing the error if there was one
+
+
+**Usage**
+
+``` lua
+local store = require("resty.openssl.x509.store")
+local st = assert(store.new())
+-- st:add(...certificate)
+
+local ok, err = kong.service.set_tls_verify_store(st)
 if not ok then
   -- do something with error
 end
