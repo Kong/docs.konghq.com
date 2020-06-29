@@ -516,16 +516,16 @@ Default: `off`
 
 #### port_maps
 
-With this configuration parameter you can let the Kong to know about the port
+With this configuration parameter, you can let the Kong to know about the port
 from which the packets are forwarded to it. This is fairly common when running
 Kong in a containerized or virtualized environment.
 
-For example `port_maps=80:8000, 443:8443` instructs Kong that the port 80 is
-mapped to 8000 (and the port 443 to 8443), where 8000 and 8443 are the ports the
+For example, `port_maps=80:8000, 443:8443` instructs Kong that the port 80 is
+mapped to 8000 (and the port 443 to 8443), where 8000 and 8443 are the ports that
 Kong is listening to.
 
-This parameter helps Kong to set proper forwarded upstream HTTP request header
-or to get proper forwarded port with a Kong PDK (in case other means determining
+This parameter helps Kong to set a proper forwarded Upstream HTTP request header
+or to get the proper forwarded port with a Kong PDK (in case other means to determine
 it have failed). It changes routing by a destination port to route by a port
 from which packets are forwarded to Kong, and similarly it changes the default
 plugin log serializer to use the port according to this mapping instead of
@@ -876,7 +876,7 @@ Default: `on`
 
 #### ssl_session_tickets
 
-Enables or disables session resumption through TLS session tickets. This is has
+Enables or disables session resumption through TLS session tickets. This has
 no impact when used with TLSv1.3.
 
 Kong enables this by default for performance reasons, but it has security
@@ -1094,8 +1094,8 @@ Sets the default size of the upstream keepalive connection pools.
 Upstream keepalive connection pools are segmented by the `dst ip/dst port/SNI`
 attributes of a connection.
 
-A value of `0` will disable upstream keepalive connections by default, forcing
-each upstream request to open a new connection.
+A value of `0` will disable Upstream keepalive connections by default, forcing
+each Upstream request to open a new connection.
 
 Default: `60`
 
@@ -1250,7 +1250,7 @@ Default: `0`
 
 Defines the buffer size for reading the request body. If the client request
 body is larger than this value, the body will be buffered to disk. Note that
-when the body is buffered to disk Kong plugins that access or manipulate the
+when the body is buffered to disk, Kong plugins that access or manipulate the
 request body may not work, so it is advisable to set this value as high as
 possible (e.g., set it as high as `client_max_body_size` to force request bodies
 to be kept in memory). Do note that high-concurrency environments will require
@@ -1289,18 +1289,18 @@ endpoint.
 When using Postgres as the backend storage, you can optionally enable Kong to
 serve read queries from a separate database instance.
 
-When the number of proxies are large this can greatly reduce the load on the
+When the number of proxies are large, this can greatly reduce the load on the
 main Postgres instance and achieve better scalability. It may also reduce the
 latency jitter if the Kong proxy node's latency to the main Postgres instance is
 high.
 
 The read-only Postgres instance only serves read queries and write queries
 still goes to the main connection. The read-only Postgres instance can be
-eventual consistent while replicating changes from the main instance.
+eventually consistent while replicating changes from the main instance.
 
 At least the `pg_ro_host` config is needed to enable this feature.
 
-By default all other database config for the read-only connection are inherited
+By default, all other database config for the read-only connection are inherited
 from the corresponding main connection config described above but may be
 optionally overwritten explicitly using the `pg_ro_*` config below.
 
@@ -1333,7 +1333,7 @@ name   | description  | default
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
 **pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
-**pg_ro_host** | Same as `pg_host`, but for the read-only connection. Value of `NONE` disables read-only connection. **Note:** please refer to the documentation section above for detailed usage. | `NONE`
+**pg_ro_host** | Same as `pg_host`, but for the read-only connection. Value of `NONE` disables read-only connection. **Note:** Refer to the documentation section above for detailed usage. | `NONE`
 **pg_ro_port** | Same as `pg_port`, but for the read-only connection. | `<pg_port>`
 **pg_ro_timeout** | Same as `pg_timeout`, but for the read-only connection. | `<pg_timeout>`
 **pg_ro_user** | Same as `pg_user`, but for the read-only connection. | `<pg_user>`
@@ -1434,7 +1434,7 @@ node.
 Database misses (no entity) are also cached according to this setting if you do
 not configure `db_cache_neg_ttl`.
 
-If set to 0 (default), such cached entities or misses never expire
+If set to 0 (default), such cached entities or misses never expire.
 
 Default: `0`
 
@@ -1598,7 +1598,7 @@ Default: `off`
 
 Defines whether this node should rebuild its state synchronously or
 asynchronously (the balancers and the router are rebuilt on updates that affects
-them, e.g. updates to Routes, Services or Upstreams, via the Admin API or
+them; e.g., updates to Routes, Services or Upstreams, via the Admin API or
 loading a declarative configuration file).
 
 Accepted values are:

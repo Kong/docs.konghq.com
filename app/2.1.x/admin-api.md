@@ -23,9 +23,9 @@ service_body: |
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
-    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null` then Nginx default is respected. 
-    `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected.  Defaults to `null`.
-    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
+    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected. 
+    `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
+    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the truststore while verifying an Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then the handshake with the Upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an array.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
@@ -599,7 +599,7 @@ a JSON representation of the data you want to send. Example:
 }
 ```
 
-An example adding a route to a service named `test-service`:
+An example adding a Route to a Service named `test-service`:
 
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
@@ -617,9 +617,9 @@ with dotted keys. Example:
 config.limit=10&config.period=seconds
 ```
 
-When specifying arrays send the values in order, or use square brackets (numbering
+When specifying arrays, send the values in order, or use square brackets (numbering
 inside the brackets is optional but if provided it must be 1-indexed, and
-consecutive). An example route added to a service named `test-service`:
+consecutive). An example Route added to a Service named `test-service`:
 
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
@@ -628,7 +628,7 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -d "paths[2]=/path/two"
 ```
 
-The following two are identical to the one above, but less explicit:
+The following two examples are identical to the one above, but less explicit:
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
      -d "name=test-route" \
@@ -653,8 +653,8 @@ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
      -F "config.access=@custom-auth.lua"
 ```
 
-When specifying arrays for this content-type the array indices must be specified.
-An example route added to a service named `test-service`:
+When specifying arrays for this content-type, the array indices must be specified.
+An example Route added to a Service named `test-service`:
 
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
