@@ -1,13 +1,35 @@
 - title: Getting Started
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
-    - text: Introduction
-      url: /getting-started/introduction
+    - text: Overview
+      url: /../../getting-started-guide/latest/overview
+    - text: Prepare to Administer
+      url: /../../getting-started-guide/latest/prepare
+    - text: Expose your Services
+      url: /../../getting-started-guide/latest/expose-services
+    - text: Protect your Services
+      url: /../../getting-started-guide/latest/protect-services
+    - text: Improve Performance
+      url: /../../getting-started-guide/latest/improve-performance
+    - text: Secure Services
+      url: /../../getting-started-guide/latest/secure-services
+    - text: Set Up Intelligent Load Balancing
+      url: /../../getting-started-guide/latest/load-balancing
 
+- title: Guides &amp; References
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Quickstart Guide
+      url: /getting-started/introduction
+      items:
     - text: Five-minute quickstart
       url: /getting-started/quickstart
 
     - text: Configuring a Service
       url: /getting-started/configuring-a-service
+
+    - text: Configuring a gRPC Service
+      url: /getting-started/configuring-a-grpc-service
 
     - text: Enabling Plugins
       url: /getting-started/enabling-plugins
@@ -15,8 +37,6 @@
     - text: Adding Consumers
       url: /getting-started/adding-consumers
 
-- title: Guides &amp; References
-  items:
     - text: Configuration reference
       url: /configuration
 
@@ -35,8 +55,20 @@
     - text: Health checks and circuit breakers reference
       url: /health-checks-circuit-breakers
 
+    - text: Hybrid Mode
+      url: /hybrid-mode
+
+    - text: Go Plugins
+      url: /go
+
     - text: Clustering reference
       url: /clustering
+
+    - text: DB-less &amp; Declarative Configuration Format
+      url: /db-less-and-declarative-config
+
+    - text: Resource Sizing Guidelines
+      url: /sizing-guidelines
 
     - text: Logging reference
       url: /logging
@@ -46,6 +78,9 @@
 
     - text: Securing the Admin API
       url: /secure-admin-api
+
+    - text : Control Kong Community Gateway through systemd
+      url: /systemd
 
     - text: Plugin Development Guide
       url: /plugin-development

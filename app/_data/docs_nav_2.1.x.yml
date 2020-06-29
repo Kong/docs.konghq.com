@@ -1,14 +1,36 @@
 # Generated via autodoc-nav
 - title: Getting Started
+  icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
-    - text: Introduction
-      url: /getting-started/introduction
+    - text: Overview
+      url: /../../getting-started-guide/latest/overview
+    - text: Prepare to Administer
+      url: /../../getting-started-guide/latest/prepare
+    - text: Expose your Services
+      url: /../../getting-started-guide/latest/expose-services
+    - text: Protect your Services
+      url: /../../getting-started-guide/latest/protect-services
+    - text: Improve Performance
+      url: /../../getting-started-guide/latest/improve-performance
+    - text: Secure Services
+      url: /../../getting-started-guide/latest/secure-services
+    - text: Set Up Intelligent Load Balancing
+      url: /../../getting-started-guide/latest/load-balancing
 
+- title: Guides &amp; References
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  items:
+    - text: Quickstart Guide
+      url: /getting-started/introduction
+      items:
     - text: Five-minute quickstart
       url: /getting-started/quickstart
 
     - text: Configuring a Service
       url: /getting-started/configuring-a-service
+
+    - text: Configuring a gRPC Service
+      url: /getting-started/configuring-a-grpc-service
 
     - text: Enabling Plugins
       url: /getting-started/enabling-plugins
@@ -16,8 +38,6 @@
     - text: Adding Consumers
       url: /getting-started/adding-consumers
 
-- title: Guides &amp; References
-  items:
     - text: Configuration reference
       url: /configuration
 
@@ -36,8 +56,20 @@
     - text: Health checks and circuit breakers reference
       url: /health-checks-circuit-breakers
 
+    - text: Hybrid Mode
+      url: /hybrid-mode
+
+    - text: Go Plugins
+      url: /go
+
     - text: Clustering reference
       url: /clustering
+
+    - text: DB-less &amp; Declarative Configuration Format
+      url: /db-less-and-declarative-config
+
+    - text: Resource Sizing Guidelines
+      url: /sizing-guidelines
 
     - text: Logging reference
       url: /logging
@@ -47,6 +79,9 @@
 
     - text: Securing the Admin API
       url: /secure-admin-api
+
+    - text : Control Kong Community Gateway through systemd
+      url: /systemd
 
     - text: Plugin Development Guide
       url: /plugin-development
@@ -84,51 +119,51 @@
     - text: Plugin Development Kit
       url: /pdk
       items:
+        - text: kong.client
+          url: /pdk/kong.client
 
-      - text: kong.client
-        url: /pdk/kong.client
+        - text: kong.client.tls
+          url: /pdk/kong.client.tls
 
-      - text: kong.client.tls
-        url: /pdk/kong.client.tls
+        - text: kong.ctx
+          url: /pdk/kong.ctx
 
-      - text: kong.ctx
-        url: /pdk/kong.ctx
+        - text: kong.ip
+          url: /pdk/kong.ip
 
-      - text: kong.ip
-        url: /pdk/kong.ip
+        - text: kong.log
+          url: /pdk/kong.log
 
-      - text: kong.log
-        url: /pdk/kong.log
+        - text: kong.nginx
+          url: /pdk/kong.nginx
 
-      - text: kong.nginx
-        url: /pdk/kong.nginx
+        - text: kong.node
+          url: /pdk/kong.node
 
-      - text: kong.node
-        url: /pdk/kong.node
+        - text: kong.request
+          url: /pdk/kong.request
 
-      - text: kong.request
-        url: /pdk/kong.request
+        - text: kong.response
+          url: /pdk/kong.response
 
-      - text: kong.response
-        url: /pdk/kong.response
+        - text: kong.router
+          url: /pdk/kong.router
 
-      - text: kong.router
-        url: /pdk/kong.router
+        - text: kong.service
+          url: /pdk/kong.service
 
-      - text: kong.service
-        url: /pdk/kong.service
+        - text: kong.service.request
+          url: /pdk/kong.service.request
 
-      - text: kong.service.request
-        url: /pdk/kong.service.request
+        - text: kong.service.response
+          url: /pdk/kong.service.response
 
-      - text: kong.service.response
-        url: /pdk/kong.service.response
+        - text: kong.table
+          url: /pdk/kong.table
 
-      - text: kong.table
-        url: /pdk/kong.table
-
-
+# Generated via autodoc-admin-api
 - title: Admin API
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   url: /admin-api/
   items:
     - text: DB-less
@@ -259,6 +294,9 @@
 
         - text: Retrieve Enabled Plugins
           url: /admin-api/#retrieve-enabled-plugins
+
+        - text: Retrieve Plugin Schema
+          url: /admin-api/#retrieve-plugin-schema
 
     - text: Certificate Object
       url: /admin-api/#certificate-object

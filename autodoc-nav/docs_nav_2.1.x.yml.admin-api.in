@@ -1,5 +1,6 @@
 # Generated via autodoc-admin-api
 - title: Admin API
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   url: /admin-api/
   items:
     - text: DB-less
@@ -130,6 +131,9 @@
 
         - text: Retrieve Enabled Plugins
           url: /admin-api/#retrieve-enabled-plugins
+
+        - text: Retrieve Plugin Schema
+          url: /admin-api/#retrieve-plugin-schema
 
     - text: Certificate Object
       url: /admin-api/#certificate-object
