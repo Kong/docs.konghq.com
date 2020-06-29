@@ -420,6 +420,18 @@ This function interrupts the current processing and produces a response.
  The first argument `status` will set the status code of the response that
  will be seen by the client.
 
+ **In L4 proxy mode**, **only** the following status code are supported:
+
+ * 200 - OK
+ * 400 - Bad request
+ * 403 - Forbidden
+ * 500 - Internal server error
+ * 502 - Bad gateway
+ * 503 - Service unavailable
+
+ For **L4 proxy mode** the `status` code provided is primarily for logging
+ and statistical purpose, and is not visible to the client directly.
+
  The second, optional, `body` argument will set the response body. If it is
  a string, no special processing will be done, and the body will be sent
  as-is.  It is the caller's responsibility to set the appropriate
@@ -432,16 +444,23 @@ This function interrupts the current processing and produces a response.
  `grpc-message` header. Though, if you have specified `Content-Type` header
  starting with `application/grpc`, the body will be sent.
 
+ **In L4 proxy mode**, `body` can only be `nil` or a string. Automatic JSON
+ encoding is not available. When provided, depends on the value of `status`,
+ the following will happen:
+
+ When `status` is 500, 502 or 503, then `body` will be logged in the Kong
+ error log file. Otherwise `body` will be sent back to the L4 client.
+
  The third, optional, `headers` argument can be a table specifying response
  headers to send. If specified, its behavior is similar to
- `kong.response.set_headers()`.
+ `kong.response.set_headers()`. This argument is ignored in L4 proxy mode.
 
  Unless manually specified, this method will automatically set the
  Content-Length header in the produced response for convenience.
 
 **Phases**
 
-* rewrite, access, admin_api, header_filter (only if `body` is nil)
+* preread, rewrite, access, admin_api, header_filter (only if `body` is nil)
 
 **Parameters**
 
@@ -474,6 +493,79 @@ return kong.response.exit(403, [[{"message":"Access Forbidden"}]], {
 return kong.response.exit(403, { message = "Access Forbidden" }, {
   ["WWW-Authenticate"] = "Basic"
 })
+
+---
+
+```lua
+-- In L4 proxy mode
+return kong.response.exit(200, "Success")
+```
+```
+
+[Back to top](#kongresponse)
+
+
+### kong.response.error(status[, message[, headers]])
+
+This function interrupts the current processing and produces an error
+ response.
+
+ It is recommended to use this function in conjunction with the `return`
+ operator, to better reflect its meaning:
+
+ ```lua
+ return kong.response.error(500, "Error", {["Content-Type"] = "text/html"})
+ ```
+
+ The first argument `status` will set the status code of the response that
+ will be seen by the client. The status code must be of an error, i.e.
+ >399.
+
+ The second, optional, `message` argument will set the message describing
+ the error, which will be written in the body.
+
+ The third, optional, `headers` argument can be a table specifying response
+ headers to send. If specified, its behavior is similar to
+ `kong.response.set_headers()`.
+
+ This method will send the response formatted in JSON, XML, HTML or plain
+ text. The actual format is chosen using one of the following options:
+ - Manually specifying in `headers` argument using the `Content-Type`
+   header.
+ - Conform to the `Accept` header from the request.
+ - If none of the above is found, fallback to JSON format.
+ Content-Length header in the produced response for convenience.
+
+**Phases**
+
+* rewrite, access, admin_api, header_filter (only if `body` is nil)
+
+**Parameters**
+
+* **status** (number):  The status to be used (>399)
+* **message** (string, _optional_):  The error message to be used
+* **headers** (table, _optional_):  The headers to be used
+
+**Returns**
+
+*  Nothing; throws an error on invalid input.
+
+
+**Usage**
+
+``` lua
+return kong.response.error(403, "Access Forbidden", {
+  ["Content-Type"] = "text/plain",
+  ["WWW-Authenticate"] = "Basic"
+})
+
+---
+
+return kong.response.error(403, "Access Forbidden")
+
+---
+
+return kong.response.error(403)
 ```
 
 [Back to top](#kongresponse)

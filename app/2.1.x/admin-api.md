@@ -6,8 +6,8 @@
 #  or its associated files instead.
 #
 title: Admin API
-toc: false
 skip_read_time: true
+toc: false
 
 service_body: |
     Attributes | Description
@@ -23,6 +23,9 @@ service_body: |
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
+    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected. 
+    `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
+    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the truststore while verifying an Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then the handshake with the Upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an array.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
@@ -40,7 +43,10 @@ service_json: |
         "write_timeout": 60000,
         "read_timeout": 60000,
         "tags": ["user-level", "low-priority"],
-        "client_certificate": {"id":"4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"}
+        "client_certificate": {"id":"4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"},
+        "tls_verify": true,
+        "tls_verify_depth": null,
+        "ca_certificates": ["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b", "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"]
     }
 
 service_data: |
@@ -58,7 +64,10 @@ service_data: |
         "write_timeout": 60000,
         "read_timeout": 60000,
         "tags": ["user-level", "low-priority"],
-        "client_certificate": {"id":"51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"}
+        "client_certificate": {"id":"51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"},
+        "tls_verify": true,
+        "tls_verify_depth": null,
+        "ca_certificates": ["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b", "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"]
     }, {
         "id": "fc73f2af-890d-4f9b-8363-af8945001f7f",
         "created_at": 1422386534,
@@ -73,7 +82,10 @@ service_data: |
         "write_timeout": 60000,
         "read_timeout": 60000,
         "tags": ["admin", "high-priority", "critical"],
-        "client_certificate": {"id":"4506673d-c825-444c-a25b-602e3c2ec16e"}
+        "client_certificate": {"id":"4506673d-c825-444c-a25b-602e3c2ec16e"},
+        "tls_verify": true,
+        "tls_verify_depth": null,
+        "ca_certificates": ["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b", "51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515"]
     }],
 
 route_body: |
@@ -270,6 +282,7 @@ ca_certificate_body: |
     Attributes | Description
     ---:| ---
     `cert` | PEM-encoded public certificate of the CA.
+    `cert_digest`<br>*optional* | SHA256 hex digest of the public certificate
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
 
 ca_certificate_json: |
@@ -277,6 +290,7 @@ ca_certificate_json: |
         "id": "04fbeacf-a9f1-4a5d-ae4a-b0407445db3f",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
+        "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["user-level", "low-priority"]
     }
 
@@ -285,11 +299,13 @@ ca_certificate_data: |
         "id": "43429efd-b3a5-4048-94cb-5cc4029909bb",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
+        "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["user-level", "low-priority"]
     }, {
         "id": "d26761d5-83a4-4f24-ac6c-cff276f2b79c",
         "created_at": 1422386534,
         "cert": "-----BEGIN CERTIFICATE-----...",
+        "cert_digest": "c641e28d77e93544f2fa87b2cf3f3d51...",
         "tags": ["admin", "high-priority", "critical"]
     }],
 
@@ -512,7 +528,7 @@ target_body: |
     Attributes | Description
     ---:| ---
     `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record. 
-    `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`1000`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Defaults to `100`.
+    `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Defaults to `100`.
     `tags`<br>*optional* |  An optional set of strings associated with the Target, for grouping and filtering. 
 
 target_json: |
@@ -583,6 +599,13 @@ a JSON representation of the data you want to send. Example:
 }
 ```
 
+An example adding a Route to a Service named `test-service`:
+
+```
+curl -i -X POST http://localhost:8001/services/test-service/routes \
+     -H "Content-Type: application/json" \
+     -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
+```
 
 - **application/x-www-form-urlencoded**
 
@@ -594,16 +617,50 @@ with dotted keys. Example:
 config.limit=10&config.period=seconds
 ```
 
+When specifying arrays, send the values in order, or use square brackets (numbering
+inside the brackets is optional but if provided it must be 1-indexed, and
+consecutive). An example Route added to a Service named `test-service`:
+
+```
+curl -i -X POST http://localhost:8001/services/test-service/routes \
+     -d "name=test-route" \
+     -d "paths[1]=/path/one" \
+     -d "paths[2]=/path/two"
+```
+
+The following two examples are identical to the one above, but less explicit:
+```
+curl -i -X POST http://localhost:8001/services/test-service/routes \
+     -d "name=test-route" \
+     -d "paths[]=/path/one" \
+     -d "paths[]=/path/two"
+
+curl -i -X POST http://localhost:8001/services/test-service/routes \
+    -d "name=test-route" \
+    -d "paths=/path/one" \
+    -d "paths=/path/two"
+```
+
 
 - **multipart/form-data**
 
-Similar to url-encoded, this content type uses dotted keys to reference nested objects.
-Here is an example of sending a Lua file to the pre-function Kong plugin:
+Similar to url-encoded, this content type uses dotted keys to reference nested
+objects. Here is an example of sending a Lua file to the pre-function Kong plugin:
 
 ```
 curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
      -F "name=pre-function" \
-     -F "config.functions=@custom-auth.lua"
+     -F "config.access=@custom-auth.lua"
+```
+
+When specifying arrays for this content-type, the array indices must be specified.
+An example Route added to a Service named `test-service`:
+
+```
+curl -i -X POST http://localhost:8001/services/test-service/routes \
+     -F "name=test-route" \
+     -F "paths[1]=/path/one" \
+     -F "paths[2]=/path/two"
 ```
 
 ---
@@ -1964,32 +2021,32 @@ would have otherwise matched config B.
 
 ##### Create Plugin Associated to a Specific Route
 
-<div class="endpoint post indent">/routes/{route id}/plugins</div>
+<div class="endpoint post indent">/routes/{route name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`route id`<br>**required** | The unique identifier of the Route that should be associated to the newly-created Plugin.
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route that should be associated to the newly-created Plugin.
 
 
 ##### Create Plugin Associated to a Specific Service
 
-<div class="endpoint post indent">/services/{service id}/plugins</div>
+<div class="endpoint post indent">/services/{service name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`service id`<br>**required** | The unique identifier of the Service that should be associated to the newly-created Plugin.
+`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service that should be associated to the newly-created Plugin.
 
 
 ##### Create Plugin Associated to a Specific Consumer
 
-<div class="endpoint post indent">/consumers/{consumer id}/plugins</div>
+<div class="endpoint post indent">/consumers/{consumer name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`consumer id`<br>**required** | The unique identifier of the Consumer that should be associated to the newly-created Plugin.
+`consumer name or id`<br>**required** | The unique identifier or the `name` attribute of the Consumer that should be associated to the newly-created Plugin.
 
 
 #### Request Body
@@ -2019,32 +2076,32 @@ HTTP 201 Created
 
 ##### List Plugins Associated to a Specific Route
 
-<div class="endpoint get indent">/routes/{route id}/plugins</div>
+<div class="endpoint get indent">/routes/{route name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`route id`<br>**required** | The unique identifier of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
 
 
 ##### List Plugins Associated to a Specific Service
 
-<div class="endpoint get indent">/services/{service id}/plugins</div>
+<div class="endpoint get indent">/services/{service name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`service id`<br>**required** | The unique identifier of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
+`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
 
 
 ##### List Plugins Associated to a Specific Consumer
 
-<div class="endpoint get indent">/consumers/{consumer id}/plugins</div>
+<div class="endpoint get indent">/consumers/{consumer name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`consumer id`<br>**required** | The unique identifier of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
+`consumer name or id`<br>**required** | The unique identifier or the `name` attribute of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
 
 
 #### Response
@@ -3246,6 +3303,7 @@ Attributes | Description
 Attributes | Description
 ---:| ---
 `balancer_health`<br>*optional* | If set to 1, Kong will return the health status of the Upstream itself. See the `healthchecks.threshold` property.
+
 
 #### Response
 

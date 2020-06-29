@@ -265,3 +265,20 @@ kong.log.inspect.off()
 
 [Back to top](#konglog)
 
+
+### kong.log.serialize()
+
+Generates a table that contains information that are helpful for logging.
+
+**Phases**
+
+* log
+
+**Usage**
+
+``` lua
+kong.log.serialize()
+```
+
+[Back to top](#konglog)
+

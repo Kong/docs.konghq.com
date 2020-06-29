@@ -514,6 +514,27 @@ Default: `off`
 
 ---
 
+#### port_maps
+
+With this configuration parameter, you can let the Kong to know about the port
+from which the packets are forwarded to it. This is fairly common when running
+Kong in a containerized or virtualized environment.
+
+For example, `port_maps=80:8000, 443:8443` instructs Kong that the port 80 is
+mapped to 8000 (and the port 443 to 8443), where 8000 and 8443 are the ports that
+Kong is listening to.
+
+This parameter helps Kong to set a proper forwarded Upstream HTTP request header
+or to get the proper forwarded port with a Kong PDK (in case other means to determine
+it have failed). It changes routing by a destination port to route by a port
+from which packets are forwarded to Kong, and similarly it changes the default
+plugin log serializer to use the port according to this mapping instead of
+reporting the port Kong is listening to.
+
+Default: none
+
+---
+
 #### anonymous_reports
 
 Send anonymous usage data such as error stack traces to help improve Kong.
@@ -746,6 +767,11 @@ The Status API is a read-only endpoint allowing monitoring tools to retrieve
 metrics, healthiness, and other non-sensitive information of the current Kong
 node.
 
+The following suffix can be specified for each pair:
+
+- `ssl` will require that all connections made through a particular
+  address/port be made with TLS enabled.
+
 This value can be set to `off`, disabling the Status API for this node.
 
 Example: `status_listen = 0.0.0.0:8100`
@@ -823,6 +849,56 @@ Default: none
 
 ---
 
+#### ssl_protocols
+
+Enables the specified protocols for client-side connections. The set of
+supported protocol versions also depends on the version of OpenSSL Kong was
+built with. This value is ignored if `ssl_cipher_suite` is not `custom`.
+
+See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
+
+Default: `TLSv1.1 TLSv1.2 TLSv1.3`
+
+---
+
+#### ssl_prefer_server_ciphers
+
+Specifies that server ciphers should be preferred over client ciphers when
+using the SSLv3 and TLS protocols. This value is ignored if `ssl_cipher_suite`
+is not `custom`.
+
+See
+http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
+
+Default: `on`
+
+---
+
+#### ssl_session_tickets
+
+Enables or disables session resumption through TLS session tickets. This has
+no impact when used with TLSv1.3.
+
+Kong enables this by default for performance reasons, but it has security
+implications: https://github.com/mozilla/server-side-tls/issues/135
+
+See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets
+
+Default: `on`
+
+---
+
+#### ssl_session_timeout
+
+Specifies a time during which a client may reuse the session parameters. See
+the rationale: https://github.com/mozilla/server-side-tls/issues/198
+
+See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
+
+Default: `1d`
+
+---
+
 #### ssl_cert
 
 The absolute path to the SSL certificate for `proxy_listen` values with SSL
@@ -881,6 +957,23 @@ Default: none
 #### admin_ssl_cert_key
 
 The absolute path to the SSL key for `admin_listen` values with SSL enabled.
+
+Default: none
+
+---
+
+#### status_ssl_cert
+
+The absolute path to the SSL certificate for `status_listen` values with SSL
+enabled.
+
+Default: none
+
+---
+
+#### status_ssl_cert_key
+
+The absolute path to the SSL key for `status_listen` values with SSL enabled.
 
 Default: none
 
@@ -982,41 +1075,6 @@ Default: `off`
 
 ---
 
-#### client_max_body_size
-
-Defines the maximum request body size allowed by requests proxied by Kong,
-specified in the Content-Length request header. If a request exceeds this limit,
-Kong will respond with a 413 (Request Entity Too Large). Setting this value to 0
-disables checking the request body size.
-
-See
-http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size for
-further description of this parameter. Numeric values may be suffixed with `k`
-or `m` to denote limits in terms of kilobytes or megabytes.
-
-Default: `0`
-
----
-
-#### client_body_buffer_size
-
-Defines the buffer size for reading the request body. If the client request
-body is larger than this value, the body will be buffered to disk. Note that
-when the body is buffered to disk Kong plugins that access or manipulate the
-request body may not work, so it is advisable to set this value as high as
-possible (e.g., set it as high as `client_max_body_size` to force request bodies
-to be kept in memory). Do note that high-concurrency environments will require
-significant memory allocations to process many concurrent large request bodies.
-
-See
-http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
-for further description of this parameter. Numeric values may be suffixed with
-`k` or `m` to denote limits in terms of kilobytes or megabytes.
-
-Default: `8k`
-
----
-
 #### error_default_type
 
 Default MIME type to use when the request `Accept` header is missing and Nginx
@@ -1026,6 +1084,47 @@ Accepted values are `text/plain`, `text/html`, `application/json`, and
 `application/xml`.
 
 Default: `text/plain`
+
+---
+
+#### upstream_keepalive_pool_size
+
+Sets the default size of the upstream keepalive connection pools.
+
+Upstream keepalive connection pools are segmented by the `dst ip/dst port/SNI`
+attributes of a connection.
+
+A value of `0` will disable Upstream keepalive connections by default, forcing
+each Upstream request to open a new connection.
+
+Default: `60`
+
+---
+
+#### upstream_keepalive_max_requests
+
+Sets the default maximum number of requests than can be proxied upstream
+through one keepalive connection.
+
+After the maximum number of requests is reached, the connection will be closed.
+
+A value of `0` will disable this behavior, and a keepalive connection can be
+used to proxy an indefinite number of requests.
+
+Default: `100`
+
+---
+
+#### upstream_keepalive_idle_timeout
+
+Sets the default timeout (in seconds) for which an upstream keepalive
+connection should be kept open. When the timeout is reached while the connection
+has not been reused, it will be closed.
+
+A value of `0` will disable this behavior, and an idle keepalive connection may
+be kept open indefinitely.
+
+Default: `60`
 
 ---
 
@@ -1083,97 +1182,84 @@ block.
 
 ---
 
-#### nginx_http_ssl_protocols
+#### nginx_main_worker_rlimit_nofile
 
-Enables the specified protocols for client-side connections. The set of
-supported protocol versions also depends on the version of OpenSSL Kong was
-built with.
+Changes the limit on the maximum number of open files for worker processes.
 
-This value is ignored if `ssl_cipher_suite` is not `custom`.
+The special and default value of `auto` sets this value to `ulimit -n` with the
+upper bound limited to 16384 as a measure to protect against excess memory use.
 
-See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
+See http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile
 
-Default: `TLSv1.1 TLSv1.2 TLSv1.3`
+Default: `auto`
 
 ---
 
-#### nginx_http_ssl_prefer_server_ciphers
+#### nginx_events_worker_connections
 
-Specifies that server ciphers should be preferred over client ciphers when
-using the SSLv3 and TLS protocols
+Sets the maximum number of simultaneous connections that can be opened by a
+worker process.
 
-This value is ignored if `ssl_cipher_suite` is not `custom`.
+The special and default value of `auto` sets this value to `ulimit -n` with the
+upper bound limited to 16384 as a measure to protect against excess memory use.
+
+See http://nginx.org/en/docs/ngx_core_module.html#worker_connections
+
+Default: `auto`
+
+---
+
+#### nginx_http_client_header_buffer_size
+
+Sets buffer size for reading the client request headers.
 
 See
-http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size
 
-Default: `on`
-
----
-
-#### nginx_http_ssl_session_tickets
-
-Enables or disables session resumption through TLS session tickets. This is has
-no impact when used with TLSv1.3.
-
-Kong enables this by default for performance reasons, but it has security
-implications: https://github.com/mozilla/server-side-tls/issues/135
-
-See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets
-
-Default: `on`
+Default: `1k`
 
 ---
 
-#### nginx_http_ssl_session_timeout
+#### nginx_http_large_client_header_buffers
 
-Specifies a time during which a client may reuse the session parameters. See
-the rationale: https://github.com/mozilla/server-side-tls/issues/198
-
-See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
-
-Default: `1d`
-
----
-
-#### nginx_upstream_keepalive
-
-Sets the maximum number of idle keepalive connections to upstream servers that
-are preserved in the cache of each worker process. When this number is exceeded,
-the least recently used connections are closed.
-
-A value of `NONE` will disable this behavior altogether, forcing each upstream
-request to open a new connection.
-
-See http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive
-
-Default: `60`
-
----
-
-#### nginx_upstream_keepalive_requests
-
-Sets the maximum number of requests that can be served through one keepalive
-connection.
-
-After the maximum number of requests is made, the connection is closed.
+Sets the maximum number and size of buffers used for reading large clients
+requests headers.
 
 See
-http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_requests
+http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers
 
-Default: `100`
+Default: `4 8k`
 
 ---
 
-#### nginx_upstream_keepalive_timeout
+#### nginx_http_client_max_body_size
 
-Sets a timeout during which an idle keepalive connection to an upstream server
-will stay open.
+Defines the maximum request body size allowed by requests proxied by Kong,
+specified in the Content-Length request header. If a request exceeds this limit,
+Kong will respond with a 413 (Request Entity Too Large). Setting this value to 0
+disables checking the request body size.
 
 See
-http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_timeout
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 
-Default: `60s`
+Default: `0`
+
+---
+
+#### nginx_http_client_body_buffer_size
+
+Defines the buffer size for reading the request body. If the client request
+body is larger than this value, the body will be buffered to disk. Note that
+when the body is buffered to disk, Kong plugins that access or manipulate the
+request body may not work, so it is advisable to set this value as high as
+possible (e.g., set it as high as `client_max_body_size` to force request bodies
+to be kept in memory). Do note that high-concurrency environments will require
+significant memory allocations to process many concurrent large request bodies.
+
+See
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
+
+Default: `8k`
 
 ---
 
@@ -1199,6 +1285,24 @@ its entities in memory, and each node needs to have this data entered via a
 declarative configuration file, which can be specified through the
 `declarative_config` property, or via the Admin API using the `/config`
 endpoint.
+
+When using Postgres as the backend storage, you can optionally enable Kong to
+serve read queries from a separate database instance.
+
+When the number of proxies are large, this can greatly reduce the load on the
+main Postgres instance and achieve better scalability. It may also reduce the
+latency jitter if the Kong proxy node's latency to the main Postgres instance is
+high.
+
+The read-only Postgres instance only serves read queries and write queries
+still goes to the main connection. The read-only Postgres instance can be
+eventually consistent while replicating changes from the main instance.
+
+At least the `pg_ro_host` config is needed to enable this feature.
+
+By default, all other database config for the read-only connection are inherited
+from the corresponding main connection config described above but may be
+optionally overwritten explicitly using the `pg_ro_*` config below.
 
 ---
 
@@ -1229,6 +1333,17 @@ name   | description  | default
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
 **pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
+**pg_ro_host** | Same as `pg_host`, but for the read-only connection. Value of `NONE` disables read-only connection. **Note:** Refer to the documentation section above for detailed usage. | `NONE`
+**pg_ro_port** | Same as `pg_port`, but for the read-only connection. | `<pg_port>`
+**pg_ro_timeout** | Same as `pg_timeout`, but for the read-only connection. | `<pg_timeout>`
+**pg_ro_user** | Same as `pg_user`, but for the read-only connection. | `<pg_user>`
+**pg_ro_password** | Same as `pg_password`, but for the read-only connection. | `<pg_password>`
+**pg_ro_database** | Same as `pg_database`, but for the read-only connection. | `<pg_database>`
+**pg_ro_schema** | Same as `pg_schema`, but for the read-only connection. | `<pg_schema>`
+**pg_ro_ssl** | Same as `pg_ssl`, but for the read-only connection. | `<pg_ssl>`
+**pg_ro_ssl_verify** | Same as `pg_ssl_verify`, but for the read-only connection. | `<pg_ssl_verify>`
+**pg_ro_max_concurrent_queries** | Same as `pg_max_concurrent_queries`, but for the read-only connection. Note: read-only concurrency is not shared with the main (read-write) connection. | `<pg_max_concurrent_queries>`
+**pg_ro_semaphore_timeout** | Same as `pg_semaphore_timeout`, but for the read-only connection. | `<pg_semaphore_timeout>`
 
 #### Cassandra settings
 
@@ -1237,7 +1352,8 @@ name   | description  | default
 **cassandra_contact_points** | A comma-separated list of contact points to your cluster. You may specify IP addresses or hostnames. Note that the port component of SRV records will be ignored in favor of `cassandra_port`. When connecting to a multi-DC cluster, ensure that contact points from the local datacenter are specified first in this list. | `127.0.0.1`
 **cassandra_port** | The port on which your nodes are listening on. All your nodes and contact points must listen on the same port. Will be created if it doesn't exist. | `9042`
 **cassandra_keyspace** | The keyspace to use in your cluster. | `kong`
-**cassandra_consistency** | Consistency setting to use when reading/ writing to the Cassandra cluster. | `ONE`
+**cassandra_write_consistency** | Consistency setting to use when writing to the Cassandra cluster. | `ONE`
+**cassandra_read_consistency** | Consistency setting to use when reading from the Cassandra cluster. | `ONE`
 **cassandra_timeout** | Defines the timeout (in ms) for reading and writing. | `5000`
 **cassandra_ssl** | Toggles client-to-node TLS connections between Kong and Cassandra. | `off`
 **cassandra_ssl_verify** | Toggles server certificate verification if `cassandra_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
@@ -1315,11 +1431,24 @@ Default: `0`
 Time-to-live (in seconds) of an entity from the datastore when cached by this
 node.
 
-Database misses (no entity) are also cached according to this setting.
+Database misses (no entity) are also cached according to this setting if you do
+not configure `db_cache_neg_ttl`.
 
 If set to 0 (default), such cached entities or misses never expire.
 
 Default: `0`
+
+---
+
+#### db_cache_neg_ttl
+
+Time-to-live (in seconds) of a datastore miss (no entity).
+
+If not specified (default), `db_cache_ttl` value will be used instead.
+
+If set to 0, misses will never expire.
+
+Default: none
 
 ---
 
@@ -1465,11 +1594,12 @@ Default: `off`
 
 ### Tuning & Behavior section
 
-#### router_consistency
+#### worker_consistency
 
-Defines whether this node should rebuild its router synchronously or
-asynchronously (the router is rebuilt every time a Route or a Service is updated
-via the Admin API or loading a declarative configuration file).
+Defines whether this node should rebuild its state synchronously or
+asynchronously (the balancers and the router are rebuilt on updates that affects
+them; e.g., updates to Routes, Services or Upstreams, via the Admin API or
+loading a declarative configuration file).
 
 Accepted values are:
 
@@ -1490,17 +1620,15 @@ Default: `strict`
 
 ---
 
-#### router_update_frequency
+#### worker_state_update_frequency
 
-Defines how often the router changes are checked with a background job. When a
-change is detected, a new router will be built. By default we check for changes
-every second.
+Defines how often the worker state changes are checked with a background job.
+When a change is detected, a new router or balancer will be built, as needed.
+Raising this value will decrease the load on database servers and result in less
+jitter in proxy latency, but it might take more time to propagate changes to
+each individual worker.
 
-Raising this value will decrease the load on database servers and result in
-less jitter in proxy latency, with downside of longer converge time for router
-updates.
-
-Default: `1`
+Default: `5`
 
 ---
 

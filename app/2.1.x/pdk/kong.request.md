@@ -138,7 +138,7 @@ Returns the host component of the request's URL or the value of the "host"
  `X-Forwarded-Host` if it comes from a trusted source. The returned value
  is normalized to lower-case.
 
- Whether this function considers `X-Forwarded-Proto` or not depends on
+ Whether this function considers `X-Forwarded-Host` or not depends on
  several Kong configuration parameters:
 
  * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
@@ -167,7 +167,7 @@ kong.request.get_forwarded_host() -- "example.com"
 [Back to top](#kongrequest)
 
 
-### kong.request.get_forwareded_port()
+### kong.request.get_forwarded_port()
 
 Returns the port component of the request's URL, but also considers
  `X-Forwarded-Host` if it comes from a trusted source.  The value
@@ -183,6 +183,13 @@ Returns the port component of the request's URL, but also considers
  **Note**: we do not currently offer support for Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
 
+ When running Kong behind the L4 port mapping (or forwarding) you can also
+ configure:
+ * [port\_maps](https://getkong.org/docs/latest/configuration/#port_maps)
+
+ `port_maps` configuration parameter enables this function to return the
+ port to which the port Kong is listening to is mapped to (in case they differ).
+
 
 **Phases**
 
@@ -190,13 +197,48 @@ Returns the port component of the request's URL, but also considers
 
 **Returns**
 
-* `number` the forwared port
+* `number` the forwarded port
 
 
 **Usage**
 
 ``` lua
 kong.request.get_forwarded_port() -- 1234
+```
+
+[Back to top](#kongrequest)
+
+
+### kong.request.get_forwarded_path()
+
+Returns the path component of the request's URL, but also considers
+ `X-Forwarded-Prefix` if it comes from a trusted source.  The value
+ is returned as a Lua string.
+
+ Whether this function considers `X-Forwarded-Prefix` or not depends on
+ several Kong configuration parameters:
+
+ * [trusted\_ips](https://getkong.org/docs/latest/configuration/#trusted_ips)
+ * [real\_ip\_header](https://getkong.org/docs/latest/configuration/#real_ip_header)
+ * [real\_ip\_recursive](https://getkong.org/docs/latest/configuration/#real_ip_recursive)
+
+ **Note**: we do not currently do any normalization on the request
+           path except return `"/"` on empty path.
+
+
+**Phases**
+
+* rewrite, access, header_filter, body_filter, log, admin_api
+
+**Returns**
+
+* `string` the forwarded path
+
+
+**Usage**
+
+``` lua
+kong.request.get_forwarded_path() -- /path
 ```
 
 [Back to top](#kongrequest)
