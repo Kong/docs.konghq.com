@@ -528,7 +528,7 @@ target_body: |
     Attributes | Description
     ---:| ---
     `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record. 
-    `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`1000`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Defaults to `100`.
+    `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Defaults to `100`.
     `tags`<br>*optional* |  An optional set of strings associated with the Target, for grouping and filtering. 
 
 target_json: |
