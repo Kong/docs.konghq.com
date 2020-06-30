@@ -1,8 +1,7 @@
 ---
-title: Documentation for {{site.ee_product_name}}
-subtitle: A guide for {{site.ee_product_name}}
+title: Documentation for Kong Enterprise
 skip_read_time: true
-toc: false
+is_homepage: true
 ---
 
 <div class="docs-grid">

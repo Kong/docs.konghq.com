@@ -1,7 +1,6 @@
 ---
-title: Documentation for {{site.ce_product_name}}
-subtitle: A guide for {{site.ce_product_name}}
-toc: false
+title: Documentation for Kong Gateway
+is_homepage: true
 ---
 
 <div class="docs-grid">
