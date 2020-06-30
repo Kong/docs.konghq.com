@@ -4,8 +4,9 @@ sitemap: true
 id: getting-started-guide
 ---
 
-<div class="page v2 {{ page.class }} {% if page.is_homepage %}homepage{% endif %}">
+<div class="page v2 {{ page.class }}">
   <header class="page-header">
+    <div class="page-header-bg"></div>
     <div class="container">
       <nav class="docs-navigation v2">
         <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
@@ -13,11 +14,6 @@ id: getting-started-guide
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
         <div class="header-actions">
-          <div class="edition-switch-container">
-            <div class="label">CE</div>
-            <div class="edition-switch"></div>
-            <div class="label">EE</div>
-          </div>
           <div class="search-version-row">
             <div class="versions-dropdown dropdown">
               <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +56,7 @@ id: getting-started-guide
   <div class="container">
     {% include docs-sidebar.html %}
 
-    {% if page.toc == true or page.toc != false and page.is_homepage != true %}
+    {% if page.toc == true or page.toc != false %}
     <aside class="docs-toc">
       <i class="fa fa-times close-sidebar"></i>
       <div class="docs-toc-title">On this page</div>
@@ -71,7 +67,7 @@ id: getting-started-guide
     <div class="page-content-container v2" id="documentation">
       <div class="toggles">
         <i class="fas fa-stream sidebar-toggle"></i>
-        {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
+        {% if page.toc == true or page.toc != false and filename != "index.md" %}
         <i class="far fa-list-alt toc-sidebar-toggle"></i>
         {% endif %}
       </div>

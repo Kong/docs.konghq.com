@@ -1,6 +1,8 @@
 ---
 title: Kong Enterprise Changelog
-layout: changelog
+no_search: true
+no_version: true
+skip_read_time: true
 ---
 
 ## 1.5.0.2
@@ -9,7 +11,7 @@ layout: changelog
 ### Fixes
 
 #### Kong Gateway Community
-* Fixed an issue where the frequent Target CRUD could result in a broken load balancer. 
+* Fixed an issue where the frequent Target CRUD could result in a broken load balancer.
 
 #### Kong Manager
 * Fixed the sorting order of Routes.
@@ -32,14 +34,14 @@ layout: changelog
   * Fixes bug when adding a header with the same name as a removed one.
   * Improves performance by not inheriting from the BasePlugin class.
   * Converts the plugin away from deprecated functions.
- 
+
 
 ## 1.5.0.0
 **Release Date:** 2020/04/09
 
 ### Features
 
-#### Kong Gateway Community 
+#### Kong Gateway Community
 
 * Includes open-source features contained in Kong Gateway Community 1.4 and 1.5 releases, with the exception that Kong Enterprise does not support running on ARM processors at this time.
 
@@ -128,16 +130,16 @@ layout: changelog
   * Fixes issue when bearer `auth_method` was disabled that it was not disabled if introspection was enabled
   * Bump `lua-resty-session` dependency to 3.1
 * JWT Signer
-  * Fixes consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2 
+  * Fixes consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2
   * Change the plugin so that it does not inherit anymore from BasePlugin
-  * Fixes a problem with RSA signature truncation in some edge case reported by a customer 
+  * Fixes a problem with RSA signature truncation in some edge case reported by a customer
   * Updated lua-resty-nettle version to address jwt-signer plugin issue
 * Logging plugins will strip `authorization` header
 * CorrelationID
   * Raise the priority of the plugin so it is run first on a request
 * Request Terminator
   * Do not send a `Content-Length` header with a 204 response
-  
+
 ### Known Issue and Workaround
 * Mutual TLS Authentication Plugin
   * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`.
