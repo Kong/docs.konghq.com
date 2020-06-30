@@ -95,6 +95,43 @@ we will assume its name is `go-hello`. You can find example Go plugins [here][go
 go build -buildmode plugin go-hello.go
 ```
 
+#### Environment Consistency Constraints
+
+Golang development is well known for its low entry barrier and ease of
+deployment. Even complex programs written in Go can be distributed as a single
+executable that you can copy anywhere and run directly.
+
+To make this possible, the compiler generates statically-linked executables by
+default. A significant drawback of this choice is that it makes extending a
+"finished" Go program very difficult. There are several ways around this
+limitation, but most of them involve some form of interprocess communication.
+Since this is well supported by the language and basic libraries, it's usually
+a very good solution, but this isn't always the case.
+
+The extension strategy chosen for Kong is common in other languages: a plugin
+is a dynamically loaded module. To allow this, instead of producing fully
+static programs, the executable and plugins depend on the system libraries.
+
+This is a relatively recent feature in Golang (introduced in Go 1.8, as the
+"plugin" build mode), and has some rough edges in  tooling and deployability.
+In particular, it's essential that the loading executable (`go-pluginserver` in
+our case) and the plugins have exactly the same linking behaviour. This involves:
+* The same version of any common libraries, including:
+    * `Kong/go-pdk`
+    * All standard Go libraries (like `fmt`, `rpc`, `reflect`, etc)
+    * OS libraries, like `libpthread`, `libc`, `ld-xxxx`, etc.
+* The exact same version of the Go compiler
+* The same Go environment variables like `$GOROOT` and `$GOPATH`
+
+Typically, environment inconsistency issues manifest with error messages like
+the following:
+```
+failed to open plugin kong: plugin.Open("/path/go-plugins/go-hello"): plugin was built with a different version of package github.com/Kong/go-pdk/bridge
+```
+
+By following the build steps in the section above, building the go-pluginserver
+and plugins in the same environment, consistency is guaranteed.
+
 ## Developing Go Plugins
 
 This section shows you how to write a custom Go plugin. It will be useful to
