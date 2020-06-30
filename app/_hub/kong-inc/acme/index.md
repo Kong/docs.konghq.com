@@ -144,9 +144,9 @@ Note by setting `tos_accepted` to *true* implies that you have read and accepted
 [terms of service](https://letsencrypt.org/repository/).
 
 **This plugin can only be configured as a global plugin.** The plugin terminates
-`/.well-known/acme-challenge/` path for matching domains. To create certificate
-and terminates challenge only for certain domains, please refer to the
-[Plugin Config](#plugin-config) section.
+`/.well-known/acme-challenge/` path for matching domains. To create certificates
+and terminate challenges only for certain domains, please refer to the
+[Parameters](#parameters) section.
 
 #### Trigger creation of certificate
 
