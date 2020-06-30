@@ -39,7 +39,7 @@ params:
         Upstream response status code considered cacheable
     - name: request_method
       required:
-      default: GET, HEAD
+      default: '`["GET","HEAD"]`'
       value_in_examples:
       description: |
         Downstream request methods considered cacheable

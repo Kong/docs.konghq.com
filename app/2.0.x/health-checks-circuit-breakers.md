@@ -221,6 +221,11 @@ be re-enabled again by the system administrator.
 
 * Active health checks can automatically re-enable a target in the
 ring balancer as soon as it is healthy again. Passive health checks cannot.
+* Passive health checks generally respond faster, because there are more
+requests than probes. For example, an active check configured with a failure threshold
+of 3 and a probe interval of 5 will take anywhere between 10 and 15 seconds
+to respond. A passive check with a failure threshold of 3 will only take 3
+requests to respond.
 * Passive health checks do not produce additional traffic to the
 target. Active health checks do.
 * An active health checker demands a known URL with a reliable status response

@@ -71,6 +71,8 @@ id: documentation
     {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
     <aside class="docs-toc">
       <i class="fa fa-times close-sidebar"></i>
+      <i class="fa fa-chevron-right collapse-toc"></i>
+      <i class="far fa-list-alt expand-toc"></i>
       <div class="docs-toc-title">On this page</div>
       {% include toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
     </aside>

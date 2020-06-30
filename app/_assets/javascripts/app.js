@@ -319,6 +319,21 @@ $(function () {
       $('.docs-toc').removeClass('sidebar-open')
     })
 
+    $('.docs-toc > .collapse-toc').click(function () {
+      $('.docs-toc').addClass('collapsed')
+      $('.page-content-container').addClass('toc-collapsed')
+      setCookie('toc-collapsed', 'true')
+    })
+    $('.docs-toc > .expand-toc').click(function () {
+      $('.docs-toc').removeClass('collapsed')
+      $('.page-content-container').removeClass('toc-collapsed')
+      setCookie('toc-collapsed', 'false')
+    })
+    if (getCookie('toc-collapsed') === 'true') {
+      $('.docs-toc').addClass('collapsed')
+      $('.page-content-container').addClass('toc-collapsed')
+    }
+
     $('#search-version-icon').click(function () {
       const searchVersion = $('.search-version-row')
       if (searchVersion.hasClass('visible')) {
@@ -660,6 +675,14 @@ $(function () {
       })
     })
   }
+
+  // open docs sidebar items
+  $('.docs-sidebar a.active, li.accordion-item.active').each(function (index, a) {
+    $(a).parents('li.accordion-item').each(function (index, item) {
+      $(item).addClass('active')
+      $(item).find('> input').prop('checked', true)
+    })
+  })
 
   const scrollToTopButton = $('#scroll-to-top-button')
 

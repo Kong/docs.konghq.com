@@ -91,7 +91,7 @@ Server: kong/1.1.0
 }
 ```
 
-Kong is running, but no declarative configuration was loaded yet. This 
+Kong is running, but no declarative configuration was loaded yet. This
 means that the configuration of this node is empty. There are no Routes,
 Services or entities of any kind:
 
@@ -107,7 +107,7 @@ Date: Wed, 27 Mar 2019 15:30:02 GMT
 Server: kong/1.1.0
 
 {
-    "data": [], 
+    "data": [],
     "next": null
 }
 ```
@@ -210,7 +210,7 @@ $ kong start -c kong.conf
 ```
 
 Alternatively, you can load a declarative configuration into a running
-Kong node via its Admin API, using the `/config` endpoint. The 
+Kong node via its Admin API, using the `/config` endpoint. The
 following example loads `kong.yml` using HTTPie:
 
 ```
@@ -273,6 +273,7 @@ their initial config) so they are fully compatible with DB-less:
 * `datadog`
 * `file-log`
 * `http-log`
+* `proxy-cache`
 * `tcp-log`
 * `udp-log`
 * `syslog`
@@ -289,7 +290,7 @@ their initial config) so they are fully compatible with DB-less:
 Authentication plugins can be used insofar as the set of credentials
 used is static and specified as part of the declarative configuration.
 Admin API endpoints to dynamically create, update or delete credentials
-are not available in DB-less mode. Plugins that fall into this 
+are not available in DB-less mode. Plugins that fall into this
 category are:
 
 * `acl`

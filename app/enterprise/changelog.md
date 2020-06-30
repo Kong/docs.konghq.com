@@ -5,18 +5,67 @@ no_version: true
 skip_read_time: true
 ---
 
+## 1.5.0.3
+**Release Date** 2020/05/28
+
+### Fixes
+
+#### Kong Gateway
+
+* Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins
+* Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database
+* Reduced the log level of one line in the Balancer code from `ERROR` to `WARN`
+
+#### Kong Manager
+* Included a reference to Kong's EULA in Kong Manager
+
+#### Plugins
+
+* Forward Proxy Advanced
+  * Fixed a runtime error caused by moving Vitals to the log phase
+
+* Mutual TLS Authentication
+  * Fixed issue to correctly skip verification when mode is `IGNORE_CA_ERROR`
+
+* OpenID Connect
+  * Added support for Redis Clusters for session storage
+  * Added `config.session_redis_connect_timeout`
+  * Added `config.session_redis_read_timeout`
+  * Added `config.session_redis_send_timeout`
+  * Added `config.session_redis_ssl`
+  * Added `config.session_redis_ssl_verify`
+  * Added `config.session_redis_server_name`
+  * Added `config.session_redis_cluster_nodes`
+  * Added `config.session_redis_cluster_maxredirections`
+  * Added `config.preserve_query_args`
+  * Added `config.introspection_headers_client`
+  * Chore cookie removal function to be more robust
+  * Changed `config.verify_parameters` default parameter from `true` to `false`
+  * Bumped `lua-resty-session` dependency to 3.5
+  * Changed in issuer normalization that also removes standard OAuth 2.0 Authorization Server Metadata suffix from issuer
+  * Refactored code base for easier maintenance
+  * openid-connect library
+    * Added support for same kid but different `alg` lookups
+    * Added support for OAuth 2.0 Authorization Server Metadata (rfc8414)
+
+* Request Validator
+  * Fixed support for numeric keys
+
+* Auth plugins
+  * Fixed support for setting `anonymous=""`
+
 ## 1.5.0.2
 **Release Date** 2020/04/28
 
 ### Fixes
 
 #### Kong Gateway Community
-* Fixed an issue where the frequent Target CRUD could result in a broken load balancer.
+* Fixed an issue where the frequent Target CRUD could result in a broken load balancer
 
 #### Kong Manager
 * Fixed the sorting order of Routes.
-* Fixed an issue where editing a Developer meta field could cause the custom field name to revert to the default value.
-* Fixed an issue where listing Developers and Files only showed the first page of results.
+* Fixed an issue where editing a Developer meta field could cause the custom field name to revert to the default value
+* Fixed an issue where listing Developers and Files only showed the first page of results
 
 ## 1.5.0.1
 **Release Date:** 2020/04/16
@@ -25,16 +74,15 @@ skip_read_time: true
 
 #### Plugins
 * Kong OpenID Connect Library
-  * Changes  `client_secret_jwk ` and  `private_key_jwt ` to not pass the rfc7521 optional  `client_id ` as it was causing a problem with Okta.
+  * Changes  `client_secret_jwk ` and  `private_key_jwt ` to not pass the rfc7521 optional  `client_id ` as it was causing a problem with Okta
 * OpenID Connect
-  * Fixes `openid_connect/jwks` to not use `err_t` with JWKS custom DAO that is not returning the `err_t`.
-  * Fixes JWKS custom DAO to not return cache hit level as a third return value on errors. Previously, it was sometimes inaccurately treated as `err_t`.
-  * Adds a teardown migration to create the `oic_jwks` row, so that it is not needed to create on init_worker.
+  * Fixes `openid_connect/jwks` to not use `err_t` with JWKS custom DAO that is not returning the `err_t`
+  * Fixes JWKS custom DAO to not return cache hit level as a third return value on errors. Previously, it was sometimes inaccurately treated as `err_t`
+  * Adds a teardown migration to create the `oic_jwks` row, so that it is not needed to create on init_worker
 * Request Transformer Advanced
-  * Fixes bug when adding a header with the same name as a removed one.
-  * Improves performance by not inheriting from the BasePlugin class.
-  * Converts the plugin away from deprecated functions.
-
+  * Fixes bug when adding a header with the same name as a removed one
+  * Improves performance by not inheriting from the BasePlugin class
+  * Converts the plugin away from deprecated functions
 
 ## 1.5.0.0
 **Release Date:** 2020/04/09
@@ -43,7 +91,7 @@ skip_read_time: true
 
 #### Kong Gateway Community
 
-* Includes open-source features contained in Kong Gateway Community 1.4 and 1.5 releases, with the exception that Kong Enterprise does not support running on ARM processors at this time.
+* Includes open-source features contained in Kong Gateway Community 1.4 and 1.5 releases, with the exception that Kong Enterprise does not support running on ARM processors at this time
 
 #### Kong Manager
 * Redesigned Service and Route pages to support Immunity Alerts
@@ -54,7 +102,7 @@ skip_read_time: true
 * Associate Portal Specs with Services through Documents
 
 #### Kong Developer Portal
-* [**BETA**](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta): Developers can create Applications to consume Services using the Portal Application Registration plugin.
+* [**BETA**](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta): Developers can create Applications to consume Services using the Portal Application Registration plugin
 
 #### Plugins
 * Kong OpenID Connect Library
@@ -90,6 +138,8 @@ skip_read_time: true
     * Allow Portal Applications to request access and consume Services
 * Serverless functions
     * Add the ability to run functions in each request phase
+* Upstream TLS
+    * The Upstream TLS plugin is not available in the Kong Enterprise 1.5.x release and is not supported. This plugin was deprecated in Kong Enterprise 1.3.0.0 and is only functional with Kong Enterprise versions 0.35 and 0.36. Be sure to remove this plugin before upgrading to the 1.5.x release to avoid errors or issues with your upgrade
 
 ### Fixes
 #### Kong Gateway
@@ -142,7 +192,7 @@ skip_read_time: true
 
 ### Known Issue and Workaround
 * Mutual TLS Authentication Plugin
-  * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`.
+  * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`
 
 ## 1.3.0.2
 **Release Date:** 2020/02/20
@@ -444,6 +494,7 @@ repository will allow you to do both easily.
 - cors: add OPTIONS, TRACE and CONNECT to default allowed methods
   [#4899](https://github.com/Kong/kong/pull/4899)
   Thanks to [@eshepelyuk](https://github.com/eshepelyuk) for the patch!
+- upstream-tls: The Upstream TLS plugin is deprecated as of Kong Enterprise 1.3.0.0 and is only functional with Kong Enterprise versions 0.35 and 0.36. Be sure to remove this plugin before upgrading to the 1.5.x release to avoid errors or issues with your upgrade, as the plugin will no longer be supported.
 
 #### PDK
 
@@ -676,6 +727,15 @@ repository will allow you to do both easily.
 #### Docker
 
 - Fixes: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
+
+
+## 0.36-6
+
+**Release Date:** 2020-06-18
+
+### Fixes
+- Fixes Kong PDK `get_method()` function to return a correct HTTP method when there are connectivity issues with the Upstream.
+- Reverted Service Mesh changes which affect `proxy_ssl_*` directives.
 
 
 ## 0.36-5
