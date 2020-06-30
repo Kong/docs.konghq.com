@@ -48,7 +48,7 @@ id: documentation
           </div>
           <img id="search-version-icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
           {% endunless %}
-           <div class="edit-this-page v2">
+          <div class="edit-this-page v2">
             <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
               <img src="/assets/images/logos/logo-github.svg" alt="github"/>
             </a>
@@ -68,7 +68,7 @@ id: documentation
   <div class="container">
     {% include docs-sidebar.html %}
 
-    {% if page.toc == true or page.toc != false and filename != "index.md" %}
+    {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
     <aside class="docs-toc">
       <i class="fa fa-times close-sidebar"></i>
       <div class="docs-toc-title">On this page</div>
