@@ -47,7 +47,7 @@ This plugin translates requests and responses between gRPC and HTTP REST.
 
 ![grpc-gateway](https://docs.google.com/drawings/d/12hp4CPqrNPFhattL_cIoJptFvlAqm5wLQ0ggqI5mkCg/pub?w=749&h=370)
 
-Image credit: [grpc-gateway]
+Image credit: [grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)
 
 ## Usage
 
