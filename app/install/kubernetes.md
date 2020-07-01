@@ -1,3 +1,3 @@
 ---
-redirect_to: /2.0.x/kong-for-kubernetes/install
+redirect_to: /{{site.data.kong_latest.version}}/kong-for-kubernetes/install
 ---
