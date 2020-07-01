@@ -1087,11 +1087,28 @@ subdomains, instead of creating an SNI for each.
 
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
+A default certificate can be added using the following parameters in Kong configuration:
+1. [`ssl_cert`](/latest/configuration/#ssl_cert)
+2. [`ssl_cert_key`](/latest/configuration/#ssl_cert_key)
+
+Or, by dynamically configuring the default certificate with an SNI of `*`:
+
+```bash
+$ curl -i -X POST http://localhost:8001/certificates \
+    -F "cert=@/path/to/default-cert.pem" \
+    -F "key=@/path/to/default-cert.key" \
+    -F "snis=*"
+HTTP/1.1 201 Created
+...
+```
+
 Matching of `snis` respects the following priority:
 
- 1. plain (no wildcard)
- 2. prefix
- 3. suffix
+ 1. Exact SNI matching certificate
+ 2. Search for a certificate by prefix wildcard
+ 3. Search for a certificate by suffix wildcard
+ 4. Search for a certificate associated with the SNI `*`
+ 5. The default certificate on the file system
 
 You must now register the following Route within Kong. We will match requests
 to this Route using only the Host header for convenience:
