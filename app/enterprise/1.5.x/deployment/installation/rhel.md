@@ -125,12 +125,13 @@ You should now have two files in your home directory on the target RHEL system:
     $ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
     $ sudo yum install epel-release -y
     ```
-
+    
 2. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
     $ sudo yum install kong-enterprise-edition-1.5.0.1.rhel8.noarch.rpm -y
     ```
+*Note: If you're using RHEL 7.0, please replace the version on the RPM file above from 8 to 7.*
 
 {% endnavtab %}
 {% navtab Using Yum repo %}
