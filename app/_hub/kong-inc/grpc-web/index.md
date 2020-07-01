@@ -9,8 +9,8 @@ type: plugin
 
 desc: Allow browser clients to call gRPC services.
 description: |
-  A Kong plugin to allow access to a gRPC service via the gRPC-Web protocol.
-  Primarily, this means JS browser apps using the gRPC-Web library.
+  A Kong plugin to allow access to a gRPC service via the [gRPC-Web protocol].
+  Primarily, this means JS browser apps using the [gRPC-Web] library.
   
 source_url: https://github.com/Kong/kong-plugin-grpc-web
 
