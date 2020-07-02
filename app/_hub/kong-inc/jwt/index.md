@@ -190,6 +190,18 @@ field/parameter                | default         | description
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256` or `ES256`, the public key (in PEM format) to use to verify the token's signature.
 `secret`<br>*optional*         |                 | If `algorithm` is `HS256` or `ES256`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
+  <div class="alert alert-warning">
+    <strong>decK and Kong Ingress Controller users:</strong> The declarative
+    configuration used in decK and the Kong Ingress Controller imposes some
+    additional validation requirements that differ from the requirements listed
+    above. Because they cannot rely on defaults and do not implement their own
+    algorithm-specific requirements, all fields other than `rsa_public_key`
+    fields are required.
+
+    You should always fill out `key`, `algorithm`, and `secret`. If you use the
+    `RS256` or `ES256` algorithm, use a dummy value for `secret`.
+  </div>
+
 ### Delete a JWT credential
 
 You can remove a Consumer's JWT credential by issuing the following HTTP
