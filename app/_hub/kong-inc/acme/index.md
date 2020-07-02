@@ -45,7 +45,7 @@ params:
       required: false
       default: "`rsa`"
       description: |
-        The certificate type to create, choice of `"rsa"` for RSA certificate or `"ecc"` for EC certificate.
+        The certificate type to create. The possible values are `"rsa"` for RSA certificate or `"ecc"` for EC certificate.
     - name: domains
       required: false
       default: "`[]`"
