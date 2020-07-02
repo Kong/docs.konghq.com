@@ -195,11 +195,12 @@ field/parameter                | default         | description
     configuration used in decK and the Kong Ingress Controller imposes some
     additional validation requirements that differ from the requirements listed
     above. Because they cannot rely on defaults and do not implement their own
-    algorithm-specific requirements, all fields other than `rsa_public_key`
-    fields are required.
+    algorithm-specific requirements, all fields other than
+    <code>rsa_public_key</code> fields are required.
 
-    You should always fill out `key`, `algorithm`, and `secret`. If you use the
-    `RS256` or `ES256` algorithm, use a dummy value for `secret`.
+    You should always fill out <code>key</code>, <code>algorithm</code>, and
+    <code>secret</code>. If you use the <code>RS256</code> or
+    <code>ES256</code> algorithm, use a dummy value for <code>secret</code>.
   </div>
 
 ### Delete a JWT credential
