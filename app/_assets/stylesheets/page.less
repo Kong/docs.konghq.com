@@ -65,16 +65,19 @@
 
         @media (max-width: 800px) {
           .header-actions {
+            top: -100%;
             #search-version-icon {
               display: block;
             }
 
             .search-version-row {
-              max-width: 0;
-              transition: max-width 0.5s;
-
+              display: none;
+              position: absolute;
+              width: auto;
+              top: calc(100% + 1.25rem);
+              right: 0;
               &.visible {
-                max-width: 500px;
+                display: flex;
               }
             }
           }
