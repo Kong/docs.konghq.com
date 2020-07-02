@@ -60,7 +60,7 @@ params:
       required: false
       default: "`shm`"
       description: |
-        The backend storage type to use, choice of `"kong"`, `"shm"`, `"redis"`, `"consul"` or `"vault"`. In dbless mode, `"kong"` storage is unavailable. Note `"shm"` storage does not persist during Kong restarts and does not work for Kong running on different machines, consider using one of `"kong"`, `"redis"`, `"consul"` or `"vault"` in production.
+        The backend storage type to use. The possible values are `"kong"`, `"shm"`, `"redis"`, `"consul"`, or `"vault"`. In DB-less mode, `"kong"` storage is unavailable. Note that `"shm"` storage does not persist during Kong restarts and does not work for Kong running on different machines, so consider using one of `"kong"`, `"redis"`, `"consul"`, or `"vault"` in production.
     - name: storage_config
       required: false
       default:
@@ -121,7 +121,7 @@ Ubuntu/Debian and `/etc/ssl/certs/ca-bundle.crt` for CentOS/Fedora/RHEL.
 
 #### Configure Plugin
 
-Sample declarative configuration with `redis` as storage:
+Here's a sample declarative configuration with `redis` as storage:
 
 ```yaml
 _format_version: "1.1"
@@ -156,8 +156,7 @@ plugins:
 For each the domain that needs a certificate, make sure `DOMAIN/.well-known/acme-challenge`
 is mapped to a Route in Kong. You can check this by sending
 `curl KONG_IP/.well-known/acme-challenge/x -H "host:DOMAIN"` and getting the response `Not found`.
-You can also [use the Admin API](#create-certificates) to check
-correctness of setup.
+You can also [use the Admin API](#create-certificates) to verify the setup.
 If not, add a Route and a dummy Service to catch this route.
 ```bash
 # add a dummy service if needed
