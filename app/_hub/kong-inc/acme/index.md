@@ -200,7 +200,7 @@ $ curl https://mydomain.com -k
 # User can also use this endpoint to force "renew" a certificate
 $ curl http://localhost:8001/acme -d host=mydomain.com
 
-# Furthermore, it's possible to run sanity test on your Kong setup
+# Furthermore, it's possible to run a sanity test on your Kong setup
 # before creating any certificate
 $ curl http://localhost:8001/acme -d host=mydomain.com -d test_http_challenge_flow=true
 
