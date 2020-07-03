@@ -40,7 +40,7 @@ params:
       required: false
       default: "`https://acme-v02.api.letsencrypt.org`"
       description: |
-        The ACMEv2 API endpoint to use. User might use [Let's Encrypt staging environemnt](https://letsencrypt.org/docs/staging-environment/)(`https://acme-staging-v02.api.letsencrypt.org/directory`) during testing. Note that Kong doesn't automatically delete staging certificates: if you use same domain to test and use in production, you will need to delete those certificates manually after testing.
+        The ACMEv2 API endpoint to use. Users can specify the [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) (`https://acme-staging-v02.api.letsencrypt.org/directory`) for testing. Note that Kong doesn't automatically delete staging certificates: if you use same domain to test and use in production, you will need to delete those certificates manually after testing.
     - name: cert_type
       required: false
       default: "`rsa`"
