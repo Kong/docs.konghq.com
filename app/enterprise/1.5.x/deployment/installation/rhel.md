@@ -131,7 +131,7 @@ You should now have two files in your home directory on the target RHEL system:
     ```bash
     $ sudo yum install kong-enterprise-edition-1.5.0.1.rhel8.noarch.rpm -y
     ```
-*Note: If you're using RHEL 7.0, please replace the version on the RPM file above from 8 to 7.*
+*Note: If you're using RHEL 7.0, change the version of the RPM file above from 8 to 7.*
 
 {% endnavtab %}
 {% navtab Using Yum repo %}
