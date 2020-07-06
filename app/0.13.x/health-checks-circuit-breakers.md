@@ -190,8 +190,8 @@ It is possible to combine the two modes. For example, one can enable
 passive health checks to monitor the target health based solely on its
 traffic, and only use active health checks while the target is unhealthy,
 in order to re-enable it automatically. To do so, set the interval of
-active health checks on healthy status to zero, and active checks on
-unhealthy status to a non-zero interval.
+active health checks on `healthy` status to zero, and active checks on
+`unhealthy` status to a non-zero interval.
 
 ## Enabling and disabling health checks
 
