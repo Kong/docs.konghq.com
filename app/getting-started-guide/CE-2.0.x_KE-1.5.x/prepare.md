@@ -24,11 +24,14 @@ If you are trying out Kong Enterprise using a hosted free trial, you can go thro
 <span style="font-size:14px"><em>Using cURL:</em></span>
 <pre class="highlight">
 <code>$ curl -H “Kong-Admin-Token:&lt;your-RBAC-token&gt;” \
-&lt;admin-endpoint-from-email&gt;/services </code></pre>
+&lt;admin-endpoint-from-email&gt;/services</code></pre>
 <span style="font-size:14px"><em>Or using HTTPie:</em></span>
 <pre class="highlight">
-<code>$ http https://&lt;admin-endpoint-from-email>/services \
+<code>$ http &lt;admin-endpoint-from-email&gt;/services \
 Kong-Admin-Token:&lt;your-RBAC-token&gt; </code></pre>
+You should get a 200 response code and your list of services will be empty.
+<br/>
+<br/>You can now use the Admin API instructions in this guide. Remember to switch any mentions of <code>http://&lt;admin-hostname&gt;:8001</code> or <code>&lt;admin-hostname&gt;:8001</code> with your Admin API endpoint (no port number required).
 </li>
 </ol>
 </div>
