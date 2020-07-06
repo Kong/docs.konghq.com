@@ -319,22 +319,27 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
 
     {% capture full_content %}
       {% unless path_array contains "kong-inc" %}
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-ee">
           Community {{ extn_type | capitalize }}: This plugin is <b>developed, tested, and maintained</b> by a third-party contributor.
         </div>
       {% endunless %}
-
       {% if page.enterprise %}
-        <div class="alert alert-warning">
-          <strong>Kong Enterprise only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong Enterprise subscription</a>.
-        </div>
-
-        Please inquire about Kong Enterprise by <a href="https://konghq.com/request-demo">contacting us</a>, or start a <a href="https://konghq.com/free-trial/">free trial</a> today.
-        <hr>
+        <div class="alert alert-ee warning">
+        <strong>Kong Enterprise only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong Enterprise subscription</a>. Please inquire about Kong Enterprise by <a href="https://konghq.com/request-demo">contacting us</a>, or start a <a href="https://konghq.com/free-trial/">free trial</a> today.</div>
       {% endif %}
-
       {% if page.alpha %}
-      <div class="alert alert-red">WARNING: This functionality is released as an alpha-quality feature. Please proceed with caution.</div>
+      <div class="alert alert-ee red condensed margin-bigger">
+          <div class="tag red">ALPHA</div>
+          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#alpha">ALPHA</a> and should not be deployed in a production environment.</p>
+      </div>
+      {% endif %}
+      {% if page.beta %}
+      <div class="alert alert-ee red condensed margin-bigger">
+        <div class="alert-body">
+          <div class="tag red">BETA</div>
+          <p><strong>WARNING:</strong> This plugin is released as <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
+        </div>
+      </div>
       {% endif %}
 
       {{ page.description | markdownify }}

@@ -1062,13 +1062,13 @@ Generic Styling for Desktop
 
 .alert-warning {
   color: #808060;
-  border-color: #e0e0c9;;
+  border-color: #e0e0c9;
   background-color: #fffff7;
 }
 
 .alert-danger {
   color: #cc3d3d;
-  border-color: #eac0c0;;
+  border-color: #eac0c0;
   background-color: #fff4f4;
 }
 
@@ -1077,10 +1077,21 @@ Generic Styling for Desktop
   border: none;
   border-left: solid 3px #b3dfff;
   border-radius: 0;
+  font-size: 14px;
 
   &.red {
     background-color: #fdf3f2;
     border-left: solid 3px @red;
+  }
+
+  &.warning {
+    background-color: #fffbea;
+    border-left: solid 3px #faebcb;
+  }
+
+  &.info {
+    border-left: solid 3px #e0e0e0;
+    background-color: #f9f9f9;
   }
 
   .alert-body {
@@ -1095,7 +1106,7 @@ Generic Styling for Desktop
 
   .tag {
     padding: 2px 8px;
-    margin-right: 16px;
+    margin-right: 12px;
     border-radius: 11px;
     font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 10px;
