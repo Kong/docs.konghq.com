@@ -81,7 +81,7 @@ The cookie is used for all subsequent requests to authenticate the user, until i
 {% endnavtab %}
 {% endnavtabs %}
 
-Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/basic/).
+Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/enterprise/latest/kong-manager/authentication/basic/).
 
 ## Create a Workspace
 {% navtabs %}
