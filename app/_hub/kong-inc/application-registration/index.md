@@ -2,13 +2,14 @@
 name: Portal Application Registration
 publisher: Kong Inc.
 version: 2.0.x
+beta: true
 
 desc: Allow portal developers to register applications against Services
 description: |
   Applications allow registered developers on Kong Developer Portal to
   authenticate with OAuth against a Service on Kong. Dev Portal admins can
   selectively admit access to Services using the
-  [Application Registration](/enterprise/2.1.x/developer-portal/administration/application-registration/enable-application-registration) plugin.
+  [Application Registration](/enterprise/latest/developer-portal/administration/application-registration/enable-application-registration) plugin.
 
   The Application Registration plugin is used in tandem with either the
   Kong [OIDC](/hub/kong-inc/openid-connect/) or Kong
@@ -16,14 +17,10 @@ description: |
   Portal authorization provider. Either Kong or a third-party OAuth provider
   can be the system of record (SoR) for application credentials. For more
   information, see
-  [Configure an Authorization Provider Strategy](/enterprise/2.1.x/developer-portal/administration/application-registration/auth-provider-strategy#portal-app-auth).
+  [Configure an Authorization Provider Strategy](/enterprise/latest/developer-portal/administration/application-registration/index#portal-app-auth).
 
   If you plan to use the external OAuth option, review the
-  [supported OAuth workflows](/enterprise/2.1.x/developer-portal/administration/application-registration/3rd-party-oauth).
-
-  <div class="alert alert-red">WARNING: This plugin is released as a <a href="/enterprise/latest/introduction/key-concepts/#beta">BETA</a> feature and
-  should not be deployed in a production environment.
-  </div>
+  [supported OAuth workflows](/enterprise/latest/developer-portal/administration/application-registration/3rd-party-oauth).
 
 enterprise: true
 type: plugin
@@ -98,9 +95,9 @@ curl -X PATCH http://<DNSorIP>:8001/plugins/{plugin_id} \
 
 Enable `show_issuer` to expose the **Issuer URL** in the **Service Details** dialog.
 
-**Note:** Exposing the [Issuer URL](/enterprise/2.1.x/developer-portal/administration/app-reg/application-registration#show-issuer-url) is essential
+**Note:** Exposing the [Issuer URL](/enterprise/latest/developer-portal/administration/application-registration/enable-application-registration#show-url-issuer) is essential
 for the
-[Authorization Code Flow](/enterprise/2.1.x/developer-portal/administration/app-reg/3rd-party-oauth/#ac-flow) configured for third-party identity providers.
+[Authorization Code Flow](/enterprise/latest/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) configured for third-party identity providers.
 
 Update your current configuration by running a PATCH command. Replace `{plugin_id}` with the `id` of your plugin.
 

@@ -15,6 +15,3 @@ to locate, access, and consume services. With intuitive content management for
 documentation, streamlined developer onboarding, and role-based access control
 (RBAC), Kong’s Developer Portal provides a comprehensive solution for creating
 and customizing a unified developer experience.
-
-The following series of documentation, guides, and references will show you how
-to set up, extend, and customize your Kong Developer Portal.

@@ -394,12 +394,21 @@
     - text: Administration
       url: /developer-portal/administration/
       items:
-        - text: Managing Developers
+        - text: Manage Developers
           url: /developer-portal/administration/managing-developers
         - text: Developer Roles and Content Permissions
           url: /developer-portal/administration/developer-permissions
         - text: Application Registration
           url: /developer-portal/administration/application-registration
+          items:
+            - text: External OAuth2 Support
+              url: /developer-portal/administration/application-registration/3rd-party-oauth
+            - text: Enable Application Registration
+              url: /developer-portal/administration/application-registration/enable-application-registration
+            - text: Set up Okta and Kong for external OAuth
+              url: /developer-portal/administration/application-registration/okta-config
+            - text: Manage Applications
+              url: /developer-portal/administration/application-registration/managing-applications
     - text: Customization
       url: /developer-portal/theme-customization/easy-theme-editing
       items:
