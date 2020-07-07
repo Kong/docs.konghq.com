@@ -143,6 +143,19 @@ params:
       default: "`1209600`"
       description: |
         An optional integer value telling the plugin how many seconds a token/refresh token pair is valid for, and can be used to generate a new access token. Default value is 2 weeks. Set to `0` to keep the token/refresh token pair indefinitely valid.
+    - name: reuse_refresh_token
+      required: false
+      default: false
+      description: |
+        An optional boolean value that indicates whether an OAuth refresh token is
+        persisted when refreshing an access token.
+    - name: hash_secret
+      required: true
+      default: false
+      description: |
+        A boolean flag that indicates whether the OAuth `client_secret` will be
+        stored in hashed form. If enabled on existing plugin instances, client
+        secrets are hashed on the fly, upon first usage.
 
   extra: |
     <div class="alert alert-warning">
