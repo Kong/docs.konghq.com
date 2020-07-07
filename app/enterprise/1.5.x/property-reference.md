@@ -342,7 +342,7 @@ worker processes. If group is omitted, a
 group whose name equals that of user is
 used.
 
-**Example:** `[user] [group]`
+**Example:** `nginx_user = nginx www`
 
 
 ### nginx_worker_processes
@@ -352,6 +352,9 @@ used.
 **Description:**
 
 Determines the number of worker processes spawned by Nginx.
+
+See http://nginx.org/en/docs/ngx_core_module.html#worker_processes for detailed
+usage of the equivalent Nginx directive and a description of accepted values.
 
 
 ### nginx_daemon
@@ -364,6 +367,8 @@ Determines wether Nginx will run as a daemon
 or as a foreground process. Mainly useful
 for development or when running Kong inside
 a Docker environment.
+
+See http://nginx.org/en/docs/ngx_core_module.html#daemon.
 
 
 ### mem_cache_size
