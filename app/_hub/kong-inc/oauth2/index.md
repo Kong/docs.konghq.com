@@ -155,7 +155,7 @@ params:
       description: |
         A boolean flag that indicates whether the OAuth `client_secret` will be
         stored in hashed form. If enabled on existing plugin instances, client
-        secrets are hashed on the fly, upon first usage.
+        secrets are hashed on the fly upon first usage.
 
   extra: |
     <div class="alert alert-warning">
