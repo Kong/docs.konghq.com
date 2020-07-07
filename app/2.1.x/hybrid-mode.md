@@ -27,6 +27,26 @@ Deploying using Hybrid mode has a number of benefits:
 * Easiness of management, since an admin will only need to interact with the CP nodes to control
   and monitor the status of the entire Kong cluster.
 
+## Configuration Properties
+
+Hybrid Mode introduces the following configuration properties:
+- `cluster_listen`: List of addresses and ports on which the Control Plane will listen
+for incoming Data Plane connections. Defaults to `0.0.0.0:8005`.
+- `cluster_control_plane`: Port on which the Data Plane nodes will attempt to connect
+to the Control Plane. Must contain the `cluster_listen` value that was configured in
+the Control Plane node. *Required*.
+- `cluster_mtls`: One of `shared` or `pki`. Indicates whether Hybrid Mode will use a
+shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. If set to
+`shared`, `cluster_cert` and `cluster_cert_key` must be configured. If set to
+`pki`, additional properties `cluster_ca_cert` and `cluster_server_name` are
+expected. Defaults to `shared`.
+- `cluster_cert` and `cluster_cert_key`: Certificate/Key pair used for mTLS between
+CP/DP nodes. *Required*.
+- `cluster_ca_cert`: The trusted CA certificate file in PEM format used to verify
+the `cluster_cert`. *Required* when `cluster_mtls` is set to `pki`.
+- `cluster_server_name`: The Server Name used in the DP/CP TLS handshake. If
+`cluster_mtls` is set to `shared`, `cluster_server_name` defaults to `kong_clustering`.
+
 ## Topology
 
 ![Example Hybrid Mode Topology](/assets/images/docs/hybrid-mode.png "Example Hybrid Mode Topology")
