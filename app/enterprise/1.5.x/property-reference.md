@@ -72,15 +72,60 @@ Path for Admin API request error logs. The granularity of these
 logs is adjusted by the `log_level` directive.
 
 
+#### status_access_log
+
+**Default:** `off`
+
+Path for Status API request access logs. The default value of `off` implies
+that loggin for this API is disabled by default.
+
+If this value is a relative path, it will be placed under the `prefix`
+location.
+
+
+#### status_error_log
+
+**Default:** `logs/status_error.log`
+
+Path for Status API request error logs. The granularity of these logs is
+adjusted by the `log_level` property.
+
+
 ### plugins
 
 **Default:** `bundled`
 
 **Description:**
 
-Comma-separated list of plugins this node should load.
-By default, only plugins bundled in official distributions are loaded via the `bundled` keyword.. Plugins will be loaded from the `kong.plugins.{name}.*`
-namespace.
+Comma-separated list of plugins on a node should load. By default, only plugins
+bundled in official distributions are loaded via the `bundled` keyword.
+
+Loading a plugin does not enable it by default, but only instructs Kong to load
+its source code, and allows to configure the plugin via the various related
+Admin API endpoints.
+
+The specified name(s) will be substituted as such in the Lua namespace:
+`kong.plugins.{name}.*`.
+
+When the `off` keyword is specified as the only value, no plugins will be
+loaded.
+
+`bundled` and plugin names can be mixed together, as the following examples
+suggest:
+
+- `plugins = bundled,custom-auth,custom-log` will include the bundled plugins
+  plus two custom ones
+- `plugins = custom-auth,custom-log` will *only* include the `custom-auth` and
+  `custom-log` plugins.
+- `plugins = off` will not include any plugins
+
+**Note:** Kong will not start if some plugins were previously configured (i.e.
+have rows in the database) and are not specified in this list. Before disabling
+a plugin, ensure all instances of it are removed before restarting Kong.
+
+**Note:** Limiting the amount of available plugins can improve P99 latency when
+experiencing LRU churning in the database cache (i.e. when the configured
+`mem_cache_size`) is full.
 
 
 ### anonymous_reports
@@ -176,6 +221,8 @@ proxy_url = https://127.0.0.1:8443
 
 ### stream_listen
 
+**Default:** By default this value is set to `off`, thus disabling the stream proxy port for this node.
+
 **Description**
 
 Comma-separated list of addresses and ports on which the stream mode should listen.
@@ -191,8 +238,6 @@ This value accepts IPv4, IPv6, and hostnames. Some suffixes can be specified for
 
 **Note:** The `ssl` suffix is not supported, and each address/port will accept TCP with or
   without TLS enabled.
-
-**Default:** `off`
 
 **Examples:**
 ```
@@ -236,18 +281,54 @@ and hostnames.
 
 Some suffixes can be specified for each pair:
 - `ssl` will require that all connections made
-  through a particular address/port be made with TLS
-  enabled.
+   through a particular address/port be made with TLS
+   enabled.
 - `http2` will allow for clients to open HTTP/2
-  connections to Kong's proxy server.
-- Finally, `proxy_protocol` will enable usage of the
-  PROXY protocol for a given address/port.
+   connections to Kong's proxy server.
+- `proxy_protocol` will enable usage of the
+   PROXY protocol for a given address/port.
+- `transparent` will cause kong to listen to, and
+   respond from, any and all IP addresses and ports
+   you configure in iptables.
+- `deferred` instructs to use a deferred accept on
+   Linux (the TCP_DEFER_ACCEPT socket option).
+- `bind` instructs to make a separate bind() call
+   for a given address:port pair.
+- `reuseport` instructs to create an individual
+   listening socket for each worker process
+   allowing a kernel to distribute incoming
+   connections between worker processes
 
 This value can be set to `off`, thus disabling
 the Admin interface for this node, enabling a
 'data-plane' mode (without configuration
 capabilities) pulling its configuration changes
 from the database.
+
+**Example** 
+
+```
+admin_listen = 127.0.0.1:8444 http2 ssl
+```
+
+#### status_listen
+
+**Default:** `off`
+
+Comma-separated list of addresses and ports on which the Status API should
+listen.
+
+The Status API is a read-only endpoint allowing monitoring tools to retrieve
+metrics, healthiness, and other non-sensitive information of the current Kong
+node.
+
+This value can be set to `off`, disabling the Status API for this node.
+
+**Example**
+
+```
+status_listen = 0.0.0.0:8100
+```
 
 
 ### nginx_user
