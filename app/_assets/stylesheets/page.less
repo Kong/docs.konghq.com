@@ -848,7 +848,9 @@ Generic Styling for Desktop
     grid-column-gap: 16px;
     grid-row-gap: 16px;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
+    justify-content: start;
+    align-content: start;
 
     .docs-grid-install-block {
       border: 1px solid #9dc6e3;
@@ -860,7 +862,7 @@ Generic Styling for Desktop
       align-items: center;
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-      justify-content: space-between;
+      justify-content: start;
       padding: 16px;
       text-decoration: none;
 
@@ -869,6 +871,7 @@ Generic Styling for Desktop
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        margin-bottom: 15px;
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
@@ -883,6 +886,18 @@ Generic Styling for Desktop
         color: rgba(0, 0, 0, .85);
         font-weight: 900;
         transition: .2s ease-in-out;
+        display: block;
+      }
+
+      .install-description {
+        font-size: 12px;
+        color: rgba(0, 0, 0, .85);
+        transition: .2s ease-in-out;
+        margin-top: 10px;
+      }
+
+      &.no-description {
+        justify-content: center;
       }
 
       &:hover {

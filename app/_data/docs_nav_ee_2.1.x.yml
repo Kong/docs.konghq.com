@@ -24,24 +24,31 @@
     - text: Installation
       url: /deployment/installation/overview
       items:
-        - text: Docker
-          url: /deployment/installation/docker
-        - text: Kong for Kubernetes Enterprise
-          url: /kong-for-kubernetes/install
-        - text: Kong Enterprise on Kubernetes
-          url: /kong-for-kubernetes/install-on-kubernetes
-        - text: Ubuntu
-          url: /deployment/installation/ubuntu
-        - text: CentOS
-          url: /deployment/installation/centos
-        - text: Amazon Linux 1
-          url: /deployment/installation/amazon-linux
-        - text: Amazon Linux 2
-          url: /deployment/installation/amazon-linux-2
-        - text: Red Hat Enterprise Linux
-          url: /deployment/installation/rhel
-        - text: OpenShift
-          url: /kong-for-kubernetes/install
+        - text: Containerized
+          items:
+            - text: Docker
+              url: /deployment/installation/docker
+            - text: Kong for Kubernetes Enterprise
+              url: /kong-for-kubernetes/install
+            - text: Kong Enterprise on Kubernetes
+              url: /kong-for-kubernetes/install-on-kubernetes
+            - text: OpenShift with Kong for Kubernetes Enterprise
+              url: /kong-for-kubernetes/install
+            - text: OpenShift with Kong Enterprise on Kubernetes
+              url: /kong-for-kubernetes/install-on-kubernetes
+        - text: Operating Systems
+          items:
+            - text: Ubuntu
+              url: /deployment/installation/ubuntu
+            - text: CentOS
+              url: /deployment/installation/centos
+            - text: Amazon Linux 1
+              url: /deployment/installation/amazon-linux
+            - text: Amazon Linux 2
+              url: /deployment/installation/amazon-linux-2
+            - text: Red Hat Enterprise Linux
+              url: /deployment/installation/rhel
+
     - text: Default Ports
       url: /deployment/default-ports
     - text: DNS Considerations
