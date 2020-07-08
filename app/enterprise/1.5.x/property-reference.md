@@ -393,7 +393,7 @@ Defines the TLS ciphers served by Nginx.
 Accepted values are `modern`,
 `intermediate`, `old`, or `custom`.
 
-**Note:** see https://wiki.mozilla.org/Security/Server_Side_TLS for detailed
+**Note:** See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed
 descriptions of each cipher suite.
 
 ### ssl_ciphers
@@ -405,6 +405,7 @@ descriptions of each cipher suite.
 Defines a custom list of TLS ciphers to be
 served by Nginx. This list must conform to
 the pattern defined by `openssl ciphers`.
+
 This value is ignored if `ssl_cipher_suite`
 is not `custom`.
 
@@ -489,21 +490,38 @@ The absolute path to the SSL key for
 
 ### headers
 
-**Defaul:t** `server_tokens, latency_tokens`
+**Default:** `server_tokens, latency_tokens`
 
 **Description**
- Specify Kong-specific headers that should be injected in responses to the client.
- Acceptable values are:
- - `server_tokens`: inject 'Via' and 'Server'
-   headers.
- - `latency_tokens`: inject
-   'X-Kong-Proxy-Latency' and
-   'X-Kong-Upstream-Latency' headers.
- - `X-Kong-<header-name>`: only inject this
-   specific the header when applicable.
+Comma-separated list of headers Kong should inject in client responses.
 
-  This value can be set to `off`, which prevents Kong from injecting any of these
- headers. Note that plugins can still inject headers.
+Accepted values are:
+
+- `Server`: Injects `Server: kong/x.y.z` on Kong-produced response (e.g. Admin
+  API, rejected requests from auth plugin).
+- `Via`: Injects `Via: kong/x.y.z` for successfully proxied requests.
+- `X-Kong-Proxy-Latency`: Time taken (in milliseconds) by Kong to process a
+  request and run all plugins before proxying the request upstream.
+- `X-Kong-Response-Latency`: time taken (in millisecond) by Kong to produce a
+  response in case of e.g. plugin short-circuiting the request, or in in case of
+  an error.
+- `X-Kong-Upstream-Latency`: Time taken (in milliseconds) by the upstream
+  service to send response headers.
+- `X-Kong-Admin-Latency`: Time taken (in milliseconds) by Kong to process an
+  Admin API request.
+- `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
+  service. This is particularly useful for clients to distinguish upstream
+  statuses if the response is rewritten by a plugin.
+- `server_tokens`: Same as specifying both `Server` and `Via`.
+- `latency_tokens`: Same as specifying `X-Kong-Proxy-Latency`,
+  `X-Kong-Response-Latency`, `X-Kong-Admin-Latency` and
+  `X-Kong-Upstream-Latency`
+
+In addition to those, this value can be set to `off`, which prevents Kong from
+injecting any of the above headers. Note that this does not prevent plugins from
+injecting headers of their own.
+
+Example: `headers = via, latency_tokens`
 
 
 ### trusted_ips
@@ -531,7 +549,7 @@ To trust *all* /!\ IPs, set this value to
 If the special value `unix:` is specified,
 all UNIX-domain sockets will be trusted.
 
-**Note:** see http://nginx.org/en/docs/http/ngx_http_realip_module.html for
+**Note:** See http://nginx.org/en/docs/http/ngx_http_realip_module.html for
 examples of accepted values.
 
 
@@ -547,11 +565,14 @@ This value sets the ngx_http_realip_module
 directive of the same name in the Nginx
 configuration.
 
-If set to `proxy_protocol`, then at least
-one of the `proxy_listen` entries must
-have the `proxy_protocol` flag enabled.
+If this value receives `proxy_protocol`:
 
-**Note:** see
+- at least one of the `proxy_listen` entries must have the `proxy_protocol`
+  flag enabled.
+- the `proxy_protocol` parameter will be appended to the `listen` directive of
+  the Nginx template.
+
+**Note:** See
 http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
 for a description of this directive.
 
@@ -562,11 +583,11 @@ for a description of this directive.
 
 **Description:**
 
-This value sets the ngx_http_realip_module
+This value sets the `ngx_http_realip_module`
 directive of the same name in the Nginx
 configuration.
 
-**Note:** see
+**Note:** See
 http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
 for a description of this directive.
 
@@ -585,7 +606,7 @@ respond with a 413 (Request Entity Too
 Large). Setting this value to 0 disables
 checking the request body size.
 
-Note: see
+**Note:** See
 http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 for further description of this parameter. Numeric values may be suffixed
 with 'k' or 'm' to denote limits in terms of kilobytes or megabytes.
@@ -610,7 +631,7 @@ high-concurrency environments will require
 significant memory allocations to process
 many concurrent large request bodies.
 
-**Note:** see
+**Note:** See
 http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
 for further description of this parameter. Numeric values may be suffixed
 with 'k' or 'm' to denote limits in terms of kilobytes or megabytes.
@@ -639,7 +660,7 @@ All configuration properties respecting the naming scheme
 `nginx_<namespace>_<directive>` will result in `<directive>` being injected in
 the Nginx configuration block corresponding to the property's `<namespace>`.
 
-Example:
+**Example:**
 
 `nginx_proxy_large_client_header_buffers = 8 24k`
 
@@ -664,7 +685,7 @@ The following namespaces are supported:
 As with other configuration properties, Nginx directives can be injected via
 environment variables when capitalized and prefixed with `KONG_`.
 
-Example:
+**Example**:
 
 `KONG_NGINX_HTTP_SSL_PROTOCOLS` -> `nginx_http_ssl_protocols`
 
@@ -736,261 +757,75 @@ See [http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive_timeo
 
 ## Datastore
 
-Kong will store all of its data (such as APIs, consumers, and plugins) in
-either Cassandra or PostgreSQL.
-
-All Kong nodes belonging to the same cluster must connect themselves to the
-same database.
-
-
-### database
-
-**Default:** `postgres`
-
-**Description:**
-
-Determines which of PostgreSQL or Cassandra
-this node will use as its datastore.
-Accepted values are `postgres` and
-`cassandra`.
-
-
-### pg_host
-
-**Default:** `127.0.0.1 `
-
-**Description:**
-
-The PostgreSQL host to connect to.
-
-
-### pg_port
-
-**Default:** `5432`
-
-**Description:**
-
-The port to connect to.
-
-### pg_timeout
-
-**Default:** `5000`
-
-**Description**
-
-Defines the timout (in milliseconds) for connecting, reading, and writing.
-
-### pg_user
-
-**Default:** `kong`
-
-**Description:**
-
-The username to authenticate if required.
-
-
-### pg_password
-
-**Default:** `nil`
-
-**Description:**
-
-The password to authenticate if required.
-
-
-### pg_database
-
-**Default:** `kong`
-
-**Description:**
-
-The database name to connect to.
-
-
-### pg_ssl
-
-**Default:** `off`
-
-**Description:**
-
-Toggles client-server TLS connections
-between Kong and PostgreSQL.
-
-
-### pg_ssl_verify
-
-**Default:** `off`
-
-**Description:**
-
-Toggles server certificate verification if
-`pg_ssl` is enabled. See the `lua_ssl_trusted_certificate`
-setting to specify a certificate authority.
-
-### cassandra_contact_points
-
-**Default:** `127.0.0.1`
-
-**Description:**
-
-A comma-separated list of contact points to your cluster.
-
-
-### cassandra_port
-
-**Default:** `9042`
-
-**Description:**
-
-The port on which your nodes are listening on. All your nodes and contact
-points must listen on the same port.
-
-
-### cassandra_keyspace
-
-**Default:** `kong`
-
-**Description:**
-
-The keyspace to use in your cluster.
-
-
-### cassandra_timeout
-
-**Default:** `5000`
-
-**Description:**
-
-Defines the timeout (in ms), for reading and writing.
-
-
-### cassandra_ssl
-
-**Default:** `off`
-
-**Description:**
-
-Toggles client-to-node TLS connections between Kong and Cassandra.
-
-
-### cassandra_ssl_verify
-
-**Default:** `off`
-
-**Description:**
-
-Toggles server certificate verification if
-`cassandra_ssl` is enabled.
-See the `lua_ssl_trusted_certificate`
-setting to specify a certificate authority.
-
-
-### cassandra_username
-
-**Default:** `kong`
-
-**Description:**
-
-Username when using the `PasswordAuthenticator` scheme.
-
-
-### cassandra_password
-
-**Default:** `nil`
-
-**Description:**
-
-Password when using the `PasswordAuthenticator` scheme.
-
-
-### cassandra_consistency
-
-**Default:** `ONE`
-
-**Description:**
-
-Consistency setting to use when reading/writing to the Cassandra cluster.
-
-### cassandra_lb_policy
-
-**Default:** `RequestRoundRobin`
-
-**Description:**
-
-Load balancing policy to use when
-distributing queries across your Cassandra
-cluster.
-Accepted values are:
-`RoundRobin`, `RequestRoundRobin`,
-`DCAwareRoundRobin`, and
-`RequestDCAwareRoundRobin`.
-Prefer the later if and only if you are
-using a multi-datacenter cluster.
-
-
-### cassandra_local_datacenter
-
-**Default:** `nil`
-
-**Description:**
-
-When using the `DCAwareRoundRobin`
-or `RequestDCAwareRoundRobin` load
-balancing policy, you must specify the name
-of the local (closest) datacenter for this
-Kong node.
-
-
-### cassandra_repl_strategy
-
-**Default:** `SimpleStrategy`
-
-**Description:**
-
-When migrating for the first time,
-Kong will use this setting to
-create your keyspace.
-Accepted values are
-`SimpleStrategy` and
-`NetworkTopologyStrategy`.
-
-### cassandra_repl_factor
-
-**Default:** `1`
-
-**Description:**
-
-When migrating for the first time, Kong
-will create the keyspace with this
-replication factor when using the
-`SimpleStrategy`.
-
-
-### cassandra_data_centers
-
-**Default:** `dc1:2,dc2:3`
-
-**Description:**
-
-When migrating for the first time,
-will use this setting when using the
-`NetworkTopologyStrategy`.
-The format is a comma-separated list
-made of <dc_name>:<repl_factor>.
-
-
-### cassandra_schema_consensus_timeout
-
-**Default:** `10000`
-
-**Description:**
-
-Defines the timeout (in ms) for
-the waiting period to reach a
-schema consensus between your
-Cassandra nodes.
-This value is only used during
-migrations.
+Kong can run with a database to store coordinated data between Kong nodes in
+a cluster, or without a database, where each node stores its information 
+independently in memory.
+
+When using a database, Kong will store data for all its entities (such as
+Routes, Services, Consumers, and Plugins) in either Cassandra or PostgreSQL,
+and all Kong nodes belonging to the same cluster must connect themselves
+to the same database.
+
+Kong supports the following database versions:
+
+- **PostgreSQL**: 9.5 and above.
+- **Cassandra**: 2.2 and above.
+
+When not using a database, Kong is said to be in "DB-less mode": it will keep
+its entities in memory, and each node needs to have this data entered via a
+declarative configuration file, which can be specified through the
+`declarative_config` property, or via the Admin API using the `/config`
+endpoint.
+
+#### database
+
+Determines which of PostgreSQL or Cassandra this node will use as its
+datastore.
+
+Accepted values are `postgres`, `cassandra`, and `off`.
+
+Default: `postgres`
+
+---
+
+
+#### Postgres settings
+
+name   | description  | default
+-------|--------------|----------
+**pg_host** | Host of the Postgres server. | `127.0.0.1`
+**pg_port** | Port of the Postgres server. | `5432`
+**pg_timeout** | Defines the timeout (in ms), for connecting, reading and writing. | `5000`
+**pg_user** | Postgres user. | `kong`
+**pg_password** | Postgres user's password. | none
+**pg_database** | The database name to connect to. | `kong`
+**pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
+**pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. | `off`
+**pg_ssl_required** | When `pg_ssl` is on this determines if TLS must be used between Kong and PostgreSQL. | `off`
+**pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
+**pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
+**pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
+
+#### Cassandra settings
+
+name   | description  | default
+-------|--------------|----------
+**cassandra_contact_points** | A comma-separated list of contact points to your cluster. You may specify IP addresses or hostnames. Note that the port component of SRV records will be ignored in favor of `cassandra_port`. When connecting to a multi-DC cluster, ensure that contact points from the local datacenter are specified first in this list. | `127.0.0.1`
+**cassandra_port** | The port on which your nodes are listening on. All your nodes and contact points must listen on the same port. Will be created if it doesn't exist. | `9042`
+**cassandra_keyspace** | The keyspace to use in your cluster. | `kong`
+**cassandra_consistency** | Consistency setting to use when reading/ writing to the Cassandra cluster. | `ONE`
+**cassandra_timeout** | Defines the timeout (in ms) for reading and writing. | `5000`
+**cassandra_ssl** | Toggles client-to-node TLS connections between Kong and Cassandra. | `off`
+**cassandra_ssl_verify** | Toggles server certificate verification if `cassandra_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
+**cassandra_username** | Username when using the `PasswordAuthenticator` scheme. | `kong`
+**cassandra_password** | Password when using the `PasswordAuthenticator` scheme. | none
+**cassandra_lb_policy** | Load balancing policy to use when distributing queries across your Cassandra cluster. Accepted values are: `RoundRobin`, `RequestRoundRobin`, `DCAwareRoundRobin`, and `RequestDCAwareRoundRobin`. Policies prefixed with "Request" make efficient use of established connections throughout the same request. Prefer "DCAware" policies if and only if you are using a multi-datacenter cluster. | `RequestRoundRobin`
+**cassandra_local_datacenter** | When using the `DCAwareRoundRobin` or `RequestDCAwareRoundRobin` load balancing policy, you must specify the name of the local (closest) datacenter for this Kong node. | none
+**cassandra_refresh_frequency** | Frequency (in seconds) at which the cluster topology will be checked for new or decommissioned nodes. A value of `0` will disable this check, and the cluster topology will never be refreshed. | `60`
+**cassandra_repl_strategy** | When migrating for the first time, Kong will use this setting to create your keyspace. Accepted values are `SimpleStrategy` and `NetworkTopologyStrategy`. | `SimpleStrategy`
+**cassandra_repl_factor** | When migrating for the first time, Kong will create the keyspace with this replication factor when using the `SimpleStrategy`. | `1`
+**cassandra_data_centers** | When migrating for the first time, will use this setting when using the `NetworkTopologyStrategy`. The format is a comma-separated list made of `<dc_name>:<repl_factor>`. | `dc1:2,dc2:3`
+**cassandra_schema_consensus_timeout** | Defines the timeout (in ms) for the waiting period to reach a schema consensus between your Cassandra nodes. This value is only used during migrations. | `10000`
 
 
 ## Datastore Cache
@@ -1071,23 +906,29 @@ entities will be made.
 
 **Description**
 
-Entities to be pre-loaded from the datastore into the in-memory cache at Kong
-start-up.
-This speeds up the first access of endpoints that use the given entities.
-When the `services` entity is configured for warmup, the DNS entries for values
-in its `host` attribute are pre-resolved asynchronously as well.
-Cache size set in `mem_cache_size` should be set to a value large enough to
-hold all instances of the specified entities.
-If the size is insufficient, Kong will log a warning.
+By default the DNS resolver will use the standard configuration files
+`/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be
+overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if they
+have been set.
+
+Kong will resolve hostnames as either `SRV` or `A` records (in that order, and
+`CNAME` records will be dereferenced in the process).
+
+In case a name was resolved as an `SRV` record it will also override any given
+port number by the `port` field contents received from the DNS server.
+
+The DNS options `SEARCH` and `NDOTS` (from the `/etc/resolv.conf` file) will be
+used to expand short names to fully qualified ones. So it will first try the
+entire `SEARCH` list for the `SRV` type, if that fails it will try the `SEARCH`
+list for `A`, etc.
+
+For the duration of the `ttl`, the internal DNS resolver will loadbalance each
+request it gets over the entries in the DNS record. For `SRV` records the
+`weight` fields will be honored, but it will only use the lowest `priority`
+field entries in the record.
 
 
 ## DNS Resolver
-
-By default the DNS resolver will use the standard configuration files
-`/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be
-overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if
-they have been set.
-
 
 ### dns_resolver
 
@@ -1182,6 +1023,44 @@ When disabled multiple requests for the
 same name/type will be synchronised to a
 single query.
 
+### Tuning & Behavior section
+
+#### router_consistency
+
+**Default:** `strict`
+
+Defines whether this node should rebuild its router synchronously or
+asynchronously (the router is rebuilt every time a Route or a Service is updated
+via the Admin API or loading a declarative configuration file).
+
+Accepted values are:
+
+- `strict`: the router will be rebuilt synchronously, causing incoming requests
+  to be delayed until the rebuild is finished.
+- `eventual`: the router will be rebuilt asynchronously via a recurring
+  background job running every second inside of each worker.
+
+Note that `strict` ensures that all workers of a given node will always proxy
+requests with an identical router, but that increased long tail latency can be
+observed if frequent Routes and Services updates are expected.
+
+Using `eventual` will help preventing long tail latency issues in such cases,
+but may cause workers to route requests differently for a short period of time
+after Routes and Services updates.
+
+
+#### router_update_frequency
+
+**Default:** `1`
+
+Defines how often the router changes are checked with a background job. When a
+change is detected, a new router will be built. By default we check for changes
+every second.
+
+Raising this value will decrease the load on database servers and result in
+less jitter in proxy latency, with downside of longer converge time for router
+updates.
+
 
 ## Development & Miscellaneous
 
@@ -1205,6 +1084,8 @@ used for verifying Kong's database
 connections, when `pg_ssl_verify` or
 `cassandra_ssl_verify` are enabled.
 
+See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
+
 
 ### lua_ssl_verify_depth
 
@@ -1218,6 +1099,8 @@ set by `lua_ssl_trusted_certificate`.
 This includes the certificates configured
 for Kong's database connections.
 
+See https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth
+
 
 ### lua_package_path
 
@@ -1230,6 +1113,8 @@ Useful when developing or using custom
 plugins not stored in the default search
 path.
 
+See https://github.com/openresty/lua-nginx-module#lua_package_path
+
 
 ### lua_package_cpath
 
@@ -1238,6 +1123,8 @@ path.
 **Description:**
 
 Sets the Lua C module search path (LUA_CPATH).
+
+See https://github.com/openresty/lua-nginx-module#lua_package_cpath
 
 
 ### lua_socket_pool_size
@@ -1250,6 +1137,7 @@ Specifies the size limit for every cosocket
 connection pool associated with every remote
 server.
 
+See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
 
 ### enforce_rbac
 
@@ -1284,6 +1172,7 @@ API will attempt to identify the RBAC user.
 
 
 ## Kong Manager
+The admin graphical user interface for Kong Enterprise.
 
 
 ### admin_gui_listen
@@ -1324,6 +1213,7 @@ Accepted format (items in parenthesis are optional):
 ```
 - http://127.0.0.1:8003
 - https://kong-admin.test
+- http://dev-machine/dev-000
 ```
 
 **Default:**
@@ -1439,31 +1329,6 @@ the associated plugin documentation.
 admin_gui_auth_conf = { "hide_credentials": true }
 ```
 
-### admin_gui_session_conf
-
-**Default:** `nil`
-
-**Description:**
-
-Session Plugin Config (JSON)
-Here you may specify the configuration for the Session plugin as used by
-Kong Manager.
-
-**Example:**
-
-```
-admin_gui_session_conf = { "cookie_name": "kookie", "secret": "changeme"}
-```
-
-### admin_gui_auth_header
-
-**Default:** `Kong-Admin-User`
-
-**Description:**
-
-Defines the name of the HTTP request header from which the Admin API will
-attempt to identify the Kong Admin user.
-
 ### admin_gui_auth_password_complexity
 
 **Default:** `nil`
@@ -1496,9 +1361,37 @@ https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html.
 
 NOTE: Only keywords "min", "max" and "passphrase" are supported.
 
-Example:
+**Example:**
 
 `admin_gui_auth_password_complexity = { "min": "disabled,24,11,9,8" }`
+
+### admin_gui_session_conf
+
+**Default:** `nil`
+
+**Description:**
+
+Session Plugin Config (JSON)
+Here you may specify the configuration for the Session plugin as used by
+Kong Manager.
+
+For more information, see the Kong Session Plugin documentation.
+
+**Example:**
+
+```
+admin_gui_session_conf = { "cookie_name": "kookie", "secret": "changeme"}
+```
+
+### admin_gui_auth_header
+
+**Default:** `Kong-Admin-User`
+
+**Description:**
+
+Defines the name of the HTTP request header from which the Admin API will
+attempt to identify the Kong Admin user.
+
 
 ### admin_gui_auth_login_attempts
 
@@ -1507,8 +1400,8 @@ Example:
 Number of times a user can attempt to log in to Kong Manager. `0` entails that
 infinite attempts are allowed.
 
-## Vitals
 
+## Vitals
 
 ### vitals
 
@@ -1551,15 +1444,27 @@ or 'influxdb'.
 Defines the host and port of the TSDB server
 to which Vitals data is written and read.
 This value is only applied when the
-'vitals_strategy` option is set to
-'prometheus' or 'influxdb'. This value
+`vitals_strategy` option is set to
+`prometheus` or `influxdb`. This value
 accepts IPv4, IPv6, and hostname values.
-If the 'vitals_strategy' is set to
-'prometheus', this value determines the
+If the `vitals_strategy` is set to
+`prometheus`, this value determines the
 address of the Prometheus server from which
-Vitals data will be read. For 'influxdb'
+Vitals data will be read. For `influxdb`
 strategies, this value controls both the read
 and write source for Vitals data.
+
+###
+
+### vitals_tsdb_user
+
+**Description:**
+Influxdb user
+
+### vitals_tsdb_password
+
+**Description:**
+Influxdb password
 
 
 ### vitals_statsd_address
@@ -1617,7 +1522,7 @@ interval (in seconds) of the
 Prometheus server.
 
 
-## Dev Portal
+## Developer Portal
 
 
 ### portal
@@ -1625,11 +1530,17 @@ Prometheus server.
 **Default:** `off`
 
 **Description:**
+Developer Portal Switch
 
 Enable or disable the Dev Portal Interface and API
 
-When enabled, Kong will expose the Kong Dev Portal Files endpoint and the
-public Dev Portal Files API.
+When enabled, Kong will expose the Dev Portal interface and
+read-only APIs on the `portal_gui_listen` address,
+and endpoints on the Admin API to manage assets.
+
+When enabled along with `portal_auth`:
+Kong will expose management endpoints for developer
+accounts on the Admin API and the Dev Portal API.
 
 **Example:**
 
@@ -1643,6 +1554,7 @@ portal = on
 **Default:** `0.0.0.0:8003, 0.0.0.0:8446 ssl`
 
 **Description:**
+Developer Portal GUI Listeners
 
 Comma-separated list of addresses on which Kong will
 expose the Kong Dev Portal GUI. Suffixes can be
@@ -1664,13 +1576,13 @@ portal_gui_listen = 0.0.0.0:8003, 0.0.0.0:8446 ssl
 
 The Dev Portal URL protocol
 
-Provide the protocol used in conjunction with portal_gui_host to construct the
+Provide the protocol used in conjunction with `portal_gui_host` to construct the
 lookup, or balancer address for Kong Proxy nodes.
 
 **Example:**
 
 ```
-portal_gui_protocol = http
+http or https
 ```
 
 
@@ -1682,13 +1594,18 @@ portal_gui_protocol = http
 
 Dev Portal GUI Host
 
-Provide the host unsed in conjunction with portal_gui_protocol to construct the
+Provide the host used in conjunction with `portal_gui_protocol` to construct the
 lookup, or balancer address for Kong Proxy nodes.
 
 **Example:**
 
 ```
-portal_gui_host = localhost:8003
+- <IP>:<PORT>
+  portal_gui_host = 127.0.0.1:8003
+- <HOSTNAME>
+  portal_gui_host = portal_api.domain.tld
+- <HOSTNAME>/<PATH>
+  portal_gui_host = dev-machine/dev-285
 ```
 
 ### portal_cors_origins
@@ -1696,6 +1613,7 @@ portal_gui_host = localhost:8003
 **Default:** `nil`
 
 **Description:**
+Developer Portal CORS Origins
 
 A comma separated list of allowed domains for `Access-Control-Allow-Origin`
 header. This can be used to resolve CORS issues in custom networking
@@ -1705,7 +1623,13 @@ environments.
 
 ```
 portal_cors_origins = http://localhost:8003, https://localhost:8004
+
 ```
+**NOTE:** 
+In most cases, the Developer Portal is able to derive
+valid CORS origins by using portal_gui_protocol, portal_gui_host,
+and if applicable, portal_gui_use_subdomains. In these cases,
+portal_cors_origins is not needed and can remain unset.
 
 ### portal_gui_use_subdomains
 
