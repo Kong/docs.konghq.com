@@ -452,7 +452,7 @@ $ curl -X POST https://your.service.com/oauth2/token \
 The same access tokens can be used by gRPC applications:
 
 ```bash
-$ grpcurl -H 'authorization: bearer XXX' ....
+$ grpcurl -H 'authorization: bearer XXX' ...
 ```
 
 Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  Depending on your application, you might have to configure the `oauth2` plugin on two separate routes: one under `protocols: ["https"]` and another under `protocols: ["grpcs"]`.
