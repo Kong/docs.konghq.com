@@ -180,7 +180,7 @@ $ curl http://kong:8000/{path matching a configured Route} \
 gRPC clients are supported too:
 
 ```bash
-$ grpcurl kong.host.name -H 'apikey: <some_key>' ...
+$ grpcurl -H 'apikey: <some_key>' ...
 ```
 
 ### Upstream Headers
