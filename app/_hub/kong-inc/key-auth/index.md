@@ -197,7 +197,7 @@ $ curl http://kong:8000/{proxy path} \
 gRPC clients are supported too:
 
 ```bash
-$ grpcurl kong.host.name -H 'apikey: <some_key>' ...
+$ grpcurl -H 'apikey: <some_key>' ...
 ```
 
 ### Delete a Key
