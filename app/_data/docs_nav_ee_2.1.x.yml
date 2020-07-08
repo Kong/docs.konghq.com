@@ -421,6 +421,8 @@
       items:
         - text: Easy Theme Editing
           url: /developer-portal/theme-customization/easy-theme-editing
+        - text: Markdown Rendering Module
+          url: /developer-portal/theme-customization/markdown-extended          
         - text: Customizing Portal Emails
           url: /developer-portal/theme-customization/emails
         - text: Adding and Using Javascript Assets
