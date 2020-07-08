@@ -70,7 +70,7 @@ params:
   service_id: true
   route_id: false
   consumer_id: false
-  protocols: ["http", "https"]
+  protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: no
   dbless_explanation: |
     For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with DB-less.
@@ -444,6 +444,18 @@ $ curl -X POST https://your.service.com/oauth2/token \
     --data "client_secret=XXX" \
     --data "refresh_token=XXX"
 ```
+
+----
+
+## gRPC requests
+
+The same access tokens can be used by gRPC applications:
+
+```bash
+$ grpcurl -H 'authorization: bearer XXX' ...
+```
+
+Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  Depending on your application, you might have to configure the `oauth2` plugin on two separate routes: one under `protocols: ["https"]` and another under `protocols: ["grpcs"]`.
 
 [consumer-object]: /latest/admin-api/#consumer-object
 [proxy-port]: https://docs.konghq.com/latest/configuration/#proxy_listen
