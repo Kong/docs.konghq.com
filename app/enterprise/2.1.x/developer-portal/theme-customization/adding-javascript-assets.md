@@ -2,13 +2,15 @@
 title: Adding and Using JavaScript Assets in Kong Dev Portal
 ---
 
-### Introduction
+## Introduction
 
-The Kong Developer Portal ships with Vue, React, and jQuery already loaded. In order to write custom interactive webpages, you may want to make use of these libraries, or load additional JavaScript.
+The Kong Developer Portal ships with Vue, React, and jQuery already loaded.
+You may want to make use of these libraries to write custom interactive
+webpages or load additional JavaScript.
 
-> Note: This guide is for adding/using javascript assets without changing server-side routing. [Learn more about a SPA to the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/single-page-app).
+> Note: This guide is for adding/using JavaScript assets without changing server-side routing. [Learn more about a SPA to the Dev Portal](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/single-page-app).
 
-### Prerequisites
+## Prerequisites
 
 * Kong Enterprise 1.3 or later
 * Portal Legacy is turned off
@@ -16,16 +18,16 @@ The Kong Developer Portal ships with Vue, React, and jQuery already loaded. In o
 * The [kong-portal-cli tool](/enterprise/{{page.kong_version}}/developer-portal/helpers/cli) is installed locally
 
 
-### Adding JS Assets
+## Adding JS Assets
 > Warning: Due to compatibility issues, avoid using any React version other than React 15 on the `layouts/system/spec-render.html` layout. We recommend using the version of React included by the default base theme.
 
-To add javascript assets:
+To add JavaScript assets:
 1. Clone the [kong-portal-templates](https://github.com/Kong/kong-portal-templates) repo.
-2. Add any javascript files to the `themes/base/js` folder.
-3. Deploy using the kong-portal-cli-tool.
+2. Add any JavaScript files to the `themes/base/js` folder.
+3. Deploy using the [kong-portal-cli-tool](/enterprise/{{page.kong_version}}/developer-portal/helpers/cli).
 
 
-### Loading JS Assets
+## Loading JS Assets
 
 You can make use of the existing Vue and jQuery in any layout/partial that includes `partials/theme/required-scripts.html` where these scripts are loaded.
 
