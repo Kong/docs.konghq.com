@@ -47,7 +47,7 @@
     - text: Securing the Admin API
       url: /secure-admin-api
 
-    - text: Upgrade guide
+    - text: Upgrade Guide
       url: /upgrading
 
     - text: Plugin Development Guide

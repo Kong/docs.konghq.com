@@ -83,7 +83,7 @@
     - text : Control Kong Community Gateway through systemd
       url: /systemd
 
-    - text: Upgrade guide
+    - text: Upgrade Guide
       url: /upgrading
 
     - text: Plugin Development Guide
