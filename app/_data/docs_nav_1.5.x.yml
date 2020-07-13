@@ -53,7 +53,8 @@
       url: /secure-admin-api
 
     - text: Upgrade guide
-      url: /upgrading
+      url: https://github.com/Kong/kong/blob/master/UPGRADE.md#upgrade-to-150
+      absolute_url: true
 
     - text: Plugin Development Guide
       url: /plugin-development
