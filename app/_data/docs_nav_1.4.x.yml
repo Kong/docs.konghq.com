@@ -51,6 +51,10 @@
     - text: Securing the Admin API
       url: /secure-admin-api
 
+    - text: Upgrade Guide
+      url: https://github.com/Kong/kong/blob/master/UPGRADE.md#upgrade-to-140
+      absolute_url: true
+
     - text: Plugin Development Guide
       url: /plugin-development
       items:
