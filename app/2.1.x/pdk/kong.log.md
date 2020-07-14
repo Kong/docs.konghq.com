@@ -303,7 +303,7 @@ Generates a table that contains information that are helpful for logging.
  Consider filtering before writing it to unsecured locations.
 
  To see what content is present in your setup, enable any of the logging
- plugins (e.g. ,`file-log`) and the output written to the log file is the table
+ plugins (e.g., `file-log`) and the output written to the log file is the table
  returned by this function JSON-encoded.
 
 
