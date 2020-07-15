@@ -11,6 +11,12 @@ You can install Kong for Kubernetes Enterprise using YAML with kubectl, or with 
 
 <img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">
 
+### Deployment Options
+
+The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
+
+If you would like to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode setup documentation](https://github.com/Kong/charts/blob/master/charts/kong#hybrid-mode) for details.
+
 ## Prerequisites
 Before starting installation, be sure you have the following:
 

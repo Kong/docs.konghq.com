@@ -13,6 +13,11 @@ the installation and configuration.
 Kong supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its datastore. This guide provides
 steps to configure PostgreSQL.
 
+### Deployment Options
+
+The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
+
+If you want to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode Setup](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup) for details.
 
 ## Prerequisites
 
@@ -29,7 +34,7 @@ To complete this installation you will need:
 * A valid **Kong Enterprise License** JSON file.
   - The license file can be found in your Bintray account. See [Accessing Your License](/enterprise/latest/deployment/access-license)
 
-## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image
+## Step 1. Add the Kong Docker Repository and Pull the Kong Enterprise Docker Image {#pull-image}
 
 ```bash
 $ docker login -u <your_username_from_bintray> -p <your_apikey_from_bintray> kong-docker-kong-enterprise-edition-docker.bintray.io
@@ -52,7 +57,7 @@ $ docker tag <IMAGE_ID> kong-ee
 
 **Note:** Replace `<IMAGE_ID>` with the one matching your repository.
 
-## Step 2. Create a Docker Network
+## Step 2. Create a Docker Network {#create-network}
 
 Create a custom network to allow the containers to discover and communicate with each other.
 
@@ -74,7 +79,7 @@ $ docker run -d --name kong-ee-database \
   postgres:9.6
 ```
 
-## Step 4. Export the License Key to a Variable
+## Step 4. Export the License Key to a Variable {#license-key}
 
 ```bash
 $ export KONG_LICENSE_DATA='{"license":{"signature":"LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tClZlcnNpb246IEdudVBHIHYyCgpvd0did012TXdDSFdzMTVuUWw3dHhLK01wOTJTR0tLWVc3UU16WTBTVTVNc2toSVREWk1OTFEzVExJek1MY3dTCjA0ek1UVk1OREEwc2pRM04wOHpNalZKVHpOTE1EWk9TVTFLTXpRMVRVNHpTRXMzTjA0d056VXdUTytKWUdNUTQKR05oWW1VQ21NWEJ4Q3NDc3lMQmorTVBmOFhyWmZkNkNqVnJidmkyLzZ6THhzcitBclZtcFZWdnN1K1NiKzFhbgozcjNCeUxCZzdZOVdFL2FYQXJ0NG5lcmVpa2tZS1ozMlNlbGQvMm5iYkRzcmdlWFQzek1BQUE9PQo9b1VnSgotLS0tLUVORCBQR1AgTUVTU0FHRS0tLS0tCg=","payload":{"customer":"Test Company Inc","license_creation_date":"2017-11-08","product_subscription":"Kong Enterprise","admin_seats":"5","support_plan":"None","license_expiration_date":"2017-11-10","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU"},"version":1}}'
@@ -142,7 +147,7 @@ Verify that Kong Manager is running by accessing it using the URL specified in `
 
 ## Step 8. Enable the Developer Portal
 
-Execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host: 
+Execute the following command. Change `<DNSorIP>` to the IP or valid DNS of your Docker host:
 
   ```bash
   $ curl -X PATCH http://<DNSorIP>:8001/workspaces/default --data "config.portal=true"

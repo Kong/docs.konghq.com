@@ -89,6 +89,29 @@ Options:
 
 ---
 
+### kong hybrid
+
+```
+Usage: kong hybrid COMMAND [OPTIONS]
+
+Hybrid mode utilities for Kong.
+
+The available commands are:
+  gen_cert [<cert> <key>]           Generate a certificate/key pair that is suitable
+                                    for use in hybrid mode deployment.
+                                    Cert and key will be written to
+                                    './cluster.crt' and './cluster.key' inside
+                                    the current directory unless filenames are given.
+
+Options:
+ -d,--days        (optional number) Override certificate validity duration.
+                                    Default: 1095 days (3 years)
+
+```
+
+[Back to top](#introduction)
+
+---
 
 ### kong migrations
 

@@ -21,6 +21,15 @@
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
   items:
+    - text: Deployment Options
+      url: /deployment/deployment-options
+      items:
+    - text: Hybrid Mode
+      items:
+        - text: Overview
+          url: /deployment/hybrid-mode
+        - text: Deploying in Hybrid Mode
+          url: /deployment/hybrid-mode-setup
     - text: Installation
       url: /deployment/installation/overview
       items:
