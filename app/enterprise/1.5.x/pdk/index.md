@@ -21,8 +21,6 @@ The Plugin Development Kit (or "PDK") is set of Lua functions and variables
  `kong.request`, `kong.log`, etc...
 
 
-
-
 ### kong.version
 
 A human-readable string containing the version number of the currently
@@ -33,8 +31,6 @@ A human-readable string containing the version number of the currently
 ``` lua
 print(kong.version) -- "0.14.0"
 ```
-
-[Back to top](#introduction)
 
 
 ### kong.version_num
@@ -49,8 +45,6 @@ if kong.version_num < 13000 then -- 000.130.00 -> 0.13.0
   -- no support for Routes & Services
 end
 ```
-
-[Back to top](#introduction)
 
 
 ### kong.pdk_major_version
@@ -68,8 +62,6 @@ if kong.pdk_version_num < 2 then
 end
 ```
 
-[Back to top](#introduction)
-
 
 ### kong.pdk_version
 
@@ -80,8 +72,6 @@ A human-readable string containing the version number of the current PDK.
 ``` lua
 print(kong.pdk_version) -- "1.0.0"
 ```
-
-[Back to top](#introduction)
 
 
 ### kong.configuration
@@ -104,10 +94,6 @@ print(kong.configuration.prefix) -- "/usr/local/kong"
 kong.configuration.prefix = "foo"
 ```
 
-[Back to top](#introduction)
-
-
-
 
 ### kong.db
 
@@ -125,8 +111,6 @@ kong.db.services:insert()
 kong.db.routes:select()
 ```
 
-[Back to top](#introduction)
-
 
 ### kong.dns
 
@@ -137,7 +121,6 @@ Instance of Kong's DNS resolver, a client object from the
  advanced users.
 
 
-[Back to top](#introduction)
 
 
 ### kong.worker_events
@@ -150,9 +133,6 @@ Instance of Kong's IPC module for inter-workers communication from the
  advanced users.
 
 
-[Back to top](#introduction)
-
-
 ### kong.cluster_events
 
 Instance of Kong's cluster events module for inter-nodes communication.
@@ -161,16 +141,9 @@ Instance of Kong's cluster events module for inter-nodes communication.
  advanced users.
 
 
-[Back to top](#introduction)
-
-
 ### kong.cache
 
 Instance of Kong's database caching object, from the `kong.cache` module.
 
  **Note:** usage of this module is currently reserved to the core or to
  advanced users.
-
-
-[Back to top](#introduction)
-
