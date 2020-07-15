@@ -1,7 +1,29 @@
 ---
 title: Kong Enterprise Changelog
-layout: changelog
+no_search: true
+no_version: true
+skip_read_time: true
 ---
+
+## 1.5.0.4
+**Release Date** 2020/06/26
+
+### Fixes
+
+#### Kong Gateway 
+* Upgraded Postgres driver to support selecting the TLS version when connecting to Postgres.
+* Fixed issue causing incorrect `service_count` for license report endpoint. 
+
+#### Kong Manager
+* Exposed Routes `path_handling` attribute from the Admin API in Kong Manager.
+
+#### Plugins
+* OpenID Connect
+  * Fixed Consumers to call the correct function when setting an anonymous Consumer (introduced with 1.5.0).
+  * Fixed unauthorized responses giving 403 instead of 401 as a status code (introduced with 1.5.0).
+  
+* Collector
+  * Fixed issue that occurred when Kong returned a 404 and caused logs to fill with messages.
 
 ## 1.5.0.3
 **Release Date** 2020/05/28
@@ -9,22 +31,20 @@ layout: changelog
 ### Fixes
 
 #### Kong Gateway 
-
 * Fixed window counters issue caused when multiple sets of Redis cluster addresses are configured across multiple rate-limiting-advanced plugins
-* Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database 
+* Fixed an issue where authentication plugins could not load legacy and empty `config.anonymous` strings from the database
 * Reduced the log level of one line in the Balancer code from `ERROR` to `WARN`
 
 #### Kong Manager
-* Included a reference to Kong's EULA in Kong Manager 
+* Included a reference to Kong's EULA in Kong Manager
 
 #### Plugins
-
 * Forward Proxy Advanced
-  * Fixed a runtime error caused by moving Vitals to the log phase 
+  * Fixed a runtime error caused by moving Vitals to the log phase
 
 * Mutual TLS Authentication
   * Fixed issue to correctly skip verification when mode is `IGNORE_CA_ERROR`
-  
+
 * OpenID Connect
   * Added support for Redis Clusters for session storage
   * Added `config.session_redis_connect_timeout`
@@ -58,7 +78,7 @@ layout: changelog
 ### Fixes
 
 #### Kong Gateway Community
-* Fixed an issue where the frequent Target CRUD could result in a broken load balancer 
+* Fixed an issue where the frequent Target CRUD could result in a broken load balancer
 
 #### Kong Manager
 * Fixed the sorting order of Routes.
@@ -87,7 +107,7 @@ layout: changelog
 
 ### Features
 
-#### Kong Gateway Community 
+#### Kong Gateway Community
 
 * Includes open-source features contained in Kong Gateway Community 1.4 and 1.5 releases, with the exception that Kong Enterprise does not support running on ARM processors at this time
 
@@ -178,16 +198,16 @@ layout: changelog
   * Fixes issue when bearer `auth_method` was disabled that it was not disabled if introspection was enabled
   * Bump `lua-resty-session` dependency to 3.1
 * JWT Signer
-  * Fixes consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2 
+  * Fixes consumer invalidation so that it now happens cluster wide, reverting the change made in 1.0.2
   * Change the plugin so that it does not inherit anymore from BasePlugin
-  * Fixes a problem with RSA signature truncation in some edge case reported by a customer 
+  * Fixes a problem with RSA signature truncation in some edge case reported by a customer
   * Updated lua-resty-nettle version to address jwt-signer plugin issue
 * Logging plugins will strip `authorization` header
 * CorrelationID
   * Raise the priority of the plugin so it is run first on a request
 * Request Terminator
   * Do not send a `Content-Length` header with a 204 response
-  
+
 ### Known Issue and Workaround
 * Mutual TLS Authentication Plugin
   * For the parameter `config.revocation_check_mode`, the default value `IGNORE_CA_ERROR` has a known issue in version 1.5.0.0 and later. As a workaround, manually set the value to `SKIP`
@@ -725,6 +745,15 @@ repository will allow you to do both easily.
 #### Docker
 
 - Fixes: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
+
+
+## 0.36-6
+
+**Release Date:** 2020-06-18
+
+### Fixes
+- Fixes Kong PDK `get_method()` function to return a correct HTTP method when there are connectivity issues with the Upstream.
+- Reverted Service Mesh changes which affect `proxy_ssl_*` directives.
 
 
 ## 0.36-5

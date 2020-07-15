@@ -171,7 +171,7 @@ Active health checks, as the name implies, actively probe targets for
 their health. When active health checks are enabled in an upstream entity,
 Kong will periodically issue HTTP or HTTPS requests to a configured path at each target
 of the upstream. This allows Kong to automatically enable and disable targets
-in the balancer based on the [probe results](#healthy-and-unhealthy-targets).
+in the balancer based on the [probe results](#targets).
 
 The periodicity of active health checks can be configured separately for
 when a target is healthy or unhealthy. If the `interval` value for either
@@ -236,7 +236,9 @@ status, essentially requesting to be relieved from taking new traffic.
 It is possible to combine the two modes. For example, one can enable
 passive health checks to monitor the target health based solely on its
 traffic, and only use active health checks while the target is unhealthy,
-in order to re-enable it automatically.
+in order to re-enable it automatically. To do so, set the interval of
+active health checks on `healthy` status to zero, and active checks on
+`unhealthy` status to a non-zero interval.
 
 ## Enabling and disabling health checks
 

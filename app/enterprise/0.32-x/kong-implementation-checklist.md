@@ -9,7 +9,7 @@ title: Kong Implementation Checklist
 
 ## PostgreSQL
 
-- Generally speaking, PostgreSQL works well for most of the use-cases, and it’s usually easier to setup. We recommend setting up a master-slave replication with servers located in different racks, data centers or availability zones to account for infrastructure failures.
+- Generally speaking, PostgreSQL works well for most of the use-cases, and it’s usually easier to setup. We recommend setting up a primary-replica setup with servers located in different racks, data centers or availability zones to account for infrastructure failures.
 - In multi-DC environments, PostgreSQL may not be the right fit, since a Kong node located in a different datacenter will have to send write requests all the way to the PostgreSQL data-center, adding increased latency to the system.
 
 ## Cassandra
@@ -52,7 +52,7 @@ We recommend using the NetworkTopologyStrategy with three replicas in each data 
 
 ## PostgreSQL
 
-We recommend using a master-slave setup that will guarantee an appropriate replication of data in case of failures.
+We recommend using a primary-replica setup that will guarantee an appropriate replication of data in case of failures.
 
 ## Network & Firewall
 

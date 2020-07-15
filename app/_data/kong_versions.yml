@@ -314,9 +314,9 @@
     openresty: "1.15.8.2"
 -
   release: "2.0.x"
-  version: "2.0.4"
+  version: "2.0.5"
   edition: "community"
-  luarocks_version: "2.0.4-0"
+  luarocks_version: "2.0.5-0"
   dependencies:
     luajit: "2.1.0-beta3"
     luarocks: "3.2.1"
@@ -324,6 +324,6 @@
     postgres: "9.5+"
     openresty: "1.15.8.2"
 -
-  release: "latest"
-  version: "latest"
+  release: "CE-2.0.x_KE-1.5.x"
+  version: "CE-2.0.x/KE-1.5.x"
   edition: "getting-started-guide"

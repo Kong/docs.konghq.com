@@ -1964,32 +1964,32 @@ would have otherwise matched config B.
 
 ##### Create Plugin Associated to a Specific Route
 
-<div class="endpoint post indent">/routes/{route id}/plugins</div>
+<div class="endpoint post indent">/routes/{route name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`route id`<br>**required** | The unique identifier of the Route that should be associated to the newly-created Plugin.
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route that should be associated to the newly-created Plugin.
 
 
 ##### Create Plugin Associated to a Specific Service
 
-<div class="endpoint post indent">/services/{service id}/plugins</div>
+<div class="endpoint post indent">/services/{service name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`service id`<br>**required** | The unique identifier of the Service that should be associated to the newly-created Plugin.
+`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service that should be associated to the newly-created Plugin.
 
 
 ##### Create Plugin Associated to a Specific Consumer
 
-<div class="endpoint post indent">/consumers/{consumer id}/plugins</div>
+<div class="endpoint post indent">/consumers/{consumer name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`consumer id`<br>**required** | The unique identifier of the Consumer that should be associated to the newly-created Plugin.
+`consumer name or id`<br>**required** | The unique identifier or the `name` attribute of the Consumer that should be associated to the newly-created Plugin.
 
 
 #### Request Body
@@ -2019,32 +2019,32 @@ HTTP 201 Created
 
 ##### List Plugins Associated to a Specific Route
 
-<div class="endpoint get indent">/routes/{route id}/plugins</div>
+<div class="endpoint get indent">/routes/{route name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`route id`<br>**required** | The unique identifier of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Route will be listed.
 
 
 ##### List Plugins Associated to a Specific Service
 
-<div class="endpoint get indent">/services/{service id}/plugins</div>
+<div class="endpoint get indent">/services/{service name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`service id`<br>**required** | The unique identifier of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
+`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Service will be listed.
 
 
 ##### List Plugins Associated to a Specific Consumer
 
-<div class="endpoint get indent">/consumers/{consumer id}/plugins</div>
+<div class="endpoint get indent">/consumers/{consumer name or id}/plugins</div>
 
 {:.indent}
 Attributes | Description
 ---:| ---
-`consumer id`<br>**required** | The unique identifier of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
+`consumer name or id`<br>**required** | The unique identifier or the `name` attribute of the Consumer whose Plugins are to be retrieved. When using this endpoint, only Plugins associated to the specified Consumer will be listed.
 
 
 #### Response
