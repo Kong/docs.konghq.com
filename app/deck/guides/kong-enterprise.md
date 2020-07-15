@@ -1,5 +1,6 @@
 ---
 title: decK and Kong Enterprise
+no_version: true
 ---
 
 All features of decK work with both {{site.ce_product_name}} and {{site.ee_product_name}}.

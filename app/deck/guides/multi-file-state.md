@@ -1,6 +1,7 @@
 ---
 title: Using Multiple Files to Store Configuration
 toc: false
+no_version: true
 ---
 
 decK can construct a state by combining multiple JSON or YAML files inside a

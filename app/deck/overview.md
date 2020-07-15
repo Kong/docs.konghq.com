@@ -1,5 +1,6 @@
 ---
 title: Overview
+no_version: true
 ---
 
 decK helps manage Kong’s configuration in a declarative fashion. It can sync

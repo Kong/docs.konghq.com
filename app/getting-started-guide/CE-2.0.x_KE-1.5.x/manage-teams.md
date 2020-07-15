@@ -2,37 +2,37 @@
 title: Manage Administrative Teams
 ---
 <div class="alert alert-ee">
-<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a Kong Enterprise subscription.
+<img class="no-image-expand" src="/assets/images/icons/icn-enterprise-grey.svg" alt="Enterprise" /> This feature is only available with a {{site.ee_product_name}} subscription.
 </div>
 
-In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in Kong Enterprise.
+In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.ee_product_name}}.
 
 If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/getting-started-guide/{{page.kong_version}}/load-balancing) before moving on.
 
 ## Overview of Workspaces and Teams
 
-Many organizations have strict security requirements. For example, organizations need the ability to segregate the duties of an administrator to ensure that a mistake or malicious act by one administrator doesn’t cause an outage. Kong Enterprise Gateway provides a number of security capabilities to help customers secure the administration environment.
+Many organizations have strict security requirements. For example, organizations need the ability to segregate the duties of an administrator to ensure that a mistake or malicious act by one administrator doesn’t cause an outage. {{site.ee_product_name}} provides a number of security capabilities to help customers secure the administration environment.
 
-**Workspaces** enable an organization to segment objects and admins into namespaces. The segmentation allows teams of admins sharing the same Kong Enterprise Gateway cluster to adopt **roles** for interacting with specific objects. For example, one team (Team A) may be responsible for managing a particular service, whereas another team (Team B) may be responsible for managing another service. Teams should only have the roles they need to perform the administrative tasks within their specific workspaces.
+**Workspaces** enable an organization to segment objects and admins into namespaces. The segmentation allows teams of admins sharing the same {{site.ee_product_name}} cluster to adopt **roles** for interacting with specific objects. For example, one team (Team A) may be responsible for managing a particular service, whereas another team (Team B) may be responsible for managing another service. Teams should only have the roles they need to perform the administrative tasks within their specific workspaces.
 
-Kong Enterprise Gateway does all of this through **Role-Based Access Control (RBAC)**. All administrators can be given specific roles, whether you are using Kong Manager or the Admin API, which control and limit the scope of administrative privileges within specific workspaces.
+{{site.ee_product_name}} does all of this through **Role-Based Access Control (RBAC)**. All administrators can be given specific roles, whether you are using Kong Manager or the Admin API, which control and limit the scope of administrative privileges within specific workspaces.
 
 In this example, you’ll start by creating a simple workspace called “SecureWorkspace”. Then, you’ll create an administrator for that workspace, with rights to administer only the objects in the SecureWorkspace and nothing else.
 
 ## Securing your Kong Enterprise Installation
 
-At a high level, securing Kong Enterprise administration is a two-step process:
+At a high level, securing {{site.ee_product_name}} administration is a two-step process:
 
 1. Turn on RBAC.
 2. Create a Workspace and an admin for segregated administration.
 
 At this point in the Getting Started Guide, you have been interacting with your environment as the built-in Super Admin, `kong_admin`. The password for this `kong_admin` user was “seeded” during the installation process using the KONG_PASSWORD environment variable. Once RBAC is enabled, you will need to authenticate to the Kong Manager and the Kong Admin API using the proper credentials.
 
-In the following sections, you will need the `kong_admin` account’s password in order to log in to Kong Enterprise, and the `kong_admin_uri` needs to be configured to avoid getting CORS errors.
+In the following sections, you will need the `kong_admin` account’s password in order to log in to {{site.ee_product_name}}, and the `kong_admin_uri` needs to be configured to avoid getting CORS errors.
 
 ## Turn on RBAC
 
-To enable RBAC, you will need the initial KONG_PASSWORD that was used when you first installed Kong Enterprise Gateway and ran migrations. This is also the default password for the Super Admin, and will be required once RBAC is on.
+To enable RBAC, you will need the initial KONG_PASSWORD that was used when you first installed {{site.ee_product_name}} and ran migrations. This is also the default password for the Super Admin, and will be required once RBAC is on.
 
 {% navtabs %}
 {% navtab UNIX-based system or Windows %}
@@ -54,11 +54,11 @@ To enable RBAC, you will need the initial KONG_PASSWORD that was used when you f
     $ echo >> “admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":false}”
     ```
 
-    This will turn on RBAC, tell Kong Enterprise Gateway to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
+    This will turn on RBAC, tell {{site.ee_product_name}} to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
 
     The cookie is used for all subsequent requests to authenticate the user, until it expires. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended.
 
-4. Restart Kong Enterprise Gateway and point to the new config file:
+4. Restart {{site.ee_product_name}} and point to the new config file:
 
     ```
     $ kong restart -c /etc/kong/kong.conf
@@ -66,7 +66,7 @@ To enable RBAC, you will need the initial KONG_PASSWORD that was used when you f
 {% endnavtab %}
 {% navtab Docker %}
 
-If you have a Docker installation, run the following command to set the needed environment variables and reload the Kong Enterprise Gateway configuration.
+If you have a Docker installation, run the following command to set the needed environment variables and reload the {{site.ee_product_name}} configuration.
 
 **Note:** make sure to replace `<kong-container-id>` with the ID of your container.
 
@@ -74,14 +74,14 @@ If you have a Docker installation, run the following command to set the needed e
 $ echo "KONG_ENFORCE_RBAC=on KONG_ADMIN_GUI_AUTH=basic-auth KONG_ADMIN_GUI_SESSION_CONF='{\"secret\":\"secret\",\"storage\":\"kong\",\"cookie_secure\":false}' kong reload exit" | docker exec -i <kong-container-id>
 ```
 
-This will turn on RBAC, tell Kong Enterprise Gateway to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
+This will turn on RBAC, tell {{site.ee_product_name}} to use basic authentication (username/password), and tell the Sessions Plugin how to create a session cookie.
 
 The cookie is used for all subsequent requests to authenticate the user, until it expires. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended.
 
 {% endnavtab %}
 {% endnavtabs %}
 
-Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/enterprise/{{page.kong_version}}/kong-manager/authentication/basic/).
+Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/enterprise/latest/kong-manager/authentication/basic/).
 
 ## Create a Workspace
 {% navtabs %}
@@ -93,9 +93,9 @@ Outside of this guide, you will likely want to modify these settings differently
 
     Remember, this is the initial KONG_PASSWORD you used when you ran migrations during installation.
 
-3. If you have logged in successfully, then you can start administering your Kong Enterprise cluster.
+3. If you have logged in successfully, then you can start administering your {{site.ee_product_name}} cluster.
 
-    If this step did not work, and you know the credentials are correct, then something is likely wrong with your Kong Enterprise Gateway configuration. Double-check the settings, or, if the cause of the problem still isn’t clear, work with your Kong Enterprise account team and Kong support for assistance.
+    If this step did not work, and you know the credentials are correct, then something is likely wrong with your {{site.ee_product_name}} configuration. Double-check the settings, or, if the cause of the problem still isn’t clear, work with your {{site.ee_product_name}} account team and Kong support for assistance.
 
 #### Create the Workspace
 1. Access your Kong Manager instance.
@@ -113,7 +113,7 @@ Outside of this guide, you will likely want to modify these settings differently
 
 4. Click **Create New Workspace**.
 5. On the new Workspace, click **Teams**.
-6. From the Teams page, click the **Roles** tab to view the default roles that come with Kong Enterprise Gateway.
+6. From the Teams page, click the **Roles** tab to view the default roles that come with {{site.ee_product_name}}.
 7. Next to SecureWorkspace, click **View** to see its assigned roles.
 8. There are different roles available for the SecureWorkspace. By default, each new workspace has the following roles and privileges:
 
@@ -157,7 +157,7 @@ $ http :8001/workspaces name=SecureWorkspace Kong-Admin-Token:<super-user-token>
     | Plugins | Portal    | Routes       | Services      |
     | SNIs    | Upstreams | Vitals       | PermalinkStep |
 
-If you are unable to log in with `kong_admin`'s token, and you know the credentials are correct, then something is likely wrong with your Kong Enterprise Gateway configuration. Double-check the settings, or, if the cause of the problem still isn’t clear, work with your Kong Enterprise account team and Kong support for assistance.
+If you are unable to log in with `kong_admin`'s token, and you know the credentials are correct, then something is likely wrong with your {{site.ee_product_name}} configuration. Double-check the settings, or, if the cause of the problem still isn’t clear, work with your {{site.ee_product_name}} account team and Kong support for assistance.
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -320,7 +320,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% endnavtab %}
 {% endnavtabs %}
 
-That's it! You are now controlling access to Kong Enterprise Gateway administration with RBAC.
+That's it! You are now controlling access to {{site.ee_product_name}} administration with RBAC.
 
 ## Summary and next steps
 

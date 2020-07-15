@@ -37,15 +37,15 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 {% navtabs %}
 {% navtab Download RPM file %}
 
-1. Go to: https://bintray.com/kong/kong-enterprise-edition-rpm/centos.
+1. Go to: [https://bintray.com/kong/kong-enterprise-edition-rpm/centos](https://bintray.com/kong/kong-enterprise-edition-rpm/centos).
 2. Select the latest Kong version from the list.
 3. From the Kong version detail page, select the **Files** tab.
 4. Select the CentOS version appropriate for your environment. e.g. `centos` -> `7`.
-5. Save the RPM file available: e.g. `kong-enterprise-edition-1.3.0.1.el7.noarch.rpm`
+5. Save the RPM file available: e.g. `kong-enterprise-edition-1.5.0.1.el7.noarch.rpm`
 6. Copy the RPM file to your home directory on the CentOS system. You may use a command like:
 
     ```bash
-    $ scp kong-enterprise-edition-1.3.0.1.el7.noarch.rpm <centos user>@<server>:~
+    $ scp kong-enterprise-edition-1.5.0.1.el7.noarch.rpm <centos user>@<server>:~
     ```
 
 *Optional:* The following steps are for verifying the integrity of the package. They are not necessary to move on to [installation](#option-1-if-installing-using-a-downloaded-rpm-package).
@@ -53,7 +53,7 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
 1. Kong's official Key ID is `2cac36c51d5f3726`. Verify it by querying the RPM package and comparing it to the Key ID:
 
     ```bash
-    $ rpm -qpi kong-enterprise-edition-1.3.el7.noarch.rpm | grep Signature
+    $ rpm -qpi kong-enterprise-edition-1.5.el7.noarch.rpm | grep Signature
     ```
 
 2. Download Kong's official public key to ensure the integrity of the RPM package:
@@ -61,18 +61,18 @@ Log in to [Bintray](http://bintray.com). Your Kong Sales or Support contact will
     ```bash
     $ curl -o kong.key https://bintray.com/user/downloadSubjectPublicKey?username=kong
     $ rpm --import kong.key
-    $ rpm -K kong-enterprise-edition-1.3.el7.noarch.rpm
+    $ rpm -K kong-enterprise-edition-1.5.el7.noarch.rpm
     ```
 
 3. Verify you get an OK check. You should have an output similar to this:
 
   ```
-  kong-enterprise-edition-1.3.0.1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
+  kong-enterprise-edition-1.5.0.1.el7.noarch.rpm: rsa sha1 (md5) pgp md5 OK
   ```  
 {% endnavtab %}
 {% navtab Download Kong repo file and add to Yum repo %}
 
-1. Click this URL to download the Kong Enterprise RPM repo file: https://bintray.com/kong/kong-enterprise-edition-rpm/rpm.
+1. Click this URL to download the Kong Enterprise RPM repo file: [https://bintray.com/kong/kong-enterprise-edition-rpm/rpm](https://bintray.com/kong/kong-enterprise-edition-rpm/rpm).
 2. Edit the repo file using your preferred editor and alter the baseurl line as follows:
 
     ```
@@ -127,7 +127,7 @@ You should now have two files in your home directory on the target CentOS system
 2. Execute a command similar to the following, using the appropriate RPM file name you downloaded:
 
     ```bash
-    $ sudo yum install kong-enterprise-edition-1.3.el7.noarch.rpm
+    $ sudo yum install kong-enterprise-edition-1.5.el7.noarch.rpm
     ```
 {% endnavtab %}
 {% navtab Using Yum repo %}
@@ -160,7 +160,7 @@ $ sudo cp license.json /etc/kong/license.json
 
 1. Install PostgreSQL.
 
-    Follow the instructions avaialble at https://www.postgresql.org/download/linux/redhat/ to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you can run a command set similar to:
+    Follow the instructions available at [https://www.postgresql.org/download/linux/redhat/](https://www.postgresql.org/download/linux/redhat/) to install a supported version of PostgreSQL. Kong supports version 9.5 and higher. As an example, you can run a command set similar to:
 
     ```bash
     $ sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
