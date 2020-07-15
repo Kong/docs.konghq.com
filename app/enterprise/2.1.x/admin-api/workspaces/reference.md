@@ -357,6 +357,8 @@ HTTP 200 OK
 
 ### Add entities to a Workspace
 
+**Important**: As of Kong Enterprise 2.1.x beta, entities may only exist in a single Workspace. You can create duplicate entities in each Workspace, but they cannot be shared across Workspaces. 
+
 Workspaces are groups of entities. This endpoint allows one to add an entity,
 identified by its unique identifier, to a **Workspace**.
 

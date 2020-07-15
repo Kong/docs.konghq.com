@@ -232,15 +232,6 @@
         url: /admin-api/admins/reference
       - text: Examples
         url: /admin-api/admins/examples
-  - text: Vitals
-    url: /admin-api/vitals
-    items:
-      - text: Vitals Overview
-        url: /admin-api/vitals
-      - text: Kong Vitals with InfluxDB
-        url: /admin-api/vitals/vitals-influx-strategy
-      - text: Kong Vitals with Prometheus
-        url: /admin-api/vitals/vitals-prometheus-strategy
   - text: Audit Logging
     url: /admin-api/audit-log
   - text: Keyring and Data Encryption
@@ -347,8 +338,6 @@
             url: /kong-manager/administration/admins/invite
           - text: Add an Admin
             url: /kong-manager/administration/admins/add-admin
-    - text: Vitals
-      url: /kong-manager/vitals
     - text: How-Tos
       items:
         - text: Add a Service and Route
@@ -471,6 +460,20 @@
       url: /kong-for-kubernetes/deployment-options
     - text: Changelog
       url: /kong-for-kubernetes/changelog
+
+- title: Kong Vitals
+  icon: /assets/images/icons/documentation/icn-brain-color.svg
+  items:
+    - text: Overview
+      url: /vitals/overview
+    - text: Metrics
+      url: /vitals/vitals-metrics 
+    - text: Reports
+      url: /vitals/vitals-reports
+    - text: Vitals with InfluxDB
+      url: /vitals/vitals-influx-strategy
+    - text: Vitals with Prometheus
+      url: /vitals/vitals-prometheus-strategy
 
 - title: Kong Brain & Kong Immunity
   icon: /assets/images/icons/documentation/icn-brain-color.svg

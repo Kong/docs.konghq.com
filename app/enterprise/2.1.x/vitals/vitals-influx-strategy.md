@@ -1,5 +1,6 @@
 ---
-title: Kong Vitals with InfluxDB
+title: Vitals with InfluxDB
+redirect_from: "/enterprise/2.1.x/admin-api/vitals/vitals-influx-strategy"
 ---
 
 ## Overview
