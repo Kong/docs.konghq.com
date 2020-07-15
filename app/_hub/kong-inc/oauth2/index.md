@@ -156,6 +156,17 @@ params:
         A boolean flag that indicates whether the OAuth `client_secret` will be
         stored in hashed form. If enabled on existing plugin instances, client
         secrets are hashed on the fly upon first usage.
+    - name: pkce
+      required: false
+      default: "`lax`"
+      description: |
+        Specifies a mode of how the Proof Key for Code Exchange (PKCE) should be
+        handled by the plugin. The possible modes are `none`, `lax` and `strict`.
+        `strict` mode enforces PKCE on both authorization and token endpoints for
+        all the clients. `lax` mode enforces PKCE for public clients, but it does
+        not enforce it for confidential clients. `none` mode does not enforce PKCE
+        on any client. In any case, if client asks for PKCE on authorization
+        endpoint, the PKCE is also enforced on token endpoint. 
 
   extra: |
     <div class="alert alert-warning">
