@@ -6,7 +6,7 @@ breadcrumbs:
   Hub: '/hub'
 
 ---
-
+{% unless page.type == "concept" %}
 {% if page.type == "plugin" %}
 
 {% capture config_required_fields %}{%
@@ -280,12 +280,15 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     {% assign extn_release = extn_version['release'] %}
   {% endunless %}
 {% endif %}
+{% endunless %}
 
 <!-- BEGIN PAGE OUTPUT -->
 
 <div class="page page-extension-profile">
   {% if page.header_icon or page.header_title %}
     {% include header.html type=extn_type name=page.header_title %}
+  {% elsif page.type == concept %}
+      {% include header.html name=page.title %}
   {% else %}
     {% include header.html img=extn_icon name=page.name %}
   {% endif %}
@@ -318,11 +321,13 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     {% endif %}
 
     {% capture full_content %}
+    {% if page.type == "plugin" or page.type == "integration" %}
       {% unless path_array contains "kong-inc" %}
-        <div class="alert alert-ee">
+        <div class="alert alert-info blue" role="alert">
           Community {{ extn_type | capitalize }}: This plugin is <b>developed, tested, and maintained</b> by a third-party contributor.
         </div>
       {% endunless %}
+    {% endif %}
       {% if page.enterprise %}
         <div class="alert alert-ee warning">
         <strong>Kong Enterprise only</strong>: This plugin is only available with a <a href="https://konghq.com/kong-enterprise-edition">Kong Enterprise subscription</a>. Please inquire about Kong Enterprise by <a href="https://konghq.com/request-demo">contacting us</a>, or start a <a href="https://konghq.com/free-trial/">free trial</a> today.</div>
@@ -343,29 +348,6 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       {% endif %}
 
       {{ page.description | markdownify }}
-
-      {% if page.type == "plugin" %}
-        <hr>
-        <h2 id="terminology">Terminology</h2>
-        <ul>
-          <li><code>plugin</code>: a plugin executing actions inside Kong before or after a request has been proxied to the upstream API.</li>
-
-          {% if page.params.service_id or page.params.route_id %}
-            <li><code>Service</code>: the Kong entity representing an external <em>upstream</em> API or microservice.</li>
-          {% endif %}
-          {% if page.params.route_id %}
-            <li><code>Route</code>: the Kong entity representing a way to map downstream requests to upstream services.</li>
-          {% endif %}
-          {% if page.params.consumer_id %}
-            <li><code>Consumer</code>: an entity that makes requests for Kong to proxy; it represents either a user or an external service.</li>
-            <li><code>Credential</code>: a unique string associated with a Consumer, also referred to as an API key.</li>
-          {% endif %}
-            <li><code>Upstream service</code>: this refers to your own API/service sitting behind Kong, to which client requests are forwarded.</li>
-          {% if page.params.api_id %}
-          <li><code>API</code>: a legacy entity used to represent your upstream services. <strong>Deprecated</strong> in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/enterprise/changelog/#0-32">EE 0.32</a>.</li>
-          {% endif %}
-        </ul>
-      {% endif %}
 
       {% if page.installation %}
         <hr>
@@ -452,13 +434,15 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
     {% endcapture %}
 
     <aside class="page-navigation">
-      <span class="close-sidebar">Close Sidebar</span>
+      <span><a href="/hub">< Back to Kong Plugin Hub</a></span>
       {% unless page.toc == false %}
         <nav>
+          <br/>
           {% include toc.html html=full_content h_min=2 h_max=3 sanitize=true %}
         </nav>
       {% endunless %}
 
+      {% if page.type == "plugin" or page.type == "integration" %}
       <table id="about-extn">
         <tr>
           <th colspan="2">About this {{ extn_type | capitalize }}</th>
@@ -588,7 +572,7 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
           </tr>
         {% endif %}
       </table>
-
+      {% endif %}
     </aside>
 
     <div class="page-content-container">
