@@ -2,6 +2,15 @@
 title: Kong Enterprise k8s Changelog
 ---
 
+## 2.0.4.2
+
+> Released on 2020/06/29
+
+### Fixed
+
+- Resolve an incompatibility between LuaRocks and a dependency that prevented
+  installing custom plugins in custom images.
+
 ## 2.0.4.1
 
 > Released on 2020/05/05

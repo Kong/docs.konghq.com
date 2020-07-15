@@ -1,6 +1,7 @@
 ---
 title: Compatibility Promise
 toc: false
+no_version: true
 ---
 
 decK's compatibility guarantees are:

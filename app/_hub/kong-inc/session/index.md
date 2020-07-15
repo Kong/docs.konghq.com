@@ -342,7 +342,7 @@ variable host, but can be overridden.
 ### Session Data Storage
 
 The session data can be stored in the cookie itself (encrypted) `storage=cookie`,
-or inside [Kong](#-kong-storage-adapter). The session data stores these context
+or inside [Kong](#kong-storage-adapter). The session data stores these context
 variables:
 
 ```
@@ -363,7 +363,7 @@ plugins, it will also set `authenticated_groups` associated headers.
 
 ## Kong Storage Adapter
 
-the Kong Session **Plugin** extends the functionality of [lua-resty-session] with its own
+The Kong Session **Plugin** extends the functionality of [lua-resty-session] with its own
 session data storage adapter when `storage=kong`. This will store encrypted
 session data into the current database strategy (e.g. postgres, cassandra etc.)
 and the cookie will not contain any session data. Data stored in the database is

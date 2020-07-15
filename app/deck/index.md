@@ -1,7 +1,7 @@
 ---
 title: Documentation for decK
-skip_read_time: true
-toc: false
+is_homepage: true
+no_version: true
 redirect_from:
   - /hub/kong-inc/deck
   - /hub/hbagdi/deck

@@ -1,5 +1,6 @@
 ---
 title: Design & Architecture
+no_version: true
 ---
 
 ## Underlying architecture
