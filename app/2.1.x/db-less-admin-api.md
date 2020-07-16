@@ -23,10 +23,10 @@ service_body: |
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
-    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected. 
+    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null` then Nginx default is respected. 
     `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected.  Defaults to `null`.
-    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the truststore while verifying upstream server's TLS certificate. If set to `null`, then the Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with the Upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an array.
-    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never returns the URL). 
+    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
+    `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
     {
@@ -167,9 +167,9 @@ route_data: |
 consumer_body: |
     Attributes | Description
     ---:| ---
-    `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request. 
-    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request. 
-    `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering. 
+    `username`<br>*semi-optional* |  The unique username of the consumer. You must send either this field or `custom_id` with the request. 
+    `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Consumer, for grouping and filtering. 
 
 consumer_json: |
     {
@@ -198,14 +198,14 @@ consumer_data: |
 plugin_body: |
     Attributes | Description
     ---:| ---
-    `name` |  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately. 
+    `name` |  The name of the Plugin that's going to be added. Currently the Plugin must be installed in every Kong instance separately. 
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Defaults to `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Defaults to `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Defaults to `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Defaults to `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Defaults to `true`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Plugin, for grouping and filtering. 
 
 plugin_json: |
     {
@@ -251,8 +251,8 @@ certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate chain of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute, the certificate must have a valid private key associated with it. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
 
 certificate_json: |
     {
@@ -282,8 +282,8 @@ ca_certificate_body: |
     Attributes | Description
     ---:| ---
     `cert` | PEM-encoded public certificate of the CA.
-    `cert_digest`<br>*optional* | SHA256 hex digest of the public certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
+    `cert_digest`<br>*optional* | SHA256 hex digest of the public certificate
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
 
 ca_certificate_json: |
     {
@@ -313,7 +313,7 @@ sni_body: |
     Attributes | Description
     ---:| ---
     `name` | The SNI name to associate with the given certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the SNIs for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the SNIs, for grouping and filtering. 
     `certificate` |  The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use "`"certificate":{"id":"<certificate id>"}`.
 
 sni_json: |
@@ -374,8 +374,9 @@ upstream_body: |
     `healthchecks.passive.`<wbr>`healthy.successes`<br>*optional* | Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks. Defaults to `0`.
     `healthchecks.passive.`<wbr>`healthy.http_statuses`<br>*optional* | An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks. Defaults to `[200, 201, 202, 203, 204, 205,`<wbr>` 206, 207, 208, 226, 300, 301,`<wbr>` 302, 303, 304, 305, 306, 307,`<wbr>` 308]`. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an Array.
     `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Defaults to `0`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Upstream for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering. 
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
+    `client_certificate`<br>*optional* | If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
 
 upstream_json: |
     {
@@ -424,58 +425,12 @@ upstream_json: |
             "threshold": 0
         },
         "tags": ["user-level", "low-priority"],
-        "host_header": "example.com"
+        "host_header": "example.com",
+        "client_certificate": {"id":"ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6"}
     }
 
 upstream_data: |
     "data": [{
-        "id": "ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6",
-        "created_at": 1422386534,
-        "name": "my-upstream",
-        "algorithm": "round-robin",
-        "hash_on": "none",
-        "hash_fallback": "none",
-        "hash_on_cookie_path": "/",
-        "slots": 10000,
-        "healthchecks": {
-            "active": {
-                "https_verify_certificate": true,
-                "unhealthy": {
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0,
-                    "interval": 0
-                },
-                "http_path": "/",
-                "timeout": 1,
-                "healthy": {
-                    "http_statuses": [200, 302],
-                    "interval": 0,
-                    "successes": 0
-                },
-                "https_sni": "example.com",
-                "concurrency": 10,
-                "type": "http"
-            },
-            "passive": {
-                "unhealthy": {
-                    "http_failures": 0,
-                    "http_statuses": [429, 500, 503],
-                    "tcp_failures": 0,
-                    "timeouts": 0
-                },
-                "type": "http",
-                "healthy": {
-                    "successes": 0,
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
-                }
-            },
-            "threshold": 0
-        },
-        "tags": ["user-level", "low-priority"],
-        "host_header": "example.com"
-    }, {
         "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
         "name": "my-upstream",
@@ -520,8 +475,57 @@ upstream_data: |
             },
             "threshold": 0
         },
+        "tags": ["user-level", "low-priority"],
+        "host_header": "example.com",
+        "client_certificate": {"id":"a3395f66-2af6-4c79-bea2-1b6933764f80"}
+    }, {
+        "id": "885a0392-ef1b-4de3-aacf-af3f1697ce2c",
+        "created_at": 1422386534,
+        "name": "my-upstream",
+        "algorithm": "round-robin",
+        "hash_on": "none",
+        "hash_fallback": "none",
+        "hash_on_cookie_path": "/",
+        "slots": 10000,
+        "healthchecks": {
+            "active": {
+                "https_verify_certificate": true,
+                "unhealthy": {
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "tcp_failures": 0,
+                    "timeouts": 0,
+                    "http_failures": 0,
+                    "interval": 0
+                },
+                "http_path": "/",
+                "timeout": 1,
+                "healthy": {
+                    "http_statuses": [200, 302],
+                    "interval": 0,
+                    "successes": 0
+                },
+                "https_sni": "example.com",
+                "concurrency": 10,
+                "type": "http"
+            },
+            "passive": {
+                "unhealthy": {
+                    "http_failures": 0,
+                    "http_statuses": [429, 500, 503],
+                    "tcp_failures": 0,
+                    "timeouts": 0
+                },
+                "type": "http",
+                "healthy": {
+                    "successes": 0,
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                }
+            },
+            "threshold": 0
+        },
         "tags": ["admin", "high-priority", "critical"],
-        "host_header": "example.com"
+        "host_header": "example.com",
+        "client_certificate": {"id":"f5a9c0ca-bdbb-490f-8928-2ca95836239a"}
     }],
 
 target_body: |
@@ -529,13 +533,13 @@ target_body: |
     ---:| ---
     `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record. 
     `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Defaults to `100`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Target for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Target, for grouping and filtering. 
 
 target_json: |
     {
-        "id": "a3395f66-2af6-4c79-bea2-1b6933764f80",
+        "id": "173a6cee-90d1-40a7-89cf-0329eca780a6",
         "created_at": 1422386534,
-        "upstream": {"id":"885a0392-ef1b-4de3-aacf-af3f1697ce2c"},
+        "upstream": {"id":"bdab0e47-4e37-4f0b-8fd0-87d95cc4addc"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
@@ -543,16 +547,16 @@ target_json: |
 
 target_data: |
     "data": [{
-        "id": "f5a9c0ca-bdbb-490f-8928-2ca95836239a",
+        "id": "f00c6da4-3679-4b44-b9fb-36a19bd3ae83",
         "created_at": 1422386534,
-        "upstream": {"id":"173a6cee-90d1-40a7-89cf-0329eca780a6"},
+        "upstream": {"id":"0c61e164-6171-4837-8836-8f5298726d53"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "bdab0e47-4e37-4f0b-8fd0-87d95cc4addc",
+        "id": "5027BBC1-508C-41F8-87F2-AB1801E9D5C3",
         "created_at": 1422386534,
-        "upstream": {"id":"f00c6da4-3679-4b44-b9fb-36a19bd3ae83"},
+        "upstream": {"id":"68FDB05B-7B08-47E9-9727-AF7F897CFF1A"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["admin", "high-priority", "critical"]
@@ -1718,6 +1722,16 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 
 
+##### Retrieve Certificate Associated to a Specific Upstream
+
+<div class="endpoint get indent">/upstreams/{upstream name or id}/client_certificate</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be retrieved.
+
+
 #### Response
 
 ```
@@ -1900,6 +1914,16 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 <div class="endpoint get indent">/upstreams</div>
 
 
+##### List Upstreams Associated to a Specific Certificate
+
+<div class="endpoint get indent">/certificates/{certificate name or id}/upstreams</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Upstreams are to be retrieved. When using this endpoint, only Upstreams associated to the specified Certificate will be listed.
+
+
 #### Response
 
 ```
@@ -1925,6 +1949,17 @@ HTTP 200 OK
 {:.indent}
 Attributes | Description
 ---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
+
+
+##### Retrieve Upstream Associated to a Specific Certificate
+
+<div class="endpoint get indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
 
@@ -1981,7 +2016,7 @@ The health for each Target is returned in its `health` field:
   any traffic to this Target via this Upstream.
 
 When the request query parameter `balancer_health` is set to `1`, the
-`data` field of the response refers to the whole Upstream, and its `health`
+`data` field of the response refers to the Upstream itself, and its `health`
 attribute is defined by the state of all of Upstream's Targets, according
 to the field `healthchecks.threshold`.
 

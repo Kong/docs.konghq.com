@@ -23,9 +23,9 @@ service_body: |
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Defaults to `60000`.
     `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
-    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected. 
-    `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
-    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the truststore while verifying an Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then the handshake with the Upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an array.
+    `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null` then Nginx default is respected. 
+    `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected.  Defaults to `null`.
+    `ca_certificates`<br>*optional* |  Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
     `url`<br>*shorthand-attribute* |  Shorthand attribute to set `protocol`, `host`, `port` and `path` at once. This attribute is write-only (the Admin API never "returns" the url). 
 
 service_json: |
@@ -376,6 +376,7 @@ upstream_body: |
     `healthchecks.threshold`<br>*optional* | The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy. Defaults to `0`.
     `tags`<br>*optional* |  An optional set of strings associated with the Upstream, for grouping and filtering. 
     `host_header`<br>*optional* | The hostname to be used as `Host` header when proxying requests through Kong.
+    `client_certificate`<br>*optional* | If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
 
 upstream_json: |
     {
@@ -424,58 +425,12 @@ upstream_json: |
             "threshold": 0
         },
         "tags": ["user-level", "low-priority"],
-        "host_header": "example.com"
+        "host_header": "example.com",
+        "client_certificate": {"id":"ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6"}
     }
 
 upstream_data: |
     "data": [{
-        "id": "ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6",
-        "created_at": 1422386534,
-        "name": "my-upstream",
-        "algorithm": "round-robin",
-        "hash_on": "none",
-        "hash_fallback": "none",
-        "hash_on_cookie_path": "/",
-        "slots": 10000,
-        "healthchecks": {
-            "active": {
-                "https_verify_certificate": true,
-                "unhealthy": {
-                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
-                    "tcp_failures": 0,
-                    "timeouts": 0,
-                    "http_failures": 0,
-                    "interval": 0
-                },
-                "http_path": "/",
-                "timeout": 1,
-                "healthy": {
-                    "http_statuses": [200, 302],
-                    "interval": 0,
-                    "successes": 0
-                },
-                "https_sni": "example.com",
-                "concurrency": 10,
-                "type": "http"
-            },
-            "passive": {
-                "unhealthy": {
-                    "http_failures": 0,
-                    "http_statuses": [429, 500, 503],
-                    "tcp_failures": 0,
-                    "timeouts": 0
-                },
-                "type": "http",
-                "healthy": {
-                    "successes": 0,
-                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
-                }
-            },
-            "threshold": 0
-        },
-        "tags": ["user-level", "low-priority"],
-        "host_header": "example.com"
-    }, {
         "id": "4fe14415-73d5-4f00-9fbc-c72a0fccfcb2",
         "created_at": 1422386534,
         "name": "my-upstream",
@@ -520,8 +475,57 @@ upstream_data: |
             },
             "threshold": 0
         },
+        "tags": ["user-level", "low-priority"],
+        "host_header": "example.com",
+        "client_certificate": {"id":"a3395f66-2af6-4c79-bea2-1b6933764f80"}
+    }, {
+        "id": "885a0392-ef1b-4de3-aacf-af3f1697ce2c",
+        "created_at": 1422386534,
+        "name": "my-upstream",
+        "algorithm": "round-robin",
+        "hash_on": "none",
+        "hash_fallback": "none",
+        "hash_on_cookie_path": "/",
+        "slots": 10000,
+        "healthchecks": {
+            "active": {
+                "https_verify_certificate": true,
+                "unhealthy": {
+                    "http_statuses": [429, 404, 500, 501, 502, 503, 504, 505],
+                    "tcp_failures": 0,
+                    "timeouts": 0,
+                    "http_failures": 0,
+                    "interval": 0
+                },
+                "http_path": "/",
+                "timeout": 1,
+                "healthy": {
+                    "http_statuses": [200, 302],
+                    "interval": 0,
+                    "successes": 0
+                },
+                "https_sni": "example.com",
+                "concurrency": 10,
+                "type": "http"
+            },
+            "passive": {
+                "unhealthy": {
+                    "http_failures": 0,
+                    "http_statuses": [429, 500, 503],
+                    "tcp_failures": 0,
+                    "timeouts": 0
+                },
+                "type": "http",
+                "healthy": {
+                    "successes": 0,
+                    "http_statuses": [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+                }
+            },
+            "threshold": 0
+        },
         "tags": ["admin", "high-priority", "critical"],
-        "host_header": "example.com"
+        "host_header": "example.com",
+        "client_certificate": {"id":"f5a9c0ca-bdbb-490f-8928-2ca95836239a"}
     }],
 
 target_body: |
@@ -533,9 +537,9 @@ target_body: |
 
 target_json: |
     {
-        "id": "a3395f66-2af6-4c79-bea2-1b6933764f80",
+        "id": "173a6cee-90d1-40a7-89cf-0329eca780a6",
         "created_at": 1422386534,
-        "upstream": {"id":"885a0392-ef1b-4de3-aacf-af3f1697ce2c"},
+        "upstream": {"id":"bdab0e47-4e37-4f0b-8fd0-87d95cc4addc"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
@@ -543,16 +547,16 @@ target_json: |
 
 target_data: |
     "data": [{
-        "id": "f5a9c0ca-bdbb-490f-8928-2ca95836239a",
+        "id": "f00c6da4-3679-4b44-b9fb-36a19bd3ae83",
         "created_at": 1422386534,
-        "upstream": {"id":"173a6cee-90d1-40a7-89cf-0329eca780a6"},
+        "upstream": {"id":"0c61e164-6171-4837-8836-8f5298726d53"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["user-level", "low-priority"]
     }, {
-        "id": "bdab0e47-4e37-4f0b-8fd0-87d95cc4addc",
+        "id": "5027BBC1-508C-41F8-87F2-AB1801E9D5C3",
         "created_at": 1422386534,
-        "upstream": {"id":"f00c6da4-3679-4b44-b9fb-36a19bd3ae83"},
+        "upstream": {"id":"68FDB05B-7B08-47E9-9727-AF7F897CFF1A"},
         "target": "example.com:8000",
         "weight": 100,
         "tags": ["admin", "high-priority", "critical"]
@@ -599,7 +603,7 @@ a JSON representation of the data you want to send. Example:
 }
 ```
 
-An example adding a Route to a Service named `test-service`:
+An example adding a route to a service named `test-service`:
 
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
@@ -617,9 +621,9 @@ with dotted keys. Example:
 config.limit=10&config.period=seconds
 ```
 
-When specifying arrays, send the values in order, or use square brackets (numbering
+When specifying arrays send the values in order, or use square brackets (numbering
 inside the brackets is optional but if provided it must be 1-indexed, and
-consecutive). An example Route added to a Service named `test-service`:
+consecutive). An example route added to a service named `test-service`:
 
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
@@ -628,7 +632,7 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -d "paths[2]=/path/two"
 ```
 
-The following two examples are identical to the one above, but less explicit:
+The following two are identical to the one above, but less explicit:
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
      -d "name=test-route" \
@@ -653,8 +657,8 @@ curl -i -X POST http://localhost:8001/services/plugin-testing/plugins \
      -F "config.access=@custom-auth.lua"
 ```
 
-When specifying arrays for this content-type, the array indices must be specified.
-An example Route added to a Service named `test-service`:
+When specifying arrays for this content-type the array indices must be specified.
+An example route added to a service named `test-service`:
 
 ```
 curl -i -X POST http://localhost:8001/services/test-service/routes \
@@ -2498,6 +2502,16 @@ Attributes | Description
 `certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 
 
+##### Retrieve Certificate Associated to a Specific Upstream
+
+<div class="endpoint get indent">/upstreams/{upstream name or id}/client_certificate</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be retrieved.
+
+
 #### Response
 
 ```
@@ -2521,6 +2535,16 @@ HTTP 200 OK
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to update.
+
+
+##### Update Certificate Associated to a Specific Upstream
+
+<div class="endpoint patch indent">/upstreams/{upstream name or id}/client_certificate</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be updated.
 
 
 #### Request Body
@@ -2551,6 +2575,16 @@ HTTP 200 OK
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
+
+
+##### Create Or Update Certificate Associated to a Specific Upstream
+
+<div class="endpoint put indent">/upstreams/{upstream name or id}/client_certificate</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be created or updated.
 
 
 #### Request Body
@@ -2594,6 +2628,16 @@ See POST and PATCH responses.
 Attributes | Description
 ---:| ---
 `certificate id`<br>**required** | The unique identifier of the Certificate to delete.
+
+
+##### Delete Certificate Associated to a Specific Upstream
+
+<div class="endpoint delete indent">/upstreams/{upstream name or id}/client_certificate</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream associated to the Certificate to be deleted.
 
 
 #### Response
@@ -3055,6 +3099,16 @@ Upstreams can be both [tagged and filtered by tags](#tags).
 <div class="endpoint post indent">/upstreams</div>
 
 
+##### Create Upstream Associated to a Specific Certificate
+
+<div class="endpoint post indent">/certificates/{certificate name or id}/upstreams</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate that should be associated to the newly-created Upstream.
+
+
 #### Request Body
 
 {{ page.upstream_body }}
@@ -3078,6 +3132,16 @@ HTTP 201 Created
 ##### List All Upstreams
 
 <div class="endpoint get indent">/upstreams</div>
+
+
+##### List Upstreams Associated to a Specific Certificate
+
+<div class="endpoint get indent">/certificates/{certificate name or id}/upstreams</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate name or id`<br>**required** | The unique identifier or the `name` attribute of the Certificate whose Upstreams are to be retrieved. When using this endpoint, only Upstreams associated to the specified Certificate will be listed.
 
 
 #### Response
@@ -3105,6 +3169,17 @@ HTTP 200 OK
 {:.indent}
 Attributes | Description
 ---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
+
+
+##### Retrieve Upstream Associated to a Specific Certificate
+
+<div class="endpoint get indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate id`<br>**required** | The unique identifier of the Certificate to retrieve.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to retrieve.
 
 
@@ -3140,6 +3215,17 @@ HTTP 200 OK
 {:.indent}
 Attributes | Description
 ---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
+
+
+##### Update Upstream Associated to a Specific Certificate
+
+<div class="endpoint patch indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate id`<br>**required** | The unique identifier of the Certificate to update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to update.
 
 
@@ -3180,6 +3266,17 @@ HTTP 200 OK
 {:.indent}
 Attributes | Description
 ---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
+
+
+##### Create Or Update Upstream Associated to a Specific Certificate
+
+<div class="endpoint put indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate id`<br>**required** | The unique identifier of the Certificate to create or update.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to create or update.
 
 
@@ -3233,6 +3330,17 @@ See POST and PATCH responses.
 {:.indent}
 Attributes | Description
 ---:| ---
+`upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
+
+
+##### Delete Upstream Associated to a Specific Certificate
+
+<div class="endpoint delete indent">/certificates/{certificate id}/upstreams/{upstream name or id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`certificate id`<br>**required** | The unique identifier of the Certificate to delete.
 `upstream name or id`<br>**required** | The unique identifier **or** the name of the Upstream to delete.
 
 
