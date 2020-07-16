@@ -1206,7 +1206,6 @@ API will attempt to identify the RBAC user.
 
 **Description:**
 Comma-separated list of addresses and ports on which
-
 Kong will expose the Admin GUI. This web application
 lets you configure and manage Kong, and therefore
 should be kept private and secured.
@@ -1227,20 +1226,18 @@ admin_gui_listen = 0.0.0.0:8002, 0.0.0.0:8445 ssl
 
 **Description:**
 
-Here you may provide the lookup, or balancer,
-address for your admin application.
+The lookup, or balancer, address for the Admin GUI.
 
 Accepted format (items in parenthesis are optional):
 
 ```
-<scheme>://<IP / HOSTNAME>(:<PORT>(/<PATH>))
+<scheme>://<IP / HOSTNAME>(:<PORT>)
 ```
 
 **Examples:**
 ```
 - http://127.0.0.1:8003
 - https://kong-admin.test
-- http://dev-machine/dev-285
 ```
 
 **Default:**
@@ -1402,11 +1399,11 @@ characters from at least three of the following categories:
 3) Base-10 digits (0 through 9)
 4) Special characters (for example, &, $, #, %)
 
-|Value to Use | Minimum Length|
-|-------------|---------------|
-|min_8        |     8         |
-|min_12       |    12         |
-|min_20       |    20         |
+| Value to Use | Minimum Length |
+|:-------------|:---------------|
+| min_8        | 8              |
+| min_12       | 12             |
+| min_20       | 20             |
 
 To write your own rules, see
 https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html.

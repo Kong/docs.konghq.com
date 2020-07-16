@@ -2,6 +2,7 @@
 title: Monitor License Usage
 ---
 
+## Overview
 Obtain information about your Kong Enterprise deployment, including license usage and deployment information using the **License Report** module. Share this information with Kong to perform a health-check analysis of product utilization and overall deployment performance to ensure your organization is optimized with the best license and deployment plan for your needs.
 
 How the license report module works:
@@ -20,13 +21,13 @@ Run the license report module and share the output information with your Kong re
 To generate a license report, from an HTTP client:
 
 *   For a JSON response, send an HTTP request to the Kong node endpoint` /license/report`. For example, use this cURL command:
-    
+
     ```
     curl '<ADMIN_API_URL>/license/report'
     ```
-    
+
     A JSON response returns, similar to the example below.
-    
+
     ```
     HTTP/1.1 200 OK
     Access-Control-Allow-Credentials: true
@@ -54,11 +55,11 @@ To generate a license report, from an HTTP client:
        "workspaces_count":1
     }
     ```
-    
-* For a TAR file, enter the following cURL command to make a call to Kong Admin API. 
- 
+
+* For a TAR file, enter the following cURL command to make a call to Kong Admin API.
+
     ```
-    curl <ADMIN_API_URL>/license/report -o response.json && tar -cf report-$(date +"%Y_%m_%d_%I_%M_%p").tar response.json 
+    curl <ADMIN_API_URL>/license/report -o response.json && tar -cf report-$(date +"%Y_%m_%d_%I_%M_%p").tar response.json
     ```
     A license report file is generated and archives a report to *.tar file.
 

@@ -1,22 +1,10 @@
 ---
 title: Start Kong Enterprise Securely
-toc: false
 redirect_from:
-  - /enterprise/1.5.x/getting-started/start-kong
-  - /enterprise/latest/getting-started/start-kong
+  - /enterprise/2.1.x/getting-started/start-kong
 ---
-#### Table of Contents
 
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Step 1](#step-1)
-- [Step 2](#step-2)
-- [Step 3](#step-3)
-- [Step 4](#step-4)
-- [Default Ports](#default-ports)
-- [Next Steps](#next-steps)
-
-### Introduction
+## Introduction
 
 To secure the Admin API or Kong Manager, a **Super Admin** account is
 required.
@@ -28,7 +16,7 @@ restrict their access based on **Permissions** of **Roles** within
 The first **Super Admin** account is created during database migrations
 following the guide below. It may only be added once.
 
-### Prerequisites
+## Prerequisites
 
 After [installing Kong Enterprise](/enterprise/{{page.kong_version}}/deployment/installation/overview/),
 either modify the configuration file or set environment variables for
