@@ -2,6 +2,7 @@
 title: CI-driven Configuration
 toc: false
 no_version: true
+no_search: true
 ---
 
 ## Configuration as code

@@ -1,6 +1,7 @@
 ---
 title: Terminology
 no_version: true
+no_search: true
 ---
 
 ## State
