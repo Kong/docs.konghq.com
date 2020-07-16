@@ -15,7 +15,6 @@
     - text: Installation
       url: /installation
     - text: Guides
-      url: /guides/getting-started
       items:
         - text: Getting Started with decK
           url: /guides/getting-started

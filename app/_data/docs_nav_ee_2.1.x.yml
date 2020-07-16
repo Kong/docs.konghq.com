@@ -8,7 +8,6 @@
 
 - title: Release Notes
   icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /release-notes
   items:
     - text: Release Notes
       url: /release-notes
@@ -65,7 +64,6 @@
     - text: Resource Sizing Guidelines
       url: /sizing-guidelines
     - text: Licensing
-      url: /deployment/licensing
       items:
         - text: Overview
           url: /deployment/licensing
@@ -74,7 +72,6 @@
         - text: Monitor License Usage
           url: /deployment/licenses/report
     - text: Security
-      url: /secure-admin-api
       items:
         - text: Securing the Admin API
           url: /secure-admin-api
@@ -113,7 +110,6 @@
 
 - title: Guides & References
   icon: /assets/images/icons/documentation/icn-references-color.svg
-  url: /property-reference
   items:
     - text: Configuration Property Reference
       url: /property-reference
@@ -136,7 +132,6 @@
     - text: Network &amp; Firewall
       url: /network
     - text: Plugin Development Guide
-      url: /plugin-development
       items:
         - text: Introduction
           url: /plugin-development
@@ -248,10 +243,8 @@
 
 - title: decK
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /../../deck
   items:
     - text: Introduction
-      url: /../../deck
       items:
         - text: Overview
           url: /../../deck/overview
@@ -264,7 +257,6 @@
     - text: Installation
       url: /../../deck/installation
     - text: Guides
-      url: /../../deck/guides/getting-started
       items:
         - text: Getting Started with decK
           url: /../../deck/guides/getting-started
@@ -292,14 +284,12 @@
 
 - title: Kong Manager
   icon: /assets/images/icons/documentation/icn-manager-color.svg
-  url: /kong-manager/overview
   items:
     - text: Overview
       url: /kong-manager/overview
     - text: Service Directory Mapping
       url: /kong-manager/service-directory-mapping
     - text: Networking
-      url: /kong-manager/networking/configuration
       items:
         - text: Default and Custom Configuration
           url: /kong-manager/networking/configuration
@@ -308,7 +298,6 @@
     - text: Securing Kong Manager
       url: /kong-manager/security
     - text: Authentication
-      url: /kong-manager/authentication/super-admin
       items:
         - text: Create a Super Admin
           url: /kong-manager/authentication/super-admin
@@ -323,14 +312,12 @@
     - text: Reset Passwords and RBAC Tokens
       url: /kong-manager/reset-password
     - text: Administration
-      url: /kong-manager/administration/workspaces/workspaces
       items:
         - text: Workspaces in Kong Manager
           url: /kong-manager/administration/workspaces/workspaces
         - text: Add a Workspace
           url: /kong-manager/administration/workspaces/add-workspace
         - text: RBAC
-          url: /kong-manager/administration/rbac
         - items:
           - text: RBAC in Kong Manager
             url: /kong-manager/administration/rbac
@@ -341,7 +328,6 @@
           - text: Add a Role and Permissions
             url: /kong-manager/administration/rbac/add-role
         - text: Admins
-          url: /kong-manager/administration/admins/invite
         - items:
           - text: Invite an Admin
             url: /kong-manager/administration/admins/invite
@@ -358,7 +344,6 @@
 
 - title: Kong Dev Portal
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
-  url: /developer-portal
   items:
     - text: Introduction
       url: /developer-portal/
@@ -377,10 +362,8 @@
     - text: Networking
       url: /developer-portal/networking
     - text: Configuration
-      url: /developer-portal/configuration
       items:
         - text: Authentication
-          url: /developer-portal/configuration/authentication
           items:
             - text: Basic Auth
               url: /developer-portal/configuration/authentication/basic-auth
@@ -397,7 +380,6 @@
         - text: Workspaces
           url: /developer-portal/configuration/workspaces
     - text: Administration
-      url: /developer-portal/administration/
       items:
         - text: Manage Developers
           url: /developer-portal/administration/managing-developers
@@ -415,23 +397,19 @@
             - text: Manage Applications
               url: /developer-portal/administration/application-registration/managing-applications
     - text: Customization
-      url: /developer-portal/theme-customization/easy-theme-editing
       items:
         - text: Easy Theme Editing
           url: /developer-portal/theme-customization/easy-theme-editing
         - text: Markdown Rendering Module
-          url: /developer-portal/theme-customization/markdown-extended          
+          url: /developer-portal/theme-customization/markdown-extended
         - text: Customizing Portal Emails
           url: /developer-portal/theme-customization/emails
         - text: Adding and Using Javascript Assets
           url: /developer-portal/theme-customization/adding-javascript-assets
         - text: Single Page App in Dev Portal
           url: /developer-portal/theme-customization/single-page-app
-    - text: Helpers
+    - text: Helpers CLI
       url: /developer-portal/helpers/cli
-      items:
-        - text: CLI
-          url: /developer-portal/helpers/cli
 
 - title: Kong Studio
   icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
@@ -441,7 +419,6 @@
       url: https://insomnia.rest/changelog/
       absolute_url: true
     - text: Getting Started
-      url: /studio/download-install
       items:
         - text: Download and Install
           url: /studio/download-install
@@ -455,7 +432,6 @@
 
 - title: Kong for Kubernetes Enterprise
   icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-  url: /kong-for-kubernetes/
   items:
     - text: Overview
       url:  /kong-for-kubernetes
@@ -476,7 +452,7 @@
     - text: Overview
       url: /vitals/overview
     - text: Metrics
-      url: /vitals/vitals-metrics 
+      url: /vitals/vitals-metrics
     - text: Reports
       url: /vitals/vitals-reports
     - text: Vitals with InfluxDB
@@ -486,7 +462,6 @@
 
 - title: Kong Brain & Kong Immunity
   icon: /assets/images/icons/documentation/icn-brain-color.svg
-  url: /brain-immunity/install-configure
   items:
     - text: Installation and Configuration
       url: /brain-immunity/install-configure
@@ -507,7 +482,6 @@
     - text: OpenID Connect
       url: /hub/kong-inc/openid-connect
       absolute_url: true
-
       items:
         - text: OpenID Connect Use Case
           url: /plugins/oidc-use-case
@@ -524,7 +498,6 @@
         - text: OpenID Connect with Cognito
           url: /plugins/oidc-cognito
     - text: GraphQL
-      url: /plugins/graphql-quickstart
       items:
         - text: GraphQL Quickstart
           url: /plugins/graphql-quickstart
@@ -579,7 +552,6 @@
     - text: Key Auth (encrypted)
       url: /plugins/key-auth-enc
     - text: Implementation
-      url: /plugins/allowing-multiple-authentication-methods
       items:
         - text: Multiple Authentication Methods
           url: /plugins/allowing-multiple-authentication-methods

@@ -1,27 +1,4 @@
 ---
 title: Dev Portal Administration
+redirect_to: /enterprise/latest/developer-portal
 ---
-
-<div class="docs-grid">
-  <div class="docs-grid-block">
-    <h3>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/managing-developers">Managing Developers</a></h3>
-    <p>Inviting, Approving, Rejecting, and Revoking Developers</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/managing-developers">
-    Learn More &rarr;</a>
-  </div>
-  <div class="docs-grid-block">
-    <h3>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a></h3>
-    <p>Control access to your Dev Portal with Developer Roles and Content Permissions</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/developer-permissions">
-    Learn More &rarr;</a>
-  </div>
-  <div class="docs-grid-block">
-    <h3>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/app-reg/application-registration">Portal Application Registration</a></h3>
-    <p>Allow Portal Developers to register applications against Services</p>
-    <a href="/enterprise/{{page.kong_version}}/developer-portal/administration/app-reg/application-registration">
-    Learn More &rarr;</a>
-  </div>
-</div>
