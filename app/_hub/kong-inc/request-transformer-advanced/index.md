@@ -198,7 +198,7 @@ already there:
 
 *NOTE:* Especially in multi-line templates like the example above, make sure not
 to add any trailing white-space or new-lines. Since these would be outside the
-placeholders they would be considered part of the template, and hence would be
+placeholders, they would be considered part of the template, and hence would be
 appended to the generated value.
 
 The environment is sandboxed, meaning that Lambda's will not have access to any
