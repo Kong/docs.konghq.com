@@ -98,7 +98,7 @@ id: documentation
             instead?
           </div>
           {% endif %}
-          {% if page.kong_version != page.kong_latest.release and page.kong_version != "1.5.x" and page.edition != 'deck' %}
+          {% if page.kong_version != page.kong_latest.release and page.kong_version != "1.5.x" and page.no_version != true %}
           <div class="alert alert-warning">
             <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}{{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
                   href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
