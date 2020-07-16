@@ -173,7 +173,7 @@ return the query parameter; or if that also doesn't exist, it returns the defaul
 value '"unknown"'.
 
 Constant parts can be specified as part of the template outside the dynamic 
-placeholders. For example creating a basic-auth header from a query parameter
+placeholders. For example, creating a basic-auth header from a query parameter
 called `auth` that only contains the base64 encoded part:
 
     Authorization:Basic $(query_params["auth"])
