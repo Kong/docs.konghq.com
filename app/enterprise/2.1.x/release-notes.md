@@ -39,7 +39,7 @@ For more information, see the [Developer Portal Markdown](/enterprise/{{page.kon
 
 ### Go Language Support for Custom Plugins
 
-The Go Plugin Development Kit for Kong Enterprise allows users to tap into the Go ecosystem with custom plugins. The Kong Go PDK directly parallels the existing Kong PDK for Lua plugins, and the addition of Go plugin support allows Kong users to tap into the Go ecosystem.
+The Go Plugin Development Kit for Kong Enterprise allows users to tap into the Go ecosystem with custom plugins. The Kong Go PDK directly parallels the existing Kong PDK for Lua plugins.
 
 For more information, see the [Go PDK](/enterprise/{{page.kong_version}}/go/) topic.
 
