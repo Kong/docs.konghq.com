@@ -1,7 +1,7 @@
 ---
 name: Key Authentication
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.2.0
 
 desc: Add key authentication to your Services
 description: |
@@ -22,6 +22,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.1.x
         - 2.0.x
         - 1.5.x
         - 1.4.x
@@ -58,7 +59,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https"]
+  protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
@@ -99,8 +100,8 @@ params:
 
     Once applied, any user with a valid credential can access the Service.
     To restrict usage to only some of the authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-    blacklist groups of users.
+    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+    denied groups of users.
 
 ---
 
@@ -136,8 +137,8 @@ parameter                       | description
 `username`<br>*semi-optional*   | The username of the consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional*  | A custom identifier used to map the consumer to another database. Either this field or `username` must be specified.
 
-If you are also using the [ACL](/plugins/acl/) plugin and whitelists with this
-service, you must add the new consumer to a whitelisted group. See
+If you are also using the [ACL](/plugins/acl/) plugin and allow lists with this
+service, you must add the new consumer to the allowed group. See
 [ACL: Associating Consumers][acl-associating] for details.
 
 ### Create a Key
@@ -193,6 +194,12 @@ $ curl http://kong:8000/{proxy path} \
     -H 'apikey: <some_key>'
 ```
 
+gRPC clients are supported too:
+
+```bash
+$ grpcurl -H 'apikey: <some_key>' ...
+```
+
 ### Delete a Key
 
 You can delete an API Key by making the following HTTP request:
@@ -212,7 +219,7 @@ When a client has been authenticated, the plugin will append some headers to the
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
 * `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
+* `X-Credential-Identifier`, the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic. You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more information about the Consumer.

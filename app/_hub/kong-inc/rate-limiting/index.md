@@ -3,11 +3,11 @@ name: Rate Limiting
 publisher: Kong Inc.
 redirect_from:
   - /enterprise/0.35-x/rate-limiting/
-version: 2.1.0
+version: 2.2.0
 
-desc: Rate-limit how many HTTP requests a developer can make
+desc: Rate-limit how many HTTP requests can be made in a period of time
 description: |
-  Rate limit how many HTTP requests a developer can make in a given period of seconds, minutes, hours, days, months or years. If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
+  Rate limit how many HTTP requests can be made in a given period of seconds, minutes, hours, days, months, or years. If the underlying Service/Route (or deprecated API entity) has no authentication layer, the **Client IP** address will be used, otherwise the Consumer will be used if an authentication plugin has been configured.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -24,6 +24,7 @@ categories:
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 2.1.x
       - 2.0.x
       - 1.4.x
       - 1.3.x
@@ -70,34 +71,37 @@ params:
     - name: second
       required: semi
       value_in_examples: 5
-      description: The amount of HTTP requests the developer can make per second. At least one limit must exist.
+      description: The number of HTTP requests that can be made per second.
     - name: minute
       required: semi
-      description: The amount of HTTP requests the developer can make per minute. At least one limit must exist.
+      description: The number of HTTP requests that can be made per minute.
     - name: hour
       required: semi
       value_in_examples: 10000
-      description: The amount of HTTP requests the developer can make per hour. At least one limit must exist.
+      description: The number of HTTP requests that can be made per hour.
     - name: day
       required: semi
-      description: The amount of HTTP requests the developer can make per day. At least one limit must exist.
+      description: The number of HTTP requests that can be made per day.
     - name: month
       required: semi
-      description: The amount of HTTP requests the developer can make per month. At least one limit must exist.
+      description: The number of HTTP requests that can be made per month.
     - name: year
       required: semi
-      description: The amount of HTTP requests the developer can make per year. At least one limit must exist.
+      description: The number of HTTP requests that can be made per year.
     - name: limit_by
       required: false
       default: '`consumer`'
       description: |
-        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`. If the `consumer`, the `credential` or the `service` cannot be determined, the system will always fallback to `ip`.
+        The entity that will be used when aggregating the limits: `consumer`, `credential`, `ip`, `service`, `header`. If the `consumer`, the `credential`, or the `service` cannot be determined, the system will always fallback to `ip`. If value `header` is chosen, the `header_name` configuration has to be provided.
+    - name: header_name
+      required: semi
+      description: Header name to be used if `limit_by` is set to `header`.
     - name: policy
       required: false
       value_in_examples: "local"
       default: '`cluster`'
       description: |
-        The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes) and `redis` (counters are stored on a Redis server and will be shared across the nodes). In case of DB-less mode, at least one of `local` or `redis` must be specified. Please refer <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations">Implementation Considerations</a> for details on which policy should be used.
+        The rate-limiting policies to use for retrieving and incrementing the limits. Available values are `local` (counters will be stored locally in-memory on the node), `cluster` (counters are stored in the datastore and shared across the nodes), and `redis` (counters are stored on a Redis server and will be shared across the nodes). In the case of DB-less mode, at least one of `local` or `redis` must be specified. Please refer <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations">Implementation Considerations</a> for details on which policy should be used.
     - name: fault_tolerant
       required: false
       default: '`true`'
@@ -129,7 +133,12 @@ params:
       required: false
       default: '`0`'
       description: |
-        When using the `redis` policy, this property specifies Redis database to use.
+        When using the `redis` policy, this property specifies the Redis database to use.
+  extra:
+    <div class="alert alert-warning">
+        <strong>Note:</strong>At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. Multiple limits can be configured.
+    </div>
+
 ---
 
 ## Headers sent to the client
@@ -211,7 +220,7 @@ your switch more carefully.
 
 ### Backend protection
 
-As accuracy is of lesser importance, the `local` policy can be used. It might require some experimenting
+If accuracy is of lesser importance, the `local` policy can be used. It might require some experimenting
 to get the proper setting. For example, if the user is bound to 100 requests per second, and you have an
 equally balanced 5 node Kong cluster, setting the `local` limit to something like 30 requests per second
 should work. If you are worried about too many false-negatives, increase the value.
@@ -220,8 +229,8 @@ Keep in mind as the cluster scales to more nodes, the users will get more reques
 when the cluster scales down the probability of false-negatives increases. So in general, update your
 limits when scaling.
 
-The above mentioned inaccuracy can be mitigated by using a consistent-hashing load balancer in front of
-Kong, that ensures the same user is always directed to the same Kong node. This will both reduce the
+The above-mentioned inaccuracy can be mitigated by using a consistent-hashing load balancer in front of
+Kong, which ensures the same user is always directed to the same Kong node. This will both reduce the
 inaccuracy and prevent the scaling issues.
 
 Most likely the user will be granted more than was agreed when using the `local` policy, but it will
