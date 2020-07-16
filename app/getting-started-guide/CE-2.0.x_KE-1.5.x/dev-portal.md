@@ -78,7 +78,7 @@ In this section, you’re going to add a new spec, the *Kong Vitals API*, to the
 
     The editor creates the file and prepares it for editing. Since you haven’t added any content to the file, the preview displays “Unable to render this definition”.
 
-5. In another tab, open the [Kong Vitals Admin API page](/enterprise/latest/admin-api/vitals/#vitals-api) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
+5. In another tab, open the [Kong Vitals Admin API page](/enterprise/1.5.x/admin-api/vitals/#vitals-api) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
 
 6. In the Dev Portal editor, clear the contents of the editor, then paste the contents of `vitalsSpec.yaml`.
 

@@ -9,17 +9,19 @@ id: documentation
     <div class="page-header-bg"></div>
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Gateway</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
-        <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
+        <a href="/" {% if page.edition =='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
+        <a href="/enterprise" {% if page.edition =='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
+        <a href="/getting-started-guide/latest/overview" {% if page.edition =='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
         <div class="header-actions">
-          {% unless page.no_version == true %}
           <div class="search-version-row">
+            {% unless page.no_version == true %}
             <div class="versions-dropdown dropdown no-right-border">
               <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Version {{page.kong_version}}
-                {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                {% if page.kong_version == "2.1.x" and page.edition == 'enterprise' %} <em>(beta)</em>
+                {% elsif page.kong_version == "1.5.x" and page.edition == 'enterprise' %} <em>(latest stable)</em>
+                {% elsif page.kong_version == page.kong_latest.release %} <em>(latest)</em>{% endif %}
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
@@ -27,11 +29,13 @@ id: documentation
                 {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
                 {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
                 <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                   >
-                    {{ver.release}}
-                    {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                  {{ver.release}}
+                  {% if ver.release == "2.1.x" and page.edition == 'enterprise' %} <em>(beta)</em>
+                  {% elsif ver.release == "1.5.x" and page.edition == 'enterprise' %} <em>(latest stable)</em>
+                  {% elsif ver.release == page.kong_latest.release %} <em>(latest)</em>{% endif %}
                   </a>
                 </li>
                 {% endfor %}
@@ -58,8 +62,8 @@ id: documentation
 
       <div class="title-version-search-container">
         <div class="page-header-title">
-          <h1>{{page.title | flatify}}</h1>
-          <h2>{{page.subtitle | flatify}}</h2>
+          <h1>{{page.title | flatify }}</h1>
+          <h2>{{page.subtitle | flatify }}</h2>
         </div>
       </div>
     </div>
@@ -94,21 +98,46 @@ id: documentation
             instead?
           </div>
           {% endif %}
-          {% if page.kong_version != page.kong_latest.release and page.has_version %}
+          {% if page.kong_version != page.kong_latest.release and page.kong_version != "1.5.x" and page.no_version != true %}
           <div class="alert alert-warning">
             <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}{{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
                   href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
             to browse the documentation for the latest version.
           </div>
-          {% elsif page.is_homepage == true and page.edition == 'enterprise' %}
-          <div class="alert alert-ee condensed margin-bigger">
+          {% elsif page.edition == 'enterprise' and page.kong_version == "2.1.x" and page.is_homepage != true and page.beta != true %}
+          <div class="alert alert-ee red condensed margin-bigger">
             <div class="alert-body">
-              <div class="tag green">NEW</div>
-              <p>{{site.ee_product_name}} {{page.kong_version}} released! We added <a
-                      href="/enterprise/changelog">new features</a> and updated docs!</p>
+              <div class="tag red">BETA</div>
+              <p>This is the documentation for the {{site.ee_product_name}} {{page.kong_version}} <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">beta</a>.
+              <br/>To see the documentation for the latest stable version of {{site.ee_product_name}}, go to <a href="/enterprise/1.5.x/">1.5.x</a>.</p>
             </div>
           </div>
-          {% endif %}
+          {% elsif page.is_homepage != true and page.beta == true %}
+          <div class="alert alert-ee red condensed margin-bigger">
+            <div class="alert-body">
+              <div class="tag red">BETA</div>
+              <p>Warning: This feature is released as <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">BETA</a> and should not be deployed in a production environment.
+            </div>
+          </div>
+          {% elsif page.is_homepage == true %}
+          {% if page.edition == 'enterprise' and page.kong_version == "2.1.x" %}
+          <div class="alert alert-ee red condensed margin-bigger">
+            <div class="alert-body">
+              <div class="tag red">NEW (BETA)</div>
+              <p>{{site.ee_product_name}} {{page.kong_version}} <a href="/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta">beta</a> released! We added <a href="/enterprise/changelog">new features</a> and updated docs!
+                <br/>To see the documentation for the latest stable version of {{site.ee_product_name}}, go to <a href="/enterprise/1.5.x/">1.5.x</a>.</p>
+            </div>
+          </div>
+            {% elsif page.edition == 'enterprise' and page.kong_version == "1.5.x" %}
+            <div class="alert alert-ee condensed margin-bigger">
+              <div class="alert-body">
+                <div class="tag green">STABLE</div>
+                <p>{{site.ee_product_name}} {{page.kong_version}} is the latest stable version.
+                  <br/> To see the documentation for the {{site.ee_product_name}} beta, go to <a href="/enterprise/2.1.x/">2.1.x</a>.</p>
+              </div>
+            </div>
+            {% endif %}
+        {% endif %}
 
           {% unless page.skip_read_time == true or page.path contains '/admin-api' or page.path contains '/pdk' or page.is_homepage %}
           {% include read_time.html %}

@@ -5,6 +5,115 @@ no_version: true
 skip_read_time: true
 ---
 
+## 2.1.0.0 (beta)
+**Release Date** 2020/07/16
+
+### Features
+
+#### Kong Gateway
+* Inherited changes from OSS Kong in releases 2.0.x and 2.1.0.
+* Workspaces code has been refactored for performance. The feature should work the same for most users.
+* TLS version may be specified when using tls to connect to a Postgres db.
+
+#### Kong Manager
+* Open ID Connect (`openid-connect`) can now be used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/) using `config.authenticated_groups_claim`.
+* Can now see the `created_at` timestamp for consumer credentials.
+* Provide a warning when a user's session is about to expire.
+* Generate an RBAC token for an administrator rather than letting them set one.
+* Plugin forms now have docs links to the Plugins Hub.
+
+#### Kong Developer Portal
+* Application Registration can now be configured to use a third-party OAuth provider.
+
+#### Plugins
+
+* Open ID Connect (`openid-connect`)
+  * Added `X-Authenticated-Groups` request header when doing authenticated groups.
+  * Added `config.groups_required` and `config.groups_claim`.
+  * Added `config.roles_required` and `config.roles_claim`.
+  * Added `DELETE :8001/openid-connect/issuers` endpoint (for cache clearing).
+  * Added `DELETE :8001/openid-connect/jwks` endpoint (for rotating the jwks).
+  * Added Admin API for DBless (it is a single node only).
+  * Added support for `x5t` key lookups.
+  * Added support for same `x5t` but different `alg` lookups.
+  * Changed that `config.authenticated_groups_claim` is considered even on successful consumer mapping so that it enables dynamic groups, while using consumer mapping. This feature is used with [Mapping Service Directory Groups to Kong Roles](/enterprise/latest/kong-manager/service-directory-mapping/).
+  * Changed code to be more resilient on rediscovery errors.
+  * Changed `config.rediscovery_lifetime` to default to 30 seconds instead of 300 seconds (5 minutes).
+  * Changed plugin to do rediscovery on configuration changes (while still respecting `config.rediscovery_lifetime`).
+
+* Response Transformer Advanced (`response-transformer-advanced`)
+  * Added support to specify JSON types for configuration values. For example, by doing `config.add.json.json_types`: ["number"], the plugin will convert "-1" added JSON values into -1.
+  * Improved performance by not inheriting from the BasePlugin class.
+  * The plugin is now defensive against possible errors and nil header values.
+
+### Fixes
+
+#### Kong Manager
+* Auto-generated role `workspace-portal-admin` does not display link to Dev Portal Editor.
+* Routes form did not expose `path_handling` attribute for adding/editing.
+* When Kong Manager is secured with OIDC, new workspaces do not include the auto-generated roles.
+* Able to enumerate usernames via the /admins endpoint.
+* Unable to install Kong Manager outside the root directory.
+
+#### Kong Developer Portal
+* The `/developers/:developer/applications` endpoint allowed applications to be created for a developer other than the one in the path.
+* The change password endpoint for developers did not require the original password.
+* User was not redirected to Login after a session timeout.
+* Unable to configure `Accept Http If Already Terminated` for Application Registration plugin. Instead, add both Application Registration and OAuth 2.0 Authentication, and set the config on the Oauth2 Authentication plugin.
+
+#### Plugins
+
+* Response Transformer Advanced (`response-transformer-advanced`)
+  * Improved performance by not inheriting from the `BasePlugin` class.
+  * Empty arrays are correctly preserved.
+  * Prevent the plugin from throwing an error when its access handler did not get a chance to run (e.g., on short-circuited, unauthorized requests).
+  * Standardized on `allow` instead of `whitelist` to specify the parameter names that should be allowed in response JSON body.
+  * The plugin is now defensive against possible errors and nil header values.
+  * Fixed an issue where the plugin was validating the value in `config.replace.body` against the content type as defined in the Content-Type response header.
+
+* Request Transformer Advanced (`request-transformer-advanced`)
+  * Template errors are properly thrown.
+
+* Open ID Connect (`openid-connect`)
+  * Fixed DB-less to reload private key JWTS on each request.
+
+* Rate Limiting Advanced (`rate-limiting-advanced`)
+  * Fixed per service rate limiting.
+
+* LDAP Authentication Advanced (`ldap-auth-advanced`)
+  * Return a 500 when there's an error.
+  * Respond with a 401 instead of 403.
+  * Case-sensitive groups.
+
+* Collector (`collector`, for Brain and Immunity)
+  * Fixed a bug that would make the plugin try to parse request/response body regardless of the content-type.
+
+* GraphQL Rate Limiting Advanced (`gql-rate-limiting-advanced`)
+  * Fixed configuration using transformation that breaks in hybrid mode.
+
+* Updated for 2.1.0.0 compatibility
+  * Proxy Cache Advanced (`proxy-cache-advanced`)
+  * Canary (`canary`)
+  * Rate Limiting Advanced (`rate-limiting-advanced`)
+  * Collector (`collector`)
+  * Vault Authentication (`vault-auth`)
+  * Mutual TLS Authentication (`mtls-auth`)
+  * Route Transformer Advanced(`route-transformer-advanced`)
+  * GraphQL Proxy Caching Advanced (`gql-proxy-cache-advanced`)
+  * GraphQL Rate Limiting Advanced (`gql-rate-limiting-advanced`)
+
+
+### Known Issues and Workarounds
+
+* Key Authentication (`key-auth-enc`) does not function in hybrid deployment mode.
+
+* Breaking changes
+  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
+  
+  * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
+  
+  * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
+
 ## 1.5.0.4
 **Release Date** 2020/06/26
 
@@ -24,6 +133,7 @@ skip_read_time: true
   
 * Collector
   * Fixed issue that occurred when Kong returned a 404 and caused logs to fill with messages.
+
 
 ## 1.5.0.3
 **Release Date** 2020/05/28

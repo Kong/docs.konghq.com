@@ -906,7 +906,9 @@ Generic Styling for Desktop
     grid-column-gap: 16px;
     grid-row-gap: 16px;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
+    justify-content: start;
+    align-content: start;
 
     .docs-grid-install-block {
       border: 1px solid #9dc6e3;
@@ -918,7 +920,7 @@ Generic Styling for Desktop
       align-items: center;
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-      justify-content: space-between;
+      justify-content: start;
       padding: 16px;
       text-decoration: none;
 
@@ -927,6 +929,7 @@ Generic Styling for Desktop
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        margin-bottom: 15px;
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
@@ -941,6 +944,18 @@ Generic Styling for Desktop
         color: rgba(0, 0, 0, .85);
         font-weight: 900;
         transition: .2s ease-in-out;
+        display: block;
+      }
+
+      .install-description {
+        font-size: 12px;
+        color: rgba(0, 0, 0, .85);
+        transition: .2s ease-in-out;
+        margin-top: 10px;
+      }
+
+      &.no-description {
+        justify-content: center;
       }
 
       &:hover {
@@ -1120,13 +1135,13 @@ Generic Styling for Desktop
 
 .alert-warning {
   color: #808060;
-  border-color: #e0e0c9;;
+  border-color: #e0e0c9;
   background-color: #fffff7;
 }
 
 .alert-danger {
   color: #cc3d3d;
-  border-color: #eac0c0;;
+  border-color: #eac0c0;
   background-color: #fff4f4;
 }
 
@@ -1135,6 +1150,22 @@ Generic Styling for Desktop
   border: none;
   border-left: solid 3px #b3dfff;
   border-radius: 0;
+  font-size: 14px;
+
+  &.red {
+    background-color: #fdf3f2;
+    border-left: solid 3px @red;
+  }
+
+  &.warning {
+    background-color: #fffbea;
+    border-left: solid 3px #faebcb;
+  }
+
+  &.info {
+    border-left: solid 3px #e0e0e0;
+    background-color: #f9f9f9;
+  }
 
   .alert-body {
     padding-top: 20px;
@@ -1148,7 +1179,7 @@ Generic Styling for Desktop
 
   .tag {
     padding: 2px 8px;
-    margin-right: 16px;
+    margin-right: 12px;
     border-radius: 11px;
     font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 10px;
@@ -1158,6 +1189,10 @@ Generic Styling for Desktop
 
     &.green {
       background: #35cb05;
+    }
+
+    &.red {
+      background: @red;
     }
   }
 
