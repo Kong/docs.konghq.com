@@ -1,7 +1,7 @@
 ---
 name: HMAC Authentication
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.2.0
 
 desc: Add HMAC Authentication to your Services
 description: |
@@ -28,8 +28,9 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.1.x
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -61,7 +62,7 @@ params:
   service_id: true
   route_id: true
   consumer_id: false
-  protocols: ["http", "https"]
+  protocols: ["http", "https", "grpc", "grpcs"]
   dbless_compatible: partially
   dbless_explanation: |
     Consumers and Credentials can be created with declarative configuration.
@@ -99,8 +100,8 @@ params:
   extra: |
     Once applied, any user with a valid credential can access the Service/Route.
     To restrict usage to only some of the authenticated users, also add the
-    [ACL](/plugins/acl/) plugin (not covered here) and create whitelist or
-    blacklist groups of users.
+    [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+    denied groups of users.
 
 ---
 
@@ -393,12 +394,16 @@ can identify the Consumer in your code:
 * `X-Consumer-ID`, the ID of the Consumer on Kong
 * `X-Consumer-Custom-ID`, the `custom_id` of the Consumer (if set)
 * `X-Consumer-Username`, the `username` of the Consumer (if set)
-* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
+* `X-Credential-Identifier`, the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 
 You can use this information on your side to implement additional logic.
 You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve
 more information about the Consumer.
+
+<div class="alert alert-warning">
+  <strong>Note:</strong>`X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
+</div>
 
 ### Paginate through the HMAC Credentials
 
