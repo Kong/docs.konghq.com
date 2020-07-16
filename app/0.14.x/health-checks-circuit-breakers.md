@@ -191,7 +191,9 @@ status, essentially requesting to be relieved from taking new traffic.
 It is possible to combine the two modes. For example, one can enable
 passive health checks to monitor the target health based solely on its
 traffic, and only use active health checks while the target is unhealthy,
-in order to re-enable it automatically.
+in order to re-enable it automatically. To do so, set the interval of
+active health checks on `healthy` status to zero, and active checks on
+`unhealthy` status to a non-zero interval.
 
 [Back to TOC](#table-of-contents)
 

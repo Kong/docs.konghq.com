@@ -118,7 +118,7 @@ the Github [release page](https://github.com/hbagdi/deck/releases)
 or install by downloading the binary:
 
 ```shel
-$ curl -sL https://github.com/hbagdi/deck/releases/download/v0.4.0/deck_0.4.0_linux_amd64.tar.gz -o deck.tar.gz
+$ curl -sL https://github.com/hbagdi/deck/releases/download/v1.1.0/deck_1.1.0_linux_amd64.tar.gz -o deck.tar.gz
 $ tar -xf deck.tar.gz -C /tmp
 $ cp /tmp/deck /usr/local/bin/
 ```

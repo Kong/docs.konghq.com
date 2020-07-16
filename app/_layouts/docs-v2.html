@@ -4,77 +4,62 @@ sitemap: true
 id: documentation
 ---
 
-<div class="page v2 {{ page.class }} {% if page.is_homepage %}homepage{% endif %}">
+<div class="page v2 {{ page.class }}">
   <header class="page-header">
-    {% if page.is_homepage %}
-    <div class="page-header-bg">
-      <img
-        class="page-header-bg-image-left"
-        {% if page.edition=='enterprise' %}
-        src="/assets/images/docs/bg-enterprise-left.png"
-        {% else %}
-        src="/assets/images/docs/bg-left.png"
-        {% endif %}
-        alt="left-bg-image"
-      >
-      <img
-        class="page-header-bg-image-right"
-        {% if page.edition=='enterprise' %}
-        src="/assets/images/docs/bg-enterprise-right.png"
-        {% else %}
-        src="/assets/images/docs/bg-right.png"
-        {% endif %}
-        alt="right-bg-image"
-      >
-    </div>
-    {% endif %}
+    <div class="page-header-bg"></div>
     <div class="container">
       <nav class="docs-navigation v2">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Gateway</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
 
-        <div class="edit-this-page v2">
-          <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
-            <i class="fa fa-pencil"></i>
-            <span>Edit this Page</span>
-          </a>
+        <div class="header-actions">
+          {% unless page.no_version == true %}
+          <div class="search-version-row">
+            <div class="versions-dropdown dropdown no-right-border">
+              <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Version {{page.kong_version}}
+                {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
+                {% for ver in page.kong_versions reversed %}
+                {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
+                {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+                <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
+                    {% if ver.release==page.kong_version %} class="active" {% endif %}
+                  >
+                    {{ver.release}}
+                    {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endunless %}
+            {% unless page.no_search == true %}
+            <div class="dropdown" id="searchBar">
+              <div id="getkong-algolia-search" class="search-input v2">
+                <img class="icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
+                <input type="text" placeholder="Type to search" id="getkong-algolia-search-input" />
+              </div>
+            </div>
+          </div>
+          <img id="search-version-icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
+          {% endunless %}
+          <div class="edit-this-page v2">
+            <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+              <img src="/assets/images/logos/logo-github.svg" alt="github"/>
+            </a>
+          </div>
         </div>
       </nav>
 
       <div class="title-version-search-container">
         <div class="page-header-title">
-          <h1>{{page.title}}</h1>
-        </div>
-        <div class="search-version-row">
-          <div class="versions-dropdown dropdown no-right-border">
-            <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-              Version {{page.kong_version}}
-              {% if page.kong_version == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="version-dropdown">
-              {% for ver in page.kong_versions reversed %}
-              {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
-              {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
-              <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
-                    {% if ver.release==page.kong_version %} class="active" {% endif %}
-                >
-                  {{ver.release}}
-                  {% if ver.release == page.kong_latest.release %}<em>(latest)</em>{% endif %}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="dropdown" id="searchBar">
-            <div id="getkong-algolia-search" class="search-input v2 {% unless page.is_homepage %}small{% endunless %}">
-              <img class="icon" src="/assets/images/icons/icn-magnifying-glass.svg" alt="search">
-              <input type="text" placeholder="Type to search {% if page.is_homepage %}documentation...{% endif %}" id="getkong-algolia-search-input" />
-            </div>
-          </div>
+          <h1>{{page.title | flatify}}</h1>
+          <h2>{{page.subtitle | flatify}}</h2>
         </div>
       </div>
     </div>
@@ -96,7 +81,7 @@ id: documentation
     <div class="page-content-container v2" id="documentation">
       <div class="toggles">
         <i class="fas fa-stream sidebar-toggle"></i>
-        {% if page.toc == true or page.toc != false and filename != "index.md" and page.is_homepage != true %}
+        {% if page.toc == true or page.toc != false and filename != "index.md" %}
         <i class="far fa-list-alt toc-sidebar-toggle"></i>
         {% endif %}
       </div>
@@ -115,8 +100,7 @@ id: documentation
                   href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
             to browse the documentation for the latest version.
           </div>
-          {% elsif page.is_homepage == true %}
-          {% if page.edition == 'enterprise' %}
+          {% elsif page.is_homepage == true and page.edition == 'enterprise' %}
           <div class="alert alert-ee condensed margin-bigger">
             <div class="alert-body">
               <div class="tag green">NEW</div>
@@ -124,7 +108,6 @@ id: documentation
                       href="/enterprise/changelog">new features</a> and updated docs!</p>
             </div>
           </div>
-          {% endif %}
           {% endif %}
 
           {% unless page.skip_read_time == true or page.path contains '/admin-api' or page.path contains '/pdk' or page.is_homepage %}

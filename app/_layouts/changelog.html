@@ -5,16 +5,20 @@ sitemap: true
 
 <div class="page-changelog">
   <header class="page-header">
+    <div class="page-header-bg"></div>
     <div class="container">
-      <div class="edit-this-page">
-        <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}"><i class="fa fa-github"></i>
-          Edit this Page</a>
-      </div>
-      <nav class="docs-navigation">
-        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>{{site.ce_product_name}}</a>
-        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>{{site.ee_product_name}}</a>
+      <nav class="docs-navigation v2">
+        <a href="/" {% if page.edition=='community' %} class="active" {% endif %}>Kong Gateway</a>
+        <a href="/enterprise" {% if page.edition=='enterprise' %} class="active" {% endif %}>Kong Enterprise</a>
         <a href="/getting-started-guide/latest/overview" {% if page.edition=='getting-started-guide' %} class="active" {% endif %}>Getting Started</a>
-        <span class="sidebar-toggle">Open Sidebar</span>
+
+        <div class="header-actions">
+          <div class="edit-this-page v2">
+            <a target="_blank" href="https://github.com/Kong/docs.konghq.com/tree/master/app/{{page.path}}">
+              <img src="/assets/images/logos/logo-github.svg" alt="github"/>
+            </a>
+          </div>
+        </div>
       </nav>
       <div class="page-header-title">
         <h1>{{page.title}}</h1>
