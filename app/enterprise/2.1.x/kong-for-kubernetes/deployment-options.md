@@ -1,6 +1,10 @@
 ---
 title: Kong for Kubernetes deployment options
+skip_read_time: true
 ---
+<div class="alert alert-ee blue">
+<b>Coming Soon:</b> Kong for Kubernetes Enterprise (K4K8s) is not currently available for use with {{site.ee_product_name}} 2.1.x beta. It will be released within the beta timeframe.
+</div>
 
 ## Deployment options
 

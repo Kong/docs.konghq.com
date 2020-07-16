@@ -1,6 +1,10 @@
 ---
 title: Installing Kong for Kubernetes Enterprise
+skip_read_time: true
 ---
+<div class="alert alert-ee blue">
+<b>Coming Soon:</b> Kong for Kubernetes Enterprise (K4K8s) is not currently available for use with {{site.ee_product_name}} 2.1.x beta. It will be released within the beta timeframe.
+</div>
 
 ## Introduction
 Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs without a database, but does not include other Kong Enterprise features (Kong Manager, Dev Portal, Vitals, etc).
