@@ -1,56 +1,92 @@
 ---
-title: Kong Enterprise 1.5.x Release Notes
+title: Kong Enterprise 2.1.x (beta) Release Notes
 ---
 
-These release notes apply to Kong Enterprise Release 1.5.x and include an overview of new features and updates. For detailed information about this release, including features and fixes, see the [Changelog](https://docs.konghq.com/enterprise/changelog//).
+These release notes apply to Kong Enterprise Release 2.1.x (beta) and provide a high-level overview of new features and updates. For more detailed information about this release, including features, fixes, and known issues, see the [Changelog](https://docs.konghq.com/enterprise/changelog/).
 
 ## New Features
 
-### Consumer Alerts in Kong Immunity 
-Kong Immunity detects service behavior anomalies using machine learning. This release extends this functionality with detection of anomalies scoped to specific API consumers. This means all existing triggered alerts now come in two flavors:
-* endpoint alerts based on traffic belonging to a specific endpoint
-* consumer alerts based on traffic in a workspace for a specific consumer 
+### Hybrid Mode
 
-With consumer alerts functionality, alerts can now be specifically traced to individuals and teams that access APIs. We’ve also made a few improvements to services and routes pages in Kong Manager to account for these alerts. See [Immunity Alerts](https://docs.konghq.com/enterprise/1.5.x/brain-immunity/alerts/). 
+Kong Enterprise now supports a new deployment method called Hybrid mode, also known as Control Plane / Data Plane Separation (CP/DP).
 
-### OpenID Connect Improvements
-The OpenID Connect plugin bundled with Kong Enterprise 1.5.x features several improvements and fixes. The biggest addition is support for assertions on client authentication. The plugin is now able to authenticate itself with the OpenID Connect Providers using `client_secret_jwt` and `private_key_jwt` authentication methods. See [OpenID Connect](https://docs.konghq.com/hub/kong-inc/openid-connect/). 
+In this mode, Kong nodes in a cluster are split into two roles: Control Plane (CP), which centrally manages Kong Enterprise cluster configuration, and Data Plane (DP), which serves traffic for the proxy. Each DP node is connected to one of the CP nodes. Instead of accessing the database contents directly as in the traditional deployment method, the DP nodes maintain connection with CP nodes, and receive the latest configuration. All nodes in a cluster are configured with generated certificates, ensuring each Data Plane node is calling back to securely pair with the Control Plane. 
 
-### Application Registration [Beta](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta) 
-The ability for developers to create applications that package together a set of backend services is enabled through the Developer Portal and Kong Manager. The Developer Portal includes a new tab called “My Apps” that allows developers to create new applications (and credentials) and subscribe their applications to specific services/APIs. A new “Portal Application Registration” plugin is available, and added functionality in Kong Manager to provide API owners the ability to approve application access to underlying services.
+You can manage Kong Enterprise add-ons including Kong Manager, Developer Portal, Vitals, Immunity, and Brain from a single Control Plane that spans multiple clusters across different data centers and platforms. This means that you can distribute Kong Enterprise instances in Data Plane mode over any of Kong’s supported environments, while still connecting back to the Control Plane.
 
-This feature is currently designated as [beta](https://docs.konghq.com/enterprise/latest/introduction/key-concepts/#beta). For beta features, we provide full support only in pre-production environments. See [Application Registration](https://docs.konghq.com/enterprise/1.5.x/developer-portal/administration/application-registration/).
+Here’s a sample configuration with one central Control Plane and three Data Plane nodes, as well as Kong Manager and Developer Portal enabled on the Control Plane:
 
-## Other Improvements
-Apart from the highlighted features mentioned above, this version of Kong Enterprise includes several smaller features, including:
-* Full support for [storing sensitive data fields in an encrypted format at rest within the database](https://docs.konghq.com/enterprise/1.5.x/db-encryption/)
-* Sortable entity lists in Kong Manager
-* Auto-detection of Apache Cassandra cluster topology without Kong restarts
-* A new hostname attribute for upstreams
-* IPv6 support for the IP Restriction plugin
-* Several other plugin improvements and bug fixes as defined in the Changelog.
+![Hybrid mode](/assets/images/docs/ee/deployment/deployment-hybrid-2.png)
 
-## What's New in the Documentation
+For more information, check out the following links:
+* [Hybrid Mode Overview](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/)
+* [Deploying Kong Enterprise in Hybrid Mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup
 
-In addition to features listed above, changes to the user documentation include:
+### Developer Portal Application Registration with External IDP Support
 
-* [Getting Started Guide](https://docs.konghq.com/getting-started-guide/latest/overview/) walks you through Kong concepts and foundational API gateway features and capabilities.
-* [Introduction to Kong Enterprise](https://docs.konghq.com/enterprise/1.5.x/introduction/) gives an overview of features and architecture. 
-* [Key Concepts and Terminology](https://docs.konghq.com/enterprise/1.5.x/introduction/key-concepts/) defines concepts and terms specific to Kong Enterprise.
-* [Default Ports](https://docs.konghq.com/enterprise/1.5.x/deployment/default-ports/) list. 
-* [Kong Security Update Process](https://docs.konghq.com/enterprise/1.5.x/kong-security-update-process/) includes information about reporting a vulnerability and fix development process. 
-* [Resource Sizing Guidelines](https://docs.konghq.com/enterprise/1.5.x/sizing-guidelines/) is now located in the Deployment section.
-* [Upgrade and Migration Steps for 1.5](https://docs.konghq.com/enterprise/1.5.x/deployment/migrations/). 
-* Kong Brain and Kong Immunity: 
-  * [Overview](https://docs.konghq.com/enterprise/1.5.x/brain-immunity/install-configure/) diagram
-  * [Setting Up Collector App via Helm](https://docs.konghq.com/enterprise/1.5.x/brain-immunity/install-configure/#setting-up-collector-app-via-helm)
-* [New Doc Site](https://docs.konghq.com/enterprise/?itm_source=website&itm_medium=nav&_ga=2.24477050.11964654.1589165758-132287075.1554308608) updates, including:
-  * New look and layout
-  * New Introduction and Deployment sections
-  * Left navigation with collapsable sections
-  * *On this page* navigation for each topic
-  * Expanded Search bar
-  * Tabs in sections for configuration, such as Kong Manager and Admin API information
+Authentication is decoupled from the Application Registration plugin, and support is added for third-party OAuth providers. Developers now have the flexibility to choose from either Kong or a third-party identity provider (IdP) as the system of record for application credentials. With third-party OAuth support, developers can centralize application credential management with the supported IdP of their choice.
+
+For more information, see:
+* [Application Registration](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/)
+* [Application Registration Plugin](/hub/kong-inc/application-registration/)
+
+
+### Developer Portal Markdown Support
+
+The Developer Portal now supports GitHub Markdown as an alternative to Developer Portal templates. To use the feature, create a markdown file and call the new markdown layout module. You can use the default CSS or customize it for more control over the Dev Portal skin.
+
+For more information, see the [Developer Portal Markdown](/enterprise/{{page.kong_version}}/developer-portal/theme-customization/markdown-extended/) topic.
+
+### Go Language Support for Custom Plugins
+
+The Go Plugin Development Kit for Kong Enterprise allows users to tap into the Go ecosystem with custom plugins. The Kong Go PDK directly parallels the existing Kong PDK for Lua plugins, and the addition of Go plugin support allows Kong users to tap into the Go ecosystem. 
+
+For more information, see the [Go PDK](/enterprise/{{page.kong_version}}/go/) topic.
+
+### Kong Vitals Reports
+
+A new interface in Kong Manager lets you view usage dashboards and generate reports, with easier access to all metrics collected by Kong Vitals over a greater period of time. Use the reports feature to browse, filter, and view your metrics in a time-series generated report, and export the report as a comma-separated values (CSV) file. 
+
+For more information, see the [Vitals Overview](/enterprise/{{page.kong_version}}/vitals/overview/) and [Vitals Reports](/enterprise/{{page.kong_version}}/vitals/vitals-reports/) topics.
+
+## Coming Soon
+
+Kong for Kubernetes Enterprise (K4K8s) is not currently available for use with Kong Enterprise 2.1.x beta. It will be released within the beta timeframe.
+
+## What's New in the Docs
+
+In addition to the features listed above, updates to Kong's user documentation and Docs site include:
+* [decK documentation](https://docs.konghq.com/deck) has moved to docs.konghq.com. 
+* Improved [Vitals section](/enterprise/{{page.kong_version}}/vitals/overview/), including new [Overview](/enterprise/{{page.kong_version}}/vitals/overview/), [Reports](/enterprise/{{page.kong_version}}/vitals/vitals-reports/), and [Metrics](/enterprise/{{page.kong_version}}/vitals/vitals-metrics/) topics. 
+* New Plugin topics:
+  * [Plugin Overview](/hub/plugins/overview/) introduces the most basic things you need to know to get started with plugins: what they are, why you might use them, terminology, and information on creating your own plugins and plugin documentation.
+  * [Plugin Compatibility Matrix](/hub/plugins/compatibility/) compares the various Kong Gateway deployment modes.
+* New Deployment topics:
+  * [Kong Deployment Options](/enterprise/{{page.kong_version}}/deployment/deployment-options/)
+  * [DNS Considerations](/enterprise/{{page.kong_version}}/deployment/dns-considerations/)
+  * [Kong Security Update Process](/enterprise/{{page.kong_version}}/kong-security-update-process/)
+* Improved Kubernetes topics:
+  * [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options/) breaks down the differences between the two available Kong Enterprise images and helps you choose a deployment.
+  * [Installing Kong Enterprise on Kubernetes](/enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes/) walks you through installation of the `kong-enterprise-edition` image on Kubernetes with all Enterprise plugins and add-ons.
+* [Installation topics](/enterprise/{{page.kong_version}}/deployment/installation/overview/) reorganized.
+* New [Version Support](/enterprise/{{page.kong_version}}/support-policy/) information and matrix.
+* New Doc site improvements, including: table of contents rework; collapsible sub-sections; mobile layout fixes; images expand on click; ability to copy code snippets; ability to stay on same topic when navigating between versions; right-hand navigation "On this page" redesign with collapse and reopen feature; scroll to the top button; and resizable table columns. 
+
+## Known Issues
+
+* This beta release is intended for testing purposes only. No upgrades from the previous versions are supported. See the [Beta](/enterprise/{{page.kong_version}}/introduction/key-concepts/#beta) definition for more information. 
+
+* The Key Authentication - Encrypted (`key-auth-enc`) plugin does not support `ttl` (time-to-live) in Hybrid mode deployments.
+
+* Setting your Kong password (`Kong_Password`) using a value containing four ticks (for example,  `KONG_PASSWORD="a''a'a'a'a"`) causes a Postgres syntax error on bootstrap. To work around this issue, do not use special characters in your password. 
+
+* Breaking changes
+  * `run_on` is removed from plugins, as it has not been used for a long time but compatibility was kept in 1.x. Any plugin with `run_on` will now break because the schema no longer contains that entry. If testing custom plugins against this beta release, update the plugin's schema.lua file and remove the `run_on` field.
+  
+  * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
+  
+  * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
+
 
 ## Changelog
-For a complete list of changes, please see the Kong Enterprise 1.5.x [Changelog](https://docs.konghq.com/enterprise/changelog//).
+For a complete list of features, fixes, and changes, see the Kong Enterprise 2.1.0(beta) [Changelog](/enterprise/changelog/).
