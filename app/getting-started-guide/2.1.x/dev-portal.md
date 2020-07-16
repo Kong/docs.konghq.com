@@ -39,7 +39,7 @@ $ http PATCH :8001/workspaces/SecureWorkspace config.portal=true
 {% endnavtabs %}
 This will expose the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace.`
 
-Once enabled for the workspace, a few new links will appear in the left menu. It may take a few seconds for the Settings page to populate.
+After the Dev Portal is enabled for the Workspace, a few new links appear in the left navigation menu. It may take a few seconds for the Settings page to populate.
 
 You can learn more about personalization in the [the Dev Portal documentation](/enterprise/latest/developer-portal/overview/), including:
 
@@ -47,7 +47,7 @@ You can learn more about personalization in the [the Dev Portal documentation](/
 * [Managing access](/enterprise/latest/developer-portal/administration/)
 * [Configuring the Dev Portal](/enterprise/latest/developer-portal/configuration/)
 
-## Access and Interact with the Development Portal
+## Access and Interact with the Developer Portal
 
 1. Go back to **Dev Portal** > **Overview** and open the link in a new tab, or open the Dev Portal directly using this URL: `http://<admin-hostname>:8003/SecureWorkspace`.
 
@@ -64,7 +64,7 @@ You can learn more about personalization in the [the Dev Portal documentation](/
     1. Under **HTTP Methods**, click the GET method.
     2. Click **Try it Out**, then click **Execute**. Review the results of the response.
 
-## Publish a Spec to Development Portal
+## Publish a Spec to Developer Portal
 
 In this section, you’re going to add a new spec, the *Kong Vitals API*, to the Dev Portal catalog. The Kong Vitals API shows how Kong Gateway and connected APIs are performing.
 
@@ -78,17 +78,17 @@ In this section, you’re going to add a new spec, the *Kong Vitals API*, to the
 
     The editor creates the file and prepares it for editing. Since you haven’t added any content to the file, the preview displays “Unable to render this definition”.
 
-5. In another tab, open the [Kong Vitals Admin API page](/enterprise/1.5.x/admin-api/vitals/#vitals-api) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
+5. In another tab, open the [Kong Vitals Overview page](/enterprise/latest/vitals/overview/#using-vitals-api) to download the `vitalsSpec.yaml.` Open it in your favorite text editor and copy the contents of the file.
 
 6. In the Dev Portal editor, clear the contents of the editor, then paste the contents of `vitalsSpec.yaml`.
 
 7. Click **Save Changes**. If done correctly, the preview should show the API now.
 
-8. Visit the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace` and notice the new spec published to the Dev Portal.
+8. View the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace` and notice the new spec published to the Dev Portal.
 
 ## Summary
 
 In this topic, you:
-* Enabled the Kong Dev Portal on the workspace SecureWorkspace.
+* Enabled the Kong Dev Portal on the Workspace `SecureWorkspace`.
 * Tested the httpbin `GET` method.
 * Added a new spec for the Kong Vitals API to the Dev Portal catalog.

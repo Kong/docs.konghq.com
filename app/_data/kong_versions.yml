@@ -340,4 +340,8 @@
   version: "CE-2.0.x/KE-1.5.x"
   edition: "getting-started-guide"
 -
+  release: "2.1.x"
+  version: "2.1"
+  edition: "getting-started-guide"
+-
   edition: "deck"

@@ -3,7 +3,7 @@ title: Getting Started Guide
 subtitle: A single guide for both {{site.ce_product_name}} and {{site.ee_product_name}}
 is_homepage: true
 redirect_from:
-  - /enterprise/1.5.x/getting-started/
+  - /enterprise/latest/getting-started/
 ---
 This Getting Started Guide walks you through Kong concepts and foundational API gateway features and capabilities.
 
@@ -73,6 +73,7 @@ Note the following before you start using this guide:
 
 ### Using this guide
 * As a {{site.ee_product_name}} or Free Trial user, functionalities can be managed programmatically using a REST-based Admin API, or using the Kong Manager GUI. As a {{site.base_gateway}} user, you need to follow the Admin API steps since Manager is an Enterprise feature. In this guide, you can choose your preferred method, if options are available — you don’t have to follow both.
+* If you're running Kong in Hybrid mode, all tasks contained in this guide take place on the Control Plane.
 * This guide provides Kong Admin API examples in both HTTPie and cURL. If you want to use HTTPie, install it from [here](https://httpie.org/).
 * Any references to “{{site.base_gateway}}” refer to features or concepts common to both {{site.ce_product_name}} and {{site.ee_gateway_name}}.
 
