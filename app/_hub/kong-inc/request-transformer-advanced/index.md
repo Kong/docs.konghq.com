@@ -168,7 +168,7 @@ logical operators may be used. For example:
 
     Header-Name:$(uri_captures["user-id"] or query_params["user"] or "unknown")
 
-This will first look for the path parameter (uri capture), if not found it will
+This will first look for the path parameter (`uri_captures`); if not found, it will
 return the query parameter, or if that also doesn't exist it returns the default
 value '"unknown"'.
 
