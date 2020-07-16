@@ -165,6 +165,7 @@
 # Generated via autodoc-admin-api
 - title: Admin API
   url: /admin-api/
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   items:
     - text: DB-less
       url: /db-less-admin-api
