@@ -1,7 +1,7 @@
 ---
 name: LDAP Authentication
 publisher: Kong Inc.
-version: 1.0.0
+version: 2.2.0
 
 desc: Integrate Kong with a LDAP server
 description: |
@@ -22,8 +22,9 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.1.x
         - 2.0.x
-        - 1.5.x      
+        - 1.5.x
         - 1.4.x
         - 1.3.x
         - 1.2.x
@@ -52,7 +53,7 @@ params:
   service_id: false
   route_id: true
   consumer_id: false
-  protocols: ["http", "https"]
+  protocols: ["http", "https", "gprc", "grpcs"]
   dbless_compatible: yes
   config:
     - name: hide_credentials
@@ -137,11 +138,15 @@ The plugin will validate the user against the LDAP server and cache the credenti
 
 When a client has been authenticated, the plugin will append some headers to the request before proxying it to the upstream service, so that you can identify the consumer in your code:
 
-* `X-Credential-Username`, the `username` of the Credential (only if the consumer is not the 'anonymous' consumer)
 * `X-Anonymous-Consumer`, will be set to `true` when authentication failed, and the 'anonymous' consumer was set instead.
 * `X-Consumer-ID`, the ID of the 'anonymous' consumer on Kong (only if authentication failed and 'anonymous' was set)
 * `X-Consumer-Custom-ID`, the `custom_id` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
 * `X-Consumer-Username`, the `username` of the 'anonymous' consumer (only if authentication failed and 'anonymous' was set)
+* `X-Credential-Identifier`, the identifier of the Credential (only if the consumer is not the 'anonymous' consumer)
+
+<div class="alert alert-warning">
+  <strong>Note:</strong>`X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
+</div>
 
 [configuration]: /latest/configuration
 [consumer-object]: /latest/admin-api/#consumer-object

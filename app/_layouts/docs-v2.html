@@ -19,8 +19,8 @@ id: documentation
             <div class="versions-dropdown dropdown no-right-border">
               <button class="page-header-btn" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Version {{page.kong_version}}
-                {% if page.kong_version == "2.1.x" %} <em>(beta)</em>
-                {% elsif page.kong_version == "1.5.x" %} <em>(latest stable)</em>
+                {% if page.kong_version == "2.1.x" and page.edition == 'enterprise' %} <em>(beta)</em>
+                {% elsif page.kong_version == "1.5.x" and page.edition == 'enterprise' %} <em>(latest stable)</em>
                 {% elsif page.kong_version == page.kong_latest.release %} <em>(latest)</em>{% endif %}
                 <span class="caret"></span>
               </button>
@@ -29,13 +29,13 @@ id: documentation
                 {% assign version_page_url = page.url | replace: page.kong_version, ver.release %}
                 {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}<li {% if page.kong_version==ver.release %} class="active" {% endif %}>
                 <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
-                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{%if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
+                  <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
                   >
                   {{ver.release}}
-                  {% if ver.release == "2.1.x" %} <em>(beta)</em>
-                  {% elsif ver.release == "1.5.x" %} <em>(latest stable)</em>
-                  {% elsif ver.release == page.kong_latest.release and ver.release != "2.1.x" %} <em>(latest)</em>{% endif %}
+                  {% if ver.release == "2.1.x" and page.edition == 'enterprise' %} <em>(beta)</em>
+                  {% elsif ver.release == "1.5.x" and page.edition == 'enterprise' %} <em>(latest stable)</em>
+                  {% elsif ver.release == page.kong_latest.release %} <em>(latest)</em>{% endif %}
                   </a>
                 </li>
                 {% endfor %}

@@ -2,6 +2,7 @@
 title: De-duplicate Plugin Configuration
 toc: false
 no_version: true
+no_search: true
 ---
 
 In some use cases, you might want to create a number of plugins associated with

@@ -1,7 +1,7 @@
 ---
 name: ACME
 publisher: Kong Inc.
-version: 0.2.2
+version: 0.2.7
 
 source_url: https://github.com/Kong/kong-plugin-acme
 
@@ -16,9 +16,11 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.1.x
         - 2.0.x
     enterprise_edition:
       compatible:
+        - 2.1.x
 
 params:
   name: acme
@@ -38,12 +40,12 @@ params:
       required: false
       default: "`https://acme-v02.api.letsencrypt.org`"
       description: |
-        The ACMEv2 API endpoint to use. You can use the [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) during testing. Note that Kong doesn't automatically delete staging certificates: if you use same domain to test and use in production, you will need to delete those certificates manually after testing.
+        The ACMEv2 API endpoint to use. Users can specify the [Let's Encrypt staging environment](https://letsencrypt.org/docs/staging-environment/) (`https://acme-staging-v02.api.letsencrypt.org/directory`) for testing. Note that Kong doesn't automatically delete staging certificates: if you use same domain to test and use in production, you will need to delete those certificates manually after testing.
     - name: cert_type
       required: false
       default: "`rsa`"
       description: |
-        The certificate type to create, choice of `"rsa"` for RSA certificate or `"ecc"` for EC certificate.
+        The certificate type to create. The possible values are `"rsa"` for RSA certificate or `"ecc"` for EC certificate.
     - name: domains
       required: false
       default: "`[]`"
@@ -58,7 +60,7 @@ params:
       required: false
       default: "`shm`"
       description: |
-        The backend storage type to use, choice of `"kong"`, `"shm"`, `"redis"`, `"consul"` or `"vault"`. In dbless mode, `"kong"` storage is unavailable.
+        The backend storage type to use. The possible values are `"kong"`, `"shm"`, `"redis"`, `"consul"`, or `"vault"`. In DB-less mode, `"kong"` storage is unavailable. Note that `"shm"` storage does not persist during Kong restarts and does not work for Kong running on different machines, so consider using one of `"kong"`, `"redis"`, `"consul"`, or `"vault"` in production.
     - name: storage_config
       required: false
       default:
@@ -83,24 +85,27 @@ params:
             "database": 0,
             "host": "127.0.0.1"
           },
-          "consul": {
-            "host": "127.0.0.1",
-            "port": 8500,
-            "token": null,
-            "kv_path": "acme"
+           "consul": {
+              "host": "127.0.0.1",
+              "port": 8500,
+              "token": null,
+              "kv_path": "acme",
+              "timeout": 2000,
+              "https": false
           },
           "vault": {
-            "host": "127.0.0.1",
-            "port": 8200,
-            "token": null,
-            "kv_path": "acme"
+              "host": "127.0.0.1",
+              "port": 8200,
+              "token": null,
+              "kv_path": "acme",
+              "timeout": 2000,
+              "https": false,
+              "tls_verify": true,
+              "tls_server_name": null
           },
         }
     ```
-
-    If you are using a cluster of Kong (multiple Kong instances running on different machines),
-    consider using one of `"kong"`, `"redis"`, `"consul"` or `"vault"` to support inter-cluster communication.
-
+  
     To configure storage type other than `kong`, please refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
 ---
@@ -110,15 +115,48 @@ params:
 #### Configure Kong
 
 - Kong needs to listen 80 port or proxied by a load balancer that listens for 80 port.
-- `nginx_proxy_lua_ssl_trusted_certificate` needs to be set in `kong.conf` to ensure the plugin can properly
+- `lua_ssl_trusted_certificate` needs to be set in `kong.conf` to ensure the plugin can properly
 verify Let's Encrypt API. The CA-bundle file is usually `/etc/ssl/certs/ca-certificates.crt` for
 Ubuntu/Debian and `/etc/ssl/certs/ca-bundle.crt` for CentOS/Fedora/RHEL.
+
+#### Configure Plugin
+
+Here's a sample declarative configuration with `redis` as storage:
+
+```yaml
+_format_version: "1.1"
+# this section is not necessary if there's already a route that matches
+# /.well-known/acme-challenge path with http protocol
+services:
+  - name: acme-dummy
+    url: http://127.0.0.1:65535
+    routes:
+      - name: acme-dummy
+        protocols:
+          - http
+        paths:
+          - /.well-known/acme-challenge
+plugins:
+  - name: acme
+    config:
+      account_email: example@myexample.com
+      domains:
+        - "*.example.com"
+        - "example.com"
+      tos_accepted: true
+      storage: redis
+      storage_config:
+        redis:
+          host: redis.service
+          port: 6379
+```
 
 #### Enable the Plugin
 
 For each the domain that needs a certificate, make sure `DOMAIN/.well-known/acme-challenge`
 is mapped to a Route in Kong. You can check this by sending
 `curl KONG_IP/.well-known/acme-challenge/x -H "host:DOMAIN"` and getting the response `Not found`.
+You can also [use the Admin API](#create-certificates) to verify the setup.
 If not, add a Route and a dummy Service to catch this route.
 ```bash
 # add a dummy service if needed
@@ -153,9 +191,19 @@ and terminate challenges only for certain domains, please refer to the
 Assume Kong proxy is accessible via http://mydomain.com and https://mydomain.com.
 
 ```bash
+# Trigger asynchronous creation from proxy requests
+# The following request returns immediately with Kong's default certificate
+# Wait up to 1 minute for the background process to finish
 $ curl https://mydomain.com -k
-# Returns Kong's default certificate
-# Wait up to 1 minute
+
+# OR create from Admin API synchronously
+# User can also use this endpoint to force "renew" a certificate
+$ curl http://localhost:8001/acme -d host=mydomain.com
+
+# Furthermore, it's possible to run a sanity test on your Kong setup
+# before creating any certificate
+$ curl http://localhost:8001/acme -d host=mydomain.com -d test_http_challenge_flow=true
+
 $ curl https://mydomain.com
 # Now gives you a valid Let's Encrypt certicate
 ```
