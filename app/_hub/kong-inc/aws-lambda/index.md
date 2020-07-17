@@ -1,7 +1,7 @@
 ---
 name: AWS Lambda
 publisher: Kong Inc.
-version: 3.0.x
+version: 3.4.x
 
 desc: Invoke and manage AWS Lambda functions from Kong
 description: |
@@ -24,6 +24,7 @@ categories:
 kong_version_compatibility:
     community_edition:
       compatible:
+        - 2.1.x
         - 2.0.x
         - 1.5.x
         - 1.4.x
@@ -69,16 +70,23 @@ params:
       default:
       description: The AWS secret credential to be used when invoking the function. This value is required if `aws_key` is defined.
     - name: aws_region
-      required: true
+      required: semi
       default:
       value_in_examples: AWS_REGION
       description: |
-        The AWS region where the Lambda function is located. Regions supported
-        are: `ap-northeast-1`, `ap-northeast-2`, `ap-south-1`,
-        `ap-southeast-1`, `ap-southeast-2`, `ca-central-1`, `cn-north-1`,
-        `cn-northwest-1`, `eu-central-1`, `eu-north-1`, `eu-west-1`,
-        `eu-west-2`, `eu-west-3`, `me-south-1`, `sa-east-1`,
-        `us-east-1`, `us-east-2`, `us-gov-west-1`, `us-west-1`, `us-west-2`.
+        The AWS region where the Lambda function is located. The plugin does not
+        attempt to validate the supplied region name; if an invalid region name
+        is provided, the plugin will respond with an HTTP `500 Internal Server Error`
+        at run-time and log a DNS resolution failure. Either `aws_region` or `host`
+        must be provided.
+    - name: host
+      required: semi
+      default:
+      value_in_examples: AWS_HOST
+      description: |
+        The host where the Lambda function is located. This value can point to a
+        local Lambda server, allowing for easier debugging. Either `host` or
+        `aws_region` must be provided.
     - name: function_name
       required: true
       default:

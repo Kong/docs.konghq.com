@@ -1,0 +1,41 @@
+- title: decK Documentation
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: /
+  items:
+    - text: Introduction
+      items:
+        - text: Overview
+          url: /overview
+        - text: Terminology
+          url: /terminology
+        - text: Architecture
+          url: /design-architecture
+        - text: Compatibility Promise
+          url: /compatibility-promise
+    - text: Installation
+      url: /installation
+    - text: Guides
+      items:
+        - text: Getting Started with decK
+          url: /guides/getting-started
+        - text: Backup and Restore
+          url: /guides/backup-restore
+        - text: Configuration as Code and GitOps
+          url: /guides/ci-driven-configuration
+        - text: Distributed Configuration
+          url: /guides/distributed-configuration
+        - text: Best Practices
+          url: /guides/best-practices
+        - text: Using decK with Kong Enterprise
+          url: /guides/kong-enterprise
+        - text: Using Multiple Files to Store Configuration
+          url: /guides/multi-file-state
+        - text: De-duplicate Plugin Configuration
+          url: /guides/deduplicate-plugin-configuration
+    - text: decK CLI Reference
+      url: /commands
+    - text: FAQ
+      url: /faqs
+    - text: Changelog
+      url: https://github.com/hbagdi/deck/blob/master/CHANGELOG.md
+      absolute_url: true
