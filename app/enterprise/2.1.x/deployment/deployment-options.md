@@ -37,7 +37,7 @@ enabling any add-ons (e.g., Kong Manager, Developer Portal).
 
 For further distributed setup help, contact Kong Support.
 
-## Hybrid mode (Beta)
+## Hybrid mode
 
 In a Hybrid mode deployment, {{site.ee_product_name}} instances are divided into
 two roles: Control Plane (CP) and Data Plane (DP). Only the Control Plane
