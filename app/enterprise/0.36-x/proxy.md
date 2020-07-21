@@ -809,7 +809,7 @@ There are two configurable elements here:
    server, passing a request to it, or reading the response headers.
 
 The second option is based on Nginx's
-[proxy_next_upstream][proxy_next_upstream] directive. This option is not
+[proxy_next_upstream][ngx-proxy-next-upstream] directive. This option is not
 directly configurable through Kong, but can be added using a custom Nginx
 configuration. See the [configuration reference][configuration-reference] for
 more details.
@@ -1127,4 +1127,5 @@ just covered.
 [ngx-host-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_host
 [ngx-server-port-variable]: http://nginx.org/en/docs/http/ngx_http_core_module.html#var_server_port
 [ngx-http-proxy-retries]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries
+[ngx-proxy-next-upstream]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
 [SNI]: https://en.wikipedia.org/wiki/Server_Name_Indication

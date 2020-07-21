@@ -16,7 +16,7 @@ admins can selectively admit access to Services using Kong Manager.
 * Authentication is enabled on the Developer Portal.
 * Logged in as an admin with read and write roles on applications, services, and developers.
 * The `portal_app_auth` configuration option is configured for your OAuth provider and strategy (`kong-oauth2` or `external-oauth2`). See
-[Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/index#portal-app-auth) for the Portal Application Registration plugin.
+[Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
 identity provider with the OIDC plugin. For example instructions using Okta
 as an identity provider, refer to the [Okta example](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).

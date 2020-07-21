@@ -22,9 +22,9 @@ redirect_from:
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="/deck/getting-started">Getting Started</a></h3>
+    <h3><a href="/deck/guides/getting-started">Getting Started</a></h3>
     <p>Get started with decK.</p>
-    <a href="/deck/getting-started">Get Started &rarr;</a>
+    <a href="/deck/guides/getting-started">Get Started &rarr;</a>
   </div>
 
   <div class="docs-grid-block">

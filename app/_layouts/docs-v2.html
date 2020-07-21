@@ -31,6 +31,7 @@ id: documentation
                 <li {% if page.kong_version==ver.release %} class="active" {% endif %}>
                   <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if page.edition == 'enterprise' %}enterprise/{% endif %}{{ver.release}}{% endif %}"
                     {% if ver.release==page.kong_version %} class="active" {% endif %}
+                    data-version-id="{{ver.release}}"
                   >
                   {{ver.release}}
                   {% if ver.release == "2.1.x" and page.edition == 'enterprise' %} <em>(beta)</em>
@@ -98,7 +99,7 @@ id: documentation
             instead?
           </div>
           {% endif %}
-          {% if page.kong_version != page.kong_latest.release and page.kong_version != "1.5.x" and page.edition != 'deck' %}
+          {% if page.kong_version != page.kong_latest.release and page.kong_version != "1.5.x" and page.no_version != true %}
           <div class="alert alert-warning">
             <strong>Careful!</strong> You are browsing documentation for an outdated version of Kong {% if page.edition == 'community' %}{{site.ce_product_name}}{% endif %}{% if page.edition == 'enterprise' %}Enterprise{% endif %}. Go <a
                   href="{% if page.edition == 'enterprise' %}/enterprise{% endif %}/latest">here</a>
