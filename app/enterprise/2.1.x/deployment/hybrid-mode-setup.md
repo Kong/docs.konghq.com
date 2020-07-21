@@ -6,7 +6,7 @@ beta: true
 ## Prerequisites
 To get started with a Hybrid mode deployment, first install an instance of
 {{site.ee_product_name}} with TLS to be your Control Plane (CP) node. See the
-[installation documentation](/enterprise/{{site.kong_version}}/deployment/installation)
+[installation documentation](/enterprise/{{page.kong_version}}/deployment/installation/overview)
 for details.
 
 We will bring up any subsequent Data Plane (DP) instances in this topic.

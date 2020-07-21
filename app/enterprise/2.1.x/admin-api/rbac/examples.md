@@ -29,7 +29,7 @@ Admin API entities, while RBAC provides access control**.
 ## Bootstrapping the first RBAC user—the Super Admin
 
 **Note:** It is possible to create the first Super Admin at the time
-of migration as described in the [Getting Started Guide][getting-started-guide]. 
+of migration as described in the [Getting Started Guide][getting-started-guide].
 If you chose this option, skip to [Enforcing RBAC](#enforcing-rbac).
 
 Before anything, we will assume the Kong Admin—or, more interestingly,
@@ -1045,4 +1045,4 @@ he created.
 [rbac-overview]: /enterprise/{{page.kong_version}}/kong-manager/administration/rbac
 [rbac-admin]: /enterprise/{{page.kong_version}}/admin-api/rbac/reference
 [workspaces-examples]: /enterprise/{{page.kong_version}}/admin-api/workspaces/examples
-[getting-started-guide]: /enterprise/{{page.kong_version}}/getting-started
+[getting-started-guide]: /getting-started-guide/latest/overview

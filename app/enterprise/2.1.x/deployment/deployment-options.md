@@ -4,7 +4,7 @@ title: Deployment Options
 {{site.ee_product_name}} can be deployed in the following main modes:
 * [**Embedded:**](#embedded) classic deployment with all services on one node.
 * [**Distributed:**](#distributed) classic deployment with distributed services.
-* [**Hybrid:**](#hybrid-mode-beta) Control Plane and Data Planes are separate.
+* [**Hybrid:**](#hybrid-mode) Control Plane and Data Planes are separate.
 
 ## Classic deployment
 
@@ -37,7 +37,7 @@ enabling any add-ons (e.g., Kong Manager, Developer Portal).
 
 For further distributed setup help, contact Kong Support.
 
-## Hybrid mode (Beta)
+## Hybrid mode
 
 In a Hybrid mode deployment, {{site.ee_product_name}} instances are divided into
 two roles: Control Plane (CP) and Data Plane (DP). Only the Control Plane
