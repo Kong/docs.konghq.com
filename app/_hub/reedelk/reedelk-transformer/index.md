@@ -3,7 +3,7 @@ name: Reedelk Transformer
 publisher: Reedelk
 
 categories:
-  - Transformations
+  - transformations
 
 type: integration
 
