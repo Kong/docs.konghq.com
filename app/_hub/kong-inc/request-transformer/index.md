@@ -3,9 +3,9 @@ name: Request Transformer
 publisher: Kong Inc.
 version: 1.2.5
 
-desc: Modify the request before hitting the upstream server
+desc: Use powerful regular expressions, variables and templates to transform API requests
 description: |
-  Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
+  The Request Transformer plugin for Kong allows simple transforming the requests before they reach the upstream server. These transformations can be simple substitutions or complex ones matching portions of incoming requests using regular expressions, save those matched strings into variables, and substitute those strings into transformed requests via flexible templates.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -75,6 +75,13 @@ params:
       required: false
       value_in_examples: [ "formparam-toremove", "formparam-another-one" ]
       description: List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
+    - name: replace.uri
+      required: false
+      description: Updates the upstream request URI with given value. This value can only be used to update the path part of the URI, not the scheme, nor the hostname.
+    - name: replace.body
+      required: false
+      value_in_examples: [ "body-param1:new-value-1", "body-param2:new-value-2" }'
+      description: List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: replace.headers
       required: false
       description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
@@ -124,19 +131,104 @@ params:
 
 ---
 
-## Dynamic Transformation Based on Request Content
+## Template as Value
 
-The Request Transformer plugin bundled with Kong Enterprise allows for
-adding or replacing content in the upstream request based on variable data found
-in the client request, such as request headers, query string parameters, or URI
-parameters as defined by a URI capture group.
+User can use any of the current request headers, query params, and captured URI groups as template to populate above supported config fields.
 
-If you already are a Kong Enterprise customer, you can request access to this
-plugin functionality by opening a support ticket using your Enterprise support
-channels.
+| Request Param | Template
+| ------------- | -----------
+| header        | `$(headers.<header-name>)` or `$(headers["<header-name>"])`)
+| querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
+| captured URIs | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`)
 
-If you are not a Kong Enterprise customer, you can inquire about our
-Enterprise offering by [contacting us](/enterprise).
+To escape a template, wrap it inside quotes and pass inside another template.<br>
+Ex. $('$(some_needs_to_escaped)')
+
+Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
+
+### Advanced templates
+
+The content of the placeholder `$(...)` is evaluated as a Lua expression, so
+logical operators may be used. For example:
+
+    Header-Name:$(uri_captures["user-id"] or query_params["user"] or "unknown")
+
+This will first look for the path parameter (`uri_captures`); if not found, it will
+return the query parameter; or if that also doesn't exist, it returns the default
+value '"unknown"'.
+
+Constant parts can be specified as part of the template outside the dynamic
+placeholders. For example, creating a basic-auth header from a query parameter
+called `auth` that only contains the base64-encoded part:
+
+    Authorization:Basic $(query_params["auth"])
+
+Lambdas are also supported if wrapped as an expression like this:
+
+    $((function() ... implementation here ... end)())
+
+A complete lambda example for pefixing a header value with "Basic " if not
+already there:
+
+    Authorization:$((function()
+        local value = headers.Authorization
+        if not value then
+          return
+        end
+        if value:sub(1, 6) == "Basic " then
+          return value            -- was already properly formed
+        end
+        return "Basic " .. value  -- added proper prefix
+      end)())
+
+*NOTE:* Especially in multi-line templates like the example above, make sure not
+to add any trailing white-space or new-lines. Since these would be outside the
+placeholders, they would be considered part of the template, and hence would be
+appended to the generated value.
+
+The environment is sandboxed, meaning that Lambda's will not have access to any
+library functions, except for the string methods (like `sub()` in the example
+above).
+
+### Examples Using Template as Value
+
+Add an API `test` with `uris` configured with a named capture group `user_id`
+
+```bash
+$ curl -X POST http://localhost:8001/apis \
+    --data 'name=test' \
+    --data 'upstream_url=http://mockbin.com' \
+    --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
+    --data "strip_uri=false"
+```
+
+Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
+and its value is being set with the value sent with header `x-user-id` or
+with the default value alice is `header` is missing.
+
+```bash
+$ curl -X POST http://localhost:8001/apis/test/plugins \
+    --data "name=request-transformer-advanced" \
+    --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
+    --data "config.remove.headers=x-user-id"
+```
+
+Now send a request without setting header `x-user-id`
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo
+```
+
+Plugin will add a new header `x-consumer-id` with value alice before proxying
+request upstream. Now try sending request with header `x-user-id` set
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo \
+  -H "X-User-Id:bob"
+```
+
+This time plugin will add a new header `x-consumer-id` with value sent along
+with header `x-user-id`, i.e.`bob`
 
 ## Order of execution
 
