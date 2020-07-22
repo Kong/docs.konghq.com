@@ -88,6 +88,37 @@ Note that Control Plane still needs a database (Postgres or Cassandra) to store 
 Data Plane nodes. You may run more than a single Control Plane nodes to provide load balancing
 and redundancy as long as they points to the same backend database.
 
+## PKI mode
+
+Starting from Kong 2.1, the Hybrid cluster can be setup with certificates signed by a central CA.
+This mode can be activated by setting `cluster_mtls` to `"pki"`, while its default value is `"shared"`.
+
+In PKI mode, Control Plane and Data Plane doesn't need to use the same `cluster_key` and `cluster_cert_key`.
+Instead, Kong validates both sides by checking if they are from a same CA. This eliminates the risk to
+transport private keys around.
+
+Following is the additional configuration available to Control Plane:
+
+```
+cluster_mtls = pki
+cluster_ca_cert = /path/to/ca-cert.crt
+```
+
+`cluster_ca_cert` specifies the root CA certificate for `cluster_cert` and `cluster_cert_key`. This
+certificate must be the root CA certificate and not any of intermediate CA.
+Kong allows at most `3` levels of intermediate CAs to be used between the root CA and the cluster certificate.
+
+For Data Plane:
+
+```
+cluster_mtls = pki
+cluster_server_name = control-plane.kong.yourcorp.tld
+```
+
+`cluster_server_name` specifies the SNI (Server Name Indication extension) when Data Plane
+connects to Control Plane through TLS. When not set, Data Plane will use `kong_clustering` as SNI.
+
+
 ## Starting Data Plane Nodes
 
 Now we have a Control Plane running, it is not much useful if no Data Plane nodes are
