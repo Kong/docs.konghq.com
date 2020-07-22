@@ -1,6 +1,7 @@
 ---
 name: gRPC-gateway
 publisher: Kong Inc.
+beta: true
 
 categories:
   - transformations
@@ -18,6 +19,9 @@ license_type: MIT
 
 kong_version_compatibility:
   community_edition:
+    compatible:
+      - 2.1.x
+  enterprise_edition:
     compatible:
       - 2.1.x
 
