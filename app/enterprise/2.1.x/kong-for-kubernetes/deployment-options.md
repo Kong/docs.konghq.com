@@ -3,7 +3,10 @@ title: Kong for Kubernetes deployment options
 skip_read_time: true
 ---
 <div class="alert alert-ee blue">
-<b>Coming Soon:</b> Kong for Kubernetes Enterprise (K4K8s) is not currently available for use with {{site.ee_product_name}} 2.1.x beta. It will be released within the beta timeframe.
+For the {{site.ee_product_name}} 2.1.x beta, Kong for Kubernetes Enterprise
+(K4K8s) uses the <code>kong-enterprise-edition</code> image, which works as a
+drop-in replacement for the <code>kong-enterprise-k8s</code> image used in
+earlier versions.
 </div>
 
 ## Deployment options
@@ -20,14 +23,19 @@ to route and control traffic. There are two options for the proxy image:
 _These repositories require a login. If you see a 404, log in through the [Kong
 repository home page](https://bintray.com/kong) first._
 
-The `kong-enterprise-k8s` image is recommended for most deployments. It
-provides most Kong Enterprise plugins and runs without a database, but does not
-provide other Kong Enterprise features (Kong Manager, Dev Portal, Vitals,
-etc.).
+As of 2.1.x, the `kong-enterprise-edition` image supports DB-less operation and
+is recommended for all deployments. Existing users of the `kong-enterprise-k8s`
+image wishing to try the 2.1.x beta should switch to the
+`kong-enterprise-edition` image.
 
-The `kong-enterprise-edition` image is recommended for deployments that require
-features not supported by `kong-enterprise-k8s`. It supports all Kong
-Enterprise plugins and features, but cannot run without a database.
+Switching images should not require configuration changes other than changing
+the image itself and creating a registry secret for `kong-enterprise-edition`
+if you have not created one already. If you encounter issues after switching
+images, please [contact Kong Enterprise Support][support].
+
+The `kong-enterprise-k8s` image provides most Kong Enterprise plugins and runs
+without a database, but does not provide other Kong Enterprise features (Kong
+Manager, Dev Portal, Vitals, etc.). It is not available for the 2.1.x beta.
 
 ## DB-less versus database-backed deployments
 
@@ -68,19 +76,24 @@ Some Kong Enterprise features are not available in DB-less deployments.
 Use the `kong-enterprise-edition` image and a database-backed deployment
 if you want to use:
 
-* Kong Manager
 * Dev Portal
 * Brain
 * Immunity
 * Teams (RBAC)
-* Vitals
 * Workspaces
+
+In the 2.1.x beta, the following features have support in DB-less mode, but
+work differently than in DB-backed modes:
+
+* Kong Manager (read-only)
+* Vitals (using [Prometheus][vitals-prometheus] or [InfluxDB][vitals-influxdb]
+  strategies)
 
 Because Kong for Kubernetes is configured by the ingress controller, some
 functionality in these features is different from traditional deployments:
 
 * Instead of using Kong Manager, proxy configuration is normally managed by the
-  controller, and you would provide configuration via Kubernetes resources.
+  controller, and you provide configuration via Kubernetes resources.
 * Because the controller creates proxy configuration on behalf of users, you do
   not need to interact with the Admin API directly. Kong's own RBAC
   implementation isn't required for typical Kong for Kubernetes deployments, as
@@ -96,16 +109,17 @@ functionality in these features is different from traditional deployments:
   if controller instances are deployed outside the Kong pod the Admin API must
   be exposed, and users should enable RBAC with workspace admin users for the
   controllers.  Set `CONTROLLER_KONG_ADMIN_TOKEN` to the RBAC user's token.
-* The controller cannot manage configuration for the features above: it cannot
-  create workspaces, Dev Portal content, admins, etc. These features must be
-  configured manually through the Admin API.
+* The controller cannot manage configuration for features that require a
+  database: it cannot create workspaces, Dev Portal content, admins, etc. These
+  features must be configured manually through the Admin API or Kong Manager.
 
 ### Plugin compatibility
 
 Not all plugins are compatible with DB-less operation, therefore not all
-plugins are available in the `kong-enterprise-k8s` image. Review the [list of
-supported plugins][supported-plugins] to see if you require a plugin that needs
-a database.
+plugins are available in the `kong-enterprise-k8s` image or when using the
+`kong-enterprise-edition` image in DB-less mode. Review the [list of supported
+plugins][supported-plugins] to see if you require a plugin that needs a
+database.
 
 Third-party plugins are generally compatible with DB-less as long as they do
 not create custom entities (i.e. they do not add new entities that users can
@@ -152,9 +166,8 @@ datastore changes.
 
 While most Kubernetes resources can be left unchanged when migrating between
 deployment types, users must remove any KongPlugin resources that use
-unavailable plugins when migrating from a database-backed deployment using the
-`kong-enterprise-edition` image to a DB-less deployment using the
-`kong-enterprise-k8s` image. No changes to Kubernetes resources are required if
+unavailable plugins when migrating from a database-backed deployment to a
+DB-less deployment. No changes to Kubernetes resources are required if
 migrating in the opposite direction.
 
 [k8s-bintray]: https://bintray.com/kong/kong-enterprise-k8s
@@ -164,3 +177,6 @@ migrating in the opposite direction.
 [supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/references/plugin-compatibility.md
 [k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install
 [k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes
+[vitals-prometheus]: /enterprise/{{page.kong_version}}/vitals/vitals-prometheus-strategy/
+[vitals-influxdb]: /enterprise/{{page.kong_version}}/vitals/vitals-influx-strategy/
+[support]: https://support.konghq.com/
