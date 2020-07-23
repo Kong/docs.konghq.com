@@ -105,6 +105,8 @@ IDEA flow designer plugin:
 Also, the LuaRocks package manager must be installed. See
 https://github.com/luarocks/luarocks/wiki/Download.
 
+### Install Steps
+
 1. Clone the `kong-plugin-reedelk-transformer`:
 
    ```bash
