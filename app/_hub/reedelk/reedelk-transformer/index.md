@@ -1,14 +1,4 @@
 ---
-# This file is for profiling an individual Kong extension.
-# Duplicate this file in your own *publisher path* on your own branch.
-# Your publisher path is relative to _app/_hub/.
-# The path must consist only of alphanumeric characters and hyphens (-).
-#
-# The following YAML data must be filled out as prescribed by the comments
-# on individual parameters. Also see documentation at:
-# https://github.com/Kong/docs.konghq.com
-# Remove inapplicable entries and superfluous comments as needed
-
 name: Reedelk Transformer
 
 publisher: Reedelk
@@ -19,7 +9,8 @@ categories:
 type:
   plugin        
 
-desc: # (required) 1-liner description; max 80 chars
+desc: Transform Upstream request body, Downstream response body, or both in an invoked
+       Reedelsk REST flow
 description: |
   The Reedelk transformer plugin allows transforming the upstream request body or
   downstream response body by invoking a Reedelk REST flow before hitting the
