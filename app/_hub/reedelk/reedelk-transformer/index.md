@@ -99,7 +99,9 @@ params: # metadata about your plugin
         request transformation.
   #  - name: # add additional setting blocks as needed, each demarcated by -
   extra:
-    # This is for additional remarks about your configuration.
+    The `upstream_transformer_url` and `downstream_transformer_url` are the URLs
+    of the Reedelk REST flow endpoint to be invoked for the upstream/downstream
+    request/response transformations; e.g., http://localhost:8888/apiabledev/transform.
 ###############################################################################
 # END YAML DATA
 # Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
