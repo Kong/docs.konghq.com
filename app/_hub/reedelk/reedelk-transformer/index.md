@@ -51,12 +51,6 @@ kong_version_compatibility: # required
       - 2.1.x
       - 1.5.x
 
-#########################
-# PLUGIN-ONLY SETTINGS below this line
-# If your plugin is an extension of the core platform, ALL of the following
-# lines must be completed.
-# If NOT defined as a 'plugin' in line 32, delete all lines up to '# BEGIN MARKDOWN CONTENT'
-
 params:
   name: reedelk-transformer
   api_id: false
@@ -73,7 +67,7 @@ params:
       default:
       value_in_examples: http://myhost/upstream/transform
       description:
-        The URL of the Reedelk REST flow endpoint to be invoked for the Upstream
+        The URL of the Reedelk REST flow endpoint to invoke for the Upstream
         request transformation.
 
     - name: downstream_transformer_url
@@ -81,27 +75,18 @@ params:
       default:
       value_in_examples: http://myhost/downstream/transform
       description:
-        The URL of the Reedelk REST flow endpoint to be invoked for the Downstream
+        The URL of the Reedelk REST flow endpoint to invoke for the Downstream
         request transformation.
 
   extra:
     The `upstream_transformer_url` and `downstream_transformer_url` are the URLs
-    of the Reedelk REST flow endpoint to invoke for the upstream/downstream
-    request/response transformations; e.g., http://localhost:8888/apiabledev/transform.
+    of the Reedelk REST flow endpoint to invoke for the Upstream/Downstream
+    request/response transformations; e.g., `http://localhost:8888/apiabledev/transform`.
 ###############################################################################
 # END YAML DATA
-# Beneath the next --- use Markdown (redcarpet flavor) and HTML formatting only.
-#
-# The remainder of this file is for free-form description, instruction, and
-# reference matter.
-# If you include headers, your headers MUST start at Level 2 (parsing to
-# h2 tag in HTML). Heading Level 2 is represented by ## notation
-# preceding the header text. Subsequent headings,
-# if you choose to use them, must be properly nested (eg. heading level 2 may
-# be followed by another heading level 2, or by heading level 3, but must NOT be
-# followed by heading level 4)
+
 ###############################################################################
 # BEGIN MARKDOWN CONTENT
 ---
 
-## installation
+## Installation
