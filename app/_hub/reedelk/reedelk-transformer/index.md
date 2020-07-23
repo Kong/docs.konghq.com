@@ -10,7 +10,7 @@ type:
   plugin        
 
 desc: Transform Upstream request body, Downstream response body, or both in an invoked
-       Reedelsk REST flow
+       Reedelk REST flow
 description: |
   The Reedelk transformer plugin allows transforming the upstream request body or
   downstream response body by invoking a Reedelk REST flow before hitting the
@@ -57,25 +57,20 @@ kong_version_compatibility: # required
 # lines must be completed.
 # If NOT defined as a 'plugin' in line 32, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
-params: # metadata about your plugin
+params:
   name: reedelk-transformer
-  api_id:
-    # boolean - whether this plugin can be applied to an API [[this needs more]]
+  api_id: false
   service_id: true
-  consumer_id:
-    # boolean - whether this plugin can be applied to a Consumer.
-    # Affects generation of examples and config table.
+  consumer_id: false
   route_id: true
   protocols: ["http", "https"]
   dbless_compatible: yes
   dbless_explanation:
-    # Optional free-text explanation, usually containing details about the degree of
-    # compatibility with DB-less.
 
-  config: # Configuration settings for your plugin
+  config:
     - name: upstream_transformer_url
       required: no
-      default: # any type - the default value (non-required settings only)
+      default:
       value_in_examples: http://myhost/upstream/transform
       description:
         The URL of the Reedelk REST flow endpoint to be invoked for the Upstream
@@ -83,15 +78,15 @@ params: # metadata about your plugin
 
     - name: downstream_transformer_url
       required: no
-      default: # any type - the default value (non-required settings only)
+      default:
       value_in_examples: http://myhost/downstream/transform
       description:
         The URL of the Reedelk REST flow endpoint to be invoked for the Downstream
         request transformation.
-  #  - name: # add additional setting blocks as needed, each demarcated by -
+
   extra:
     The `upstream_transformer_url` and `downstream_transformer_url` are the URLs
-    of the Reedelk REST flow endpoint to be invoked for the upstream/downstream
+    of the Reedelk REST flow endpoint to invoke for the upstream/downstream
     request/response transformations; e.g., http://localhost:8888/apiabledev/transform.
 ###############################################################################
 # END YAML DATA
@@ -109,4 +104,4 @@ params: # metadata about your plugin
 # BEGIN MARKDOWN CONTENT
 ---
 
-## Your first heading will go here
+## installation
