@@ -20,17 +20,11 @@ type:
   plugin        
 
 desc: # (required) 1-liner description; max 80 chars
-description: #|
-  # (required) extended description.
-  # Use YAML piple notation for extended entries.
-  # EXAMPLE long text format (do not use this entry)
-  # description: |
-  #   Maintain an indentation of two (2) spaces after denoting a block with
-  #   YAML pipe notation.
-  #
-  #   Lorem Ipsum is simply dummy text of the printing and typesetting
-  #   industry. Lorem Ipsum has been the industry's standard dummy text ever
-  #   since the 1500s.
+description: |
+  The Reedelk transformer plugin allows transforming the upstream request body or
+  downstream response body by invoking a Reedelk REST flow before hitting the
+  upstream server, or before sending the downstream response back to the client.
+  The plugin allows applying upstream and downstream transformations together as well.
 
 #support_url:
   # (Optional) A specific URL of your own for this extension.
@@ -73,43 +67,36 @@ kong_version_compatibility: # required
 # If NOT defined as a 'plugin' in line 32, delete all lines up to '# BEGIN MARKDOWN CONTENT'
 
 params: # metadata about your plugin
-  name: # name of the plugin in Kong (may differ from name: above)
+  name: reedelk-transformer
   api_id:
     # boolean - whether this plugin can be applied to an API [[this needs more]]
-  service_id:
-    # boolean - whether this plugin can be applied to a Service.
-    # Affects generation of examples and config table.
+  service_id: true
   consumer_id:
     # boolean - whether this plugin can be applied to a Consumer.
     # Affects generation of examples and config table.
-  route_id:
-    # whether this plugin can be applied to a Route.
-    # Affects generation of examples and config table.
-  protocols:
-    # List of protocols this plugin is compatible with.
-    # Valid values: "http", "https", "tcp", "tls"
-    # Example: ["http", "https"]
-  dbless_compatible:
-    # Degree of compatibility with DB-less mode. Three values allowed:
-    # 'yes', 'no' or 'partially'
+  route_id: true
+  protocols: ["http", "https"]
+  dbless_compatible: yes
   dbless_explanation:
     # Optional free-text explanation, usually containing details about the degree of
     # compatibility with DB-less.
 
   config: # Configuration settings for your plugin
-    - name: # setting name
-      required: # string - setting required status
-        # options are 'yes', 'no', or 'semi'
-        # 'semi' means dependent on other settings
+    - name: upstream_transformer_url
+      required: no
       default: # any type - the default value (non-required settings only)
-      value_in_examples:
-        # If the field is to appear in examples, this is the value to use.
-        # A required field with no value_in_examples entry will resort to
-        # the one in default.
+      value_in_examples: http://myhost/upstream/transform
       description:
-        # Explain what this setting does.
-        # Use YAML's pipe (|) notation for longer entries.
+        The URL of the Reedelk REST flow endpoint to be invoked for the Upstream
+        request transformation.
 
+    - name: downstream_transformer_url
+      required: no
+      default: # any type - the default value (non-required settings only)
+      value_in_examples: http://myhost/downstream/transform
+      description:
+        The URL of the Reedelk REST flow endpoint to be invoked for the Downstream
+        request transformation.
   #  - name: # add additional setting blocks as needed, each demarcated by -
   extra:
     # This is for additional remarks about your configuration.
