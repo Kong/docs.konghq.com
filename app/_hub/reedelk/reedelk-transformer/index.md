@@ -91,7 +91,7 @@ params:
 
 ## Installation
 
-### Prerequisites:
+### Prerequisites
 
 To use the Reedelk plugin for Kong, you must first install the Reedelk IntelliJ
 IDEA flow designer plugin:
@@ -101,3 +101,27 @@ IDEA flow designer plugin:
 
 - **Manual install**: From **IntelliJ Preferences > Plugin > Settings icon >
   Install Plugin From Disk**, and restart IntelliJ.
+
+Also, the LuaRocks package manager must be installed. See
+https://github.com/luarocks/luarocks/wiki/Download.
+
+1. Clone the `kong-plugin-reedelk-transformer`:
+
+   ```bash
+      git clone https://github.com/reedelk/kong-plugin-reedelk-transformer.git
+      cd kong-plugin-reedelk-transformer
+   ```
+
+2. Install the module `kong-plugin-reedelk-transformer`:
+
+   ```bash
+   luarocks install kong-plugin-reedelk-transformer-0.1.0-1.all.rock
+   ```
+
+3. Add the custom plugin to `kong.conf`:
+
+   ```
+   plugins = ...,reedelk-transformer
+   ```
+
+4. Restart Kong.
