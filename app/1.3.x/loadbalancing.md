@@ -189,39 +189,42 @@ to this target it will query the nameserver again.
 
 ### Balancing algorithms
 
-By default a ring-balancer will use a weighted-round-robin scheme. The alternative
-would be to use the hash-based algorithm. The input for the hash can be either
-`none`, `consumer`, `ip`, `header`, or `cookie`. When set to `none` the
-weighted-round-robin scheme will be used, and hashing will be disabled.
+The ring-balancer supports the following load balancing algorithms: `round-robin`,
+`consistent-hashing`, and `least-connections`. By default, a ring-balancer
+uses the `round-robin` algorithm, which provides a well-distributed weighted
+round-robin over the targets.
 
-There are two options, a primary and a fallback in case the primary fails
-(e.g., if the primary is set to `consumer`, but no consumer is authenticated)
+When using the `consistent-hashing` algorithm, the input for the hash can be either
+`none`, `consumer`, `ip`, `header`, or `cookie`. When set to `none`, the
+`round-robin` scheme will be used, and hashing will be disabled. The `consistent-hashing`
+algorithm supports a primary and a fallback hashing attribute; in case the primary
+fails (e.g., if the primary is set to `consumer`, but no Consumer is authenticated),
+the fallback attribute is used.
 
-The different hashing options:
+Supported hashing attributes are:
 
-- `none`: Do not use hashing, but use weighted-round-robin instead (default).
+- `none`: Do not use `consistent-hashing`; use `round-robin` instead (default).
+- `consumer`: Use the Consumer ID as the hash input. If no Consumer ID is available,
+  it will fall back on the Credential ID (for example, in case of an external authentication mechanism like LDAP).
+- `ip`: Use the originating IP address as the hash input. Review the configuration
+  settings for [determining the real IP][real-ip-config] when using this.
+- `header`: Use a specified header as the hash input. The header name is
+  specified in either `hash_on_header` or `hash_fallback_header`, depending on whether
+  `header` is a primary or fallback attribute, respectively.
+- `cookie`: Use a specified cookie with a specified path as the hash input.
+  The cookie name is specified in the `hash_on_cookie` field and the path is
+  specified in the `hash_on_cookie_path` field. If the specified cookie is not
+  present in the request, it will be set by the response. Hence, the `hash_fallback`
+  setting is invalid if `cookie` is the primary hashing mechanism.
 
-- `consumer`: Use the consumer id as the hash input. This option will fallback
-  on the credential id if no consumer id is available (in case of external auth
-  like ldap).
+The `consistent-hashing` algorithm is based on _Consistent Hashing_ (or the
+_Ketama Principle_), which ensures that when the balancer gets modified by
+a change in its targets (adding, removing, failing, or changing weights), only
+the minimum number of hashing losses occur. This maximizes upstream cache hits.
 
-- `ip`: The remote (originating) IP address will be used as input. Review the
-  configuration settings for [determining the real IP][real-ip-config] when
-  using this.
-
-- `header`: Use a specified header (in either `hash_on_header` or `hash_fallback_header`
-  field) as input for the hash.
-
-- `cookie`: Use a specified cookie name (in the `hash_on_cookie` field) with a
-  specified path (in the `hash_on_cookie_path` field, default `"/"`) as input for
-  the hash. If the cookie is not present in the request, it will be set by the
-  response. Hence, the `hash_fallback` setting is invalid if `cookie` is the primary
-  hashing mechanism.
-
-The hashing algorithm is based on 'consistent-hashing' (or the 'ketama principle')
-which makes sure that when the balancer gets modified by changing the targets
-(adding, removing, failing, or changing weights) only the minimum number of
-hashing losses occur. This will maximize upstream cache hits.
+The ring-balancer also supports the `least-connections` algorithm, which selects
+the target with the lowest number of connections, weighted by the Target's
+`weight` attribute.
 
 For more information on the exact settings see the `upstream` section of the
 [Admin API reference][upstream-object-reference].
