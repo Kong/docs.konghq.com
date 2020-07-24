@@ -17,7 +17,7 @@ description: |
   upstream server, or before sending the downstream response back to the client.
   The plugin allows applying upstream and downstream transformations together as well.
 
-#support_url:
+support_url: https://github.com/reedelk/kong-plugin-reedelk-transformer/issues
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
