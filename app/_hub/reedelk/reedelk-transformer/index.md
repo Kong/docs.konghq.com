@@ -21,15 +21,13 @@ description: |
   # (Optional) A specific URL of your own for this extension.
   # Defaults to the url setting in your publisher profile.
 
-#source_url:
-  # (Optional) If your extension is open source, provide a link to your code.
+source_url: https://github.com/reedelk/kong-plugin-reedelk-transformer
 
-#license_type:
+license_type: Apache-2.0
   # (Optional) For open source, use the abbreviations in parentheses at:
   # https://opensource.org/licenses/alphabetical
 
-#license_url:
-  # (Optional) Link to your custom license.
+license_url: https://github.com/reedelk/kong-plugin-reedelk-transformer/blob/master/LICENSE.txt
 
 #privacy_policy:
   # (Optional) If you have a custom privacy policy, place it here
