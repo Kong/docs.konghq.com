@@ -252,15 +252,16 @@ similarly for Routes.
 
 - Add multiple headers by passing each header:value pair separately:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 ```yaml
 plugins:
 - name: request-transformer
@@ -268,7 +269,8 @@ plugins:
     add:
       headers: ["h1:v1", "h2:v1"]
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -336,15 +338,16 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 
 - Add a querystring and a header:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.querystring=q1:v2,q2:v1" \
   --data "config.add.headers=h1:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 ```yaml
 plugins:
 - name: request-transformer
@@ -354,7 +357,8 @@ plugins:
       querystring: ["q1:v1", "q2:v2"]
 
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -389,13 +393,14 @@ plugins:
 
 - Append multiple headers and remove a body parameter:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'
 ```
+{% endnavtab %}
 {% tab Without a database %}
 ``` yaml
 plugins:
@@ -407,7 +412,8 @@ plugins:
       body: [ "p1" ]
 
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
