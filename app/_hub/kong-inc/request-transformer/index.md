@@ -401,7 +401,7 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'
 ```
 {% endnavtab %}
-{% tab Without a database %}
+{% navtab Without a database %}
 ``` yaml
 plugins:
 - name: request-transformer
