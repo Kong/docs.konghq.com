@@ -202,7 +202,7 @@ $ curl -X POST http://localhost:8001/apis \
     --data "strip_uri=false"
 ```
 
-Enable the ‘request-transformer’ plugin to add a new header `x-consumer-id`
+Enable the `request-transformer` plugin to add a new header `x-consumer-id`
 whose value is being set with the value sent with header `x-user-id` or
 with the default value `alice` is `header` is missing.
 
