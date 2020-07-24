@@ -3,9 +3,9 @@ name: Request Transformer
 publisher: Kong Inc.
 version: 1.2.5
 
-desc: Use powerful regular expressions, variables and templates to transform API requests
+desc: Use regular expressions, variables, and templates to transform requests
 description: |
-  The Request Transformer plugin for Kong allows simple transforming the requests before they reach the upstream server. These transformations can be simple substitutions or complex ones matching portions of incoming requests using regular expressions, save those matched strings into variables, and substitute those strings into transformed requests via flexible templates.
+  The Request Transformer plugin for Kong allows simple transformation of requests before they reach the upstream server. These transformations can be simple substitutions or complex ones matching portions of incoming requests using regular expressions, saving those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -77,10 +77,10 @@ params:
       description: List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
     - name: replace.uri
       required: false
-      description: Updates the upstream request URI with given value. This value can only be used to update the path part of the URI, not the scheme, nor the hostname.
+      description: Updates the upstream request URI with a given value. This value can be used to update only the path part of the URI, not the scheme or the hostname.
     - name: replace.body
       required: false
-      value_in_examples: [ "body-param1:new-value-1", "body-param2:new-value-2" }'
+      value_in_examples: [ "body-param1:new-value-1", "body-param2:new-value-2" ]
       description: List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: replace.headers
       required: false
@@ -133,18 +133,18 @@ params:
 
 ## Template as Value
 
-User can use any of the current request headers, query params, and captured URI groups as template to populate above supported config fields.
+You can use any of the current request headers, query params, and captured URI groups as a template to populate the above supported configuration fields.
 
 | Request Param | Template
 | ------------- | -----------
-| header        | `$(headers.<header-name>)` or `$(headers["<header-name>"])`)
+| header        | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`)
 | querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
 | captured URIs | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`)
 
-To escape a template, wrap it inside quotes and pass inside another template.<br>
-Ex. $('$(some_needs_to_escaped)')
+To escape a template, wrap it inside quotes and pass it inside another template.<br>
+`$('$(some_escaped_template)')`
 
-Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs before transformation. So any update or removal of params used in template does not affect the rendered value of template.
+Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs before transformation. Therefore, any update or removal of params used in template does not affect the rendered value of a template.
 
 ### Advanced templates
 
@@ -153,8 +153,8 @@ logical operators may be used. For example:
 
     Header-Name:$(uri_captures["user-id"] or query_params["user"] or "unknown")
 
-This will first look for the path parameter (`uri_captures`); if not found, it will
-return the query parameter; or if that also doesn't exist, it returns the default
+This will first look for the path parameter (`uri_captures`). If not found, it will
+return the query parameter. If that also doesn't exist, it returns the default
 value '"unknown"'.
 
 Constant parts can be specified as part of the template outside the dynamic
@@ -167,7 +167,7 @@ Lambdas are also supported if wrapped as an expression like this:
 
     $((function() ... implementation here ... end)())
 
-A complete lambda example for pefixing a header value with "Basic " if not
+A complete Lambda example for prefixing a header value with "Basic" if not
 already there:
 
     Authorization:$((function()
@@ -182,11 +182,11 @@ already there:
       end)())
 
 *NOTE:* Especially in multi-line templates like the example above, make sure not
-to add any trailing white-space or new-lines. Since these would be outside the
+to add any trailing white-space or new-lines. Because these would be outside the
 placeholders, they would be considered part of the template, and hence would be
 appended to the generated value.
 
-The environment is sandboxed, meaning that Lambda's will not have access to any
+The environment is sandboxed, meaning that Lambdas will not have access to any
 library functions, except for the string methods (like `sub()` in the example
 above).
 
@@ -202,13 +202,13 @@ $ curl -X POST http://localhost:8001/apis \
     --data "strip_uri=false"
 ```
 
-Enable the ‘request-transformer-advanced’ plugin to add a new header `x-consumer-id`
-and its value is being set with the value sent with header `x-user-id` or
-with the default value alice is `header` is missing.
+Enable the ‘request-transformer’ plugin to add a new header `x-consumer-id`
+whose value is being set with the value sent with header `x-user-id` or
+with the default value `alice` is `header` is missing.
 
 ```bash
 $ curl -X POST http://localhost:8001/apis/test/plugins \
-    --data "name=request-transformer-advanced" \
+    --data "name=request-transformer" \
     --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
     --data "config.remove.headers=x-user-id"
 ```
@@ -219,7 +219,7 @@ Now send a request without setting header `x-user-id`
 $ curl -i -X GET localhost:8000/requests/user/foo
 ```
 
-Plugin will add a new header `x-consumer-id` with value alice before proxying
+Plugin will add a new header `x-consumer-id` with value `alice` before proxying
 request upstream. Now try sending request with header `x-user-id` set
 
 ```bash
@@ -227,14 +227,14 @@ $ curl -i -X GET localhost:8000/requests/user/foo \
   -H "X-User-Id:bob"
 ```
 
-This time plugin will add a new header `x-consumer-id` with value sent along
-with header `x-user-id`, i.e.`bob`
+This time the plugin will add a new header `x-consumer-id` with the value sent along
+with the header `x-user-id`, i.e.`bob`
 
 ## Order of execution
 
-Plugin performs the response transformation in following order
+Plugin performs the response transformation in the following order:
 
-remove --> rename --> replace --> add --> append
+* remove → rename → replace → add → append
 
 ## Examples
 
@@ -432,12 +432,7 @@ plugins:
   </tr>
 </table>
 
-|incoming url encoded body | upstream proxied url encoded body:
+|incoming url encoded body | upstream proxied url encoded body
 |---           | ---
 |p1=v1&p2=v1   | p2=v1
 |p2=v1         | p2=v1
-
-[api-object]: /latest/admin-api/#api-object
-[consumer-object]: /latest/admin-api/#consumer-object
-[configuration]: /latest/configuration
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?
