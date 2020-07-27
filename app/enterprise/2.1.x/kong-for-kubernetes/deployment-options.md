@@ -28,10 +28,11 @@ is recommended for all deployments. Existing users of the `kong-enterprise-k8s`
 image wishing to try the 2.1.x beta should switch to the
 `kong-enterprise-edition` image.
 
-Switching images should not require configuration changes other than changing
-the image itself and creating a registry secret for `kong-enterprise-edition`
-if you have not created one already. If you encounter issues after switching
-images, please [contact Kong Enterprise Support][support].
+Switching images requires the following configuration changes:
+* Changing the image to `kong-enterprise-edition`.
+* Creating a registry secret for `kong-enterprise-edition`, if you have not created one already.
+If you encounter issues after switching images, please 
+[contact Kong Enterprise Support][support].
 
 The `kong-enterprise-k8s` image provides most Kong Enterprise plugins and runs
 without a database, but does not provide other Kong Enterprise features (Kong
@@ -92,7 +93,7 @@ work differently than in DB-backed modes:
 Because Kong for Kubernetes is configured by the ingress controller, some
 functionality in these features is different from traditional deployments:
 
-* Instead of using Kong Manager, proxy configuration is normally managed by the
+* Instead of using Kong Manager, proxy configuration is managed by the
   controller, and you provide configuration via Kubernetes resources.
 * Because the controller creates proxy configuration on behalf of users, you do
   not need to interact with the Admin API directly. Kong's own RBAC
