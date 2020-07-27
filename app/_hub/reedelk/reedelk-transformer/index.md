@@ -125,3 +125,48 @@ https://github.com/luarocks/luarocks/wiki/Download.
    ```
 
 4. Restart Kong.
+
+### Hello World Example
+
+Prerequisites:
+
+-
+-
+-
+-
+
+1. Run the `kong-reedelk` Docker image:
+
+   ```
+   docker run -d --name kong-reedelk-transformer-plugin \
+            -p 8000:8000 \
+            -p 8443:8443 \
+            -p 127.0.0.1:8001:8001 \
+            -p 127.0.0.1:8444:8444 \
+            reedelk/kong-reedelk-transformer-plugin:1.0.0
+   ```
+
+2. Make sure that Kong is up and running correctly with the `reedelk-transformer`
+   plugin installed:
+
+   ```
+   curl http://localhost:8001/plugins
+   ```
+
+3. Open IntelliJ and create a new Reedelk project. The newly created project
+   contains a `POST` Hello World flow to use as integration
+   flow invoked by the downstream transformer.
+
+4. Start the new Reedelk project by clicking **Play** next to the
+   **Reedelk Runtime** run configuration in IntelliJ.
+
+   ![Reedelk Runtime](/assets/images/docs/plugins/reedelk-runtime-start.png)
+
+5. Call the Kong route http://localhost:8000/transform. The result should be:
+
+  `Hello World John`
+
+For more information about this example, including testing the workflow with
+[Insomnia](https://insomnia.rest/), see the Reedelk
+[Getting Started](https://www.reedelk.com/documentation)
+documentation.
