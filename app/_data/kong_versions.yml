@@ -359,3 +359,7 @@
   edition: "getting-started-guide"
 -
   edition: "deck"
+-
+  release: "0.7.x"
+  version: "0.7"
+  edition: "mesh"
