@@ -126,6 +126,23 @@ https://github.com/luarocks/luarocks/wiki/Download.
 
 4. Restart Kong.
 
+### Building and Packaging the Kong Plugin
+
+1. The [LuaRocks](http://luarocks.org) package manager must be
+   [installed](https://github.com/luarocks/luarocks/wiki/Download).
+
+2. Build the plugin locally (based on the `.rockspec` in the current directory).
+
+   ```bash
+   $ luarocks make
+   ```
+
+3. Package the plugin.
+
+   ```bash
+   $ luarocks pack kong-plugin-reedelk-transformer 0.1.0-1
+   ```
+
 ### Hello World Example
 
 This example uses a pre-packaged `kong-reedelk` docker image with Kong and
@@ -143,9 +160,12 @@ http://host.docker.internal:8282/api/message
 
 #### Prerequisites
 
-- Docker must be installed.
-- IntelliJ IDEA IDE must be installed.
-- Reedelk IntelliJ Flow Designer Plugin must be installed on your IntelliJ distribution.
+- [Docker](https://www.docker.com/) must be [installed](https://www.docker.com/get-started).
+- [IntelliJ IDEA IDE](https://www.jetbrains.com/idea/) must be
+  [installed](https://www.jetbrains.com/idea/download).
+- [Reedelk IntelliJ Flow Designer Plugin](https://www.reedelk.com/documentation/intellijplugin)
+  must be [installed](https://www.reedelk.com/documentation/intellijplugin) on
+  your IntelliJ distribution.
 
 #### Run the example
 
