@@ -128,12 +128,30 @@ https://github.com/luarocks/luarocks/wiki/Download.
 
 ### Hello World Example
 
-Prerequisites:
+This example uses a pre-packaged `kong-reedelk` docker image with Kong and
+`reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
+docker images on [Dockerhub]().
 
--
--
--
--
+The `kong-reedelk` image is pre-configured to use the following `kong.yml` file,
+which defines an upstream service mapped on Route http://localhost:8000/transform
+and invokes a downstream transformer with the `reedelk-transformer` plugin. The
+configured downstream transformer integration flow URL is:
+
+```
+http://host.docker.internal:8282/api/message
+```
+
+#### Prerequisites
+
+- Docker must be installed.
+- IntelliJ IDEA IDE must be installed.
+- Reedelk IntelliJ Flow Designer Plugin must be installed on your IntelliJ distribution.
+
+#### Run the example
+
+In the following steps, you run the `kong-reedelk` docker image, and then create a
+new Reedelk project that contains the integration flow invoked by the
+downstream transformer.
 
 1. Run the `kong-reedelk` Docker image:
 
@@ -162,11 +180,19 @@ Prerequisites:
 
    ![Reedelk Runtime](/assets/images/docs/plugins/reedelk-runtime-start.png)
 
-5. Call the Kong route http://localhost:8000/transform. The result should be:
+5. Call the Kong Route with the following URL:
 
-  `Hello World John`
+   ```
+   http://localhost:8000/transform
+   ```
 
-For more information about this example, including testing the workflow with
-[Insomnia](https://insomnia.rest/), see the Reedelk
-[Getting Started](https://www.reedelk.com/documentation)
-documentation.
+   The result should be:
+
+   `Hello World John`
+
+For more information about this example, including testing the IntelliJ Flow
+Designer Plugin workflow with [Insomnia](https://insomnia.rest/), see the Reedelk
+[Getting Started](https://www.reedelk.com/documentation/getting-started)
+documentation and the
+[Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world)
+on github.
