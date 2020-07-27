@@ -4,7 +4,7 @@ title: Vitals Reports
 
 ## Using Vitals reports
 
-Browse, filter, and view your data in a Vitals time-series report, and export the data into a into a comma-separated values (CSV) file. 
+Browse, filter, and view your data in a Vitals time-series report, and export the data into a comma-separated values (CSV) file. 
 
 When generating a Vitals report, you can:
 * Generate a report across all Workspaces or a single Workspace.
