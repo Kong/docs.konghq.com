@@ -11,7 +11,7 @@ Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs wi
 
 >Note: See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for a feature breakdown and image comparison.
 
-You can install Kong for Kubernetes Enterprise using YAML with kubectl, or with OpenShift oc. Other deployment options, such as using Helm Chart and Kustomize, will be available at a later time.
+You can install Kong for Kubernetes Enterprise using YAML with kubectl, with OpenShift oc, or [with Helm](https://github.com/Kong/charts/tree/master/charts/kong).
 
 <img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">
 
@@ -78,16 +78,16 @@ Set up Docker credentials to allow Kubernetes nodes to pull down the Kong Enterp
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl create secret -n kong docker-registry kong-enterprise-k8s-docker \
-    --docker-server=kong-docker-kong-enterprise-k8s.bintray.io \
+$ kubectl create secret -n kong docker-registry kong-enterprise-edition-docker \
+    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
     --docker-username=<your-bintray-username> \
     --docker-password=<your-bintray-api-key>
 ```
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create secret -n kong docker-registry kong-enterprise-k8s-docker \
-    --docker-server=kong-docker-kong-enterprise-k8s.bintray.io \
+$ oc create secret -n kong docker-registry kong-enterprise-edition-docker \
+    --docker-server=kong-docker-kong-enterprise-edition-docker.bintray.io \
     --docker-username=<your-bintray-username> \
     --docker-password=<your-bintray-api-key>
 ```
@@ -100,7 +100,7 @@ The steps in this section show you how to install Kong for Kubernetes Enterprise
 {% navtabs %}
 {% navtab kubectl %}
 ```
-$ kubectl apply -f https://bit.ly/k4k8s-enterprise
+$ kubectl apply -f https://bit.ly/k4k8s-enterprise-beta
 ```
 The initial setup might take a few minutes.
 
@@ -120,7 +120,7 @@ kong-proxy   LoadBalancer   10.63.254.78   35.233.198.16   80:32697/TCP,443:3236
 {% endnavtab %}
 {% navtab OpenShift oc %}
 ```
-$ oc create -f https://bit.ly/k4k8s-enterprise
+$ oc create -f https://bit.ly/k4k8s-enterprise-beta
 ```
 The initial setup might take a few minutes.
 
