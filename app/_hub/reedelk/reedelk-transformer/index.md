@@ -41,9 +41,11 @@ license_url: https://github.com/reedelk/kong-plugin-reedelk-transformer/blob/mas
 #terms_of_service_url:
   # (Optional) Link to your online TOS.
 
-kong_version_compatibility: # required
-  #community_edition: # optional
-    #compatible:
+kong_version_compatibility: 
+  community_edition:
+    compatible:
+      - 2.1.x
+      - 1.5.x
   enterprise_edition:
     compatible:
       - 2.1.x
