@@ -29,27 +29,15 @@ license_type: Apache-2.0
 
 license_url: https://github.com/reedelk/kong-plugin-reedelk-transformer/blob/master/LICENSE.txt
 
-#privacy_policy:
-  # (Optional) If you have a custom privacy policy, place it here
-
-#privacy_policy_url:
-  # (Optional) Link to a remote privacy policy
-
-#terms_of_service:
-  # (Optional) Text describing your terms of service.
-
-#terms_of_service_url:
-  # (Optional) Link to your online TOS.
-
-kong_version_compatibility: 
+kong_version_compatibility:
   community_edition:
     compatible:
       - 2.1.x
       - 1.5.x
-  enterprise_edition:
-    compatible:
-      - 2.1.x
-      - 1.5.x
+  # enterprise_edition:
+  #  compatible:
+  #    - 2.1.x
+  #    - 1.5.x
 
 params:
   name: reedelk-transformer
@@ -101,9 +89,6 @@ IDEA flow designer plugin using either of the following options:
 
 - **Manual install**: From **IntelliJ Preferences > Plugin > Settings icon >
   Install Plugin From Disk**, and restart IntelliJ.
-
-Also, the LuaRocks package manager must be installed. See
-https://github.com/luarocks/luarocks/wiki/Download.
 
 ### Install Kong Plugin Steps
 
