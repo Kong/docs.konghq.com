@@ -585,11 +585,9 @@ $ curl -X POST http://kong:8001/apis/{api}/plugins \
       </div>
     </div>
   </div>
-</div>
-</div>
-{% if page.feedback != false %}
-{% include feedback-widget.html %}
-{% endif %}
+  {% if page.feedback != false %}
+  {% include feedback-widget.html %}
+  {% endif %}
 </div>
 
 <!-- {% include intercom.html %} -->
