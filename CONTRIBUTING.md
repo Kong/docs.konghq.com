@@ -26,6 +26,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
   - [Formatting Documentation](#formatting-documentation)
+    - [Markdown Front Matter](#markdown-front-matter)
     - [Variables](#variables)
     - [Links](#links)
     - [Info Blocks](#info-blocks)
@@ -374,6 +375,11 @@ Instead, please:
 The Kong docs site has a number of features built in to better display content.
 
 #### Markdown Front Matter
+
+Markdown files on the doc site (excluding `docs.konghq.com/hub/`) must have a
+yaml front matter section with at least one parameter (`title`). You can also
+specify additional parameters to change how your doc will display.
+
 **Required:**
 ```yaml
 title: Page Title
@@ -391,6 +397,10 @@ skip_read_time: true
 beta: true
 alpha: true
 # Labels the page as beta or alpha, adds a banner to the top of the page.
+disable_image_expand: true
+# Stops images from expanding in a modal on click. Sets it for the entire page.
+class: no-copy-code
+# Disables the copy code button in any code blocks on the page.
 ```
 
 #### Variables
