@@ -20,6 +20,7 @@ Consult the Table of Contents below, and jump to the desired section.
   - [Submitting a patch](#submitting-a-patch)
   - [Kong Hub contributions](#kong-hub-contributions)
   - [Writing plugin documentation](#writing-plugin-documentation)
+  - [Git Best Practices](#git-best-practices)
     - [Git branches](#git-branches)
     - [Commit atomicity](#commit-atomicity)
     - [Commit message format](#commit-message-format)
@@ -223,6 +224,7 @@ the existing plugins for examples, and see additional advice in
 
 [Back to TOC](#table-of-contents)
 
+### Git Best Practices
 
 #### Git branches
 
@@ -372,13 +374,12 @@ Instead, please:
 
 ### Formatting Documentation
 
-The Kong docs site has a number of features built in to better display content.
-
 #### Markdown Front Matter
 
 Markdown files on the doc site (excluding `docs.konghq.com/hub/`) must have a
 yaml front matter section with at least one parameter (`title`). You can also
-specify additional parameters to change how your doc will display.
+specify additional parameters to change how the doc source renders in the
+output.
 
 **Required:**
 
@@ -391,16 +392,21 @@ title: Page Title
 ``` yaml
 no_search: true
 # Disables search for the page.
+
 toc: false
-# Disables the right-hand nav for the page; useful is the page is short and has
+# Disables the right-hand nav for the page; useful if the page is short and has
 # one or no headers.
+
 skip_read_time: true
 # Disables estimated read time; useful for long reference content.
+
 beta: true
 alpha: true
-# Labels the page as beta or alpha, adds a banner to the top of the page.
+# Labels the page as beta or alpha; adds a banner to the top of the page.
+
 disable_image_expand: true
 # Stops images from expanding in a modal on click. Sets it for the entire page.
+
 class: no-copy-code
 # Disables the copy code button in any code blocks on the page.
 ```
@@ -409,13 +415,13 @@ class: no-copy-code
 #### Variables
 Use variables for product names and release versions.
 
-`{{page.kong_version}}` - Outputs the version of the current page
-`{{site.ee_product_name}}` - Kong Enterprise
-`{{site.ee_product_name}}` - Kong Gateway
+- `{{page.kong_version}}` - Outputs the version of the current page
+- `{{site.ee_product_name}}` - Kong Enterprise
+- `{{site.ee_product_name}}` - Kong Gateway
 
 
 #### Links
- In markdown(`.md`) files, use relative links with a version variable.
+In markdown(`.md`) files, use relative links with a version variable.
 - For Community: `/{{page.kong_version}}/file`
 - For Enterprise: `/enterprise/{{page.kong_version}}/file`
 
@@ -487,7 +493,7 @@ will cause the first H3 to be skipped, and should be corrected to:
 [Back to TOC](#table-of-contents)
 
 
-#### Using tabs within topics
+#### Using navtabs within topics
 
 If your topic provides instructions for two or more methods of completing a
 task, you can nest them inside `navtabs`. For example, this topic
@@ -514,7 +520,7 @@ Here's some more content.
 On initial page load, the first tab ("<your title here>" in the example above)
 will be the one displayed.
 
-> **Note:** You can’t nest tabs within tabs.
+> **Note:** You can’t nest navtabs within navtabs.
 
 
 [Back to TOC](#table-of-contents)
