@@ -381,12 +381,14 @@ yaml front matter section with at least one parameter (`title`). You can also
 specify additional parameters to change how your doc will display.
 
 **Required:**
-```yaml
+
+``` yaml
 title: Page Title
 ```
 
 **Optional:**
-```yaml
+
+``` yaml
 no_search: true
 # Disables search for the page.
 toc: false
@@ -403,6 +405,7 @@ class: no-copy-code
 # Disables the copy code button in any code blocks on the page.
 ```
 
+
 #### Variables
 Use variables for product names and release versions.
 
@@ -410,10 +413,11 @@ Use variables for product names and release versions.
 `{{site.ee_product_name}}` - Kong Enterprise
 `{{site.ee_product_name}}` - Kong Gateway
 
+
 #### Links
  In markdown(`.md`) files, use relative links with a version variable.
-	* For Community: `/{{page.kong_version}}/file`
-  * For Enterprise: `/enterprise/{{page.kong_version}}/file`
+- For Community: `/{{page.kong_version}}/file`
+- For Enterprise: `/enterprise/{{page.kong_version}}/file`
 
 If you're adding a new topic, you also need to add it to the nav file for its
 version. These are located under `app/_data`. In these files, the path is
