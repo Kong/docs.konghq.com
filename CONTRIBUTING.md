@@ -32,7 +32,7 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Links](#links)
     - [Info Blocks](#info-blocks)
     - [Table of Contents generator](#table-of-contents-generator)
-    - [Using tabs within topics](#using-tabs-within-topics)
+    - [Using navtabs within topics](#using-navtabs-within-topics)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 
