@@ -25,8 +25,12 @@ Consult the Table of Contents below, and jump to the desired section.
     - [Commit message format](#commit-message-format)
     - [Linting](#linting)
   - [Contributing images, videos, etc](#contributing-images-videos-etc)
-  - [Table of Contents generator](#table-of-contents-generator)
-  - [Using tabs within topics](#using-tabs-within-topics)
+  - [Formatting Documentation](#formatting-documentation)
+    - [Variables](#variables)
+    - [Links](#links)
+    - [Info Blocks](#info-blocks)
+    - [Table of Contents generator](#table-of-contents-generator)
+    - [Using tabs within topics](#using-tabs-within-topics)
   - [Contributor T-shirt](#contributor-t-shirt)
 
 
@@ -61,7 +65,7 @@ you may find on this website. Please read the below section about
 
 Adding and improving listings in the Kong Hub is also encouraged! Please
 read the below section
-about [Kong Hub contributions](#kong-hub-contributions)
+about [Kong Hub contributions](#kong-hub-contributions).
 
 If you wish to contribute to Kong itself (as opposed to the documentation
 website), then please consult the [Kong Contributing
@@ -105,8 +109,9 @@ to verify a few things:
   `git rebase`; this is important to ensure your commit history is clean and
    linear)
 - The linting is succeeding: run `npm run test` (see the development
-  documentation for additional details)
-- You've tagged "Team Docs" as reviewers
+  documentation for additional details).
+  _Note: The linter won't catch most errors in Plugin Hub documentation. You
+  need to check for any errors manually, with a [local build](https://github.com/Kong/docs.konghq.com/blob/master/CONTRIBUTING.md)._
 
 If the above guidelines are respected, your Pull Request has all its chances
 to be considered and will be reviewed by a maintainer.
@@ -136,7 +141,7 @@ Adding a new listing to the Kong Hub may be proposed by:
     ```
     git clone https://github.com/Kong/docs.konghq.com.git
     ```
-1. Move into the repo's directory
+2. Move into the repo's directory
     ```
     cd docs.konghq.com
     ```
@@ -347,7 +352,6 @@ $ npm run test
 
 [Back to TOC](#table-of-contents)
 
-
 ### Contributing images, videos, etc
 
 Binary files like images and videos should not be included in your pull
@@ -365,18 +369,90 @@ Instead, please:
 
 [Back to TOC](#table-of-contents)
 
+### Formatting Documentation
 
-### Table of Contents generator
+The Kong docs site has a number of features built in to better display content.
+
+#### Markdown Front Matter
+**Required:**
+```yaml
+title: Page Title
+```
+
+**Optional:**
+```yaml
+no_search: true
+# Disables search for the page.
+toc: false
+# Disables the right-hand nav for the page; useful is the page is short and has
+# one or no headers.
+skip_read_time: true
+# Disables estimated read time; useful for long reference content.
+beta: true
+alpha: true
+# Labels the page as beta or alpha, adds a banner to the top of the page.
+```
+
+#### Variables
+Use variables for product names and release versions.
+
+`{{page.kong_version}}` - Outputs the version of the current page
+`{{site.ee_product_name}}` - Kong Enterprise
+`{{site.ee_product_name}}` - Kong Gateway
+
+#### Links
+ In markdown(`.md`) files, use relative links with a version variable.
+	* For Community: `/{{page.kong_version}}/file`
+  * For Enterprise: `/enterprise/{{page.kong_version}}/file`
+
+If you're adding a new topic, you also need to add it to the nav file for its
+version. These are located under `app/_data`. In these files, the path is
+relative to the versioned folder.
+
+For example, if the project path is `app/enterprise/2.1.x/overview`, the path in
+the nav file would be `/overview`.
+
+#### Info Blocks
+
+Info blocks are HTML divs that follow this basic format:
+```
+<div class="alert alert-type">
+   Some text.
+</div>
+```
+
+For a basic info block, use:
+```
+<div class="alert alert-ee blue">
+Some text.
+</div>
+```
+
+For a warning, use:
+```
+<div class="alert alert-warning">
+   Some text.
+</div>
+```
+
+For a breaking issue or notice of alpha/beta, use:
+```
+<div class="alert alert-ee red">
+   Some text.
+</div>
+```
+
+#### Table of Contents generator
 
 Almost all pages have an automatic Table of Contents (ToC) added to the right of
 the page.
 
 To inhibit the automatic addition of ToC (such as on API reference pages),
-add the following to the front-matter: `toc: false`
+add the following to the front-matter: `toc: false`.
 
 This ToC generator depends on headings being correctly coded in the markdown
 portion of the doc site files, and will only pick up H2 and H3 level headings.
-If a page has an incorrectly-formatted ToC, be sure to check:
+If a page has an incorrectly-formatted ToC, be sure to check the following:
 
 - Heading levels must be correctly nested. Thus, heading levels like this:
 
@@ -397,7 +473,7 @@ will cause the first H3 to be skipped, and should be corrected to:
 [Back to TOC](#table-of-contents)
 
 
-### Using tabs within topics
+#### Using tabs within topics
 
 If your topic provides instructions for two or more methods of completing a
 task, you can nest them inside `navtabs`. For example, this topic
@@ -423,6 +499,9 @@ Here's some more content.
 
 On initial page load, the first tab ("<your title here>" in the example above)
 will be the one displayed.
+
+> **Note:** You can’t nest tabs within tabs.
+
 
 [Back to TOC](#table-of-contents)
 
