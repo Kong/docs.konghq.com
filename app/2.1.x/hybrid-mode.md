@@ -36,16 +36,21 @@ for incoming Data Plane connections. Defaults to `0.0.0.0:8005`.
 to the Control Plane. Must contain the `cluster_listen` value that was configured in
 the Control Plane node. *Required*.
 - `cluster_mtls`: One of `shared` or `pki`. Indicates whether Hybrid Mode will use a
-shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. If set to
-`shared`, `cluster_cert` and `cluster_cert_key` must be configured. If set to
-`pki`, additional properties `cluster_ca_cert` and `cluster_server_name` are
-expected. Defaults to `shared`.
+shared certificate/key pair for CP/DP mTLS or if PKI mode will be used.  If set to
+`shared`, `cluster_cert` and `cluster_cert_key` must be configured and specify the
+same certificate on CP and DP nodes.  If set to `pki`, these should specify different
+node certificates, but a common CA certificate should be presented via the
+ additional `cluster_cert` and `cluster_server_name` settings. Defaults to `shared`.
 - `cluster_cert` and `cluster_cert_key`: Certificate/Key pair used for mTLS between
-CP/DP nodes. *Required*.
+CP/DP nodes.  Under `shared` mode should be the same certificate for CP/DP nodes,
+under `pki` mode they should be unique per node, but generated from the same CA.
+*Required*.
 - `cluster_ca_cert`: The trusted CA certificate file in PEM format used to verify
-the `cluster_cert`. *Required* when `cluster_mtls` is set to `pki`.
+the `cluster_cert`. *Required* when `cluster_mtls` is set to `pki`, *ignored* otherwise.
 - `cluster_server_name`: The Server Name used in the DP/CP TLS handshake. If
-`cluster_mtls` is set to `shared`, `cluster_server_name` defaults to `kong_clustering`.
+`cluster_mtls` is set to `shared`, `cluster_server_name` defaults to `kong_clustering`,
+*required* when `cluster_mtls` is set to `pki` and must match the Common Name (CN) or
+Subject Alternative Name (SAN) of the CP node cetificate.
 
 ## Topology
 
