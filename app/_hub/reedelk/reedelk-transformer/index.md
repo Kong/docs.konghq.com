@@ -132,7 +132,7 @@ IDEA flow designer plugin using either of the following options:
 
 ### Hello World Example
 
-This example uses a pre-packaged `kong-reedelk` docker image with Kong and
+This example uses a prepackaged `kong-reedelk` Docker image with Kong and
 `reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
 Docker images on [Docker Hub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
 
