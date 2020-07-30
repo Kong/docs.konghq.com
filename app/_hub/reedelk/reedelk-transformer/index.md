@@ -87,7 +87,7 @@ IDEA flow designer plugin using either of the following options:
 - **IntelliJ Marketplace**: From **IntelliJ Preferences > Plugin > Marketplace**,
   search for `Reedelk`, install the plugin, and restart IntelliJ.
 
-- **Manual install**: From **IntelliJ Preferences > Plugin > Settings icon >
+- **Manual install**: Go to **IntelliJ Preferences > Plugin > Settings icon >
   Install Plugin From Disk**, and restart IntelliJ.
 
 ### Install Kong Plugin Steps
