@@ -417,7 +417,7 @@ Use variables for product names and release versions.
 
 - `{{page.kong_version}}` - Outputs the version of the current page
 - `{{site.ee_product_name}}` - Kong Enterprise
-- `{{site.ee_product_name}}` - Kong Gateway
+- `{{site.ce_product_name}}` - Kong Gateway
 
 
 #### Links
