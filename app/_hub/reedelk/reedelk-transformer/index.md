@@ -202,4 +202,4 @@ Designer Plugin workflow with [Insomnia](https://insomnia.rest/), see the Reedel
 [Getting Started](https://www.reedelk.com/documentation/getting-started)
 documentation and the
 [Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world)
-on github.
+on GitHub.
