@@ -124,7 +124,7 @@ IDEA flow designer plugin using either of the following options:
    $ luarocks make
    ```
 
-3. Package the plugin.
+3. Package the plugin:
 
    ```bash
    $ luarocks pack kong-plugin-reedelk-transformer 0.1.0-1
