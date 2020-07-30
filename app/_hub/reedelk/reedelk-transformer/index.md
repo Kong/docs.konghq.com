@@ -53,7 +53,7 @@ params:
     - name: upstream_transformer_url
       required: no
       default:
-      value_in_examples: "http://myhost/upstream/transform"
+      value_in_examples: http://myhost/upstream/transform
       description:
         The URL of the Reedelk REST flow endpoint to invoke for the Upstream
         request transformation.
@@ -61,7 +61,7 @@ params:
     - name: downstream_transformer_url
       required: no
       default:
-      value_in_examples: "http://myhost/downstream/transform"
+      value_in_examples: http://myhost/downstream/transform
       description:
         The URL of the Reedelk REST flow endpoint to invoke for the Downstream
         request transformation.
@@ -111,7 +111,7 @@ IDEA flow designer plugin using either of the following options:
    plugins = ...,reedelk-transformer
    ```
 
-4. Restart Kong.
+4. [Restart](/2.1.x/cli/#kong-restart) Kong.
 
 ### Building and Packaging the Kong Plugin
 
