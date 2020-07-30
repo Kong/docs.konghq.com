@@ -91,7 +91,7 @@ IDEA flow designer plugin using either of the following options:
 - **Manual install**: From **IntelliJ Preferences > Plugin > Settings icon >
   Install Plugin From Disk**, and restart IntelliJ.
 
-### Install Kong Plugin Steps
+### Install the Reedelk Transformer plugin
 
 1. Clone the `kong-plugin-reedelk-transformer`:
 
