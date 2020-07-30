@@ -134,7 +134,7 @@ IDEA flow designer plugin using either of the following options:
 
 This example uses a pre-packaged `kong-reedelk` docker image with Kong and
 `reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
-docker images on [Dockerhub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
+Docker images on [Docker Hub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
 
 The `kong-reedelk` image is pre-configured to use the following `kong.yml` file,
 which defines an upstream service mapped on Route `http://localhost:8000/transform`
