@@ -136,7 +136,7 @@ This example uses a pre-packaged `kong-reedelk` docker image with Kong and
 `reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
 Docker images on [Docker Hub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
 
-The `kong-reedelk` image is pre-configured to use the following `kong.yml` file,
+The `kong-reedelk` image is preconfigured to use the following `kong.yml` file,
 which defines an upstream service mapped on Route `http://localhost:8000/transform`
 and invokes a downstream transformer with the `reedelk-transformer` plugin. The
 configured downstream transformer integration flow URL is:
