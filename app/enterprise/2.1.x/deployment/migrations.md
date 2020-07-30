@@ -73,3 +73,35 @@ steps guide you through the migration process.
    {{site.ee_product_name}} node.
 
 ### Upgrade Path for Patch Releases
+
+There are no migrations in upgrades between current or
+future patch releases of the same minor release of {{site.ee_product_name}}
+(for example, 1.5.0.0 to 1.5.0.1; 2.1.0.0 to 2.1.0.1, and so forth). Therefore,
+the upgrade process is simpler.
+
+Assuming that {{site.ee_product_name}} is already running on your system,
+acquire the latest version from any of the available [installation
+methods](https://docs.konghq.com/enterprise/2.1.x/deployment/installation/overview/)
+and proceed to install it, overriding your previous installation.
+
+If you are planning to make modifications to your configuration, this is a
+good time to do so.
+
+Then, run migration to upgrade your database schema:
+
+```shell
+$ kong migrations up [-c configuration_file]
+```
+
+If the command is successful, and no migration ran
+(no output), then you only have to
+[reload](https://docs.konghq.com/2.1.x/cli/#kong-reload) Kong:
+
+```shell
+$ kong reload [-c configuration_file]
+```
+
+**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
+starts new workers, which take over from old workers before those old workers
+are terminated. In this way, Kong will serve new requests using the new
+configuration, without dropping existing in-flight connections.
