@@ -120,8 +120,8 @@ IDEA flow designer plugin using either of the following options:
 
 ### Building and Packaging the Kong Plugin
 
-1. The [LuaRocks](http://luarocks.org) package manager must be
-   [installed](https://github.com/luarocks/luarocks/wiki/Download).
+1. [Install](https://github.com/luarocks/luarocks/wiki/Download) the
+   [LuaRocks](http://luarocks.org) package manager.
 
 2. Build the plugin locally (based on the `.rockspec` in the current directory).
 
@@ -137,7 +137,7 @@ IDEA flow designer plugin using either of the following options:
 
 ### Hello World Example
 
-This example uses a pre-packaged `kong-reedelk` docker image with Kong and
+This example uses a pre-packaged `kong-reedelk` docker image with Kong and the
 `reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
 docker images on [Dockerhub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
 
