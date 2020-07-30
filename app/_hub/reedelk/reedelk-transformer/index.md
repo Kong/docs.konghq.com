@@ -113,7 +113,7 @@ IDEA flow designer plugin using either of the following options:
 
 4. [Restart](/2.1.x/cli/#kong-restart) Kong.
 
-### Building and Packaging the Kong Plugin
+### Build and package the plugin
 
 1. The [LuaRocks](http://luarocks.org) package manager must be
    [installed](https://github.com/luarocks/luarocks/wiki/Download).
