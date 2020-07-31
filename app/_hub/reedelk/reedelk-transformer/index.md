@@ -122,13 +122,20 @@ IDEA flow designer plugin using either of the following options:
 1. [Install](https://github.com/luarocks/luarocks/wiki/Download) the
    [LuaRocks](http://luarocks.org) package manager.
 
-2. Build the plugin locally (based on the `.rockspec` in the current directory):
+2. Clone the `kong-plugin-reedelk-transformer`:
+
+   ```bash
+      git clone https://github.com/reedelk/kong-plugin-reedelk-transformer.git
+      cd kong-plugin-reedelk-transformer
+   ```
+
+3. Build the plugin locally (based on the `.rockspec` in the current directory):
 
    ```bash
    $ luarocks make
    ```
 
-3. Package the plugin:
+4. Package the plugin:
 
    ```bash
    $ luarocks pack kong-plugin-reedelk-transformer 0.1.0-1
