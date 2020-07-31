@@ -180,7 +180,7 @@ downstream transformer.
             -p 8443:8443 \
             -p 127.0.0.1:8001:8001 \
             -p 127.0.0.1:8444:8444 \
-            reedelk/kong-reedelk-transformer-plugin:1.0.0
+            reedelk/kong-reedelk-transformer-plugin:latest
    ```
 
 2. Make sure that Kong is up and running correctly with the `reedelk-transformer`
