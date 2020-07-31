@@ -35,10 +35,9 @@ kong_version_compatibility:
       - 2.1.x
       - 2.0.x
       - 1.5.x
-  # enterprise_edition:
-  #  compatible:
-  #    - 2.1.x
-  #    - 1.5.x
+  enterprise_edition:
+    compatible:
+     - 1.5.x
 
 params:
   name: reedelk-transformer
