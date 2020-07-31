@@ -56,7 +56,7 @@ params:
       default:
       value_in_examples: http://myhost/upstream/transform
       description:
-        The URL of the Reedelk REST flow endpoint to invoke for the Upstream
+        The URL of the Reedelk REST flow endpoint to invoke for the upstream
         request transformation.
 
     - name: downstream_transformer_url
@@ -64,12 +64,12 @@ params:
       default:
       value_in_examples: http://myhost/downstream/transform
       description:
-        The URL of the Reedelk REST flow endpoint to invoke for the Downstream
+        The URL of the Reedelk REST flow endpoint to invoke for the downstream
         request transformation.
 
   extra:
     The `upstream_transformer_url` and `downstream_transformer_url` are the URLs
-    of the Reedelk REST flow endpoint to invoke for the Upstream/Downstream
+    of the Reedelk REST flow endpoint to invoke for the upstream/downstream
     request/response transformations; e.g., `http://localhost:8888/apiabledev/transform`.
 ###############################################################################
 # END YAML DATA
@@ -137,7 +137,7 @@ IDEA flow designer plugin using either of the following options:
 
 ### Hello World Example
 
-This example uses a pre-packaged `kong-reedelk` Docker image with Kong and the
+This example uses a prepackaged `kong-reedelk` Docker image with Kong and the
 `reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
 Docker images on
 [Docker Hub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
