@@ -12,10 +12,10 @@ type:
 desc: Kong plugin to transform Reedelk requests and responses
 
 description: |
-  The Reedelk  transformer plugin allows transforming the upstream request body or
+  The Reedelk Transformer plugin transforms the upstream request body or
   downstream response body by invoking a Reedelk REST flow before hitting the
   upstream server, or before sending the downstream response back to the client.
-  The plugin allows applying upstream and downstream transformations together as well.
+  The plugin can apply both upstream and downstream transformations in the same flow.
 
 support_url: https://github.com/reedelk/kong-plugin-reedelk-transformer/issues
   # (Optional) A specific URL of your own for this extension.
@@ -85,7 +85,7 @@ params:
 To use the Reedelk plugin for Kong, you must first install the Reedelk IntelliJ
 IDEA flow designer plugin using either of the following options:
 
-- **IntelliJ Marketplace**: From **IntelliJ Preferences > Plugin > Marketplace**,
+- **IntelliJ Marketplace**: Go to **IntelliJ Preferences > Plugin > Marketplace**,
   search for `Reedelk`, install the plugin, and restart IntelliJ.
 
 - **Manual install**: From **IntelliJ Preferences > Plugin > Settings icon >
@@ -118,18 +118,18 @@ IDEA flow designer plugin using either of the following options:
    kong restart
    ```
 
-### Building and Packaging the Kong Plugin
+### Build and package the plugin
 
 1. [Install](https://github.com/luarocks/luarocks/wiki/Download) the
    [LuaRocks](http://luarocks.org) package manager.
 
-2. Build the plugin locally (based on the `.rockspec` in the current directory).
+2. Build the plugin locally (based on the `.rockspec` in the current directory):
 
    ```bash
    $ luarocks make
    ```
 
-3. Package the plugin.
+3. Package the plugin:
 
    ```bash
    $ luarocks pack kong-plugin-reedelk-transformer 0.1.0-1
@@ -137,11 +137,12 @@ IDEA flow designer plugin using either of the following options:
 
 ### Hello World Example
 
-This example uses a pre-packaged `kong-reedelk` docker image with Kong and the
+This example uses a pre-packaged `kong-reedelk` Docker image with Kong and the
 `reedelk-transformer` plugin already installed. You can find the `kong-reedelk`
-docker images on [Dockerhub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
+Docker images on
+[Docker Hub](https://hub.docker.com/repository/docker/reedelk/kong-reedelk-transformer-plugin).
 
-The `kong-reedelk` image is pre-configured to use the following `kong.yml` file,
+The `kong-reedelk` image is preconfigured to use the following `kong.yml` file,
 which defines an upstream service mapped on Route `http://localhost:8000/transform`
 and invokes a downstream transformer with the `reedelk-transformer` plugin. The
 configured downstream transformer integration flow URL is:
@@ -207,4 +208,4 @@ Designer Plugin workflow with [Insomnia](https://insomnia.rest/), see the Reedel
 [Getting Started](https://www.reedelk.com/documentation/getting-started)
 documentation and the
 [Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world)
-on github.
+on GitHub.
