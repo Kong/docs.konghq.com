@@ -95,14 +95,14 @@ IDEA flow designer plugin using either of the following options:
 1. Clone the `kong-plugin-reedelk-transformer`:
 
    ```bash
-      git clone https://github.com/reedelk/kong-plugin-reedelk-transformer.git
-      cd kong-plugin-reedelk-transformer
+    $ git clone https://github.com/reedelk/kong-plugin-reedelk-transformer.git
+    $ cd kong-plugin-reedelk-transformer
    ```
 
 2. Install the module `kong-plugin-reedelk-transformer`:
 
    ```bash
-   luarocks install kong-plugin-reedelk-transformer-0.1.0-1.all.rock
+   $ luarocks install kong-plugin-reedelk-transformer-0.1.0-1.all.rock
    ```
 
 3. Add the custom plugin to `kong.conf`:
@@ -114,7 +114,7 @@ IDEA flow designer plugin using either of the following options:
 4. [Restart](/2.1.x/cli/#kong-restart) Kong.
 
    ```
-   kong restart
+   $ kong restart
    ```
 
 ### Build and package the plugin
@@ -125,8 +125,8 @@ IDEA flow designer plugin using either of the following options:
 2. Clone the `kong-plugin-reedelk-transformer`:
 
    ```bash
-      git clone https://github.com/reedelk/kong-plugin-reedelk-transformer.git
-      cd kong-plugin-reedelk-transformer
+    $ git clone https://github.com/reedelk/kong-plugin-reedelk-transformer.git
+    $ cd kong-plugin-reedelk-transformer
    ```
 
 3. Build the plugin locally (based on the `.rockspec` in the current directory):
@@ -175,7 +175,7 @@ downstream transformer.
 1. Run the `kong-reedelk` Docker image:
 
    ```
-   docker run -d --name kong-reedelk-transformer-plugin \
+   $ docker run -d --name kong-reedelk-transformer-plugin \
             -p 8000:8000 \
             -p 8443:8443 \
             -p 127.0.0.1:8001:8001 \
@@ -187,7 +187,7 @@ downstream transformer.
    plugin installed:
 
    ```
-   curl http://localhost:8001/plugins
+   $ curl http://localhost:8001/plugins
    ```
 
 3. Open IntelliJ and create a new Reedelk project. The newly created project
@@ -202,7 +202,7 @@ downstream transformer.
 5. Call the Kong Route with the following URL:
 
    ```
-   http://localhost:8000/transform
+   $ http://localhost:8000/transform
    ```
 
    The result should be:
@@ -210,9 +210,10 @@ downstream transformer.
    `Hello World John`
 
 For more information about this example, including testing the IntelliJ Flow
-Designer Plugin workflow with [Insomnia](https://insomnia.rest/), see the Reedelk
-[Getting Started](https://www.reedelk.com/documentation/getting-started)
-documentation and the
-[Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world)
-on GitHub. You can also watch this
-[YouTube](https://www.youtube.com/watch?v=c5Aw2XpwKos&amp;feature=youtu.be) video.
+Designer Plugin workflow with [Insomnia](https://insomnia.rest/), see: 
+* Reedelk [Getting Started](https://www.reedelk.com/documentation/getting-started)
+documentation.
+* [Reedelk plugin documentation](https://github.com/reedelk/kong-plugin-reedelk-transformer#kong-reedelk-transformer-plugin-hello-world) 
+on GitHub. 
+* [Kong Reedelk Transformer Plugin Demo](https://www.youtube.com/watch?v=c5Aw2XpwKos&amp;feature=youtu.be) 
+video on Youtube.
