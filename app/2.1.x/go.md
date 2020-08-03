@@ -212,7 +212,7 @@ signature is the same for all of them:
 - `Preread`
 - `Log`
 
-Similar to Lua plugins, the presence of the `Response` handler automatically enables the "buffered proxy" mode.
+Similar to Lua plugins, the presence of the `Response` handler automatically enables the buffered proxy mode.
 
 ---
 
