@@ -45,7 +45,7 @@ of the execution life-cycle of Kong:
 
 **Note:**
 
-If a module implements the `:response()` method, Kong will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called.  Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
+If a module implements the `:response()` method, Kong automatically activates the buffered proxy mode as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called.  Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC Upstreams.
 
 To reduce unexpected behaviour changes, Kong will abort startup if a plugin implements both `:response()` and either `:header_filter()` or `:body_filter()`.
 
