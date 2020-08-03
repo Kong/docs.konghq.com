@@ -447,7 +447,7 @@
       url: /kong-for-kubernetes/changelog
 
 - title: Kong Vitals
-  icon: /assets/images/icons/documentation/icn-brain-color.svg
+  icon: /assets/images/icons/documentation/icn-vitals.svg
   items:
     - text: Overview
       url: /vitals/overview
