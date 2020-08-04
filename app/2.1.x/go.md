@@ -208,8 +208,11 @@ signature is the same for all of them:
 - `Certificate`
 - `Rewrite`
 - `Access`
+- `Response`
 - `Preread`
 - `Log`
+
+Similar to Lua plugins, the presence of the `Response` handler automatically enables the buffered proxy mode.
 
 ---
 

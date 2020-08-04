@@ -38,9 +38,16 @@ of the execution life-cycle of Kong:
 | `:certificate()`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
 | `:rewrite()`       | [rewrite]         | Executed for every request upon its reception from a client as a rewrite phase handler. *NOTE* in this phase neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin!
 | `:access()`        | [access]          | Executed for every request from a client and before it is being proxied to the upstream service.
+| `:response()` | [access] | Replaces both `header_filter()` and `body_filter()`.  Executed after the entire response has been received from the Upstream service, but before sending any part of the response to the client.
 | `:header_filter()` | [header_filter]   | Executed when all response headers bytes have been received from the upstream service.
 | `:body_filter()`   | [body_filter]     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. hence this method can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
 | `:log()`           | [log]             | Executed when the last response byte has been sent to the client.
+
+**Note:**
+
+If a module implements the `:response()` method, Kong automatically activates the buffered proxy mode as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called.  Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC Upstreams.
+
+To reduce unexpected behavior changes, Kong aborts startup if a plugin implements both a `:response()` and either a `:header_filter()` or `:body_filter()`.
 
 - **[Stream Module]** *is used for plugins written for TCP stream connections*
 
@@ -66,6 +73,7 @@ in the [next chapter]({{page.book.next}}).
 [body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
 [log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
+[enable_buffering]: /{{page.kong_version}}/pdk/kong.service.request/#kongservicerequestenable_buffering
 
 ---
 
