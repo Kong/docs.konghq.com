@@ -1,18 +1,18 @@
 <!---shared with deployment section and dev portal --->
 
-Below are the Developer Portal migrations required to move from
-**Kong Enterprise 1.5** to **Kong Enterprise 2.1**.
-You can make these changes with our templates repository using the Kong Portal
-CLI, or directly in the Kong Editor. We suggest using the templates/CLI to take
-advantage of source control. Links to the templates repository, as well as the portal CLI, can be found below.
+Developer Portal migrations are required to upgrade from
+**{{site.ee_product_name}} 1.5** to **{{site.ee_product_name}} 2.1**.
+You can make these changes with the Kong templates repository using either the
+Kong Portal CLI, or directly in the Kong Editor UI. Using the CLI to take
+advantage of source control is recommended.
 
-### Links
+### Links to templates and CLI
 - [kong-portal-templates](https://github.com/Kong/kong-portal-templates)
 - [kong-portal-cli](https://github.com/Kong/kong-portal-cli)
 
-### Create Files
-These files need to be created for the 2.1 Kong Developer Portal to function.
-Create each file using the path and contents linked below:
+### Create files
+The following files must be created for the 2.1 Kong Developer Portal to function
+properly. Create each file using the name, path, and contents linked below:
 
 - #### workspaces/default/themes/base/assets/js/app-0fcefa7.min.js
   - Templates Path: `/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js`
@@ -27,10 +27,11 @@ Create each file using the path and contents linked below:
   - Templates Path: `/workspaces/default/themes/base/assets/styles/markdown.css`
   - File Content GitHub: [/workspaces/default/themes/base/assets/styles/markdown.css](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/assets/styles/markdown.css)
 
-### Replace Files
+### Replace content in existing files
 
-These files already exist in your Dev Portal and need to be updated. Replace
-their current contents with the content linked below.
+Update the following files that already exist in your Dev Portal workspaces for
+1.5.x. Replace the existing contents of the files with the 2.1.x content
+linked below.
 
 - #### workspaces/default/content/applications/view.txt
     - Templates Path: `/workspaces/default/content/applications/view.txt`
@@ -60,18 +61,18 @@ their current contents with the content linked below.
     - Templates Path: `/workspaces/default/themes/base/partials/theme/required-scripts.html`
     - File Content GitHub: [/workspaces/default/themes/base/partials/theme/required-scripts.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/partials/theme/required-scripts.html)
 
-### Delete Files
+### Delete files
 
-You can remove entirely these files from your Developer Portal.
+You can remove the following files from your Developer Portal.
 
 - #### dashboard-6ae0d66.min.js
     - Templates Path: `workspaces/default/themes/base/assets/js/dashboard-6616db8.min.js`
 
-### portal.conf.yaml
+### Declare application version
 
-To help make future migrations easier, an `app_version` declaration has been
+To make future migrations easier, an `app_version` declaration has been
 added in `portal.conf.yaml` as shown below.  Add the `app_version` to your
-current configuration. You can view the complete `portal.conf.yaml` file on
+current portal configuration Files. You can view the complete `portal.conf.yaml` file on
 [GitHub](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/portal.conf.yaml).
 
 ```
