@@ -12,7 +12,8 @@ Upgrade to major and patch releases using the `kong migrations` commands.
 {{site.ee_product_name}} supports the no-downtime migration model. This means
 that while the migration is in process, you have two Kong clusters with different
 versions running that are sharing the same database. This is sometimes referred
-to as the Blue/Green migration model.
+to as the
+[blue green migration model](https://en.wikipedia.org/wiki/Blue-green_deployment).
 
 The migrations are designed so that there is no need to fully copy
 the data. Kong migrations are designed in manner such that
@@ -84,6 +85,11 @@ steps guide you through the migration process.
 3. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
 
+### Upgrade Path for Major Releases
+
+If you are not on 1.5.x, you must first incrementally upgrade to 1.5.x before
+upgrading to 2.1.x. Zero downtime is possible if going incrementally from
+versions 0.36.x to 1.5.x.
 
 ### Upgrade Path for Patch Releases
 
