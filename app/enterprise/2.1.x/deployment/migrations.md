@@ -1,6 +1,6 @@
 ---
 title: Migrating from 1.5.x to 2.1.x
-toc: false
+toc: true
 ---
 
 ## Overview
@@ -32,7 +32,7 @@ split into two commands:
    these should be made to the old cluster's nodes. The reason is to prevent
    the new cluster from generating data that is not understood by the old
    cluster.
-3. Gradually divert traffic away from your old nodes, and into
+3. Gradually divert traffic away from your old nodes, and redirect traffic to
    your 2.1 cluster. Monitor your traffic to make sure everything
    is going smoothly.
 4. When your traffic is fully migrated to the 2.1 cluster, decommission your
@@ -43,11 +43,23 @@ split into two commands:
    your migration was successful. From now on, you can safely make Admin API
    requests to your 2.1 nodes.
 
+### Installing 2.1 on a Fresh Datastore
+
+For installing on a fresh datastore, {{site.ee_product_name}} 2.1 has the
+`kong migrations bootstrap` command. You can run the following commands to
+prepare a new 2.1 cluster from a fresh datastore:
+
+```
+$ kong migrations bootstrap [-c config]
+$ kong start [-c config]
+```
+
 ### Migration Steps from Kong Community Gateway 2.1 to Kong Enterprise 2.1
 
-<div class="alert alert-warning">
-     <strong>Note:</strong>This action is irreversible, therefore it is strongly
-     recommended to have a backup of production data.
+<div class="alert alert-red">
+     <strong>Warning:</strong> This action is irreversible, therefore it is strongly
+     recommended to back up your production data before migrating from
+     {{site.ce_product_name}} to {{site.ee_product_name}}.
 </div>
 
 {{site.ee_product_name}} 2.1 includes a command to migrate all
@@ -72,36 +84,43 @@ steps guide you through the migration process.
 3. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
 
+
 ### Upgrade Path for Patch Releases
 
 There are no migrations in upgrades between current or
 future patch releases of the same minor release of {{site.ee_product_name}}
 (for example, 1.5.0.0 to 1.5.0.1; 2.1.0.0 to 2.1.0.1, and so forth). Therefore,
-the upgrade process is simpler.
+the upgrade process is simpler for patch releases.
 
-Assuming that {{site.ee_product_name}} is already running on your system,
-acquire the latest version from any of the available [installation
-methods](https://docs.konghq.com/enterprise/2.1.x/deployment/installation/overview/)
-and proceed to install it, overriding your previous installation.
+#### Prerequisites
 
-If you are planning to make modifications to your configuration, this is a
-good time to do so.
+- Assuming that {{site.ee_product_name}} is already running on your system,
+  acquire the latest version from any of the available
+  [installation methods](https://docs.konghq.com/enterprise/2.1.x/deployment/installation/overview/)
+  and install it, overriding your previous installation.
 
-Then, run migration to upgrade your database schema:
+- If you are planning to make modifications to your configuration, this is an
+  opportune time to do so.
 
-```shell
-$ kong migrations up [-c configuration_file]
-```
+1. Run migrations to upgrade your database schema:
 
-If the command is successful, and no migration ran
-(no output), then you only have to
-[reload](https://docs.konghq.com/2.1.x/cli/#kong-reload) Kong:
+   ```shell
+   $ kong migrations up [-c configuration_file]
+   ```
 
-```shell
-$ kong reload [-c configuration_file]
-```
+2. If the command is successful, and no migration ran (no output),
+   then you only have to
+   [reload](https://docs.konghq.com/2.1.x/cli/#kong-reload) Kong:
 
-**Reminder**: `kong reload` leverages the Nginx `reload` signal that seamlessly
-starts new workers, which take over from old workers before those old workers
-are terminated. In this way, Kong will serve new requests using the new
-configuration, without dropping existing in-flight connections.
+   ```shell
+   $ kong reload [-c configuration_file]
+   ```
+
+**Reminder:** The `kong reload` command leverages the Nginx `reload` signal that
+seamlessly starts new workers, which then take over from old workers before they
+are terminated. Kong serves new requests using the new
+configuration without dropping existing in-flight connections.
+
+### Migrate the Dev Portal templates
+
+{% include /md/{{page.kong_version}}/migrations/migrate-dev-portal.md %}
