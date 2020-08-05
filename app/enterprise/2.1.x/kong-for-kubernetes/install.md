@@ -8,7 +8,7 @@ Kong for Kubernetes Enterprise provides most Kong Enterprise plugins and runs wi
 
 >Note: See [Kong for Kubernetes deployment options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options) for a feature breakdown and image comparison.
 
-You can install Kong for Kubernetes Enterprise using YAML with kubectl, with OpenShift oc, or [with Helm](https://github.com/Kong/charts/tree/master/charts/kong).
+You can install Kong for Kubernetes Enterprise using YAML with kubectl, with OpenShift oc, or [with Helm](https://github.com/Kong/charts/tree/main/charts/kong).
 
 <img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">
 
@@ -16,7 +16,7 @@ You can install Kong for Kubernetes Enterprise using YAML with kubectl, with Ope
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
-If you would like to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode setup documentation](https://github.com/Kong/charts/blob/master/charts/kong#hybrid-mode) for details.
+If you would like to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode setup documentation](https://github.com/Kong/charts/blob/main/charts/kong#hybrid-mode) for details.
 
 ## Prerequisites
 Before starting installation, be sure you have the following:
@@ -147,7 +147,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 It might take a while for your cloud provider to associate the IP address to the `kong-proxy` service.
-After you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/guides/getting-started.md).
+After you have installed Kong, see the [getting started tutorial](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/guides/getting-started.md).
 
 ## Next steps...
 See [Using Kong for Kubernetes Enterprise](/enterprise/{{page.kong_version}}/kong-for-kubernetes/using-kong-for-kubernetes) for information about concepts, how-to guides, reference guides, and using plugins.

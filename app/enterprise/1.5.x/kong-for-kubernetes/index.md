@@ -14,6 +14,6 @@ Here are some benefits of using Kong for Kubernetes Enterprise:
 
 Alternatively, you can also deploy Kong Enterprise on Kubernetes to use features such as Kong Manager, Kong Developer Portal, and others. For a comparison of the options, see [Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
 
-For more information about the architecture, see [Kong Ingress Controller Design](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/concepts/design.md).
+For more information about the architecture, see [Kong Ingress Controller Design](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/concepts/design.md).
 
 <img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">

@@ -45,7 +45,7 @@ $ helm install kong/kong --generate-name --set ingressController.installCRDs=fal
 ```
 
 For more information about using a Helm Chart, see chart
-[documentation](https://github.com/Kong/charts/blob/master/charts/kong/README.md).
+[documentation](https://github.com/Kong/charts/blob/main/charts/kong/README.md).
 
 ### Kustomize
 Kong’s manifests for Kubernetes can be declaratively patched using Kubernetes’ [kustomize](https://kustomize.io/). An example of a remote custom build is:
@@ -54,7 +54,7 @@ Kong’s manifests for Kubernetes can be declaratively patched using Kubernetes�
 kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/base
 ```
 
-kustomizations are available in Kong’s [repository](https://github.com/Kong/kubernetes-ingress-controller/tree/master/deploy/manifests) for different types of deployments.
+kustomizations are available in Kong’s [repository](https://github.com/Kong/kubernetes-ingress-controller/tree/main/deploy/manifests) for different types of deployments.
 
 
 ## Using a managed Kubernetes offering

@@ -16,7 +16,7 @@ You can use kubectl or OpenShift oc to configure Kong Enterprise on Kubernetes, 
 
 The following instructions assume that you are deploying {{site.ee_product_name}} in [classic embedded mode](/enterprise/{{page.kong_version}}/deployment/deployment-options).
 
-If you would like to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode setup documentation](https://github.com/Kong/charts/blob/master/charts/kong#hybrid-mode) for details.
+If you would like to run {{site.ee_product_name}} in Hybrid mode, the instructions in this topic will walk you though setting up a Control Plane instance. Afterward, you will need to bring up additional Kong instances for the Data Planes, and perform further configuration steps. See [Hybrid Mode setup documentation](https://github.com/Kong/charts/blob/main/charts/kong#hybrid-mode) for details.
 
 ## Prerequisites
 Before starting installation, be sure you have the following:
@@ -161,7 +161,7 @@ In the following steps, replace `<your-password>` with a secure password.
 {% endnavtabs %}
 ## Step 7. Prepare Kong's configuration file
 
-1. Create a `values.yaml` file based on the sample in the [Kong charts repository](https://github.com/Kong/charts/blob/master/charts/kong/values.yaml). This file sets all the necessary parameters for your Kong environment.
+1. Create a `values.yaml` file based on the sample in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file sets all the necessary parameters for your Kong environment.
 
 2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
 
@@ -200,7 +200,7 @@ In the following steps, replace `<your-password>` with a secure password.
         servicePort: 8446
     ```
 
-4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-parameters) for more details.
+4. Fill in the rest of the parameters as appropriate for your implementation. Use the comments in the sample file to guide you, and see the documentation on [Kong Enterprise parameters](https://github.com/Kong/charts/blob/main/charts/kong/README.md#kong-enterprise-parameters) for more details.
 
 ## Step 8. Deploy Kong Enterprise on Kubernetes
 The steps in this section show you how to install Kong Enterprise on Kubernetes using Helm.

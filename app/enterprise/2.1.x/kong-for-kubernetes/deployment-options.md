@@ -173,9 +173,9 @@ migrating in the opposite direction.
 
 [k8s-bintray]: https://bintray.com/kong/kong-enterprise-k8s
 [enterprise-bintray]: https://bintray.com/kong/kong-enterprise-edition-docker
-[admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/deployment/admission-webhook.md
+[admission-webhook]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/deployment/admission-webhook.md
 [route-validation]: /enterprise/{{page.kong_version}}/property-reference/#route_validation_strategy
-[supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/references/plugin-compatibility.md
+[supported-plugins]: https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/references/plugin-compatibility.md
 [k4k8s-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install
 [k4k8s-with-enterprise-install]: /enterprise/{{page.kong_version}}/kong-for-kubernetes/install-on-kubernetes
 [vitals-prometheus]: /enterprise/{{page.kong_version}}/vitals/vitals-prometheus-strategy/
