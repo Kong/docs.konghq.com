@@ -11,13 +11,13 @@ Upgrade to major and patch {{site.ee_product_name}} releases using the
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}.
 
-### Upgrade Path for Major Kong Enterprise Releases
+## Upgrade Path for Major Kong Enterprise Releases
 
 If you are not on {{site.ee_product_name}} 1.5.x, you must first incrementally
 upgrade to 1.5.x before upgrading to 2.1.x. Zero downtime is possible but not
 guaranteed when upgrading incrementally from versions 0.36.x to 1.3.x to 1.5.x.
 
-### Prerequisites for Migrating to 2.1
+## Prerequisites for Migrating to 2.1
 
 * If running a version of {{site.ee_product_name}} earlier than 1.3,
   [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
@@ -26,7 +26,7 @@ guaranteed when upgrading incrementally from versions 0.36.x to 1.3.x to 1.5.x.
 * If you are adding new plugin to your installation, you need to run
   `kong migrations up` with the plugin name specified.
 
-### Migrating from 1.5.x to 2.1.x
+## Migrating from 1.5.x to 2.1.x
 
 {{site.ee_product_name}} supports the no downtime migration model. This means
 that while the migration is in process, you have two Kong clusters with different
@@ -77,14 +77,14 @@ $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
 
-### Upgrade Path for Patch Releases
+## Upgrade Path for Patch Releases
 
 There are no migrations in upgrades between current or
 future patch releases of the same minor release of {{site.ee_product_name}}
 (for example, 1.5.0.0 to 1.5.0.1; 2.1.0.0 to 2.1.0.1, and so forth). Therefore,
 the upgrade process is simpler for patch releases.
 
-#### Prerequisites
+### Prerequisites
 
 - Assuming that {{site.ee_product_name}} is already running on your system,
   acquire the latest version from any of the available
@@ -118,11 +118,14 @@ configuration without dropping existing in-flight connections.
 {{site.ee_product_name}} 2.1 includes a command parameter `migrate-community-to-enterprise`
 to migrate all {{site.ce_product_name}} entities to {{site.ee_product_name}}.
 
+**Important:** You can only migrate to an {{site.ee_product_name}} version that
+supports the same {{site.ce_product_name}} version.
+
 ### Prerequisites
 
-* If running a version of {{site.ce_product_name}} earlier than 1.5,
-  [upgrade to Kong 1.5](/1.5.x/upgrading/) before upgrading to
-  {{site.ee_product_name}} 2.1.
+* If running a version of {{site.ce_product_name}} earlier than 2.1,
+  [upgrade to Kong 2.1](/2.1.x/upgrading/) before migrating
+  {{site.ce_product_name}} to {{site.ee_product_name}} 2.1.
 
 <div class="alert alert-red">
      <strong>Warning:</strong> This action is irreversible, therefore it is strongly
@@ -133,8 +136,8 @@ to migrate all {{site.ce_product_name}} entities to {{site.ee_product_name}}.
 The following steps guide you through the migration process.
 
 1. Download {{site.ee_product_name}} 2.1 and configure it to point to the
-   same datastore as your {{site.ce_product_name}} 2.1 node. The migration command
-   expects the datastore to be up-to-date on any pending migration:
+   same datastore as your {{site.ce_product_name}} 2.1 node. The migration
+   command expects the datastore to be up-to-date on any pending migration:
 
    ```shell
    $ kong migrations up [-c config]
@@ -147,10 +150,11 @@ The following steps guide you through the migration process.
    ```shell
    $ kong migrations migrate-community-to-enterprise [-c config] [-f] [-y]
    ```
+
 3. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
 
-## Troubleshooting migrations
+### Troubleshoot migrations
 
 
 
