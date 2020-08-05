@@ -234,10 +234,10 @@ Certificate:
          ad:ca:3a:d5:50:8f:cf:aa:6d:c2:1c:af:a4:ca:75:e8
 ```
 
-Note certificates on CP and DP must contains the `TLS Web Server Authentication` and
+> **Note:** Certificates on CP and DP must contain the `TLS Web Server Authentication` and
 `TLS Web Client Authentication` as X509v3 Extended Key Usage extension, respectively.
 
-Kong doesn't validate CommonName (CN) in DP certificate, it can take arbitrary value.
+Kong doesn't validate the CommonName (CN) in the DP certificate; it can take an arbitrary value.
 
 Set the following configuration parameters in `kong.conf` on the Control Plane:
 
