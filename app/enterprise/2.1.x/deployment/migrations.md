@@ -118,7 +118,7 @@ configuration without dropping existing in-flight connections.
 {{site.ee_product_name}} 2.1 includes a command parameter `migrate-community-to-enterprise`
 to migrate all {{site.ce_product_name}} entities to {{site.ee_product_name}}.
 
-### Prerequisites for Migrating to 2.1
+### Prerequisites
 
 * If running a version of {{site.ce_product_name}} earlier than 1.5,
   [upgrade to Kong 1.5](/1.5.x/upgrading/) before upgrading to
