@@ -97,6 +97,8 @@ In PKI mode, the Control Plane and Data Plane don't need to use the same `cluste
 Instead, Kong validates both sides by checking if they are from the same CA. This eliminates the risk of
 transporting private keys around.
 
+{% navtabs %}
+{% navtab CA Certificate Example %}
 Typically, a CA certificate will look like this:
 
 ```
@@ -138,7 +140,9 @@ Certificate:
          02:21:00:86:ce:d0:fc:ba:92:e9:59:16:1c:c3:b2:11:11:ed:
          01:5d:16:49:d0:f9:0c:1d:35:0d:40:ba:19:98:31:76:57
 ```
+{% endnavtab %}
 
+{% navtab CA Certificate on CP %}
 An example CP certificate will be:
 
 ```
@@ -187,7 +191,9 @@ Certificate:
          02:20:16:56:d9:90:06:cf:98:07:87:33:dc:ef:f4:cc:6b:d1:
          19:8f:64:ee:82:a6:e8:e6:de:57:a7:24:82:72:82:49
 ```
+{% endnavtab %}
 
+{% navtab CA Certificate on DP %}
 An example DP certificate will be:
 
 ```
@@ -233,6 +239,8 @@ Certificate:
          02:20:2a:27:7d:eb:75:a6:ee:65:8b:f1:66:a4:99:32:56:7c:
          ad:ca:3a:d5:50:8f:cf:aa:6d:c2:1c:af:a4:ca:75:e8
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 > **Note:** Certificates on CP and DP must contain the `TLS Web Server Authentication` and
 `TLS Web Client Authentication` as X509v3 Extended Key Usage extension, respectively.
