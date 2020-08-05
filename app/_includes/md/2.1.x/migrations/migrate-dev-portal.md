@@ -61,7 +61,7 @@ linked below.
     - Templates Path: `/workspaces/default/themes/base/partials/theme/required-scripts.html`
     - File Content GitHub: [/workspaces/default/themes/base/partials/theme/required-scripts.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/partials/theme/required-scripts.html)
 
-### Delete files
+### Delete obsolete files
 
 You can remove the following files from your Developer Portal.
 
