@@ -5,19 +5,23 @@ toc: true
 
 ## Overview
 
-Upgrade to major and patch {{site.ee_product_name}} releases using the
+Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}.
 
-## Upgrade Path for Major Kong Enterprise Releases
+## Upgrade Path for Kong Enterprise Releases
+
+Kong adheres to [semantic versioning](https://semver.org/), which makes a
+distinction between major, minor, and patch versions. The upgrade path differs
+depending on the previous version from which you are migrating.
+
+## Prerequisites for Migrating to Kong Enterprise 2.1
 
 If you are not on {{site.ee_product_name}} 1.5.x, you must first incrementally
 upgrade to 1.5.x before upgrading to 2.1.x. Zero downtime is possible but not
-guaranteed when upgrading incrementally from versions 0.36.x to 1.3.x to 1.5.x.
-
-## Prerequisites for Migrating to 2.1
+guaranteed if you are upgrading incrementally from versions 0.36.x to 1.3.x to 1.5.x.
 
 * If running a version of {{site.ee_product_name}} earlier than 1.3,
   [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
