@@ -88,6 +88,191 @@ Note that Control Plane still needs a database (Postgres or Cassandra) to store 
 Data Plane nodes. You may run more than a single Control Plane nodes to provide load balancing
 and redundancy as long as they points to the same backend database.
 
+## PKI mode
+
+Starting in Kong 2.1, the Hybrid cluster can use certificates signed by a central certificate authority (CA).
+This mode can be activated by setting `cluster_mtls` to `"pki"` in `kong.conf`. The default value is `"shared"`.
+
+In PKI mode, the Control Plane and Data Plane don't need to use the same `cluster_key` and `cluster_cert_key`.
+Instead, Kong validates both sides by checking if they are from the same CA. This eliminates the risk of
+transporting private keys around.
+
+{% navtabs %}
+{% navtab CA Certificate Example %}
+Typically, a CA certificate will look like this:
+
+```
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            5d:29:73:bf:c3:da:5f:60:69:da:73:ed:0e:2e:97:6f:7f:4c:db:4b
+        Signature Algorithm: ecdsa-with-SHA256
+        Issuer: O = Kong Inc., CN = Hybrid Root CA
+        Validity
+            Not Before: Jul  7 12:36:10 2020 GMT
+            Not After : Jul  7 12:36:40 2023 GMT
+        Subject: O = Kong Inc., CN = Hybrid Root CA
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:df:49:9f:39:e6:2c:52:9f:46:7a:df:ae:7b:9b:
+                    87:1e:76:bb:2e:1d:9c:61:77:07:e5:8a:ba:34:53:
+                    3a:27:4c:1e:76:23:b4:a2:08:80:b4:1f:18:7a:0b:
+                    79:de:ea:8c:23:94:e6:2f:57:cf:27:b4:0a:52:59:
+                    90:2c:2b:86:03
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Certificate Sign, CRL Sign
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Subject Key Identifier:
+                8A:0F:07:61:1A:0F:F4:B4:5D:B7:F3:B7:28:D1:C5:4B:81:A2:B9:25
+            X509v3 Authority Key Identifier:
+                keyid:8A:0F:07:61:1A:0F:F4:B4:5D:B7:F3:B7:28:D1:C5:4B:81:A2:B9:25
+
+    Signature Algorithm: ecdsa-with-SHA256
+         30:45:02:20:68:3c:d1:f3:63:a2:aa:b4:59:c9:52:af:33:b7:
+         3f:ca:3a:2b:1c:9d:87:0c:c0:47:ff:a2:c4:af:3e:b0:36:29:
+         02:21:00:86:ce:d0:fc:ba:92:e9:59:16:1c:c3:b2:11:11:ed:
+         01:5d:16:49:d0:f9:0c:1d:35:0d:40:ba:19:98:31:76:57
+```
+{% endnavtab %}
+
+{% navtab CA Certificate on CP %}
+An example CP certificate will be:
+
+```
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            18:cc:a3:6b:aa:77:0a:69:c6:d5:ff:12:be:be:c0:ac:5c:ff:f1:1e
+        Signature Algorithm: ecdsa-with-SHA256
+        Issuer: CN = Hybrid Intermediate CA
+        Validity
+            Not Before: Jul 31 00:59:29 2020 GMT
+            Not After : Oct 29 00:59:59 2020 GMT
+        Subject: CN = control-plane.kong.yourcorp.tld
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:f8:3a:a9:d2:e2:79:19:19:f3:1c:58:a0:23:60:
+                    78:04:1f:7e:e2:bb:60:d2:29:50:ad:7c:9b:8e:22:
+                    1c:54:c2:ce:68:b8:6c:8a:f6:92:9d:0c:ce:08:d3:
+                    aa:0c:20:67:41:32:18:63:c9:dd:50:31:60:d6:8b:
+                    8d:f9:7b:b5:37
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment, Key Agreement
+            X509v3 Extended Key Usage:
+                TLS Web Client Authentication
+            X509v3 Subject Key Identifier:
+                70:C7:F0:3B:CD:EB:8D:1B:FF:6A:7C:E0:A4:F0:C6:4C:4A:19:B8:7F
+            X509v3 Authority Key Identifier:
+                keyid:16:0D:CF:92:3B:31:B0:61:E5:AB:EE:91:42:B9:60:56:0A:88:92:82
+
+            X509v3 Subject Alternative Name:
+                DNS:control-plane.kong.yourcorp.tld, DNS:alternate-control-plane.kong.yourcorp.tld
+            X509v3 CRL Distribution Points:
+
+                Full Name:
+                  URI:https://crl-service.yourcorp.tld/v1/pki/crl
+
+    Signature Algorithm: ecdsa-with-SHA256
+         30:44:02:20:5d:dd:ec:a8:4f:e7:5b:7d:2f:3f:ec:b5:40:d7:
+         de:5e:96:e1:db:b7:73:d6:84:2e:be:89:93:77:f1:05:07:f3:
+         02:20:16:56:d9:90:06:cf:98:07:87:33:dc:ef:f4:cc:6b:d1:
+         19:8f:64:ee:82:a6:e8:e6:de:57:a7:24:82:72:82:49
+```
+{% endnavtab %}
+
+{% navtab CA Certificate on DP %}
+An example DP certificate will be:
+
+```
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            4d:8b:eb:89:a2:ed:b5:29:80:94:31:e4:94:86:ce:4f:98:5a:ad:a0
+        Signature Algorithm: ecdsa-with-SHA256
+        Issuer: CN = Hybrid Intermediate CA
+        Validity
+            Not Before: Jul 31 00:57:01 2020 GMT
+            Not After : Oct 29 00:57:31 2020 GMT
+        Subject: CN = kong-dp-ce39edecp.service
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:19:51:80:4c:6d:8c:a8:05:63:42:71:a2:9a:23:
+                    34:34:92:c6:2a:d3:e5:15:6e:36:44:85:64:0a:4c:
+                    12:16:82:3f:b7:4c:e1:a1:5a:49:5d:4c:5e:af:3c:
+                    c1:37:e7:91:e2:b5:52:41:a0:51:ac:13:7b:cc:69:
+                    93:82:9b:2f:e2
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment, Key Agreement
+            X509v3 Extended Key Usage:
+                TLS Web Client Authentication
+            X509v3 Subject Key Identifier:
+                25:82:8C:93:85:35:C3:D6:34:CF:CB:7B:D6:14:97:46:84:B9:2B:87
+            X509v3 Authority Key Identifier:
+                keyid:16:0D:CF:92:3B:31:B0:61:E5:AB:EE:91:42:B9:60:56:0A:88:92:82
+            X509v3 CRL Distribution Points:
+
+                Full Name:
+                  URI:https://crl-service.yourcorp.tld/v1/pki/crl
+
+    Signature Algorithm: ecdsa-with-SHA256
+         30:44:02:20:65:2f:5e:30:f7:a4:28:14:88:53:58:c5:85:24:
+         35:50:25:c9:fe:db:2f:72:9f:ad:7d:a0:67:67:36:32:2b:d2:
+         02:20:2a:27:7d:eb:75:a6:ee:65:8b:f1:66:a4:99:32:56:7c:
+         ad:ca:3a:d5:50:8f:cf:aa:6d:c2:1c:af:a4:ca:75:e8
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+> **Note:** Certificates on CP and DP must contain the `TLS Web Server Authentication` and
+`TLS Web Client Authentication` as X509v3 Extended Key Usage extension, respectively.
+
+Kong doesn't validate the CommonName (CN) in the DP certificate; it can take an arbitrary value.
+
+Set the following configuration parameters in `kong.conf` on the Control Plane:
+
+```
+cluster_mtls = pki
+cluster_ca_cert = /path/to/ca-cert.crt
+cluster_cert = control-plane.crt
+cluster_cert_key = control-plane.key
+```
+
+`cluster_ca_cert` specifies the root CA certificate for `cluster_cert` and `cluster_cert_key`. This
+certificate must be the root CA certificate and not any of an intermediate CA.
+Kong allows at most `3` levels of intermediate CAs to be used between the root CA and the cluster certificate.
+
+Set the following configuration parameters in `kong.conf` on the Data Plane:
+
+```
+cluster_mtls = pki
+cluster_server_name = control-plane.kong.yourcorp.tld
+cluster_cert = data-plane.crt
+cluster_cert_key = data-plane.crt
+```
+
+`cluster_server_name` specifies the SNI (Server Name Indication extension) to use for Data Plane
+connections to the Control Plane through TLS. When not set, Data Plane will use `kong_clustering` as the SNI.
+
+
 ## Starting Data Plane Nodes
 
 Now we have a Control Plane running, it is not much useful if no Data Plane nodes are
