@@ -4,6 +4,8 @@ no_version: true
 no_search: true
 ---
 
+## Introduction
+
 decK helps manage Kong’s configuration in a declarative fashion. It can sync
 configuration to a running Kong cluster, diff configuration to detect any drift
 or manual changes and backup your Kong’s configuration. It also can manage Kong’s
@@ -14,6 +16,44 @@ Here is an introductory screencast explaining decK:
 <a href="https://asciinema.org/a/238318">
   <img class="no-image-expand" src="https://asciinema.org/a/238318.svg" alt="deck screencast" />
 </a>
+
+## Features
+* **Export**: Export Kong configuration to a YAML configuration file.
+This feature is especially useful for backing up Kong's configuration.
+
+* **Import**: Populate Kong's database using a previously exported or
+manually written configuration file.
+
+* **Diff and sync capabilities**: decK can diff the configuration between the
+provided configuration file and Kong's database, then sync the configs based on
+the diff. This feature is particularly useful for detecting config drifts or
+manual interventions.
+
+* **Reverse sync**: decK also supports sync in the opposite direction, meaning
+that if an entity is created in Kong and isn't added to the config file,
+decK will detect the change.
+
+* **Validation**: decK can validate YAML files that you backup or modify to
+catch errors early on.
+
+* **Reset**: decK can completely reset Kong's database by deleting all entities.
+
+* **Parallel operations**: All Admin API calls to Kong are executed in parallel
+using multiple threads to speed up the sync process.
+
+* **Authentication with Kong**: Custom HTTP headers can be injected in requests
+to Kong's Admin API for authentication or authorization purposes.
+
+* **Manage Kong's config with multiple config files**: Split your configuration
+into multiple logical files based on a shared set of tags amongst entities.
+
+* **Designed to automate configuration management**: decK is designed to be part
+of your CI pipeline, where it can push configuration to Kong and detect drifts
+in configuration.
+
+## Compatibility
+decK is compatible with {{site.ce_product_name}} >= 1.x and
+{{site.ee_product_name}} >= 0.35.
 
 ## References
 
