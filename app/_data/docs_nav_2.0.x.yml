@@ -451,5 +451,5 @@
     - text: FAQ
       url: /../../deck/faqs
     - text: Changelog
-      url: https://github.com/hbagdi/deck/blob/master/CHANGELOG.md
+      url: https://github.com/kong/deck/blob/main/CHANGELOG.md
       absolute_url: true
