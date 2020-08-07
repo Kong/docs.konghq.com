@@ -15,29 +15,29 @@ Operating System (OS):
 If you are on macOS, install decK using brew:
 
 ```shell
-$ brew tap hbagdi/deck
+$ brew tap kong/deck
 $ brew install deck
 ```
 
 ### Linux
 
 If you are Linux, you can either use the Debian or RPM archive from
-the Github [release page](https://github.com/hbagdi/deck/releases)
+the Github [release page](https://github.com/kong/deck/releases)
 or install by downloading a compressed archive, which contains the binary:
 
 ```shell
-$ curl -sL https://github.com/hbagdi/deck/releases/download/v1.2.0/deck_1.2.0_linux_amd64.tar.gz -o deck.tar.gz
+$ curl -sL https://github.com/kong/deck/releases/download/v1.2.0/deck_1.2.0_linux_amd64.tar.gz -o deck.tar.gz
 $ tar -xf deck.tar.gz -C /tmp
 $ sudo cp /tmp/deck /usr/local/bin/
 ```
 
 ### Docker image
 
-If your workflow requires a Docker image, then you can use `hbagdi/deck` Docker
+If your workflow requires a Docker image, then you can use `kong/deck` Docker
 image from the official Docker hub:
 
 ```
-docker pull hbagdi/deck
+docker pull kong/deck
 ```
 
 You will have to mount the state files into the container as volumes so that

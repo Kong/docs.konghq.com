@@ -40,13 +40,13 @@ features of decK at Kong Summit 2019. The following is a recording of that sessi
 ## Changelog
 
 The changelog can be found in the
-[CHANGELOG.md](https://github.com/hbagdi/deck/blob/master/CHANGELOG.md) file.
+[CHANGELOG.md](https://github.com/kong/deck/blob/main/CHANGELOG.md) file.
 
 ## Licensing
 
 decK is licensed with Apache License Version 2.0.
 Please read the
-[LICENSE](https://github.com/hbagdi/deck/blob/master/LICENSE) file for more details.
+[LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more details.
 
 ## Security
 
@@ -72,7 +72,7 @@ To seek help, use the following resources:
 - `--help` flag gives you the necessary help in the terminal itself and should
   solve most of your problems.
 - If you still need help, please open a
-  [Github issue](https://github.com/hbagdi/deck/issues/new) to ask your
+  [Github issue](https://github.com/kong/deck/issues/new) to ask your
   question.
 - decK has very wide adoption by Kong's community and you can seek help
   from the larger community at [Kong Nation](https://discuss.konghq.com).
@@ -80,7 +80,7 @@ To seek help, use the following resources:
 ## Reporting a bug
 
 If you believe you have run into a bug with decK, please open
-a [Github issue](https://github.com/hbagdi/deck/issues/new).
+a [Github issue](https://github.com/kong/deck/issues/new).
 
 If you think you've found a security issue with decK, please read the
 [Security](#security) section.
