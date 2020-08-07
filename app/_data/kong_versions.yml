@@ -360,6 +360,6 @@
 -
   edition: "deck"
 -
-  release: "0.7.x"
-  version: "0.7"
+  release: "1.0.x"
+  version: "1.0"
   edition: "mesh"
