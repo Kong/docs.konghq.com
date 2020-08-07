@@ -80,5 +80,5 @@ Kong for Kubernetes Enterprise (K4K8s, or the Kong Ingress Controller with
 Hybrid mode.
 
 * For a comparison of these images, see [Kubernetes Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
-* For the full Kubernetes Hybrid mode documentation, see [Hybrid mode](https://github.com/Kong/charts/blob/master/charts/kong/README.md#hybrid-mode)
+* For the full Kubernetes Hybrid mode documentation, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
 in the `kong/charts` repository.
