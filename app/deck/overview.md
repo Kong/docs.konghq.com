@@ -61,7 +61,7 @@ The command line `--help` flag on the main command or a subcommand (like diff,
 sync, reset, etc.) shows the help text along with supported flags for those
 commands.
 
-A gist of all commands that are available in decK can be found
+A list of all commands that are available in decK can be found
 [here](/deck/commands).
 
 ## Frequently Asked Questions (FAQs)
