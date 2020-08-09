@@ -30,28 +30,21 @@ Deploying using Hybrid mode has a number of benefits:
 ## Configuration Properties
 
 Hybrid Mode introduces the following configuration properties:
-- `cluster_listen`: List of addresses and ports on which the Control Plane will listen
-for incoming Data Plane connections. Defaults to `0.0.0.0:8005`.
-- `cluster_control_plane`: Port on which the Data Plane nodes will attempt to connect
-to the Control Plane. Must contain the `cluster_listen` value that was configured in
-the Control Plane node. *Required*.
-- `cluster_mtls`: One of `shared` or `pki`. Indicates whether Hybrid Mode will use a
-shared certificate/key pair for CP/DP mTLS or if PKI mode will be used.  If set to
-`shared`, `cluster_cert` and `cluster_cert_key` must be configured and specify the
-same certificate on CP and DP nodes.  If set to `pki`, these should specify different
-node certificates, but a common CA certificate should be presented via the
- additional `cluster_cert` and `cluster_server_name` settings. Defaults to `shared`.
-- `cluster_cert` and `cluster_cert_key`: Certificate/Key pair used for mTLS between
-CP/DP nodes.  Under `shared` mode should be the same certificate for CP/DP nodes,
-under `pki` mode they should be unique per node, but generated from the same CA.
-*Required*.
-- `cluster_ca_cert`: The trusted CA certificate file in PEM format used to verify
-the `cluster_cert`. *Required* when `cluster_mtls` is set to `pki`, *ignored* otherwise.
-- `cluster_server_name`: The Server Name used in the DP/CP TLS handshake. If
-`cluster_mtls` is set to `shared`, `cluster_server_name` defaults to `kong_clustering`,
-*required* when `cluster_mtls` is set to `pki` and must match the Common Name (CN) or
-Subject Alternative Name (SAN) of the CP node cetificate.
 
+Parameter | Description
+--- | ---
+`cluter_listen` *Optional* | List of addresses and ports on which the Control Plane will listen for incoming Data Plane connections. Defaults to `0.0.0.0:8005`.
+`cluster_control_plane` *Required* | Address and port that the Data Plane nodes use to connect to the Control Plane. Must point to the port configured using the `cluster_listen` property on the Control Plane node.
+`cluster_mtls` *Optional* | One of `"shared"` or `"pki"`. Indicates whether Hybrid Mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used.  Defaults to `"shared"`.
+
+The following properties are used differently between "shared" and "PKI" modes:
+ 
+Parameter | Description | Shared Mode | PKI Mode
+--- | --- | --- | ---
+`cluster_cert` and `cluster_cert_key` *Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
+`cluster_ca_cert` *Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
+`cluster_server_name` *Required in PKI mode* | The SNI Server Name presented by the DP node mTLS handshake. | *Ignored* (uses `"kong_clustering"`) | The CP node will verify that it matches the Common Name (CN) or Subject Alternative Name (SAN) of the node certificate in `cluster_ca_cert`. *Required for DP nodes.*
+ 
 ## Topology
 
 ![Example Hybrid Mode Topology](/assets/images/docs/hybrid-mode.png "Example Hybrid Mode Topology")
