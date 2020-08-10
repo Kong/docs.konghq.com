@@ -29,7 +29,7 @@ guaranteed if you are upgrading incrementally from versions 0.36.x to 1.3.x to 1
   [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
 * If you are adding new plugin to your installation, you need to run
   `kong migrations up` with the plugin name specified. For example,
-  `KONG_PLUGINS=bundled,oauth2`.
+  `KONG_PLUGINS=oauth2`.
 
 ## Migrating from 1.5.x to 2.1.x
 
