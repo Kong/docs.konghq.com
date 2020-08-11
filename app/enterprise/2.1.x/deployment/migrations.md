@@ -31,6 +31,8 @@ guaranteed if you are upgrading incrementally from versions 0.36.x to 1.3.x to 1
   `kong migrations up` with the plugin name specified. For example,
   `KONG_PLUGINS=oauth2`.
 
+
+
 ## Migrating from 1.5.x to 2.1.x
 
 {{site.ee_product_name}} supports the no downtime migration model. This means
@@ -120,8 +122,10 @@ configuration without dropping existing in-flight connections.
 
 ## Migrating from Kong Community Gateway 2.1 to Kong Enterprise 2.1
 
-{{site.ee_product_name}} 2.1 includes a command parameter `migrate-community-to-enterprise`
-to migrate all {{site.ce_product_name}} entities to {{site.ee_product_name}}.
+As of {{site.ee_product_name}} 2.1, it is no longer necessary to explicitly
+run the `migrate-community-to-enterprise` command parameter to to migrate all
+Kong Gateway entities to Kong Enterprise. Running the `kong migrations` commands
+performs that migration on your behalf.
 
 **Important:** You can only migrate to an {{site.ee_product_name}} version that
 supports the same {{site.ce_product_name}} version.
@@ -148,15 +152,7 @@ The following steps guide you through the migration process.
    $ kong migrations up [-c config]
    $ kong migrations finish [-c config]
    ```
-
-2. After all {{site.ee_product_name}} migrations are up-to-date, run the
-   migration command:
-
-   ```shell
-   $ kong migrations migrate-community-to-enterprise [-c config] [-f] [-y]
-   ```
-
-3. Confirm that all of the entities are now available on your
+2. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
 
 ### Troubleshoot migrations
