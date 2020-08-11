@@ -3,14 +3,14 @@ title: Introduction to Kong gRPC Plugins
 ---
 
 Before we dive into the specifics of how to configure Kong's gRPC plugins, let's
-first discuss the advantages of the protocol. Unlike JSON, [gRPC](https://en.wikipedia.org/wiki/GRPC) 
-is a binary protocol, using protobuf definitions to instruct how the data will
-be marshalled and unmarshalled. Because binary data is used instead of text, it's
-a more efficient way to transmit data over a network. But this also makes it
-harder to work with because inspecting what went wrong is more challenging.
-Additionally, few clients natively handle gRPC.
+first discuss the advantages of the protocol. Unlike JSON, [gRPC](https://en.wikipedia.org/wiki/GRPC)
+is a binary protocol, using [protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers)
+definitions to instruct how the data is marshalled and unmarshalled. Because
+binary data is used instead of text, it's a more efficient way to transmit data
+over a network. But this also makes gRPC harder to work with because inspecting
+what went wrong is more challenging. Additionally, few clients natively handle gRPC.
 
-To alleviate the challenges of working with gRPC, Kong has two plugins:
+To help alleviate the challenges of working with gRPC, Kong has two plugins:
 - [gRPC-Gateway](/hub/kong-inc/grpc-gateway)
 - [gRPC-Web](/hub/kong-inc/grpc-web)
 
@@ -89,7 +89,7 @@ message HelloResponse {
 }
 ```
 
-Upload the protobuf to your Kong Node:
+Upload the protobuf definition to your Kong Node:
 
 ```
 docker cp hello-gateway.proto kong-dp-host:/usr/local/kong/
@@ -130,7 +130,7 @@ curl -X POST kong-cp-host:8001/routes/grpcbin-post-route/plugins \
 --data 'config.proto=/usr/local/kong/hello.proto'
 ```
 
-Protobuf definition (hello.proto):
+Protobuf definition (`hello.proto`):
 
 ```
 syntax = "proto2";
@@ -153,7 +153,7 @@ message HelloResponse {
 }
 ```
 
-Upload the protobuf to your Kong Node:
+Upload the protobuf definition to your Kong Node:
 
 ```
 docker cp hello.proto kong-dp-host:/usr/local/kong/
