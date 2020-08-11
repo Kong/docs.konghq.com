@@ -62,7 +62,7 @@ disable_image_expand: true
 </div>
 
 {% endnavtab %}
-{% navtab Marketplace %}
+{% navtab Marketplaces %}
 <div class="docs-grid-install">
 
   <a href="https://aws.amazon.com/marketplace/pp/B084L6PQPY?ref_=srh_res_product_title" class="docs-grid-install-block no-description">
