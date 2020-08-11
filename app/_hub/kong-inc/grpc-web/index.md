@@ -11,7 +11,7 @@ desc: Allow browser clients to call gRPC services.
 description: |
   A Kong plugin to allow access to a gRPC service via the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2).
   Primarily, this means JS browser apps using the [gRPC-Web](https://github.com/grpc/grpc-web) library.
-  
+
 source_url: https://github.com/Kong/kong-plugin-grpc-web
 
 license_type: MIT
@@ -157,3 +157,7 @@ As an extension, this plugin also allows "naked" JSON requests with POST method 
 [lua-protobuf]: https://github.com/starwing/lua-protobuf
 [lua-cjson]: https://github.com/openresty/lua-cjson
 [lua-pack]: https://github.com/Kong/lua-pack
+
+## See also
+
+[Introduction to Kong gRPC plugins](/enterprise/2.1.x/plugins/grpc)

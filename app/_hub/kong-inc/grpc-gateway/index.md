@@ -151,3 +151,7 @@ curl -XPOST localhost:8000/v1/messages/Kong2.0 -d '{"name":"kong2.0"}'
 All syntax defined in [Path template syntax](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto#L225) is supported.
 
 Currently only unary requests are supported; streaming requests are not supported.
+
+## See also
+
+[Introduction to Kong gRPC plugins](/enterprise/2.1.x/plugins/grpc)
