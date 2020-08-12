@@ -20,16 +20,33 @@ depending on the previous version from which you are migrating.
 ## Prerequisites for Migrating to Kong Enterprise 2.1
 
 If you are not on {{site.ee_product_name}} 1.5.x, you must first incrementally
-upgrade to 1.5.x before upgrading to 2.1.x. Zero downtime is possible but not
+upgrade to 1.5.x before upgrading to 2.1.x. Zero downtime is possible but _not_
 guaranteed if you are upgrading incrementally from versions 0.36.x to 1.3.x to 1.5.x.
+Plan accordingly.
 
 * If running a version of {{site.ee_product_name}} earlier than 1.3,
   [migrate to 1.3](/enterprise/1.3-x/deployment/migrations/) first.
 * If running a version of {{site.ee_product_name}} earlier than 1.5,
   [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
+
+
+## Upgrade Considerations and Breaking Changes
+
+Before upgrading, review this list for any configuration or breaking changes that
+affect your current installation.
+
 * If you are adding new plugin to your installation, you need to run
   `kong migrations up` with the plugin name specified. For example,
   `KONG_PLUGINS=oauth2`.
+* [Hybrid mode](). If you are currently running {{site.ee_product_name}} in
+  hybrid mode, generate certificates and update configuration to include telemetry
+  settings. If you are currently running in classic (traditional), follow the
+  hybrid mode [installation instructions]() after running the migration. REVIEWERS:
+  need more information for this section.
+* [Custom plugins](). REVIEWERS: need more information for this section.
+* The Kong Developer Portal has undergone a number of breaking changes. If you
+  are currently using the Developer Portal, it will no longer work without
+  [manually migrating files](#migrate-dev-portal).
 
 ## Migrating from 1.5.x to 2.1.x
 
@@ -46,7 +63,8 @@ Kong cluster keeps working until it is finally time to decommission it. For this
 reason, the full migration is split into two commands:
 
 - `kong migrations up`: performs only non-destructive operations
-- `kong migrations finish`: puts the database in the final expected state
+- `kong migrations finish`: puts the database in the final expected state (DB-less
+  mode is not supported in {{site.ee_product_name}})
 
 1. Download 2.1.x, and configure it to point to the same datastore as your old
    1.5.x cluster.
@@ -155,8 +173,8 @@ The following steps guide you through the migration process.
 
 ## Troubleshoot migrations
 
+REVIEWERS: need information for this section.
 
-
-## Migrate the Dev Portal templates
+## Migrate the Dev Portal templates {#migrate-dev-portal}
 
 {% include /md/{{page.kong_version}}/migrations/migrate-dev-portal.md %}
