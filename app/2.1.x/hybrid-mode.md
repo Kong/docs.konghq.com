@@ -43,7 +43,7 @@ Parameter | Description | Shared Mode | PKI Mode
 --- | --- | --- | ---
 `cluster_cert` and `cluster_cert_key` *Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
 `cluster_ca_cert` *Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
-`cluster_server_name` *Required in PKI mode* | The SNI Server Name presented by the DP node mTLS handshake. | *Ignored* (uses `"kong_clustering"`) | The CP node will verify that it matches the Common Name (CN) or Subject Alternative Name (SAN) of the node certificate in `cluster_ca_cert`. *Required for DP nodes.*
+`cluster_server_name` *Required in PKI mode* | The SNI Server Name presented by the DP node mTLS handshake. | *Ignored* | In PKI mode the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside certificate presented by CP matches the `cluster_server_name` value.
  
 ## Topology
 
