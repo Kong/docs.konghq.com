@@ -1,5 +1,5 @@
 ---
-title: Migrating from 1.5.x to 2.1.x
+title: Migrating Kong Enterprise from 1.5.x to 2.1.x
 toc: true
 ---
 
@@ -9,7 +9,7 @@ Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
-to {{site.ee_product_name}}.
+to {{site.ee_product_name}}. See [Migrating from Kong Gateway to Kong Enterprise](#migrate-ce-ee).
 
 ## Upgrade Path for Kong Enterprise Releases
 
@@ -30,8 +30,6 @@ guaranteed if you are upgrading incrementally from versions 0.36.x to 1.3.x to 1
 * If you are adding new plugin to your installation, you need to run
   `kong migrations up` with the plugin name specified. For example,
   `KONG_PLUGINS=oauth2`.
-
-
 
 ## Migrating from 1.5.x to 2.1.x
 
@@ -120,27 +118,27 @@ seamlessly starts new workers, which then take over from old workers before they
 are terminated. Kong serves new requests using the new
 configuration without dropping existing in-flight connections.
 
-## Migrating from Kong Community Gateway 2.1 to Kong Enterprise 2.1
+## Migrating from Kong Community Gateway 2.1 to Kong Enterprise 2.1 {#migrate-ce-ee}
 
 As of {{site.ee_product_name}} 2.1, it is no longer necessary to explicitly
 run the `migrate-community-to-enterprise` command parameter to to migrate all
 Kong Gateway entities to Kong Enterprise. Running the `kong migrations` commands
 performs that migration on your behalf.
 
-**Important:** You can only migrate to an {{site.ee_product_name}} version that
+**Important:** You can only migrate to a {{site.ee_product_name}} version that
 supports the same {{site.ce_product_name}} version.
 
 ### Prerequisites
-
-* If running a version of {{site.ce_product_name}} earlier than 2.1,
-  [upgrade to Kong 2.1](/2.1.x/upgrading/) before migrating
-  {{site.ce_product_name}} to {{site.ee_product_name}} 2.1.
 
 <div class="alert alert-red">
      <strong>Warning:</strong> This action is irreversible, therefore it is strongly
      recommended to back up your production data before migrating from
      {{site.ce_product_name}} to {{site.ee_product_name}}.
 </div>
+
+* If running a version of {{site.ce_product_name}} earlier than 2.1,
+  [upgrade to Kong 2.1](/2.1.x/upgrading/) before migrating
+  {{site.ce_product_name}} to {{site.ee_product_name}} 2.1.
 
 The following steps guide you through the migration process.
 
@@ -155,7 +153,7 @@ The following steps guide you through the migration process.
 2. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
 
-### Troubleshoot migrations
+## Troubleshoot migrations
 
 
 
