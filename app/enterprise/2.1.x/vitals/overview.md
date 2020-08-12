@@ -40,10 +40,10 @@ View Vitals information in Kong Manager using any of the following:
 * Vitals tab, which provides detailed information about your Kong cluster, including total requests, latency, and cache information.
 * Status Codes to view cluster-wide status code classes.
 
-### Viewing the Overview Dashboard
+### Overview Dashboard
 When you log in to Kong Manager, the Workspaces page displays by default. The top of the page displays the Vitals Overview Dashboard summarizing your Kong cluster, including the health and performance of your APIs and Gateway, total requests, average error rate, total consumers, and total services. This Vitals Overview Dashboard makes it easy for an Admin to quickly identify any issues that need attention.
 
-### Viewing Workspace charts
+### Workspace charts
 On the Workspaces page, beneath the Overview Dashboard, the Workspaces section displays each Workspace with a chart showing Vitals for the most recently added services, consumers, and plugins for that Workspace. Hover over a coordinate to view the exact number of successes and errors at a given timestamp, or drilldown into the Workspace chart for more details.
 
 ### Vitals tab
