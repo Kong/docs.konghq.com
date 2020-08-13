@@ -171,10 +171,6 @@ The following steps guide you through the migration process.
 2. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
 
-## Troubleshoot migrations
-
-REVIEWERS: need information for this section.
-
 ## Migrate the Dev Portal templates {#migrate-dev-portal}
 
 {% include /md/{{page.kong_version}}/migrations/migrate-dev-portal.md %}
