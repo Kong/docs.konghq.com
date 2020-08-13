@@ -27,6 +27,24 @@ Deploying using Hybrid mode has a number of benefits:
 * Easiness of management, since an admin will only need to interact with the CP nodes to control
   and monitor the status of the entire Kong cluster.
 
+## Configuration Properties
+
+Hybrid Mode introduces the following configuration properties:
+
+Parameter | Description
+--- | ---
+`cluster_listen` *Optional* | List of addresses and ports on which the Control Plane will listen for incoming Data Plane connections. Defaults to `0.0.0.0:8005`. Note this port is always protected with Mutual TLS (mTLS) encryption. Ignored on Data Plane nodes.
+`cluster_control_plane` *Required* | Address and port that the Data Plane nodes use to connect to the Control Plane. Must point to the port configured using the `cluster_listen` property on the Control Plane node. Ignored on Control Plane nodes.
+`cluster_mtls` *Optional* | One of `"shared"` or `"pki"`. Indicates whether Hybrid Mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. Defaults to `"shared"`. See below sections for differences in mTLS modes.
+
+The following properties are used differently between "shared" and "PKI" modes:
+ 
+Parameter | Description | Shared Mode | PKI Mode
+--- | --- | --- | ---
+`cluster_cert` and `cluster_cert_key` *Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
+`cluster_ca_cert` *Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
+`cluster_server_name` *Required in PKI mode* | The SNI Server Name presented by the DP node mTLS handshake. | *Ignored* | In PKI mode the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside certificate presented by CP matches the `cluster_server_name` value.
+ 
 ## Topology
 
 ![Example Hybrid Mode Topology](/assets/images/docs/hybrid-mode.png "Example Hybrid Mode Topology")
