@@ -7,6 +7,11 @@ disable_image_expand: true
 {% navtabs %}
 {% navtab Containerized %}
 <div class="docs-grid-install">
+  
+  <a href="https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title" class="docs-grid-install-block no-description">
+    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS EKS" />
+    <div class="install-text">AWS (EKS)</div>
+  </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker" class="docs-grid-install-block">
     <img class="install-icon" src="https://doc-assets.konghq.com/install-logos/docker.png" alt="docker" />
@@ -68,11 +73,6 @@ disable_image_expand: true
   <a href="https://aws.amazon.com/marketplace/pp/B084L6PQPY?ref_=srh_res_product_title" class="docs-grid-install-block no-description">
     <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS AMI" />
     <div class="install-text">AWS (AMI)</div>
-  </a>
-
-  <a href="https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS EKS" />
-    <div class="install-text">AWS (EKS)</div>
   </a>
 
   <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongee2020ubuntuxenial?tab=Overview" class="docs-grid-install-block no-description">
