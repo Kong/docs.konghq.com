@@ -924,7 +924,7 @@ properties of a Service:
 
 - `connect_timeout`: defines in milliseconds the timeout for
   establishing a connection to your upstream service. Defaults to `60000`.
-- `send_timeout`: defines in milliseconds a timeout between two
+- `write_timeout`: defines in milliseconds a timeout between two
   successive write operations for transmitting a request to your upstream
   service.  Defaults to `60000`.
 - `read_timeout`: defines in milliseconds a timeout between two
