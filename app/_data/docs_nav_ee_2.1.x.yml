@@ -524,8 +524,10 @@
       items:
         - text: gRPC-Gateway Plugin
           url: /plugins/grpc-gateway
+          absolute_url: true
         - text: gRPC-Web Plugin
           url: /plugins/grpc-web
+          absolute_url: true
     - text: Proxy Cache Advanced Plugin
       url: /plugins/proxy-cache-advanced
     - text: Canary Release Plugin
