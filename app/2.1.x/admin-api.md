@@ -21,7 +21,7 @@ service_body: |
     `connect_timeout`<br>*optional* |  The timeout in milliseconds for establishing a connection to the upstream server.  Default: `60000`.
     `write_timeout`<br>*optional* |  The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.  Default: `60000`.
     `read_timeout`<br>*optional* |  The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.  Default: `60000`.
-    `tags`<br>*optional* |  An optional set of strings associated with the Service, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Service for grouping and filtering. 
     `client_certificate`<br>*optional* |  Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use "`"client_certificate":{"id":"<client_certificate id>"}`.
     `tls_verify`<br>*optional* |  Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected. 
     `tls_verify_depth`<br>*optional* |  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.  Default: `null`.
@@ -105,7 +105,7 @@ route_body: |
     `snis`<br>*semi-optional* |  A list of SNIs that match this Route when using stream routing. 
     `sources`<br>*semi-optional* |  A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
     `destinations`<br>*semi-optional* |  A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port". 
-    `tags`<br>*optional* |  An optional set of strings associated with the Route, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Route for grouping and filtering. 
     `service`<br>*optional* |  The Service this Route is associated to. This is where the Route proxies traffic to. With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
 
 route_json: |
@@ -169,7 +169,7 @@ consumer_body: |
     ---:| ---
     `username`<br>*semi-optional* |  The unique username of the Consumer. You must send either this field or `custom_id` with the request. 
     `custom_id`<br>*semi-optional* |  Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request. 
-    `tags`<br>*optional* |  An optional set of strings associated with the Consumer, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Consumer for grouping and filtering. 
 
 consumer_json: |
     {
@@ -201,7 +201,7 @@ plugin_body: |
     `name` |  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately. 
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
-    `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
+    `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
     `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/). 
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled`<br>*optional* | Whether the plugin is applied. Default: `true`.
@@ -251,7 +251,7 @@ certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate chain of the SSL key pair.
     `key` | PEM-encoded private key of the SSL key pair.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
     `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it. 
 
 certificate_json: |
@@ -283,7 +283,7 @@ ca_certificate_body: |
     ---:| ---
     `cert` | PEM-encoded public certificate of the CA.
     `cert_digest`<br>*optional* | SHA256 hex digest of the public certificate.
-    `tags`<br>*optional* |  An optional set of strings associated with the Certificate, for grouping and filtering. 
+    `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering. 
 
 ca_certificate_json: |
     {
@@ -346,7 +346,7 @@ upstream_body: |
     `name` | This is a hostname, which must be equal to the `host` of a Service.
     `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`.  Default: `"round-robin"`.
     `hash_on`<br>*optional* | What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
-    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
+    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
     `hash_fallback_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
     `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
@@ -648,7 +648,7 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
 
 - **multipart/form-data**
 
-Similar to url-encoded, this content type uses dotted keys to reference nested
+Similar to URL-encoded, this content type uses dotted keys to reference nested
 objects. Here is an example of sending a Lua file to the pre-function Kong plugin:
 
 ```
@@ -1448,7 +1448,7 @@ following attributes must be set:
 #### Path handling algorithms
 
 `"v0"` is the behavior used in Kong 0.x and 2.x. It treats `service.path`, `route.path` and request path as
-*segments* of a url. It will always join them via slashes. Given a service path `/s`, route path `/r`
+*segments* of a URL. It will always join them via slashes. Given a service path `/s`, route path `/r`
 and request path `/re`, the concatenated path will be `/s/re`. If the resulting path is a single slash,
 no further transformation is done to it. If it's longer, then the trailing slash is removed.
 

@@ -33,7 +33,10 @@
       "app/_assets/images/**",
       "app/_assets/fonts/**",
       "app/license/index.md",
+      "ldoc/*",
       "Gemfile.lock",
+      "autodoc-admin-api/*.lua",
+      "autodoc-conf/*.lua",
       "vendor/**",
       "node_modules/**",
       "Docker"
