@@ -16,16 +16,16 @@ properly. Create each file using the name, path, and contents linked below:
 
 - #### workspaces/default/themes/base/assets/js/app-0fcefa7.min.js
   - Templates Path: `/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js`
-  - File Content GitHub: [/default/themes/base/assets/js/app-0fcefa7.min.js](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js)
+  - File Content GitHub: [/default/themes/base/assets/js/app-0fcefa7.min.js](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/js/app-0fcefa7.min.js)
 - #### workspaces/default/themes/base/layouts/system/markdown.html
   - Templates Path: `/workspaces/default/themes/base/layouts/system/markdown.html`
-  - File Content GitHub: [/workspaces/default/themes/base/layouts/system/markdown.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/layouts/system/markdown.html)
+  - File Content GitHub: [/workspaces/default/themes/base/layouts/system/markdown.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/system/markdown.html)
 - #### workspaces/default/themes/base/assets/styles/markdown-fixes.css
   - Templates Path: `/workspaces/default/themes/base/assets/styles/markdown-fixes.css`
-  - File Content GitHub: [/workspaces/default/themes/base/assets/styles/markdown-fixes.css](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/assets/styles/markdown-fixes.css)
+  - File Content GitHub: [/workspaces/default/themes/base/assets/styles/markdown-fixes.css](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/styles/markdown-fixes.css)
 - #### workspaces/default/themes/base/assets/styles/markdown.css
   - Templates Path: `/workspaces/default/themes/base/assets/styles/markdown.css`
-  - File Content GitHub: [/workspaces/default/themes/base/assets/styles/markdown.css](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/assets/styles/markdown.css)
+  - File Content GitHub: [/workspaces/default/themes/base/assets/styles/markdown.css](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/assets/styles/markdown.css)
 
 ### Replace content in existing files
 
@@ -35,31 +35,31 @@ linked below.
 
 - #### workspaces/default/content/applications/view.txt
     - Templates Path: `/workspaces/default/content/applications/view.txt`
-    - File Content GitHub: [/workspaces/default/content/applications/view.txt](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/workspaces/default/content/applications/view.txt)
+    - File Content GitHub: [/workspaces/default/content/applications/view.txt](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/workspaces/default/content/applications/view.txt)
 
 - #### workspaces/default/themes/base/layouts/_app.html
     - Templates Path: `/workspaces/default/themes/base/layouts/_app.html`
-    - File Content: [/workspaces/default/themes/base/layouts/_app.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/layouts/_app.html)
+    - File Content: [/workspaces/default/themes/base/layouts/_app.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/_app.html)
 
 - #### workspaces/default/themes/base/layouts/system/create-app.html
     - Templates Path: `/workspaces/default/themes/base/layouts/system/create-app.html`
-    - File Content GitHub: [/workspaces/default/themes/base/layouts/_app.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/layouts/system/create-app.html)
+    - File Content GitHub: [/workspaces/default/themes/base/layouts/_app.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/system/create-app.html)
 
 - #### workspaces/default/themes/base/layouts/system/edit-app.html
     - Templates Path: `/workspaces/default/themes/base/layouts/system/edit-app.html`
-    - File Content GitHub: [/workspaces/default/themes/base/layouts/system/edit-app.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/layouts/system/edit-app.html)
+    - File Content GitHub: [/workspaces/default/themes/base/layouts/system/edit-app.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/system/edit-app.html)
 
 - #### workspaces/default/themes/base/layouts/system/view-app.html
     - Templates Path: `/workspaces/default/themes/base/layouts/system/view-app.html`
-    - File Content GitHub: [/workspaces/default/themes/base/layouts/system/view-app.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/layouts/system/view-app.html)
+    - File Content GitHub: [/workspaces/default/themes/base/layouts/system/view-app.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/layouts/system/view-app.html)
 
 - #### workspaces/default/themes/base/partials/footer.html
     - Templates Path: `/workspaces/default/themes/base/partials/footer.html`
-    - File Content GitHub: [/workspaces/default/themes/base/partials/footer.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/partials/footer.html)
+    - File Content GitHub: [/workspaces/default/themes/base/partials/footer.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/partials/footer.html)
 
 - #### workspaces/default/themes/base/partials/theme/required-scripts.html
     - Templates Path: `/workspaces/default/themes/base/partials/theme/required-scripts.html`
-    - File Content GitHub: [/workspaces/default/themes/base/partials/theme/required-scripts.html](https://github.com/Kong/kong-portal-templates/tree/dev-master/workspaces/default/themes/base/partials/theme/required-scripts.html)
+    - File Content GitHub: [/workspaces/default/themes/base/partials/theme/required-scripts.html](https://github.com/Kong/kong-portal-templates/tree/master/workspaces/default/themes/base/partials/theme/required-scripts.html)
 
 ### Delete obsolete files
 
