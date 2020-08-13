@@ -116,7 +116,7 @@ skip_read_time: true
   
 
 ## 1.5.0.5
-**Release Date** 2020/08/16
+**Release Date** 2020/08/13
 
 ### Fixes
 
