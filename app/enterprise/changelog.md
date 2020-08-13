@@ -122,6 +122,7 @@ skip_read_time: true
 
 #### Kong Gateway 
 * Optimized Admin API requests when a large number of entities are in the system and RBAC is enabled.
+* Improved Kong handling of the encoding of sparce arrays 
 
 #### Kong Manager
 * Fixed the creation of default roles and permissions when a new Workspace is created.
@@ -131,6 +132,10 @@ skip_read_time: true
 * Fixed Catalog updates in the Developer Portal when a spec is deleted.
 * Fixed an issue when updating a spec in the legacy Developer Portal.
 
+#### Plugins
+* Request Validator
+  * Require a top-level `type` parameter for jsonschema
+  * Bump version to 1.0.0
 
 ## 1.5.0.4
 **Release Date** 2020/06/26
