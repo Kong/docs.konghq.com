@@ -11,6 +11,9 @@ Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}. See [Migrating from Kong Gateway to Kong Enterprise](#migrate-ce-ee).
 
+If you experience any issues when running migrations, contact
+[Kong Support](https://support.konghq.com/support/s/) for assistance.
+
 ## Upgrade Path for Kong Enterprise Releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
