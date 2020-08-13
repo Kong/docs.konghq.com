@@ -121,15 +121,15 @@ skip_read_time: true
 ### Fixes
 
 #### Kong Gateway 
-* Optimized Admin API requests when large number of entities are in the system and RBAC is enabled.
+* Optimized Admin API requests when a large number of entities are in the system and RBAC is enabled.
 
 #### Kong Manager
-* Fixed creation of default roles and permissions when new workspace is created.
+* Fixed the creation of default roles and permissions when a new Workspace is created.
 
 #### Developer Portal
-* Fixed the creation of pages/partials/spec in legacy Developer Portal.
-* Fixed the updating of Catalog in Developer Portal when a spec is deleted.
-* Fixed an issue updating a spec in legacy Developer Portal.
+* Fixed the creation of pages, partials, and specs in the legacy Developer Portal.
+* Fixed Catalog updates in the Developer Portal when a spec is deleted.
+* Fixed an issue when updating a spec in the legacy Developer Portal.
 
 
 ## 1.5.0.4
