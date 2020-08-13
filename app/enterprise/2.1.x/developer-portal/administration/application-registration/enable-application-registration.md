@@ -47,30 +47,40 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 
 ### Application Registration Configuration Parameters
 
+#### Service
+
+**Required**
+
+Select the Service that this plugin configuration will target.
+
+#### Tags
+
+An optional set of strings for grouping and filtering, separated by commas.
+
 #### Auto Approve {#aa}
 
 Default: `false`
 
-Description: If enabled, all new Service contract requests are automatically
+If enabled, all new Service contract requests are automatically
 approved. Otherwise, Dev Portal admins must manually approve requests.
 
 #### Description
 
 Default: none
 
-Description: Unique description displayed in the information about a Service in the Developer Portal.
+Unique description displayed in the information about a Service in the Developer Portal.
 
 #### Display Name
 
 **Required**
 
-Description: Unique display name used for a Service in the Developer Portal.
+Unique display name used for a Service in the Developer Portal.
 
 #### Show issuer {#show-url-issuer}
 
 Default: `false`
 
-Description: Displays the Issuer URL in the Service Details. **Note:** Exposing
+Displays the Issuer URL in the Service Details. **Note:** Exposing
 the Issuer URL is essential for the
 [Authorization Code Flow](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers.
 
