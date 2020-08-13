@@ -168,7 +168,7 @@ to the full [gRPC protocol]. The [gRPC-Web] library performs this framing as exp
 
 As an extension, this plugin also allows naked JSON requests with the POST method and
 `Content-Type: application/json` header. These requests are encoded to ProtocolBuffer,
-framed, and forwarded to the gRPC service.  Likewise, the responses are transformed
+framed, and forwarded to the gRPC service. Likewise, the responses are transformed
 on the way back, allowing any HTTP client to use a gRPC service without special
 libraries. This feature is limited to unary (non-streaming) requests. Streaming
 responses are encoded into multiple JSON objects; it's up to the client to split into
