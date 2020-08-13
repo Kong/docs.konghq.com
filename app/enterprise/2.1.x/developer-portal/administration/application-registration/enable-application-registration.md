@@ -13,8 +13,10 @@ admins can selectively admit access to Services using Kong Manager.
 * Developer Portal is enabled on the same Workspace as the Service.
 * The Service is created and enabled with HTTPS.
 * Authentication is enabled on the Developer Portal.
-* Logged in as an admin with read and write roles on applications, services, and developers.
-* The `portal_app_auth` configuration option is configured for your OAuth provider and strategy (`kong-oauth2` or `external-oauth2`). See
+* Logged in as an admin with read and write roles on applications, services, and
+  developers.
+* The `portal_app_auth` configuration option is configured for your OAuth provider
+  and strategy (`kong-oauth2` or `external-oauth2`). See
 [Configure the Authorization Provider Strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/#portal-app-auth) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
 identity provider with the OIDC plugin. For example instructions using Okta
@@ -22,7 +24,8 @@ as an identity provider, refer to the [Okta example](/enterprise/{{page.kong_ver
 
 ## Enable Application Registration on a Service using Kong Manager {#enable-app-reg-plugin}
 
-To use Application Registration on a Service, the Portal Application Registration Plugin must be enabled on a Service.
+To use Application Registration on a Service, the Portal Application Registration
+Plugin must be enabled on a Service.
 
 In Kong Manager, access the Service for which you want to enable Application Registration:
 
