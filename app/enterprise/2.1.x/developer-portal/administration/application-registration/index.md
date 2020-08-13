@@ -1,6 +1,5 @@
 ---
 title: Authorization Provider Strategy for Application Registration
-beta: true
 ---
 
 ## Overview
