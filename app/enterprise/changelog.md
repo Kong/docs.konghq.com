@@ -113,6 +113,24 @@ skip_read_time: true
   * The Correlation ID (`correlation-id`) plugin has a higher priority than in CE. This is an incompatible change with CE in case `correlation-id` is configured against a Consumer.
   
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
+  
+
+## 1.5.0.5
+**Release Date** 2020/08/16
+
+### Fixes
+
+#### Kong Gateway 
+* Optimized Admin API requests when large number of entities are in the system and RBAC is enabled.
+
+#### Kong Manager
+* Fixed creation of default roles and permissions when new workspace is created.
+
+#### Developer Portal
+* Fixed the creation of pages/partials/spec in legacy Devleoper Portal.
+* Fixed the updating of Catalog in Developer Portal when a spec is deleted.
+* Fixed an issue updating a spec in legacy Developer Portal.
+
 
 ## 1.5.0.4
 **Release Date** 2020/06/26
