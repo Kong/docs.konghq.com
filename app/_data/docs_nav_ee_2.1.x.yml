@@ -523,10 +523,10 @@
       url: /plugins/grpc
       items:
         - text: gRPC-Gateway Plugin
-          url: /plugins/grpc-gateway
+          url: /hub/kong-inc/plugins/grpc-gateway
           absolute_url: true
         - text: gRPC-Web Plugin
-          url: /plugins/grpc-web
+          url: /hub/kong-inc/plugins/grpc-web
           absolute_url: true
     - text: Proxy Cache Advanced Plugin
       url: /plugins/proxy-cache-advanced
