@@ -134,8 +134,8 @@ skip_read_time: true
 
 #### Plugins
 * Request Validator
-  * Require a top-level `type` parameter for jsonschema
-  * Bump version to 1.0.0
+  * Requires a top-level `type` parameter for jsonschema
+  * Bumped version to 1.0.0
 
 ## 1.5.0.4
 **Release Date** 2020/06/26
