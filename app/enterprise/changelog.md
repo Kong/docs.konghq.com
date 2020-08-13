@@ -127,7 +127,7 @@ skip_read_time: true
 * Fixed creation of default roles and permissions when new workspace is created.
 
 #### Developer Portal
-* Fixed the creation of pages/partials/spec in legacy Devleoper Portal.
+* Fixed the creation of pages/partials/spec in legacy Developer Portal.
 * Fixed the updating of Catalog in Developer Portal when a spec is deleted.
 * Fixed an issue updating a spec in legacy Developer Portal.
 
