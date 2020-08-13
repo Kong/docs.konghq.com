@@ -34,6 +34,9 @@
       items:
         - text: Containerized
           items:
+            - text: AWS (EKS)
+              url: https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title
+              absolute_url: true
             - text: Docker
               url: /deployment/installation/docker
             - text: Kong for Kubernetes Enterprise
@@ -60,9 +63,6 @@
           items:
             - text: AWS (AMI)
               url: https://aws.amazon.com/marketplace/pp/B084L6PQPY?ref_=srh_res_product_title
-              absolute_url: true
-            - text: AWS (EKS)
-              url: https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title
               absolute_url: true
             - text: Azure
               url: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/konginc1581527938760.kongee2020ubuntuxenial?tab=Overview
