@@ -30,12 +30,12 @@ For Kong Enterprise `<= 0.36`, or for `legacy mode` on Kong Enterprise `>= 1.3` 
 The easiest way to start is by cloning the [portal-templates repo][templates]
 master branch locally.
 
-Then edit `workspaces/default/cli.conf.yaml` to set workspace `name` and `rbac_token`
+Next, edit `workspaces/default/cli.conf.yaml` to set workspace `name` and `rbac_token`
 to match your setup.
 
 Make sure Kong is running and portal is on.
 
-Now from the root folder of the templates repo, you can run:
+Now, from the root folder of the templates repo, you can run:
 
 ```portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
 
@@ -55,16 +55,16 @@ Where <workspace> indicates the directory/workspace pairing you would like to op
 - Add `-W` or `--watch` to make changes reactive.
 - Add `-P` or `--preserve` to avoid deleting files upstream that you do not have locally.
 - Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
-- Add `-I` or `--ignore-specs` to ignore the '/specs' directory.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
 
 #### For `fetch`
 - Add `-K` or `--keep-encode` to keep binary assets as base64-encoded strings locally.
 - Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
-- Add `-I` or `--ignore-specs` to ignore the '/specs' directory.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
 
 #### For `wipe`
 - Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
-- Add `-I` or `--ignore-specs` to ignore the '/specs' directory.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
 
 #### For `enable` and `disable`
 - Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.

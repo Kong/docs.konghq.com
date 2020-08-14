@@ -35,7 +35,7 @@ Then edit `workspaces/default/cli.conf.yaml` to set `kong_admin_uri` and `kong_a
 
 Make sure Kong is running and portal is on.
 
-Now from root folder of the templates repo, you can run:
+Now, from the root folder of the templates repo, you can run:
 
 ```portal <command> <workspace>```
 
