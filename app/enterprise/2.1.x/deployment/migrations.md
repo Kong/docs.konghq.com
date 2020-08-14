@@ -38,9 +38,13 @@ Plan accordingly.
 Before upgrading, review this list for any configuration or breaking changes that
 affect your current installation.
 
-* If you are adding new plugin to your installation, you need to run
+* If you are adding a new plugin to your installation, you need to run
   `kong migrations up` with the plugin name specified. For example,
   `KONG_PLUGINS=oauth2`.
+* The [Portal Application Registration](/hub/application-registration) plugin
+  was in beta status for both 1.5.x and
+  2.1.x beta versions. Using the plugin in a 2.1.x production environment requires a
+  fresh installation and configuration of the plugin.
 * [Hybrid mode](). If you are currently running {{site.ee_product_name}} in
   hybrid mode, generate certificates and update configuration to include telemetry
   settings. If you are currently running in classic (traditional), follow the
