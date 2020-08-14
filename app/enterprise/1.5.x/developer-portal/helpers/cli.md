@@ -33,9 +33,9 @@ The easiest way to start is by cloning the [portal-templates repo][templates] ma
 
 Then edit `workspaces/default/cli.conf.yaml` to set workspace `name` and `rbac_token` to match your setup.
 
-Make sure Kong is running and portal is on:
+Make sure Kong is running and portal is on.
 
-Now from root folder of the templates repo you can run:
+Now from root folder of the templates repo, you can run:
 
 ```portal [-h,--help] [--config PATH] [-v,--verbose] <command>```
 
@@ -47,7 +47,6 @@ Where `<command>` is one of:
 * `disable`  Enable the portal on the given workspace.
 * `enable`   Enable the portal on the given workspace.
 * `fetch`    Fetches content and themes from the given workspace.
-* `serve`    Run the portal of a given workspace locally.
 * `wipe`     Deletes all content and themes from upstream workspace
 
 Add `--watch` to make changes reactive
