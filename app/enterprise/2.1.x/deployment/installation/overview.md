@@ -11,7 +11,7 @@ disable_image_expand: true
   <a href="https://aws.amazon.com/marketplace/pp/B086MZ3TV3?qid=1586561274348&sr=0-4&ref_=srh_res_product_title" class="docs-grid-install-block">
     <img class="install-icon" src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/06/11-aws_logo_smile_1200x630-1.png" alt="AWS EKS" />
     <div class="install-text">AWS (EKS)</div>
-    <div class="install-description">Install K4K8s Enterprise (Kong Ingress Controller) on AWS</div>
+    <div class="install-description">Install the Kong Ingress Controller with the Kong Gateway (Enterprise) on AWS</div>
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/docker" class="docs-grid-install-block">
