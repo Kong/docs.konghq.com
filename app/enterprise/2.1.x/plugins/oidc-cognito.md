@@ -137,7 +137,6 @@ You can verify the confirmed user from the Cognito page under “General setting
 Since AWS Cognito only supports the HTTPS protocol, when you start Kong Enterprise, ensure that HTTPS protocol for Dev Portal is enabled. For example:
 
 ```
-“
 docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
@@ -164,7 +163,6 @@ Under Dev Portal settings, select “Open ID Connect” as the authentication pl
 Copy and paste the following Auth Config JSON object:
 
 ```
-“
 {
     "leeway": 100,
     "consumer_by": [
