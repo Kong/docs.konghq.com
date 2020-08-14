@@ -51,7 +51,23 @@ Where `<command>` is one of:
 
 Where <workspace> indicates the directory/workspace pairing you would like to operate on.
 
-#### Deploy
+#### For `deploy`
+- Add `-W` or `--watch` to make changes reactive.
+- Add `-P` or `--preserve` to avoid deleting files upstream that you do not have locally.
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the '/specs' directory.
+
+#### For `fetch`
+- Add `-K` or `--keep-encode` to keep binary assets as base64-encoded strings locally.
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the '/specs' directory.
+
+#### For `wipe`
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the '/specs' directory.
+
+#### For `enable` and `disable`
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
 
 
 [clipanion]: https://github.com/arcanis/clipanion
