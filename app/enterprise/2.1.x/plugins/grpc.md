@@ -2,8 +2,9 @@
 title: Introduction to Kong gRPC Plugins
 ---
 
-Before we dive into the specifics of how to configure Kong's gRPC plugins, let's
-first discuss the advantages of the protocol. Unlike JSON, [gRPC](https://en.wikipedia.org/wiki/GRPC)
+Before going into the specifics of configuring Kong's gRPC plugins, let's
+discuss the advantages of the gRPC protocol. Unlike JSON,
+[gRPC](https://en.wikipedia.org/wiki/GRPC)
 is a binary protocol, using [protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers)
 definitions to instruct how the data is marshalled and unmarshalled. Because
 binary data is used instead of text, it's a more efficient way to transmit data
