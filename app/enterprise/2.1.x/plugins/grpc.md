@@ -7,7 +7,7 @@ first discuss the advantages of the protocol. Unlike JSON, [gRPC](https://en.wik
 is a binary protocol, using [protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers)
 definitions to instruct how the data is marshalled and unmarshalled. Because
 binary data is used instead of text, it's a more efficient way to transmit data
-over a network. But this also makes gRPC harder to work with because inspecting
+over a network. However, this also makes gRPC harder to work with, because inspecting
 what went wrong is more challenging. Additionally, few clients natively handle gRPC.
 
 To help alleviate the challenges of working with gRPC, Kong has two plugins:
@@ -20,7 +20,7 @@ into one that the gRPC service can handle. This allows you to expose RESTful-sty
 interfaces that talk to a gRPC service.
 
 The gRPC-Web plugin allows you to interact with a gRPC service from a browser.
-Instead of presenting a RESTful-type call, however, you POST data to the same
+Instead of presenting a RESTful-type call, you POST data to the same
 gRPC service endpoint that the protobuf defines.
 
 For flexibility and compatibility with RESTful expectations, the gRPC-Gateway
