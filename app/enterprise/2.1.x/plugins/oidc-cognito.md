@@ -122,7 +122,7 @@ The OAuth + OIDC debugger is a handy utility that you may use to test the author
 
 Identify the Route or Service to be secured. In our example, we created a new route called /cognito to which we added the OpenID Connect plug-in.  
 The number of options in the plug-in can seem overwhelming but the configuration is rather simple. All you need to do is configure:
-* `issuer` - We can use the OIDC discovery endpoint here, e.g.
+* `issuer` - You can use the OIDC discovery endpoint here, e.g.
 https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_ie577myCv/.well-known/openid-configuration 
 * `config.client_id` - This is the client ID noted when the application was created
 * `config.client_secret` - This is the client secret noted when the application was created. In this demo we are leaving this blank as we didn’t create a client secret.
