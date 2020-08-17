@@ -49,12 +49,12 @@ affect your current installation.
   on the same Service. See
   [authorization provider strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/).
 * [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If you
-  are currently running {{site.ee_product_name}} in hybrid mode, generate
+  are planning on running {{site.ee_product_name}} in hybrid mode, generate
   certificates and update your configurations to include telemetry
   settings for the Control Plane and Data Plane so that
   [Vitals](/enterprise/{{page.kong_version}}//vitals/overview/)
-  can function properly. If you are currently running in classic (traditional) and
-  want to run in hybrid mode instead, follow the hybrid mode
+  can function properly. If you are currently running 1.5.x in classic (traditional)
+  mode and want to run in hybrid mode instead, follow the hybrid mode
   [installation instructions](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)
   after running the migration. Custom plugins
   (either your own plugins or third-party plugins that are not shipped with Kong)
