@@ -175,7 +175,7 @@ libraries. This feature is limited to unary (non-streaming) requests. Streaming
 responses are encoded into multiple JSON objects; it's up to the client to split into
 separate records if it has to support multiple response messages.
 
-
+## Related information
 [Kong]: https://konghq.com
 [gRPC protocol]: https://github.com/grpc/grpc
 [gRPC-Web]: https://github.com/grpc/grpc-web
