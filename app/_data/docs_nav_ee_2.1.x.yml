@@ -81,8 +81,8 @@
           url: /start-kong-securely
         - text: Kong Security Update Process
           url: /kong-security-update-process
-    - text: Upgrade and Migration
-      url: /deployment/migrations
+    - text: Upgrades and Migrations
+      url: /deployment/upgrades/migrations
     - text: Kong Cloud
       url: /kong-cloud
 
