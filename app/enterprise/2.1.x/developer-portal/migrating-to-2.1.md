@@ -9,4 +9,4 @@ title: Migrating the Developer Portal to the Latest Release
 ### See also
 
 For information about upgrading {{site.ee_product_name}}, see
-[Migrating from 1.5.x to 2.1.x](/enterprise/2.1.x/deployment/migrations).
+[Migrating from 1.5.x to 2.1.x](/enterprise/2.1.x/deployment/upgrades/migrations).
