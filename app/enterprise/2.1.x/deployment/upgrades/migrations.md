@@ -51,9 +51,10 @@ affect your current installation.
 * [Hybrid mode](). If you are currently running {{site.ee_product_name}} in
   hybrid mode, generate certificates and update configuration to include telemetry
   settings. If you are currently running in classic (traditional), follow the
-  hybrid mode [installation instructions]() after running the migration. REVIEWERS:
-  need more information for this section.
-* [Custom plugins](). REVIEWERS: need more information for this section.
+  hybrid mode [installation instructions]() after running the migration.
+* [Custom plugins and entities](/custom-changes). If you have custom plugins and
+  entities, there are some breaking changes and extra steps you need to take
+  when migrating to 2.1.x.
 * The Kong Developer Portal has undergone a number of breaking changes. If you
   are currently using the Developer Portal, it will no longer work without
   [manually migrating files](#migrate-dev-portal).
