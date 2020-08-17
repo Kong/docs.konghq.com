@@ -48,12 +48,19 @@ affect your current installation.
   of the plugin. The 2.1.x plugin requires authentication to be configured separately
   on the same Service. See
   [authorization provider strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/).
-* [Hybrid mode](). If you are currently running {{site.ee_product_name}} in
-  hybrid mode, generate certificates and update configuration to include telemetry
-  settings. If you are currently running in classic (traditional), follow the
-  hybrid mode [installation instructions]() after running the migration.
-* [Custom plugins and entities](/custom-changes). If you have custom plugins and
-  entities, there are some breaking changes and extra steps you need to take
+* [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If you
+  are currently running {{site.ee_product_name}} in hybrid mode, generate
+  certificates and update your configurations to include telemetry
+  settings for the Control Plane and Data Plane so that
+  [Vitals](/enterprise/{{page.kong_version}}//vitals/overview/)
+  can function properly. If you are currently running in classic (traditional) and
+  want to run in hybrid mode instead, follow the hybrid mode
+  [installation instructions](/enterprise/{{page.kong_version}}/deployment/hybrid-mode-setup/)
+  after running the migration. Custom plugins
+  (either your own plugins or third-party plugins that are not shipped with Kong)
+  need to be installed on both the Control Plane and the Data Plane in Hybrid mode.
+* [Custom plugins and entities](/deployment/upgrades/custom-changes). If you have
+  custom plugins and entities, there are some breaking changes and extra steps you need to take
   when migrating to 2.1.x.
 * The Kong Developer Portal has undergone a number of breaking changes. If you
   are currently using the Developer Portal, it will no longer work without
