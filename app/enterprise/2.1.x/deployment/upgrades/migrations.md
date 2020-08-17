@@ -59,9 +59,9 @@ affect your current installation.
   after running the migration. Custom plugins
   (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the Control Plane and the Data Plane in Hybrid mode.
-* [Custom plugins and entities](/deployment/upgrades/custom-changes). If you have
-  custom plugins and entities, there are some breaking changes and extra steps you need to take
-  when migrating to 2.1.x.
+* [Custom plugins and entities](/enterprise/{{page.kong_version}}/deployment/upgrades/custom-changes).
+  If you have custom plugins and entities, there are some breaking changes and
+  extra steps you need to take when migrating to 2.1.x.
 * The Kong Developer Portal has undergone a number of breaking changes. If you
   are currently using the Developer Portal, it will no longer work without
   [manually migrating files](#migrate-dev-portal).
