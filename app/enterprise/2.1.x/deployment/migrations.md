@@ -17,10 +17,11 @@ If you experience any issues when running migrations, contact
 ## Upgrade Path for Kong Enterprise Releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
-distinction between major, minor, and patch versions. The upgrade path differs
-depending on the previous version from which you are migrating.
+distinction between major, minor, and [patch](#patch) versions. The upgrade path
+for major and minor versions differs depending on the previous version from which
+you are migrating.
 
-## Prerequisites for Migrating to Kong Enterprise 2.1
+### Version Prerequisites for Migrating to Kong Enterprise 2.1
 
 If you are not on {{site.ee_product_name}} 1.5.x, you must first incrementally
 upgrade to 1.5.x before upgrading to 2.1.x. Zero downtime is possible but _not_
@@ -33,7 +34,7 @@ Plan accordingly.
   [migrate to 1.5](/enterprise/1.5.x/deployment/migrations/) first.
 
 
-## Upgrade Considerations and Breaking Changes
+### Upgrade Considerations and Breaking Changes
 
 Before upgrading, review this list for any configuration or breaking changes that
 affect your current installation.
@@ -57,7 +58,7 @@ affect your current installation.
   are currently using the Developer Portal, it will no longer work without
   [manually migrating files](#migrate-dev-portal).
 
-## Migrating from 1.5.x to 2.1.x
+### Migrating from 1.5.x to 2.1.x
 
 {{site.ee_product_name}} supports the no downtime migration model. This means
 that while the migration is in process, you have two Kong clusters with different
@@ -109,7 +110,7 @@ $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
 
-## Upgrade Path for Patch Releases
+## Patch Releases {#patch}
 
 There are no migrations in upgrades between current or
 future patch releases of the same minor release of {{site.ee_product_name}}
