@@ -113,7 +113,7 @@ For installing on a fresh datastore, {{site.ee_product_name}} 2.1 has the
 `kong migrations bootstrap` command. You can run the following commands to
 prepare a new 2.1 cluster from a fresh datastore:
 
-```
+```bash
 $ kong migrations bootstrap [-c config]
 $ kong start [-c config]
 ```
@@ -122,7 +122,7 @@ $ kong start [-c config]
 
 There are no migrations in upgrades between current or
 future patch releases of the same minor release of {{site.ee_product_name}}
-(for example, 1.5.0.0 to 1.5.0.1; 2.1.0.0 to 2.1.0.1, and so forth). Therefore,
+(for example, 1.5.0.0 to 1.5.0.1; 2.1.1.0 to 2.1.1.1, and so forth). Therefore,
 the upgrade process is simpler for patch releases.
 
 ### Prerequisites
