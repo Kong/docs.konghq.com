@@ -30,7 +30,7 @@ params:
   config:
     - name: body_schema
       required: true
-      value_in_examples: '[{\"name\":{\"type\": \"string\", \"required\": true}}]'
+      value_in_examples: '''[{"name":{"type": "string", "required": true}}]'''
       description: Array of schema fields.
 
     - name: allowed_content_types
@@ -54,7 +54,7 @@ params:
       value_in_examples:
       description: Array of parameter validator specifications.
        For details and examples, see [Parameter Schema Definition](#parameter-schema-definition).
-        
+
 
     - name: verbose_response
       required: false
