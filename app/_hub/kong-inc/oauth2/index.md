@@ -71,8 +71,8 @@ params:
   route_id: false
   consumer_id: false
   protocols: ["http", "https", "grpc", "grpcs"]
-  yaml_compatible: false
-  k8s_compatible: false
+  yaml_examples: false
+  k8s_examples: false
   dbless_compatible: no
   dbless_explanation: |
     For its regular work, the plugin needs to both generate and delete tokens, and commit those changes to the database, which is not compatible with DB-less.
