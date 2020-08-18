@@ -48,6 +48,8 @@ affect your current installation.
   of the plugin. The 2.1.x plugin requires authentication to be configured separately
   on the same Service. See
   [authorization provider strategy](/enterprise/{{page.kong_version}}/developer-portal/administration/application-registration/).
+* The [Rate Limiting Advanced](/hub/rate-limiting-advanced) plugin does not 
+  support the `cluster` strategy in hybrid mode. The `redis` strategy must be used instead.
 * [Hybrid mode](/enterprise/{{page.kong_version}}/deployment/hybrid-mode/). If you
   are planning on running {{site.ee_product_name}} in hybrid mode, generate
   certificates and update your configurations to include telemetry
