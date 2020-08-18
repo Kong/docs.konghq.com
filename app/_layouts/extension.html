@@ -538,9 +538,9 @@ plugins:
           <td>DB-less compatible?</td>
           <td>
             <a href="/hub/plugins/compatibility">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
-               if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
-               if page.params.dbless_compatible == "partially" %}Partially{% endif %}
-               {% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}({{site.ce_product_name}} only){% endif %}</a>
+              if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
+              if page.params.dbless_compatible == "partially" %}Partially{% endif %}
+              {% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true or page.params.dbless_compatible == "partially" %}({{site.ce_product_name}} only){% endif %}</a>
           </td>
         </tr>
         {% endunless %}
