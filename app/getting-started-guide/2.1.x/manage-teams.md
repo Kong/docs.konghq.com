@@ -49,7 +49,7 @@ To enable RBAC, you will need the initial KONG_PASSWORD that was used when you f
 3. Now, edit the following settings in `kong.conf`:
 
     ```
-    $ echo >> “enforce_rbac = off” >> /etc/kong/kong.conf
+    $ echo >> “enforce_rbac = on” >> /etc/kong/kong.conf
     $ echo >> “admin_gui_auth = basic-auth” >> /etc/kong.conf
     $ echo >> “admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":false}”
     ```

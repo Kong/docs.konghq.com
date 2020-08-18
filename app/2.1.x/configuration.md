@@ -521,15 +521,15 @@ from which the packets are forwarded to it. This is fairly common when running
 Kong in a containerized or virtualized environment.
 
 For example, `port_maps=80:8000, 443:8443` instructs Kong that the port 80 is
-mapped to 8000 (and the port 443 to 8443), where 8000 and 8443 are the ports that
-Kong is listening to.
+mapped to 8000 (and the port 443 to 8443), where 8000 and 8443 are the ports
+that Kong is listening to.
 
-This parameter helps Kong to set a proper forwarded Upstream HTTP request header
-or to get the proper forwarded port with a Kong PDK (in case other means to determine
-it have failed). It changes routing by a destination port to route by a port
-from which packets are forwarded to Kong, and similarly it changes the default
-plugin log serializer to use the port according to this mapping instead of
-reporting the port Kong is listening to.
+This parameter helps Kong set a proper forwarded upstream HTTP request header
+or to get the proper forwarded port with the Kong PDK (in case other means
+determining it has failed). It changes routing by a destination port to route by
+a port from which packets are forwarded to Kong, and similarly it changes the
+default plugin log serializer to use the port according to this mapping instead
+of reporting the port Kong is listening to.
 
 Default: none
 
@@ -564,12 +564,32 @@ Default: `traditional`
 
 ---
 
+#### cluster_mtls
+
+Sets the verification between nodes of the cluster.
+
+Valid values to this setting are:
+
+- `shared`: use a shared certificate/key pair specified with the `cluster_cert`
+  and `cluster_cert_key` settings. Note that CP and DP nodes have to present the
+  same certificate to establish mTLS connections.
+- `pki`: use `cluster_ca_cert`, `cluster_server_name` and `cluster_cert` for
+  verification. These are different certificates for each DP node, but issued by
+  a cluster-wide common CA certificate: `cluster_ca_cert`.
+
+Default: `shared`
+
+---
+
 #### cluster_cert
 
 Filename of the cluster certificate to use when establishing secure
 communication between control and data plane nodes.
 
 You can use the `kong hybrid` command to generate the certificate/key pair.
+
+Under `shared` mode, it must be the same for all nodes. Under `pki` mode it
+should be a different certificate for each DP node.
 
 Default: none
 
@@ -581,6 +601,35 @@ Filename of the cluster certificate key to use when establishing secure
 communication between control and data plane nodes.
 
 You can use the `kong hybrid` command to generate the certificate/key pair.
+
+Under `shared` mode, it must be the same for all nodes. Under `pki` mode it
+should be a different certificate for each DP node.
+
+Default: none
+
+---
+
+#### cluster_ca_cert
+
+The trusted CA certificate file in PEM format used to verify the
+`cluster_cert`.
+
+Required if `cluster_mtls` is set to `pki`, ignored otherwise.
+
+Default: none
+
+---
+
+#### cluster_server_name
+
+The server name used in the SNI of the TLS connection from a DP node to a CP
+node.
+
+Must match the Common Name (CN) or Subject Alternative Name (SAN) found in the
+CP certificate.
+
+If `cluster_mtls` is set to `shared`, this setting is ignored and
+`kong_clustering` is used.
 
 Default: none
 
@@ -876,8 +925,8 @@ Default: `on`
 
 #### ssl_session_tickets
 
-Enables or disables session resumption through TLS session tickets. This has
-no impact when used with TLSv1.3.
+Enables or disables session resumption through TLS session tickets. This has no
+impact when used with TLSv1.3.
 
 Kong enables this by default for performance reasons, but it has security
 implications: https://github.com/mozilla/server-side-tls/issues/135
@@ -1094,8 +1143,8 @@ Sets the default size of the upstream keepalive connection pools.
 Upstream keepalive connection pools are segmented by the `dst ip/dst port/SNI`
 attributes of a connection.
 
-A value of `0` will disable Upstream keepalive connections by default, forcing
-each Upstream request to open a new connection.
+A value of `0` will disable upstream keepalive connections by default, forcing
+each upstream request to open a new connection.
 
 Default: `60`
 
@@ -1289,7 +1338,7 @@ endpoint.
 When using Postgres as the backend storage, you can optionally enable Kong to
 serve read queries from a separate database instance.
 
-When the number of proxies are large, this can greatly reduce the load on the
+When the number of proxies is large, this can greatly reduce the load on the
 main Postgres instance and achieve better scalability. It may also reduce the
 latency jitter if the Kong proxy node's latency to the main Postgres instance is
 high.
@@ -1300,9 +1349,9 @@ eventually consistent while replicating changes from the main instance.
 
 At least the `pg_ro_host` config is needed to enable this feature.
 
-By default, all other database config for the read-only connection are inherited
-from the corresponding main connection config described above but may be
-optionally overwritten explicitly using the `pg_ro_*` config below.
+By default, all other database config for the read-only connection are
+inherited from the corresponding main connection config described above but may
+be optionally overwritten explicitly using the `pg_ro_*` config below.
 
 ---
 
@@ -1333,7 +1382,7 @@ name   | description  | default
 **pg_ssl_verify** | Toggles server certificate verification if `pg_ssl` is enabled. See the `lua_ssl_trusted_certificate` setting to specify a certificate authority. | `off`
 **pg_max_concurrent_queries** | Sets the maximum number of concurrent queries that can be executing at any given time. This limit is enforced per worker process; the total number of concurrent queries for this node will be will be: `pg_max_concurrent_queries * nginx_worker_processes`. The default value of 0 removes this concurrency limitation. | `0`
 **pg_semaphore_timeout** | Defines the timeout (in ms) after which PostgreSQL query semaphore resource acquisition attempts will fail. Such failures will generally result in the associated proxy or Admin API request failing with an HTTP 500 status code. Detailed discussion of this behavior is available in the online documentation. | `60000`
-**pg_ro_host** | Same as `pg_host`, but for the read-only connection. Value of `NONE` disables read-only connection. **Note:** Refer to the documentation section above for detailed usage. | `NONE`
+**pg_ro_host** | Same as `pg_host`, but for the read-only connection. **Note:** Refer to the documentation section above for detailed usage. | none
 **pg_ro_port** | Same as `pg_port`, but for the read-only connection. | `<pg_port>`
 **pg_ro_timeout** | Same as `pg_timeout`, but for the read-only connection. | `<pg_timeout>`
 **pg_ro_user** | Same as `pg_user`, but for the read-only connection. | `<pg_user>`
@@ -1485,7 +1534,7 @@ Default: `services, plugins`
 
 ### DNS Resolver section
 
-By default the DNS resolver will use the standard configuration files
+By default, the DNS resolver will use the standard configuration files
 `/etc/hosts` and `/etc/resolv.conf`. The settings in the latter file will be
 overridden by the environment variables `LOCALDOMAIN` and `RES_OPTIONS` if they
 have been set.
@@ -1598,7 +1647,7 @@ Default: `off`
 
 Defines whether this node should rebuild its state synchronously or
 asynchronously (the balancers and the router are rebuilt on updates that affects
-them; e.g., updates to Routes, Services or Upstreams, via the Admin API or
+them, e.g., updates to Routes, Services or Upstreams, via the Admin API or
 loading a declarative configuration file).
 
 Accepted values are:

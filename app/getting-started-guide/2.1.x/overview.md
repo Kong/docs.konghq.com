@@ -13,10 +13,14 @@ In this guide, you will:
 * Secure services with key authentication
 * Load balance traffic
 
+If you have a {{site.ee_product_name}} subscription, you can also follow this guide to:
+* Manage teams by setting up role-based access control (RBAC)
+* Enable the Kong Developer Portal to give your teams a central location to publish, access, and consume services
+
 ## Overview
 
 ### {{site.ce_product_name}}
-{{site.ce_product_name}} is an open-source, lightweight API gateway optimized for microservices, delivering unparalleled latency performance and scalability. If you just want the basics, this option will work for you.
+{{site.ce_product_name}} is an open-source, lightweight API gateway optimized for microservices, delivering unparalleled latency, performance, and scalability. If you just want the basics, this option will work for you.
 
 ### {{site.ee_product_name}} and free trials
 <div class="alert alert-ee">

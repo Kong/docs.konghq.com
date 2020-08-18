@@ -103,7 +103,7 @@ Export Kong's configuration:
 $ deck dump
 
 # look at the kong.yaml file that is generated:
-$ cat kong.yamz
+$ cat kong.yaml
 _format_version: "1.1"
 services:
 - connect_timeout: 60000

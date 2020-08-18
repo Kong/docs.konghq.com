@@ -33,24 +33,41 @@ The easiest way to start is by cloning the [portal-templates repo][templates] ma
 
 Then edit `workspaces/default/cli.conf.yaml` to set workspace `name` and `rbac_token` to match your setup.
 
-Make sure Kong is running and portal is on:
+Make sure Kong is running and portal is on.
 
-Now from root folder of the templates repo you can run:
+Now, from the root folder of the templates repo, you can run:
 
-```portal [-h,--help] [--config PATH] [-v,--verbose] <command>```
+```portal [-h,--help] [--config PATH] [-v,--verbose] <command> <workspace>```
 
 Where `<command>` is one of:
 
 * `config`   Output or change configuration of the portal on the given
-* `workspace`, locally.
+`workspace`, locally.
 * `deploy`   Deploy changes made locally under the given workspace upstream.
 * `disable`  Enable the portal on the given workspace.
 * `enable`   Enable the portal on the given workspace.
 * `fetch`    Fetches content and themes from the given workspace.
-* `serve`    Run the portal of a given workspace locally.
 * `wipe`     Deletes all content and themes from upstream workspace
 
-Add `--watch` to make changes reactive
+Where <workspace> indicates the directory/workspace pairing you would like to operate on.
+
+#### For `deploy`
+- Add `-W` or `--watch` to make changes reactive.
+- Add `-P` or `--preserve` to avoid deleting files upstream that you do not have locally.
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
+
+#### For `fetch`
+- Add `-K` or `--keep-encode` to keep binary assets as base64-encoded strings locally.
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
+
+#### For `wipe`
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
+- Add `-I` or `--ignore-specs` to ignore the `/specs` directory.
+
+#### For `enable` and `disable`
+- Add `-D` or `--disable-ssl-verification` to disable SSL verification and use self-signed certs.
 
 
 [clipanion]: https://github.com/arcanis/clipanion

@@ -12,8 +12,8 @@ Here are some benefits of using Kong for Kubernetes Enterprise:
 * Because the configuration is stored in Kubernetes, no database needs to be deployed for Kong. Kong runs in DB-less mode, making it operationally easy to run, upgrade, and back up.
 * It natively integrates with the Cloud Native Computing Foundation (CNCF) ecosystem to provide out of the box monitoring, logging, certificate management, tracing, and scaling.
 
-Alternatively, you can also deploy Kong Enterprise on Kubernetes to use features such as Kong Manager, Kong Developer Portal, and others. For a comparison of the options, see [Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
+Alternatively, you can also deploy Kong for Kubernetes Enterprise with a database to fully utilize features such as Kong Manager, Kong Developer Portal, and others. For a comparison of the options, see [Deployment Options](/enterprise/{{page.kong_version}}/kong-for-kubernetes/deployment-options).
 
-For more information about the architecture, see [Kong Ingress Controller Design](https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/concepts/design.md).
+For more information about the architecture, see [Kong Ingress Controller Design](https://github.com/Kong/kubernetes-ingress-controller/blob/main/docs/concepts/design.md).
 
 <img src="https://doc-assets.konghq.com/kubernetes/K4K8S-Enterprise-Diagram.png" alt="Kong for Kubernetes Enterprise control diagram">

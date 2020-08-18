@@ -10,4 +10,4 @@ Kong for Kubernetes consists of two components:
 The changelogs for these can be found at:
 
 * [Kong Enterprise k8s changelog](/enterprise/k8s-changelog)
-* [Kong Ingress Controller changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/master/CHANGELOG.md)
+* [Kong Ingress Controller changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md)

@@ -440,7 +440,7 @@ HTTP 201 Created
 | ---------             | -----------                                  |
 | `name_or_id`          | The RBAC role name or UUID.                  |
 | `worspace_name_or_id` | The worspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permisson. |
+| `endpoint`            | The endpoint associated with this permission. |
 
 **Response**
 
@@ -530,7 +530,7 @@ HTTP 200 OK
 | ---------             | -----------                                  |
 | `name_or_id`          | The RBAC role name or UUID.                  |
 | `worspace_name_or_id` | The worspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permisson. |
+| `endpoint`            | The endpoint associated with this permission. |
 
 **Request Body**
 
@@ -576,7 +576,7 @@ HTTP 200 OK
 | ---------             | -----------                                  |
 | `name_or_id`          | The RBAC role name or UUID.                  |
 | `worspace_name_or_id` | The worspace name or UUID.                   |
-| `endpoint`            | The endpoint associated with this permisson. |
+| `endpoint`            | The endpoint associated with this permission. |
 
 **Response**
 
@@ -671,14 +671,14 @@ HTTP 200 Ok
 
 ---
 
-## List Entity Permissons
+## List Entity Permissions
 
 **Endpoint**
 <div class="endpoint get">/rbac/roles/{name_or_id}/entities</div>
 
 | Attribute             | Description                      |
 | ---------             | -----------                      |
-| `name_or_id`          | The RBAC permisson name or UUID. |
+| `name_or_id`          | The RBAC permission name or UUID. |
 
 **Response**
 
