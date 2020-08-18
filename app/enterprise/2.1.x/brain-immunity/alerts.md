@@ -185,11 +185,11 @@ A kong entity wide rule is the reverse with a json object that has a non-null `k
 {"alert_name": null, "kong_entity": "route-id-1", "severity": "low"}
 ```
 
-#### Looking at Offending Hars
-For value_type, unknown_parameter, and abnormal_value alerts, you can retrieve the hars that created those alerts via the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint. This endpoint accepts `alert_id` and/or `har_id` as parameters and returns hars related to the parameters sent. You must specify one of these two parameters to receive hars on the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint.
+#### Reviewing High Value Information Alerts (HARS)
+For value_type, unknown_parameter, and abnormal_value alerts, you can retrieve the HARS that created those alerts via the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint. This endpoint accepts `alert_id` and/or `har_id` as parameters and returns HARS related to the parameters sent. You must specify one of these two parameters to receive HARS on the `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` endpoint.
 These are the parameters `http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/hars` accepts:
 
-* `alert_id`: The id of the alert related to the hars you'd like to inspect. This parameter only accepts one alert_id at a time (no lists).
+* `alert_id`: The id of the alert related to the HARS you'd like to inspect. This parameter only accepts one alert_id at a time (no lists).
 * `har_ids`: A list of har_ids you want returned.
 
 The response will include these values:
