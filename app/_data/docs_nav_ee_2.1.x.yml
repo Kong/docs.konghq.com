@@ -279,7 +279,7 @@
     - text: FAQ
       url: /../../deck/faqs
     - text: Changelog
-      url: https://github.com/hbagdi/deck/blob/master/CHANGELOG.md
+      url: https://github.com/kong/deck/blob/main/CHANGELOG.md
       absolute_url: true
 
 - title: Kong Manager
@@ -447,7 +447,7 @@
       url: /kong-for-kubernetes/changelog
 
 - title: Kong Vitals
-  icon: /assets/images/icons/documentation/icn-brain-color.svg
+  icon: /assets/images/icons/documentation/icn-vitals.svg
   items:
     - text: Overview
       url: /vitals/overview
@@ -465,12 +465,16 @@
   items:
     - text: Installation and Configuration
       url: /brain-immunity/install-configure
-    - text: Alerts
-      url: /brain-immunity/alerts
+    - text: Kong Brain
+      items:
+        - text: Service Map
+          url: /brain-immunity/service-map
+    - text: Kong Immunity
+      items:
+        - text: Alerts
+          url: /brain-immunity/alerts
     - text: Auto-Generated API Documentation
       url: /brain-immunity/auto-generated-specs
-    - text: Service Map
-      url: /brain-immunity/service-map
     - text: Troubleshooting
       url: /brain-immunity/troubleshooting
     - text: Changelog
@@ -515,6 +519,15 @@
           url: /plugins/kafka-log
         - text: Kafka Upstream Plugin
           url: /plugins/kafka-upstream
+    - text: gRPC
+      url: /plugins/grpc
+      items:
+        - text: gRPC-Gateway Plugin
+          url: /hub/kong-inc/grpc-gateway
+          absolute_url: true
+        - text: gRPC-Web Plugin
+          url: /hub/kong-inc/grpc-web
+          absolute_url: true
     - text: Proxy Cache Advanced Plugin
       url: /plugins/proxy-cache-advanced
     - text: Canary Release Plugin

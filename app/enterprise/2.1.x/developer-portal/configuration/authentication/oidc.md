@@ -80,7 +80,7 @@ Example:
   "scopes": ["openid","profile","email","offline_access"],
   "logout_query_arg": "logout",
   "client_id": ["<CLIENT_ID>"],
-  "login_redirect_uri": ["https://example.portal.com],
+  "login_redirect_uri": ["https://example.portal.com"],
   "login_action": "redirect",
   "logout_redirect_uri": ["https://example.portal.com"],
   "ssl_verify": false,

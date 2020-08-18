@@ -1,16 +1,16 @@
 ---
 name: gRPC-gateway
 publisher: Kong Inc.
+beta: true
 
 categories:
   - transformations
-alpha: true
 type: plugin
 
 desc: Access gRPC services through HTTP REST
 description: |
   A Kong plugin to allow access to a gRPC service via HTTP REST requests
-  and translate requests and responses in a JSON format. Similar to 
+  and translate requests and responses in a JSON format. Similar to
   [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/).
 
 source_url: https://github.com/Kong/kong-plugin-grpc-gateway
@@ -19,6 +19,9 @@ license_type: MIT
 
 kong_version_compatibility:
   community_edition:
+    compatible:
+      - 2.1.x
+  enterprise_edition:
     compatible:
       - 2.1.x
 
@@ -51,7 +54,8 @@ Image credit: [grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)
 
 ## Usage
 
-This plugin should be enabled on a Kong `Route` that serves the `http(s)` protocol but proxies to a `Service` with the `grpc(s)` protocol.
+This plugin should be enabled on a Kong `Route` that serves the `http(s)` protocol
+but proxies to a `Service` with the `grpc(s)` protocol.
 
 Sample configuration via declarative (YAML):
 
@@ -93,7 +97,8 @@ $ curl -XPOST localhost:8001/routes/web-service/plugins \
   --data name=grpc-gateway
 ```
 
-The proto file must contain the [HTTP REST to gRPC mapping rule](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto).
+The proto file must contain the
+[HTTP REST to gRPC mapping rule](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto).
 
 The example uses the following mapping:
 
@@ -129,7 +134,8 @@ message HelloReply {
 
 Note the `option (google.api.http) = {}` section is required.
 
-You can send following requests to Kong that translates to corresponding gRPC requests:
+You can send the following requests to Kong that translate to the corresponding
+gRPC requests:
 
 ```bash
 curl -XGET localhost:8000/v1/messages/Kong2.0
@@ -148,3 +154,7 @@ curl -XPOST localhost:8000/v1/messages/Kong2.0 -d '{"name":"kong2.0"}'
 All syntax defined in [Path template syntax](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto#L225) is supported.
 
 Currently only unary requests are supported; streaming requests are not supported.
+
+## See also
+
+[Introduction to Kong gRPC plugins](/enterprise/2.1.x/plugins/grpc)

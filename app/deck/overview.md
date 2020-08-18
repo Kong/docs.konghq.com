@@ -4,6 +4,8 @@ no_version: true
 no_search: true
 ---
 
+## Introduction
+
 decK helps manage Kong’s configuration in a declarative fashion. It can sync
 configuration to a running Kong cluster, diff configuration to detect any drift
 or manual changes and backup your Kong’s configuration. It also can manage Kong’s
@@ -15,13 +17,51 @@ Here is an introductory screencast explaining decK:
   <img class="no-image-expand" src="https://asciinema.org/a/238318.svg" alt="deck screencast" />
 </a>
 
+## Features
+* **Export**: Export Kong configuration to a YAML configuration file.
+This feature is especially useful for backing up Kong's configuration.
+
+* **Import**: Populate Kong's database using a previously exported or
+manually written configuration file.
+
+* **Diff and sync capabilities**: decK can diff the configuration between the
+provided configuration file and Kong's database, then sync the configs based on
+the diff. This feature is particularly useful for detecting config drifts or
+manual interventions.
+
+* **Reverse sync**: decK also supports sync in the opposite direction, meaning
+that if an entity is created in Kong and isn't added to the config file,
+decK will detect the change.
+
+* **Validation**: decK can validate YAML files that you backup or modify to
+catch errors early on.
+
+* **Reset**: decK can completely reset Kong's database by deleting all entities.
+
+* **Parallel operations**: All Admin API calls to Kong are executed in parallel
+using multiple threads to speed up the sync process.
+
+* **Authentication with Kong**: Custom HTTP headers can be injected in requests
+to Kong's Admin API for authentication or authorization purposes.
+
+* **Manage Kong's config with multiple config files**: Split your configuration
+into multiple logical files based on a shared set of tags amongst entities.
+
+* **Designed to automate configuration management**: decK is designed to be part
+of your CI pipeline, where it can push configuration to Kong and detect drifts
+in configuration.
+
+## Compatibility
+decK is compatible with {{site.ce_product_name}} >= 1.x and
+{{site.ee_product_name}} >= 0.35.
+
 ## References
 
 The command line `--help` flag on the main command or a subcommand (like diff,
 sync, reset, etc.) shows the help text along with supported flags for those
 commands.
 
-A gist of all commands that are available in decK can be found
+A list of all commands that are available in decK can be found
 [here](/deck/commands).
 
 ## Frequently Asked Questions (FAQs)
@@ -40,13 +80,13 @@ features of decK at Kong Summit 2019. The following is a recording of that sessi
 ## Changelog
 
 The changelog can be found in the
-[CHANGELOG.md](https://github.com/hbagdi/deck/blob/master/CHANGELOG.md) file.
+[CHANGELOG.md](https://github.com/kong/deck/blob/main/CHANGELOG.md) file.
 
 ## Licensing
 
 decK is licensed with Apache License Version 2.0.
 Please read the
-[LICENSE](https://github.com/hbagdi/deck/blob/master/LICENSE) file for more details.
+[LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more details.
 
 ## Security
 
@@ -72,7 +112,7 @@ To seek help, use the following resources:
 - `--help` flag gives you the necessary help in the terminal itself and should
   solve most of your problems.
 - If you still need help, please open a
-  [Github issue](https://github.com/hbagdi/deck/issues/new) to ask your
+  [Github issue](https://github.com/kong/deck/issues/new) to ask your
   question.
 - decK has very wide adoption by Kong's community and you can seek help
   from the larger community at [Kong Nation](https://discuss.konghq.com).
@@ -80,7 +120,7 @@ To seek help, use the following resources:
 ## Reporting a bug
 
 If you believe you have run into a bug with decK, please open
-a [Github issue](https://github.com/hbagdi/deck/issues/new).
+a [Github issue](https://github.com/kong/deck/issues/new).
 
 If you think you've found a security issue with decK, please read the
 [Security](#security) section.

@@ -3,9 +3,9 @@ name: Request Transformer
 publisher: Kong Inc.
 version: 1.2.5
 
-desc: Modify the request before hitting the upstream server
+desc: Use regular expressions, variables, and templates to transform requests
 description: |
-  Transform the request sent by a client on the fly on Kong, before hitting the upstream server.
+  The Request Transformer plugin for Kong allows simple transformation of requests before they reach the upstream server. These transformations can be simple substitutions or complex ones matching portions of incoming requests using regular expressions, saving those matched strings into variables, and substituting those strings into transformed requests using flexible templates.
 
   <div class="alert alert-warning">
     <strong>Note:</strong> The functionality of this plugin as bundled
@@ -75,6 +75,13 @@ params:
       required: false
       value_in_examples: [ "formparam-toremove", "formparam-another-one" ]
       description: List of parameter names. Remove the parameter if and only if content-type is one the following [`application/json`, `multipart/form-data`,  `application/x-www-form-urlencoded`] and parameter is present.
+    - name: replace.uri
+      required: false
+      description: Updates the upstream request URI with a given value. This value can be used to update only the path part of the URI, not the scheme or the hostname.
+    - name: replace.body
+      required: false
+      value_in_examples: [ "body-param1:new-value-1", "body-param2:new-value-2" ]
+      description: List of paramname:value pairs. If and only if content-type is one the following [`application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`] and the parameter is already present, replace its old value with the new one. Ignored if the parameter is not already present.
     - name: replace.headers
       required: false
       description: List of headername:value pairs. If and only if the header is already set, replace its old value with the new one. Ignored if the header is not already set.
@@ -124,25 +131,110 @@ params:
 
 ---
 
-## Dynamic Transformation Based on Request Content
+## Template as Value
 
-The Request Transformer plugin bundled with Kong Enterprise allows for
-adding or replacing content in the upstream request based on variable data found
-in the client request, such as request headers, query string parameters, or URI
-parameters as defined by a URI capture group.
+You can use any of the current request headers, query params, and captured URI groups as a template to populate the above supported configuration fields.
 
-If you already are a Kong Enterprise customer, you can request access to this
-plugin functionality by opening a support ticket using your Enterprise support
-channels.
+| Request Param | Template
+| ------------- | -----------
+| header        | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`)
+| querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
+| captured URIs | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`)
 
-If you are not a Kong Enterprise customer, you can inquire about our
-Enterprise offering by [contacting us](/enterprise).
+To escape a template, wrap it inside quotes and pass it inside another template.<br>
+`$('$(some_escaped_template)')`
+
+Note: The plugin creates a non-mutable table of request headers, querystrings, and captured URIs before transformation. Therefore, any update or removal of params used in template does not affect the rendered value of a template.
+
+### Advanced templates
+
+The content of the placeholder `$(...)` is evaluated as a Lua expression, so
+logical operators may be used. For example:
+
+    Header-Name:$(uri_captures["user-id"] or query_params["user"] or "unknown")
+
+This will first look for the path parameter (`uri_captures`). If not found, it will
+return the query parameter. If that also doesn't exist, it returns the default
+value '"unknown"'.
+
+Constant parts can be specified as part of the template outside the dynamic
+placeholders. For example, creating a basic-auth header from a query parameter
+called `auth` that only contains the base64-encoded part:
+
+    Authorization:Basic $(query_params["auth"])
+
+Lambdas are also supported if wrapped as an expression like this:
+
+    $((function() ... implementation here ... end)())
+
+A complete Lambda example for prefixing a header value with "Basic" if not
+already there:
+
+    Authorization:$((function()
+        local value = headers.Authorization
+        if not value then
+          return
+        end
+        if value:sub(1, 6) == "Basic " then
+          return value            -- was already properly formed
+        end
+        return "Basic " .. value  -- added proper prefix
+      end)())
+
+*NOTE:* Especially in multi-line templates like the example above, make sure not
+to add any trailing white-space or new-lines. Because these would be outside the
+placeholders, they would be considered part of the template, and hence would be
+appended to the generated value.
+
+The environment is sandboxed, meaning that Lambdas will not have access to any
+library functions, except for the string methods (like `sub()` in the example
+above).
+
+### Examples Using Template as Value
+
+Add an API `test` with `uris` configured with a named capture group `user_id`
+
+```bash
+$ curl -X POST http://localhost:8001/apis \
+    --data 'name=test' \
+    --data 'upstream_url=http://mockbin.com' \
+    --data-urlencode 'uris=/requests/user/(?<user_id>\w+)' \
+    --data "strip_uri=false"
+```
+
+Enable the `request-transformer` plugin to add a new header `x-consumer-id`
+whose value is being set with the value sent with header `x-user-id` or
+with the default value `alice` is `header` is missing.
+
+```bash
+$ curl -X POST http://localhost:8001/apis/test/plugins \
+    --data "name=request-transformer" \
+    --data-urlencode "config.add.headers=x-consumer-id:\$(headers['x-user-id'] or 'alice')" \
+    --data "config.remove.headers=x-user-id"
+```
+
+Now send a request without setting header `x-user-id`
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo
+```
+
+Plugin will add a new header `x-consumer-id` with value `alice` before proxying
+request upstream. Now try sending request with header `x-user-id` set
+
+```bash
+$ curl -i -X GET localhost:8000/requests/user/foo \
+  -H "X-User-Id:bob"
+```
+
+This time the plugin will add a new header `x-consumer-id` with the value sent along
+with the header `x-user-id`, i.e.`bob`
 
 ## Order of execution
 
-Plugin performs the response transformation in following order
+Plugin performs the response transformation in the following order:
 
-remove --> rename --> replace --> add --> append
+* remove → rename → replace → add → append
 
 ## Examples
 
@@ -160,15 +252,16 @@ similarly for Routes.
 
 - Add multiple headers by passing each header:value pair separately:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 ```yaml
 plugins:
 - name: request-transformer
@@ -176,7 +269,8 @@ plugins:
     add:
       headers: ["h1:v1", "h2:v1"]
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -244,15 +338,16 @@ $ curl -X POST http://localhost:8001/services/example-service/plugins \
 
 - Add a querystring and a header:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=request-transformer" \
   --data "config.add.querystring=q1:v2,q2:v1" \
   --data "config.add.headers=h1:v1"
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 ```yaml
 plugins:
 - name: request-transformer
@@ -262,7 +357,8 @@ plugins:
       querystring: ["q1:v1", "q2:v2"]
 
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -297,14 +393,15 @@ plugins:
 
 - Append multiple headers and remove a body parameter:
 
-{% tabs %}
-{% tab With a database %}
+{% navtabs %}
+{% navtab With a database %}
 ```bash
 $ curl -X POST http://localhost:8001/services/example-service/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer", "config": {"append": {"headers": ["h1:v2", "h2:v1"]}, "remove": {"body": ["p1"]}}}'
 ```
-{% tab Without a database %}
+{% endnavtab %}
+{% navtab Without a database %}
 ``` yaml
 plugins:
 - name: request-transformer
@@ -315,7 +412,8 @@ plugins:
       body: [ "p1" ]
 
 ```
-{% endtabs %}
+{% endnavtab %}
+{% endnavtabs %}
 
 <table>
   <tr>
@@ -334,12 +432,7 @@ plugins:
   </tr>
 </table>
 
-|incoming url encoded body | upstream proxied url encoded body:
+|incoming url encoded body | upstream proxied url encoded body
 |---           | ---
 |p1=v1&p2=v1   | p2=v1
 |p2=v1         | p2=v1
-
-[api-object]: /latest/admin-api/#api-object
-[consumer-object]: /latest/admin-api/#consumer-object
-[configuration]: /latest/configuration
-[faq-authentication]: /about/faq/#how-can-i-add-an-authentication-layer-on-a-microservice/api?

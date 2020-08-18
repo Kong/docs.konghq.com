@@ -28,9 +28,9 @@ redirect_from:
   </div>
 
   <div class="docs-grid-block">
-    <h3><a href="https://github.com/hbagdi/deck/blob/master/CHANGELOG.md">Changelog</a></h3>
+    <h3><a href="https://github.com/kong/deck/blob/main/CHANGELOG.md">Changelog</a></h3>
     <p>Review the details of the changes made to each version of decK.</p>
-    <a href="https://github.com/hbagdi/deck/blob/master/CHANGELOG.md">See changelog &rarr;</a>
+    <a href="https://github.com/kong/deck/blob/main/CHANGELOG.md">See changelog &rarr;</a>
   </div>
 
 </div>

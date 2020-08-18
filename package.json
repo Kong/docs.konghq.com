@@ -45,7 +45,7 @@
   "devDependencies": {
     "bootstrap": "3.4.1",
     "broken-link-checker": "0.7.8",
-    "browser-sync": "2.26.10",
+    "browser-sync": "2.26.12",
     "cloudflare": "2.7.0",
     "del": "5.1.0",
     "echint": "4.0.2",
@@ -68,9 +68,9 @@
     "gulp-resource-hints": "0.2.1",
     "gulp-size": "3.0.0",
     "gulp-sourcemaps": "2.6.5",
-    "jpegtran": "1.0.6",
+    "jpegtran": "1.1.0",
     "list-assets": "0.0.2",
-    "lodash": "4.17.19",
+    "lodash": "4.17.20",
     "run-sequence": "2.2.1",
     "skeleton-css": "2.0.4",
     "standard": "14.3.4"

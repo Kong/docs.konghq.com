@@ -7,11 +7,11 @@ categories:
 
 type: plugin
 
-desc: Allow browser clients to call gRPC services.
+desc: Allow browser clients to call gRPC services
 description: |
   A Kong plugin to allow access to a gRPC service via the [gRPC-Web protocol](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md#protocol-differences-vs-grpc-over-http2).
-  Primarily, this means JS browser apps using the [gRPC-Web](https://github.com/grpc/grpc-web) library.
-  
+  Primarily, this means JavaScript browser applications using the [gRPC-Web](https://github.com/grpc/grpc-web) library.
+
 source_url: https://github.com/Kong/kong-plugin-grpc-web
 
 license_type: MIT
@@ -23,7 +23,11 @@ kong_version_compatibility:
       - 2.0.x
       - 1.5.x
       - 1.4.x
-
+  enterprise_edition:
+    compatible:
+      - 2.1.x
+      - 1.5.x
+      - 1.3.x
 
 params:
   name: grpc-web
@@ -45,13 +49,19 @@ params:
 
 ## Purpose
 
-A service that presents a gRPC API can be used by clients written in many languages, but the network specifications are oriented primarily to connections within a datacenter. [gRPC-Web] lets you expose this API to the Internet so that it can be consumed by browser-based JS apps.
+A service that presents a gRPC API can be used by clients written in many languages,
+but the network specifications are oriented primarily to connections within a
+datacenter. [gRPC-Web] lets you expose the gRPC API to the Internet so
+that it can be consumed by browser-based JavaScript applications.
 
-This plugin translates requests and responses between [gRPC-Web] and ["real" gRPC](https://github.com/grpc/grpc).  Supports both HTTP/1.1 and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
+This plugin translates requests and responses between [gRPC-Web] and
+[gRPC](https://github.com/grpc/grpc). The plugin supports both HTTP/1.1
+and HTTP/2, over plaintext (HTTP) and TLS (HTTPS) connections.
 
 ## Usage
 
-This plugin should be enabled on a Kong `Route` that serves the `http(s)` protocol but proxies to a `Service` with the `grpc(s)` protocol.
+This plugin should be enabled on a Kong Route that serves the `http(s)` protocol
+but proxies to a Service with the `grpc(s)` protocol.
 
 Sample configuration via declarative (YAML):
 
@@ -91,9 +101,16 @@ $ curl -XPOST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web
 ```
 
-In these examples we don't set any configuration for the plugin.  This minimal setup works for the default varieties of the [gRPC-Web protocol], which use ProtocolBuffer messages either directly in binary or with base64 encoding.  The related `Content-Type` headers are `application/grpc-web` or `application/grpc-web+proto` for binary and `application/grpc-web-text` or `application/grpc-web-text+proto`.
+In these examples, we don't set any configuration for the plugin.
+This minimal setup works for the default varieties of the [gRPC-Web protocol],
+which use ProtocolBuffer messages either directly in binary or with base64-encoding.
+The related `Content-Type` headers are `application/grpc-web` or `application/grpc-web+proto`
+for binary, and `application/grpc-web-text` or `application/grpc-web-text+proto` for text.
 
-If we wish to use JSON encoding, we have to provide the gRPC specification in a .proto file, which needs to be installed in the Kong node running the plugin.  A path starting with a `/` is considered absolute, otherwise it will be interpreted relative to the Kong's prefix (`/usr/local/kong/` by default).  For example:
+If you want to use JSON encoding, you have to provide the gRPC specification in
+a `.proto` file, which needs to be installed in the Kong node running the plugin.
+A path starting with a `/` is considered absolute; otherwise, it will be interpreted
+relative to the Kong node's prefix (`/usr/local/kong/` by default). For example:
 
 ```protobuf
 syntax = "proto2";
@@ -143,13 +160,22 @@ $ curl -XPOST localhost:8001/routes/web-service/plugins \
   --data proto=path/to/hello.proto
 ```
 
-With this setup, we can support gRPC-Web/JSON clients using `Content-Type` headers like `application/grpc-web+json` or `application/grpc-web-text+json`.
+With this setup, we can support gRPC-Web/JSON clients using `Content-Type` headers
+like `application/grpc-web+json` or `application/grpc-web-text+json`.
 
-Note that, even using JSON encoding, the [gRPC-Web protocol] specifies that both request and response data consist of a series of frames, in a similar way to the full [gRPC protocol].  The [gRPC-Web] library performs this framing as expected.
+Note that even when using JSON encoding, the [gRPC-Web protocol] specifies that
+both request and response data consist of a series of frames, in a similar way
+to the full [gRPC protocol]. The [gRPC-Web] library performs this framing as expected.
 
-As an extension, this plugin also allows "naked" JSON requests with POST method and `Content-Type: application/json` header.  These requests are encoded to ProtocolBuffer, framed, and forwarded to the gRPC service.  Likewise, the responses are transformed on the way back, allowing any HTTP client to use a gRPC service without special libraries.  This feature is limited to unary (non-streaming) requests.  Streaming responses are encoded into multiple JSON objects; it's up to the client to split into separate records if it has to support multiple response messages.
+As an extension, this plugin also allows naked JSON requests with the POST method and
+`Content-Type: application/json` header. These requests are encoded to ProtocolBuffer,
+framed, and forwarded to the gRPC service. Likewise, the responses are transformed
+on the way back, allowing any HTTP client to use a gRPC service without special
+libraries. This feature is limited to unary (non-streaming) requests. Streaming
+responses are encoded into multiple JSON objects; it's up to the client to split into
+separate records if it has to support multiple response messages.
 
-
+## Related information
 [Kong]: https://konghq.com
 [gRPC protocol]: https://github.com/grpc/grpc
 [gRPC-Web]: https://github.com/grpc/grpc-web
@@ -157,3 +183,7 @@ As an extension, this plugin also allows "naked" JSON requests with POST method 
 [lua-protobuf]: https://github.com/starwing/lua-protobuf
 [lua-cjson]: https://github.com/openresty/lua-cjson
 [lua-pack]: https://github.com/Kong/lua-pack
+
+## See also
+
+[Introduction to Kong gRPC plugins](/enterprise/2.1.x/plugins/grpc)

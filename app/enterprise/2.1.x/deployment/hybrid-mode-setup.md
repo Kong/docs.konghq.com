@@ -11,7 +11,7 @@ for details.
 
 We will bring up any subsequent Data Plane (DP) instances in this topic.
 
-> Note: For a Hybrid mode deployment on Kubernetes, see [Hybrid mode](https://github.com/Kong/charts/blob/master/charts/kong/README.md#hybrid-mode)
+> Note: For a Hybrid mode deployment on Kubernetes, see [Hybrid mode](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
 in the `kong/charts` repository.
 
 ## Step 1: Generate a certificate/key pair
@@ -171,7 +171,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
 {{site.ee_product_name}} and the Enterprise license, then install Kong.
 
     > **Note:** for Docker, see the **Docker** tab above. For Kubernetes, see the
-    [Hybrid mode documentation](https://github.com/Kong/charts/blob/master/charts/kong/README.md#hybrid-mode)
+    [Hybrid mode documentation](https://github.com/Kong/charts/blob/main/charts/kong/README.md#hybrid-mode)
     in the `kong/charts` repository.
 
     <div class="alert alert-warning">

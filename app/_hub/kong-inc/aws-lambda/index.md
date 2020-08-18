@@ -62,13 +62,13 @@ params:
       value_in_examples: AWS_KEY
       urlencode_in_examples: true
       default:
-      description: The AWS key credential to be used when invoking the function. This value is required if `aws_secret` is defined.
+      description: The AWS key credential to be used when invoking the function. This value is required if `aws_secret` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an IAM role inherited from the instance running Kong to authenticate.
     - name: aws_secret
       required: semi
       value_in_examples: AWS_SECRET
       urlencode_in_examples: true
       default:
-      description: The AWS secret credential to be used when invoking the function. This value is required if `aws_key` is defined.
+      description: The AWS secret credential to be used when invoking the function. This value is required if `aws_key` is defined. If `aws_key` and `aws_secret` are not set, the plugin uses an IAM role inherited from the instance running Kong to authenticate.
     - name: aws_region
       required: semi
       default:
@@ -190,7 +190,7 @@ argument to the AWS Lambda function.
 
 ### Notes
 
-If you do not provide an `aws.key` and `aws.secret`, the plugin uses an IAM role inherited from the instance running Kong.
+If you do not provide an `aws_key` and `aws_secret`, the plugin uses an IAM role inherited from the instance running Kong.
 
 First, the plugin will try ECS metadata to get the role. If no ECS metadata is available, the plugin will fall back on EC2 metadata.
 

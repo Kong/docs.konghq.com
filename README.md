@@ -7,25 +7,44 @@ This repository is the source code for [Kong](https://github.com/Kong/kong)'s do
 Not sure where to start? Head on over to the `issues` tab to and look for the `good first issue` label. These are issues Kong has identified as beginner friendly. Many of these can be addressed through Github and do not require pulling the repository and building locally.
 
 
-## Develop Locally With Docker
+## Develop Locally with Docker
+
+```
+make install-prerequisites
+```
 
 >
 ```bash
 make develop
 ```
 
-### Testing Links With Docker
+### Running a Local Build with Docker
 
->
+Install tools:
+```
+make install
+```
+
+Run the build:
+```
+make run
+```
+
+Check the build output at http://localhost:3000.
+
+### Testing Links with Docker
+
 ```
 make check-links
 ```
 
-## Develop Locally Without Docker
+## Develop Locally without Docker
 
 ### Prerequisites
 
-- [npm](https://www.npmjs.com/)
+- [node and npm](https://www.npmjs.com/get-npm)
+- [yarn](https://classic.yarnpkg.com)
+- [gulp](https://gulpjs.com/docs/en/getting-started/quick-start/)
 - [Bundler](https://bundler.io/) (< 2.0.0)
 - [Ruby](https://www.ruby-lang.org) (>= 2.0, < 2.3)
 - [Python](https://www.python.org) (>= 2.7.X, < 3)
