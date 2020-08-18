@@ -519,6 +519,15 @@
           url: /plugins/kafka-log
         - text: Kafka Upstream Plugin
           url: /plugins/kafka-upstream
+    - text: gRPC
+      url: /plugins/grpc
+      items:
+        - text: gRPC-Gateway Plugin
+          url: /hub/kong-inc/grpc-gateway
+          absolute_url: true
+        - text: gRPC-Web Plugin
+          url: /hub/kong-inc/grpc-web
+          absolute_url: true
     - text: Proxy Cache Advanced Plugin
       url: /plugins/proxy-cache-advanced
     - text: Canary Release Plugin
