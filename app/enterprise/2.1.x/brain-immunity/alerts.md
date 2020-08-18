@@ -4,52 +4,41 @@ title: Immunity Alerts
 
 ### Introduction
 
-Immunity is working behind the scenes to monitor all the traffic that comes through Kong Enterprise. When it sees an anomaly, Immunity will send an alert to Kong Manager. The alert can be found on the Service Map and the Alerts page. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.
+Immunity monitors all traffic that comes through Kong Enterprise. When it sees an anomaly, Immunity sends an alert to Kong Manager. Alert can be found on the Kong Brain's Service Map and the Alerts page. Alerts are built to signal the health of your microservices system and help pinpoint which endpoints are struggling.
 
+### Types of Alerts
+Immunity evaluates your traffic every minute and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic or consumer traffic.
 
-### Prerequisites
-* Kong Enterprise installed and configured
-* Kong Collector Plugin installed and configured
-* Kong Collector App installed and configured
-
-
-For more information, see the [Kong Brain and Kong Immunity Installation and Configuration Guide](/enterprise/{{page.kong_version}}/brain-immunity/install-configure).
-
-
-### Immunity Generated Alerts
-
-Immunity evaluates your traffic every minute, and creates an alert when it detects an anomalous event on either of two entity types: endpoint traffic and consumer traffic.
-
-* `Endpoint alerts` are generated from traffic belonging to one specific endpoint, for example, `GET www.testendpoint/start`.
+* `Endpoint alerts` are generated from traffic belonging to one specific endpoint, for example, GET www.testendpoint/start.
 * `Consumer alerts` are generated from any traffic in a Workspace belonging to a registered Kong consumer. This traffic is identified by the consumer ID.
 
+#### Alert Events
+Dependent on the entity type, being an endpoint or consumer, Immunity creates an alert and identifies them as one of the following event types: 
+* `value_type` alerts are triggered when incoming requests have a parameter value of a different type than is historically seen (such as Int instead of Str). Default severity level: Low.
+* `unknown_parameter` alerts are triggered when requests include parameters not seen before. Default severity level: Low.
+* `abnormal_value` alerts are triggered when requests contain values different from historical values seen paired with its parameter. Default severity level: Medium.
+* `traffic` alerts are triggered when Immunity sees a rise in 4XX and 5XX error codes for incoming traffic, or when the overall traffic has an abnormal spike or dip. Default severity level: Medium.
+* `latency_ms` alerts are triggered when incoming requests are significantly slower than historical records. Default severity level: High.
+* `statuscode` alerts are triggered when the proportion of 4XX or 5XX error codes is increasing, regardless of traffic volume. Default severity level: High.
 
-There are six types of alerts that Immunity can create for either endpoints or consumers:
-* `value_type`: These alerts are triggered when incoming requests have a parameter value of a different type (such as `Int` instead of `Str`) than seen historically.
-* `unknown_parameter`: These alerts are triggered when requests include parameters not seen before.
-* `abnormal_value`: These alerts are triggered when requests contain values different from historical values seen paired with its parameter.
-* `latency_ms`: These alerts are triggered when incoming requests are significantly slower than historical records.
-* `traffic`: These alerts are triggered when Immunity sees a rise in 4XX and 5XX error codes for incoming traffic, or when the overall traffic has an abnormal spike or dip.
-* `statuscode`: These alerts are triggered when the proportion of 4XX or 5XX error codes is increasing, regardless of traffic volume.
 
+### Retrieving Generated Alerts
+Monitor generated alerts by running the following commands:
 
-#### Retrieving Generated Alerts
-
-You can monitor the created alerts by running the following commands:
-
-```
-curl -d '{"start":"2019-01-08 10:00:00", "end":"2019-01-09 23:30:00"}' \
+```bash
+curl -d '{"start":"2020-01-08 10:00:00", "end":"2020-01-09 23:30:00"}' \
  -H "Content-Type: application/json" \
  -X POST http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts
 ```
 
-Or, you can access the alerts via browser, passing in the ‘start and end’ values as parameters like this:
+Or, you can access the alerts using a browser, passing in the ‘start and end’ values as parameters like this:
 
-```
-http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts?start=2019-01-01 00:00:00&end=2019-01-02 00:00:00
+```bash
+http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/alerts?start=2020-01-01 00:00:00&end=2020-01-02 00:00:00
 ```
 
-The ‘/alerts’ endpoint uses these parameters, which you can mix and match according to your monitoring needs:
+#### Alert Endpoint Parameters
+The ‘/alerts’ endpoint uses the following parameters, which you can mix and match according to your monitoring needs:
 * `start and end`: Returns only alerts generated between the values in start and end parameters passed.
 * `alert_type`: Returns only alerts of the alert_type specified in the alert_type parameter. This parameter does not accept lists of alert types. The value passed must be one of [‘query_params’, ‘statuscode’, ‘latency_ms’, ‘traffic’]
 * `url`: Returns only the alerts associated with the endpoint specified with URL parameter.
@@ -61,8 +50,10 @@ The ‘/alerts’ endpoint uses these parameters, which you can mix and match ac
 * `severity`: One of "low", "medium", "high" which will restricts returned alerts of severities matching the value provided with this parameter.
 
 #### Alerts Object
+Two types of data are returned by the ‘/alerts’ endpoint: a list of generated alerts and alerts metadata. 
 
-Two types of data are returned by the ‘/alerts’ endpoint. The first is a list of the alerts generated, which are structured like this:
+##### List of Genrated Alerts
+The first is a list of the alerts generated, which are structured like this:
 * `id`: The alert_id of the alert.
 * `detected_at`: The time when the generated alert was detected. This time also correlates with the last time point in the data time series that generated this alert. For example, if the alert was generated on data from 1:00 pm to 1:01 pm, then the detected_at time corresponds with the most recent time point of 1:01 pm in the data used to make the alert.
 * `detected_at_unix`: The time from detected_at expressed in Unix time.
@@ -72,8 +63,7 @@ Two types of data are returned by the ‘/alerts’ endpoint. The first is a lis
 * `system_restored`: This parameter takes True or False as a value, and returns notifications where the anomalous event’s system_restored status matches the value passed in the parameter.
 * `severity`: The severity level of this alert, values of [low, medium, high].
 
-#### Alerts Metadata
-
+##### Alerts Metadata
 The second type of data returned is alerts metadata which describes the overall count of alerts and breaks down counts by alert type, severity, system_restored, and filtered_total.
 
 
@@ -192,6 +182,14 @@ If you would like to delete all the configurations you create, you can do so by 
 ```
 curl -X http://<COLLECTOR_HOST>:<COLLECTOR_PORT>/trainer/config
 ```
+
+### Alert Severity Levels
+Alerts are classified with four severity levels:
+* **Low**: A low severity classification denotes the least important alerts. While you decide what a low severity means, we recommend that low severity indicates an alert that you want to review at a later time. 
+* **Medium**: A medium severity classification denotes a mid-level important alert. This level is an alert level you will likely address within the sprint. 
+* **High**: A high severity classification is the highest severity level alert. High alerts need to be addressed immediately and should be fixed as soon as possible.
+* **Ignored**: Alerts that are designated as ignored are not surfaced in the Kong Manager, Slack alerts, or /alerts endpoint. 
+
 
 ### Configure Alert Severity
 
