@@ -34,15 +34,15 @@ params:
   consumer_id: true
   config:
     - name: limit
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: [ "5" ]
       description: |
         One or more requests-per-window limits to apply.
     - name: window_size
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: [ "30" ]
       description: |
         One or more window sizes to apply a limit to (defined in seconds).
     - name: identifier
@@ -62,9 +62,9 @@ params:
       description: |
         The shared dictionary where counters will be stored until the next sync cycle.
     - name: sync_rate
-      required:
+      required: true
       default:
-      value_in_examples:
+      value_in_examples: -1
       description: |
         How often to sync counter data to the central data store. A value of 0
          results in synchronous behavior; a value of -1 ignores sync behavior
@@ -152,7 +152,7 @@ params:
         This sets the time window to either `sliding` or `fixed`.
   extra: |
     **Notes:**  
-    
+
      * Redis configuration values are ignored if the `cluster` strategy is used.
 
      * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store. This requirement varies from the PostgreSQL 9.4+ requirement as described in the <a href="/install/source">Kong Community Edition documentation</a>.
